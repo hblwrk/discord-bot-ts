@@ -6,10 +6,10 @@ WORKDIR /home/node/app
 
 COPY package*.json ./
 
+COPY --chown=node:node . .
+
 USER node
 
 RUN npm install
-
-COPY --chown=node:node . .
 
 CMD [ "node", "index.js", "run" ]
