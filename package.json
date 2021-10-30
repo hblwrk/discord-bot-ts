@@ -1,0 +1,25 @@
+{
+  "name": "discord-bot-js",
+  "version": "1.0.0",
+  "description": "Hebelwerk Discord Bot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run": "echo \"running...\" && exit 0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hblwrk/discord-bot-js.git"
+  },
+  "keywords": [],
+  "dependencies": {
+    "discord.js": "^13.3.0",
+    "discord-api-types": "^0.24.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hblwrk/discord-bot-js/issues"
+  },
+  "homepage": "https://github.com/hblwrk/discord-bot-js#readme"
+}
