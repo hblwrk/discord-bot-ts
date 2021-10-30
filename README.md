@@ -36,4 +36,9 @@ Once my change is complete, i start a pull-request to get my changes to the `mai
 
 * <https://github.com/hblwrk/discord-bot-js/pull/new/add_command_help>
 
-Remove the feature branch afterwards.
+Remove the feature branch afterwards. Switch back to the `main` branch and pull in the merged changes.
+
+```bash
+  git checkout main
+  git pull
+```
