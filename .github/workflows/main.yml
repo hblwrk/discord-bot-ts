@@ -61,3 +61,13 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+
+  redeploy:
+    runs-on: ubuntu-latest
+    needs: [test, build]
+
+    steps:
+      - name: Redeploy docker container via webhook
+        uses: joelwmale/webhook-action@master
+        env:
+          WEBHOOK_URL: ${{ secrets.REDEPLOY_URL }}
