@@ -11,6 +11,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
 jobs:
   build:
@@ -28,10 +29,12 @@ jobs:
 
       - name: Sysdig CIS Dockerfile Benchmark
         uses: sysdiglabs/benchmark-dockerfile@v1.0.0
-    
+
       - name: Snyk scan
         uses: snyk/actions@0.3.0
-    
+        with:
+          command: monitor
+
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
         with:
