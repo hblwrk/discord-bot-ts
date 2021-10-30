@@ -42,3 +42,14 @@ Remove the feature branch afterwards. Switch back to the `main` branch and pull 
 git checkout main
 git pull
 ```
+
+## CI/CD
+
+The bot is deployed at our hblwrk.de server, running as a docker container. Everytime the `main` branch gets updated, our GitHub Actions CI pipeline makes sure that:
+
+* Software tests are executed
+* The `Dockerfile` is valid and conforms to CIS Docker Benchmark requirements sections 4.1, 4.2, 4.3, 4.6, 4.7, 4.9 and 4.10.
+* No vulnerable dependencies are used by our code by scanning with Snyk.
+* The container gets redeployed by the server after calling a webhook.
+
+The webhook runs as a user-mode `systemd` service for user `mheiland`, all relevant configuration can be found at that users home directory.
