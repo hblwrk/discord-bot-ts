@@ -27,6 +27,9 @@ jobs:
           lint: dockerlint
           dockerlabelvalidate: yes
 
+      - name: Sysdig CIS Dockerfile Benchmark
+        uses: sysdiglabs/benchmark-dockerfile@v1.0.0
+
       - name: Snyk scan
         uses: snyk/actions@0.3.0
         with:
@@ -58,13 +61,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-      - name: Container image scan
-        uses: Azure/container-scan@v0.1
-        with:
-          image-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          # Minimum severities of vulnerabilities to be displayed (UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL)
-          severity-threshold: MEDIUM
-          username: ${{ github.actor }}
-          password: ${{ secrets.PAT }}
-          run-quality-checks: true
