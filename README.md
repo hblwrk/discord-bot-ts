@@ -60,7 +60,7 @@ The webhook runs as a user-mode `systemd` service for user `mheiland`, all relev
 Docker swarm mode needs to be initialized once before being able to use it.
 
 ```bash
-docker swarm init
+docker swarm init --listen-addr=127.0.0.1:2377
 ```
 
 ## Secrets
