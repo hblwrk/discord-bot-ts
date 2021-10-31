@@ -65,7 +65,7 @@ docker swarm init --listen-addr=127.0.0.1:2377
 
 ## Secrets
 
-Configuration items like the Discord `token`, `guildId` and `clientId` are considered secrets and specific to each user running the bot. Those need to be specified prior to running `docker-compose`.
+Values like the bots `token`, `guildId` and `clientId` are considered secrets and specific to each user running the bot. Those need to be specified prior to running `docker-compose`.
 
 ```bash
 echo -n "hunter1" | docker secret create discord_token -
