@@ -67,7 +67,7 @@ jobs:
   
       - name: Sign image with a key
         run: |
-          echo ${COSIGN_KEY} > /tmp/cosign.key && \
+          echo ${{ secrets.COSIGN_KEY }} > /tmp/cosign.key && \
           md5sum /tmp/cosign.key && \
           cosign sign -key /tmp/cosign.key ${TAGS}
         env:
