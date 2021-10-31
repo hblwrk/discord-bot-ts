@@ -49,11 +49,14 @@ The bot is deployed at our hblwrk.de server, running as a docker container and m
 
 * Software tests are executed
 * The `Dockerfile` is valid and conforms to CIS Docker Benchmark requirements sections 4.1, 4.2, 4.3, 4.6, 4.7, 4.9 and 4.10.
-* Vulnerable dependencies are detected by Snyk.
+* Vulnerable dependencies are detected by Snyk <https://app.snyk.io/org/mheiland/project/f29b4f0d-7800-4b9c-882f-036af6a21921>.
 * The container image is signed with cosign.
-* The container gets redeployed by the server after calling a webhook and verifying its signature.
+* The server gets notified via webhook to start deployment.
+* The server verifies the container signature when deploying.
 
 The webhook runs as a user-mode `systemd` service for user `mheiland`, all relevant configuration can be found at that user's home directory.
+
+Relevant activities like deployment to production and merging pull-requests is being reported to the #development channel at Discord.
 
 ## Runtime environment
 
@@ -62,6 +65,8 @@ Docker swarm mode needs to be initialized once before being able to use it.
 ```bash
 docker swarm init --listen-addr=127.0.0.1:2377
 ```
+
+Containers are created by multi-stage builds based on "distroless" base-images. Anything which is not required to operate the bot has been removed, for example a shell and system tools. As a result, images are very small, have little attack surface and their file-system is mounted read-only.
 
 ## Secrets
 
@@ -91,3 +96,9 @@ The bots lifecycle is managed using the `docker-compose.yml` file provided at th
 docker stack deploy --with-registry-auth --prune --compose-file docker-compose.yml discord-bot-js_production
 docker stack rm discord-bot-js_production
 ```
+
+## Monitoring
+
+Our containers are designed to be minimal, which comes with the downside that we cannot run in-container health-checks. The bot exposes a simple HTTP server at port `11312/tcp`, providing the path `/api/v1/health` which responds with `HTTP 200` if the bot is running. Service availability monitoring is provided by HetrixTools <https://hetrixtools.com/report/uptime/7162c65d5357013beb43868c30e86e6a/>.
+
+Unavailability will be reported to the #development channel at Discord.

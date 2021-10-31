@@ -111,5 +111,5 @@ jobs:
         uses: sarisia/actions-status-discord@v1.8.6
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          title: Production redeployment triggered.
+          title: Production deployment triggered.
       
