@@ -1,6 +1,7 @@
 // Require the necessary discord.js classes
 const { Client, Intents } = require('discord.js');
-const { token } = require('./config.json');
+const secrets = require('./modules/secrets');
+const token = secrets.read('discord_token')
 
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILDS] });
