@@ -12,6 +12,6 @@ USER node
 
 RUN npm install
 
-HEALTHCHECK --interval=10s --timeout=10s --start-period=10s --retries=3 CMD [ "pgrep node" ]
+HEALTHCHECK --interval=10s --timeout=10s --start-period=10s --retries=3 CMD [ "pgrep", "node" ]
 
 CMD [ "node", "index.js", "run" ]
