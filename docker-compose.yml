@@ -16,6 +16,9 @@ services:
         limits:
           cpus: "1"
           memory: 512m
+        reservations:
+          cpus: '0.5'
+          memory: 256M
     read_only: true
     ulimits:
       nofile:
