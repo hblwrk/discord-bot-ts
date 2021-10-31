@@ -14,7 +14,7 @@ RUN npm ci --only=production
 
 FROM gcr.io/distroless/nodejs:16
 
-COPY --from=build-env /app /app
+COPY --from=builder /home/node/app /app
 
 WORKDIR /app
 
