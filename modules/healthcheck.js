@@ -16,4 +16,4 @@ router.get('/health', (req, res) => {
 app.use('/api/v1', router);
 
 const server = http.createServer(app);
-server.listen(11312, '127.0.0.1');
+server.listen(11312);
