@@ -36,7 +36,7 @@ Once my change is complete, I start a pull-request to get my changes to the `mai
 
 * <https://github.com/hblwrk/discord-bot-js/pull/new/add_command_help>
 
-Remove the feature branch afterwards. Switch back to the `main` branch and pull in the merged changes.
+After the pull-request has been merged, i remove the feature branch and switch back to the `main` branch and pull in the merged changes.
 
 ```bash
 git checkout main
@@ -49,8 +49,9 @@ The bot is deployed at our hblwrk.de server, running as a docker container and m
 
 * Software tests are executed
 * The `Dockerfile` is valid and conforms to CIS Docker Benchmark requirements sections 4.1, 4.2, 4.3, 4.6, 4.7, 4.9 and 4.10.
-* No vulnerable dependencies are used by our code by scanning with Snyk.
-* The container gets redeployed by the server after calling a webhook.
+* Vulnerable dependencies are detected by Snyk.
+* The container image is signed with cosign.
+* The container gets redeployed by the server after calling a webhook and verifying its signature.
 
 The webhook runs as a user-mode `systemd` service for user `mheiland`, all relevant configuration can be found at that user's home directory.
 
