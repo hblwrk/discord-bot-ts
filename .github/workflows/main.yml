@@ -70,7 +70,7 @@ jobs:
           echo ${COSIGN_KEY} > /tmp/my_cosign.key && \
           cosign sign -key /tmp/my_cosign.key ${TAGS}
         env:
-          TAGS: ${{ steps.docker_meta.outputs.tags }}
+          TAGS: ${{ steps.meta.outputs.tags }}
           COSIGN_KEY: ${{secrets.COSIGN_KEY}}
           COSIGN_PASSWORD: ${{secrets.COSIGN_PASSWORD}}
   
