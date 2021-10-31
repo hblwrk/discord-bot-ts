@@ -105,7 +105,6 @@ jobs:
         uses: joelwmale/webhook-action@master
         with:
           url: ${{ secrets.REDEPLOY_URL }}
-          headers: ${{ secrets.REDEPLOY_AUTH }}
 
       - name: Actions Status Discord
         uses: sarisia/actions-status-discord@v1.8.6
