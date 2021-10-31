@@ -20,4 +20,4 @@ WORKDIR /app
 
 HEALTHCHECK NONE
 
-CMD [ "node", "index.js", "run" ]
+CMD ["index.js"]
