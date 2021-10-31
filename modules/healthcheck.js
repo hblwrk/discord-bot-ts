@@ -9,8 +9,9 @@ router.use((req, res, next) => {
   next();
 });
 
+// @TODO We should add more logic here to reflect actual bot health
 router.get('/health', (req, res) => {
-  res.status(200).send('Ok');
+  res.status(200).send('stonks');
 });
 
 app.use('/api/v1', router);
