@@ -68,7 +68,7 @@ jobs:
       - name: Sign image with a key
         run: |
           echo ${COSIGN_KEY} > /tmp/cosign.key && \
-          ls -la /tmp/cosign.key && \
+          md5sum /tmp/cosign.key && \
           cosign sign -key /tmp/cosign.key ${TAGS}
         env:
           TAGS: ${{ steps.meta.outputs.tags }}
