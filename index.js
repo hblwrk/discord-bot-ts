@@ -2,6 +2,9 @@
 const fs = require("fs");
 const { Client, Collection, Intents } = require("discord.js");
 
+// HTTP Healthcheck
+require("./modules/healthcheck");
+
 // Read secrets
 const secrets = require("./modules/secrets");
 const token = secrets.read("discord_token")
