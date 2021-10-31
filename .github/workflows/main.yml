@@ -105,3 +105,8 @@ jobs:
         uses: joelwmale/webhook-action@master
         env:
           WEBHOOK_URL: ${{ secrets.REDEPLOY_URL }}
+      - name: Actions Status Discord
+        uses: sarisia/actions-status-discord@v1.8.6
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
+      
