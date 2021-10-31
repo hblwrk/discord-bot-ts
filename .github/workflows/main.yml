@@ -107,6 +107,8 @@ jobs:
           WEBHOOK_URL: ${{ secrets.REDEPLOY_URL }}
       - name: Actions Status Discord
         uses: sarisia/actions-status-discord@v1.8.6
+        with:
+          title: Production redeployment triggered.
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
       
