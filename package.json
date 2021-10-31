@@ -13,8 +13,8 @@
   },
   "keywords": [],
   "dependencies": {
-    "discord.js": "^13.3.0",
     "discord-api-types": "^0.24.0",
+    "discord.js": "^13.3.0",
     "express": "^4.17.1"
   },
   "author": "",
@@ -22,5 +22,11 @@
   "bugs": {
     "url": "https://github.com/hblwrk/discord-bot-js/issues"
   },
-  "homepage": "https://github.com/hblwrk/discord-bot-js#readme"
+  "homepage": "https://github.com/hblwrk/discord-bot-js#readme",
+  "devDependencies": {
+    "xo": "^0.46.3"
+  },
+  "xo": {
+		"space": true
+	}
 }
