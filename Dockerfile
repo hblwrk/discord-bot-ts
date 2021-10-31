@@ -18,6 +18,6 @@ COPY --from=builder /home/node/app /app
 
 WORKDIR /app
 
-HEALTHCHECK NONE
+HEALTHCHECK --interval=10s --timeout=10s --start-period=10s --retries=3 CMD ["pgrep", "node"]
 
 CMD ["index.js"]
