@@ -67,9 +67,9 @@ docker swarm init
 Configuration items like the Discord `token`, `guildId` and `clientId` are considered secrets and specific to each user running the bot. Those need to be specified prior to running `docker-compose`.
 
 ```bash
-echo "hunter1" | docker secret create discord_token -
-echo "hunter2" | docker secret create discord_clientId -
-echo "hunter3" | docker secret create discord_guildId -
+echo -n "hunter1" | docker secret create discord_token -
+echo -n "hunter2" | docker secret create discord_clientId -
+echo -n "hunter3" | docker secret create discord_guildId -
 ```
 
 By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams.
