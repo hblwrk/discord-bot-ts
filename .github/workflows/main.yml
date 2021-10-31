@@ -69,7 +69,7 @@ jobs:
     timeout-minutes: 10
     needs: [test, build]
 
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == "refs/heads/main"
     steps:
       - name: Log in to the Container registry
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
@@ -99,7 +99,7 @@ jobs:
     timeout-minutes: 10
     needs: [test, build, sign]
 
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == "refs/heads/main"
     steps:
       - name: Redeploy docker container via webhook
         uses: joelwmale/webhook-action@master
