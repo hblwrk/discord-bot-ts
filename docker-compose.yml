@@ -28,3 +28,8 @@ services:
       - discord_token
       - discord_clientId
       - discord_guildId
+    healthcheck:
+      test: ["CMD-SHELL", "pgrep", "node"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
