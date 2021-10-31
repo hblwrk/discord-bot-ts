@@ -61,7 +61,19 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
+  
+      - name: install-cosign
+        uses: sigstore/cosign-installer@v1.2.1
+  
+      - name: Sign image with a key
+        run: |
+          echo ${COSIGN_KEY} > /tmp/my_cosign.key && \
+          cosign sign -key /tmp/my_cosign.key ${TAGS}
+        env:
+          TAGS: ${{ steps.docker_meta.outputs.tags }}
+          COSIGN_KEY: ${{secrets.COSIGN_KEY}}
+          COSIGN_PASSWORD: ${{secrets.COSIGN_PASSWORD}}
+  
   redeploy:
     runs-on: ubuntu-latest
     needs: [test, build]
