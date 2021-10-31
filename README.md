@@ -73,7 +73,15 @@ echo -n "hunter2" | docker secret create discord_clientId -
 echo -n "hunter3" | docker secret create discord_guildId -
 ```
 
-By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams.
+By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams. The code looks for `config.json` and expects the following syntax:
+
+```json
+{
+  "discord_token": "hunter1",
+  "discord_clientId": "hunter2",
+  "discord_guildId": "hunter3"
+}
+```
 
 ## Service lifecycle
 
