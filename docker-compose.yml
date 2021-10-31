@@ -1,0 +1,27 @@
+version: "3.9"
+
+secrets:
+  discord_token:
+    external: true
+  discord_clientId:
+    external: true
+  discord_guildId:
+    external: true
+
+services:
+  bot:
+    image: ghcr.io/hblwrk/discord-bot-js:main
+    deploy:
+      resources:
+        limits:
+          cpus: "1"
+          memory: 512m
+    read_only: true
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    secrets:
+      - discord_token
+      - discord_clientId
+      - discord_guildId
