@@ -16,6 +16,7 @@ env:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     
     steps:
       - uses: actions/checkout@v2
@@ -37,6 +38,7 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
 
     steps:
       - uses: actions/checkout@v2
@@ -64,6 +66,7 @@ jobs:
 
   sign:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: [test, build]
 
     if: github.ref == 'refs/heads/main'
@@ -93,6 +96,7 @@ jobs:
   
   redeploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     needs: [test, build, sign]
 
     if: github.ref == 'refs/heads/main'
