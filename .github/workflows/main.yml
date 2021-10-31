@@ -101,10 +101,13 @@ jobs:
 
     if: github.ref == 'refs/heads/main'
     steps:
-      - name: Redeploy docker container via webhook
+      - name: Redeploy docker swarm stack via webhook
         uses: joelwmale/webhook-action@master
+        with:
+          headers: ${{ secrets.REDEPLOY_AUTH }}
         env:
           WEBHOOK_URL: ${{ secrets.REDEPLOY_URL }}
+
       - name: Actions Status Discord
         uses: sarisia/actions-status-discord@v1.8.6
         with:
