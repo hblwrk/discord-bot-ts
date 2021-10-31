@@ -28,3 +28,5 @@ services:
       - discord_token
       - discord_clientId
       - discord_guildId
+    ports:
+      - "11312:11312"
