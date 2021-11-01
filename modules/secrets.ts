@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require("node:fs");
 
 const secrets = {};
 
@@ -6,16 +6,16 @@ secrets.read = function read(secretName) {
   try {
     // Attempting to fetch Docker secret
     return fs.readFileSync(`/run/secrets/${secretName}`, "utf8");
-  } catch(err) {
+  } catch {
     // Fall back to config.json in case Docker secret is unavailable
     const keys = JSON.parse(fs.readFileSync("config.json", "utf8"))
-    return getValueFromJSONConfig(keys, secretName);
+    return getValueFromJsonConfig(keys, secretName);
   }
 };
 
-function getValueFromJSONConfig(config, key) {
-  var string = JSON.stringify(config);
-  var objectValue = JSON.parse(string);
+function getValueFromJsonConfig(config, key) {
+  const string = JSON.stringify(config);
+  const objectValue = JSON.parse(string);
   return objectValue[key];
 }
 
