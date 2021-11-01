@@ -103,3 +103,26 @@ docker stack rm discord-bot-js_production
 Our containers are designed to be minimal, which comes with the downside that we cannot run in-container health-checks. The bot exposes a simple HTTP server at port `11312/tcp`, providing the path `/api/v1/health` which responds with `HTTP 200` if the bot is running. Service availability monitoring is provided by HetrixTools <https://hetrixtools.com/report/uptime/7162c65d5357013beb43868c30e86e6a/>.
 
 Unavailability will be reported to the #development channel at Discord.
+
+## Discord Developer settings
+
+### Create a bot
+
+In order to create a bot, a Discord Application needs to be created at <https://discord.com/developers/>. Select "New Application", give it a brief identifier, and fetch the "Application ID" value from the following page. This is used at the bot configuration to authenticate at Discord.
+
+Select Settings -> Bot, select "Add bot" and give the bot a proper name, image etc. Also disable "Public Bot". Click "Reveal Token" to show the bots' authentication token. This is used at the bots' configuration to authenticate at Discord.
+
+Permissions of the bot are granted using OAuth2 scopes. Select Settings -> OAuth2 and enable at least the following OAuth2 scopes:
+
+* bot
+* application.commands
+
+Open the generated URL starting with <https://discord.com/api/oauth2/authorize?client_id=...> to invite your bot to a specific server.
+
+To get a server's Guild ID, enable Developer Mode at the Discord Client at User Settings -> App Settings -> Advanced. Then exit the settings menu and right-click the server name and click "Copy ID". This is used at the bot configuration to define which server to connect to.
+
+You will need the Application ID, the Bot Token and the Guild ID to authenticate and use your bot.
+
+### Interact with the bot
+
+Once the bot has joined your server make sure to use a dedicated channel for development. If multiple bots of the same kind are present at a single channel, they may all respond to commands. You can invite your bot to your dedicated channel by using channel permissions.
