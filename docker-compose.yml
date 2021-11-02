@@ -3,11 +3,13 @@ version: "3.9"
 secrets:
   discord_token:
     external: true
-  discord_clientId:
+  discord_clientID:
     external: true
-  discord_guildId:
+  discord_guildID:
     external: true
   dracoon_password:
+    external: true
+  hblwrk_NYSEOpenCloseAnnouncement_ChannelID:
     external: true
 
 services:
@@ -28,8 +30,9 @@ services:
         hard: 65536
     secrets:
       - discord_token
-      - discord_clientId
-      - discord_guildId
+      - discord_clientID
+      - discord_guildID
       - dracoon_password
+      -hblwrk_NYSEOpenCloseAnnouncement_ChannelID
     ports:
       - "11312:11312"

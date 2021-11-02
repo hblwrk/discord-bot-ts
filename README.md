@@ -80,13 +80,14 @@ Containers are created by multi-stage builds based on "distroless" base-images. 
 
 ## Secrets
 
-Values like the bots `token`, `guildId` and `clientId` are considered secrets and specific to each user running the bot. Those need to be specified prior to running `docker-compose`.
+Values like the bots `token`, `guildID` and `clientID` are considered secrets and specific to each user running the bot. Those need to be specified prior to running `docker-compose`.
 
 ```bash
 echo -n "hunter1" | docker secret create discord_token -
-echo -n "hunter2" | docker secret create discord_clientId -
-echo -n "hunter3" | docker secret create discord_guildId -
+echo -n "hunter2" | docker secret create discord_clientID -
+echo -n "hunter3" | docker secret create discord_guildID -
 echo -n "hunter4" | docker secret create dracoon_password -
+echo -n "hunter5" | docker secret create hblwrk_NYSEOpenCloseAnnouncement_ChannelID -
 ```
 
 By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams. The code looks for `config.json` and expects the following syntax:
@@ -94,9 +95,10 @@ By defining a set of secrets per developer, multiple bots can be run at the same
 ```json
 {
   "discord_token": "hunter1",
-  "discord_clientId": "hunter2",
-  "discord_guildId": "hunter3",
-  "dracoon_password": "hunter4"
+  "discord_clientID": "hunter2",
+  "discord_guildID": "hunter3",
+  "dracoon_password": "hunter4",
+  "hblwrk_NYSEOpenCloseAnnouncement_ChannelID": "hunter5"
 }
 ```
 
