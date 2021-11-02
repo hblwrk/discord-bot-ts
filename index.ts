@@ -7,6 +7,7 @@ import {getAssets} from "./modules/assets";
 import {readSecret} from "./modules/secrets";
 import {getFromDracoon} from "./modules/dracoon-downloader";
 import {runHealthCheck} from "./modules/healthcheck";
+import {startTimers} from "./modules/timers";
 
 const token = readSecret("discord_token");
 const clientId = readSecret("discord_clientId");
@@ -19,6 +20,9 @@ for (const asset of assets) {
   assetCommands.push(`!${asset.getName()}`);
 }
 console.log(`Successfully loaded ${assets.length} assets.`);
+
+startTimers();
+console.log("Successfully set timers.");
 
 // Create a new client instance
 const client = new Client({
