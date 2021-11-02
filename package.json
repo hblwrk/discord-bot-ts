@@ -2,7 +2,7 @@
   "name": "discord-bot-js",
   "version": "1.0.0",
   "description": "Hebelwerk Discord Bot",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "run": "echo \"running...\" && exit 0"
@@ -13,10 +13,14 @@
   },
   "keywords": [],
   "dependencies": {
-    "discord-api-types": "^0.24.0",
-    "discord.js": "^13.3.0",
+    "@discordjs/builders": "^0.8.2",
     "@discordjs/rest": "^0.1.0-canary.0",
-    "express": "^4.17.1"
+    "class-transformer": "^0.4.0",
+    "discord-api-types": "^0.24.0",
+    "discord.js": "^13.3.1",
+    "express": "^4.17.1",
+    "js-yaml": "^4.1.0",
+    "ts-node": "^10.4.0"
   },
   "author": "",
   "license": "ISC",
@@ -32,7 +36,10 @@
   "xo": {
     "space": true,
     "rules": {
-      "quotes": [ "error", "double" ],
+      "quotes": [
+        "error",
+        "double"
+      ],
       "@typescript-eslint/quotes": [
         "error",
         "double"

@@ -77,6 +77,7 @@ Values like the bots `token`, `guildId` and `clientId` are considered secrets an
 echo -n "hunter1" | docker secret create discord_token -
 echo -n "hunter2" | docker secret create discord_clientId -
 echo -n "hunter3" | docker secret create discord_guildId -
+echo -n "hunter4" | docker secret create dracoon_password -
 ```
 
 By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams. The code looks for `config.json` and expects the following syntax:
@@ -85,7 +86,8 @@ By defining a set of secrets per developer, multiple bots can be run at the same
 {
   "discord_token": "hunter1",
   "discord_clientId": "hunter2",
-  "discord_guildId": "hunter3"
+  "discord_guildId": "hunter3",
+  "dracoon_password": "hunter4"
 }
 ```
 
