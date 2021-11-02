@@ -33,7 +33,6 @@ client.on("messageCreate", message => {
 
   // Image response to a message
   if (message.content.startsWith("bunny")) {
-    console.log(getAssets.name);
     getFromDracoon(readSecret("dracoon_password"), "2teKN7x65yLrqrgZl2TAvA7kP5E9hyyc", buffer => {
       const file = new MessageAttachment(buffer, "bunny.jpg");
       const embed = new MessageEmbed();
@@ -45,7 +44,6 @@ client.on("messageCreate", message => {
   }
 
   if (message.content.startsWith("!ausdemweg")) {
-    console.log(getAssets.name);
     getFromDracoon(readSecret("dracoon_password"), "rIZidSLQLYSCwJC7BzxOWEAQZnzNEmOx", buffer => {
       const file = new MessageAttachment(buffer, "ausdemweg.png");
       const embed = new MessageEmbed();
