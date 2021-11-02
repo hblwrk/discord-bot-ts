@@ -12,7 +12,9 @@ USER node
 
 RUN npm ci --only=production
 
-FROM gcr.io/distroless/nodejs:16
+# Cant use distroless due to TypeScript workaround
+#FROM gcr.io/distroless/nodejs:16
+FROM node:17-alpine
 
 COPY --from=builder /home/node/app /app
 
