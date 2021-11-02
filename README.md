@@ -102,7 +102,7 @@ By defining a set of secrets per developer, multiple bots can be run at the same
 
 ## Assets
 
-Larger files, for example images, are stored at an external cloud service, Dracoon. They are requested by the bot and uploaded as attachment to Discord. This avoids high bandwidth cost for us as well as messing up our repository with binary files. Access to such assets requires to know the asset ID and a password. A reference and metadata for each asset is stored at `assets/`.
+Larger files, for example images, are stored at an external cloud service, Dracoon. They are requested by the bot and uploaded as attachment to Discord. This avoids high bandwidth cost for us as well as messing up our repository with binary files. Access to such assets requires to know the asset ID and a password. A reference and metadata for each asset is stored at `assets/`. Discord limits uploads to 8MB.
 
 ## Service lifecycle
 

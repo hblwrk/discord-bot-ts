@@ -1,11 +1,11 @@
 ---
-- name: bang
-  fileName: bang.mov
-  title: "Bang!"
+- name: hyperino
+  fileName: hyperino.png
+  title: "Hyperino!"
   location: dracoon
-  locationId: 2teKN7x65yLrqrgZl2TAvA7kP5E9hyyc
-- name: boom
-  fileName: boom.mp4
-  title: "Boom!"
+  locationId: BDQY82BXeqBpPLuUh5DzyOAuYm6ULDdi
+- name: dumpeet
+  fileName: dumpeet.gif
+  title: "Dump it!"
   location: dracoon
-  locationId: rIZidSLQLYSCwJC7BzxOWEAQZnzNEmOx
+  locationId: mjvgpXb9SbbjAJnHERwwqrDvEK95dMk9

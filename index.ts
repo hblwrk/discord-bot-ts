@@ -14,9 +14,9 @@ const guildId = readSecret("discord_guildId");
 
 runHealthCheck();
 const assets = getAssets();
-const assetNames = [];
+const assetCommands = [];
 for (const asset of assets) {
-  assetNames.push(asset.getName());
+  assetCommands.push(`!${asset.getName()}`);
 }
 console.log(`Successfully loaded ${assets.length} assets.`);
 
@@ -30,15 +30,15 @@ const client = new Client({
 });
 
 // Some samples
-// Messages
+// Message response to a message starting with a word
 client.on("messageCreate", message => {
   // Simple response to a message
   if (message.content.startsWith("ping")) {
     message.channel.send("pong!").catch(console.error);
   }
 
-  // Image response to a message
-  if (assetNames.some(v => message.content.includes(v))) {
+  // Image response to a !message with an asset
+  if (assetCommands.some(v => message.content.includes(v))) {
     for (const asset of assets) {
       if (message.content.includes(asset.getName())) {
         getFromDracoon(readSecret("dracoon_password"), asset.getlocationId(), buffer => {
@@ -51,17 +51,6 @@ client.on("messageCreate", message => {
         });
       }
     }
-  }
-
-  if (message.content.startsWith("!ausdemweg")) {
-    getFromDracoon(readSecret("dracoon_password"), "rIZidSLQLYSCwJC7BzxOWEAQZnzNEmOx", buffer => {
-      const file = new MessageAttachment(buffer, "ausdemweg.png");
-      const embed = new MessageEmbed();
-      embed.setTitle("Aus dem Weg, Geringverdiener!");
-      embed.setAuthor(client.user.username);
-      embed.setImage("attachment://ausdemweg.png");
-      message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
-    });
   }
 
   // Reaction response
