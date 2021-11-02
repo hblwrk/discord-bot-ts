@@ -10,8 +10,8 @@ import {runHealthCheck} from "./modules/healthcheck";
 import {startTimers} from "./modules/timers";
 
 const token = readSecret("discord_token");
-const clientId = readSecret("discord_clientId");
-const guildId = readSecret("discord_guildId");
+const clientID = readSecret("discord_clientID");
+const guildID = readSecret("discord_guildID");
 
 runHealthCheck();
 const assets = getAssets();
@@ -21,9 +21,6 @@ for (const asset of assets) {
 }
 console.log(`Successfully loaded ${assets.length} assets.`);
 
-startTimers();
-console.log("Successfully set timers.");
-
 // Create a new client instance
 const client = new Client({
   intents: [
@@ -32,6 +29,9 @@ const client = new Client({
     Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
   ],
 });
+
+startTimers(client, readSecret("hblwrk_NYSEOpenCloseAnnouncement_ChannelID"));
+console.log("Successfully set timers.");
 
 // Some samples
 // Message response to a message starting with a word
@@ -85,7 +85,7 @@ const rest = new REST({
 (async () => {
   try {
     await rest.put(
-      Routes.applicationGuildCommands(clientId, guildId),
+      Routes.applicationGuildCommands(clientID, guildID),
       {
         body: commands,
       },
