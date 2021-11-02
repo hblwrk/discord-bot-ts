@@ -2,13 +2,22 @@
 
 ## Conventions
 
-* This is a TypeScript project <https://www.typescriptlang.org/>.
+* This is a ES6, TypeScript project <https://www.typescriptlang.org/>.
 * The project follows a rolling release model <https://en.wikipedia.org/wiki/Rolling_release>.
 * The `main` branch contains stable and tested code. Any development is done at feature branches.
 * We use `git config pull.rebase false`.
 * We do not commit any IDE, operating-system or editor-specific files to the repository, mind `.gitignore`.
 * We use Airbnb's JS style guide <https://github.com/airbnb/javascript>. That's two spaces for indentation.
 * Consider using XO <https://github.com/xojs/xo> for linting.
+
+## Running
+
+Install NodeJS v16 or newer and start the bot like this:
+
+```bash
+npm install
+node --loader ts-node/esm index.ts
+```
 
 ## Workflow
 
