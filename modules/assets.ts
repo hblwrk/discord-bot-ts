@@ -1,12 +1,13 @@
 import {plainToClass} from "class-transformer";
-
 import yaml from "js-yaml";
 import fs from "node:fs";
 
 const directory = "./assets";
+const fileExtension = ".yaml";
 
 export class Asset {
   name: string;
+  type: string;
   fileName: string;
   title: string;
   location: string;
@@ -14,6 +15,10 @@ export class Asset {
 
   getName() {
     return this.name;
+  }
+
+  getType() {
+    return this.getType;
   }
 
   getFileName() {
@@ -35,16 +40,18 @@ export class Asset {
 
 export function getAssets() {
   try {
-    const assetFiles = fs.readdirSync(directory).filter(file => file.endsWith(".yaml"));
-    console.log(assetFiles);
-    let assets = {};
-    assetFiles.forEach(element => {
-      yaml.load(fs.readFileSync(`${directory}/${element}`, 'utf8')).then((assets: Object[]) => {
-        const realAssets = plainToClass(Asset, assets)
-      });
-    });
-    console.log(assets);
-  } catch (error) {
+    const assetFiles = fs.readdirSync(directory).filter(file => file.endsWith(fileExtension));
+    let newAssets = [];
+    for (const element of assetFiles) {
+      const jsonObjects = yaml.load(fs.readFileSync(`${directory}/${element}`, "utf-8"));
+      for (const jsonObject of jsonObjects) {
+        const newAsset = plainToClass(Asset, jsonObject);
+        newAsset.type = element.replace(fileExtension, "");
+        newAssets.push(newAsset);
+      }
+    }
+    return newAssets;
+  } catch (error: unknown) {
     console.log(error);
   }
 }

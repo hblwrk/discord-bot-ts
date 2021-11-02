@@ -1,4 +1,5 @@
 import https from "node:https";
+import {Buffer} from "node:buffer";
 
 export function getFromDracoon(secret: string, downloadToken: string, cb) {
   const data = JSON.stringify({
@@ -18,13 +19,13 @@ export function getFromDracoon(secret: string, downloadToken: string, cb) {
 
   const request = https.request(options, response => {
     response.on("data", chunk => {
-      const downloadUrl = JSON.parse(chunk).downloadUrl;
+      const downloadUrl: unknown = JSON.parse(chunk).downloadUrl;
       https.get(downloadUrl, response => {
         const data = [];
         response.on("data", chunk => {
           data.push(chunk);
         }).on("end", () => {
-          const buffer = Buffer.concat(data);
+          const buffer: unknown = Buffer.concat(data);
           cb(buffer);
         });
       }).on("error", error => {

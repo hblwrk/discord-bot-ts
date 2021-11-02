@@ -13,6 +13,12 @@ const clientId = readSecret("discord_clientId");
 const guildId = readSecret("discord_guildId");
 
 runHealthCheck();
+const assets = getAssets();
+const assetNames = [];
+for (const asset of assets) {
+  assetNames.push(asset.getName());
+}
+console.log(`Successfully loaded ${assets.length} assets.`);
 
 // Create a new client instance
 const client = new Client({
@@ -32,15 +38,19 @@ client.on("messageCreate", message => {
   }
 
   // Image response to a message
-  if (message.content.startsWith("bunny")) {
-    getFromDracoon(readSecret("dracoon_password"), "2teKN7x65yLrqrgZl2TAvA7kP5E9hyyc", buffer => {
-      const file = new MessageAttachment(buffer, "bunny.jpg");
-      const embed = new MessageEmbed();
-      embed.setTitle("Bunny");
-      embed.setAuthor(client.user.username);
-      embed.setImage("attachment://bunny.jpg");
-      message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
-    });
+  if (assetNames.some(v => message.content.includes(v))) {
+    for (const asset of assets) {
+      if (message.content.includes(asset.getName())) {
+        getFromDracoon(readSecret("dracoon_password"), asset.getlocationId(), buffer => {
+          const file = new MessageAttachment(buffer, asset.getFileName());
+          const embed = new MessageEmbed();
+          embed.setTitle(asset.getTitle());
+          embed.setAuthor(client.user.username);
+          embed.setImage(`attachment://${asset.getFileName()}`);
+          message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
+        });
+      }
+    }
   }
 
   if (message.content.startsWith("!ausdemweg")) {

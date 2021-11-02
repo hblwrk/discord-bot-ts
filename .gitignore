@@ -4,5 +4,6 @@ Desktop.ini
 Thumbs.db
 .Spotlight-V100
 .Trashes
+.vscode/
 node_modules/
 config.json
