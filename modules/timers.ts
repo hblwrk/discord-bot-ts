@@ -1,5 +1,5 @@
 import Schedule from "node-schedule";
-import isHoliday from "nyse-holidays";
+import {isHoliday} from "nyse-holidays";
 
 export function startTimers() {
   const ruleNYSEPremarketOpen = new Schedule.RecurrenceRule();
@@ -15,7 +15,7 @@ export function startTimers() {
   ruleNYSEOpen.tz = "US/Eastern";
 
   const ruleNYSEClose = new Schedule.RecurrenceRule();
-  ruleNYSEClose.hour = 16;
+  ruleNYSEClose.hour = 17;
   ruleNYSEClose.minute = 0;
   ruleNYSEOpen.dayOfWeek = [0, new Schedule.Range(1, 5)];
   ruleNYSEClose.tz = "US/Eastern";
@@ -28,31 +28,33 @@ export function startTimers() {
 
   const jobNYSEPremarketOpen = Schedule.scheduleJob(ruleNYSEPremarketOpen, () => {
     if (false === isHoliday(new Date())) {
-      console.log("NYSE Premarket Open");
+      console.log(`${new Date()} NYSE Premarket Open`);
     } else {
-      console.log("NYSE holiday");
+      console.log(`${new Date()} NYSE Holiday`);
     }
   });
 
   const jobNYSEOpen = Schedule.scheduleJob(ruleNYSEOpen, () => {
     if (false === isHoliday(new Date())) {
-      console.log("NYSE Open");
+      console.log(`${new Date()} NYSE Open`);
     } else {
-      console.log("NYSE holiday");
+      console.log(`${new Date()} NYSE Holiday`);
     }
   });
 
   const jobNYSEClose = Schedule.scheduleJob(ruleNYSEClose, () => {
     if (false === isHoliday(new Date())) {
-      console.log("NYSE Close");
+      console.log(`${new Date()} NYSE Close`);
+    } else {
+      console.log(`${new Date()} NYSE Holiday`);
     }
   });
 
   const jobNYSEAftermarketClose = Schedule.scheduleJob(ruleNYSEAftermarketClose, () => {
     if (false === isHoliday(new Date())) {
-      console.log("NYSE Aftermarket Close");
+      console.log(`${new Date()} NYSE Aftermarket Close`);
     } else {
-      console.log("NYSE holiday");
+      console.log(`${new Date()} NYSE Holiday`);
     }
   });
 }
