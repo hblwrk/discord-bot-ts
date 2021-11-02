@@ -1,38 +1,76 @@
 // Dependencies
-const fs = require("fs");
-const {Client, Collection, Intents} = require("discord.js");
-const {REST} = require("@discordjs/rest");
-const {Routes} = require("discord-api-types/v9");
-require("./modules/healthcheck.ts");
-const secrets = require("./modules/secrets.ts");
+import {Client, Intents, MessageAttachment, MessageEmbed} from "discord.js";
+import {REST} from "@discordjs/rest";
+import {SlashCommandBuilder} from "@discordjs/builders";
+import {Routes} from "discord-api-types/v9";
+import {getAssets} from "./modules/assets";
+import {readSecret} from "./modules/secrets";
+import {getFromDracoon} from "./modules/dracoon-downloader";
+import {runHealthCheck} from "./modules/healthcheck";
 
-const token = secrets.read("discord_token");
-const clientId = secrets.read("discord_clientId");
-const guildId = secrets.read("discord_guildId");
+const token = readSecret("discord_token");
+const clientId = readSecret("discord_clientId");
+const guildId = readSecret("discord_guildId");
+
+runHealthCheck();
 
 // Create a new client instance
 const client = new Client({
-  intents: [Intents.FLAGS.GUILDS],
+  intents: [
+    Intents.FLAGS.GUILDS,
+    Intents.FLAGS.GUILD_MESSAGES,
+    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+  ],
 });
 
-client.commands = new Collection();
+// Some samples
+// Messages
+client.on("messageCreate", message => {
+  // Simple response to a message
+  if (message.content.startsWith("ping")) {
+    message.channel.send("pong!").catch(console.error);
+  }
 
-// Redirect for commands
-const commandFiles = fs.readdirSync("./commands").filter(file => file.endsWith(".ts"));
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  // Set a new item in the Collection
-  // With the key as the command name and the value as the exported module
-  client.commands.set(command.data.name, command);
-}
+  // Image response to a message
+  if (message.content.startsWith("bunny")) {
+    getFromDracoon(readSecret("dracoon_password"), "2teKN7x65yLrqrgZl2TAvA7kP5E9hyyc", buffer => {
+      const file = new MessageAttachment(buffer, "bunny.jpg");
+      const embed = new MessageEmbed();
+      embed.setTitle("Bunny");
+      embed.setAuthor(client.user.username);
+      embed.setImage("attachment://bunny.jpg");
+      message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
+    });
+  }
 
+  if (message.content.startsWith("!ausdemweg")) {
+    getFromDracoon(readSecret("dracoon_password"), "rIZidSLQLYSCwJC7BzxOWEAQZnzNEmOx", buffer => {
+      const file = new MessageAttachment(buffer, "ausdemweg.png");
+      const embed = new MessageEmbed();
+      embed.setTitle("Aus dem Weg, Geringverdiener!");
+      embed.setAuthor(client.user.username);
+      embed.setImage("attachment://ausdemweg.png");
+      message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
+    });
+  }
+
+  // Reaction response
+  if (message.content.startsWith("flash")) {
+    const reactionEmoji = message.guild.emojis.cache.find(emoji => emoji.name === "flash");
+    message.react(reactionEmoji).catch(console.error);
+  }
+});
+
+// Slash Commands
+// Define slash-command
 const commands = [];
+const slashCommandPing = new SlashCommandBuilder()
+  .setName("ping")
+  .setDescription("Replies with Pong!");
 
-for (const file of commandFiles) {
-  const command = require(`./commands/${file}`);
-  commands.push(command.data.toJSON());
-}
+commands.push(slashCommandPing.toJSON());
 
+// Deploy slash-command to server
 const rest = new REST({
   version: "9",
 }).setToken(token);
@@ -46,43 +84,36 @@ const rest = new REST({
       },
     );
     console.log("Successfully registered application commands.");
-  } catch (error) {
+  } catch (error: unknown) {
     console.error(error);
   }
 })();
 
-
-// Redirect for events
-const eventFiles = fs.readdirSync("./events").filter(file => file.endsWith(".ts"));
-for (const file of eventFiles) {
-  const event = require(`./events/${file}`);
-  if (event.once) {
-    client.once(event.name, (...args) => event.execute(...args));
-  } else {
-    client.on(event.name, (...args) => event.execute(...args));
-  }
-}
-
+// Respond to slash-command
 client.on("interactionCreate", async interaction => {
   if (!interaction.isCommand()) {
     return;
   }
 
-  const command = client.commands.get(interaction.commandName);
-
-  if (!command) {
-    return;
-  }
-
-  try {
-    await command.execute(interaction);
-  } catch (error) {
-    console.error(error);
-    await interaction.reply({
-      content: "There was an error while executing this command!", ephemeral: true,
-    });
+  if (interaction.commandName === "ping") {
+    await interaction.reply("Pong!");
+    console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered an interaction.`);
   }
 });
 
+// Events
+// One-time events, e.g. log-in
+const eventReady = {
+  name: "ready",
+  once: true,
+  execute() {
+    console.log("Ready and logged in.");
+  },
+};
+
+client.once(eventReady.name, (...args) => {
+  eventReady.execute.apply(null, ...args);
+});
+
 // Login to Discord with your client's token
-client.login(token);
+client.login(token).catch(console.error);

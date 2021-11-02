@@ -1,0 +1,12 @@
+---
+images:
+- name: bunny
+  fileName: bunny.jpg
+  title: "Bunny with a mace"
+  location: dracoon
+  locationId: 2teKN7x65yLrqrgZl2TAvA7kP5E9hyyc
+- name: ausdemweg
+  fileName: ausdemweg.png
+  title: "Aus dem Weg, Geringverdiener!"
+  location: dracoon
+  locationId: rIZidSLQLYSCwJC7BzxOWEAQZnzNEmOx
