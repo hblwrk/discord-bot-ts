@@ -41,7 +41,6 @@ export function getAssets() {
     assetFiles.forEach(element => {
       yaml.load(fs.readFileSync(`${directory}/${element}`, 'utf8')).then((assets: Object[]) => {
         const realAssets = plainToClass(Asset, assets)
-        // now each user in realUsers is instance of User class
       });
     });
     console.log(assets);
