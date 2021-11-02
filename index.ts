@@ -65,7 +65,7 @@ client.on("messageCreate", message => {
   }
 
   // Reaction response
-  if (message.content.startsWith("flash")) {
+  if (message.content.includes("flash")) {
     const reactionEmoji = message.guild.emojis.cache.find(emoji => emoji.name === "flash");
     message.react(reactionEmoji).catch(console.error);
   }
@@ -77,8 +77,12 @@ const commands = [];
 const slashCommandPing = new SlashCommandBuilder()
   .setName("ping")
   .setDescription("Replies with Pong!");
+const slashCommandAusDemWeg = new SlashCommandBuilder()
+  .setName("ausdemweg")
+  .setDescription("Aus dem Weg, Geringverdiener!");
 
 commands.push(slashCommandPing.toJSON());
+commands.push(slashCommandAusDemWeg.toJSON());
 
 // Deploy slash-command to server
 const rest = new REST({
@@ -108,6 +112,14 @@ client.on("interactionCreate", async interaction => {
   if (interaction.commandName === "ping") {
     await interaction.reply("Pong!");
     console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered an interaction.`);
+  }
+
+  if (interaction.commandName === "ausdemweg") {
+    getFromDracoon(readSecret("dracoon_password"), "rIZidSLQLYSCwJC7BzxOWEAQZnzNEmOx", async buffer => {
+      const file = new MessageAttachment(buffer, "ausdemweg.png");
+      await interaction.reply({files: [file]});
+      console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered an interaction.`);
+    });
   }
 });
 
