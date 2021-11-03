@@ -1,0 +1,46 @@
+---
+- name: flash
+  trigger: ["flash"]
+  response: ["custom:flash"]
+- name: workhorse
+  trigger: ["wkhs"]
+  response: ["🐴"]
+- name: hood
+  trigger: ["hood"]
+  response: ["🦍"]
+- name: buttern5
+  trigger: ["buttern5"]
+  response: ["🧈", "5️⃣"]
+- name: nesquick
+  trigger: ["nesquick", "/nq", "nasdaq"]
+  response: ["custom:nesquik"]
+- name: wink
+  trigger: ["😉"]
+  response: ["😉"]
+- name: tsla
+  trigger: ["tsla"]
+  response: ["custom:Elonlol"]
+- name: olaf
+  trigger: ["olaf", "girokonto", "bausparer"]
+  response: ["custom:giroolaf"]
+- name: thomas
+  trigger: ["thomas"]
+  response: ["custom:thomas"]
+- name: sosnoff
+  trigger: ["sosnoff", "scamnoff"]
+  response: ["custom:sosnoff"]
+- name: shll
+  trigger: ["shll", "kröte"]
+  response: ["🐢"]
+- name: spce
+  trigger: ["spce"]
+  response: ["🚀"]
+- name: dkng
+  trigger: ["dkng"]
+  response: ["🐵"]
+- name: eier
+  trigger: ["eier"]
+  response: ["🥚"]
+- name: rfinanzen
+  trigger: ["r/finanzen"]
+  response: ["custom:KEKW"]

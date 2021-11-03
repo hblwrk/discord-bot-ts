@@ -5,21 +5,24 @@ import fs from "node:fs";
 const directory = "./assets";
 const fileExtension = ".yaml";
 
-export class Asset {
+class BaseAsset {
   name: string;
-  type: string;
-  fileName: string;
-  title: string;
-  location: string;
-  locationId: string;
+  trigger: string;
 
   getName() {
     return this.name;
   }
 
-  getType() {
-    return this.type;
+  getTrigger() {
+    return this.trigger;
   }
+}
+
+export class ImageAsset extends BaseAsset {
+  fileName: string;
+  title: string;
+  location: string;
+  locationId: string;
 
   getFileName() {
     return this.fileName;
@@ -38,13 +41,41 @@ export class Asset {
   }
 }
 
+export class TextAsset extends BaseAsset {
+  response: string;
+  title: string;
+
+  getResponse() {
+    return this.response;
+  }
+
+  getTitle() {
+    return this.title;
+  }
+}
+
+export class EmojiAsset extends BaseAsset {
+  response: string;
+
+  getResponse() {
+    return this.response;
+  }
+}
+
 export function getAssets(type: string) {
   try {
     const newAssets = [];
     const jsonObjects = yaml.load(fs.readFileSync(`${directory}/${type}${fileExtension}`, "utf-8"));
     for (const jsonObject of jsonObjects) {
-      const newAsset = plainToClass(Asset, jsonObject);
-      newAsset.type = type;
+      let newAsset = {};
+      if ("image" === type) {
+        newAsset = plainToClass(ImageAsset, jsonObject);
+      } else if ("text" === type) {
+        newAsset = plainToClass(TextAsset, jsonObject);
+      } else if ("emoji" === type) {
+        newAsset = plainToClass(EmojiAsset, jsonObject);
+      }
+
       newAssets.push(newAsset);
     }
     return newAssets;

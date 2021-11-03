@@ -3,24 +3,27 @@ import {Client, Intents, MessageAttachment, MessageEmbed} from "discord.js";
 import {REST} from "@discordjs/rest";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {Routes} from "discord-api-types/v9";
-import {getAssets} from "./modules/assets";
+import {EmojiAsset, getAssets, ImageAsset, TextAsset} from "./modules/assets";
 import {readSecret} from "./modules/secrets";
 import {getFromDracoon} from "./modules/dracoon-downloader";
 import {runHealthCheck} from "./modules/healthcheck";
 import {startTimers} from "./modules/timers";
 
 const token = readSecret("discord_token");
-const clientID = readSecret("discord_clientID");
-const guildID = readSecret("discord_guildID");
+const clientId = readSecret("discord_clientID");
+const guildId = readSecret("discord_guildID");
 
 runHealthCheck();
-const assets = [...getAssets("image")];
-const assetSlashCommands = [];
+const assets = [...getAssets("image"), ...getAssets("text"), ...getAssets("emoji")];
+const assetCommands = [];
 const assetCommandsWithPrefix = [];
 for (const asset of assets) {
-  assetSlashCommands.push(asset.getName().replaceAll(" ", "_"));
-  assetCommandsWithPrefix.push(`!${asset.getName()}`);
+  for (const trigger of asset.getTrigger()) {
+    assetCommands.push(trigger.replaceAll(" ", "_"));
+    assetCommandsWithPrefix.push(`!${trigger}`);
+  }
 }
+
 console.log(`Successfully loaded ${assets.length} assets.`);
 
 // Create a new client instance
@@ -36,37 +39,50 @@ startTimers(client, readSecret("hblwrk_NYSEOpenCloseAnnouncement_ChannelID"));
 console.log("Successfully set timers.");
 
 // Some samples
-// Message response to a message starting with a word
+// Message response to a message including with a trigger word
 client.on("messageCreate", message => {
-  // Simple response to a message
-  if (message.content.startsWith("ping")) {
-    message.channel.send("pong!").catch(console.error);
-  }
-
-  // Image response to a !message with an asset
-  if (assetCommandsWithPrefix.some(v => message.content.includes(v))) {
+  // Triggers without prefix
+  if (assetCommands.some(v => message.content.toLowerCase().includes(v))) {
     for (const asset of assets) {
-      if (message.content.includes(asset.getName())) {
-        if ("image" !== asset.getType()) {
-          return;
+      for (const trigger of asset.getTrigger()) {
+        const triggerRex = new RegExp(`\\b${trigger}\\b`);
+        if (triggerRex.test(message.content.toLowerCase())) {
+          if (asset instanceof EmojiAsset) {
+            // Emoji reaction to a message
+            for (const response of asset.getResponse()) {
+              if (response.startsWith("custom:")) {
+                const reactionEmoji = message.guild.emojis.cache.find(emoji => emoji.name === response.replace("custom:", ""));
+                message.react(reactionEmoji).catch(console.error);
+              } else {
+                message.react(response).catch(console.error);
+              }
+            }
+          }
         }
-
-        getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), buffer => {
-          const file = new MessageAttachment(buffer, asset.getFileName());
-          const embed = new MessageEmbed();
-          embed.setTitle(asset.getTitle());
-          embed.setAuthor(client.user.username);
-          embed.setImage(`attachment://${asset.getFileName()}`);
-          message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
-        });
       }
     }
   }
 
-  // Reaction response
-  if (message.content.includes("flash")) {
-    const reactionEmoji = message.guild.emojis.cache.find(emoji => emoji.name === "flash");
-    message.react(reactionEmoji).catch(console.error);
+  // Triggers with prefix (!command)
+  if (assetCommandsWithPrefix.some(v => message.content.includes(v))) {
+    for (const asset of assets) {
+      if (message.content.includes(asset.getTrigger())) {
+        if (asset instanceof ImageAsset) {
+          // Response with an image
+          getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), buffer => {
+            const file = new MessageAttachment(buffer, asset.getFileName());
+            const embed = new MessageEmbed();
+            embed.setTitle(asset.getTitle());
+            embed.setAuthor(client.user.username);
+            embed.setImage(`attachment://${asset.getFileName()}`);
+            message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
+          });
+        } else if (asset instanceof TextAsset) {
+          // Simple response to a message
+          message.channel.send(asset.getResponse()).catch(console.error);
+        }
+      }
+    }
   }
 });
 
@@ -74,10 +90,12 @@ client.on("messageCreate", message => {
 // Define slash-command
 const slashCommands = [];
 for (const asset of assets) {
-  const slashCommand = new SlashCommandBuilder()
-    .setName(asset.getName().replaceAll(" ", "_"))
-    .setDescription(asset.getTitle());
-  slashCommands.push(slashCommand.toJSON());
+  if (asset instanceof ImageAsset || asset instanceof TextAsset) {
+    const slashCommand = new SlashCommandBuilder()
+      .setName(asset.getName().replaceAll(" ", "_"))
+      .setDescription(asset.getTitle());
+    slashCommands.push(slashCommand.toJSON());
+  }
 }
 
 // Deploy slash-command to server
@@ -88,7 +106,7 @@ const rest = new REST({
 (async () => {
   try {
     await rest.put(
-      Routes.applicationGuildCommands(clientID, guildID),
+      Routes.applicationGuildCommands(clientId, guildId),
       {
         body: slashCommands,
       },
@@ -105,25 +123,24 @@ client.on("interactionCreate", async interaction => {
     return;
   }
 
-  if (assetSlashCommands.some(v => interaction.commandName.includes(v))) {
+  if (assetCommands.some(v => interaction.commandName.includes(v))) {
     for (const asset of assets) {
       if (interaction.commandName.includes(asset.getName().replaceAll(" ", "_"))) {
-        if ("image" !== asset.getType()) {
-          console.log(asset.getType())
-          return;
-        }
-
-        getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), async buffer => {
-          const file = new MessageAttachment(buffer, asset.getFileName());
-          await interaction.reply({files: [file]});
+        if (asset instanceof ImageAsset) {
+          getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), async buffer => {
+            const file = new MessageAttachment(buffer, asset.getFileName());
+            await interaction.reply({files: [file]});
+            console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
+          });
+        } else if (asset instanceof TextAsset) {
+          interaction.reply(asset.getResponse()).catch(console.error);
           console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
-        });
+        }
       }
     }
   }
 });
 
-// Events
 // One-time events, e.g. log-in
 const eventReady = {
   name: "ready",
