@@ -215,7 +215,7 @@
   title: "... das kann doch so nicht bleiben!"
   location: dracoon
   locationId: XXX
-- name: zetto
+- name: zettomac
   trigger: ["zetto"]
   fileName: zetto.gif
   title: "The one and only."

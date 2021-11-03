@@ -1,330 +1,392 @@
 ---
 - name: quote sara 1
   trigger: "quote sara 1"
+  user: sara
   fileName: quote-sara-01.png
   title: "Quote sara 1"
   location: dracoon
   locationId: yUJLfr4ywUAm8QTNcR4MZUG5zmF3BAO5
 - name: quote mheiland 1
   trigger: "quote mheiland 1"
+  user: mheiland
   fileName: quote-mheiland-01.png
   title: "Quote mheiland 1"
   location: dracoon
   locationId: RY5Mq100mievY6pRyj0lsvdIzo8G0436
 - name: quote mheiland 2
   trigger: "quote mheiland 2"
+  user: mheiland
   fileName: quote-mheiland-02.png
   title: "Quote mheiland 2"
   location: dracoon
   locationId: euUK6ei6Iu3D9sYpifzPhfHzdw8exs9j
 - name: quote skard 1
   trigger: "quote skard 1"
+  user: skard
   fileName: quote-skard-01.png
   title: "Quote skard 1"
   location: dracoon
   locationId: uxEnNyCGkoZ9OD6qDh3ZPuK4ftCof25P
 - name: quote skard 2
   trigger: "quote skard 2"
+  user: skard
   fileName: quote-skard-02.png
   title: "Quote skard 2"
   location: dracoon
   locationId: hGjWUQV5hvYQCc796tQ30ewmBRugtp9p
 - name: quote skard 3
   trigger: "quote skard 3"
+  user: skard
   fileName: quote-skard-03.png
   title: "Quote skard 3"
   location: dracoon
   locationId: dJXjWpBKZGPyMoBCwvMoJLSwoYgO6i7S
 - name: quote skard 4
   trigger: "quote skard 4"
+  user: skard
   fileName: quote-skard-04.png
   title: "Quote skard 4"
   location: dracoon
   locationId: yQKqqBPLAFTidac7TatbBAz94SXCnwL1
 - name: quote fcyolohama 1
   trigger: "quote fcyolohama 1"
+  user: fcyolohama
   fileName: quote-fcyolohama-01.png
   title: "Quote fcyolohama 1"
   location: dracoon
   locationId: i7mnlj2KT8iqZ3SiqhcmvPABpXztPepc
 - name: quote fcyolohama 2
   trigger: "quote fcyolohama 2"
+  user: fcyolohama
   fileName: quote-fcyolohama-02.png
   title: "Quote fcyolohama 2"
   location: dracoon
   locationId: p1NlrfL0tqQD0olHqwWqStiVXtTLd2Oi
 - name: quote chaostrader 1
   trigger: "quote chaostrader 1"
+  user: chaostrader
   fileName: quote-chaostrader-01.png
   title: "Quote chaostrader 1"
   location: dracoon
   locationId: ftKYJxduSkHR2i4at73tZa2mfeYozSnU
 - name: quote chaostrader 2
   trigger: "quote chaostrader 2"
+  user: chaostrader
   fileName: quote-chaostrader-02.png
   title: "Quote chaostrader 2"
   location: dracoon
   locationId: 2H03d7BayrVGDWSbPpQuovYpmYyxd6XW
 - name: quote chaostrader 3
   trigger: "quote chaostrader 3"
+  user: chaostrader
   fileName: quote-chaostrader-03.png
   title: "Quote chaostrader 3"
   location: dracoon
   locationId: JsMApcv3n4CzTbRZpVCLD1vYPCkzq5gB
 - name: quote chaostrader 4
   trigger: "quote chaostrader 4"
+  user: chaostrader
   fileName: quote-chaostrader-04.png
   title: "Quote chaostrader 4"
   location: dracoon
   locationId: DDgAFAOOPuMeRtAwMrd8nTdsl8CGziND
 - name: quote chaostrader 5
   trigger: "quote chaostrader 5"
+  user: chaostrader
   fileName: quote-chaostrader-05.png
   title: "Quote chaostrader 5"
   location: dracoon
   locationId: ru7zFnsE3Gs171gq16PTPFXvZgboU9yw
 - name: quote chaostrader 6
   trigger: "quote chaostrader 6"
+  user: chaostrader
   fileName: quote-chaostrader-06.png
   title: "Quote chaostrader 6"
   location: dracoon
   locationId: njJbILv2c1URl1w3U7q4U0jcp5HIDb7M
 - name: quote chaostrader 7
   trigger: "quote chaostrader 7"
+  user: chaostrader
   fileName: quote-chaostrader-07.png
   title: "Quote chaostrader 7"
   location: dracoon
   locationId: ZfE4OkiAzKuYTxaKO76uhakWwG47gnES
 - name: quote chaostrader 8
   trigger: "quote chaostrader 8"
+  user: chaostrader
   fileName: quote-chaostrader-08.png
   title: "Quote chaostrader 8"
   location: dracoon
   locationId: elsAPkw1LePvUKZihjpJDlTuzIaBsvNr
 - name: quote chaostrader 9
   trigger: "quote chaostrader 9"
+  user: chaostrader
   fileName: quote-chaostrader-09.png
   title: "Quote chaostrader 9"
   location: dracoon
   locationId: cA40mJWKywOldes0C9u7YCHJGsxucXz6
 - name: quote chaostrader 10
   trigger: "quote chaostrader 10"
+  user: chaostrader
   fileName: quote-chaostrader-10.png
   title: "Quote chaostrader 10"
   location: dracoon
   locationId: gardK16Iut3LupKmUo1Ii1HYQhipFFpg
 - name: quote chaostrader 11
   trigger: "quote chaostrader 11"
+  user: chaostrader
   fileName: quote-chaostrader-11.png
   title: "Quote chaostrader 11"
   location: dracoon
   locationId: 71uaZmrveskorlg865SyVsp6fR2k0p9u
 - name: quote chaostrader 12
   trigger: "quote chaostrader 12"
+  user: chaostrader
   fileName: quote-chaostrader-12.png
   title: "Quote chaostrader 12"
   location: dracoon
   locationId: DUwT6zOnunbVaGpyPqkYt5oSi5Nv5yja
 - name: quote chaostrader 13
   trigger: "quote chaostrader 13"
+  user: chaostrader
   fileName: quote-chaostrader-13.png
   title: "Quote chaostrader 13"
   location: dracoon
   locationId: KhufVDM4xHXXCnvUpgp8t14wogW5MhwR
 - name: quote chaostrader 14
   trigger: "quote chaostrader 14"
+  user: chaostrader
   fileName: quote-chaostrader-14.png
   title: "Quote chaostrader 14"
   location: dracoon
   locationId: 9rZm3BdboCQE56d1lwJgGPTxYKOYtQea
 - name: quote chaostrader 15
   trigger: "quote chaostrader 15"
+  user: chaostrader
   fileName: quote-chaostrader-15.png
   title: "Quote chaostrader 15"
   location: dracoon
   locationId: aui1RNt2CF9gGw3ghNgPjYw7GhjELoX6
 - name: quote chaostrader 16
   trigger: "quote chaostrader 16"
+  user: chaostrader
   fileName: quote-chaostrader-16.png
   title: "Quote chaostrader 16"
   location: dracoon
   locationId: 96deMw3VBUAOP9unsP9hhG4IXGWbga86
 - name: quote chaostrader 17
   trigger: "quote chaostrader 17"
+  user: chaostrader
   fileName: quote-chaostrader-17.png
   title: "Quote chaostrader 17"
   location: dracoon
   locationId: hMms7gj8IrFfnyt1LyvSAH4LykFsin9n
 - name: quote chaostrader 18
   trigger: "quote chaostrader 18"
+  user: chaostrader
   fileName: quote-chaostrader-18.png
   title: "Quote chaostrader 18"
   location: dracoon
   locationId: iES3ObW562j4aoplVLqDjC84PEBuuhaF
 - name: quote chaostrader 19
   trigger: "quote chaostrader 19"
+  user: chaostrader
   fileName: quote-chaostrader-19.png
   title: "Quote chaostrader 19"
   location: dracoon
   locationId: P6tCLvvUTNRALIp6ZIh4EMdOWNkrlfaP
 - name: quote chaostrader 20
   trigger: "quote chaostrader 20"
+  user: chaostrader
   fileName: quote-chaostrader-20.png
   title: "Quote chaostrader 20"
   location: dracoon
   locationId: fWVm7B99VveQcSISLBvADuAbt5IEU3bG
 - name: quote chaostrader 21
   trigger: "quote chaostrader 21"
+  user: chaostrader
   fileName: quote-chaostrader-21.png
   title: "Quote chaostrader 21"
   location: dracoon
   locationId: PXNHrAJ0zOVlRe2nMyDC4xoGuYJubM4t
 - name: quote chaostrader 22
   trigger: "quote chaostrader 22"
+  user: chaostrader
   fileName: quote-chaostrader-22.png
   title: "Quote chaostrader 22"
   location: dracoon
   locationId: xzo7QLBSz3B9t5Za1AqPpuL6CDA6Nake
 - name: quote chaostrader 23
   trigger: "quote chaostrader 23"
+  user: chaostrader
   fileName: quote-chaostrader-23.png
   title: "Quote chaostrader 23"
   location: dracoon
   locationId: S3pqe8axV4PgrkjchSudwnDcqr6BRTLR
 - name: quote chaostrader 24
   trigger: "quote chaostrader 24"
+  user: chaostrader
   fileName: quote-chaostrader-24.png
   title: "Quote chaostrader 24"
   location: dracoon
   locationId: 8tgV9rs2uW3FKS4X2j41D7B1LClGo2Fe
 - name: quote chaostrader 25
   trigger: "quote chaostrader 25"
+  user: chaostrader
   fileName: quote-chaostrader-25.png
   title: "Quote chaostrader 25"
   location: dracoon
   locationId: Uzi8lWj2TmCME84jrJieMWhEiqLmlLqx
 - name: quote chaostrader 26
   trigger: "quote chaostrader 26"
+  user: chaostrader
   fileName: quote-chaostrader-26.png
   title: "Quote chaostrader 26"
   location: dracoon
   locationId: AicToFdgri6bT7Cep96P69lAngFEPjVe
 - name: quote chaostrader 27
   trigger: "quote chaostrader 27"
+  user: chaostrader
   fileName: quote-chaostrader-27.png
   title: "Quote chaostrader 27"
   location: dracoon
   locationId: vcwZ6AdnGqtXAhcrcWSsYfUxFgMC0PhB
+- name: quote chaostrader 28
+  trigger: "quote chaostrader 28"
+  user: chaostrader
+  fileName: quote-chaostrader-28.png
+  title: "Quote chaostrader 28"
+  location: dracoon
+  locationId: XXX
 - name: quote zetto 1
   trigger: "quote zetto 1"
+  user: zetto
   fileName: quote-zetto-01.png
   title: "Quote zetto 1"
   location: dracoon
   locationId: XXX
 - name: quote zetto 2
   trigger: "quote zetto 2"
+  user: zetto
   fileName: quote-zetto-02.png
   title: "Quote zetto 2"
   location: dracoon
   locationId: XXX
 - name: quote zetto 3
   trigger: "quote zetto 3"
+  user: zetto
   fileName: quote-zetto-03.png
   title: "Quote zetto 3"
   location: dracoon
   locationId: XXX
 - name: quote zetto 4
   trigger: "quote zetto 4"
+  user: zetto
   fileName: quote-zetto-04.png
   title: "Quote zetto 4"
   location: dracoon
   locationId: XXX
 - name: quote zetto 5
   trigger: "quote zetto 5"
+  user: zetto
   fileName: quote-zetto-05.png
   title: "Quote zetto 5"
   location: dracoon
   locationId: XXX
 - name: quote zetto 6
   trigger: "quote zetto 6"
+  user: zetto
   fileName: quote-zetto-06.png
   title: "Quote zetto 6"
   location: dracoon
   locationId: XXX
 - name: quote zetto 7
   trigger: "quote zetto 7"
+  user: zetto
   fileName: quote-zetto-07.png
   title: "Quote zetto 7"
   location: dracoon
   locationId: XXX
 - name: quote zetto 8
   trigger: "quote zetto 8"
+  user: zetto
   fileName: quote-zetto-08.png
   title: "Quote zetto 8"
   location: dracoon
   locationId: XXX
 - name: quote zetto 9
   trigger: "quote zetto 9"
+  user: zetto
   fileName: quote-zetto-09.png
   title: "Quote zetto 9"
   location: dracoon
   locationId: XXX
 - name: quote zetto 10
   trigger: "quote zetto 10"
+  user: zetto
   fileName: quote-zetto-10.png
   title: "Quote zetto 10"
   location: dracoon
   locationId: XXX
 - name: quote zetto 11
   trigger: "quote zetto 11"
+  user: zetto
   fileName: quote-zetto-11.png
   title: "Quote zetto 11"
   location: dracoon
   locationId: XXX
 - name: quote zetto 12
   trigger: "quote zetto 12"
+  user: zetto
   fileName: quote-zetto-12.png
   title: "Quote zetto 12"
   location: dracoon
   locationId: XXX
 - name: quote zetto 13
   trigger: "quote zetto 13"
+  user: zetto
   fileName: quote-zetto-13.png
   title: "Quote zetto 13"
   location: dracoon
   locationId: XXX
 - name: quote zetto 14
   trigger: "quote zetto 14"
+  user: zetto
   fileName: quote-zetto-14.png
   title: "Quote zetto 14"
   location: dracoon
   locationId: XXX
 - name: quote zetto 15
   trigger: "quote zetto 15"
+  user: zetto
   fileName: quote-zetto-15.png
   title: "Quote zetto 15"
   location: dracoon
   locationId: XXX
 - name: quote zetto 16
   trigger: "quote zetto 16"
+  user: zetto
   fileName: quote-zetto-16.png
   title: "Quote zetto 16"
   location: dracoon
   locationId: XXX
 - name: quote zetto 17
   trigger: "quote zetto 17"
+  user: zetto
   fileName: quote-zetto-17.png
   title: "Quote zetto 17"
   location: dracoon
   locationId: XXX
 - name: quote zetto 18
   trigger: "quote zetto 18"
+  user: zetto
   fileName: quote-zetto-18.png
   title: "Quote zetto 18"
   location: dracoon
   locationId: XXX
 - name: quote zetto 19
   trigger: "quote zetto 19"
+  user: zetto
   fileName: quote-zetto-19.png
   title: "Quote zetto 19"
   location: dracoon
