@@ -18,6 +18,42 @@ class BaseAsset {
   }
 }
 
+export class User extends BaseAsset {
+  title: string;
+
+  getTitle() {
+    return this.title;
+  }
+}
+
+export class UserQuoteAsset extends BaseAsset {
+  user: string;
+  fileName: string;
+  title: string;
+  location: string;
+  locationId: string;
+
+  getUser() {
+    return this.user;
+  }
+
+  getFileName() {
+    return this.fileName;
+  }
+
+  getTitle() {
+    return this.title;
+  }
+
+  getLocation() {
+    return this.location;
+  }
+
+  getLocationId() {
+    return this.locationId;
+  }
+}
+
 export class ImageAsset extends BaseAsset {
   fileName: string;
   title: string;
@@ -74,6 +110,10 @@ export function getAssets(type: string) {
         newAsset = plainToClass(TextAsset, jsonObject);
       } else if ("emoji" === type) {
         newAsset = plainToClass(EmojiAsset, jsonObject);
+      } else if ("user" === type) {
+        newAsset = plainToClass(User, jsonObject);
+      } else if ("userquote" === type) {
+        newAsset = plainToClass(UserQuoteAsset, jsonObject);
       }
 
       newAssets.push(newAsset);

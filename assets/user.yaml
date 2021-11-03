@@ -1,0 +1,19 @@
+---
+- name: sara
+  trigger: "quote sara"
+  title: "Random sara quote"
+- name: mheiland
+  trigger: "quote mheiland"
+  title: "Random mheiland quote"
+- name: skard
+  trigger: "quote skard"
+  title: "Random skard quote"
+- name: fcyolohama
+  trigger: "quote fcyolohama"
+  title: "Random fcyolohama quote"
+- name: chaostrader
+  trigger: "quote chaostrader"
+  title: "Random chaostrader quote"
+- name: zetto
+  trigger: "quote zetto"
+  title: "Random zetto quote"

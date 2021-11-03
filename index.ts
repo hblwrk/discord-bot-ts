@@ -1,9 +1,9 @@
 // Dependencies
 import {Client, Intents, MessageAttachment, MessageEmbed} from "discord.js";
 import {REST} from "@discordjs/rest";
-import {SlashCommandBuilder} from "@discordjs/builders";
+import {quote, SlashCommandBuilder} from "@discordjs/builders";
 import {Routes} from "discord-api-types/v9";
-import {EmojiAsset, getAssets, ImageAsset, TextAsset} from "./modules/assets";
+import {UserQuoteAsset, User, EmojiAsset, ImageAsset, TextAsset, getAssets} from "./modules/assets";
 import {readSecret} from "./modules/secrets";
 import {getFromDracoon} from "./modules/dracoon-downloader";
 import {runHealthCheck} from "./modules/healthcheck";
@@ -14,7 +14,8 @@ const clientId = readSecret("discord_clientID");
 const guildId = readSecret("discord_guildID");
 
 runHealthCheck();
-const assets = [...getAssets("image"), ...getAssets("text"), ...getAssets("emoji")];
+const assets = [...getAssets("image"), ...getAssets("text"), ...getAssets("emoji"), ...getAssets("user"), ...getAssets("userquote")];
+
 const assetCommands = [];
 const assetCommandsWithPrefix = [];
 for (const asset of assets) {
@@ -67,7 +68,7 @@ client.on("messageCreate", message => {
   if (assetCommandsWithPrefix.some(v => message.content.includes(v))) {
     for (const asset of assets) {
       if (message.content.includes(asset.getTrigger())) {
-        if (asset instanceof ImageAsset) {
+        if (asset instanceof ImageAsset || asset instanceof UserQuoteAsset) {
           // Response with an image
           getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), buffer => {
             const file = new MessageAttachment(buffer, asset.getFileName());
@@ -90,7 +91,7 @@ client.on("messageCreate", message => {
 // Define slash-command
 const slashCommands = [];
 for (const asset of assets) {
-  if (asset instanceof ImageAsset || asset instanceof TextAsset) {
+  if (asset instanceof ImageAsset || asset instanceof TextAsset || asset instanceof User) {
     const slashCommand = new SlashCommandBuilder()
       .setName(asset.getName().replaceAll(" ", "_"))
       .setDescription(asset.getTitle());
@@ -135,6 +136,20 @@ client.on("interactionCreate", async interaction => {
         } else if (asset instanceof TextAsset) {
           interaction.reply(asset.getResponse()).catch(console.error);
           console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
+        } else if (asset instanceof User) {
+          let randomQuotePool = [];
+          for (const quote of assets) {
+            if (quote instanceof UserQuoteAsset && quote.getUser() == asset.getName()) {
+              randomQuotePool.push(quote);
+            }
+          }
+
+          let randomQuote = randomQuotePool[Math.floor(Math.random() * randomQuotePool.length)];
+          getFromDracoon(readSecret("dracoon_password"), randomQuote.getLocationId(), async buffer => {
+            const file = new MessageAttachment(buffer, randomQuote.getFileName());
+            await interaction.reply({files: [file]});
+            console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
+          });
         }
       }
     }
