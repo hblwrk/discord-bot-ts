@@ -14,10 +14,12 @@ const clientID = readSecret("discord_clientID");
 const guildID = readSecret("discord_guildID");
 
 runHealthCheck();
-const assets = getAssets();
-const assetCommands = [];
+const assets = [...getAssets("image")];
+const assetSlashCommands = [];
+const assetCommandsWithPrefix = [];
 for (const asset of assets) {
-  assetCommands.push(`!${asset.getName()}`);
+  assetSlashCommands.push(asset.getName().replaceAll(" ", "_"));
+  assetCommandsWithPrefix.push(`!${asset.getName()}`);
 }
 console.log(`Successfully loaded ${assets.length} assets.`);
 
@@ -42,10 +44,14 @@ client.on("messageCreate", message => {
   }
 
   // Image response to a !message with an asset
-  if (assetCommands.some(v => message.content.includes(v))) {
+  if (assetCommandsWithPrefix.some(v => message.content.includes(v))) {
     for (const asset of assets) {
       if (message.content.includes(asset.getName())) {
-        getFromDracoon(readSecret("dracoon_password"), asset.getlocationId(), buffer => {
+        if ("image" !== asset.getType()) {
+          return;
+        }
+
+        getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), buffer => {
           const file = new MessageAttachment(buffer, asset.getFileName());
           const embed = new MessageEmbed();
           embed.setTitle(asset.getTitle());
@@ -66,16 +72,13 @@ client.on("messageCreate", message => {
 
 // Slash Commands
 // Define slash-command
-const commands = [];
-const slashCommandPing = new SlashCommandBuilder()
-  .setName("ping")
-  .setDescription("Replies with Pong!");
-const slashCommandAusDemWeg = new SlashCommandBuilder()
-  .setName("ausdemweg")
-  .setDescription("Aus dem Weg, Geringverdiener!");
-
-commands.push(slashCommandPing.toJSON());
-commands.push(slashCommandAusDemWeg.toJSON());
+const slashCommands = [];
+for (const asset of assets) {
+  const slashCommand = new SlashCommandBuilder()
+    .setName(asset.getName().replaceAll(" ", "_"))
+    .setDescription(asset.getTitle());
+  slashCommands.push(slashCommand.toJSON());
+}
 
 // Deploy slash-command to server
 const rest = new REST({
@@ -87,10 +90,10 @@ const rest = new REST({
     await rest.put(
       Routes.applicationGuildCommands(clientID, guildID),
       {
-        body: commands,
+        body: slashCommands,
       },
     );
-    console.log("Successfully registered application commands.");
+    console.log("Successfully registered slash commands.");
   } catch (error: unknown) {
     console.error(error);
   }
@@ -102,17 +105,21 @@ client.on("interactionCreate", async interaction => {
     return;
   }
 
-  if (interaction.commandName === "ping") {
-    await interaction.reply("Pong!");
-    console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered an interaction.`);
-  }
+  if (assetSlashCommands.some(v => interaction.commandName.includes(v))) {
+    for (const asset of assets) {
+      if (interaction.commandName.includes(asset.getName().replaceAll(" ", "_"))) {
+        if ("image" !== asset.getType()) {
+          console.log(asset.getType())
+          return;
+        }
 
-  if (interaction.commandName === "ausdemweg") {
-    getFromDracoon(readSecret("dracoon_password"), "rIZidSLQLYSCwJC7BzxOWEAQZnzNEmOx", async buffer => {
-      const file = new MessageAttachment(buffer, "ausdemweg.png");
-      await interaction.reply({files: [file]});
-      console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered an interaction.`);
-    });
+        getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), async buffer => {
+          const file = new MessageAttachment(buffer, asset.getFileName());
+          await interaction.reply({files: [file]});
+          console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
+        });
+      }
+    }
   }
 });
 
