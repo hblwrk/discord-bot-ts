@@ -113,8 +113,8 @@
   title: "Nachtraden?"
   location: dracoon
   locationId: ZWYq5fPQ1wIeLxY7YTc1WWkbuQLRjK1J
-- name: margin
-  trigger: ["margin"]
+- name: marginophra
+  trigger: ["marginophra"]
   fileName: marginophra.jpg
   title: "Everyone gets a margin account!"
   location: dracoon
@@ -219,5 +219,83 @@
   trigger: ["zetto"]
   fileName: zetto.gif
   title: "The one and only."
+  location: dracoon
+  locationId: XXX
+- name: yolohama
+  trigger: ["yolohama"]
+  fileName: yolohama.gif
+  title: "Its rage time!"
+  location: dracoon
+  locationId: XXX
+- name: apr
+  trigger: ["apr", "apy"]
+  fileName: apr.jpg
+  title: "A P R"
+  location: dracoon
+  locationId: XXX
+- name: violine
+  trigger: ["violine", "violin"]
+  fileName: violine.gif
+  title: "Kleinste Violine der Welt, für dich."
+  location: dracoon
+  locationId: XXX
+- name: yolo
+  trigger: ["yolo"]
+  fileName: yolo.jpg
+  title: "Was kann schon schief gehen..."
+  location: dracoon
+  locationId: XXX
+- name: margin
+  trigger: ["margin"]
+  fileName: margin.png
+  title: "Margin"
+  location: dracoon
+  locationId: XXX
+- name: crash
+  trigger: ["crash"]
+  fileName: crash.gif
+  title: "Crash!"
+  location: dracoon
+  locationId: XXX
+- name: arbeit
+  trigger: ["arbeit"]
+  fileName: arbeit.jpg
+  title: "Arbeit?"
+  location: dracoon
+  locationId: XXX
+- name: swingtrading
+  trigger: ["swingtrading"]
+  fileName: swingtrading.mp4
+  title: "Swinger"
+  location: dracoon
+  locationId: XXX
+- name: mint
+  trigger: ["mint"]
+  fileName: mint.png
+  title: "Mentos mint = beschde!"
+  location: dracoon
+  locationId: XXX
+- name: leverage
+  trigger: ["leverage"]
+  fileName: leverage.gif
+  title: "Wir sind hier im Hebelwerk, Dooku."
+  location: dracoon
+  locationId: XXX
+- name: stabil
+  trigger: ["rühl", "pumpernickel", "pumper"]
+  fileName: stabil.gif
+  title: "Stabilität ist alles!"
+  location: dracoon
+  locationId: XXX
+- name: jpow
+  trigger: ["jpow"]
+  fileName: jpow.jpeg
+  title: "Jerome"
+  location: dracoon
+  locationId: XXX
+- name: risiko
+  trigger: ["risiko"]
+  fileName: risiko.gif
+  title: "Zwo... eines... Risiko!"
   location: dracoon
   locationId: XXX

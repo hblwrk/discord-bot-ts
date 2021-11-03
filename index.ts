@@ -141,7 +141,6 @@ client.on("interactionCreate", async interaction => {
   }
 });
 
-// Events
 // One-time events, e.g. log-in
 const eventReady = {
   name: "ready",

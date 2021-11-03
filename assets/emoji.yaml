@@ -5,13 +5,16 @@
 - name: workhorse
   trigger: ["wkhs"]
   response: ["🐴"]
+- name: hood
+  trigger: ["hood"]
+  response: ["🦍"]
 - name: buttern5
   trigger: ["buttern5"]
   response: ["🧈", "5️⃣"]
 - name: nesquick
   trigger: ["nesquick", "/nq", "nasdaq"]
   response: ["custom:nesquik"]
-- name: zwinker
+- name: wink
   trigger: ["😉"]
   response: ["😉"]
 - name: tsla
