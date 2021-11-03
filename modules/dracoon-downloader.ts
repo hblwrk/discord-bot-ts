@@ -19,7 +19,16 @@ export function getFromDracoon(secret: string, downloadToken: string, cb) {
 
   const request = https.request(options, response => {
     response.on("data", chunk => {
-      const downloadUrl: unknown = JSON.parse(chunk).downloadUrl;
+      let downloadUrl = "";
+      if (response) {
+        try {
+          downloadUrl = JSON.parse(chunk).downloadUrl;
+        } catch (error) {
+          console.log("download error:", error);
+          return;
+        }
+      }
+
       https.get(downloadUrl, response => {
         const data = [];
         response.on("data", chunk => {

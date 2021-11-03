@@ -104,20 +104,40 @@ export function getAssets(type: string) {
     const jsonObjects = yaml.load(fs.readFileSync(`${directory}/${type}${fileExtension}`, "utf-8"));
     for (const jsonObject of jsonObjects) {
       let newAsset = {};
-      if ("image" === type) {
-        newAsset = plainToClass(ImageAsset, jsonObject);
-      } else if ("text" === type) {
-        newAsset = plainToClass(TextAsset, jsonObject);
-      } else if ("emoji" === type) {
-        newAsset = plainToClass(EmojiAsset, jsonObject);
-      } else if ("user" === type) {
-        newAsset = plainToClass(User, jsonObject);
-      } else if ("userquote" === type) {
-        newAsset = plainToClass(UserQuoteAsset, jsonObject);
+      switch (type) {
+        case "image": {
+          newAsset = plainToClass(ImageAsset, jsonObject);
+          break;
+        }
+
+        case "text": {
+          newAsset = plainToClass(TextAsset, jsonObject);
+          break;
+        }
+
+        case "emoji": {
+          newAsset = plainToClass(EmojiAsset, jsonObject);
+          break;
+        }
+
+        case "user": {
+          newAsset = plainToClass(User, jsonObject);
+          break;
+        }
+
+        case "userquote": {
+          newAsset = plainToClass(UserQuoteAsset, jsonObject);
+          break;
+        }
+
+        default: {
+          break;
+        }
       }
 
       newAssets.push(newAsset);
     }
+
     return newAssets;
   } catch (error: unknown) {
     console.log(error);

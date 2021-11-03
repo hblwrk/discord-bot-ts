@@ -2,9 +2,10 @@
   "compilerOptions": {
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "target": "ES6",
+    "target": "es6",
     "lib": [
-      "ES2021.String"
+      "ES2021.String",
+      "es6"
     ]
   },
 }
