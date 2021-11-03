@@ -1,0 +1,45 @@
+---
+- name: rätapäranta
+  trigger: ["rätapäranta"]
+  title: "Rätapäranta"
+  response: "Never Stop The Madness - Ränta på Ränta - https://www.youtube.com/watch?v=DVKqa0gf2N0"
+- name: rugpull
+  trigger: ["rugpull"]
+  title: "Rugpull"
+  response: "Rugpull! - https://www.youtube.com/watch?v=V6ykAwe-h10"
+- name: paywall
+  trigger: ["paywall"]
+  title: "Paywalls, nein danke."
+  response: "Chrome: <https://gitlab.com/magnolia1234/bypass-paywalls-chrome-clean>\nFirefox: <https://gitlab.com/magnolia1234/bypass-paywalls-firefox-clean>"
+- name: cnbc
+  trigger: ["cnbc"]
+  title: "Sara live!"
+  response: "Sara live! <:pepesurprise:905494854501552169> <https://www.livenewsnow.com/american/cnbc-america.html>"
+- name: musk
+  trigger: ["musk"]
+  title: "Elon Musk"
+  response: "<:Elonlol:677656557454098432><:Elonlol:677656557454098432><:Elonlol:677656557454098432> <https://twitter.com/elonmusk> <:Elonlol:677656557454098432><:Elonlol:677656557454098432><:Elonlol:677656557454098432>"
+- name: uran
+  trigger: ["uran"]
+  title: "Uran"
+  response: "UUUU & DNN - Mehr brauchst du nicht!"
+- name: co2
+  trigger: ["co2"]
+  title: "How dare you?"
+  response: ":co2: $KRBN feiert Fridays for Futures!"
+- name: ichbinsogluecklich
+  trigger: ["ichbinsogluecklich"]
+  title: "Ich bin so glücklich!"
+  response: "Ich bin ready. Ihr seid ready?! Na dann loooos! Huuuiiii! 🚀  Der Börsenritt beginnt, meine Freunde. Seid dabei, ihr dürft nichts verpassen! 🥳 🎠"
+- name: ichbinsotraurig
+  trigger: ["ichbinsotraurig"]
+  title: "Ich bin so traurig!"
+  response: "Ich bin traurig. Ihr seid traurig?! Noch so lange warten! <:pepecry:735773379616964681> Die Börse ist zu, meine Freunde. Betäubt dieses Gefühl der Leere, egal wie. Hoffentlich geht es bald wieder los... <:notmyday:756123617065959425>"
+- name: fastgeschafft
+  title: "Fast geschafft!"
+  trigger: ["fastgeschafft"]
+  response: "Fast geschafft. Wir sind bald da! 🚀  Das Leben hat bald wieder einen Sinn, das Warten wird ein Ende haben! Feiert mit und seid dabei wenn es wieder heißt.... die Börsen öffnen! 🥳 🎠 Nur noch ein klein bisschen mehr geduld. Ein klein wenig..."
+- name: feiertag
+  trigger: ["feiertag"]
+  title: "Feiertag"
+  response: "Ich bin so traurig. Es ist Feiertag, die Märkte sind geschlossen. Was mach ich denn jetzt? Hat doch alles keinen Sinn mehr... <:Temptong:679056121243107355>"

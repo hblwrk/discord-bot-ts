@@ -1,321 +1,223 @@
 ---
-- name: bunny
-  fileName: bunny.jpg
-  title: "Bunny with a mace"
+- name: stoploss
+  trigger: ["stoploss"]
+  fileName: stoploss.png
+  title: "Stop loss..."
   location: dracoon
-  locationId: 2teKN7x65yLrqrgZl2TAvA7kP5E9hyyc
+  locationId: gKMyzqpRIqTFFQD26vTTChWLAyUzPnZ5
 - name: ausdemweg
+  trigger: ["ausdemweg"]
   fileName: ausdemweg.png
   title: "Aus dem Weg, Geringverdiener!"
   location: dracoon
   locationId: rIZidSLQLYSCwJC7BzxOWEAQZnzNEmOx
 - name: hyperino
+  trigger: ["hyperino"]
   fileName: hyperino.png
   title: "Hyperino!"
   location: dracoon
   locationId: BDQY82BXeqBpPLuUh5DzyOAuYm6ULDdi
 - name: dumpeet
+  trigger: ["dumpeet"]
   fileName: dumpeet.gif
   title: "Dump it!"
   location: dracoon
   locationId: mjvgpXb9SbbjAJnHERwwqrDvEK95dMk9
 - name: whatis strangle
+  trigger: ["whatis strangle"]
   fileName: whatis-strangle.png
   title: "What is: Strangle?"
   location: dracoon
   locationId: b2KLT342StPrmhxyrTkUsnVSHChIeDhq
 - name: whatis straddle
+  trigger: ["whatis straddle"]
   fileName: whatis-straddle.png
   title: "What is: Straddle?"
   location: dracoon
   locationId: IaXV9s5wRbOKn4evDQ09mV3upljbxGbX
 - name: whatis pds
+  trigger: ["whatis pds"]
   fileName: whatis-pds.png
   title: "What is: PDS?"
   location: dracoon
   locationId: y6tsIzmxEVlHuQWYFjujb9ruct2a3qfr
 - name: whatis pcs
+  trigger: ["whatis pcs"]
   fileName: whatis-pcs.png
   title: "What is: PCS?"
   location: dracoon
   locationId: f3ghcFXA26xtKuHRJ37RmjoMaMmLAtdc
 - name: whatis ironfly
+  trigger: ["whatis ironfly"]
   fileName: whatis-ironfly.png
   title: "What is: Iron fly?"
   location: dracoon
   locationId: Y0j1lgN6QqGVhfSQtM1uz62ab0NXP0LS
 - name: whatis ironcondor
+  trigger: ["whatis ironcondor"]
   fileName: whatis-ironcondor.png
   title: "What is: Iron condor?"
   location: dracoon
   locationId: X7HhRwB0mHDiptALf80l4Tp1CmoIBqZz
 - name: whatis cds
+  trigger: ["whatis cds"]
   fileName: whatis-cds.png
   title: "What is: CDS?"
   location: dracoon
   locationId: acI8RpfMVXGyyjCXlTpOj30g2uPr37vl
 - name: whatis ccs
+  trigger: ["whatis ccs"]
   fileName: whatis-ccs.png
   title: "What is: CCS?"
   location: dracoon
   locationId: WSAsN5PLPeNk7iZyMyq0IwkdVjzJTANM
 - name: tui
+  trigger: ["tui"]
   fileName: tui-14k.png
   title: "TUI"
   location: dracoon
   locationId: qzyi4BjjR4hitzUhASgysBhPfwntTpcz
 - name: tja
+  trigger: ["tja"]
   fileName: tja.gif
   title: "Tja"
   location: dracoon
   locationId: 7MMlBpcU8P5BxOgTPvjZ5vdY0WFH1LM1
 - name: stonks
+  trigger: ["stonks"]
   fileName: stonks.png
   title: "Stonks only go up!"
   location: dracoon
   locationId: 8KsXYOhReaJ1lxatAS3cf2i6LrLXyTeH
 - name: yes
+  trigger: ["yes"]
   fileName: sara-yes.gif
   title: "Sara yes"
   location: dracoon
   locationId: tCWua0coo05JguqrUx6ga5LzjlncspZ8
 - name: problem
+  trigger: ["problem"]
   fileName: problem.gif
   title: "Hast du ein Problem?"
   location: dracoon
   locationId: XTMiy57HHGtSwQNNT66q6HNnMGlcb1eB
 - name: omu
+  trigger: ["omu"]
   fileName: omu.png
   title: "Oben-Mitte-Unten"
   location: dracoon
   locationId: RBcwivzV1AyUvWaYgxS9hFbgOulFnUYx
 - name: nachtraden
+  trigger: ["nachtraden"]
   fileName: nachtraden.jpg
   title: "Nachtraden?"
   location: dracoon
   locationId: ZWYq5fPQ1wIeLxY7YTc1WWkbuQLRjK1J
 - name: margin
+  trigger: ["margin"]
   fileName: marginophra.jpg
   title: "Everyone gets a margin account!"
   location: dracoon
   locationId: gyUvQgB1r12upz1nfok3AysXjJaPrher
 - name: gratisgeld
+  trigger: ["gratisgeld"]
   fileName: gratisgeld.jpg
   title: "Gratisgeld!"
   location: dracoon
   locationId: NsO6Mtt8nkTJ8nNu2jcbADorbd0hUDcQ
 - name: exchange 1
+  trigger: ["exchange 1"]
   fileName: exchange-01.gif
   title: "Exchange 01"
   location: dracoon
   locationId: AtZusVCN3tmZxfmGpu9XlpxbNBstETlj
 - name: exchange 2
+  trigger: ["exchange 2"]
   fileName: exchange-02.gif
   title: "Exchange 02"
   location: dracoon
   locationId: OET2867jAEn29ZQsmAcvZ9S6ggYJEiNf
 - name: exchange 3
+  trigger: ["exchange 3"]
   fileName: exchange-03.gif
   title: "Exchange 03"
   location: dracoon
   locationId: dw3o5K0dQGzB4WciNozzGcZ0SJ3tqJ4m
 - name: dritte
+  trigger: ["dritte"]
   fileName: dritte.png
   title: "Jeder Dritte..."
   location: dracoon
   locationId: znKkq76IWYtVyGObq2N9ngRmJcuE2lw0
 - name: derweg
+  trigger: ["derweg"]
   fileName: dasistderweg.png
   title: "Das ist der Weg!"
   location: dracoon
   locationId: yl1dbuXUHFLo6bOJiyEDFcmOT7J7ggMy
 - name: betrug 1
+  trigger: ["betrug 1"]
   fileName: betrug-01.jpg
   title: "Betrug! 1"
   location: dracoon
   locationId: wk9jNUKQUW798OoZDOnpltK2Y6GnWzSi
 - name: betrug 2
+  trigger: ["betrug 2"]
   fileName: betrug-02.jpg
   title: "Betrug! 2"
   location: dracoon
   locationId: oshvKxp8vRk7CLtK8ANqvwrlCmVPzeUz
-- name: quote sara 1
-  fileName: quote-sara-01.png
-  title: "Quote sara 1"
+- name: kaboom
+  trigger: ["kaboom"]
+  fileName: kaboom.png
+  title: "Kaboom!"
   location: dracoon
-  locationId: yUJLfr4ywUAm8QTNcR4MZUG5zmF3BAO5
-- name: quote mheiland 1
-  fileName: quote-mheiland-01.png
-  title: "Quote mheiland 1"
+  locationId: XXX
+- name: einzeichen
+  trigger: ["einzeichen"]
+  fileName: einzeichen.gif
+  title: "Ein Zeichen!"
   location: dracoon
-  locationId: RY5Mq100mievY6pRyj0lsvdIzo8G0436
-- name: quote mheiland 2
-  fileName: quote-mheiland-02.png
-  title: "Quote mheiland 2"
+  locationId: XXX
+- name: dinero
+  trigger: ["dinero"]
+  fileName: dinero.mp4
+  title: "Dinero... aaah!"
   location: dracoon
-  locationId: euUK6ei6Iu3D9sYpifzPhfHzdw8exs9j
-- name: quote skard 1
-  fileName: quote-skard-01.png
-  title: "Quote skard 1"
+  locationId: XXX
+- name: freemoney
+  trigger: ["freemoney"]
+  fileName: freemoney.gif
+  title: "Free money!"
   location: dracoon
-  locationId: uxEnNyCGkoZ9OD6qDh3ZPuK4ftCof25P
-- name: quote skard 2
-  fileName: quote-skard-02.png
-  title: "Quote skard 2"
+  locationId: XXX
+- name: risk
+  trigger: ["risk"]
+  fileName: calculated_risk.jpg
+  title: "Calculated risk..."
   location: dracoon
-  locationId: hGjWUQV5hvYQCc796tQ30ewmBRugtp9p
-- name: quote skard 3
-  fileName: quote-skard-03.png
-  title: "Quote skard 3"
+  locationId: XXX
+- name: alarm
+  trigger: ["alarm"]
+  fileName: alarm.gif
+  title: "Alarm!"
   location: dracoon
-  locationId: dJXjWpBKZGPyMoBCwvMoJLSwoYgO6i7S
-- name: quote skard 4
-  fileName: quote-skard-04.png
-  title: "Quote skard 4"
+  locationId: XXX
+- name: profi
+  trigger: ["profi"]
+  fileName: profi.png
+  title: "Ein Profi ist am Werk."
   location: dracoon
-  locationId: yQKqqBPLAFTidac7TatbBAz94SXCnwL1
-- name: quote fcyolohama 1
-  fileName: quote-fcyolohama-01.png
-  title: "Quote fcyolohama 1"
+  locationId: XXX
+- name: kursänderung
+  trigger: ["kursänderung"]
+  fileName: kursänderung.jpg
+  title: "... das kann doch so nicht bleiben!"
   location: dracoon
-  locationId: i7mnlj2KT8iqZ3SiqhcmvPABpXztPepc
-- name: quote fcyolohama 2
-  fileName: quote-fcyolohama-02.png
-  title: "Quote fcyolohama 2"
+  locationId: XXX
+- name: zetto
+  trigger: ["zetto"]
+  fileName: zetto.gif
+  title: "The one and only."
   location: dracoon
-  locationId: p1NlrfL0tqQD0olHqwWqStiVXtTLd2Oi
-- name: quote chaostrader 1
-  fileName: quote-chaostrader-01.png
-  title: "Quote chaostrader 1"
-  location: dracoon
-  locationId: ftKYJxduSkHR2i4at73tZa2mfeYozSnU
-- name: quote chaostrader 2
-  fileName: quote-chaostrader-02.png
-  title: "Quote chaostrader 2"
-  location: dracoon
-  locationId: 2H03d7BayrVGDWSbPpQuovYpmYyxd6XW
-- name: quote chaostrader 3
-  fileName: quote-chaostrader-03.png
-  title: "Quote chaostrader 3"
-  location: dracoon
-  locationId: JsMApcv3n4CzTbRZpVCLD1vYPCkzq5gB
-- name: quote chaostrader 4
-  fileName: quote-chaostrader-04.png
-  title: "Quote chaostrader 4"
-  location: dracoon
-  locationId: DDgAFAOOPuMeRtAwMrd8nTdsl8CGziND
-- name: quote chaostrader 5
-  fileName: quote-chaostrader-05.png
-  title: "Quote chaostrader 5"
-  location: dracoon
-  locationId: ru7zFnsE3Gs171gq16PTPFXvZgboU9yw
-- name: quote chaostrader 6
-  fileName: quote-chaostrader-06.png
-  title: "Quote chaostrader 6"
-  location: dracoon
-  locationId: njJbILv2c1URl1w3U7q4U0jcp5HIDb7M
-- name: quote chaostrader 7
-  fileName: quote-chaostrader-07.png
-  title: "Quote chaostrader 7"
-  location: dracoon
-  locationId: ZfE4OkiAzKuYTxaKO76uhakWwG47gnES
-- name: quote chaostrader 8
-  fileName: quote-chaostrader-08.png
-  title: "Quote chaostrader 8"
-  location: dracoon
-  locationId: elsAPkw1LePvUKZihjpJDlTuzIaBsvNr
-- name: quote chaostrader 9
-  fileName: quote-chaostrader-09.png
-  title: "Quote chaostrader 9"
-  location: dracoon
-  locationId: cA40mJWKywOldes0C9u7YCHJGsxucXz6
-- name: quote chaostrader 10
-  fileName: quote-chaostrader-10.png
-  title: "Quote chaostrader 10"
-  location: dracoon
-  locationId: gardK16Iut3LupKmUo1Ii1HYQhipFFpg
-- name: quote chaostrader 11
-  fileName: quote-chaostrader-11.png
-  title: "Quote chaostrader 11"
-  location: dracoon
-  locationId: 71uaZmrveskorlg865SyVsp6fR2k0p9u
-- name: quote chaostrader 12
-  fileName: quote-chaostrader-12.png
-  title: "Quote chaostrader 12"
-  location: dracoon
-  locationId: DUwT6zOnunbVaGpyPqkYt5oSi5Nv5yja
-- name: quote chaostrader 13
-  fileName: quote-chaostrader-13.png
-  title: "Quote chaostrader 13"
-  location: dracoon
-  locationId: KhufVDM4xHXXCnvUpgp8t14wogW5MhwR
-- name: quote chaostrader 14
-  fileName: quote-chaostrader-14.png
-  title: "Quote chaostrader 14"
-  location: dracoon
-  locationId: 9rZm3BdboCQE56d1lwJgGPTxYKOYtQea
-- name: quote chaostrader 15
-  fileName: quote-chaostrader-15.png
-  title: "Quote chaostrader 15"
-  location: dracoon
-  locationId: aui1RNt2CF9gGw3ghNgPjYw7GhjELoX6
-- name: quote chaostrader 16
-  fileName: quote-chaostrader-16.png
-  title: "Quote chaostrader 16"
-  location: dracoon
-  locationId: 96deMw3VBUAOP9unsP9hhG4IXGWbga86
-- name: quote chaostrader 17
-  fileName: quote-chaostrader-17.png
-  title: "Quote chaostrader 17"
-  location: dracoon
-  locationId: hMms7gj8IrFfnyt1LyvSAH4LykFsin9n
-- name: quote chaostrader 18
-  fileName: quote-chaostrader-18.png
-  title: "Quote chaostrader 18"
-  location: dracoon
-  locationId: iES3ObW562j4aoplVLqDjC84PEBuuhaF
-- name: quote chaostrader 19
-  fileName: quote-chaostrader-19.png
-  title: "Quote chaostrader 19"
-  location: dracoon
-  locationId: P6tCLvvUTNRALIp6ZIh4EMdOWNkrlfaP
-- name: quote chaostrader 20
-  fileName: quote-chaostrader-20.png
-  title: "Quote chaostrader 20"
-  location: dracoon
-  locationId: fWVm7B99VveQcSISLBvADuAbt5IEU3bG
-- name: quote chaostrader 21
-  fileName: quote-chaostrader-21.png
-  title: "Quote chaostrader 21"
-  location: dracoon
-  locationId: PXNHrAJ0zOVlRe2nMyDC4xoGuYJubM4t
-- name: quote chaostrader 22
-  fileName: quote-chaostrader-22.png
-  title: "Quote chaostrader 22"
-  location: dracoon
-  locationId: xzo7QLBSz3B9t5Za1AqPpuL6CDA6Nake
-- name: quote chaostrader 23
-  fileName: quote-chaostrader-23.png
-  title: "Quote chaostrader 23"
-  location: dracoon
-  locationId: S3pqe8axV4PgrkjchSudwnDcqr6BRTLR
-- name: quote chaostrader 24
-  fileName: quote-chaostrader-24.png
-  title: "Quote chaostrader 24"
-  location: dracoon
-  locationId: 8tgV9rs2uW3FKS4X2j41D7B1LClGo2Fe
-- name: quote chaostrader 25
-  fileName: quote-chaostrader-25.png
-  title: "Quote chaostrader 25"
-  location: dracoon
-  locationId: Uzi8lWj2TmCME84jrJieMWhEiqLmlLqx
-- name: quote chaostrader 26
-  fileName: quote-chaostrader-26.png
-  title: "Quote chaostrader 26"
-  location: dracoon
-  locationId: AicToFdgri6bT7Cep96P69lAngFEPjVe
-- name: quote chaostrader 27
-  fileName: quote-chaostrader-27.png
-  title: "Quote chaostrader 27"
-  location: dracoon
-  locationId: vcwZ6AdnGqtXAhcrcWSsYfUxFgMC0PhB
+  locationId: XXX
