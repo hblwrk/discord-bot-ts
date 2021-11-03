@@ -1,5 +1,4 @@
-// Dependencies
-import {Client, CommandInteractionOptionResolver, Intents, MessageAttachment, MessageEmbed} from "discord.js";
+import {Client, Intents, MessageAttachment, MessageEmbed} from "discord.js";
 import {REST} from "@discordjs/rest";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {Routes} from "discord-api-types/v9";
@@ -8,13 +7,21 @@ import {readSecret} from "./modules/secrets";
 import {getFromDracoon} from "./modules/dracoon-downloader";
 import {runHealthCheck} from "./modules/healthcheck";
 import {startTimers} from "./modules/timers";
+import {roll} from "./modules/cryptodice";
 
 const token = readSecret("discord_token");
 const clientId = readSecret("discord_clientID");
 const guildId = readSecret("discord_guildID");
 
 runHealthCheck();
-const assets = [...getAssets("image"), ...getAssets("text"), ...getAssets("emoji"), ...getAssets("user"), ...getAssets("userquote")];
+
+const assets = [
+  ...getAssets("image"),
+  ...getAssets("text"),
+  ...getAssets("emoji"),
+  ...getAssets("user"),
+  ...getAssets("userquote"),
+];
 
 const assetCommands = [];
 const assetCommandsWithPrefix = [];
@@ -24,6 +31,9 @@ for (const asset of assets) {
     assetCommandsWithPrefix.push(`!${trigger}`);
   }
 }
+
+assetCommands.push("cryptodice");
+assetCommandsWithPrefix.push("!cryptodice");
 
 console.log(`Successfully loaded ${assets.length} assets.`);
 
@@ -35,9 +45,6 @@ const client = new Client({
     Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
   ],
 });
-
-startTimers(client, readSecret("hblwrk_NYSEOpenCloseAnnouncement_ChannelID"));
-console.log("Successfully set timers.");
 
 // Some samples
 // Message response to a message including with a trigger word
@@ -67,23 +74,29 @@ client.on("messageCreate", message => {
   // Triggers with prefix (!command)
   if (assetCommandsWithPrefix.some(v => message.content.includes(v))) {
     for (const asset of assets) {
-      if (message.content.includes(asset.getTrigger())) {
-        if (asset instanceof ImageAsset || asset instanceof UserQuoteAsset) {
-          // Response with an image
-          getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), buffer => {
-            const file = new MessageAttachment(buffer, asset.getFileName());
-            const embed = new MessageEmbed();
-            embed.setTitle(asset.getTitle());
-            embed.setAuthor(client.user.username);
-            embed.setImage(`attachment://${asset.getFileName()}`);
-            message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
-          });
-        } else if (asset instanceof TextAsset) {
-          // Simple response to a message
-          message.channel.send(asset.getResponse()).catch(console.error);
+      for (const trigger of asset.getTrigger()) {
+        if (`!${trigger}` === message.content) {
+          if (asset instanceof ImageAsset || asset instanceof UserQuoteAsset) {
+            // Response with an image
+            getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), buffer => {
+              const file = new MessageAttachment(buffer, asset.getFileName());
+              const embed = new MessageEmbed();
+              embed.setTitle(asset.getTitle());
+              embed.setAuthor(client.user.username);
+              embed.setImage(`attachment://${asset.getFileName()}`);
+              message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
+            });
+          } else if (asset instanceof TextAsset) {
+            // Simple response to a message
+            message.channel.send(asset.getResponse()).catch(console.error);
+          }
         }
       }
     }
+  }
+
+  if ("!cryptodice" === message.content) {
+    message.channel.send(`Rolling the crypto dice... ${roll()}.`).catch(console.error);
   }
 });
 
@@ -101,6 +114,11 @@ for (const asset of assets) {
   }
 }
 
+const slashCommand = new SlashCommandBuilder()
+  .setName("cryptodice")
+  .setDescription("Roll the dice...");
+slashCommands.push(slashCommand.toJSON());
+
 // Deploy slash-command to server
 const rest = new REST({
   version: "9",
@@ -114,11 +132,15 @@ const rest = new REST({
         body: slashCommands,
       },
     );
-    console.log("Successfully registered slash commands.");
+    console.log(`Successfully registered ${slashCommands.length} slash commands.`);
   } catch (error: unknown) {
     console.error(error);
   }
 })();
+
+// Set timers, e.g. for stock exchange open/close notifications
+startTimers(client, readSecret("hblwrk_NYSEOpenCloseAnnouncement_ChannelID"));
+console.log("Successfully set timers.");
 
 // Respond to slash-command
 client.on("interactionCreate", async interaction => {
@@ -140,14 +162,14 @@ client.on("interactionCreate", async interaction => {
             interaction.reply(asset.getResponse()).catch(console.error);
             console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
           } else if (asset instanceof User) {
-            let randomQuotePool = [];
+            const randomQuotePool = [];
             for (const quote of assets) {
               if (quote instanceof UserQuoteAsset && quote.getUser() === asset.getName()) {
                 randomQuotePool.push(quote);
               }
             }
-  
-            let randomQuote = randomQuotePool[Math.floor(Math.random() * randomQuotePool.length)];
+
+            const randomQuote = randomQuotePool[Math.floor(Math.random() * randomQuotePool.length)];
             getFromDracoon(readSecret("dracoon_password"), randomQuote.getLocationId(), async buffer => {
               const file = new MessageAttachment(buffer, randomQuote.getFileName());
               await interaction.reply({files: [file]});
@@ -157,6 +179,11 @@ client.on("interactionCreate", async interaction => {
         }
       }
     }
+  }
+
+  if ("cryptodice" === interaction.commandName) {
+    interaction.reply(`Rolling the crypto dice... ${roll()}.`).catch(console.error);
+    console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
   }
 });
 

@@ -37,6 +37,10 @@
   },
   "xo": {
     "space": true,
+    "yoda": [
+      "error",
+      "never"
+    ],
     "rules": {
       "quotes": [
         "error",
