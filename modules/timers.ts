@@ -46,7 +46,7 @@ export function startTimers(client, channelID: string) {
   const jobNYSEClose = Schedule.scheduleJob(ruleNYSEClose, () => {
     if (false === isHoliday(new Date())) {
       console.log(`${new Date()} NYSE Close`);
-      client.channels.cache.get(channelID).send(`${new Date()} NYSE Aftermarket Close`);
+      client.channels.cache.get(channelID).send(`${new Date()} NYSE Close`);
     }
   });
 

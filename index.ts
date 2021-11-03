@@ -1,7 +1,7 @@
 // Dependencies
-import {Client, Intents, MessageAttachment, MessageEmbed} from "discord.js";
+import {Client, CommandInteractionOptionResolver, Intents, MessageAttachment, MessageEmbed} from "discord.js";
 import {REST} from "@discordjs/rest";
-import {quote, SlashCommandBuilder} from "@discordjs/builders";
+import {SlashCommandBuilder} from "@discordjs/builders";
 import {Routes} from "discord-api-types/v9";
 import {UserQuoteAsset, User, EmojiAsset, ImageAsset, TextAsset, getAssets} from "./modules/assets";
 import {readSecret} from "./modules/secrets";
@@ -92,10 +92,12 @@ client.on("messageCreate", message => {
 const slashCommands = [];
 for (const asset of assets) {
   if (asset instanceof ImageAsset || asset instanceof TextAsset || asset instanceof User) {
-    const slashCommand = new SlashCommandBuilder()
-      .setName(asset.getName().replaceAll(" ", "_"))
-      .setDescription(asset.getTitle());
-    slashCommands.push(slashCommand.toJSON());
+    for (const trigger of asset.getTrigger()) {
+      const slashCommand = new SlashCommandBuilder()
+        .setName(trigger.replaceAll(" ", "_"))
+        .setDescription(asset.getTitle());
+      slashCommands.push(slashCommand.toJSON());
+    }
   }
 }
 
@@ -126,30 +128,32 @@ client.on("interactionCreate", async interaction => {
 
   if (assetCommands.some(v => interaction.commandName.includes(v))) {
     for (const asset of assets) {
-      if (interaction.commandName.includes(asset.getName().replaceAll(" ", "_"))) {
-        if (asset instanceof ImageAsset) {
-          getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), async buffer => {
-            const file = new MessageAttachment(buffer, asset.getFileName());
-            await interaction.reply({files: [file]});
+      for (const trigger of asset.getTrigger()) {
+        if (interaction.commandName.includes(trigger.replaceAll(" ", "_"))) {
+          if (asset instanceof ImageAsset) {
+            getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), async buffer => {
+              const file = new MessageAttachment(buffer, asset.getFileName());
+              await interaction.reply({files: [file]});
+              console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
+            });
+          } else if (asset instanceof TextAsset) {
+            interaction.reply(asset.getResponse()).catch(console.error);
             console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
-          });
-        } else if (asset instanceof TextAsset) {
-          interaction.reply(asset.getResponse()).catch(console.error);
-          console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
-        } else if (asset instanceof User) {
-          let randomQuotePool = [];
-          for (const quote of assets) {
-            if (quote instanceof UserQuoteAsset && quote.getUser() == asset.getName()) {
-              randomQuotePool.push(quote);
+          } else if (asset instanceof User) {
+            let randomQuotePool = [];
+            for (const quote of assets) {
+              if (quote instanceof UserQuoteAsset && quote.getUser() === asset.getName()) {
+                randomQuotePool.push(quote);
+              }
             }
+  
+            let randomQuote = randomQuotePool[Math.floor(Math.random() * randomQuotePool.length)];
+            getFromDracoon(readSecret("dracoon_password"), randomQuote.getLocationId(), async buffer => {
+              const file = new MessageAttachment(buffer, randomQuote.getFileName());
+              await interaction.reply({files: [file]});
+              console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
+            });
           }
-
-          let randomQuote = randomQuotePool[Math.floor(Math.random() * randomQuotePool.length)];
-          getFromDracoon(readSecret("dracoon_password"), randomQuote.getLocationId(), async buffer => {
-            const file = new MessageAttachment(buffer, randomQuote.getFileName());
-            await interaction.reply({files: [file]});
-            console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
-          });
         }
       }
     }

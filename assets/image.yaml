@@ -299,3 +299,9 @@
   title: "Zwo... eines... Risiko!"
   location: dracoon
   locationId: XXX
+- name: egal
+  trigger: ["egal"]
+  fileName: egal.gif
+  title: "Egal!"
+  location: dracoon
+  locationId: XXX
