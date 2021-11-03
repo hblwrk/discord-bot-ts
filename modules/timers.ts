@@ -21,8 +21,8 @@ export function startTimers(client, channelID: string) {
   ruleNYSEClose.tz = "US/Eastern";
 
   const ruleNYSEAftermarketClose = new Schedule.RecurrenceRule();
-  ruleNYSEAftermarketClose.hour = 17;
-  ruleNYSEAftermarketClose.minute = 16;
+  ruleNYSEAftermarketClose.hour = 20;
+  ruleNYSEAftermarketClose.minute = 0;
   ruleNYSEAftermarketClose.dayOfWeek = [0, new Schedule.Range(1, 5)];
   ruleNYSEAftermarketClose.tz = "US/Eastern";
 

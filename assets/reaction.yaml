@@ -1,0 +1,5 @@
+---
+- name: flash
+  trigger: "flash"
+  responseType: "emoji"
+  response: "flash"

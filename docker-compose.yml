@@ -1,17 +1,5 @@
 version: "3.9"
 
-secrets:
-  discord_token:
-    external: true
-  discord_clientID:
-    external: true
-  discord_guildID:
-    external: true
-  dracoon_password:
-    external: true
-  hblwrk_NYSEOpenCloseAnnouncement_ChannelID:
-    external: true
-
 services:
   bot:
     image: ghcr.io/hblwrk/discord-bot-js:main
@@ -28,11 +16,23 @@ services:
       nofile:
         soft: 65536
         hard: 65536
+    ports:
+      - "11312:11312"
     secrets:
       - discord_token
       - discord_clientID
       - discord_guildID
       - dracoon_password
       -hblwrk_NYSEOpenCloseAnnouncement_ChannelID
-    ports:
-      - "11312:11312"
+
+secrets:
+  discord_token:
+    external: true
+  discord_clientID:
+    external: true
+  discord_guildID:
+    external: true
+  dracoon_password:
+    external: true
+  hblwrk_NYSEOpenCloseAnnouncement_ChannelID:
+    external: true

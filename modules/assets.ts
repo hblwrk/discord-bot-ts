@@ -18,7 +18,7 @@ export class Asset {
   }
 
   getType() {
-    return this.getType;
+    return this.type;
   }
 
   getFileName() {
@@ -33,22 +33,19 @@ export class Asset {
     return this.location;
   }
 
-  getlocationId() {
+  getLocationId() {
     return this.locationId;
   }
 }
 
-export function getAssets() {
+export function getAssets(type: string) {
   try {
-    const assetFiles = fs.readdirSync(directory).filter(file => file.endsWith(fileExtension));
-    let newAssets = [];
-    for (const element of assetFiles) {
-      const jsonObjects = yaml.load(fs.readFileSync(`${directory}/${element}`, "utf-8"));
-      for (const jsonObject of jsonObjects) {
-        const newAsset = plainToClass(Asset, jsonObject);
-        newAsset.type = element.replace(fileExtension, "");
-        newAssets.push(newAsset);
-      }
+    const newAssets = [];
+    const jsonObjects = yaml.load(fs.readFileSync(`${directory}/${type}${fileExtension}`, "utf-8"));
+    for (const jsonObject of jsonObjects) {
+      const newAsset = plainToClass(Asset, jsonObject);
+      newAsset.type = type;
+      newAssets.push(newAsset);
     }
     return newAssets;
   } catch (error: unknown) {
