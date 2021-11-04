@@ -84,6 +84,12 @@ client.on("messageCreate", message => {
               embed.setTitle(asset.getTitle());
               embed.setAuthor(client.user.username);
               embed.setImage(`attachment://${asset.getFileName()}`);
+              if (asset instanceof ImageAsset && asset.hasText()) {
+                embed.addFields(
+                  {name: "Beschreibung", value: asset.getText()},
+                );
+              }
+
               message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
             });
           } else if (asset instanceof TextAsset) {
@@ -155,7 +161,17 @@ client.on("interactionCreate", async interaction => {
           if (asset instanceof ImageAsset) {
             getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), async buffer => {
               const file = new MessageAttachment(buffer, asset.getFileName());
-              await interaction.reply({files: [file]});
+              const embed = new MessageEmbed();
+              embed.setTitle(asset.getTitle());
+              embed.setAuthor(client.user.username);
+              embed.setImage(`attachment://${asset.getFileName()}`);
+              if (asset instanceof ImageAsset && asset.hasText()) {
+                embed.addFields(
+                  {name: "Beschreibung", value: asset.getText()},
+                );
+              }
+
+              await interaction.reply({embeds: [embed], files: [file]});
               console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
             });
           } else if (asset instanceof TextAsset) {

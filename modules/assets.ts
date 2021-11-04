@@ -59,6 +59,8 @@ export class ImageAsset extends BaseAsset {
   title: string;
   location: string;
   locationId: string;
+  text: string;
+  hastext: boolean;
 
   getFileName() {
     return this.fileName;
@@ -74,6 +76,14 @@ export class ImageAsset extends BaseAsset {
 
   getLocationId() {
     return this.locationId;
+  }
+
+  getText() {
+    return this.text;
+  }
+
+  hasText() {
+    return Boolean(this.text);
   }
 }
 
