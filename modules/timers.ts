@@ -34,32 +34,27 @@ export function startNyseTimers(client, channelID: string) {
 
   const jobNYSEPremarketOpen = Schedule.scheduleJob(ruleNYSEPremarketOpen, () => {
     if (false === isHoliday(new Date())) {
-      console.log(`${new Date()} NYSE Premarket Open`);
-      client.channels.cache.get(channelID).send(`${new Date()} NYSE Premarket Open`);
+      client.channels.cache.get(channelID).send(`😴🏦💰 Guten Morgen liebe Hebelden! Der premarket hat geöffnet, das Spiel beginnt! 💰🏦🥱😴`);
     } else {
-      console.log(`${new Date()} NYSE Holiday`);
-      client.channels.cache.get(channelID).send(`${new Date()} NYSE Holiday`).catch(console.error);
+      client.channels.cache.get(channelID).send(`🛍️🏝️🛥️🥺 Guten Morgen liebe Hebelden! Heute bleibt die Börse geschlossen. Genießt den Tag und gebt eure Gewinne für tolle Sachen aus! 🥺🛥️🏝️🛍️`).catch(console.error);
     }
   });
 
   const jobNYSEOpen = Schedule.scheduleJob(ruleNYSEOpen, () => {
     if (false === isHoliday(new Date())) {
-      console.log(`${new Date()} NYSE Open`);
-      client.channels.cache.get(channelID).send(`${new Date()} NYSE Open`).catch(console.error);
+      client.channels.cache.get(channelID).send(`🔔🔔🔔 Ich bin ready. Ihr seid ready?! Na dann loooos! Huuuiiii! 🚀 Der Börsenritt beginnt, meine Freunde. Seid dabei, ihr dürft nichts verpassen! 🥳 🎠 🔔🔔🔔`).catch(console.error);
     }
   });
 
   const jobNYSEClose = Schedule.scheduleJob(ruleNYSEClose, () => {
     if (false === isHoliday(new Date())) {
-      console.log(`${new Date()} NYSE Close`);
-      client.channels.cache.get(channelID).send(`${new Date()} NYSE Close`).catch(console.error);
+      client.channels.cache.get(channelID).send(`🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! 🔔🔔🔔`).catch(console.error);
     }
   });
 
   const jobNYSEAftermarketClose = Schedule.scheduleJob(ruleNYSEAftermarketClose, () => {
     if (false === isHoliday(new Date())) {
-      console.log(`${new Date()} NYSE Aftermarket Close`);
-      client.channels.cache.get(channelID).send(`${new Date()} NYSE Aftermarket Close`).catch(console.error);
+      client.channels.cache.get(channelID).send(`🛏️🔔🔔 Und jetzt ist auch der aftermarket für euch Nachteulen geschlossen, Zeit fürs Bettchen! 🔔🔔🛏️`).catch(console.error);
     }
   });
 }
