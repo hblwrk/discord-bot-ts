@@ -32,8 +32,8 @@ for (const asset of assets) {
   }
 }
 
-assetCommands.push("cryptodice");
-assetCommandsWithPrefix.push("!cryptodice");
+assetCommands.push("cryptodice", "lmgtfy");
+assetCommandsWithPrefix.push("!cryptodice", "!lmgtfy");
 
 console.log(`Successfully loaded ${assets.length} assets.`);
 
@@ -120,9 +120,14 @@ for (const asset of assets) {
   }
 }
 
-const slashCommand = new SlashCommandBuilder()
+let slashCommand = new SlashCommandBuilder()
   .setName("cryptodice")
   .setDescription("Roll the dice...");
+slashCommands.push(slashCommand.toJSON());
+
+slashCommand = new SlashCommandBuilder()
+  .setName("lmgtfy")
+  .setDescription("Let me google that for you...");
 slashCommands.push(slashCommand.toJSON());
 
 // Deploy slash-command to server
