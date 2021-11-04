@@ -8,7 +8,7 @@
 * We use `git config pull.rebase false`.
 * We do not commit any IDE, operating-system or editor-specific files to the repository, mind `.gitignore`.
 * We use Airbnb's JS style guide <https://github.com/airbnb/javascript>. That's two spaces for indentation.
-* Consider using XO <https://github.com/xojs/xo> for linting.
+* Consider using ESLint/XO <https://github.com/xojs/xo> for linting.
 
 ## Running
 
