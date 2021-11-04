@@ -77,7 +77,6 @@ client.on("messageCreate", message => {
               const file = new MessageAttachment(buffer, asset.getFileName());
               const embed = new MessageEmbed();
               embed.setTitle(asset.getTitle());
-              embed.setAuthor(client.user.username);
               embed.setImage(`attachment://${asset.getFileName()}`);
               if (asset instanceof ImageAsset && asset.hasText()) {
                 embed.addFields(
@@ -174,7 +173,6 @@ client.on("interactionCreate", async interaction => {
               const file = new MessageAttachment(buffer, asset.getFileName());
               const embed = new MessageEmbed();
               embed.setTitle(asset.getTitle());
-              // embed.setAuthor(client.user.username);
               embed.setImage(`attachment://${asset.getFileName()}`);
               if (asset instanceof ImageAsset && asset.hasText()) {
                 embed.addFields(
