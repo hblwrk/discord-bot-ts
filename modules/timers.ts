@@ -80,7 +80,6 @@ export function startMncTimers(client, channelID: string) {
       const mncFile = new MessageAttachment(buffer, fileName);
       client.channels.cache.get(channelID).send({content: `Morning News Call (${date})`, files: [mncFile]});
     });
-    // Post Morning News Call (Tuesday Nov. 02, 2021) to chan
   });
 }
 
