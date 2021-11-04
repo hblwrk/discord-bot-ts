@@ -2,7 +2,7 @@ import {Client, Intents, MessageAttachment, MessageEmbed} from "discord.js";
 import {REST} from "@discordjs/rest";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {Routes} from "discord-api-types/v9";
-import {UserQuoteAsset, User, EmojiAsset, ImageAsset, TextAsset, getAssets} from "./modules/assets";
+import {UserQuoteAsset, User, EmojiAsset, ImageAsset, TextAsset, getAllAssets, getAssetByName} from "./modules/assets";
 import {readSecret} from "./modules/secrets";
 import {getFromDracoon} from "./modules/dracoon-downloader";
 import {runHealthCheck} from "./modules/healthcheck";
@@ -15,13 +15,7 @@ const guildId = readSecret("discord_guildID");
 
 runHealthCheck();
 
-const assets = [
-  ...getAssets("image"),
-  ...getAssets("text"),
-  ...getAssets("emoji"),
-  ...getAssets("user"),
-  ...getAssets("userquote"),
-];
+const assets = getAllAssets();
 
 const assetCommands = [];
 const assetCommandsWithPrefix = [];
@@ -163,7 +157,7 @@ client.on("interactionCreate", async interaction => {
               const file = new MessageAttachment(buffer, asset.getFileName());
               const embed = new MessageEmbed();
               embed.setTitle(asset.getTitle());
-              embed.setAuthor(client.user.username);
+              // embed.setAuthor(client.user.username);
               embed.setImage(`attachment://${asset.getFileName()}`);
               if (asset instanceof ImageAsset && asset.hasText()) {
                 embed.addFields(

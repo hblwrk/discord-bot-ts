@@ -108,6 +108,19 @@ export class EmojiAsset extends BaseAsset {
   }
 }
 
+export function getAllAssets() {
+  const assetTypes = ["emoji", "image", "text", "user", "userquote"];
+  let newAssets = [];
+  for (const assetType of assetTypes) {
+    const assets = getAssets(assetType);
+    for (const asset of assets) {
+      newAssets.push(asset);
+    }
+  }
+
+  return newAssets;
+}
+
 export function getAssets(type: string) {
   try {
     const newAssets = [];
@@ -151,5 +164,15 @@ export function getAssets(type: string) {
     return newAssets;
   } catch (error: unknown) {
     console.log(error);
+  }
+}
+
+export function getAssetByName(name: string) {
+  const assets = getAllAssets();
+
+  for (const asset of assets) {
+    if (name === asset.getName()) {
+      return asset;
+    }
   }
 }
