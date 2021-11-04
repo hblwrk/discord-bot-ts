@@ -7,7 +7,8 @@ import {readSecret} from "./modules/secrets";
 import {getFromDracoon} from "./modules/dracoon-downloader";
 import {runHealthCheck} from "./modules/healthcheck";
 import {startTimers} from "./modules/timers";
-import {roll} from "./modules/cryptodice";
+import {cryptodice} from "./modules/cryptodice";
+import {lmgtfy} from "./modules/lmgtfy";
 
 const token = readSecret("discord_token");
 const clientId = readSecret("discord_clientID");
@@ -102,7 +103,12 @@ client.on("messageCreate", message => {
   }
 
   if ("!cryptodice" === message.content) {
-    message.channel.send(`Rolling the crypto dice... ${roll()}.`).catch(console.error);
+    message.channel.send(`Rolling the crypto dice... ${cryptodice()}.`).catch(console.error);
+  }
+
+  if (message.content.startsWith("!lmgtfy")) {
+    const search = message.content.split("!lmgtfy ")[1];
+    message.channel.send(`Let me google that for you... ${lmgtfy(search)}.`).catch(console.error);
   }
 });
 
@@ -120,15 +126,19 @@ for (const asset of assets) {
   }
 }
 
-let slashCommand = new SlashCommandBuilder()
+const slashCommandCryptodice = new SlashCommandBuilder()
   .setName("cryptodice")
   .setDescription("Roll the dice...");
-slashCommands.push(slashCommand.toJSON());
+slashCommands.push(slashCommandCryptodice.toJSON());
 
-slashCommand = new SlashCommandBuilder()
+const slashCommandLmgtfy = new SlashCommandBuilder()
   .setName("lmgtfy")
-  .setDescription("Let me google that for you...");
-slashCommands.push(slashCommand.toJSON());
+  .setDescription("Let me google that for you...")
+  .addStringOption(option =>
+    option.setName("search")
+      .setDescription("The search term")
+      .setRequired(true));
+slashCommands.push(slashCommandLmgtfy.toJSON());
 
 // Deploy slash-command to server
 const rest = new REST({
@@ -203,7 +213,13 @@ client.on("interactionCreate", async interaction => {
   }
 
   if ("cryptodice" === interaction.commandName) {
-    interaction.reply(`Rolling the crypto dice... ${roll()}.`).catch(console.error);
+    interaction.reply(`Rolling the crypto dice... ${cryptodice()}.`).catch(console.error);
+    console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
+  }
+
+  if (interaction.commandName.startsWith("lmgtfy")) {
+    const search = interaction.options.get("search").value.toString();
+    interaction.reply(`Let me google that for you... ${lmgtfy(search)}.`).catch(console.error);
     console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
   }
 });
