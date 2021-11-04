@@ -6,7 +6,7 @@ import {UserQuoteAsset, User, EmojiAsset, ImageAsset, TextAsset, getAllAssets} f
 import {readSecret} from "./modules/secrets";
 import {getFromDracoon} from "./modules/dracoon-downloader";
 import {runHealthCheck} from "./modules/healthcheck";
-import {startTimers} from "./modules/timers";
+import {startNyseTimers, startMncTimers, startOtherTimers} from "./modules/timers";
 import {cryptodice} from "./modules/cryptodice";
 import {lmgtfy} from "./modules/lmgtfy";
 
@@ -154,7 +154,9 @@ const rest = new REST({
 })();
 
 // Set timers, e.g. for stock exchange open/close notifications
-startTimers(client, readSecret("hblwrk_NYSEOpenCloseAnnouncement_ChannelID"));
+startNyseTimers(client, readSecret("hblwrk_NYSEOpenCloseAnnouncement_ChannelID"));
+startMncTimers(client, readSecret("hblwrk_MNCAnnouncement_ChannelID"));
+startOtherTimers(client, readSecret("hblwrk_OtherAnnouncement_ChannelID"));
 console.log("Successfully set timers.");
 
 // Respond to slash-command

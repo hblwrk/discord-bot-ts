@@ -23,7 +23,9 @@ services:
       - discord_clientID
       - discord_guildID
       - dracoon_password
-      -hblwrk_NYSEOpenCloseAnnouncement_ChannelID
+      - hblwrk_NYSEAnnouncement_ChannelID
+      - hblwrk_MNCAnnouncement_ChannelID
+      - hblwrk_OtherAnnouncement_ChannelID
 
 secrets:
   discord_token:
@@ -34,5 +36,11 @@ secrets:
     external: true
   dracoon_password:
     external: true
-  hblwrk_NYSEOpenCloseAnnouncement_ChannelID:
+  hblwrk_NYSEAnnouncement_ChannelID:
+    external: true
+  hblwrk_MNCAnnouncement_ChannelID:
+    external: true
+  hblwrk_NYSEAnnouncement_ChannelID:
+    external: true
+  hblwrk_OtherAnnouncement_ChannelID:
     external: true
