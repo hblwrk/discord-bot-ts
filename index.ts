@@ -9,6 +9,7 @@ import {runHealthCheck} from "./modules/healthcheck";
 import {startNyseTimers, startMncTimers, startOtherTimers} from "./modules/timers";
 import {cryptodice} from "./modules/cryptodice";
 import {lmgtfy} from "./modules/lmgtfy";
+import {getRandomQuote} from "./modules/randomquote";
 
 const token = readSecret("discord_token");
 const clientId = readSecret("discord_clientID");
@@ -75,20 +76,26 @@ client.on("messageCreate", message => {
             // Response with an image
             getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), buffer => {
               const file = new MessageAttachment(buffer, asset.getFileName());
-              const embed = new MessageEmbed();
-              embed.setTitle(asset.getTitle());
-              embed.setImage(`attachment://${asset.getFileName()}`);
               if (asset instanceof ImageAsset && asset.hasText()) {
+                const embed = new MessageEmbed();
+                embed.setImage(`attachment://${asset.getFileName()}`);
                 embed.addFields(
                   {name: "Beschreibung", value: asset.getText()},
                 );
+                message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
               }
 
-              message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
+              message.channel.send({files: [file]}).catch(console.error);
             });
           } else if (asset instanceof TextAsset) {
             // Simple response to a message
             message.channel.send(asset.getResponse()).catch(console.error);
+          } else if (asset instanceof User) {
+            const randomQuote = getRandomQuote(asset);
+            getFromDracoon(readSecret("dracoon_password"), randomQuote.getLocationId(), async buffer => {
+              const file = new MessageAttachment(buffer, randomQuote.getFileName());
+              message.channel.send({files: [file]});
+            });
           }
         }
       }
@@ -171,30 +178,23 @@ client.on("interactionCreate", async interaction => {
           if (asset instanceof ImageAsset) {
             getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), async buffer => {
               const file = new MessageAttachment(buffer, asset.getFileName());
-              const embed = new MessageEmbed();
-              embed.setTitle(asset.getTitle());
-              embed.setImage(`attachment://${asset.getFileName()}`);
               if (asset instanceof ImageAsset && asset.hasText()) {
+                const embed = new MessageEmbed();
+                embed.setImage(`attachment://${asset.getFileName()}`);
                 embed.addFields(
                   {name: "Beschreibung", value: asset.getText()},
                 );
+                await interaction.reply({embeds: [embed], files: [file]});
               }
 
-              await interaction.reply({embeds: [embed], files: [file]});
+              await interaction.reply({files: [file]});
               console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
             });
           } else if (asset instanceof TextAsset) {
             interaction.reply(asset.getResponse()).catch(console.error);
             console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
           } else if (asset instanceof User) {
-            const randomQuotePool = [];
-            for (const quote of assets) {
-              if (quote instanceof UserQuoteAsset && quote.getUser() === asset.getName()) {
-                randomQuotePool.push(quote);
-              }
-            }
-
-            const randomQuote = randomQuotePool[Math.floor(Math.random() * randomQuotePool.length)];
+            const randomQuote = getRandomQuote(asset);
             getFromDracoon(readSecret("dracoon_password"), randomQuote.getLocationId(), async buffer => {
               const file = new MessageAttachment(buffer, randomQuote.getFileName());
               await interaction.reply({files: [file]});
@@ -231,5 +231,5 @@ client.once(eventReady.name, (...args) => {
   eventReady.execute.apply(null, ...args);
 });
 
-// Login to Discord with your client's token
+// Login to Discord
 client.login(token).catch(console.error);
