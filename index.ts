@@ -154,7 +154,7 @@ const rest = new REST({
 })();
 
 // Set timers, e.g. for stock exchange open/close notifications
-startNyseTimers(client, readSecret("hblwrk_NYSEOpenCloseAnnouncement_ChannelID"));
+startNyseTimers(client, readSecret("hblwrk_NYSEAnnouncement_ChannelID"));
 startMncTimers(client, readSecret("hblwrk_MNCAnnouncement_ChannelID"));
 startOtherTimers(client, readSecret("hblwrk_OtherAnnouncement_ChannelID"));
 console.log("Successfully set timers.");
