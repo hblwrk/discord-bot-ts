@@ -23,8 +23,12 @@ export function getFromDracoon(secret: string, downloadToken: string, cb) {
       if (response) {
         try {
           downloadUrl = JSON.parse(chunk).downloadUrl;
+          if (404 === JSON.parse(chunk).code) {
+            console.log("Download error: File not found");
+            return;
+          }
         } catch (error) {
-          console.log("download error:", error);
+          console.log("Download error:", error);
           return;
         }
       }
@@ -38,7 +42,7 @@ export function getFromDracoon(secret: string, downloadToken: string, cb) {
           cb(buffer);
         });
       }).on("error", error => {
-        console.log("download error:", error);
+        console.log("Download error:", error);
       });
     });
   });
