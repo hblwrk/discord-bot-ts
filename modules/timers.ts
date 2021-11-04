@@ -1,11 +1,13 @@
 import {MessageAttachment, MessageEmbed} from "discord.js";
+import moment from "moment";
 import Schedule from "node-schedule";
 import {isHoliday} from "nyse-holidays";
 import {getAssetByName} from "./assets";
 import {getFromDracoon} from "./dracoon-downloader";
+import {getFromReuters} from "./mnc-downloader";
 import {readSecret} from "./secrets";
 
-export function startTimers(client, channelID: string) {
+export function startNyseTimers(client, channelID: string) {
   const ruleNYSEPremarketOpen = new Schedule.RecurrenceRule();
   ruleNYSEPremarketOpen.hour = 4;
   ruleNYSEPremarketOpen.minute = 0;
@@ -29,12 +31,6 @@ export function startTimers(client, channelID: string) {
   ruleNYSEAftermarketClose.minute = 0;
   ruleNYSEAftermarketClose.dayOfWeek = [0, new Schedule.Range(1, 5)];
   ruleNYSEAftermarketClose.tz = "US/Eastern";
-
-  const ruleFriday = new Schedule.RecurrenceRule();
-  ruleFriday.hour = 9;
-  ruleFriday.minute = 0;
-  ruleFriday.dayOfWeek = [5];
-  ruleFriday.tz = "Europe/Berlin";
 
   const jobNYSEPremarketOpen = Schedule.scheduleJob(ruleNYSEPremarketOpen, () => {
     if (false === isHoliday(new Date())) {
@@ -66,6 +62,34 @@ export function startTimers(client, channelID: string) {
       client.channels.cache.get(channelID).send(`${new Date()} NYSE Aftermarket Close`).catch(console.error);
     }
   });
+}
+
+export function startMncTimers(client, channelID: string) {
+  const ruleMNC = new Schedule.RecurrenceRule();
+  ruleMNC.hour = 9;
+  ruleMNC.minute = 0;
+  ruleMNC.dayOfWeek = [0, new Schedule.Range(1, 5)];
+  ruleMNC.tz = "Europe/Berlin";
+
+  const jobMNC = Schedule.scheduleJob(ruleMNC, () => {
+    getFromReuters(buffer => {
+      moment.locale("de");
+      const date = moment().format("dddd, Do MMMM YYYY");
+      const shortDate = moment().format("YYYY-MM-DD");
+      const fileName = `MNC-${shortDate}.pdf`;
+      const mncFile = new MessageAttachment(buffer, fileName);
+      client.channels.cache.get(channelID).send({content: `Morning News Call (${date})`, files: [mncFile]});
+    });
+    // Post Morning News Call (Tuesday Nov. 02, 2021) to chan
+  });
+}
+
+export function startOtherTimers(client, channelID: string) {
+  const ruleFriday = new Schedule.RecurrenceRule();
+  ruleFriday.hour = 9;
+  ruleFriday.minute = 0;
+  ruleFriday.dayOfWeek = [5];
+  ruleFriday.tz = "Europe/Berlin";
 
   const jobFriday = Schedule.scheduleJob(ruleFriday, () => {
     getFromDracoon(readSecret("dracoon_password"), getAssetByName("freitag").getLocationId(), buffer => {

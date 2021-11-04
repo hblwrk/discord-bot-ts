@@ -87,7 +87,9 @@ echo -n "hunter1" | docker secret create discord_token -
 echo -n "hunter2" | docker secret create discord_clientID -
 echo -n "hunter3" | docker secret create discord_guildID -
 echo -n "hunter4" | docker secret create dracoon_password -
-echo -n "hunter5" | docker secret create hblwrk_NYSEOpenCloseAnnouncement_ChannelID -
+echo -n "hunter5" | docker secret create hblwrk_NYSEAnnouncement_ChannelID -
+echo -n "hunter6" | docker secret create hblwrk_MNCAnnouncement_ChannelID -
+echo -n "hunter7" | docker secret create hblwrk_OtherAnnouncement_ChannelID -
 ```
 
 By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams. The code looks for `config.json` and expects the following syntax:
@@ -98,7 +100,9 @@ By defining a set of secrets per developer, multiple bots can be run at the same
   "discord_clientID": "hunter2",
   "discord_guildID": "hunter3",
   "dracoon_password": "hunter4",
-  "hblwrk_NYSEOpenCloseAnnouncement_ChannelID": "hunter5"
+  "hblwrk_NYSEAnnouncement_ChannelID": "hunter5",
+  "hblwrk_MNCAnnouncement_ChannelID": "hunter6",
+  "hblwrk_OtherAnnouncement_ChannelID": "hunter7"
 }
 ```
 
