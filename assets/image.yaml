@@ -180,139 +180,139 @@
   fileName: kaboom.png
   title: "Kaboom!"
   location: dracoon
-  locationId: XXX
+  locationId: ikaPNqispgs95cQdVKUmNZ7wZsTVDlXX
 - name: einzeichen
   trigger: ["einzeichen"]
   fileName: einzeichen.gif
   title: "Ein Zeichen!"
   location: dracoon
-  locationId: XXX
+  locationId: rCfjfZuUkJOhh2fB5UCQDmNCAUFp2wRw
 - name: dinero
   trigger: ["dinero"]
   fileName: dinero.mp4
   title: "Dinero... aaah!"
   location: dracoon
-  locationId: XXX
+  locationId: QmSBXpNcPahvcVhIQc84MGbUn0S87cSm
 - name: freemoney
   trigger: ["freemoney"]
   fileName: freemoney.gif
   title: "Free money!"
   location: dracoon
-  locationId: XXX
+  locationId: fBQkY6oX0UBfh8CqWn4SroGdB8pE6yLf
 - name: risk
   trigger: ["risk"]
   fileName: calculated_risk.jpg
   title: "Calculated risk..."
   location: dracoon
-  locationId: XXX
+  locationId: BKD0lK8Kx8veSDfjVo9DV8YmmCIu5uLp
 - name: alarm
   trigger: ["alarm"]
   fileName: alarm.gif
   title: "Alarm!"
   location: dracoon
-  locationId: XXX
+  locationId: aBohuft2rsMoTbC11gKug4uVkpPw0CeH
 - name: profi
   trigger: ["profi"]
   fileName: profi.png
   title: "Ein Profi ist am Werk."
   location: dracoon
-  locationId: XXX
+  locationId: 8nTSkRzKKwesSbUe9YsmLAx9pQNHYg9Y
 - name: kursänderung
   trigger: ["kursänderung"]
   fileName: kursänderung.jpg
   title: "... das kann doch so nicht bleiben!"
   location: dracoon
-  locationId: XXX
+  locationId: B3kFSEDJANpABpAfLt7aNshv7WNCopSw
 - name: zettomac
   trigger: ["zetto"]
   fileName: zetto.gif
   title: "The one and only."
   location: dracoon
-  locationId: XXX
+  locationId: PE1pjdIBt4P7wVFi10SvZswZaQlQCYxu
 - name: yolohama
   trigger: ["yolohama"]
   fileName: yolohama.gif
   title: "Its rage time!"
   location: dracoon
-  locationId: XXX
+  locationId: 6rX1r2xiTqcxcEe754FACBLmCe9DNyqf
 - name: apr
   trigger: ["apr", "apy"]
   fileName: apr.jpg
   title: "A P R"
   location: dracoon
-  locationId: XXX
+  locationId: V8j8TEN9VCcSVQ04y7RhHHPlJRNDur3t
 - name: violine
   trigger: ["violine", "violin"]
   fileName: violine.gif
   title: "Kleinste Violine der Welt, für dich."
   location: dracoon
-  locationId: XXX
+  locationId: x9qWvCJna0i1Pbdo3t9plJKNH8JmLlOO
 - name: yolo
   trigger: ["yolo"]
   fileName: yolo.jpg
   title: "Was kann schon schief gehen..."
   location: dracoon
-  locationId: XXX
+  locationId: 8dQx583tS0kHAytXlcGGI12miEyz2UxN
 - name: margin
   trigger: ["margin"]
   fileName: margin.png
   title: "Margin"
   location: dracoon
-  locationId: XXX
+  locationId: XDL4mMeEyhY2z3aQ7t4RarYgYrIGFlGw
 - name: crash
   trigger: ["crash"]
   fileName: crash.gif
   title: "Crash!"
   location: dracoon
-  locationId: XXX
+  locationId: 9HCROg1snIjrIJN0sX5cCFTxQ9TAT6Pk
 - name: arbeit
   trigger: ["arbeit"]
   fileName: arbeit.jpg
   title: "Arbeit?"
   location: dracoon
-  locationId: XXX
+  locationId: gFFFmMb75RHHnPT1OdAKKBNG0gQpcUYf
 - name: swingtrading
   trigger: ["swingtrading"]
   fileName: swingtrading.mp4
   title: "Swinger"
   location: dracoon
-  locationId: XXX
+  locationId: uefn8qtxilI0aBdLfLjMFtNmRZJ6v4Fp
 - name: mint
   trigger: ["mint"]
   fileName: mint.png
   title: "Mentos mint = beschde!"
   location: dracoon
-  locationId: XXX
+  locationId: kPTG8EvjNJ2sqEcGCHFczEbgbcJXLtP0
 - name: leverage
   trigger: ["leverage"]
   fileName: leverage.gif
   title: "Wir sind hier im Hebelwerk, Dooku."
   location: dracoon
-  locationId: XXX
+  locationId: vClJcDQxVOTVQ1TcsxUDlxOMG9Kw4QYR
 - name: stabil
   trigger: ["rühl", "pumpernickel", "pumper"]
   fileName: stabil.gif
   title: "Stabilität ist alles!"
   location: dracoon
-  locationId: XXX
+  locationId: cIukyvik5OsujdffudJ2fu4fErOmm0zT
 - name: jpow
   trigger: ["jpow"]
   fileName: jpow.jpeg
   title: "Jerome"
   location: dracoon
-  locationId: XXX
+  locationId: ZnYnJ8DkttCPIiVDEi0VebPLdhAeg07g
 - name: risiko
   trigger: ["risiko"]
   fileName: risiko.gif
   title: "Zwo... eines... Risiko!"
   location: dracoon
-  locationId: XXX
+  locationId: JyVJzaKCxtSH7S6hej4InOpNM7d2bF28
 - name: egal
   trigger: ["egal"]
   fileName: egal.gif
   title: "Egal!"
   location: dracoon
-  locationId: XXX
+  locationId: 70zaS5hZ28n1nZWkOUmCxfg0RtiUoxjO
 - name: freitag
   trigger: ["freitag"]
   fileName: friday.gif
