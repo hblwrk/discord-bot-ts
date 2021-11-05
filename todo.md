@@ -4,7 +4,6 @@
   * Undocumented rate-limits make channel/category titles a bad place for frequent updates
   * Potentially spawn one bot per ticker and update their status to bypass limits...
 * Handling opt-in roles
-* /whatis_something as /whatis \<something\> slashcommand?
 * Asset-cache to avoid frequent storage access, potentially pre-populate
 * Unittests
 

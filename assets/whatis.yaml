@@ -1,0 +1,89 @@
+---
+- name: whatis_strangle
+  trigger: ["whatis strangle"]
+  fileName: whatis-strangle.png
+  title: "What is: Strangle?"
+  location: dracoon
+  locationId: b2KLT342StPrmhxyrTkUsnVSHChIeDhq
+  text: "Ein Strangle ist ein Short Call und ein Short Put zur selben Laufzeit im selben Underlying auf unterschiedlichen Strike prices. Er ist eine neutrale Undefined Risk Strategie. Somit ist der maximale Verlust theoretisch unbegrenzt!\nMan verkauft bei einem Strangle einen Put und einen Call in der Regel so, dass sie jeweils ein Delta von 16 aufweisen. Das Underlying muss zwwischen den beiden Strikes bleiben, sich innerhalb dessen aber frei bewegen.\n☝️ 🤓"
+- name: whatis_straddle
+  trigger: ["whatis straddle"]
+  fileName: whatis-straddle.png
+  title: "What is: Straddle?"
+  location: dracoon
+  locationId: IaXV9s5wRbOKn4evDQ09mV3upljbxGbX
+  text: "Ein Straddle ist ein Short Call und ein Short Put zur selben Laufzeit im selben Underlying auf den selben Strike prices. Er ist eine neutrale Undefined Risk Strategie. Somit ist der maximale Verlust theoretisch unbegrenzt!\nMan verkauft bei einem Straddle einen Put und einen Call auf dem selben Strike Price, somit darf das Underlying sich im Bestfall nicht so stark bewegen.\n☝️ 🤓"
+- name: whatis_pds
+  trigger: ["whatis pds"]
+  fileName: whatis-pds.png
+  title: "What is: PDS?"
+  location: dracoon
+  locationId: y6tsIzmxEVlHuQWYFjujb9ruct2a3qfr
+  text: "PDS bedeutet Put Debit Spread und ist eine Bearish Defined Risk Strategie. Somit ist der maximale Verlust vor Beginn des Trades schon bekannt! Man kauft bei einem PDS einen Long Put für Debit und verkauft dazu einen Short Put für Credit mindestens einen Strike tiefer.\n☝️ 🤓"
+- name: whatis_pcs
+  trigger: ["whatis pcs"]
+  fileName: whatis-pcs.png
+  title: "What is: PCS?"
+  location: dracoon
+  locationId: f3ghcFXA26xtKuHRJ37RmjoMaMmLAtdc
+  text: "PCS bedeutet Put Credit Spread und ist eine Bullish Defined Risk Strategie. Somit ist der maximale Verlust vor Beginn des Trades schon bekannt! Man verkauft bei einem PCS einen Short Put für Credit und kauft dazu einen Long Put für Debit mindestens einen Strike tiefer.\n☝️ 🤓"
+- name: whatis_ironfly
+  trigger: ["whatis ironfly"]
+  fileName: whatis-ironfly.png
+  title: "What is: Iron fly?"
+  location: dracoon
+  locationId: Y0j1lgN6QqGVhfSQtM1uz62ab0NXP0LS
+  text: "Ein Iron Fly ist ein PCS und CCS zu selben Laufzeit im selben Underlying auf den selben Strike prices. Er ist eine neutrale Defined Risk Strategie. Somit ist der maximale Verlust vor Beginn des Trades schon bekannt!\nDer Iron Fly ist die Defined Risk Variante vom Straddle. Man verkauft bei einem Iron Fly einen PCS und einen CCS in der Regel so, dass die Short-Strikes auf dem selben Strike liegen. Außerdem sollten die Long-Legs auf beiden Seiten den selben Abstand zu den Short Legs haben.\n☝️ 🤓"
+- name: whatis_ironcondor
+  trigger: ["whatis ironcondor"]
+  fileName: whatis-ironcondor.png
+  title: "What is: Iron condor?"
+  location: dracoon
+  locationId: X7HhRwB0mHDiptALf80l4Tp1CmoIBqZz
+  text: "Ein Iron Condor ist ein PCS und CCS zu selben Laufzeit im selben Underlying auf unterschiedlichen Strike prices. Er ist eine neutrale Defined Risk Strategie. Somit ist der maximale Verlust vor Beginn des Trades schon bekannt!\nDer Iron Condor ist die Defined Risk Variante vom Strangle. Man verkauft bei einem Iron Condor einen PCS und einen CCS in der Regel so, dass der Short-Strike jeweils ein Delta von 16 aufweist. Außerdem sollten die Long-Legs auf beiden Seiten den selben Abstand zu den Short Legs haben.\n☝️ 🤓"
+- name: whatis_cds
+  trigger: ["whatis cds"]
+  fileName: whatis-cds.png
+  title: "What is: CDS?"
+  location: dracoon
+  locationId: acI8RpfMVXGyyjCXlTpOj30g2uPr37vl
+  text: "CDS bedeutet Call Debit Spread und ist eine Bullish Defined Risk Strategie. Somit ist der maximale Verlust vor Beginn des Trades schon bekannt! Man kauft bei einem CDS einen Long Call für Debit und verkauft dazu einen Short Call für Credit mindestens einen Strike höher.\n☝️ 🤓"
+- name: whatis_ccs
+  trigger: ["whatis ccs"]
+  fileName: whatis-ccs.png
+  title: "What is: CCS?"
+  location: dracoon
+  locationId: WSAsN5PLPeNk7iZyMyq0IwkdVjzJTANM
+  text: "CCS bedeutet Call Credit Spread und ist eine Bearish Defined Risk Strategie. Somit ist der maximale Verlust vor Beginn des Trades schon bekannt! Man verkauft bei einem CCS einen Short Call für Credit und kauft dazu einen Long Call für Debit mindestens einen Strike höher.\n☝️ 🤓"
+- name: whatis_delta
+  trigger: ["whatis delta"]
+  title: "What is Delta?"
+  text: "**Delta**\nDas Delta sagt einem 3 wesentliche Dinge:\n1) Wie viel die Option an Wert gewinnt/verliert bei einer Änderung des Underlying\n2) Wie viele Shares des Underlying aktuell \"in der Option sind\"\n3) ITM% \n\nBei Delta 30 wäre es, als hättest du 30 Shares vom Underlying und das Price-Movement im Underlying macht die Option dann zu 30% mit. Also $1 Anstieg im Underlying macht bei Delta 30 in der Option dan $0.30 aus.\nDas heißt aber auch, dass man bspw. bei einem Covered Call mit einem Delta von 30 die 100 Shares, die du hast, zu 30% hedgest.\nWenn du weißt, dass die Option 30% von der Bewegung im Underlying mit macht und die quasi 30 Shares \"wert sind\", dann weißt du auch, dass die Probability bei ca. 30% liegt bis zur expiry ITM auszulaufen.\nDiese probabilty ist eine Annäherung und nicht 100% genau, da sind POP% bspw. etwas besser geeignet, aber trotzdem ist Delta ein sehr guter Indikator dafür. Das wird im Black-Sholes Modell halt alles mathematisch total schlau zusammengeklatscht.\nAnhand des Delta kannst du sogar bisschen die Erwartungshaltung im Markt beobachten. Nämlich dann, wen nes einen Delta-Skew gibt. Das wäre dann der fall, wenn bspw. die Calls an der 1.SD ein viel höheres Delta haben als die Puts. Dann geht man von mehr Uprisk aus und könnte unter Umständen ein bullishes Signal sein.\n☝️ 🤓"
+- name: whatis_itm
+  trigger: ["whatis itm"]
+  title: "What is ITM?"
+  text: "**ITM**\nITM bedeutet In The Money und hat meist ein Delta größer als 60.\n* Ein Put ist ITM, wenn der Kurs des Underlyings unterhalb des Put-Strikes notiert.\n* Ein Call ist ITM, wenn der Kurs des Underlyings oberhalb des Call-Strikes notiert.\n☝️ 🤓"
+- name: whatis_atm
+  trigger: ["whatis atm"]
+  title: "What is ATM?"
+  text: "**ATM**\nATM bedeutet At The Money und hat meist ein Delta zwischen 40 und 60.\n* Ein Put ist ATM, wenn der Kurs des Underlyings sehr nahe am Put-Strike notiert.\n* Ein Call ist ATM, wenn der Kurs des Underlyings sehr nahe am Call-Strike notiert.\n☝️ 🤓"
+- name: whatis_otm
+  trigger: ["whatis otm"]
+  title: "What is OTM?"
+  text: "**OTM**\nOTM bedeutet Out (of) The Money und hat meist ein Delta kleiner als 40.\n* Ein Put ist OTM, wenn der Kurs des Underlyings weit oberhalb des Put-Strikes notiert.\n* Ein Call ist OTM, wenn der Kurs des Underlyings weit unterhalb des Call-Strikes notiert.\n☝️ 🤓"
+- name: whatis_dte
+  trigger: ["whatis dte"]
+  title: "What is DTE?"
+  text: "**DTE**\nDTE bedeutet Days To Expiration und gibt die Anzahl der Tage bis zum Ablaufen einer Option an. Der Tasty-Weg ist 30-60 Tage (DTE) für Short Optionen. Demnach sollte man Long Positionen nie unter 60 Tage laufen lassen, außer man geht von einer starken Bewegung im Underlying aus.\n ☝️ 🤓"
+- name: whatis_pmcc
+  trigger: ["whatis pmcc"]
+  title: "What is PMCC?"
+  text: "**PMCC**\nPMCC bedeutet Poor Mans Covered Call und ist eine alternative für echte Covered Calls. Für einen PMCC kauft man einen Deep ITM LEAP Long Call mit mindestens Delta 60. Besser um die Delta 80. Darauf verkauft man dann weekly oder monthly Short Calls mit einem Delta zwischen 20 und 30.\n☝️ 🤓"
+- name: whatis_csp
+  trigger: ["whatis csp"]
+  title: "What is CSP?"
+  text: "**CSP**\nCSP bedeutet Cash Secured Put und kann unter Umständen als Defined Risk Strategie angesehen werden, ist bei Eröffnung aber erst mal ein Undefined Risk Trade. Man verkauft bei einem CSP einen Short Put für Credit.\nDas Besondere an einem CSP ist, dass der Strike so gewählt ist, dass man bei einer potenziellen Ausführung des Short Puts die Aktie auch zum genannten Strikepreis kaufen könnte. Dazu muss man nur immer genug Cash im Konto bereithalten.\nDer Maximalverlust ist dadurch im Prinzip auf den Kaufpreis von 100 Aktien zum Strikepreis festgesetzt, sofern die Option vom Käufer ausgeführt wird.\n☝️ 🤓"
+- name: whatis_vp
+  trigger: ["whatis vp"]
+  title: "What is VP?"
+  text: "Vagina Penis"

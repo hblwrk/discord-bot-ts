@@ -10,11 +10,11 @@
 - name: paywall
   trigger: ["paywall"]
   title: "Paywalls, nein danke."
-  response: "Chrome: <https://gitlab.com/magnolia1234/bypass-paywalls-chrome-clean>\nFirefox: <https://gitlab.com/magnolia1234/bypass-paywalls-firefox-clean>"
+  response: "Paywalls, nein danke.\nChrome: <https://gitlab.com/magnolia1234/bypass-paywalls-chrome-clean>\nFirefox: <https://gitlab.com/magnolia1234/bypass-paywalls-firefox-clean>"
 - name: cnbc
   trigger: ["cnbc"]
   title: "Sara live!"
-  response: "Sara live! <:pepesurprise:905494854501552169> <https://www.livenewsnow.com/american/cnbc-america.html>"
+  response: "Sara live! <https://www.livenewsnow.com/american/cnbc-america.html>"
 - name: developers
   trigger: ["developers"]
   title: "Developers, developers, developers!"
@@ -51,35 +51,3 @@
   trigger: ["eingepreist"]
   title: "Eingepreist"
   response: "Stellen Sie die Frage gar nicht erst. Die Antwort ist ja, sie ist eingepreist. Glauben Sie, dass Amazon die nächsten Gewinne übertreffen wird? Das ist bereits eingepreist. Sie arbeiten am Drive-In für Mickey D's und haben herausgefunden, dass die Burger aus Menschenfleisch hergestellt werden? Eingepreist. Glauben Sie, dass Insider das nicht schon wissen? Der Markt ist ein allmächtiges, allumfassendes Wesen, das das Innenleben Ihres Unterbewusstseins kennt, bevor Sie überhaupt geboren wurden. Ihre Existenz wurde schon vor Jahrzehnten eingepreist, als der Markt die erwarteten künftigen Gewinne von Standard Oil auf der Grundlage des Bevölkerungswachstums bewertete, das zu Ihrer Geburt führen würde, in welchem Alter Sie ein Auto bekommen würden, wie oft Sie pro Woche mit dem Auto fahren würden, wie oft Sie den Bus/Zug nehmen würden usw. Alles, was Sie sich vorstellen können, ist bereits eingepreist, auch die Dinge, an die Sie nicht denken. Sie haben keine ursprünglichen Gedanken. Ihr Bewusstsein ist nur eine Illusion, ein Produkt des allgegenwärtigen Marktes. Der freie Wille ist ein Mythos. Der Markt sieht alles, weiß alles und wird vom Anbeginn der Zeit bis zum Ende des Universums da sein (der Markt hat den Wärmetod des Universums bereits eingepreist). Also bitte, bevor du einen Beitrag auf wsb schreibst, in dem du fragst, ob AAPL den Verkauf von earpods 11 oder was auch immer eingepreist hat, wisse, dass es bereits eingepreist ist und stelle nicht noch einmal so eine dumme Frage."
-- name: whatis_delta
-  trigger: ["whatis delta"]
-  title: "What is Delta?"
-  response: "**Delta**\nDas Delta sagt einem 3 wesentliche Dinge:\n1) Wie viel die Option an Wert gewinnt/verliert bei einer Änderung des Underlying\n2) Wie viele Shares des Underlying aktuell \"in der Option sind\"\n3) ITM% \n\nBei Delta 30 wäre es, als hättest du 30 Shares vom Underlying und das Price-Movement im Underlying macht die Option dann zu 30% mit. Also $1 Anstieg im Underlying macht bei Delta 30 in der Option dan $0.30 aus.\nDas heißt aber auch, dass man bspw. bei einem Covered Call mit einem Delta von 30 die 100 Shares, die du hast, zu 30% hedgest.\nWenn du weißt, dass die Option 30% von der Bewegung im Underlying mit macht und die quasi 30 Shares \"wert sind\", dann weißt du auch, dass die Probability bei ca. 30% liegt bis zur expiry ITM auszulaufen.\nDiese probabilty ist eine Annäherung und nicht 100% genau, da sind POP% bspw. etwas besser geeignet, aber trotzdem ist Delta ein sehr guter Indikator dafür. Das wird im Black-Sholes Modell halt alles mathematisch total schlau zusammengeklatscht.\nAnhand des Delta kannst du sogar bisschen die Erwartungshaltung im Markt beobachten. Nämlich dann, wen nes einen Delta-Skew gibt. Das wäre dann der fall, wenn bspw. die Calls an der 1.SD ein viel höheres Delta haben als die Puts. Dann geht man von mehr Uprisk aus und könnte unter Umständen ein bullishes Signal sein.\n☝️ 🤓"
-- name: whatis_itm
-  trigger: ["whatis itm"]
-  title: "What is ITM?"
-  response: "**ITM**\nITM bedeutet In The Money und hat meist ein Delta größer als 60.\n* Ein Put ist ITM, wenn der Kurs des Underlyings unterhalb des Put-Strikes notiert.\n* Ein Call ist ITM, wenn der Kurs des Underlyings oberhalb des Call-Strikes notiert.\n☝️ 🤓"
-- name: whatis_atm
-  trigger: ["whatis atm"]
-  title: "What is ATM?"
-  response: "**ATM**\nATM bedeutet At The Money und hat meist ein Delta zwischen 40 und 60.\n* Ein Put ist ATM, wenn der Kurs des Underlyings sehr nahe am Put-Strike notiert.\n* Ein Call ist ATM, wenn der Kurs des Underlyings sehr nahe am Call-Strike notiert.\n☝️ 🤓"
-- name: whatis_otm
-  trigger: ["whatis otm"]
-  title: "What is OTM?"
-  response: "**OTM**\nOTM bedeutet Out (of) The Money und hat meist ein Delta kleiner als 40.\n* Ein Put ist OTM, wenn der Kurs des Underlyings weit oberhalb des Put-Strikes notiert.\n* Ein Call ist OTM, wenn der Kurs des Underlyings weit unterhalb des Call-Strikes notiert.\n☝️ 🤓"
-- name: whatis_dte
-  trigger: ["whatis dte"]
-  title: "What is DTE?"
-  response: "**DTE**\nDTE bedeutet Days To Expiration und gibt die Anzahl der Tage bis zum Ablaufen einer Option an. Der Tasty-Weg ist 30-60 Tage (DTE) für Short Optionen. Demnach sollte man Long Positionen nie unter 60 Tage laufen lassen, außer man geht von einer starken Bewegung im Underlying aus.\n ☝️ 🤓"
-- name: whatis_pmcc
-  trigger: ["whatis pmcc"]
-  title: "What is PMCC?"
-  response: "**PMCC**\nPMCC bedeutet Poor Mans Covered Call und ist eine alternative für echte Covered Calls. Für einen PMCC kauft man einen Deep ITM LEAP Long Call mit mindestens Delta 60. Besser um die Delta 80. Darauf verkauft man dann weekly oder monthly Short Calls mit einem Delta zwischen 20 und 30.\n☝️ 🤓"
-- name: whatis_csp
-  trigger: ["whatis csp"]
-  title: "What is CSP?"
-  response: "**CSP**\nCSP bedeutet Cash Secured Put und kann unter Umständen als Defined Risk Strategie angesehen werden, ist bei Eröffnung aber erst mal ein Undefined Risk Trade. Man verkauft bei einem CSP einen Short Put für Credit.\nDas Besondere an einem CSP ist, dass der Strike so gewählt ist, dass man bei einer potenziellen Ausführung des Short Puts die Aktie auch zum genannten Strikepreis kaufen könnte. Dazu muss man nur immer genug Cash im Konto bereithalten.\nDer Maximalverlust ist dadurch im Prinzip auf den Kaufpreis von 100 Aktien zum Strikepreis festgesetzt, sofern die Option vom Käufer ausgeführt wird.\n☝️ 🤓"
-- name: whatis_vp
-  trigger: ["whatis vp"]
-  title: "What is VP?"
-  response: "Vagina Penis"

@@ -60,7 +60,6 @@ export class ImageAsset extends BaseAsset {
   location: string;
   locationId: string;
   text: string;
-  hastext: boolean;
 
   getFileName() {
     return this.fileName;
@@ -109,6 +108,7 @@ export class EmojiAsset extends BaseAsset {
 }
 
 export function getAllAssets() {
+  // all except whatis...
   const assetTypes = ["emoji", "image", "text", "user", "userquote"];
   let newAssets = [];
   for (const assetType of assetTypes) {
@@ -150,6 +150,11 @@ export function getAssets(type: string) {
 
         case "userquote": {
           newAsset = plainToClass(UserQuoteAsset, jsonObject);
+          break;
+        }
+
+        case "whatis": {
+          newAsset = plainToClass(ImageAsset, jsonObject);
           break;
         }
 
