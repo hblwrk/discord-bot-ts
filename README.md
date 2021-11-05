@@ -59,7 +59,7 @@ The bot is deployed at our hblwrk.de server, running as a docker container and m
 
 * Software tests are executed
 * The `Dockerfile` is valid and conforms to CIS Docker Benchmark requirements sections 4.1, 4.2, 4.3, 4.6, 4.7, 4.9 and 4.10.
-* Vulnerable dependencies are detected by Snyk <https://app.snyk.io/org/mheiland/project/f29b4f0d-7800-4b9c-882f-036af6a21921>.
+* Vulnerable dependencies are detected by Snyk <https://app.snyk.io/org/hblwrk>.
 * The container image is signed with cosign.
 * The server gets notified via webhook to start deployment.
 * The server verifies the container signature when deploying.
@@ -83,13 +83,14 @@ Containers are created by multi-stage builds based on "distroless" base-images. 
 Values like the bots `token`, `guildID` and `clientID` are considered secrets and specific to each user running the bot. Those need to be specified prior to running `docker-compose`.
 
 ```bash
-echo -n "hunter1" | docker secret create discord_token -
-echo -n "hunter2" | docker secret create discord_clientID -
-echo -n "hunter3" | docker secret create discord_guildID -
-echo -n "hunter4" | docker secret create dracoon_password -
-echo -n "hunter5" | docker secret create hblwrk_NYSEAnnouncement_ChannelID -
-echo -n "hunter6" | docker secret create hblwrk_MNCAnnouncement_ChannelID -
-echo -n "hunter7" | docker secret create hblwrk_OtherAnnouncement_ChannelID -
+echo -n "hunter1" | docker secret create production_discord_token -
+echo -n "hunter2" | docker secret create production_discord_clientID -
+echo -n "hunter3" | docker secret create production_discord_guildID -
+echo -n "hunter4" | docker secret create production_dracoon_password -
+echo -n "hunter5" | docker secret create production_healthcheck_port -
+echo -n "hunter6" | docker secret create production_hblwrk_NYSEAnnouncement_ChannelID -
+echo -n "hunter7" | docker secret create production_hblwrk_MNCAnnouncement_ChannelID -
+echo -n "hunter8" | docker secret create production_hblwrk_OtherAnnouncement_ChannelID -
 ```
 
 By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams. The code looks for `config.json` and expects the following syntax:
@@ -100,9 +101,10 @@ By defining a set of secrets per developer, multiple bots can be run at the same
   "discord_clientID": "hunter2",
   "discord_guildID": "hunter3",
   "dracoon_password": "hunter4",
-  "hblwrk_NYSEAnnouncement_ChannelID": "hunter5",
-  "hblwrk_MNCAnnouncement_ChannelID": "hunter6",
-  "hblwrk_OtherAnnouncement_ChannelID": "hunter7"
+  "healthcheck_port": "hunter5",
+  "hblwrk_NYSEAnnouncement_ChannelID": "hunter6",
+  "hblwrk_MNCAnnouncement_ChannelID": "hunter7",
+  "hblwrk_OtherAnnouncement_ChannelID": "hunter8"
 }
 ```
 
