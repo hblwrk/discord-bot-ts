@@ -178,7 +178,7 @@
   fileName: yolohama.gif
   title: "Its rage time!"
   location: dracoon
-  locationId: 6rX1r2xiTqcxcEe754FACBLmCe9DNyqf
+  locationId: ThNQQwUgVy7Ytr1So7rDDWLHJWjUbnAM
 - name: apr
   trigger: ["apr", "apy"]
   fileName: apr.jpg
@@ -196,7 +196,7 @@
   fileName: yolo.jpg
   title: "Was kann schon schief gehen..."
   location: dracoon
-  locationId: 8dQx583tS0kHAytXlcGGI12miEyz2UxN
+  locationId: PZLmQskfeUwtp8MNPs2kmvpri8bVTlmR
 - name: margin
   trigger: ["margin"]
   fileName: margin.png

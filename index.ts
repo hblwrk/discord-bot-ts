@@ -20,6 +20,7 @@ runHealthCheck();
 
 const assets = getAllAssets();
 
+
 const assetCommands = [];
 const assetCommandsWithPrefix = [];
 for (const asset of assets) {
@@ -43,6 +44,8 @@ const client = new Client({
 // Some samples
 // Message response to a message including with a trigger word
 client.on("messageCreate", message => {
+  const emojis = message.guild.emojis.cache.map((e) => `${e} **-** \`:${e.name}:\``).join(', ');
+  console.log(emojis);
   const messageContent: string = validator.escape(message.content);
   // Triggers without prefix
   if (assetCommands.some(v => messageContent.toLowerCase().includes(v))) {
