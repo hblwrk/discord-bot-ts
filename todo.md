@@ -10,7 +10,6 @@
 # Bugs
 
 * Wink response does not work since emojis are not considered a word boundary
-* Proper escaping for user generated input
 
 # Infra
 

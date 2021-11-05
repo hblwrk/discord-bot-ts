@@ -58,31 +58,31 @@
 - name: whatis_delta
   trigger: ["whatis delta"]
   title: "What is Delta?"
-  text: "**Delta**\nDas Delta sagt einem 3 wesentliche Dinge:\n1) Wie viel die Option an Wert gewinnt/verliert bei einer Änderung des Underlying\n2) Wie viele Shares des Underlying aktuell \"in der Option sind\"\n3) ITM% \n\nBei Delta 30 wäre es, als hättest du 30 Shares vom Underlying und das Price-Movement im Underlying macht die Option dann zu 30% mit. Also $1 Anstieg im Underlying macht bei Delta 30 in der Option dan $0.30 aus.\nDas heißt aber auch, dass man bspw. bei einem Covered Call mit einem Delta von 30 die 100 Shares, die du hast, zu 30% hedgest.\nWenn du weißt, dass die Option 30% von der Bewegung im Underlying mit macht und die quasi 30 Shares \"wert sind\", dann weißt du auch, dass die Probability bei ca. 30% liegt bis zur expiry ITM auszulaufen.\nDiese probabilty ist eine Annäherung und nicht 100% genau, da sind POP% bspw. etwas besser geeignet, aber trotzdem ist Delta ein sehr guter Indikator dafür. Das wird im Black-Sholes Modell halt alles mathematisch total schlau zusammengeklatscht.\nAnhand des Delta kannst du sogar bisschen die Erwartungshaltung im Markt beobachten. Nämlich dann, wen nes einen Delta-Skew gibt. Das wäre dann der fall, wenn bspw. die Calls an der 1.SD ein viel höheres Delta haben als die Puts. Dann geht man von mehr Uprisk aus und könnte unter Umständen ein bullishes Signal sein.\n☝️ 🤓"
+  text: "Das Delta sagt einem 3 wesentliche Dinge:\n1) Wie viel die Option an Wert gewinnt/verliert bei einer Änderung des Underlying\n2) Wie viele Shares des Underlying aktuell \"in der Option sind\"\n3) ITM% \n\nBei Delta 30 wäre es, als hättest du 30 Shares vom Underlying und das Price-Movement im Underlying macht die Option dann zu 30% mit. Also $1 Anstieg im Underlying macht bei Delta 30 in der Option dan $0.30 aus.\nDas heißt aber auch, dass man bspw. bei einem Covered Call mit einem Delta von 30 die 100 Shares, die du hast, zu 30% hedgest.\nWenn du weißt, dass die Option 30% von der Bewegung im Underlying mit macht und die quasi 30 Shares \"wert sind\", dann weißt du auch, dass die Probability bei ca. 30% liegt bis zur expiry ITM auszulaufen.\nDiese probabilty ist eine Annäherung und nicht 100% genau, da sind POP% bspw. etwas besser geeignet, aber trotzdem ist Delta ein sehr guter Indikator dafür. Das wird im Black-Sholes Modell halt alles mathematisch total schlau zusammengeklatscht.\nAnhand des Delta kannst du sogar bisschen die Erwartungshaltung im Markt beobachten. Nämlich dann, wen nes einen Delta-Skew gibt. Das wäre dann der fall, wenn bspw. die Calls an der 1.SD ein viel höheres Delta haben als die Puts. Dann geht man von mehr Uprisk aus und könnte unter Umständen ein bullishes Signal sein.\n☝️ 🤓"
 - name: whatis_itm
   trigger: ["whatis itm"]
   title: "What is ITM?"
-  text: "**ITM**\nITM bedeutet In The Money und hat meist ein Delta größer als 60.\n* Ein Put ist ITM, wenn der Kurs des Underlyings unterhalb des Put-Strikes notiert.\n* Ein Call ist ITM, wenn der Kurs des Underlyings oberhalb des Call-Strikes notiert.\n☝️ 🤓"
+  text: "ITM bedeutet In The Money und hat meist ein Delta größer als 60.\n* Ein Put ist ITM, wenn der Kurs des Underlyings unterhalb des Put-Strikes notiert.\n* Ein Call ist ITM, wenn der Kurs des Underlyings oberhalb des Call-Strikes notiert.\n☝️ 🤓"
 - name: whatis_atm
   trigger: ["whatis atm"]
   title: "What is ATM?"
-  text: "**ATM**\nATM bedeutet At The Money und hat meist ein Delta zwischen 40 und 60.\n* Ein Put ist ATM, wenn der Kurs des Underlyings sehr nahe am Put-Strike notiert.\n* Ein Call ist ATM, wenn der Kurs des Underlyings sehr nahe am Call-Strike notiert.\n☝️ 🤓"
+  text: "ATM bedeutet At The Money und hat meist ein Delta zwischen 40 und 60.\n* Ein Put ist ATM, wenn der Kurs des Underlyings sehr nahe am Put-Strike notiert.\n* Ein Call ist ATM, wenn der Kurs des Underlyings sehr nahe am Call-Strike notiert.\n☝️ 🤓"
 - name: whatis_otm
   trigger: ["whatis otm"]
   title: "What is OTM?"
-  text: "**OTM**\nOTM bedeutet Out (of) The Money und hat meist ein Delta kleiner als 40.\n* Ein Put ist OTM, wenn der Kurs des Underlyings weit oberhalb des Put-Strikes notiert.\n* Ein Call ist OTM, wenn der Kurs des Underlyings weit unterhalb des Call-Strikes notiert.\n☝️ 🤓"
+  text: "OTM bedeutet Out (of) The Money und hat meist ein Delta kleiner als 40.\n* Ein Put ist OTM, wenn der Kurs des Underlyings weit oberhalb des Put-Strikes notiert.\n* Ein Call ist OTM, wenn der Kurs des Underlyings weit unterhalb des Call-Strikes notiert.\n☝️ 🤓"
 - name: whatis_dte
   trigger: ["whatis dte"]
   title: "What is DTE?"
-  text: "**DTE**\nDTE bedeutet Days To Expiration und gibt die Anzahl der Tage bis zum Ablaufen einer Option an. Der Tasty-Weg ist 30-60 Tage (DTE) für Short Optionen. Demnach sollte man Long Positionen nie unter 60 Tage laufen lassen, außer man geht von einer starken Bewegung im Underlying aus.\n ☝️ 🤓"
+  text: "DTE bedeutet Days To Expiration und gibt die Anzahl der Tage bis zum Ablaufen einer Option an. Der Tasty-Weg ist 30-60 Tage (DTE) für Short Optionen. Demnach sollte man Long Positionen nie unter 60 Tage laufen lassen, außer man geht von einer starken Bewegung im Underlying aus.\n ☝️ 🤓"
 - name: whatis_pmcc
   trigger: ["whatis pmcc"]
   title: "What is PMCC?"
-  text: "**PMCC**\nPMCC bedeutet Poor Mans Covered Call und ist eine alternative für echte Covered Calls. Für einen PMCC kauft man einen Deep ITM LEAP Long Call mit mindestens Delta 60. Besser um die Delta 80. Darauf verkauft man dann weekly oder monthly Short Calls mit einem Delta zwischen 20 und 30.\n☝️ 🤓"
+  text: "PMCC bedeutet Poor Mans Covered Call und ist eine alternative für echte Covered Calls. Für einen PMCC kauft man einen Deep ITM LEAP Long Call mit mindestens Delta 60. Besser um die Delta 80. Darauf verkauft man dann weekly oder monthly Short Calls mit einem Delta zwischen 20 und 30.\n☝️ 🤓"
 - name: whatis_csp
   trigger: ["whatis csp"]
   title: "What is CSP?"
-  text: "**CSP**\nCSP bedeutet Cash Secured Put und kann unter Umständen als Defined Risk Strategie angesehen werden, ist bei Eröffnung aber erst mal ein Undefined Risk Trade. Man verkauft bei einem CSP einen Short Put für Credit.\nDas Besondere an einem CSP ist, dass der Strike so gewählt ist, dass man bei einer potenziellen Ausführung des Short Puts die Aktie auch zum genannten Strikepreis kaufen könnte. Dazu muss man nur immer genug Cash im Konto bereithalten.\nDer Maximalverlust ist dadurch im Prinzip auf den Kaufpreis von 100 Aktien zum Strikepreis festgesetzt, sofern die Option vom Käufer ausgeführt wird.\n☝️ 🤓"
+  text: "CSP bedeutet Cash Secured Put und kann unter Umständen als Defined Risk Strategie angesehen werden, ist bei Eröffnung aber erst mal ein Undefined Risk Trade. Man verkauft bei einem CSP einen Short Put für Credit.\nDas Besondere an einem CSP ist, dass der Strike so gewählt ist, dass man bei einer potenziellen Ausführung des Short Puts die Aktie auch zum genannten Strikepreis kaufen könnte. Dazu muss man nur immer genug Cash im Konto bereithalten.\nDer Maximalverlust ist dadurch im Prinzip auf den Kaufpreis von 100 Aktien zum Strikepreis festgesetzt, sofern die Option vom Käufer ausgeführt wird.\n☝️ 🤓"
 - name: whatis_vp
   trigger: ["whatis vp"]
   title: "What is VP?"

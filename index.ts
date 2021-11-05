@@ -1,7 +1,8 @@
-import {Client, Intents, MessageAttachment, MessageEmbed} from "discord.js";
+import {Client, Intents, MessageAttachment, MessageEmbed, Options} from "discord.js";
 import {REST} from "@discordjs/rest";
-import {SlashCommandBuilder, SlashCommandStringOption} from "@discordjs/builders";
+import {SlashCommandBuilder} from "@discordjs/builders";
 import {Routes} from "discord-api-types/v9";
+import validator from 'validator';
 import {UserQuoteAsset, User, EmojiAsset, ImageAsset, TextAsset, getAllAssets, getAssets} from "./modules/assets";
 import {readSecret} from "./modules/secrets";
 import {getFromDracoon} from "./modules/dracoon-downloader";
@@ -42,12 +43,13 @@ const client = new Client({
 // Some samples
 // Message response to a message including with a trigger word
 client.on("messageCreate", message => {
+  const messageContent: string = validator.escape(message.content);
   // Triggers without prefix
-  if (assetCommands.some(v => message.content.toLowerCase().includes(v))) {
+  if (assetCommands.some(v => messageContent.toLowerCase().includes(v))) {
     for (const asset of assets) {
       for (const trigger of asset.getTrigger()) {
         const triggerRex = new RegExp(`\\b${trigger}\\b`);
-        if (triggerRex.test(message.content.toLowerCase())) {
+        if (triggerRex.test(messageContent.toLowerCase())) {
           if (asset instanceof EmojiAsset) {
             // Emoji reaction to a message
             for (const response of asset.getResponse()) {
@@ -65,10 +67,10 @@ client.on("messageCreate", message => {
   }
 
   // Triggers with prefix (!command)
-  if (assetCommandsWithPrefix.some(v => message.content.includes(v))) {
+  if (assetCommandsWithPrefix.some(v => messageContent.includes(v))) {
     for (const asset of assets) {
       for (const trigger of asset.getTrigger()) {
-        if (`!${trigger}` === message.content) {
+        if (`!${trigger}` === messageContent) {
           if (asset instanceof ImageAsset || asset instanceof UserQuoteAsset) {
             // Response with an image
             getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), buffer => {
@@ -88,7 +90,7 @@ client.on("messageCreate", message => {
             // Simple response to a message
             message.channel.send(asset.getResponse()).catch(console.error);
           } else if (asset instanceof User) {
-            const randomQuote = getRandomQuote(asset);
+            const randomQuote = getRandomQuote(asset.getName());
             getFromDracoon(readSecret("dracoon_password"), randomQuote.getLocationId(), async buffer => {
               const file = new MessageAttachment(buffer, randomQuote.getFileName());
               message.channel.send({files: [file]});
@@ -99,17 +101,17 @@ client.on("messageCreate", message => {
     }
   }
 
-  if ("!cryptodice" === message.content) {
+  if ("!cryptodice" === messageContent) {
     message.channel.send(`Rolling the crypto dice... ${cryptodice()}.`).catch(console.error);
   }
 
-  if (message.content.startsWith("!lmgtfy")) {
-    const search = message.content.split("!lmgtfy ")[1];
+  if (messageContent.startsWith("!lmgtfy")) {
+    const search = messageContent.split("!lmgtfy ")[1];
     message.channel.send(`Let me google that for you... ${lmgtfy(search)}.`).catch(console.error);
   }
 
-  if (message.content.startsWith("!whatis")) {
-    const search = message.content.split("!whatis ")[1];
+  if (messageContent.startsWith("!whatis")) {
+    const search = messageContent.split("!whatis ")[1];
     for (const asset of whatIsAssets) {
       if (asset.getName() === `whatis_${search}`) {
         const embed = new MessageEmbed();
@@ -132,10 +134,10 @@ client.on("messageCreate", message => {
 });
 
 // Slash Commands
-// Define slash-command
+// Define asset related slash-commands
 const slashCommands = [];
 for (const asset of assets) {
-  if (asset instanceof ImageAsset || asset instanceof TextAsset || asset instanceof User) {
+  if (asset instanceof ImageAsset || asset instanceof TextAsset) {
     for (const trigger of asset.getTrigger()) {
       const slashCommand = new SlashCommandBuilder()
         .setName(trigger.replaceAll(" ", "_"))
@@ -145,6 +147,7 @@ for (const asset of assets) {
   }
 }
 
+// Define non-asset related slash-commands
 const slashCommandCryptodice = new SlashCommandBuilder()
   .setName("cryptodice")
   .setDescription("Roll the dice...");
@@ -174,10 +177,26 @@ const slashWhatIs = new SlashCommandBuilder()
       .setDescription("The search term")
       .setRequired(true)
       .addChoices(whatIsAssetsChoices));
-
 slashCommands.push(slashWhatIs.toJSON());
 
-// Deploy slash-command to server
+const userAssets = getAssets("user");
+
+const userAssetsChoices = [];
+for (const asset of userAssets) {
+  userAssetsChoices.push([asset.getName(), asset.getName()]);
+}
+
+const slashUserquotequote = new SlashCommandBuilder()
+  .setName("quote")
+  .setDescription("Quote...")
+  .addStringOption(option =>
+    option.setName("who")
+      .setDescription("Define user")
+      .setRequired(false)
+      .addChoices(userAssetsChoices));
+slashCommands.push(slashUserquotequote.toJSON());
+
+// Deploy slash-commands to server
 const rest = new REST({
   version: "9",
 }).setToken(token);
@@ -202,16 +221,16 @@ startMncTimers(client, readSecret("hblwrk_MNCAnnouncement_ChannelID"));
 startOtherTimers(client, readSecret("hblwrk_OtherAnnouncement_ChannelID"));
 console.log("Successfully set timers.");
 
-// Respond to slash-command
+// Respond to slash-commands
 client.on("interactionCreate", async interaction => {
   if (!interaction.isCommand()) {
     return;
   }
-
-  if (assetCommands.some(v => interaction.commandName.includes(v))) {
+  const commandName: string = validator.escape(interaction.commandName);
+  if (assetCommands.some(v => commandName.includes(v))) {
     for (const asset of assets) {
       for (const trigger of asset.getTrigger()) {
-        if ("whatis" !== interaction.commandName && interaction.commandName.includes(trigger.replaceAll(" ", "_"))) {
+        if ("whatis" !== commandName && commandName.includes(trigger.replaceAll(" ", "_"))) {
           if (asset instanceof ImageAsset) {
             getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), async buffer => {
               const file = new MessageAttachment(buffer, asset.getFileName());
@@ -225,38 +244,26 @@ client.on("interactionCreate", async interaction => {
               } else {
                 await interaction.reply({files: [file]});
               }
-
-              console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
             });
           } else if (asset instanceof TextAsset) {
             interaction.reply(asset.getResponse()).catch(console.error);
-            console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
-          } else if (asset instanceof User) {
-            const randomQuote = getRandomQuote(asset);
-            getFromDracoon(readSecret("dracoon_password"), randomQuote.getLocationId(), async buffer => {
-              const file = new MessageAttachment(buffer, randomQuote.getFileName());
-              await interaction.reply({files: [file]});
-              console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
-            });
           }
         }
       }
     }
   }
 
-  if ("cryptodice" === interaction.commandName) {
+  if ("cryptodice" === commandName) {
     interaction.reply(`Rolling the crypto dice... ${cryptodice()}.`).catch(console.error);
-    console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
   }
 
-  if (interaction.commandName.startsWith("lmgtfy")) {
-    const search = interaction.options.get("search").value.toString();
+  if (commandName.startsWith("lmgtfy")) {
+    const search = validator.escape(interaction.options.get("search").value.toString());
     interaction.reply(`Let me google that for you... ${lmgtfy(search)}.`).catch(console.error);
-    console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
   }
 
-  if ("whatis" === interaction.commandName) {
-    const search = interaction.options.get("search").value.toString();
+  if ("whatis" === commandName) {
+    const search = validator.escape(interaction.options.get("search").value.toString());
 
     for (const asset of whatIsAssets) {
       if (asset.getName() === search) {
@@ -274,14 +281,28 @@ client.on("interactionCreate", async interaction => {
         } else {
           await interaction.reply({embeds: [embed]});
         }
-
-        console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
       }
     }
   }
+
+  if ("quote" === commandName) {
+    let who: string;
+
+    if (null !== interaction.options.get("who")) {
+      who = validator.escape(interaction.options.get("who").value.toString());
+    } else {
+      who = "any";
+    }
+
+    const randomQuote = getRandomQuote(who);
+    getFromDracoon(readSecret("dracoon_password"), randomQuote.getLocationId(), async buffer => {
+      const file = new MessageAttachment(buffer, randomQuote.getFileName());
+      await interaction.reply({files: [file]});
+    });
+  }
 });
 
-// One-time events, e.g. log-in
+// Log one-time events, e.g. log-in
 const eventReady = {
   name: "ready",
   once: true,
