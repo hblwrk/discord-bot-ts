@@ -1,9 +1,9 @@
+node_modules/
+.vscode/
 .DS_Store
 Desktop.ini
 ._*
 Thumbs.db
 .Spotlight-V100
 .Trashes
-.vscode/
-node_modules/
 config.json

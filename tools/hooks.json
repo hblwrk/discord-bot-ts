@@ -1,0 +1,21 @@
+[  
+  {
+  "id": "redeploy-XXX",
+  "execute-command": "/home/user/webhook/redeploy.sh",
+  "command-working-directory": "/home/user/webhook",
+  "response-message": "Redeploying bot.",
+  "trigger-rule":
+  {
+    "match":
+    {
+      "type": "value",
+      "value": "XXX",
+      "parameter":
+      {
+        "source": "header",
+        "name": "X-Hblwrk-Auth"
+      }
+    }
+  }
+}
+]
