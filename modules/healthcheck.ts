@@ -1,5 +1,6 @@
 import http from "node:http";
 import express from "express";
+import {readSecret} from "./secrets";
 
 export function runHealthCheck() {
   const app = express();
@@ -18,5 +19,5 @@ export function runHealthCheck() {
   app.use("/api/v1", router);
 
   const server = http.createServer(app);
-  server.listen("11312");
+  server.listen(readSecret("healthcheck_port"));
 }

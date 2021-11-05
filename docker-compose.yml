@@ -19,28 +19,31 @@ services:
     ports:
       - "11312:11312"
     secrets:
-      - discord_token
-      - discord_clientID
-      - discord_guildID
-      - dracoon_password
-      - hblwrk_NYSEAnnouncement_ChannelID
-      - hblwrk_MNCAnnouncement_ChannelID
-      - hblwrk_OtherAnnouncement_ChannelID
+      - production_discord_token
+      - production_discord_clientID
+      - production_discord_guildID
+      - production_dracoon_password
+      - production_healthcheck_port
+      - production_hblwrk_NYSEAnnouncement_ChannelID
+      - production_hblwrk_MNCAnnouncement_ChannelID
+      - production_hblwrk_OtherAnnouncement_ChannelID
 
 secrets:
-  discord_token:
+  production_discord_token:
     external: true
-  discord_clientID:
+  production_discord_clientID:
     external: true
-  discord_guildID:
+  production_discord_guildID:
     external: true
-  dracoon_password:
+  production_dracoon_password:
     external: true
-  hblwrk_NYSEAnnouncement_ChannelID:
+  production_healthcheck_port:
     external: true
-  hblwrk_MNCAnnouncement_ChannelID:
+  production_hblwrk_NYSEAnnouncement_ChannelID:
     external: true
-  hblwrk_NYSEAnnouncement_ChannelID:
+  production_hblwrk_MNCAnnouncement_ChannelID:
     external: true
-  hblwrk_OtherAnnouncement_ChannelID:
+  production_hblwrk_NYSEAnnouncement_ChannelID:
+    external: true
+  production_hblwrk_OtherAnnouncement_ChannelID:
     external: true

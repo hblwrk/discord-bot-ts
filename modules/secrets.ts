@@ -2,12 +2,18 @@ import fs from "node:fs";
 
 export function readSecret(secretName: string): string {
   try {
-    // Attempting to fetch Docker secret
-    return fs.readFileSync(`/run/secrets/${secretName}`, "utf8");
+    // Attempting to fetch Docker production secret
+    return fs.readFileSync(`/run/secrets/production_${secretName}`, "utf8");
   } catch {
-    // Fall back to config.json in case Docker secret is unavailable
-    const keys = JSON.parse(fs.readFileSync("config.json", "utf8"));
-    return getValueFromJsonConfig(keys, secretName);
+    try {
+      // Attempting to fetch Docker staging secret
+      return fs.readFileSync(`/run/secrets/staging_${secretName}`, "utf8");
+    } catch {
+      // Fall back to config.json in case Docker secret is unavailable
+      // Errors out if no config can be loaded.
+      const keys = JSON.parse(fs.readFileSync("config.json", "utf8"));
+      return getValueFromJsonConfig(keys, secretName);
+    }
   }
 }
 
