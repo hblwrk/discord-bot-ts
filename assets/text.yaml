@@ -30,7 +30,7 @@
 - name: co2
   trigger: ["co2"]
   title: "How dare you?"
-  response: ":co2: $KRBN feiert Fridays for Futures!"
+  response: "<:co2:906290826047524916> $KRBN feiert Fridays for Futures!"
 - name: ichbinsogluecklich
   trigger: ["ichbinsogluecklich"]
   title: "Gleich geht es los und alle machen mit!"
@@ -51,3 +51,7 @@
   trigger: ["eingepreist"]
   title: "Eingepreist"
   response: "Stellen Sie die Frage gar nicht erst. Die Antwort ist ja, sie ist eingepreist. Glauben Sie, dass Amazon die nächsten Gewinne übertreffen wird? Das ist bereits eingepreist. Sie arbeiten am Drive-In für Mickey D's und haben herausgefunden, dass die Burger aus Menschenfleisch hergestellt werden? Eingepreist. Glauben Sie, dass Insider das nicht schon wissen? Der Markt ist ein allmächtiges, allumfassendes Wesen, das das Innenleben Ihres Unterbewusstseins kennt, bevor Sie überhaupt geboren wurden. Ihre Existenz wurde schon vor Jahrzehnten eingepreist, als der Markt die erwarteten künftigen Gewinne von Standard Oil auf der Grundlage des Bevölkerungswachstums bewertete, das zu Ihrer Geburt führen würde, in welchem Alter Sie ein Auto bekommen würden, wie oft Sie pro Woche mit dem Auto fahren würden, wie oft Sie den Bus/Zug nehmen würden usw. Alles, was Sie sich vorstellen können, ist bereits eingepreist, auch die Dinge, an die Sie nicht denken. Sie haben keine ursprünglichen Gedanken. Ihr Bewusstsein ist nur eine Illusion, ein Produkt des allgegenwärtigen Marktes. Der freie Wille ist ein Mythos. Der Markt sieht alles, weiß alles und wird vom Anbeginn der Zeit bis zum Ende des Universums da sein (der Markt hat den Wärmetod des Universums bereits eingepreist). Also bitte, bevor du einen Beitrag auf wsb schreibst, in dem du fragst, ob AAPL den Verkauf von earpods 11 oder was auch immer eingepreist hat, wisse, dass es bereits eingepreist ist und stelle nicht noch einmal so eine dumme Frage."
+- name: ibkr
+  trigger: ["ibkr"]
+  title: "Thomas liebt euch."
+  response: "Thomas liebt euch. https://www.youtube.com/watch?v=hz7Nub2CV20"
