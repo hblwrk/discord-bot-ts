@@ -1,4 +1,4 @@
 export function cryptodice() {
-  const dice = Math.floor(Math.random() * ((100 - 1) + 1));
+  const dice = 1 + Math.floor(Math.random() * 100);
   return dice;
 }

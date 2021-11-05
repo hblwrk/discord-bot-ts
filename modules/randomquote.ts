@@ -1,11 +1,11 @@
 import {getAssets} from "./assets";
 
-export function getRandomQuote(asset) {
+export function getRandomQuote(username: string) {
   const assets = getAssets("userquote");
   const randomQuotePool = [];
 
   for (const quote of assets) {
-    if (quote.getUser() === asset.getName()) {
+    if (quote.getUser() === username || "any" === username) {
       randomQuotePool.push(quote);
     }
   }
