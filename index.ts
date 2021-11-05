@@ -231,7 +231,7 @@ client.on("interactionCreate", async interaction => {
   if (assetCommands.some(v => commandName.includes(v))) {
     for (const asset of assets) {
       for (const trigger of asset.getTrigger()) {
-        if ("whatis" !== commandName && commandName.includes(trigger.replaceAll(" ", "_"))) {
+        if ("whatis" !== commandName && commandName === trigger.replaceAll(" ", "_")) {
           if (asset instanceof ImageAsset) {
             getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), async buffer => {
               const file = new MessageAttachment(buffer, asset.getFileName());
