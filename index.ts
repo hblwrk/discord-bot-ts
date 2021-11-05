@@ -1,8 +1,8 @@
 import {Client, Intents, MessageAttachment, MessageEmbed} from "discord.js";
 import {REST} from "@discordjs/rest";
-import {SlashCommandBuilder} from "@discordjs/builders";
+import {SlashCommandBuilder, SlashCommandStringOption} from "@discordjs/builders";
 import {Routes} from "discord-api-types/v9";
-import {UserQuoteAsset, User, EmojiAsset, ImageAsset, TextAsset, getAllAssets} from "./modules/assets";
+import {UserQuoteAsset, User, EmojiAsset, ImageAsset, TextAsset, getAllAssets, getAssets} from "./modules/assets";
 import {readSecret} from "./modules/secrets";
 import {getFromDracoon} from "./modules/dracoon-downloader";
 import {runHealthCheck} from "./modules/healthcheck";
@@ -27,9 +27,6 @@ for (const asset of assets) {
     assetCommandsWithPrefix.push(`!${trigger}`);
   }
 }
-
-assetCommands.push("cryptodice", "lmgtfy");
-assetCommandsWithPrefix.push("!cryptodice", "!lmgtfy");
 
 console.log(`Successfully loaded ${assets.length} assets.`);
 
@@ -80,12 +77,12 @@ client.on("messageCreate", message => {
                 const embed = new MessageEmbed();
                 embed.setImage(`attachment://${asset.getFileName()}`);
                 embed.addFields(
-                  {name: "Beschreibung", value: asset.getText()},
+                  {name: asset.getTitle(), value: asset.getText()},
                 );
                 message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
+              } else {
+                message.channel.send({files: [file]}).catch(console.error);
               }
-
-              message.channel.send({files: [file]}).catch(console.error);
             });
           } else if (asset instanceof TextAsset) {
             // Simple response to a message
@@ -109,6 +106,28 @@ client.on("messageCreate", message => {
   if (message.content.startsWith("!lmgtfy")) {
     const search = message.content.split("!lmgtfy ")[1];
     message.channel.send(`Let me google that for you... ${lmgtfy(search)}.`).catch(console.error);
+  }
+
+  if (message.content.startsWith("!whatis")) {
+    const search = message.content.split("!whatis ")[1];
+    for (const asset of whatIsAssets) {
+      if (asset.getName() === `whatis_${search}`) {
+        const embed = new MessageEmbed();
+        embed.addFields(
+          {name: asset.getTitle(), value: asset.getText()},
+        );
+
+        if (true === asset.hasOwnProperty("fileName")) {
+          getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), async buffer => {
+            const file = new MessageAttachment(buffer, asset.getFileName());
+            embed.setImage(`attachment://${asset.getFileName()}`);
+            message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
+          });
+        } else {
+          message.channel.send({embeds: [embed]}).catch(console.error);
+        }
+      }
+    }
   }
 });
 
@@ -139,6 +158,24 @@ const slashCommandLmgtfy = new SlashCommandBuilder()
       .setDescription("The search term")
       .setRequired(true));
 slashCommands.push(slashCommandLmgtfy.toJSON());
+
+const whatIsAssets = getAssets("whatis");
+
+const whatIsAssetsChoices = [];
+for (const asset of whatIsAssets) {
+  whatIsAssetsChoices.push([asset.getTitle(), asset.getName()]);
+}
+
+const slashWhatIs = new SlashCommandBuilder()
+  .setName("whatis")
+  .setDescription("What is...")
+  .addStringOption(option =>
+    option.setName("search")
+      .setDescription("The search term")
+      .setRequired(true)
+      .addChoices(whatIsAssetsChoices));
+
+slashCommands.push(slashWhatIs.toJSON());
 
 // Deploy slash-command to server
 const rest = new REST({
@@ -174,7 +211,7 @@ client.on("interactionCreate", async interaction => {
   if (assetCommands.some(v => interaction.commandName.includes(v))) {
     for (const asset of assets) {
       for (const trigger of asset.getTrigger()) {
-        if (interaction.commandName.includes(trigger.replaceAll(" ", "_"))) {
+        if ("whatis" !== interaction.commandName && interaction.commandName.includes(trigger.replaceAll(" ", "_"))) {
           if (asset instanceof ImageAsset) {
             getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), async buffer => {
               const file = new MessageAttachment(buffer, asset.getFileName());
@@ -182,12 +219,13 @@ client.on("interactionCreate", async interaction => {
                 const embed = new MessageEmbed();
                 embed.setImage(`attachment://${asset.getFileName()}`);
                 embed.addFields(
-                  {name: "Beschreibung", value: asset.getText()},
+                  {name: asset.getTitle(), value: asset.getText()},
                 );
                 await interaction.reply({embeds: [embed], files: [file]});
+              } else {
+                await interaction.reply({files: [file]});
               }
 
-              await interaction.reply({files: [file]});
               console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
             });
           } else if (asset instanceof TextAsset) {
@@ -215,6 +253,31 @@ client.on("interactionCreate", async interaction => {
     const search = interaction.options.get("search").value.toString();
     interaction.reply(`Let me google that for you... ${lmgtfy(search)}.`).catch(console.error);
     console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
+  }
+
+  if ("whatis" === interaction.commandName) {
+    const search = interaction.options.get("search").value.toString();
+
+    for (const asset of whatIsAssets) {
+      if (asset.getName() === search) {
+        const embed = new MessageEmbed();
+        embed.addFields(
+          {name: asset.getTitle(), value: asset.getText()},
+        );
+
+        if (true === asset.hasOwnProperty("fileName")) {
+          getFromDracoon(readSecret("dracoon_password"), asset.getLocationId(), async buffer => {
+            const file = new MessageAttachment(buffer, asset.getFileName());
+            embed.setImage(`attachment://${asset.getFileName()}`);
+            await interaction.reply({embeds: [embed], files: [file]});
+          });
+        } else {
+          await interaction.reply({embeds: [embed]});
+        }
+
+        console.log(`${interaction.user.tag} in #${interaction.channel.id} triggered a slashcommand.`);
+      }
+    }
   }
 });
 
