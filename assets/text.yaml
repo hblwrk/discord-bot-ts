@@ -1,6 +1,6 @@
 ---
 - name: rätapäranta
-  trigger: ["rätapäranta", "rätapåranta"]
+  trigger: ["rätapåränta", "räntaparänta"]
   title: "Rätapåranta"
   response: "Never Stop The Madness - Ränta på Ränta - https://www.youtube.com/watch?v=DVKqa0gf2N0"
 - name: rugpull
