@@ -3,9 +3,7 @@ import moment from "moment";
 import Schedule from "node-schedule";
 import {isHoliday} from "nyse-holidays";
 import {getAssetByName} from "./assets";
-import {getFromDracoon} from "./dracoon-downloader";
 import {getFromReuters} from "./mnc-downloader";
-import {readSecret} from "./secrets";
 
 export function startNyseTimers(client, channelID: string) {
   const ruleNYSEPremarketOpen = new Schedule.RecurrenceRule();
@@ -78,19 +76,18 @@ export function startMncTimers(client, channelID: string) {
   });
 }
 
-export function startOtherTimers(client, channelID: string) {
+export function startOtherTimers(client, channelID: string, assets: any) {
   const ruleFriday = new Schedule.RecurrenceRule();
   ruleFriday.hour = 9;
   ruleFriday.minute = 0;
   ruleFriday.dayOfWeek = [5];
   ruleFriday.tz = "Europe/Berlin";
 
-  const jobFriday = Schedule.scheduleJob(ruleFriday, () => {
-    getFromDracoon(readSecret("dracoon_password"), getAssetByName("freitag").getLocationId(), buffer => {
-      const fridayFile = new MessageAttachment(buffer, getAssetByName("freitag").getFileName());
-      const fridayEmbed = new MessageEmbed();
-      fridayEmbed.setImage(`attachment://${getAssetByName("freitag").getFileName()}`);
-      client.channels.cache.get(channelID).send({embeds: [fridayEmbed], files: [fridayFile]}).catch(console.error);
-    });
+  const jobFriday = Schedule.scheduleJob(ruleFriday, async () => {
+    const fridayAsset = getAssetByName("freitag", assets);
+    const fridayFile = new MessageAttachment(Buffer.from(fridayAsset.fileContent), fridayAsset.fileName);
+    const fridayEmbed = new MessageEmbed();
+    fridayEmbed.setImage(`attachment://${fridayAsset.fileName}`);
+    client.channels.cache.get(channelID).send({embeds: [fridayEmbed], files: [fridayFile]}).catch(console.error);
   });
 }

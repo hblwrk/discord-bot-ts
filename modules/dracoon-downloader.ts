@@ -1,54 +1,19 @@
-import https from "node:https";
-import {Buffer} from "node:buffer";
+import axios from "axios";
 
-export function getFromDracoon(secret: string, downloadToken: string, cb) {
+export async function getFromDracoon(secret: string, downloadToken: string) {
   const data = JSON.stringify({
     password: secret,
   });
-
-  const options = {
-    hostname: "dracoon.team",
-    port: 443,
-    path: `/api/v4/public/shares/downloads/${downloadToken}`,
-    method: "POST",
+  const config = {
     headers: {
       "Content-Type": "application/json",
-      "Content-Length": data.length,
     },
   };
-
-  const request = https.request(options, response => {
-    response.on("data", chunk => {
-      let downloadUrl = "";
-      if (response) {
-        try {
-          downloadUrl = JSON.parse(chunk).downloadUrl;
-          if (404 === JSON.parse(chunk).code) {
-            console.log("Download error: File not found");
-            return;
-          }
-        } catch (error) {
-          console.log("Download error:", error);
-          return;
-        }
-      }
-
-      https.get(downloadUrl, response => {
-        const data = [];
-        response.on("data", chunk => {
-          data.push(chunk);
-        }).on("end", () => {
-          const buffer: unknown = Buffer.concat(data);
-          cb(buffer);
-        });
-      }).on("error", error => {
-        console.log("Download error:", error);
-      });
-    });
+  const urlResponse = await axios.post(`https://dracoon.team/api/v4/public/shares/downloads/${downloadToken}`, data, config);
+  const getResponse = axios.get(urlResponse.data.downloadUrl, {
+    responseType: "arraybuffer",
   });
-  request.on("error", error => {
-    console.error(error);
-  });
-  request.write(data);
-  request.end();
+  const dataResponse = Buffer.from((await getResponse).data, "binary");
+
+  return dataResponse;
 }
