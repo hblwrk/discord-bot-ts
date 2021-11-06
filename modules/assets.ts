@@ -1,118 +1,202 @@
 import {plainToClass} from "class-transformer";
 import yaml from "js-yaml";
 import fs from "node:fs";
+import {getFromDracoon} from "./dracoon-downloader";
+import {readSecret} from "./secrets";
 
 const directory = "./assets";
 const fileExtension = ".yaml";
 
 class BaseAsset {
-  name: string;
-  trigger: string;
+  private _name: string;
+  private _trigger: string;
 
-  getName() {
-    return this.name;
+  public get name() {
+    return this._name;
   }
 
-  getTrigger() {
-    return this.trigger;
+  public set name(name: string) {
+    this._name = name;
+  }
+
+  public get trigger() {
+    return this._trigger;
+  }
+
+  public set trigger(trigger: string) {
+    this._trigger = trigger;
   }
 }
 
 export class User extends BaseAsset {
-  title: string;
+  private _title: string;
 
-  getTitle() {
-    return this.title;
+  public get title() {
+    return this._title;
+  }
+
+  public set title(title: string) {
+    this._title = title;
   }
 }
 
 export class UserQuoteAsset extends BaseAsset {
-  user: string;
-  fileName: string;
-  title: string;
-  location: string;
-  locationId: string;
+  private _user: string;
+  private _fileName: string;
+  private _title: string;
+  private _location: string;
+  private _locationId: string;
+  private _fileContent: any;
 
-  getUser() {
-    return this.user;
+  public get user() {
+    return this._user;
   }
 
-  getFileName() {
-    return this.fileName;
+  public set user(user: string) {
+    this._user = user;
   }
 
-  getTitle() {
-    return this.title;
+  public get fileName() {
+    return this._fileName;
   }
 
-  getLocation() {
-    return this.location;
+  public set fileName(fileName: string) {
+    this._fileName = fileName;
   }
 
-  getLocationId() {
-    return this.locationId;
+  public get title() {
+    return this._title;
+  }
+
+  public set title(title: string) {
+    this._title = title;
+  }
+
+  public get location() {
+    return this._location;
+  }
+
+  public set location(location: string) {
+    this._location = location;
+  }
+
+  public get locationId() {
+    return this._locationId;
+  }
+
+  public set locationId(locationId: string) {
+    this._locationId = locationId;
+  }
+
+  public get fileContent() {
+    return this._fileContent;
+  }
+
+  public set fileContent(buffer: any) {
+    this._fileContent = buffer;
   }
 }
 
 export class ImageAsset extends BaseAsset {
-  fileName: string;
-  title: string;
-  location: string;
-  locationId: string;
-  text: string;
+  private _fileName: string;
+  private _title: string;
+  private _location: string;
+  private _locationId: string;
+  private _text: string;
+  private _fileContent: any;
 
-  getFileName() {
-    return this.fileName;
+  public get fileName() {
+    return this._fileName;
   }
 
-  getTitle() {
-    return this.title;
+  public set fileName(fileName: string) {
+    this._fileName = fileName;
   }
 
-  getLocation() {
-    return this.location;
+  public get title() {
+    return this._title;
   }
 
-  getLocationId() {
-    return this.locationId;
+  public set title(title: string) {
+    this._title = title;
   }
 
-  getText() {
-    return this.text;
+  public get location() {
+    return this._location;
   }
 
-  hasText() {
-    return Boolean(this.text);
+  public set location(location: string) {
+    this._location = location;
+  }
+
+  public get locationId() {
+    return this._locationId;
+  }
+
+  public set locationId(locationId: string) {
+    this._locationId = locationId;
+  }
+
+  public get text() {
+    return this._text;
+  }
+
+  public set text(text: string) {
+    this._text = text;
+  }
+
+  public get hasText() {
+    return Boolean(this._text);
+  }
+
+  public get fileContent() {
+    return this._fileContent;
+  }
+
+  public set fileContent(buffer: any) {
+    this._fileContent = buffer;
   }
 }
 
 export class TextAsset extends BaseAsset {
-  response: string;
-  title: string;
+  private _response: string;
+  private _title: string;
 
-  getResponse() {
-    return this.response;
+  public get response() {
+    return this._response;
   }
 
-  getTitle() {
-    return this.title;
+  public set response(response: string) {
+    this._response = response;
+  }
+
+  public get title() {
+    return this._title;
+  }
+
+  public set title(title: string) {
+    this._title = title;
   }
 }
 
 export class EmojiAsset extends BaseAsset {
-  response: string;
+  private _response: string;
 
-  getResponse() {
-    return this.response;
+  public get response() {
+    return this._response;
+  }
+
+  public set response(response: string) {
+    this._response = response;
   }
 }
 
-export function getAllAssets() {
+export async function getAllAssets() {
   // all except whatis...
   const assetTypes = ["emoji", "image", "text", "user", "userquote"];
   let newAssets = [];
   for (const assetType of assetTypes) {
-    const assets = getAssets(assetType);
+    const assets = await getAssets(assetType);
     for (const asset of assets) {
       newAssets.push(asset);
     }
@@ -121,40 +205,60 @@ export function getAllAssets() {
   return newAssets;
 }
 
-export function getAssets(type: string) {
+export async function getAssets(type: string): Promise<any[]> {
   try {
     const newAssets = [];
     const jsonObjects = yaml.load(fs.readFileSync(`${directory}/${type}${fileExtension}`, "utf-8"));
     for (const jsonObject of jsonObjects) {
-      let newAsset = {};
       switch (type) {
         case "image": {
-          newAsset = plainToClass(ImageAsset, jsonObject);
+          const newAsset = plainToClass(ImageAsset, jsonObject);
+          if (true === newAsset.hasOwnProperty("_location")) {
+            if ("dracoon" === newAsset.location) {
+              newAsset.fileContent = await getFromDracoon(readSecret("dracoon_password"), newAsset.locationId);
+            }
+          }
+          newAssets.push(newAsset);
           break;
         }
 
         case "text": {
-          newAsset = plainToClass(TextAsset, jsonObject);
+          const newAsset = plainToClass(TextAsset, jsonObject);
+          newAssets.push(newAsset);
           break;
         }
 
         case "emoji": {
-          newAsset = plainToClass(EmojiAsset, jsonObject);
+          const newAsset = plainToClass(EmojiAsset, jsonObject);
+          newAssets.push(newAsset);
           break;
         }
 
         case "user": {
-          newAsset = plainToClass(User, jsonObject);
+          const newAsset = plainToClass(User, jsonObject);
+          newAssets.push(newAsset);
           break;
         }
 
         case "userquote": {
-          newAsset = plainToClass(UserQuoteAsset, jsonObject);
+          const newAsset = plainToClass(UserQuoteAsset, jsonObject);
+          if (true === newAsset.hasOwnProperty("_location")) {
+            if ("dracoon" === newAsset.location) {
+              newAsset.fileContent = await getFromDracoon(readSecret("dracoon_password"), newAsset.locationId);
+            }
+          }
+          newAssets.push(newAsset);
           break;
         }
 
         case "whatis": {
-          newAsset = plainToClass(ImageAsset, jsonObject);
+          const newAsset = plainToClass(ImageAsset, jsonObject);
+          if (true === newAsset.hasOwnProperty("_location")) {
+            if ("dracoon" === newAsset.location) {
+              newAsset.fileContent = await getFromDracoon(readSecret("dracoon_password"), newAsset.locationId);
+            }
+          }
+          newAssets.push(newAsset);
           break;
         }
 
@@ -162,8 +266,6 @@ export function getAssets(type: string) {
           break;
         }
       }
-
-      newAssets.push(newAsset);
     }
 
     return newAssets;
@@ -172,11 +274,9 @@ export function getAssets(type: string) {
   }
 }
 
-export function getAssetByName(name: string) {
-  const assets = getAllAssets();
-
+export function getAssetByName(name: string, assets: any) {
   for (const asset of assets) {
-    if (name === asset.getName()) {
+    if (name === asset.name) {
       return asset;
     }
   }
