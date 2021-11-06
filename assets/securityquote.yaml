@@ -1,0 +1,25 @@
+---
+- name: spx
+  trigger: poll
+  source: "https://foo"
+  unit: "PTS"
+- name: nq
+  trigger: poll
+  source: "https://foo"
+  unit: "PTS"
+- name: rty
+  trigger: poll
+  source: "https://foo"
+  unit: "PTS"
+- name: vix
+  trigger: poll
+  source: "https://foo"
+  unit: "PTS"
+- name: dax
+  trigger: poll
+  source: "https://foo"
+  unit: "PTS"
+- name: btcusd
+  trigger: poll
+  source: "https://foo"
+  unit: "USD"

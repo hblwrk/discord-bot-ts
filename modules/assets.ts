@@ -28,7 +28,28 @@ class BaseAsset {
   }
 }
 
-export class User extends BaseAsset {
+export class SecurityQuoteAsset extends BaseAsset {
+  private _source: string;
+  private _unit: string;
+
+  public get source() {
+    return this._source;
+  }
+
+  public set source(source: string) {
+    this._source = source;
+  }
+
+  public get unit() {
+    return this._unit;
+  }
+
+  public set unit(unit: string) {
+    this._unit = unit;
+  }
+}
+
+export class UserAsset extends BaseAsset {
   private _title: string;
 
   public get title() {
@@ -235,7 +256,7 @@ export async function getAssets(type: string): Promise<any[]> {
         }
 
         case "user": {
-          const newAsset = plainToClass(User, jsonObject);
+          const newAsset = plainToClass(UserAsset, jsonObject);
           newAssets.push(newAsset);
           break;
         }

@@ -4,13 +4,14 @@ import {REST} from "@discordjs/rest";
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {Routes} from "discord-api-types/v9";
 import validator from "validator";
-import {UserQuoteAsset, User, EmojiAsset, ImageAsset, TextAsset, getAllAssets, getAssets} from "./modules/assets";
+import {UserQuoteAsset, UserAsset, EmojiAsset, ImageAsset, TextAsset, getAllAssets, getAssets} from "./modules/assets";
 import {readSecret} from "./modules/secrets";
 import {runHealthCheck} from "./modules/healthcheck";
 import {startNyseTimers, startMncTimers, startOtherTimers} from "./modules/timers";
 import {cryptodice} from "./modules/cryptodice";
 import {lmgtfy} from "./modules/lmgtfy";
 import {getRandomQuote} from "./modules/randomquote";
+import {updateSecurityQuotes} from "./modules/securityquote";
 
 const token = readSecret("discord_token");
 const clientId = readSecret("discord_clientID");
@@ -24,6 +25,9 @@ const client = new Client({
     Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
   ],
 });
+
+// Updating security quotes
+updateSecurityQuotes();
 
 // Set non-asset timers, e.g. for stock exchange open/close notifications
 startNyseTimers(client, readSecret("hblwrk_NYSEAnnouncement_ChannelID"));
@@ -107,7 +111,7 @@ assets.then(async assets => {
             } else if (asset instanceof TextAsset) {
               // Simple response to a message
               message.channel.send(asset.response).catch(console.error);
-            } else if (asset instanceof User) {
+            } else if (asset instanceof UserAsset) {
               const randomQuote = getRandomQuote(asset.name, assets);
               const file = new MessageAttachment(randomQuote.fileContent, randomQuote.fileName);
               await message.channel.send({files: [file]});
