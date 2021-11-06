@@ -30,29 +30,29 @@ export function startNyseTimers(client, channelID: string) {
   ruleNYSEAftermarketClose.dayOfWeek = [0, new Schedule.Range(1, 5)];
   ruleNYSEAftermarketClose.tz = "US/Eastern";
 
-  const jobNYSEPremarketOpen = Schedule.scheduleJob(ruleNYSEPremarketOpen, () => {
+  Schedule.scheduleJob(ruleNYSEPremarketOpen, () => {
     if (false === isHoliday(new Date())) {
-      client.channels.cache.get(channelID).send(`😴🏦💰 Guten Morgen liebe Hebelden! Der premarket hat geöffnet, das Spiel beginnt! 💰🏦🥱😴`);
+      client.channels.cache.get(channelID).send("😴🏦💰 Guten Morgen liebe Hebelden! Der premarket hat geöffnet, das Spiel beginnt! 💰🏦🥱😴");
     } else {
-      client.channels.cache.get(channelID).send(`🛍️🏝️🛥️🥺 Guten Morgen liebe Hebelden! Heute bleibt die Börse geschlossen. Genießt den Tag und gebt eure Gewinne für tolle Sachen aus! 🥺🛥️🏝️🛍️`).catch(console.error);
+      client.channels.cache.get(channelID).send("🛍️🏝️🛥️🥺 Guten Morgen liebe Hebelden! Heute bleibt die Börse geschlossen. Genießt den Tag und gebt eure Gewinne für tolle Sachen aus! 🥺🛥️🏝️🛍️").catch(console.error);
     }
   });
 
-  const jobNYSEOpen = Schedule.scheduleJob(ruleNYSEOpen, () => {
+  Schedule.scheduleJob(ruleNYSEOpen, () => {
     if (false === isHoliday(new Date())) {
-      client.channels.cache.get(channelID).send(`🔔🔔🔔 Ich bin ready. Ihr seid ready?! Na dann loooos! Huuuiiii! 🚀 Der Börsenritt beginnt, meine Freunde. Seid dabei, ihr dürft nichts verpassen! 🥳 🎠 🔔🔔🔔`).catch(console.error);
+      client.channels.cache.get(channelID).send("🔔🔔🔔 Ich bin ready. Ihr seid ready?! Na dann loooos! Huuuiiii! 🚀 Der Börsenritt beginnt, meine Freunde. Seid dabei, ihr dürft nichts verpassen! 🥳 🎠 🔔🔔🔔").catch(console.error);
     }
   });
 
-  const jobNYSEClose = Schedule.scheduleJob(ruleNYSEClose, () => {
+  Schedule.scheduleJob(ruleNYSEClose, () => {
     if (false === isHoliday(new Date())) {
-      client.channels.cache.get(channelID).send(`🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! 🔔🔔🔔`).catch(console.error);
+      client.channels.cache.get(channelID).send("🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! 🔔🔔🔔").catch(console.error);
     }
   });
 
-  const jobNYSEAftermarketClose = Schedule.scheduleJob(ruleNYSEAftermarketClose, () => {
+  Schedule.scheduleJob(ruleNYSEAftermarketClose, () => {
     if (false === isHoliday(new Date())) {
-      client.channels.cache.get(channelID).send(`🛏️🔔🔔 Und jetzt ist auch der aftermarket für euch Nachteulen geschlossen, Zeit fürs Bettchen! 🔔🔔🛏️`).catch(console.error);
+      client.channels.cache.get(channelID).send("🛏️🔔🔔 Und jetzt ist auch der aftermarket für euch Nachteulen geschlossen, Zeit fürs Bettchen! 🔔🔔🛏️").catch(console.error);
     }
   });
 }
@@ -64,7 +64,7 @@ export function startMncTimers(client, channelID: string) {
   ruleMNC.dayOfWeek = [0, new Schedule.Range(1, 5)];
   ruleMNC.tz = "Europe/Berlin";
 
-  const jobMNC = Schedule.scheduleJob(ruleMNC, () => {
+  Schedule.scheduleJob(ruleMNC, () => {
     getFromReuters(buffer => {
       moment.locale("de");
       const date = moment().format("dddd, Do MMMM YYYY");
@@ -83,7 +83,7 @@ export function startOtherTimers(client, channelID: string, assets: any) {
   ruleFriday.dayOfWeek = [5];
   ruleFriday.tz = "Europe/Berlin";
 
-  const jobFriday = Schedule.scheduleJob(ruleFriday, async () => {
+  Schedule.scheduleJob(ruleFriday, async () => {
     const fridayAsset = getAssetByName("freitag", assets);
     const fridayFile = new MessageAttachment(Buffer.from(fridayAsset.fileContent), fridayAsset.fileName);
     const fridayEmbed = new MessageEmbed();
