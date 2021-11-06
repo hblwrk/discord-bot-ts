@@ -63,7 +63,6 @@ assets.then(async assets => {
     }
   }
 
-  // Some samples
   // Message response to a message including with a trigger word
   client.on("messageCreate", async message => {
     const messageContent: string = validator.escape(message.content);

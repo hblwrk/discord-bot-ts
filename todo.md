@@ -5,6 +5,7 @@
   * Potentially spawn one bot per ticker and update their status to bypass limits...
 * Handling opt-in roles
 * Unittests
+* bare !quote to respond any userQuote, similar to /quote
 
 # Bugs
 
