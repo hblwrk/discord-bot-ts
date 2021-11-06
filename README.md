@@ -88,9 +88,11 @@ echo -n "hunter2" | docker secret create production_discord_clientID -
 echo -n "hunter3" | docker secret create production_discord_guildID -
 echo -n "hunter4" | docker secret create production_dracoon_password -
 echo -n "hunter5" | docker secret create production_healthcheck_port -
-echo -n "hunter6" | docker secret create production_hblwrk_NYSEAnnouncement_ChannelID -
-echo -n "hunter7" | docker secret create production_hblwrk_MNCAnnouncement_ChannelID -
-echo -n "hunter8" | docker secret create production_hblwrk_OtherAnnouncement_ChannelID -
+echo -n "hunter6" | docker secret create production_twelvedata_apikey -
+echo -n "hunter7" | docker secret create production_hblwrk_NYSEAnnouncement_ChannelID -
+echo -n "hunter8" | docker secret create production_hblwrk_MNCAnnouncement_ChannelID -
+echo -n "hunter9" | docker secret create production_hblwrk_OtherAnnouncement_ChannelID -
+echo -n "hunter10" | docker secret create production_discord_token_btcusd -
 ```
 
 By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams. The code looks for `config.json` and expects the following syntax:
@@ -102,9 +104,11 @@ By defining a set of secrets per developer, multiple bots can be run at the same
   "discord_guildID": "hunter3",
   "dracoon_password": "hunter4",
   "healthcheck_port": "hunter5",
-  "hblwrk_NYSEAnnouncement_ChannelID": "hunter6",
-  "hblwrk_MNCAnnouncement_ChannelID": "hunter7",
-  "hblwrk_OtherAnnouncement_ChannelID": "hunter8"
+  "twelvedata_apikey": "hunter6",
+  "hblwrk_NYSEAnnouncement_ChannelID": "hunter7",
+  "hblwrk_MNCAnnouncement_ChannelID": "hunter8",
+  "hblwrk_OtherAnnouncement_ChannelID": "hunter9",
+  "discord_token_btcusd": "hunter10"
 }
 ```
 
@@ -139,6 +143,29 @@ Permissions of the bot are granted using OAuth2 scopes. Select Settings -> OAuth
 
 * bot
 * application.commands
+
+Also make sure the bot has sufficient "bot" permissions (534723820608) before inviting:
+
+General
+
+* View Channels
+
+Text
+
+* Send Messages
+* Public Threads
+* Private Threads
+* Send Messages in Threads
+* Send TTS Messages
+* Manage Messages
+* Manage Threads
+* Embed Links
+* Attach Files
+* Read Message History
+* Use External Emojis
+* Use External Stickers
+* Add Reactions
+* Use Slash Commands
 
 Open the generated URL starting with <https://discord.com/api/oauth2/authorize?client_id=...> to invite your bot to a specific server.
 
