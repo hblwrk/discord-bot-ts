@@ -1,5 +1,6 @@
 import {Client, Intents} from "discord.js";
-import {client as WebSocketClient} from "websocket";
+import ReconnectingWebSocket from "reconnecting-websocket";
+import WS from "ws";
 import {readSecret} from "./secrets";
 
 export function updateSecurityQuotes() {
@@ -45,51 +46,47 @@ function initWs(clients) {
     },
   };
 
-  var wsClient = new WebSocketClient();
+  const options = {
+    WebSocket: WS,
+    connectionTimeout: 1000,
+    maxRetries: 10,
+  };
 
-  wsClient.on("connectFailed", function(error) {
-    console.log(`Connect Error: ${error.toString()}`);
+  var wsClient = new ReconnectingWebSocket(`wss://ws.twelvedata.com/v1/quotes/price?apikey=${tdApiKey}`, [], options);
+
+  wsClient.addEventListener("open", () => {
+    console.log("Subscribing to twelvedata websocket...");
+    wsClient.send(JSON.stringify(subscribeCall));
   });
 
-  wsClient.on("connect", function(connection) {
-    console.log("twelvedata WebSocket client connected");
-    connection.on("error", function(error) {
-      console.log(`Connection Error: ${error.toString()}`);
-    });
-    connection.on("close", function() {
-      console.log("Connection closed");
-    });
-    connection.on("message", function(message) {
-      if (message.type === "utf8") {
-        const response = JSON.parse(message.utf8Data);
-        if ("price" === response.event) {
-          if ("BTC/USD" === response.symbol) {
-            for (const client of clients) {
-              if ("Bitcoin/USD" === client.user.username) {
-                const string = `📈 ${response.price}`;
-                client.user.setPresence({activities: [{name: string}]});
-              }
-            }
-          } else if ("ETH/USD" === response.symbol) {
-            for (const client of clients) {
-              if ("Ether/USD" === client.user.username) {
-                const string = `📈 ${response.price}`;
-                client.user.setPresence({activities: [{name: string}]});
-              }
-            }
+  wsClient.addEventListener("close", () => {
+    console.log("Closing websocket connection...");
+  });
+
+  wsClient.addEventListener("error", (event) => {
+    console.log("Error at websocket connection...");
+    console.log(event);
+  });
+
+  wsClient.addEventListener("message", (event) => {
+    if ("price" === event.event) {
+      if ("BTC/USD" === event.symbol) {
+        for (const client of clients) {
+          if ("Bitcoin/USD" === client.user.username) {
+            const string = `📈 ${event.price}`;
+            client.user.setPresence({activities: [{name: string}]});
           }
         }
-      }
-    });
-
-    function subscribe() {
-      if (connection.connected) {
-        connection.sendUTF(JSON.stringify(subscribeCall));
-        setTimeout(subscribe, 1000);
+      } else if ("ETH/USD" === event.symbol) {
+        for (const client of clients) {
+          if ("Ether/USD" === client.user.username) {
+            const string = `📈 ${event.price}`;
+            client.user.setPresence({activities: [{name: string}]});
+          }
+        }
+      } else {
+        console.log(event);
       }
     }
-    subscribe();
   });
-
-  wsClient.connect(`wss://ws.twelvedata.com/v1/quotes/price?apikey=${tdApiKey}`);
 }
