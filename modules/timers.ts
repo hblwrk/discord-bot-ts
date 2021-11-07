@@ -9,25 +9,25 @@ export function startNyseTimers(client, channelID: string) {
   const ruleNYSEPremarketOpen = new Schedule.RecurrenceRule();
   ruleNYSEPremarketOpen.hour = 4;
   ruleNYSEPremarketOpen.minute = 0;
-  ruleNYSEPremarketOpen.dayOfWeek = [0, new Schedule.Range(1, 5)];
+  ruleNYSEPremarketOpen.dayOfWeek = [new Schedule.Range(1, 5)];
   ruleNYSEPremarketOpen.tz = "US/Eastern";
 
   const ruleNYSEOpen = new Schedule.RecurrenceRule();
   ruleNYSEOpen.hour = 9;
   ruleNYSEOpen.minute = 30;
-  ruleNYSEOpen.dayOfWeek = [0, new Schedule.Range(1, 5)];
+  ruleNYSEOpen.dayOfWeek = [new Schedule.Range(1, 5)];
   ruleNYSEOpen.tz = "US/Eastern";
 
   const ruleNYSEClose = new Schedule.RecurrenceRule();
   ruleNYSEClose.hour = 16;
   ruleNYSEClose.minute = 0;
-  ruleNYSEOpen.dayOfWeek = [0, new Schedule.Range(1, 5)];
+  ruleNYSEOpen.dayOfWeek = [new Schedule.Range(1, 5)];
   ruleNYSEClose.tz = "US/Eastern";
 
   const ruleNYSEAftermarketClose = new Schedule.RecurrenceRule();
   ruleNYSEAftermarketClose.hour = 20;
   ruleNYSEAftermarketClose.minute = 0;
-  ruleNYSEAftermarketClose.dayOfWeek = [0, new Schedule.Range(1, 5)];
+  ruleNYSEAftermarketClose.dayOfWeek = [new Schedule.Range(1, 5)];
   ruleNYSEAftermarketClose.tz = "US/Eastern";
 
   Schedule.scheduleJob(ruleNYSEPremarketOpen, () => {
@@ -61,7 +61,7 @@ export function startMncTimers(client, channelID: string) {
   const ruleMNC = new Schedule.RecurrenceRule();
   ruleMNC.hour = 9;
   ruleMNC.minute = 0;
-  ruleMNC.dayOfWeek = [0, new Schedule.Range(1, 5)];
+  ruleMNC.dayOfWeek = [new Schedule.Range(1, 5)];
   ruleMNC.tz = "Europe/Berlin";
 
   Schedule.scheduleJob(ruleMNC, () => {

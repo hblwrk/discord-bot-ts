@@ -24,9 +24,12 @@ services:
       - production_discord_guildID
       - production_dracoon_password
       - production_healthcheck_port
+      - production_twelvedata_apikey
       - production_hblwrk_NYSEAnnouncement_ChannelID
       - production_hblwrk_MNCAnnouncement_ChannelID
       - production_hblwrk_OtherAnnouncement_ChannelID
+      - production_discord_token_btcusd
+      - production_discord_token_ethusd
 
 secrets:
   production_discord_token:
@@ -39,6 +42,8 @@ secrets:
     external: true
   production_healthcheck_port:
     external: true
+  production_twelvedata_apikey:
+    external: true
   production_hblwrk_NYSEAnnouncement_ChannelID:
     external: true
   production_hblwrk_MNCAnnouncement_ChannelID:
@@ -46,4 +51,8 @@ secrets:
   production_hblwrk_NYSEAnnouncement_ChannelID:
     external: true
   production_hblwrk_OtherAnnouncement_ChannelID:
+    external: true
+  production_discord_token_btcusd:
+    external: true
+  production_discord_token_ethusd:
     external: true
