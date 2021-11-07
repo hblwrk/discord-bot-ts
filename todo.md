@@ -7,6 +7,8 @@
 * Handling opt-in roles
 * Unittests
 * bare !quote to respond any userQuote, similar to /quote
+* Exponential back-off for staging->production check
+* websockets reconnect
 
 # Bugs
 
