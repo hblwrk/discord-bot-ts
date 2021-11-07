@@ -4,9 +4,11 @@ import {readSecret} from "./secrets";
 
 export function updateSecurityQuotes() {
   const botBtcUsd = readSecret("discord_token_btcusd");
+  const botEthUsd = readSecret("discord_token_ethusd");
 
   const bots = [];
   bots.push(botBtcUsd);
+  bots.push(botEthUsd);
 
   const clients = [];
 
@@ -39,7 +41,7 @@ function initWs(clients) {
   const subscribeCall = {
     action: "subscribe",
     params: {
-      symbols: "SPX,NDX,TFZ16,VIX,GDAXI,BTC/USD",
+      symbols: "SPX,NDX,TFZ16,VIX,GDAXI,BTC/USD,ETH/USD",
     },
   };
 
@@ -64,6 +66,13 @@ function initWs(clients) {
           if ("BTC/USD" === response.symbol) {
             for (const client of clients) {
               if ("Bitcoin/USD" === client.user.username) {
+                const string = `📈 ${response.price}`;
+                client.user.setPresence({activities: [{name: string}]});
+              }
+            }
+          } else if ("ETH/USD" === response.symbol) {
+            for (const client of clients) {
+              if ("Ether/USD" === client.user.username) {
                 const string = `📈 ${response.price}`;
                 client.user.setPresence({activities: [{name: string}]});
               }
