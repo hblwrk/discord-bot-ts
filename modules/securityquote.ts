@@ -69,18 +69,19 @@ function initWs(clients) {
   });
 
   wsClient.addEventListener("message", (event) => {
-    if ("price" === event.event) {
-      if ("BTC/USD" === event.symbol) {
+    const data = JSON.parse(event.data);
+    if ("price" === data.event) {
+      if ("BTC/USD" === data.symbol) {
         for (const client of clients) {
           if ("Bitcoin/USD" === client.user.username) {
-            const string = `📈 ${event.price}`;
+            const string = `📈 ${data.price}`;
             client.user.setPresence({activities: [{name: string}]});
           }
         }
-      } else if ("ETH/USD" === event.symbol) {
+      } else if ("ETH/USD" === data.symbol) {
         for (const client of clients) {
           if ("Ether/USD" === client.user.username) {
-            const string = `📈 ${event.price}`;
+            const string = `📈 ${data.price}`;
             client.user.setPresence({activities: [{name: string}]});
           }
         }
