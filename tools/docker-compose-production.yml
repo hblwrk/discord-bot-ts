@@ -30,6 +30,11 @@ services:
       - production_hblwrk_OtherAnnouncement_ChannelID
       - production_discord_token_btcusd
       - production_discord_token_ethusd
+      - production_discord_token_spx
+      - production_discord_token_nq
+      - production_discord_token_rty
+      - production_discord_token_vix
+      - production_discord_token_dax
 
 secrets:
   production_discord_token:
@@ -55,4 +60,14 @@ secrets:
   production_discord_token_btcusd:
     external: true
   production_discord_token_ethusd:
+    external: true
+  production_discord_token_spx:
+    external: true
+  production_discord_token_nq:
+    external: true
+  production_discord_token_rty:
+    external: true
+  production_discord_token_vix:
+    external: true
+  production_discord_token_dax:
     external: true
