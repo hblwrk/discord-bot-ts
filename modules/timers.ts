@@ -32,9 +32,9 @@ export function startNyseTimers(client, channelID: string) {
 
   Schedule.scheduleJob(ruleNYSEPremarketOpen, () => {
     if (false === isHoliday(new Date())) {
-      client.channels.cache.get(channelID).send("😴🏦💰 Guten Morgen liebe Hebelden! Der premarket hat geöffnet, das Spiel beginnt! 💰🏦🥱😴");
+      client.channels.cache.get(channelID).send("😴🏦💰 Guten Morgen liebe Hebelnden! Der Pre-market hat geöffnet, das Spiel beginnt! 💰🏦😴");
     } else {
-      client.channels.cache.get(channelID).send("🛍️🏝️🛥️🥺 Guten Morgen liebe Hebelden! Heute bleibt die Börse geschlossen. Genießt den Tag und gebt eure Gewinne für tolle Sachen aus! 🥺🛥️🏝️🛍️").catch(console.error);
+      client.channels.cache.get(channelID).send("🛍️🏝️🛥️🥺 Guten Morgen liebe Hebelnden! Heute bleibt die Börse geschlossen. Genießt den Tag und gebt eure Gewinne für tolle Sachen aus! 🥺🛥️🏝️🛍️").catch(console.error);
     }
   });
 
