@@ -17,3 +17,6 @@
 - name: zetto
   trigger: ["quote zetto"]
   title: "Random zetto quote"
+- name: konrev
+  trigger: ["quote konrev"]
+  title: "Random konrev quote"
