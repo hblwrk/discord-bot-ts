@@ -1,8 +1,6 @@
 import {Client, Intents} from "discord.js";
 import ReconnectingWebSocket from "reconnecting-websocket";
 import WS from "ws";
-global.WebSocket = require('ws');
-import Paho from "paho-mqtt";
 import {readSecret} from "./secrets";
 
 export function updateSecurityQuotes() {
