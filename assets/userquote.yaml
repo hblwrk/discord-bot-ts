@@ -391,3 +391,10 @@
   title: "Quote zetto 19"
   location: dracoon
   locationId: TdskcMfGIfFD6eTNKbVRGxG6OQ0sSzZ1
+- name: quote_konrev_1
+  trigger: ["quote konrev 1"]
+  user: konrev
+  fileName: quote-konrev-01.png
+  title: "Quote konrev 1"
+  location: dracoon
+  locationId: Cihwj6QE4gBwUfaGyKZVDX5yYU5h6XrK
