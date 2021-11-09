@@ -45,12 +45,22 @@ function initIV(clients, securityQuoteAssets) {
     pids = pids + "pid-" + securityQuoteAsset.id + ":%%";
   }
 
-  const subscribe = "{\"_event\":\"bulk-subscribe\",\"tzID\":8,\"message\":\"" + pids + "}\"}";
+  // Generating multiple Websocket endpoint options in case we get blocked.
   const wsServerIds = ["265", "68", "104", "226", "36", "103", "220", "47"];
-  const wsServerId = wsServerIds[Math.floor(Math.random() * wsServerIds.length)];
-  const wsClient = new ReconnectingWebSocket(`wss://stream${wsServerId}.forexpros.com/echo/271/2q3afamt/websocket`, [], options);
+
+  let wsServerUrls: string[] = [];
+
+  for (const wsServerId of wsServerIds) {
+    wsServerUrls.push(`wss://stream${wsServerId}.forexpros.com/echo/271/2q3afamt/websocket`);
+  }
+
+  let urlIndex = 0;
+  const wsServerUrlProvider = () => wsServerUrls[urlIndex++ % wsServerUrls.length];
+  const subscribe = "{\"_event\":\"bulk-subscribe\",\"tzID\":8,\"message\":\"" + pids + "}\"}";
+  const wsClient = new ReconnectingWebSocket(wsServerUrlProvider, [], options);
+
   wsClient.addEventListener("open", () => {
-    console.log(`Subscribing to stream${wsServerId}.forexpros.com websocket...`);
+    console.log(`Subscribing to stream ${wsClient.url}...`);
     wsClient.send(JSON.stringify(subscribe));
   });
 
@@ -93,6 +103,8 @@ function initIV(clients, securityQuoteAssets) {
           }
         }
       }
+    } else if ("o" === event.data) {
+      console.log("Websocket connection live.");
     } else {
       console.log(event);
     }
