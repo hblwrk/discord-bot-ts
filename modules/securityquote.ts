@@ -2,6 +2,7 @@ import {Client, Intents} from "discord.js";
 import ReconnectingWebSocket from "reconnecting-websocket";
 import WS from "ws";
 import {getAssets} from "./assets";
+import {readSecret} from "./secrets";
 
 export function updateSecurityQuotes() {
   const securityQuoteAssets = getAssets("securityquote");
@@ -41,13 +42,12 @@ function initIV(clients, securityQuoteAssets) {
 
   let pids: string = "";
   for (const securityQuoteAsset of securityQuoteAssets) {
-    pids = pids + "%%pid-" + securityQuoteAsset.id + ":";
+    pids = pids + "pid-" + securityQuoteAsset.id + ":%%";
   }
 
   const subscribe = "{\"_event\":\"bulk-subscribe\",\"tzID\":8,\"message\":\"" + pids + "}\"}";
   const wsServerIds = ["265", "68", "104", "226", "36", "103", "220", "47"];
   const wsServerId = wsServerIds[Math.floor(Math.random() * wsServerIds.length)];
-
   const wsClient = new ReconnectingWebSocket(`wss://stream${wsServerId}.forexpros.com/echo/271/2q3afamt/websocket`, [], options);
   wsClient.addEventListener("open", () => {
     console.log(`Subscribing to stream${wsServerId}.forexpros.com websocket...`);
@@ -72,18 +72,18 @@ function initIV(clients, securityQuoteAssets) {
         if (securityQuoteAsset.id === Number(eventData.pid)) {
           if (Math.floor((Date.now() / 1000) - securityQuoteAsset.lastUpdate) > 5) { // Discord blocks updates more frequent than ~5s
             for (const client of clients) {
-              if (securityQuoteAsset.botName === client.user.username) {
+              if (securityQuoteAsset.botClientId === client.user.id) {
                 let trend: string = "📈";
-                let change: string = eventData.pcp;
                 if (eventData.pc.startsWith("-")) {
                   trend = "📉";
                 }
-                if ("PTS" === securityQuoteAsset.unit) {
-                  change = eventData.pc;
-                }
-                const string = `${trend} ${eventData.last_numeric} (${change})`;
-                console.log(client.user.username + " " + string);
-                client.user.setPresence({activities: [{name: string}]});
+                const name = `${trend} ${eventData.last_numeric}`;
+                const presence = `${eventData.pc} (${eventData.pcp})`;
+                console.log(securityQuoteAsset.botName + " " + name + " " + presence);
+                client.guilds.cache.get(readSecret("discord_guildID")).members.fetch(client.user.id).then(member => {
+                  member.setNickname(name);
+                });
+                client.user.setPresence({activities: [{name: presence}]});
                 securityQuoteAsset.lastUpdate = Date.now() / 1000;
               }
             }
