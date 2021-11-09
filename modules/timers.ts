@@ -62,7 +62,7 @@ export function startMncTimers(client, channelID: string) {
   ruleMNC.hour = 9;
   ruleMNC.minute = 0;
   ruleMNC.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleMNC.tz = "Europe/Berlin";
+  ruleMNC.tz = "US/Eastern";
 
   Schedule.scheduleJob(ruleMNC, () => {
     getFromReuters(buffer => {
