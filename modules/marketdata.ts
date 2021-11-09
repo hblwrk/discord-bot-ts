@@ -44,7 +44,7 @@ function initInvestingCom(clients, marketDataAssets) {
   const wsServerUrls: string[] = [];
 
   for (const wsServerId of wsServerIds) {
-    wsServerUrls.push(`wss://stream${wsServerId}.forexpros.com/echo/271/2q3afamt/websocket`);
+    wsServerUrls.push(`wss://stream${wsServerId}.forexpros.com/echo/272/1q3afamt/websocket`);
   }
 
   let urlIndex = 0;
@@ -123,7 +123,7 @@ function initInvestingCom(clients, marketDataAssets) {
               }
 
               // Updating nickname and presence status
-              // console.log(`${marketDataAsset.botName} ${name} ${presence}`);
+              console.log(`${marketDataAsset.botName} ${name} ${presence}`);
               client.guilds.cache.get(readSecret("discord_guildID")).members.fetch(client.user.id).then(member => {
                 member.setNickname(name);
               });
