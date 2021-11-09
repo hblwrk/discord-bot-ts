@@ -114,7 +114,7 @@ function initInvestingCom(clients, securityQuoteAssets) {
               const lastPercentageChange = Number.parseFloat(eventData.pcp).toFixed(2);
 
               const name = `${trend} ${lastPrice}`;
-              let presence = `${lastPriceChange} (${lastPercentageChange})`;
+              let presence = `${lastPriceChange} (${lastPercentageChange}%)`;
 
               if ("PTS" === securityQuoteAsset.unit) { // % chg suggeriert dass die veränderung von 10 auf 15 (50%+) das selbe sind wie die veränderung von 100 auf 150. das ergibt aber nur bei einer stationären zeitreihe sinn. der vix ist nicht stationär. also quotiert man veränderungen in vol punkten
                 presence = `${eventData.pc}`;
