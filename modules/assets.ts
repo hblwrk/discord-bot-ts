@@ -29,15 +29,43 @@ class BaseAsset {
 }
 
 export class SecurityQuoteAsset extends BaseAsset {
-  private _source: string;
+  private _botToken: string;
+  private _botTokenReference: string;
+  private _botName: string;
+  private _id: number;
   private _unit: string;
+  private _lastUpdate: number;
 
-  public get source() {
-    return this._source;
+  public get botToken() {
+    return this._botToken;
   }
 
-  public set source(source: string) {
-    this._source = source;
+  public set botToken(botToken: string) {
+    this._botToken = botToken;
+  }
+
+  public get botTokenReference() {
+    return this._botTokenReference;
+  }
+
+  public set botTokenReference(botTokenReference: string) {
+    this._botTokenReference = botTokenReference;
+  }
+
+  public get botName() {
+    return this._botName;
+  }
+
+  public set botName(botName: string) {
+    this._botName = botName;
+  }
+
+  public get id() {
+    return this._id;
+  }
+
+  public set id(id: number) {
+    this._id = id;
   }
 
   public get unit() {
@@ -46,6 +74,14 @@ export class SecurityQuoteAsset extends BaseAsset {
 
   public set unit(unit: string) {
     this._unit = unit;
+  }
+
+  public get lastUpdate() {
+    return this._lastUpdate;
+  }
+
+  public set lastUpdate(lastUpdate: number) {
+    this._lastUpdate = lastUpdate;
   }
 }
 
@@ -279,6 +315,13 @@ export async function getAssets(type: string): Promise<any[]> {
               newAsset.fileContent = await getFromDracoon(readSecret("dracoon_password"), newAsset.locationId);
             }
           }
+          newAssets.push(newAsset);
+          break;
+        }
+
+        case "securityquote": {
+          const newAsset = plainToClass(SecurityQuoteAsset, jsonObject);
+          newAsset.botToken = readSecret(newAsset.botTokenReference);
           newAssets.push(newAsset);
           break;
         }
