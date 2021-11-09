@@ -121,7 +121,7 @@ function initIV(clients) {
       } else if ("1175153" === eventData.pid && null !== eventData.pc) { // SPX
         if (Math.floor((Date.now() / 1000) - lastUpdateSpx) > 5) {
           for (const client of clients) {
-            if ("S&P500 Futures" === client.user.username) {
+            if ("S&P500" === client.user.username) {
               const string = `📈 ${eventData.last_numeric} (${eventData.pc})`;
               console.log(client.user.username + " " + string);
               client.user.setPresence({activities: [{name: string}]});
@@ -132,7 +132,7 @@ function initIV(clients) {
       } else if ("1175151" === eventData.pid && null !== eventData.pc) { // NQ
         if (Math.floor((Date.now() / 1000) - lastUpdateNq) > 5) {
           for (const client of clients) {
-            if ("Nasdaq 100 Futures" === client.user.username) {
+            if ("Nasdaq 100" === client.user.username) {
               const string = `📈 ${eventData.last_numeric} (${eventData.pc})`;
               console.log(client.user.username + " " + string);
               client.user.setPresence({activities: [{name: string}]});
@@ -143,7 +143,7 @@ function initIV(clients) {
       } else if ("1174944" === eventData.pid && null !== eventData.pc) { // RTY
         if (Math.floor((Date.now() / 1000) - lastUpdateRty) > 5) {
           for (const client of clients) {
-            if ("Russel 2000 Futures" === client.user.username) {
+            if ("Russel 2000" === client.user.username) {
               const string = `📈 ${eventData.last_numeric} (${eventData.pc})`;
               console.log(client.user.username + " " + string);
               client.user.setPresence({activities: [{name: string}]});
@@ -154,7 +154,7 @@ function initIV(clients) {
       } else if ("8884" === eventData.pid && null !== eventData.pc) { // VIX
         if (Math.floor((Date.now() / 1000) - lastUpdateVix) > 5) {
           for (const client of clients) {
-            if ("VIX Futures" === client.user.username) {
+            if ("S&P500 VIX" === client.user.username) {
               const string = `📈 ${eventData.last_numeric} (${eventData.pc})`;
               console.log(client.user.username + " " + string);
               client.user.setPresence({activities: [{name: string}]});
@@ -165,7 +165,7 @@ function initIV(clients) {
       } else if ("8826" === eventData.pid && null !== eventData.pc) { // DAX
         if (Math.floor((Date.now() / 1000) - lastUpdateDax) > 5) {
           for (const client of clients) {
-            if ("DAX Futures" === client.user.username) {
+            if ("DAX" === client.user.username) {
               const string = `📈 ${eventData.last_numeric} (${eventData.pc})`;
               console.log(client.user.username + " " + string);
               client.user.setPresence({activities: [{name: string}]});
