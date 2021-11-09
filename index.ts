@@ -11,7 +11,7 @@ import {startNyseTimers, startMncTimers, startOtherTimers} from "./modules/timer
 import {cryptodice} from "./modules/cryptodice";
 import {lmgtfy} from "./modules/lmgtfy";
 import {getRandomQuote} from "./modules/randomquote";
-import {updateSecurityQuotes} from "./modules/securityquote";
+import {updateMarketData} from "./modules/marketdata";
 
 const token = readSecret("discord_token");
 const clientId = readSecret("discord_clientID");
@@ -26,8 +26,8 @@ const client = new Client({
   ],
 });
 
-// Updating security quotes
-updateSecurityQuotes();
+// Updating market data
+updateMarketData();
 
 // Set non-asset timers, e.g. for stock exchange open/close notifications
 startNyseTimers(client, readSecret("hblwrk_NYSEAnnouncement_ChannelID"));

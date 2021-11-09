@@ -6,38 +6,38 @@ import {readSecret} from "./secrets";
 
 // Launching multiple bots and Websocket stream to display price information
 // Bot nickname and presence status updates have acceptable rate-limits (~5s)
-export async function updateSecurityQuotes() {
-  const securityQuoteAssets = getAssets("securityquote");
+export async function updateMarketData() {
+  const marketDataAssets = getAssets("marketdata");
 
-  await securityQuoteAssets.then(securityQuoteAssets => {
+  await marketDataAssets.then(marketDataAssets => {
     const clients = [];
 
-    for (const securityQuoteAsset of securityQuoteAssets) {
+    for (const marketDataAsset of marketDataAssets) {
       // Create a new client instance. Bots do not need any permissions
       const client = new Client({
         intents: [],
       });
 
       // Login to Discord
-      client.login(securityQuoteAsset.botToken).catch(console.error);
+      client.login(marketDataAsset.botToken).catch(console.error);
 
       client.on("ready", () => {
         // Bot connection successful
-        console.log(`Launched security quotes (${securityQuoteAsset.botName})`);
+        console.log(`Launched market data bot (${marketDataAsset.botName})`);
 
         // Setting bot presence status to a default value
         client.user.setPresence({activities: [{name: "Ready."}]});
         clients.push(client);
-        if (securityQuoteAssets.length === clients.length) {
+        if (marketDataAssets.length === clients.length) {
           // All bots are ready, launching Websocket connections
-          initInvestingCom(clients, securityQuoteAssets);
+          initInvestingCom(clients, marketDataAssets);
         }
       });
     }
   });
 }
 
-function initInvestingCom(clients, securityQuoteAssets) {
+function initInvestingCom(clients, marketDataAssets) {
   // Generating multiple Websocket endpoint options in case we get blocked.
   const wsServerIds = ["265", "68", "104", "226", "36", "103", "220", "47"];
 
@@ -55,8 +55,8 @@ function initInvestingCom(clients, securityQuoteAssets) {
   let pids = "";
 
   // Building a list of "pids", aka. symbols that get requested for streaming real-time market data
-  for (const securityQuoteAsset of securityQuoteAssets) {
-    pids = `${pids}pid-${securityQuoteAsset.id}:%%`;
+  for (const marketDataAsset of marketDataAssets) {
+    pids = `${pids}pid-${marketDataAsset.id}:%%`;
   }
 
   // Odd formatting required for Websocket service to start streaming
@@ -98,10 +98,11 @@ function initInvestingCom(clients, securityQuoteAssets) {
 
     if (null !== m) {
       const eventData = JSON.parse(m[0].replace("::", ""));
-      for (const securityQuoteAsset of securityQuoteAssets) {
-        if (securityQuoteAsset.id === Number(eventData.pid) && Math.floor((Date.now() / 1000) - securityQuoteAsset.lastUpdate) > 5) { // Discord blocks updates more frequent than ~5s
+      for (const marketDataAsset of marketDataAssets) {
+        // Discord blocks updates more frequent than ~5s
+        if (marketDataAsset.id === Number(eventData.pid) && Math.floor((Date.now() / 1000) - marketDataAsset.lastUpdate) > 5) {
           for (const client of clients) {
-            if (securityQuoteAsset.botClientId === client.user.id) {
+            if (marketDataAsset.botClientId === client.user.id) {
               // Setting trend and presence information
               let trend = "🟩";
               if (eventData.pc.startsWith("-")) {
@@ -116,19 +117,20 @@ function initInvestingCom(clients, securityQuoteAssets) {
               const name = `${trend} ${lastPrice}`;
               let presence = `${lastPriceChange} (${lastPercentageChange}%)`;
 
-              if ("PTS" === securityQuoteAsset.unit) { // % chg suggeriert dass die veränderung von 10 auf 15 (50%+) das selbe sind wie die veränderung von 100 auf 150. das ergibt aber nur bei einer stationären zeitreihe sinn. der vix ist nicht stationär. also quotiert man veränderungen in vol punkten
+              // % chg suggeriert dass die veränderung von 10 auf 15 (50%+) das selbe sind wie die veränderung von 100 auf 150. das ergibt aber nur bei einer stationären zeitreihe sinn. der vix ist nicht stationär. also quotiert man veränderungen in vol punkten
+              if ("PTS" === marketDataAsset.unit) {
                 presence = `${eventData.pc}`;
               }
 
               // Updating nickname and presence status
-              // console.log(`${securityQuoteAsset.botName} ${name} ${presence}`);
+              // console.log(`${marketDataAsset.botName} ${name} ${presence}`);
               client.guilds.cache.get(readSecret("discord_guildID")).members.fetch(client.user.id).then(member => {
                 member.setNickname(name);
               });
 
               client.user.setPresence({activities: [{name: presence}]});
 
-              securityQuoteAsset.lastUpdate = Date.now() / 1000;
+              marketDataAsset.lastUpdate = Date.now() / 1000;
             }
           }
         }

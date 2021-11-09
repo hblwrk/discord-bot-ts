@@ -28,7 +28,7 @@ class BaseAsset {
   }
 }
 
-export class SecurityQuoteAsset extends BaseAsset {
+export class MarketDataAsset extends BaseAsset {
   private _botToken: string;
   private _botTokenReference: string;
   private _botClientId: string;
@@ -337,8 +337,8 @@ export async function getAssets(type: string): Promise<any[]> {
           break;
         }
 
-        case "securityquote": {
-          const newAsset = plainToClass(SecurityQuoteAsset, jsonObject);
+        case "marketdata": {
+          const newAsset = plainToClass(MarketDataAsset, jsonObject);
           newAsset.botToken = readSecret(newAsset.botTokenReference);
           newAsset.botClientId = readSecret(newAsset.botClientIdReference);
           newAssets.push(newAsset);
