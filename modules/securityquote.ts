@@ -73,9 +73,9 @@ function initIV(clients, securityQuoteAssets) {
           if (Math.floor((Date.now() / 1000) - securityQuoteAsset.lastUpdate) > 5) { // Discord blocks updates more frequent than ~5s
             for (const client of clients) {
               if (securityQuoteAsset.botClientId === client.user.id) {
-                let trend: string = "📈";
+                let trend: string = "🟩";
                 if (eventData.pc.startsWith("-")) {
-                  trend = "📉";
+                  trend = "🟥";
                 }
                 const name = `${trend} ${eventData.last_numeric}`;
                 const presence = `${eventData.pc} (${eventData.pcp})`;
