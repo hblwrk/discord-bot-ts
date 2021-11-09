@@ -88,11 +88,11 @@ echo -n "hunter2" | docker secret create production_discord_clientID -
 echo -n "hunter3" | docker secret create production_discord_guildID -
 echo -n "hunter4" | docker secret create production_dracoon_password -
 echo -n "hunter5" | docker secret create production_healthcheck_port -
-echo -n "hunter6" | docker secret create production_twelvedata_apikey -
-echo -n "hunter7" | docker secret create production_hblwrk_NYSEAnnouncement_ChannelID -
-echo -n "hunter8" | docker secret create production_hblwrk_MNCAnnouncement_ChannelID -
-echo -n "hunter9" | docker secret create production_hblwrk_OtherAnnouncement_ChannelID -
-echo -n "hunter10" | docker secret create production_discord_token_btcusd -
+echo -n "hunter6" | docker secret create production_hblwrk_NYSEAnnouncement_ChannelID -
+echo -n "hunter7" | docker secret create production_hblwrk_MNCAnnouncement_ChannelID -
+echo -n "hunter8" | docker secret create production_hblwrk_OtherAnnouncement_ChannelID -
+echo -n "hunter9" | docker secret create production_discord_btcusd_token -
+echo -n "hunter10" | docker secret create production_discord_btcusd_clientId -
 ```
 
 By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams. The code looks for `config.json` and expects the following syntax:
@@ -104,11 +104,11 @@ By defining a set of secrets per developer, multiple bots can be run at the same
   "discord_guildID": "hunter3",
   "dracoon_password": "hunter4",
   "healthcheck_port": "hunter5",
-  "twelvedata_apikey": "hunter6",
-  "hblwrk_NYSEAnnouncement_ChannelID": "hunter7",
-  "hblwrk_MNCAnnouncement_ChannelID": "hunter8",
-  "hblwrk_OtherAnnouncement_ChannelID": "hunter9",
-  "discord_token_btcusd": "hunter10"
+  "hblwrk_NYSEAnnouncement_ChannelID": "hunter6",
+  "hblwrk_MNCAnnouncement_ChannelID": "hunter7",
+  "hblwrk_OtherAnnouncement_ChannelID": "hunter8",
+  "discord_btcusd_token": "hunter9",
+  "discord_btcusd_clientId": "hunter10"
 }
 ```
 
