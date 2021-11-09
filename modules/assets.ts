@@ -31,6 +31,8 @@ class BaseAsset {
 export class SecurityQuoteAsset extends BaseAsset {
   private _botToken: string;
   private _botTokenReference: string;
+  private _botClientId: string;
+  private _botClientIdReference: string;
   private _botName: string;
   private _id: number;
   private _unit: string;
@@ -50,6 +52,22 @@ export class SecurityQuoteAsset extends BaseAsset {
 
   public set botTokenReference(botTokenReference: string) {
     this._botTokenReference = botTokenReference;
+  }
+
+  public get botClientId() {
+    return this._botClientId;
+  }
+
+  public set botClientId(botClientId: string) {
+    this._botClientId = botClientId;
+  }
+
+  public get botClientIdReference() {
+    return this._botClientIdReference;
+  }
+
+  public set botClientIdReference(botClientIdReference: string) {
+    this._botClientIdReference = botClientIdReference;
   }
 
   public get botName() {
@@ -322,6 +340,7 @@ export async function getAssets(type: string): Promise<any[]> {
         case "securityquote": {
           const newAsset = plainToClass(SecurityQuoteAsset, jsonObject);
           newAsset.botToken = readSecret(newAsset.botTokenReference);
+          newAsset.botClientId = readSecret(newAsset.botClientIdReference);
           newAssets.push(newAsset);
           break;
         }

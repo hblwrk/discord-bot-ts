@@ -1,56 +1,70 @@
 ---
 - name: spx
   trigger: forexpros_ws
-  botTokenReference: discord_token_spx
+  botTokenReference: discord_spx_token
   botToken: ""
+  botClientIdReference: discord_spx_clientID
+  botClientId: ""
   botName: "S&P500"
   id: 1175153
   unit: "PCT"
   lastUpdate: 0
 - name: nq
   trigger: forexpros_ws
-  botTokenReference: discord_token_nq
+  botTokenReference: discord_nq_token
   botToken: ""
+  botClientIdReference: discord_nq_clientID
+  botClientId: ""
   botName: "Nasdaq 100"
   id: 1175151
   unit: "PCT"
   lastUpdate: 0
 - name: rty
   trigger: forexpros_ws
-  botTokenReference: discord_token_rty
+  botTokenReference: discord_rty_token
   botToken: ""
+  botClientIdReference: discord_rty_clientID
+  botClientId: ""
   botName: "Russel 2000"
   id: 1174944
   unit: "PCT"
   lastUpdate: 0
 - name: vix
   trigger: forexpros_ws
-  botTokenReference: discord_token_vix
+  botTokenReference: discord_vix_token
   botToken: ""
+  botClientIdReference: discord_vix_clientID
+  botClientId: ""
   botName: "S&P500 VIX"
   id: 8884
   unit: "PTS"
   lastUpdate: 0
 - name: dax
   trigger: forexpros_ws
-  botTokenReference: discord_token_dax
+  botTokenReference: discord_dax_token
   botToken: ""
+  botClientIdReference: discord_dax_clientID
+  botClientId: ""
   botName: "DAX"
   id: 8826
   unit: "PCT"
   lastUpdate: 0
 - name: btcusd
   trigger: forexpros_ws
-  botTokenReference: discord_token_btcusd
+  botTokenReference: discord_btcusd_token
   botToken: ""
+  botClientIdReference: discord_btcusd_clientID
+  botClientId: ""
   botName: "Bitcoin/USD"
   id: 1057391
   unit: "PCT"
   lastUpdate: 0
 - name: eth
   trigger: forexpros_ws
-  botTokenReference: discord_token_ethusd
+  botTokenReference: discord_ethusd_token
   botToken: ""
+  botClientIdReference: discord_ethusd_clientID
+  botClientId: ""
   botName: "Ether/USD"
   id: 1061443
   unit: "PCT"

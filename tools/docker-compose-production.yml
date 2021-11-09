@@ -28,13 +28,20 @@ services:
       - production_hblwrk_NYSEAnnouncement_ChannelID
       - production_hblwrk_MNCAnnouncement_ChannelID
       - production_hblwrk_OtherAnnouncement_ChannelID
-      - production_discord_token_btcusd
-      - production_discord_token_ethusd
-      - production_discord_token_spx
-      - production_discord_token_nq
-      - production_discord_token_rty
-      - production_discord_token_vix
-      - production_discord_token_dax
+      - production_discord_btcusd_token
+      - production_discord_btcusd_clientID
+      - production_discord_ethusd_token
+      - production_discord_ethusd_clientID
+      - production_discord_spx_token
+      - production_discord_spx_clientID
+      - production_discord_nq_token
+      - production_discord_nq_clientID
+      - production_discord_rty_token
+      - production_discord_rty_clientID
+      - production_discord_vix_token
+      - production_discord_vix_clientID
+      - production_discord_dax_token
+      - production_discord_dax_clientID
 
 secrets:
   production_discord_token:
@@ -57,17 +64,31 @@ secrets:
     external: true
   production_hblwrk_OtherAnnouncement_ChannelID:
     external: true
-  production_discord_token_btcusd:
+  production_discord_btcusd_token:
     external: true
-  production_discord_token_ethusd:
+  production_discord_btcusd_clientID:
     external: true
-  production_discord_token_spx:
+  production_discord_ethusd_token:
     external: true
-  production_discord_token_nq:
+  production_discord_ethusd_clientID:
     external: true
-  production_discord_token_rty:
+  production_discord_spx_token:
     external: true
-  production_discord_token_vix:
+  production_discord_spx_clientID:
     external: true
-  production_discord_token_dax:
+  production_discord_nq_token:
+    external: true
+  production_discord_nq_clientID:
+    external: true
+  production_discord_rty_token:
+    external: true
+  production_discord_rty_clientID:
+    external: true
+  production_discord_vix_token:
+    external: true
+  production_discord_vix_clientID:
+    external: true
+  production_discord_dax_token:
+    external: true
+  production_discord_dax_clientID:
     external: true
