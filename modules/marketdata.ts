@@ -99,8 +99,8 @@ function initInvestingCom(clients, marketDataAssets) {
     if (null !== m) {
       const eventData = JSON.parse(m[0].replace("::", ""));
       for (const marketDataAsset of marketDataAssets) {
-        // Discord blocks updates more frequent than ~5s
-        if (marketDataAsset.id === Number(eventData.pid) && Math.floor((Date.now() / 1000) - marketDataAsset.lastUpdate) > 5) {
+        // Discord blocks updates more frequent than ~10s
+        if (marketDataAsset.id === Number(eventData.pid) && Math.floor((Date.now() / 1000) - marketDataAsset.lastUpdate) > 10) {
           for (const client of clients) {
             if (marketDataAsset.botClientId === client.user.id) {
               // Setting trend and presence information
