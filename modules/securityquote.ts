@@ -100,7 +100,11 @@ function initIV(clients) {
         if (Math.floor((Date.now() / 1000) - lastUpdateBtc) > 5) { // Discord blocks updates more frequent than ~5s
           for (const client of clients) {
             if ("Bitcoin/USD" === client.user.username) {
-              const string = `📈 ${eventData.last_numeric} (${eventData.pc})`;
+              let trend = "📈"
+              if (eventData.pc.startsWith("-")) {
+                trend = "📉";
+              }
+              const string = `${trend} ${eventData.last_numeric} (${eventData.pc})`;
               console.log(client.user.username + " " + string);
               client.user.setPresence({activities: [{name: string}]});
               lastUpdateBtc = Date.now() / 1000;
@@ -111,7 +115,11 @@ function initIV(clients) {
         if (Math.floor((Date.now() / 1000) - lastUpdateEth) > 5) {
           for (const client of clients) {
             if ("Ether/USD" === client.user.username) {
-              const string = `📈 ${eventData.last_numeric} (${eventData.pc})`;
+              let trend = "📈"
+              if (eventData.pc.startsWith("-")) {
+                trend = "📉";
+              }
+              const string = `${trend} ${eventData.last_numeric} (${eventData.pc})`;
               console.log(client.user.username + " " + string);
               client.user.setPresence({activities: [{name: string}]});
               lastUpdateEth = Date.now() / 1000;
@@ -122,7 +130,11 @@ function initIV(clients) {
         if (Math.floor((Date.now() / 1000) - lastUpdateSpx) > 5) {
           for (const client of clients) {
             if ("S&P500" === client.user.username) {
-              const string = `📈 ${eventData.last_numeric} (${eventData.pc})`;
+              let trend = "📈"
+              if (eventData.pc.startsWith("-")) {
+                trend = "📉";
+              }
+              const string = `${trend} ${eventData.last_numeric} (${eventData.pc})`;
               console.log(client.user.username + " " + string);
               client.user.setPresence({activities: [{name: string}]});
               lastUpdateSpx = Date.now() / 1000;
@@ -133,7 +145,11 @@ function initIV(clients) {
         if (Math.floor((Date.now() / 1000) - lastUpdateNq) > 5) {
           for (const client of clients) {
             if ("Nasdaq 100" === client.user.username) {
-              const string = `📈 ${eventData.last_numeric} (${eventData.pc})`;
+              let trend = "📈"
+              if (eventData.pc.startsWith("-")) {
+                trend = "📉";
+              }
+              const string = `${trend} ${eventData.last_numeric} (${eventData.pc})`;
               console.log(client.user.username + " " + string);
               client.user.setPresence({activities: [{name: string}]});
               lastUpdateNq = Date.now() / 1000;
@@ -144,7 +160,11 @@ function initIV(clients) {
         if (Math.floor((Date.now() / 1000) - lastUpdateRty) > 5) {
           for (const client of clients) {
             if ("Russel 2000" === client.user.username) {
-              const string = `📈 ${eventData.last_numeric} (${eventData.pc})`;
+              let trend = "📈"
+              if (eventData.pc.startsWith("-")) {
+                trend = "📉";
+              }
+              const string = `${trend} ${eventData.last_numeric} (${eventData.pc})`;
               console.log(client.user.username + " " + string);
               client.user.setPresence({activities: [{name: string}]});
               lastUpdateRty = Date.now() / 1000;
@@ -155,7 +175,11 @@ function initIV(clients) {
         if (Math.floor((Date.now() / 1000) - lastUpdateVix) > 5) {
           for (const client of clients) {
             if ("S&P500 VIX" === client.user.username) {
-              const string = `📈 ${eventData.last_numeric} (${eventData.pc})`;
+              let trend = "📈"
+              if (eventData.pc.startsWith("-")) {
+                trend = "📉";
+              }
+              const string = `${trend} ${eventData.last_numeric} (${eventData.pc})`;
               console.log(client.user.username + " " + string);
               client.user.setPresence({activities: [{name: string}]});
               lastUpdateVix = Date.now() / 1000;
@@ -166,7 +190,11 @@ function initIV(clients) {
         if (Math.floor((Date.now() / 1000) - lastUpdateDax) > 5) {
           for (const client of clients) {
             if ("DAX" === client.user.username) {
-              const string = `📈 ${eventData.last_numeric} (${eventData.pc})`;
+              let trend = "📈"
+              if (eventData.pc.startsWith("-")) {
+                trend = "📉";
+              }
+              const string = `${trend} ${eventData.last_numeric} (${eventData.pc})`;
               console.log(client.user.username + " " + string);
               client.user.setPresence({activities: [{name: string}]});
               lastUpdateDax = Date.now() / 1000;
