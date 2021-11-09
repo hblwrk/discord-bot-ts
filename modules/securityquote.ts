@@ -78,12 +78,10 @@ function initIV(clients, securityQuoteAssets) {
                   trend = "🟥";
                 }
                 const name = `${trend} ${eventData.last_numeric}`;
+                let presence = `${eventData.pc} (${eventData.pcp})`;
                 if ("PTS" === securityQuoteAsset.unit) { // % chg suggeriert dass die veränderung von 10 auf 15 (50%+) das selbe sind wie die veränderung von 100 auf 150. das ergibt aber nur bei einer stationären zeitreihe sinn. der vix ist nicht stationär. also quotiert man veränderungen in vol punkten
-                  const presence = `${eventData.pc}`;
-                } else {
-                  const presence = `${eventData.pc} (${eventData.pcp})`;
+                  presence = `${eventData.pc}`;
                 }
-
                 console.log(securityQuoteAsset.botName + " " + name + " " + presence);
                 client.guilds.cache.get(readSecret("discord_guildID")).members.fetch(client.user.id).then(member => {
                   member.setNickname(name);
