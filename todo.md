@@ -4,7 +4,6 @@
 * Unittests
 * bare !quote to respond any userQuote, similar to /quote
 * Modularize index.ts
-* Logging
 
 # Bugs
 

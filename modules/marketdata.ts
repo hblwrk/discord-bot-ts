@@ -2,7 +2,10 @@ import {Client} from "discord.js";
 import ReconnectingWebSocket from "reconnecting-websocket";
 import WS from "ws";
 import {getAssets} from "./assets";
+import {getLogger} from "./logging";
 import {readSecret} from "./secrets";
+
+const logger = getLogger();
 
 // Launching multiple bots and Websocket stream to display price information
 // Bot nickname and presence status updates have acceptable rate-limits (~5s)
@@ -19,11 +22,19 @@ export async function updateMarketData() {
       });
 
       // Login to Discord
-      client.login(marketDataAsset.botToken).catch(console.error);
+      client.login(marketDataAsset.botToken).catch(error => {
+        logger.log(
+          "error",
+          error,
+        );
+      });
 
       client.on("ready", () => {
         // Bot connection successful
-        console.log(`Launched market data bot (${marketDataAsset.botName})`);
+        logger.log(
+          "info",
+          `Launched market data bot (${marketDataAsset.botName})`,
+        );
 
         // Setting bot presence status to a default value
         client.user.setPresence({activities: [{name: "Market closed."}]});
@@ -73,18 +84,27 @@ function initInvestingCom(clients, marketDataAssets) {
 
   // Respond to "connection open" event by sending subscription message
   wsClient.addEventListener("open", () => {
-    console.log(`Subscribing to stream ${wsClient.url}...`);
+    logger.log(
+      "info",
+      `Subscribing to stream ${wsClient.url}...`,
+    );
     wsClient.send(JSON.stringify(subscribeMessage));
   });
 
   // We retry anyway
   wsClient.addEventListener("close", () => {
-    console.log("Closing websocket connection...");
+    logger.log(
+      "info",
+      "Closing websocket connection...",
+    );
   });
 
   // We retry anyway
   wsClient.addEventListener("error", () => {
-    console.log("Error at websocket connection...");
+    logger.log(
+      "error",
+      "Error at websocket connection...",
+    );
   });
 
   // Responding to Websocket message
@@ -127,7 +147,10 @@ function initInvestingCom(clients, marketDataAssets) {
               }
 
               // Updating nickname and presence status
-              console.log(`${marketDataAsset.botName} ${name} ${presence}`);
+              logger.log(
+                "debug",
+                `${marketDataAsset.botName} ${name} ${presence}`,
+              );
               client.guilds.cache.get(readSecret("discord_guildID")).members.fetch(client.user.id).then(member => {
                 member.setNickname(name);
               });
@@ -141,10 +164,16 @@ function initInvestingCom(clients, marketDataAssets) {
       }
     } else if ("o" === event.data) {
       // "o" message actually means a successful connection and streaming begins
-      console.log("Websocket connection live.");
+      logger.log(
+        "info",
+        "Websocket connection live.",
+      );
     } else {
       // Anything else should be a unexpected error
-      console.log(event);
+      logger.log(
+        "error",
+        event,
+      );
     }
   });
 }
