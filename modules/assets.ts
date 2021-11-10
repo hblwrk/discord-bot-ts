@@ -278,9 +278,9 @@ export class EmojiAsset extends BaseAsset {
 }
 
 export async function getAllAssets() {
-  // all except whatis...
+  // All except whatis...
   const assetTypes = ["emoji", "image", "text", "user", "userquote"];
-  let newAssets = [];
+  const newAssets = [];
   for (const assetType of assetTypes) {
     const assets = await getAssets(assetType);
     for (const asset of assets) {
@@ -304,6 +304,7 @@ export async function getAssets(type: string): Promise<any[]> {
               newAsset.fileContent = await getFromDracoon(readSecret("dracoon_password"), newAsset.locationId);
             }
           }
+
           newAssets.push(newAsset);
           break;
         }
@@ -344,6 +345,7 @@ export async function getAssets(type: string): Promise<any[]> {
               newAsset.fileContent = await getFromDracoon(readSecret("dracoon_password"), newAsset.locationId);
             }
           }
+
           newAssets.push(newAsset);
           break;
         }

@@ -9,31 +9,31 @@ import {getMnc} from "./mnc-downloader";
 const logger = getLogger();
 
 export function startNyseTimers(client, channelID: string) {
-  const ruleNYSEPremarketOpen = new Schedule.RecurrenceRule();
-  ruleNYSEPremarketOpen.hour = 4;
-  ruleNYSEPremarketOpen.minute = 0;
-  ruleNYSEPremarketOpen.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleNYSEPremarketOpen.tz = "US/Eastern";
+  const ruleNysePremarketOpen = new Schedule.RecurrenceRule();
+  ruleNysePremarketOpen.hour = 4;
+  ruleNysePremarketOpen.minute = 0;
+  ruleNysePremarketOpen.dayOfWeek = [new Schedule.Range(1, 5)];
+  ruleNysePremarketOpen.tz = "US/Eastern";
 
-  const ruleNYSEOpen = new Schedule.RecurrenceRule();
-  ruleNYSEOpen.hour = 9;
-  ruleNYSEOpen.minute = 30;
-  ruleNYSEOpen.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleNYSEOpen.tz = "US/Eastern";
+  const ruleNyseOpen = new Schedule.RecurrenceRule();
+  ruleNyseOpen.hour = 10;
+  ruleNyseOpen.minute = 0;
+  ruleNyseOpen.dayOfWeek = [new Schedule.Range(1, 5)];
+  ruleNyseOpen.tz = "US/Eastern";
 
-  const ruleNYSEClose = new Schedule.RecurrenceRule();
-  ruleNYSEClose.hour = 16;
-  ruleNYSEClose.minute = 0;
-  ruleNYSEOpen.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleNYSEClose.tz = "US/Eastern";
+  const ruleNyseClose = new Schedule.RecurrenceRule();
+  ruleNyseClose.hour = 16;
+  ruleNyseClose.minute = 0;
+  ruleNyseClose.dayOfWeek = [new Schedule.Range(1, 5)];
+  ruleNyseClose.tz = "US/Eastern";
 
-  const ruleNYSEAftermarketClose = new Schedule.RecurrenceRule();
-  ruleNYSEAftermarketClose.hour = 20;
-  ruleNYSEAftermarketClose.minute = 0;
-  ruleNYSEAftermarketClose.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleNYSEAftermarketClose.tz = "US/Eastern";
+  const ruleNyseAftermarketClose = new Schedule.RecurrenceRule();
+  ruleNyseAftermarketClose.hour = 20;
+  ruleNyseAftermarketClose.minute = 0;
+  ruleNyseAftermarketClose.dayOfWeek = [new Schedule.Range(1, 5)];
+  ruleNyseAftermarketClose.tz = "US/Eastern";
 
-  Schedule.scheduleJob(ruleNYSEPremarketOpen, () => {
+  Schedule.scheduleJob(ruleNysePremarketOpen, () => {
     if (false === isHoliday(new Date())) {
       client.channels.cache.get(channelID).send("😴🏦💰 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet, das Spiel beginnt! 💰🏦😴");
     } else {
@@ -46,7 +46,7 @@ export function startNyseTimers(client, channelID: string) {
     }
   });
 
-  Schedule.scheduleJob(ruleNYSEOpen, () => {
+  Schedule.scheduleJob(ruleNyseOpen, () => {
     if (false === isHoliday(new Date())) {
       client.channels.cache.get(channelID).send("🔔🔔🔔 Ich bin ready. Ihr seid ready?! Na dann loooos! Huuuiiii! 🚀 Der Börsenritt beginnt, meine Freunde. Seid dabei, ihr dürft nichts verpassen! 🥳 🎠 🔔🔔🔔").catch(error => {
         logger.log(
@@ -57,7 +57,7 @@ export function startNyseTimers(client, channelID: string) {
     }
   });
 
-  Schedule.scheduleJob(ruleNYSEClose, () => {
+  Schedule.scheduleJob(ruleNyseClose, () => {
     if (false === isHoliday(new Date())) {
       client.channels.cache.get(channelID).send("🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! 🔔🔔🔔").catch(error => {
         logger.log(
@@ -68,7 +68,7 @@ export function startNyseTimers(client, channelID: string) {
     }
   });
 
-  Schedule.scheduleJob(ruleNYSEAftermarketClose, () => {
+  Schedule.scheduleJob(ruleNyseAftermarketClose, () => {
     if (false === isHoliday(new Date())) {
       client.channels.cache.get(channelID).send("🛏️🔔🔔 Und jetzt ist auch der aftermarket für euch Nachteulen geschlossen, Zeit fürs Bettchen! 🔔🔔🛏️").catch(error => {
         logger.log(
@@ -81,13 +81,13 @@ export function startNyseTimers(client, channelID: string) {
 }
 
 export function startMncTimers(client, channelID: string) {
-  const ruleMNC = new Schedule.RecurrenceRule();
-  ruleMNC.hour = 9;
-  ruleMNC.minute = 0;
-  ruleMNC.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleMNC.tz = "US/Eastern";
+  const ruleMnc = new Schedule.RecurrenceRule();
+  ruleMnc.hour = 9;
+  ruleMnc.minute = 0;
+  ruleMnc.dayOfWeek = [new Schedule.Range(1, 5)];
+  ruleMnc.tz = "US/Eastern";
 
-  Schedule.scheduleJob(ruleMNC, async () => {
+  Schedule.scheduleJob(ruleMnc, async () => {
     const buffer = getMnc();
     buffer.then(async buffer => {
       moment.locale("de");
