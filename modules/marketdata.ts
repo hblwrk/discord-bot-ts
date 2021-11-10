@@ -26,7 +26,7 @@ export async function updateMarketData() {
         console.log(`Launched market data bot (${marketDataAsset.botName})`);
 
         // Setting bot presence status to a default value
-        client.user.setPresence({activities: [{name: "Ready."}]});
+        client.user.setPresence({activities: [{name: "Market closed."}]});
         clients.push(client);
         if (marketDataAssets.length === clients.length) {
           // All bots are ready, launching Websocket connections
@@ -65,7 +65,7 @@ function initInvestingCom(clients, marketDataAssets) {
   // Allowing maximum retries and timeout, afterwards a new Websocket endpoint is used.
   const options = {
     WebSocket: WS,
-    connectionTimeout: 1000,
+    connectionTimeout: 5000,
     maxRetries: 10,
   };
 
@@ -99,23 +99,26 @@ function initInvestingCom(clients, marketDataAssets) {
     if (null !== m) {
       const eventData = JSON.parse(m[0].replace("::", ""));
       for (const marketDataAsset of marketDataAssets) {
-        // Discord blocks updates more frequent than ~10s
-        if (marketDataAsset.id === Number(eventData.pid) && Math.floor((Date.now() / 1000) - marketDataAsset.lastUpdate) > 10) {
+        // Discord blocks updates more frequent than ~15s
+        if (marketDataAsset.id === Number(eventData.pid) && Math.floor((Date.now() / 1000) - marketDataAsset.lastUpdate) > 15) {
           for (const client of clients) {
             if (marketDataAsset.botClientId === client.user.id) {
-              // Setting trend and presence information
-              let trend = "🟩";
-              if (eventData.pc.startsWith("-")) {
-                trend = "🟥";
-              }
-
               // Always show two decimals
               const lastPrice = Number.parseFloat(eventData.last_numeric).toFixed(2);
-              const lastPriceChange = Number.parseFloat(eventData.pc).toFixed(2);
+              let lastPriceChange = Number.parseFloat(eventData.pc).toFixed(2);
               const lastPercentageChange = Number.parseFloat(eventData.pcp).toFixed(2);
 
-              const name = `${trend} ${lastPrice}`;
+              // Setting trend and presence information
+              let trend = "🟩";
+              if (lastPriceChange.startsWith("-")) {
+                trend = "🟥";
+              } else {
+                lastPriceChange = "+" + lastPriceChange;
+              }
+
               let presence = `${lastPriceChange} (${lastPercentageChange}%)`;
+
+              const name = `${trend} ${lastPrice}`;
 
               // % chg suggeriert dass die veränderung von 10 auf 15 (50%+) das selbe sind wie die veränderung von 100 auf 150. das ergibt aber nur bei einer stationären zeitreihe sinn. der vix ist nicht stationär. also quotiert man veränderungen in vol punkten
               if ("PTS" === marketDataAsset.unit) {
