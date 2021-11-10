@@ -3,7 +3,7 @@ import moment from "moment";
 import Schedule from "node-schedule";
 import {isHoliday} from "nyse-holidays";
 import {getAssetByName} from "./assets";
-import {getFromReuters} from "./mnc-downloader";
+import {getMNC} from "./mnc-downloader";
 
 export function startNyseTimers(client, channelID: string) {
   const ruleNYSEPremarketOpen = new Schedule.RecurrenceRule();
@@ -64,13 +64,14 @@ export function startMncTimers(client, channelID: string) {
   ruleMNC.dayOfWeek = [new Schedule.Range(1, 5)];
   ruleMNC.tz = "US/Eastern";
 
-  Schedule.scheduleJob(ruleMNC, () => {
-    getFromReuters(buffer => {
+  Schedule.scheduleJob(ruleMNC, async () => {
+    const buffer = getMNC();
+    buffer.then(async buffer => {
       moment.locale("de");
       const date = moment().format("dddd, Do MMMM YYYY");
       const shortDate = moment().format("YYYY-MM-DD");
       const fileName = `MNC-${shortDate}.pdf`;
-      const mncFile = new MessageAttachment(buffer, fileName);
+      const mncFile = new MessageAttachment(await buffer, fileName);
       client.channels.cache.get(channelID).send({content: `Morning News Call (${date})`, files: [mncFile]});
     });
   });
