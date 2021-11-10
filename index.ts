@@ -12,7 +12,6 @@ import {cryptodice} from "./modules/cryptodice";
 import {lmgtfy} from "./modules/lmgtfy";
 import {getRandomQuote} from "./modules/randomquote";
 import {updateMarketData} from "./modules/marketdata";
-import {getMNC} from "./modules/mnc-downloader";
 
 const token = readSecret("discord_token");
 const clientId = readSecret("discord_clientID");
