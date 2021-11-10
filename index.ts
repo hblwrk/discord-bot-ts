@@ -12,10 +12,13 @@ import {cryptodice} from "./modules/cryptodice";
 import {lmgtfy} from "./modules/lmgtfy";
 import {getRandomQuote} from "./modules/randomquote";
 import {updateMarketData} from "./modules/marketdata";
+import {getLogger} from "./modules/logging";
 
 const token = readSecret("discord_token");
 const clientId = readSecret("discord_clientID");
 const guildId = readSecret("discord_guildID");
+
+const logger = getLogger();
 
 // Create a new client instance
 const client = new Client({
@@ -33,17 +36,29 @@ updateMarketData();
 startNyseTimers(client, readSecret("hblwrk_NYSEAnnouncement_ChannelID"));
 startMncTimers(client, readSecret("hblwrk_MNCAnnouncement_ChannelID"));
 
-console.log("Caching assets...");
+logger.log(
+  "info",
+  "Caching assets...",
+);
 const assets = getAllAssets();
 assets.then(async assets => {
-  console.log(`Loaded and cached ${assets.length} generic assets.`);
+  logger.log(
+    "info",
+    `Loaded and cached ${assets.length} generic assets.`,
+  );
 
   // Timers related to assets
   startOtherTimers(client, readSecret("hblwrk_OtherAnnouncement_ChannelID"), assets);
-  console.log("Successfully set timers.");
+  logger.log(
+    "info",
+    "Successfully set timers.",
+  );
 
   const whatIsAssets = await getAssets("whatis");
-  console.log(`Loaded and cached ${whatIsAssets.length} whatis assets.`);
+  logger.log(
+    "info",
+    `Loaded and cached ${whatIsAssets.length} whatis assets.`,
+  );
 
   const whatIsAssetsChoices = [];
   for (const asset of whatIsAssets) {
@@ -51,7 +66,10 @@ assets.then(async assets => {
   }
 
   const userAssets = await getAssets("user");
-  console.log(`Loaded and cached ${userAssets.length} user assets.`);
+  logger.log(
+    "info",
+    `Loaded and cached ${userAssets.length} user assets.`,
+  );
 
   const userAssetsChoices = [];
   for (const asset of userAssets) {
@@ -80,9 +98,19 @@ assets.then(async assets => {
             for (const response of asset.response) {
               if (response.startsWith("custom:")) {
                 const reactionEmoji = message.guild.emojis.cache.find(emoji => emoji.name === response.replace("custom:", ""));
-                message.react(reactionEmoji).catch(console.error);
+                message.react(reactionEmoji).catch(error => {
+                  logger.log(
+                    "error",
+                    error,
+                  );
+                });
               } else {
-                message.react(response).catch(console.error);
+                message.react(response).catch(error => {
+                  logger.log(
+                    "error",
+                    error,
+                  );
+                });
               }
             }
           }
@@ -104,13 +132,28 @@ assets.then(async assets => {
                 embed.addFields(
                   {name: asset.title, value: asset.text},
                 );
-                message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
+                message.channel.send({embeds: [embed], files: [file]}).catch(error => {
+                  logger.log(
+                    "error",
+                    error,
+                  );
+                });
               } else {
-                message.channel.send({files: [file]}).catch(console.error);
+                message.channel.send({files: [file]}).catch(error => {
+                  logger.log(
+                    "error",
+                    error,
+                  );
+                });
               }
             } else if (asset instanceof TextAsset) {
               // Simple response to a message
-              message.channel.send(asset.response).catch(console.error);
+              message.channel.send(asset.response).catch(error => {
+                logger.log(
+                  "error",
+                  error,
+                );
+              });
             } else if (asset instanceof UserAsset) {
               const randomQuote = getRandomQuote(asset.name, assets);
               const file = new MessageAttachment(randomQuote.fileContent, randomQuote.fileName);
@@ -122,12 +165,22 @@ assets.then(async assets => {
     }
 
     if ("!cryptodice" === messageContent) {
-      message.channel.send(`Rolling the crypto dice... ${cryptodice()}.`).catch(console.error);
+      message.channel.send(`Rolling the crypto dice... ${cryptodice()}.`).catch(error => {
+        logger.log(
+          "error",
+          error,
+        );
+      });
     }
 
     if (messageContent.startsWith("!lmgtfy")) {
       const search = messageContent.split("!lmgtfy ")[1];
-      message.channel.send(`Let me google that for you... ${lmgtfy(search)}.`).catch(console.error);
+      message.channel.send(`Let me google that for you... ${lmgtfy(search)}.`).catch(error => {
+        logger.log(
+          "error",
+          error,
+        );
+      });
     }
 
     if (messageContent.startsWith("!whatis")) {
@@ -142,9 +195,19 @@ assets.then(async assets => {
           if (true === Object.prototype.hasOwnProperty.call(asset, "_fileName")) {
             const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
             embed.setImage(`attachment://${asset.fileName}`);
-            message.channel.send({embeds: [embed], files: [file]}).catch(console.error);
+            message.channel.send({embeds: [embed], files: [file]}).catch(error => {
+              logger.log(
+                "error",
+                error,
+              );
+            });
           } else {
-            message.channel.send({embeds: [embed]}).catch(console.error);
+            message.channel.send({embeds: [embed]}).catch(error => {
+              logger.log(
+                "error",
+                error,
+              );
+            });
           }
         }
       }
@@ -213,11 +276,20 @@ assets.then(async assets => {
           body: slashCommands,
         },
       );
-      console.log(`Successfully registered ${slashCommands.length} slash commands.`);
+      logger.log(
+        "info",
+        `Successfully registered ${slashCommands.length} slash commands.`,
+      );
       runHealthCheck();
-      console.log("Bot ready.");
+      logger.log(
+        "info",
+        "Bot ready.",
+      );
     } catch (error: unknown) {
-      console.error(error);
+      logger.log(
+        "error",
+        error,
+      );
     }
   })();
 
@@ -246,7 +318,12 @@ assets.then(async assets => {
                 await interaction.reply({files: [file]});
               }
             } else if (asset instanceof TextAsset) {
-              await interaction.reply(asset.response).catch(console.error);
+              await interaction.reply(asset.response).catch(error => {
+                logger.log(
+                  "error",
+                  error,
+                );
+              });
             }
           }
         }
@@ -254,12 +331,22 @@ assets.then(async assets => {
     }
 
     if ("cryptodice" === commandName) {
-      await interaction.reply(`Rolling the crypto dice... ${cryptodice()}.`).catch(console.error);
+      await interaction.reply(`Rolling the crypto dice... ${cryptodice()}.`).catch(error => {
+        logger.log(
+          "error",
+          error,
+        );
+      });
     }
 
     if (commandName.startsWith("lmgtfy")) {
       const search = validator.escape(interaction.options.get("search").value.toString());
-      await interaction.reply(`Let me google that for you... ${lmgtfy(search)}.`).catch(console.error);
+      await interaction.reply(`Let me google that for you... ${lmgtfy(search)}.`).catch(error => {
+        logger.log(
+          "error",
+          error,
+        );
+      });
     }
 
     if ("whatis" === commandName) {
@@ -298,7 +385,10 @@ assets.then(async assets => {
     }
   });
 }).catch((error): void => {
-  console.log(`Promise error: ${error}`);
+  logger.log(
+    "error",
+    `Promise error: ${error}`,
+  );
 });
 
 // Log one-time events, e.g. log-in
@@ -306,7 +396,10 @@ const eventReady = {
   name: "ready",
   once: true,
   execute() {
-    console.log("Logged in.");
+    logger.log(
+      "info",
+      "Logged in.",
+    );
   },
 };
 
@@ -315,4 +408,9 @@ client.once(eventReady.name, (...args) => {
 });
 
 // Login to Discord
-client.login(token).catch(console.error);
+client.login(token).catch(error => {
+  logger.log(
+    "error",
+    error,
+  );
+});

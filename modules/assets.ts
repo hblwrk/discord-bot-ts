@@ -2,10 +2,12 @@ import {plainToClass} from "class-transformer";
 import yaml from "js-yaml";
 import fs from "node:fs";
 import {getFromDracoon} from "./dracoon-downloader";
+import {getLogger} from "./logging";
 import {readSecret} from "./secrets";
 
 const directory = "./assets";
 const fileExtension = ".yaml";
+const logger = getLogger();
 
 class BaseAsset {
   private _name: string;
@@ -362,7 +364,10 @@ export async function getAssets(type: string): Promise<any[]> {
 
     return newAssets;
   } catch (error: unknown) {
-    console.log(error);
+    logger.log(
+      "error",
+      error,
+    );
   }
 }
 
