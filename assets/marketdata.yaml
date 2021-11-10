@@ -1,5 +1,5 @@
 ---
-- name: spx
+- name: es
   trigger: forexpros_ws
   botTokenReference: discord_spx_token
   botToken: ""
@@ -9,6 +9,7 @@
   id: 1175153
   unit: "PCT"
   lastUpdate: 0
+  order: 0
 - name: nq
   trigger: forexpros_ws
   botTokenReference: discord_nq_token
@@ -19,6 +20,7 @@
   id: 1175151
   unit: "PCT"
   lastUpdate: 0
+  order: 1
 - name: rty
   trigger: forexpros_ws
   botTokenReference: discord_rty_token
@@ -29,6 +31,7 @@
   id: 1174944
   unit: "PCT"
   lastUpdate: 0
+  order: 2
 - name: vix
   trigger: forexpros_ws
   botTokenReference: discord_vix_token
@@ -39,6 +42,7 @@
   id: 8884
   unit: "PTS"
   lastUpdate: 0
+  order: 3
 - name: dax
   trigger: forexpros_ws
   botTokenReference: discord_dax_token
@@ -49,6 +53,7 @@
   id: 8826
   unit: "PCT"
   lastUpdate: 0
+  order: 4
 - name: btcusd
   trigger: forexpros_ws
   botTokenReference: discord_btcusd_token
@@ -59,6 +64,7 @@
   id: 1057391
   unit: "PCT"
   lastUpdate: 0
+  order: 5
 - name: eth
   trigger: forexpros_ws
   botTokenReference: discord_ethusd_token
@@ -69,3 +75,4 @@
   id: 1061443
   unit: "PCT"
   lastUpdate: 0
+  order: 6
