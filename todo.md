@@ -3,6 +3,9 @@
 * Handling opt-in roles
 * Unittests
 * bare !quote to respond any userQuote, similar to /quote
+* Modularize index.ts
+* Use axios for MNC download
+* Logging
 
 # Bugs
 
