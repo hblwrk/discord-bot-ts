@@ -37,6 +37,7 @@ export class MarketDataAsset extends BaseAsset {
   private _id: number;
   private _unit: string;
   private _lastUpdate: number;
+  private _order: number;
 
   public get botToken() {
     return this._botToken;
@@ -100,6 +101,14 @@ export class MarketDataAsset extends BaseAsset {
 
   public set lastUpdate(lastUpdate: number) {
     this._lastUpdate = lastUpdate;
+  }
+
+  public get order() {
+    return this._order;
+  }
+
+  public set order(order: number) {
+    this._order = order;
   }
 }
 
