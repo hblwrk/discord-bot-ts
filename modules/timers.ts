@@ -3,7 +3,7 @@ import moment from "moment";
 import Schedule from "node-schedule";
 import {isHoliday} from "nyse-holidays";
 import {getAssetByName} from "./assets";
-import {getMNC} from "./mnc-downloader";
+import {getMnc} from "./mnc-downloader";
 
 export function startNyseTimers(client, channelID: string) {
   const ruleNYSEPremarketOpen = new Schedule.RecurrenceRule();
@@ -65,7 +65,7 @@ export function startMncTimers(client, channelID: string) {
   ruleMNC.tz = "US/Eastern";
 
   Schedule.scheduleJob(ruleMNC, async () => {
-    const buffer = getMNC();
+    const buffer = getMnc();
     buffer.then(async buffer => {
       moment.locale("de");
       const date = moment().format("dddd, Do MMMM YYYY");
