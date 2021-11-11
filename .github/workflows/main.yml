@@ -28,6 +28,12 @@ jobs:
           lint: dockerlint
           dockerlabelvalidate: yes
 
+      - name: KICS scan
+        uses: Checkmarx/kics-github-action@v1.3
+        with:
+          timout: 120
+          fail_on: high
+
       - name: Sysdig CIS Dockerfile Benchmark
         uses: sysdiglabs/benchmark-dockerfile@v1.0.0
 
