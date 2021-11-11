@@ -263,3 +263,9 @@
   title: "Es ist Freitag, liebe Hebelden!"
   location: dracoon
   locationId: m9zUhVBJikr0PLrsCugg7Hyx2O1UcySk
+- name: schlafen
+  trigger: ["schlafen"]
+  fileName: schlafen.jpg
+  title: "Wozu gibt es denn Brücken?"
+  location: dracoon
+  locationId: bCa6ddbZ2FgOFvklfUvBENiTHeCWB9mw

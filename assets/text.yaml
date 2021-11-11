@@ -30,7 +30,7 @@
 - name: co2
   trigger: ["co2"]
   title: "How dare you?"
-  response: "<:co2:889557175272357938> $KRBN feiert Fridays for Futures!"
+  response: "<:co2:889557175272357938> $KRBN feiert Friday for Futures!"
 - name: ichbinsogluecklich
   trigger: ["ichbinsogluecklich"]
   title: "Gleich geht es los und alle machen mit!"

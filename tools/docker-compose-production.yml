@@ -32,8 +32,12 @@ services:
       - production_discord_btcusd_clientID
       - production_discord_ethusd_token
       - production_discord_ethusd_clientID
-      - production_discord_spx_token
-      - production_discord_spx_clientID
+      - production_discord_oneusd_token
+      - production_discord_oneusd_clientID
+      - production_discord_solusd_token
+      - production_discord_solusd_clientID
+      - production_discord_es_token
+      - production_discord_es_clientID
       - production_discord_nq_token
       - production_discord_nq_clientID
       - production_discord_rty_token
@@ -72,9 +76,17 @@ secrets:
     external: true
   production_discord_ethusd_clientID:
     external: true
-  production_discord_spx_token:
+  production_discord_oneusd_token:
     external: true
-  production_discord_spx_clientID:
+  production_discord_oneusd_clientID:
+    external: true
+  production_discord_solusd_token:
+    external: true
+  production_discord_solusd_clientID:
+    external: true
+  production_discord_es_token:
+    external: true
+  production_discord_es_clientID:
     external: true
   production_discord_nq_token:
     external: true

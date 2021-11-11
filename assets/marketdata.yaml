@@ -1,9 +1,9 @@
 ---
 - name: es
   trigger: forexpros_ws
-  botTokenReference: discord_spx_token
+  botTokenReference: discord_es_token
   botToken: ""
-  botClientIdReference: discord_spx_clientID
+  botClientIdReference: discord_es_clientID
   botClientId: ""
   botName: "S&P500"
   id: 1175153
@@ -76,3 +76,25 @@
   unit: "PCT"
   lastUpdate: 0
   order: 6
+- name: solusd
+  trigger: forexpros_ws
+  botTokenReference: discord_solusd_token
+  botToken: ""
+  botClientIdReference: discord_solusd_clientID
+  botClientId: ""
+  botName: "Solana/USD"
+  id: 1177183
+  unit: "PCT"
+  lastUpdate: 0
+  order: 7
+- name: oneusd
+  trigger: forexpros_ws
+  botTokenReference: discord_oneusd_token
+  botToken: ""
+  botClientIdReference: discord_oneusd_clientID
+  botClientId: ""
+  botName: "Harmony/USD"
+  id: 1137531
+  unit: "PCT"
+  lastUpdate: 0
+  order: 8
