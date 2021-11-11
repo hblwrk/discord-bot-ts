@@ -50,3 +50,6 @@
 - name: doug
   trigger: ["doug", "douggie"]
   response: ["custom:doug"]
+- name: virt
+  trigger: ["virt", "virtu", "virts"]
+  response: ["custom:virt"]
