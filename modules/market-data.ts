@@ -126,7 +126,7 @@ function initInvestingCom(clients, marketDataAssets) {
               // Always show two decimals
               const lastPrice = Number.parseFloat(eventData.last_numeric).toFixed(marketDataAsset.decimals);
               let lastPriceChange = Number.parseFloat(eventData.pc).toFixed(marketDataAsset.decimals);
-              const lastPercentageChange = Number.parseFloat(eventData.pcp).toFixed(marketDataAsset.decimals);
+              const lastPercentageChange = Number.parseFloat(eventData.pcp).toFixed(2);
 
               // Setting trend and presence information
               let trend = "🟩";
