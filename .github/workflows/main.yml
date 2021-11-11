@@ -31,7 +31,7 @@ jobs:
       - name: KICS scan
         uses: Checkmarx/kics-github-action@v1.3
         with:
-          path: /
+          path: .
           timeout: 120
           fail_on: high
 
