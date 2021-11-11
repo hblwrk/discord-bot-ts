@@ -47,3 +47,6 @@
 - name: yoloetf
   trigger: ["yoloetf", "yolo etf", "yolo-etf"]
   response: ["custom:aapl", "custom:msft", "custom:virt", "custom:xom"]
+- name: doug
+  trigger: ["doug", "douggie"]
+  response: ["custom:doug"]
