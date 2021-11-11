@@ -16,8 +16,8 @@ export function startNyseTimers(client, channelID: string) {
   ruleNysePremarketOpen.tz = "US/Eastern";
 
   const ruleNyseOpen = new Schedule.RecurrenceRule();
-  ruleNyseOpen.hour = 10;
-  ruleNyseOpen.minute = 0;
+  ruleNyseOpen.hour = 9;
+  ruleNyseOpen.minute = 30;
   ruleNyseOpen.dayOfWeek = [new Schedule.Range(1, 5)];
   ruleNyseOpen.tz = "US/Eastern";
 
