@@ -34,6 +34,11 @@ jobs:
           path: .
           timeout: 120
           fail_on: high
+          output_path: 'results.json'
+
+      - name: KICS results
+        run: |
+          cat results.json
 
       - name: Sysdig CIS Dockerfile Benchmark
         uses: sysdiglabs/benchmark-dockerfile@v1.0.0
