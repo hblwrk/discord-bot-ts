@@ -9,7 +9,7 @@ export function addInlineResponses(client, assets, assetCommands) {
   client.on("messageCreate", async message => {
     const messageContent: string = validator.escape(message.content);
     // Triggers without prefix
-    if (assetCommands.some(v => messageContent.toLowerCase().includes(v))) {
+    if (assetCommands.some(v => messageContent.toLowerCase().replaceAll(" ", "_").includes(v))) {
       for (const asset of assets) {
         for (const trigger of asset.trigger) {
           const triggerRex = new RegExp(`\\b${trigger}\\b`);
