@@ -138,7 +138,7 @@ function initInvestingCom(clients, marketDataAssets) {
 
               let presence = `${lastPriceChange} (${lastPercentageChange}%)`;
 
-              // Add ticker sorting              
+              // Add ticker sorting
               const name = `${marketDataAsset.order}${trend} ${lastPrice}`;
 
               // % chg suggeriert dass die veränderung von 10 auf 15 (50%+) das selbe sind wie die veränderung von 100 auf 150. das ergibt aber nur bei einer stationären zeitreihe sinn. der vix ist nicht stationär. also quotiert man veränderungen in vol punkten
