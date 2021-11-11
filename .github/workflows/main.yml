@@ -28,6 +28,9 @@ jobs:
           lint: dockerlint
           dockerlabelvalidate: yes
 
+      - name: Checkov GitHub Action
+        uses: bridgecrewio/checkov-action@v12.641.0
+
       - name: Sysdig CIS Dockerfile Benchmark
         uses: sysdiglabs/benchmark-dockerfile@v1.0.0
 
