@@ -38,6 +38,7 @@ export class MarketDataAsset extends BaseAsset {
   private _botName: string;
   private _id: number;
   private _unit: string;
+  private _decimals: number;
   private _lastUpdate: number;
   private _order: number;
 
@@ -95,6 +96,14 @@ export class MarketDataAsset extends BaseAsset {
 
   public set unit(unit: string) {
     this._unit = unit;
+  }
+
+  public get decimals() {
+    return this._decimals;
+  }
+
+  public set decimals(decimals: number) {
+    this._decimals = decimals;
   }
 
   public get lastUpdate() {

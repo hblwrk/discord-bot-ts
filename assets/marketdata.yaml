@@ -8,6 +8,7 @@
   botName: "S&P500"
   id: 1175153
   unit: "PCT"
+  decimals: 2
   lastUpdate: 0
   order: 0
 - name: nq
@@ -19,6 +20,7 @@
   botName: "Nasdaq 100"
   id: 1175151
   unit: "PCT"
+  decimals: 2
   lastUpdate: 0
   order: 1
 - name: rty
@@ -30,6 +32,7 @@
   botName: "Russel 2000"
   id: 1174944
   unit: "PCT"
+  decimals: 2
   lastUpdate: 0
   order: 2
 - name: vix
@@ -41,6 +44,7 @@
   botName: "S&P500 VIX"
   id: 8884
   unit: "PTS"
+  decimals: 2
   lastUpdate: 0
   order: 3
 - name: dax
@@ -52,6 +56,7 @@
   botName: "DAX"
   id: 8826
   unit: "PCT"
+  decimals: 2
   lastUpdate: 0
   order: 4
 - name: btcusd
@@ -63,9 +68,10 @@
   botName: "Bitcoin/USD"
   id: 1057391
   unit: "PCT"
+  decimals: 2
   lastUpdate: 0
   order: 5
-- name: eth
+- name: ethusd
   trigger: forexpros_ws
   botTokenReference: discord_ethusd_token
   botToken: ""
@@ -73,6 +79,7 @@
   botClientId: ""
   botName: "Ether/USD"
   id: 1061443
+  decimals: 2
   unit: "PCT"
   lastUpdate: 0
   order: 6
@@ -85,6 +92,7 @@
   botName: "Solana/USD"
   id: 1177183
   unit: "PCT"
+  decimals: 2
   lastUpdate: 0
   order: 7
 - name: oneusd
@@ -96,5 +104,6 @@
   botName: "Harmony/USD"
   id: 1137531
   unit: "PCT"
+  decimals: 5
   lastUpdate: 0
   order: 8

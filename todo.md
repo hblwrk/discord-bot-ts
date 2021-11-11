@@ -5,7 +5,8 @@
 * Handling opt-in roles
 * Unittests
 * bare !quote to respond any userQuote, similar to /quote
-* Solana Crypto futures
+* Solana, One Crypto futures. Rename SPX to ES.
+
 
 ## Bugs
 

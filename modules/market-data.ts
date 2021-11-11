@@ -124,9 +124,9 @@ function initInvestingCom(clients, marketDataAssets) {
           for (const client of clients) {
             if (marketDataAsset.botClientId === client.user.id) {
               // Always show two decimals
-              const lastPrice = Number.parseFloat(eventData.last_numeric).toFixed(2);
-              let lastPriceChange = Number.parseFloat(eventData.pc).toFixed(2);
-              const lastPercentageChange = Number.parseFloat(eventData.pcp).toFixed(2);
+              const lastPrice = Number.parseFloat(eventData.last_numeric).toFixed(marketDataAsset.decimals);
+              let lastPriceChange = Number.parseFloat(eventData.pc).toFixed(marketDataAsset.decimals);
+              const lastPercentageChange = Number.parseFloat(eventData.pcp).toFixed(marketDataAsset.decimals);
 
               // Setting trend and presence information
               let trend = "🟩";
