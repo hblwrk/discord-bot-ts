@@ -1,0 +1,145 @@
+---
+- name: tastyworks
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_broker_messageID"
+  id: 
+  idReference: "hblwrk_role_broker_tastyworks_ID"
+  emoji: "custom:sosnoff"
+- name: ibkr
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_broker_messageID"
+  id: 
+  idReference: "hblwrk_role_broker_ibkr_ID"
+  emoji: "custom:thomas"
+- name: traderepublic
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_broker_messageID"
+  id: 
+  idReference: "hblwrk_role_broker_traderepublic_ID"
+  emoji: "custom:pepeclown"
+- name: smartbroker
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_broker_messageID"
+  id: 
+  idReference: "hblwrk_role_broker_smartbroker_ID"
+  emoji: "custom:thinking"
+- name: scalablecapital
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_broker_messageID"
+  id: 
+  idReference: "hblwrk_role_broker_scalablecapital_ID"
+  emoji: "💰"
+- name: etoro
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_broker_messageID"
+  id: 
+  idReference: "hblwrk_role_broker_etoro_ID"
+  emoji: "🐂"
+- name: hausbank
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_broker_messageID"
+  id: 
+  idReference: "hblwrk_role_broker_hausbank_ID"
+  emoji: "🏦"
+- name: comdirect
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_broker_messageID"
+  id: 
+  idReference: "hblwrk_role_broker_comdirect_ID"
+  emoji: "🇨"
+- name: degiro
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_broker_messageID"
+  id: 
+  idReference: "hblwrk_role_broker_degiro_ID"
+  emoji: "🇩"
+- name: flatex
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_broker_messageID"
+  id: 
+  idReference: "hblwrk_role_broker_flatex_ID"
+  emoji: "🇫"
+- name: onvista
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_broker_messageID"
+  id: 
+  idReference: "hblwrk_role_broker_onvista_ID"
+  emoji: "🇴"
+- name: schwab
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_broker_messageID"
+  id: 
+  idReference: "hblwrk_role_broker_schwab_ID"
+  emoji: "🇸"
+- name: none
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_broker_messageID"
+  id: 
+  idReference: "hblwrk_role_broker_none_ID"
+  emoji: "🚫"
+- name: other
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_broker_messageID"
+  id: 
+  idReference: "hblwrk_role_broker_other_ID"
+  emoji: "❎"
+- name: etf
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_special_messageID"
+  id: 
+  idReference: "hblwrk_role_special_etf_ID"
+  emoji: "🌍"
+- name: 1euroladen
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_special_messageID"
+  id: 
+  idReference: "hblwrk_role_special_1euroladen_ID"
+  emoji: "🎰"
+- name: commodities-fx-bonds
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_special_messageID"
+  id: 
+  idReference: "hblwrk_role_special_commodities-fx-bonds_ID"
+  emoji: "💹"
+- name: crypto
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_special_messageID"
+  id: 
+  idReference: "hblwrk_role_special_crypto_ID"
+  emoji: "🌐"
+- name: steuerkanzlei
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_special_messageID"
+  id: 
+  idReference: "hblwrk_role_special_steuerkanzlei_ID"
+  emoji: "💸"
+- name: business-karriere
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_special_messageID"
+  id: 
+  idReference: "hblwrk_role_special_business-karriere_ID"
+  emoji: "🔨"
+- name: content-creator-squad
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_special_messageID"
+  id: 
+  idReference: "hblwrk_role_special_content-creator-squad_ID"
+  emoji: "🎙"
+- name: cryptoping
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_special_messageID"
+  id: 
+  idReference: "hblwrk_role_special_cryptoping_ID"
+  emoji: "🛎️"
+- name: nftping
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_special_messageID"
+  id: 
+  idReference: "hblwrk_role_special_nftping_ID"
+  emoji: "🌠"
+- name: stageping
+  trigger: 
+  triggerReference: "hblwrk_role_assignment_special_messageID"
+  id: 
+  idReference: "hblwrk_role_special_stageping_ID"
+  emoji: "🗣️"

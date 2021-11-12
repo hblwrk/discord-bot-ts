@@ -148,11 +148,12 @@ Permissions of the bot are granted using OAuth2 scopes. Select Settings -> OAuth
 * bot
 * application.commands
 
-Also make sure the bot has sufficient "bot" permissions (534723820608) before inviting:
+Also make sure the bot has sufficient "bot" permissions (534992256064) before inviting:
 
 General
 
 * View Channels
+* Manage Roles
 
 Text
 
@@ -172,6 +173,8 @@ Text
 * Use Slash Commands
 
 Open the generated URL starting with <https://discord.com/api/oauth2/authorize?client_id=...> to invite your bot to a specific server.
+
+At the Discord client go to "Server Settings" and add the bot to a role. Move that role to the top of the list to make sure the bot can assign and remove roles of members which have roles that are visually "below" the bots role.
 
 To get a server's Guild ID, enable Developer Mode at the Discord Client at User Settings -> App Settings -> Advanced. Then exit the settings menu and right-click the server name and click "Copy ID". This is used at the bot configuration to define which server to connect to.
 
