@@ -19,6 +19,7 @@ services:
     ports:
       - "11312:11312"
     secrets:
+      - environment
       - production_discord_token
       - production_discord_clientID
       - production_discord_guildID
@@ -75,6 +76,8 @@ services:
       - production_hblwrk_role_special_stageping_ID
 
 secrets:
+  environment:
+    external: true
   production_discord_token:
     external: true
   production_discord_clientID:
