@@ -102,8 +102,8 @@ export function startMncTimers(client, channelID: string) {
 
 export function startOtherTimers(client, channelID: string, assets: any) {
   const ruleFriday = new Schedule.RecurrenceRule();
-  ruleFriday.hour = 9;
-  ruleFriday.minute = 0;
+  ruleFriday.hour = 8;
+  ruleFriday.minute = 30;
   ruleFriday.dayOfWeek = [5];
   ruleFriday.tz = "Europe/Berlin";
 

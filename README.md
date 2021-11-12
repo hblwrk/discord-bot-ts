@@ -55,7 +55,7 @@ git pull
 
 ## CI/CD
 
-The bot is deployed at our hblwrk.de server, running as a docker container and managed using `docker-compose`. Every time the `main` branch gets updated, our GitHub Actions CI pipeline makes sure that:
+The bot is deployed at our server, running as a docker container and managed using `docker-compose`. Every time the `main` branch gets updated, our GitHub Actions CI pipeline makes sure that:
 
 * Software tests are executed
 * The `Dockerfile` is valid and conforms to CIS Docker Benchmark requirements sections 4.1, 4.2, 4.3, 4.6, 4.7, 4.9 and 4.10.
@@ -66,11 +66,11 @@ The bot is deployed at our hblwrk.de server, running as a docker container and m
 
 The webhook runs as a user-mode `systemd` service for user `mheiland`, all relevant configuration can be found at that user's home directory.
 
-Relevant activities like deployment to production and merging pull-requests is being reported to the #development channel at Discord.
+Relevant activities like deployment to production and merging pull-requests is being reported to a channel at Discord.
 
 ## Runtime environment
 
-Docker swarm mode needs to be initialized once before being able to use it.
+On our server, Docker swarm mode needs to be initialized once before being able to use it. This is not required for local development.
 
 ```bash
 docker swarm init --listen-addr=127.0.0.1:2377
@@ -80,9 +80,10 @@ Containers are created by multi-stage builds based on "distroless" base-images. 
 
 ## Secrets
 
-Values like the bots `token`, `guildID` and `clientID` are considered secrets and specific to each user running the bot. Those need to be specified prior to running `docker-compose`.
+Values like the bots `token`, `guildID` and `clientID` are considered secrets and specific to each user running the bot. When using Docker, those need to be specified prior to running `docker-compose`. Mind that there is a specific set of values for both production and staging environments, identified by the corresponding prefix.
 
 ```bash
+echo -n "hunter0" | docker secret create production_environment -
 echo -n "hunter1" | docker secret create production_discord_token -
 echo -n "hunter2" | docker secret create production_discord_clientID -
 echo -n "hunter3" | docker secret create production_discord_guildID -
@@ -93,22 +94,70 @@ echo -n "hunter7" | docker secret create production_hblwrk_MNCAnnouncement_Chann
 echo -n "hunter8" | docker secret create production_hblwrk_OtherAnnouncement_ChannelID -
 echo -n "hunter9" | docker secret create production_discord_btcusd_token -
 echo -n "hunter10" | docker secret create production_discord_btcusd_clientId -
+...
 ```
 
-By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams. The code looks for `config.json` and expects the following syntax:
+Check the `config.json` example below for a complete set of configuration parameters.
+
+By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams. When running outside of Docker, the code looks for `config.json` and expects the following syntax. Mind that all values which are not set in this example require some sort of password or Discord bot- or server-specific ID.
 
 ```json
 {
-  "discord_token": "hunter1",
-  "discord_clientID": "hunter2",
-  "discord_guildID": "hunter3",
-  "dracoon_password": "hunter4",
-  "healthcheck_port": "hunter5",
-  "hblwrk_NYSEAnnouncement_ChannelID": "hunter6",
-  "hblwrk_MNCAnnouncement_ChannelID": "hunter7",
-  "hblwrk_OtherAnnouncement_ChannelID": "hunter8",
-  "discord_btcusd_token": "hunter9",
-  "discord_btcusd_clientId": "hunter10"
+  "environment": "staging",
+  "discord_token": "",
+  "discord_clientID": "",
+  "discord_guildID": "",
+  "discord_btcusd_token": "",
+  "discord_btcusd_clientID": "",
+  "discord_ethusd_token": "",
+  "discord_ethusd_clientID": "",
+  "discord_solusd_token": "",
+  "discord_solusd_clientID": "",
+  "discord_oneusd_token": "",
+  "discord_oneusd_clientID": "",
+  "discord_es_token": "",
+  "discord_es_clientID": "",
+  "discord_nq_token": "",
+  "discord_nq_clientID": "",
+  "discord_rty_token": "",
+  "discord_rty_clientID": "",
+  "discord_vix_token": "",
+  "discord_vix_clientID": "",
+  "discord_dax_token": "",
+  "discord_dax_clientID": "",
+  "dracoon_password": "",
+  "healthcheck_port": "11312",
+  "hblwrk_NYSEAnnouncement_ChannelID": "",
+  "hblwrk_MNCAnnouncement_ChannelID": "",
+  "hblwrk_OtherAnnouncement_ChannelID": "",
+  "hblwrk_role_assignment_channelID": "",
+  "hblwrk_role_assignment_broker_messageID": "",
+  "hblwrk_role_assignment_special_messageID": "",
+  "hblwrk_role_broker_yes_ID": "",
+  "hblwrk_role_broker_tastyworks_ID": "",
+  "hblwrk_role_broker_ibkr_ID": "",
+  "hblwrk_role_broker_traderepublic_ID": "",
+  "hblwrk_role_broker_smartbroker_ID": "",
+  "hblwrk_role_broker_scalablecapital_ID": "",
+  "hblwrk_role_broker_etoro_ID": "",
+  "hblwrk_role_broker_hausbank_ID": "",
+  "hblwrk_role_broker_comdirect_ID": "",
+  "hblwrk_role_broker_degiro_ID": "",
+  "hblwrk_role_broker_flatex_ID": "",
+  "hblwrk_role_broker_onvista_ID": "",
+  "hblwrk_role_broker_schwab_ID": "",
+  "hblwrk_role_broker_none_ID": "",
+  "hblwrk_role_broker_other_ID": "",
+  "hblwrk_role_special_etf_ID": "",
+  "hblwrk_role_special_1euroladen_ID": "",
+  "hblwrk_role_special_commodities-fx-bonds_ID": "",
+  "hblwrk_role_special_crypto_ID": "",
+  "hblwrk_role_special_steuerkanzlei_ID": "",
+  "hblwrk_role_special_business-karriere_ID": "",
+  "hblwrk_role_special_content-creator-squad_ID": "",
+  "hblwrk_role_special_cryptoping_ID": "",
+  "hblwrk_role_special_nftping_ID": "",
+  "hblwrk_role_special_stageping_ID": ""
 }
 ```
 
@@ -133,7 +182,7 @@ docker stack rm discord-bot-js_production
 
 Our containers are designed to be minimal, which comes with the downside that we cannot run in-container health-checks. The bot exposes a simple HTTP server at port `11312/tcp` (per default), providing the path `/api/v1/health` which responds with `HTTP 200` if the bot is running. Service availability monitoring is provided by HetrixTools <https://hetrixtools.com/report/uptime/7162c65d5357013beb43868c30e86e6a/>.
 
-Unavailability will be reported to the #development channel at Discord.
+Unavailability will be reported to a channel at Discord.
 
 ## Discord Developer settings
 
@@ -148,11 +197,12 @@ Permissions of the bot are granted using OAuth2 scopes. Select Settings -> OAuth
 * bot
 * application.commands
 
-Also make sure the bot has sufficient "bot" permissions (534723820608) before inviting:
+Also make sure the bot has sufficient "bot" permissions (534992256064) before inviting:
 
 General
 
 * View Channels
+* Manage Roles
 
 Text
 
@@ -172,6 +222,8 @@ Text
 * Use Slash Commands
 
 Open the generated URL starting with <https://discord.com/api/oauth2/authorize?client_id=...> to invite your bot to a specific server.
+
+At the Discord client go to "Server Settings" and add the bot to a role. Move that role to the top of the list to make sure the bot can assign and remove roles of members which have roles that are visually "below" the bots role.
 
 To get a server's Guild ID, enable Developer Mode at the Discord Client at User Settings -> App Settings -> Advanced. Then exit the settings menu and right-click the server name and click "Copy ID". This is used at the bot configuration to define which server to connect to.
 

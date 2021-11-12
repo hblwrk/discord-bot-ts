@@ -7,7 +7,8 @@ import {getLogger} from "./modules/logging";
 import {defineSlashCommands, interactSlashCommands} from "./modules/slash-commands";
 import {addInlineResponses} from "./modules/inline-response";
 import {addTriggerResponses} from "./modules/trigger-response";
-import {getAllAssets, getAssets} from "./modules/assets";
+import {getGenericAssets, getAssets} from "./modules/assets";
+import {roleManager} from "./modules/role-manager";
 
 const token = readSecret("discord_token");
 
@@ -59,7 +60,7 @@ logger.log(
   "Caching assets...",
 );
 
-const assets = getAllAssets();
+const assets = getGenericAssets();
 assets.then(async assets => {
   logger.log(
     "info",
@@ -70,7 +71,6 @@ assets.then(async assets => {
   startNyseTimers(client, readSecret("hblwrk_NYSEAnnouncement_ChannelID"));
   startMncTimers(client, readSecret("hblwrk_MNCAnnouncement_ChannelID"));
   startOtherTimers(client, readSecret("hblwrk_OtherAnnouncement_ChannelID"), assets);
-
   logger.log(
     "info",
     "Successfully set timers.",
@@ -86,6 +86,12 @@ assets.then(async assets => {
   logger.log(
     "info",
     `Loaded and cached ${userAssets.length} user assets.`,
+  );
+
+  const roleAssets = await getAssets("role");
+  logger.log(
+    "info",
+    `Loaded and cached ${roleAssets.length} role assets.`,
   );
 
   const assetCommands = [];
@@ -104,6 +110,11 @@ assets.then(async assets => {
   // Slash-commands
   defineSlashCommands(assets, whatIsAssets, userAssets);
   interactSlashCommands(client, assets, assetCommands, whatIsAssets);
+
+  if ("staging" === readSecret("environment")) {
+    // Role assignment
+    roleManager(client, roleAssets);
+  }
 
   runHealthCheck();
 }).then(() => {

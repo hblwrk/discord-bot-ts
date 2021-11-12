@@ -2,7 +2,6 @@
 
 ## Features
 
-* Handling opt-in roles
 * Unittests
 * bare !quote to respond any userQuote, similar to /quote
 

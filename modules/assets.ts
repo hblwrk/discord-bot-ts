@@ -123,6 +123,45 @@ export class MarketDataAsset extends BaseAsset {
   }
 }
 
+export class RoleAsset extends BaseAsset {
+  private _triggerReference: string;
+  private _id: string;
+  private _idReference: string;
+  private _emoji: string;
+
+  public get triggerReference() {
+    return this._triggerReference;
+  }
+
+  public set triggerReference(triggerReference: string) {
+    this._triggerReference = triggerReference;
+  }
+
+  public get id() {
+    return this._id;
+  }
+
+  public set id(id: string) {
+    this._id = id;
+  }
+
+  public get idReference() {
+    return this._idReference;
+  }
+
+  public set idReference(idReference: string) {
+    this._idReference = idReference;
+  }
+
+  public get emoji() {
+    return this._emoji;
+  }
+
+  public set emoji(emoji: string) {
+    this._emoji = emoji;
+  }
+}
+
 export class UserAsset extends BaseAsset {
   private _title: string;
 
@@ -286,8 +325,7 @@ export class EmojiAsset extends BaseAsset {
   }
 }
 
-export async function getAllAssets() {
-  // All except whatis...
+export async function getGenericAssets() {
   const assetTypes = ["emoji", "image", "text", "user", "userquote"];
   const newAssets = [];
   for (const assetType of assetTypes) {
@@ -363,6 +401,14 @@ export async function getAssets(type: string): Promise<any[]> {
           const newAsset = plainToClass(MarketDataAsset, jsonObject);
           newAsset.botToken = readSecret(newAsset.botTokenReference);
           newAsset.botClientId = readSecret(newAsset.botClientIdReference);
+          newAssets.push(newAsset);
+          break;
+        }
+
+        case "role": {
+          const newAsset = plainToClass(RoleAsset, jsonObject);
+          newAsset.trigger = readSecret(newAsset.triggerReference);
+          newAsset.id = readSecret(newAsset.idReference);
           newAssets.push(newAsset);
           break;
         }

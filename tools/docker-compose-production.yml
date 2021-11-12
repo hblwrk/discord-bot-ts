@@ -19,15 +19,10 @@ services:
     ports:
       - "11312:11312"
     secrets:
+      - environment
       - production_discord_token
       - production_discord_clientID
       - production_discord_guildID
-      - production_dracoon_password
-      - production_healthcheck_port
-      - production_twelvedata_apikey
-      - production_hblwrk_NYSEAnnouncement_ChannelID
-      - production_hblwrk_MNCAnnouncement_ChannelID
-      - production_hblwrk_OtherAnnouncement_ChannelID
       - production_discord_btcusd_token
       - production_discord_btcusd_clientID
       - production_discord_ethusd_token
@@ -46,27 +41,48 @@ services:
       - production_discord_vix_clientID
       - production_discord_dax_token
       - production_discord_dax_clientID
+      - production_dracoon_password
+      - production_healthcheck_port
+      - production_hblwrk_NYSEAnnouncement_ChannelID
+      - production_hblwrk_MNCAnnouncement_ChannelID
+      - production_hblwrk_OtherAnnouncement_ChannelID
+      - production_hblwrk_role_assignment_channelID
+      - production_hblwrk_role_assignment_broker_messageID
+      - production_hblwrk_role_assignment_special_messageID
+      - production_hblwrk_role_broker_yes_ID
+      - production_hblwrk_role_broker_tastyworks_ID
+      - production_hblwrk_role_broker_ibkr_ID
+      - production_hblwrk_role_broker_traderepublic_ID
+      - production_hblwrk_role_broker_smartbroker_ID
+      - production_hblwrk_role_broker_scalablecapital_ID
+      - production_hblwrk_role_broker_etoro_ID
+      - production_hblwrk_role_broker_hausbank_ID
+      - production_hblwrk_role_broker_comdirect_ID
+      - production_hblwrk_role_broker_degiro_ID
+      - production_hblwrk_role_broker_flatex_ID
+      - production_hblwrk_role_broker_onvista_ID
+      - production_hblwrk_role_broker_schwab_ID
+      - production_hblwrk_role_broker_none_ID
+      - production_hblwrk_role_broker_other_ID
+      - production_hblwrk_role_special_etf_ID
+      - production_hblwrk_role_special_1euroladen_ID
+      - production_hblwrk_role_special_commodities-fx-bonds_ID
+      - production_hblwrk_role_special_crypto_ID
+      - production_hblwrk_role_special_steuerkanzlei_ID
+      - production_hblwrk_role_special_business-karriere_ID
+      - production_hblwrk_role_special_content-creator-squad_ID
+      - production_hblwrk_role_special_cryptoping_ID
+      - production_hblwrk_role_special_nftping_ID
+      - production_hblwrk_role_special_stageping_ID
 
 secrets:
+  environment:
+    external: true
   production_discord_token:
     external: true
   production_discord_clientID:
     external: true
   production_discord_guildID:
-    external: true
-  production_dracoon_password:
-    external: true
-  production_healthcheck_port:
-    external: true
-  production_twelvedata_apikey:
-    external: true
-  production_hblwrk_NYSEAnnouncement_ChannelID:
-    external: true
-  production_hblwrk_MNCAnnouncement_ChannelID:
-    external: true
-  production_hblwrk_NYSEAnnouncement_ChannelID:
-    external: true
-  production_hblwrk_OtherAnnouncement_ChannelID:
     external: true
   production_discord_btcusd_token:
     external: true
@@ -103,4 +119,72 @@ secrets:
   production_discord_dax_token:
     external: true
   production_discord_dax_clientID:
+    external: true
+  production_dracoon_password:
+    external: true
+  production_healthcheck_port:
+    external: true
+  production_hblwrk_NYSEAnnouncement_ChannelID:
+    external: true
+  production_hblwrk_MNCAnnouncement_ChannelID:
+    external: true
+  production_hblwrk_NYSEAnnouncement_ChannelID:
+    external: true
+  production_hblwrk_OtherAnnouncement_ChannelID:
+    external: true
+  production_hblwrk_role_assignment_channelID:
+    external: true
+  production_hblwrk_role_assignment_broker_messageID:
+    external: true
+  production_hblwrk_role_assignment_special_messageID:
+    external: true
+  production_hblwrk_role_broker_yes_ID:
+    external: true
+  production_hblwrk_role_broker_tastyworks_ID:
+    external: true
+  production_hblwrk_role_broker_ibkr_ID:
+    external: true
+  production_hblwrk_role_broker_traderepublic_ID:
+    external: true
+  production_hblwrk_role_broker_smartbroker_ID:
+    external: true
+  production_hblwrk_role_broker_scalablecapital_ID:
+    external: true
+  production_hblwrk_role_broker_etoro_ID:
+    external: true
+  production_hblwrk_role_broker_hausbank_ID:
+    external: true
+  production_hblwrk_role_broker_comdirect_ID:
+    external: true
+  production_hblwrk_role_broker_degiro_ID:
+    external: true
+  production_hblwrk_role_broker_flatex_ID:
+    external: true
+  production_hblwrk_role_broker_onvista_ID:
+    external: true
+  production_hblwrk_role_broker_schwab_ID:
+    external: true
+  production_hblwrk_role_broker_none_ID:
+    external: true
+  production_hblwrk_role_broker_other_ID:
+    external: true
+  production_hblwrk_role_special_etf_ID:
+    external: true
+  production_hblwrk_role_special_1euroladen_ID:
+    external: true
+  production_hblwrk_role_special_commodities-fx-bonds_ID:
+    external: true
+  production_hblwrk_role_special_crypto_ID:
+    external: true
+  production_hblwrk_role_special_steuerkanzlei_ID:
+    external: true
+  production_hblwrk_role_special_business-karriere_ID:
+    external: true
+  production_hblwrk_role_special_content-creator-squad_ID:
+    external: true
+  production_hblwrk_role_special_cryptoping_ID:
+    external: true
+  production_hblwrk_role_special_nftping_ID:
+    external: true
+  production_hblwrk_role_special_stageping_ID:
     external: true
