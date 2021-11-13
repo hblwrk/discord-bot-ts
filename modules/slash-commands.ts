@@ -53,6 +53,15 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .setRequired(true));
   slashCommands.push(slashCommandLmgtfy.toJSON());
 
+  const slashCommand8ball = new SlashCommandBuilder()
+    .setName("8ball")
+    .setDescription("Weiser als das Interwebs...")
+    .addStringOption(option =>
+      option.setName("frage")
+        .setDescription("Stelle die Frage, sterblicher!")
+        .setRequired(true));
+  slashCommands.push(slashCommand8ball.toJSON());
+
   const slashWhatIs = new SlashCommandBuilder()
     .setName("whatis")
     .setDescription("What is...")
@@ -139,6 +148,39 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
     if ("cryptodice" === commandName) {
       await interaction.reply(`Rolling the crypto dice... ${cryptodice()}.`).catch(error => {
+        logger.log(
+          "error",
+          error,
+        );
+      });
+    }
+    
+    if ("8ball" === commandName) {
+      let options: string[] = [":8ball: Ziemlich sicher.", 
+                              ":8ball: Es ist entschieden.", 
+                              ":8ball: Ohne Zweifel.",
+                              ":8ball: Ja, absolut.",
+                              ":8ball: Du kannst darauf zählen.",
+                              ":8ball: Sehr wahrscheinlich.",
+                              ":8ball: Sieht gut aus.",
+                              ":8ball: Ja.",
+                              ":8ball: Die Zeichen stehen auf Ja.",
+                              ":8ball: Antwort unklar.",
+                              ":8ball: Frag mich später noch mal.",
+                              ":8ball: Sag ich dir besser noch nicht.",
+                              ":8ball: Kann ich noch nicht sagen.",
+                              ":8ball: Konzentriere dich und frage erneut.",
+                              ":8ball: Zähl nicht darauf.",
+                              ":8ball: Meine Antwort ist nein.",
+                              ":8ball: Meine Quellen sagen nein.",
+                              ":8ball: Sieht nicht so gut aus.",
+                              ":8ball: Sehr unwahrscheinlich."];
+      const randomElement = options[Math.floor(Math.random() * options.length)];
+      const embed = new MessageEmbed();
+      embed.addFields(
+        {name: interaction.options.get("frage").value.toString(), value: randomElement},
+      );
+      await interaction.reply({embeds: [embed]}).catch(error => {
         logger.log(
           "error",
           error,
