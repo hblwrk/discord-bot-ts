@@ -113,7 +113,18 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
       if ("string" === typeof search) {
         if ("yes" === search.toLowerCase()) {
           const embed = new MessageEmbed();
-          const asset = getAssetByName("yes", assets);
+          const asset = getAssetByName("sara-yes", assets);
+          const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+          embed.setImage(`attachment://${asset.fileName}`);
+          message.channel.send({embeds: [embed], files: [file]}).catch(error => {
+            logger.log(
+              "error",
+              error,
+            );
+          });
+        } else if ("shrug" === search.toLowerCase()) {
+          const embed = new MessageEmbed();
+          const asset = getAssetByName("sara-shrug", assets);
           const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
           embed.setImage(`attachment://${asset.fileName}`);
           message.channel.send({embeds: [embed], files: [file]}).catch(error => {

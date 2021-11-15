@@ -41,12 +41,18 @@
   title: "Stonks only go up!"
   location: dracoon
   locationId: 8KsXYOhReaJ1lxatAS3cf2i6LrLXyTeH
-- name: yes
+- name: sara-yes
   trigger: ["yes"]
   fileName: sara-yes.gif
   title: "Sara yes"
   location: dracoon
   locationId: tCWua0coo05JguqrUx6ga5LzjlncspZ8
+- name: sara-shrug
+  trigger: ["shrug"]
+  fileName: sara-shrug.gif
+  title: "Sara shrug"
+  location: dracoon
+  locationId: SaUM5gUGKPpz3f23CyZksg3CsOCUB77m
 - name: problem
   trigger: ["problem"]
   fileName: problem.gif
