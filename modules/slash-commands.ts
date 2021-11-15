@@ -251,7 +251,13 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         what = validator.escape(interaction.options.get("what").value.toString());
 
         if ("yes" === what.toLowerCase()) {
-          const asset = getAssetByName("yes", assets);
+          const asset = getAssetByName("sara-yes", assets);
+          const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+          const embed = new MessageEmbed();
+          embed.setImage(`attachment://${asset.fileName}`);
+          await interaction.reply({embeds: [embed], files: [file]});
+        } else if ("shrug" === what.toLowerCase()) {
+          const asset = getAssetByName("sara-shrug", assets);
           const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
           const embed = new MessageEmbed();
           embed.setImage(`attachment://${asset.fileName}`);
