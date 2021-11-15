@@ -4,6 +4,7 @@
 
 * Unittests
 * bare !quote to respond any userQuote, similar to /quote
+* Check if permissions are sufficient on start to avoid runtime exceptions
 
 ## Bugs
 

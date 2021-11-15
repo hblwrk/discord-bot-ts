@@ -1,6 +1,6 @@
 import {MessageAttachment, MessageEmbed} from "discord.js";
 import validator from "validator";
-import {ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets";
+import {getAssetByName, ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets";
 import {cryptodice} from "./crypto-dice";
 import {lmgtfy} from "./lmgtfy";
 import {getLogger} from "./logging";
@@ -68,12 +68,14 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
 
     if (messageContent.startsWith("!lmgtfy")) {
       const search = messageContent.split("!lmgtfy ")[1];
-      message.channel.send(`Let me google that for you... ${lmgtfy(search)}.`).catch(error => {
-        logger.log(
-          "error",
-          error,
-        );
-      });
+      if ("string" === typeof search) {
+        message.channel.send(`Let me google that for you... ${lmgtfy(search)}.`).catch(error => {
+          logger.log(
+            "error",
+            error,
+          );
+        });
+      }
     }
 
     if (messageContent.startsWith("!whatis")) {
@@ -102,6 +104,31 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
               );
             });
           }
+        }
+      }
+    }
+
+    if (messageContent.startsWith("!sara")) {
+      const search = messageContent.split("!sara ")[1];
+      if ("string" === typeof search) {
+        if ("yes" === search.toLowerCase()) {
+          const embed = new MessageEmbed();
+          const asset = getAssetByName("yes", assets);
+          const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+          embed.setImage(`attachment://${asset.fileName}`);
+          message.channel.send({embeds: [embed], files: [file]}).catch(error => {
+            logger.log(
+              "error",
+              error,
+            );
+          });
+        } else {
+          message.channel.send("Sara möchte das nicht.").catch(error => {
+            logger.log(
+              "error",
+              error,
+            );
+          });
         }
       }
     }

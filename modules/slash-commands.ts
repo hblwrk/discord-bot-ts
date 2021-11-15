@@ -3,7 +3,7 @@ import {REST} from "@discordjs/rest";
 import {Routes} from "discord-api-types/rest/v9";
 import {MessageAttachment, MessageEmbed} from "discord.js";
 import validator from "validator";
-import {ImageAsset, TextAsset} from "./assets";
+import {getAssetByName, ImageAsset, TextAsset} from "./assets";
 import {cryptodice} from "./crypto-dice";
 import {lmgtfy} from "./lmgtfy";
 import {getLogger} from "./logging";
@@ -82,6 +82,16 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .addChoices(userAssetsChoices));
   slashCommands.push(slashUserquotequote.toJSON());
 
+  const slashSara = new SlashCommandBuilder()
+    .setName("sara")
+    .setDescription("Sara...")
+    .addStringOption(option =>
+      option.setName("what")
+        .setDescription("Was soll Sara tun?")
+        .setRequired(false),
+    );
+  slashCommands.push(slashSara.toJSON());
+
   // Deploy slash-commands to Discord
   const rest = new REST({
     version: "9",
@@ -154,27 +164,29 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         );
       });
     }
-    
+
     if ("8ball" === commandName) {
-      let options: string[] = [":8ball: Ziemlich sicher.", 
-                              ":8ball: Es ist entschieden.", 
-                              ":8ball: Ohne Zweifel.",
-                              ":8ball: Ja, absolut.",
-                              ":8ball: Du kannst darauf zählen.",
-                              ":8ball: Sehr wahrscheinlich.",
-                              ":8ball: Sieht gut aus.",
-                              ":8ball: Ja.",
-                              ":8ball: Die Zeichen stehen auf Ja.",
-                              ":8ball: Antwort unklar.",
-                              ":8ball: Frag mich später noch mal.",
-                              ":8ball: Sag ich dir besser noch nicht.",
-                              ":8ball: Kann ich noch nicht sagen.",
-                              ":8ball: Konzentriere dich und frage erneut.",
-                              ":8ball: Zähl nicht darauf.",
-                              ":8ball: Meine Antwort ist nein.",
-                              ":8ball: Meine Quellen sagen nein.",
-                              ":8ball: Sieht nicht so gut aus.",
-                              ":8ball: Sehr unwahrscheinlich."];
+      let options: string[] = [
+        ":8ball: Ziemlich sicher.",
+        ":8ball: Es ist entschieden.",
+        ":8ball: Ohne Zweifel.",
+        ":8ball: Ja, absolut.",
+        ":8ball: Du kannst darauf zählen.",
+        ":8ball: Sehr wahrscheinlich.",
+        ":8ball: Sieht gut aus.",
+        ":8ball: Ja.",
+        ":8ball: Die Zeichen stehen auf Ja.",
+        ":8ball: Antwort unklar.",
+        ":8ball: Frag mich später noch mal.",
+        ":8ball: Sag ich dir besser noch nicht.",
+        ":8ball: Kann ich noch nicht sagen.",
+        ":8ball: Konzentriere dich und frage erneut.",
+        ":8ball: Zähl nicht darauf.",
+        ":8ball: Meine Antwort ist nein.",
+        ":8ball: Meine Quellen sagen nein.",
+        ":8ball: Sieht nicht so gut aus.",
+        ":8ball: Sehr unwahrscheinlich.",
+      ];
       const randomElement = options[Math.floor(Math.random() * options.length)];
       const embed = new MessageEmbed();
       embed.addFields(
@@ -231,6 +243,35 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       const randomQuote = getRandomQuote(who, assets);
       const file = new MessageAttachment(Buffer.from(randomQuote.fileContent), randomQuote.fileName);
       await interaction.reply({files: [file]});
+    }
+
+    if ("sara" === commandName) {
+      let what: string;
+      if (null !== interaction.options.get("what")) {
+        what = validator.escape(interaction.options.get("what").value.toString());
+
+        if ("yes" === what.toLowerCase()) {
+          const asset = getAssetByName("yes", assets);
+          const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+          const embed = new MessageEmbed();
+          embed.setImage(`attachment://${asset.fileName}`);
+          await interaction.reply({embeds: [embed], files: [file]});
+        } else {
+          await interaction.reply("Sara möchte das nicht.").catch(error => {
+            logger.log(
+              "error",
+              error,
+            );
+          });
+        }
+      } else {
+        await interaction.reply("Sara möchte das nicht.").catch(error => {
+          logger.log(
+            "error",
+            error,
+          );
+        });
+      }
     }
   });
 }
