@@ -275,3 +275,9 @@
   title: "Wozu gibt es denn Brücken?"
   location: dracoon
   locationId: bCa6ddbZ2FgOFvklfUvBENiTHeCWB9mw
+- name: cashsecuredput
+  trigger: ["cashsecuredput"]
+  fileName: cash-secured-put.jpg
+  title: "Cash secured put..."
+  location: dracoon
+  locationId: RU6oxSbfeQVi19ywOdxAPjKKHG9IH0vs
