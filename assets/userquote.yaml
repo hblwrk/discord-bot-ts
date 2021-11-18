@@ -258,6 +258,13 @@
   title: "Quote chaostrader 28"
   location: dracoon
   locationId: AMFuxynIrpfJxpRxdjZVewTK53mOVHHB
+- name: quote_chaostrader_29
+  trigger: ["quote chaostrader 29"]
+  user: chaostrader
+  fileName: quote-chaostrader-29.png
+  title: "Quote chaostrader 29"
+  location: dracoon
+  locationId: lMvhO1pTYyhtMF0jj8LtSazzw1I2CSqV
 - name: quote_zetto_1
   trigger: ["quote zetto 1"]
   user: zetto
