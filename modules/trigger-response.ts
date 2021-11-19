@@ -112,11 +112,9 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
       const search = messageContent.split("!sara ")[1];
       if ("string" === typeof search) {
         if ("yes" === search.toLowerCase()) {
-          const embed = new MessageEmbed();
           const asset = getAssetByName("sara-yes", assets);
           const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
-          embed.setImage(`attachment://${asset.fileName}`);
-          message.channel.send({embeds: [embed], files: [file]}).catch(error => {
+          await message.channel.send({files: [file]}).catch(error => {
             logger.log(
               "error",
               error,
@@ -126,8 +124,7 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
           const embed = new MessageEmbed();
           const asset = getAssetByName("sara-shrug", assets);
           const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
-          embed.setImage(`attachment://${asset.fileName}`);
-          message.channel.send({embeds: [embed], files: [file]}).catch(error => {
+          await message.channel.send({files: [file]}).catch(error => {
             logger.log(
               "error",
               error,

@@ -245,6 +245,15 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       await interaction.reply({files: [file]});
     }
 
+    async function saraDoesNotWant() {
+      await interaction.reply("Sara möchte das nicht.").catch(error => {
+        logger.log(
+          "error",
+          error,
+        );
+      });
+    }
+
     if ("sara" === commandName) {
       let what: string;
       if (null !== interaction.options.get("what")) {
@@ -253,30 +262,16 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         if ("yes" === what.toLowerCase()) {
           const asset = getAssetByName("sara-yes", assets);
           const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
-          const embed = new MessageEmbed();
-          embed.setImage(`attachment://${asset.fileName}`);
-          await interaction.reply({embeds: [embed], files: [file]});
+          await interaction.reply({files: [file]});
         } else if ("shrug" === what.toLowerCase()) {
           const asset = getAssetByName("sara-shrug", assets);
           const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
-          const embed = new MessageEmbed();
-          embed.setImage(`attachment://${asset.fileName}`);
-          await interaction.reply({embeds: [embed], files: [file]});
+          await interaction.reply({files: [file]});
         } else {
-          await interaction.reply("Sara möchte das nicht.").catch(error => {
-            logger.log(
-              "error",
-              error,
-            );
-          });
+          saraDoesNotWant();
         }
       } else {
-        await interaction.reply("Sara möchte das nicht.").catch(error => {
-          logger.log(
-            "error",
-            error,
-          );
-        });
+        saraDoesNotWant();
       }
     }
   });
