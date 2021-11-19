@@ -13,7 +13,6 @@ export async function roleManager(client, assetRoles) {
   const brokerMessage = await client.guilds.cache.get(guildId).channels.cache.get(channelId).messages.fetch(readSecret("hblwrk_role_assignment_broker_messageID"));
   const specialMessage = await client.guilds.cache.get(guildId).channels.cache.get(channelId).messages.fetch(readSecret("hblwrk_role_assignment_special_messageID"));
 
-/*
   // Bootstrap message with emojis if they do not already exist
   for (const role of assetRoles) {
     if ("hblwrk_role_assignment_broker_messageID" === role.triggerReference) {
@@ -36,7 +35,6 @@ export async function roleManager(client, assetRoles) {
       specialMessage.react(emoji);
     }
   }
-*/
 
   // Assign user-role based on emoji selection
   client.on("messageReactionAdd", async (reaction, user) => {
@@ -65,7 +63,6 @@ export async function roleManager(client, assetRoles) {
         // Custom emoji
         reactionEmoji = reaction.emoji.id;
       }
-      console.log(`Trigger ${role.trigger} vs ${reaction.message.id}, emoji ${emoji} vs ${reactionEmoji}, cleint ${clientId} vs ${user.id}`);
 
       if (role.trigger === reaction.message.id && emoji === reactionEmoji && clientId !== user.id) {
         const guildUser = await client.guilds.cache.get(guildId).members.fetch(user.id);
