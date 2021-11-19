@@ -65,7 +65,7 @@ export async function roleManager(client, assetRoles) {
         // Custom emoji
         reactionEmoji = reaction.emoji.id;
       }
-      console.log(`Add/Remove role ${reaction.message.id} at ${user} with emoji ${reactionEmoji}`);
+      console.log(`Add/Remove role ${role.id} at ${user} with emoji ${reactionEmoji}`);
 
       if (role.trigger === reaction.message.id && emoji === reactionEmoji && clientId !== user.id) {
         const guildUser = await client.guilds.cache.get(guildId).members.fetch(user.id);
