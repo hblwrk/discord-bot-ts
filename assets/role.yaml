@@ -124,7 +124,7 @@
   triggerReference: "hblwrk_role_assignment_special_messageID"
   id:
   idReference: "hblwrk_role_special_content-creator-squad_ID"
-  emoji: "🎙"
+  emoji: "🎙️"
 - name: cryptoping
   trigger:
   triggerReference: "hblwrk_role_assignment_special_messageID"
