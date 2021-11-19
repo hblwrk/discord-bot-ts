@@ -31,7 +31,6 @@ export async function roleManager(client, assetRoles) {
       } else {
         emoji = role.emoji;
       }
-      console.log(`Reacht with ${emoji} to ${specialMessage}`);
       specialMessage.react(emoji);
     }
   }
