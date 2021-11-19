@@ -111,10 +111,10 @@ assets.then(async assets => {
   defineSlashCommands(assets, whatIsAssets, userAssets);
   interactSlashCommands(client, assets, assetCommands, whatIsAssets);
 
-  if ("staging" === readSecret("environment")) {
+  //if ("staging" === readSecret("environment")) {
     // Role assignment
     await roleManager(client, roleAssets);
-  }
+  //}
 
   runHealthCheck();
 }).then(() => {
