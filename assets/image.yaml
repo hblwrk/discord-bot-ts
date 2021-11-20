@@ -240,7 +240,7 @@
   location: dracoon
   locationId: vClJcDQxVOTVQ1TcsxUDlxOMG9Kw4QYR
 - name: stabil
-  trigger: ["rühl", "pumpernickel", "pumper"]
+  trigger: ["rühl", "stabil"]
   fileName: stabil.gif
   title: "Stabilität ist alles!"
   location: dracoon
