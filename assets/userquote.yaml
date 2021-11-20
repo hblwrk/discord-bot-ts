@@ -405,3 +405,38 @@
   title: "Quote konrev 1"
   location: dracoon
   locationId: Cihwj6QE4gBwUfaGyKZVDX5yYU5h6XrK
+- name: quote_buffet_1
+  trigger: ["quote buffet 1"]
+  user: buffet
+  fileName: quote-buffet-01.png
+  title: "Quote buffet 1"
+  location: dracoon
+  locationId: UFO2DTyv0fvlziYdovZp8RrwwE8OunU3
+- name: quote_buffet_2
+  trigger: ["quote buffet 2"]
+  user: buffet
+  fileName: quote-buffet-02.png
+  title: "Quote buffet 2"
+  location: dracoon
+  locationId: RfTp64WYA0gSj1tubB6e3fVJxIHrnaeK
+- name: quote_keynes_1
+  trigger: ["quote keynes 1"]
+  user: keynes
+  fileName: quote-keynes-01.png
+  title: "Quote keynes 1"
+  location: dracoon
+  locationId: 35jjU9UBJzChARkX10DT3cNQ6awIgEW6
+- name: quote_einstein_1
+  trigger: ["quote einstein 1"]
+  user: einstein
+  fileName: quote-einstein-01.png
+  title: "Quote einstein 1"
+  location: dracoon
+  locationId: eZiQ06yvfYNTadQoDt60cLLOoxnHH0MZ
+- name: quote_friedman_1
+  trigger: ["quote friedman 1"]
+  user: friedman
+  fileName: quote-friedman-01.png
+  title: "Quote friedman 1"
+  location: dracoon
+  locationId: 878B4EFdiepx378oPRoeEJm7wRABFKRx

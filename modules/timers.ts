@@ -169,9 +169,7 @@ export function startOtherTimers(client, channelID: string, assets: any) {
   Schedule.scheduleJob(ruleFriday, async () => {
     const fridayAsset = getAssetByName("freitag", assets);
     const fridayFile = new MessageAttachment(Buffer.from(fridayAsset.fileContent), fridayAsset.fileName);
-    const fridayEmbed = new MessageEmbed();
-    fridayEmbed.setImage(`attachment://${fridayAsset.fileName}`);
-    client.channels.cache.get(channelID).send({embeds: [fridayEmbed], files: [fridayFile]}).catch(error => {
+    client.channels.cache.get(channelID).send({files: [fridayFile]}).catch(error => {
       logger.log(
         "error",
         error,

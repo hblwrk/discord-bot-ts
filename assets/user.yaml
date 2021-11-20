@@ -20,3 +20,15 @@
 - name: konrev
   trigger: ["quote konrev"]
   title: "Random konrev quote"
+- name: buffet
+  trigger: ["quote buffet"]
+  title: "Random buffet quote"
+- name: keynes
+  trigger: ["quote keynes"]
+  title: "Random keynes quote"
+- name: einstein
+  trigger: ["quote einstein"]
+  title: "Random einstein quote"
+- name: friedman
+  trigger: ["quote friedman"]
+  title: "Random friedman quote"
