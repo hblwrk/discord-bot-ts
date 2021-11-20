@@ -81,6 +81,14 @@ export function startNyseTimers(client, channelID: string) {
           error,
         );
       });
+    } else if (true === isHoliday(new Date()) && 11 === Number(moment().format("MM"))) {
+      // Thanksgiving is the only NYSE holiday in November and the market closes at 13:00 local time.
+      client.channels.cache.get(channelID).send("🔔🔔🔔 Ich bin ready. Ihr seid ready?! Na dann loooos! Huuuiiii! 🚀 Der Börsenritt beginnt, meine Freunde. Seid dabei, ihr dürft nichts verpassen! 🥳 🎠 🔔🔔🔔").catch(error => {
+        logger.log(
+          "error",
+          error,
+        );
+      });
     }
   });
 
