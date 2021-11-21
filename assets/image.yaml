@@ -281,3 +281,9 @@
   title: "Cash secured put..."
   location: dracoon
   locationId: RU6oxSbfeQVi19ywOdxAPjKKHG9IH0vs
+- name: cyber
+  trigger: ["cyber"]
+  fileName: cyber-cyber.gif
+  title: "Cyber, cyber!"
+  location: dracoon
+  locationId: FunkW9XLUsUA4Jf6VB8Ut4dKKPIFaUUi
