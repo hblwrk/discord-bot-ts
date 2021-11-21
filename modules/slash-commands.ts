@@ -259,16 +259,16 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       guildUser.roles.add(mutedRole);
       logger.log(
         "info",
-        `Muted ${interaction.user.username} for 10 seconds.`,
+        `Muted ${interaction.user.username} for 60 seconds.`,
       );
 
       const timer: ReturnType<typeof setTimeout> = setTimeout(() => {
         guildUser.roles.remove(mutedRole);
         logger.log(
           "info",
-          `Unmuted ${interaction.user.username} after 10 seconds.`,
+          `Unmuted ${interaction.user.username} after 60 seconds.`,
         );
-      }, 10000);
+      }, 60000);
 
       await interaction.reply({files: [file]});
     }
