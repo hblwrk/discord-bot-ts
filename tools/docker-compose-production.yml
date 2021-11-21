@@ -74,6 +74,7 @@ services:
       - production_hblwrk_role_special_cryptoping_ID
       - production_hblwrk_role_special_nftping_ID
       - production_hblwrk_role_special_stageping_ID
+      - production_hblwrk_role_muted_ID
 
 secrets:
   environment:
@@ -188,3 +189,6 @@ secrets:
     external: true
   production_hblwrk_role_special_stageping_ID:
     external: true
+  production_hblwrk_role_muted_ID:
+    external: true
+
