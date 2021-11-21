@@ -15,7 +15,7 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
     if (assetCommandsWithPrefix.some(v => messageContent.includes(v))) {
       for (const asset of assets) {
         for (const trigger of asset.trigger) {
-          if (`!${trigger}` === messageContent) {
+          if (`!${trigger}` === messageContent && 0 > asset.trigger.length) {
             if (asset instanceof ImageAsset || asset instanceof UserQuoteAsset) {
               // Response with an image
               const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);

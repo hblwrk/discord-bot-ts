@@ -28,7 +28,7 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
 
   const slashCommands = [];
   for (const asset of assets) {
-    if (asset instanceof ImageAsset || asset instanceof TextAsset) {
+    if ((asset instanceof ImageAsset || asset instanceof TextAsset) && 0 > asset.trigger.length) {
       for (const trigger of asset.trigger) {
         const slashCommand = new SlashCommandBuilder()
           .setName(trigger.replaceAll(" ", "_"))
@@ -81,6 +81,11 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .setRequired(false)
         .addChoices(userAssetsChoices));
   slashCommands.push(slashUserquotequote.toJSON());
+
+  const slashCommandIslandboi = new SlashCommandBuilder()
+    .setName("islandboi")
+    .setDescription("Island bwoi!");
+  slashCommands.push(slashCommandIslandboi.toJSON());
 
   const slashSara = new SlashCommandBuilder()
     .setName("sara")
@@ -245,6 +250,29 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       await interaction.reply({files: [file]});
     }
 
+    if ("islandboi" === commandName) {
+      const asset = getAssetByName("islandboi", assets);
+      const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+
+      const guildUser = await client.guilds.cache.get(guildId).members.fetch(interaction.user.id);
+      const mutedRole = readSecret("hblwrk_role_muted_ID");
+      guildUser.roles.add(mutedRole);
+      logger.log(
+        "info",
+        `Muted ${interaction.user.username} for 10 seconds.`,
+      );
+
+      const timer: ReturnType<typeof setTimeout> = setTimeout(() => {
+        guildUser.roles.remove(mutedRole);
+        logger.log(
+          "info",
+          `Unmuted ${interaction.user.username} after 10 seconds.`,
+        );
+      }, 10000);
+
+      await interaction.reply({files: [file]});
+    }
+
     async function saraDoesNotWant() {
       await interaction.reply("Sara möchte das nicht.").catch(error => {
         logger.log(
@@ -276,3 +304,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
   });
 }
+function user(user: any): () => void {
+  throw new Error("Function not implemented.");
+}
+

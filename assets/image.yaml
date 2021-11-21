@@ -42,13 +42,13 @@
   location: dracoon
   locationId: 8KsXYOhReaJ1lxatAS3cf2i6LrLXyTeH
 - name: sara-yes
-  trigger: ["yes"]
+  trigger: []
   fileName: sara-yes.gif
   title: "Sara yes"
   location: dracoon
   locationId: tCWua0coo05JguqrUx6ga5LzjlncspZ8
 - name: sara-shrug
-  trigger: ["shrug"]
+  trigger: []
   fileName: sara-shrug.gif
   title: "Sara shrug"
   location: dracoon
@@ -287,3 +287,9 @@
   title: "Cyber, cyber!"
   location: dracoon
   locationId: FunkW9XLUsUA4Jf6VB8Ut4dKKPIFaUUi
+- name: islandboi
+  trigger: []
+  fileName: islandboi.gif
+  title: "Island Bwoi!"
+  location: dracoon
+  locationId: eK2PJciFpTFhHaNPJ76HbqPV1aoKdGmJ

@@ -13,4 +13,5 @@
 ## Infra
 
 * Improve monitoring, Prometheus metrics
-* Proper secret management, temporary storage (redis, vault...?)
+* Proper secret management (vault...)?
+* Temporary storage for mutes, tempbans etc. (redis...?)
