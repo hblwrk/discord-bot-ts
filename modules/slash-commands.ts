@@ -82,11 +82,12 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .addChoices(userAssetsChoices));
   slashCommands.push(slashUserquotequote.toJSON());
 
+/*
   const slashCommandIslandboi = new SlashCommandBuilder()
     .setName("islandboi")
     .setDescription("Island bwoi!");
   slashCommands.push(slashCommandIslandboi.toJSON());
-
+*/
   const slashSara = new SlashCommandBuilder()
     .setName("sara")
     .setDescription("Sara...")
