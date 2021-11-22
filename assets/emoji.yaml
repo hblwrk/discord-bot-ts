@@ -14,6 +14,9 @@
 - name: nesquick
   trigger: ["nesquick", "/nq", "nasdaq"]
   response: ["custom:nesquik"]
+- name: boomer
+  trigger: ["boomer"]
+  response: ["custom:wsboomer"]
 - name: wink
   trigger: ["😉"]
   response: ["😉"]
