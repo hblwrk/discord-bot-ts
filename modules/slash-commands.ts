@@ -82,12 +82,12 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .addChoices(userAssetsChoices));
   slashCommands.push(slashUserquotequote.toJSON());
 
-/*
+
   const slashCommandIslandboi = new SlashCommandBuilder()
     .setName("islandboi")
     .setDescription("Island bwoi!");
   slashCommands.push(slashCommandIslandboi.toJSON());
-*/
+
   const slashSara = new SlashCommandBuilder()
     .setName("sara")
     .setDescription("Sara...")
@@ -252,8 +252,8 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     if ("islandboi" === commandName) {
-      const asset = getAssetByName("islandboi", assets);
-      const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+      //const asset = getAssetByName("islandboi", assets);
+      //const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
 
       const guildUser = await client.guilds.cache.get(guildId).members.fetch(interaction.user.id);
       const mutedRole = readSecret("hblwrk_role_muted_ID");
@@ -269,9 +269,9 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           "info",
           `Unmuted ${interaction.user.username} after 60 seconds.`,
         );
-      }, 60000);
+      }, 300000);
 
-      await interaction.reply({files: [file]});
+      //await interaction.reply({files: [file]});
     }
 
     async function saraDoesNotWant() {
