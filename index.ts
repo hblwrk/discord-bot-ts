@@ -68,9 +68,9 @@ assets.then(async assets => {
   );
 
   // Set timers, e.g. for stock exchange open/close notifications
-  startNyseTimers(client, readSecret("hblwrk_NYSEAnnouncement_ChannelID"));
-  startMncTimers(client, readSecret("hblwrk_MNCAnnouncement_ChannelID"));
-  startOtherTimers(client, readSecret("hblwrk_OtherAnnouncement_ChannelID"), assets);
+  startNyseTimers(client, readSecret("hblwrk_channel_NYSEAnnouncement_ID"));
+  startMncTimers(client, readSecret("hblwrk_channel_MNCAnnouncement_ID"));
+  startOtherTimers(client, readSecret("hblwrk_channel_OtherAnnouncement_ID"), assets);
   logger.log(
     "info",
     "Successfully set timers.",

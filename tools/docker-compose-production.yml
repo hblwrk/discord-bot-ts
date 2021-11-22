@@ -43,9 +43,9 @@ services:
       - production_discord_dax_clientID
       - production_dracoon_password
       - production_healthcheck_port
-      - production_hblwrk_NYSEAnnouncement_ChannelID
-      - production_hblwrk_MNCAnnouncement_ChannelID
-      - production_hblwrk_OtherAnnouncement_ChannelID
+      - production_hblwrk_channel_NYSEAnnouncement_ID
+      - production_hblwrk_channel_MNCAnnouncement_ID
+      - production_hblwrk_channel_OtherAnnouncement_ID
       - production_hblwrk_channel_logging_ID
       - production_hblwrk_role_assignment_channelID
       - production_hblwrk_role_assignment_broker_messageID
@@ -126,11 +126,11 @@ secrets:
     external: true
   production_healthcheck_port:
     external: true
-  production_hblwrk_NYSEAnnouncement_ChannelID:
+  production_hblwrk_channel_NYSEAnnouncement_ID:
     external: true
-  production_hblwrk_MNCAnnouncement_ChannelID:
+  production_hblwrk_channel_MNCAnnouncement_ID:
     external: true
-  production_hblwrk_OtherAnnouncement_ChannelID:
+  production_hblwrk_channel_OtherAnnouncement_ID:
     external: true
   production_hblwrk_channel_logging_ID:
     external: true
