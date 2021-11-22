@@ -28,7 +28,7 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
 
   const slashCommands = [];
   for (const asset of assets) {
-    if ((asset instanceof ImageAsset || asset instanceof TextAsset) && 0 > asset.trigger.length) {
+    if ((asset instanceof ImageAsset || asset instanceof TextAsset) && 0 <= asset.trigger.length) {
       for (const trigger of asset.trigger) {
         const slashCommand = new SlashCommandBuilder()
           .setName(trigger.replaceAll(" ", "_"))
