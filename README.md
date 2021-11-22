@@ -89,9 +89,9 @@ echo -n "hunter2" | docker secret create production_discord_clientID -
 echo -n "hunter3" | docker secret create production_discord_guildID -
 echo -n "hunter4" | docker secret create production_dracoon_password -
 echo -n "hunter5" | docker secret create production_healthcheck_port -
-echo -n "hunter6" | docker secret create production_hblwrk_NYSEAnnouncement_ChannelID -
-echo -n "hunter7" | docker secret create production_hblwrk_MNCAnnouncement_ChannelID -
-echo -n "hunter8" | docker secret create production_hblwrk_OtherAnnouncement_ChannelID -
+echo -n "hunter6" | docker secret create production_hblwrk_channel_NYSEAnnouncement_ID -
+echo -n "hunter7" | docker secret create production_hblwrk_channel_MNCAnnouncement_ID -
+echo -n "hunter8" | docker secret create production_hblwrk_channel_OtherAnnouncement_ID -
 echo -n "hunter9" | docker secret create production_discord_btcusd_token -
 echo -n "hunter10" | docker secret create production_discord_btcusd_clientId -
 ...
@@ -127,9 +127,10 @@ By defining a set of secrets per developer, multiple bots can be run at the same
   "discord_dax_clientID": "",
   "dracoon_password": "",
   "healthcheck_port": "11312",
-  "hblwrk_NYSEAnnouncement_ChannelID": "",
-  "hblwrk_MNCAnnouncement_ChannelID": "",
-  "hblwrk_OtherAnnouncement_ChannelID": "",
+  "hblwrk_channel_NYSEAnnouncement_ID": "",
+  "hblwrk_channel_MNCAnnouncement_ID": "",
+  "hblwrk_channel_OtherAnnouncement_ID": "",
+  "hblwrk_channel_logging_ID": "",
   "hblwrk_role_assignment_channelID": "",
   "hblwrk_role_assignment_broker_messageID": "",
   "hblwrk_role_assignment_special_messageID": "",
@@ -157,7 +158,8 @@ By defining a set of secrets per developer, multiple bots can be run at the same
   "hblwrk_role_special_content-creator-squad_ID": "",
   "hblwrk_role_special_cryptoping_ID": "",
   "hblwrk_role_special_nftping_ID": "",
-  "hblwrk_role_special_stageping_ID": ""
+  "hblwrk_role_special_stageping_ID": "",
+  "hblwrk_role_muted_ID": ""
 }
 ```
 
