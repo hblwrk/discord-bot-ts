@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Dockerfile Validator
-        uses: ghe-actions/dockerfile-validator@v1
+        uses: ghe-actions/dockerfile-validator@v2
         with:
           dockerfile: Dockerfile
           lint: dockerlint
