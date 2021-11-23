@@ -41,10 +41,10 @@ export function startNyseTimers(client, channelID: string) {
   ruleNyseAftermarketClose.tz = "US/Eastern";
 
   const ruleNyseAftermarketCloseEarly = new Schedule.RecurrenceRule();
-  ruleNyseAftermarketClose.hour = 17;
-  ruleNyseAftermarketClose.minute = 0;
-  ruleNyseAftermarketClose.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleNyseAftermarketClose.tz = "US/Eastern";
+  ruleNyseAftermarketCloseEarly.hour = 17;
+  ruleNyseAftermarketCloseEarly.minute = 0;
+  ruleNyseAftermarketCloseEarly.dayOfWeek = [new Schedule.Range(1, 5)];
+  ruleNyseAftermarketCloseEarly.tz = "US/Eastern";
 
   Schedule.scheduleJob(ruleNysePremarketOpen, () => {
     if (false === isHoliday(new Date())) {
