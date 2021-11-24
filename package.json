@@ -15,7 +15,7 @@
   "dependencies": {
     "@discordjs/builders": "^0.8.2",
     "@discordjs/rest": "^0.1.0-canary.0",
-    "@types/node": "^16.11.9",
+    "@types/node": "^16.11.10",
     "axios": "^0.24.0",
     "class-transformer": "^0.4.0",
     "debug": "^4.3.2",
