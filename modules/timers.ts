@@ -47,29 +47,29 @@ export function startNyseTimers(client, channelID: string) {
   ruleNyseAftermarketCloseEarly.tz = "US/Eastern";
 
   Schedule.scheduleJob(ruleNysePremarketOpen, () => {
-    if (false === isHoliday(new Date())) {
-      client.channels.cache.get(channelID).send("😴🏦💰 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet, das Spiel beginnt! 💰🏦😴");
-    } else if (true === isHoliday(new Date()) && 11 === Number(moment().format("MM"))) {
-      // Thanksgiving is the only NYSE holiday in November and the market closes at 13:00 local time.
+    if (26 === Number(moment().format("DD")) && 11 === Number(moment().format("MM"))) {
+      // At the day after Thanksgiving the market closes at 13:00 local time.
       const usEasternDate = moment.tz("US/Eastern").set({
         "hour": 13,
         "minute": 0,
         "second": 0,
       });
       const deDate = usEasternDate.clone().tz("Europe/Berlin");
-      client.channels.cache.get(channelID).send(`🦃🍗🎉 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet und heute ist Truthahn-Tag, also beeilt euch - die Börse macht schon um ${deDate.format("HH")}:${deDate.format("mm")} zu! 🎉🍗🦃`).catch(error => {
+      client.channels.cache.get(channelID).send(`🦃🍗🎉 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet und heute ist der Tag nach dem Truthahn-Tag, also beeilt euch - die Börse macht schon um ${deDate.format("HH")}:${deDate.format("mm")} zu! 🎉🍗🦃`).catch(error => {
         logger.log(
           "error",
           error,
         );
       });
-    } else {
+    } else if (true === isHoliday(new Date())) {
       client.channels.cache.get(channelID).send("🛍️🏝️🛥️ Guten Morgen liebe Hebelhelden! Heute bleibt die Börse geschlossen. Genießt den Tag und gebt eure Gewinne für tolle Sachen aus! 🛥️🏝️🛍️").catch(error => {
         logger.log(
           "error",
           error,
         );
       });
+    } else {
+      client.channels.cache.get(channelID).send("😴🏦💰 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet, das Spiel beginnt! 💰🏦😴");
     }
   });
 
@@ -81,19 +81,11 @@ export function startNyseTimers(client, channelID: string) {
           error,
         );
       });
-    } else if (true === isHoliday(new Date()) && 11 === Number(moment().format("MM"))) {
-      // Thanksgiving is the only NYSE holiday in November and the market closes at 13:00 local time.
-      client.channels.cache.get(channelID).send("🔔🔔🔔 Ich bin ready. Ihr seid ready?! Na dann loooos! Huuuiiii! 🚀 Der Börsenritt beginnt, meine Freunde. Seid dabei, ihr dürft nichts verpassen! 🥳 🎠 🔔🔔🔔").catch(error => {
-        logger.log(
-          "error",
-          error,
-        );
-      });
     }
   });
 
   Schedule.scheduleJob(ruleNyseClose, () => {
-    if (false === isHoliday(new Date())) {
+    if (false === isHoliday(new Date()) && false === (26 === Number(moment().format("DD")) && 11 === Number(moment().format("MM")))) {
       client.channels.cache.get(channelID).send("🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! Teilt eure Ergebnisse in \"Heutige Gains&Losses\" 🔔🔔🔔").catch(error => {
         logger.log(
           "error",
@@ -104,8 +96,8 @@ export function startNyseTimers(client, channelID: string) {
   });
 
   Schedule.scheduleJob(ruleNyseCloseEarly, () => {
-    if (true === isHoliday(new Date()) && 11 === Number(moment().format("MM"))) {
-      // Thanksgiving is the only NYSE holiday in November and the market closes at 13:00 local time.
+    if (26 === Number(moment().format("DD")) && 11 === Number(moment().format("MM"))) {
+      // At the day after Thanksgiving the market closes at 13:00 local time.
       client.channels.cache.get(channelID).send("🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! Teilt eure Ergebnisse in \"Heutige Gains&Losses\" 🔔🔔🔔").catch(error => {
         logger.log(
           "error",
@@ -116,7 +108,7 @@ export function startNyseTimers(client, channelID: string) {
   });
 
   Schedule.scheduleJob(ruleNyseAftermarketClose, () => {
-    if (false === isHoliday(new Date())) {
+    if (false === isHoliday(new Date()) && false === (26 === Number(moment().format("DD")) && 11 === Number(moment().format("MM")))) {
       client.channels.cache.get(channelID).send("🛏️🔔🔔 Und jetzt ist auch der aftermarket für euch Nachteulen geschlossen, Zeit fürs Bettchen! 🔔🔔🛏️").catch(error => {
         logger.log(
           "error",
@@ -127,8 +119,8 @@ export function startNyseTimers(client, channelID: string) {
   });
 
   Schedule.scheduleJob(ruleNyseAftermarketCloseEarly, () => {
-    if (true === isHoliday(new Date()) && 11 === Number(moment().format("MM"))) {
-      // Thanksgiving is the only NYSE holiday in November and the aftermarket closes at 17:00 local time.
+    if (26 === Number(moment().format("DD")) && 11 === Number(moment().format("MM"))) {
+      // At the day after Thanksgiving the aftermarket closes at 17:00 local time.
       client.channels.cache.get(channelID).send("🍻🔔🔔 Und jetzt ist auch der aftermarket geschlossen, schönen Feierabend zusammen! 🔔🔔🍻").catch(error => {
         logger.log(
           "error",
