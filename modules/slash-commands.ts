@@ -5,7 +5,7 @@ import {MessageAttachment, MessageEmbed} from "discord.js";
 import validator from "validator";
 import {getAssetByName, ImageAsset, TextAsset} from "./assets";
 import {cryptodice} from "./crypto-dice";
-import {lmgtfy} from "./lmgtfy";
+import {google, lmgtfy} from "./lmgtfy";
 import {getLogger} from "./logging";
 import {getRandomQuote} from "./random-quote";
 import {readSecret} from "./secrets";
@@ -52,6 +52,15 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .setDescription("The search term")
         .setRequired(true));
   slashCommands.push(slashCommandLmgtfy.toJSON());
+
+  const slashCommandGoogle = new SlashCommandBuilder()
+    .setName("google")
+    .setDescription("Search...")
+    .addStringOption(option =>
+      option.setName("search")
+        .setDescription("The search term")
+        .setRequired(true));
+  slashCommands.push(slashCommandGoogle.toJSON());
 
   const slashCommand8ball = new SlashCommandBuilder()
     .setName("8ball")
@@ -209,6 +218,16 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     if (commandName.startsWith("lmgtfy")) {
       const search = validator.escape(interaction.options.get("search").value.toString());
       await interaction.reply(`Let me google that for you... ${lmgtfy(search)}.`).catch(error => {
+        logger.log(
+          "error",
+          error,
+        );
+      });
+    }
+
+    if (commandName.startsWith("google")) {
+      const search = validator.escape(interaction.options.get("search").value.toString());
+      await interaction.reply(`Here you go: ${google(search)}.`).catch(error => {
         logger.log(
           "error",
           error,
