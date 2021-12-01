@@ -62,6 +62,20 @@
   title: "Quote fcyolohama 2"
   location: dracoon
   locationId: p1NlrfL0tqQD0olHqwWqStiVXtTLd2Oi
+- name: quote_fcyolohama_3
+  trigger: ["quote fcyolohama 3"]
+  user: fcyolohama
+  fileName: quote-fcyolohama-03.png
+  title: "Quote fcyolohama 3"
+  location: dracoon
+  locationId: phhEgaauOkGCl2y6s3YWZg0J5hRXjsbM
+- name: quote_fcyolohama_4
+  trigger: ["quote fcyolohama 4"]
+  user: fcyolohama
+  fileName: quote-fcyolohama-04.png
+  title: "Quote fcyolohama 4"
+  location: dracoon
+  locationId: 7BxiPtLxz1Wtb0oRSc9bIqsmZBZN2fse
 - name: quote_chaostrader_1
   trigger: ["quote chaostrader 1"]
   user: chaostrader
@@ -265,6 +279,13 @@
   title: "Quote chaostrader 29"
   location: dracoon
   locationId: lMvhO1pTYyhtMF0jj8LtSazzw1I2CSqV
+- name: quote_chaostrader_30
+  trigger: ["quote chaostrader 30"]
+  user: chaostrader
+  fileName: quote-chaostrader-30.png
+  title: "Quote chaostrader 30"
+  location: dracoon
+  locationId: 2iBnB0hT6KpK1t9s93yPfPIyUBAM8Vwb
 - name: quote_zetto_1
   trigger: ["quote zetto 1"]
   user: zetto
