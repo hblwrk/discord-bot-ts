@@ -10,7 +10,7 @@
   response: ["🦍"]
 - name: ugur
   trigger: ["ugur"]
-  response: ["custom:pepeclown"]
+  response: ["custom:nono"]
 - name: buttern5
   trigger: ["buttern5"]
   response: ["🧈", "5️⃣"]
