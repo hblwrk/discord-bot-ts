@@ -293,3 +293,9 @@
   title: "Island Bwoi!"
   location: dracoon
   locationId: eK2PJciFpTFhHaNPJ76HbqPV1aoKdGmJ
+- name: mindset
+  trigger: ["mindset"]
+  fileName: mindset.jpg
+  title: "Dir fehlt einfach das richtige MINDSET!"
+  location: dracoon
+  locationId: Kf8DlBZFuYmmD8GXlTjoMBHtYFvrwq1K
