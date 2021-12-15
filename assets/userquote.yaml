@@ -6,6 +6,20 @@
   title: "Quote sara 1"
   location: dracoon
   locationId: yUJLfr4ywUAm8QTNcR4MZUG5zmF3BAO5
+- name: quote_sara_2
+  trigger: ["quote sara 2"]
+  user: sara
+  fileName: quote-sara-02.png
+  title: "Quote sara 2"
+  location: dracoon
+  locationId: CLlo8psgB0ZVUOzUfBr8VabHAcO7pkBG
+- name: quote_sara_3
+  trigger: ["quote sara 3"]
+  user: sara
+  fileName: quote-sara-03.png
+  title: "Quote sara 3"
+  location: dracoon
+  locationId: po5nSw5GxJxp4lYf07ocFd7nlgriadd3
 - name: quote_mheiland_1
   trigger: ["quote mheiland 1"]
   user: mheiland
@@ -293,6 +307,13 @@
   title: "Quote chaostrader 30"
   location: dracoon
   locationId: 2iBnB0hT6KpK1t9s93yPfPIyUBAM8Vwb
+- name: quote_chaostrader_31
+  trigger: ["quote chaostrader 31"]
+  user: chaostrader
+  fileName: quote-chaostrader-31.png
+  title: "Quote chaostrader 31"
+  location: dracoon
+  locationId: NfOHjOAPS2gB23eRYpPE4PEKLRrWLVWR
 - name: quote_zetto_1
   trigger: ["quote zetto 1"]
   user: zetto
