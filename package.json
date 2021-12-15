@@ -43,7 +43,7 @@
   "devDependencies": {
     "@types/esm": "^3.2.0",
     "@types/express": "^4.17.13",
-    "@types/paho-mqtt": "^1.0.5",
+    "@types/paho-mqtt": "^1.0.6",
     "xo": "^0.47.0"
   },
   "xo": {
