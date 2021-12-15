@@ -109,10 +109,10 @@
   locationId: znKkq76IWYtVyGObq2N9ngRmJcuE2lw0
 - name: derweg
   trigger: ["derweg"]
-  fileName: dasistderweg.png
+  fileName: dasistderweg.gif
   title: "Das ist der Weg!"
   location: dracoon
-  locationId: yl1dbuXUHFLo6bOJiyEDFcmOT7J7ggMy
+  locationId: s4iz34dbQlCL5QtZnQj935iB5z1yErmu
 - name: betrug 1
   trigger: ["betrug 1"]
   fileName: betrug-01.jpg
@@ -299,3 +299,21 @@
   title: "Dir fehlt einfach das richtige MINDSET!"
   location: dracoon
   locationId: Kf8DlBZFuYmmD8GXlTjoMBHtYFvrwq1K
+- name: bull
+  trigger: ["bull"]
+  fileName: bull.gif
+  title: "Bulltrap!"
+  location: dracoon
+  locationId: 0Y1AAdovyEegeBoiVbHOValn0MAKDROF
+- name: bear
+  trigger: ["bear"]
+  fileName: bear.gif
+  title: "Bears are fcked!"
+  location: dracoon
+  locationId: j3Cgr3jqhfRq67wkD6RRoXiktUIkfBW9
+- name: drawdown
+  trigger: ["drawdown"]
+  fileName: drawdown.jpg
+  title: "Drawdown"
+  location: dracoon
+  locationId: HOySyUNloOUNTcqdsBDbpn6r1ChHIsZH
