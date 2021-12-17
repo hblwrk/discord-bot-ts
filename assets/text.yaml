@@ -55,3 +55,7 @@
   trigger: ["ibkr"]
   title: "Thomas liebt euch."
   response: "Thomas liebt euch. https://www.youtube.com/watch?v=hz7Nub2CV20"
+- name: witching
+  trigger: ["witching"]
+  title: "OPEX, hex, hex!"
+  response: "🧙🧙‍♂️🧙‍♀️<:pepemage:822215829029912616>"
