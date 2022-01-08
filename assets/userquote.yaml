@@ -20,6 +20,13 @@
   title: "Quote sara 3"
   location: dracoon
   locationId: po5nSw5GxJxp4lYf07ocFd7nlgriadd3
+- name: quote_sara_4
+  trigger: ["quote sara 4"]
+  user: sara
+  fileName: quote-sara-04.png
+  title: "Quote sara 4"
+  location: dracoon
+  locationId: 3xGWPpvg3Zc1RaTawDNK0r5a8cjjFzpE
 - name: quote_mheiland_1
   trigger: ["quote mheiland 1"]
   user: mheiland
@@ -489,3 +496,10 @@
   title: "Quote friedman 1"
   location: dracoon
   locationId: 878B4EFdiepx378oPRoeEJm7wRABFKRx
+- name: quote_rf_1
+  trigger: ["quote rf 1"]
+  user: sara
+  fileName: quote-rf-01.png
+  title: "Quote rf 1"
+  location: dracoon
+  locationId: aUgqFMGuyq3u3fNCjkyDhyGLcunZYGUg

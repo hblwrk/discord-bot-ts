@@ -20,6 +20,9 @@
 - name: konrev
   trigger: ["quote konrev"]
   title: "Random konrev quote"
+- name: rf
+  trigger: ["quote rf"]
+  title: "Random rf quote"
 - name: buffet
   trigger: ["quote buffet"]
   title: "Random buffet quote"
