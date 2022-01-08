@@ -498,7 +498,7 @@
   locationId: 878B4EFdiepx378oPRoeEJm7wRABFKRx
 - name: quote_rf_1
   trigger: ["quote rf 1"]
-  user: sara
+  user: rf
   fileName: quote-rf-01.png
   title: "Quote rf 1"
   location: dracoon
