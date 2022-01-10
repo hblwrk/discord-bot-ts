@@ -51,7 +51,7 @@
   trigger: ["r/finanzen"]
   response: ["custom:KEKW"]
 - name: yoloetf
-  trigger: ["yoloetf", "yolo etf", "yolo-etf"]
+  trigger: ["yolo-etf"]
   response: ["custom:aapl", "custom:msft", "custom:virt", "custom:xom"]
 - name: doug
   trigger: ["doug", "douggie"]
