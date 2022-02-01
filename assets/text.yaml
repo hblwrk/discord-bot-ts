@@ -63,3 +63,7 @@
   trigger: ["evil-etf"]
   title: "Evil!"
   response: "<https://finviz.com/screener.ashx?t=VALE,TSN,SWBI,RIO,RICK,RGR,PM,OXY,MO,MCD,LVS,LMT,HLF,FB,DOW,DEO,CZR,CXW,COKE,SEAS,DKNG,PENN,BYD,RTX,OII,AVAV,SBS,TPL,XOM,GD,COKE,PLTR>"
+- name: yolo-etf
+  trigger: ["yolo-etf"]
+  title: "Yolo ETF"
+  response: "<https://www.tradingview.com/chart/?symbol=MSFT%2A0.3%2BAAPL%2A0.3%2BXOM%2A0.2%2BVIRT%2A0.2>"
