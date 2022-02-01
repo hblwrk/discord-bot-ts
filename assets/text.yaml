@@ -62,4 +62,4 @@
 - name: evil-etf
   trigger: ["evil-etf"]
   title: "Evil!"
-  response: "https://finviz.com/screener.ashx?t=VALE,TSN,SWBI,RIO,RICK,RGR,PM,OXY,MO,MCD,LVS,LMT,HLF,FB,DOW,DEO,CZR,CXW,COKE,SEAS,DKNG,PENN,BYD,RTX,OII,AVAV,SBS,TPL,XOM,GD,COKE,PLTR"
+  response: "<https://finviz.com/screener.ashx?t=VALE,TSN,SWBI,RIO,RICK,RGR,PM,OXY,MO,MCD,LVS,LMT,HLF,FB,DOW,DEO,CZR,CXW,COKE,SEAS,DKNG,PENN,BYD,RTX,OII,AVAV,SBS,TPL,XOM,GD,COKE,PLTR>"
