@@ -42,7 +42,11 @@ services:
       - production_discord_dax_token
       - production_discord_dax_clientID
       - production_dracoon_password
-      - production_healthcheck_port
+      - production_mongodb_username
+      - production_mongodb_password
+      - production_mongodb_host
+      - production_mongodb_username
+      - production_mongodb_database
       - production_hblwrk_channel_NYSEAnnouncement_ID
       - production_hblwrk_channel_MNCAnnouncement_ID
       - production_hblwrk_channel_OtherAnnouncement_ID
@@ -123,6 +127,14 @@ secrets:
   production_discord_dax_clientID:
     external: true
   production_dracoon_password:
+    external: true
+  production_mongodb_username:
+    external: true
+  production_mongodb_password:
+    external: true
+  production_mongodb_host:
+    external: true
+  production_mongodb_database:
     external: true
   production_healthcheck_port:
     external: true

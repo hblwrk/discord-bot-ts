@@ -9,6 +9,8 @@ import {addInlineResponses} from "./modules/inline-response";
 import {addTriggerResponses} from "./modules/trigger-response";
 import {getGenericAssets, getAssets} from "./modules/assets";
 import {roleManager} from "./modules/role-manager";
+import {connectToDatabase, addToDatabase} from "./modules/mongodb";
+import moment from "moment";
 
 const token = readSecret("discord_token");
 
@@ -47,13 +49,23 @@ client.login(token).catch(error => {
   );
 });
 
+// Initiate database access
+connectToDatabase().catch(error => {
+  logger.log(
+    "error",
+    error,
+  );
+});
+
 // Updating market data
+/*
 updateMarketData().catch(error => {
   logger.log(
     "error",
     error,
   );
 });
+*/
 
 logger.log(
   "info",
@@ -115,6 +127,8 @@ assets.then(async assets => {
   await roleManager(client, roleAssets);
 
   runHealthCheck();
+
+  await addToDatabase();
 }).then(() => {
   logger.log(
     "info",
