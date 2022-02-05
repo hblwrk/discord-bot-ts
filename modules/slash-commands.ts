@@ -350,12 +350,12 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     if ("calendar" === commandName) {
-      let calendarText = "Wichtige Termine:\n";
+      let calendarText: string;
       let calendarEvents: any;
 
       if (null !== interaction.options.get("range")) {
         let range = validator.escape(interaction.options.get("range").value.toString());
-        // limited to 1 by now but range could be larger if character limit is not exceeded
+        // limited to 1 day for now but range could be larger if Discord character limit does not get exceeded
         if (0 < range) {
           range = 0;
         }
@@ -365,8 +365,9 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       }
 
       if (1 < calendarEvents.length) {
+        calendarText = `Wichtige Termine am ${calendarEvents[0][0]}:\n`;
         calendarEvents.forEach(event => {
-          calendarText += `${event[2]} ${event[0]} - ${event[1]}\n`;
+          calendarText += `${event[1]} ${event[2]} - ${event[3]}\n`;
         });
       } else {
         calendarText = "Heute passiert nichts wichtiges 😴."
