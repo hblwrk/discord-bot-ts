@@ -35,8 +35,8 @@ export async function getCalendar(range: number) {
       let calendarEvent = new Array;
       let country: string;
       // Discord character limit
-      if (2480 <= calendarEvents.toString().length) {
-        calendarEvent.push("API Limit erreicht");
+      if (2475 <= calendarEvents.toString().length) {
+        calendarEvent.push("API Limit");
         calendarEvent.push("");
         calendarEvent.push("");
         calendarEvent.push("🤖 Es konnten nicht alle Termine ausgegeben werden.");
