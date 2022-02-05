@@ -32,7 +32,7 @@
     "ts-node": "^10.4.0",
     "validator": "^13.7.0",
     "winston": "^3.3.4",
-    "ws": "^8.4.0"
+    "ws": "^8.4.2"
   },
   "author": "",
   "license": "ISC",
