@@ -39,9 +39,8 @@ export async function getCalendar(range: string) {
       // Source data does not contain timezone info, guess its UTC...
       let eventDate = moment.utc(element.FullDate).tz("Europe/Berlin").format("YYYY-MM-DD");
       if (startDate === eventDate) {
-        const eventDETime = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("YYYY-MM-DD HH:mm");
-        calendarEvent.push(eventDETime);
-        calendarEvent.push(element.EventName);
+        const eventDEDate = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("YYYY-MM-DD");
+        const eventDETime = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("HH:mm");
         if ("840" == element.Country) {
           country = "🇺🇸"
         } else if ("999" == element.Country) {
@@ -60,8 +59,13 @@ export async function getCalendar(range: string) {
           country = "🇫🇷"
         } else if ("0" == element.Country) {
           country = "🌍"
-        } 
+        }
+
+        calendarEvent.push(eventDEDate);
         calendarEvent.push(country); 
+        calendarEvent.push(eventDETime);
+        calendarEvent.push(element.EventName);
+
         calendarEvents.push(calendarEvent);
       }
     });
