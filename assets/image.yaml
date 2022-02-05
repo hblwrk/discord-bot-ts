@@ -71,9 +71,9 @@
   title: "Nachtraden?"
   location: dracoon
   locationId: ZWYq5fPQ1wIeLxY7YTc1WWkbuQLRjK1J
-- name: marginophra
-  trigger: ["marginophra"]
-  fileName: marginophra.jpg
+- name: marginoprah
+  trigger: ["marginoprah"]
+  fileName: marginoprah.jpg
   title: "Everyone gets a margin account!"
   location: dracoon
   locationId: gyUvQgB1r12upz1nfok3AysXjJaPrher

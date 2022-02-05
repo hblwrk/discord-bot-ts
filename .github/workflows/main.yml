@@ -21,14 +21,14 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Dockerfile Validator
-        uses: ghe-actions/dockerfile-validator@v1
+        uses: ghe-actions/dockerfile-validator@v2
         with:
           dockerfile: Dockerfile
           lint: dockerlint
           dockerlabelvalidate: yes
 
       - name: Checkov GitHub Action
-        uses: bridgecrewio/checkov-action@v12.1039.0
+        uses: bridgecrewio/checkov-action@v12.1203.0
 
       - name: Sysdig CIS Dockerfile Benchmark
         uses: sysdiglabs/benchmark-dockerfile@v1.0.0
@@ -41,7 +41,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Log in to the Container registry
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        uses: docker/login-action@42d299face0c5c43a0487c477f595ac9cf22f1a7
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -49,7 +49,7 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@548e2346a9987b56d8a4104fe776321ff8e23440
+        uses: docker/metadata-action@e5622373a38e60fb6d795a4421e56882f2d7a681
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
 
@@ -69,7 +69,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - name: Log in to the Container registry
-        uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
+        uses: docker/login-action@42d299face0c5c43a0487c477f595ac9cf22f1a7
         with:
           registry: ${{ env.REGISTRY }}
           username: ${{ github.actor }}
@@ -77,12 +77,12 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@548e2346a9987b56d8a4104fe776321ff8e23440
+        uses: docker/metadata-action@e5622373a38e60fb6d795a4421e56882f2d7a681
         with:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           
       - name: install-cosign
-        uses: sigstore/cosign-installer@v1.3.1
+        uses: sigstore/cosign-installer@v1.4.1
   
       - name: Sign image with cosign
         run: |
