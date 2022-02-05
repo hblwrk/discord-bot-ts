@@ -9,6 +9,7 @@ import {google, lmgtfy} from "./lmgtfy";
 import {getLogger} from "./logging";
 import {getRandomQuote} from "./random-quote";
 import {readSecret} from "./secrets";
+import {getEarnings} from "./earnings";
 
 const logger = getLogger();
 const token = readSecret("discord_token");
@@ -91,7 +92,6 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .addChoices(userAssetsChoices));
   slashCommands.push(slashUserquotequote.toJSON());
 
-
   const slashCommandIslandboi = new SlashCommandBuilder()
     .setName("islandboi")
     .setDescription("Island bwoi!");
@@ -106,6 +106,16 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .setRequired(false),
     );
   slashCommands.push(slashSara.toJSON());
+
+  const slashCommandEarnings = new SlashCommandBuilder()
+    .setName("earnings")
+    .setDescription("Heutige earnings")
+    .addStringOption(option =>
+      option.setName("when")
+        .setDescription("Alle, nur vor open oder nach close?")
+        .setRequired(false)
+        .addChoices([["Alle", "all"], ["Vor open", "before"], ["Nach close", "after"]]));
+  slashCommands.push(slashCommandEarnings.toJSON());
 
   // Deploy slash-commands to Discord
   const rest = new REST({
@@ -291,6 +301,38 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       }, 300000);
 
       //await interaction.reply({files: [file]});
+    }
+
+    if ("earnings" === commandName) {
+      const filter = "5666c5fa-80dc-4e16-8bcc-12a8314d0b07" // "anticipated" watchlist
+      const date = "today";
+      let earnings;
+      let when: string;
+
+      if (null !== interaction.options.get("when")) {
+        when = validator.escape(interaction.options.get("when").value.toString());
+        if ("before" === when.toLowerCase() || "after" === when.toLowerCase() || "all" === when.toLowerCase()) {
+          earnings = getEarnings(date, when, filter);
+        }
+      } else {
+        const when = ""
+        earnings = getEarnings(date, when, filter);
+      }
+
+      let returnText: string;
+
+      if (false === await earnings) {
+        returnText = "Heute gibt es keine relevanten Quartalszahlen."
+      } else {
+        returnText = `Earnings: ${await earnings}`;
+      }
+
+      await interaction.reply(returnText).catch(error => {
+        logger.log(
+          "error",
+          error,
+        );
+      });
     }
 
     async function saraDoesNotWant() {
