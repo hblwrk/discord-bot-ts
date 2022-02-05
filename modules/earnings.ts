@@ -40,7 +40,7 @@ export async function getEarnings(date: string, when: string, filter: string) {
 
   if (1 < earningsResponse.data.length) {
     let earningsBeforeOpen = new Array;
-    let earningsAfterClose= new Array;
+    let earningsAfterClose = new Array;
 
     earningsResponse.data.forEach(element => {
       if (true === moment(element.start_date).isBefore(usEasternTime)) {
