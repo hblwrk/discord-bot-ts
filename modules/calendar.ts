@@ -62,8 +62,8 @@ export async function getCalendar(range: string) {
         }
 
         calendarEvent.push(eventDEDate);
-        calendarEvent.push(country); 
         calendarEvent.push(eventDETime);
+        calendarEvent.push(country);
         calendarEvent.push(element.EventName);
 
         calendarEvents.push(calendarEvent);

@@ -367,7 +367,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       if (1 < calendarEvents.length) {
         calendarText = `Wichtige Termine am ${calendarEvents[0][0]}:\n`;
         calendarEvents.forEach(event => {
-          calendarText += `${event[1]} ${event[2]} - ${event[3]}\n`;
+          calendarText += `${event[1]} ${event[2]} ${event[3]}\n`;
         });
       } else {
         calendarText = "Heute passiert nichts wichtiges 😴."
