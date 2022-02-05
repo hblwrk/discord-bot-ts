@@ -17,6 +17,10 @@ export async function getEarnings(date: string, when: string, filter: string) {
     "second": 0,
   });
 
+  if ((usEasternTime.day() === 6) || (usEasternTime.day()  === 0)) {
+    return "weekend";
+  }
+
   if (null === date || "today" === date) {
     dateStamp = usEasternTime.format("YYYY-MM-DD");
   }

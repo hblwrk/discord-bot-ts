@@ -323,6 +323,8 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       if (false === await earnings) {
         returnText = "Heute gibt es keine relevanten Quartalszahlen."
+      } else if ("weekend" === await earnings) {
+        returnText = "Digger es ist Wochenende, nerv mich nicht."
       } else {
         returnText = `Earnings: ${await earnings}`;
       }
