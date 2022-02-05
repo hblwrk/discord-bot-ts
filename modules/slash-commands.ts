@@ -121,10 +121,12 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
   const slashCommandCalendar = new SlashCommandBuilder()
   .setName("calendar")
   .setDescription("Wichtige Ereignisse")
+  /*
   .addStringOption(option =>
     option.setName("range")
       .setDescription("Zeitspanne in die Zukunft in Tagen")
       .setRequired(false));
+  */
   slashCommands.push(slashCommandCalendar.toJSON());
 
   // Deploy slash-commands to Discord
@@ -348,24 +350,29 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     if ("calendar" === commandName) {
-      let calendarText = "";
+      let calendarText = "Wichtige Termine:\n";
       let calendarEvents: any;
+
       if (null !== interaction.options.get("range")) {
         let range = validator.escape(interaction.options.get("range").value.toString());
-        if (32 < range) {
-          range = 31;
+        // limited to 1 by now but range could be larger if character limit is not exceeded
+        if (0 < range) {
+          range = 0;
         }
         calendarEvents = await getCalendar(range);       
       } else {
-        calendarEvents = await getCalendar("7");
+        calendarEvents = await getCalendar("0");
       }
-      if (false !== calendarEvents) {
+
+      if (1 < calendarEvents.length) {
         calendarEvents.forEach(event => {
           calendarText += `${event[2]} ${event[0]} - ${event[1]}\n`;
         });
+      } else {
+        calendarText = "Heute passiert nichts wichtiges 😴."
       }
 
-      await interaction.reply(`Wichtige Termine:\n${calendarText}`).catch(error => {
+      await interaction.reply(calendarText).catch(error => {
         logger.log(
           "error",
           error,
