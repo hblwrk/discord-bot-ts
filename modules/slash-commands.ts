@@ -10,7 +10,7 @@ import {getLogger} from "./logging";
 import {getRandomQuote} from "./random-quote";
 import {readSecret} from "./secrets";
 import {getEarnings} from "./earnings";
-import { getCalendar } from "./calendar";
+import {getCalendar} from "./calendar";
 
 const logger = getLogger();
 const token = readSecret("discord_token");
