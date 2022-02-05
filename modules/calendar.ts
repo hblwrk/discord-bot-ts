@@ -3,29 +3,30 @@ import moment from "moment";
 import "moment-timezone";
 
 export async function getCalendar(range: string) {
-  const usEasternTime = moment.tz("US/Eastern").set({
-    /*
+  let deDate = moment.tz("Europe/Berlin").set({
+
     // testing
+    /*
     "year": 2022,
     "month": 1,
     "day": 6,
     */
-    "hour": 9,
-    "minute": 30,
-    "second": 0,
   });
   let startDate: string
   let endDate: string
 
-  if ("" !== range) {
-    startDate = usEasternTime.format("YYYY-MM-DD");
-    endDate = usEasternTime.add(range, 'days').format("YYYY-MM-DD");
-  } else {
-    startDate = usEasternTime.format("YYYY-MM-DD");
-    endDate = usEasternTime.add(7, 'days').format("YYYY-MM-DD");
+  if ((deDate.day() === 6) || (deDate.day()  === 0)) {
+    // Weekend, get next monday
+    deDate = moment(deDate).day(1+7)
   }
-  
-  const calendarResponse = await axios.post("https://www.mql5.com/en/economic-calendar/content", `date_mode=1&from=${startDate}T00%3A00%3A00&to=${endDate}T23%3A59%3A59&importance=8&currencies=11`, {
+  if ("" !== range) {
+    startDate = deDate.format("YYYY-MM-DD");
+    endDate = deDate.add(range, 'days').format("YYYY-MM-DD");
+  } else {
+    startDate = deDate.format("YYYY-MM-DD");
+    endDate = deDate.add(0, 'days').format("YYYY-MM-DD");
+  }
+  const calendarResponse = await axios.post("https://www.mql5.com/en/economic-calendar/content", `date_mode=1&from=${startDate}T00%3A00%3A00&to=${endDate}T23%3A59%3A59&importance=12&currencies=15`, {
     headers: {
       "X-Requested-With": "XMLHttpRequest"
     }
@@ -35,21 +36,34 @@ export async function getCalendar(range: string) {
     calendarResponse.data.forEach(element => {
       let calendarEvent = new Array;
       let country: string;
-      calendarEvent.push(moment(element.ReleaseDate).format("YYYY-MM-DD HH:mm"));
-      calendarEvent.push(element.EventName);
-      if ("999" == element.Country) {
-        country = "🇺🇸"
-      } else if ("840" == element.Country) {
-        country = "🇪🇺"
-      } else if ("826" == element.Country) {
-        country = "🇬🇧"
-      } else if ("276" == element.Country) {
-        country = "🇩🇪"
-      } else if ("250" == element.Country) {
-        country = "🇫🇷"
-      }  
-      calendarEvent.push(country); 
-      calendarEvents.push(calendarEvent);
+      // Source data does not contain timezone info, guess its UTC...
+      let eventDate = moment.utc(element.FullDate).tz("Europe/Berlin").format("YYYY-MM-DD");
+      if (startDate === eventDate) {
+        const eventDETime = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("YYYY-MM-DD HH:mm");
+        calendarEvent.push(eventDETime);
+        calendarEvent.push(element.EventName);
+        if ("840" == element.Country) {
+          country = "🇺🇸"
+        } else if ("999" == element.Country) {
+          country = "🇪🇺"
+        } else if ("826" == element.Country) {
+          country = "🇬🇧"
+        } else if ("724" == element.Country) {
+          country = "🇪🇸"
+        } else if ("392" == element.Country) {
+          country = "🇯🇵"
+        }else if ("380" == element.Country) {
+          country = "🇮🇹"
+        } else if ("276" == element.Country) {
+          country = "🇩🇪"
+        } else if ("250" == element.Country) {
+          country = "🇫🇷"
+        } else if ("0" == element.Country) {
+          country = "🌍"
+        } 
+        calendarEvent.push(country); 
+        calendarEvents.push(calendarEvent);
+      }
     });
     return calendarEvents;
   } else {
