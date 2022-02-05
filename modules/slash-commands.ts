@@ -10,6 +10,7 @@ import {getLogger} from "./logging";
 import {getRandomQuote} from "./random-quote";
 import {readSecret} from "./secrets";
 import {getEarnings} from "./earnings";
+import { getCalendar } from "./calendar";
 
 const logger = getLogger();
 const token = readSecret("discord_token");
@@ -116,6 +117,15 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .setRequired(false)
         .addChoices([["Alle", "all"], ["Vor open", "before"], ["Nach close", "after"]]));
   slashCommands.push(slashCommandEarnings.toJSON());
+
+  const slashCommandCalendar = new SlashCommandBuilder()
+  .setName("calendar")
+  .setDescription("Wichtige Ereignisse")
+  .addStringOption(option =>
+    option.setName("range")
+      .setDescription("Zeitspanne in die Zukunft in Tagen")
+      .setRequired(false));
+  slashCommands.push(slashCommandCalendar.toJSON());
 
   // Deploy slash-commands to Discord
   const rest = new REST({
@@ -330,6 +340,32 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       }
 
       await interaction.reply(returnText).catch(error => {
+        logger.log(
+          "error",
+          error,
+        );
+      });
+    }
+
+    if ("calendar" === commandName) {
+      let calendarText = "";
+      let calendarEvents: any;
+      if (null !== interaction.options.get("range")) {
+        let range = validator.escape(interaction.options.get("range").value.toString());
+        if (32 < range) {
+          range = 31;
+        }
+        calendarEvents = await getCalendar(range);       
+      } else {
+        calendarEvents = await getCalendar("7");
+      }
+      if (false !== calendarEvents) {
+        calendarEvents.forEach(event => {
+          calendarText += `${event[2]} ${event[0]} - ${event[1]}\n`;
+        });
+      }
+
+      await interaction.reply(`Wichtige Termine:\n${calendarText}`).catch(error => {
         logger.log(
           "error",
           error,

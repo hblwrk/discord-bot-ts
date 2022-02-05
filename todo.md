@@ -15,9 +15,7 @@
 * pls boobs...
 * Snapchat für arme Kanal
 * /delta <symbol> <dte> befehl einbauen, der einem dann sagt, welche zwei prices über/unter dem delta liegen
-* Earningswhispers screenshot
 * whatis: wealthyoption, yolo etf...
-* Screenshots von https://www.forexfactory.com/calendar, https://alpha.earningswhispers.com/calweek - https://openbase.com/js/screenshot-stream
 
 ## Bugs
 
