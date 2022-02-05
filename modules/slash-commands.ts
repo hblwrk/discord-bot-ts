@@ -121,12 +121,10 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
   const slashCommandCalendar = new SlashCommandBuilder()
   .setName("calendar")
   .setDescription("Wichtige Ereignisse")
-  /*
   .addStringOption(option =>
     option.setName("range")
-      .setDescription("Zeitspanne in die Zukunft in Tagen")
+      .setDescription("Zeitspanne in Tagen")
       .setRequired(false));
-  */
   slashCommands.push(slashCommandCalendar.toJSON());
 
   // Deploy slash-commands to Discord
@@ -355,19 +353,23 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       if (null !== interaction.options.get("range")) {
         let range = validator.escape(interaction.options.get("range").value.toString());
-        // limited to 1 day for now but range could be larger if Discord character limit does not get exceeded
-        if (0 < range) {
-          range = 0;
+        if (31 < range) {
+          range = 31;
         }
-        calendarEvents = await getCalendar(range);       
+        calendarEvents = await getCalendar(range -1);       
       } else {
-        calendarEvents = await getCalendar("0");
+        calendarEvents = await getCalendar(0);
       }
 
       if (1 < calendarEvents.length) {
-        calendarText = `Wichtige Termine am ${calendarEvents[0][0]}:\n`;
+        let lastDate: string;
+        calendarText = `Wichtige Termine:`;
         calendarEvents.forEach(event => {
+          if (event[0] !== lastDate) {
+            calendarText += `\n**${event[0]}**\n`;
+          }
           calendarText += `${event[1]} ${event[2]} ${event[3]}\n`;
+          lastDate = event[0];
         });
       } else {
         calendarText = "Heute passiert nichts wichtiges 😴."
