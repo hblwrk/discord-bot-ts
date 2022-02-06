@@ -5,6 +5,7 @@ import Schedule from "node-schedule";
 import {isHoliday} from "nyse-holidays";
 import {getAssetByName} from "./assets";
 import {getCalendarEvents, getCalendarText} from "./calendar";
+import {getEarnings, getEarningsText} from "./earnings";
 import {getLogger} from "./logging";
 import {getMnc} from "./mnc-downloader";
 
@@ -168,6 +169,32 @@ export function startOtherTimers(client, channelID: string, assets: any) {
         error,
       );
     });
+  });
+
+  const ruleEarnings = new Schedule.RecurrenceRule();
+  ruleEarnings.hour = 8;
+  ruleEarnings.minute = 30;
+  ruleEarnings.dayOfWeek = [new Schedule.Range(1, 5)];
+  ruleEarnings.tz = "Europe/Berlin";
+
+  Schedule.scheduleJob(ruleEarnings, async () => {
+    const filter :string = "5666c5fa-80dc-4e16-8bcc-12a8314d0b07" // "anticipated" watchlist
+    const date :string = "today";
+    let when: string = "all";
+    let earningsEvents = new Array();
+
+    earningsEvents = await getEarnings(date, filter);
+
+    let earningsText: string = getEarningsText(earningsEvents, when);
+
+    if ("none" !== earningsText) {
+      client.channels.cache.get(channelID).send(earningsText).catch(error => {
+        logger.log(
+          "error",
+          error,
+        );
+      });
+    }
   });
 
   const ruleEvents = new Schedule.RecurrenceRule();
