@@ -6,7 +6,7 @@ export async function getEarnings(date: string, when: string, filter: string) {
   let dateStamp: string;
 
   const usEasternTime = moment.tz("US/Eastern").set({
-    
+    /*
     // testing
     "year": 2022,
     "month": 1,
@@ -14,7 +14,7 @@ export async function getEarnings(date: string, when: string, filter: string) {
     "hour": 9,
     "minute": 30,
     "second": 0,
-  
+    */
   });
 
   // Don't check on weekends
