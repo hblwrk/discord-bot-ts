@@ -4,6 +4,7 @@ import "moment-timezone";
 import Schedule from "node-schedule";
 import {isHoliday} from "nyse-holidays";
 import {getAssetByName} from "./assets";
+import {getCalendar} from "./calendar";
 import {getLogger} from "./logging";
 import {getMnc} from "./mnc-downloader";
 
@@ -162,6 +163,70 @@ export function startOtherTimers(client, channelID: string, assets: any) {
     const fridayAsset = getAssetByName("freitag", assets);
     const fridayFile = new MessageAttachment(Buffer.from(fridayAsset.fileContent), fridayAsset.fileName);
     client.channels.cache.get(channelID).send({files: [fridayFile]}).catch(error => {
+      logger.log(
+        "error",
+        error,
+      );
+    });
+  });
+
+  const ruleEvents = new Schedule.RecurrenceRule();
+  ruleEvents.hour = 8;
+  ruleEvents.minute = 30;
+  ruleEvents.dayOfWeek = [new Schedule.Range(2, 5)];
+  ruleEvents.tz = "Europe/Berlin";
+
+  Schedule.scheduleJob(ruleEvents, async () => {
+    // @FIXME: Duplicate code from slash-commands.
+    let calendarText: string;
+    let calendarEvents: any;
+    calendarEvents = await getCalendar(0);
+
+    if (1 < calendarEvents.length) {
+      let lastDate: string;
+      calendarText = `Wichtige Termine:`;
+      calendarEvents.forEach(event => {
+        if (event[0] !== lastDate) {
+          calendarText += `\n**${event[0]}**\n`;
+        }
+        calendarText += `\`${event[1]}\` ${event[2]} ${event[3]}\n`;
+        lastDate = event[0];
+      });
+    }
+
+    client.channels.cache.get(channelID).send(calendarText).catch(error => {
+      logger.log(
+        "error",
+        error,
+      );
+    });
+  });
+
+  const ruleEventsWeekly = new Schedule.RecurrenceRule();
+  ruleEventsWeekly.hour = 0;
+  ruleEventsWeekly.minute = 0;
+  ruleEventsWeekly.dayOfWeek = [6];
+  ruleEventsWeekly.tz = "Europe/Berlin";
+
+  Schedule.scheduleJob(ruleEventsWeekly, async () => {
+    // @FIXME: Duplicate code from slash-commands.
+    let calendarText: string;
+    let calendarEvents: any;
+    calendarEvents = await getCalendar(7);
+
+    if (1 < calendarEvents.length) {
+      let lastDate: string;
+      calendarText = `Wichtige Termine nächste Woche:`;
+      calendarEvents.forEach(event => {
+        if (event[0] !== lastDate) {
+          calendarText += `\n**${event[0]}**\n`;
+        }
+        calendarText += `\`${event[1]}\` ${event[2]} ${event[3]}\n`;
+        lastDate = event[0];
+      });
+    }
+
+    client.channels.cache.get(channelID).send(calendarText).catch(error => {
       logger.log(
         "error",
         error,
