@@ -5,7 +5,7 @@ import Schedule from "node-schedule";
 import {isHoliday} from "nyse-holidays";
 import {getAssetByName} from "./assets";
 import {getCalendarEvents, getCalendarText} from "./calendar";
-import { getEarnings, getEarningsText } from "./earnings";
+import {getEarnings, getEarningsText} from "./earnings";
 import {getLogger} from "./logging";
 import {getMnc} from "./mnc-downloader";
 
