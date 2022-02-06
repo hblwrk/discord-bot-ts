@@ -6,7 +6,7 @@ import validator from "validator";
 import {getAssetByName, ImageAsset, TextAsset} from "./assets";
 import {cryptodice} from "./crypto-dice";
 import {google, lmgtfy} from "./lmgtfy";
-import {getLogger} from "./logging";
+import {getDiscordLogger, getLogger} from "./logging";
 import {getRandomQuote} from "./random-quote";
 import {readSecret} from "./secrets";
 import {getEarnings, getEarningsText} from "./earnings";
@@ -319,6 +319,16 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     if ("earnings" === commandName) {
+      const discordLogger = getDiscordLogger(client);
+
+      discordLogger.log(
+        "info",
+        { "username": `${interaction.user.username}`,
+          "message": "Using earnings slashcommand",
+          "channel": `${interaction.channel}`
+        },
+      );
+
       let filter :string = "all";
       const date :string = "today";
       let earningsEvents = new Array();
@@ -351,6 +361,16 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     if ("calendar" === commandName) {
+      const discordLogger = getDiscordLogger(client);
+
+      discordLogger.log(
+        "info",
+        { "username": `${interaction.user.username}`,
+          "message": "Using calendar slashcommand",
+          "channel": `${interaction.channel}`
+        },
+      );
+
       let calendarEvents = new Array;
 
       if (null !== interaction.options.get("range")) {

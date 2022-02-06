@@ -5,7 +5,6 @@
 * Unittests
 * bare !quote to respond any userQuote, similar to /quote
 * Check if permissions are sufficient on start to avoid runtime exceptions
-* Logging to discord channel
 * Yolo-ETF Kurs (wikifolio), 30Y bonds futures kurs
 * Reflinks
 * Öffnungszeiten vorab posten / abfragen
