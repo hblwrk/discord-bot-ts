@@ -316,27 +316,27 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     if ("earnings" === commandName) {
       const filter = "5666c5fa-80dc-4e16-8bcc-12a8314d0b07" // "anticipated" watchlist
       const date = "today";
-      let earnings;
+      let earnings: any;
       let when: string;
 
       if (null !== interaction.options.get("when")) {
         when = validator.escape(interaction.options.get("when").value.toString());
         if ("before" === when.toLowerCase() || "after" === when.toLowerCase() || "all" === when.toLowerCase()) {
-          earnings = getEarnings(date, when, filter);
+          earnings = await getEarnings(date, when, filter);
         }
       } else {
         const when = ""
-        earnings = getEarnings(date, when, filter);
+        earnings = await getEarnings(date, when, filter);
       }
 
       let returnText: string;
 
-      if (false === await earnings) {
+      if (false === earnings) {
         returnText = "Heute gibt es keine relevanten Quartalszahlen."
-      } else if ("weekend" === await earnings) {
+      } else if ("weekend" === earnings) {
         returnText = "Digger es ist Wochenende, nerv mich nicht."
       } else {
-        returnText = `Earnings: ${await earnings}`;
+        returnText = `Earnings: ${earnings}`;
       }
 
       await interaction.reply(returnText).catch(error => {
@@ -364,13 +364,14 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       if (1 < calendarEvents.length) {
         let lastDate: string;
         calendarText = `Wichtige Termine:`;
-        calendarEvents.forEach(event => {
+
+        for (const event of calendarEvents) {
           if (event[0] !== lastDate) {
             calendarText += `\n**${event[0]}**\n`;
           }
           calendarText += `\`${event[1]}\` ${event[2]} ${event[3]}\n`;
           lastDate = event[0];
-        });
+        };
       } else {
         calendarText = "Heute passiert nichts wichtiges 😴."
       }

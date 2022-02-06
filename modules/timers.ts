@@ -185,13 +185,13 @@ export function startOtherTimers(client, channelID: string, assets: any) {
     if (1 < calendarEvents.length) {
       let lastDate: string;
       calendarText = `Wichtige Termine:`;
-      calendarEvents.forEach(event => {
+      for (const event of calendarEvents) {
         if (event[0] !== lastDate) {
           calendarText += `\n**${event[0]}**\n`;
         }
         calendarText += `\`${event[1]}\` ${event[2]} ${event[3]}\n`;
         lastDate = event[0];
-      });
+      };
     }
 
     client.channels.cache.get(channelID).send(calendarText).catch(error => {
@@ -217,13 +217,13 @@ export function startOtherTimers(client, channelID: string, assets: any) {
     if (1 < calendarEvents.length) {
       let lastDate: string;
       calendarText = `Wichtige Termine nächste Woche:`;
-      calendarEvents.forEach(event => {
+      for (const event of calendarEvents) {
         if (event[0] !== lastDate) {
           calendarText += `\n**${event[0]}**\n`;
         }
         calendarText += `\`${event[1]}\` ${event[2]} ${event[3]}\n`;
         lastDate = event[0];
-      });
+      };
     }
 
     client.channels.cache.get(channelID).send(calendarText).catch(error => {
