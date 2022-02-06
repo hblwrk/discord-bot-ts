@@ -72,6 +72,7 @@ export async function getEarnings(date: string, filter: string) :Promise<Earning
       const earningsEvent = new EarningsEvent;
       earningsEvent.ticker = element.text;
       earningsEvent.date = dateStamp;
+      earningsEvent.mcap = element.quote.marketCap;
       if (true === moment(element.start_date).isBefore(nyseOpenTime)) {
         earningsEvent.when = "before_open";
       } else if (true === moment(element.start_date).isSameOrAfter(nyseOpenTime) && true === moment(element.start_date).isBefore(nyseCloseTime)) {
@@ -94,6 +95,8 @@ export function getEarningsText(earningsEvents: Array<EarningsEvent>, when: stri
     let earningsDuringSession: string = "";
     let earningsAfterClose: string = "";
 
+    earningsEvents = earningsEvents.sort((first, second) => 0 - (first.mcap > second.mcap ? 1 : -1));
+
     for (const earningEvent of earningsEvents) {
       if ("before_open" === earningEvent.when) {
         earningsBeforeOpen += `${earningEvent.ticker}, `;
@@ -103,6 +106,7 @@ export function getEarningsText(earningsEvents: Array<EarningsEvent>, when: stri
         earningsAfterClose += `${earningEvent.ticker}, `;
       }
     };
+
 
     earningsText = `Anstehende earnings (${earningsEvents[0].date}):\n`;
     if (1 < earningsBeforeOpen.length && ("all" === when || "before_open" === when)) {
@@ -123,6 +127,7 @@ class EarningsEvent {
   private _ticker: string;
   private _when: string;
   private _date: string;
+  private _mcap: number;
 
   public get ticker() {
     return this._ticker;
@@ -146,5 +151,12 @@ class EarningsEvent {
 
   public set date(date: string) {
     this._date = date;
+  }
+  public get mcap() {
+    return this._mcap;
+  }
+
+  public set mcap(mcap: number) {
+    this._mcap = mcap;
   }
 }
