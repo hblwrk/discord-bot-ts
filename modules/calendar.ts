@@ -15,7 +15,7 @@ export async function getCalendarEvents(range: number) :Promise<CalendarEvent[]>
     "second": 0
   });
 
-  // During the weekend, use next monday as startDate
+  // During the weekend, use next Monday as startDate
   if ((startDate.day() === 6)) {
     startDate = moment(startDate).day(8)
   } else if ((startDate.day() === 0)) {
