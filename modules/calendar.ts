@@ -3,7 +3,7 @@ import moment from "moment";
 import "moment-timezone";
 
 export async function getCalendar(range: number) {
-  let deDate = moment.tz("Europe/Berlin").set({
+  let startDate = moment.tz("Europe/Berlin").set({
     // testing
     /*
     "year": 2022,
@@ -16,23 +16,23 @@ export async function getCalendar(range: number) {
   });
 
   // Weekend, get next monday
-  if ((deDate.day() === 6)) {
-    deDate = moment(deDate).day(1+7)
-  } else if ((deDate.day() === 0)) {
-    deDate = moment(deDate).day(1)
+  if ((startDate.day() === 6)) {
+    startDate = moment(startDate).day(1+7)
+  } else if ((startDate.day() === 0)) {
+    startDate = moment(startDate).day(1)
   }
 
-  let endDate = deDate.set({
+  let endDate = startDate.set({
     "hour": 23,
     "minute": 59,
     "second": 59
   });
 
   if (0 !== range) {
-    endDate = moment(deDate).add(range, 'days');
+    endDate = moment(startDate).add(range, 'days');
   }
 
-  const calendarResponse = await axios.post("https://www.mql5.com/en/economic-calendar/content", `date_mode=1&from=${moment(deDate).format("YYYY-MM-DD")}T00%3A00%3A00&to=${moment(endDate).format("YYYY-MM-DD")}T23%3A59%3A59&importance=12&currencies=15`, {
+  const calendarResponse = await axios.post("https://www.mql5.com/en/economic-calendar/content", `date_mode=1&from=${moment(startDate).format("YYYY-MM-DD")}T00%3A00%3A00&to=${moment(endDate).format("YYYY-MM-DD")}T23%3A59%3A59&importance=12&currencies=15`, {
     headers: {
       "X-Requested-With": "XMLHttpRequest"
     }
