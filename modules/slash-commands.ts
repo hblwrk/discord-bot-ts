@@ -9,7 +9,7 @@ import {google, lmgtfy} from "./lmgtfy";
 import {getLogger} from "./logging";
 import {getRandomQuote} from "./random-quote";
 import {readSecret} from "./secrets";
-import {getEarnings} from "./earnings";
+import {getEarnings, getEarningsText} from "./earnings";
 import {getCalendarEvents, getCalendarText} from "./calendar";
 
 const logger = getLogger();
@@ -113,9 +113,9 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
     .setDescription("Heutige earnings")
     .addStringOption(option =>
       option.setName("when")
-        .setDescription("Alle, nur vor open oder nach close?")
+        .setDescription("Alle, nur vor open, während der Handlszeiten oder nach close?")
         .setRequired(false)
-        .addChoices([["Alle", "all"], ["Vor open", "before"], ["Nach close", "after"]]));
+        .addChoices([["Alle", "all"], ["Vor open", "before_open"], ["Zu Handelszeiten", "during_session"], ["Nach close", "after_close"]]));
   slashCommands.push(slashCommandEarnings.toJSON());
 
   const slashCommandCalendar = new SlashCommandBuilder()
@@ -316,30 +316,24 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     if ("earnings" === commandName) {
       const filter :string = "5666c5fa-80dc-4e16-8bcc-12a8314d0b07" // "anticipated" watchlist
       const date :string = "today";
-      let earnings = new Array();
+      let earningsEvents = new Array();
       let when: string;
+
+      earningsEvents = await getEarnings(date, filter);
 
       if (null !== interaction.options.get("when")) {
         when = validator.escape(interaction.options.get("when").value.toString());
-        if ("before" === when.toLowerCase() || "after" === when.toLowerCase() || "all" === when.toLowerCase()) {
-          earnings = await getEarnings(date, when, filter);
-        }
       } else {
-        console.log(`When: ${when}`)
-        earnings = await getEarnings(date, when, filter);
+        when = "all";
       }
 
-      let returnText: string;
+      let earningsText: string = getEarningsText(earningsEvents, when);
 
-      if ("none" === earnings[0]) {
-        returnText = "Heute gibt es keine relevanten Quartalszahlen."
-      } else if ("weekend" === earnings[0]) {
-        returnText = "Digger es ist Wochenende, nerv mich nicht."
-      } else {
-        returnText = `Earnings: ${earnings}`;
+      if ("none" === earningsText) {
+        earningsText = "Es stehen keine relevanten Quartalszahlen an."
       }
 
-      await interaction.reply(returnText).catch(error => {
+      await interaction.reply(earningsText).catch(error => {
         logger.log(
           "error",
           error,
@@ -348,7 +342,6 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     if ("calendar" === commandName) {
-      let calendarText: string;
       let calendarEvents = new Array;
 
       if (null !== interaction.options.get("range")) {
@@ -361,7 +354,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         calendarEvents = await getCalendarEvents(0);
       }
 
-      calendarText = getCalendarText(calendarEvents);
+      let calendarText: string = getCalendarText(calendarEvents);
 
       if ("none" === calendarText) {
         calendarText = "Heute passiert nichts wichtiges 😴."

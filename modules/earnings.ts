@@ -2,10 +2,10 @@ import axios, {AxiosResponse} from "axios";
 import moment from "moment";
 import "moment-timezone";
 
-export async function getEarnings(date: string, when: string, filter: string) :Promise<string[]> {
+export async function getEarnings(date: string, filter: string) :Promise<EarningsEvent[]> {
   let dateStamp: string;
 
-  const usEasternTime :moment.Moment = moment.tz("US/Eastern").set({
+  let usEasternTime :moment.Moment = moment.tz("US/Eastern").set({
     // testing
     /*
     "year": 2022,
@@ -17,49 +17,118 @@ export async function getEarnings(date: string, when: string, filter: string) :P
     */
   });
 
-  // Don't check on weekends
-  if (usEasternTime.day() === 6 || usEasternTime.day() === 0) {
-    return ["weekend"];
+  let nyseOpenTime :moment.Moment = moment.tz("US/Eastern").set({
+    // testing
+    /*
+    "year": 2022,
+    "month": 1,
+    "date": 3,
+    */
+    "hour": 9,
+    "minute": 30,
+    "second": 0,
+  });
+
+  let nyseCloseTime :moment.Moment = moment.tz("US/Eastern").set({
+    // testing
+    /*
+    "year": 2022,
+    "month": 1,
+    "date": 3,
+    */
+    "hour": 16,
+    "minute": 0,
+    "second": 0,
+  });
+
+  // During the weekend, use next Monday
+  if ((usEasternTime.day() === 6)) {
+    usEasternTime = moment(usEasternTime).day(8)
+    nyseOpenTime = moment(nyseOpenTime).day(8)
+    nyseCloseTime = moment(nyseCloseTime).day(8)
+  } else if ((usEasternTime.day() === 0)) {
+    usEasternTime = moment(usEasternTime).day(1)
+    nyseOpenTime = moment(nyseOpenTime).day(1)
+    nyseCloseTime = moment(nyseCloseTime).day(1)
   }
 
   if (null === date || "today" === date) {
     dateStamp = usEasternTime.format("YYYY-MM-DD");
   }
 
-  // If no before/after is defined, return whatever event is next
-  if ("" === when || undefined === when) {
-    const deTime :moment.Moment = usEasternTime.clone().tz("Europe/Berlin");
-
-    if (moment().isBefore(deTime)) {
-      when = "before"
-    } else {
-      when = "after"
-    }
-  }
-
-  dateStamp = usEasternTime.format("YYYY-MM-DD");
   const earningsResponse :AxiosResponse = await axios.get(`https://app.fincredible.ai/api/v1/events/?date=${dateStamp}&watchlist=${filter}`);
 
+  let earningsEvents = new Array;
+
   if (1 < earningsResponse.data.length) {
-    let earningsBeforeOpen = new Array;
-    let earningsAfterClose = new Array;
 
     for (const element of earningsResponse.data) {
-      if (true === moment(element.start_date).isBefore(usEasternTime)) {
-        earningsBeforeOpen.push(element.text);
+      const earningsEvent = new EarningsEvent;
+      earningsEvent.ticker = element.text;
+      if (true === moment(element.start_date).isBefore(nyseOpenTime)) {
+        earningsEvent.when = "before_open";
+      } else if (true === moment(element.start_date).isSameOrAfter(nyseOpenTime) && true === moment(element.start_date).isBefore(nyseCloseTime)) {
+        earningsEvent.when = "during_session";
       } else {
-        earningsAfterClose.push(element.text);
+        earningsEvent.when = "after_close";
+      }
+      earningsEvents.push(earningsEvent);
+    };
+  }
+
+  return earningsEvents;
+}
+
+export function getEarningsText(earningsEvents: Array<EarningsEvent>, when: string) :string {
+  let earningsText: string = "none";
+
+  if (1 < earningsEvents.length) {
+    let earningsBeforeOpen: string = "";
+    let earningsDuringSession: string = "";
+    let earningsAfterClose: string = "";
+
+    for (const earningEvent of earningsEvents) {
+      if ("before_open" === earningEvent.when) {
+        earningsBeforeOpen += `${earningEvent.ticker}, `;
+      } else if ("during_session" === earningEvent.when) {
+        earningsDuringSession += `${earningEvent.ticker}, `;
+      } else if ("after_close" === earningEvent.when) {
+        earningsAfterClose += `${earningEvent.ticker}, `;
       }
     };
 
-    if ("all" === when) {
-      return earningsBeforeOpen.concat(earningsAfterClose);
-    } else if ("before" === when) {
-      return earningsBeforeOpen
-    } else if ("after" === when) {
-      return earningsAfterClose
+    earningsText = `Anstehende earnings:\n`;
+    if (1 < earningsBeforeOpen.length && ("all" === when || "before_open" === when)) {
+      earningsText += `**Vor open:**\n${earningsBeforeOpen.slice(0, -2)}\n`;
     }
-  } else {
-    return ["none"];
+    if (1 < earningsDuringSession.length && ("all" === when || "during_session" === when)) {
+      earningsText += `**Während der Handelszeiten:**\n${earningsDuringSession.slice(0, -2)}\n`;
+    }
+    if (1 < earningsAfterClose.length && ("all" === when || "after_close" === when)) {
+      earningsText += `**Nach close:**\n${earningsAfterClose.slice(0, -2)}`;
+    }
+  }
+
+  return earningsText;
+}
+
+class EarningsEvent {
+  private _ticker: string;
+  private _when: string;
+
+  public get ticker() {
+    return this._ticker;
+  }
+
+  public set ticker(ticker: string) {
+    this._ticker = ticker;
+  }
+
+  public get when() {
+    return this._when;
+  }
+
+  public set when(when: string) {
+    this._when = when;
   }
 }
