@@ -1,9 +1,9 @@
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import moment from "moment";
 import "moment-timezone";
 
-export async function getCalendar(range: number) {
-  let startDate = moment.tz("Europe/Berlin").set({
+export async function getCalendarEvents(range: number) :Promise<string[]> {
+  let startDate :moment.Moment = moment.tz("Europe/Berlin").set({
     // testing
     /*
     "year": 2022,
@@ -22,7 +22,7 @@ export async function getCalendar(range: number) {
     startDate = moment(startDate).day(1)
   }
 
-  let endDate = startDate.set({
+  let endDate :moment.Moment = startDate.set({
     "hour": 23,
     "minute": 59,
     "second": 59
@@ -32,7 +32,7 @@ export async function getCalendar(range: number) {
     endDate = moment(startDate).add(range, 'days');
   }
 
-  const calendarResponse = await axios.post(
+  const calendarResponse :AxiosResponse = await axios.post(
     "https://www.mql5.com/en/economic-calendar/content",
     `date_mode=1&from=${moment(startDate).format("YYYY-MM-DD")}T00%3A00%3A00&to=${moment(endDate).format("YYYY-MM-DD")}T23%3A59%3A59&importance=12&currencies=15`,
     {
@@ -42,9 +42,9 @@ export async function getCalendar(range: number) {
     }
   );
 
-  if (1 < calendarResponse.data.length) {
-    let calendarEvents = new Array;
+  let calendarEvents = new Array;
 
+  if (1 < calendarResponse.data.length) {
     for (const element of calendarResponse.data) {
       const calendarEvent = new Array;
 
@@ -58,12 +58,12 @@ export async function getCalendar(range: number) {
         break;
       } else {
         // Source data does not contain timezone info, guess its UTC...
-        const eventDate = moment.utc(element.FullDate).tz("Europe/Berlin");
+        const eventDate :moment.Moment = moment.utc(element.FullDate).tz("Europe/Berlin");
 
         if (true === moment(eventDate).isSameOrBefore(endDate)) {
           let country: string;
-          const eventDEDate = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("YYYY-MM-DD");
-          const eventDETime = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("HH:mm");
+          const eventDEDate :string = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("YYYY-MM-DD");
+          const eventDETime :string = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("HH:mm");
 
           switch (element.Country) {
             case 999:
@@ -103,8 +103,26 @@ export async function getCalendar(range: number) {
         }
       }
     }      
-    return calendarEvents;
-  } else {
-    return false;
   }
+
+  return calendarEvents;
+}
+
+export function getCalendarText(calendarEvents: Array<string>) :string {
+  let calendarText: string = "none";
+
+  if (1 < calendarEvents.length) {
+    let lastDate: string;
+
+    calendarText = `Wichtige Termine:`;
+    for (const event of calendarEvents) {
+      if (event[0] !== lastDate) {
+        calendarText += `\n**${event[0]}**\n`;
+      }
+      calendarText += `\`${event[1]}\` ${event[2]} ${event[3]}\n`;
+      lastDate = event[0];
+    };
+  }
+
+  return calendarText;
 }
