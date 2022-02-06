@@ -368,7 +368,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           if (event[0] !== lastDate) {
             calendarText += `\n**${event[0]}**\n`;
           }
-          calendarText += `${event[1]} ${event[2]} ${event[3]}\n`;
+          calendarText += `\`${event[1]}\` ${event[2]} ${event[3]}\n`;
           lastDate = event[0];
         });
       } else {
