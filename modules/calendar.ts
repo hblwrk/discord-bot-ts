@@ -2,7 +2,7 @@ import axios, {AxiosResponse} from "axios";
 import moment from "moment";
 import "moment-timezone";
 
-export async function getCalendarEvents(range: number) :Promise<string[]> {
+export async function getCalendarEvents(range: number) :Promise<CalendarEvent[]> {
   let startDate :moment.Moment = moment.tz("Europe/Berlin").set({
     // testing
     /*
@@ -46,14 +46,22 @@ export async function getCalendarEvents(range: number) :Promise<string[]> {
 
   if (1 < calendarResponse.data.length) {
     for (const element of calendarResponse.data) {
-      const calendarEvent = new Array;
+      const calendarEvent = new CalendarEvent;
 
       // Discord character limit
-      if (2300 <= calendarEvents.toString().length) {
-        calendarEvent.push("API Limit");
-        calendarEvent.push("13:37");
-        calendarEvent.push("🤖");
-        calendarEvent.push("Es konnten nicht alle Termine ausgegeben werden.");
+      let objectValueLength: number = 0;
+
+      for (const event of calendarEvents) {
+        for (const value of Object.values(event)) {
+          objectValueLength += value.toString().length;
+        }
+      }
+
+      if (2100 <= objectValueLength) {
+        calendarEvent.date = "API Limit";
+        calendarEvent.time = "13:37";
+        calendarEvent.country = "🤖";
+        calendarEvent.name = "Es konnten nicht alle Termine ausgegeben werden.";
         calendarEvents.push(calendarEvent);
         break;
       } else {
@@ -95,10 +103,10 @@ export async function getCalendarEvents(range: number) :Promise<string[]> {
               break;
           }
 
-          calendarEvent.push(eventDEDate);
-          calendarEvent.push(eventDETime);
-          calendarEvent.push(country);
-          calendarEvent.push(element.EventName);
+          calendarEvent.date = eventDEDate;
+          calendarEvent.time = eventDETime;
+          calendarEvent.country = country;
+          calendarEvent.name = element.EventName;
           calendarEvents.push(calendarEvent);
         }
       }
@@ -108,7 +116,7 @@ export async function getCalendarEvents(range: number) :Promise<string[]> {
   return calendarEvents;
 }
 
-export function getCalendarText(calendarEvents: Array<string>) :string {
+export function getCalendarText(calendarEvents: Array<CalendarEvent>) :string {
   let calendarText: string = "none";
 
   if (1 < calendarEvents.length) {
@@ -116,13 +124,52 @@ export function getCalendarText(calendarEvents: Array<string>) :string {
 
     calendarText = `Wichtige Termine:`;
     for (const event of calendarEvents) {
-      if (event[0] !== lastDate) {
-        calendarText += `\n**${event[0]}**\n`;
+      if (event.date !== lastDate) {
+        calendarText += `\n**${event.date}**\n`;
       }
-      calendarText += `\`${event[1]}\` ${event[2]} ${event[3]}\n`;
-      lastDate = event[0];
+      calendarText += `\`${event.time}\` ${event.country} ${event.name}\n`;
+      lastDate = event.date;
     };
   }
 
   return calendarText;
+}
+
+class CalendarEvent {
+  private _date: string;
+  private _time: string;
+  private _country: string;
+  private _name: string;
+
+  public get date() {
+    return this._date;
+  }
+
+  public set date(date: string) {
+    this._date = date;
+  }
+
+  public get time() {
+    return this._time;
+  }
+
+  public set time(time: string) {
+    this._time = time;
+  }
+
+  public get country() {
+    return this._country;
+  }
+
+  public set country(country: string) {
+    this._country = country;
+  }
+
+  public get name() {
+    return this._name;
+  }
+
+  public set name(name: string) {
+    this._name = name;
+  }
 }
