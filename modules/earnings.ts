@@ -95,6 +95,7 @@ export function getEarningsText(earningsEvents: Array<EarningsEvent>, when: stri
     let earningsDuringSession: string = "";
     let earningsAfterClose: string = "";
 
+    // Sort by market cap, descending order
     earningsEvents = earningsEvents.sort((first, second) => 0 - (first.mcap > second.mcap ? 1 : -1));
 
     for (const earningEvent of earningsEvents) {
