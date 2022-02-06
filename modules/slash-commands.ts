@@ -10,7 +10,7 @@ import {getLogger} from "./logging";
 import {getRandomQuote} from "./random-quote";
 import {readSecret} from "./secrets";
 import {getEarnings} from "./earnings";
-import {getCalendar} from "./calendar";
+import {getCalendarEvents, getCalendarText} from "./calendar";
 
 const logger = getLogger();
 const token = readSecret("discord_token");
@@ -314,9 +314,9 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     if ("earnings" === commandName) {
-      const filter = "5666c5fa-80dc-4e16-8bcc-12a8314d0b07" // "anticipated" watchlist
-      const date = "today";
-      let earnings: any;
+      const filter :string = "5666c5fa-80dc-4e16-8bcc-12a8314d0b07" // "anticipated" watchlist
+      const date :string = "today";
+      let earnings = new Array();
       let when: string;
 
       if (null !== interaction.options.get("when")) {
@@ -325,15 +325,15 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           earnings = await getEarnings(date, when, filter);
         }
       } else {
-        const when = ""
+        console.log(`When: ${when}`)
         earnings = await getEarnings(date, when, filter);
       }
 
       let returnText: string;
 
-      if (false === earnings) {
+      if ("none" === earnings[0]) {
         returnText = "Heute gibt es keine relevanten Quartalszahlen."
-      } else if ("weekend" === earnings) {
+      } else if ("weekend" === earnings[0]) {
         returnText = "Digger es ist Wochenende, nerv mich nicht."
       } else {
         returnText = `Earnings: ${earnings}`;
@@ -349,30 +349,21 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
     if ("calendar" === commandName) {
       let calendarText: string;
-      let calendarEvents: any;
+      let calendarEvents = new Array;
 
       if (null !== interaction.options.get("range")) {
         let range = validator.escape(interaction.options.get("range").value.toString());
         if (31 < range) {
           range = 31;
         }
-        calendarEvents = await getCalendar(range -1);       
+        calendarEvents = await getCalendarEvents(range -1);       
       } else {
-        calendarEvents = await getCalendar(0);
+        calendarEvents = await getCalendarEvents(0);
       }
 
-      if (1 < calendarEvents.length) {
-        let lastDate: string;
-        calendarText = `Wichtige Termine:`;
+      calendarText = getCalendarText(calendarEvents);
 
-        for (const event of calendarEvents) {
-          if (event[0] !== lastDate) {
-            calendarText += `\n**${event[0]}**\n`;
-          }
-          calendarText += `\`${event[1]}\` ${event[2]} ${event[3]}\n`;
-          lastDate = event[0];
-        };
-      } else {
+      if ("none" === calendarText) {
         calendarText = "Heute passiert nichts wichtiges 😴."
       }
 
