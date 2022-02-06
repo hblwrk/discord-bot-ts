@@ -13,7 +13,6 @@
 * "prune" inactive members after 12 months, timer, <https://discord.js.org/#/docs/main/stable/typedef/GuildPruneMembersOptions>
 * "Market closed" Indikator wenn ein paar Minuten keine Kurse kamen
 * /delta <symbol> <dte> befehl einbauen, der einem dann sagt, welche zwei prices über/unter dem delta liegen
-* whatis: Links aufs Wiki
 * earnings/calendar: arrays durch Objekte ersetzen
 
 ## Bugs
