@@ -325,6 +325,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           earnings = await getEarnings(date, when, filter);
         }
       } else {
+        console.log(`When: ${when}`)
         earnings = await getEarnings(date, when, filter);
       }
 
