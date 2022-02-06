@@ -169,7 +169,7 @@ Larger files, for example images, are stored at an external cloud service, Draco
 
 ## Market data
 
-Real-time market-data is being pulled in through a Websocket connection and distributed via but nickname and presence information. Those bots can be joined to the server separately and their runtime information is managed as an asset. They require no oAuth2 scopes other than "bot".
+Real-time market-data is being pulled in through a Websocket connection and distributed via Discord bot nickname and presence information. Those bots can be joined to the server separately and their runtime information is managed as an asset. They require no oAuth2 scopes other than "bot".
 
 ## Service lifecycle
 
