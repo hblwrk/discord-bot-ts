@@ -115,7 +115,12 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
       option.setName("when")
         .setDescription("Alle, nur vor open, während der Handlszeiten oder nach close?")
         .setRequired(false)
-        .addChoices([["Alle", "all"], ["Vor open", "before_open"], ["Zu Handelszeiten", "during_session"], ["Nach close", "after_close"]]));
+        .addChoices([["Alle", "all"], ["Vor open", "before_open"], ["Zu Handelszeiten", "during_session"], ["Nach close", "after_close"]]))
+    .addStringOption(option =>
+      option.setName("filter")
+        .setDescription("Welche earnings?")
+        .setRequired(false)
+        .addChoices([["Alle", "all"], ["Most anticipated", "5666c5fa-80dc-4e16-8bcc-12a8314d0b07"]]));
   slashCommands.push(slashCommandEarnings.toJSON());
 
   const slashCommandCalendar = new SlashCommandBuilder()
@@ -314,18 +319,22 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     if ("earnings" === commandName) {
-      const filter :string = "5666c5fa-80dc-4e16-8bcc-12a8314d0b07" // "anticipated" watchlist
+      let filter :string = "all";
       const date :string = "today";
       let earningsEvents = new Array();
       let when: string;
-
-      earningsEvents = await getEarnings(date, filter);
 
       if (null !== interaction.options.get("when")) {
         when = validator.escape(interaction.options.get("when").value.toString());
       } else {
         when = "all";
       }
+
+      if (null !== interaction.options.get("filter")) {
+        filter = validator.escape(interaction.options.get("filter").value.toString());
+      }
+
+      earningsEvents = await getEarnings(date, filter);
 
       let earningsText: string = getEarningsText(earningsEvents, when);
 

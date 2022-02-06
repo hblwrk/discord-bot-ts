@@ -56,7 +56,13 @@ export async function getEarnings(date: string, filter: string) :Promise<Earning
     dateStamp = usEasternTime.format("YYYY-MM-DD");
   }
 
-  const earningsResponse :AxiosResponse = await axios.get(`https://app.fincredible.ai/api/v1/events/?date=${dateStamp}&watchlist=${filter}`);
+  let watchlist :string = "";
+
+  if ("all" !== filter) {
+    watchlist = `&watchlist=${filter}`
+  }
+
+  const earningsResponse :AxiosResponse = await axios.get(`https://app.fincredible.ai/api/v1/events/?date=${dateStamp}${watchlist}`);
 
   let earningsEvents = new Array;
 
@@ -65,6 +71,7 @@ export async function getEarnings(date: string, filter: string) :Promise<Earning
     for (const element of earningsResponse.data) {
       const earningsEvent = new EarningsEvent;
       earningsEvent.ticker = element.text;
+      earningsEvent.date = dateStamp;
       if (true === moment(element.start_date).isBefore(nyseOpenTime)) {
         earningsEvent.when = "before_open";
       } else if (true === moment(element.start_date).isSameOrAfter(nyseOpenTime) && true === moment(element.start_date).isBefore(nyseCloseTime)) {
@@ -97,12 +104,12 @@ export function getEarningsText(earningsEvents: Array<EarningsEvent>, when: stri
       }
     };
 
-    earningsText = `Anstehende earnings:\n`;
+    earningsText = `Anstehende earnings (${earningsEvents[0].date}):\n`;
     if (1 < earningsBeforeOpen.length && ("all" === when || "before_open" === when)) {
-      earningsText += `**Vor open:**\n${earningsBeforeOpen.slice(0, -2)}\n`;
+      earningsText += `**Vor open:**\n${earningsBeforeOpen.slice(0, -2)}\n\n`;
     }
     if (1 < earningsDuringSession.length && ("all" === when || "during_session" === when)) {
-      earningsText += `**Während der Handelszeiten:**\n${earningsDuringSession.slice(0, -2)}\n`;
+      earningsText += `**Während der Handelszeiten:**\n${earningsDuringSession.slice(0, -2)}\n\n`;
     }
     if (1 < earningsAfterClose.length && ("all" === when || "after_close" === when)) {
       earningsText += `**Nach close:**\n${earningsAfterClose.slice(0, -2)}`;
@@ -115,6 +122,7 @@ export function getEarningsText(earningsEvents: Array<EarningsEvent>, when: stri
 class EarningsEvent {
   private _ticker: string;
   private _when: string;
+  private _date: string;
 
   public get ticker() {
     return this._ticker;
@@ -130,5 +138,13 @@ class EarningsEvent {
 
   public set when(when: string) {
     this._when = when;
+  }
+
+  public get date() {
+    return this._date;
+  }
+
+  public set date(date: string) {
+    this._date = date;
   }
 }
