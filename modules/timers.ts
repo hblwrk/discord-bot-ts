@@ -1,4 +1,4 @@
-import {MessageAttachment, MessageEmbed} from "discord.js";
+import {MessageAttachment} from "discord.js";
 import moment from "moment";
 import "moment-timezone";
 import Schedule from "node-schedule";
