@@ -206,7 +206,7 @@ export function startOtherTimers(client, channelID: string, assets: any) {
   Schedule.scheduleJob(ruleEvents, async () => {
     let calendarText: string;
     let calendarEvents: any;
-    calendarEvents = await getCalendarEvents(0);
+    calendarEvents = await getCalendarEvents("", 0);
 
     calendarText = getCalendarText(calendarEvents);
 
@@ -227,14 +227,31 @@ export function startOtherTimers(client, channelID: string, assets: any) {
   ruleEventsWeekly.tz = "Europe/Berlin";
 
   Schedule.scheduleJob(ruleEventsWeekly, async () => {
-    let calendarText: string;
-    let calendarEvents: any;
-    calendarEvents = await getCalendarEvents(7);
+    let calendarText1: string;
+    let calendarText2: string;
+    let calendarEvents1: any;
+    let calendarEvents2: any;
 
-    calendarText = getCalendarText(calendarEvents);
+    // Splitting weekly announcement to two messages to avoid API limit
+    let offsetDays :string = moment().tz("Europe/Berlin").add(5, 'days').format("YYYY-MM-DD");
 
-    if ("none" !== calendarText) {
-      client.channels.cache.get(channelID).send(calendarText).catch(error => {
+    calendarEvents1 = await getCalendarEvents("", 2);
+    calendarEvents2 = await getCalendarEvents(offsetDays, 1);
+
+    calendarText1 = getCalendarText(calendarEvents1);
+    calendarText2 = getCalendarText(calendarEvents2);
+
+    if ("none" !== calendarText1) {
+      client.channels.cache.get(channelID).send(calendarText1).catch(error => {
+        logger.log(
+          "error",
+          error,
+        );
+      });
+    }
+
+    if ("none" !== calendarText2) {
+      client.channels.cache.get(channelID).send(calendarText2).catch(error => {
         logger.log(
           "error",
           error,

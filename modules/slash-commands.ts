@@ -378,9 +378,9 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         if (31 < range) {
           range = 31;
         }
-        calendarEvents = await getCalendarEvents(range -1);       
+        calendarEvents = await getCalendarEvents("", range -1);       
       } else {
-        calendarEvents = await getCalendarEvents(0);
+        calendarEvents = await getCalendarEvents("", 0);
       }
 
       let calendarText: string = getCalendarText(calendarEvents);

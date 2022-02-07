@@ -2,8 +2,13 @@ import axios, {AxiosResponse} from "axios";
 import moment from "moment";
 import "moment-timezone";
 
-export async function getCalendarEvents(range: number) :Promise<CalendarEvent[]> {
-  let startDate :moment.Moment = moment.tz("Europe/Berlin").set({
+export async function getCalendarEvents(startDay: string, range: number) :Promise<CalendarEvent[]> {
+
+  if ("" === startDay) {
+    startDay = moment.tz("Europe/Berlin").format("YYYY-MM-DD");
+  }
+
+  let startDate :moment.Moment = moment(startDay).tz("Europe/Berlin").set({
     // testing
     /*
     "year": 2022,
