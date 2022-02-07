@@ -104,6 +104,13 @@
   title: "Quote fcyolohama 4"
   location: dracoon
   locationId: 7BxiPtLxz1Wtb0oRSc9bIqsmZBZN2fse
+- name: quote_fcyolohama_5
+  trigger: ["quote fcyolohama 5"]
+  user: fcyolohama
+  fileName: quote-fcyolohama-05.png
+  title: "Quote fcyolohama 5"
+  location: dracoon
+  locationId: A1tgFHs0n7gmt5TXFEg0qVdU5RKgCsSg
 - name: quote_chaostrader_1
   trigger: ["quote chaostrader 1"]
   user: chaostrader
@@ -503,3 +510,17 @@
   title: "Quote rf 1"
   location: dracoon
   locationId: UynK3qF80rZqqUOLoRORdKirLOBLVXr9
+- name: quote_nepo_1
+  trigger: ["quote nepo 1"]
+  user: nepo
+  fileName: quote-nepo-01.png
+  title: "Quote nepo 1"
+  location: dracoon
+  locationId: 27PkKY33kQGQjyO2ezECe8lnRgPmaG7c
+- name: quote_björn_1
+  trigger: ["quote björn 1"]
+  user: björn
+  fileName: quote-björn-01.png
+  title: "Quote björn 1"
+  location: dracoon
+  locationId: HA4WiVoJk3fi1K8txzXjp8QMEgjkWcA4
