@@ -173,12 +173,12 @@ export function startOtherTimers(client, channelID: string, assets: any) {
 
   const ruleEarnings = new Schedule.RecurrenceRule();
   ruleEarnings.hour = 8;
-  ruleEarnings.minute = 30;
+  ruleEarnings.minute = 45;
   ruleEarnings.dayOfWeek = [new Schedule.Range(1, 5)];
   ruleEarnings.tz = "Europe/Berlin";
 
   Schedule.scheduleJob(ruleEarnings, async () => {
-    const filter :string = "5666c5fa-80dc-4e16-8bcc-12a8314d0b07" // "anticipated" watchlist
+    const filter :string = "all"; //"5666c5fa-80dc-4e16-8bcc-12a8314d0b07" "anticipated" watchlist
     const date :string = "today";
     let when: string = "all";
     let earningsEvents = new Array();
