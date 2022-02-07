@@ -124,12 +124,12 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
   slashCommands.push(slashCommandEarnings.toJSON());
 
   const slashCommandCalendar = new SlashCommandBuilder()
-  .setName("calendar")
-  .setDescription("Wichtige Ereignisse")
-  .addStringOption(option =>
-    option.setName("range")
-      .setDescription("Zeitspanne in Tagen")
-      .setRequired(false));
+    .setName("calendar")
+    .setDescription("Wichtige Ereignisse")
+    .addStringOption(option =>
+      option.setName("range")
+        .setDescription("Zeitspanne in Tagen")
+        .setRequired(false));
   slashCommands.push(slashCommandCalendar.toJSON());
 
   // Deploy slash-commands to Discord
@@ -206,7 +206,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     if ("8ball" === commandName) {
-      let options: string[] = [
+      const options: string[] = [
         ":8ball: Ziemlich sicher.",
         ":8ball: Es ist entschieden.",
         ":8ball: Ohne Zweifel.",
@@ -296,8 +296,8 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     if ("islandboi" === commandName) {
-      //const asset = getAssetByName("islandboi", assets);
-      //const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+      //  const asset = getAssetByName("islandboi", assets);
+      //  const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
 
       const guildUser = await client.guilds.cache.get(guildId).members.fetch(interaction.user.id);
       const mutedRole = readSecret("hblwrk_role_muted_ID");
@@ -315,7 +315,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         );
       }, 300000);
 
-      //await interaction.reply({files: [file]});
+      //  await interaction.reply({files: [file]});
     }
 
     if ("earnings" === commandName) {
@@ -323,14 +323,15 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       discordLogger.log(
         "info",
-        { "username": `${interaction.user.username}`,
+        {
+          "username": `${interaction.user.username}`,
           "message": "Using earnings slashcommand",
           "channel": `${interaction.channel}`
         },
       );
 
-      let filter :string = "all";
-      const date :string = "today";
+      let filter: string = "all";
+      const date: string = "today";
       let earningsEvents = new Array();
       let when: string;
 
@@ -349,7 +350,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       let earningsText: string = getEarningsText(earningsEvents, when);
 
       if ("none" === earningsText) {
-        earningsText = "Es stehen keine relevanten Quartalszahlen an."
+        earningsText = "Es stehen keine relevanten Quartalszahlen an.";
       }
 
       await interaction.reply(earningsText).catch(error => {
@@ -365,7 +366,8 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       discordLogger.log(
         "info",
-        { "username": `${interaction.user.username}`,
+        {
+          "username": `${interaction.user.username}`,
           "message": "Using calendar slashcommand",
           "channel": `${interaction.channel}`
         },
@@ -378,7 +380,8 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         if (31 < range) {
           range = 31;
         }
-        calendarEvents = await getCalendarEvents("", range -1);       
+
+        calendarEvents = await getCalendarEvents("", range - 1);
       } else {
         calendarEvents = await getCalendarEvents("", 0);
       }
@@ -386,7 +389,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       let calendarText: string = getCalendarText(calendarEvents);
 
       if ("none" === calendarText) {
-        calendarText = "Heute passiert nichts wichtiges 😴."
+        calendarText = "Heute passiert nichts wichtiges 😴.";
       }
 
       await interaction.reply(calendarText).catch(error => {
@@ -428,7 +431,3 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
   });
 }
-function user(user: any): () => void {
-  throw new Error("Function not implemented.");
-}
-

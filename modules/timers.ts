@@ -1,10 +1,9 @@
 import {MessageAttachment} from "discord.js";
-import moment from "moment";
-import "moment-timezone";
+import moment from "moment-timezone";
 import Schedule from "node-schedule";
 import {isHoliday} from "nyse-holidays";
 import {getAssetByName} from "./assets";
-import {getCalendarEvents, getCalendarText} from "./calendar";
+import {getCalendarEvents, getCalendarText, CalendarEvent} from "./calendar";
 import {getEarnings, getEarningsText} from "./earnings";
 import {getLogger} from "./logging";
 import {getMnc} from "./mnc-downloader";
@@ -52,9 +51,9 @@ export function startNyseTimers(client, channelID: string) {
     if (26 === Number(moment().format("DD")) && 11 === Number(moment().format("MM"))) {
       // At the day after Thanksgiving the market closes at 13:00 local time.
       const usEasternDate = moment.tz("US/Eastern").set({
-        "hour": 13,
-        "minute": 0,
-        "second": 0,
+        hour: 13,
+        minute: 0,
+        second: 0,
       });
       const deDate = usEasternDate.clone().tz("Europe/Berlin");
       client.channels.cache.get(channelID).send(`🦃🍗🎉 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet und heute ist der Tag nach dem Truthahn-Tag, also beeilt euch - die Börse macht schon um ${deDate.format("HH")}:${deDate.format("mm")} zu! 🎉🍗🦃`).catch(error => {
@@ -178,14 +177,14 @@ export function startOtherTimers(client, channelID: string, assets: any) {
   ruleEarnings.tz = "Europe/Berlin";
 
   Schedule.scheduleJob(ruleEarnings, async () => {
-    const filter :string = "all"; //"5666c5fa-80dc-4e16-8bcc-12a8314d0b07" "anticipated" watchlist
-    const date :string = "today";
-    let when: string = "all";
-    let earningsEvents = new Array();
+    const filter = "all"; // "5666c5fa-80dc-4e16-8bcc-12a8314d0b07" "anticipated" watchlist
+    const date = "today";
+    const when = "all";
+    let earningsEvents = [];
 
     earningsEvents = await getEarnings(date, filter);
 
-    let earningsText: string = getEarningsText(earningsEvents, when);
+    const earningsText: string = getEarningsText(earningsEvents, when);
 
     if ("none" !== earningsText) {
       client.channels.cache.get(channelID).send(earningsText).catch(error => {
@@ -204,11 +203,9 @@ export function startOtherTimers(client, channelID: string, assets: any) {
   ruleEvents.tz = "Europe/Berlin";
 
   Schedule.scheduleJob(ruleEvents, async () => {
-    let calendarText: string;
-    let calendarEvents: any;
-    calendarEvents = await getCalendarEvents("", 0);
+    const calendarEvents = await getCalendarEvents("", 0);
 
-    calendarText = getCalendarText(calendarEvents);
+    const calendarText = getCalendarText(calendarEvents);
 
     if ("none" !== calendarText) {
       client.channels.cache.get(channelID).send(calendarText).catch(error => {
@@ -227,19 +224,14 @@ export function startOtherTimers(client, channelID: string, assets: any) {
   ruleEventsWeekly.tz = "Europe/Berlin";
 
   Schedule.scheduleJob(ruleEventsWeekly, async () => {
-    let calendarText1: string;
-    let calendarText2: string;
-    let calendarEvents1: any;
-    let calendarEvents2: any;
-
     // Splitting weekly announcement to two messages to avoid API limit
-    let offsetDays :string = moment().tz("Europe/Berlin").add(5, 'days').format("YYYY-MM-DD");
+    const offsetDays: string = moment().tz("Europe/Berlin").add(5, "days").format("YYYY-MM-DD");
 
-    calendarEvents1 = await getCalendarEvents("", 2);
-    calendarEvents2 = await getCalendarEvents(offsetDays, 1);
+    const calendarEvents1: CalendarEvent[] = await getCalendarEvents("", 2);
+    const calendarEvents2: CalendarEvent[] = await getCalendarEvents(offsetDays, 1);
 
-    calendarText1 = getCalendarText(calendarEvents1);
-    calendarText2 = getCalendarText(calendarEvents2);
+    const calendarText1: string = getCalendarText(calendarEvents1);
+    const calendarText2: string = getCalendarText(calendarEvents2);
 
     if ("none" !== calendarText1) {
       client.channels.cache.get(channelID).send(calendarText1).catch(error => {
