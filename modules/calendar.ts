@@ -57,7 +57,7 @@ export async function getCalendarEvents(range: number) :Promise<CalendarEvent[]>
         }
       }
 
-      if (2100 <= objectValueLength) {
+      if (2000 <= objectValueLength) {
         calendarEvent.date = "API Limit";
         calendarEvent.time = "13:37";
         calendarEvent.country = "🤖";
@@ -125,7 +125,9 @@ export function getCalendarText(calendarEvents: Array<CalendarEvent>) :string {
     calendarText = `Wichtige Termine:`;
     for (const event of calendarEvents) {
       if (event.date !== lastDate) {
-        calendarText += `\n**${event.date}**\n`;
+        moment.locale("de");
+        const friendlyDate = moment(event.date).format("dddd, Do MMMM YYYY");
+        calendarText += `\n**${friendlyDate}**\n`;
       }
       calendarText += `\`${event.time}\` ${event.country} ${event.name}\n`;
       lastDate = event.date;

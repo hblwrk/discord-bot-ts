@@ -108,8 +108,10 @@ export function getEarningsText(earningsEvents: Array<EarningsEvent>, when: stri
       }
     };
 
+    moment.locale("de");
+    const friendlyDate = moment(earningsEvents[0].date).format("dddd, Do MMMM YYYY");
 
-    earningsText = `Anstehende earnings (${earningsEvents[0].date}):\n`;
+    earningsText = `Anstehende earnings (${friendlyDate}):\n`;
     if (1 < earningsBeforeOpen.length && ("all" === when || "before_open" === when)) {
       earningsText += `**Vor open:**\n${earningsBeforeOpen.slice(0, -2)}\n\n`;
     }
