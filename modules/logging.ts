@@ -27,8 +27,8 @@ export function getDiscordLogger(client) {
     transports: [
       new DiscordTransport({
         format: winston.format.json(),
-        client: client
-      })
+        client,
+      }),
     ],
   });
 
