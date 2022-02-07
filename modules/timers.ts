@@ -173,7 +173,7 @@ export function startOtherTimers(client, channelID: string, assets: any) {
 
   const ruleEarnings = new Schedule.RecurrenceRule();
   ruleEarnings.hour = 8;
-  ruleEarnings.minute = 45;
+  ruleEarnings.minute = 30;
   ruleEarnings.dayOfWeek = [new Schedule.Range(1, 5)];
   ruleEarnings.tz = "Europe/Berlin";
 
@@ -200,7 +200,7 @@ export function startOtherTimers(client, channelID: string, assets: any) {
   const ruleEvents = new Schedule.RecurrenceRule();
   ruleEvents.hour = 8;
   ruleEvents.minute = 30;
-  ruleEvents.dayOfWeek = [new Schedule.Range(2, 5)];
+  ruleEvents.dayOfWeek = [new Schedule.Range(1, 5)];
   ruleEvents.tz = "Europe/Berlin";
 
   Schedule.scheduleJob(ruleEvents, async () => {
