@@ -317,3 +317,9 @@
   title: "Drawdown"
   location: dracoon
   locationId: HOySyUNloOUNTcqdsBDbpn6r1ChHIsZH
+- name: sofort
+  trigger: ["sofort"]
+  fileName: sofort.gif
+  title: "Ab wann gilt das?"
+  location: dracoon
+  locationId: SvoXBU73kjYillPTj1GRpIzobwyIk8oS

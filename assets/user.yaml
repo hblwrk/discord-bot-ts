@@ -23,6 +23,12 @@
 - name: rf
   trigger: ["quote rf"]
   title: "Random rf quote"
+- name: björn
+  trigger: ["quote björn"]
+  title: "Random björn quote"
+- name: nepo
+  trigger: ["quote nepo"]
+  title: "Random nepo quote"
 - name: buffet
   trigger: ["quote buffet"]
   title: "Random buffet quote"
