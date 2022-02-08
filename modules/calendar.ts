@@ -62,7 +62,7 @@ export async function getCalendarEvents(startDay: string, range: number): Promis
       }
 
       if (2000 <= objectValueLength) {
-        calendarEvent.date = "API Limit";
+        calendarEvent.date = "APILimit";
         calendarEvent.time = "13:37";
         calendarEvent.country = "🤖";
         calendarEvent.name = "Es konnten nicht alle Termine ausgegeben werden.";
@@ -131,7 +131,7 @@ export function getCalendarText(calendarEvents: CalendarEvent[]): string {
     for (const event of calendarEvents) {
       if (event.date !== lastDate) {
         moment.locale("de");
-        const friendlyDate = moment(event.date).format("dddd, Do MMMM YYYY");
+        const friendlyDate = "APILimit" === event.date ? "API Limit" : moment(event.date).format("dddd, Do MMMM YYYY");
         calendarText += `\n**${friendlyDate}**\n`;
       }
 
