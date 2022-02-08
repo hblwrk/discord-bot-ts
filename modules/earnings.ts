@@ -98,8 +98,6 @@ export function getEarningsText(earningsEvents: EarningsEvent[], when: string, t
     // Sort by market cap, descending order
     earningsEvents = earningsEvents.sort((first, second) => 0 - (first.mcap > second.mcap ? 1 : -1));
 
-    console.log(tickers);
-
     for (const earningEvent of earningsEvents) {
       // Highlight index tickers
       for (const ticker of tickers) {
