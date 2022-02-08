@@ -25,19 +25,20 @@ export async function getCalendarEvents(startDay: string, range: number): Promis
     startDate = moment(startDate).day(1);
   }
 
-  let endDate: moment.Moment = startDate.set({
+  let endDate = moment(startDate);
+  endDate.set({
     hour: 23,
     minute: 59,
     second: 59,
   });
 
   if (0 !== range) {
-    endDate = moment(startDate).add(range, "days");
+    endDate = moment(endDate).add(range, "days");
   }
 
   const calendarResponse: AxiosResponse = await axios.post(
     "https://www.mql5.com/en/economic-calendar/content",
-    `date_mode=1&from=${moment(startDate).format("YYYY-MM-DD")}T00%3A00%3A00&to=${moment(endDate).format("YYYY-MM-DD")}T23%3A59%3A59&importance=12&currencies=15`,
+    `date_mode=0&from=${moment(startDate).format("YYYY-MM-DD")}T00%3A00%3A00&to=${moment(endDate).format("YYYY-MM-DD")}T23%3A59%3A59&importance=12&currencies=15`,
     {
       headers: {
         "X-Requested-With": "XMLHttpRequest",
@@ -71,7 +72,7 @@ export async function getCalendarEvents(startDay: string, range: number): Promis
         // Source data does not contain timezone info, guess its UTC...
         const eventDate: moment.Moment = moment.utc(element.FullDate).tz("Europe/Berlin");
 
-        if (true === moment(eventDate).isSameOrBefore(endDate)) {
+        if (true === moment(eventDate).isSameOrBefore(endDate) && true === moment(eventDate).isSameOrAfter(startDate)) {
           let country: string;
           const eventDeDate: string = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("YYYY-MM-DD");
           const eventDeTime: string = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("HH:mm");
