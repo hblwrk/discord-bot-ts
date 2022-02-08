@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   bot:
-    image: ghcr.io/hblwrk/discord-bot-js:main
+    image: ghcr.io/hblwrk/discord-bot-ts:main
     deploy:
       resources:
         limits:

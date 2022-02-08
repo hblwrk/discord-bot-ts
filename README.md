@@ -1,4 +1,4 @@
-# discord-bot-js
+# discord-bot-ts
 
 ## Conventions
 
@@ -44,7 +44,7 @@ git push --set-upstream origin add_command_help
 
 Once my change is complete, I start a pull-request to get my changes to the `main` branch and add more details about my change if needed.
 
-* <https://github.com/hblwrk/discord-bot-js/pull/new/add_command_help>
+* <https://github.com/hblwrk/discord-bot-ts/pull/new/add_command_help>
 
 After the pull-request has been merged, i remove the feature branch and switch back to the `main` branch and pull in the merged changes.
 
@@ -176,8 +176,8 @@ Real-time market-data is being pulled in through a Websocket connection and dist
 The bots lifecycle is managed using the `docker-compose.yml` file provided at this repository. It contains useful security settings, resource limits and injects secrets. The service is then deployed using Docker Swarm.
 
 ```bash
-docker stack deploy --with-registry-auth --prune --compose-file docker-compose.yml discord-bot-js_production
-docker stack rm discord-bot-js_production
+docker stack deploy --with-registry-auth --prune --compose-file docker-compose.yml discord-bot-ts_production
+docker stack rm discord-bot-ts_production
 ```
 
 ## Monitoring

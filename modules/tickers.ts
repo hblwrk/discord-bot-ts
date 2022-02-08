@@ -32,7 +32,7 @@ export async function getTickers(index: string): Promise<Ticker[]> {
     }
   }
 
-  // may add this as "asset" if more additional tickers are required
+  // May add this as "asset" if more additional tickers are required
   const ticker = new Ticker();
   ticker.symbol = "VIRT";
   ticker.name = "Virtu Financial, Inc.";
