@@ -1,6 +1,5 @@
 import axios, {AxiosResponse} from "axios";
 import moment from "moment-timezone";
-import { start } from "repl";
 
 export async function getCalendarEvents(startDay: string, range: number): Promise<CalendarEvent[]> {
   if ("" === startDay) {
