@@ -7,6 +7,7 @@ import {getCalendarEvents, getCalendarText, CalendarEvent} from "./calendar";
 import {getEarnings, getEarningsText} from "./earnings";
 import {getLogger} from "./logging";
 import {getMnc} from "./mnc-downloader";
+import {Ticker} from "./tickers";
 
 const logger = getLogger();
 
@@ -152,7 +153,7 @@ export function startMncTimers(client, channelID: string) {
   });
 }
 
-export function startOtherTimers(client, channelID: string, assets: any) {
+export function startOtherTimers(client, channelID: string, assets: any, tickers: Ticker[]) {
   const ruleFriday = new Schedule.RecurrenceRule();
   ruleFriday.hour = 8;
   ruleFriday.minute = 0;
@@ -184,7 +185,7 @@ export function startOtherTimers(client, channelID: string, assets: any) {
 
     earningsEvents = await getEarnings(date, filter);
 
-    const earningsText: string = getEarningsText(earningsEvents, when);
+    const earningsText: string = getEarningsText(earningsEvents, when, tickers);
 
     if ("none" !== earningsText) {
       client.channels.cache.get(channelID).send(earningsText).catch(error => {

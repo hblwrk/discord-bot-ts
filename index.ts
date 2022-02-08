@@ -9,6 +9,7 @@ import {addInlineResponses} from "./modules/inline-response";
 import {addTriggerResponses} from "./modules/trigger-response";
 import {getGenericAssets, getAssets} from "./modules/assets";
 import {roleManager} from "./modules/role-manager";
+import {getTickers, Ticker} from "./modules/tickers";
 
 const token = readSecret("discord_token");
 
@@ -67,10 +68,16 @@ assets.then(async assets => {
     `Loaded and cached ${assets.length} generic assets.`,
   );
 
+  const tickers: Ticker[] = await getTickers("all");
+  logger.log(
+    "info",
+    `Loaded and cached ${tickers.length} tickers.`,
+  );
+
   // Set timers, e.g. for stock exchange open/close notifications
   startNyseTimers(client, readSecret("hblwrk_channel_NYSEAnnouncement_ID"));
   startMncTimers(client, readSecret("hblwrk_channel_MNCAnnouncement_ID"));
-  startOtherTimers(client, readSecret("hblwrk_channel_OtherAnnouncement_ID"), assets);
+  startOtherTimers(client, readSecret("hblwrk_channel_OtherAnnouncement_ID"), assets, tickers);
   logger.log(
     "info",
     "Successfully set timers.",
@@ -109,7 +116,7 @@ assets.then(async assets => {
 
   // Slash-commands
   defineSlashCommands(assets, whatIsAssets, userAssets);
-  interactSlashCommands(client, assets, assetCommands, whatIsAssets);
+  interactSlashCommands(client, assets, assetCommands, whatIsAssets, tickers);
 
   // Role assignment
   await roleManager(client, roleAssets);
