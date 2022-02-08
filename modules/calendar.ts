@@ -26,7 +26,7 @@ export async function getCalendarEvents(startDay: string, range: number): Promis
     startDate = moment(startDate).day(1);
   }
 
-  const endDate = moment(startDate);
+  let endDate = moment(startDate);
   endDate.set({
     hour: 23,
     minute: 59,
@@ -34,7 +34,7 @@ export async function getCalendarEvents(startDay: string, range: number): Promis
   });
 
   if (0 !== range) {
-    moment(endDate).add(range, "days");
+    endDate = moment(endDate).add(range, "days");
   }
 
   const calendarResponse: AxiosResponse = await axios.post(
