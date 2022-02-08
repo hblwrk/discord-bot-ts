@@ -11,6 +11,7 @@ import {getRandomQuote} from "./random-quote";
 import {readSecret} from "./secrets";
 import {getEarnings, getEarningsText} from "./earnings";
 import {getCalendarEvents, getCalendarText} from "./calendar";
+import {Ticker} from "./tickers";
 
 const logger = getLogger();
 const token = readSecret("discord_token");
@@ -158,7 +159,7 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
   })();
 }
 
-export function interactSlashCommands(client, assets, assetCommands, whatIsAssets) {
+export function interactSlashCommands(client, assets, assetCommands, whatIsAssets, tickers: Ticker[]) {
   // Respond to slash-commands
   client.on("interactionCreate", async interaction => {
     if (!interaction.isCommand()) {
@@ -347,7 +348,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       earningsEvents = await getEarnings(date, filter);
 
-      let earningsText: string = getEarningsText(earningsEvents, when);
+      let earningsText: string = getEarningsText(earningsEvents, when, tickers);
 
       if ("none" === earningsText) {
         earningsText = "Es stehen keine relevanten Quartalszahlen an.";

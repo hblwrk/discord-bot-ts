@@ -1,5 +1,6 @@
 import axios, {AxiosResponse} from "axios";
 import moment from "moment-timezone";
+import {Ticker} from "./tickers";
 
 export async function getEarnings(date: string, filter: string): Promise<EarningsEvent[]> {
   let dateStamp: string;
@@ -86,7 +87,7 @@ export async function getEarnings(date: string, filter: string): Promise<Earning
   return earningsEvents;
 }
 
-export function getEarningsText(earningsEvents: EarningsEvent[], when: string): string {
+export function getEarningsText(earningsEvents: EarningsEvent[], when: string, tickers: Ticker[]): string {
   let earningsText = "none";
 
   if (1 < earningsEvents.length) {
@@ -97,7 +98,16 @@ export function getEarningsText(earningsEvents: EarningsEvent[], when: string): 
     // Sort by market cap, descending order
     earningsEvents = earningsEvents.sort((first, second) => 0 - (first.mcap > second.mcap ? 1 : -1));
 
+    console.log(tickers);
+
     for (const earningEvent of earningsEvents) {
+      // Highlight index tickers
+      for (const ticker of tickers) {
+        if (ticker.symbol === earningEvent.ticker) {
+          earningEvent.ticker = `**${earningEvent.ticker}**`;
+        }
+      }
+
       switch (earningEvent.when) {
         case "before_open": {
           earningsBeforeOpen += `${earningEvent.ticker}, `;
@@ -120,7 +130,7 @@ export function getEarningsText(earningsEvents: EarningsEvent[], when: string): 
     moment.locale("de");
     const friendlyDate = moment(earningsEvents[0].date).format("dddd, Do MMMM YYYY");
 
-    earningsText = `Anstehende earnings (${friendlyDate}):\n`;
+    earningsText = `Heutige earnings (${friendlyDate}):\n`;
     if (1 < earningsBeforeOpen.length && ("all" === when || "before_open" === when)) {
       earningsText += `**Vor open:**\n${earningsBeforeOpen.slice(0, -2)}\n\n`;
     }
