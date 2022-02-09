@@ -137,7 +137,7 @@ export function getEarningsText(earningsEvents: EarningsEvent[], when: string, t
     moment.locale("de");
     const friendlyDate = moment(earningsEvents[0].date).format("dddd, Do MMMM YYYY");
 
-    earningsText = `Earning-calls (${friendlyDate}):\n`;
+    earningsText = `Earnings calls am ${friendlyDate}:\n`;
     if (1 < earningsBeforeOpen.length && ("all" === when || "before_open" === when)) {
       earningsText += `**Vor open:**\n${earningsBeforeOpen.slice(0, -2)}\n\n`;
     }
