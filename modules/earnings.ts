@@ -2,7 +2,7 @@ import axios, {AxiosResponse} from "axios";
 import moment from "moment-timezone";
 import {Ticker} from "./tickers";
 
-export async function getEarnings(date: string, filter: string): Promise<EarningsEvent[]> {
+export async function getEarnings(days: number, date: string, filter: string): Promise<EarningsEvent[]> {
   let dateStamp: string;
 
   let usEasternTime: moment.Moment = moment.tz("US/Eastern").set({
@@ -52,10 +52,17 @@ export async function getEarnings(date: string, filter: string): Promise<Earning
     nyseCloseTime = moment(nyseCloseTime).day(1);
   }
 
-  if (null === date || "today" === date) {
-    dateStamp = usEasternTime.format("YYYY-MM-DD");
+  if (null === days || 0 === days) {
+    if ("today" === date || null === date) {
+      dateStamp = usEasternTime.format("YYYY-MM-DD");
+    } else {
+      dateStamp = moment(date).tz("US/Eastern").format("YYYY-MM-DD");
+    }
   } else {
-    dateStamp = usEasternTime.add(date, "days").format("YYYY-MM-DD");
+    if (90 < days) {
+      days = 90;
+    }
+    dateStamp = usEasternTime.add(days, "days").format("YYYY-MM-DD");
   }
 
   let watchlist = "";
@@ -130,7 +137,7 @@ export function getEarningsText(earningsEvents: EarningsEvent[], when: string, t
     moment.locale("de");
     const friendlyDate = moment(earningsEvents[0].date).format("dddd, Do MMMM YYYY");
 
-    earningsText = `Heutige earning-calls (${friendlyDate}):\n`;
+    earningsText = `Earning-calls (${friendlyDate}):\n`;
     if (1 < earningsBeforeOpen.length && ("all" === when || "before_open" === when)) {
       earningsText += `**Vor open:**\n${earningsBeforeOpen.slice(0, -2)}\n\n`;
     }
