@@ -111,7 +111,7 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
 
   const slashCommandEarnings = new SlashCommandBuilder()
     .setName("earnings")
-    .setDescription("Heutige earnings")
+    .setDescription("Earnings")
     .addStringOption(option =>
       option.setName("when")
         .setDescription("Alle, nur vor open, während der Handlszeiten oder nach close?")
@@ -122,11 +122,14 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .setDescription("Welche earnings?")
         .setRequired(false)
         .addChoices([["Alle", "all"], ["Most anticipated", "5666c5fa-80dc-4e16-8bcc-12a8314d0b07"]]))
+    .addNumberOption(option =>
+      option.setName("days")
+        .setDescription("Tage in der Zukunft")
+        .setRequired(false))
     .addStringOption(option =>
       option.setName("date")
-        .setDescription("Wann?")
-        .setRequired(false)
-        .addChoices([["Heute", "today"], ["In 10 Tagen", "10"], ["In 11 Tagen", "11"], ["In 12 Tagen", "12"]]));
+        .setDescription("Datum (YYYY-MM-DD)")
+        .setRequired(false));
   slashCommands.push(slashCommandEarnings.toJSON());
 
   const slashCommandCalendar = new SlashCommandBuilder()
@@ -332,16 +335,23 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       discordLogger.log(
         "info",
         {
-          "username": `${interaction.user.username}`,
-          "message": "Using earnings slashcommand",
-          "channel": `${interaction.channel}`
+          username: `${interaction.user.username}`,
+          message: "Using earnings slashcommand",
+          channel: `${interaction.channel}`,
         },
       );
 
-      let filter: string = "all";
-      let earningsEvents = new Array();
+      let filter = "all";
+      let earningsEvents = [];
       let when: string;
       let date: string;
+      let days: number;
+
+      if (null !== interaction.options.get("days")) {
+        days = interaction.options.get("days").value;
+      } else {
+        days = 0;
+      }
 
       if (null !== interaction.options.get("date")) {
         date = validator.escape(interaction.options.get("date").value.toString());
@@ -359,7 +369,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         filter = validator.escape(interaction.options.get("filter").value.toString());
       }
 
-      earningsEvents = await getEarnings(date, filter);
+      earningsEvents = await getEarnings(days, date, filter);
 
       let earningsText: string = getEarningsText(earningsEvents, when, tickers);
 
@@ -387,7 +397,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         },
       );
 
-      let calendarEvents = new Array;
+      let calendarEvents = [];
 
       if (null !== interaction.options.get("range")) {
         let range = validator.escape(interaction.options.get("range").value.toString());

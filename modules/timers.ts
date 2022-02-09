@@ -179,11 +179,12 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
 
   Schedule.scheduleJob(ruleEarnings, async () => {
     const filter = "all"; // "5666c5fa-80dc-4e16-8bcc-12a8314d0b07" "anticipated" watchlist
+    const days = 0;
     const date = "today";
     const when = "all";
     let earningsEvents = [];
 
-    earningsEvents = await getEarnings(date, filter);
+    earningsEvents = await getEarnings(days, date, filter);
 
     const earningsText: string = getEarningsText(earningsEvents, when, tickers);
 
