@@ -228,6 +228,8 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         ":8ball: Sieht nicht so gut aus.",
         ":8ball: Sehr unwahrscheinlich.",
       ];
+
+      // This may show up as possible object insertion in Semgrep. However, it is safe since the content of `options` is predefined by the code and not supplied by a user.
       const randomElement = options[Math.floor(Math.random() * options.length)];
       const embed = new MessageEmbed();
       embed.addFields(
