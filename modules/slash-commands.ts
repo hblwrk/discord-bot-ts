@@ -128,7 +128,7 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .setRequired(false))
     .addStringOption(option =>
       option.setName("date")
-        .setDescription("Tag in der Zukunft (YYYY-MM-DD)")
+        .setDescription("Datum (YYYY-MM-DD)")
         .setRequired(false));
   slashCommands.push(slashCommandEarnings.toJSON());
 
@@ -335,14 +335,14 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       discordLogger.log(
         "info",
         {
-          "username": `${interaction.user.username}`,
-          "message": "Using earnings slashcommand",
-          "channel": `${interaction.channel}`
+          username: `${interaction.user.username}`,
+          message: "Using earnings slashcommand",
+          channel: `${interaction.channel}`,
         },
       );
 
-      let filter: string = "all";
-      let earningsEvents = new Array();
+      let filter = "all";
+      let earningsEvents = [];
       let when: string;
       let date: string;
       let days: number;
@@ -356,7 +356,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       if (null !== interaction.options.get("date")) {
         date = validator.escape(interaction.options.get("date").value.toString());
       } else {
-        date = "today"
+        date = "today";
       }
 
       if (null !== interaction.options.get("when")) {
@@ -397,7 +397,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         },
       );
 
-      let calendarEvents = new Array;
+      let calendarEvents = [];
 
       if (null !== interaction.options.get("range")) {
         let range = validator.escape(interaction.options.get("range").value.toString());
