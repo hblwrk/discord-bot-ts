@@ -121,7 +121,12 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
       option.setName("filter")
         .setDescription("Welche earnings?")
         .setRequired(false)
-        .addChoices([["Alle", "all"], ["Most anticipated", "5666c5fa-80dc-4e16-8bcc-12a8314d0b07"]]));
+        .addChoices([["Alle", "all"], ["Most anticipated", "5666c5fa-80dc-4e16-8bcc-12a8314d0b07"]]))
+    .addStringOption(option =>
+      option.setName("date")
+        .setDescription("Wann?")
+        .setRequired(false)
+        .addChoices([["Heute", "today"], ["In 10 Tagen", "10"], ["In 11 Tagen", "11"], ["In 12 Tagen", "12"]]));
   slashCommands.push(slashCommandEarnings.toJSON());
 
   const slashCommandCalendar = new SlashCommandBuilder()
@@ -334,9 +339,15 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       );
 
       let filter: string = "all";
-      const date: string = "today";
       let earningsEvents = new Array();
       let when: string;
+      let date: string;
+
+      if (null !== interaction.options.get("date")) {
+        date = validator.escape(interaction.options.get("date").value.toString());
+      } else {
+        date = "today";
+      }
 
       if (null !== interaction.options.get("when")) {
         when = validator.escape(interaction.options.get("when").value.toString());

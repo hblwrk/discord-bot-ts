@@ -54,6 +54,8 @@ export async function getEarnings(date: string, filter: string): Promise<Earning
 
   if (null === date || "today" === date) {
     dateStamp = usEasternTime.format("YYYY-MM-DD");
+  } else {
+    dateStamp = usEasternTime.add(date, "days").format("YYYY-MM-DD");
   }
 
   let watchlist = "";
