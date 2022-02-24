@@ -80,7 +80,11 @@ export async function getEarnings(days: number, date: string, filter: string): P
       const earningsEvent = (new EarningsEvent());
       earningsEvent.ticker = element.text;
       earningsEvent.date = dateStamp;
-      earningsEvent.mcap = element.quote.marketCap;
+      if (null === element.quote) {
+        earningsEvent.mcap = 0;
+      } else {
+        earningsEvent.mcap = element.quote.marketCap;
+      }
       if (true === moment(element.start_date).isBefore(nyseOpenTime)) {
         earningsEvent.when = "before_open";
       } else if (true === moment(element.start_date).isSameOrAfter(nyseOpenTime) && true === moment(element.start_date).isBefore(nyseCloseTime)) {
