@@ -2,6 +2,8 @@ import axios, {AxiosResponse} from "axios";
 import moment from "moment-timezone";
 
 export async function getCalendarEvents(startDay: string, range: number): Promise<CalendarEvent[]> {
+  console.log(startDay);
+  console.log(range);
   if ("" === startDay) {
     startDay = moment.tz("Europe/Berlin").format("YYYY-MM-DD");
   }
