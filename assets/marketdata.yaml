@@ -107,3 +107,27 @@
   decimals: 5
   lastUpdate: 0
   order: 8
+- name: cl
+  trigger: forexpros_ws
+  botTokenReference: discord_cl_token
+  botToken: ""
+  botClientIdReference: discord_cl_clientID
+  botClientId: ""
+  botName: "CL/USD"
+  id: 8849
+  unit: "PCT"
+  decimals: 2
+  lastUpdate: 0
+  order: 9
+- name: cl
+  trigger: forexpros_ws
+  botTokenReference: discord_xau_token
+  botToken: ""
+  botClientIdReference: discord_xau_clientID
+  botClientId: ""
+  botName: "XAU/USD"
+  id: 8830
+  unit: "PCT"
+  decimals: 2
+  lastUpdate: 0
+  order: 10
