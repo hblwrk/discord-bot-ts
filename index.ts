@@ -49,12 +49,14 @@ client.login(token).catch(error => {
 });
 
 // Updating market data
-updateMarketData().catch(error => {
-  logger.log(
-    "error",
-    error,
-  );
-});
+if ("production" === readSecret("environment")) {
+  updateMarketData().catch(error => {
+    logger.log(
+      "error",
+      error,
+    );
+  });
+}
 
 logger.log(
   "info",
