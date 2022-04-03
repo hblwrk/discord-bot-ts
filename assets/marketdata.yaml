@@ -119,7 +119,7 @@
   decimals: 2
   lastUpdate: 0
   order: 9
-- name: cl
+- name: xau
   trigger: forexpros_ws
   botTokenReference: discord_xau_token
   botToken: ""
