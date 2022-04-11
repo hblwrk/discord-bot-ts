@@ -118,7 +118,7 @@
   unit: "PCT"
   decimals: 2
   lastUpdate: 0
-  order: 9
+  order: 09
 - name: xau
   trigger: forexpros_ws
   botTokenReference: discord_xau_token
