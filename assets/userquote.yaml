@@ -468,6 +468,34 @@
   title: "Quote konrev 1"
   location: dracoon
   locationId: Cihwj6QE4gBwUfaGyKZVDX5yYU5h6XrK
+- name: quote_konrev_2
+  trigger: ["quote konrev 2"]
+  user: konrev
+  fileName: quote-konrev-02.png
+  title: "Quote konrev 2"
+  location: dracoon
+  locationId: PxJ9vTQASQ3BPijX9bKmOJ5cBOZZwKOD
+- name: quote_konrev_3
+  trigger: ["quote konrev 3"]
+  user: konrev
+  fileName: quote-konrev-03.png
+  title: "Quote konrev 3"
+  location: dracoon
+  locationId: bFvcVSFHIvYMS2DNNz7y0GiZiCyRoeCm
+- name: quote_konrev_4
+  trigger: ["quote konrev 4"]
+  user: konrev
+  fileName: quote-konrev-04.png
+  title: "Quote konrev 4"
+  location: dracoon
+  locationId: I8dhMxqQk2Jok6BqiMq1sJAbIOp5kDjS
+- name: quote_konrev_5
+  trigger: ["quote konrev 5"]
+  user: konrev
+  fileName: quote-konrev-05.png
+  title: "Quote konrev 5"
+  location: dracoon
+  locationId: ouqxp9W8qHhOpE9c5z8Zoce4Np0bj3p5
 - name: quote_buffet_1
   trigger: ["quote buffet 1"]
   user: buffet
@@ -524,3 +552,10 @@
   title: "Quote björn 1"
   location: dracoon
   locationId: HA4WiVoJk3fi1K8txzXjp8QMEgjkWcA4
+- name: quote_alice_1
+  trigger: ["quote alice 1"]
+  user: alice
+  fileName: quote-alice-01.png
+  title: "Quote alice 1"
+  location: dracoon
+  locationId: vvQF8MqQHySV0vZmPKnUy4o4uPHR8mHB
