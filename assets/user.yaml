@@ -41,3 +41,6 @@
 - name: friedman
   trigger: ["quote friedman"]
   title: "Random friedman quote"
+- name: alice
+  trigger: ["quote alice"]
+  title: "Random alice quote"

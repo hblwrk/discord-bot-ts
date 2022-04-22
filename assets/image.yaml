@@ -323,3 +323,9 @@
   title: "Ab wann gilt das?"
   location: dracoon
   locationId: SvoXBU73kjYillPTj1GRpIzobwyIk8oS
+- name: steuern
+  trigger: ["steuern"]
+  fileName: steuern.jpg
+  title: "Steuern sparen, leicht gemacht!"
+  location: dracoon
+  locationId: Zb7Tpogck90a3CdWLE
