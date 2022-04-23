@@ -14,7 +14,7 @@
   "keywords": [],
   "dependencies": {
     "@discordjs/builders": "^0.13.0",
-    "@discordjs/rest": "^0.3.0",
+    "@discordjs/rest": "^0.4.1",
     "@types/node": "^17.0.25",
     "axios": "^0.26.1",
     "class-transformer": "^0.5.1",
