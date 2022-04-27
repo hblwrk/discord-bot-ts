@@ -329,3 +329,9 @@
   title: "Steuern sparen, leicht gemacht!"
   location: dracoon
   locationId: kPfftJN8xW7wkr7x0iQfH42f2IkJ1Dgq
+- name: boden
+  trigger: ["boden"]
+  fileName: boden.png
+  title: "Der Boden ist nah"
+  location: dracoon
+  locationId: yZ4Hq3feAkLwzC6d2YGFAp7gzAJBETUV
