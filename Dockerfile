@@ -12,7 +12,7 @@ USER node
 
 RUN npm ci --only=production
 
-FROM gcr.io/distroless/nodejs:16
+FROM gcr.io/distroless/nodejs:18
 
 COPY --from=builder /home/node/app /app
 
