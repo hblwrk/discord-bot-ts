@@ -335,3 +335,15 @@
   title: "Der Boden ist nah"
   location: dracoon
   locationId: yZ4Hq3feAkLwzC6d2YGFAp7gzAJBETUV
+- name: ponzi
+  trigger: ["ponzi"]
+  fileName: ponzi.png
+  title: "Alles nur ein Ponzischeme?"
+  location: dracoon
+  locationId: ACZ3ymnSha177QttI05PgkIJeYVOm7Lw
+- name: antwort
+  trigger: ["antwort"]
+  fileName: antwort.gif
+  title: "Ein Teil dieser Antworten..."
+  location: dracoon
+  locationId: YKAePq8LeMbdAXEnHkTfipHDUNLcxEX1
