@@ -347,3 +347,9 @@
   title: "Ein Teil dieser Antworten..."
   location: dracoon
   locationId: YKAePq8LeMbdAXEnHkTfipHDUNLcxEX1
+- name: bärenmarkt
+  trigger: ["bärenmarkt"]
+  fileName: bärenmarkt.gif
+  title: "Ich will nicht mehr..."
+  location: dracoon
+  locationId: zDTLf31iTMAmVOPmyXW1wq2kTocuApbQ
