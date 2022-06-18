@@ -50,7 +50,7 @@ export async function updateMarketData() {
 
 function initInvestingCom(clients, marketDataAssets) {
   // Generating multiple Websocket endpoint options in case we get blocked.
-  const wsServerIds = ["265", "68", "104", "226", "36", "103", "220", "47"];
+  const wsServerIds = ["265", "68", "104", "226", "103", "220", "47"];
 
   const wsServerUrls: string[] = [];
 
