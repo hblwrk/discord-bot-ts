@@ -101,10 +101,10 @@
   botToken: ""
   botClientIdReference: discord_oneusd_clientID
   botClientId: ""
-  botName: "Harmony/USD"
-  id: 1137531
+  botName: "Monero/USD"
+  id: 1176959
   unit: "PCT"
-  decimals: 5
+  decimals: 2
   lastUpdate: 0
   order: 8
 - name: cl
