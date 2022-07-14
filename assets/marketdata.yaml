@@ -70,7 +70,7 @@
   unit: "PCT"
   decimals: 2
   lastUpdate: 0
-  order: 5
+  order: 0
 - name: ethusd
   trigger: forexpros_ws
   botTokenReference: discord_ethusd_token
@@ -82,7 +82,7 @@
   decimals: 2
   unit: "PCT"
   lastUpdate: 0
-  order: 6
+  order: 1
 - name: solusd
   trigger: forexpros_ws
   botTokenReference: discord_solusd_token
@@ -94,7 +94,7 @@
   unit: "PCT"
   decimals: 2
   lastUpdate: 0
-  order: 7
+  order: 2
 - name: oneusd
   trigger: forexpros_ws
   botTokenReference: discord_oneusd_token
@@ -106,7 +106,7 @@
   unit: "PCT"
   decimals: 2
   lastUpdate: 0
-  order: 8
+  order: 3
 - name: cl
   trigger: forexpros_ws
   botTokenReference: discord_cl_token
@@ -118,7 +118,7 @@
   unit: "PCT"
   decimals: 2
   lastUpdate: 0
-  order: 09
+  order: 0
 - name: xau
   trigger: forexpros_ws
   botTokenReference: discord_xau_token
@@ -130,7 +130,7 @@
   unit: "PCT"
   decimals: 2
   lastUpdate: 0
-  order: 10
+  order: 1
 - name: eurusd
   trigger: forexpros_ws
   botTokenReference: discord_eurusd_token
@@ -140,6 +140,6 @@
   botName: "EUR/USD"
   id: 1
   unit: "PCT"
-  decimals: 5
+  decimals: 4
   lastUpdate: 0
-  order: 11
+  order: 2
