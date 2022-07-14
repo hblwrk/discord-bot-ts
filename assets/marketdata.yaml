@@ -131,3 +131,15 @@
   decimals: 2
   lastUpdate: 0
   order: 10
+- name: eurusd
+  trigger: forexpros_ws
+  botTokenReference: discord_eurusd_token
+  botToken: ""
+  botClientIdReference: discord_eurusd_clientID
+  botClientId: ""
+  botName: "EUR/USD"
+  id: 1
+  unit: "PCT"
+  decimals: 5
+  lastUpdate: 0
+  order: 11
