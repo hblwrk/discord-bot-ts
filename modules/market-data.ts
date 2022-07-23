@@ -50,12 +50,13 @@ export async function updateMarketData() {
 
 function initInvestingCom(clients, marketDataAssets) {
   // Generating multiple Websocket endpoint options in case we get blocked.
-  const wsServerIds = ["265", "68", "104", "226", "103", "220", "47"];
+  // const wsServerIds = ["265", "68", "104", "226", "103", "220", "47"];
+  const wsServerIds = ["714/crhl6wg7", "543/fkv260lc", "145/gdlsxdet", "034/7546_2ip", "145/_g8m6m_l", "560/q2_xpw87", "271/l5mgl1s6", "120/9hovf5kb", "303/0lllaqe7", "859/o3a31oc_"]
 
   const wsServerUrls: string[] = [];
 
   for (const wsServerId of wsServerIds) {
-    wsServerUrls.push(`wss://streaming.forexpros.com/echo/${wsServerId}/1q3afamt/websocket`);
+    wsServerUrls.push(`wss://streaming.forexpros.com/echo/${wsServerId}/websocket`);
   }
 
   let urlIndex = 0;
