@@ -55,7 +55,7 @@ function initInvestingCom(clients, marketDataAssets) {
   const wsServerUrls: string[] = [];
 
   for (const wsServerId of wsServerIds) {
-    wsServerUrls.push(`wss://stream${wsServerId}.forexpros.com/echo/272/1q3afamt/websocket`);
+    wsServerUrls.push(`wss://streaming.forexpros.com/echo/${wsServerId}/1q3afamt/websocket`);
   }
 
   let urlIndex = 0;
