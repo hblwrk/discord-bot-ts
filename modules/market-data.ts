@@ -72,13 +72,14 @@ function initInvestingCom(clients, marketDataAssets) {
   }
 
   // Odd formatting required for Websocket service to start streaming
-  const subscribeMessage = "{\"_event\":\"bulk-subscribe\",\"tzID\":8,\"message\":\"" + pids + "}\"}";
+  const subscribeMessage = ["{\"_event\":\"bulk-subscribe\",\"tzID\":8,\"message\":\"" + pids + "cmt-1-5-945629:%%domain-1:}\"}"];
 
   // Allowing maximum retries and timeout, afterwards a new Websocket endpoint is used.
   const options = {
     WebSocket: WS,
     connectionTimeout: 5000,
     maxRetries: 10,
+    //debug: true,
   };
 
   const wsClient = new ReconnectingWebSocket(wsServerUrlProvider, [], options);
