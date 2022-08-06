@@ -461,41 +461,55 @@
   title: "Quote zetto 19"
   location: dracoon
   locationId: TdskcMfGIfFD6eTNKbVRGxG6OQ0sSzZ1
-- name: quote_konrev_1
-  trigger: ["quote konrev 1"]
+- name: quote_konrev_hannover
+  trigger: ["quote konrev hannover"]
   user: konrev
-  fileName: quote-konrev-01.png
-  title: "Quote konrev 1"
+  fileName: quote-konrev-hannover.png
+  title: "Quote konrev Hannover"
   location: dracoon
   locationId: Cihwj6QE4gBwUfaGyKZVDX5yYU5h6XrK
-- name: quote_konrev_2
-  trigger: ["quote konrev 2"]
+- name: quote_konrev_zitieren
+  trigger: ["quote konrev zitieren"]
   user: konrev
-  fileName: quote-konrev-02.png
-  title: "Quote konrev 2"
+  fileName: quote-konrev-zitieren.png
+  title: "Quote konrev zitieren"
   location: dracoon
   locationId: PxJ9vTQASQ3BPijX9bKmOJ5cBOZZwKOD
-- name: quote_konrev_3
-  trigger: ["quote konrev 3"]
+- name: quote_konrev_kochen
+  trigger: ["quote konrev kochen"]
   user: konrev
-  fileName: quote-konrev-03.png
-  title: "Quote konrev 3"
+  fileName: quote-konrev-kochen.png
+  title: "Quote konrev kochen"
   location: dracoon
   locationId: bFvcVSFHIvYMS2DNNz7y0GiZiCyRoeCm
-- name: quote_konrev_4
-  trigger: ["quote konrev 4"]
+- name: quote_konrev_alphabet
+  trigger: ["quote konrev alphabet"]
   user: konrev
-  fileName: quote-konrev-04.png
-  title: "Quote konrev 4"
+  fileName: quote-konrev-alphabet.png
+  title: "Quote konrev Alphabet"
   location: dracoon
   locationId: I8dhMxqQk2Jok6BqiMq1sJAbIOp5kDjS
-- name: quote_konrev_5
-  trigger: ["quote konrev 5"]
+- name: quote_konrev_ohm
+  trigger: ["quote konrev ohm"]
   user: konrev
-  fileName: quote-konrev-05.png
-  title: "Quote konrev 5"
+  fileName: quote-konrev-ohm.png
+  title: "Quote konrev ohm"
   location: dracoon
   locationId: ouqxp9W8qHhOpE9c5z8Zoce4Np0bj3p5
+- name: quote_konrev_streaming
+  trigger: ["quote konrev streaming"]
+  user: konrev
+  fileName: quote-konrev-streaming.png
+  title: "Quote konrev streaming"
+  location: dracoon
+  locationId: PBSwEnvgDWG1Acnhi4gTnoMLVkvnzKgR
+- name: quote_konrev_boss
+  trigger: ["quote konrev boss"]
+  user: konrev
+  fileName: quote-konrev-boss.png
+  title: "Quote konrev boss"
+  location: dracoon
+  locationId: qhdAH22O2nxuSJTqehLWvYM3SHXH2f3A
 - name: quote_buffet_1
   trigger: ["quote buffet 1"]
   user: buffet
