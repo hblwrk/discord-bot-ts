@@ -353,3 +353,9 @@
   title: "Ich will nicht mehr..."
   location: dracoon
   locationId: zDTLf31iTMAmVOPmyXW1wq2kTocuApbQ
+- name: coinflip
+  trigger: ["coinflip"]
+  fileName: coinflip.gif
+  title: "Pling"
+  location: dracoon
+  locationId: FryzSpODttWkH3X0z00k5IUUT6V8QVzB
