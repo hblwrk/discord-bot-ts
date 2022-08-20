@@ -510,6 +510,13 @@
   title: "Quote konrev boss"
   location: dracoon
   locationId: qhdAH22O2nxuSJTqehLWvYM3SHXH2f3A
+- name: quote_konrev_muschi
+  trigger: ["quote konrev muschi"]
+  user: konrev
+  fileName: quote-konrev-muschi.png
+  title: "Quote konrev muschi"
+  location: dracoon
+  locationId: wo93INPfMR1f5bioYgvOcyRNjFu2oisL
 - name: quote_buffet_1
   trigger: ["quote buffet 1"]
   user: buffet

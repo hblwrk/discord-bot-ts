@@ -67,3 +67,7 @@
   trigger: ["yolo-etf"]
   title: "Yolo ETF"
   response: "<https://www.tradingview.com/chart/?symbol=MSFT%2A0.3%2BAAPL%2A0.3%2BXOM%2A0.2%2BVIRT%2A0.2>"
+- name: bubelching
+  trigger: ["bubelching"]
+  title: "Bubel Ching Ching"
+  response: "Ching Ching! - https://www.youtube.com/watch?v=dQw4w9WgXcQ"
