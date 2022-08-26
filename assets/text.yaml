@@ -71,3 +71,7 @@
   trigger: ["bubelching"]
   title: "Bubel Ching Ching"
   response: "Ching Ching! - https://streamable.com/jv3wbx"
+- name: bubelchor
+  trigger: ["bubelchor"]
+  title: "Can we get much higher?"
+  response: "Der Bubelchor - https://streamable.com/jv3wbx"
