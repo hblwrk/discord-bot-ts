@@ -166,7 +166,7 @@
   unit: "PCT"
   decimals: 4
   lastUpdate: 0
-  order: 2
+  order: 3
 - name: 30y
   trigger: forexpros_ws
   botTokenReference: discord_30y_token
@@ -178,4 +178,4 @@
   unit: "PCT"
   decimals: 4
   lastUpdate: 0
-  order: 2
+  order: 4
