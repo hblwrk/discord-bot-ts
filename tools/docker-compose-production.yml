@@ -41,6 +41,14 @@ services:
       - production_discord_vix_clientID
       - production_discord_dax_token
       - production_discord_dax_clientID
+      - production_discord_eurusd_token
+      - production_discord_eurusd_clientID
+      - production_discord_2y_token
+      - production_discord_2y_clientID
+      - production_discord_10y_token
+      - production_discord_10y_clientID
+      - production_discord_30y_token
+      - production_discord_30y_clientID
       - production_dracoon_password
       - production_healthcheck_port
       - production_hblwrk_channel_NYSEAnnouncement_ID
@@ -122,6 +130,22 @@ secrets:
   production_discord_dax_token:
     external: true
   production_discord_dax_clientID:
+    external: true
+  production_discord_eurusd_token:
+    external: true
+  production_discord_eurusd_clientID:
+    external: true
+  production_discord_2y_token:
+    external: true
+  production_discord_2y_clientID:
+    external: true
+  production_discord_10y_token:
+    external: true
+  production_discord_10y_clientID:
+    external: true
+  production_discord_30y_token:
+    external: true
+  production_discord_30y_clientID:
     external: true
   production_dracoon_password:
     external: true

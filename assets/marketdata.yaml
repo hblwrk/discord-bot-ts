@@ -143,3 +143,39 @@
   decimals: 4
   lastUpdate: 0
   order: 2
+- name: 2y
+  trigger: forexpros_ws
+  botTokenReference: discord_2y_token
+  botToken: ""
+  botClientIdReference: discord_2y_clientID
+  botClientId: ""
+  botName: "2Y"
+  id: 23701
+  unit: "PCT"
+  decimals: 4
+  lastUpdate: 0
+  order: 2
+- name: 10y
+  trigger: forexpros_ws
+  botTokenReference: discord_10y_token
+  botToken: ""
+  botClientIdReference: discord_10y_clientID
+  botClientId: ""
+  botName: "10Y"
+  id: 23705
+  unit: "PCT"
+  decimals: 4
+  lastUpdate: 0
+  order: 2
+- name: 30y
+  trigger: forexpros_ws
+  botTokenReference: discord_30y_token
+  botToken: ""
+  botClientIdReference: discord_30y_clientID
+  botClientId: ""
+  botName: "30Y"
+  id: 23706
+  unit: "PCT"
+  decimals: 4
+  lastUpdate: 0
+  order: 2
