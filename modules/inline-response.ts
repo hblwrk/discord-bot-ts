@@ -13,7 +13,12 @@ export function addInlineResponses(client, assets, assetCommands) {
       for (const asset of assets) {
         for (const trigger of asset.trigger) {
           // This may show up as possible DoS (RegExp() called with a variable, CWE-185) in Semgrep. However it is safe since the variable is based on assets, which cannot be user-supplied.
-          const triggerRex = new RegExp(`\\b${trigger}\\b`);
+          let triggerRex = new RegExp(`\\b${trigger}\\b`);
+          // Special case for lines containing "wo" and one more word before or after
+          if ("wo" === trigger) {
+            triggerRex = new RegExp(asset.triggerRegex);
+          }
+
           if (asset instanceof EmojiAsset && triggerRex.test(messageContent.toLowerCase())) {
             // Emoji reaction to a message
             for (const response of asset.response) {
