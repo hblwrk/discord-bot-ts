@@ -61,5 +61,5 @@
   response: ["custom:virt"]
 - name: wo
   trigger: ["wo"]
-  triggerRegex: ["^[a-zA-Z0-9]+ \\bwo\\b[? ]*?$|^\\bwo\\b [a-zA-Z0-9]+[? ]*$"]
+  triggerRegex: ["^[0-9A-Za-zÀ-ž._-]+ \\bwo\\b[? ]*?$|^\\bwo\\b [0-9A-Za-zÀ-ž._-]+[? ]*$"]
   response: ["🦧"]
