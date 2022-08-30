@@ -37,6 +37,7 @@ export class MarketDataAsset extends BaseAsset {
   private _botClientIdReference: string;
   private _botName: string;
   private _id: number;
+  private _suffix: string;
   private _unit: string;
   private _decimals: number;
   private _lastUpdate: number;
@@ -88,6 +89,14 @@ export class MarketDataAsset extends BaseAsset {
 
   public set id(id: number) {
     this._id = id;
+  }
+
+  public get suffix() {
+    return this._suffix;
+  }
+
+  public set suffix(suffix: string) {
+    this._suffix = suffix;
   }
 
   public get unit() {
