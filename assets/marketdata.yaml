@@ -7,6 +7,7 @@
   botClientId: ""
   botName: "S&P500"
   id: 1175153
+  suffix: ""
   unit: "PCT"
   decimals: 2
   lastUpdate: 0
@@ -19,6 +20,7 @@
   botClientId: ""
   botName: "Nasdaq 100"
   id: 1175151
+  suffix: ""
   unit: "PCT"
   decimals: 2
   lastUpdate: 0
@@ -31,6 +33,7 @@
   botClientId: ""
   botName: "Russel 2000"
   id: 1174944
+  suffix: ""
   unit: "PCT"
   decimals: 2
   lastUpdate: 0
@@ -43,6 +46,7 @@
   botClientId: ""
   botName: "S&P500 VIX"
   id: 8884
+  suffix: ""
   unit: "PTS"
   decimals: 2
   lastUpdate: 0
@@ -55,6 +59,7 @@
   botClientId: ""
   botName: "DAX"
   id: 8826
+  suffix: ""
   unit: "PCT"
   decimals: 2
   lastUpdate: 0
@@ -67,6 +72,7 @@
   botClientId: ""
   botName: "Bitcoin/USD"
   id: 1057391
+  suffix: "$"
   unit: "PCT"
   decimals: 2
   lastUpdate: 0
@@ -79,6 +85,7 @@
   botClientId: ""
   botName: "Ether/USD"
   id: 1061443
+  suffix: "$"
   decimals: 2
   unit: "PCT"
   lastUpdate: 0
@@ -91,6 +98,7 @@
   botClientId: ""
   botName: "Solana/USD"
   id: 1177183
+  suffix: "$"
   unit: "PCT"
   decimals: 2
   lastUpdate: 0
@@ -103,6 +111,7 @@
   botClientId: ""
   botName: "Monero/USD"
   id: 1176959
+  suffix: "$"
   unit: "PCT"
   decimals: 2
   lastUpdate: 0
@@ -115,6 +124,7 @@
   botClientId: ""
   botName: "CL/USD"
   id: 8849
+  suffix: "$"
   unit: "PCT"
   decimals: 2
   lastUpdate: 0
@@ -127,6 +137,7 @@
   botClientId: ""
   botName: "XAU/USD"
   id: 8830
+  suffix: "$"
   unit: "PCT"
   decimals: 2
   lastUpdate: 0
@@ -139,6 +150,7 @@
   botClientId: ""
   botName: "EUR/USD"
   id: 1
+  suffix: "$"
   unit: "PCT"
   decimals: 4
   lastUpdate: 0
@@ -151,6 +163,7 @@
   botClientId: ""
   botName: "2Y"
   id: 23701
+  suffix: "%"
   unit: "PCT"
   decimals: 4
   lastUpdate: 0
@@ -163,6 +176,7 @@
   botClientId: ""
   botName: "10Y"
   id: 23705
+  suffix: "%"
   unit: "PCT"
   decimals: 4
   lastUpdate: 0
@@ -175,6 +189,7 @@
   botClientId: ""
   botName: "30Y"
   id: 23706
+  suffix: "%"
   unit: "PCT"
   decimals: 4
   lastUpdate: 0
