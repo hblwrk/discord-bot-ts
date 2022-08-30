@@ -59,3 +59,7 @@
 - name: virt
   trigger: ["virt", "virtu", "virts"]
   response: ["custom:virt"]
+- name: wo
+  trigger: ["wo"]
+  triggerRegex: ["^[a-zA-Z0-9]+ \\bwo\\b[? ]*?$|^\\bwo\\b [a-zA-Z0-9]+[? ]*$"]
+  response: ["🦧"]

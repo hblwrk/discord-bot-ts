@@ -12,6 +12,7 @@ const logger = getLogger();
 class BaseAsset {
   private _name: string;
   private _trigger: string;
+  private _triggerRegex: string;
 
   public get name() {
     return this._name;
@@ -27,6 +28,14 @@ class BaseAsset {
 
   public set trigger(trigger: string) {
     this._trigger = trigger;
+  }
+
+  public get triggerRegex() {
+    return this._triggerRegex;
+  }
+
+  public set triggerRegex(triggerRegex: string) {
+    this._triggerRegex = triggerRegex;
   }
 }
 
