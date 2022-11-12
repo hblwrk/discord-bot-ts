@@ -10,7 +10,7 @@
 - name: paywall
   trigger: ["paywall"]
   title: "Paywalls, nein danke."
-  response: "Paywalls, nein danke.\nChrome: <https://gitlab.com/magnolia1234/bypass-paywalls-chrome-clean>\nFirefox: <https://gitlab.com/magnolia1234/bypass-paywalls-firefox-clean>"
+  response: "Paywalls, nein danke.\nChrome: <https://gitlab.com/magnolia1234/bypass-paywalls-chrome-clean>\nFirefox: <https://gitlab.com/magnolia1234/bypass-paywalls-firefox-clean>\niOS: <https://www.icloud.com/shortcuts/71648f5ad34f4d8f972718e5f3621ffe>"
 - name: cnbc
   trigger: ["cnbc"]
   title: "Sara live!"
