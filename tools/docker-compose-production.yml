@@ -55,6 +55,7 @@ services:
       - production_hblwrk_channel_MNCAnnouncement_ID
       - production_hblwrk_channel_OtherAnnouncement_ID
       - production_hblwrk_channel_logging_ID
+      - production_hblwrk_channel_clownboard_ID
       - production_hblwrk_role_assignment_channelID
       - production_hblwrk_role_assignment_broker_messageID
       - production_hblwrk_role_assignment_special_messageID
@@ -158,6 +159,8 @@ secrets:
   production_hblwrk_channel_OtherAnnouncement_ID:
     external: true
   production_hblwrk_channel_logging_ID:
+    external: true
+  production_hblwrk_channel_clownboard_ID:
     external: true
   production_hblwrk_role_assignment_channelID:
     external: true
