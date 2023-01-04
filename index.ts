@@ -1,3 +1,5 @@
+/* eslint-disable yoda */
+/* eslint-disable import/extensions */
 import {Client, Intents} from "discord.js";
 import {readSecret} from "./modules/secrets";
 import {runHealthCheck} from "./modules/health-check";
@@ -10,6 +12,7 @@ import {addTriggerResponses} from "./modules/trigger-response";
 import {getGenericAssets, getAssets} from "./modules/assets";
 import {roleManager} from "./modules/role-manager";
 import {getTickers, Ticker} from "./modules/tickers";
+import {clownboard} from "./modules/clownboard";
 
 const token = readSecret("discord_token");
 
@@ -74,6 +77,12 @@ assets.then(async assets => {
   logger.log(
     "info",
     `Loaded and cached ${tickers.length} tickers.`,
+  );
+
+  clownboard(client, readSecret("hblwrk_channel_clownboard_ID"));
+  logger.log(
+    "info",
+    "Handling clownboard.",
   );
 
   // Set timers, e.g. for stock exchange open/close notifications
