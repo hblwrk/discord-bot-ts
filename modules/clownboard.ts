@@ -8,7 +8,7 @@ import {getLogger} from "./logging";
 const logger = getLogger();
 
 export function clownboard(client, channelID) {
-  const reactionThreshold = 0;
+  const reactionThreshold = 9;
   const clownEmojiName = "🤡";
   const clownEmojiId = clownEmojiName;
   // Using custom "pepeclown"
