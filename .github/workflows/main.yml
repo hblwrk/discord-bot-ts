@@ -68,6 +68,8 @@ jobs:
   sign:
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    permissions:
+      packages: write
     needs: [test, build]
 
     if: github.ref == 'refs/heads/main'
