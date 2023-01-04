@@ -30,7 +30,7 @@
     "validator": "^13.7.0",
     "winston": "^3.8.2",
     "winston-transport": "^4.5.0",
-    "ws": "^8.8.0"
+    "ws": "^8.11.0"
   },
   "author": "",
   "license": "MIT",
