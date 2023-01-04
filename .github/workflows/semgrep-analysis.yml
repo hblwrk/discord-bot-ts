@@ -10,6 +10,8 @@
 
 name: Semgrep
 
+permissions: read-all
+
 on:
   push:
     branches: [ main ]
