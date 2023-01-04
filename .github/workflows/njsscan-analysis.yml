@@ -23,6 +23,8 @@ jobs:
   njsscan:
     runs-on: ubuntu-latest
     name: njsscan code scanning
+    permissions:
+      security-events: write
     steps:
     - name: Checkout the code
       uses: actions/checkout@v3
