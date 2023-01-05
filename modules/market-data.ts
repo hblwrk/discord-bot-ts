@@ -190,7 +190,7 @@ function initInvestingCom(clients, marketDataAssets) {
       // Anything else should be a unexpected error
       logger.log(
         "error",
-        `Error updating market data bot: ${error}`,
+        `Error updating market data bot: ${event}`,
       );
     }
   });
