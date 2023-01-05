@@ -1,5 +1,13 @@
-import axios, {AxiosResponse} from "axios";
+/* eslint-disable import/extensions */
+/* eslint-disable max-depth */
+/* eslint-disable @typescript-eslint/no-unnecessary-boolean-literal-compare */
+/* eslint-disable yoda */
+/* eslint-disable complexity */
+import axios, {type AxiosResponse} from "axios";
 import moment from "moment-timezone";
+import {getLogger} from "./logging";
+
+const logger = getLogger();
 
 export async function getCalendarEvents(startDay: string, range: number): Promise<CalendarEvent[]> {
   if ("" === startDay) {
@@ -36,87 +44,111 @@ export async function getCalendarEvents(startDay: string, range: number): Promis
     endDate = moment(endDate).add(range, "days");
   }
 
-  const calendarResponse: AxiosResponse = await axios.post(
-    "https://www.mql5.com/en/economic-calendar/content",
-    `date_mode=0&from=${moment(startDate).format("YYYY-MM-DD")}T00%3A00%3A00&to=${moment(endDate).format("YYYY-MM-DD")}T23%3A59%3A59&importance=12&currencies=15`,
-    {
-      headers: {
-        "X-Requested-With": "XMLHttpRequest",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
-      },
-    },
-  );
-
   const calendarEvents = [];
 
-  if (1 < calendarResponse.data.length) {
-    for (const element of calendarResponse.data) {
-      const calendarEvent = new CalendarEvent();
+  try {
+    const calendarResponse: AxiosResponse = await axios.post(
+      "https://www.mql5.com/en/economic-calendar/content",
+      `date_mode=0&from=${moment(startDate).format("YYYY-MM-DD")}T00%3A00%3A00&to=${moment(endDate).format("YYYY-MM-DD")}T23%3A59%3A59&importance=12&currencies=15`,
+      {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest",
+          "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.169 Safari/537.36",
+        },
+      },
+    );
 
-      // Discord character limit
-      let objectValueLength = 0;
+    if (1 < calendarResponse.data.length) {
+      for (const element of calendarResponse.data) {
+        const calendarEvent = new CalendarEvent();
 
-      for (const event of calendarEvents) {
-        for (const value of Object.values(event)) {
-          objectValueLength += value.toString().length;
-        }
-      }
+        // Discord character limit
+        let objectValueLength = 0;
 
-      if (2000 <= objectValueLength) {
-        calendarEvent.date = "APILimit";
-        calendarEvent.time = "13:37";
-        calendarEvent.country = "🤖";
-        calendarEvent.name = "Es konnten nicht alle Termine ausgegeben werden.";
-        calendarEvents.push(calendarEvent);
-        break;
-      } else {
-        // Source data does not contain timezone info, guess its UTC...
-        const eventDate: moment.Moment = moment.utc(element.FullDate).tz("Europe/Berlin");
-
-        if (true === moment(eventDate).isSameOrBefore(endDate) && true === moment(eventDate).isSameOrAfter(startDate)) {
-          let country: string;
-          const eventDeDate: string = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("YYYY-MM-DD");
-          const eventDeTime: string = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("HH:mm");
-
-          switch (element.Country) {
-            case 999:
-              country = "🇪🇺";
-              break;
-            case 840:
-              country = "🇺🇸";
-              break;
-            case 826:
-              country = "🇬🇧";
-              break;
-            case 724:
-              country = "🇪🇸";
-              break;
-            case 392:
-              country = "🇯🇵";
-              break;
-            case 380:
-              country = "🇮🇹";
-              break;
-            case 276:
-              country = "🇩🇪";
-              break;
-            case 250:
-              country = "🇫🇷";
-              break;
-            case 0:
-              country = "🌍";
-              break;
-            // No default
+        for (const event of calendarEvents) {
+          for (const value of Object.values(event)) {
+            objectValueLength += value.toString().length;
           }
+        }
 
-          calendarEvent.date = eventDeDate;
-          calendarEvent.time = eventDeTime;
-          calendarEvent.country = country;
-          calendarEvent.name = element.EventName;
+        if (2000 <= objectValueLength) {
+          calendarEvent.date = "APILimit";
+          calendarEvent.time = "13:37";
+          calendarEvent.country = "🤖";
+          calendarEvent.name = "Es konnten nicht alle Termine ausgegeben werden.";
           calendarEvents.push(calendarEvent);
+          break;
+        } else {
+          // Source data does not contain timezone info, guess its UTC...
+          const eventDate: moment.Moment = moment.utc(element.FullDate).tz("Europe/Berlin");
+
+          if (true === moment(eventDate).isSameOrBefore(endDate) && true === moment(eventDate).isSameOrAfter(startDate)) {
+            let country: string;
+            const eventDeDate: string = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("YYYY-MM-DD");
+            const eventDeTime: string = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("HH:mm");
+
+            switch (element.Country) {
+              case 999: {
+                country = "🇪🇺";
+                break;
+              }
+
+              case 840: {
+                country = "🇺🇸";
+                break;
+              }
+
+              case 826: {
+                country = "🇬🇧";
+                break;
+              }
+
+              case 724: {
+                country = "🇪🇸";
+                break;
+              }
+
+              case 392: {
+                country = "🇯🇵";
+                break;
+              }
+
+              case 380: {
+                country = "🇮🇹";
+                break;
+              }
+
+              case 276: {
+                country = "🇩🇪";
+                break;
+              }
+
+              case 250: {
+                country = "🇫🇷";
+                break;
+              }
+
+              case 0: {
+                country = "🌍";
+                break;
+              }
+              // No default
+            }
+
+            calendarEvent.date = eventDeDate;
+            calendarEvent.time = eventDeTime;
+            calendarEvent.country = country;
+            calendarEvent.name = element.EventName;
+            calendarEvents.push(calendarEvent);
+          }
         }
       }
     }
+  } catch (error) {
+    logger.log(
+      "error",
+      `Loading calendar failed: ${error}`,
+    );
   }
 
   return calendarEvents;
