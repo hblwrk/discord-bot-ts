@@ -1,3 +1,5 @@
+/* eslint-disable max-depth */
+/* eslint-disable complexity */
 /* eslint-disable unicorn/prefer-ternary */
 /* eslint-disable @typescript-eslint/no-unnecessary-boolean-literal-compare */
 /* eslint-disable yoda */
@@ -62,6 +64,8 @@ export async function getEarnings(days: number, date: string, filter: string): P
   if (null === days || 0 === days) {
     if ("today" === date || null === date) {
       dateStamp = usEasternTime.format("YYYY-MM-DD");
+    } else if ("tomorrow" === date) {
+      dateStamp = usEasternTime.add(1, "days").format("YYYY-MM-DD");
     } else {
       dateStamp = moment(date).tz("US/Eastern").format("YYYY-MM-DD");
     }
@@ -83,28 +87,28 @@ export async function getEarnings(days: number, date: string, filter: string): P
 
   try {
     // https://api.stocktwits.com/api/2/discover/earnings_calendar?date_from=2023-01-05
-    const earningsResponse: AxiosResponse = await axios.get(`https://app.fincredible.ai/api/v1/events/?date=${dateStamp}${watchlist}`);
+    const earningsResponse: AxiosResponse = await axios.get(`https://api.stocktwits.com/api/2/discover/earnings_calendar?date_from=${dateStamp}`);
 
-    if (1 < earningsResponse.data.length) {
-      for (const element of earningsResponse.data) {
-        const earningsEvent = (new EarningsEvent());
-        earningsEvent.ticker = element.text;
-        earningsEvent.date = dateStamp;
-        if (null === element.quote) {
-          earningsEvent.mcap = 0;
-        } else {
-          earningsEvent.mcap = element.quote.marketCap;
+    for (const element in earningsResponse.data.earnings) {
+      if (dateStamp === element) {
+        const earnings = earningsResponse.data.earnings[element];
+        for (const stock of earnings.stocks) {
+          if (0 < stock.importance && dateStamp === stock.date) {
+            const earningsTime: moment.Moment = moment(`${stock.date}T${stock.time}-05:00`).tz("US/Eastern");
+            const earningsEvent = (new EarningsEvent());
+            earningsEvent.ticker = stock.symbol;
+            earningsEvent.date = stock.date;
+
+            if (true === moment(earningsTime).isBefore(nyseOpenTime)) {
+              earningsEvent.when = "before_open";
+            } else if (true === moment(earningsTime).isSameOrAfter(nyseCloseTime)) {
+              earningsEvent.when = "after_close";
+            } else {
+              earningsEvent.when = "during_session";
+            }
+            earningsEvents.push(earningsEvent);
+          }
         }
-
-        if (true === moment(element.start_date).isBefore(nyseOpenTime)) {
-          earningsEvent.when = "before_open";
-        } else if (true === moment(element.start_date).isSameOrAfter(nyseOpenTime) && true === moment(element.start_date).isBefore(nyseCloseTime)) {
-          earningsEvent.when = "during_session";
-        } else {
-          earningsEvent.when = "after_close";
-        }
-
-        earningsEvents.push(earningsEvent);
       }
     }
   } catch (error) {
@@ -158,7 +162,7 @@ export function getEarningsText(earningsEvents: EarningsEvent[], when: string, t
     moment.locale("de");
     const friendlyDate = moment(earningsEvents[0].date).format("dddd, Do MMMM YYYY");
 
-    earningsText = `Earnings calls am ${friendlyDate}:\n`;
+    earningsText = `Earnings am ${friendlyDate}:\n`;
     if (1 < earningsBeforeOpen.length && ("all" === when || "before_open" === when)) {
       earningsText += `**Vor open:**\n${earningsBeforeOpen.slice(0, -2)}\n\n`;
     }

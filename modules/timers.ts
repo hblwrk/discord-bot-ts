@@ -173,7 +173,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
   });
 
   const ruleEarnings = new Schedule.RecurrenceRule();
-  ruleEarnings.hour = 8;
+  ruleEarnings.hour = 19;
   ruleEarnings.minute = 30;
   ruleEarnings.dayOfWeek = [new Schedule.Range(1, 5)];
   ruleEarnings.tz = "Europe/Berlin";
@@ -181,7 +181,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
   Schedule.scheduleJob(ruleEarnings, async () => {
     const filter = "all"; // "5666c5fa-80dc-4e16-8bcc-12a8314d0b07" "anticipated" watchlist
     const days = 0;
-    const date = "today";
+    const date = "tomorrow";
     const when = "all";
     let earningsEvents = [];
 
