@@ -171,6 +171,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
     });
   });
 
+  /*
   const ruleEarnings = new Schedule.RecurrenceRule();
   ruleEarnings.hour = 8;
   ruleEarnings.minute = 30;
@@ -197,6 +198,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
       });
     }
   });
+  */
 
   const ruleEvents = new Schedule.RecurrenceRule();
   ruleEvents.hour = 8;
