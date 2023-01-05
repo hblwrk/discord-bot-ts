@@ -82,6 +82,7 @@ export async function getEarnings(days: number, date: string, filter: string): P
   const earningsEvents = [];
 
   try {
+    // https://api.stocktwits.com/api/2/discover/earnings_calendar?date_from=2023-01-05
     const earningsResponse: AxiosResponse = await axios.get(`https://app.fincredible.ai/api/v1/events/?date=${dateStamp}${watchlist}`);
 
     if (1 < earningsResponse.data.length) {

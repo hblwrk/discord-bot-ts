@@ -29,7 +29,7 @@ export default class DiscordTransport extends Transport {
       (channel as TextChannel).send({embeds: [loggingEmbed]}).catch(error => {
         console.log(
           "error",
-          error,
+          `Error posting to logging channel: ${error}`,
         );
       });
     });

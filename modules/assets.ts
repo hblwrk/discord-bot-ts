@@ -441,7 +441,7 @@ export async function getAssets(type: string): Promise<any[]> {
   } catch (error: unknown) {
     logger.log(
       "error",
-      error,
+      `Error creating assets: ${error}`,
     );
   }
 }

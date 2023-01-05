@@ -1,3 +1,6 @@
+/* eslint-disable yoda */
+/* eslint-disable import/extensions */
+/* eslint-disable complexity */
 import {MessageAttachment, MessageEmbed} from "discord.js";
 import validator from "validator";
 import {getAssetByName, ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets";
@@ -28,14 +31,14 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
                 message.channel.send({embeds: [embed], files: [file]}).catch(error => {
                   logger.log(
                     "error",
-                    error,
+                    `Error sending response: ${error}`,
                   );
                 });
               } else {
                 message.channel.send({files: [file]}).catch(error => {
                   logger.log(
                     "error",
-                    error,
+                    `Error sending response: ${error}`,
                   );
                 });
               }
@@ -44,7 +47,7 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
               message.channel.send(asset.response).catch(error => {
                 logger.log(
                   "error",
-                  error,
+                  `Error sending response: ${error}`,
                 );
               });
             } else if (asset instanceof UserAsset) {
@@ -61,7 +64,7 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
       message.channel.send(`Rolling the crypto dice... ${cryptodice()}.`).catch(error => {
         logger.log(
           "error",
-          error,
+          `Error sending cryptodice response: ${error}`,
         );
       });
     }
@@ -72,7 +75,7 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
         message.channel.send(`Let me google that for you... ${lmgtfy(search)}.`).catch(error => {
           logger.log(
             "error",
-            error,
+            `Error sending lmgtfy response: ${error}`,
           );
         });
       }
@@ -93,14 +96,14 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
             message.channel.send({embeds: [embed], files: [file]}).catch(error => {
               logger.log(
                 "error",
-                error,
+                `Error sending whatis response: ${error}`,
               );
             });
           } else {
             message.channel.send({embeds: [embed]}).catch(error => {
               logger.log(
                 "error",
-                error,
+                `Error sending whatis response: ${error}`,
               );
             });
           }
@@ -117,7 +120,7 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
           await message.channel.send({files: [file]}).catch(error => {
             logger.log(
               "error",
-              error,
+              `Error sending sara response: ${error}`,
             );
           });
         } else if ("shrug" === search.toLowerCase()) {
@@ -127,14 +130,14 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
           await message.channel.send({files: [file]}).catch(error => {
             logger.log(
               "error",
-              error,
+              `Error sending sara response: ${error}`,
             );
           });
         } else {
           message.channel.send("Sara möchte das nicht.").catch(error => {
             logger.log(
               "error",
-              error,
+              `Error sending sara response: ${error}`,
             );
           });
         }

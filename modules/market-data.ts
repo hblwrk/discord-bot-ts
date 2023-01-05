@@ -25,7 +25,7 @@ export async function updateMarketData() {
       client.login(marketDataAsset.botToken).catch(error => {
         logger.log(
           "error",
-          error,
+          `Error logging in market data bot: ${error}`,
         );
       });
 
@@ -165,7 +165,7 @@ function initInvestingCom(clients, marketDataAssets) {
                 } catch (error: unknown) {
                   logger.log(
                     "error",
-                    error,
+                    `Error updating market data bot presence: ${error}`,
                   );
                 }
 
@@ -177,7 +177,7 @@ function initInvestingCom(clients, marketDataAssets) {
       } catch (error) {
         logger.log(
           "error",
-          error,
+          `Error updating market data bot status: ${error}`,
         );
       }
     } else if ("o" === event.data) {
@@ -190,7 +190,7 @@ function initInvestingCom(clients, marketDataAssets) {
       // Anything else should be a unexpected error
       logger.log(
         "error",
-        event,
+        `Error updating market data bot: ${event}`,
       );
     }
   });
