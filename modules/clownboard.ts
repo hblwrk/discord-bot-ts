@@ -22,7 +22,7 @@ export function clownboard(client, channelID) {
       const existingMessages = messages.find(message =>
         message.embeds.length === 1 ? (Boolean(message.embeds[0].footer.text.startsWith(reaction.message.id))) : false);
       if (existingMessages) {
-        existingMessages.edit(`${clownEmojiId} ${reaction.count}`);
+        existingMessages.edit(`${clownEmojiId} **${reaction.count}** ${reaction.message.channel}`);
       } else if (undefined === reaction.message.attachments.first()) {
         const embed = new MessageEmbed()
           .setAuthor({
@@ -41,7 +41,7 @@ export function clownboard(client, channelID) {
           (clownboard as TextChannel).send({content: `${clownEmojiId} **${reactionThreshold + 1}** ${reaction.message.channel}`, embeds: [embed]}).catch(error => {
             console.log(
               "error",
-              error,
+              `Error posting to clownboard: ${error}`,
             );
           });
         }
@@ -64,7 +64,7 @@ export function clownboard(client, channelID) {
           (clownboard as TextChannel).send({content: `${clownEmojiId} **${reactionThreshold + 1}** ${reaction.message.channel}`, embeds: [embed]}).catch(error => {
             console.log(
               "error",
-              error,
+              `Error posting to clownboard: ${error}`,
             );
           });
         }
@@ -96,7 +96,7 @@ export function clownboard(client, channelID) {
         if (reactionThreshold === reaction.count) {
           existingMessages.delete({timeout: 2500});
         } else {
-          existingMessages.edit(`${clownEmojiId} **${reaction.count}**`);
+          existingMessages.edit(`${clownEmojiId} **${reaction.count}** ${reaction.message.channel}`);
         }
       }
     };

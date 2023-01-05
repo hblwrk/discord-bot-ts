@@ -1,3 +1,5 @@
+/* eslint-disable yoda */
+/* eslint-disable complexity */
 import {SlashCommandBuilder} from "@discordjs/builders";
 import {REST} from "@discordjs/rest";
 import {Routes} from "discord-api-types/rest/v9";
@@ -196,7 +198,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
               await interaction.reply(asset.response).catch(error => {
                 logger.log(
                   "error",
-                  error,
+                  `Error replying to slashcommand: ${error}`,
                 );
               });
             }
@@ -209,7 +211,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       await interaction.reply(`Rolling the crypto dice... ${cryptodice()}.`).catch(error => {
         logger.log(
           "error",
-          error,
+          `Error replying to cryptodice slashcommand: ${error}`,
         );
       });
     }
@@ -246,7 +248,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       await interaction.reply({embeds: [embed]}).catch(error => {
         logger.log(
           "error",
-          error,
+          `Error replying to 8ball slashcommand: ${error}`,
         );
       });
     }
@@ -256,7 +258,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       await interaction.reply(`Let me google that for you... ${lmgtfy(search)}.`).catch(error => {
         logger.log(
           "error",
-          error,
+          `Error replying to lmgtfy slashcommand: ${error}`,
         );
       });
     }
@@ -266,7 +268,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       await interaction.reply(`Here you go: ${google(search)}.`).catch(error => {
         logger.log(
           "error",
-          error,
+          `Error replying to google slashcommand: ${error}`,
         );
       });
     }
@@ -380,7 +382,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       await interaction.reply(earningsText).catch(error => {
         logger.log(
           "error",
-          error,
+          `Error replying to earnings slashcommand: ${error}`,
         );
       });
     }
@@ -419,7 +421,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       await interaction.reply(calendarText).catch(error => {
         logger.log(
           "error",
-          error,
+          `Error replying to calendar slashcommand: ${error}`,
         );
       });
     }
@@ -428,7 +430,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       await interaction.reply("Sara möchte das nicht.").catch(error => {
         logger.log(
           "error",
-          error,
+          `Error replying to sara slashcommand: ${error}`,
         );
       });
     }

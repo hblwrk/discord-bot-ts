@@ -1,3 +1,4 @@
+/* eslint-disable max-depth */
 import validator from "validator";
 import {EmojiAsset} from "./assets";
 import {getLogger} from "./logging";
@@ -27,14 +28,14 @@ export function addInlineResponses(client, assets, assetCommands) {
                 message.react(reactionEmoji).catch(error => {
                   logger.log(
                     "error",
-                    error,
+                    `Error posting emoji reaction: ${error}`,
                   );
                 });
               } else {
                 message.react(response).catch(error => {
                   logger.log(
                     "error",
-                    error,
+                    `Error posting emoji reaction: ${error}`,
                   );
                 });
               }

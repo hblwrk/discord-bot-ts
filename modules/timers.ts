@@ -61,14 +61,14 @@ export function startNyseTimers(client, channelID: string) {
       client.channels.cache.get(channelID).send(`🦃🍗🎉 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet und heute ist der Tag nach dem Truthahn-Tag, also beeilt euch - die Börse macht schon um ${deDate.format("HH")}:${deDate.format("mm")} zu! 🎉🍗🦃`).catch(error => {
         logger.log(
           "error",
-          error,
+          `Error sending announcement: ${error}`,
         );
       });
     } else if (true === isHoliday(new Date())) {
       client.channels.cache.get(channelID).send("🛍️🏝️🛥️ Guten Morgen liebe Hebelhelden! Heute bleibt die Börse geschlossen. Genießt den Tag und gebt eure Gewinne für tolle Sachen aus! 🛥️🏝️🛍️").catch(error => {
         logger.log(
           "error",
-          error,
+          `Error sending announcement: ${error}`,
         );
       });
     } else {
@@ -81,7 +81,7 @@ export function startNyseTimers(client, channelID: string) {
       client.channels.cache.get(channelID).send("🔔🔔🔔 Ich bin ready. Ihr seid ready?! Na dann loooos! Huuuiiii! 🚀 Der Börsenritt beginnt, meine Freunde. Seid dabei, ihr dürft nichts verpassen! 🥳 🎠 🔔🔔🔔").catch(error => {
         logger.log(
           "error",
-          error,
+          `Error sending announcement: ${error}`,
         );
       });
     }
@@ -92,7 +92,7 @@ export function startNyseTimers(client, channelID: string) {
       client.channels.cache.get(channelID).send("🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! Teilt eure Ergebnisse in \"Heutige Gains&Losses\" 🔔🔔🔔").catch(error => {
         logger.log(
           "error",
-          error,
+          `Error sending announcement: ${error}`,
         );
       });
     }
@@ -104,7 +104,7 @@ export function startNyseTimers(client, channelID: string) {
       client.channels.cache.get(channelID).send("🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! Teilt eure Ergebnisse in \"Heutige Gains&Losses\" 🔔🔔🔔").catch(error => {
         logger.log(
           "error",
-          error,
+          `Error sending announcement: ${error}`,
         );
       });
     }
@@ -115,7 +115,7 @@ export function startNyseTimers(client, channelID: string) {
       client.channels.cache.get(channelID).send("🛏️🔔🔔 Und jetzt ist auch der aftermarket für euch Nachteulen geschlossen, Zeit fürs Bettchen! 🔔🔔🛏️").catch(error => {
         logger.log(
           "error",
-          error,
+          `Error sending announcement: ${error}`,
         );
       });
     }
@@ -127,7 +127,7 @@ export function startNyseTimers(client, channelID: string) {
       client.channels.cache.get(channelID).send("🍻🔔🔔 Und jetzt ist auch der aftermarket geschlossen, schönen Feierabend zusammen! 🔔🔔🍻").catch(error => {
         logger.log(
           "error",
-          error,
+          `Error sending announcement: ${error}`,
         );
       });
     }
@@ -167,7 +167,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
     client.channels.cache.get(channelID).send({files: [fridayFile]}).catch(error => {
       logger.log(
         "error",
-        error,
+        `Error sending friday announcement: ${error}`,
       );
     });
   });
@@ -193,7 +193,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
       client.channels.cache.get(channelID).send(earningsText).catch(error => {
         logger.log(
           "error",
-          error,
+          `Error sending earnings announcement: ${error}`,
         );
       });
     }
@@ -214,7 +214,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
       client.channels.cache.get(channelID).send(calendarText).catch(error => {
         logger.log(
           "error",
-          error,
+          `Error sending calendar announcement: ${error}`,
         );
       });
     }
@@ -240,7 +240,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
       client.channels.cache.get(channelID).send(calendarText1).catch(error => {
         logger.log(
           "error",
-          error,
+          `Error sending calendar announcement: ${error}`,
         );
       });
     }
@@ -249,7 +249,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
       client.channels.cache.get(channelID).send(calendarText2).catch(error => {
         logger.log(
           "error",
-          error,
+          `Error sending calendar announcement: ${error}`,
         );
       });
     }

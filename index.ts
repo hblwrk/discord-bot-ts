@@ -47,7 +47,7 @@ client.once(eventReady.name, (...args) => {
 client.login(token).catch(error => {
   logger.log(
     "error",
-    error,
+    `Error logging in to Discord: ${error}`,
   );
 });
 
@@ -56,7 +56,7 @@ if ("production" === readSecret("environment")) {
   updateMarketData().catch(error => {
     logger.log(
       "error",
-      error,
+      `Error getting market data: ${error}`,
     );
   });
 }
@@ -141,6 +141,6 @@ assets.then(async assets => {
 }).catch(error => {
   logger.log(
     "error",
-    error,
+    `Error starting up: ${error}`,
   );
 });
