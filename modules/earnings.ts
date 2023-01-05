@@ -64,6 +64,8 @@ export async function getEarnings(days: number, date: string, filter: string): P
   if (null === days || 0 === days) {
     if ("today" === date || null === date) {
       dateStamp = usEasternTime.format("YYYY-MM-DD");
+    } else if ("tomorrow" === date) {
+      dateStamp = usEasternTime.add(1, "days").format("YYYY-MM-DD");
     } else {
       dateStamp = moment(date).tz("US/Eastern").format("YYYY-MM-DD");
     }
@@ -160,7 +162,7 @@ export function getEarningsText(earningsEvents: EarningsEvent[], when: string, t
     moment.locale("de");
     const friendlyDate = moment(earningsEvents[0].date).format("dddd, Do MMMM YYYY");
 
-    earningsText = `Earnings calls am ${friendlyDate}:\n`;
+    earningsText = `Earnings am ${friendlyDate}:\n`;
     if (1 < earningsBeforeOpen.length && ("all" === when || "before_open" === when)) {
       earningsText += `**Vor open:**\n${earningsBeforeOpen.slice(0, -2)}\n\n`;
     }
