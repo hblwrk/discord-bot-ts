@@ -1,13 +1,14 @@
+/* eslint-disable import/extensions */
 import {MessageAttachment} from "discord.js";
 import moment from "moment-timezone";
 import Schedule from "node-schedule";
 import {isHoliday} from "nyse-holidays";
 import {getAssetByName} from "./assets";
-import {getCalendarEvents, getCalendarText, CalendarEvent} from "./calendar";
+import {getCalendarEvents, getCalendarText, type CalendarEvent} from "./calendar";
 import {getEarnings, getEarningsText} from "./earnings";
 import {getLogger} from "./logging";
 import {getMnc} from "./mnc-downloader";
-import {Ticker} from "./tickers";
+import {type Ticker} from "./tickers";
 
 const logger = getLogger();
 
@@ -171,7 +172,6 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
     });
   });
 
-  /*
   const ruleEarnings = new Schedule.RecurrenceRule();
   ruleEarnings.hour = 8;
   ruleEarnings.minute = 30;
@@ -198,7 +198,6 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
       });
     }
   });
-  */
 
   const ruleEvents = new Schedule.RecurrenceRule();
   ruleEvents.hour = 8;

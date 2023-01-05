@@ -1,34 +1,53 @@
-import axios, {AxiosResponse} from "axios";
+/* eslint-disable yoda */
+/* eslint-disable import/extensions */
+import axios, {type AxiosResponse} from "axios";
 import {readSecret} from "./secrets";
+import {getLogger} from "./logging";
+
+const logger = getLogger();
 
 export async function getTickers(index: string): Promise<Ticker[]> {
   const tickers = [];
 
   if ("sp500" === index.toLocaleLowerCase() || "all" === index.toLocaleLowerCase()) {
-    const sp500Response: AxiosResponse = await axios.get("https://pkgstore.datahub.io/core/s-and-p-500-companies/constituents_json/data/297344d8dc0a9d86b8d107449c851cc8/constituents_json.json");
+    try {
+      const sp500Response: AxiosResponse = await axios.get("https://pkgstore.datahub.io/core/s-and-p-500-companies/constituents_json/data/297344d8dc0a9d86b8d107449c851cc8/constituents_json.json");
 
-    if (1 < sp500Response.data.length) {
-      for (const element of sp500Response.data) {
-        const ticker = new Ticker();
-        ticker.symbol = element.Symbol;
-        ticker.name = element.Name;
-        ticker.exchange = "sp500";
-        tickers.push(ticker);
+      if (1 < sp500Response.data.length) {
+        for (const element of sp500Response.data) {
+          const ticker = new Ticker();
+          ticker.symbol = element.Symbol;
+          ticker.name = element.Name;
+          ticker.exchange = "sp500";
+          tickers.push(ticker);
+        }
       }
+    } catch (error) {
+      logger.log(
+        "error",
+        `Loading tickers failed: ${error}`,
+      );
     }
   }
 
   if ("nasdaq100" === index.toLocaleLowerCase() || "all" === index.toLocaleLowerCase()) {
-    const nasdaq100Response: AxiosResponse = await axios.get(`https://financialmodelingprep.com/api/v3/nasdaq_constituent?apikey=${readSecret("service_financialmodelingprep_apiKey")}`);
+    try {
+      const nasdaq100Response: AxiosResponse = await axios.get(`https://financialmodelingprep.com/api/v3/nasdaq_constituent?apikey=${readSecret("service_financialmodelingprep_apiKey")}`);
 
-    if (1 < nasdaq100Response.data.length) {
-      for (const element of nasdaq100Response.data) {
-        const ticker = new Ticker();
-        ticker.symbol = element.symbol;
-        ticker.name = element.name;
-        ticker.exchange = "nasdaq100";
-        tickers.push(ticker);
+      if (1 < nasdaq100Response.data.length) {
+        for (const element of nasdaq100Response.data) {
+          const ticker = new Ticker();
+          ticker.symbol = element.symbol;
+          ticker.name = element.name;
+          ticker.exchange = "nasdaq100";
+          tickers.push(ticker);
+        }
       }
+    } catch (error) {
+      logger.log(
+        "error",
+        `Loading tickers failed: ${error}`,
+      );
     }
   }
 

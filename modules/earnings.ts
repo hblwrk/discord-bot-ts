@@ -1,6 +1,13 @@
-import axios, {AxiosResponse} from "axios";
+/* eslint-disable unicorn/prefer-ternary */
+/* eslint-disable @typescript-eslint/no-unnecessary-boolean-literal-compare */
+/* eslint-disable yoda */
+/* eslint-disable import/extensions */
+import axios, {type AxiosResponse} from "axios";
 import moment from "moment-timezone";
-import {Ticker} from "./tickers";
+import {getLogger} from "./logging";
+import {type Ticker} from "./tickers";
+
+const logger = getLogger();
 
 export async function getEarnings(days: number, date: string, filter: string): Promise<EarningsEvent[]> {
   let dateStamp: string;
@@ -62,6 +69,7 @@ export async function getEarnings(days: number, date: string, filter: string): P
     if (90 < days) {
       days = 90;
     }
+
     dateStamp = usEasternTime.add(days, "days").format("YYYY-MM-DD");
   }
 
@@ -71,30 +79,38 @@ export async function getEarnings(days: number, date: string, filter: string): P
     watchlist = `&watchlist=${filter}`;
   }
 
-  const earningsResponse: AxiosResponse = await axios.get(`https://app.fincredible.ai/api/v1/events/?date=${dateStamp}${watchlist}`);
-
   const earningsEvents = [];
 
-  if (1 < earningsResponse.data.length) {
-    for (const element of earningsResponse.data) {
-      const earningsEvent = (new EarningsEvent());
-      earningsEvent.ticker = element.text;
-      earningsEvent.date = dateStamp;
-      if (null === element.quote) {
-        earningsEvent.mcap = 0;
-      } else {
-        earningsEvent.mcap = element.quote.marketCap;
-      }
-      if (true === moment(element.start_date).isBefore(nyseOpenTime)) {
-        earningsEvent.when = "before_open";
-      } else if (true === moment(element.start_date).isSameOrAfter(nyseOpenTime) && true === moment(element.start_date).isBefore(nyseCloseTime)) {
-        earningsEvent.when = "during_session";
-      } else {
-        earningsEvent.when = "after_close";
-      }
+  try {
+    const earningsResponse: AxiosResponse = await axios.get(`https://app.fincredible.ai/api/v1/events/?date=${dateStamp}${watchlist}`);
 
-      earningsEvents.push(earningsEvent);
+    if (1 < earningsResponse.data.length) {
+      for (const element of earningsResponse.data) {
+        const earningsEvent = (new EarningsEvent());
+        earningsEvent.ticker = element.text;
+        earningsEvent.date = dateStamp;
+        if (null === element.quote) {
+          earningsEvent.mcap = 0;
+        } else {
+          earningsEvent.mcap = element.quote.marketCap;
+        }
+
+        if (true === moment(element.start_date).isBefore(nyseOpenTime)) {
+          earningsEvent.when = "before_open";
+        } else if (true === moment(element.start_date).isSameOrAfter(nyseOpenTime) && true === moment(element.start_date).isBefore(nyseCloseTime)) {
+          earningsEvent.when = "during_session";
+        } else {
+          earningsEvent.when = "after_close";
+        }
+
+        earningsEvents.push(earningsEvent);
+      }
     }
+  } catch (error) {
+    logger.log(
+      "error",
+      `Loading earnings failed: ${error}`,
+    );
   }
 
   return earningsEvents;
