@@ -111,7 +111,7 @@ jobs:
           headers: '{"X-Hblwrk-Auth": "${{ secrets.REDEPLOY_AUTH }}"}'
 
       - name: Actions Status Discord
-        uses: sarisia/actions-status-discord@v1.10.2
+        uses: sarisia/actions-status-discord@v1.10.3
         with:
           webhook: ${{ secrets.DISCORD_WEBHOOK }}
           title: Production deployment triggered.
