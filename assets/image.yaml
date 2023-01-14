@@ -359,3 +359,9 @@
   title: "Pling"
   location: dracoon
   locationId: FryzSpODttWkH3X0z00k5IUUT6V8QVzB
+- name: dagegen
+  trigger: ["dagegen"]
+  fileName: dagegen.jpg
+  title: "Dagegen!"
+  location: dracoon
+  locationId: rAT8LpY6RNwwTmb9JIcJVQ6ErNtDSPAU
