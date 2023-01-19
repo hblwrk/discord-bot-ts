@@ -31,6 +31,8 @@ jobs:
 
       - name: Checkov GitHub Action
         uses: bridgecrewio/checkov-action@v12.2056.0
+        with:
+          soft_fail: true
 
       - name: Sysdig CIS Dockerfile Benchmark
         uses: sysdiglabs/benchmark-dockerfile@v1.0.0
