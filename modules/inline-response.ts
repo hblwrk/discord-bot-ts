@@ -1,5 +1,4 @@
 /* eslint-disable max-depth */
-import validator from "validator";
 import {EmojiAsset} from "./assets";
 import {getLogger} from "./logging";
 
@@ -8,9 +7,9 @@ const logger = getLogger();
 export function addInlineResponses(client, assets, assetCommands) {
   // Message response to a message including with a trigger word
   client.on("messageCreate", async message => {
-    const messageContent: string = validator.escape(message.content);
+    const messageContent: string = message.content.toLowerCase();
     // Triggers without prefix
-    if (assetCommands.some(v => messageContent.toLowerCase().replaceAll(" ", "_").includes(v))) {
+    if (assetCommands.some(v => messageContent.replaceAll(" ", "_").includes(v))) {
       for (const asset of assets) {
         for (const trigger of asset.trigger) {
           // This may show up as possible DoS (RegExp() called with a variable, CWE-185) in Semgrep. However it is safe since the variable is based on assets, which cannot be user-supplied.
@@ -20,7 +19,7 @@ export function addInlineResponses(client, assets, assetCommands) {
             triggerRex = new RegExp(asset.triggerRegex);
           }
 
-          if (asset instanceof EmojiAsset && triggerRex.test(messageContent.toLowerCase())) {
+          if (asset instanceof EmojiAsset && triggerRex.test(messageContent)) {
             // Emoji reaction to a message
             for (const response of asset.response) {
               if (response.startsWith("custom:")) {
