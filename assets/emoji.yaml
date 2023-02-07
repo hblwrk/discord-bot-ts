@@ -15,7 +15,7 @@
   trigger: ["buttern5"]
   response: ["🧈", "5️⃣"]
 - name: nesquick
-  trigger: ["nesquick", "/nq", "nasdaq"]
+  trigger: ["nesquick", "\/nq", "nasdaq"]
   response: ["custom:nesquik"]
 - name: boomer
   trigger: ["boomer"]
@@ -48,7 +48,7 @@
   trigger: ["eier"]
   response: ["🥚"]
 - name: rfinanzen
-  trigger: ["r/finanzen"]
+  trigger: ["r\/finanzen"]
   response: ["custom:KEKW"]
 - name: yoloetf
   trigger: ["yolo-etf"]
