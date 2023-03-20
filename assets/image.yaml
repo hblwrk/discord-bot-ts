@@ -365,3 +365,9 @@
   title: "Dagegen!"
   location: dracoon
   locationId: rAT8LpY6RNwwTmb9JIcJVQ6ErNtDSPAU
+- name: polakw
+  trigger: ["polakw"]
+  fileName: akw.jpg
+  title: "Here we go again..."
+  location: dracoon
+  locationId: 2jK52crGmfm0x8q5cD4lCkaG8LieW9RB
