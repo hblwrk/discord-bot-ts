@@ -90,7 +90,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           
       - name: install-cosign
-        uses: sigstore/cosign-installer@v3.0.1
+        uses: sigstore/cosign-installer@v3.0.2
   
       - name: Sign image with cosign
         run: |
