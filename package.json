@@ -28,7 +28,7 @@
     "reconnecting-websocket": "^4.4.0",
     "ts-node": "^10.9.1",
     "validator": "^13.9.0",
-    "winston": "^3.8.2",
+    "winston": "^3.9.0",
     "winston-transport": "^4.5.0",
     "ws": "^8.13.0"
   },
