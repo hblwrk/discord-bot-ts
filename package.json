@@ -13,7 +13,7 @@
   },
   "keywords": [],
   "dependencies": {
-    "@discordjs/builders": "^0.12.0",
+    "@discordjs/builders": "^1.6.5",
     "@discordjs/rest": "^0.4.1",
     "@types/node": "^20.5.7",
     "axios": "^1.5.0",
