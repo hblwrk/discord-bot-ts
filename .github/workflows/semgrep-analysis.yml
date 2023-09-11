@@ -29,7 +29,7 @@ jobs:
       security-events: write
     steps:
       # Checkout project source
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       # Scan code using project's configuration on https://semgrep.dev/manage
       - uses: returntocorp/semgrep-action@549796168c0ddcb9149b10a0e79e5f6522f50797
