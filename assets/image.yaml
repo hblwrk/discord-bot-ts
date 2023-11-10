@@ -371,3 +371,9 @@
   title: "Here we go again..."
   location: dracoon
   locationId: 2jK52crGmfm0x8q5cD4lCkaG8LieW9RB
+- name: dixi
+  trigger: ["dixi"]
+  fileName: dixi.gif
+  title: "Genug shittakes für heute"
+  location: dracoon
+  locationId: 5vsogxS7iljaUMEM9TqUXSJUWTcocWhf
