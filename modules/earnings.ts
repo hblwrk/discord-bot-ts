@@ -4,14 +4,26 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-boolean-literal-compare */
 /* eslint-disable yoda */
 /* eslint-disable import/extensions */
-import axios, {type AxiosResponse} from "axios";
+import axios, { type AxiosResponse } from "axios";
 import moment from "moment-timezone";
-import {getLogger} from "./logging";
-import {type Ticker} from "./tickers";
+import { getLogger } from "./logging";
+import { type Ticker } from "./tickers";
 
 const logger = getLogger();
 
-export async function getEarnings(days: number, date: string, filter: string): Promise<EarningsEvent[]> {
+type EarningsWhen = "before_open" | "after_close" | "during_session";
+export interface EarningsEvent {
+  ticker: string;
+  when: EarningsWhen;
+  date: string;
+  importance: number;
+}
+
+export async function getEarnings(
+  days: number,
+  date: "today" | "tomorrow" | string,
+  filter: string
+): Promise<EarningsEvent[]> {
   let dateStamp: string;
 
   let usEasternTime: moment.Moment = moment.tz("US/Eastern").set({
@@ -26,39 +38,11 @@ export async function getEarnings(days: number, date: string, filter: string): P
     */
   });
 
-  let nyseOpenTime: moment.Moment = moment.tz("US/Eastern").set({
-    // Testing
-    /*
-    year: 2022,
-    month: 1,
-    date: 3,
-    */
-    hour: 9,
-    minute: 30,
-    second: 0,
-  });
-
-  let nyseCloseTime: moment.Moment = moment.tz("US/Eastern").set({
-    // Testing
-    /*
-    year: 2022,
-    month: 1,
-    date: 3,
-    */
-    hour: 16,
-    minute: 0,
-    second: 0,
-  });
-
   // During the weekend, use next Monday
-  if ((usEasternTime.day() === 6)) {
+  if (usEasternTime.day() === 6) {
     usEasternTime = moment(usEasternTime).day(8);
-    nyseOpenTime = moment(nyseOpenTime).day(8);
-    nyseCloseTime = moment(nyseCloseTime).day(8);
-  } else if ((usEasternTime.day() === 0)) {
+  } else if (usEasternTime.day() === 0) {
     usEasternTime = moment(usEasternTime).day(1);
-    nyseOpenTime = moment(nyseOpenTime).day(1);
-    nyseCloseTime = moment(nyseCloseTime).day(1);
   }
 
   if (null === days || 0 === days) {
@@ -77,51 +61,86 @@ export async function getEarnings(days: number, date: string, filter: string): P
     dateStamp = usEasternTime.add(days, "days").format("YYYY-MM-DD");
   }
 
+  // let nyse open time always start at the same date as the dateStamp to handle tomorrow and other dates
+  let nyseOpenTime: moment.Moment = moment.tz(dateStamp, "US/Eastern").set({
+    // Testing
+    /*
+    year: 2022,
+    month: 1,
+    date: 3,
+    */
+    hour: 9,
+    minute: 30,
+    second: 0,
+  });
+
+  let nyseCloseTime: moment.Moment = moment.tz(dateStamp, "US/Eastern").set({
+    // Testing
+    /*
+    year: 2022,
+    month: 1,
+    date: 3,
+    */
+    hour: 16,
+    minute: 0,
+    second: 0,
+  });
+
   let watchlist = "";
 
   if ("all" !== filter) {
     watchlist = `&watchlist=${filter}`;
   }
 
-  const earningsEvents = [];
+  const earningsEvents: EarningsEvent[] = [];
 
   try {
     // https://api.stocktwits.com/api/2/discover/earnings_calendar?date_from=2023-01-05
-    const earningsResponse: AxiosResponse = await axios.get(`https://api.stocktwits.com/api/2/discover/earnings_calendar?date_from=${dateStamp}`);
+    const earningsResponse: AxiosResponse = await axios.get(
+      `https://api.stocktwits.com/api/2/discover/earnings_calendar?date_from=${dateStamp}`
+    );
 
     for (const element in earningsResponse.data.earnings) {
       if (dateStamp === element) {
         const earnings = earningsResponse.data.earnings[element];
         for (const stock of earnings.stocks) {
           if (0 < stock.importance && dateStamp === stock.date) {
-            const earningsTime: moment.Moment = moment(`${stock.date}T${stock.time}-05:00`).tz("US/Eastern");
-            const earningsEvent = (new EarningsEvent());
-            earningsEvent.ticker = stock.symbol;
-            earningsEvent.date = stock.date;
+            const earningsTime: moment.Moment = moment(
+              `${stock.date}T${stock.time}-05:00`
+            ).tz("US/Eastern");
+
+            let earningsWhen: EarningsWhen = "during_session";
 
             if (true === moment(earningsTime).isBefore(nyseOpenTime)) {
-              earningsEvent.when = "before_open";
-            } else if (true === moment(earningsTime).isSameOrAfter(nyseCloseTime)) {
-              earningsEvent.when = "after_close";
-            } else {
-              earningsEvent.when = "during_session";
+              earningsWhen = "before_open";
+            } else if (
+              true === moment(earningsTime).isSameOrAfter(nyseCloseTime)
+            ) {
+              earningsWhen = "after_close";
             }
-            earningsEvents.push(earningsEvent);
+
+            earningsEvents.push({
+              ticker: stock.symbol,
+              date: stock.date,
+              importance: stock.importance,
+              when: earningsWhen,
+            });
           }
         }
       }
     }
   } catch (error) {
-    logger.log(
-      "error",
-      `Loading earnings failed: ${error}`,
-    );
+    logger.log("error", `Loading earnings failed: ${error}`);
   }
 
   return earningsEvents;
 }
 
-export function getEarningsText(earningsEvents: EarningsEvent[], when: string, tickers: Ticker[]): string {
+export function getEarningsText(
+  earningsEvents: EarningsEvent[],
+  when: "all" | "before_open" | "during_session" | "after_close" | string,
+  tickers: Ticker[]
+): string {
   let earningsText = "none";
 
   if (1 < earningsEvents.length) {
@@ -129,8 +148,10 @@ export function getEarningsText(earningsEvents: EarningsEvent[], when: string, t
     let earningsDuringSession = "";
     let earningsAfterClose = "";
 
-    // Sort by market cap, descending order
-    earningsEvents = earningsEvents.sort((first, second) => 0 - (first.mcap > second.mcap ? 1 : -1));
+    // Sort by importance, ascending order
+    earningsEvents = earningsEvents.sort(
+      (first, second) => first.importance - second.importance
+    );
 
     for (const earningEvent of earningsEvents) {
       // Highlight index tickers
@@ -155,65 +176,40 @@ export function getEarningsText(earningsEvents: EarningsEvent[], when: string, t
           earningsAfterClose += `${earningEvent.ticker}, `;
           break;
         }
-      // No default
+        // No default
       }
     }
 
     moment.locale("de");
-    const friendlyDate = moment(earningsEvents[0].date).format("dddd, Do MMMM YYYY");
+    const friendlyDate = moment(earningsEvents[0].date).format(
+      "dddd, Do MMMM YYYY"
+    );
 
     earningsText = `Earnings am ${friendlyDate}:\n`;
-    if (1 < earningsBeforeOpen.length && ("all" === when || "before_open" === when)) {
+    if (
+      1 < earningsBeforeOpen.length &&
+      ("all" === when || "before_open" === when)
+    ) {
       earningsText += `**Vor open:**\n${earningsBeforeOpen.slice(0, -2)}\n\n`;
     }
 
-    if (1 < earningsDuringSession.length && ("all" === when || "during_session" === when)) {
-      earningsText += `**Während der Handelszeiten:**\n${earningsDuringSession.slice(0, -2)}\n\n`;
+    if (
+      1 < earningsDuringSession.length &&
+      ("all" === when || "during_session" === when)
+    ) {
+      earningsText += `**Während der Handelszeiten:**\n${earningsDuringSession.slice(
+        0,
+        -2
+      )}\n\n`;
     }
 
-    if (1 < earningsAfterClose.length && ("all" === when || "after_close" === when)) {
+    if (
+      1 < earningsAfterClose.length &&
+      ("all" === when || "after_close" === when)
+    ) {
       earningsText += `**Nach close:**\n${earningsAfterClose.slice(0, -2)}`;
     }
   }
 
   return earningsText;
-}
-
-class EarningsEvent {
-  private _ticker: string;
-  private _when: string;
-  private _date: string;
-  private _mcap: number;
-
-  public get ticker() {
-    return this._ticker;
-  }
-
-  public set ticker(ticker: string) {
-    this._ticker = ticker;
-  }
-
-  public get when() {
-    return this._when;
-  }
-
-  public set when(when: string) {
-    this._when = when;
-  }
-
-  public get date() {
-    return this._date;
-  }
-
-  public set date(date: string) {
-    this._date = date;
-  }
-
-  public get mcap() {
-    return this._mcap;
-  }
-
-  public set mcap(mcap: number) {
-    this._mcap = mcap;
-  }
 }
