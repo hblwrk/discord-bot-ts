@@ -64,5 +64,5 @@
   triggerRegex: ["^[0-9A-Za-zÀ-ž._-]+ \\bwo\\b[? ]*?$|^\\bwo\\b [0-9A-Za-zÀ-ž._-]+[? ]*$"]
   response: ["🦧"]
 - name: merz
-  trigger: ["Merz"]
+  trigger: ["merz"]
   response: ["custom:kekmerz"]
