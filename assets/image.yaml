@@ -377,3 +377,9 @@
   title: "Genug shittakes für heute"
   location: dracoon
   locationId: hdFpsPalkOtDn9TX1a8E7QUzwO41tiib
+- name: vw
+  trigger: ["vw"]
+  fileName: vw.gif
+  title: "We are here..."
+  location: dracoon
+  locationId: BFyCNrS24hSMTKoV7LuOxAZbfej8pgpF
