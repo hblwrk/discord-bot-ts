@@ -383,3 +383,9 @@
   title: "We are here..."
   location: dracoon
   locationId: BFyCNrS24hSMTKoV7LuOxAZbfej8pgpF
+- name: reinwachsen
+  trigger: ["reinwachsen"]
+  fileName: reinwachsen.png
+  title: "Einfach in die Ausgaben reinwachsen."
+  location: dracoon
+  locationId: sYe1roKd3LETJpVd1Edrhsu1kr7PljcF
