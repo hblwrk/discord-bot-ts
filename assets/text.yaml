@@ -75,3 +75,7 @@
   trigger: ["bubelchor"]
   title: "Can we get much higher?"
   response: "Der Bubelchor - https://streamable.com/dn3cwd"
+- name: fitness
+  trigger: ["fitness"]
+  title: "Fitness Hustler"
+  response: "Alle tracken hier jeden Huster auf irgendeiner Smartwatch um zu gucken, dass sie auch ja genug um die Steigung der Entwicklung vom wöchentlichen HustScore™️ gleich ist mit der vom Roten und Blauen Fitness Mana, trainieren immer auf irgendwelche Touchscreens starrend an Geräten mit mehr Elektrik als nen Cyborg. Aber cann, der einfach jeden Tag ins Fitti geht, ballert und macht worauf er Lust hat ist fitter und sieht besser aus"
