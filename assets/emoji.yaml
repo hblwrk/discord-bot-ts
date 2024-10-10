@@ -66,3 +66,6 @@
 - name: merz
   trigger: ["merz"]
   response: ["custom:kekmerz"]
+- name: sonnenschein
+  trigger: ["Sonnenschein"]
+  response: ["🌞"]
