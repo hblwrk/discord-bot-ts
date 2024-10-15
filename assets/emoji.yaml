@@ -67,5 +67,5 @@
   trigger: ["merz"]
   response: ["custom:kekmerz"]
 - name: sonnenschein
-  trigger: ["Sonnenschein"]
+  trigger: ["sonnenschein"]
   response: ["🌞"]
