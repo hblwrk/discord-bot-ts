@@ -74,7 +74,7 @@
 - name: bubelchor
   trigger: ["bubelchor"]
   title: "Can we get much higher?"
-  response: "Der Bubelchor - https://streamable.com/dn3cwd"
+  response: "Der Bubelchor - https://streamable.com/4pn5j0"
 - name: fitness
   trigger: ["fitness"]
   title: "Fitness Hustler"
