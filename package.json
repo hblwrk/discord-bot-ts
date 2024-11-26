@@ -5,6 +5,7 @@
   "description": "Hebelwerk Discord Bot",
   "main": "index.ts",
   "scripts": {
+    "test": "echo \"running...\" && exit 0",
     "run": "echo \"running...\" && exit 0"
   },
   "repository": {
