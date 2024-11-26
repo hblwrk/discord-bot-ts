@@ -5,7 +5,7 @@
 /* eslint-disable complexity */
 import axios, {type AxiosResponse} from "axios";
 import moment from "moment-timezone";
-import {getLogger} from "./logging";
+import {getLogger} from "./logging.js";
 
 const logger = getLogger();
 

@@ -1,8 +1,8 @@
 /* eslint-disable yoda */
 /* eslint-disable import/extensions */
 import axios, {type AxiosResponse} from "axios";
-import {readSecret} from "./secrets";
-import {getLogger} from "./logging";
+import {readSecret} from "./secrets.js";
+import {getLogger} from "./logging.js";
 
 const logger = getLogger();
 

@@ -2,7 +2,7 @@
 import {Buffer} from "node:buffer";
 import axios from "axios";
 import moment from "moment-timezone";
-import {getLogger} from "./logging";
+import {getLogger} from "./logging.js";
 
 const logger = getLogger();
 

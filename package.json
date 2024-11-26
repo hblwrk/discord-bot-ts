@@ -1,5 +1,6 @@
 {
   "name": "discord-bot-ts",
+  "type": "module",
   "version": "1.0.0",
   "description": "Hebelwerk Discord Bot",
   "main": "index.ts",
@@ -22,6 +23,7 @@
     "discord.js": "^13.6.0",
     "express": "^4.19.2",
     "js-yaml": "^4.1.0",
+    "moment-holiday": "^1.5.1",
     "moment-timezone": "^0.5.43",
     "node-schedule": "^2.1.1",
     "nyse-holidays": "^1.2.0",

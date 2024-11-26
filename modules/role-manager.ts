@@ -1,5 +1,5 @@
-import {getLogger} from "./logging";
-import {readSecret} from "./secrets";
+import {getLogger} from "./logging.js";
+import {readSecret} from "./secrets.js";
 
 const logger = getLogger();
 

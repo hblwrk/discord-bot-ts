@@ -1,6 +1,6 @@
 /* eslint-disable max-depth */
-import {EmojiAsset} from "./assets";
-import {getLogger} from "./logging";
+import {EmojiAsset} from "./assets.js";
+import {getLogger} from "./logging.js";
 
 const logger = getLogger();
 

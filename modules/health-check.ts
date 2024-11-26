@@ -1,6 +1,6 @@
 import http from "node:http";
 import express from "express";
-import {readSecret} from "./secrets";
+import {readSecret} from "./secrets.js";
 
 export function runHealthCheck() {
   const app = express();

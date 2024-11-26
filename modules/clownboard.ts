@@ -3,7 +3,7 @@
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
 import {TextChannel, MessageEmbed} from "discord.js";
-import {getLogger} from "./logging";
+import {getLogger} from "./logging.js";
 
 const logger = getLogger();
 

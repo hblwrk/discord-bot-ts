@@ -1,9 +1,9 @@
 import {Client} from "discord.js";
 import ReconnectingWebSocket from "reconnecting-websocket";
 import WS from "ws";
-import {getAssets} from "./assets";
-import {getLogger} from "./logging";
-import {readSecret} from "./secrets";
+import {getAssets} from "./assets.js";
+import {getLogger} from "./logging.js";
+import {readSecret} from "./secrets.js";
 
 const logger = getLogger();
 

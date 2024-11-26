@@ -1,6 +1,6 @@
 import Transport from "winston-transport";
 import {Client, TextChannel, MessageEmbed} from "discord.js";
-import {readSecret} from "./secrets";
+import {readSecret} from "./secrets.js";
 
 export default class DiscordTransport extends Transport {
   public client: Client;

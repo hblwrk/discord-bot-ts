@@ -1,5 +1,5 @@
 import winston from "winston";
-import DiscordTransport from "./discord-logger";
+import DiscordTransport from "./discord-logger.js";
 
 export function getDiscordLogger(client) {
   const loglevel = {

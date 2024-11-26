@@ -6,8 +6,8 @@
 /* eslint-disable import/extensions */
 import axios, { type AxiosResponse } from "axios";
 import moment from "moment-timezone";
-import { getLogger } from "./logging";
-import { type Ticker } from "./tickers";
+import { getLogger } from "./logging.js";
+import { type Ticker } from "./tickers.js";
 
 const logger = getLogger();
 

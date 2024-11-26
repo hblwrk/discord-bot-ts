@@ -1,4 +1,4 @@
-import {UserQuoteAsset} from "./assets";
+import {UserQuoteAsset} from "./assets.js";
 
 export function getRandomQuote(username: string, assets: any) {
   const randomQuotePool = [];

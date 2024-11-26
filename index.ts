@@ -1,18 +1,18 @@
 /* eslint-disable yoda */
 /* eslint-disable import/extensions */
 import {Client, Intents} from "discord.js";
-import {readSecret} from "./modules/secrets";
-import {runHealthCheck} from "./modules/health-check";
-import {startNyseTimers, startMncTimers, startOtherTimers} from "./modules/timers";
-import {updateMarketData} from "./modules/market-data";
-import {getLogger} from "./modules/logging";
-import {defineSlashCommands, interactSlashCommands} from "./modules/slash-commands";
-import {addInlineResponses} from "./modules/inline-response";
-import {addTriggerResponses} from "./modules/trigger-response";
-import {getGenericAssets, getAssets} from "./modules/assets";
-import {roleManager} from "./modules/role-manager";
-import {getTickers, Ticker} from "./modules/tickers";
-import {clownboard} from "./modules/clownboard";
+import {readSecret} from "./modules/secrets.js";
+import {runHealthCheck} from "./modules/health-check.js";
+import {startNyseTimers, startMncTimers, startOtherTimers} from "./modules/timers.js";
+import {updateMarketData} from "./modules/market-data.js";
+import {getLogger} from "./modules/logging.js";
+import {defineSlashCommands, interactSlashCommands} from "./modules/slash-commands.js";
+import {addInlineResponses} from "./modules/inline-response.js";
+import {addTriggerResponses} from "./modules/trigger-response.js";
+import {getGenericAssets, getAssets} from "./modules/assets.js";
+import {roleManager} from "./modules/role-manager.js";
+import {getTickers, Ticker} from "./modules/tickers.js";
+import {clownboard} from "./modules/clownboard.js";
 
 const token = readSecret("discord_token");
 

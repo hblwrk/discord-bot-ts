@@ -3,11 +3,11 @@
 /* eslint-disable complexity */
 import {MessageAttachment, MessageEmbed} from "discord.js";
 import validator from "validator";
-import {getAssetByName, ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets";
-import {cryptodice} from "./crypto-dice";
-import {lmgtfy} from "./lmgtfy";
-import {getLogger} from "./logging";
-import {getRandomQuote} from "./random-quote";
+import {getAssetByName, ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets.js";
+import {cryptodice} from "./crypto-dice.js";
+import {lmgtfy} from "./lmgtfy.js";
+import {getLogger} from "./logging.js";
+import {getRandomQuote} from "./random-quote.js";
 
 const logger = getLogger();
 

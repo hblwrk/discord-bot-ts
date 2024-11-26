@@ -1,4 +1,4 @@
-import { EarningsEvent, getEarnings, getEarningsText } from "./earnings";
+import { EarningsEvent, getEarnings, getEarningsText } from "./earnings.js";
 import axios from "axios";
 
 jest.mock("axios");
