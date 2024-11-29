@@ -92,7 +92,8 @@ export function startNyseTimers(client, channelID: string) {
   });
 
   Schedule.scheduleJob(ruleNyseClose, () => {
-    if (false === isHoliday(new Date()) && false === (26 === Number(moment().format("DD")) && 11 === Number(moment().format("MM")))) {
+    if (false === isHoliday(new Date()) &&
+        false === (dayAfterThanksgiving == moment().tz("US/Eastern").format("YYYY-MM-DD"))) {
       client.channels.cache.get(channelID).send("🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! Teilt eure Ergebnisse in \"Heutige Gains&Losses\" 🔔🔔🔔").catch(error => {
         logger.log(
           "error",
@@ -115,7 +116,8 @@ export function startNyseTimers(client, channelID: string) {
   });
 
   Schedule.scheduleJob(ruleNyseAftermarketClose, () => {
-    if (false === isHoliday(new Date()) && false === (26 === Number(moment().format("DD")) && 11 === Number(moment().format("MM")))) {
+    if (false === isHoliday(new Date()) &&
+        false === (dayAfterThanksgiving == moment().tz("US/Eastern").format("YYYY-MM-DD"))) {
       client.channels.cache.get(channelID).send("🛏️🔔🔔 Und jetzt ist auch der aftermarket für euch Nachteulen geschlossen, Zeit fürs Bettchen! 🔔🔔🛏️").catch(error => {
         logger.log(
           "error",
