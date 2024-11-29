@@ -57,7 +57,7 @@
   trigger: ["doug", "douggie"]
   response: ["custom:doug"]
 - name: virt
-  trigger: ["virt", "virtu", "virts"]
+  trigger: ["virtu", "virts"]
   response: ["custom:virt"]
 - name: wo
   trigger: ["wo"]
@@ -69,3 +69,6 @@
 - name: sonnenschein
   trigger: ["sonnenschein"]
   response: ["🌞"]
+- name: blöd
+  trigger: ["bild.de"]
+  response: ["custom:gmeklaus"]
