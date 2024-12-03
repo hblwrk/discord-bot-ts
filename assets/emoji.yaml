@@ -70,5 +70,5 @@
   trigger: ["sonnenschein"]
   response: ["🌞"]
 - name: blöd
-  trigger: ["bild.de"]
+  trigger: ["(?i).*bild\.de\/.*"]
   response: ["custom:gmeklaus"]
