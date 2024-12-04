@@ -29,7 +29,7 @@
     "nyse-holidays": "^1.2.0",
     "reconnecting-websocket": "^4.4.0",
     "ts-node": "^10.9.2",
-    "validator": "^13.11.0",
+    "validator": "^13.12.0",
     "winston": "^3.10.0",
     "winston-transport": "^4.5.0",
     "ws": "^8.18.0"
