@@ -14,7 +14,7 @@
   },
   "keywords": [],
   "dependencies": {
-    "@discordjs/builders": "^0.12.0",
+    "@discordjs/builders": "^1.10.0",
     "@discordjs/rest": "^0.4.1",
     "@types/node": "^22.10.1",
     "axios": "^1.7.8",
