@@ -24,7 +24,7 @@
     "express": "^4.21.2",
     "js-yaml": "^4.1.0",
     "moment-holiday": "^1.5.1",
-    "moment-timezone": "^0.5.43",
+    "moment-timezone": "^0.5.47",
     "node-schedule": "^2.1.1",
     "nyse-holidays": "^1.2.0",
     "reconnecting-websocket": "^4.4.0",
