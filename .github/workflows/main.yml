@@ -30,7 +30,7 @@ jobs:
           dockerlabelvalidate: yes
 
       - name: Checkov GitHub Action
-        uses: bridgecrewio/checkov-action@v12.2934.0
+        uses: bridgecrewio/checkov-action@v12.2963.0
         with:
           soft_fail: true
 
