@@ -389,3 +389,9 @@
   title: "Einfach in die Ausgaben reinwachsen."
   location: dracoon
   locationId: sYe1roKd3LETJpVd1Edrhsu1kr7PljcF
+- name: crying
+  trigger: ["crying"]
+  fileName: crying.png
+  title: "No crying in the casino!"
+  location: dracoon
+  locationId: tWIUBZm4lSadUsRmQm73uV41dVYFpCdM
