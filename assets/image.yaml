@@ -395,3 +395,10 @@
   title: "No crying in the casino!"
   location: dracoon
   locationId: tWIUBZm4lSadUsRmQm73uV41dVYFpCdM
+- name: deal
+  trigger: ["deal"]
+  fileName: deal.jpg
+  title: "The Art Of The Deal"
+  location: dracoon
+  locationId: 1Aaxm5yDa8NXZMcMFSifrtLBs5f27Vin
+  
