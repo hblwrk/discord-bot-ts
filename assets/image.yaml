@@ -401,4 +401,15 @@
   title: "The Art Of The Deal"
   location: dracoon
   locationId: 1Aaxm5yDa8NXZMcMFSifrtLBs5f27Vin
-  
+- name: erbe
+  trigger: ["erbe"]
+  fileName: erbe.jpg
+  title: "Das letzte, was dein Erbe sieht"
+  location: dracoon
+  locationId: oqy6JrgrUSDvLgpHlyVqydPXBtxDicAg
+- name: depends
+  trigger: ["depends"]
+  fileName: depends.jpg
+  title: "Es kommt darauf an"
+  location: dracoon
+  locationId: KyIHGWals6Bi3nlKolaWPRb0B9aAhVxP
