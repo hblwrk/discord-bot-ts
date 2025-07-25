@@ -23,12 +23,6 @@
   title: "Dump it!"
   location: dracoon
   locationId: mjvgpXb9SbbjAJnHERwwqrDvEK95dMk9
-- name: tui
-  trigger: ["tui"]
-  fileName: tui-14k.png
-  title: "TUI"
-  location: dracoon
-  locationId: qzyi4BjjR4hitzUhASgysBhPfwntTpcz
 - name: tja
   trigger: ["tja"]
   fileName: tja.gif
