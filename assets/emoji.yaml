@@ -61,7 +61,7 @@
   response: ["custom:virt"]
 - name: wo
   trigger: ["wo"]
-  triggerRegex: ["^[0-9A-Za-zÀ-ž._-]+ \\bwo\\b[? ]*?$|^\\bwo\\b [0-9A-Za-zÀ-ž._-]+[? ]*$"]
+  triggerRegex: ["^wo\\s+\\S+[?]*$"]
   response: ["🦧"]
 - name: sonnenschein
   trigger: ["sonnenschein"]
