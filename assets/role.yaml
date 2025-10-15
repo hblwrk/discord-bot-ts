@@ -143,3 +143,9 @@
   id:
   idReference: "hblwrk_role_special_stageping_ID"
   emoji: "🗣️"
+- name: realestate
+  trigger:
+  triggerReference: "hblwrk_role_assignment_special_messageID"
+  id:
+  idReference: "hblwrk_role_special_realestate_ID"
+  emoji: "🏚️"
