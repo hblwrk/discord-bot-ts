@@ -159,6 +159,7 @@ By defining a set of secrets per developer, multiple bots can be run at the same
   "hblwrk_role_special_cryptoping_ID": "",
   "hblwrk_role_special_nftping_ID": "",
   "hblwrk_role_special_stageping_ID": "",
+  "hblwrk_role_special_realestate_ID": "",
   "hblwrk_role_muted_ID": ""
 }
 ```
