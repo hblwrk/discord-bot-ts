@@ -41,13 +41,20 @@
   title: "Quote mheiland 2"
   location: dracoon
   locationId: euUK6ei6Iu3D9sYpifzPhfHzdw8exs9j
-- name: quote_mheiland_2
+- name: quote_mheiland_3
   trigger: ["quote mheiland 3"]
   user: mheiland
   fileName: quote-mheiland-03.png
   title: "Quote mheiland 3"
   location: dracoon
   locationId: v2oy6bZIk6nfpYOv4XiHv2G9Yawohov6
+- name: quote_mheiland_4
+  trigger: ["quote mheiland 4"]
+  user: mheiland
+  fileName: quote-mheiland-04.png
+  title: "Quote mheiland 4"
+  location: dracoon
+  locationId: xC0WWP4QsyP77geI8Wo1qMal01YOY8r0
 - name: quote_skard_1
   trigger: ["quote skard 1"]
   user: skard
@@ -454,13 +461,6 @@
   title: "Quote zetto 18"
   location: dracoon
   locationId: XfL6JJgliiKSbMTzSzBFltBN7mmv1sR5
-- name: quote_zetto_19
-  trigger: ["quote zetto 19"]
-  user: zetto
-  fileName: quote-zetto-19.png
-  title: "Quote zetto 19"
-  location: dracoon
-  locationId: TdskcMfGIfFD6eTNKbVRGxG6OQ0sSzZ1
 - name: quote_konrev_hannover
   trigger: ["quote konrev hannover"]
   user: konrev
