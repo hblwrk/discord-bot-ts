@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
 import {Buffer} from "node:buffer";
-import axios from "axios";
 import moment from "moment-timezone";
 import {getLogger} from "./logging.js";
+import {getWithRetry} from "./http-retry.js";
 
 const logger = getLogger();
 
@@ -11,7 +11,7 @@ export async function getMnc() {
 
   const todayDate = moment.tz("Europe/Berlin").format("MMDDYYYY");
   try {
-    const getResponse = axios.get(`https://share.refinitiv.com/assets/newsletters/Morning_News_Call/MNCGeneric_US_${todayDate}.pdf`, {
+    const getResponse = getWithRetry(`https://share.refinitiv.com/assets/newsletters/Morning_News_Call/MNCGeneric_US_${todayDate}.pdf`, {
       responseType: "arraybuffer",
     });
 

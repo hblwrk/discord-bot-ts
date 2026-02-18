@@ -14,6 +14,10 @@ const logger = getLogger();
 export function addTriggerResponses(client, assets, assetCommandsWithPrefix, whatIsAssets) {
   // Message response to a trigger command (!command)
   client.on("messageCreate", async message => {
+    if (true === message.author?.bot || Boolean(message.webhookId)) {
+      return;
+    }
+
     const messageContent: string = validator.escape(message.content);
     if (assetCommandsWithPrefix.some(v => messageContent.includes(v))) {
       for (const asset of assets) {

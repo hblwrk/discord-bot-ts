@@ -7,6 +7,10 @@ const logger = getLogger();
 export function addInlineResponses(client, assets, assetCommands) {
   // Message response to a message including with a trigger word
   client.on("messageCreate", async message => {
+    if (true === message.author?.bot || Boolean(message.webhookId)) {
+      return;
+    }
+
     const messageContent: string = message.content.toLowerCase();
     // Triggers without prefix
     if (assetCommands.some(v => messageContent.replaceAll(" ", "_").includes(v))) {
