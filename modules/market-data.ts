@@ -186,6 +186,11 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
 
       const streamEvent = parseStreamEvent(rawMessage);
       if (null === streamEvent) {
+        logger.log(
+          "error",
+          `Error updating market data bot: ${rawMessage}`,
+        );
+
         return;
       }
 
@@ -268,10 +273,6 @@ function normalizeEventData(rawData: unknown): string | null {
     return rawData;
   }
 
-  if (Array.isArray(rawData) && rawData.every(chunk => Buffer.isBuffer(chunk))) {
-    return Buffer.concat(rawData).toString("utf8");
-  }
-
   if (Buffer.isBuffer(rawData)) {
     return rawData.toString("utf8");
   }
@@ -280,249 +281,37 @@ function normalizeEventData(rawData: unknown): string | null {
     return Buffer.from(rawData).toString("utf8");
   }
 
-  if (ArrayBuffer.isView(rawData)) {
-    return Buffer.from(rawData.buffer, rawData.byteOffset, rawData.byteLength).toString("utf8");
-  }
-
   return null;
 }
 
 function parseStreamEvent(rawMessage: string): MarketStreamEvent | null {
-  const frames = extractFrames(rawMessage);
-
-  for (const frame of frames) {
-    const streamEvent = parseEventCandidate(frame);
-    if (null !== streamEvent) {
-      return streamEvent;
-    }
-  }
-
-  return null;
-}
-
-function parseEventCandidate(candidate: unknown, depth = 0): MarketStreamEvent | null {
-  if (depth > 6) {
+  const regex = /::(.*)/gm;
+  const rawEventData = rawMessage.replaceAll("a[\"", "").replaceAll("\\", "").replaceAll("\"]", "").replaceAll("\"}", "");
+  const matches = rawEventData.match(regex);
+  if (null === matches) {
     return null;
-  }
-
-  if ("string" === typeof candidate) {
-    const trimmedCandidate = candidate.trim();
-    if (0 === trimmedCandidate.length) {
-      return null;
-    }
-
-    const parsedJson = tryParseJson(trimmedCandidate);
-    if (null !== parsedJson) {
-      const jsonEvent = parseEventCandidate(parsedJson, depth + 1);
-      if (null !== jsonEvent) {
-        return jsonEvent;
-      }
-    }
-
-    const unescapedCandidate = trimmedCandidate.replaceAll("\\\"", "\"");
-    if (unescapedCandidate !== trimmedCandidate) {
-      const unescapedEvent = parseEventCandidate(unescapedCandidate, depth + 1);
-      if (null !== unescapedEvent) {
-        return unescapedEvent;
-      }
-    }
-
-    const embeddedJson = extractFirstJsonObject(trimmedCandidate);
-    if (null !== embeddedJson && embeddedJson !== trimmedCandidate) {
-      const embeddedJsonEvent = parseEventCandidate(embeddedJson, depth + 1);
-      if (null !== embeddedJsonEvent) {
-        return embeddedJsonEvent;
-      }
-    }
-
-    for (const payloadFragment of extractPayloadFragments(trimmedCandidate)) {
-      const payloadEvent = parseEventCandidate(payloadFragment, depth + 1);
-      if (null !== payloadEvent) {
-        return payloadEvent;
-      }
-    }
-
-    return null;
-  }
-
-  if (Array.isArray(candidate)) {
-    for (const nestedCandidate of candidate) {
-      const nestedEvent = parseEventCandidate(nestedCandidate, depth + 1);
-      if (null !== nestedEvent) {
-        return nestedEvent;
-      }
-    }
-
-    return null;
-  }
-
-  if (false === isPlainObject(candidate)) {
-    return null;
-  }
-
-  const directEvent = getStreamEventFromObject(candidate);
-  if (null !== directEvent) {
-    return directEvent;
-  }
-
-  for (const nestedPayload of getNestedPayloads(candidate)) {
-    const nestedEvent = parseEventCandidate(nestedPayload, depth + 1);
-    if (null !== nestedEvent) {
-      return nestedEvent;
-    }
-  }
-
-  return null;
-}
-
-function tryParseJson(rawValue: string): unknown | null {
-  try {
-    return JSON.parse(rawValue);
-  } catch {
-    return null;
-  }
-}
-
-function extractPayloadFragments(frame: string): string[] {
-  const payloadFragments: string[] = [];
-  let nextSearchStartIndex = 0;
-
-  while (nextSearchStartIndex < frame.length) {
-    const delimiterIndex = frame.indexOf("::", nextSearchStartIndex);
-    if (-1 === delimiterIndex) {
-      break;
-    }
-
-    payloadFragments.push(frame.slice(delimiterIndex + 2));
-    nextSearchStartIndex = delimiterIndex + 2;
-  }
-
-  return payloadFragments;
-}
-
-function extractFirstJsonObject(rawValue: string): string | null {
-  const startIndex = rawValue.indexOf("{");
-  if (-1 === startIndex) {
-    return null;
-  }
-
-  let depth = 0;
-  let escaped = false;
-  let inString = false;
-
-  for (let index = startIndex; index < rawValue.length; index++) {
-    const currentCharacter = rawValue[index];
-
-    if (true === escaped) {
-      escaped = false;
-      continue;
-    }
-
-    if ("\\" === currentCharacter) {
-      escaped = true;
-      continue;
-    }
-
-    if ("\"" === currentCharacter) {
-      inString = !inString;
-      continue;
-    }
-
-    if (true === inString) {
-      continue;
-    }
-
-    if ("{" === currentCharacter) {
-      depth++;
-      continue;
-    }
-
-    if ("}" === currentCharacter) {
-      depth--;
-      if (0 === depth) {
-        return rawValue.slice(startIndex, index + 1);
-      }
-    }
-  }
-
-  return null;
-}
-
-function isPlainObject(candidate: unknown): candidate is Record<string, unknown> {
-  return "object" === typeof candidate && null !== candidate && false === Array.isArray(candidate);
-}
-
-function getNestedPayloads(payload: Record<string, unknown>): unknown[] {
-  const prioritizedKeys = new Set(["message", "data", "payload"]);
-  const prioritizedNestedPayloads: unknown[] = [];
-  const otherNestedPayloads: unknown[] = [];
-
-  for (const [key, value] of Object.entries(payload)) {
-    if ("string" !== typeof value && false === Array.isArray(value) && false === isPlainObject(value)) {
-      continue;
-    }
-
-    if (prioritizedKeys.has(key)) {
-      prioritizedNestedPayloads.push(value);
-    } else {
-      otherNestedPayloads.push(value);
-    }
-  }
-
-  return [...prioritizedNestedPayloads, ...otherNestedPayloads];
-}
-
-function getStreamEventFromObject(eventData: Record<string, unknown>): MarketStreamEvent | null {
-  const pid = getFirstFiniteNumber(eventData, ["pid"]);
-  const lastNumeric = getFirstFiniteNumber(eventData, ["last_numeric", "last", "lastPrice", "last_price"]);
-  const priceChange = getFirstFiniteNumber(eventData, ["pc", "chg", "change", "price_change"]);
-  const percentageChange = getFirstFiniteNumber(eventData, ["pcp", "chg_perc", "change_percent", "percentage_change"]);
-
-  if (false === [pid, lastNumeric, priceChange, percentageChange].every(Number.isFinite)) {
-    return null;
-  }
-
-  return {
-    pid,
-    lastNumeric,
-    priceChange,
-    percentageChange,
-  };
-}
-
-function getFirstFiniteNumber(
-  eventData: Record<string, unknown>,
-  fieldCandidates: string[]
-): number {
-  for (const fieldCandidate of fieldCandidates) {
-    if (false === Object.prototype.hasOwnProperty.call(eventData, fieldCandidate)) {
-      continue;
-    }
-
-    const numericValue = Number(eventData[fieldCandidate]);
-    if (true === Number.isFinite(numericValue)) {
-      return numericValue;
-    }
-  }
-
-  return Number.NaN;
-}
-
-function extractFrames(rawMessage: string): string[] {
-  if (false === rawMessage.startsWith("a[")) {
-    return [rawMessage];
   }
 
   try {
-    const payload = JSON.parse(rawMessage);
-    if (Array.isArray(payload)) {
-      return payload.filter(frame => "string" === typeof frame);
+    const eventData = JSON.parse(matches[0].replace("::", ""));
+    const pid = Number(eventData.pid);
+    const lastNumeric = Number(eventData.last_numeric);
+    const priceChange = Number(eventData.pc);
+    const percentageChange = Number(eventData.pcp);
+
+    if ([pid, lastNumeric, priceChange, percentageChange].every(Number.isFinite)) {
+      return {
+        pid,
+        lastNumeric,
+        priceChange,
+        percentageChange,
+      };
     }
   } catch {
-    // Fall through and allow caller to ignore payload.
+    // Ignore malformed payloads and let caller continue.
   }
 
-  return [rawMessage];
+  return null;
 }
 
 async function applyClientStatusUpdate(
