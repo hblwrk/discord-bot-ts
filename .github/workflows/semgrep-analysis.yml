@@ -27,20 +27,29 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       security-events: write
+    env:
+      SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+      SEMGREP_DEPLOYMENT_ID: ${{ secrets.SEMGREP_DEPLOYMENT_ID }}
     steps:
       # Checkout project source
       - uses: actions/checkout@v4
 
       # Scan code using project's configuration on https://semgrep.dev/manage
-      - uses: returntocorp/semgrep-action@713efdd345f3035192eaa63f56867b88e63e4e5d
+      - name: Run Semgrep
+        if: ${{ env.SEMGREP_APP_TOKEN != '' && env.SEMGREP_DEPLOYMENT_ID != '' }}
+        uses: returntocorp/semgrep-action@713efdd345f3035192eaa63f56867b88e63e4e5d
         with:
-          publishToken: ${{ secrets.SEMGREP_APP_TOKEN }}
-          publishDeployment: ${{ secrets.SEMGREP_DEPLOYMENT_ID }}
+          publishToken: ${{ env.SEMGREP_APP_TOKEN }}
+          publishDeployment: ${{ env.SEMGREP_DEPLOYMENT_ID }}
           generateSarif: "1"
+
+      - name: Skip Semgrep when secrets are unavailable
+        if: ${{ env.SEMGREP_APP_TOKEN == '' || env.SEMGREP_DEPLOYMENT_ID == '' }}
+        run: echo "Skipping Semgrep scan because SEMGREP_APP_TOKEN or SEMGREP_DEPLOYMENT_ID is not set."
 
       # Upload SARIF file generated in previous step
       - name: Upload SARIF file
-        uses: github/codeql-action/upload-sarif@v3
+        if: ${{ always() && env.SEMGREP_APP_TOKEN != '' && env.SEMGREP_DEPLOYMENT_ID != '' }}
+        uses: github/codeql-action/upload-sarif@v4
         with:
           sarif_file: semgrep.sarif
-        if: always()
