@@ -1,8 +1,6 @@
 FROM node:22-alpine AS builder
 
-RUN mkdir -p /home/node/app/node_modules /home/node/app/tmp \
-  && chown -R node:node /home/node/app \
-  && chmod 1777 /home/node/app/tmp
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
 WORKDIR /home/node/app
 
@@ -20,7 +18,8 @@ COPY --from=builder /home/node/app /app
 
 WORKDIR /app
 
-ENV TMPDIR=/app/tmp
+ENV TSX_DISABLE_CACHE=1
+ENV TMPDIR=/dev/shm
 
 HEALTHCHECK NONE
 
