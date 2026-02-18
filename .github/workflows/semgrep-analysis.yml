@@ -20,6 +20,7 @@ on:
     branches: [ main ]
   schedule:
     - cron: '34 13 * * 3'
+  workflow_dispatch:
 
 jobs:
   semgrep:
@@ -33,9 +34,17 @@ jobs:
 
       # Scan code using project's configuration on https://semgrep.dev/manage
       - uses: returntocorp/semgrep-action@713efdd345f3035192eaa63f56867b88e63e4e5d
+        if: ${{ secrets.SEMGREP_APP_TOKEN != '' && secrets.SEMGREP_DEPLOYMENT_ID != '' }}
         with:
           publishToken: ${{ secrets.SEMGREP_APP_TOKEN }}
           publishDeployment: ${{ secrets.SEMGREP_DEPLOYMENT_ID }}
+          generateSarif: "1"
+
+      # Fallback scan when Semgrep Cloud secrets are not configured.
+      - uses: returntocorp/semgrep-action@713efdd345f3035192eaa63f56867b88e63e4e5d
+        if: ${{ secrets.SEMGREP_APP_TOKEN == '' || secrets.SEMGREP_DEPLOYMENT_ID == '' }}
+        with:
+          config: "p/security-audit"
           generateSarif: "1"
 
       # Upload SARIF file generated in previous step
