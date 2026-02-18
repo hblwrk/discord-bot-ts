@@ -6,7 +6,7 @@
 * The project follows a rolling release model <https://en.wikipedia.org/wiki/Rolling_release>.
 * The `main` branch contains stable and tested code. Any development is done at feature branches.
 * We use `git config pull.rebase false`.
-* We do not commit any IDE, operating-system or editor-specific files to the repository, mind `.gitignore`.
+* Mind `.gitignore`.
 * We use Airbnb's JS style guide <https://github.com/airbnb/javascript>. That's two spaces for indentation.
 * Consider using ESLint/XO <https://github.com/xojs/xo> for linting.
 
@@ -59,7 +59,7 @@ The bot is deployed at our server, running as a docker container and managed usi
 
 * Software tests are executed
 * The `Dockerfile` is valid and conforms to CIS Docker Benchmark requirements sections 4.1, 4.2, 4.3, 4.6, 4.7, 4.9 and 4.10.
-* Vulnerable dependencies are detected by Snyk <https://app.snyk.io/org/hblwrk>.
+* Security scanning is executed using Checkov, CodeQL, njsscan and Semgrep.
 * The container image is signed with cosign.
 * The server gets notified via webhook to start deployment.
 * The server verifies the container signature when deploying.
@@ -93,11 +93,11 @@ echo -n "hunter6" | docker secret create production_hblwrk_channel_NYSEAnnouncem
 echo -n "hunter7" | docker secret create production_hblwrk_channel_MNCAnnouncement_ID -
 echo -n "hunter8" | docker secret create production_hblwrk_channel_OtherAnnouncement_ID -
 echo -n "hunter9" | docker secret create production_discord_btcusd_token -
-echo -n "hunter10" | docker secret create production_discord_btcusd_clientId -
+echo -n "hunter10" | docker secret create production_discord_btcusd_clientID -
 ...
 ```
 
-Check the `config.json` example below for a complete set of configuration parameters.
+Check the `config.json` example below for a reference set of configuration parameters. Keep it in sync with key references in `assets/*.yaml` and secrets in `tools/docker-compose-production.yml`.
 
 By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams. When running outside of Docker, the code looks for `config.json` and expects the following syntax. Mind that all values which are not set in this example require some sort of password or Discord bot- or server-specific ID.
 
@@ -129,12 +129,25 @@ In Docker-based deployments without `config.json`, you can override this with th
   "discord_vix_clientID": "",
   "discord_dax_token": "",
   "discord_dax_clientID": "",
+  "discord_cl_token": "",
+  "discord_cl_clientID": "",
+  "discord_xau_token": "",
+  "discord_xau_clientID": "",
+  "discord_eurusd_token": "",
+  "discord_eurusd_clientID": "",
+  "discord_2y_token": "",
+  "discord_2y_clientID": "",
+  "discord_10y_token": "",
+  "discord_10y_clientID": "",
+  "discord_30y_token": "",
+  "discord_30y_clientID": "",
   "dracoon_password": "",
   "healthcheck_port": "11312",
   "hblwrk_channel_NYSEAnnouncement_ID": "",
   "hblwrk_channel_MNCAnnouncement_ID": "",
   "hblwrk_channel_OtherAnnouncement_ID": "",
   "hblwrk_channel_logging_ID": "",
+  "hblwrk_channel_clownboard_ID": "",
   "hblwrk_role_assignment_channelID": "",
   "hblwrk_role_assignment_broker_messageID": "",
   "hblwrk_role_assignment_special_messageID": "",
@@ -164,7 +177,8 @@ In Docker-based deployments without `config.json`, you can override this with th
   "hblwrk_role_special_nftping_ID": "",
   "hblwrk_role_special_stageping_ID": "",
   "hblwrk_role_special_realestate_ID": "",
-  "hblwrk_role_muted_ID": ""
+  "hblwrk_role_muted_ID": "",
+  "service_financialmodelingprep_apiKey": ""
 }
 ```
 
@@ -178,16 +192,16 @@ Real-time market-data is being pulled in through a Websocket connection and dist
 
 ## Service lifecycle
 
-The bots lifecycle is managed using the `docker-compose.yml` file provided at this repository. It contains useful security settings, resource limits and injects secrets. The service is then deployed using Docker Swarm.
+The bots lifecycle is managed using the `tools/docker-compose-production.yml` file provided at this repository. It contains useful security settings, resource limits and injects secrets. The service is then deployed using Docker Swarm.
 
 ```bash
-docker stack deploy --with-registry-auth --prune --compose-file docker-compose.yml discord-bot-ts_production
+docker stack deploy --with-registry-auth --prune --compose-file tools/docker-compose-production.yml discord-bot-ts_production
 docker stack rm discord-bot-ts_production
 ```
 
 ## Monitoring
 
-Our containers are designed to be minimal, which comes with the downside that we cannot run in-container health-checks. The bot exposes a simple HTTP server at port `11312/tcp` (per default), providing the path `/api/v1/health` which responds with `HTTP 200` if the bot is running. Service availability monitoring is provided by HetrixTools <https://hetrixtools.com/report/uptime/7162c65d5357013beb43868c30e86e6a/>.
+Our containers are designed to be minimal and include an in-container health-check in the `Dockerfile`, probing the bot endpoint `/api/v1/health`. The bot exposes a simple HTTP server at port `11312/tcp` (per default), where `/api/v1/health` responds with `HTTP 200` if the bot is running. Service availability monitoring is provided by HetrixTools <https://hetrixtools.com/report/uptime/7162c65d5357013beb43868c30e86e6a/>.
 
 Unavailability will be reported to a channel at Discord.
 
