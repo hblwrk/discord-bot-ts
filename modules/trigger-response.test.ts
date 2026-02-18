@@ -42,6 +42,23 @@ describe("addTriggerResponses", () => {
     }));
   });
 
+  test("replies with temporary unavailable message when image asset content is missing", async () => {
+    const {client, getHandler} = createEventClient();
+    const imageAsset = new ImageAsset();
+    imageAsset.title = "image";
+    imageAsset.fileName = "image.png";
+    imageAsset.text = "image text";
+    (imageAsset as any).trigger = ["image"];
+
+    addTriggerResponses(client, [imageAsset], ["!image"], []);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("!image");
+    await handler(message);
+
+    expect(message.channel.send).toHaveBeenCalledWith("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.");
+  });
+
   test("replies to cryptodice trigger messages", async () => {
     const {client, getHandler} = createEventClient();
 
@@ -70,5 +87,26 @@ describe("addTriggerResponses", () => {
     await handler(message);
 
     expect(message.channel.send).toHaveBeenCalledWith("Keine passenden Zitate gefunden.");
+  });
+
+  test("replies with temporary unavailable message when whatis attachment is missing", async () => {
+    const {client, getHandler} = createEventClient();
+
+    addTriggerResponses(client, [], [], [
+      {
+        name: "whatis_faq",
+        title: "FAQ",
+        text: "Answer",
+        _fileName: "faq.png",
+        fileName: "faq.png",
+        fileContent: undefined,
+      },
+    ]);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("!whatis faq");
+    await handler(message);
+
+    expect(message.channel.send).toHaveBeenCalledWith("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.");
   });
 });
