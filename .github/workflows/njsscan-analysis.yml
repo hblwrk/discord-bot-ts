@@ -18,6 +18,7 @@ on:
     branches: [ main ]
   schedule:
     - cron: '25 11 * * 3'
+  workflow_dispatch:
 
 jobs:
   njsscan:
