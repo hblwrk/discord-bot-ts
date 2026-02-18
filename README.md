@@ -2,7 +2,7 @@
 
 ## Conventions
 
-* This is a ES6, TypeScript project <https://www.typescriptlang.org/>.
+* This is a TypeScript project using ECMAScript modules (ES2020) <https://www.typescriptlang.org/>.
 * The project follows a rolling release model <https://en.wikipedia.org/wiki/Rolling_release>.
 * The `main` branch contains stable and tested code. Any development is done at feature branches.
 * We use `git config pull.rebase false`.
@@ -55,18 +55,19 @@ git pull
 
 ## CI/CD
 
-The bot is deployed at our server, running as a docker container and managed using `docker-compose`. Every time the `main` branch gets updated, our GitHub Actions CI pipeline makes sure that:
+The bot is deployed at our server, running as a docker container in Docker Swarm using compose files. Every time the `main` branch gets updated, the GitHub Actions workflows make sure that:
 
-* Software tests are executed
-* The `Dockerfile` is valid and conforms to CIS Docker Benchmark requirements sections 4.1, 4.2, 4.3, 4.6, 4.7, 4.9 and 4.10.
-* Security scanning is executed using Checkov, CodeQL, njsscan and Semgrep.
-* The container image is signed with cosign.
+* Software tests and type checks are executed (`npm run test`, `npm run typecheck`).
+* The `Dockerfile` is validated and checked against CIS benchmark rules.
+* Security scanning in the main workflow is executed using Checkov.
+* Additional security scanning is handled by dedicated CodeQL, njsscan and Semgrep workflows.
+* The container image is built, pushed and signed with cosign.
 * The server gets notified via webhook to start deployment.
-* The server verifies the container signature when deploying.
+* The server-side redeploy script verifies the image signature and only deploys production after staging reports `/api/v1/ready`.
 
 The webhook runs as a user-mode `systemd` service for user `mheiland`, all relevant configuration can be found at that user's home directory.
 
-Relevant activities like deployment to production and merging pull-requests is being reported to a channel at Discord.
+Relevant activities like production deployment are reported to a channel at Discord.
 
 ## Runtime environment
 
@@ -80,20 +81,20 @@ Containers are created by multi-stage builds based on "distroless" base-images. 
 
 ## Secrets
 
-Values like the bots `token`, `guildID` and `clientID` are considered secrets and specific to each user running the bot. When using Docker, those need to be specified prior to running `docker-compose`. Mind that there is a specific set of values for both production and staging environments, identified by the corresponding prefix.
+Values like the bots `token`, `guild_ID` and `client_ID` are considered secrets and specific to each user running the bot. When using Docker, those need to be specified prior to running `docker-compose`. Mind that there is a specific set of values for both production and staging environments, identified by the corresponding prefix.
 
 ```bash
 echo -n "hunter0" | docker secret create production_environment -
 echo -n "hunter1" | docker secret create production_discord_token -
-echo -n "hunter2" | docker secret create production_discord_clientID -
-echo -n "hunter3" | docker secret create production_discord_guildID -
+echo -n "hunter2" | docker secret create production_discord_client_ID -
+echo -n "hunter3" | docker secret create production_discord_guild_ID -
 echo -n "hunter4" | docker secret create production_dracoon_password -
 echo -n "hunter5" | docker secret create production_healthcheck_port -
 echo -n "hunter6" | docker secret create production_hblwrk_channel_NYSEAnnouncement_ID -
 echo -n "hunter7" | docker secret create production_hblwrk_channel_MNCAnnouncement_ID -
 echo -n "hunter8" | docker secret create production_hblwrk_channel_OtherAnnouncement_ID -
 echo -n "hunter9" | docker secret create production_discord_btcusd_token -
-echo -n "hunter10" | docker secret create production_discord_btcusd_clientID -
+echo -n "hunter10" | docker secret create production_discord_btcusd_client_ID -
 ...
 ```
 
@@ -109,38 +110,38 @@ In Docker-based deployments without `config.json`, you can override this with th
   "environment": "staging",
   "loglevel": "info",
   "discord_token": "",
-  "discord_clientID": "",
-  "discord_guildID": "",
+  "discord_client_ID": "",
+  "discord_guild_ID": "",
   "discord_btcusd_token": "",
-  "discord_btcusd_clientID": "",
+  "discord_btcusd_client_ID": "",
   "discord_ethusd_token": "",
-  "discord_ethusd_clientID": "",
+  "discord_ethusd_client_ID": "",
   "discord_solusd_token": "",
-  "discord_solusd_clientID": "",
+  "discord_solusd_client_ID": "",
   "discord_oneusd_token": "",
-  "discord_oneusd_clientID": "",
+  "discord_oneusd_client_ID": "",
   "discord_es_token": "",
-  "discord_es_clientID": "",
+  "discord_es_client_ID": "",
   "discord_nq_token": "",
-  "discord_nq_clientID": "",
+  "discord_nq_client_ID": "",
   "discord_rty_token": "",
-  "discord_rty_clientID": "",
+  "discord_rty_client_ID": "",
   "discord_vix_token": "",
-  "discord_vix_clientID": "",
+  "discord_vix_client_ID": "",
   "discord_dax_token": "",
-  "discord_dax_clientID": "",
+  "discord_dax_client_ID": "",
   "discord_cl_token": "",
-  "discord_cl_clientID": "",
+  "discord_cl_client_ID": "",
   "discord_xau_token": "",
-  "discord_xau_clientID": "",
+  "discord_xau_client_ID": "",
   "discord_eurusd_token": "",
-  "discord_eurusd_clientID": "",
+  "discord_eurusd_client_ID": "",
   "discord_2y_token": "",
-  "discord_2y_clientID": "",
+  "discord_2y_client_ID": "",
   "discord_10y_token": "",
-  "discord_10y_clientID": "",
+  "discord_10y_client_ID": "",
   "discord_30y_token": "",
-  "discord_30y_clientID": "",
+  "discord_30y_client_ID": "",
   "dracoon_password": "",
   "healthcheck_port": "11312",
   "hblwrk_channel_NYSEAnnouncement_ID": "",
@@ -148,9 +149,9 @@ In Docker-based deployments without `config.json`, you can override this with th
   "hblwrk_channel_OtherAnnouncement_ID": "",
   "hblwrk_channel_logging_ID": "",
   "hblwrk_channel_clownboard_ID": "",
-  "hblwrk_role_assignment_channelID": "",
-  "hblwrk_role_assignment_broker_messageID": "",
-  "hblwrk_role_assignment_special_messageID": "",
+  "hblwrk_role_assignment_channel_ID": "",
+  "hblwrk_role_assignment_broker_message_ID": "",
+  "hblwrk_role_assignment_special_message_ID": "",
   "hblwrk_role_broker_yes_ID": "",
   "hblwrk_role_broker_tastyworks_ID": "",
   "hblwrk_role_broker_ibkr_ID": "",
@@ -200,7 +201,13 @@ docker stack rm discord-bot-ts_production
 
 ## Monitoring
 
-Our containers are designed to be minimal and include an in-container health-check in the `Dockerfile`, probing the bot endpoint `/api/v1/health`. The bot exposes a simple HTTP server at port `11312/tcp` (per default), where `/api/v1/health` responds with `HTTP 200` if the bot is running. Service availability monitoring is provided by HetrixTools <https://hetrixtools.com/report/uptime/7162c65d5357013beb43868c30e86e6a/>.
+Our containers are designed to be minimal and include an in-container health-check in the `Dockerfile`, probing `/api/v1/health` for liveness. The bot exposes a simple HTTP server at port `11312/tcp` (per default) with:
+
+* `/api/v1/health`: liveness endpoint (returns `HTTP 200` when process is running).
+* `/api/v1/ready`: readiness endpoint (returns `HTTP 200` only after Discord login and handler setup, otherwise `HTTP 503`).
+* `/api/v1/startup`: startup diagnostics.
+
+The redeploy automation waits for `/api/v1/ready` before production rollout. Service availability monitoring is provided by HetrixTools <https://hetrixtools.com/report/uptime/7162c65d5357013beb43868c30e86e6a/>.
 
 Unavailability will be reported to a channel at Discord.
 

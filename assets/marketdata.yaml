@@ -3,7 +3,7 @@
   trigger: forexpros_ws
   botTokenReference: discord_es_token
   botToken: ""
-  botClientIdReference: discord_es_clientID
+  botClientIdReference: discord_es_client_ID
   botClientId: ""
   botName: "S&P500"
   id: 1175153
@@ -16,7 +16,7 @@
   trigger: forexpros_ws
   botTokenReference: discord_nq_token
   botToken: ""
-  botClientIdReference: discord_nq_clientID
+  botClientIdReference: discord_nq_client_ID
   botClientId: ""
   botName: "Nasdaq 100"
   id: 1175151
@@ -29,7 +29,7 @@
   trigger: forexpros_ws
   botTokenReference: discord_rty_token
   botToken: ""
-  botClientIdReference: discord_rty_clientID
+  botClientIdReference: discord_rty_client_ID
   botClientId: ""
   botName: "Russel 2000"
   id: 1174944
@@ -42,7 +42,7 @@
   trigger: forexpros_ws
   botTokenReference: discord_vix_token
   botToken: ""
-  botClientIdReference: discord_vix_clientID
+  botClientIdReference: discord_vix_client_ID
   botClientId: ""
   botName: "S&P500 VIX"
   id: 8884
@@ -55,7 +55,7 @@
   trigger: forexpros_ws
   botTokenReference: discord_dax_token
   botToken: ""
-  botClientIdReference: discord_dax_clientID
+  botClientIdReference: discord_dax_client_ID
   botClientId: ""
   botName: "DAX"
   id: 8826
@@ -68,7 +68,7 @@
   trigger: forexpros_ws
   botTokenReference: discord_btcusd_token
   botToken: ""
-  botClientIdReference: discord_btcusd_clientID
+  botClientIdReference: discord_btcusd_client_ID
   botClientId: ""
   botName: "Bitcoin/USD"
   id: 1057391
@@ -81,7 +81,7 @@
   trigger: forexpros_ws
   botTokenReference: discord_ethusd_token
   botToken: ""
-  botClientIdReference: discord_ethusd_clientID
+  botClientIdReference: discord_ethusd_client_ID
   botClientId: ""
   botName: "Ether/USD"
   id: 1061443
@@ -94,7 +94,7 @@
   trigger: forexpros_ws
   botTokenReference: discord_solusd_token
   botToken: ""
-  botClientIdReference: discord_solusd_clientID
+  botClientIdReference: discord_solusd_client_ID
   botClientId: ""
   botName: "Solana/USD"
   id: 1177183
@@ -107,7 +107,7 @@
   trigger: forexpros_ws
   botTokenReference: discord_oneusd_token
   botToken: ""
-  botClientIdReference: discord_oneusd_clientID
+  botClientIdReference: discord_oneusd_client_ID
   botClientId: ""
   botName: "Monero/USD"
   id: 1176959
@@ -120,7 +120,7 @@
   trigger: forexpros_ws
   botTokenReference: discord_cl_token
   botToken: ""
-  botClientIdReference: discord_cl_clientID
+  botClientIdReference: discord_cl_client_ID
   botClientId: ""
   botName: "CL/USD"
   id: 8849
@@ -133,7 +133,7 @@
   trigger: forexpros_ws
   botTokenReference: discord_xau_token
   botToken: ""
-  botClientIdReference: discord_xau_clientID
+  botClientIdReference: discord_xau_client_ID
   botClientId: ""
   botName: "XAU/USD"
   id: 8830
@@ -146,7 +146,7 @@
   trigger: forexpros_ws
   botTokenReference: discord_eurusd_token
   botToken: ""
-  botClientIdReference: discord_eurusd_clientID
+  botClientIdReference: discord_eurusd_client_ID
   botClientId: ""
   botName: "EUR/USD"
   id: 1
@@ -159,7 +159,7 @@
   trigger: forexpros_ws
   botTokenReference: discord_2y_token
   botToken: ""
-  botClientIdReference: discord_2y_clientID
+  botClientIdReference: discord_2y_client_ID
   botClientId: ""
   botName: "2Y"
   id: 23701
@@ -172,7 +172,7 @@
   trigger: forexpros_ws
   botTokenReference: discord_10y_token
   botToken: ""
-  botClientIdReference: discord_10y_clientID
+  botClientIdReference: discord_10y_client_ID
   botClientId: ""
   botName: "10Y"
   id: 23705
@@ -185,7 +185,7 @@
   trigger: forexpros_ws
   botTokenReference: discord_30y_token
   botToken: ""
-  botClientIdReference: discord_30y_clientID
+  botClientIdReference: discord_30y_client_ID
   botClientId: ""
   botName: "30Y"
   id: 23706

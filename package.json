@@ -6,6 +6,7 @@
   "main": "index.ts",
   "scripts": {
     "test": "jest",
+    "typecheck": "tsc --noEmit",
     "prod": "node --import tsx index.ts"
   },
   "repository": {

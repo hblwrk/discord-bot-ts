@@ -108,23 +108,23 @@ describe("roleManager", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockedReadSecret.mockImplementation(secretName => {
-      if ("discord_clientID" === secretName) {
+      if ("discord_client_ID" === secretName) {
         return "client-id";
       }
 
-      if ("discord_guildID" === secretName) {
+      if ("discord_guild_ID" === secretName) {
         return "guild-id";
       }
 
-      if ("hblwrk_role_assignment_channelID" === secretName) {
+      if ("hblwrk_role_assignment_channel_ID" === secretName) {
         return "channel-id";
       }
 
-      if ("hblwrk_role_assignment_broker_messageID" === secretName) {
+      if ("hblwrk_role_assignment_broker_message_ID" === secretName) {
         return "broker-message-id";
       }
 
-      if ("hblwrk_role_assignment_special_messageID" === secretName) {
+      if ("hblwrk_role_assignment_special_message_ID" === secretName) {
         return "special-message-id";
       }
 
@@ -139,7 +139,7 @@ describe("roleManager", () => {
   test("adds and removes role for matching emoji reaction", async () => {
     const {client, guildUser, brokerMessage, getHandler} = createRoleManagerClient();
     const assetRoles = [{
-      triggerReference: "hblwrk_role_assignment_broker_messageID",
+      triggerReference: "hblwrk_role_assignment_broker_message_ID",
       emoji: "✅",
       trigger: "broker-message-id",
       id: "broker-role-id",
@@ -180,7 +180,7 @@ describe("roleManager", () => {
   test("logs warning and skips when custom emoji is missing", async () => {
     const missingEmojiClient = createRoleManagerClient(null);
     const assetRoles = [{
-      triggerReference: "hblwrk_role_assignment_broker_messageID",
+      triggerReference: "hblwrk_role_assignment_broker_message_ID",
       emoji: "custom:missing",
       trigger: "broker-message-id",
       id: "broker-role-id",

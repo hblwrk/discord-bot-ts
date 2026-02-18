@@ -14,7 +14,7 @@ if /home/user/go/bin/cosign verify --key /home/user/cosign.pub ghcr.io/hblwrk/di
     sleep "${interval_seconds}"
     elapsed_seconds=$((elapsed_seconds + interval_seconds))
 
-    if curl -fsS -o /dev/null http://127.0.0.1:11313/api/v1/health; then
+    if curl -fsS -o /dev/null http://127.0.0.1:11313/api/v1/ready; then
       docker stack deploy --with-registry-auth --prune --compose-file docker-compose-production.yml discord-bot-ts_production
       docker system prune -f
       exit 0

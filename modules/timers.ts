@@ -41,6 +41,17 @@ function isNyseHolidayToday(): boolean {
   return isHoliday(getCurrentNyseDate());
 }
 
+function isDayAfterThanksgiving(): boolean {
+  const nowUsEastern = moment.tz("US/Eastern");
+  const thanksgiving = getHolidays(nowUsEastern.year()).find(holiday => holiday.name === "Thanksgiving Day");
+  if (!thanksgiving) {
+    return false;
+  }
+
+  const dayAfterThanksgiving = moment(thanksgiving.date).tz("US/Eastern").add(1, "day").format("YYYY-MM-DD");
+  return nowUsEastern.format("YYYY-MM-DD") === dayAfterThanksgiving;
+}
+
 function getSendableChannel(client, channelID: string, source: string): SendableChannel | null {
   const channel = client?.channels?.cache?.get(channelID);
   if (!channel || "function" !== typeof channel.send) {
@@ -105,13 +116,9 @@ export function startNyseTimers(client, channelID: string) {
   ruleNyseAftermarketCloseEarly.dayOfWeek = [new Schedule.Range(1, 5)];
   ruleNyseAftermarketCloseEarly.tz = "US/Eastern";
 
-  const thanksgiving = getHolidays(moment().tz("US/Eastern").year()).find(holiday => holiday.name === "Thanksgiving Day");
-  const dayAfterThanksgiving = thanksgiving ?
-    moment(thanksgiving.date).tz("US/Eastern").add(1, "day").format("YYYY-MM-DD") :
-    "";
-
   Schedule.scheduleJob(ruleNysePremarketOpen, () => {
-    if (dayAfterThanksgiving === moment().tz("US/Eastern").format("YYYY-MM-DD")) {
+    const thanksgivingEarlyClose = isDayAfterThanksgiving();
+    if (true === thanksgivingEarlyClose) {
       // At the day after Thanksgiving the market closes at 13:00 local time.
       const usEasternDate = moment.tz("US/Eastern").set({
         hour: 13,
@@ -154,8 +161,9 @@ export function startNyseTimers(client, channelID: string) {
   });
 
   Schedule.scheduleJob(ruleNyseClose, () => {
+    const thanksgivingEarlyClose = isDayAfterThanksgiving();
     if (false === isNyseHolidayToday() &&
-        false === (dayAfterThanksgiving === moment().tz("US/Eastern").format("YYYY-MM-DD"))) {
+        false === thanksgivingEarlyClose) {
       void sendAnnouncement(
         client,
         channelID,
@@ -166,7 +174,7 @@ export function startNyseTimers(client, channelID: string) {
   });
 
   Schedule.scheduleJob(ruleNyseCloseEarly, () => {
-    if (dayAfterThanksgiving === moment().tz("US/Eastern").format("YYYY-MM-DD")) {
+    if (true === isDayAfterThanksgiving()) {
       // At the day after Thanksgiving the market closes at 13:00 local time.
       void sendAnnouncement(
         client,
@@ -178,8 +186,9 @@ export function startNyseTimers(client, channelID: string) {
   });
 
   Schedule.scheduleJob(ruleNyseAftermarketClose, () => {
+    const thanksgivingEarlyClose = isDayAfterThanksgiving();
     if (false === isNyseHolidayToday() &&
-        false === (dayAfterThanksgiving === moment().tz("US/Eastern").format("YYYY-MM-DD"))) {
+        false === thanksgivingEarlyClose) {
       void sendAnnouncement(
         client,
         channelID,
@@ -190,7 +199,7 @@ export function startNyseTimers(client, channelID: string) {
   });
 
   Schedule.scheduleJob(ruleNyseAftermarketCloseEarly, () => {
-    if (dayAfterThanksgiving === moment().tz("US/Eastern").format("YYYY-MM-DD")) {
+    if (true === isDayAfterThanksgiving()) {
       // At the day after Thanksgiving the aftermarket closes at 17:00 local time.
       void sendAnnouncement(
         client,

@@ -214,6 +214,39 @@ describe("timers", () => {
     expect(send).toHaveBeenCalledWith(expect.stringContaining("19:00"));
   });
 
+  test("startNyseTimers resolves Thanksgiving date based on the current US/Eastern year", () => {
+    const {client, send} = createClientWithChannel();
+    jest.setSystemTime(new Date("2025-12-30T10:00:00-05:00"));
+    getHolidaysMock.mockImplementation(year => {
+      if (2025 === year) {
+        return [
+          {
+            date: new Date("2025-11-27T12:00:00-05:00"),
+            name: "Thanksgiving Day",
+          },
+        ];
+      }
+
+      if (2026 === year) {
+        return [
+          {
+            date: new Date("2026-11-26T12:00:00-05:00"),
+            name: "Thanksgiving Day",
+          },
+        ];
+      }
+
+      return [];
+    });
+
+    startNyseTimers(client as any, "channel-id");
+    jest.setSystemTime(new Date("2026-11-27T10:00:00-05:00"));
+    scheduledJobs[0].callback();
+
+    expect(send).toHaveBeenCalledWith(expect.stringContaining("Tag nach dem Truthahn-Tag"));
+    expect(getHolidaysMock).toHaveBeenLastCalledWith(2026);
+  });
+
   test("startNyseTimers treats holiday check by US/Eastern date for aftermarket close", () => {
     const {client, send} = createClientWithChannel();
     // 20:00 US/Eastern on 2025-12-25 equals 2025-12-26T01:00:00Z.

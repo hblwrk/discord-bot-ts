@@ -34,8 +34,8 @@ const islandboiUnmuteTimers = new Map<string, ReturnType<typeof setTimeout>>();
 
 export function defineSlashCommands(assets, whatIsAssets, userAssets) {
   const token = readSecret("discord_token").trim();
-  const clientId = readSecret("discord_clientID").trim();
-  const guildId = readSecret("discord_guildID").trim();
+  const clientId = readSecret("discord_client_ID").trim();
+  const guildId = readSecret("discord_guild_ID").trim();
   const whatIsAssetsChoices = [];
   for (const asset of whatIsAssets) {
     whatIsAssetsChoices.push({name: asset.title, value: asset.name});
@@ -193,7 +193,7 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
 }
 
 export function interactSlashCommands(client, assets, assetCommands, whatIsAssets, tickers: Ticker[]) {
-  const guildId = readSecret("discord_guildID").trim();
+  const guildId = readSecret("discord_guild_ID").trim();
   // Respond to slash-commands
   client.on("interactionCreate", async interaction => {
     if (!interaction.isChatInputCommand()) {

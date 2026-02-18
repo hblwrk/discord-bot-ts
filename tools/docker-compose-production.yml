@@ -21,34 +21,34 @@ services:
     secrets:
       - environment
       - production_discord_token
-      - production_discord_clientID
-      - production_discord_guildID
+      - production_discord_client_ID
+      - production_discord_guild_ID
       - production_discord_btcusd_token
-      - production_discord_btcusd_clientID
+      - production_discord_btcusd_client_ID
       - production_discord_ethusd_token
-      - production_discord_ethusd_clientID
+      - production_discord_ethusd_client_ID
       - production_discord_oneusd_token
-      - production_discord_oneusd_clientID
+      - production_discord_oneusd_client_ID
       - production_discord_solusd_token
-      - production_discord_solusd_clientID
+      - production_discord_solusd_client_ID
       - production_discord_es_token
-      - production_discord_es_clientID
+      - production_discord_es_client_ID
       - production_discord_nq_token
-      - production_discord_nq_clientID
+      - production_discord_nq_client_ID
       - production_discord_rty_token
-      - production_discord_rty_clientID
+      - production_discord_rty_client_ID
       - production_discord_vix_token
-      - production_discord_vix_clientID
+      - production_discord_vix_client_ID
       - production_discord_dax_token
-      - production_discord_dax_clientID
+      - production_discord_dax_client_ID
       - production_discord_eurusd_token
-      - production_discord_eurusd_clientID
+      - production_discord_eurusd_client_ID
       - production_discord_2y_token
-      - production_discord_2y_clientID
+      - production_discord_2y_client_ID
       - production_discord_10y_token
-      - production_discord_10y_clientID
+      - production_discord_10y_client_ID
       - production_discord_30y_token
-      - production_discord_30y_clientID
+      - production_discord_30y_client_ID
       - production_dracoon_password
       - production_healthcheck_port
       - production_hblwrk_channel_NYSEAnnouncement_ID
@@ -56,9 +56,9 @@ services:
       - production_hblwrk_channel_OtherAnnouncement_ID
       - production_hblwrk_channel_logging_ID
       - production_hblwrk_channel_clownboard_ID
-      - production_hblwrk_role_assignment_channelID
-      - production_hblwrk_role_assignment_broker_messageID
-      - production_hblwrk_role_assignment_special_messageID
+      - production_hblwrk_role_assignment_channel_ID
+      - production_hblwrk_role_assignment_broker_message_ID
+      - production_hblwrk_role_assignment_special_message_ID
       - production_hblwrk_role_broker_yes_ID
       - production_hblwrk_role_broker_tastyworks_ID
       - production_hblwrk_role_broker_ibkr_ID
@@ -84,6 +84,7 @@ services:
       - production_hblwrk_role_special_cryptoping_ID
       - production_hblwrk_role_special_nftping_ID
       - production_hblwrk_role_special_stageping_ID
+      - production_hblwrk_role_special_realestate_ID
       - production_hblwrk_role_muted_ID
 
 secrets:
@@ -91,61 +92,61 @@ secrets:
     external: true
   production_discord_token:
     external: true
-  production_discord_clientID:
+  production_discord_client_ID:
     external: true
-  production_discord_guildID:
+  production_discord_guild_ID:
     external: true
   production_discord_btcusd_token:
     external: true
-  production_discord_btcusd_clientID:
+  production_discord_btcusd_client_ID:
     external: true
   production_discord_ethusd_token:
     external: true
-  production_discord_ethusd_clientID:
+  production_discord_ethusd_client_ID:
     external: true
   production_discord_oneusd_token:
     external: true
-  production_discord_oneusd_clientID:
+  production_discord_oneusd_client_ID:
     external: true
   production_discord_solusd_token:
     external: true
-  production_discord_solusd_clientID:
+  production_discord_solusd_client_ID:
     external: true
   production_discord_es_token:
     external: true
-  production_discord_es_clientID:
+  production_discord_es_client_ID:
     external: true
   production_discord_nq_token:
     external: true
-  production_discord_nq_clientID:
+  production_discord_nq_client_ID:
     external: true
   production_discord_rty_token:
     external: true
-  production_discord_rty_clientID:
+  production_discord_rty_client_ID:
     external: true
   production_discord_vix_token:
     external: true
-  production_discord_vix_clientID:
+  production_discord_vix_client_ID:
     external: true
   production_discord_dax_token:
     external: true
-  production_discord_dax_clientID:
+  production_discord_dax_client_ID:
     external: true
   production_discord_eurusd_token:
     external: true
-  production_discord_eurusd_clientID:
+  production_discord_eurusd_client_ID:
     external: true
   production_discord_2y_token:
     external: true
-  production_discord_2y_clientID:
+  production_discord_2y_client_ID:
     external: true
   production_discord_10y_token:
     external: true
-  production_discord_10y_clientID:
+  production_discord_10y_client_ID:
     external: true
   production_discord_30y_token:
     external: true
-  production_discord_30y_clientID:
+  production_discord_30y_client_ID:
     external: true
   production_dracoon_password:
     external: true
@@ -161,11 +162,11 @@ secrets:
     external: true
   production_hblwrk_channel_clownboard_ID:
     external: true
-  production_hblwrk_role_assignment_channelID:
+  production_hblwrk_role_assignment_channel_ID:
     external: true
-  production_hblwrk_role_assignment_broker_messageID:
+  production_hblwrk_role_assignment_broker_message_ID:
     external: true
-  production_hblwrk_role_assignment_special_messageID:
+  production_hblwrk_role_assignment_special_message_ID:
     external: true
   production_hblwrk_role_broker_yes_ID:
     external: true
@@ -216,6 +217,8 @@ secrets:
   production_hblwrk_role_special_nftping_ID:
     external: true
   production_hblwrk_role_special_stageping_ID:
+    external: true
+  production_hblwrk_role_special_realestate_ID:
     external: true
   production_hblwrk_role_muted_ID:
     external: true

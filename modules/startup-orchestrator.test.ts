@@ -269,4 +269,27 @@ describe("startBot", () => {
 
     expect(mocks.defineSlashCommands.mock.calls.length).toBeGreaterThanOrEqual(2);
   });
+
+  test("does not crash when slash command registration throws in debounce callback", async () => {
+    const defineSlashCommandsMock = jest.fn(() => {
+      throw new Error("slash registration failed");
+    });
+    const {dependencies, mocks} = createDependencies({
+      defineSlashCommands: defineSlashCommandsMock,
+      slashCommandDebounceMs: 5,
+    });
+
+    const runtime = await startBot(dependencies);
+    await sleep(50);
+
+    expect(runtime.getStartupState().ready).toBe(true);
+    expect(defineSlashCommandsMock).toHaveBeenCalled();
+    expect(mocks.logger.log).toHaveBeenCalledWith(
+      "error",
+      expect.objectContaining({
+        task: "slash-commands",
+        message: expect.stringContaining("slash registration failed"),
+      }),
+    );
+  });
 });
