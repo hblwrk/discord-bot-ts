@@ -118,10 +118,13 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - name: Redeploy docker swarm stack via webhook
-        uses: joelwmale/webhook-action@7e7ac95c4f6527ba5ab8d0f6f4aa116897a6c512
-        with:
-          url: ${{ secrets.REDEPLOY_URL }}
-          headers: '{"X-Hblwrk-Auth": "${{ secrets.REDEPLOY_AUTH }}"}'
+        env:
+          REDEPLOY_URL: ${{ secrets.REDEPLOY_URL }}
+          REDEPLOY_AUTH: ${{ secrets.REDEPLOY_AUTH }}
+        run: |
+          curl -fsS -X POST \
+            -H "X-Hblwrk-Auth: ${REDEPLOY_AUTH}" \
+            "${REDEPLOY_URL}"
 
       - name: Actions Status Discord
         uses: sarisia/actions-status-discord@v1.11.0
