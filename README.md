@@ -177,8 +177,7 @@ In Docker-based deployments without `config.json`, you can override this with th
   "hblwrk_role_special_nftping_ID": "",
   "hblwrk_role_special_stageping_ID": "",
   "hblwrk_role_special_realestate_ID": "",
-  "hblwrk_role_muted_ID": "",
-  "service_financialmodelingprep_apiKey": ""
+  "hblwrk_role_muted_ID": ""
 }
 ```
 

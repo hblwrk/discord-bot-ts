@@ -85,7 +85,6 @@ services:
       - production_hblwrk_role_special_nftping_ID
       - production_hblwrk_role_special_stageping_ID
       - production_hblwrk_role_muted_ID
-      - production_service_financialmodelingprep_apiKey
 
 secrets:
   environment:
@@ -219,6 +218,4 @@ secrets:
   production_hblwrk_role_special_stageping_ID:
     external: true
   production_hblwrk_role_muted_ID:
-    external: true
-  production_service_financialmodelingprep_apiKey:
     external: true
