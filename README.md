@@ -101,9 +101,13 @@ Check the `config.json` example below for a complete set of configuration parame
 
 By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams. When running outside of Docker, the code looks for `config.json` and expects the following syntax. Mind that all values which are not set in this example require some sort of password or Discord bot- or server-specific ID.
 
+`loglevel` is optional and defaults to `info`. Supported values are `error`, `warn`, `info`, `http`, `verbose`, `debug` and `silly`.  
+In Docker-based deployments without `config.json`, you can override this with the `LOGLEVEL` environment variable.
+
 ```json
 {
   "environment": "staging",
+  "loglevel": "info",
   "discord_token": "",
   "discord_clientID": "",
   "discord_guildID": "",
