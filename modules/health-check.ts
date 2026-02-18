@@ -51,6 +51,6 @@ export function runHealthCheck(getStartupState: () => StartupStateSnapshot) {
 
   const server = http.createServer(app);
   const port = getHealthcheckPort();
-  server.listen(port, "127.0.0.1");
+  server.listen(port, "0.0.0.0");
   return server;
 }

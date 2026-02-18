@@ -100,12 +100,12 @@ describe("runHealthCheck", () => {
     mockReadSecret.mockReturnValue("11312");
   });
 
-  test("registers liveness endpoint and binds localhost listener", () => {
+  test("registers liveness endpoint and binds network listener", () => {
     runHealthCheck(() => createState());
 
     expect(mockReadSecret).toHaveBeenCalledWith("healthcheck_port");
     expect(mockCreateServer).toHaveBeenCalledTimes(1);
-    expect(mockListen).toHaveBeenCalledWith(11312, "127.0.0.1");
+    expect(mockListen).toHaveBeenCalledWith(11312, "0.0.0.0");
 
     const healthHandler = mockRouteHandlers.get("/health");
     expect(healthHandler).toBeDefined();
@@ -123,7 +123,7 @@ describe("runHealthCheck", () => {
 
     runHealthCheck(() => createState());
 
-    expect(mockListen).toHaveBeenCalledWith(11312, "127.0.0.1");
+    expect(mockListen).toHaveBeenCalledWith(11312, "0.0.0.0");
   });
 
   test("returns readiness state depending on discord login and handler attachment", () => {
