@@ -548,7 +548,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       let filter = "all";
       let earningsEvents = [];
-      let earningsStatus: "ok" | "blocked" | "error" = "ok";
+      let earningsStatus: "ok" | "blocked" | "error";
       let watchlistFilterDropped = false;
       let when: string;
       let date: string;

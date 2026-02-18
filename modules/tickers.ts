@@ -1,6 +1,5 @@
 /* eslint-disable yoda */
 /* eslint-disable import/extensions */
-import {readSecret} from "./secrets.js";
 import {getLogger} from "./logging.js";
 import {getWithRetry} from "./http-retry.js";
 
