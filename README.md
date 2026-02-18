@@ -2,7 +2,7 @@
 
 ## Conventions
 
-* This is a ES6, TypeScript project <https://www.typescriptlang.org/>.
+* This is a TypeScript project using ECMAScript modules (ES2020) <https://www.typescriptlang.org/>.
 * The project follows a rolling release model <https://en.wikipedia.org/wiki/Rolling_release>.
 * The `main` branch contains stable and tested code. Any development is done at feature branches.
 * We use `git config pull.rebase false`.
@@ -55,18 +55,19 @@ git pull
 
 ## CI/CD
 
-The bot is deployed at our server, running as a docker container and managed using `docker-compose`. Every time the `main` branch gets updated, our GitHub Actions CI pipeline makes sure that:
+The bot is deployed at our server, running as a docker container in Docker Swarm using compose files. Every time the `main` branch gets updated, the GitHub Actions workflows make sure that:
 
-* Software tests are executed
-* The `Dockerfile` is valid and conforms to CIS Docker Benchmark requirements sections 4.1, 4.2, 4.3, 4.6, 4.7, 4.9 and 4.10.
-* Security scanning is executed using Checkov, CodeQL, njsscan and Semgrep.
-* The container image is signed with cosign.
+* Software tests and type checks are executed (`npm run test`, `npm run typecheck`).
+* The `Dockerfile` is validated and checked against CIS benchmark rules.
+* Security scanning in the main workflow is executed using Checkov.
+* Additional security scanning is handled by dedicated CodeQL, njsscan and Semgrep workflows.
+* The container image is built, pushed and signed with cosign.
 * The server gets notified via webhook to start deployment.
-* The server verifies the container signature when deploying.
+* The server-side redeploy script verifies the image signature and only deploys production after staging reports `/api/v1/ready`.
 
 The webhook runs as a user-mode `systemd` service for user `mheiland`, all relevant configuration can be found at that user's home directory.
 
-Relevant activities like deployment to production and merging pull-requests is being reported to a channel at Discord.
+Relevant activities like production deployment are reported to a channel at Discord.
 
 ## Runtime environment
 
@@ -98,6 +99,8 @@ echo -n "hunter10" | docker secret create production_discord_btcusd_clientID -
 ```
 
 Check the `config.json` example below for a reference set of configuration parameters. Keep it in sync with key references in `assets/*.yaml` and secrets in `tools/docker-compose-production.yml`.
+
+Note: `hblwrk_role_special_realestate_ID` exists in `assets/role.yaml`, but `tools/docker-compose-production.yml` currently does not define `production_hblwrk_role_special_realestate_ID`. Add it there when that role is used in production.
 
 By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams. When running outside of Docker, the code looks for `config.json` and expects the following syntax. Mind that all values which are not set in this example require some sort of password or Discord bot- or server-specific ID.
 
@@ -200,7 +203,13 @@ docker stack rm discord-bot-ts_production
 
 ## Monitoring
 
-Our containers are designed to be minimal and include an in-container health-check in the `Dockerfile`, probing the bot endpoint `/api/v1/health`. The bot exposes a simple HTTP server at port `11312/tcp` (per default), where `/api/v1/health` responds with `HTTP 200` if the bot is running. Service availability monitoring is provided by HetrixTools <https://hetrixtools.com/report/uptime/7162c65d5357013beb43868c30e86e6a/>.
+Our containers are designed to be minimal and include an in-container health-check in the `Dockerfile`, probing `/api/v1/health` for liveness. The bot exposes a simple HTTP server at port `11312/tcp` (per default) with:
+
+* `/api/v1/health`: liveness endpoint (returns `HTTP 200` when process is running).
+* `/api/v1/ready`: readiness endpoint (returns `HTTP 200` only after Discord login and handler setup, otherwise `HTTP 503`).
+* `/api/v1/startup`: startup diagnostics.
+
+The redeploy automation waits for `/api/v1/ready` before production rollout. Service availability monitoring is provided by HetrixTools <https://hetrixtools.com/report/uptime/7162c65d5357013beb43868c30e86e6a/>.
 
 Unavailability will be reported to a channel at Discord.
 

@@ -298,7 +298,19 @@ async function warmRemoteData({
 
     slashCommandDebounceHandle = dependencies.setTimeoutFn(() => {
       slashCommandDebounceHandle = undefined;
-      dependencies.defineSlashCommands(sharedData.assets, sharedData.whatIsAssets, sharedData.userAssets);
+      try {
+        dependencies.defineSlashCommands(sharedData.assets, sharedData.whatIsAssets, sharedData.userAssets);
+      } catch (error) {
+        startupState.setLastError(error);
+        logger.log(
+          "error",
+          {
+            startup_phase: "phase-b",
+            task: "slash-commands",
+            message: `Failed to define slash commands: ${error}`,
+          },
+        );
+      }
     }, dependencies.slashCommandDebounceMs);
     (slashCommandDebounceHandle as any).unref?.();
   };
