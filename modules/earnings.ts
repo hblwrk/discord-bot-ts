@@ -4,12 +4,13 @@
 /* eslint-disable @typescript-eslint/no-unnecessary-boolean-literal-compare */
 /* eslint-disable yoda */
 /* eslint-disable import/extensions */
-import axios, { type AxiosResponse } from "axios";
 import moment from "moment-timezone";
 import { getLogger } from "./logging.js";
 import { type Ticker } from "./tickers.js";
+import { getWithRetry } from "./http-retry.js";
 
 const logger = getLogger();
+const earningsTruncationNote = "... weitere Earnings konnten wegen Discord-Limits nicht angezeigt werden.";
 
 type EarningsWhen = "before_open" | "after_close" | "during_session";
 export interface EarningsEvent {
@@ -18,6 +19,34 @@ export interface EarningsEvent {
   date: string;
   importance: number;
 }
+
+export const EARNINGS_MAX_MESSAGE_LENGTH = 1800;
+export const EARNINGS_MAX_MESSAGES_TIMER = 8;
+export const EARNINGS_MAX_MESSAGES_SLASH = 6;
+export const EARNINGS_CONTINUATION_LABEL = "(Fortsetzung)";
+
+export type EarningsMessageBatch = {
+  messages: string[];
+  truncated: boolean;
+  totalEvents: number;
+  includedEvents: number;
+};
+
+export type EarningsMessageOptions = {
+  maxMessageLength?: number;
+  maxMessages?: number;
+  continuationLabel?: string;
+};
+
+type EarningsSection = {
+  label: string;
+  tickers: string[];
+};
+
+type EarningsMessageChunk = {
+  content: string;
+  eventCount: number;
+};
 
 export async function getEarnings(
   days: number,
@@ -96,7 +125,7 @@ export async function getEarnings(
 
   try {
     // https://api.stocktwits.com/api/2/discover/earnings_calendar?date_from=2023-01-05
-    const earningsResponse: AxiosResponse = await axios.get(
+    const earningsResponse = await getWithRetry(
       `https://api.stocktwits.com/api/2/discover/earnings_calendar?date_from=${dateStamp}`
     );
 
@@ -212,4 +241,322 @@ export function getEarningsText(
   }
 
   return earningsText;
+}
+
+export function getEarningsMessages(
+  earningsEvents: EarningsEvent[],
+  when: "all" | "before_open" | "during_session" | "after_close" | string,
+  tickers: Ticker[],
+  options: EarningsMessageOptions = {}
+): EarningsMessageBatch {
+  const maxMessageLength = options.maxMessageLength ?? EARNINGS_MAX_MESSAGE_LENGTH;
+  const maxMessages = options.maxMessages ?? Number.POSITIVE_INFINITY;
+  const continuationLabel = options.continuationLabel ?? EARNINGS_CONTINUATION_LABEL;
+  const selectedWhen = getSelectedEarningsWhen(when);
+  const highlightedTickerSymbols = new Set(
+    tickers.map(ticker => ticker.symbol)
+  );
+
+  const filteredAndSortedEvents = [...earningsEvents]
+    .filter(event => selectedWhen.has(event.when))
+    .sort((first, second) => first.importance - second.importance);
+
+  if (0 === filteredAndSortedEvents.length || 1 >= earningsEvents.length) {
+    return {
+      messages: [],
+      truncated: false,
+      totalEvents: filteredAndSortedEvents.length,
+      includedEvents: 0,
+    };
+  }
+
+  const sections = getEarningsSections(
+    filteredAndSortedEvents,
+    highlightedTickerSymbols
+  );
+  if (0 === sections.length) {
+    return {
+      messages: [],
+      truncated: false,
+      totalEvents: filteredAndSortedEvents.length,
+      includedEvents: 0,
+    };
+  }
+
+  moment.locale("de");
+  const friendlyDate = moment(filteredAndSortedEvents[0].date).format(
+    "dddd, Do MMMM YYYY"
+  );
+  const title = `Earnings am ${friendlyDate}:`;
+
+  const chunks: EarningsMessageChunk[] = [];
+  let currentChunk = getEmptyEarningsMessageChunk(0, title);
+  let contentTruncated = false;
+
+  for (const section of sections) {
+    const fullSectionText = getEarningsSectionText(
+      section.label,
+      section.tickers,
+      false,
+      continuationLabel
+    );
+    if (true === canAppendToEarningsChunk(currentChunk, fullSectionText, maxMessageLength)) {
+      appendToEarningsChunk(currentChunk, fullSectionText, section.tickers.length);
+      continue;
+    }
+
+    if (0 < currentChunk.eventCount) {
+      chunks.push(cloneEarningsChunk(currentChunk));
+      currentChunk = getEmptyEarningsMessageChunk(chunks.length, title);
+    }
+
+    if (true === canAppendToEarningsChunk(currentChunk, fullSectionText, maxMessageLength)) {
+      appendToEarningsChunk(currentChunk, fullSectionText, section.tickers.length);
+      continue;
+    }
+
+    let tickerIndex = 0;
+    let continuation = false;
+    while (tickerIndex < section.tickers.length) {
+      const sectionTickers: string[] = [];
+      while (tickerIndex < section.tickers.length) {
+        const candidateTickers = [...sectionTickers, section.tickers[tickerIndex]];
+        const candidateSectionText = getEarningsSectionText(
+          section.label,
+          candidateTickers,
+          continuation,
+          continuationLabel
+        );
+
+        if (canAppendToEarningsChunk(currentChunk, candidateSectionText, maxMessageLength)) {
+          sectionTickers.push(section.tickers[tickerIndex]);
+          tickerIndex++;
+        } else {
+          break;
+        }
+      }
+
+      if (0 === sectionTickers.length) {
+        const headingText = `${getEarningsSectionHeading(section.label, continuation, continuationLabel)}\n`;
+        const availableTickerLength = maxMessageLength - getAppendedEarningsChunkText(currentChunk, headingText).length - 2;
+        if (availableTickerLength <= 0 && 0 < currentChunk.eventCount) {
+          chunks.push(cloneEarningsChunk(currentChunk));
+          currentChunk = getEmptyEarningsMessageChunk(chunks.length, title);
+          continue;
+        }
+
+        const rawTicker = section.tickers[tickerIndex];
+        const truncatedTicker = truncateEarningsTicker(rawTicker, Math.max(availableTickerLength, 1));
+        sectionTickers.push(truncatedTicker);
+        tickerIndex++;
+        if (rawTicker !== truncatedTicker) {
+          contentTruncated = true;
+        }
+      }
+
+      const sectionText = getEarningsSectionText(
+        section.label,
+        sectionTickers,
+        continuation,
+        continuationLabel
+      );
+      appendToEarningsChunk(currentChunk, sectionText, sectionTickers.length);
+
+      if (tickerIndex < section.tickers.length) {
+        chunks.push(cloneEarningsChunk(currentChunk));
+        currentChunk = getEmptyEarningsMessageChunk(chunks.length, title);
+        continuation = true;
+      }
+    }
+  }
+
+  if (0 < currentChunk.eventCount) {
+    chunks.push(cloneEarningsChunk(currentChunk));
+  }
+
+  let truncatedByMessageCount = false;
+  let visibleChunks = chunks;
+  if (visibleChunks.length > maxMessages) {
+    truncatedByMessageCount = true;
+    visibleChunks = visibleChunks.slice(0, maxMessages);
+  }
+
+  const messages = visibleChunks.map(chunk => chunk.content.trimEnd());
+  const includedEvents = visibleChunks.reduce(
+    (sum, chunk) => sum + chunk.eventCount,
+    0
+  );
+
+  if (true === truncatedByMessageCount && 0 < messages.length) {
+    messages[messages.length - 1] = appendEarningsTruncationNote(
+      messages[messages.length - 1],
+      maxMessageLength
+    );
+  }
+
+  return {
+    messages,
+    truncated: true === contentTruncated || true === truncatedByMessageCount,
+    totalEvents: filteredAndSortedEvents.length,
+    includedEvents,
+  };
+}
+
+function getSelectedEarningsWhen(
+  when: "all" | "before_open" | "during_session" | "after_close" | string
+): Set<EarningsWhen> {
+  const allWhen = new Set<EarningsWhen>([
+    "before_open",
+    "during_session",
+    "after_close",
+  ]);
+
+  if ("before_open" === when) {
+    return new Set<EarningsWhen>(["before_open"]);
+  }
+
+  if ("during_session" === when) {
+    return new Set<EarningsWhen>(["during_session"]);
+  }
+
+  if ("after_close" === when) {
+    return new Set<EarningsWhen>(["after_close"]);
+  }
+
+  return allWhen;
+}
+
+function getEarningsSections(
+  earningsEvents: EarningsEvent[],
+  highlightedTickerSymbols: Set<string>
+): EarningsSection[] {
+  const sectionMap = new Map<EarningsWhen, EarningsSection>();
+  sectionMap.set("before_open", {label: "Vor open", tickers: []});
+  sectionMap.set("during_session", {label: "Während der Handelszeiten", tickers: []});
+  sectionMap.set("after_close", {label: "Nach close", tickers: []});
+
+  for (const earningsEvent of earningsEvents) {
+    const section = sectionMap.get(earningsEvent.when);
+    if (!section) {
+      continue;
+    }
+
+    if (true === highlightedTickerSymbols.has(earningsEvent.ticker)) {
+      section.tickers.push(`**${earningsEvent.ticker}**`);
+    } else {
+      section.tickers.push(earningsEvent.ticker);
+    }
+  }
+
+  const orderedSections: EarningsSection[] = [];
+  for (const earningsWhen of ["before_open", "during_session", "after_close"] as const) {
+    const section = sectionMap.get(earningsWhen);
+    if (section && 0 < section.tickers.length) {
+      orderedSections.push(section);
+    }
+  }
+
+  return orderedSections;
+}
+
+function getEarningsSectionHeading(
+  label: string,
+  continuation: boolean,
+  continuationLabel: string
+): string {
+  if (false === continuation) {
+    return `**${label}:**`;
+  }
+
+  return `**${label} ${continuationLabel}:**`;
+}
+
+function getEarningsSectionText(
+  label: string,
+  tickers: string[],
+  continuation: boolean,
+  continuationLabel: string
+): string {
+  const heading = getEarningsSectionHeading(label, continuation, continuationLabel);
+  return `${heading}\n${tickers.join(", ")}\n\n`;
+}
+
+function getEmptyEarningsMessageChunk(
+  messageIndex: number,
+  title: string
+): EarningsMessageChunk {
+  const prefix = 0 === messageIndex ? `${title}\n` : "";
+  return {
+    content: prefix,
+    eventCount: 0,
+  };
+}
+
+function getAppendedEarningsChunkText(
+  chunk: EarningsMessageChunk,
+  text: string
+): string {
+  if ("" === chunk.content) {
+    return text;
+  }
+
+  if (chunk.content.endsWith("\n")) {
+    return `${chunk.content}${text}`;
+  }
+
+  return `${chunk.content}\n${text}`;
+}
+
+function canAppendToEarningsChunk(
+  chunk: EarningsMessageChunk,
+  text: string,
+  maxMessageLength: number
+): boolean {
+  return getAppendedEarningsChunkText(chunk, text).length <= maxMessageLength;
+}
+
+function appendToEarningsChunk(
+  chunk: EarningsMessageChunk,
+  text: string,
+  eventCount: number
+) {
+  chunk.content = getAppendedEarningsChunkText(chunk, text);
+  chunk.eventCount += eventCount;
+}
+
+function cloneEarningsChunk(chunk: EarningsMessageChunk): EarningsMessageChunk {
+  return {
+    content: chunk.content,
+    eventCount: chunk.eventCount,
+  };
+}
+
+function truncateEarningsTicker(ticker: string, maxLength: number): string {
+  if (ticker.length <= maxLength) {
+    return ticker;
+  }
+
+  if (maxLength <= 3) {
+    return ticker.slice(0, maxLength);
+  }
+
+  return `${ticker.slice(0, maxLength - 3)}...`;
+}
+
+function appendEarningsTruncationNote(
+  content: string,
+  maxMessageLength: number
+): string {
+  const suffix = `\n${earningsTruncationNote}`;
+  if (content.length + suffix.length <= maxMessageLength) {
+    return `${content}${suffix}`;
+  }
+
+  const messageLengthWithoutSuffix = maxMessageLength - suffix.length;
+  if (messageLengthWithoutSuffix <= 0) {
+    return earningsTruncationNote.slice(0, maxMessageLength);
+  }
+
+  const trimmedContent = content.slice(0, messageLengthWithoutSuffix).trimEnd();
+  return `${trimmedContent}${suffix}`;
 }

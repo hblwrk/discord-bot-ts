@@ -1,6 +1,6 @@
 /* eslint-disable yoda */
 /* eslint-disable complexity */
-import {AttachmentBuilder, EmbedBuilder, REST, Routes, SlashCommandBuilder} from "discord.js";
+import {AttachmentBuilder, EmbedBuilder, PermissionFlagsBits, REST, Routes, SlashCommandBuilder} from "discord.js";
 import validator from "validator";
 import {getAssetByName, ImageAsset, TextAsset} from "./assets.js";
 import {cryptodice} from "./crypto-dice.js";
@@ -8,14 +8,30 @@ import {google, lmgtfy} from "./lmgtfy.js";
 import {getDiscordLogger, getLogger} from "./logging.js";
 import {getRandomQuote} from "./random-quote.js";
 import {readSecret} from "./secrets.js";
-import {getEarnings, getEarningsText} from "./earnings.js";
-import {getCalendarEvents, getCalendarText} from "./calendar.js";
+import {
+  EARNINGS_MAX_MESSAGE_LENGTH,
+  EARNINGS_MAX_MESSAGES_SLASH,
+  getEarnings,
+  getEarningsMessages,
+} from "./earnings.js";
+import {
+  CALENDAR_MAX_MESSAGE_LENGTH,
+  CALENDAR_MAX_MESSAGES_SLASH,
+  getCalendarEvents,
+  getCalendarMessages,
+} from "./calendar.js";
 import {Ticker} from "./tickers.js";
 
 const logger = getLogger();
 const token = readSecret("discord_token");
 const clientId = readSecret("discord_clientID");
 const guildId = readSecret("discord_guildID");
+const noMentions = {
+  parse: [],
+};
+const islandboiCooldownMs = 60_000;
+const islandboiCooldownByUser = new Map<string, number>();
+const islandboiUnmuteTimers = new Map<string, ReturnType<typeof setTimeout>>();
 
 export function defineSlashCommands(assets, whatIsAssets, userAssets) {
   const whatIsAssetsChoices = [];
@@ -315,26 +331,152 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     if ("islandboi" === commandName) {
-      //  const asset = getAssetByName("islandboi", assets);
-      //  const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
+      const now = Date.now();
+      const currentCooldownUntil = islandboiCooldownByUser.get(interaction.user.id) ?? 0;
+      if (currentCooldownUntil > now) {
+        const remainingSeconds = Math.ceil((currentCooldownUntil - now) / 1000);
+        await interaction.reply({
+          content: `Please wait ${remainingSeconds} more seconds.`,
+          ephemeral: true,
+        }).catch(error => {
+          logger.log(
+            "error",
+            `Error replying to islandboi slashcommand: ${error}`,
+          );
+        });
+        return;
+      }
 
-      const guildUser = await client.guilds.cache.get(guildId).members.fetch(interaction.user.id);
-      const mutedRole = readSecret("hblwrk_role_muted_ID");
-      guildUser.roles.add(mutedRole);
+      const mutedRole = readSecret("hblwrk_role_muted_ID").trim();
+      if ("" === mutedRole) {
+        await interaction.reply({
+          content: "Muted role is not configured.",
+          ephemeral: true,
+        }).catch(error => {
+          logger.log(
+            "error",
+            `Error replying to islandboi slashcommand: ${error}`,
+          );
+        });
+        return;
+      }
+
+      const guild = client.guilds.cache.get(guildId) ?? await client.guilds.fetch(guildId).catch(error => {
+        logger.log(
+          "error",
+          `Error fetching guild for islandboi slashcommand: ${error}`,
+        );
+      });
+      if (!guild) {
+        await interaction.reply({
+          content: "Guild is currently unavailable.",
+          ephemeral: true,
+        }).catch(error => {
+          logger.log(
+            "error",
+            `Error replying to islandboi slashcommand: ${error}`,
+          );
+        });
+        return;
+      }
+
+      const botMember = guild.members.me ?? await guild.members.fetchMe().catch(error => {
+        logger.log(
+          "error",
+          `Error fetching bot member for islandboi slashcommand: ${error}`,
+        );
+      });
+      if (!botMember || false === botMember.permissions.has(PermissionFlagsBits.ManageRoles)) {
+        await interaction.reply({
+          content: "No permissions to manage roles.",
+          ephemeral: true,
+        }).catch(error => {
+          logger.log(
+            "error",
+            `Error replying to islandboi slashcommand: ${error}`,
+          );
+        });
+        return;
+      }
+
+      const guildUser = await guild.members.fetch(interaction.user.id).catch(error => {
+        logger.log(
+          "error",
+          `Error fetching user for islandboi slashcommand: ${error}`,
+        );
+      });
+      if (!guildUser) {
+        await interaction.reply({
+          content: "Konnte Benutzer nicht laden.",
+          ephemeral: true,
+        }).catch(error => {
+          logger.log(
+            "error",
+            `Error replying to islandboi slashcommand: ${error}`,
+          );
+        });
+        return;
+      }
+
+      const addRoleSuccess = await guildUser.roles.add(mutedRole).then(() => true).catch(error => {
+        logger.log(
+          "error",
+          `Error muting user for islandboi slashcommand: ${error}`,
+        );
+        return false;
+      });
+      if (false === addRoleSuccess) {
+        await interaction.reply({
+          content: "Unable to assign muted role.",
+          ephemeral: true,
+        }).catch(error => {
+          logger.log(
+            "error",
+            `Error replying to islandboi slashcommand: ${error}`,
+          );
+        });
+        return;
+      }
+
+      const cooldownUntil = now + islandboiCooldownMs;
+      islandboiCooldownByUser.set(interaction.user.id, cooldownUntil);
+      const existingTimer = islandboiUnmuteTimers.get(interaction.user.id);
+      if (existingTimer) {
+        clearTimeout(existingTimer);
+      }
+
+      await interaction.reply({
+        content: "You are now muted for 60 seconds.",
+        ephemeral: true,
+      }).catch(error => {
+        logger.log(
+          "error",
+          `Error replying to islandboi slashcommand: ${error}`,
+        );
+      });
+
       logger.log(
         "info",
         `Muted ${interaction.user.username} for 60 seconds.`,
       );
 
-      const timer: ReturnType<typeof setTimeout> = setTimeout(() => {
-        guildUser.roles.remove(mutedRole);
+      const timer = setTimeout(() => {
+        guildUser.roles.remove(mutedRole).catch(error => {
+          logger.log(
+            "error",
+            `Error unmuting user for islandboi slashcommand: ${error}`,
+          );
+        }).finally(() => {
+          islandboiUnmuteTimers.delete(interaction.user.id);
+          islandboiCooldownByUser.delete(interaction.user.id);
+        });
         logger.log(
           "info",
           `Unmuted ${interaction.user.username} after 60 seconds.`,
         );
-      }, 300000);
-
-      //  await interaction.reply({files: [file]});
+      }, islandboiCooldownMs);
+      (timer as any).unref?.();
+      islandboiUnmuteTimers.set(interaction.user.id, timer);
     }
 
     if ("earnings" === commandName) {
@@ -383,18 +525,67 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       earningsEvents = await getEarnings(days, date, filter);
 
-      let earningsText: string = getEarningsText(earningsEvents, when, tickers);
-
-      if ("none" === earningsText) {
-        earningsText = "Es stehen keine relevanten Quartalszahlen an.";
+      const earningsBatch = getEarningsMessages(earningsEvents, when, tickers, {
+        maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
+        maxMessages: EARNINGS_MAX_MESSAGES_SLASH,
+      });
+      logger.log(
+        "info",
+        {
+          source: "slash-earnings",
+          chunkCount: earningsBatch.messages.length,
+          truncated: earningsBatch.truncated,
+          includedEvents: earningsBatch.includedEvents,
+          totalEvents: earningsBatch.totalEvents,
+        },
+      );
+      if (true === earningsBatch.truncated) {
+        logger.log(
+          "warn",
+          {
+            source: "slash-earnings",
+            chunkCount: earningsBatch.messages.length,
+            includedEvents: earningsBatch.includedEvents,
+            totalEvents: earningsBatch.totalEvents,
+            message: "Earnings output truncated because message limits were reached.",
+          },
+        );
       }
 
-      await interaction.reply(earningsText).catch(error => {
+      if (0 === earningsBatch.messages.length) {
+        await interaction.reply({
+          content: "Es stehen keine relevanten Quartalszahlen an.",
+          allowedMentions: noMentions,
+        }).catch(error => {
+          logger.log(
+            "error",
+            `Error replying to earnings slashcommand: ${error}`,
+          );
+        });
+        return;
+      }
+
+      await interaction.reply({
+        content: earningsBatch.messages[0],
+        allowedMentions: noMentions,
+      }).catch(error => {
         logger.log(
           "error",
           `Error replying to earnings slashcommand: ${error}`,
         );
       });
+
+      for (let chunkIndex = 1; chunkIndex < earningsBatch.messages.length; chunkIndex++) {
+        await interaction.followUp({
+          content: earningsBatch.messages[chunkIndex],
+          allowedMentions: noMentions,
+        }).catch(error => {
+          logger.log(
+            "error",
+            `Error following up earnings slashcommand: ${error}`,
+          );
+        });
+      }
     }
 
     if ("calendar" === commandName) {
@@ -427,18 +618,68 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         calendarEvents = await getCalendarEvents("", 0);
       }
 
-      let calendarText: string = getCalendarText(calendarEvents);
-
-      if ("none" === calendarText) {
-        calendarText = "Heute passiert nichts wichtiges 😴.";
+      const calendarBatch = getCalendarMessages(calendarEvents, {
+        maxMessageLength: CALENDAR_MAX_MESSAGE_LENGTH,
+        maxMessages: CALENDAR_MAX_MESSAGES_SLASH,
+        keepDayTogether: true,
+      });
+      logger.log(
+        "info",
+        {
+          source: "slash-calendar",
+          chunkCount: calendarBatch.messages.length,
+          truncated: calendarBatch.truncated,
+          includedEvents: calendarBatch.includedEvents,
+          totalEvents: calendarBatch.totalEvents,
+        },
+      );
+      if (true === calendarBatch.truncated) {
+        logger.log(
+          "warn",
+          {
+            source: "slash-calendar",
+            chunkCount: calendarBatch.messages.length,
+            includedEvents: calendarBatch.includedEvents,
+            totalEvents: calendarBatch.totalEvents,
+            message: "Calendar output truncated because message limits were reached.",
+          },
+        );
       }
 
-      await interaction.reply(calendarText).catch(error => {
+      if (0 === calendarBatch.messages.length) {
+        await interaction.reply({
+          content: "Heute passiert nichts wichtiges 😴.",
+          allowedMentions: noMentions,
+        }).catch(error => {
+          logger.log(
+            "error",
+            `Error replying to calendar slashcommand: ${error}`,
+          );
+        });
+        return;
+      }
+
+      await interaction.reply({
+        content: calendarBatch.messages[0],
+        allowedMentions: noMentions,
+      }).catch(error => {
         logger.log(
           "error",
           `Error replying to calendar slashcommand: ${error}`,
         );
       });
+
+      for (let chunkIndex = 1; chunkIndex < calendarBatch.messages.length; chunkIndex++) {
+        await interaction.followUp({
+          content: calendarBatch.messages[chunkIndex],
+          allowedMentions: noMentions,
+        }).catch(error => {
+          logger.log(
+            "error",
+            `Error following up calendar slashcommand: ${error}`,
+          );
+        });
+      }
     }
 
     async function saraDoesNotWant() {
