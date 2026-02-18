@@ -1,8 +1,8 @@
 /* eslint-disable yoda */
 /* eslint-disable import/extensions */
-import axios, {type AxiosResponse} from "axios";
 import {readSecret} from "./secrets.js";
 import {getLogger} from "./logging.js";
+import {getWithRetry} from "./http-retry.js";
 
 const logger = getLogger();
 
@@ -11,7 +11,7 @@ export async function getTickers(index: string): Promise<Ticker[]> {
 
   if ("sp500" === index.toLocaleLowerCase() || "all" === index.toLocaleLowerCase()) {
     try {
-      const sp500Response: AxiosResponse = await axios.get("https://pkgstore.datahub.io/core/s-and-p-500-companies/constituents_json/data/297344d8dc0a9d86b8d107449c851cc8/constituents_json.json");
+      const sp500Response = await getWithRetry("https://pkgstore.datahub.io/core/s-and-p-500-companies/constituents_json/data/297344d8dc0a9d86b8d107449c851cc8/constituents_json.json");
 
       if (1 < sp500Response.data.length) {
         for (const element of sp500Response.data) {
@@ -32,7 +32,7 @@ export async function getTickers(index: string): Promise<Ticker[]> {
 
   if ("nasdaq100" === index.toLocaleLowerCase() || "all" === index.toLocaleLowerCase()) {
     try {
-      const nasdaq100Response: AxiosResponse = await axios.get(`https://yfiua.github.io/index-constituents/constituents-nasdaq100.json
+      const nasdaq100Response = await getWithRetry(`https://yfiua.github.io/index-constituents/constituents-nasdaq100.json
 `);
 
       if (1 < nasdaq100Response.data.length) {

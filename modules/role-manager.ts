@@ -85,7 +85,12 @@ export async function roleManager(client, assetRoles) {
         emoji = role.emoji;
       }
 
-      brokerMessage.react(emoji);
+      await brokerMessage.react(emoji).catch(error => {
+        logger.log(
+          "error",
+          `Role manager: unable to add reaction ${emoji} on broker message: ${error}`,
+        );
+      });
     } else if ("hblwrk_role_assignment_special_messageID" === role.triggerReference) {
       let emoji = "";
       if (role.emoji.startsWith("custom:")) {
@@ -102,7 +107,12 @@ export async function roleManager(client, assetRoles) {
       } else {
         emoji = role.emoji;
       }
-      specialMessage.react(emoji);
+      await specialMessage.react(emoji).catch(error => {
+        logger.log(
+          "error",
+          `Role manager: unable to add reaction ${emoji} on special message: ${error}`,
+        );
+      });
     }
   }
 
@@ -118,21 +128,27 @@ export async function roleManager(client, assetRoles) {
 
   async function addRemoveRole(reaction, user, action) {
     if (reaction.partial) {
-      await reaction.fetch().catch(error => {
+      const fetchedReaction = await reaction.fetch().catch(error => {
         logger.log(
           "error",
           `Role manager: unable to fetch partial reaction: ${error}`,
         );
       });
+      if (!fetchedReaction) {
+        return;
+      }
     }
 
     if (reaction.message.partial) {
-      await reaction.message.fetch().catch(error => {
+      const fetchedMessage = await reaction.message.fetch().catch(error => {
         logger.log(
           "error",
           `Role manager: unable to fetch partial message: ${error}`,
         );
       });
+      if (!fetchedMessage) {
+        return;
+      }
     }
 
     for (const role of assetRoles) {
@@ -158,16 +174,40 @@ export async function roleManager(client, assetRoles) {
       }
 
       if (role.trigger === reaction.message.id && emoji === reactionEmoji && clientId !== user.id) {
-        const guildUser = await guild.members.fetch(user.id);
+        const guildUser = await guild.members.fetch(user.id).catch(error => {
+          logger.log(
+            "error",
+            `Role manager: unable to fetch guild user ${user.id}: ${error}`,
+          );
+        });
+        if (!guildUser) {
+          continue;
+        }
+
         if ("remove" === action) {
-          guildUser.roles.remove(role.id);
+          await guildUser.roles.remove(role.id).catch(error => {
+            logger.log(
+              "error",
+              `Role manager: unable to remove role ${role.id} from ${user.id}: ${error}`,
+            );
+          });
           logger.log(
             "debug",
             `Removing role ${role.id} (${role.idReference}) from user ${user.id} (${user.username})`,
           );
         } else if ("add" === action) {
-          guildUser.roles.add(brokerYesRole);
-          guildUser.roles.add(role.id);
+          await guildUser.roles.add(brokerYesRole).catch(error => {
+            logger.log(
+              "error",
+              `Role manager: unable to add broker role ${brokerYesRole} for ${user.id}: ${error}`,
+            );
+          });
+          await guildUser.roles.add(role.id).catch(error => {
+            logger.log(
+              "error",
+              `Role manager: unable to add role ${role.id} for ${user.id}: ${error}`,
+            );
+          });
           logger.log(
             "debug",
             `Assigning role ${role.id} (${role.idReference}) to user ${user.id} (${user.username})`,

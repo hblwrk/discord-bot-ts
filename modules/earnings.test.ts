@@ -6,6 +6,10 @@ jest.useFakeTimers();
 jest.setSystemTime(new Date("2024-01-02T19:30:00+01:00"));
 
 describe("getEarnings", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   const apiResponse = {
     earnings: {
       "2024-01-02": {
@@ -73,6 +77,15 @@ describe("getEarnings", () => {
         when: "after_close",
       },
     ]);
+
+    expect(axios.get).toHaveBeenCalledWith(
+      expect.stringContaining("date_from=2024-01-02"),
+      expect.objectContaining({
+        headers: expect.objectContaining({
+          "User-Agent": expect.any(String),
+        }),
+      })
+    );
   });
   test("tomorrow", async () => {
     (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
@@ -118,6 +131,20 @@ describe("getEarnings", () => {
       },
     ]);
   });
+
+  test("passes watchlist filter to stocktwits request", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+      data: apiResponse,
+    });
+
+    await getEarnings(0, "today", "5666c5fa-80dc-4e16-8bcc-12a8314d0b07");
+
+    expect(axios.get).toHaveBeenCalledWith(
+      expect.stringContaining("watchlist=5666c5fa-80dc-4e16-8bcc-12a8314d0b07"),
+      expect.any(Object)
+    );
+  });
+
 });
 
 describe("getEarningsText", () => {

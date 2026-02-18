@@ -48,6 +48,26 @@ type EarningsMessageChunk = {
   eventCount: number;
 };
 
+type StocktwitsEarningsStock = {
+  importance?: number;
+  symbol?: string;
+  date?: string;
+  time?: string;
+};
+
+type StocktwitsEarningsResponse = {
+  earnings?: Record<string, {
+    stocks?: StocktwitsEarningsStock[];
+  }>;
+};
+
+const stocktwitsEarningsEndpoint = "https://api.stocktwits.com/api/2/discover/earnings_calendar";
+const stocktwitsRequestHeaders = {
+  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
+  "Accept": "application/json, text/plain, */*",
+  "X-Requested-With": "XMLHttpRequest",
+};
+
 export async function getEarnings(
   days: number,
   date: "today" | "tomorrow" | string,
@@ -115,54 +135,106 @@ export async function getEarnings(
     second: 0,
   });
 
-  let watchlist = "";
-
-  if ("all" !== filter) {
-    watchlist = `&watchlist=${filter}`;
-  }
-
   const earningsEvents: EarningsEvent[] = [];
 
   try {
-    // https://api.stocktwits.com/api/2/discover/earnings_calendar?date_from=2023-01-05
-    const earningsResponse = await getWithRetry(
-      `https://api.stocktwits.com/api/2/discover/earnings_calendar?date_from=${dateStamp}`
+    const stocktwitsEarnings = await loadStocktwitsEarnings(dateStamp, filter);
+    appendStocktwitsEarningsEvents(
+      earningsEvents,
+      stocktwitsEarnings,
+      dateStamp,
+      nyseOpenTime,
+      nyseCloseTime
     );
-
-    for (const element in earningsResponse.data.earnings) {
-      if (dateStamp === element) {
-        const earnings = earningsResponse.data.earnings[element];
-        for (const stock of earnings.stocks) {
-          if (0 < stock.importance && dateStamp === stock.date) {
-            const earningsTime: moment.Moment = moment(
-              `${stock.date}T${stock.time}-05:00`
-            ).tz("US/Eastern");
-
-            let earningsWhen: EarningsWhen = "during_session";
-
-            if (true === moment(earningsTime).isBefore(nyseOpenTime)) {
-              earningsWhen = "before_open";
-            } else if (
-              true === moment(earningsTime).isSameOrAfter(nyseCloseTime)
-            ) {
-              earningsWhen = "after_close";
-            }
-
-            earningsEvents.push({
-              ticker: stock.symbol,
-              date: stock.date,
-              importance: stock.importance,
-              when: earningsWhen,
-            });
-          }
-        }
-      }
-    }
   } catch (error) {
     logger.log("error", `Loading earnings failed: ${error}`);
   }
 
   return earningsEvents;
+}
+
+async function loadStocktwitsEarnings(
+  dateStamp: string,
+  filter: string
+): Promise<StocktwitsEarningsResponse> {
+  const query = new URLSearchParams({
+    date_from: dateStamp,
+    date_to: dateStamp,
+  });
+
+  if ("all" !== filter) {
+    query.set("watchlist", filter);
+  }
+
+  // https://api.stocktwits.com/api/2/discover/earnings_calendar?date_from=2023-01-05
+  const response = await getWithRetry<StocktwitsEarningsResponse>(
+    `${stocktwitsEarningsEndpoint}?${query.toString()}`,
+    {
+      headers: stocktwitsRequestHeaders,
+    }
+  );
+
+  return response.data ?? {};
+}
+
+function appendStocktwitsEarningsEvents(
+  earningsEvents: EarningsEvent[],
+  stocktwitsResponse: StocktwitsEarningsResponse,
+  dateStamp: string,
+  nyseOpenTime: moment.Moment,
+  nyseCloseTime: moment.Moment
+) {
+  const dateEarnings = stocktwitsResponse.earnings?.[dateStamp];
+  if (!dateEarnings?.stocks || !Array.isArray(dateEarnings.stocks)) {
+    return;
+  }
+
+  for (const stock of dateEarnings.stocks) {
+    if (
+      "string" !== typeof stock.symbol ||
+      "string" !== typeof stock.date ||
+      "string" !== typeof stock.time ||
+      "number" !== typeof stock.importance ||
+      stock.importance <= 0 ||
+      stock.date !== dateStamp
+    ) {
+      continue;
+    }
+
+    earningsEvents.push({
+      ticker: stock.symbol,
+      date: stock.date,
+      importance: stock.importance,
+      when: getEarningsWhenFromClockTime(
+        stock.date,
+        stock.time,
+        nyseOpenTime,
+        nyseCloseTime
+      ),
+    });
+  }
+}
+
+function getEarningsWhenFromClockTime(
+  dateStamp: string,
+  timeStamp: string,
+  nyseOpenTime: moment.Moment,
+  nyseCloseTime: moment.Moment
+): EarningsWhen {
+  const earningsTime: moment.Moment = moment.tz(
+    `${dateStamp} ${timeStamp}`,
+    ["YYYY-MM-DD HH:mm:ss", "YYYY-MM-DD HH:mm"],
+    "US/Eastern"
+  );
+
+  let earningsWhen: EarningsWhen = "during_session";
+  if (true === moment(earningsTime).isBefore(nyseOpenTime)) {
+    earningsWhen = "before_open";
+  } else if (true === moment(earningsTime).isSameOrAfter(nyseCloseTime)) {
+    earningsWhen = "after_close";
+  }
+
+  return earningsWhen;
 }
 
 export function getEarningsText(
