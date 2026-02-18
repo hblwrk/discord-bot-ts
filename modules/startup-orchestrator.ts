@@ -69,6 +69,12 @@ const defaultWarmupInitialRetryDelayMs = 500;
 const defaultWarmupMaxRetryDelayMs = 15_000;
 const defaultSlashCommandDebounceMs = 250;
 
+type ErrorLogDetails = {
+  error_name?: string;
+  error_message: string;
+  error_stack?: string;
+};
+
 function createDiscordClient(): Client {
   return new Client({
     intents: [
@@ -133,6 +139,20 @@ function waitWithTimer(delayMs: number, setTimeoutFn: typeof setTimeout): Promis
   return new Promise(resolve => {
     setTimeoutFn(resolve, delayMs);
   });
+}
+
+function toErrorLogDetails(error: unknown): ErrorLogDetails {
+  if (error instanceof Error) {
+    return {
+      error_name: error.name,
+      error_message: error.message,
+      error_stack: error.stack,
+    };
+  }
+
+  return {
+    error_message: String(error),
+  };
 }
 
 async function waitForDiscordReady(
@@ -348,7 +368,20 @@ async function warmRemoteData({
       } catch (error: unknown) {
         lastError = error;
         startupState.setLastError(error);
+        const errorDetails = toErrorLogDetails(error);
         if (attempt === dependencies.warmupMaxAttempts) {
+          logger.log(
+            "error",
+            {
+              startup_phase: "phase-b",
+              degraded: true,
+              task,
+              attempt,
+              max_attempts: dependencies.warmupMaxAttempts,
+              ...errorDetails,
+              message: "Warmup task failed after maximum retries.",
+            },
+          );
           break;
         }
 
@@ -362,7 +395,10 @@ async function warmRemoteData({
             startup_phase: "phase-b",
             degraded: true,
             task,
+            attempt,
+            max_attempts: dependencies.warmupMaxAttempts,
             retry_in_ms: retryInMs,
+            ...errorDetails,
             message: "Warmup task failed. Retrying.",
           },
         );

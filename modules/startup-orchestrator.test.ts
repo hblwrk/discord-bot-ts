@@ -212,7 +212,7 @@ describe("startBot", () => {
     const getTickersMock = jest.fn()
       .mockRejectedValueOnce(new Error("temporary ticker failure"))
       .mockResolvedValueOnce([]);
-    const {dependencies} = createDependencies({
+    const {dependencies, mocks} = createDependencies({
       getTickers: getTickersMock,
       warmupMaxAttempts: 2,
       warmupInitialRetryDelayMs: 1,
@@ -225,6 +225,16 @@ describe("startBot", () => {
     expect(runtime.getStartupState().ready).toBe(true);
     expect(runtime.getStartupState().remoteWarmupStatus).toBe("ready");
     expect(getTickersMock).toHaveBeenCalledTimes(2);
+    expect(mocks.logger.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        task: "tickers",
+        attempt: 1,
+        max_attempts: 2,
+        error_message: "temporary ticker failure",
+        message: "Warmup task failed. Retrying.",
+      }),
+    );
   });
 
   test("attaches core handlers exactly once even when warmup retries happen", async () => {
