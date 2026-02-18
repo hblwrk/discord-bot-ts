@@ -25,6 +25,20 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
         for (const trigger of asset.trigger) {
           if (`!${trigger}` === messageContent && 0 <= asset.trigger.length) {
             if (asset instanceof ImageAsset || asset instanceof UserQuoteAsset) {
+              if (!asset?.fileContent || !asset.fileName) {
+                logger.log(
+                  "warn",
+                  `Asset ${asset.name ?? asset.fileName ?? trigger} is temporarily unavailable.`,
+                );
+                await message.channel.send("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch(error => {
+                  logger.log(
+                    "error",
+                    `Error sending unavailable-asset response: ${error}`,
+                  );
+                });
+                continue;
+              }
+
               // Response with an image
               const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
               if (asset instanceof ImageAsset && asset.hasText) {
@@ -62,6 +76,20 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
                   logger.log(
                     "error",
                     `Error sending quote fallback response: ${error}`,
+                  );
+                });
+                continue;
+              }
+
+              if (!randomQuote.fileContent || !randomQuote.fileName) {
+                logger.log(
+                  "warn",
+                  `Quote asset for ${asset.name} is temporarily unavailable.`,
+                );
+                await message.channel.send("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch(error => {
+                  logger.log(
+                    "error",
+                    `Error sending unavailable-quote response: ${error}`,
                   );
                 });
                 continue;
@@ -106,6 +134,20 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
           );
 
           if (true === Object.prototype.hasOwnProperty.call(asset, "_fileName")) {
+            if (!asset?.fileContent || !asset.fileName) {
+              logger.log(
+                "warn",
+                `Whatis asset ${asset.name} is temporarily unavailable.`,
+              );
+              message.channel.send("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch(error => {
+                logger.log(
+                  "error",
+                  `Error sending whatis response: ${error}`,
+                );
+              });
+              continue;
+            }
+
             const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
             embed.setImage(`attachment://${asset.fileName}`);
             message.channel.send({embeds: [embed], files: [file]}).catch(error => {

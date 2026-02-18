@@ -1,4 +1,4 @@
-import {TextAsset} from "./assets.js";
+import {ImageAsset, TextAsset, UserQuoteAsset} from "./assets.js";
 import {interactSlashCommands} from "./slash-commands.js";
 import {getCalendarEvents, getCalendarMessages} from "./calendar.js";
 import {getEarningsMessages, getEarningsResult} from "./earnings.js";
@@ -114,6 +114,24 @@ describe("interactSlashCommands", () => {
     expect(interaction.reply).toHaveBeenCalledWith("hello-response");
   });
 
+  test("replies with temporary unavailable message when image asset content is missing", async () => {
+    const {client, getHandler} = createEventClient();
+    const imageAsset = new ImageAsset();
+    imageAsset.title = "image";
+    imageAsset.fileName = "image.png";
+    imageAsset.text = "image text";
+    (imageAsset as any).trigger = ["image"];
+
+    interactSlashCommands(client, [imageAsset], ["image"], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("image");
+
+    await handler(interaction);
+
+    expect(interaction.reply).toHaveBeenCalledWith("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.");
+  });
+
   test("quote replies with fallback text when no quotes are available", async () => {
     const {client, getHandler} = createEventClient();
     interactSlashCommands(client, [], [], [], []);
@@ -125,6 +143,24 @@ describe("interactSlashCommands", () => {
     await handler(interaction);
 
     expect(interaction.reply).toHaveBeenCalledWith("Keine passenden Zitate gefunden.");
+  });
+
+  test("quote replies with temporary unavailable message when quote file content is missing", async () => {
+    const {client, getHandler} = createEventClient();
+    const quoteAsset = new UserQuoteAsset();
+    quoteAsset.user = "alice";
+    quoteAsset.fileName = "quote.png";
+    quoteAsset.fileContent = undefined;
+    (quoteAsset as any).trigger = [];
+    interactSlashCommands(client, [quoteAsset], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("quote");
+    interaction.options.getString.mockImplementation(name => name === "who" ? "alice" : null);
+
+    await handler(interaction);
+
+    expect(interaction.reply).toHaveBeenCalledWith("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.");
   });
 
   test("replies to whatis with embed and attachment payload", async () => {

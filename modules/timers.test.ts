@@ -306,6 +306,20 @@ describe("timers", () => {
     }));
   });
 
+  test("startOtherTimers skips Friday announcement when asset is unavailable", async () => {
+    const {client, send} = createClientWithChannel();
+    getAssetByNameMock.mockReturnValue(undefined);
+
+    startOtherTimers(client as any, "channel-id", [], []);
+    await scheduledJobs[0].callback();
+
+    expect(send).not.toHaveBeenCalled();
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.stringContaining("Skipping friday announcement"),
+    );
+  });
+
   test("startOtherTimers skips Friday announcement when asset is missing", async () => {
     const {client, send} = createClientWithChannel();
     getAssetByNameMock.mockReturnValueOnce(undefined);

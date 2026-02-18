@@ -205,6 +205,20 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         for (const trigger of asset.trigger) {
           if ("whatis" !== commandName && commandName === trigger.replaceAll(" ", "_")) {
             if (asset instanceof ImageAsset) {
+              if (!asset?.fileContent || !asset.fileName) {
+                logger.log(
+                  "warn",
+                  `Asset ${asset.name ?? asset.fileName ?? trigger} is temporarily unavailable.`,
+                );
+                await interaction.reply("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch(error => {
+                  logger.log(
+                    "error",
+                    `Error replying to slashcommand: ${error}`,
+                  );
+                });
+                continue;
+              }
+
               const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
               if (asset instanceof ImageAsset && asset.hasText) {
                 // For images with text description, currently not used.
@@ -307,6 +321,20 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           );
 
           if (true === Object.prototype.hasOwnProperty.call(asset, "_fileName")) {
+            if (!asset?.fileContent || !asset.fileName) {
+              logger.log(
+                "warn",
+                `Whatis asset ${asset.name} is temporarily unavailable.`,
+              );
+              await interaction.reply("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch(error => {
+                logger.log(
+                  "error",
+                  `Error replying to whatis slashcommand: ${error}`,
+                );
+              });
+              continue;
+            }
+
             const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
             embed.setImage(`attachment://${asset.fileName}`);
             await interaction.reply({embeds: [embed], files: [file]});
@@ -330,6 +358,20 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       const randomQuote = getRandomQuote(who, assets);
       if (!randomQuote) {
         await interaction.reply(noQuoteMessage).catch(error => {
+          logger.log(
+            "error",
+            `Error replying to quote slashcommand: ${error}`,
+          );
+        });
+        return;
+      }
+
+      if (!randomQuote.fileContent || !randomQuote.fileName) {
+        logger.log(
+          "warn",
+          `Quote asset for ${who} is temporarily unavailable.`,
+        );
+        await interaction.reply("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch(error => {
           logger.log(
             "error",
             `Error replying to quote slashcommand: ${error}`,
