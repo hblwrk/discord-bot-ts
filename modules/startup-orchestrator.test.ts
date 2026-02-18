@@ -28,6 +28,23 @@ function sleep(delayMs: number): Promise<void> {
   });
 }
 
+async function waitFor(
+  predicate: () => boolean,
+  timeoutMs = 500,
+  pollIntervalMs = 5,
+): Promise<void> {
+  const timeoutAt = Date.now() + timeoutMs;
+  while (Date.now() < timeoutAt) {
+    if (true === predicate()) {
+      return;
+    }
+
+    await sleep(pollIntervalMs);
+  }
+
+  throw new Error(`Condition not met within ${timeoutMs}ms.`);
+}
+
 function createMockClient() {
   const emitter = new EventEmitter();
   const client: any = {
@@ -203,7 +220,7 @@ describe("startBot", () => {
     });
 
     const runtime = await startBot(dependencies);
-    await sleep(30);
+    await waitFor(() => "warming" !== runtime.getStartupState().remoteWarmupStatus);
 
     expect(runtime.getStartupState().ready).toBe(true);
     expect(runtime.getStartupState().remoteWarmupStatus).toBe("ready");
