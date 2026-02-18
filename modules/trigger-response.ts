@@ -1,7 +1,7 @@
 /* eslint-disable yoda */
 /* eslint-disable import/extensions */
 /* eslint-disable complexity */
-import {MessageAttachment, MessageEmbed} from "discord.js";
+import {AttachmentBuilder, EmbedBuilder} from "discord.js";
 import validator from "validator";
 import {getAssetByName, ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets.js";
 import {cryptodice} from "./crypto-dice.js";
@@ -21,9 +21,9 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
           if (`!${trigger}` === messageContent && 0 <= asset.trigger.length) {
             if (asset instanceof ImageAsset || asset instanceof UserQuoteAsset) {
               // Response with an image
-              const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+              const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
               if (asset instanceof ImageAsset && asset.hasText) {
-                const embed = new MessageEmbed();
+                const embed = new EmbedBuilder();
                 embed.setImage(`attachment://${asset.fileName}`);
                 embed.addFields(
                   {name: asset.title, value: asset.text},
@@ -52,7 +52,7 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
               });
             } else if (asset instanceof UserAsset) {
               const randomQuote = getRandomQuote(asset.name, assets);
-              const file = new MessageAttachment(randomQuote.fileContent, randomQuote.fileName);
+              const file = new AttachmentBuilder(Buffer.from(randomQuote.fileContent), {name: randomQuote.fileName});
               await message.channel.send({files: [file]});
             }
           }
@@ -85,13 +85,13 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
       const search = messageContent.split("!whatis ")[1];
       for (const asset of whatIsAssets) {
         if (asset.name === `whatis_${search}`) {
-          const embed = new MessageEmbed();
+          const embed = new EmbedBuilder();
           embed.addFields(
             {name: asset.title, value: asset.text},
           );
 
           if (true === Object.prototype.hasOwnProperty.call(asset, "_fileName")) {
-            const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+            const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
             embed.setImage(`attachment://${asset.fileName}`);
             message.channel.send({embeds: [embed], files: [file]}).catch(error => {
               logger.log(
@@ -116,7 +116,7 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
       if ("string" === typeof search) {
         if ("yes" === search.toLowerCase()) {
           const asset = getAssetByName("sara-yes", assets);
-          const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+          const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
           await message.channel.send({files: [file]}).catch(error => {
             logger.log(
               "error",
@@ -124,9 +124,8 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
             );
           });
         } else if ("shrug" === search.toLowerCase()) {
-          const embed = new MessageEmbed();
           const asset = getAssetByName("sara-shrug", assets);
-          const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+          const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
           await message.channel.send({files: [file]}).catch(error => {
             logger.log(
               "error",

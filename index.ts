@@ -1,6 +1,6 @@
 /* eslint-disable yoda */
 /* eslint-disable import/extensions */
-import {Client, Intents} from "discord.js";
+import {Client, GatewayIntentBits, Partials} from "discord.js";
 import {readSecret} from "./modules/secrets.js";
 import {runHealthCheck} from "./modules/health-check.js";
 import {startNyseTimers, startMncTimers, startOtherTimers} from "./modules/timers.js";
@@ -21,9 +21,14 @@ const logger = getLogger();
 // Create a new client instance
 const client = new Client({
   intents: [
-    Intents.FLAGS.GUILDS,
-    Intents.FLAGS.GUILD_MESSAGES,
-    Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.GuildMessageReactions,
+  ],
+  partials: [
+    Partials.Message,
+    Partials.Channel,
+    Partials.Reaction,
   ],
 });
 

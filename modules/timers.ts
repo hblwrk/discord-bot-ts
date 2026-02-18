@@ -1,5 +1,5 @@
 /* eslint-disable import/extensions */
-import {MessageAttachment} from "discord.js";
+import {AttachmentBuilder} from "discord.js";
 import moment from "moment-timezone";
 import momentHoliday from "moment-holiday";
 import Schedule from "node-schedule";
@@ -154,7 +154,7 @@ export function startMncTimers(client, channelID: string) {
       const date = moment().format("dddd, Do MMMM YYYY");
       const shortDate = moment().format("YYYY-MM-DD");
       const fileName = `MNC-${shortDate}.pdf`;
-      const mncFile = new MessageAttachment(await buffer, fileName);
+      const mncFile = new AttachmentBuilder(await buffer, {name: fileName});
       client.channels.cache.get(channelID).send({content: `Morning News Call (${date})`, files: [mncFile]});
     });
   });
@@ -169,7 +169,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
 
   Schedule.scheduleJob(ruleFriday, async () => {
     const fridayAsset = getAssetByName("freitag", assets);
-    const fridayFile = new MessageAttachment(Buffer.from(fridayAsset.fileContent), fridayAsset.fileName);
+    const fridayFile = new AttachmentBuilder(Buffer.from(fridayAsset.fileContent), {name: fridayAsset.fileName});
     client.channels.cache.get(channelID).send({files: [fridayFile]}).catch(error => {
       logger.log(
         "error",

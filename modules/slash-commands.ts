@@ -1,9 +1,6 @@
 /* eslint-disable yoda */
 /* eslint-disable complexity */
-import {SlashCommandBuilder} from "@discordjs/builders";
-import {REST} from "@discordjs/rest";
-import {Routes} from "discord-api-types/rest/v9";
-import {MessageAttachment, MessageEmbed} from "discord.js";
+import {AttachmentBuilder, EmbedBuilder, REST, Routes, SlashCommandBuilder} from "discord.js";
 import validator from "validator";
 import {getAssetByName, ImageAsset, TextAsset} from "./assets.js";
 import {cryptodice} from "./crypto-dice.js";
@@ -23,12 +20,12 @@ const guildId = readSecret("discord_guildID");
 export function defineSlashCommands(assets, whatIsAssets, userAssets) {
   const whatIsAssetsChoices = [];
   for (const asset of whatIsAssets) {
-    whatIsAssetsChoices.push([asset.title, asset.name]);
+    whatIsAssetsChoices.push({name: asset.title, value: asset.name});
   }
 
   const userAssetsChoices = [];
   for (const asset of userAssets) {
-    userAssetsChoices.push([asset.name, asset.name]);
+    userAssetsChoices.push({name: asset.name, value: asset.name});
   }
 
   const slashCommands = [];
@@ -83,7 +80,7 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
       option.setName("search")
         .setDescription("The search term")
         .setRequired(true)
-        .addChoices(whatIsAssetsChoices));
+        .addChoices(...whatIsAssetsChoices));
   slashCommands.push(slashWhatIs.toJSON());
 
   const slashUserquotequote = new SlashCommandBuilder()
@@ -93,7 +90,7 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
       option.setName("who")
         .setDescription("Define user")
         .setRequired(false)
-        .addChoices(userAssetsChoices));
+        .addChoices(...userAssetsChoices));
   slashCommands.push(slashUserquotequote.toJSON());
 
   const slashCommandIslandboi = new SlashCommandBuilder()
@@ -118,12 +115,20 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
       option.setName("when")
         .setDescription("Alle, nur vor open, während der Handlszeiten oder nach close?")
         .setRequired(false)
-        .addChoices([["Alle", "all"], ["Vor open", "before_open"], ["Zu Handelszeiten", "during_session"], ["Nach close", "after_close"]]))
+        .addChoices(
+          {name: "Alle", value: "all"},
+          {name: "Vor open", value: "before_open"},
+          {name: "Zu Handelszeiten", value: "during_session"},
+          {name: "Nach close", value: "after_close"},
+        ))
     .addStringOption(option =>
       option.setName("filter")
         .setDescription("Welche earnings?")
         .setRequired(false)
-        .addChoices([["Alle", "all"], ["Most anticipated", "5666c5fa-80dc-4e16-8bcc-12a8314d0b07"]]))
+        .addChoices(
+          {name: "Alle", value: "all"},
+          {name: "Most anticipated", value: "5666c5fa-80dc-4e16-8bcc-12a8314d0b07"},
+        ))
     .addNumberOption(option =>
       option.setName("days")
         .setDescription("Tage in der Zukunft")
@@ -145,7 +150,7 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
 
   // Deploy slash-commands to Discord
   const rest = new REST({
-    version: "9",
+    version: "10",
   }).setToken(token);
 
   (async () => {
@@ -172,7 +177,7 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
 export function interactSlashCommands(client, assets, assetCommands, whatIsAssets, tickers: Ticker[]) {
   // Respond to slash-commands
   client.on("interactionCreate", async interaction => {
-    if (!interaction.isCommand()) {
+    if (!interaction.isChatInputCommand()) {
       return;
     }
 
@@ -182,10 +187,10 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         for (const trigger of asset.trigger) {
           if ("whatis" !== commandName && commandName === trigger.replaceAll(" ", "_")) {
             if (asset instanceof ImageAsset) {
-              const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+              const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
               if (asset instanceof ImageAsset && asset.hasText) {
                 // For images with text description, currently not used.
-                const embed = new MessageEmbed();
+                const embed = new EmbedBuilder();
                 embed.setImage(`attachment://${asset.fileName}`);
                 embed.addFields(
                   {name: asset.title, value: asset.text},
@@ -241,9 +246,9 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       // This may show up as possible object insertion in Semgrep. However, it is safe since the content of `options` is predefined by the code and not supplied by a user.
       const randomElement = options[Math.floor(Math.random() * options.length)];
-      const embed = new MessageEmbed();
+      const embed = new EmbedBuilder();
       embed.addFields(
-        {name: interaction.options.get("frage").value.toString(), value: randomElement},
+        {name: interaction.options.getString("frage", true), value: randomElement},
       );
       await interaction.reply({embeds: [embed]}).catch(error => {
         logger.log(
@@ -254,7 +259,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     if (commandName.startsWith("lmgtfy")) {
-      const search = validator.escape(interaction.options.get("search").value.toString());
+      const search = validator.escape(interaction.options.getString("search", true));
       await interaction.reply(`Let me google that for you... ${lmgtfy(search)}.`).catch(error => {
         logger.log(
           "error",
@@ -264,7 +269,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     if (commandName.startsWith("google")) {
-      const search = validator.escape(interaction.options.get("search").value.toString());
+      const search = validator.escape(interaction.options.getString("search", true));
       await interaction.reply(`Here you go: ${google(search)}.`).catch(error => {
         logger.log(
           "error",
@@ -274,17 +279,17 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     if ("whatis" === commandName) {
-      const search = validator.escape(interaction.options.get("search").value.toString());
+      const search = validator.escape(interaction.options.getString("search", true));
 
       for (const asset of whatIsAssets) {
         if (asset.name === search) {
-          const embed = new MessageEmbed();
+          const embed = new EmbedBuilder();
           embed.addFields(
             {name: asset.title, value: asset.text},
           );
 
           if (true === Object.prototype.hasOwnProperty.call(asset, "_fileName")) {
-            const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+            const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
             embed.setImage(`attachment://${asset.fileName}`);
             await interaction.reply({embeds: [embed], files: [file]});
           } else {
@@ -297,20 +302,21 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     if ("quote" === commandName) {
       let who: string;
 
-      if (null !== interaction.options.get("who")) {
-        who = validator.escape(interaction.options.get("who").value.toString());
+      const quoteUser = interaction.options.getString("who");
+      if (null !== quoteUser) {
+        who = validator.escape(quoteUser);
       } else {
         who = "any";
       }
 
       const randomQuote = getRandomQuote(who, assets);
-      const file = new MessageAttachment(Buffer.from(randomQuote.fileContent), randomQuote.fileName);
+      const file = new AttachmentBuilder(Buffer.from(randomQuote.fileContent), {name: randomQuote.fileName});
       await interaction.reply({files: [file]});
     }
 
     if ("islandboi" === commandName) {
       //  const asset = getAssetByName("islandboi", assets);
-      //  const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+      //  const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
 
       const guildUser = await client.guilds.cache.get(guildId).members.fetch(interaction.user.id);
       const mutedRole = readSecret("hblwrk_role_muted_ID");
@@ -349,26 +355,30 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       let date: string;
       let days: number;
 
-      if (null !== interaction.options.get("days")) {
-        days = interaction.options.get("days").value;
+      const daysOption = interaction.options.getNumber("days");
+      if (null !== daysOption) {
+        days = daysOption;
       } else {
         days = 0;
       }
 
-      if (null !== interaction.options.get("date")) {
-        date = validator.escape(interaction.options.get("date").value.toString());
+      const dateOption = interaction.options.getString("date");
+      if (null !== dateOption) {
+        date = validator.escape(dateOption);
       } else {
         date = "today";
       }
 
-      if (null !== interaction.options.get("when")) {
-        when = validator.escape(interaction.options.get("when").value.toString());
+      const whenOption = interaction.options.getString("when");
+      if (null !== whenOption) {
+        when = validator.escape(whenOption);
       } else {
         when = "all";
       }
 
-      if (null !== interaction.options.get("filter")) {
-        filter = validator.escape(interaction.options.get("filter").value.toString());
+      const filterOption = interaction.options.getString("filter");
+      if (null !== filterOption) {
+        filter = validator.escape(filterOption);
       }
 
       earningsEvents = await getEarnings(days, date, filter);
@@ -401,8 +411,13 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       let calendarEvents = [];
 
-      if (null !== interaction.options.get("range")) {
-        let range = validator.escape(interaction.options.get("range").value.toString());
+      const rangeOption = interaction.options.getString("range");
+      if (null !== rangeOption) {
+        let range: number = Number.parseInt(validator.escape(rangeOption), 10);
+        if (Number.isNaN(range)) {
+          range = 0;
+        }
+
         if (31 < range) {
           range = 31;
         }
@@ -437,16 +452,17 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
     if ("sara" === commandName) {
       let what: string;
-      if (null !== interaction.options.get("what")) {
-        what = validator.escape(interaction.options.get("what").value.toString());
+      const whatOption = interaction.options.getString("what");
+      if (null !== whatOption) {
+        what = validator.escape(whatOption);
 
         if ("yes" === what.toLowerCase()) {
           const asset = getAssetByName("sara-yes", assets);
-          const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+          const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
           await interaction.reply({files: [file]});
         } else if ("shrug" === what.toLowerCase()) {
           const asset = getAssetByName("sara-shrug", assets);
-          const file = new MessageAttachment(Buffer.from(asset.fileContent), asset.fileName);
+          const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
           await interaction.reply({files: [file]});
         } else {
           saraDoesNotWant();
