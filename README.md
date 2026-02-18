@@ -12,7 +12,7 @@
 
 ## Running
 
-Install NodeJS v16 or newer and start the bot like this:
+Install NodeJS v22.12 or newer and start the bot like this:
 
 ```bash
 npm install
