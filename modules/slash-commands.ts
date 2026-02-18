@@ -30,6 +30,7 @@ const guildId = readSecret("discord_guildID");
 const noMentions = {
   parse: [],
 };
+const noQuoteMessage = "Keine passenden Zitate gefunden.";
 const islandboiCooldownMs = 60_000;
 const islandboiCooldownByUser = new Map<string, number>();
 const islandboiUnmuteTimers = new Map<string, ReturnType<typeof setTimeout>>();
@@ -327,6 +328,16 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       }
 
       const randomQuote = getRandomQuote(who, assets);
+      if (!randomQuote) {
+        await interaction.reply(noQuoteMessage).catch(error => {
+          logger.log(
+            "error",
+            `Error replying to quote slashcommand: ${error}`,
+          );
+        });
+        return;
+      }
+
       const file = new AttachmentBuilder(Buffer.from(randomQuote.fileContent), {name: randomQuote.fileName});
       await interaction.reply({files: [file]});
     }
@@ -745,17 +756,27 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
         if ("yes" === what.toLowerCase()) {
           const asset = getAssetByName("sara-yes", assets);
+          if (!asset?.fileContent || !asset.fileName) {
+            await saraDoesNotWant();
+            return;
+          }
+
           const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
           await interaction.reply({files: [file]});
         } else if ("shrug" === what.toLowerCase()) {
           const asset = getAssetByName("sara-shrug", assets);
+          if (!asset?.fileContent || !asset.fileName) {
+            await saraDoesNotWant();
+            return;
+          }
+
           const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
           await interaction.reply({files: [file]});
         } else {
-          saraDoesNotWant();
+          await saraDoesNotWant();
         }
       } else {
-        saraDoesNotWant();
+        await saraDoesNotWant();
       }
     }
   });

@@ -114,6 +114,19 @@ describe("interactSlashCommands", () => {
     expect(interaction.reply).toHaveBeenCalledWith("hello-response");
   });
 
+  test("quote replies with fallback text when no quotes are available", async () => {
+    const {client, getHandler} = createEventClient();
+    interactSlashCommands(client, [], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("quote");
+    interaction.options.getString.mockImplementation(name => name === "who" ? "nobody" : null);
+
+    await handler(interaction);
+
+    expect(interaction.reply).toHaveBeenCalledWith("Keine passenden Zitate gefunden.");
+  });
+
   test("replies to whatis with embed and attachment payload", async () => {
     const {client, getHandler} = createEventClient();
     interactSlashCommands(client, [], [], [
@@ -296,5 +309,18 @@ describe("interactSlashCommands", () => {
       },
     });
     expect(interaction.followUp).not.toHaveBeenCalled();
+  });
+
+  test("sara falls back when referenced media asset is missing", async () => {
+    const {client, getHandler} = createEventClient();
+    interactSlashCommands(client, [], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("sara");
+    interaction.options.getString.mockImplementation(name => name === "what" ? "yes" : null);
+
+    await handler(interaction);
+
+    expect(interaction.reply).toHaveBeenCalledWith("Sara möchte das nicht.");
   });
 });

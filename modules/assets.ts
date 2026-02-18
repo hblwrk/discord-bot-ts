@@ -461,10 +461,12 @@ export async function getAssets(type: string): Promise<any[]> {
   }
 }
 
-export function getAssetByName(name: string, assets: any) {
+export function getAssetByName(name: string, assets: any[]): any | undefined {
   for (const asset of assets) {
     if (name === asset.name) {
       return asset;
     }
   }
+
+  return undefined;
 }

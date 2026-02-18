@@ -10,6 +10,7 @@ import {getLogger} from "./logging.js";
 import {getRandomQuote} from "./random-quote.js";
 
 const logger = getLogger();
+const noQuoteMessage = "Keine passenden Zitate gefunden.";
 
 export function addTriggerResponses(client, assets, assetCommandsWithPrefix, whatIsAssets) {
   // Message response to a trigger command (!command)
@@ -56,6 +57,16 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
               });
             } else if (asset instanceof UserAsset) {
               const randomQuote = getRandomQuote(asset.name, assets);
+              if (!randomQuote) {
+                await message.channel.send(noQuoteMessage).catch(error => {
+                  logger.log(
+                    "error",
+                    `Error sending quote fallback response: ${error}`,
+                  );
+                });
+                continue;
+              }
+
               const file = new AttachmentBuilder(Buffer.from(randomQuote.fileContent), {name: randomQuote.fileName});
               await message.channel.send({files: [file]});
             }
@@ -120,6 +131,16 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
       if ("string" === typeof search) {
         if ("yes" === search.toLowerCase()) {
           const asset = getAssetByName("sara-yes", assets);
+          if (!asset?.fileContent || !asset.fileName) {
+            message.channel.send("Sara möchte das nicht.").catch(error => {
+              logger.log(
+                "error",
+                `Error sending sara response: ${error}`,
+              );
+            });
+            return;
+          }
+
           const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
           await message.channel.send({files: [file]}).catch(error => {
             logger.log(
@@ -129,6 +150,16 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
           });
         } else if ("shrug" === search.toLowerCase()) {
           const asset = getAssetByName("sara-shrug", assets);
+          if (!asset?.fileContent || !asset.fileName) {
+            message.channel.send("Sara möchte das nicht.").catch(error => {
+              logger.log(
+                "error",
+                `Error sending sara response: ${error}`,
+              );
+            });
+            return;
+          }
+
           const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
           await message.channel.send({files: [file]}).catch(error => {
             logger.log(

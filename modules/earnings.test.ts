@@ -321,6 +321,19 @@ LW
 **Nach close:**
 RDUS, CALM`);
   });
+
+  test("single event", () => {
+    const text = getEarningsText([{
+      ticker: "AAPL",
+      date: "2024-01-03",
+      importance: 1,
+      when: "after_close",
+    }], "all", []);
+
+    expect(text).toBe(`Earnings am Mittwoch, 3. Januar 2024:
+**Nach close:**
+AAPL`);
+  });
 });
 
 describe("getEarningsMessages", () => {
@@ -364,6 +377,24 @@ describe("getEarningsMessages", () => {
     expect(batch.messages[0]).toContain("**Vor open:**");
     expect(batch.messages[0]).toContain("**Während der Handelszeiten:**");
     expect(batch.messages[0]).toContain("**Nach close:**");
+  });
+
+  test("returns one message when a single event exists", () => {
+    const batch = getEarningsMessages([{
+      ticker: "AAPL",
+      date: "2024-01-03",
+      importance: 1,
+      when: "after_close",
+    }], "all", [], {
+      maxMessageLength: 1800,
+      maxMessages: 6,
+    });
+
+    expect(batch.messages).toHaveLength(1);
+    expect(batch.truncated).toBe(false);
+    expect(batch.totalEvents).toBe(1);
+    expect(batch.includedEvents).toBe(1);
+    expect(batch.messages[0]).toContain("AAPL");
   });
 
   test("splits oversized section into multiple messages", () => {

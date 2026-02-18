@@ -29,6 +29,44 @@ const noMentions = {
   parse: [],
 };
 const calendarMessageDelayMs = 500;
+type SendableChannel = {
+  send: (payload: unknown) => Promise<unknown> | unknown;
+};
+
+function getCurrentNyseDate(): Date {
+  return moment.tz("US/Eastern").startOf("day").toDate();
+}
+
+function isNyseHolidayToday(): boolean {
+  return isHoliday(getCurrentNyseDate());
+}
+
+function getSendableChannel(client, channelID: string, source: string): SendableChannel | null {
+  const channel = client?.channels?.cache?.get(channelID);
+  if (!channel || "function" !== typeof channel.send) {
+    logger.log(
+      "error",
+      `Skipping ${source} announcement: channel ${channelID} not found or not send-capable.`,
+    );
+    return null;
+  }
+
+  return channel as SendableChannel;
+}
+
+async function sendAnnouncement(client, channelID: string, payload: unknown, source: string) {
+  const channel = getSendableChannel(client, channelID, source);
+  if (!channel) {
+    return;
+  }
+
+  await Promise.resolve(channel.send(payload)).catch(error => {
+    logger.log(
+      "error",
+      `Error sending ${source} announcement: ${error}`,
+    );
+  });
+}
 
 export function startNyseTimers(client, channelID: string) {
   const ruleNysePremarketOpen = new Schedule.RecurrenceRule();
@@ -81,80 +119,85 @@ export function startNyseTimers(client, channelID: string) {
         second: 0,
       });
       const deDate = usEasternDate.clone().tz("Europe/Berlin");
-      client.channels.cache.get(channelID).send(`🦃🍗🎉 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet und heute ist der Tag nach dem Truthahn-Tag, also beeilt euch - die Börse macht schon um ${deDate.format("HH")}:${deDate.format("mm")} zu! 🎉🍗🦃`).catch(error => {
-        logger.log(
-          "error",
-          `Error sending announcement: ${error}`,
-        );
-      });
-    } else if (true === isHoliday(new Date())) {
-      client.channels.cache.get(channelID).send("🛍️🏝️🛥️ Guten Morgen liebe Hebelhelden! Heute bleibt die Börse geschlossen. Genießt den Tag und gebt eure Gewinne für tolle Sachen aus! 🛥️🏝️🛍️").catch(error => {
-        logger.log(
-          "error",
-          `Error sending announcement: ${error}`,
-        );
-      });
+      void sendAnnouncement(
+        client,
+        channelID,
+        `🦃🍗🎉 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet und heute ist der Tag nach dem Truthahn-Tag, also beeilt euch - die Börse macht schon um ${deDate.format("HH")}:${deDate.format("mm")} zu! 🎉🍗🦃`,
+        "NYSE",
+      );
+    } else if (true === isNyseHolidayToday()) {
+      void sendAnnouncement(
+        client,
+        channelID,
+        "🛍️🏝️🛥️ Guten Morgen liebe Hebelhelden! Heute bleibt die Börse geschlossen. Genießt den Tag und gebt eure Gewinne für tolle Sachen aus! 🛥️🏝️🛍️",
+        "NYSE",
+      );
     } else {
-      client.channels.cache.get(channelID).send("😴🏦💰 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet, das Spiel beginnt! 💰🏦😴");
+      void sendAnnouncement(
+        client,
+        channelID,
+        "😴🏦💰 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet, das Spiel beginnt! 💰🏦😴",
+        "NYSE",
+      );
     }
   });
 
   Schedule.scheduleJob(ruleNyseOpen, () => {
-    if (false === isHoliday(new Date())) {
-      client.channels.cache.get(channelID).send("🔔🔔🔔 Ich bin ready. Ihr seid ready?! Na dann loooos! Huuuiiii! 🚀 Der Börsenritt beginnt, meine Freunde. Seid dabei, ihr dürft nichts verpassen! 🥳 🎠 🔔🔔🔔").catch(error => {
-        logger.log(
-          "error",
-          `Error sending announcement: ${error}`,
-        );
-      });
+    if (false === isNyseHolidayToday()) {
+      void sendAnnouncement(
+        client,
+        channelID,
+        "🔔🔔🔔 Ich bin ready. Ihr seid ready?! Na dann loooos! Huuuiiii! 🚀 Der Börsenritt beginnt, meine Freunde. Seid dabei, ihr dürft nichts verpassen! 🥳 🎠 🔔🔔🔔",
+        "NYSE",
+      );
     }
   });
 
   Schedule.scheduleJob(ruleNyseClose, () => {
-    if (false === isHoliday(new Date()) &&
+    if (false === isNyseHolidayToday() &&
         false === (dayAfterThanksgiving === moment().tz("US/Eastern").format("YYYY-MM-DD"))) {
-      client.channels.cache.get(channelID).send("🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! Teilt eure Ergebnisse in \"Heutige Gains&Losses\" 🔔🔔🔔").catch(error => {
-        logger.log(
-          "error",
-          `Error sending announcement: ${error}`,
-        );
-      });
+      void sendAnnouncement(
+        client,
+        channelID,
+        "🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! Teilt eure Ergebnisse in \"Heutige Gains&Losses\" 🔔🔔🔔",
+        "NYSE",
+      );
     }
   });
 
   Schedule.scheduleJob(ruleNyseCloseEarly, () => {
     if (dayAfterThanksgiving === moment().tz("US/Eastern").format("YYYY-MM-DD")) {
       // At the day after Thanksgiving the market closes at 13:00 local time.
-      client.channels.cache.get(channelID).send("🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! Teilt eure Ergebnisse in \"Heutige Gains&Losses\" 🔔🔔🔔").catch(error => {
-        logger.log(
-          "error",
-          `Error sending announcement: ${error}`,
-        );
-      });
+      void sendAnnouncement(
+        client,
+        channelID,
+        "🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! Teilt eure Ergebnisse in \"Heutige Gains&Losses\" 🔔🔔🔔",
+        "NYSE",
+      );
     }
   });
 
   Schedule.scheduleJob(ruleNyseAftermarketClose, () => {
-    if (false === isHoliday(new Date()) &&
+    if (false === isNyseHolidayToday() &&
         false === (dayAfterThanksgiving === moment().tz("US/Eastern").format("YYYY-MM-DD"))) {
-      client.channels.cache.get(channelID).send("🛏️🔔🔔 Und jetzt ist auch der aftermarket für euch Nachteulen geschlossen, Zeit fürs Bettchen! 🔔🔔🛏️").catch(error => {
-        logger.log(
-          "error",
-          `Error sending announcement: ${error}`,
-        );
-      });
+      void sendAnnouncement(
+        client,
+        channelID,
+        "🛏️🔔🔔 Und jetzt ist auch der aftermarket für euch Nachteulen geschlossen, Zeit fürs Bettchen! 🔔🔔🛏️",
+        "NYSE",
+      );
     }
   });
 
   Schedule.scheduleJob(ruleNyseAftermarketCloseEarly, () => {
     if (dayAfterThanksgiving === moment().tz("US/Eastern").format("YYYY-MM-DD")) {
       // At the day after Thanksgiving the aftermarket closes at 17:00 local time.
-      client.channels.cache.get(channelID).send("🍻🔔🔔 Und jetzt ist auch der aftermarket geschlossen, schönen Feierabend zusammen! 🔔🔔🍻").catch(error => {
-        logger.log(
-          "error",
-          `Error sending announcement: ${error}`,
-        );
-      });
+      void sendAnnouncement(
+        client,
+        channelID,
+        "🍻🔔🔔 Und jetzt ist auch der aftermarket geschlossen, schönen Feierabend zusammen! 🔔🔔🍻",
+        "NYSE",
+      );
     }
   });
 }
@@ -167,15 +210,26 @@ export function startMncTimers(client, channelID: string) {
   ruleMnc.tz = "US/Eastern";
 
   Schedule.scheduleJob(ruleMnc, async () => {
-    const buffer = getMnc();
-    buffer.then(async buffer => {
-      moment.locale("de");
-      const date = moment().format("dddd, Do MMMM YYYY");
-      const shortDate = moment().format("YYYY-MM-DD");
-      const fileName = `MNC-${shortDate}.pdf`;
-      const mncFile = new AttachmentBuilder(await buffer, {name: fileName});
-      client.channels.cache.get(channelID).send({content: `Morning News Call (${date})`, files: [mncFile]});
-    });
+    const buffer = await getMnc();
+    if (!buffer) {
+      logger.log(
+        "warn",
+        "Skipping MNC announcement: no file downloaded.",
+      );
+      return;
+    }
+
+    moment.locale("de");
+    const date = moment().format("dddd, Do MMMM YYYY");
+    const shortDate = moment().format("YYYY-MM-DD");
+    const fileName = `MNC-${shortDate}.pdf`;
+    const mncFile = new AttachmentBuilder(buffer, {name: fileName});
+    await sendAnnouncement(
+      client,
+      channelID,
+      {content: `Morning News Call (${date})`, files: [mncFile]},
+      "MNC",
+    );
   });
 }
 
@@ -188,13 +242,16 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
 
   Schedule.scheduleJob(ruleFriday, async () => {
     const fridayAsset = getAssetByName("freitag", assets);
-    const fridayFile = new AttachmentBuilder(Buffer.from(fridayAsset.fileContent), {name: fridayAsset.fileName});
-    client.channels.cache.get(channelID).send({files: [fridayFile]}).catch(error => {
+    if (!fridayAsset?.fileContent || !fridayAsset.fileName) {
       logger.log(
-        "error",
-        `Error sending friday announcement: ${error}`,
+        "warn",
+        "Skipping friday announcement: asset missing or incomplete.",
       );
-    });
+      return;
+    }
+
+    const fridayFile = new AttachmentBuilder(Buffer.from(fridayAsset.fileContent), {name: fridayAsset.fileName});
+    await sendAnnouncement(client, channelID, {files: [fridayFile]}, "friday");
   });
 
   const ruleEarnings = new Schedule.RecurrenceRule();
@@ -240,7 +297,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
     }
 
     if (0 < earningsBatch.messages.length) {
-      const channel = client.channels.cache.get(channelID);
+      const channel = getSendableChannel(client, channelID, "earnings");
       await sendChunkedMessages(channel, earningsBatch.messages, "earnings");
     }
   });
@@ -262,7 +319,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
     logCalendarBatch("timer-daily", calendarBatch);
 
     if (0 < calendarBatch.messages.length) {
-      const channel = client.channels.cache.get(channelID);
+      const channel = getSendableChannel(client, channelID, "calendar");
       await sendChunkedMessages(channel, calendarBatch.messages, "calendar");
     }
   });
@@ -288,7 +345,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
     logCalendarBatch("timer-weekly", calendarBatch);
 
     if (0 < calendarBatch.messages.length) {
-      const channel = client.channels.cache.get(channelID);
+      const channel = getSendableChannel(client, channelID, "calendar");
       await sendChunkedMessages(channel, calendarBatch.messages, "calendar");
     }
   });
@@ -309,20 +366,16 @@ function dedupeCalendarEvents(calendarEvents: CalendarEvent[]): CalendarEvent[] 
   return dedupedEvents;
 }
 
-async function sendChunkedMessages(channel: any, messages: string[], source: "calendar" | "earnings") {
+async function sendChunkedMessages(channel: SendableChannel | null, messages: string[], source: "calendar" | "earnings") {
   if (!channel) {
-    logger.log(
-      "error",
-      `Error sending ${source} announcement: channel not found`,
-    );
     return;
   }
 
   for (let index = 0; index < messages.length; index++) {
-    await channel.send({
+    await Promise.resolve(channel.send({
       content: messages[index],
       allowedMentions: noMentions,
-    }).catch(error => {
+    })).catch(error => {
       logger.log(
         "error",
         `Error sending ${source} announcement: ${error}`,

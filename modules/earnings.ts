@@ -410,7 +410,7 @@ export function getEarningsText(
 ): string {
   let earningsText = "none";
 
-  if (1 < earningsEvents.length) {
+  if (0 < earningsEvents.length) {
     let earningsBeforeOpen = "";
     let earningsDuringSession = "";
     let earningsAfterClose = "";
@@ -499,7 +499,7 @@ export function getEarningsMessages(
     .filter(event => selectedWhen.has(event.when))
     .sort((first, second) => first.importance - second.importance);
 
-  if (0 === filteredAndSortedEvents.length || 1 >= earningsEvents.length) {
+  if (0 === filteredAndSortedEvents.length) {
     return {
       messages: [],
       truncated: false,

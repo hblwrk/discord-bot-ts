@@ -106,6 +106,22 @@ function createClientWithChannel() {
   };
 }
 
+function createClientWithoutChannel() {
+  const get = jest.fn(() => undefined);
+  const client = {
+    channels: {
+      cache: {
+        get,
+      },
+    },
+  };
+
+  return {
+    client,
+    get,
+  };
+}
+
 describe("timers", () => {
   beforeEach(() => {
     jest.useFakeTimers();
@@ -198,6 +214,30 @@ describe("timers", () => {
     expect(send).toHaveBeenCalledWith(expect.stringContaining("19:00"));
   });
 
+  test("startNyseTimers treats holiday check by US/Eastern date for aftermarket close", () => {
+    const {client, send} = createClientWithChannel();
+    // 20:00 US/Eastern on 2025-12-25 equals 2025-12-26T01:00:00Z.
+    jest.setSystemTime(new Date("2025-12-26T01:00:00Z"));
+    isHolidayMock.mockImplementation(date => date.toDateString() === "Thu Dec 25 2025");
+
+    startNyseTimers(client as any, "channel-id");
+    scheduledJobs[4].callback();
+
+    expect(send).not.toHaveBeenCalled();
+    expect(isHolidayMock).toHaveBeenCalledWith(expect.any(Date));
+  });
+
+  test("startNyseTimers skips announcement when channel is missing", () => {
+    const {client} = createClientWithoutChannel();
+
+    startNyseTimers(client as any, "channel-id");
+
+    expect(() => {
+      scheduledJobs[0].callback();
+    }).not.toThrow();
+    expect(loggerMock.log).toHaveBeenCalledWith("error", expect.stringContaining("Skipping NYSE announcement"));
+  });
+
   test("startMncTimers schedules MNC announcement and sends attachment payload", async () => {
     const {client, send} = createClientWithChannel();
 
@@ -224,6 +264,27 @@ describe("timers", () => {
     }));
   });
 
+  test("startMncTimers skips announcement when no MNC file was downloaded", async () => {
+    const {client, send} = createClientWithChannel();
+    getMncMock.mockResolvedValueOnce(undefined);
+
+    startMncTimers(client as any, "channel-id");
+    await scheduledJobs[0].callback();
+
+    expect(attachmentBuilderMock).not.toHaveBeenCalled();
+    expect(send).not.toHaveBeenCalled();
+    expect(loggerMock.log).toHaveBeenCalledWith("warn", "Skipping MNC announcement: no file downloaded.");
+  });
+
+  test("startMncTimers logs and skips when channel is missing", async () => {
+    const {client} = createClientWithoutChannel();
+
+    startMncTimers(client as any, "channel-id");
+    await scheduledJobs[0].callback();
+
+    expect(loggerMock.log).toHaveBeenCalledWith("error", expect.stringContaining("Skipping MNC announcement"));
+  });
+
   test("startOtherTimers schedules all other jobs and sends Friday asset", async () => {
     const {client, send} = createClientWithChannel();
     const assets = [{title: "freitag"}];
@@ -243,6 +304,17 @@ describe("timers", () => {
     expect(send).toHaveBeenCalledWith(expect.objectContaining({
       files: expect.any(Array),
     }));
+  });
+
+  test("startOtherTimers skips Friday announcement when asset is missing", async () => {
+    const {client, send} = createClientWithChannel();
+    getAssetByNameMock.mockReturnValueOnce(undefined);
+
+    startOtherTimers(client as any, "channel-id", [], []);
+    await scheduledJobs[0].callback();
+
+    expect(send).not.toHaveBeenCalled();
+    expect(loggerMock.log).toHaveBeenCalledWith("warn", "Skipping friday announcement: asset missing or incomplete.");
   });
 
   test("startOtherTimers does not send earnings message when formatter returns none", async () => {
