@@ -343,11 +343,29 @@ export class EmojiAsset extends BaseAsset {
   }
 }
 
+async function populateDracoonAsset(type: string, asset: ImageAsset | UserQuoteAsset): Promise<boolean> {
+  if (false === asset.hasOwnProperty("_location") || "dracoon" !== asset.location) {
+    return true;
+  }
+
+  try {
+    asset.fileContent = await getFromDracoon(readSecret("dracoon_password"), asset.locationId);
+    return true;
+  } catch (error: unknown) {
+    const assetId = asset.name ?? asset.fileName ?? asset.locationId ?? "unknown";
+    logger.log(
+      "warn",
+      `Skipping ${type} asset "${assetId}" because DRACOON fetch failed: ${error}`,
+    );
+    return false;
+  }
+}
+
 export async function getGenericAssets() {
   const assetTypes = ["emoji", "image", "text", "user", "userquote"];
   const newAssets = [];
   for (const assetType of assetTypes) {
-    const assets = await getAssets(assetType);
+    const assets = await getAssets(assetType) ?? [];
     for (const asset of assets) {
       newAssets.push(asset);
     }
@@ -364,10 +382,8 @@ export async function getAssets(type: string): Promise<any[]> {
       switch (type) {
         case "image": {
           const newAsset = plainToClass(ImageAsset, jsonObject);
-          if (true === newAsset.hasOwnProperty("_location")) {
-            if ("dracoon" === newAsset.location) {
-              newAsset.fileContent = await getFromDracoon(readSecret("dracoon_password"), newAsset.locationId);
-            }
+          if (false === await populateDracoonAsset(type, newAsset)) {
+            break;
           }
 
           newAssets.push(newAsset);
@@ -394,21 +410,18 @@ export async function getAssets(type: string): Promise<any[]> {
 
         case "userquote": {
           const newAsset = plainToClass(UserQuoteAsset, jsonObject);
-          if (true === newAsset.hasOwnProperty("_location")) {
-            if ("dracoon" === newAsset.location) {
-              newAsset.fileContent = await getFromDracoon(readSecret("dracoon_password"), newAsset.locationId);
-            }
+          if (false === await populateDracoonAsset(type, newAsset)) {
+            break;
           }
+
           newAssets.push(newAsset);
           break;
         }
 
         case "whatis": {
           const newAsset = plainToClass(ImageAsset, jsonObject);
-          if (true === newAsset.hasOwnProperty("_location")) {
-            if ("dracoon" === newAsset.location) {
-              newAsset.fileContent = await getFromDracoon(readSecret("dracoon_password"), newAsset.locationId);
-            }
+          if (false === await populateDracoonAsset(type, newAsset)) {
+            break;
           }
 
           newAssets.push(newAsset);
@@ -443,6 +456,8 @@ export async function getAssets(type: string): Promise<any[]> {
       "error",
       `Error creating assets: ${error}`,
     );
+
+    return [];
   }
 }
 
