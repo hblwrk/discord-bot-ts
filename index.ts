@@ -17,6 +17,7 @@ import {clownboard} from "./modules/clownboard.js";
 const token = readSecret("discord_token");
 
 const logger = getLogger();
+console.log(`Started with loglevel: ${logger.level}`);
 
 // Create a new client instance
 const client = new Client({
