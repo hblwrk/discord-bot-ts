@@ -116,6 +116,16 @@ describe("runHealthCheck", () => {
     expect(response.send).toHaveBeenCalledWith("stonks");
   });
 
+  test("falls back to default port when healthcheck secret is missing", () => {
+    mockReadSecret.mockImplementation(() => {
+      throw new Error("Missing secret \"healthcheck_port\"");
+    });
+
+    runHealthCheck(() => createState());
+
+    expect(mockListen).toHaveBeenCalledWith(11312, "127.0.0.1");
+  });
+
   test("returns readiness state depending on discord login and handler attachment", () => {
     let startupState = createState();
     runHealthCheck(() => startupState);
