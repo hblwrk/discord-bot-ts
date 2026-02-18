@@ -19,7 +19,7 @@
     "class-transformer": "^0.5.1",
     "discord.js": "^14.25.1",
     "express": "^4.21.2",
-    "js-yaml": "^4.1.0",
+    "js-yaml": "^4.1.1",
     "moment-holiday": "^1.5.1",
     "moment-timezone": "^0.5.43",
     "node-schedule": "^2.1.1",
