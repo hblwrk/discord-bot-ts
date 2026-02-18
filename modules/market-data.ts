@@ -43,7 +43,7 @@ export async function updateMarketData() {
     return;
   }
 
-  const guildId = readSecret("discord_guildID").trim();
+  const guildId = readSecret("discord_guild_ID").trim();
   const clientsById = new Map<string, Client>();
   let streamStarted = false;
 

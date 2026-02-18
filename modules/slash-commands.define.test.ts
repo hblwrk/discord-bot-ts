@@ -26,11 +26,11 @@ jest.mock("./secrets.js", () => ({
       return "test-token";
     }
 
-    if ("discord_clientID" === secretName) {
+    if ("discord_client_ID" === secretName) {
       return "client-id";
     }
 
-    if ("discord_guildID" === secretName) {
+    if ("discord_guild_ID" === secretName) {
       return "guild-id";
     }
 

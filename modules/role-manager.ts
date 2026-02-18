@@ -5,12 +5,12 @@ const logger = getLogger();
 
 export async function roleManager(client, assetRoles) {
   // Cache existing messages
-  const clientId = readSecret("discord_clientID").trim();
-  const guildId = readSecret("discord_guildID").trim();
-  const channelId = readSecret("hblwrk_role_assignment_channelID").trim();
+  const clientId = readSecret("discord_client_ID").trim();
+  const guildId = readSecret("discord_guild_ID").trim();
+  const channelId = readSecret("hblwrk_role_assignment_channel_ID").trim();
   const brokerYesRole = readSecret("hblwrk_role_broker_yes_ID").trim();
-  const brokerMessageId = readSecret("hblwrk_role_assignment_broker_messageID").trim();
-  const specialMessageId = readSecret("hblwrk_role_assignment_special_messageID").trim();
+  const brokerMessageId = readSecret("hblwrk_role_assignment_broker_message_ID").trim();
+  const specialMessageId = readSecret("hblwrk_role_assignment_special_message_ID").trim();
 
   if ("" === guildId || "" === channelId || "" === brokerMessageId || "" === specialMessageId) {
     logger.log(
@@ -68,7 +68,7 @@ export async function roleManager(client, assetRoles) {
 
   // Bootstrap message with emojis if they do not already exist
   for (const role of assetRoles) {
-    if ("hblwrk_role_assignment_broker_messageID" === role.triggerReference) {
+    if ("hblwrk_role_assignment_broker_message_ID" === role.triggerReference) {
       let emoji = "";
       if (role.emoji.startsWith("custom:")) {
         const customEmoji = guild.emojis.cache.find(emoji => emoji.name === role.emoji.replace("custom:", ""));
@@ -91,7 +91,7 @@ export async function roleManager(client, assetRoles) {
           `Role manager: unable to add reaction ${emoji} on broker message: ${error}`,
         );
       });
-    } else if ("hblwrk_role_assignment_special_messageID" === role.triggerReference) {
+    } else if ("hblwrk_role_assignment_special_message_ID" === role.triggerReference) {
       let emoji = "";
       if (role.emoji.startsWith("custom:")) {
         const customEmoji = guild.emojis.cache.find(emoji => emoji.name === role.emoji.replace("custom:", ""));

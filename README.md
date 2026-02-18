@@ -81,26 +81,24 @@ Containers are created by multi-stage builds based on "distroless" base-images. 
 
 ## Secrets
 
-Values like the bots `token`, `guildID` and `clientID` are considered secrets and specific to each user running the bot. When using Docker, those need to be specified prior to running `docker-compose`. Mind that there is a specific set of values for both production and staging environments, identified by the corresponding prefix.
+Values like the bots `token`, `guild_ID` and `client_ID` are considered secrets and specific to each user running the bot. When using Docker, those need to be specified prior to running `docker-compose`. Mind that there is a specific set of values for both production and staging environments, identified by the corresponding prefix.
 
 ```bash
 echo -n "hunter0" | docker secret create production_environment -
 echo -n "hunter1" | docker secret create production_discord_token -
-echo -n "hunter2" | docker secret create production_discord_clientID -
-echo -n "hunter3" | docker secret create production_discord_guildID -
+echo -n "hunter2" | docker secret create production_discord_client_ID -
+echo -n "hunter3" | docker secret create production_discord_guild_ID -
 echo -n "hunter4" | docker secret create production_dracoon_password -
 echo -n "hunter5" | docker secret create production_healthcheck_port -
 echo -n "hunter6" | docker secret create production_hblwrk_channel_NYSEAnnouncement_ID -
 echo -n "hunter7" | docker secret create production_hblwrk_channel_MNCAnnouncement_ID -
 echo -n "hunter8" | docker secret create production_hblwrk_channel_OtherAnnouncement_ID -
 echo -n "hunter9" | docker secret create production_discord_btcusd_token -
-echo -n "hunter10" | docker secret create production_discord_btcusd_clientID -
+echo -n "hunter10" | docker secret create production_discord_btcusd_client_ID -
 ...
 ```
 
 Check the `config.json` example below for a reference set of configuration parameters. Keep it in sync with key references in `assets/*.yaml` and secrets in `tools/docker-compose-production.yml`.
-
-Note: `hblwrk_role_special_realestate_ID` exists in `assets/role.yaml`, but `tools/docker-compose-production.yml` currently does not define `production_hblwrk_role_special_realestate_ID`. Add it there when that role is used in production.
 
 By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams. When running outside of Docker, the code looks for `config.json` and expects the following syntax. Mind that all values which are not set in this example require some sort of password or Discord bot- or server-specific ID.
 
@@ -112,38 +110,38 @@ In Docker-based deployments without `config.json`, you can override this with th
   "environment": "staging",
   "loglevel": "info",
   "discord_token": "",
-  "discord_clientID": "",
-  "discord_guildID": "",
+  "discord_client_ID": "",
+  "discord_guild_ID": "",
   "discord_btcusd_token": "",
-  "discord_btcusd_clientID": "",
+  "discord_btcusd_client_ID": "",
   "discord_ethusd_token": "",
-  "discord_ethusd_clientID": "",
+  "discord_ethusd_client_ID": "",
   "discord_solusd_token": "",
-  "discord_solusd_clientID": "",
+  "discord_solusd_client_ID": "",
   "discord_oneusd_token": "",
-  "discord_oneusd_clientID": "",
+  "discord_oneusd_client_ID": "",
   "discord_es_token": "",
-  "discord_es_clientID": "",
+  "discord_es_client_ID": "",
   "discord_nq_token": "",
-  "discord_nq_clientID": "",
+  "discord_nq_client_ID": "",
   "discord_rty_token": "",
-  "discord_rty_clientID": "",
+  "discord_rty_client_ID": "",
   "discord_vix_token": "",
-  "discord_vix_clientID": "",
+  "discord_vix_client_ID": "",
   "discord_dax_token": "",
-  "discord_dax_clientID": "",
+  "discord_dax_client_ID": "",
   "discord_cl_token": "",
-  "discord_cl_clientID": "",
+  "discord_cl_client_ID": "",
   "discord_xau_token": "",
-  "discord_xau_clientID": "",
+  "discord_xau_client_ID": "",
   "discord_eurusd_token": "",
-  "discord_eurusd_clientID": "",
+  "discord_eurusd_client_ID": "",
   "discord_2y_token": "",
-  "discord_2y_clientID": "",
+  "discord_2y_client_ID": "",
   "discord_10y_token": "",
-  "discord_10y_clientID": "",
+  "discord_10y_client_ID": "",
   "discord_30y_token": "",
-  "discord_30y_clientID": "",
+  "discord_30y_client_ID": "",
   "dracoon_password": "",
   "healthcheck_port": "11312",
   "hblwrk_channel_NYSEAnnouncement_ID": "",
@@ -151,9 +149,9 @@ In Docker-based deployments without `config.json`, you can override this with th
   "hblwrk_channel_OtherAnnouncement_ID": "",
   "hblwrk_channel_logging_ID": "",
   "hblwrk_channel_clownboard_ID": "",
-  "hblwrk_role_assignment_channelID": "",
-  "hblwrk_role_assignment_broker_messageID": "",
-  "hblwrk_role_assignment_special_messageID": "",
+  "hblwrk_role_assignment_channel_ID": "",
+  "hblwrk_role_assignment_broker_message_ID": "",
+  "hblwrk_role_assignment_special_message_ID": "",
   "hblwrk_role_broker_yes_ID": "",
   "hblwrk_role_broker_tastyworks_ID": "",
   "hblwrk_role_broker_ibkr_ID": "",
