@@ -32,13 +32,14 @@ export async function getTickers(index: string): Promise<Ticker[]> {
 
   if ("nasdaq100" === index.toLocaleLowerCase() || "all" === index.toLocaleLowerCase()) {
     try {
-      const nasdaq100Response: AxiosResponse = await axios.get(`https://financialmodelingprep.com/api/v3/nasdaq_constituent?apikey=${readSecret("service_financialmodelingprep_apiKey")}`);
+      const nasdaq100Response: AxiosResponse = await axios.get(`https://yfiua.github.io/index-constituents/constituents-nasdaq100.json
+`);
 
       if (1 < nasdaq100Response.data.length) {
         for (const element of nasdaq100Response.data) {
           const ticker = new Ticker();
-          ticker.symbol = element.symbol;
-          ticker.name = element.name;
+          ticker.symbol = element.Symbol;
+          ticker.name = element.Name;
           ticker.exchange = "nasdaq100";
           tickers.push(ticker);
         }

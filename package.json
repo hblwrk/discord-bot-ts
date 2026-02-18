@@ -5,8 +5,8 @@
   "description": "Hebelwerk Discord Bot",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"running...\" && exit 0",
-    "run": "echo \"running...\" && exit 0"
+    "test": "jest",
+    "prod": "node --loader ts-node/esm index.ts"
   },
   "repository": {
     "type": "git",
@@ -50,6 +50,6 @@
     "xo": "^0.59.3"
   },
   "engines": {
-    "node": ">=18.0.0 <24.0.0"
+    "node": ">=18.0.0 <26.0.0"
   }
 }
