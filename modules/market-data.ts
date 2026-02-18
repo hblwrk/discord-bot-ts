@@ -330,8 +330,18 @@ function unwrapSocketFrames(rawMessage: string): string[] {
     const parsedFrames = JSON.parse(trimmedMessage.slice(1));
     if (Array.isArray(parsedFrames)) {
       return parsedFrames
-        .filter((frame): frame is string => "string" === typeof frame)
-        .map(frame => frame.trim());
+        .map(frame => {
+          if ("string" === typeof frame) {
+            return frame.trim();
+          }
+
+          if ("object" === typeof frame && null !== frame) {
+            return JSON.stringify(frame);
+          }
+
+          return null;
+        })
+        .filter((frame): frame is string => "string" === typeof frame && "" !== frame);
     }
   } catch {
     // Ignore malformed frame envelope and let parser continue with raw text.
@@ -341,7 +351,7 @@ function unwrapSocketFrames(rawMessage: string): string[] {
 }
 
 function parsePayloadCandidate(candidate: string, depth: number): Record<string, unknown> | null {
-  if (depth > 3) {
+  if (depth > 6) {
     return null;
   }
 
@@ -350,17 +360,51 @@ function parsePayloadCandidate(candidate: string, depth: number): Record<string,
     return null;
   }
 
-  const parsedCandidate = tryParseJsonObject(trimmedCandidate);
-  if (null !== parsedCandidate) {
-    if ("string" === typeof parsedCandidate.message) {
-      const parsedMessage = parsePayloadCandidate(parsedCandidate.message, depth + 1);
-      if (null !== parsedMessage) {
-        return parsedMessage;
+  if (trimmedCandidate.startsWith("a[")) {
+    const unwrappedFrames = unwrapSocketFrames(trimmedCandidate);
+    for (const unwrappedFrame of unwrappedFrames) {
+      if (unwrappedFrame !== trimmedCandidate) {
+        const parsedUnwrappedFrame = parsePayloadCandidate(unwrappedFrame, depth + 1);
+        if (null !== parsedUnwrappedFrame) {
+          return parsedUnwrappedFrame;
+        }
       }
     }
+  }
 
-    if (true === hasStreamEventFields(parsedCandidate)) {
-      return parsedCandidate;
+  const parsedCandidate = tryParseJsonValue(trimmedCandidate);
+  if (null !== parsedCandidate) {
+    if ("string" === typeof parsedCandidate) {
+      const parsedStringPayload = parsePayloadCandidate(parsedCandidate, depth + 1);
+      if (null !== parsedStringPayload) {
+        return parsedStringPayload;
+      }
+    } else if (Array.isArray(parsedCandidate)) {
+      for (const frameCandidate of parsedCandidate) {
+        if ("string" === typeof frameCandidate) {
+          const parsedFrameCandidate = parsePayloadCandidate(frameCandidate, depth + 1);
+          if (null !== parsedFrameCandidate) {
+            return parsedFrameCandidate;
+          }
+        } else if ("object" === typeof frameCandidate && null !== frameCandidate) {
+          const parsedFrameCandidate = parsePayloadCandidate(JSON.stringify(frameCandidate), depth + 1);
+          if (null !== parsedFrameCandidate) {
+            return parsedFrameCandidate;
+          }
+        }
+      }
+    } else {
+      const parsedObjectCandidate = parsedCandidate as Record<string, unknown>;
+      if ("string" === typeof parsedObjectCandidate.message) {
+        const parsedMessage = parsePayloadCandidate(parsedObjectCandidate.message, depth + 1);
+        if (null !== parsedMessage) {
+          return parsedMessage;
+        }
+      }
+
+      if (true === hasStreamEventFields(parsedObjectCandidate)) {
+        return parsedObjectCandidate;
+      }
     }
   }
 
@@ -374,18 +418,18 @@ function parsePayloadCandidate(candidate: string, depth: number): Record<string,
 
   const extractedObject = extractJsonObject(trimmedCandidate);
   if (null !== extractedObject && extractedObject !== trimmedCandidate) {
-    return parsePayloadCandidate(extractedObject, depth + 1);
+    const extractedPayload = parsePayloadCandidate(extractedObject, depth + 1);
+    if (null !== extractedPayload) {
+      return extractedPayload;
+    }
   }
 
   return null;
 }
 
-function tryParseJsonObject(candidate: string): Record<string, unknown> | null {
+function tryParseJsonValue(candidate: string): unknown | null {
   try {
-    const parsed = JSON.parse(candidate);
-    if ("object" === typeof parsed && null !== parsed && false === Array.isArray(parsed)) {
-      return parsed as Record<string, unknown>;
-    }
+    return JSON.parse(candidate);
   } catch {
     // Ignore malformed payloads and let caller continue.
   }
