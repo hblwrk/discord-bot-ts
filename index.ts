@@ -34,7 +34,7 @@ const client = new Client({
 
 // Log one-time events, e.g. log-in
 const eventReady = {
-  name: "ready",
+  name: "clientReady",
   once: true,
   execute() {
     logger.log(

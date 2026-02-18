@@ -29,7 +29,7 @@ export async function updateMarketData() {
         );
       });
 
-      client.on("ready", () => {
+      client.on("clientReady", () => {
         // Bot connection successful
         logger.log(
           "info",

@@ -22,4 +22,4 @@ HEALTHCHECK NONE
 
 EXPOSE 11312/tcp
 
-CMD ["--loader", "ts-node/esm", "index.ts"]
+CMD ["--import", "tsx", "index.ts"]

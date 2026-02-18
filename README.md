@@ -16,7 +16,7 @@ Install NodeJS v22.12 or newer and start the bot like this:
 
 ```bash
 npm install
-node --loader ts-node/esm index.ts
+node --import tsx index.ts
 ```
 
 ## Workflow

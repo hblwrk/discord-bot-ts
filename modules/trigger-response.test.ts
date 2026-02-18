@@ -41,4 +41,19 @@ describe("addTriggerResponses", () => {
       files: expect.any(Array),
     }));
   });
+
+  test("replies to cryptodice trigger messages", async () => {
+    const {client, getHandler} = createEventClient();
+
+    addTriggerResponses(client, [], [], []);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("!cryptodice");
+
+    await handler(message);
+
+    expect(message.channel.send).toHaveBeenCalledTimes(1);
+    const reply = message.channel.send.mock.calls[0][0];
+    expect(reply.startsWith("Rolling the crypto dice... ")).toBe(true);
+  });
 });
