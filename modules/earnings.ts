@@ -20,10 +20,13 @@ export interface EarningsEvent {
   importance: number;
 }
 
+export type EarningsLoadStatus = "ok" | "blocked" | "error";
+
 export const EARNINGS_MAX_MESSAGE_LENGTH = 1800;
 export const EARNINGS_MAX_MESSAGES_TIMER = 8;
 export const EARNINGS_MAX_MESSAGES_SLASH = 6;
 export const EARNINGS_CONTINUATION_LABEL = "(Fortsetzung)";
+export const EARNINGS_BLOCKED_MESSAGE = "Stocktwits zeigt aktuell eine \"Just a moment...\"-Seite (Cloudflare). Earnings konnten daher nicht geladen werden.";
 
 export type EarningsMessageBatch = {
   messages: string[];
@@ -61,10 +64,25 @@ type StocktwitsEarningsResponse = {
   }>;
 };
 
+type StocktwitsBlockedErrorCode = "stocktwits_blocked";
+type StocktwitsLoadResult = {
+  data: StocktwitsEarningsResponse;
+  watchlistFilterDropped: boolean;
+};
+
+export type EarningsLoadResult = {
+  events: EarningsEvent[];
+  status: EarningsLoadStatus;
+  watchlistFilterDropped: boolean;
+};
+
 const stocktwitsEarningsEndpoint = "https://api.stocktwits.com/api/2/discover/earnings_calendar";
 const stocktwitsRequestHeaders = {
   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
   "Accept": "application/json, text/plain, */*",
+  "Accept-Language": "en-US,en;q=0.9",
+  "Origin": "https://stocktwits.com",
+  "Referer": "https://stocktwits.com/sentiment/calendar",
   "X-Requested-With": "XMLHttpRequest",
 };
 
@@ -73,6 +91,15 @@ export async function getEarnings(
   date: "today" | "tomorrow" | string,
   filter: string
 ): Promise<EarningsEvent[]> {
+  const earningsResult = await getEarningsResult(days, date, filter);
+  return earningsResult.events;
+}
+
+export async function getEarningsResult(
+  days: number,
+  date: "today" | "tomorrow" | string,
+  filter: string
+): Promise<EarningsLoadResult> {
   let dateStamp: string;
 
   let usEasternTime: moment.Moment = moment.tz("US/Eastern").set({
@@ -136,45 +163,184 @@ export async function getEarnings(
   });
 
   const earningsEvents: EarningsEvent[] = [];
+  let watchlistFilterDropped = false;
+  let status: EarningsLoadStatus = "ok";
 
   try {
     const stocktwitsEarnings = await loadStocktwitsEarnings(dateStamp, filter);
+    watchlistFilterDropped = stocktwitsEarnings.watchlistFilterDropped;
     appendStocktwitsEarningsEvents(
       earningsEvents,
-      stocktwitsEarnings,
+      stocktwitsEarnings.data,
       dateStamp,
       nyseOpenTime,
       nyseCloseTime
     );
-  } catch (error) {
-    logger.log("error", `Loading earnings failed: ${error}`);
+  } catch (stocktwitsError) {
+    if (true === isStocktwitsBlockedError(stocktwitsError)) {
+      status = "blocked";
+      logger.log(
+        "error",
+        "Loading earnings failed: Stocktwits request was blocked by a Cloudflare challenge."
+      );
+    } else {
+      status = "error";
+      logger.log("error", `Loading earnings failed: ${stocktwitsError}`);
+    }
   }
 
-  return earningsEvents;
+  return {
+    events: earningsEvents,
+    status,
+    watchlistFilterDropped,
+  };
 }
 
 async function loadStocktwitsEarnings(
   dateStamp: string,
   filter: string
-): Promise<StocktwitsEarningsResponse> {
+): Promise<StocktwitsLoadResult> {
   const query = new URLSearchParams({
     date_from: dateStamp,
     date_to: dateStamp,
   });
+  const hasWatchlistFilter = "all" !== filter;
 
-  if ("all" !== filter) {
+  if (true === hasWatchlistFilter) {
     query.set("watchlist", filter);
   }
 
-  // https://api.stocktwits.com/api/2/discover/earnings_calendar?date_from=2023-01-05
-  const response = await getWithRetry<StocktwitsEarningsResponse>(
-    `${stocktwitsEarningsEndpoint}?${query.toString()}`,
-    {
-      headers: stocktwitsRequestHeaders,
-    }
-  );
+  try {
+    // https://api.stocktwits.com/api/2/discover/earnings_calendar?date_from=2023-01-05
+    const response = await getWithRetry<StocktwitsEarningsResponse>(
+      `${stocktwitsEarningsEndpoint}?${query.toString()}`,
+      {
+        headers: stocktwitsRequestHeaders,
+      }
+    );
 
-  return response.data ?? {};
+    if (true === isStocktwitsBlockedResponse(response.data, response.headers)) {
+      throw getStocktwitsBlockedError();
+    }
+
+    return {
+      data: response.data ?? {},
+      watchlistFilterDropped: false,
+    };
+  } catch (error) {
+    if (
+      false === hasWatchlistFilter ||
+      false === (isHttpErrorStatus(error, 403) || isStocktwitsBlockedError(error))
+    ) {
+      throw error;
+    }
+
+    logger.log(
+      "warn",
+      "Stocktwits watchlist request was blocked (403 or challenge page). Retrying without watchlist filter."
+    );
+    query.delete("watchlist");
+    const fallbackResponse = await getWithRetry<StocktwitsEarningsResponse>(
+      `${stocktwitsEarningsEndpoint}?${query.toString()}`,
+      {
+        headers: stocktwitsRequestHeaders,
+      }
+    );
+
+    if (true === isStocktwitsBlockedResponse(fallbackResponse.data, fallbackResponse.headers)) {
+      throw getStocktwitsBlockedError();
+    }
+
+    return {
+      data: fallbackResponse.data ?? {},
+      watchlistFilterDropped: true,
+    };
+  }
+}
+
+function isHttpErrorStatus(error: unknown, statusCode: number): boolean {
+  if ("object" !== typeof error || null === error) {
+    return false;
+  }
+
+  const maybeError = error as {
+    response?: {
+      status?: number;
+    };
+  };
+
+  return maybeError.response?.status === statusCode;
+}
+
+function isStocktwitsBlockedResponse(data: unknown, headers: unknown): boolean {
+  const contentType = getHeaderValue(headers, "content-type");
+  if ("string" === typeof contentType && true === contentType.toLowerCase().includes("text/html")) {
+    return true;
+  }
+
+  if ("string" !== typeof data) {
+    return false;
+  }
+
+  const normalizedData = data.toLowerCase();
+  return (
+    true === normalizedData.includes("just a moment") ||
+    true === normalizedData.includes("enable javascript and cookies to continue") ||
+    true === normalizedData.includes("__cf_chl_opt")
+  );
+}
+
+function getHeaderValue(headers: unknown, key: string): string | undefined {
+  if (
+    "object" === typeof headers &&
+    null !== headers &&
+    "function" === typeof (headers as { get?: unknown }).get
+  ) {
+    const value = (headers as {
+      get: (name: string) => unknown;
+    }).get(key);
+    if ("string" === typeof value) {
+      return value;
+    }
+  }
+
+  if ("object" !== typeof headers || null === headers) {
+    return undefined;
+  }
+
+  const normalizedKey = key.toLowerCase();
+  for (const [headerName, headerValue] of Object.entries(headers as Record<string, unknown>)) {
+    if (headerName.toLowerCase() !== normalizedKey) {
+      continue;
+    }
+
+    if ("string" === typeof headerValue) {
+      return headerValue;
+    }
+  }
+
+  return undefined;
+}
+
+function getStocktwitsBlockedError(): Error & { code: StocktwitsBlockedErrorCode } {
+  const error = new Error(
+    "Stocktwits returned a Cloudflare challenge page instead of JSON."
+  ) as Error & {
+    code: StocktwitsBlockedErrorCode;
+  };
+  error.code = "stocktwits_blocked";
+  return error;
+}
+
+function isStocktwitsBlockedError(error: unknown): boolean {
+  if ("object" !== typeof error || null === error) {
+    return false;
+  }
+
+  const maybeError = error as {
+    code?: string;
+  };
+  return maybeError.code === "stocktwits_blocked";
 }
 
 function appendStocktwitsEarningsEvents(

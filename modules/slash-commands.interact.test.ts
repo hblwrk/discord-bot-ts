@@ -1,7 +1,7 @@
 import {TextAsset} from "./assets.js";
 import {interactSlashCommands} from "./slash-commands.js";
 import {getCalendarEvents, getCalendarMessages} from "./calendar.js";
-import {getEarnings, getEarningsMessages} from "./earnings.js";
+import {getEarningsMessages, getEarningsResult} from "./earnings.js";
 import {createChatInputInteraction, createEventClient} from "./test-utils/discord-mocks.js";
 
 jest.mock("./secrets.js", () => ({
@@ -25,15 +25,16 @@ jest.mock("./calendar.js", () => ({
 }));
 
 jest.mock("./earnings.js", () => ({
+  EARNINGS_BLOCKED_MESSAGE: "blocked",
   EARNINGS_MAX_MESSAGE_LENGTH: 1800,
   EARNINGS_MAX_MESSAGES_SLASH: 6,
-  getEarnings: jest.fn(),
+  getEarningsResult: jest.fn(),
   getEarningsMessages: jest.fn(),
 }));
 
 const getCalendarEventsMock = getCalendarEvents as jest.MockedFunction<typeof getCalendarEvents>;
 const getCalendarMessagesMock = getCalendarMessages as jest.MockedFunction<typeof getCalendarMessages>;
-const getEarningsMock = getEarnings as jest.MockedFunction<typeof getEarnings>;
+const getEarningsResultMock = getEarningsResult as jest.MockedFunction<typeof getEarningsResult>;
 const getEarningsMessagesMock = getEarningsMessages as jest.MockedFunction<typeof getEarningsMessages>;
 
 describe("interactSlashCommands", () => {
@@ -48,7 +49,11 @@ describe("interactSlashCommands", () => {
       totalDays: 0,
       includedDays: 0,
     });
-    getEarningsMock.mockResolvedValue([]);
+    getEarningsResultMock.mockResolvedValue({
+      events: [],
+      status: "ok",
+      watchlistFilterDropped: false,
+    });
     getEarningsMessagesMock.mockReturnValue({
       messages: [],
       truncated: false,
@@ -206,7 +211,11 @@ describe("interactSlashCommands", () => {
 
     const handler = getHandler("interactionCreate");
     const interaction = createChatInputInteraction("earnings");
-    getEarningsMock.mockResolvedValue([]);
+    getEarningsResultMock.mockResolvedValue({
+      events: [],
+      status: "ok",
+      watchlistFilterDropped: false,
+    });
     getEarningsMessagesMock.mockReturnValue({
       messages: ["earnings-1", "earnings-2"],
       truncated: false,
@@ -216,7 +225,7 @@ describe("interactSlashCommands", () => {
 
     await handler(interaction);
 
-    expect(getEarningsMock).toHaveBeenCalledWith(0, "today", "all");
+    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "today", "all");
     expect(interaction.reply).toHaveBeenCalledWith({
       content: "earnings-1",
       allowedMentions: {
@@ -237,7 +246,11 @@ describe("interactSlashCommands", () => {
 
     const handler = getHandler("interactionCreate");
     const interaction = createChatInputInteraction("earnings");
-    getEarningsMock.mockResolvedValue([]);
+    getEarningsResultMock.mockResolvedValue({
+      events: [],
+      status: "ok",
+      watchlistFilterDropped: false,
+    });
     getEarningsMessagesMock.mockReturnValue({
       messages: [],
       truncated: false,
@@ -249,6 +262,35 @@ describe("interactSlashCommands", () => {
 
     expect(interaction.reply).toHaveBeenCalledWith({
       content: "Es stehen keine relevanten Quartalszahlen an.",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+    expect(interaction.followUp).not.toHaveBeenCalled();
+  });
+
+  test("earnings replies with blocked message when source is blocked", async () => {
+    const {client, getHandler} = createEventClient();
+    interactSlashCommands(client, [], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("earnings");
+    getEarningsResultMock.mockResolvedValue({
+      events: [],
+      status: "blocked",
+      watchlistFilterDropped: false,
+    });
+    getEarningsMessagesMock.mockReturnValue({
+      messages: [],
+      truncated: false,
+      totalEvents: 0,
+      includedEvents: 0,
+    });
+
+    await handler(interaction);
+
+    expect(interaction.reply).toHaveBeenCalledWith({
+      content: "blocked\nBitte in ein paar Minuten erneut versuchen.",
       allowedMentions: {
         parse: [],
       },
