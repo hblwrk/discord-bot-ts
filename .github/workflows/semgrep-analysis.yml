@@ -37,7 +37,7 @@ jobs:
 
       # Scan code using project's configuration on https://semgrep.dev/manage
       - uses: returntocorp/semgrep-action@713efdd345f3035192eaa63f56867b88e63e4e5d
-        if: ${{ secrets.SEMGREP_APP_TOKEN != '' && secrets.SEMGREP_DEPLOYMENT_ID != '' }}
+        if: ${{ env.SEMGREP_APP_TOKEN != '' && env.SEMGREP_DEPLOYMENT_ID != '' }}
         with:
           publishToken: ${{ env.SEMGREP_APP_TOKEN }}
           publishDeployment: ${{ env.SEMGREP_DEPLOYMENT_ID }}
@@ -45,7 +45,7 @@ jobs:
 
       # Fallback scan when Semgrep Cloud secrets are not configured.
       - uses: returntocorp/semgrep-action@713efdd345f3035192eaa63f56867b88e63e4e5d
-        if: ${{ secrets.SEMGREP_APP_TOKEN == '' || secrets.SEMGREP_DEPLOYMENT_ID == '' }}
+        if: ${{ env.SEMGREP_APP_TOKEN == '' || env.SEMGREP_DEPLOYMENT_ID == '' }}
         with:
           config: "p/security-audit"
           generateSarif: "1"
