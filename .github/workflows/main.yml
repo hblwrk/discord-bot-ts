@@ -108,7 +108,7 @@ jobs:
       - name: Sign image with cosign
         run: |
           echo "${{ secrets.COSIGN_KEY }}" > /tmp/cosign.key && \
-          cosign sign -key /tmp/cosign.key ${{ steps.meta.outputs.tags }}
+          cosign sign --yes --tlog-upload=true -key /tmp/cosign.key ${{ steps.meta.outputs.tags }}
         env:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
   

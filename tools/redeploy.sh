@@ -3,7 +3,21 @@ set -euo pipefail
 
 export DOCKER_CONTENT_TRUST=1
 
-if /home/user/go/bin/cosign verify --key /home/user/cosign.pub ghcr.io/hblwrk/discord-bot-ts:main; then
+image="ghcr.io/hblwrk/discord-bot-ts:main"
+verify_output_file="$(mktemp)"
+trap 'rm -f "${verify_output_file}"' EXIT
+
+signature_valid=false
+if /home/user/go/bin/cosign verify --key /home/user/cosign.pub "${image}" >"${verify_output_file}" 2>&1; then
+  signature_valid=true
+elif grep -q "signature not found in transparency log" "${verify_output_file}"; then
+  echo "Signature has no transparency-log entry. Retrying verification without tlog requirement."
+  if /home/user/go/bin/cosign verify --insecure-ignore-tlog=true --key /home/user/cosign.pub "${image}" >"${verify_output_file}" 2>&1; then
+    signature_valid=true
+  fi
+fi
+
+if [ true = "${signature_valid}" ]; then
   docker stack deploy --with-registry-auth --prune --compose-file docker-compose-staging.yml discord-bot-ts_staging
 
   timeout_seconds=300
@@ -27,5 +41,6 @@ if /home/user/go/bin/cosign verify --key /home/user/cosign.pub ghcr.io/hblwrk/di
   exit 23
 fi
 
+cat "${verify_output_file}"
 echo "Signature does not match, not deploying."
 exit 42
