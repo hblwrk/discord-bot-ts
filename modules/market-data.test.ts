@@ -263,6 +263,82 @@ describe("updateMarketData", () => {
     });
   });
 
+  test("parses wrapped stream payloads with fallback field names", async () => {
+    queuedClientIds.push("client-1");
+    mockGetAssets.mockResolvedValue([
+      {
+        botToken: "token-1",
+        botName: "bot-one",
+        botClientId: "client-1",
+        id: 123,
+        decimals: 2,
+        order: 1,
+        suffix: "$",
+        unit: "PCT",
+        lastUpdate: 0,
+      },
+    ]);
+
+    await updateMarketData();
+    clientInstances[0].handlers.get("clientReady")();
+
+    const wsClient = websocketInstances[0];
+    const messageHandler = wsClient.handlers.get("message");
+    const wrappedPayload = JSON.stringify({
+      _event: "quote",
+      message: "pid-123::{\"pid\":123,\"last\":\"100.5\",\"chg\":\"1.2\",\"chg_perc\":\"1.23\"}",
+    });
+
+    messageHandler({
+      data: JSON.stringify([wrappedPayload]),
+    });
+    await flushAsyncWork();
+
+    expect(clientInstances[0].setNickname).toHaveBeenCalledWith("1🟩 100.50$");
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith({
+      activities: [{name: "+1.20 (1.23%)"}],
+    });
+  });
+
+  test("parses buffer array websocket payloads", async () => {
+    queuedClientIds.push("client-1");
+    mockGetAssets.mockResolvedValue([
+      {
+        botToken: "token-1",
+        botName: "bot-one",
+        botClientId: "client-1",
+        id: 123,
+        decimals: 2,
+        order: 1,
+        suffix: "$",
+        unit: "PCT",
+        lastUpdate: 0,
+      },
+    ]);
+
+    await updateMarketData();
+    clientInstances[0].handlers.get("clientReady")();
+
+    const wsClient = websocketInstances[0];
+    const messageHandler = wsClient.handlers.get("message");
+    const payload = JSON.stringify({
+      pid: 123,
+      last_numeric: "100.5",
+      pc: "1.2",
+      pcp: "1.23",
+    });
+
+    messageHandler({
+      data: [Buffer.from(JSON.stringify([`42::${payload}`]), "utf8")],
+    });
+    await flushAsyncWork();
+
+    expect(clientInstances[0].setNickname).toHaveBeenCalledWith("1🟩 100.50$");
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith({
+      activities: [{name: "+1.20 (1.23%)"}],
+    });
+  });
+
   test("ignores malformed stream payloads without crashing", async () => {
     queuedClientIds.push("client-1");
     mockGetAssets.mockResolvedValue([
