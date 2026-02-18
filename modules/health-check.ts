@@ -1,16 +1,8 @@
 import http from "node:http";
 import express from "express";
-import {readSecret} from "./secrets.js";
 import {type StartupStateSnapshot} from "./startup-state.js";
 
-function getHealthcheckPort(): number {
-  try {
-    const configuredPort = Number.parseInt(readSecret("healthcheck_port").trim(), 10);
-    return Number.isNaN(configuredPort) ? 11312 : configuredPort;
-  } catch {
-    return 11312;
-  }
-}
+const healthcheckPort = 11312;
 
 export function runHealthCheck(getStartupState: () => StartupStateSnapshot) {
   const app = express();
@@ -50,7 +42,6 @@ export function runHealthCheck(getStartupState: () => StartupStateSnapshot) {
   app.use("/api/v1", router);
 
   const server = http.createServer(app);
-  const port = getHealthcheckPort();
-  server.listen(port, "0.0.0.0");
+  server.listen(healthcheckPort, "127.0.0.1");
   return server;
 }

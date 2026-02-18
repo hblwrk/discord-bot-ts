@@ -50,7 +50,6 @@ services:
       - production_discord_30y_token
       - production_discord_30y_client_ID
       - production_dracoon_password
-      - production_healthcheck_port
       - production_hblwrk_channel_NYSEAnnouncement_ID
       - production_hblwrk_channel_MNCAnnouncement_ID
       - production_hblwrk_channel_OtherAnnouncement_ID
@@ -149,8 +148,6 @@ secrets:
   production_discord_30y_client_ID:
     external: true
   production_dracoon_password:
-    external: true
-  production_healthcheck_port:
     external: true
   production_hblwrk_channel_NYSEAnnouncement_ID:
     external: true

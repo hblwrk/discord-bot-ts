@@ -43,13 +43,7 @@ jest.mock("node:http", () => {
   };
 });
 
-jest.mock("./secrets.js", () => ({
-  readSecret: jest.fn(() => "11312"),
-}));
-
 const {runHealthCheck} = require("./health-check.js");
-const {readSecret} = require("./secrets.js");
-const mockReadSecret = readSecret as jest.MockedFunction<typeof readSecret>;
 
 function createState(partial: Partial<StartupStateSnapshot> = {}): StartupStateSnapshot {
   return {
@@ -97,15 +91,13 @@ describe("runHealthCheck", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockRouteHandlers.clear();
-    mockReadSecret.mockReturnValue("11312");
   });
 
-  test("registers liveness endpoint and binds network listener", () => {
+  test("registers liveness endpoint and binds localhost listener", () => {
     runHealthCheck(() => createState());
 
-    expect(mockReadSecret).toHaveBeenCalledWith("healthcheck_port");
     expect(mockCreateServer).toHaveBeenCalledTimes(1);
-    expect(mockListen).toHaveBeenCalledWith(11312, "0.0.0.0");
+    expect(mockListen).toHaveBeenCalledWith(11312, "127.0.0.1");
 
     const healthHandler = mockRouteHandlers.get("/health");
     expect(healthHandler).toBeDefined();
@@ -116,14 +108,10 @@ describe("runHealthCheck", () => {
     expect(response.send).toHaveBeenCalledWith("stonks");
   });
 
-  test("falls back to default port when healthcheck secret is missing", () => {
-    mockReadSecret.mockImplementation(() => {
-      throw new Error("Missing secret \"healthcheck_port\"");
-    });
-
+  test("binds listener on default healthcheck port", () => {
     runHealthCheck(() => createState());
 
-    expect(mockListen).toHaveBeenCalledWith(11312, "0.0.0.0");
+    expect(mockListen).toHaveBeenCalledWith(11312, "127.0.0.1");
   });
 
   test("returns readiness state depending on discord login and handler attachment", () => {
