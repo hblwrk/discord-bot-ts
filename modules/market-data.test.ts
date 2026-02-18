@@ -264,6 +264,45 @@ describe("updateMarketData", () => {
     });
   });
 
+  test("updates nickname and presence from nested market stream envelope payload", async () => {
+    queuedClientIds.push("client-1");
+    mockGetAssets.mockResolvedValue([
+      {
+        botToken: "token-1",
+        botName: "bot-one",
+        botClientId: "client-1",
+        id: 1175151,
+        decimals: 2,
+        order: 1,
+        suffix: "$",
+        unit: "PCT",
+        lastUpdate: 0,
+      },
+    ]);
+
+    await updateMarketData();
+    const readyHandler = clientInstances[0].handlers.get("clientReady");
+    readyHandler();
+
+    const wsClient = websocketInstances[0];
+    const messageHandler = wsClient.handlers.get("message");
+
+    const websocketMessagePayload = {
+      message: "pid-1175151::{\"pid\":\"1175151\",\"last_numeric\":24755.8,\"pc\":\"+54.2\",\"pcp\":\"+0.22%\"}",
+    };
+    const websocketMessage = `a${JSON.stringify([JSON.stringify(websocketMessagePayload)])}`;
+
+    messageHandler({
+      data: websocketMessage,
+    });
+    await flushAsyncWork();
+
+    expect(clientInstances[0].setNickname).toHaveBeenCalledWith("1🟩 24755.80$");
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith({
+      activities: [{name: "+54.20 (0.22%)"}],
+    });
+  });
+
   test("ignores malformed stream payloads without crashing", async () => {
     queuedClientIds.push("client-1");
     mockGetAssets.mockResolvedValue([

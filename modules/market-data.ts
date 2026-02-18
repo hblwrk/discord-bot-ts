@@ -285,33 +285,155 @@ function normalizeEventData(rawData: unknown): string | null {
 }
 
 function parseStreamEvent(rawMessage: string): MarketStreamEvent | null {
-  const regex = /::(.*)/gm;
-  const rawEventData = rawMessage.replaceAll("a[\"", "").replaceAll("\\", "").replaceAll("\"]", "").replaceAll("\"}", "");
-  const matches = rawEventData.match(regex);
-  if (null === matches) {
+  const rawEventData = extractStreamEventPayload(rawMessage);
+  if (null === rawEventData) {
     return null;
   }
 
-  try {
-    const eventData = JSON.parse(matches[0].replace("::", ""));
-    const pid = Number(eventData.pid);
-    const lastNumeric = Number(eventData.last_numeric);
-    const priceChange = Number(eventData.pc);
-    const percentageChange = Number(eventData.pcp);
+  const pid = parseNumericValue(rawEventData.pid);
+  const lastNumeric = parseNumericValue(rawEventData.last_numeric);
+  const priceChange = parseNumericValue(rawEventData.pc);
+  const percentageChange = parseNumericValue(rawEventData.pcp);
 
-    if ([pid, lastNumeric, priceChange, percentageChange].every(Number.isFinite)) {
-      return {
-        pid,
-        lastNumeric,
-        priceChange,
-        percentageChange,
-      };
+  if ([pid, lastNumeric, priceChange, percentageChange].every(Number.isFinite)) {
+    return {
+      pid,
+      lastNumeric,
+      priceChange,
+      percentageChange,
+    };
+  }
+
+  return null;
+}
+
+function extractStreamEventPayload(rawMessage: string): Record<string, unknown> | null {
+  const frameCandidates = unwrapSocketFrames(rawMessage);
+
+  for (const frameCandidate of frameCandidates) {
+    const payload = parsePayloadCandidate(frameCandidate, 0);
+    if (null !== payload) {
+      return payload;
+    }
+  }
+
+  return null;
+}
+
+function unwrapSocketFrames(rawMessage: string): string[] {
+  const trimmedMessage = rawMessage.trim();
+  if (false === trimmedMessage.startsWith("a[")) {
+    return [trimmedMessage];
+  }
+
+  try {
+    const parsedFrames = JSON.parse(trimmedMessage.slice(1));
+    if (Array.isArray(parsedFrames)) {
+      return parsedFrames
+        .filter((frame): frame is string => "string" === typeof frame)
+        .map(frame => frame.trim());
+    }
+  } catch {
+    // Ignore malformed frame envelope and let parser continue with raw text.
+  }
+
+  return [trimmedMessage];
+}
+
+function parsePayloadCandidate(candidate: string, depth: number): Record<string, unknown> | null {
+  if (depth > 3) {
+    return null;
+  }
+
+  const trimmedCandidate = candidate.trim();
+  if ("" === trimmedCandidate) {
+    return null;
+  }
+
+  const parsedCandidate = tryParseJsonObject(trimmedCandidate);
+  if (null !== parsedCandidate) {
+    if ("string" === typeof parsedCandidate.message) {
+      const parsedMessage = parsePayloadCandidate(parsedCandidate.message, depth + 1);
+      if (null !== parsedMessage) {
+        return parsedMessage;
+      }
+    }
+
+    if (true === hasStreamEventFields(parsedCandidate)) {
+      return parsedCandidate;
+    }
+  }
+
+  const delimiterPosition = trimmedCandidate.lastIndexOf("::");
+  if (-1 !== delimiterPosition) {
+    const parsedAfterDelimiter = parsePayloadCandidate(trimmedCandidate.slice(delimiterPosition + 2), depth + 1);
+    if (null !== parsedAfterDelimiter) {
+      return parsedAfterDelimiter;
+    }
+  }
+
+  const extractedObject = extractJsonObject(trimmedCandidate);
+  if (null !== extractedObject && extractedObject !== trimmedCandidate) {
+    return parsePayloadCandidate(extractedObject, depth + 1);
+  }
+
+  return null;
+}
+
+function tryParseJsonObject(candidate: string): Record<string, unknown> | null {
+  try {
+    const parsed = JSON.parse(candidate);
+    if ("object" === typeof parsed && null !== parsed && false === Array.isArray(parsed)) {
+      return parsed as Record<string, unknown>;
     }
   } catch {
     // Ignore malformed payloads and let caller continue.
   }
 
   return null;
+}
+
+function hasStreamEventFields(candidate: Record<string, unknown>): boolean {
+  return "pid" in candidate && "last_numeric" in candidate && "pc" in candidate && "pcp" in candidate;
+}
+
+function extractJsonObject(candidate: string): string | null {
+  const firstBrace = candidate.indexOf("{");
+  const lastBrace = candidate.lastIndexOf("}");
+  if (-1 === firstBrace || -1 === lastBrace || lastBrace <= firstBrace) {
+    return null;
+  }
+
+  return candidate.slice(firstBrace, lastBrace + 1);
+}
+
+function parseNumericValue(value: unknown): number {
+  if ("number" === typeof value) {
+    return Number.isFinite(value) ? value : Number.NaN;
+  }
+
+  if ("string" === typeof value) {
+    const normalizedValue = value
+      .replaceAll(",", "")
+      .trim()
+      .replace(/%$/, "");
+
+    if ("" === normalizedValue) {
+      return Number.NaN;
+    }
+
+    const parsedValue = Number(normalizedValue);
+    if (Number.isFinite(parsedValue)) {
+      return parsedValue;
+    }
+
+    const parsedFloat = Number.parseFloat(normalizedValue);
+    if (Number.isFinite(parsedFloat)) {
+      return parsedFloat;
+    }
+  }
+
+  return Number.NaN;
 }
 
 async function applyClientStatusUpdate(
