@@ -1,22 +1,39 @@
 import winston from "winston";
 import DiscordTransport from "./discord-logger.js";
+import {readSecret} from "./secrets.js";
+
+const levels = {
+  error: 0,
+  warn: 1,
+  info: 2,
+  http: 3,
+  verbose: 4,
+  debug: 5,
+  silly: 6,
+};
+
+function getConfiguredLogLevel(): string {
+  const loglevelFromEnvironment = process.env.LOGLEVEL?.trim().toLowerCase();
+  if (loglevelFromEnvironment in levels) {
+    return loglevelFromEnvironment;
+  }
+
+  try {
+    const configuredLogLevel = readSecret("loglevel").trim().toLowerCase();
+    if (configuredLogLevel in levels) {
+      return configuredLogLevel;
+    }
+  } catch {
+    // Fall back to default when optional config/secret is missing.
+  }
+
+  return "info";
+}
 
 export function getDiscordLogger(client) {
-  const loglevel = {
-    levels: {
-      error: 0,
-      warn: 1,
-      info: 2,
-      http: 3,
-      verbose: 4,
-      debug: 5,
-      silly: 6,
-    },
-  };
-
   const logger = winston.createLogger({
-    levels: loglevel.levels,
-    level: "info",
+    levels,
+    level: getConfiguredLogLevel(),
     format: winston.format.combine(
       winston.format.timestamp(),
       winston.format.json(),
@@ -36,21 +53,9 @@ export function getDiscordLogger(client) {
 }
 
 export function getLogger() {
-  const loglevel = {
-    levels: {
-      error: 0,
-      warn: 1,
-      info: 2,
-      http: 3,
-      verbose: 4,
-      debug: 5,
-      silly: 6,
-    },
-  };
-
   const logger = winston.createLogger({
-    levels: loglevel.levels,
-    level: "debug",
+    levels,
+    level: getConfiguredLogLevel(),
     format: winston.format.combine(
       winston.format.timestamp(),
       winston.format.json(),
