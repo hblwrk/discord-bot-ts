@@ -1,5 +1,5 @@
 import Transport from "winston-transport";
-import {Client, TextChannel, MessageEmbed} from "discord.js";
+import {Client, EmbedBuilder} from "discord.js";
 import {readSecret} from "./secrets.js";
 
 export default class DiscordTransport extends Transport {
@@ -16,7 +16,7 @@ export default class DiscordTransport extends Transport {
     setImmediate(() => {
       this.emit("logged", info);
 
-      const loggingEmbed = new MessageEmbed()
+      const loggingEmbed = new EmbedBuilder()
         .setColor("#0099ff")
         .setTitle("Leopold logging")
         .setDescription(info.message)
@@ -26,7 +26,11 @@ export default class DiscordTransport extends Transport {
           {name: "Channel", value: info.channel, inline: true},
         );
       const channel = this.client.channels.cache.get(this.channelId);
-      (channel as TextChannel).send({embeds: [loggingEmbed]}).catch(error => {
+      if (!channel || !channel.isTextBased() || !("send" in channel)) {
+        return;
+      }
+
+      channel.send({embeds: [loggingEmbed]}).catch(error => {
         console.log(
           "error",
           `Error posting to logging channel: ${error}`,

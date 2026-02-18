@@ -1,4 +1,4 @@
-FROM node:23-alpine AS builder
+FROM node:22-alpine AS builder
 
 RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
 
@@ -12,7 +12,7 @@ USER node
 
 RUN npm ci --only=production
 
-FROM gcr.io/distroless/nodejs:18
+FROM gcr.io/distroless/nodejs22
 
 COPY --from=builder /home/node/app /app
 
@@ -22,4 +22,4 @@ HEALTHCHECK NONE
 
 EXPOSE 11312/tcp
 
-CMD ["--loader", "ts-node/esm", "index.ts"]
+CMD ["--import", "tsx", "index.ts"]

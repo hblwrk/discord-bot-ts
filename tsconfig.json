@@ -3,10 +3,11 @@
     "module": "es6",
     "esModuleInterop": true,
     "moduleResolution": "node",
-    "target": "es6",
+    "target": "es2020",
     "lib": [
       "ES2021.String",
-      "es6"
+      "es2020",
+      "DOM"
     ]
   },
 }

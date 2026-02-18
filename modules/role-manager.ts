@@ -117,6 +117,24 @@ export async function roleManager(client, assetRoles) {
   });
 
   async function addRemoveRole(reaction, user, action) {
+    if (reaction.partial) {
+      await reaction.fetch().catch(error => {
+        logger.log(
+          "error",
+          `Role manager: unable to fetch partial reaction: ${error}`,
+        );
+      });
+    }
+
+    if (reaction.message.partial) {
+      await reaction.message.fetch().catch(error => {
+        logger.log(
+          "error",
+          `Role manager: unable to fetch partial message: ${error}`,
+        );
+      });
+    }
+
     for (const role of assetRoles) {
       let emoji = "";
       let reactionEmoji = "";
