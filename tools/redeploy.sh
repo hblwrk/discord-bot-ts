@@ -4,8 +4,24 @@ set -euo pipefail
 export DOCKER_CONTENT_TRUST=1
 
 image="ghcr.io/hblwrk/discord-bot-ts:main"
+staging_service_name="discord-bot-ts_staging_bot"
 verify_output_file="$(mktemp)"
 trap 'rm -f "${verify_output_file}"' EXIT
+
+is_staging_healthy() {
+  local running_container_ids
+  running_container_ids="$(docker ps -q --filter "label=com.docker.swarm.service.name=${staging_service_name}")"
+  if [ -z "${running_container_ids}" ]; then
+    return 1
+  fi
+
+  local healthy_container_ids
+  healthy_container_ids="$(docker ps -q \
+    --filter "label=com.docker.swarm.service.name=${staging_service_name}" \
+    --filter "health=healthy")"
+
+  [ -n "${healthy_container_ids}" ]
+}
 
 signature_valid=false
 if /home/user/go/bin/cosign verify --key /home/user/cosign.pub "${image}" >"${verify_output_file}" 2>&1; then
@@ -28,16 +44,16 @@ if [ true = "${signature_valid}" ]; then
     sleep "${interval_seconds}"
     elapsed_seconds=$((elapsed_seconds + interval_seconds))
 
-    if curl -fsS -o /dev/null http://127.0.0.1:11313/api/v1/ready; then
+    if is_staging_healthy; then
       docker stack deploy --with-registry-auth --prune --compose-file docker-compose-production.yml discord-bot-ts_production
       docker system prune -f
       exit 0
     fi
 
-    echo "Staging not ready yet. Retry in ${interval_seconds} seconds."
+    echo "Staging service not healthy yet. Retry in ${interval_seconds} seconds."
   done
 
-  echo "Deployment to staging failed after ${timeout_seconds} seconds, not deploying."
+  echo "Staging service did not become healthy after ${timeout_seconds} seconds, not deploying."
   exit 23
 fi
 
