@@ -26,7 +26,7 @@ const isHolidayMock = jest.fn();
 const getAssetByNameMock = jest.fn();
 const getCalendarEventsMock = jest.fn();
 const getCalendarMessagesMock = jest.fn();
-const getEarningsMock = jest.fn();
+const getEarningsResultMock = jest.fn();
 const getEarningsMessagesMock = jest.fn();
 const getMncMock = jest.fn();
 const loggerMock = {
@@ -63,9 +63,10 @@ jest.mock("./calendar.js", () => ({
 }));
 
 jest.mock("./earnings.js", () => ({
+  EARNINGS_BLOCKED_MESSAGE: "blocked",
   EARNINGS_MAX_MESSAGE_LENGTH: 1800,
   EARNINGS_MAX_MESSAGES_TIMER: 8,
-  getEarnings: getEarningsMock,
+  getEarningsResult: getEarningsResultMock,
   getEarningsMessages: getEarningsMessagesMock,
 }));
 
@@ -131,7 +132,11 @@ describe("timers", () => {
       fileContent: Buffer.from("freitag"),
       fileName: "freitag.png",
     });
-    getEarningsMock.mockResolvedValue([]);
+    getEarningsResultMock.mockResolvedValue({
+      events: [],
+      status: "ok",
+      watchlistFilterDropped: false,
+    });
     getEarningsMessagesMock.mockReturnValue({
       messages: ["earnings-text"],
       truncated: false,
@@ -252,7 +257,7 @@ describe("timers", () => {
     startOtherTimers(client as any, "channel-id", [], []);
     await scheduledJobs[1].callback();
 
-    expect(getEarningsMock).toHaveBeenCalledWith(0, "tomorrow", "all");
+    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow", "all");
     expect(send).not.toHaveBeenCalled();
   });
 
@@ -268,7 +273,7 @@ describe("timers", () => {
     startOtherTimers(client as any, "channel-id", [], []);
     await scheduledJobs[1].callback();
 
-    expect(getEarningsMock).toHaveBeenCalledWith(0, "tomorrow", "all");
+    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow", "all");
     expect(send).toHaveBeenNthCalledWith(1, {
       content: "earnings-1",
       allowedMentions: {

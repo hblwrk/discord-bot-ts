@@ -13,9 +13,10 @@ import {
   type CalendarMessageBatch,
 } from "./calendar.js";
 import {
+  EARNINGS_BLOCKED_MESSAGE,
   EARNINGS_MAX_MESSAGE_LENGTH,
   EARNINGS_MAX_MESSAGES_TIMER,
-  getEarnings,
+  getEarningsResult,
   getEarningsMessages,
   type EarningsMessageBatch,
 } from "./earnings.js";
@@ -209,13 +210,34 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
     const when = "all";
     let earningsEvents = [];
 
-    earningsEvents = await getEarnings(days, date, filter);
+    const earningsResult = await getEarningsResult(days, date, filter);
+    earningsEvents = earningsResult.events;
 
     const earningsBatch = getEarningsMessages(earningsEvents, when, tickers, {
       maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
       maxMessages: EARNINGS_MAX_MESSAGES_TIMER,
     });
     logEarningsBatch("timer-earnings", earningsBatch);
+
+    if ("blocked" === earningsResult.status) {
+      logger.log(
+        "warn",
+        {
+          source: "timer-earnings",
+          status: earningsResult.status,
+          message: EARNINGS_BLOCKED_MESSAGE,
+        },
+      );
+    } else if ("error" === earningsResult.status) {
+      logger.log(
+        "warn",
+        {
+          source: "timer-earnings",
+          status: earningsResult.status,
+          message: "Earnings konnten nicht geladen werden.",
+        },
+      );
+    }
 
     if (0 < earningsBatch.messages.length) {
       const channel = client.channels.cache.get(channelID);

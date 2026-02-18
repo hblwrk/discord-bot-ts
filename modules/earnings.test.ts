@@ -145,6 +145,115 @@ describe("getEarnings", () => {
     );
   });
 
+  test("retries without watchlist when stocktwits responds 403", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>)
+      .mockRejectedValueOnce({
+        response: {
+          status: 403,
+        },
+      })
+      .mockResolvedValueOnce({
+        data: apiResponse,
+      });
+
+    const earnings = await getEarnings(
+      0,
+      "today",
+      "5666c5fa-80dc-4e16-8bcc-12a8314d0b07"
+    );
+
+    expect(earnings).toEqual([
+      {
+        importance: 2,
+        date: "2024-01-02",
+        ticker: "FC",
+        when: "after_close",
+      },
+    ]);
+
+    expect(axios.get).toHaveBeenCalledTimes(2);
+    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[0][0]).toEqual(
+      expect.stringContaining("watchlist=5666c5fa-80dc-4e16-8bcc-12a8314d0b07")
+    );
+    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[1][0]).toEqual(
+      expect.not.stringContaining("watchlist=")
+    );
+  });
+
+  test("returns no events when stocktwits fails with 403", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>)
+      .mockRejectedValueOnce({
+        response: {
+          status: 403,
+        },
+      });
+
+    const earnings = await getEarnings(0, "today", "all");
+
+    expect(earnings).toEqual([]);
+    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[0][0]).toEqual(
+      expect.stringContaining("api.stocktwits.com/api/2/discover/earnings_calendar")
+    );
+  });
+
+  test("returns no events when stocktwits returns cloudflare challenge page", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>)
+      .mockResolvedValueOnce({
+        data: "<!DOCTYPE html><html><head><title>Just a moment...</title></head></html>",
+        headers: {
+          "content-type": "text/html; charset=UTF-8",
+        },
+      });
+
+    const earnings = await getEarnings(0, "today", "all");
+
+    expect(earnings).toEqual([]);
+    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[0][0]).toEqual(
+      expect.stringContaining("api.stocktwits.com/api/2/discover/earnings_calendar")
+    );
+  });
+
+  test("retries without watchlist when stocktwits returns cloudflare challenge page", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>)
+      .mockResolvedValueOnce({
+        data: "<!DOCTYPE html><html><head><title>Just a moment...</title></head></html>",
+        headers: {
+          "content-type": "text/html; charset=UTF-8",
+        },
+      })
+      .mockResolvedValueOnce({
+        data: apiResponse,
+        headers: {
+          "content-type": "application/json; charset=utf-8",
+        },
+      });
+
+    const earnings = await getEarnings(
+      0,
+      "today",
+      "5666c5fa-80dc-4e16-8bcc-12a8314d0b07"
+    );
+
+    expect(earnings).toEqual([
+      {
+        importance: 2,
+        date: "2024-01-02",
+        ticker: "FC",
+        when: "after_close",
+      },
+    ]);
+
+    expect(axios.get).toHaveBeenCalledTimes(2);
+    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[0][0]).toEqual(
+      expect.stringContaining("watchlist=5666c5fa-80dc-4e16-8bcc-12a8314d0b07")
+    );
+    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[1][0]).toEqual(
+      expect.not.stringContaining("watchlist=")
+    );
+  });
+
 });
 
 describe("getEarningsText", () => {

@@ -9,9 +9,10 @@ import {getDiscordLogger, getLogger} from "./logging.js";
 import {getRandomQuote} from "./random-quote.js";
 import {readSecret} from "./secrets.js";
 import {
+  EARNINGS_BLOCKED_MESSAGE,
   EARNINGS_MAX_MESSAGE_LENGTH,
   EARNINGS_MAX_MESSAGES_SLASH,
-  getEarnings,
+  getEarningsResult,
   getEarningsMessages,
 } from "./earnings.js";
 import {
@@ -493,6 +494,8 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       let filter = "all";
       let earningsEvents = [];
+      let earningsStatus: "ok" | "blocked" | "error" = "ok";
+      let watchlistFilterDropped = false;
       let when: string;
       let date: string;
       let days: number;
@@ -523,7 +526,10 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         filter = validator.escape(filterOption);
       }
 
-      earningsEvents = await getEarnings(days, date, filter);
+      const earningsResult = await getEarningsResult(days, date, filter);
+      earningsEvents = earningsResult.events;
+      earningsStatus = earningsResult.status;
+      watchlistFilterDropped = earningsResult.watchlistFilterDropped;
 
       const earningsBatch = getEarningsMessages(earningsEvents, when, tickers, {
         maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
@@ -537,6 +543,8 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           truncated: earningsBatch.truncated,
           includedEvents: earningsBatch.includedEvents,
           totalEvents: earningsBatch.totalEvents,
+          status: earningsStatus,
+          watchlistFilterDropped,
         },
       );
       if (true === earningsBatch.truncated) {
@@ -553,6 +561,32 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       }
 
       if (0 === earningsBatch.messages.length) {
+        if ("blocked" === earningsStatus) {
+          await interaction.reply({
+            content: `${EARNINGS_BLOCKED_MESSAGE}\nBitte in ein paar Minuten erneut versuchen.`,
+            allowedMentions: noMentions,
+          }).catch(error => {
+            logger.log(
+              "error",
+              `Error replying to earnings slashcommand: ${error}`,
+            );
+          });
+          return;
+        }
+
+        if ("error" === earningsStatus) {
+          await interaction.reply({
+            content: "Earnings konnten gerade nicht geladen werden. Bitte später erneut versuchen.",
+            allowedMentions: noMentions,
+          }).catch(error => {
+            logger.log(
+              "error",
+              `Error replying to earnings slashcommand: ${error}`,
+            );
+          });
+          return;
+        }
+
         await interaction.reply({
           content: "Es stehen keine relevanten Quartalszahlen an.",
           allowedMentions: noMentions,
@@ -574,6 +608,18 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           `Error replying to earnings slashcommand: ${error}`,
         );
       });
+
+      if (true === watchlistFilterDropped) {
+        await interaction.followUp({
+          content: "Hinweis: Der Stocktwits-Watchlist-Filter wurde blockiert, daher werden ungefilterte Earnings angezeigt.",
+          allowedMentions: noMentions,
+        }).catch(error => {
+          logger.log(
+            "error",
+            `Error following up earnings slashcommand: ${error}`,
+          );
+        });
+      }
 
       for (let chunkIndex = 1; chunkIndex < earningsBatch.messages.length; chunkIndex++) {
         await interaction.followUp({
