@@ -4,13 +4,30 @@ import moment from "moment-timezone";
 import Schedule from "node-schedule";
 import {getHolidays, isHoliday} from "nyse-holidays";
 import {getAssetByName} from "./assets.js";
-import {getCalendarEvents, getCalendarText, type CalendarEvent} from "./calendar.js";
-import {getEarnings, getEarningsText} from "./earnings.js";
+import {
+  CALENDAR_MAX_MESSAGE_LENGTH,
+  CALENDAR_MAX_MESSAGES_TIMER,
+  getCalendarEvents,
+  getCalendarMessages,
+  type CalendarEvent,
+  type CalendarMessageBatch,
+} from "./calendar.js";
+import {
+  EARNINGS_MAX_MESSAGE_LENGTH,
+  EARNINGS_MAX_MESSAGES_TIMER,
+  getEarnings,
+  getEarningsMessages,
+  type EarningsMessageBatch,
+} from "./earnings.js";
 import {getLogger} from "./logging.js";
 import {getMnc} from "./mnc-downloader.js";
 import {type Ticker} from "./tickers.js";
 
 const logger = getLogger();
+const noMentions = {
+  parse: [],
+};
+const calendarMessageDelayMs = 500;
 
 export function startNyseTimers(client, channelID: string) {
   const ruleNysePremarketOpen = new Schedule.RecurrenceRule();
@@ -194,15 +211,15 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
 
     earningsEvents = await getEarnings(days, date, filter);
 
-    const earningsText: string = getEarningsText(earningsEvents, when, tickers);
+    const earningsBatch = getEarningsMessages(earningsEvents, when, tickers, {
+      maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
+      maxMessages: EARNINGS_MAX_MESSAGES_TIMER,
+    });
+    logEarningsBatch("timer-earnings", earningsBatch);
 
-    if ("none" !== earningsText) {
-      client.channels.cache.get(channelID).send(earningsText).catch(error => {
-        logger.log(
-          "error",
-          `Error sending earnings announcement: ${error}`,
-        );
-      });
+    if (0 < earningsBatch.messages.length) {
+      const channel = client.channels.cache.get(channelID);
+      await sendChunkedMessages(channel, earningsBatch.messages, "earnings");
     }
   });
 
@@ -215,15 +232,16 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
   Schedule.scheduleJob(ruleEvents, async () => {
     const calendarEvents = await getCalendarEvents("", 0);
 
-    const calendarText = getCalendarText(calendarEvents);
+    const calendarBatch = getCalendarMessages(calendarEvents, {
+      maxMessageLength: CALENDAR_MAX_MESSAGE_LENGTH,
+      maxMessages: CALENDAR_MAX_MESSAGES_TIMER,
+      keepDayTogether: true,
+    });
+    logCalendarBatch("timer-daily", calendarBatch);
 
-    if ("none" !== calendarText) {
-      client.channels.cache.get(channelID).send(calendarText).catch(error => {
-        logger.log(
-          "error",
-          `Error sending calendar announcement: ${error}`,
-        );
-      });
+    if (0 < calendarBatch.messages.length) {
+      const channel = client.channels.cache.get(channelID);
+      await sendChunkedMessages(channel, calendarBatch.messages, "calendar");
     }
   });
 
@@ -234,31 +252,125 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
   ruleEventsWeekly.tz = "Europe/Berlin";
 
   Schedule.scheduleJob(ruleEventsWeekly, async () => {
-    // Splitting weekly announcement to two messages to avoid API limit
     const offsetDays: string = moment().tz("Europe/Berlin").add(5, "days").format("YYYY-MM-DD");
 
     const calendarEvents1: CalendarEvent[] = await getCalendarEvents("", 2);
     const calendarEvents2: CalendarEvent[] = await getCalendarEvents(offsetDays, 1);
 
-    const calendarText1: string = getCalendarText(calendarEvents1);
-    const calendarText2: string = getCalendarText(calendarEvents2);
+    const calendarEvents: CalendarEvent[] = dedupeCalendarEvents([...calendarEvents1, ...calendarEvents2]);
+    const calendarBatch = getCalendarMessages(calendarEvents, {
+      maxMessageLength: CALENDAR_MAX_MESSAGE_LENGTH,
+      maxMessages: CALENDAR_MAX_MESSAGES_TIMER,
+      keepDayTogether: true,
+    });
+    logCalendarBatch("timer-weekly", calendarBatch);
 
-    if ("none" !== calendarText1) {
-      client.channels.cache.get(channelID).send(calendarText1).catch(error => {
-        logger.log(
-          "error",
-          `Error sending calendar announcement: ${error}`,
-        );
-      });
+    if (0 < calendarBatch.messages.length) {
+      const channel = client.channels.cache.get(channelID);
+      await sendChunkedMessages(channel, calendarBatch.messages, "calendar");
     }
+  });
+}
 
-    if ("none" !== calendarText2) {
-      client.channels.cache.get(channelID).send(calendarText2).catch(error => {
-        logger.log(
-          "error",
-          `Error sending calendar announcement: ${error}`,
-        );
-      });
+function dedupeCalendarEvents(calendarEvents: CalendarEvent[]): CalendarEvent[] {
+  const dedupedEvents: CalendarEvent[] = [];
+  const seenEventKeys = new Set<string>();
+
+  for (const calendarEvent of calendarEvents) {
+    const eventKey = `${calendarEvent.date}|${calendarEvent.time}|${calendarEvent.name}`;
+    if (false === seenEventKeys.has(eventKey)) {
+      dedupedEvents.push(calendarEvent);
+      seenEventKeys.add(eventKey);
     }
+  }
+
+  return dedupedEvents;
+}
+
+async function sendChunkedMessages(channel: any, messages: string[], source: "calendar" | "earnings") {
+  if (!channel) {
+    logger.log(
+      "error",
+      `Error sending ${source} announcement: channel not found`,
+    );
+    return;
+  }
+
+  for (let index = 0; index < messages.length; index++) {
+    await channel.send({
+      content: messages[index],
+      allowedMentions: noMentions,
+    }).catch(error => {
+      logger.log(
+        "error",
+        `Error sending ${source} announcement: ${error}`,
+      );
+    });
+
+    if (index < messages.length - 1) {
+      await waitBeforeNextChunkedMessage();
+    }
+  }
+}
+
+function logCalendarBatch(source: string, calendarBatch: CalendarMessageBatch) {
+  logger.log(
+    "info",
+    {
+      source,
+      chunkCount: calendarBatch.messages.length,
+      truncated: calendarBatch.truncated,
+      includedEvents: calendarBatch.includedEvents,
+      totalEvents: calendarBatch.totalEvents,
+    },
+  );
+
+  if (true === calendarBatch.truncated) {
+    logger.log(
+      "warn",
+      {
+        source,
+        chunkCount: calendarBatch.messages.length,
+        includedEvents: calendarBatch.includedEvents,
+        totalEvents: calendarBatch.totalEvents,
+        message: "Calendar output truncated because message limits were reached.",
+      },
+    );
+  }
+}
+
+function logEarningsBatch(source: string, earningsBatch: EarningsMessageBatch) {
+  logger.log(
+    "info",
+    {
+      source,
+      chunkCount: earningsBatch.messages.length,
+      truncated: earningsBatch.truncated,
+      includedEvents: earningsBatch.includedEvents,
+      totalEvents: earningsBatch.totalEvents,
+    },
+  );
+
+  if (true === earningsBatch.truncated) {
+    logger.log(
+      "warn",
+      {
+        source,
+        chunkCount: earningsBatch.messages.length,
+        includedEvents: earningsBatch.includedEvents,
+        totalEvents: earningsBatch.totalEvents,
+        message: "Earnings output truncated because message limits were reached.",
+      },
+    );
+  }
+}
+
+async function waitBeforeNextChunkedMessage() {
+  if ("test" === process.env.NODE_ENV) {
+    return;
+  }
+
+  await new Promise(resolve => {
+    setTimeout(resolve, calendarMessageDelayMs);
   });
 }

@@ -25,9 +25,9 @@ const getHolidaysMock = jest.fn();
 const isHolidayMock = jest.fn();
 const getAssetByNameMock = jest.fn();
 const getCalendarEventsMock = jest.fn();
-const getCalendarTextMock = jest.fn();
+const getCalendarMessagesMock = jest.fn();
 const getEarningsMock = jest.fn();
-const getEarningsTextMock = jest.fn();
+const getEarningsMessagesMock = jest.fn();
 const getMncMock = jest.fn();
 const loggerMock = {
   log: jest.fn(),
@@ -56,13 +56,17 @@ jest.mock("./assets.js", () => ({
 }));
 
 jest.mock("./calendar.js", () => ({
+  CALENDAR_MAX_MESSAGE_LENGTH: 1800,
+  CALENDAR_MAX_MESSAGES_TIMER: 8,
   getCalendarEvents: getCalendarEventsMock,
-  getCalendarText: getCalendarTextMock,
+  getCalendarMessages: getCalendarMessagesMock,
 }));
 
 jest.mock("./earnings.js", () => ({
+  EARNINGS_MAX_MESSAGE_LENGTH: 1800,
+  EARNINGS_MAX_MESSAGES_TIMER: 8,
   getEarnings: getEarningsMock,
-  getEarningsText: getEarningsTextMock,
+  getEarningsMessages: getEarningsMessagesMock,
 }));
 
 jest.mock("./mnc-downloader.js", () => ({
@@ -128,9 +132,21 @@ describe("timers", () => {
       fileName: "freitag.png",
     });
     getEarningsMock.mockResolvedValue([]);
-    getEarningsTextMock.mockReturnValue("earnings-text");
+    getEarningsMessagesMock.mockReturnValue({
+      messages: ["earnings-text"],
+      truncated: false,
+      totalEvents: 1,
+      includedEvents: 1,
+    });
     getCalendarEventsMock.mockResolvedValue([]);
-    getCalendarTextMock.mockReturnValue("calendar-text");
+    getCalendarMessagesMock.mockReturnValue({
+      messages: ["calendar-text"],
+      truncated: false,
+      totalEvents: 1,
+      includedEvents: 1,
+      totalDays: 1,
+      includedDays: 1,
+    });
   });
 
   afterEach(() => {
@@ -226,7 +242,12 @@ describe("timers", () => {
 
   test("startOtherTimers does not send earnings message when formatter returns none", async () => {
     const {client, send} = createClientWithChannel();
-    getEarningsTextMock.mockReturnValue("none");
+    getEarningsMessagesMock.mockReturnValue({
+      messages: [],
+      truncated: false,
+      totalEvents: 0,
+      includedEvents: 0,
+    });
 
     startOtherTimers(client as any, "channel-id", [], []);
     await scheduledJobs[1].callback();
@@ -235,18 +256,153 @@ describe("timers", () => {
     expect(send).not.toHaveBeenCalled();
   });
 
-  test("startOtherTimers sends two weekly calendar messages when both chunks exist", async () => {
+  test("startOtherTimers sends chunked earnings messages in order with mention restrictions", async () => {
     const {client, send} = createClientWithChannel();
-    getCalendarTextMock
-      .mockReturnValueOnce("week-1")
-      .mockReturnValueOnce("week-2");
+    getEarningsMessagesMock.mockReturnValue({
+      messages: ["earnings-1", "earnings-2", "earnings-3"],
+      truncated: false,
+      totalEvents: 9,
+      includedEvents: 9,
+    });
+
+    startOtherTimers(client as any, "channel-id", [], []);
+    await scheduledJobs[1].callback();
+
+    expect(getEarningsMock).toHaveBeenCalledWith(0, "tomorrow", "all");
+    expect(send).toHaveBeenNthCalledWith(1, {
+      content: "earnings-1",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+    expect(send).toHaveBeenNthCalledWith(2, {
+      content: "earnings-2",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+    expect(send).toHaveBeenNthCalledWith(3, {
+      content: "earnings-3",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+  });
+
+  test("startOtherTimers sends chunked daily calendar messages in order with mention restrictions", async () => {
+    const {client, send} = createClientWithChannel();
+    getCalendarMessagesMock.mockReturnValueOnce({
+      messages: ["day-1", "day-2", "day-3"],
+      truncated: false,
+      totalEvents: 7,
+      includedEvents: 7,
+      totalDays: 3,
+      includedDays: 3,
+    });
+
+    startOtherTimers(client as any, "channel-id", [], []);
+    await scheduledJobs[2].callback();
+
+    expect(getCalendarEventsMock).toHaveBeenCalledWith("", 0);
+    expect(send).toHaveBeenNthCalledWith(1, {
+      content: "day-1",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+    expect(send).toHaveBeenNthCalledWith(2, {
+      content: "day-2",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+    expect(send).toHaveBeenNthCalledWith(3, {
+      content: "day-3",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+  });
+
+  test("startOtherTimers sends weekly calendar chunks and deduplicates overlapping events before formatting", async () => {
+    const {client, send} = createClientWithChannel();
+    getCalendarEventsMock
+      .mockResolvedValueOnce([
+        {date: "2025-02-24", time: "10:00", country: "🇺🇸", name: "Event A"},
+        {date: "2025-02-25", time: "11:00", country: "🇺🇸", name: "Event B"},
+      ])
+      .mockResolvedValueOnce([
+        {date: "2025-02-25", time: "11:00", country: "🇺🇸", name: "Event B"},
+        {date: "2025-02-26", time: "12:00", country: "🇺🇸", name: "Event C"},
+      ]);
+    getCalendarMessagesMock.mockReturnValueOnce({
+      messages: ["week-1", "week-2"],
+      truncated: false,
+      totalEvents: 3,
+      includedEvents: 3,
+      totalDays: 3,
+      includedDays: 3,
+    });
 
     startOtherTimers(client as any, "channel-id", [], []);
     await scheduledJobs[3].callback();
 
     expect(getCalendarEventsMock).toHaveBeenNthCalledWith(1, "", 2);
     expect(getCalendarEventsMock).toHaveBeenNthCalledWith(2, expect.any(String), 1);
-    expect(send).toHaveBeenNthCalledWith(1, "week-1");
-    expect(send).toHaveBeenNthCalledWith(2, "week-2");
+    expect(getCalendarMessagesMock).toHaveBeenCalledWith([
+      {date: "2025-02-24", time: "10:00", country: "🇺🇸", name: "Event A"},
+      {date: "2025-02-25", time: "11:00", country: "🇺🇸", name: "Event B"},
+      {date: "2025-02-26", time: "12:00", country: "🇺🇸", name: "Event C"},
+    ], expect.objectContaining({
+      maxMessageLength: 1800,
+      maxMessages: 8,
+      keepDayTogether: true,
+    }));
+    expect(send).toHaveBeenNthCalledWith(1, expect.objectContaining({
+      content: "week-1",
+      allowedMentions: {
+        parse: [],
+      },
+    }));
+    expect(send).toHaveBeenNthCalledWith(2, expect.objectContaining({
+      content: "week-2",
+      allowedMentions: {
+        parse: [],
+      },
+    }));
+  });
+
+  test("startOtherTimers logs warning when calendar output is truncated and sends bounded output", async () => {
+    const {client, send} = createClientWithChannel();
+    getCalendarMessagesMock.mockReturnValueOnce({
+      messages: ["truncated-chunk-1", "truncated-chunk-2"],
+      truncated: true,
+      totalEvents: 40,
+      includedEvents: 20,
+      totalDays: 8,
+      includedDays: 4,
+    });
+
+    startOtherTimers(client as any, "channel-id", [], []);
+    await scheduledJobs[2].callback();
+
+    expect(send).toHaveBeenCalledTimes(2);
+    expect(send).toHaveBeenNthCalledWith(1, expect.objectContaining({
+      content: "truncated-chunk-1",
+      allowedMentions: {
+        parse: [],
+      },
+    }));
+    expect(send).toHaveBeenNthCalledWith(2, expect.objectContaining({
+      content: "truncated-chunk-2",
+      allowedMentions: {
+        parse: [],
+      },
+    }));
+    expect(loggerMock.log).toHaveBeenCalledWith("warn", expect.objectContaining({
+      source: "timer-daily",
+      includedEvents: 20,
+      totalEvents: 40,
+    }));
   });
 });

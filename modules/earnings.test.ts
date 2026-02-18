@@ -1,4 +1,4 @@
-import { EarningsEvent, getEarnings, getEarningsText } from "./earnings.js";
+import { EarningsEvent, getEarnings, getEarningsMessages, getEarningsText } from "./earnings.js";
 import axios from "axios";
 
 jest.mock("axios");
@@ -184,5 +184,95 @@ LW
     expect(text).toBe(`Earnings am Mittwoch, 3. Januar 2024:
 **Nach close:**
 RDUS, CALM`);
+  });
+});
+
+describe("getEarningsMessages", () => {
+  const earningEvents: EarningsEvent[] = [
+    {
+      ticker: "CALM",
+      date: "2024-01-03",
+      importance: 4,
+      when: "after_close",
+    },
+    {
+      ticker: "UNF",
+      date: "2024-01-03",
+      importance: 3,
+      when: "before_open",
+    },
+    {
+      importance: 1,
+      ticker: "RDUS",
+      date: "2024-01-03",
+      when: "after_close",
+    },
+    {
+      ticker: "LW",
+      date: "2024-01-03",
+      importance: 1,
+      when: "during_session",
+    },
+  ];
+
+  test("returns one message with all sections when content fits", () => {
+    const batch = getEarningsMessages(earningEvents, "all", [], {
+      maxMessageLength: 1800,
+      maxMessages: 6,
+    });
+
+    expect(batch.messages).toHaveLength(1);
+    expect(batch.truncated).toBe(false);
+    expect(batch.totalEvents).toBe(4);
+    expect(batch.includedEvents).toBe(4);
+    expect(batch.messages[0]).toContain("**Vor open:**");
+    expect(batch.messages[0]).toContain("**Während der Handelszeiten:**");
+    expect(batch.messages[0]).toContain("**Nach close:**");
+  });
+
+  test("splits oversized section into multiple messages", () => {
+    const manyAfterCloseEvents: EarningsEvent[] = [];
+    for (let index = 0; index < 20; index++) {
+      manyAfterCloseEvents.push({
+        ticker: `TICKER${index}`,
+        date: "2024-01-03",
+        importance: 1,
+        when: "after_close",
+      });
+    }
+
+    const batch = getEarningsMessages(manyAfterCloseEvents, "all", [], {
+      maxMessageLength: 120,
+      maxMessages: 10,
+    });
+
+    expect(batch.messages.length).toBeGreaterThan(1);
+    expect(batch.messages[0]).toContain("**Nach close:**");
+    expect(batch.messages[1]).toContain("(Fortsetzung)");
+    for (const message of batch.messages) {
+      expect(message.length).toBeLessThanOrEqual(120);
+    }
+  });
+
+  test("adds truncation note when maxMessages is reached", () => {
+    const manyAfterCloseEvents: EarningsEvent[] = [];
+    for (let index = 0; index < 30; index++) {
+      manyAfterCloseEvents.push({
+        ticker: `E${index}`,
+        date: "2024-01-03",
+        importance: 1,
+        when: "after_close",
+      });
+    }
+
+    const batch = getEarningsMessages(manyAfterCloseEvents, "all", [], {
+      maxMessageLength: 100,
+      maxMessages: 2,
+    });
+
+    expect(batch.truncated).toBe(true);
+    expect(batch.messages).toHaveLength(2);
+    expect(batch.includedEvents).toBeLessThan(batch.totalEvents);
+    expect(batch.messages[1]).toContain("... weitere Earnings konnten wegen Discord-Limits nicht angezeigt werden.");
   });
 });
