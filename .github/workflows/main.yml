@@ -118,7 +118,7 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - name: Redeploy docker swarm stack via webhook
-        uses: joelwmale/webhook-action@master
+        uses: joelwmale/webhook-action@7e7ac95c4f6527ba5ab8d0f6f4aa116897a6c512
         with:
           url: ${{ secrets.REDEPLOY_URL }}
           headers: '{"X-Hblwrk-Auth": "${{ secrets.REDEPLOY_AUTH }}"}'

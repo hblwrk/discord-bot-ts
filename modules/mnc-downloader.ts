@@ -6,16 +6,14 @@ import {getWithRetry} from "./http-retry.js";
 
 const logger = getLogger();
 
-export async function getMnc() {
-  let dataResponse;
-
+export async function getMnc(): Promise<Buffer | undefined> {
   const todayDate = moment.tz("Europe/Berlin").format("MMDDYYYY");
   try {
-    const getResponse = getWithRetry(`https://share.refinitiv.com/assets/newsletters/Morning_News_Call/MNCGeneric_US_${todayDate}.pdf`, {
+    const getResponse = await getWithRetry(`https://share.refinitiv.com/assets/newsletters/Morning_News_Call/MNCGeneric_US_${todayDate}.pdf`, {
       responseType: "arraybuffer",
     });
 
-    dataResponse = Buffer.from((await getResponse).data, "binary");
+    return Buffer.from(getResponse.data, "binary");
   } catch (error) {
     logger.log(
       "error",
@@ -23,5 +21,5 @@ export async function getMnc() {
     );
   }
 
-  return dataResponse;
+  return undefined;
 }

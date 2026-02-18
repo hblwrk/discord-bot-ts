@@ -1,4 +1,4 @@
-import {ImageAsset, TextAsset} from "./assets.js";
+import {ImageAsset, TextAsset, UserAsset} from "./assets.js";
 import {addTriggerResponses} from "./trigger-response.js";
 import {createEventClient, createMessage} from "./test-utils/discord-mocks.js";
 
@@ -55,5 +55,20 @@ describe("addTriggerResponses", () => {
     expect(message.channel.send).toHaveBeenCalledTimes(1);
     const reply = message.channel.send.mock.calls[0][0];
     expect(reply.startsWith("Rolling the crypto dice... ")).toBe(true);
+  });
+
+  test("sends a fallback response when no quote asset exists for a user trigger", async () => {
+    const {client, getHandler} = createEventClient();
+    const userAsset = new UserAsset();
+    userAsset.name = "missing-user";
+    (userAsset as any).trigger = ["missing-user"];
+
+    addTriggerResponses(client, [userAsset], ["!missing-user"], []);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("!missing-user");
+    await handler(message);
+
+    expect(message.channel.send).toHaveBeenCalledWith("Keine passenden Zitate gefunden.");
   });
 });
