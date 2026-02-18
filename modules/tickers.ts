@@ -31,8 +31,7 @@ export async function getTickers(index: string): Promise<Ticker[]> {
 
   if ("nasdaq100" === index.toLocaleLowerCase() || "all" === index.toLocaleLowerCase()) {
     try {
-      const nasdaq100Response = await getWithRetry(`https://yfiua.github.io/index-constituents/constituents-nasdaq100.json
-`);
+      const nasdaq100Response = await getWithRetry("https://yfiua.github.io/index-constituents/constituents-nasdaq100.json");
 
       if (1 < nasdaq100Response.data.length) {
         for (const element of nasdaq100Response.data) {
@@ -55,38 +54,14 @@ export async function getTickers(index: string): Promise<Ticker[]> {
   const ticker = new Ticker();
   ticker.symbol = "VIRT";
   ticker.name = "Virtu Financial, Inc.";
-  ticker.exchange = "russel1000";
+  ticker.exchange = "russell1000";
   tickers.push(ticker);
 
   return tickers;
 }
 
 export class Ticker {
-  private _symbol: string;
-  private _name: string;
-  private _exchange: string;
-
-  public get symbol() {
-    return this._symbol;
-  }
-
-  public set symbol(symbol: string) {
-    this._symbol = symbol;
-  }
-
-  public get name() {
-    return this._name;
-  }
-
-  public set name(name: string) {
-    this._name = name;
-  }
-
-  public get exchange() {
-    return this._exchange;
-  }
-
-  public set exchange(exchange: string) {
-    this._exchange = exchange;
-  }
+  public symbol = "";
+  public name = "";
+  public exchange = "";
 }
