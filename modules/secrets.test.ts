@@ -77,4 +77,48 @@ describe("readSecret", () => {
       .length;
     expect(configReads).toBe(1);
   });
+
+  test("resolves legacy secret name when requesting new _ID format", () => {
+    readFileSyncMock.mockImplementation(path => {
+      if ("/run/secrets/production_discord_client_ID" === path) {
+        throw new Error("new secret missing");
+      }
+
+      if ("/run/secrets/staging_discord_client_ID" === path) {
+        throw new Error("new staging secret missing");
+      }
+
+      if ("/run/secrets/production_discord_clientID" === path) {
+        return "legacy-client-id";
+      }
+
+      throw new Error(`Unexpected path: ${path}`);
+    });
+
+    const readSecret = loadReadSecret();
+    expect(readSecret("discord_client_ID")).toBe("legacy-client-id");
+  });
+
+  test("throws clear error when docker secrets and config are both unavailable", () => {
+    readFileSyncMock.mockImplementation(path => {
+      if ("string" === typeof path && path.startsWith("/run/secrets/")) {
+        const error = new Error("docker secret missing") as Error & { code?: string };
+        error.code = "ENOENT";
+        throw error;
+      }
+
+      if ("config.json" === path) {
+        const error = new Error("config missing") as Error & { code?: string };
+        error.code = "ENOENT";
+        throw error;
+      }
+
+      throw new Error(`Unexpected path: ${path}`);
+    });
+
+    const readSecret = loadReadSecret();
+    expect(() => readSecret("discord_token")).toThrow(
+      /Missing secret "discord_token"/,
+    );
+  });
 });
