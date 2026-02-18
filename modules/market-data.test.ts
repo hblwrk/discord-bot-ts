@@ -303,6 +303,84 @@ describe("updateMarketData", () => {
     });
   });
 
+  test("updates nickname and presence when websocket payload is wrapped as a JSON string", async () => {
+    queuedClientIds.push("client-1");
+    mockGetAssets.mockResolvedValue([
+      {
+        botToken: "token-1",
+        botName: "bot-one",
+        botClientId: "client-1",
+        id: 8849,
+        decimals: 2,
+        order: 1,
+        suffix: "$",
+        unit: "PCT",
+        lastUpdate: 0,
+      },
+    ]);
+
+    await updateMarketData();
+    const readyHandler = clientInstances[0].handlers.get("clientReady");
+    readyHandler();
+
+    const wsClient = websocketInstances[0];
+    const messageHandler = wsClient.handlers.get("message");
+
+    const websocketMessagePayload = {
+      message: "pid-8849::{\"pid\":\"8849\",\"last_numeric\":64.02,\"pc\":\"+1.76\",\"pcp\":\"+2.83%\"}",
+    };
+    const websocketMessage = JSON.stringify(`a${JSON.stringify([JSON.stringify(websocketMessagePayload)])}`);
+
+    messageHandler({
+      data: websocketMessage,
+    });
+    await flushAsyncWork();
+
+    expect(clientInstances[0].setNickname).toHaveBeenCalledWith("1🟩 64.02$");
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith({
+      activities: [{name: "+1.76 (2.83%)"}],
+    });
+  });
+
+  test("updates nickname and presence from websocket envelope objects", async () => {
+    queuedClientIds.push("client-1");
+    mockGetAssets.mockResolvedValue([
+      {
+        botToken: "token-1",
+        botName: "bot-one",
+        botClientId: "client-1",
+        id: 1175153,
+        decimals: 1,
+        order: 1,
+        suffix: "",
+        unit: "PCT",
+        lastUpdate: 0,
+      },
+    ]);
+
+    await updateMarketData();
+    const readyHandler = clientInstances[0].handlers.get("clientReady");
+    readyHandler();
+
+    const wsClient = websocketInstances[0];
+    const messageHandler = wsClient.handlers.get("message");
+
+    const websocketMessagePayload = {
+      message: "pid-1175153::{\"pid\":\"1175153\",\"last_numeric\":6852.3,\"pc\":\"+9.1\",\"pcp\":\"+0.13%\"}",
+    };
+    const websocketMessage = `a${JSON.stringify([websocketMessagePayload])}`;
+
+    messageHandler({
+      data: websocketMessage,
+    });
+    await flushAsyncWork();
+
+    expect(clientInstances[0].setNickname).toHaveBeenCalledWith("1🟩 6852.3");
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith({
+      activities: [{name: "+9.1 (0.13%)"}],
+    });
+  });
+
   test("ignores malformed stream payloads without crashing", async () => {
     queuedClientIds.push("client-1");
     mockGetAssets.mockResolvedValue([
