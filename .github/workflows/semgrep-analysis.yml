@@ -36,7 +36,7 @@ jobs:
       SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
     steps:
       # Checkout project source
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
       # Run managed Semgrep CI when token is configured.
       - name: Semgrep CI scan
