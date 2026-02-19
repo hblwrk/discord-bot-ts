@@ -38,8 +38,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install njsscan
     - name: nodejsscan scan
-      run: njsscan . --sarif --output results.sarif || true
+      run: njsscan . --sarif --output results.sarif
     - name: Upload njsscan report
+      if: ${{ always() && hashFiles('results.sarif') != '' }}
       uses: github/codeql-action/upload-sarif@v4
       with:
         sarif_file: results.sarif
