@@ -2,6 +2,9 @@ const mockPut = jest.fn().mockResolvedValue(undefined);
 const mockSetToken = jest.fn().mockReturnValue({put: mockPut});
 const mockRest = jest.fn().mockImplementation(() => ({setToken: mockSetToken}));
 const mockApplicationGuildCommands = jest.fn(() => "/applications/test/commands");
+const loggerMock = {
+  log: jest.fn(),
+};
 
 jest.mock("discord.js", () => {
   const actual = jest.requireActual("discord.js");
@@ -36,6 +39,11 @@ jest.mock("./secrets.js", () => ({
 
     return "";
   }),
+}));
+
+jest.mock("./logging.js", () => ({
+  getLogger: () => loggerMock,
+  getDiscordLogger: () => loggerMock,
 }));
 
 const mockedReadSecret = readSecret as jest.MockedFunction<typeof readSecret>;
@@ -78,5 +86,18 @@ describe("defineSlashCommands", () => {
     const earningsCommand = commandPayload.find(command => command.name === "earnings");
     const whenOption = earningsCommand.options.find(option => option.name === "when");
     expect(whenOption.choices).toContainEqual({name: "Alle", value: "all"});
+  });
+
+  test("logs registration errors when REST command deployment fails", async () => {
+    const expectedError = new Error("discord api unavailable");
+    mockPut.mockRejectedValueOnce(expectedError);
+
+    defineSlashCommands([], [], []);
+
+    await new Promise(resolve => {
+      setImmediate(resolve);
+    });
+
+    expect(loggerMock.log).toHaveBeenCalledWith("error", expectedError);
   });
 });

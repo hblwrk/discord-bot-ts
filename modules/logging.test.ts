@@ -1,4 +1,4 @@
-import {getLogger} from "./logging.js";
+import {getDiscordLogger, getLogger} from "./logging.js";
 import {readSecret} from "./secrets.js";
 
 jest.mock("./secrets.js", () => ({
@@ -49,5 +49,24 @@ describe("getLogger loglevel switching", () => {
 
     expect(mockedReadSecret).not.toHaveBeenCalled();
     expect(logger.level).toBe("warn");
+  });
+
+  test("builds a discord logger with Discord transport", () => {
+    mockedReadSecret.mockImplementation(secretName => {
+      if ("loglevel" === secretName) {
+        return "info";
+      }
+
+      if ("hblwrk_channel_logging_ID" === secretName) {
+        return "123456";
+      }
+
+      return "";
+    });
+
+    const logger = getDiscordLogger({channels: {cache: {get: jest.fn()}}});
+
+    expect(logger.level).toBe("info");
+    expect(logger.transports).toHaveLength(1);
   });
 });
