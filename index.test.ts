@@ -33,6 +33,14 @@ describe("index bootstrap", () => {
       setImmediate(resolve);
     });
 
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "info",
+      "Started with loglevel: info",
+    );
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "info",
+      "Healthcheck port: 11312",
+    );
     expect(startBotMock).toHaveBeenCalledWith({
       logger: loggerMock,
     });

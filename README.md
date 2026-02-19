@@ -103,6 +103,7 @@ By defining a set of secrets per developer, multiple bots can be run at the same
 
 `loglevel` is optional and defaults to `info`. Supported values are `error`, `warn`, `info`, `http`, `verbose`, `debug` and `silly`.  
 In Docker-based deployments without `config.json`, you can override this with the `LOGLEVEL` environment variable.
+The health-check server port can be overridden via the `HEALTHCHECK_PORT` environment variable and defaults to `11312`.
 
 ```json
 {
@@ -199,7 +200,7 @@ docker stack rm discord-bot-ts_production
 
 ## Monitoring
 
-Our containers are designed to be minimal and include an in-container health-check in the `Dockerfile`, probing `/api/v1/health` for liveness. The bot exposes a simple HTTP server at port `11312/tcp` (per default) with:
+Our containers are designed to be minimal and include an in-container health-check in the `Dockerfile`, probing `/api/v1/health` for liveness. The bot exposes a simple HTTP server at the port configured by `HEALTHCHECK_PORT` (`11312/tcp` by default) with:
 
 * `/api/v1/health`: liveness endpoint (returns `HTTP 200` when process is running).
 * `/api/v1/ready`: readiness endpoint (returns `HTTP 200` only after Discord login and handler setup, otherwise `HTTP 503`).

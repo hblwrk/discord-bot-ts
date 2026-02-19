@@ -1,12 +1,13 @@
 /* eslint-disable import/extensions */
+import {getHealthcheckPort} from "./modules/health-check-config.js";
 import {getLogger} from "./modules/logging.js";
 import {startBot} from "./modules/startup-orchestrator.js";
 
-const healthcheckPort = 11312;
+const healthcheckPort = getHealthcheckPort();
 
 const logger = getLogger();
-console.log(`Started with loglevel: ${logger.level}`);
-console.log(`Healthcheck port: ${healthcheckPort}`);
+logger.log("info", `Started with loglevel: ${logger.level}`);
+logger.log("info", `Healthcheck port: ${healthcheckPort}`);
 
 void startBot({
   logger,
