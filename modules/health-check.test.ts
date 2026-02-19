@@ -5,7 +5,11 @@ var mockAppUse: jest.Mock;
 var mockRouterUse: jest.Mock;
 var mockRouterGet: jest.Mock;
 var mockListen: jest.Mock;
+var mockOn: jest.Mock;
 var mockCreateServer: jest.Mock;
+const mockLogger = {
+  log: jest.fn(),
+};
 
 jest.mock("express", () => {
   mockRouteHandlers = new Map<string, (...args: unknown[]) => unknown>();
@@ -31,7 +35,9 @@ jest.mock("express", () => {
 
 jest.mock("node:http", () => {
   mockListen = jest.fn();
+  mockOn = jest.fn();
   mockCreateServer = jest.fn(() => ({
+    on: mockOn,
     listen: mockListen,
   }));
 
@@ -105,9 +111,10 @@ describe("runHealthCheck", () => {
   });
 
   test("registers liveness endpoint and binds localhost listener", () => {
-    runHealthCheck(() => createState());
+    runHealthCheck(() => createState(), mockLogger);
 
     expect(mockCreateServer).toHaveBeenCalledTimes(1);
+    expect(mockOn).toHaveBeenCalledWith("error", expect.any(Function));
     expect(mockListen).toHaveBeenCalledWith(11312, "127.0.0.1");
 
     const healthHandler = mockRouteHandlers.get("/health");
@@ -120,28 +127,28 @@ describe("runHealthCheck", () => {
   });
 
   test("binds listener on default healthcheck port", () => {
-    runHealthCheck(() => createState());
+    runHealthCheck(() => createState(), mockLogger);
 
     expect(mockListen).toHaveBeenCalledWith(11312, "127.0.0.1");
   });
 
   test("binds listener on configured healthcheck port", () => {
     process.env.HEALTHCHECK_PORT = "12000";
-    runHealthCheck(() => createState());
+    runHealthCheck(() => createState(), mockLogger);
 
     expect(mockListen).toHaveBeenCalledWith(12000, "127.0.0.1");
   });
 
   test("falls back to default healthcheck port for invalid environment value", () => {
     process.env.HEALTHCHECK_PORT = "abc";
-    runHealthCheck(() => createState());
+    runHealthCheck(() => createState(), mockLogger);
 
     expect(mockListen).toHaveBeenCalledWith(11312, "127.0.0.1");
   });
 
   test("returns readiness state depending on discord login and handler attachment", () => {
     let startupState = createState();
-    runHealthCheck(() => startupState);
+    runHealthCheck(() => startupState, mockLogger);
 
     const readyHandler = mockRouteHandlers.get("/ready");
     expect(readyHandler).toBeDefined();
@@ -182,7 +189,7 @@ describe("runHealthCheck", () => {
         tickers: "failed",
       },
     });
-    runHealthCheck(() => snapshot);
+    runHealthCheck(() => snapshot, mockLogger);
 
     const startupHandler = mockRouteHandlers.get("/startup");
     expect(startupHandler).toBeDefined();
@@ -191,5 +198,32 @@ describe("runHealthCheck", () => {
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toEqual(snapshot);
+  });
+
+  test("logs listener errors when binding fails", () => {
+    runHealthCheck(() => createState(), mockLogger);
+
+    const errorHandler = mockOn.mock.calls.find(([eventName]: [string]) => "error" === eventName)?.[1];
+    expect(errorHandler).toEqual(expect.any(Function));
+
+    const bindError = Object.assign(
+      new Error("listen EADDRINUSE: address already in use 127.0.0.1:11312"),
+      {
+        code: "EADDRINUSE",
+      },
+    );
+    errorHandler?.(bindError);
+
+    expect(mockLogger.log).toHaveBeenCalledWith(
+      "error",
+      expect.objectContaining({
+        startup_phase: "health",
+        bind_host: "127.0.0.1",
+        bind_port: 11312,
+        error_code: "EADDRINUSE",
+        error_message: "listen EADDRINUSE: address already in use 127.0.0.1:11312",
+        message: "Health-check server failed to bind.",
+      }),
+    );
   });
 });
