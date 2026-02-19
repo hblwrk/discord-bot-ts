@@ -1,9 +1,34 @@
 import http from "node:http";
 import express from "express";
 import {getHealthcheckPort} from "./health-check-config.js";
+import {getLogger} from "./logging.js";
 import {type StartupStateSnapshot} from "./startup-state.js";
 
-export function runHealthCheck(getStartupState: () => StartupStateSnapshot) {
+type HealthcheckLogger = {
+  log: (level: string, message: any) => void;
+};
+
+function toErrorMessage(error: unknown): string {
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  return String(error);
+}
+
+function toErrorCode(error: unknown): string {
+  if (error instanceof Error && "code" in error) {
+    const errorCode = (error as NodeJS.ErrnoException).code;
+    return "string" === typeof errorCode ? errorCode : "UNKNOWN";
+  }
+
+  return "UNKNOWN";
+}
+
+export function runHealthCheck(
+  getStartupState: () => StartupStateSnapshot,
+  logger: HealthcheckLogger = getLogger(),
+) {
   const app = express();
   const router = express.Router();
 
@@ -42,6 +67,21 @@ export function runHealthCheck(getStartupState: () => StartupStateSnapshot) {
 
   const server = http.createServer(app);
   const healthcheckPort = getHealthcheckPort();
+
+  server.on("error", (error: unknown) => {
+    logger.log(
+      "error",
+      {
+        startup_phase: "health",
+        bind_host: "127.0.0.1",
+        bind_port: healthcheckPort,
+        error_code: toErrorCode(error),
+        error_message: toErrorMessage(error),
+        message: "Health-check server failed to bind.",
+      },
+    );
+  });
+
   server.listen(healthcheckPort, "127.0.0.1");
   return server;
 }
