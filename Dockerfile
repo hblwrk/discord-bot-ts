@@ -12,7 +12,7 @@ USER node
 
 RUN npm ci --only=production
 
-FROM gcr.io/distroless/nodejs22
+FROM gcr.io/distroless/nodejs22:nonroot
 
 COPY --chown=65532:65532 --from=builder /home/node/app /app
 

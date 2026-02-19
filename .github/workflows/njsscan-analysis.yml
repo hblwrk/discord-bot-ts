@@ -29,11 +29,16 @@ jobs:
     steps:
     - name: Checkout the code
       uses: actions/checkout@v4
-    - name: nodejsscan scan
-      id: njsscan
-      uses: ajinabraham/njsscan-action@231750a435d85095d33be7d192d52ec650625146
+    - name: Set up Python
+      uses: actions/setup-python@v5
       with:
-        args: '. --sarif --output results.sarif || true'
+        python-version: '3.x'
+    - name: Install njsscan
+      run: |
+        python -m pip install --upgrade pip
+        pip install njsscan
+    - name: nodejsscan scan
+      run: njsscan . --sarif --output results.sarif || true
     - name: Upload njsscan report
       uses: github/codeql-action/upload-sarif@v4
       with:
