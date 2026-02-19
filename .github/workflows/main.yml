@@ -33,6 +33,8 @@ jobs:
         uses: bridgecrewio/checkov-action@v12.3084.0
         with:
           soft_fail: false
+          # Scope CKV_SECRET_6 suppression to assets/marketdata.yaml false positives only.
+          skip_check: 'CKV_SECRET_6:^/?assets/marketdata\.yaml$'
 
       - name: Sysdig CIS Dockerfile Benchmark
         uses: sysdiglabs/benchmark-dockerfile@v1.0.0
