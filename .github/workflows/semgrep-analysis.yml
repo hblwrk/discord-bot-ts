@@ -46,7 +46,7 @@ jobs:
       # Fallback scan when Semgrep token is not configured.
       - name: Semgrep CE fallback scan
         if: ${{ env.SEMGREP_APP_TOKEN == '' }}
-        run: semgrep scan --config p/security-audit --sarif > semgrep.sarif
+        run: semgrep scan --error --config p/security-audit --sarif > semgrep.sarif
 
       # Upload SARIF file generated in previous step
       - name: Upload SARIF file
