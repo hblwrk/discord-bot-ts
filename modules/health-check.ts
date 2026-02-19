@@ -1,8 +1,7 @@
 import http from "node:http";
 import express from "express";
+import {getHealthcheckPort} from "./health-check-config.js";
 import {type StartupStateSnapshot} from "./startup-state.js";
-
-const healthcheckPort = 11312;
 
 export function runHealthCheck(getStartupState: () => StartupStateSnapshot) {
   const app = express();
@@ -42,6 +41,7 @@ export function runHealthCheck(getStartupState: () => StartupStateSnapshot) {
   app.use("/api/v1", router);
 
   const server = http.createServer(app);
+  const healthcheckPort = getHealthcheckPort();
   server.listen(healthcheckPort, "127.0.0.1");
   return server;
 }

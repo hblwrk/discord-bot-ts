@@ -44,6 +44,7 @@ jest.mock("node:http", () => {
 });
 
 const {runHealthCheck} = require("./health-check.js");
+const originalHealthcheckPort = process.env.HEALTHCHECK_PORT;
 
 function createState(partial: Partial<StartupStateSnapshot> = {}): StartupStateSnapshot {
   return {
@@ -91,6 +92,16 @@ describe("runHealthCheck", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockRouteHandlers.clear();
+    delete process.env.HEALTHCHECK_PORT;
+  });
+
+  afterAll(() => {
+    if ("undefined" === typeof originalHealthcheckPort) {
+      delete process.env.HEALTHCHECK_PORT;
+      return;
+    }
+
+    process.env.HEALTHCHECK_PORT = originalHealthcheckPort;
   });
 
   test("registers liveness endpoint and binds localhost listener", () => {
@@ -109,6 +120,20 @@ describe("runHealthCheck", () => {
   });
 
   test("binds listener on default healthcheck port", () => {
+    runHealthCheck(() => createState());
+
+    expect(mockListen).toHaveBeenCalledWith(11312, "127.0.0.1");
+  });
+
+  test("binds listener on configured healthcheck port", () => {
+    process.env.HEALTHCHECK_PORT = "12000";
+    runHealthCheck(() => createState());
+
+    expect(mockListen).toHaveBeenCalledWith(12000, "127.0.0.1");
+  });
+
+  test("falls back to default healthcheck port for invalid environment value", () => {
+    process.env.HEALTHCHECK_PORT = "abc";
     runHealthCheck(() => createState());
 
     expect(mockListen).toHaveBeenCalledWith(11312, "127.0.0.1");
