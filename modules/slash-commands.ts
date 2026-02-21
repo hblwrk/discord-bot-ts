@@ -665,7 +665,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       if (true === watchlistFilterDropped) {
         await interaction.followUp({
-          content: "Hinweis: Der Stocktwits-Watchlist-Filter wurde blockiert, daher werden ungefilterte Earnings angezeigt.",
+          content: "Hinweis: Der angeforderte Filter konnte nicht angewendet werden, daher werden ungefilterte Earnings angezeigt.",
           allowedMentions: noMentions,
         }).catch(error => {
           logger.log(
