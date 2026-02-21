@@ -1,4 +1,4 @@
-import { EarningsEvent, getEarnings, getEarningsMessages, getEarningsText } from "./earnings.js";
+import { EarningsEvent, getEarnings, getEarningsMessages, getEarningsResult, getEarningsText } from "./earnings.js";
 import axios from "axios";
 
 jest.mock("axios");
@@ -59,6 +59,50 @@ describe("getEarnings", () => {
           },
         ],
       },
+    },
+  };
+
+  const nasdaqFallbackResponse = {
+    data: {
+      rows: [
+        {
+          symbol: "AAPL",
+          time: "time-after-hours",
+        },
+      ],
+    },
+    status: {
+      rCode: 200,
+    },
+  };
+
+  const nasdaqTimeMappingResponse = {
+    data: {
+      rows: [
+        {
+          symbol: "PRE",
+          time: "time-pre-market",
+        },
+        {
+          symbol: "AFT",
+          time: "time-after-hours",
+        },
+        {
+          symbol: "NOS",
+          time: "time-not-supplied",
+        },
+        {
+          symbol: "UNK",
+          time: "time-unknown",
+        },
+        {
+          symbol: "",
+          time: "time-after-hours",
+        },
+      ],
+    },
+    status: {
+      rCode: 200,
     },
   };
 
@@ -180,38 +224,64 @@ describe("getEarnings", () => {
     );
   });
 
-  test("returns no events when stocktwits fails with 403", async () => {
+  test("falls back to nasdaq when stocktwits fails with 403", async () => {
     (axios.get as jest.MockedFunction<typeof axios.get>)
       .mockRejectedValueOnce({
         response: {
           status: 403,
         },
+      })
+      .mockResolvedValueOnce({
+        data: nasdaqFallbackResponse,
       });
 
     const earnings = await getEarnings(0, "today", "all");
 
-    expect(earnings).toEqual([]);
-    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect(earnings).toEqual([
+      {
+        importance: 1,
+        date: "2024-01-02",
+        ticker: "AAPL",
+        when: "after_close",
+      },
+    ]);
+    expect(axios.get).toHaveBeenCalledTimes(2);
     expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[0][0]).toEqual(
       expect.stringContaining("api.stocktwits.com/api/2/discover/earnings_calendar")
     );
+    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[1][0]).toEqual(
+      expect.stringContaining("api.nasdaq.com/api/calendar/earnings?date=2024-01-02")
+    );
   });
 
-  test("returns no events when stocktwits returns cloudflare challenge page", async () => {
+  test("falls back to nasdaq when stocktwits returns cloudflare challenge page", async () => {
     (axios.get as jest.MockedFunction<typeof axios.get>)
       .mockResolvedValueOnce({
         data: "<!DOCTYPE html><html><head><title>Just a moment...</title></head></html>",
         headers: {
           "content-type": "text/html; charset=UTF-8",
         },
+      })
+      .mockResolvedValueOnce({
+        data: nasdaqFallbackResponse,
       });
 
     const earnings = await getEarnings(0, "today", "all");
 
-    expect(earnings).toEqual([]);
-    expect(axios.get).toHaveBeenCalledTimes(1);
+    expect(earnings).toEqual([
+      {
+        importance: 1,
+        date: "2024-01-02",
+        ticker: "AAPL",
+        when: "after_close",
+      },
+    ]);
+    expect(axios.get).toHaveBeenCalledTimes(2);
     expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[0][0]).toEqual(
       expect.stringContaining("api.stocktwits.com/api/2/discover/earnings_calendar")
+    );
+    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[1][0]).toEqual(
+      expect.stringContaining("api.nasdaq.com/api/calendar/earnings?date=2024-01-02")
     );
   });
 
@@ -252,6 +322,151 @@ describe("getEarnings", () => {
     expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[1][0]).toEqual(
       expect.not.stringContaining("watchlist=")
     );
+  });
+
+  test("maps nasdaq time tokens when stocktwits fallback is used", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>)
+      .mockResolvedValueOnce({
+        data: "<!DOCTYPE html><html><head><title>Just a moment...</title></head></html>",
+        headers: {
+          "content-type": "text/html; charset=UTF-8",
+        },
+      })
+      .mockResolvedValueOnce({
+        data: nasdaqTimeMappingResponse,
+      });
+
+    const earnings = await getEarnings(0, "today", "all");
+
+    expect(earnings).toEqual([
+      {
+        importance: 1,
+        date: "2024-01-02",
+        ticker: "PRE",
+        when: "before_open",
+      },
+      {
+        importance: 1,
+        date: "2024-01-02",
+        ticker: "AFT",
+        when: "after_close",
+      },
+      {
+        importance: 1,
+        date: "2024-01-02",
+        ticker: "NOS",
+        when: "during_session",
+      },
+      {
+        importance: 1,
+        date: "2024-01-02",
+        ticker: "UNK",
+        when: "during_session",
+      },
+    ]);
+  });
+
+  test("marks watchlist filter as dropped when fallback uses nasdaq", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>)
+      .mockResolvedValueOnce({
+        data: "<!DOCTYPE html><html><head><title>Just a moment...</title></head></html>",
+        headers: {
+          "content-type": "text/html; charset=UTF-8",
+        },
+      })
+      .mockResolvedValueOnce({
+        data: "<!DOCTYPE html><html><head><title>Just a moment...</title></head></html>",
+        headers: {
+          "content-type": "text/html; charset=UTF-8",
+        },
+      })
+      .mockResolvedValueOnce({
+        data: nasdaqFallbackResponse,
+      });
+
+    const result = await getEarningsResult(
+      0,
+      "today",
+      "5666c5fa-80dc-4e16-8bcc-12a8314d0b07"
+    );
+
+    expect(result).toEqual({
+      events: [
+        {
+          importance: 1,
+          date: "2024-01-02",
+          ticker: "AAPL",
+          when: "after_close",
+        },
+      ],
+      status: "ok",
+      watchlistFilterDropped: true,
+    });
+    expect(axios.get).toHaveBeenCalledTimes(3);
+    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[0][0]).toEqual(
+      expect.stringContaining("watchlist=5666c5fa-80dc-4e16-8bcc-12a8314d0b07")
+    );
+    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[1][0]).toEqual(
+      expect.not.stringContaining("watchlist=")
+    );
+    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[2][0]).toEqual(
+      expect.stringContaining("api.nasdaq.com/api/calendar/earnings?date=2024-01-02")
+    );
+  });
+
+  test("returns blocked status when stocktwits is blocked and nasdaq fallback fails", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>)
+      .mockResolvedValueOnce({
+        data: "<!DOCTYPE html><html><head><title>Just a moment...</title></head></html>",
+        headers: {
+          "content-type": "text/html; charset=UTF-8",
+        },
+      })
+      .mockResolvedValueOnce({
+        data: {
+          status: {
+            rCode: 500,
+          },
+          data: {
+            rows: [],
+          },
+        },
+      });
+
+    const result = await getEarningsResult(0, "today", "all");
+
+    expect(result).toEqual({
+      events: [],
+      status: "blocked",
+      watchlistFilterDropped: false,
+    });
+  });
+
+  test("returns error status when stocktwits errors and nasdaq fallback fails", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>)
+      .mockRejectedValueOnce({
+        response: {
+          status: 400,
+        },
+      })
+      .mockResolvedValueOnce({
+        data: {
+          status: {
+            rCode: 500,
+          },
+          data: {
+            rows: [],
+          },
+        },
+      });
+
+    const result = await getEarningsResult(0, "today", "all");
+
+    expect(result).toEqual({
+      events: [],
+      status: "error",
+      watchlistFilterDropped: false,
+    });
   });
 
 });

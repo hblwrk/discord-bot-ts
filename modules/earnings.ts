@@ -64,6 +64,23 @@ type StocktwitsEarningsResponse = {
   }>;
 };
 
+type NasdaqEarningsRow = {
+  symbol?: string;
+  time?: string;
+};
+
+type NasdaqEarningsResponse = {
+  data?: {
+    rows?: NasdaqEarningsRow[];
+  };
+  status?: {
+    rCode?: number;
+    bCodeMessage?: string | null;
+    developerMessage?: string | null;
+  };
+  message?: string | null;
+};
+
 type StocktwitsBlockedErrorCode = "stocktwits_blocked";
 type StocktwitsLoadResult = {
   data: StocktwitsEarningsResponse;
@@ -77,6 +94,7 @@ export type EarningsLoadResult = {
 };
 
 const stocktwitsEarningsEndpoint = "https://api.stocktwits.com/api/2/discover/earnings_calendar";
+const nasdaqEarningsEndpoint = "https://api.nasdaq.com/api/calendar/earnings";
 const stocktwitsRequestHeaders = {
   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
   "Accept": "application/json, text/plain, */*",
@@ -84,6 +102,11 @@ const stocktwitsRequestHeaders = {
   "Origin": "https://stocktwits.com",
   "Referer": "https://stocktwits.com/sentiment/calendar",
   "X-Requested-With": "XMLHttpRequest",
+};
+const nasdaqRequestHeaders = {
+  "User-Agent": "Mozilla/5.0",
+  "Accept": "application/json, text/plain, */*",
+  "Referer": "https://www.nasdaq.com/",
 };
 
 export async function getEarnings(
@@ -187,6 +210,30 @@ export async function getEarningsResult(
       status = "error";
       logger.log("error", `Loading earnings failed: ${stocktwitsError}`);
     }
+
+    logger.log(
+      "warn",
+      `Loading earnings fallback: trying Nasdaq after Stocktwits ${status} response.`
+    );
+    if ("all" !== filter) {
+      watchlistFilterDropped = true;
+    }
+
+    try {
+      const nasdaqEarnings = await loadNasdaqEarnings(dateStamp);
+      appendNasdaqEarningsEvents(
+        earningsEvents,
+        nasdaqEarnings,
+        dateStamp
+      );
+      status = "ok";
+      logger.log(
+        "info",
+        `Loaded ${earningsEvents.length} earnings from Nasdaq fallback for ${dateStamp}.`
+      );
+    } catch (nasdaqError) {
+      logger.log("error", `Loading Nasdaq fallback earnings failed: ${nasdaqError}`);
+    }
   }
 
   return {
@@ -256,6 +303,35 @@ async function loadStocktwitsEarnings(
       watchlistFilterDropped: true,
     };
   }
+}
+
+async function loadNasdaqEarnings(
+  dateStamp: string
+): Promise<NasdaqEarningsResponse> {
+  const query = new URLSearchParams({
+    date: dateStamp,
+  });
+  const response = await getWithRetry<NasdaqEarningsResponse>(
+    `${nasdaqEarningsEndpoint}?${query.toString()}`,
+    {
+      headers: nasdaqRequestHeaders,
+    }
+  );
+
+  if (
+    "number" === typeof response.data?.status?.rCode &&
+    response.data.status.rCode !== 200
+  ) {
+    throw new Error(
+      `Nasdaq response failed with status code ${response.data.status.rCode}.`
+    );
+  }
+
+  if ("object" !== typeof response.data || null === response.data) {
+    throw new Error("Nasdaq returned a non-JSON response.");
+  }
+
+  return response.data;
 }
 
 function isHttpErrorStatus(error: unknown, statusCode: number): boolean {
@@ -379,6 +455,51 @@ function appendStocktwitsEarningsEvents(
       ),
     });
   }
+}
+
+function appendNasdaqEarningsEvents(
+  earningsEvents: EarningsEvent[],
+  nasdaqResponse: NasdaqEarningsResponse,
+  dateStamp: string
+) {
+  if (!Array.isArray(nasdaqResponse.data?.rows)) {
+    return;
+  }
+
+  for (const row of nasdaqResponse.data.rows) {
+    if ("string" !== typeof row.symbol) {
+      continue;
+    }
+
+    const ticker = row.symbol.trim();
+    if (0 === ticker.length) {
+      continue;
+    }
+
+    earningsEvents.push({
+      ticker,
+      date: dateStamp,
+      importance: 1,
+      when: getEarningsWhenFromNasdaqTimeToken(row.time),
+    });
+  }
+}
+
+function getEarningsWhenFromNasdaqTimeToken(timeToken: unknown): EarningsWhen {
+  if ("string" !== typeof timeToken) {
+    return "during_session";
+  }
+
+  const normalizedTimeToken = timeToken.trim().toLowerCase();
+  if ("time-pre-market" === normalizedTimeToken) {
+    return "before_open";
+  }
+
+  if ("time-after-hours" === normalizedTimeToken) {
+    return "after_close";
+  }
+
+  return "during_session";
 }
 
 function getEarningsWhenFromClockTime(
