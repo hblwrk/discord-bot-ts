@@ -412,6 +412,86 @@ describe("updateMarketData", () => {
     expect(clientInstances[0].client.user.setPresence).toHaveBeenCalledTimes(1); // default only
   });
 
+  test("ignores comment stream payloads without logging parse warnings", async () => {
+    queuedClientIds.push("client-1");
+    mockGetAssets.mockResolvedValue([
+      {
+        botToken: "token-1",
+        botName: "bot-one",
+        botClientId: "client-1",
+        id: 123,
+        decimals: 2,
+        order: 1,
+        suffix: "",
+        unit: "PCT",
+        lastUpdate: 0,
+      },
+    ]);
+
+    await updateMarketData();
+    clientInstances[0].handlers.get("clientReady")();
+
+    const wsClient = websocketInstances[0];
+    const messageHandler = wsClient.handlers.get("message");
+    const commentPayload = {
+      message: "cmt-1-5-945629::{\"ID\":\"46266029\",\"commentContent\":\"test\"}",
+    };
+    const websocketMessage = `a${JSON.stringify([JSON.stringify(commentPayload)])}`;
+
+    messageHandler({
+      data: websocketMessage,
+    });
+    await flushAsyncWork();
+
+    expect(clientInstances[0].setNickname).not.toHaveBeenCalled();
+    expect(mockLogger.log).not.toHaveBeenCalledWith(
+      "warn",
+      expect.stringContaining("Ignoring unparseable market data payload"),
+    );
+    expect(mockLogger.log).not.toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("Error updating market data bot"),
+    );
+  });
+
+  test("logs warning for unparseable market payloads", async () => {
+    queuedClientIds.push("client-1");
+    mockGetAssets.mockResolvedValue([
+      {
+        botToken: "token-1",
+        botName: "bot-one",
+        botClientId: "client-1",
+        id: 123,
+        decimals: 2,
+        order: 1,
+        suffix: "",
+        unit: "PCT",
+        lastUpdate: 0,
+      },
+    ]);
+
+    await updateMarketData();
+    clientInstances[0].handlers.get("clientReady")();
+
+    const wsClient = websocketInstances[0];
+    const messageHandler = wsClient.handlers.get("message");
+    const marketPayload = {
+      message: "pid-123::{\"pid\":\"123\",\"last_numeric\":\"\",\"pc\":\"+1.2\",\"pcp\":\"+1.0%\"}",
+    };
+    const websocketMessage = `a${JSON.stringify([JSON.stringify(marketPayload)])}`;
+
+    messageHandler({
+      data: websocketMessage,
+    });
+    await flushAsyncWork();
+
+    expect(clientInstances[0].setNickname).not.toHaveBeenCalled();
+    expect(mockLogger.log).toHaveBeenCalledWith(
+      "warn",
+      expect.stringContaining("Ignoring unparseable market data payload"),
+    );
+  });
+
   test("logs nickname update failures without rejecting message handler", async () => {
     queuedClientIds.push("client-1");
     mockGetAssets.mockResolvedValue([

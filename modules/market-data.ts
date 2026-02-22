@@ -10,6 +10,7 @@ const websocketSubscribeDomain = "cmt-1-5-945629:%%domain-1:}";
 const discordUpdateIntervalSeconds = 15;
 const streamWatchdogIntervalMs = 30_000;
 const streamStaleTimeoutMs = 300_000;
+const maxLoggedPayloadLength = 500;
 
 type MarketDataAsset = {
   botToken: string;
@@ -186,10 +187,12 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
 
       const streamEvent = parseStreamEvent(rawMessage);
       if (null === streamEvent) {
-        logger.log(
-          "error",
-          `Error updating market data bot: ${rawMessage}`,
-        );
+        if (true === isPotentialMarketDataPayload(rawMessage)) {
+          logger.log(
+            "warn",
+            `Ignoring unparseable market data payload: ${getPayloadLogPreview(rawMessage)}`,
+          );
+        }
 
         return;
       }
@@ -305,6 +308,27 @@ function parseStreamEvent(rawMessage: string): MarketStreamEvent | null {
   }
 
   return null;
+}
+
+function isPotentialMarketDataPayload(rawMessage: string): boolean {
+  const normalizedMessage = rawMessage.toLowerCase();
+
+  return normalizedMessage.includes("pid-")
+    || normalizedMessage.includes("last_numeric")
+    || normalizedMessage.includes("\"pid\"")
+    || normalizedMessage.includes("\\\"pid\\\"");
+}
+
+function getPayloadLogPreview(rawMessage: string): string {
+  const normalizedWhitespace = rawMessage
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (normalizedWhitespace.length <= maxLoggedPayloadLength) {
+    return normalizedWhitespace;
+  }
+
+  return `${normalizedWhitespace.slice(0, maxLoggedPayloadLength)}...`;
 }
 
 function extractStreamEventPayload(rawMessage: string): Record<string, unknown> | null {
