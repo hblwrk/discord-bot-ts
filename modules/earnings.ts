@@ -123,7 +123,8 @@ export async function getEarningsResult(
   date: "today" | "tomorrow" | string,
   filter: string
 ): Promise<EarningsLoadResult> {
-  let dateStamp: string;
+  let dateFromStamp: string;
+  let dateToStamp: string;
 
   let usEasternTime: moment.Moment = moment.tz("US/Eastern").set({
     // Testing
@@ -146,58 +147,43 @@ export async function getEarningsResult(
 
   if (null === days || 0 === days) {
     if ("today" === date || null === date) {
-      dateStamp = usEasternTime.format("YYYY-MM-DD");
+      dateFromStamp = usEasternTime.format("YYYY-MM-DD");
+      dateToStamp = dateFromStamp;
     } else if ("tomorrow" === date) {
-      dateStamp = usEasternTime.add(1, "days").format("YYYY-MM-DD");
+      dateFromStamp = moment(usEasternTime).add(1, "days").format("YYYY-MM-DD");
+      dateToStamp = dateFromStamp;
     } else {
-      dateStamp = moment(date).tz("US/Eastern").format("YYYY-MM-DD");
+      dateFromStamp = moment(date).tz("US/Eastern").format("YYYY-MM-DD");
+      dateToStamp = dateFromStamp;
     }
   } else {
     if (90 < days) {
       days = 90;
     }
 
-    dateStamp = usEasternTime.add(days, "days").format("YYYY-MM-DD");
+    dateFromStamp = moment(usEasternTime).add(1, "days").format("YYYY-MM-DD");
+    dateToStamp = moment(usEasternTime).add(days, "days").format("YYYY-MM-DD");
+    if (true === dateToStamp < dateFromStamp) {
+      dateFromStamp = dateToStamp;
+    }
   }
-
-  // let nyse open time always start at the same date as the dateStamp to handle tomorrow and other dates
-  let nyseOpenTime: moment.Moment = moment.tz(dateStamp, "US/Eastern").set({
-    // Testing
-    /*
-    year: 2022,
-    month: 1,
-    date: 3,
-    */
-    hour: 9,
-    minute: 30,
-    second: 0,
-  });
-
-  let nyseCloseTime: moment.Moment = moment.tz(dateStamp, "US/Eastern").set({
-    // Testing
-    /*
-    year: 2022,
-    month: 1,
-    date: 3,
-    */
-    hour: 16,
-    minute: 0,
-    second: 0,
-  });
 
   const earningsEvents: EarningsEvent[] = [];
   let watchlistFilterDropped = false;
   let status: EarningsLoadStatus = "ok";
 
   try {
-    const stocktwitsEarnings = await loadStocktwitsEarnings(dateStamp, filter);
+    const stocktwitsEarnings = await loadStocktwitsEarnings(
+      dateFromStamp,
+      dateToStamp,
+      filter
+    );
     watchlistFilterDropped = stocktwitsEarnings.watchlistFilterDropped;
     appendStocktwitsEarningsEvents(
       earningsEvents,
       stocktwitsEarnings.data,
-      dateStamp,
-      nyseOpenTime,
-      nyseCloseTime
+      dateFromStamp,
+      dateToStamp
     );
   } catch (stocktwitsError) {
     if (true === isStocktwitsBlockedError(stocktwitsError)) {
@@ -220,16 +206,19 @@ export async function getEarningsResult(
     }
 
     try {
-      const nasdaqEarnings = await loadNasdaqEarnings(dateStamp);
-      appendNasdaqEarningsEvents(
-        earningsEvents,
-        nasdaqEarnings,
-        dateStamp
-      );
+      const dateStamps = getDateStampsInRange(dateFromStamp, dateToStamp);
+      for (const fallbackDateStamp of dateStamps) {
+        const nasdaqEarnings = await loadNasdaqEarnings(fallbackDateStamp);
+        appendNasdaqEarningsEvents(
+          earningsEvents,
+          nasdaqEarnings,
+          fallbackDateStamp
+        );
+      }
       status = "ok";
       logger.log(
         "info",
-        `Loaded ${earningsEvents.length} earnings from Nasdaq fallback for ${dateStamp}.`
+        `Loaded ${earningsEvents.length} earnings from Nasdaq fallback for ${getDateRangeLabel(dateFromStamp, dateToStamp)}.`
       );
     } catch (nasdaqError) {
       logger.log("error", `Loading Nasdaq fallback earnings failed: ${nasdaqError}`);
@@ -244,12 +233,13 @@ export async function getEarningsResult(
 }
 
 async function loadStocktwitsEarnings(
-  dateStamp: string,
+  dateFromStamp: string,
+  dateToStamp: string,
   filter: string
 ): Promise<StocktwitsLoadResult> {
   const query = new URLSearchParams({
-    date_from: dateStamp,
-    date_to: dateStamp,
+    date_from: dateFromStamp,
+    date_to: dateToStamp,
   });
   const hasWatchlistFilter = "all" !== filter;
 
@@ -332,6 +322,33 @@ async function loadNasdaqEarnings(
   }
 
   return response.data;
+}
+
+function getDateStampsInRange(
+  dateFromStamp: string,
+  dateToStamp: string
+): string[] {
+  const dateStamps: string[] = [];
+  const cursor = moment.tz(dateFromStamp, "US/Eastern").startOf("day");
+  const end = moment.tz(dateToStamp, "US/Eastern").startOf("day");
+
+  while (true === cursor.isSameOrBefore(end, "day")) {
+    dateStamps.push(cursor.format("YYYY-MM-DD"));
+    cursor.add(1, "day");
+  }
+
+  return dateStamps;
+}
+
+function getDateRangeLabel(
+  dateFromStamp: string,
+  dateToStamp: string
+): string {
+  if (dateFromStamp === dateToStamp) {
+    return dateFromStamp;
+  }
+
+  return `${dateFromStamp} to ${dateToStamp}`;
 }
 
 function isHttpErrorStatus(error: unknown, statusCode: number): boolean {
@@ -422,38 +439,42 @@ function isStocktwitsBlockedError(error: unknown): boolean {
 function appendStocktwitsEarningsEvents(
   earningsEvents: EarningsEvent[],
   stocktwitsResponse: StocktwitsEarningsResponse,
-  dateStamp: string,
-  nyseOpenTime: moment.Moment,
-  nyseCloseTime: moment.Moment
+  dateFromStamp: string,
+  dateToStamp: string
 ) {
-  const dateEarnings = stocktwitsResponse.earnings?.[dateStamp];
-  if (!dateEarnings?.stocks || !Array.isArray(dateEarnings.stocks)) {
-    return;
-  }
-
-  for (const stock of dateEarnings.stocks) {
+  const dailyEarnings = stocktwitsResponse.earnings ?? {};
+  for (const [dateStamp, dateEarnings] of Object.entries(dailyEarnings)) {
     if (
-      "string" !== typeof stock.symbol ||
-      "string" !== typeof stock.date ||
-      "string" !== typeof stock.time ||
-      "number" !== typeof stock.importance ||
-      stock.importance <= 0 ||
-      stock.date !== dateStamp
+      false === isDateInRange(dateStamp, dateFromStamp, dateToStamp) ||
+      !dateEarnings?.stocks ||
+      !Array.isArray(dateEarnings.stocks)
     ) {
       continue;
     }
 
-    earningsEvents.push({
-      ticker: stock.symbol,
-      date: stock.date,
-      importance: stock.importance,
-      when: getEarningsWhenFromClockTime(
-        stock.date,
-        stock.time,
-        nyseOpenTime,
-        nyseCloseTime
-      ),
-    });
+    for (const stock of dateEarnings.stocks) {
+      if (
+        "string" !== typeof stock.symbol ||
+        "string" !== typeof stock.date ||
+        "string" !== typeof stock.time ||
+        "number" !== typeof stock.importance ||
+        stock.importance <= 0 ||
+        stock.date !== dateStamp ||
+        false === isDateInRange(stock.date, dateFromStamp, dateToStamp)
+      ) {
+        continue;
+      }
+
+      earningsEvents.push({
+        ticker: stock.symbol,
+        date: stock.date,
+        importance: stock.importance,
+        when: getEarningsWhenFromClockTime(
+          stock.date,
+          stock.time
+        ),
+      });
+    }
   }
 }
 
@@ -504,10 +525,20 @@ function getEarningsWhenFromNasdaqTimeToken(timeToken: unknown): EarningsWhen {
 
 function getEarningsWhenFromClockTime(
   dateStamp: string,
-  timeStamp: string,
-  nyseOpenTime: moment.Moment,
-  nyseCloseTime: moment.Moment
+  timeStamp: string
 ): EarningsWhen {
+  const nyseOpenTime: moment.Moment = moment.tz(dateStamp, "US/Eastern").set({
+    hour: 9,
+    minute: 30,
+    second: 0,
+  });
+
+  const nyseCloseTime: moment.Moment = moment.tz(dateStamp, "US/Eastern").set({
+    hour: 16,
+    minute: 0,
+    second: 0,
+  });
+
   const earningsTime: moment.Moment = moment.tz(
     `${dateStamp} ${timeStamp}`,
     ["YYYY-MM-DD HH:mm:ss", "YYYY-MM-DD HH:mm"],
@@ -522,6 +553,14 @@ function getEarningsWhenFromClockTime(
   }
 
   return earningsWhen;
+}
+
+function isDateInRange(
+  dateStamp: string,
+  dateFromStamp: string,
+  dateToStamp: string
+): boolean {
+  return dateStamp >= dateFromStamp && dateStamp <= dateToStamp;
 }
 
 export function getEarningsText(
@@ -568,12 +607,7 @@ export function getEarningsText(
       }
     }
 
-    moment.locale("de");
-    const friendlyDate = moment(earningsEvents[0].date).format(
-      "dddd, Do MMMM YYYY"
-    );
-
-    earningsText = `Earnings am ${friendlyDate}:\n`;
+    earningsText = `${getEarningsTitle(earningsEvents)}\n`;
     if (
       1 < earningsBeforeOpen.length &&
       ("all" === when || "before_open" === when)
@@ -642,11 +676,7 @@ export function getEarningsMessages(
     };
   }
 
-  moment.locale("de");
-  const friendlyDate = moment(filteredAndSortedEvents[0].date).format(
-    "dddd, Do MMMM YYYY"
-  );
-  const title = `Earnings am ${friendlyDate}:`;
+  const title = getEarningsTitle(filteredAndSortedEvents);
 
   const chunks: EarningsMessageChunk[] = [];
   let currentChunk = getEmptyEarningsMessageChunk(0, title);
@@ -759,6 +789,31 @@ export function getEarningsMessages(
     totalEvents: filteredAndSortedEvents.length,
     includedEvents,
   };
+}
+
+function getEarningsTitle(earningsEvents: EarningsEvent[]): string {
+  moment.locale("de");
+
+  let earliestDate = earningsEvents[0].date;
+  let latestDate = earningsEvents[0].date;
+
+  for (const earningsEvent of earningsEvents) {
+    if (earningsEvent.date < earliestDate) {
+      earliestDate = earningsEvent.date;
+    }
+
+    if (earningsEvent.date > latestDate) {
+      latestDate = earningsEvent.date;
+    }
+  }
+
+  const earliestFriendlyDate = moment(earliestDate).format("dddd, Do MMMM YYYY");
+  if (earliestDate === latestDate) {
+    return `Earnings am ${earliestFriendlyDate}:`;
+  }
+
+  const latestFriendlyDate = moment(latestDate).format("dddd, Do MMMM YYYY");
+  return `Earnings von ${earliestFriendlyDate} bis ${latestFriendlyDate}:`;
 }
 
 function getSelectedEarningsWhen(

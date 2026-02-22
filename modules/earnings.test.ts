@@ -159,6 +159,51 @@ describe("getEarnings", () => {
       },
     ]);
   });
+
+  test("days loads earnings for the upcoming date range", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+      data: apiResponse,
+    });
+
+    const earnings = await getEarnings(2, "today", "all");
+
+    expect(earnings).toEqual([
+      {
+        ticker: "CALM",
+        date: "2024-01-03",
+        importance: 4,
+        when: "after_close",
+      },
+      {
+        ticker: "UNF",
+        date: "2024-01-03",
+        importance: 3,
+        when: "before_open",
+      },
+      {
+        ticker: "LW",
+        date: "2024-01-03",
+        importance: 1,
+        when: "during_session",
+      },
+      {
+        date: "2024-01-04",
+        importance: 3,
+        ticker: "RPM",
+        when: "before_open",
+      },
+    ]);
+
+    expect(axios.get).toHaveBeenCalledWith(
+      expect.stringContaining("date_from=2024-01-03"),
+      expect.any(Object)
+    );
+    expect(axios.get).toHaveBeenCalledWith(
+      expect.stringContaining("date_to=2024-01-04"),
+      expect.any(Object)
+    );
+  });
+
   test("date", async () => {
     (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
       data: apiResponse,

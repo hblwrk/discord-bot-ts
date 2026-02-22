@@ -31,6 +31,8 @@ export function createChatInputInteraction(commandName: string) {
       getString: jest.fn((_name?: string) => null),
       getNumber: jest.fn((_name?: string) => null),
     },
+    deferReply: jest.fn().mockResolvedValue(undefined),
+    editReply: jest.fn().mockResolvedValue(undefined),
     reply: jest.fn().mockResolvedValue(undefined),
     followUp: jest.fn().mockResolvedValue(undefined),
     user: {
