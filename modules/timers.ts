@@ -30,6 +30,7 @@ const noMentions = {
 const calendarMessageDelayMs = 500;
 const usEasternTimezone = "US/Eastern";
 const weeklyEarningsHeadline = "📅 **Earnings der nächsten Handelswoche:**";
+const weeklyCalendarHeadline = "📅 **Wichtige Termine der nächsten Handelswoche:**";
 const europeBerlinTimezone = "Europe/Berlin";
 const usEasternWeekdays = [new Schedule.Range(1, 5)];
 type SendableChannel = {
@@ -379,15 +380,15 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
   });
 
   const ruleEarningsWeekly = createRecurrenceRule({
-    hour: 19,
-    minute: 45,
+    hour: 23,
+    minute: 30,
     dayOfWeek: [5],
     tz: europeBerlinTimezone,
   });
 
   Schedule.scheduleJob(ruleEarningsWeekly, async () => {
     await runEarningsAnnouncement(client, channelID, tickers, {
-      date: "today",
+      date: "tomorrow",
       days: 5,
       errorMessage: "Wöchentliche Earnings konnten nicht geladen werden.",
       headline: weeklyEarningsHeadline,
@@ -420,23 +421,28 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
   });
 
   const ruleEventsWeekly = createRecurrenceRule({
-    hour: 0,
-    minute: 0,
-    dayOfWeek: [6],
+    hour: 23,
+    minute: 45,
+    dayOfWeek: [5],
     tz: europeBerlinTimezone,
   });
 
   Schedule.scheduleJob(ruleEventsWeekly, async () => {
-    const offsetDays: string = moment().tz(europeBerlinTimezone).add(5, "days").format("YYYY-MM-DD");
+    const nextWeekMonday = moment()
+      .tz(europeBerlinTimezone)
+      .startOf("isoWeek")
+      .add(1, "week");
+    const nextWeekThursday = nextWeekMonday.clone().add(3, "days");
 
-    const calendarEvents1: CalendarEvent[] = await getCalendarEvents("", 2);
-    const calendarEvents2: CalendarEvent[] = await getCalendarEvents(offsetDays, 1);
+    const calendarEvents1: CalendarEvent[] = await getCalendarEvents(nextWeekMonday.format("YYYY-MM-DD"), 2);
+    const calendarEvents2: CalendarEvent[] = await getCalendarEvents(nextWeekThursday.format("YYYY-MM-DD"), 1);
 
     const calendarEvents: CalendarEvent[] = dedupeCalendarEvents([...calendarEvents1, ...calendarEvents2]);
     const calendarBatch = getCalendarMessages(calendarEvents, {
       maxMessageLength: CALENDAR_MAX_MESSAGE_LENGTH,
       maxMessages: CALENDAR_MAX_MESSAGES_TIMER,
       keepDayTogether: true,
+      title: weeklyCalendarHeadline,
     });
     logCalendarBatch("timer-weekly", calendarBatch);
 

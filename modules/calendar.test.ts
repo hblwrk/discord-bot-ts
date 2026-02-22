@@ -37,6 +37,22 @@ describe("getCalendarMessages", () => {
     expect(batch.messages[0]).toContain("Event B");
   });
 
+  test("uses a custom title when provided", () => {
+    const calendarEvents: CalendarEvent[] = [
+      createCalendarEvent("2025-03-03", "10:00", "Event A"),
+    ];
+
+    const batch = getCalendarMessages(calendarEvents, {
+      title: "📅 **Wichtige Termine der nächsten Handelswoche:**",
+      maxMessageLength: 1800,
+      maxMessages: 6,
+      keepDayTogether: true,
+    });
+
+    expect(batch.messages[0]).toContain("📅 **Wichtige Termine der nächsten Handelswoche:**");
+    expect(batch.messages[0]).not.toContain("Wichtige Termine:\n");
+  });
+
   test("chunks by day boundaries across multiple days", () => {
     const dayOneEvents: CalendarEvent[] = [
       createCalendarEvent("2025-03-03", "09:00", "Day1-Event1"),

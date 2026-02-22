@@ -344,7 +344,8 @@ describe("timers", () => {
     startOtherTimers(client as any, "channel-id", assets, []);
     const fridayJob = getScheduledJobByTime(8, 0, "Europe/Berlin");
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
-    const weeklyEarningsJob = getScheduledJobByTime(19, 45, "Europe/Berlin");
+    const weeklyEarningsJob = getScheduledJobByTime(23, 30, "Europe/Berlin");
+    const weeklyCalendarJob = getScheduledJobByTime(23, 45, "Europe/Berlin");
 
     expect(scheduleJobMock).toHaveBeenCalledTimes(5);
     expect(fridayJob.rule).toEqual(expect.objectContaining({
@@ -354,11 +355,20 @@ describe("timers", () => {
     }));
     expect(dailyEarningsJob.rule.dayOfWeek).toEqual([expect.objectContaining({start: 0, end: 6})]);
     expect(weeklyEarningsJob.rule).toEqual(expect.objectContaining({
-      hour: 19,
-      minute: 45,
+      hour: 23,
+      minute: 30,
       tz: "Europe/Berlin",
     }));
     expect(weeklyEarningsJob.rule.dayOfWeek).toEqual([5]);
+    expect(weeklyCalendarJob.rule).toEqual(expect.objectContaining({
+      hour: 23,
+      minute: 45,
+      tz: "Europe/Berlin",
+    }));
+    expect(weeklyCalendarJob.rule.dayOfWeek).toEqual([5]);
+    expect(`${weeklyCalendarJob.rule.hour}:${weeklyCalendarJob.rule.minute}`).not.toBe(
+      `${weeklyEarningsJob.rule.hour}:${weeklyEarningsJob.rule.minute}`,
+    );
 
     await fridayJob.callback();
 
@@ -509,10 +519,10 @@ describe("timers", () => {
     });
 
     startOtherTimers(client as any, "channel-id", [], []);
-    const weeklyEarningsJob = getScheduledJobByTime(19, 45, "Europe/Berlin");
+    const weeklyEarningsJob = getScheduledJobByTime(23, 30, "Europe/Berlin");
     await weeklyEarningsJob.callback();
 
-    expect(getEarningsResultMock).toHaveBeenCalledWith(5, "today");
+    expect(getEarningsResultMock).toHaveBeenCalledWith(5, "tomorrow");
     expect(send).toHaveBeenNthCalledWith(1, {
       content: "📅 **Earnings der nächsten Handelswoche:**\n\nweekly-earnings-1",
       allowedMentions: {
@@ -584,11 +594,11 @@ describe("timers", () => {
     });
 
     startOtherTimers(client as any, "channel-id", [], []);
-    const weeklyCalendarJob = getScheduledJobByTime(0, 0, "Europe/Berlin");
+    const weeklyCalendarJob = getScheduledJobByTime(23, 45, "Europe/Berlin");
     await weeklyCalendarJob.callback();
 
-    expect(getCalendarEventsMock).toHaveBeenNthCalledWith(1, "", 2);
-    expect(getCalendarEventsMock).toHaveBeenNthCalledWith(2, expect.any(String), 1);
+    expect(getCalendarEventsMock).toHaveBeenNthCalledWith(1, "2025-02-24", 2);
+    expect(getCalendarEventsMock).toHaveBeenNthCalledWith(2, "2025-02-27", 1);
     expect(getCalendarMessagesMock).toHaveBeenCalledWith([
       {date: "2025-02-24", time: "10:00", country: "🇺🇸", name: "Event A"},
       {date: "2025-02-25", time: "11:00", country: "🇺🇸", name: "Event B"},
@@ -597,6 +607,7 @@ describe("timers", () => {
       maxMessageLength: 1800,
       maxMessages: 8,
       keepDayTogether: true,
+      title: "📅 **Wichtige Termine der nächsten Handelswoche:**",
     }));
     expect(send).toHaveBeenNthCalledWith(1, expect.objectContaining({
       content: "week-1",

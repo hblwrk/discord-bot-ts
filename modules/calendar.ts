@@ -42,6 +42,7 @@ export type CalendarMessageOptions = {
   maxMessages?: number;
   keepDayTogether?: boolean;
   continuationLabel?: string;
+  title?: string;
 };
 
 type CalendarDayBlock = {
@@ -145,6 +146,7 @@ export function getCalendarMessages(
   const maxMessageLength = options.maxMessageLength ?? CALENDAR_MAX_MESSAGE_LENGTH;
   const maxMessages = options.maxMessages ?? Number.POSITIVE_INFINITY;
   const continuationLabel = options.continuationLabel ?? CALENDAR_CONTINUATION_LABEL;
+  const title = options.title ?? calendarTitle;
   const keepDayTogether = false !== options.keepDayTogether;
 
   if (0 === calendarEvents.length) {
@@ -160,7 +162,7 @@ export function getCalendarMessages(
 
   const dayBlocks = getCalendarDayBlocks(calendarEvents);
   const chunks: CalendarMessageChunk[] = [];
-  let currentChunk = getEmptyCalendarMessageChunk(0);
+  let currentChunk = getEmptyCalendarMessageChunk(0, title);
   let contentTruncated = false;
 
   for (const dayBlock of dayBlocks) {
@@ -173,7 +175,7 @@ export function getCalendarMessages(
 
     if (0 < currentChunk.eventCount) {
       chunks.push(cloneChunk(currentChunk));
-      currentChunk = getEmptyCalendarMessageChunk(chunks.length);
+      currentChunk = getEmptyCalendarMessageChunk(chunks.length, title);
     }
 
     if (true === canAppendToChunk(currentChunk, fullDayBlockText, maxMessageLength)) {
@@ -204,7 +206,7 @@ export function getCalendarMessages(
         const availableLineLength = maxMessageLength - getAppendedChunkText(currentChunk, headerText).length - 1;
         if (availableLineLength <= 0 && 0 < currentChunk.eventCount) {
           chunks.push(cloneChunk(currentChunk));
-          currentChunk = getEmptyCalendarMessageChunk(chunks.length);
+          currentChunk = getEmptyCalendarMessageChunk(chunks.length, title);
           continue;
         }
 
@@ -222,7 +224,7 @@ export function getCalendarMessages(
 
       if (lineIndex < dayBlock.lines.length) {
         chunks.push(cloneChunk(currentChunk));
-        currentChunk = getEmptyCalendarMessageChunk(chunks.length);
+        currentChunk = getEmptyCalendarMessageChunk(chunks.length, title);
         continuation = true;
       }
     }
@@ -360,8 +362,8 @@ function getDayBlockText(dayBlock: CalendarDayBlock, continuation: boolean, cont
   return getDayText(dayHeader, dayBlock.lines);
 }
 
-function getEmptyCalendarMessageChunk(messageIndex: number): CalendarMessageChunk {
-  const prefix = 0 === messageIndex ? `${calendarTitle}\n` : "";
+function getEmptyCalendarMessageChunk(messageIndex: number, title: string): CalendarMessageChunk {
+  const prefix = 0 === messageIndex && 0 < title.length ? `${title}\n` : "";
   return {
     content: prefix,
     eventCount: 0,
