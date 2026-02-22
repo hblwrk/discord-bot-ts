@@ -9,10 +9,33 @@ import {getLogger} from "./logging.js";
 import {type Ticker} from "./tickers.js";
 import {getWithRetry} from "./http-retry.js";
 
+type EarningsWhen = "before_open" | "after_close" | "during_session";
+
 const logger = getLogger();
 const earningsTruncationNote = "... weitere Earnings konnten wegen Discord-Limits nicht angezeigt werden.";
-
-type EarningsWhen = "before_open" | "after_close" | "during_session";
+const usEasternTimezone = "US/Eastern";
+const dateStampFormat = "YYYY-MM-DD";
+const maxEarningsDays = 10;
+const unknownValueLabel = "n/a";
+const earningsWhenByNasdaqTimeToken = new Map<string, EarningsWhen>([
+  ["time-pre-market", "before_open"],
+  ["time-after-hours", "after_close"],
+  ["time-not-supplied", "during_session"],
+]);
+const earningsWhenSortRankByWhen = new Map<EarningsWhen, number>([
+  ["before_open", 0],
+  ["during_session", 1],
+  ["after_close", 2],
+]);
+const earningsWhenLabelByWhen = new Map<EarningsWhen, string>([
+  ["before_open", "Vor Handelsbeginn"],
+  ["during_session", "Während der Handelszeiten oder unbekannter Zeitpunkt"],
+  ["after_close", "Nach Handelsschluss"],
+]);
+const compactUsdFormatter = new Intl.NumberFormat("en-US", {
+  notation: "compact",
+  maximumFractionDigits: 1,
+});
 export interface EarningsEvent {
   ticker: string;
   when: EarningsWhen;
@@ -109,56 +132,20 @@ export async function getEarningsResult(
   days: number,
   date: "today" | "tomorrow" | string
 ): Promise<EarningsLoadResult> {
-  let dateFromStamp: string;
-  let dateToStamp: string;
-
-  let usEasternTime = moment.tz("US/Eastern").set({
-    // Testing
-    /*
-    year: 2022,
-    month: 1,
-    date: 3,
-    hour: 9,
-    minute: 30,
-    second: 0,
-    */
-  });
-
-  // During the weekend, use next Monday
-  if (usEasternTime.day() === 6) {
-    usEasternTime = moment(usEasternTime).day(8);
-  } else if (usEasternTime.day() === 0) {
-    usEasternTime = moment(usEasternTime).day(1);
-  }
-
-  if (null === days || 0 === days) {
-    if ("today" === date || null === date) {
-      dateFromStamp = usEasternTime.format("YYYY-MM-DD");
-      dateToStamp = dateFromStamp;
-    } else if ("tomorrow" === date) {
-      dateFromStamp = moment(usEasternTime).add(1, "days").format("YYYY-MM-DD");
-      dateToStamp = dateFromStamp;
-    } else {
-      dateFromStamp = getUsEasternDateStampFromInput(date);
-      dateToStamp = dateFromStamp;
-    }
-  } else {
-    days = Math.trunc(days);
-    if (10 < days) {
-      days = 10;
-    }
-
-    dateFromStamp = moment(usEasternTime).add(1, "days").format("YYYY-MM-DD");
-    dateToStamp = moment(usEasternTime).add(days, "days").format("YYYY-MM-DD");
-    if (true === dateToStamp < dateFromStamp) {
-      dateFromStamp = dateToStamp;
-    }
-  }
+  const usEasternTime = getCurrentUsEasternTime();
+  const isMultiDayRangeRequest = false === (null === days || 0 === days);
+  const {dateFromStamp, dateToStamp} = resolveRequestedDateRange(days, date, usEasternTime);
 
   const earningsEvents: EarningsEvent[] = [];
   let status: EarningsLoadStatus = "ok";
 
-  const dateStamps = getDateStampsInRange(dateFromStamp, dateToStamp);
+  const dateStamps = getDateStampsInRange(
+    dateFromStamp,
+    dateToStamp,
+    {
+      skipWeekends: isMultiDayRangeRequest,
+    }
+  );
   const settledRequests = await Promise.allSettled(
     dateStamps.map(dateStamp => loadNasdaqEarnings(dateStamp))
   );
@@ -201,33 +188,121 @@ export async function getEarningsResult(
   };
 }
 
+function getCurrentUsEasternTime(): moment.Moment {
+  return moment.tz(usEasternTimezone).set({
+    // Testing
+    /*
+    year: 2022,
+    month: 1,
+    date: 3,
+    hour: 9,
+    minute: 30,
+    second: 0,
+    */
+  });
+}
+
+function resolveRequestedDateRange(
+  days: number,
+  date: "today" | "tomorrow" | string,
+  usEasternTime: moment.Moment
+): {dateFromStamp: string; dateToStamp: string} {
+  if (null === days || 0 === days) {
+    if ("today" === date || null === date) {
+      const dateStamp = getUsEasternTradingDayOnOrAfter(usEasternTime).format(dateStampFormat);
+      return {
+        dateFromStamp: dateStamp,
+        dateToStamp: dateStamp,
+      };
+    }
+
+    if ("tomorrow" === date) {
+      const dateStamp = addUsEasternTradingDays(usEasternTime, 1).format(dateStampFormat);
+      return {
+        dateFromStamp: dateStamp,
+        dateToStamp: dateStamp,
+      };
+    }
+
+    const dateStamp = getUsEasternDateStampFromInput(date);
+    return {
+      dateFromStamp: dateStamp,
+      dateToStamp: dateStamp,
+    };
+  }
+
+  let normalizedDays = Math.trunc(days);
+  if (normalizedDays < 1) {
+    normalizedDays = 1;
+  }
+  if (maxEarningsDays < normalizedDays) {
+    normalizedDays = maxEarningsDays;
+  }
+
+  const dateFromStamp = addUsEasternTradingDays(usEasternTime, 1).format(dateStampFormat);
+  const dateToStamp = addUsEasternTradingDays(usEasternTime, normalizedDays).format(dateStampFormat);
+  return {
+    dateFromStamp,
+    dateToStamp,
+  };
+}
+
+function getUsEasternTradingDayOnOrAfter(date: moment.Moment): moment.Moment {
+  const tradingDay = moment(date).tz(usEasternTimezone).startOf("day");
+  while (true === isUsEasternWeekend(tradingDay)) {
+    tradingDay.add(1, "day");
+  }
+
+  return tradingDay;
+}
+
+function addUsEasternTradingDays(date: moment.Moment, tradingDays: number): moment.Moment {
+  const cursor = moment(date).tz(usEasternTimezone).startOf("day");
+  let addedTradingDays = 0;
+
+  while (addedTradingDays < tradingDays) {
+    cursor.add(1, "day");
+    if (true === isUsEasternWeekend(cursor)) {
+      continue;
+    }
+
+    addedTradingDays++;
+  }
+
+  return cursor;
+}
+
+function isUsEasternWeekend(date: moment.Moment): boolean {
+  return date.day() === 0 || date.day() === 6;
+}
+
 function getUsEasternDateStampFromInput(dateInput: string): string {
   const normalizedDateInput = dateInput.trim();
 
   const dateOnly = moment.tz(
     normalizedDateInput,
-    "YYYY-MM-DD",
+    dateStampFormat,
     true,
-    "US/Eastern"
+    usEasternTimezone
   );
   if (true === dateOnly.isValid()) {
-    return dateOnly.format("YYYY-MM-DD");
+    return dateOnly.format(dateStampFormat);
   }
 
   const inputContainsExplicitTimezone = /(?:[zZ]|[+-]\d{2}(?::?\d{2})?)$/.test(normalizedDateInput);
   if (true === inputContainsExplicitTimezone) {
     const parsedWithOffset = moment.parseZone(normalizedDateInput, moment.ISO_8601, true);
     if (true === parsedWithOffset.isValid()) {
-      return parsedWithOffset.tz("US/Eastern").format("YYYY-MM-DD");
+      return parsedWithOffset.tz(usEasternTimezone).format(dateStampFormat);
     }
   }
 
-  const parsedInUsEastern = moment.tz(normalizedDateInput, moment.ISO_8601, true, "US/Eastern");
+  const parsedInUsEastern = moment.tz(normalizedDateInput, moment.ISO_8601, true, usEasternTimezone);
   if (true === parsedInUsEastern.isValid()) {
-    return parsedInUsEastern.format("YYYY-MM-DD");
+    return parsedInUsEastern.format(dateStampFormat);
   }
 
-  return moment.tz(normalizedDateInput, "US/Eastern").format("YYYY-MM-DD");
+  return moment.tz(normalizedDateInput, usEasternTimezone).format(dateStampFormat);
 }
 
 async function loadNasdaqEarnings(
@@ -261,14 +336,20 @@ async function loadNasdaqEarnings(
 
 function getDateStampsInRange(
   dateFromStamp: string,
-  dateToStamp: string
+  dateToStamp: string,
+  options: {
+    skipWeekends?: boolean;
+  } = {}
 ): string[] {
+  const skipWeekends = options.skipWeekends ?? false;
   const dateStamps: string[] = [];
-  const cursor = moment.tz(dateFromStamp, "US/Eastern").startOf("day");
-  const end = moment.tz(dateToStamp, "US/Eastern").startOf("day");
+  const cursor = moment.tz(dateFromStamp, usEasternTimezone).startOf("day");
+  const end = moment.tz(dateToStamp, usEasternTimezone).startOf("day");
 
   while (true === cursor.isSameOrBefore(end, "day")) {
-    dateStamps.push(cursor.format("YYYY-MM-DD"));
+    if (false === skipWeekends || false === isUsEasternWeekend(cursor)) {
+      dateStamps.push(cursor.format(dateStampFormat));
+    }
     cursor.add(1, "day");
   }
 
@@ -321,19 +402,7 @@ function getEarningsWhenFromNasdaqTimeToken(timeToken: unknown): EarningsWhen {
   }
 
   const normalizedTimeToken = timeToken.trim().toLowerCase();
-  if ("time-pre-market" === normalizedTimeToken) {
-    return "before_open";
-  }
-
-  if ("time-after-hours" === normalizedTimeToken) {
-    return "after_close";
-  }
-
-  if ("time-not-supplied" === normalizedTimeToken) {
-    return "during_session";
-  }
-
-  return "during_session";
+  return earningsWhenByNasdaqTimeToken.get(normalizedTimeToken) ?? "during_session";
 }
 
 function getNormalizedString(value: unknown): string | null {
@@ -362,7 +431,7 @@ function getNasdaqMarketCap(row: NasdaqEarningsRow): {value: number | null; text
   if (null === normalizedRawValue) {
     return {
       value: null,
-      text: "n/a",
+      text: unknownValueLabel,
     };
   }
 
@@ -370,7 +439,7 @@ function getNasdaqMarketCap(row: NasdaqEarningsRow): {value: number | null; text
   if (null === marketCapSortValue) {
     return {
       value: null,
-      text: "n/a",
+      text: unknownValueLabel,
     };
   }
 
@@ -435,14 +504,14 @@ function getNasdaqEpsConsensus(row: NasdaqEarningsRow): string {
       continue;
     }
 
-    if ("n/a" === normalizedString.toLowerCase() || "--" === normalizedString) {
+    if (unknownValueLabel === normalizedString.toLowerCase() || "--" === normalizedString) {
       continue;
     }
 
     return normalizedString;
   }
 
-  return "n/a";
+  return unknownValueLabel;
 }
 
 export function getEarningsText(
@@ -620,21 +689,8 @@ export function getEarningsMessages(
 }
 
 function getEarningsTitle(earningsEvents: EarningsEvent[]): string {
-  moment.locale("de");
-
-  let earliestDate = earningsEvents[0].date;
-  let latestDate = earningsEvents[0].date;
-
-  for (const earningsEvent of earningsEvents) {
-    if (earningsEvent.date < earliestDate) {
-      earliestDate = earningsEvent.date;
-    }
-
-    if (earningsEvent.date > latestDate) {
-      latestDate = earningsEvent.date;
-    }
-  }
-
+  const earliestDate = earningsEvents[0].date;
+  const latestDate = earningsEvents[earningsEvents.length - 1].date;
   const earliestFriendlyDate = getFriendlyDate(earliestDate);
   if (earliestDate === latestDate) {
     return "";
@@ -653,16 +709,8 @@ function getSelectedEarningsWhen(
     "after_close",
   ]);
 
-  if ("before_open" === when) {
-    return new Set<EarningsWhen>(["before_open"]);
-  }
-
-  if ("during_session" === when) {
-    return new Set<EarningsWhen>(["during_session"]);
-  }
-
-  if ("after_close" === when) {
-    return new Set<EarningsWhen>(["after_close"]);
+  if (allWhen.has(when as EarningsWhen)) {
+    return new Set<EarningsWhen>([when as EarningsWhen]);
   }
 
   return allWhen;
@@ -672,21 +720,19 @@ function getEarningsSections(
   earningsEvents: EarningsEvent[],
   highlightedTickerSymbols: Set<string>
 ): EarningsSection[] {
-  const sectionMap = new Map<string, EarningsSection>();
-  const sectionOrder: string[] = [];
+  const orderedSections: EarningsSection[] = [];
+  let previousDateStamp = "";
 
   for (const earningsEvent of earningsEvents) {
-    let section = sectionMap.get(earningsEvent.date);
-    if (!section) {
-      section = {
+    if (earningsEvent.date !== previousDateStamp) {
+      orderedSections.push({
         label: getFriendlyDate(earningsEvent.date),
         rows: [],
-      };
-      sectionMap.set(earningsEvent.date, section);
-      sectionOrder.push(earningsEvent.date);
+      });
+      previousDateStamp = earningsEvent.date;
     }
 
-    section.rows.push({
+    orderedSections[orderedSections.length - 1].rows.push({
       when: earningsEvent.when,
       line: getEarningsEventLine(
         earningsEvent,
@@ -695,20 +741,11 @@ function getEarningsSections(
     });
   }
 
-  const orderedSections: EarningsSection[] = [];
-  for (const dateStamp of sectionOrder) {
-    const section = sectionMap.get(dateStamp);
-    if (section && 0 < section.rows.length) {
-      orderedSections.push(section);
-    }
-  }
-
   return orderedSections;
 }
 
 function getFriendlyDate(dateStamp: string): string {
-  moment.locale("de");
-  return moment(dateStamp).format("dddd, Do MMMM YYYY");
+  return moment(dateStamp).locale("de").format("dddd, Do MMMM YYYY");
 }
 
 function getEarningsSectionHeading(
@@ -735,6 +772,7 @@ function getEarningsSectionText(
 
   for (const row of rows) {
     if (row.when !== previousWhen) {
+      sectionLines.push("");
       sectionLines.push(getEarningsWhenSubheading(row.when));
       previousWhen = row.when;
     }
@@ -858,15 +896,7 @@ function getSortableMarketCap(marketCap: number | null | undefined): number {
 }
 
 function getEarningsWhenSortRank(earningsWhen: EarningsWhen): number {
-  if ("before_open" === earningsWhen) {
-    return 0;
-  }
-
-  if ("during_session" === earningsWhen) {
-    return 1;
-  }
-
-  return 2;
+  return earningsWhenSortRankByWhen.get(earningsWhen) ?? Number.MAX_SAFE_INTEGER;
 }
 
 function getEarningsEventLine(
@@ -876,9 +906,9 @@ function getEarningsEventLine(
   const ticker = getFormattedTicker(earningsEvent.ticker, highlightedTickerSymbols);
   const companyName = getEarningsCompanyName(earningsEvent.companyName);
   const marketCapText = getFormattedMarketCapText(earningsEvent.marketCap, earningsEvent.marketCapText);
-  const epsConsensus = getNormalizedString(earningsEvent.epsConsensus) ?? "n/a";
+  const epsConsensus = getNormalizedString(earningsEvent.epsConsensus) ?? unknownValueLabel;
 
-  return `${ticker} | ${companyName} | MCap: ${marketCapText} | 🔮 EPS: ${epsConsensus}`;
+  return `${ticker} ${companyName} | MCap: ${marketCapText} | 🔮 EPS: ${epsConsensus}`;
 }
 
 function getFormattedMarketCapText(
@@ -891,24 +921,19 @@ function getFormattedMarketCapText(
 
   const normalizedMarketCapText = getNormalizedString(marketCapText);
   if (null === normalizedMarketCapText) {
-    return "n/a";
+    return unknownValueLabel;
   }
 
   const parsedMarketCap = getNumericValueFromNasdaqCapString(normalizedMarketCapText);
   if (null === parsedMarketCap) {
-    return "n/a";
+    return unknownValueLabel;
   }
 
   return formatMarketCapUsdShort(parsedMarketCap);
 }
 
 function formatMarketCapUsdShort(value: number): string {
-  const compactValue = new Intl.NumberFormat("en-US", {
-    notation: "compact",
-    maximumFractionDigits: 1,
-  }).format(value);
-
-  return `$${compactValue}`;
+  return `$${compactUsdFormatter.format(value)}`;
 }
 
 function getFormattedTicker(
@@ -937,12 +962,9 @@ function getEarningsCompanyName(companyName: string | undefined): string {
 }
 
 function getEarningsWhenLabel(earningsWhen: EarningsWhen): string {
-  if ("before_open" === earningsWhen) {
-    return "Vor Handelsbeginn";
-  }
-
-  if ("after_close" === earningsWhen) {
-    return "Nach Handelsschluss";
+  const label = earningsWhenLabelByWhen.get(earningsWhen);
+  if (undefined !== label) {
+    return label;
   }
 
   return "Während der Handelszeiten oder unbekannter Zeitpunkt";
