@@ -353,7 +353,8 @@ describe("interactSlashCommands", () => {
     await handler(interaction);
 
     expect(getEarningsResultMock).toHaveBeenCalledWith(0, "today", "all");
-    expect(interaction.reply).toHaveBeenCalledWith({
+    expect(interaction.deferReply).toHaveBeenCalledTimes(1);
+    expect(interaction.editReply).toHaveBeenCalledWith({
       content: "earnings-1",
       allowedMentions: {
         parse: [],
@@ -387,7 +388,8 @@ describe("interactSlashCommands", () => {
 
     await handler(interaction);
 
-    expect(interaction.reply).toHaveBeenCalledWith({
+    expect(interaction.deferReply).toHaveBeenCalledTimes(1);
+    expect(interaction.editReply).toHaveBeenCalledWith({
       content: "Es stehen keine relevanten Quartalszahlen an.",
       allowedMentions: {
         parse: [],
@@ -416,7 +418,8 @@ describe("interactSlashCommands", () => {
 
     await handler(interaction);
 
-    expect(interaction.reply).toHaveBeenCalledWith({
+    expect(interaction.deferReply).toHaveBeenCalledTimes(1);
+    expect(interaction.editReply).toHaveBeenCalledWith({
       content: "blocked\nBitte in ein paar Minuten erneut versuchen.",
       allowedMentions: {
         parse: [],
@@ -445,7 +448,8 @@ describe("interactSlashCommands", () => {
 
     await handler(interaction);
 
-    expect(interaction.reply).toHaveBeenCalledWith({
+    expect(interaction.deferReply).toHaveBeenCalledTimes(1);
+    expect(interaction.editReply).toHaveBeenCalledWith({
       content: "Earnings konnten gerade nicht geladen werden. Bitte später erneut versuchen.",
       allowedMentions: {
         parse: [],
@@ -474,7 +478,8 @@ describe("interactSlashCommands", () => {
 
     await handler(interaction);
 
-    expect(interaction.reply).toHaveBeenCalledWith({
+    expect(interaction.deferReply).toHaveBeenCalledTimes(1);
+    expect(interaction.editReply).toHaveBeenCalledWith({
       content: "earnings-1",
       allowedMentions: {
         parse: [],

@@ -149,7 +149,7 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
         ))
     .addNumberOption(option =>
       option.setName("days")
-        .setDescription("Tage in der Zukunft")
+        .setDescription("Zeitraum in Tagen (ab morgen)")
         .setRequired(false))
     .addStringOption(option =>
       option.setName("date")
@@ -580,6 +580,17 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         filter = validator.escape(filterOption);
       }
 
+      const deferred = await interaction.deferReply().then(() => true).catch(error => {
+        logger.log(
+          "error",
+          `Error deferring earnings slashcommand: ${error}`,
+        );
+        return false;
+      });
+      if (false === deferred) {
+        return;
+      }
+
       const earningsResult = await getEarningsResult(days, date, filter);
       earningsEvents = earningsResult.events;
       earningsStatus = earningsResult.status;
@@ -616,7 +627,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       if (0 === earningsBatch.messages.length) {
         if ("blocked" === earningsStatus) {
-          await interaction.reply({
+          await interaction.editReply({
             content: `${EARNINGS_BLOCKED_MESSAGE}\nBitte in ein paar Minuten erneut versuchen.`,
             allowedMentions: noMentions,
           }).catch(error => {
@@ -629,7 +640,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         }
 
         if ("error" === earningsStatus) {
-          await interaction.reply({
+          await interaction.editReply({
             content: "Earnings konnten gerade nicht geladen werden. Bitte später erneut versuchen.",
             allowedMentions: noMentions,
           }).catch(error => {
@@ -641,7 +652,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           return;
         }
 
-        await interaction.reply({
+        await interaction.editReply({
           content: "Es stehen keine relevanten Quartalszahlen an.",
           allowedMentions: noMentions,
         }).catch(error => {
@@ -653,7 +664,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         return;
       }
 
-      await interaction.reply({
+      await interaction.editReply({
         content: earningsBatch.messages[0],
         allowedMentions: noMentions,
       }).catch(error => {
