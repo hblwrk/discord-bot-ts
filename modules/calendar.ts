@@ -10,6 +10,18 @@ import {postWithRetry} from "./http-retry.js";
 const logger = getLogger();
 const calendarTitle = "Wichtige Termine:";
 const calendarTruncationNote = "... weitere Termine konnten wegen Discord-Limits nicht angezeigt werden.";
+const europeBerlinTimezone = "Europe/Berlin";
+const countryByCalendarCode = new Map<number, string>([
+  [999, "🇪🇺"],
+  [840, "🇺🇸"],
+  [826, "🇬🇧"],
+  [724, "🇪🇸"],
+  [392, "🇯🇵"],
+  [380, "🇮🇹"],
+  [276, "🇩🇪"],
+  [250, "🇫🇷"],
+  [0, "🌍"],
+]);
 
 export const CALENDAR_MAX_MESSAGE_LENGTH = 1800;
 export const CALENDAR_MAX_MESSAGES_TIMER = 8;
@@ -44,40 +56,43 @@ type CalendarMessageChunk = {
   dayKeys: Set<string>;
 };
 
-export async function getCalendarEvents(startDay: string, range: number): Promise<CalendarEvent[]> {
-  if ("" === startDay) {
-    startDay = moment.tz("Europe/Berlin").format("YYYY-MM-DD");
-  }
+function getCalendarRangeInBerlin(startDay: string, range: number): {startDate: moment.Moment; endDate: moment.Moment} {
+  const effectiveStartDay = "" === startDay
+    ? moment.tz(europeBerlinTimezone).format("YYYY-MM-DD")
+    : startDay;
 
-  let startDate: moment.Moment = moment(startDay).tz("Europe/Berlin").set({
-    // Testing
-    /*
-    year: 2022,
-    month: 1,
-    day: 6,
-    */
+  let startDate: moment.Moment = moment(effectiveStartDay).tz(europeBerlinTimezone).set({
     hour: 0,
     minute: 0,
     second: 0,
   });
-
-  // During the weekend, use next Monday as startDate
-  if ((startDate.day() === 6)) {
+  if (startDate.day() === 6) {
     startDate = moment(startDate).day(8);
-  } else if ((startDate.day() === 0)) {
+  } else if (startDate.day() === 0) {
     startDate = moment(startDate).day(1);
   }
 
-  let endDate = moment(startDate);
-  endDate.set({
+  let endDate = moment(startDate).set({
     hour: 23,
     minute: 59,
     second: 59,
   });
-
   if (0 !== range) {
     endDate = moment(endDate).add(range, "days");
   }
+
+  return {
+    startDate,
+    endDate,
+  };
+}
+
+function getCountryFlag(countryCode: number): string {
+  return countryByCalendarCode.get(countryCode) ?? "🌍";
+}
+
+export async function getCalendarEvents(startDay: string, range: number): Promise<CalendarEvent[]> {
+  const {startDate, endDate} = getCalendarRangeInBerlin(startDay, range);
 
   const calendarEvents = [];
 
@@ -98,60 +113,12 @@ export async function getCalendarEvents(startDay: string, range: number): Promis
         const calendarEvent = new CalendarEvent();
 
         // Source data does not contain timezone info, guess its UTC...
-        const eventDate: moment.Moment = moment.utc(element.FullDate).tz("Europe/Berlin");
+        const eventDate: moment.Moment = moment.utc(element.FullDate).tz(europeBerlinTimezone);
 
         if (true === moment(eventDate).isSameOrBefore(endDate) && true === moment(eventDate).isSameOrAfter(startDate)) {
-          let country: string;
-          const eventDeDate: string = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("YYYY-MM-DD");
-          const eventDeTime: string = moment.utc(element.FullDate).clone().tz("Europe/Berlin").format("HH:mm");
-
-          switch (element.Country) {
-            case 999: {
-              country = "🇪🇺";
-              break;
-            }
-
-            case 840: {
-              country = "🇺🇸";
-              break;
-            }
-
-            case 826: {
-              country = "🇬🇧";
-              break;
-            }
-
-            case 724: {
-              country = "🇪🇸";
-              break;
-            }
-
-            case 392: {
-              country = "🇯🇵";
-              break;
-            }
-
-            case 380: {
-              country = "🇮🇹";
-              break;
-            }
-
-            case 276: {
-              country = "🇩🇪";
-              break;
-            }
-
-            case 250: {
-              country = "🇫🇷";
-              break;
-            }
-
-            case 0: {
-              country = "🌍";
-              break;
-            }
-            // No default
-          }
+          const country = getCountryFlag(element.Country);
+          const eventDeDate: string = moment.utc(element.FullDate).clone().tz(europeBerlinTimezone).format("YYYY-MM-DD");
+          const eventDeTime: string = moment.utc(element.FullDate).clone().tz(europeBerlinTimezone).format("HH:mm");
 
           calendarEvent.date = eventDeDate;
           calendarEvent.time = eventDeTime;
@@ -233,7 +200,7 @@ export function getCalendarMessages(
       }
 
       if (0 === lines.length) {
-        const headerText = `${header}\n`;
+        const headerText = `\n${header}\n`;
         const availableLineLength = maxMessageLength - getAppendedChunkText(currentChunk, headerText).length - 1;
         if (availableLineLength <= 0 && 0 < currentChunk.eventCount) {
           chunks.push(cloneChunk(currentChunk));
@@ -377,7 +344,7 @@ function getCalendarDayBlocks(calendarEvents: CalendarEvent[]): CalendarDayBlock
 }
 
 function getDayText(dayHeader: string, lines: string[]): string {
-  return `${dayHeader}\n${lines.join("\n")}\n`;
+  return `\n${dayHeader}\n${lines.join("\n")}\n`;
 }
 
 function getDayHeader(friendlyDate: string, continuationLabel: string, continuation: boolean): string {

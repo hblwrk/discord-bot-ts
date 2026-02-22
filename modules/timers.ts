@@ -28,12 +28,56 @@ const noMentions = {
   parse: [],
 };
 const calendarMessageDelayMs = 500;
+const usEasternTimezone = "US/Eastern";
+const weeklyEarningsHeadline = "📅 **Earnings der nächsten Handelswoche:**";
+const europeBerlinTimezone = "Europe/Berlin";
+const usEasternWeekdays = [new Schedule.Range(1, 5)];
 type SendableChannel = {
   send: (payload: unknown) => Promise<unknown> | unknown;
 };
+type RecurrenceRuleConfig = {
+  hour: number;
+  minute: number;
+  dayOfWeek: (number | Schedule.Range)[];
+  tz: string;
+};
+type EarningsAnnouncementConfig = {
+  date: "today" | "tomorrow" | string;
+  days: number;
+  errorMessage: string;
+  headline?: string;
+  source: string;
+  when: "all" | "before_open" | "during_session" | "after_close" | string;
+};
+
+function createRecurrenceRule(config: RecurrenceRuleConfig): Schedule.RecurrenceRule {
+  const recurrenceRule = new Schedule.RecurrenceRule();
+  recurrenceRule.hour = config.hour;
+  recurrenceRule.minute = config.minute;
+  recurrenceRule.dayOfWeek = config.dayOfWeek;
+  recurrenceRule.tz = config.tz;
+  return recurrenceRule;
+}
 
 function getCurrentNyseDate(): Date {
-  return moment.tz("US/Eastern").startOf("day").toDate();
+  return moment.tz(usEasternTimezone).startOf("day").toDate();
+}
+
+function getNextUsEasternDate(): moment.Moment {
+  return moment.tz(usEasternTimezone).add(1, "day").startOf("day");
+}
+
+function isUsEasternWeekend(date: moment.Moment): boolean {
+  const day = date.day();
+  return 0 === day || 6 === day;
+}
+
+function isNyseTradingDay(date: moment.Moment): boolean {
+  if (true === isUsEasternWeekend(date)) {
+    return false;
+  }
+
+  return false === isHoliday(date.toDate());
 }
 
 function isNyseHolidayToday(): boolean {
@@ -41,13 +85,13 @@ function isNyseHolidayToday(): boolean {
 }
 
 function isDayAfterThanksgiving(): boolean {
-  const nowUsEastern = moment.tz("US/Eastern");
+  const nowUsEastern = moment.tz(usEasternTimezone);
   const thanksgiving = getHolidays(nowUsEastern.year()).find(holiday => holiday.name === "Thanksgiving Day");
   if (!thanksgiving) {
     return false;
   }
 
-  const dayAfterThanksgiving = moment(thanksgiving.date).tz("US/Eastern").add(1, "day").format("YYYY-MM-DD");
+  const dayAfterThanksgiving = moment(thanksgiving.date).tz(usEasternTimezone).add(1, "day").format("YYYY-MM-DD");
   return nowUsEastern.format("YYYY-MM-DD") === dayAfterThanksgiving;
 }
 
@@ -78,53 +122,94 @@ async function sendAnnouncement(client, channelID: string, payload: unknown, sou
   });
 }
 
+async function runEarningsAnnouncement(
+  client,
+  channelID: string,
+  tickers: Ticker[],
+  config: EarningsAnnouncementConfig,
+) {
+  const earningsResult = await getEarningsResult(config.days, config.date);
+  const earningsBatch = getEarningsMessages(earningsResult.events, config.when, tickers, {
+    maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
+    maxMessages: EARNINGS_MAX_MESSAGES_TIMER,
+  });
+  logEarningsBatch(config.source, earningsBatch);
+
+  if ("error" === earningsResult.status) {
+    logger.log(
+      "warn",
+      {
+        source: config.source,
+        status: earningsResult.status,
+        message: config.errorMessage,
+      },
+    );
+  }
+
+  if (0 === earningsBatch.messages.length) {
+    return;
+  }
+
+  const channel = getSendableChannel(client, channelID, "earnings");
+  const messages = config.headline
+    ? prependHeadlineToFirstMessage(earningsBatch.messages, config.headline, EARNINGS_MAX_MESSAGE_LENGTH)
+    : earningsBatch.messages;
+  await sendChunkedMessages(channel, messages, "earnings");
+}
+
 export function startNyseTimers(client, channelID: string) {
-  const ruleNysePremarketOpen = new Schedule.RecurrenceRule();
-  ruleNysePremarketOpen.hour = 4;
-  ruleNysePremarketOpen.minute = 0;
-  ruleNysePremarketOpen.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleNysePremarketOpen.tz = "US/Eastern";
+  const ruleNysePremarketOpen = createRecurrenceRule({
+    hour: 4,
+    minute: 0,
+    dayOfWeek: usEasternWeekdays,
+    tz: usEasternTimezone,
+  });
 
-  const ruleNyseOpen = new Schedule.RecurrenceRule();
-  ruleNyseOpen.hour = 9;
-  ruleNyseOpen.minute = 30;
-  ruleNyseOpen.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleNyseOpen.tz = "US/Eastern";
+  const ruleNyseOpen = createRecurrenceRule({
+    hour: 9,
+    minute: 30,
+    dayOfWeek: usEasternWeekdays,
+    tz: usEasternTimezone,
+  });
 
-  const ruleNyseClose = new Schedule.RecurrenceRule();
-  ruleNyseClose.hour = 16;
-  ruleNyseClose.minute = 0;
-  ruleNyseClose.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleNyseClose.tz = "US/Eastern";
+  const ruleNyseClose = createRecurrenceRule({
+    hour: 16,
+    minute: 0,
+    dayOfWeek: usEasternWeekdays,
+    tz: usEasternTimezone,
+  });
 
-  const ruleNyseCloseEarly = new Schedule.RecurrenceRule();
-  ruleNyseCloseEarly.hour = 13;
-  ruleNyseCloseEarly.minute = 0;
-  ruleNyseCloseEarly.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleNyseCloseEarly.tz = "US/Eastern";
+  const ruleNyseCloseEarly = createRecurrenceRule({
+    hour: 13,
+    minute: 0,
+    dayOfWeek: usEasternWeekdays,
+    tz: usEasternTimezone,
+  });
 
-  const ruleNyseAftermarketClose = new Schedule.RecurrenceRule();
-  ruleNyseAftermarketClose.hour = 20;
-  ruleNyseAftermarketClose.minute = 0;
-  ruleNyseAftermarketClose.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleNyseAftermarketClose.tz = "US/Eastern";
+  const ruleNyseAftermarketClose = createRecurrenceRule({
+    hour: 20,
+    minute: 0,
+    dayOfWeek: usEasternWeekdays,
+    tz: usEasternTimezone,
+  });
 
-  const ruleNyseAftermarketCloseEarly = new Schedule.RecurrenceRule();
-  ruleNyseAftermarketCloseEarly.hour = 17;
-  ruleNyseAftermarketCloseEarly.minute = 0;
-  ruleNyseAftermarketCloseEarly.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleNyseAftermarketCloseEarly.tz = "US/Eastern";
+  const ruleNyseAftermarketCloseEarly = createRecurrenceRule({
+    hour: 17,
+    minute: 0,
+    dayOfWeek: usEasternWeekdays,
+    tz: usEasternTimezone,
+  });
 
   Schedule.scheduleJob(ruleNysePremarketOpen, () => {
     const thanksgivingEarlyClose = isDayAfterThanksgiving();
     if (true === thanksgivingEarlyClose) {
       // At the day after Thanksgiving the market closes at 13:00 local time.
-      const usEasternDate = moment.tz("US/Eastern").set({
+      const usEasternDate = moment.tz(usEasternTimezone).set({
         hour: 13,
         minute: 0,
         second: 0,
       });
-      const deDate = usEasternDate.clone().tz("Europe/Berlin");
+      const deDate = usEasternDate.clone().tz(europeBerlinTimezone);
       void sendAnnouncement(
         client,
         channelID,
@@ -211,11 +296,12 @@ export function startNyseTimers(client, channelID: string) {
 }
 
 export function startMncTimers(client, channelID: string) {
-  const ruleMnc = new Schedule.RecurrenceRule();
-  ruleMnc.hour = 9;
-  ruleMnc.minute = 0;
-  ruleMnc.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleMnc.tz = "US/Eastern";
+  const ruleMnc = createRecurrenceRule({
+    hour: 9,
+    minute: 0,
+    dayOfWeek: usEasternWeekdays,
+    tz: usEasternTimezone,
+  });
 
   Schedule.scheduleJob(ruleMnc, async () => {
     const buffer = await getMnc();
@@ -242,11 +328,12 @@ export function startMncTimers(client, channelID: string) {
 }
 
 export function startOtherTimers(client, channelID: string, assets: any, tickers: Ticker[]) {
-  const ruleFriday = new Schedule.RecurrenceRule();
-  ruleFriday.hour = 8;
-  ruleFriday.minute = 0;
-  ruleFriday.dayOfWeek = [5];
-  ruleFriday.tz = "Europe/Berlin";
+  const ruleFriday = createRecurrenceRule({
+    hour: 8,
+    minute: 0,
+    dayOfWeek: [5],
+    tz: europeBerlinTimezone,
+  });
 
   Schedule.scheduleJob(ruleFriday, async () => {
     const fridayAsset = getAssetByName("freitag", assets);
@@ -262,49 +349,59 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
     await sendAnnouncement(client, channelID, {files: [fridayFile]}, "friday");
   });
 
-  const ruleEarnings = new Schedule.RecurrenceRule();
-  ruleEarnings.hour = 19;
-  ruleEarnings.minute = 30;
-  ruleEarnings.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleEarnings.tz = "Europe/Berlin";
-
-  Schedule.scheduleJob(ruleEarnings, async () => {
-    const days = 0;
-    const date = "tomorrow";
-    const when = "all";
-    let earningsEvents = [];
-
-    const earningsResult = await getEarningsResult(days, date);
-    earningsEvents = earningsResult.events;
-
-    const earningsBatch = getEarningsMessages(earningsEvents, when, tickers, {
-      maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
-      maxMessages: EARNINGS_MAX_MESSAGES_TIMER,
-    });
-    logEarningsBatch("timer-earnings", earningsBatch);
-
-    if ("error" === earningsResult.status) {
-      logger.log(
-        "warn",
-        {
-          source: "timer-earnings",
-          status: earningsResult.status,
-          message: "Earnings konnten nicht geladen werden.",
-        },
-      );
-    }
-
-    if (0 < earningsBatch.messages.length) {
-      const channel = getSendableChannel(client, channelID, "earnings");
-      await sendChunkedMessages(channel, earningsBatch.messages, "earnings");
-    }
+  const ruleEarnings = createRecurrenceRule({
+    hour: 19,
+    minute: 30,
+    dayOfWeek: [new Schedule.Range(0, 6)],
+    tz: europeBerlinTimezone,
   });
 
-  const ruleEvents = new Schedule.RecurrenceRule();
-  ruleEvents.hour = 8;
-  ruleEvents.minute = 30;
-  ruleEvents.dayOfWeek = [new Schedule.Range(1, 5)];
-  ruleEvents.tz = "Europe/Berlin";
+  Schedule.scheduleJob(ruleEarnings, async () => {
+    const nextUsEasternDate = getNextUsEasternDate();
+    if (false === isNyseTradingDay(nextUsEasternDate)) {
+      logger.log(
+        "info",
+        {
+          source: "timer-earnings",
+          message: `Skipping earnings timer: next US/Eastern day ${nextUsEasternDate.format("YYYY-MM-DD")} is not a trading day.`,
+        },
+      );
+      return;
+    }
+
+    await runEarningsAnnouncement(client, channelID, tickers, {
+      date: "tomorrow",
+      days: 0,
+      errorMessage: "Earnings konnten nicht geladen werden.",
+      source: "timer-earnings",
+      when: "all",
+    });
+  });
+
+  const ruleEarningsWeekly = createRecurrenceRule({
+    hour: 19,
+    minute: 45,
+    dayOfWeek: [5],
+    tz: europeBerlinTimezone,
+  });
+
+  Schedule.scheduleJob(ruleEarningsWeekly, async () => {
+    await runEarningsAnnouncement(client, channelID, tickers, {
+      date: "today",
+      days: 5,
+      errorMessage: "Wöchentliche Earnings konnten nicht geladen werden.",
+      headline: weeklyEarningsHeadline,
+      source: "timer-earnings-weekly",
+      when: "all",
+    });
+  });
+
+  const ruleEvents = createRecurrenceRule({
+    hour: 8,
+    minute: 30,
+    dayOfWeek: [new Schedule.Range(1, 5)],
+    tz: europeBerlinTimezone,
+  });
 
   Schedule.scheduleJob(ruleEvents, async () => {
     const calendarEvents = await getCalendarEvents("", 0);
@@ -322,14 +419,15 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
     }
   });
 
-  const ruleEventsWeekly = new Schedule.RecurrenceRule();
-  ruleEventsWeekly.hour = 0;
-  ruleEventsWeekly.minute = 0;
-  ruleEventsWeekly.dayOfWeek = [6];
-  ruleEventsWeekly.tz = "Europe/Berlin";
+  const ruleEventsWeekly = createRecurrenceRule({
+    hour: 0,
+    minute: 0,
+    dayOfWeek: [6],
+    tz: europeBerlinTimezone,
+  });
 
   Schedule.scheduleJob(ruleEventsWeekly, async () => {
-    const offsetDays: string = moment().tz("Europe/Berlin").add(5, "days").format("YYYY-MM-DD");
+    const offsetDays: string = moment().tz(europeBerlinTimezone).add(5, "days").format("YYYY-MM-DD");
 
     const calendarEvents1: CalendarEvent[] = await getCalendarEvents("", 2);
     const calendarEvents2: CalendarEvent[] = await getCalendarEvents(offsetDays, 1);
@@ -362,6 +460,23 @@ function dedupeCalendarEvents(calendarEvents: CalendarEvent[]): CalendarEvent[] 
   }
 
   return dedupedEvents;
+}
+
+function prependHeadlineToFirstMessage(
+  messages: string[],
+  headline: string,
+  maxMessageLength: number,
+): string[] {
+  if (0 === messages.length) {
+    return messages;
+  }
+
+  const firstMessageWithHeadline = `${headline}\n\n${messages[0]}`;
+  if (firstMessageWithHeadline.length <= maxMessageLength) {
+    return [firstMessageWithHeadline, ...messages.slice(1)];
+  }
+
+  return [headline, ...messages];
 }
 
 async function sendChunkedMessages(channel: SendableChannel | null, messages: string[], source: "calendar" | "earnings") {
