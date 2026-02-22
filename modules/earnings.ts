@@ -772,6 +772,7 @@ function getEarningsSectionText(
 
   for (const row of rows) {
     if (row.when !== previousWhen) {
+      sectionLines.push("");
       sectionLines.push(getEarningsWhenSubheading(row.when));
       previousWhen = row.when;
     }
