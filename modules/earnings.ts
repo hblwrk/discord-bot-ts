@@ -5,9 +5,9 @@
 /* eslint-disable yoda */
 /* eslint-disable import/extensions */
 import moment from "moment-timezone";
-import { getLogger } from "./logging.js";
-import { type Ticker } from "./tickers.js";
-import { getWithRetry } from "./http-retry.js";
+import {getLogger} from "./logging.js";
+import {type Ticker} from "./tickers.js";
+import {getWithRetry} from "./http-retry.js";
 
 const logger = getLogger();
 const earningsTruncationNote = "... weitere Earnings konnten wegen Discord-Limits nicht angezeigt werden.";
@@ -18,15 +18,18 @@ export interface EarningsEvent {
   when: EarningsWhen;
   date: string;
   importance: number;
+  companyName?: string;
+  marketCap?: number | null;
+  marketCapText?: string;
+  epsConsensus?: string;
 }
 
-export type EarningsLoadStatus = "ok" | "blocked" | "error";
+export type EarningsLoadStatus = "ok" | "error";
 
 export const EARNINGS_MAX_MESSAGE_LENGTH = 1800;
 export const EARNINGS_MAX_MESSAGES_TIMER = 8;
 export const EARNINGS_MAX_MESSAGES_SLASH = 6;
 export const EARNINGS_CONTINUATION_LABEL = "(Fortsetzung)";
-export const EARNINGS_BLOCKED_MESSAGE = "Stocktwits zeigt aktuell eine \"Just a moment...\"-Seite (Cloudflare). Earnings konnten daher nicht geladen werden.";
 
 export type EarningsMessageBatch = {
   messages: string[];
@@ -43,7 +46,7 @@ export type EarningsMessageOptions = {
 
 type EarningsSection = {
   label: string;
-  tickers: string[];
+  rows: string[];
 };
 
 type EarningsMessageChunk = {
@@ -51,22 +54,18 @@ type EarningsMessageChunk = {
   eventCount: number;
 };
 
-type StocktwitsEarningsStock = {
-  importance?: number;
-  symbol?: string;
-  date?: string;
-  time?: string;
-};
-
-type StocktwitsEarningsResponse = {
-  earnings?: Record<string, {
-    stocks?: StocktwitsEarningsStock[];
-  }>;
-};
-
 type NasdaqEarningsRow = {
   symbol?: string;
+  name?: string;
   time?: string;
+  marketCap?: string | number;
+  marketcap?: string | number;
+  mktCap?: string | number;
+  epsForecast?: string | number;
+  epsConsensus?: string | number;
+  consensusEPS?: string | number;
+  consensusEps?: string | number;
+  eps?: string | number;
 };
 
 type NasdaqEarningsResponse = {
@@ -81,28 +80,12 @@ type NasdaqEarningsResponse = {
   message?: string | null;
 };
 
-type StocktwitsBlockedErrorCode = "stocktwits_blocked";
-type StocktwitsLoadResult = {
-  data: StocktwitsEarningsResponse;
-  watchlistFilterDropped: boolean;
-};
-
 export type EarningsLoadResult = {
   events: EarningsEvent[];
   status: EarningsLoadStatus;
-  watchlistFilterDropped: boolean;
 };
 
-const stocktwitsEarningsEndpoint = "https://api.stocktwits.com/api/2/discover/earnings_calendar";
 const nasdaqEarningsEndpoint = "https://api.nasdaq.com/api/calendar/earnings";
-const stocktwitsRequestHeaders = {
-  "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36",
-  "Accept": "application/json, text/plain, */*",
-  "Accept-Language": "en-US,en;q=0.9",
-  "Origin": "https://stocktwits.com",
-  "Referer": "https://stocktwits.com/sentiment/calendar",
-  "X-Requested-With": "XMLHttpRequest",
-};
 const nasdaqRequestHeaders = {
   "User-Agent": "Mozilla/5.0",
   "Accept": "application/json, text/plain, */*",
@@ -111,22 +94,20 @@ const nasdaqRequestHeaders = {
 
 export async function getEarnings(
   days: number,
-  date: "today" | "tomorrow" | string,
-  filter: string
+  date: "today" | "tomorrow" | string
 ): Promise<EarningsEvent[]> {
-  const earningsResult = await getEarningsResult(days, date, filter);
+  const earningsResult = await getEarningsResult(days, date);
   return earningsResult.events;
 }
 
 export async function getEarningsResult(
   days: number,
-  date: "today" | "tomorrow" | string,
-  filter: string
+  date: "today" | "tomorrow" | string
 ): Promise<EarningsLoadResult> {
   let dateFromStamp: string;
   let dateToStamp: string;
 
-  let usEasternTime: moment.Moment = moment.tz("US/Eastern").set({
+  let usEasternTime = moment.tz("US/Eastern").set({
     // Testing
     /*
     year: 2022,
@@ -157,8 +138,9 @@ export async function getEarningsResult(
       dateToStamp = dateFromStamp;
     }
   } else {
-    if (90 < days) {
-      days = 90;
+    days = Math.trunc(days);
+    if (10 < days) {
+      days = 10;
     }
 
     dateFromStamp = moment(usEasternTime).add(1, "days").format("YYYY-MM-DD");
@@ -169,130 +151,49 @@ export async function getEarningsResult(
   }
 
   const earningsEvents: EarningsEvent[] = [];
-  let watchlistFilterDropped = false;
   let status: EarningsLoadStatus = "ok";
 
-  try {
-    const stocktwitsEarnings = await loadStocktwitsEarnings(
-      dateFromStamp,
-      dateToStamp,
-      filter
-    );
-    watchlistFilterDropped = stocktwitsEarnings.watchlistFilterDropped;
-    appendStocktwitsEarningsEvents(
-      earningsEvents,
-      stocktwitsEarnings.data,
-      dateFromStamp,
-      dateToStamp
-    );
-  } catch (stocktwitsError) {
-    if (true === isStocktwitsBlockedError(stocktwitsError)) {
-      status = "blocked";
-      logger.log(
-        "error",
-        "Loading earnings failed: Stocktwits request was blocked by a Cloudflare challenge."
+  const dateStamps = getDateStampsInRange(dateFromStamp, dateToStamp);
+  const settledRequests = await Promise.allSettled(
+    dateStamps.map(dateStamp => loadNasdaqEarnings(dateStamp))
+  );
+  let successfulRequestCount = 0;
+
+  for (const [requestIndex, settledRequest] of settledRequests.entries()) {
+    const dateStamp = dateStamps[requestIndex];
+    if ("fulfilled" === settledRequest.status) {
+      successfulRequestCount++;
+      appendNasdaqEarningsEvents(
+        earningsEvents,
+        settledRequest.value,
+        dateStamp
       );
-    } else {
-      status = "error";
-      logger.log("error", `Loading earnings failed: ${stocktwitsError}`);
+      continue;
     }
 
     logger.log(
-      "warn",
-      `Loading earnings fallback: trying Nasdaq after Stocktwits ${status} response.`
+      "error",
+      `Loading Nasdaq earnings failed for ${dateStamp}: ${settledRequest.reason}`
     );
-    if ("all" !== filter) {
-      watchlistFilterDropped = true;
-    }
+  }
 
-    try {
-      const dateStamps = getDateStampsInRange(dateFromStamp, dateToStamp);
-      for (const fallbackDateStamp of dateStamps) {
-        const nasdaqEarnings = await loadNasdaqEarnings(fallbackDateStamp);
-        appendNasdaqEarningsEvents(
-          earningsEvents,
-          nasdaqEarnings,
-          fallbackDateStamp
-        );
-      }
-      status = "ok";
-      logger.log(
-        "info",
-        `Loaded ${earningsEvents.length} earnings from Nasdaq fallback for ${getDateRangeLabel(dateFromStamp, dateToStamp)}.`
-      );
-    } catch (nasdaqError) {
-      logger.log("error", `Loading Nasdaq fallback earnings failed: ${nasdaqError}`);
-    }
+  if (0 === successfulRequestCount) {
+    status = "error";
+    logger.log(
+      "error",
+      `Loading earnings failed: Nasdaq requests were unsuccessful for ${getDateRangeLabel(dateFromStamp, dateToStamp)}.`
+    );
+  } else {
+    logger.log(
+      "info",
+      `Loaded ${earningsEvents.length} earnings from Nasdaq for ${getDateRangeLabel(dateFromStamp, dateToStamp)}.`
+    );
   }
 
   return {
     events: earningsEvents,
     status,
-    watchlistFilterDropped,
   };
-}
-
-async function loadStocktwitsEarnings(
-  dateFromStamp: string,
-  dateToStamp: string,
-  filter: string
-): Promise<StocktwitsLoadResult> {
-  const query = new URLSearchParams({
-    date_from: dateFromStamp,
-    date_to: dateToStamp,
-  });
-  const hasWatchlistFilter = "all" !== filter;
-
-  if (true === hasWatchlistFilter) {
-    query.set("watchlist", filter);
-  }
-
-  try {
-    // https://api.stocktwits.com/api/2/discover/earnings_calendar?date_from=2023-01-05
-    const response = await getWithRetry<StocktwitsEarningsResponse>(
-      `${stocktwitsEarningsEndpoint}?${query.toString()}`,
-      {
-        headers: stocktwitsRequestHeaders,
-      }
-    );
-
-    if (true === isStocktwitsBlockedResponse(response.data, response.headers)) {
-      throw getStocktwitsBlockedError();
-    }
-
-    return {
-      data: response.data ?? {},
-      watchlistFilterDropped: false,
-    };
-  } catch (error) {
-    if (
-      false === hasWatchlistFilter ||
-      false === (isHttpErrorStatus(error, 403) || isStocktwitsBlockedError(error))
-    ) {
-      throw error;
-    }
-
-    logger.log(
-      "warn",
-      "Stocktwits watchlist request was blocked (403 or challenge page). Retrying without watchlist filter."
-    );
-    query.delete("watchlist");
-    const fallbackResponse = await getWithRetry<StocktwitsEarningsResponse>(
-      `${stocktwitsEarningsEndpoint}?${query.toString()}`,
-      {
-        headers: stocktwitsRequestHeaders,
-      }
-    );
-
-    if (true === isStocktwitsBlockedResponse(fallbackResponse.data, fallbackResponse.headers)) {
-      throw getStocktwitsBlockedError();
-    }
-
-    return {
-      data: fallbackResponse.data ?? {},
-      watchlistFilterDropped: true,
-    };
-  }
 }
 
 async function loadNasdaqEarnings(
@@ -340,142 +241,12 @@ function getDateStampsInRange(
   return dateStamps;
 }
 
-function getDateRangeLabel(
-  dateFromStamp: string,
-  dateToStamp: string
-): string {
+function getDateRangeLabel(dateFromStamp: string, dateToStamp: string): string {
   if (dateFromStamp === dateToStamp) {
     return dateFromStamp;
   }
 
   return `${dateFromStamp} to ${dateToStamp}`;
-}
-
-function isHttpErrorStatus(error: unknown, statusCode: number): boolean {
-  if ("object" !== typeof error || null === error) {
-    return false;
-  }
-
-  const maybeError = error as {
-    response?: {
-      status?: number;
-    };
-  };
-
-  return maybeError.response?.status === statusCode;
-}
-
-function isStocktwitsBlockedResponse(data: unknown, headers: unknown): boolean {
-  const contentType = getHeaderValue(headers, "content-type");
-  if ("string" === typeof contentType && true === contentType.toLowerCase().includes("text/html")) {
-    return true;
-  }
-
-  if ("string" !== typeof data) {
-    return false;
-  }
-
-  const normalizedData = data.toLowerCase();
-  return (
-    true === normalizedData.includes("just a moment") ||
-    true === normalizedData.includes("enable javascript and cookies to continue") ||
-    true === normalizedData.includes("__cf_chl_opt")
-  );
-}
-
-function getHeaderValue(headers: unknown, key: string): string | undefined {
-  if (
-    "object" === typeof headers &&
-    null !== headers &&
-    "function" === typeof (headers as { get?: unknown }).get
-  ) {
-    const value = (headers as {
-      get: (name: string) => unknown;
-    }).get(key);
-    if ("string" === typeof value) {
-      return value;
-    }
-  }
-
-  if ("object" !== typeof headers || null === headers) {
-    return undefined;
-  }
-
-  const normalizedKey = key.toLowerCase();
-  for (const [headerName, headerValue] of Object.entries(headers as Record<string, unknown>)) {
-    if (headerName.toLowerCase() !== normalizedKey) {
-      continue;
-    }
-
-    if ("string" === typeof headerValue) {
-      return headerValue;
-    }
-  }
-
-  return undefined;
-}
-
-function getStocktwitsBlockedError(): Error & { code: StocktwitsBlockedErrorCode } {
-  const error = new Error(
-    "Stocktwits returned a Cloudflare challenge page instead of JSON."
-  ) as Error & {
-    code: StocktwitsBlockedErrorCode;
-  };
-  error.code = "stocktwits_blocked";
-  return error;
-}
-
-function isStocktwitsBlockedError(error: unknown): boolean {
-  if ("object" !== typeof error || null === error) {
-    return false;
-  }
-
-  const maybeError = error as {
-    code?: string;
-  };
-  return maybeError.code === "stocktwits_blocked";
-}
-
-function appendStocktwitsEarningsEvents(
-  earningsEvents: EarningsEvent[],
-  stocktwitsResponse: StocktwitsEarningsResponse,
-  dateFromStamp: string,
-  dateToStamp: string
-) {
-  const dailyEarnings = stocktwitsResponse.earnings ?? {};
-  for (const [dateStamp, dateEarnings] of Object.entries(dailyEarnings)) {
-    if (
-      false === isDateInRange(dateStamp, dateFromStamp, dateToStamp) ||
-      !dateEarnings?.stocks ||
-      !Array.isArray(dateEarnings.stocks)
-    ) {
-      continue;
-    }
-
-    for (const stock of dateEarnings.stocks) {
-      if (
-        "string" !== typeof stock.symbol ||
-        "string" !== typeof stock.date ||
-        "string" !== typeof stock.time ||
-        "number" !== typeof stock.importance ||
-        stock.importance <= 0 ||
-        stock.date !== dateStamp ||
-        false === isDateInRange(stock.date, dateFromStamp, dateToStamp)
-      ) {
-        continue;
-      }
-
-      earningsEvents.push({
-        ticker: stock.symbol,
-        date: stock.date,
-        importance: stock.importance,
-        when: getEarningsWhenFromClockTime(
-          stock.date,
-          stock.time
-        ),
-      });
-    }
-  }
 }
 
 function appendNasdaqEarningsEvents(
@@ -488,20 +259,24 @@ function appendNasdaqEarningsEvents(
   }
 
   for (const row of nasdaqResponse.data.rows) {
-    if ("string" !== typeof row.symbol) {
+    const ticker = getNormalizedString(row.symbol);
+    if (null === ticker) {
       continue;
     }
 
-    const ticker = row.symbol.trim();
-    if (0 === ticker.length) {
-      continue;
-    }
+    const companyName = getNormalizedString(row.name) ?? "";
+    const marketCap = getNasdaqMarketCap(row);
+    const epsConsensus = getNasdaqEpsConsensus(row);
 
     earningsEvents.push({
       ticker,
       date: dateStamp,
       importance: 1,
       when: getEarningsWhenFromNasdaqTimeToken(row.time),
+      companyName,
+      marketCap: marketCap.value,
+      marketCapText: marketCap.text,
+      epsConsensus,
     });
   }
 }
@@ -520,47 +295,113 @@ function getEarningsWhenFromNasdaqTimeToken(timeToken: unknown): EarningsWhen {
     return "after_close";
   }
 
+  if ("time-not-supplied" === normalizedTimeToken) {
+    return "during_session";
+  }
+
   return "during_session";
 }
 
-function getEarningsWhenFromClockTime(
-  dateStamp: string,
-  timeStamp: string
-): EarningsWhen {
-  const nyseOpenTime: moment.Moment = moment.tz(dateStamp, "US/Eastern").set({
-    hour: 9,
-    minute: 30,
-    second: 0,
-  });
-
-  const nyseCloseTime: moment.Moment = moment.tz(dateStamp, "US/Eastern").set({
-    hour: 16,
-    minute: 0,
-    second: 0,
-  });
-
-  const earningsTime: moment.Moment = moment.tz(
-    `${dateStamp} ${timeStamp}`,
-    ["YYYY-MM-DD HH:mm:ss", "YYYY-MM-DD HH:mm"],
-    "US/Eastern"
-  );
-
-  let earningsWhen: EarningsWhen = "during_session";
-  if (true === moment(earningsTime).isBefore(nyseOpenTime)) {
-    earningsWhen = "before_open";
-  } else if (true === moment(earningsTime).isSameOrAfter(nyseCloseTime)) {
-    earningsWhen = "after_close";
+function getNormalizedString(value: unknown): string | null {
+  if ("string" !== typeof value) {
+    return null;
   }
 
-  return earningsWhen;
+  const normalizedValue = value.trim();
+  if (0 === normalizedValue.length) {
+    return null;
+  }
+
+  return normalizedValue;
 }
 
-function isDateInRange(
-  dateStamp: string,
-  dateFromStamp: string,
-  dateToStamp: string
-): boolean {
-  return dateStamp >= dateFromStamp && dateStamp <= dateToStamp;
+function getNasdaqMarketCap(row: NasdaqEarningsRow): {value: number | null; text: string} {
+  const rawValue = row.marketCap ?? row.marketcap ?? row.mktCap;
+  if ("number" === typeof rawValue && Number.isFinite(rawValue) && rawValue >= 0) {
+    return {
+      value: rawValue,
+      text: rawValue.toLocaleString("en-US"),
+    };
+  }
+
+  const normalizedRawValue = getNormalizedString(rawValue);
+  if (null === normalizedRawValue) {
+    return {
+      value: null,
+      text: "n/a",
+    };
+  }
+
+  const marketCapSortValue = getNumericValueFromNasdaqCapString(normalizedRawValue);
+  return {
+    value: marketCapSortValue,
+    text: normalizedRawValue,
+  };
+}
+
+function getNumericValueFromNasdaqCapString(value: string): number | null {
+  const normalizedValue = value
+    .replaceAll(",", "")
+    .replaceAll("$", "")
+    .trim()
+    .toUpperCase();
+
+  const unitMatch = normalizedValue.match(/^([0-9]*\.?[0-9]+)\s*([TMBK])$/);
+  if (null !== unitMatch) {
+    const parsedValue = Number.parseFloat(unitMatch[1]);
+    if (false === Number.isFinite(parsedValue)) {
+      return null;
+    }
+
+    if ("T" === unitMatch[2]) {
+      return parsedValue * 1_000_000_000_000;
+    }
+
+    if ("B" === unitMatch[2]) {
+      return parsedValue * 1_000_000_000;
+    }
+
+    if ("M" === unitMatch[2]) {
+      return parsedValue * 1_000_000;
+    }
+
+    return parsedValue * 1_000;
+  }
+
+  const directNumber = Number.parseFloat(normalizedValue);
+  if (false === Number.isFinite(directNumber)) {
+    return null;
+  }
+
+  return directNumber;
+}
+
+function getNasdaqEpsConsensus(row: NasdaqEarningsRow): string {
+  const valueCandidates = [
+    row.epsForecast,
+    row.epsConsensus,
+    row.consensusEPS,
+    row.consensusEps,
+    row.eps,
+  ];
+  for (const valueCandidate of valueCandidates) {
+    if ("number" === typeof valueCandidate && Number.isFinite(valueCandidate)) {
+      return String(valueCandidate);
+    }
+
+    const normalizedString = getNormalizedString(valueCandidate);
+    if (null === normalizedString) {
+      continue;
+    }
+
+    if ("n/a" === normalizedString.toLowerCase() || "--" === normalizedString) {
+      continue;
+    }
+
+    return normalizedString;
+  }
+
+  return "n/a";
 }
 
 export function getEarningsText(
@@ -568,72 +409,15 @@ export function getEarningsText(
   when: "all" | "before_open" | "during_session" | "after_close" | string,
   tickers: Ticker[]
 ): string {
-  let earningsText = "none";
-
-  if (0 < earningsEvents.length) {
-    let earningsBeforeOpen = "";
-    let earningsDuringSession = "";
-    let earningsAfterClose = "";
-
-    // Sort by importance, ascending order
-    earningsEvents = earningsEvents.sort(
-      (first, second) => first.importance - second.importance
-    );
-
-    for (const earningEvent of earningsEvents) {
-      // Highlight index tickers
-      for (const ticker of tickers) {
-        if (ticker.symbol === earningEvent.ticker) {
-          earningEvent.ticker = `**${earningEvent.ticker}**`;
-        }
-      }
-
-      switch (earningEvent.when) {
-        case "before_open": {
-          earningsBeforeOpen += `${earningEvent.ticker}, `;
-          break;
-        }
-
-        case "during_session": {
-          earningsDuringSession += `${earningEvent.ticker}, `;
-          break;
-        }
-
-        case "after_close": {
-          earningsAfterClose += `${earningEvent.ticker}, `;
-          break;
-        }
-        // No default
-      }
-    }
-
-    earningsText = `${getEarningsTitle(earningsEvents)}\n`;
-    if (
-      1 < earningsBeforeOpen.length &&
-      ("all" === when || "before_open" === when)
-    ) {
-      earningsText += `**Vor open:**\n${earningsBeforeOpen.slice(0, -2)}\n\n`;
-    }
-
-    if (
-      1 < earningsDuringSession.length &&
-      ("all" === when || "during_session" === when)
-    ) {
-      earningsText += `**Während der Handelszeiten:**\n${earningsDuringSession.slice(
-        0,
-        -2
-      )}\n\n`;
-    }
-
-    if (
-      1 < earningsAfterClose.length &&
-      ("all" === when || "after_close" === when)
-    ) {
-      earningsText += `**Nach close:**\n${earningsAfterClose.slice(0, -2)}`;
-    }
+  const earningsBatch = getEarningsMessages(earningsEvents, when, tickers, {
+    maxMessageLength: Number.MAX_SAFE_INTEGER,
+    maxMessages: 1,
+  });
+  if (0 === earningsBatch.messages.length) {
+    return "none";
   }
 
-  return earningsText;
+  return earningsBatch.messages[0];
 }
 
 export function getEarningsMessages(
@@ -652,7 +436,7 @@ export function getEarningsMessages(
 
   const filteredAndSortedEvents = [...earningsEvents]
     .filter(event => selectedWhen.has(event.when))
-    .sort((first, second) => first.importance - second.importance);
+    .sort(compareEarningsEvents);
 
   if (0 === filteredAndSortedEvents.length) {
     return {
@@ -685,12 +469,12 @@ export function getEarningsMessages(
   for (const section of sections) {
     const fullSectionText = getEarningsSectionText(
       section.label,
-      section.tickers,
+      section.rows,
       false,
       continuationLabel
     );
     if (true === canAppendToEarningsChunk(currentChunk, fullSectionText, maxMessageLength)) {
-      appendToEarningsChunk(currentChunk, fullSectionText, section.tickers.length);
+      appendToEarningsChunk(currentChunk, fullSectionText, section.rows.length);
       continue;
     }
 
@@ -700,58 +484,58 @@ export function getEarningsMessages(
     }
 
     if (true === canAppendToEarningsChunk(currentChunk, fullSectionText, maxMessageLength)) {
-      appendToEarningsChunk(currentChunk, fullSectionText, section.tickers.length);
+      appendToEarningsChunk(currentChunk, fullSectionText, section.rows.length);
       continue;
     }
 
-    let tickerIndex = 0;
+    let rowIndex = 0;
     let continuation = false;
-    while (tickerIndex < section.tickers.length) {
-      const sectionTickers: string[] = [];
-      while (tickerIndex < section.tickers.length) {
-        const candidateTickers = [...sectionTickers, section.tickers[tickerIndex]];
+    while (rowIndex < section.rows.length) {
+      const sectionRows: string[] = [];
+      while (rowIndex < section.rows.length) {
+        const candidateRows = [...sectionRows, section.rows[rowIndex]];
         const candidateSectionText = getEarningsSectionText(
           section.label,
-          candidateTickers,
+          candidateRows,
           continuation,
           continuationLabel
         );
 
         if (canAppendToEarningsChunk(currentChunk, candidateSectionText, maxMessageLength)) {
-          sectionTickers.push(section.tickers[tickerIndex]);
-          tickerIndex++;
+          sectionRows.push(section.rows[rowIndex]);
+          rowIndex++;
         } else {
           break;
         }
       }
 
-      if (0 === sectionTickers.length) {
+      if (0 === sectionRows.length) {
         const headingText = `${getEarningsSectionHeading(section.label, continuation, continuationLabel)}\n`;
-        const availableTickerLength = maxMessageLength - getAppendedEarningsChunkText(currentChunk, headingText).length - 2;
-        if (availableTickerLength <= 0 && 0 < currentChunk.eventCount) {
+        const availableRowLength = maxMessageLength - getAppendedEarningsChunkText(currentChunk, headingText).length - 1;
+        if (availableRowLength <= 0 && 0 < currentChunk.eventCount) {
           chunks.push(cloneEarningsChunk(currentChunk));
           currentChunk = getEmptyEarningsMessageChunk(chunks.length, title);
           continue;
         }
 
-        const rawTicker = section.tickers[tickerIndex];
-        const truncatedTicker = truncateEarningsTicker(rawTicker, Math.max(availableTickerLength, 1));
-        sectionTickers.push(truncatedTicker);
-        tickerIndex++;
-        if (rawTicker !== truncatedTicker) {
+        const rawRow = section.rows[rowIndex];
+        const truncatedRow = truncateEarningsLine(rawRow, Math.max(availableRowLength, 1));
+        sectionRows.push(truncatedRow);
+        rowIndex++;
+        if (rawRow !== truncatedRow) {
           contentTruncated = true;
         }
       }
 
       const sectionText = getEarningsSectionText(
         section.label,
-        sectionTickers,
+        sectionRows,
         continuation,
         continuationLabel
       );
-      appendToEarningsChunk(currentChunk, sectionText, sectionTickers.length);
+      appendToEarningsChunk(currentChunk, sectionText, sectionRows.length);
 
-      if (tickerIndex < section.tickers.length) {
+      if (rowIndex < section.rows.length) {
         chunks.push(cloneEarningsChunk(currentChunk));
         currentChunk = getEmptyEarningsMessageChunk(chunks.length, title);
         continuation = true;
@@ -807,13 +591,13 @@ function getEarningsTitle(earningsEvents: EarningsEvent[]): string {
     }
   }
 
-  const earliestFriendlyDate = moment(earliestDate).format("dddd, Do MMMM YYYY");
+  const earliestFriendlyDate = getFriendlyDate(earliestDate);
   if (earliestDate === latestDate) {
     return `Earnings am ${earliestFriendlyDate}:`;
   }
 
-  const latestFriendlyDate = moment(latestDate).format("dddd, Do MMMM YYYY");
-  return `Earnings von ${earliestFriendlyDate} bis ${latestFriendlyDate}:`;
+  const latestFriendlyDate = getFriendlyDate(latestDate);
+  return `**Zeitraum:** ${earliestFriendlyDate} bis ${latestFriendlyDate}`;
 }
 
 function getSelectedEarningsWhen(
@@ -844,33 +628,42 @@ function getEarningsSections(
   earningsEvents: EarningsEvent[],
   highlightedTickerSymbols: Set<string>
 ): EarningsSection[] {
-  const sectionMap = new Map<EarningsWhen, EarningsSection>();
-  sectionMap.set("before_open", {label: "Vor open", tickers: []});
-  sectionMap.set("during_session", {label: "Während der Handelszeiten", tickers: []});
-  sectionMap.set("after_close", {label: "Nach close", tickers: []});
+  const sectionMap = new Map<string, EarningsSection>();
+  const sectionOrder: string[] = [];
 
   for (const earningsEvent of earningsEvents) {
-    const section = sectionMap.get(earningsEvent.when);
+    let section = sectionMap.get(earningsEvent.date);
     if (!section) {
-      continue;
+      section = {
+        label: getFriendlyDate(earningsEvent.date),
+        rows: [],
+      };
+      sectionMap.set(earningsEvent.date, section);
+      sectionOrder.push(earningsEvent.date);
     }
 
-    if (true === highlightedTickerSymbols.has(earningsEvent.ticker)) {
-      section.tickers.push(`**${earningsEvent.ticker}**`);
-    } else {
-      section.tickers.push(earningsEvent.ticker);
-    }
+    section.rows.push(
+      getEarningsEventLine(
+        earningsEvent,
+        highlightedTickerSymbols
+      )
+    );
   }
 
   const orderedSections: EarningsSection[] = [];
-  for (const earningsWhen of ["before_open", "during_session", "after_close"] as const) {
-    const section = sectionMap.get(earningsWhen);
-    if (section && 0 < section.tickers.length) {
+  for (const dateStamp of sectionOrder) {
+    const section = sectionMap.get(dateStamp);
+    if (section && 0 < section.rows.length) {
       orderedSections.push(section);
     }
   }
 
   return orderedSections;
+}
+
+function getFriendlyDate(dateStamp: string): string {
+  moment.locale("de");
+  return moment(dateStamp).format("dddd, Do MMMM YYYY");
 }
 
 function getEarningsSectionHeading(
@@ -887,12 +680,12 @@ function getEarningsSectionHeading(
 
 function getEarningsSectionText(
   label: string,
-  tickers: string[],
+  rows: string[],
   continuation: boolean,
   continuationLabel: string
 ): string {
   const heading = getEarningsSectionHeading(label, continuation, continuationLabel);
-  return `${heading}\n${tickers.join(", ")}\n\n`;
+  return `${heading}\n${rows.join("\n")}\n\n`;
 }
 
 function getEmptyEarningsMessageChunk(
@@ -945,16 +738,16 @@ function cloneEarningsChunk(chunk: EarningsMessageChunk): EarningsMessageChunk {
   };
 }
 
-function truncateEarningsTicker(ticker: string, maxLength: number): string {
-  if (ticker.length <= maxLength) {
-    return ticker;
+function truncateEarningsLine(line: string, maxLength: number): string {
+  if (line.length <= maxLength) {
+    return line;
   }
 
   if (maxLength <= 3) {
-    return ticker.slice(0, maxLength);
+    return line.slice(0, maxLength);
   }
 
-  return `${ticker.slice(0, maxLength - 3)}...`;
+  return `${line.slice(0, maxLength - 3)}...`;
 }
 
 function appendEarningsTruncationNote(
@@ -973,4 +766,80 @@ function appendEarningsTruncationNote(
 
   const trimmedContent = content.slice(0, messageLengthWithoutSuffix).trimEnd();
   return `${trimmedContent}${suffix}`;
+}
+
+function compareEarningsEvents(first: EarningsEvent, second: EarningsEvent): number {
+  if (first.date !== second.date) {
+    return first.date.localeCompare(second.date);
+  }
+
+  const firstMarketCap = getSortableMarketCap(first.marketCap);
+  const secondMarketCap = getSortableMarketCap(second.marketCap);
+  if (firstMarketCap !== secondMarketCap) {
+    return secondMarketCap - firstMarketCap;
+  }
+
+  if (first.ticker !== second.ticker) {
+    return first.ticker.localeCompare(second.ticker);
+  }
+
+  return first.importance - second.importance;
+}
+
+function getSortableMarketCap(marketCap: number | null | undefined): number {
+  if ("number" !== typeof marketCap || false === Number.isFinite(marketCap)) {
+    return Number.NEGATIVE_INFINITY;
+  }
+
+  return marketCap;
+}
+
+function getEarningsEventLine(
+  earningsEvent: EarningsEvent,
+  highlightedTickerSymbols: Set<string>
+): string {
+  const ticker = getFormattedTicker(earningsEvent.ticker, highlightedTickerSymbols);
+  const companyName = getEarningsCompanyName(earningsEvent.companyName);
+  const whenLabel = getEarningsWhenLabel(earningsEvent.when);
+  const marketCapText = getNormalizedString(earningsEvent.marketCapText) ?? "n/a";
+  const epsConsensus = getNormalizedString(earningsEvent.epsConsensus) ?? "n/a";
+
+  return `${ticker} | ${companyName} | Zeitpunkt: ${whenLabel} | MCap: ${marketCapText} | 🔮 EPS: ${epsConsensus}`;
+}
+
+function getFormattedTicker(
+  ticker: string,
+  highlightedTickerSymbols: Set<string>
+): string {
+  const tickerText = `\`${ticker}\``;
+  if (true === highlightedTickerSymbols.has(ticker)) {
+    return `**${tickerText}**`;
+  }
+
+  return tickerText;
+}
+
+function getEarningsCompanyName(companyName: string | undefined): string {
+  if ("string" !== typeof companyName) {
+    return "Unternehmen unbekannt";
+  }
+
+  const normalizedCompanyName = companyName.trim();
+  if (0 === normalizedCompanyName.length) {
+    return "Unternehmen unbekannt";
+  }
+
+  return normalizedCompanyName;
+}
+
+function getEarningsWhenLabel(earningsWhen: EarningsWhen): string {
+  if ("before_open" === earningsWhen) {
+    return "Vor Handelsbeginn";
+  }
+
+  if ("after_close" === earningsWhen) {
+    return "Nach Handelsschluss";
+  }
+
+  return "Während der Handelszeiten oder unbekannter Zeitpunkt";
 }

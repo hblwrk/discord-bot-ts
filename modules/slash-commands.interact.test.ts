@@ -25,7 +25,6 @@ jest.mock("./calendar.js", () => ({
 }));
 
 jest.mock("./earnings.js", () => ({
-  EARNINGS_BLOCKED_MESSAGE: "blocked",
   EARNINGS_MAX_MESSAGE_LENGTH: 1800,
   EARNINGS_MAX_MESSAGES_SLASH: 6,
   getEarningsResult: jest.fn(),
@@ -52,7 +51,6 @@ describe("interactSlashCommands", () => {
     getEarningsResultMock.mockResolvedValue({
       events: [],
       status: "ok",
-      watchlistFilterDropped: false,
     });
     getEarningsMessagesMock.mockReturnValue({
       messages: [],
@@ -341,7 +339,6 @@ describe("interactSlashCommands", () => {
     getEarningsResultMock.mockResolvedValue({
       events: [],
       status: "ok",
-      watchlistFilterDropped: false,
     });
     getEarningsMessagesMock.mockReturnValue({
       messages: ["earnings-1", "earnings-2"],
@@ -352,7 +349,7 @@ describe("interactSlashCommands", () => {
 
     await handler(interaction);
 
-    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "today", "all");
+    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "today");
     expect(interaction.deferReply).toHaveBeenCalledTimes(1);
     expect(interaction.editReply).toHaveBeenCalledWith({
       content: "earnings-1",
@@ -377,7 +374,6 @@ describe("interactSlashCommands", () => {
     getEarningsResultMock.mockResolvedValue({
       events: [],
       status: "ok",
-      watchlistFilterDropped: false,
     });
     getEarningsMessagesMock.mockReturnValue({
       messages: [],
@@ -398,36 +394,6 @@ describe("interactSlashCommands", () => {
     expect(interaction.followUp).not.toHaveBeenCalled();
   });
 
-  test("earnings replies with blocked message when source is blocked", async () => {
-    const {client, getHandler} = createEventClient();
-    interactSlashCommands(client, [], [], [], []);
-
-    const handler = getHandler("interactionCreate");
-    const interaction = createChatInputInteraction("earnings");
-    getEarningsResultMock.mockResolvedValue({
-      events: [],
-      status: "blocked",
-      watchlistFilterDropped: false,
-    });
-    getEarningsMessagesMock.mockReturnValue({
-      messages: [],
-      truncated: false,
-      totalEvents: 0,
-      includedEvents: 0,
-    });
-
-    await handler(interaction);
-
-    expect(interaction.deferReply).toHaveBeenCalledTimes(1);
-    expect(interaction.editReply).toHaveBeenCalledWith({
-      content: "blocked\nBitte in ein paar Minuten erneut versuchen.",
-      allowedMentions: {
-        parse: [],
-      },
-    });
-    expect(interaction.followUp).not.toHaveBeenCalled();
-  });
-
   test("earnings replies with error fallback when loading fails", async () => {
     const {client, getHandler} = createEventClient();
     interactSlashCommands(client, [], [], [], []);
@@ -437,7 +403,6 @@ describe("interactSlashCommands", () => {
     getEarningsResultMock.mockResolvedValue({
       events: [],
       status: "error",
-      watchlistFilterDropped: false,
     });
     getEarningsMessagesMock.mockReturnValue({
       messages: [],
@@ -456,41 +421,6 @@ describe("interactSlashCommands", () => {
       },
     });
     expect(interaction.followUp).not.toHaveBeenCalled();
-  });
-
-  test("earnings follows up with watchlist warning when filter was dropped", async () => {
-    const {client, getHandler} = createEventClient();
-    interactSlashCommands(client, [], [], [], []);
-
-    const handler = getHandler("interactionCreate");
-    const interaction = createChatInputInteraction("earnings");
-    getEarningsResultMock.mockResolvedValue({
-      events: [],
-      status: "ok",
-      watchlistFilterDropped: true,
-    });
-    getEarningsMessagesMock.mockReturnValue({
-      messages: ["earnings-1"],
-      truncated: false,
-      totalEvents: 1,
-      includedEvents: 1,
-    });
-
-    await handler(interaction);
-
-    expect(interaction.deferReply).toHaveBeenCalledTimes(1);
-    expect(interaction.editReply).toHaveBeenCalledWith({
-      content: "earnings-1",
-      allowedMentions: {
-        parse: [],
-      },
-    });
-    expect(interaction.followUp).toHaveBeenCalledWith({
-      content: "Hinweis: Der angeforderte Filter konnte nicht angewendet werden, daher werden ungefilterte Earnings angezeigt.",
-      allowedMentions: {
-        parse: [],
-      },
-    });
   });
 
   test("calendar coerces invalid range input path", async () => {

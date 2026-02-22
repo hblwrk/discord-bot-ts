@@ -49,13 +49,11 @@ async function setupModule(options: SetupOptions = {}) {
   }));
 
   jest.doMock("./earnings.js", () => ({
-    EARNINGS_BLOCKED_MESSAGE: "blocked",
     EARNINGS_MAX_MESSAGE_LENGTH: 1800,
     EARNINGS_MAX_MESSAGES_SLASH: 6,
     getEarningsResult: jest.fn(async () => ({
       events: [],
       status: "ok",
-      watchlistFilterDropped: false,
     })),
     getEarningsMessages: jest.fn(() => ({
       messages: [],

@@ -13,7 +13,6 @@ import {
   type CalendarMessageBatch,
 } from "./calendar.js";
 import {
-  EARNINGS_BLOCKED_MESSAGE,
   EARNINGS_MAX_MESSAGE_LENGTH,
   EARNINGS_MAX_MESSAGES_TIMER,
   getEarningsResult,
@@ -270,13 +269,12 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
   ruleEarnings.tz = "Europe/Berlin";
 
   Schedule.scheduleJob(ruleEarnings, async () => {
-    const filter = "all"; // "5666c5fa-80dc-4e16-8bcc-12a8314d0b07" "anticipated" watchlist
     const days = 0;
     const date = "tomorrow";
     const when = "all";
     let earningsEvents = [];
 
-    const earningsResult = await getEarningsResult(days, date, filter);
+    const earningsResult = await getEarningsResult(days, date);
     earningsEvents = earningsResult.events;
 
     const earningsBatch = getEarningsMessages(earningsEvents, when, tickers, {
@@ -285,16 +283,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
     });
     logEarningsBatch("timer-earnings", earningsBatch);
 
-    if ("blocked" === earningsResult.status) {
-      logger.log(
-        "warn",
-        {
-          source: "timer-earnings",
-          status: earningsResult.status,
-          message: EARNINGS_BLOCKED_MESSAGE,
-        },
-      );
-    } else if ("error" === earningsResult.status) {
+    if ("error" === earningsResult.status) {
       logger.log(
         "warn",
         {
