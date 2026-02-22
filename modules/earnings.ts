@@ -16,6 +16,7 @@ const earningsTruncationNote = "... weitere Earnings konnten wegen Discord-Limit
 const usEasternTimezone = "US/Eastern";
 const dateStampFormat = "YYYY-MM-DD";
 const maxEarningsDays = 10;
+const bluechipMinMarketCap = 10_000_000_000;
 const unknownValueLabel = "n/a";
 const earningsWhenByNasdaqTimeToken = new Map<string, EarningsWhen>([
   ["time-pre-market", "before_open"],
@@ -65,6 +66,7 @@ export type EarningsMessageOptions = {
   maxMessageLength?: number;
   maxMessages?: number;
   continuationLabel?: string;
+  marketCapFilter?: "all" | "bluechips" | string;
 };
 
 type EarningsSectionRow = {
@@ -86,6 +88,7 @@ type EventsByDateBucket = {
   dateStamp: string;
   eventsByMarketCap: EarningsEvent[];
 };
+type EarningsMarketCapFilter = "all" | "bluechips";
 
 type NasdaqEarningsRow = {
   symbol?: string;
@@ -545,12 +548,14 @@ export function getEarningsMessages(
   const maxMessages = options.maxMessages ?? Number.POSITIVE_INFINITY;
   const continuationLabel = options.continuationLabel ?? EARNINGS_CONTINUATION_LABEL;
   const selectedWhen = getSelectedEarningsWhen(when);
+  const selectedMarketCapFilter = getSelectedEarningsMarketCapFilter(options.marketCapFilter);
   const highlightedTickerSymbols = new Set(
     tickers.map(ticker => ticker.symbol)
   );
 
   const filteredAndSortedEvents = [...earningsEvents]
     .filter(event => selectedWhen.has(event.when))
+    .filter(event => isIncludedByMarketCapFilter(event, selectedMarketCapFilter))
     .sort(compareEarningsEvents);
 
   const totalEvents = filteredAndSortedEvents.length;
@@ -903,6 +908,35 @@ function getSelectedEarningsWhen(
   return allWhen;
 }
 
+function getSelectedEarningsMarketCapFilter(
+  marketCapFilter: "all" | "bluechips" | string | undefined
+): EarningsMarketCapFilter {
+  if ("bluechips" === marketCapFilter) {
+    return "bluechips";
+  }
+
+  return "all";
+}
+
+function isIncludedByMarketCapFilter(
+  event: EarningsEvent,
+  marketCapFilter: EarningsMarketCapFilter
+): boolean {
+  if ("bluechips" !== marketCapFilter) {
+    return true;
+  }
+
+  return isBluechipMarketCap(event.marketCap);
+}
+
+function isBluechipMarketCap(marketCap: number | null | undefined): boolean {
+  if ("number" !== typeof marketCap || false === Number.isFinite(marketCap)) {
+    return false;
+  }
+
+  return marketCap >= bluechipMinMarketCap;
+}
+
 function getEarningsSections(
   earningsEvents: EarningsEvent[],
   highlightedTickerSymbols: Set<string>
@@ -1095,7 +1129,7 @@ function getEarningsEventLine(
   const marketCapText = getFormattedMarketCapText(earningsEvent.marketCap, earningsEvent.marketCapText);
   const epsConsensus = getNormalizedString(earningsEvent.epsConsensus) ?? unknownValueLabel;
 
-  return `${ticker} ${companyName} | MCap: ${marketCapText} | 🔮 EPS: ${epsConsensus}`;
+  return `${ticker} ${companyName} | MCap: \`${marketCapText}\` | 🔮 EPS: \`${epsConsensus}\``;
 }
 
 function getFormattedMarketCapText(

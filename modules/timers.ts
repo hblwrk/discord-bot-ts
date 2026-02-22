@@ -46,6 +46,7 @@ type EarningsAnnouncementConfig = {
   date: "today" | "tomorrow" | string;
   days: number;
   errorMessage: string;
+  filter: "all" | "bluechips" | string;
   headline?: string;
   source: string;
   when: "all" | "before_open" | "during_session" | "after_close" | string;
@@ -133,6 +134,7 @@ async function runEarningsAnnouncement(
   const earningsBatch = getEarningsMessages(earningsResult.events, config.when, tickers, {
     maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
     maxMessages: EARNINGS_MAX_MESSAGES_TIMER,
+    marketCapFilter: config.filter,
   });
   logEarningsBatch(config.source, earningsBatch);
 
@@ -374,6 +376,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
       date: "tomorrow",
       days: 0,
       errorMessage: "Earnings konnten nicht geladen werden.",
+      filter: "bluechips",
       source: "timer-earnings",
       when: "all",
     });
@@ -391,6 +394,7 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
       date: "tomorrow",
       days: 5,
       errorMessage: "Wöchentliche Earnings konnten nicht geladen werden.",
+      filter: "bluechips",
       headline: weeklyEarningsHeadline,
       source: "timer-earnings-weekly",
       when: "all",
