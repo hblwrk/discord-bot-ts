@@ -138,6 +138,14 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
           {name: "Zu Handelszeiten", value: "during_session"},
           {name: "Nach close", value: "after_close"},
         ))
+    .addStringOption(option =>
+      option.setName("filter")
+        .setDescription("Alle oder nur Bluechips (MCap >= $10B)?")
+        .setRequired(false)
+        .addChoices(
+          {name: "Alle", value: "all"},
+          {name: "Bluechips (>= $10B)", value: "bluechips"},
+        ))
     .addNumberOption(option =>
       option.setName("days")
         .setDescription("Zeitraum in Tagen (ab morgen)")
@@ -542,6 +550,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       let earningsEvents = [];
       let earningsStatus: "ok" | "error";
       let when: string;
+      let filter: string;
       let date: string;
       let days: number;
 
@@ -566,6 +575,13 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         when = "all";
       }
 
+      const filterOption = interaction.options.getString("filter");
+      if (null !== filterOption) {
+        filter = validator.escape(filterOption);
+      } else {
+        filter = "bluechips";
+      }
+
       const deferred = await interaction.deferReply().then(() => true).catch(error => {
         logger.log(
           "error",
@@ -584,11 +600,13 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       const earningsBatch = getEarningsMessages(earningsEvents, when, tickers, {
         maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
         maxMessages: EARNINGS_MAX_MESSAGES_SLASH,
+        marketCapFilter: filter,
       });
       logger.log(
         "info",
         {
           source: "slash-earnings",
+          filter,
           chunkCount: earningsBatch.messages.length,
           truncated: earningsBatch.truncated,
           includedEvents: earningsBatch.includedEvents,
@@ -601,6 +619,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           "warn",
           {
             source: "slash-earnings",
+            filter,
             chunkCount: earningsBatch.messages.length,
             includedEvents: earningsBatch.includedEvents,
             totalEvents: earningsBatch.totalEvents,

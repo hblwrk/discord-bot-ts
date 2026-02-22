@@ -350,6 +350,11 @@ describe("interactSlashCommands", () => {
     await handler(interaction);
 
     expect(getEarningsResultMock).toHaveBeenCalledWith(0, "today");
+    expect(getEarningsMessagesMock).toHaveBeenCalledWith([], "all", [], {
+      maxMessageLength: 1800,
+      maxMessages: 6,
+      marketCapFilter: "bluechips",
+    });
     expect(interaction.deferReply).toHaveBeenCalledTimes(1);
     expect(interaction.editReply).toHaveBeenCalledWith({
       content: "earnings-1",
@@ -362,6 +367,33 @@ describe("interactSlashCommands", () => {
       allowedMentions: {
         parse: [],
       },
+    });
+  });
+
+  test("earnings uses marketCapFilter=all when filter option is set to all", async () => {
+    const {client, getHandler} = createEventClient();
+    interactSlashCommands(client, [], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("earnings");
+    interaction.options.getString.mockImplementation(name => name === "filter" ? "all" : null);
+    getEarningsResultMock.mockResolvedValue({
+      events: [],
+      status: "ok",
+    });
+    getEarningsMessagesMock.mockReturnValue({
+      messages: [],
+      truncated: false,
+      totalEvents: 0,
+      includedEvents: 0,
+    });
+
+    await handler(interaction);
+
+    expect(getEarningsMessagesMock).toHaveBeenCalledWith([], "all", [], {
+      maxMessageLength: 1800,
+      maxMessages: 6,
+      marketCapFilter: "all",
     });
   });
 

@@ -467,6 +467,11 @@ describe("timers", () => {
     await dailyEarningsJob.callback();
 
     expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow");
+    expect(getEarningsMessagesMock).toHaveBeenCalledWith([], "all", [], {
+      maxMessageLength: 1800,
+      maxMessages: 8,
+      marketCapFilter: "bluechips",
+    });
     expect(send).toHaveBeenCalledWith(expect.objectContaining({
       content: "earnings-text",
       allowedMentions: {
@@ -523,6 +528,11 @@ describe("timers", () => {
     await weeklyEarningsJob.callback();
 
     expect(getEarningsResultMock).toHaveBeenCalledWith(5, "tomorrow");
+    expect(getEarningsMessagesMock).toHaveBeenCalledWith([], "all", [], {
+      maxMessageLength: 1800,
+      maxMessages: 8,
+      marketCapFilter: "bluechips",
+    });
     expect(send).toHaveBeenNthCalledWith(1, {
       content: "📅 **Earnings der nächsten Handelswoche:**\n\nweekly-earnings-1",
       allowedMentions: {

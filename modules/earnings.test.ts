@@ -376,8 +376,8 @@ describe("getEarningsText", () => {
     expect(lines[0].startsWith("**`BIG`** Big Co | ")).toBe(true);
     expect(lines[1].startsWith("`SMALL` Small Co | ")).toBe(true);
     expect(lines[2].startsWith("`NEXT` Next Co | ")).toBe(true);
-    expect(lines[0]).toContain("🔮 EPS: 1.20");
-    expect(lines[0]).toContain("MCap: $1B");
+    expect(lines[0]).toContain("🔮 EPS: `1.20`");
+    expect(lines[0]).toContain("MCap: `$1B`");
     expect(lines[0]).not.toContain("Während der Handelszeiten oder unbekannter Zeitpunkt");
   });
 });
@@ -429,7 +429,7 @@ describe("getEarningsMessages", () => {
     expect(lines[0].startsWith("**`BIG`** Big Co | ")).toBe(true);
     expect(lines[1].startsWith("`SMALL` Small Co | ")).toBe(true);
     expect(lines[2].startsWith("`MID` Mid Co | ")).toBe(true);
-    expect(lines[0]).toContain("🔮 EPS: 2.20");
+    expect(lines[0]).toContain("🔮 EPS: `2.20`");
   });
 
   test("sub-sorts a day by time bucket before market cap", () => {
@@ -483,6 +483,66 @@ describe("getEarningsMessages", () => {
     expect(lines).toHaveLength(1);
     expect(lines[0].startsWith("`SMALL` Small Co | ")).toBe(true);
     expect(batch.messages[0]).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt:**");
+  });
+
+  test("filters by bluechip market cap threshold when marketCapFilter is bluechips", () => {
+    const batch = getEarningsMessages([
+      getEarningsEvent({
+        ticker: "BLUE10",
+        when: "before_open",
+        companyName: "Bluechip Ten",
+        marketCap: 10_000_000_000,
+        marketCapText: "$10B",
+        epsConsensus: "1.10",
+      }),
+      getEarningsEvent({
+        ticker: "BLUE20",
+        when: "during_session",
+        companyName: "Bluechip Twenty",
+        marketCap: 20_000_000_000,
+        marketCapText: "$20B",
+        epsConsensus: "2.20",
+      }),
+      getEarningsEvent({
+        ticker: "SMALL9",
+        when: "after_close",
+        companyName: "Small Nine",
+        marketCap: 9_000_000_000,
+        marketCapText: "$9B",
+        epsConsensus: "0.90",
+      }),
+      getEarningsEvent({
+        ticker: "UNKNOWN",
+        when: "after_close",
+        companyName: "Unknown Cap",
+        marketCap: null,
+        marketCapText: "n/a",
+        epsConsensus: "0.00",
+      }),
+    ], "all", [], {
+      maxMessageLength: 1800,
+      maxMessages: 6,
+      marketCapFilter: "bluechips",
+    });
+
+    expect(batch.totalEvents).toBe(2);
+    expect(batch.includedEvents).toBe(2);
+    expect(batch.messages).toHaveLength(1);
+    expect(batch.messages[0]).toContain("`BLUE10` Bluechip Ten");
+    expect(batch.messages[0]).toContain("`BLUE20` Bluechip Twenty");
+    expect(batch.messages[0]).not.toContain("`SMALL9` Small Nine");
+    expect(batch.messages[0]).not.toContain("`UNKNOWN` Unknown Cap");
+  });
+
+  test("falls back to all market caps for unknown marketCapFilter values", () => {
+    const batch = getEarningsMessages(earningEvents, "all", [], {
+      maxMessageLength: 1800,
+      maxMessages: 6,
+      marketCapFilter: "invalid-filter",
+    });
+
+    expect(batch.totalEvents).toBe(3);
+    expect(batch.includedEvents).toBe(3);
   });
 
   test("balances multi-day output by highest market cap per day when limits are tight", () => {
