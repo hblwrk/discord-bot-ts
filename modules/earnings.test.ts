@@ -1,84 +1,201 @@
-import { EarningsEvent, getEarnings, getEarningsMessages, getEarningsResult, getEarningsText } from "./earnings.js";
+import {EarningsEvent, getEarnings, getEarningsMessages, getEarningsResult, getEarningsText} from "./earnings.js";
 import axios from "axios";
 
 jest.mock("axios");
 jest.useFakeTimers();
 jest.setSystemTime(new Date("2024-01-02T19:30:00+01:00"));
 
-describe("getEarnings", () => {
-  beforeEach(() => {
-    jest.clearAllMocks();
-  });
-
-  const apiResponse = {
-    earnings: {
-      "2024-01-02": {
-        stocks: [
-          {
-            importance: 2,
-            symbol: "FC",
-            date: "2024-01-02",
-            time: "16:05:00",
-            title: "Franklin Covey",
-          },
-        ],
-      },
-      "2024-01-03": {
-        stocks: [
-          {
-            importance: 4,
-            symbol: "CALM",
-            date: "2024-01-03",
-            time: "16:05:00",
-            title: "Cal-Maine Foods",
-          },
-          {
-            importance: 3,
-            symbol: "UNF",
-            date: "2024-01-03",
-            time: "08:00:00",
-            title: "UniFirst",
-          },
-          {
-            importance: 1,
-            symbol: "LW",
-            date: "2024-01-03",
-            time: "10:30:00",
-            title: "Lamb Weston Holdings",
-          },
-        ],
-      },
-      "2024-01-04": {
-        stocks: [
-          {
-            importance: 3,
-            symbol: "RPM",
-            date: "2024-01-04",
-            time: "06:45:00",
-            title: "RPM International",
-          },
-        ],
-      },
-    },
-  };
-
-  const nasdaqFallbackResponse = {
+function getNasdaqResponse(rows: any[] = []) {
+  return {
     data: {
-      rows: [
-        {
-          symbol: "AAPL",
-          time: "time-after-hours",
-        },
-      ],
+      rows,
     },
     status: {
       rCode: 200,
     },
   };
+}
 
-  const nasdaqTimeMappingResponse = {
-    data: {
-      rows: [
+describe("getEarnings/getEarningsResult", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
+  test("today loads Nasdaq earnings for the current day", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+      data: getNasdaqResponse([
+        {
+          symbol: "FC",
+          name: "Franklin Covey",
+          time: "time-after-hours",
+          marketCap: "1.2B",
+          epsForecast: "0.95",
+        },
+      ]),
+    });
+
+    const earnings = await getEarnings(0, "today");
+
+    expect(earnings).toEqual([
+      {
+        ticker: "FC",
+        date: "2024-01-02",
+        importance: 1,
+        when: "after_close",
+        companyName: "Franklin Covey",
+        marketCap: 1_200_000_000,
+        marketCapText: "1.2B",
+        epsConsensus: "0.95",
+      },
+    ]);
+
+    expect(axios.get).toHaveBeenCalledWith(
+      expect.stringContaining("api.nasdaq.com/api/calendar/earnings?date=2024-01-02"),
+      expect.objectContaining({
+        headers: expect.objectContaining({
+          "User-Agent": expect.any(String),
+          "Accept": expect.any(String),
+          "Referer": expect.any(String),
+        }),
+      })
+    );
+  });
+
+  test("tomorrow loads Nasdaq earnings for the next day", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+      data: getNasdaqResponse([
+        {
+          symbol: "CALM",
+          name: "Cal-Maine Foods",
+          time: "time-pre-market",
+          marketCap: "3.1B",
+          epsForecast: "2.05",
+        },
+      ]),
+    });
+
+    const earnings = await getEarnings(0, "tomorrow");
+
+    expect(earnings).toEqual([
+      {
+        ticker: "CALM",
+        date: "2024-01-03",
+        importance: 1,
+        when: "before_open",
+        companyName: "Cal-Maine Foods",
+        marketCap: 3_100_000_000,
+        marketCapText: "3.1B",
+        epsConsensus: "2.05",
+      },
+    ]);
+  });
+
+  test("days loads earnings for the requested date range", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>)
+      .mockResolvedValueOnce({
+        data: getNasdaqResponse([
+          {
+            symbol: "UNF",
+            name: "UniFirst",
+            time: "time-pre-market",
+            marketCap: "6.2B",
+            epsForecast: "1.21",
+          },
+        ]),
+      })
+      .mockResolvedValueOnce({
+        data: getNasdaqResponse([
+          {
+            symbol: "RPM",
+            name: "RPM International",
+            time: "time-after-hours",
+            marketCap: "12.4B",
+            epsForecast: "0.44",
+          },
+        ]),
+      });
+
+    const earnings = await getEarnings(2, "today");
+
+    expect(earnings).toEqual([
+      {
+        ticker: "UNF",
+        date: "2024-01-03",
+        importance: 1,
+        when: "before_open",
+        companyName: "UniFirst",
+        marketCap: 6_200_000_000,
+        marketCapText: "6.2B",
+        epsConsensus: "1.21",
+      },
+      {
+        ticker: "RPM",
+        date: "2024-01-04",
+        importance: 1,
+        when: "after_close",
+        companyName: "RPM International",
+        marketCap: 12_400_000_000,
+        marketCapText: "12.4B",
+        epsConsensus: "0.44",
+      },
+    ]);
+
+    const calledUrls = (axios.get as jest.MockedFunction<typeof axios.get>).mock.calls.map(call => String(call[0]));
+    expect(calledUrls).toContainEqual(expect.stringContaining("date=2024-01-03"));
+    expect(calledUrls).toContainEqual(expect.stringContaining("date=2024-01-04"));
+  });
+
+  test("date uses the provided date in US/Eastern", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+      data: getNasdaqResponse([
+        {
+          symbol: "AAPL",
+          name: "Apple",
+          time: "time-after-hours",
+          marketCap: "2.8T",
+          epsForecast: "2.13",
+        },
+      ]),
+    });
+
+    const earnings = await getEarnings(0, "2024-01-04T12:00:00+05:00");
+
+    expect(earnings).toEqual([
+      {
+        ticker: "AAPL",
+        date: "2024-01-04",
+        importance: 1,
+        when: "after_close",
+        companyName: "Apple",
+        marketCap: 2_800_000_000_000,
+        marketCapText: "2.8T",
+        epsConsensus: "2.13",
+      },
+    ]);
+  });
+
+  test("clamps multi-day range to 10 days", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+      data: getNasdaqResponse([]),
+    });
+
+    const result = await getEarningsResult(30, "today");
+
+    expect(result).toEqual({
+      events: [],
+      status: "ok",
+    });
+    expect(axios.get).toHaveBeenCalledTimes(10);
+
+    const calledUrls = (axios.get as jest.MockedFunction<typeof axios.get>).mock.calls.map(call => String(call[0]));
+    expect(calledUrls).toContainEqual(expect.stringContaining("date=2024-01-03"));
+    expect(calledUrls).toContainEqual(expect.stringContaining("date=2024-01-12"));
+    expect(calledUrls).not.toContainEqual(expect.stringContaining("date=2024-01-13"));
+  });
+
+  test("maps Nasdaq time tokens and skips malformed rows", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+      data: getNasdaqResponse([
         {
           symbol: "PRE",
           time: "time-pre-market",
@@ -96,604 +213,204 @@ describe("getEarnings", () => {
           time: "time-unknown",
         },
         {
-          symbol: "",
+          symbol: "   ",
           time: "time-after-hours",
         },
-      ],
-    },
-    status: {
-      rCode: 200,
-    },
-  };
-
-  test("today", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
-      data: apiResponse,
+      ]),
     });
 
-    const earnings = await getEarnings(0, "today", "all");
+    const earnings = await getEarnings(0, "today");
 
     expect(earnings).toEqual([
-      {
-        importance: 2,
-        date: "2024-01-02",
-        ticker: "FC",
-        when: "after_close",
-      },
+      expect.objectContaining({ticker: "PRE", when: "before_open"}),
+      expect.objectContaining({ticker: "AFT", when: "after_close"}),
+      expect.objectContaining({ticker: "NOS", when: "during_session"}),
+      expect.objectContaining({ticker: "UNK", when: "during_session"}),
     ]);
-
-    expect(axios.get).toHaveBeenCalledWith(
-      expect.stringContaining("date_from=2024-01-02"),
-      expect.objectContaining({
-        headers: expect.objectContaining({
-          "User-Agent": expect.any(String),
-        }),
-      })
-    );
+    expect(earnings).toHaveLength(4);
   });
-  test("tomorrow", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
-      data: apiResponse,
+
+  test("returns error when all Nasdaq requests fail", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockRejectedValue({
+      response: {
+        status: 400,
+      },
     });
 
-    const earnings = await getEarnings(0, "tomorrow", "all");
-
-    expect(earnings).toEqual([
-      {
-        ticker: "CALM",
-        date: "2024-01-03",
-        importance: 4,
-        when: "after_close",
-      },
-      {
-        ticker: "UNF",
-        date: "2024-01-03",
-        importance: 3,
-        when: "before_open",
-      },
-      {
-        ticker: "LW",
-        date: "2024-01-03",
-        importance: 1,
-        when: "during_session",
-      },
-    ]);
-  });
-
-  test("days loads earnings for the upcoming date range", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
-      data: apiResponse,
-    });
-
-    const earnings = await getEarnings(2, "today", "all");
-
-    expect(earnings).toEqual([
-      {
-        ticker: "CALM",
-        date: "2024-01-03",
-        importance: 4,
-        when: "after_close",
-      },
-      {
-        ticker: "UNF",
-        date: "2024-01-03",
-        importance: 3,
-        when: "before_open",
-      },
-      {
-        ticker: "LW",
-        date: "2024-01-03",
-        importance: 1,
-        when: "during_session",
-      },
-      {
-        date: "2024-01-04",
-        importance: 3,
-        ticker: "RPM",
-        when: "before_open",
-      },
-    ]);
-
-    expect(axios.get).toHaveBeenCalledWith(
-      expect.stringContaining("date_from=2024-01-03"),
-      expect.any(Object)
-    );
-    expect(axios.get).toHaveBeenCalledWith(
-      expect.stringContaining("date_to=2024-01-04"),
-      expect.any(Object)
-    );
-  });
-
-  test("date", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
-      data: apiResponse,
-    });
-
-    const earnings = await getEarnings(0, "2024-01-04T12:00:00+05:00", "all");
-
-    expect(earnings).toEqual([
-      {
-        date: "2024-01-04",
-        importance: 3,
-        ticker: "RPM",
-        when: "before_open",
-      },
-    ]);
-  });
-
-  test("passes watchlist filter to stocktwits request", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
-      data: apiResponse,
-    });
-
-    await getEarnings(0, "today", "5666c5fa-80dc-4e16-8bcc-12a8314d0b07");
-
-    expect(axios.get).toHaveBeenCalledWith(
-      expect.stringContaining("watchlist=5666c5fa-80dc-4e16-8bcc-12a8314d0b07"),
-      expect.any(Object)
-    );
-  });
-
-  test("retries without watchlist when stocktwits responds 403", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>)
-      .mockRejectedValueOnce({
-        response: {
-          status: 403,
-        },
-      })
-      .mockResolvedValueOnce({
-        data: apiResponse,
-      });
-
-    const earnings = await getEarnings(
-      0,
-      "today",
-      "5666c5fa-80dc-4e16-8bcc-12a8314d0b07"
-    );
-
-    expect(earnings).toEqual([
-      {
-        importance: 2,
-        date: "2024-01-02",
-        ticker: "FC",
-        when: "after_close",
-      },
-    ]);
-
-    expect(axios.get).toHaveBeenCalledTimes(2);
-    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[0][0]).toEqual(
-      expect.stringContaining("watchlist=5666c5fa-80dc-4e16-8bcc-12a8314d0b07")
-    );
-    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[1][0]).toEqual(
-      expect.not.stringContaining("watchlist=")
-    );
-  });
-
-  test("falls back to nasdaq when stocktwits fails with 403", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>)
-      .mockRejectedValueOnce({
-        response: {
-          status: 403,
-        },
-      })
-      .mockResolvedValueOnce({
-        data: nasdaqFallbackResponse,
-      });
-
-    const earnings = await getEarnings(0, "today", "all");
-
-    expect(earnings).toEqual([
-      {
-        importance: 1,
-        date: "2024-01-02",
-        ticker: "AAPL",
-        when: "after_close",
-      },
-    ]);
-    expect(axios.get).toHaveBeenCalledTimes(2);
-    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[0][0]).toEqual(
-      expect.stringContaining("api.stocktwits.com/api/2/discover/earnings_calendar")
-    );
-    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[1][0]).toEqual(
-      expect.stringContaining("api.nasdaq.com/api/calendar/earnings?date=2024-01-02")
-    );
-  });
-
-  test("falls back to nasdaq when stocktwits returns cloudflare challenge page", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>)
-      .mockResolvedValueOnce({
-        data: "<!DOCTYPE html><html><head><title>Just a moment...</title></head></html>",
-        headers: {
-          "content-type": "text/html; charset=UTF-8",
-        },
-      })
-      .mockResolvedValueOnce({
-        data: nasdaqFallbackResponse,
-      });
-
-    const earnings = await getEarnings(0, "today", "all");
-
-    expect(earnings).toEqual([
-      {
-        importance: 1,
-        date: "2024-01-02",
-        ticker: "AAPL",
-        when: "after_close",
-      },
-    ]);
-    expect(axios.get).toHaveBeenCalledTimes(2);
-    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[0][0]).toEqual(
-      expect.stringContaining("api.stocktwits.com/api/2/discover/earnings_calendar")
-    );
-    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[1][0]).toEqual(
-      expect.stringContaining("api.nasdaq.com/api/calendar/earnings?date=2024-01-02")
-    );
-  });
-
-  test("retries without watchlist when stocktwits returns cloudflare challenge page", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>)
-      .mockResolvedValueOnce({
-        data: "<!DOCTYPE html><html><head><title>Just a moment...</title></head></html>",
-        headers: {
-          "content-type": "text/html; charset=UTF-8",
-        },
-      })
-      .mockResolvedValueOnce({
-        data: apiResponse,
-        headers: {
-          "content-type": "application/json; charset=utf-8",
-        },
-      });
-
-    const earnings = await getEarnings(
-      0,
-      "today",
-      "5666c5fa-80dc-4e16-8bcc-12a8314d0b07"
-    );
-
-    expect(earnings).toEqual([
-      {
-        importance: 2,
-        date: "2024-01-02",
-        ticker: "FC",
-        when: "after_close",
-      },
-    ]);
-
-    expect(axios.get).toHaveBeenCalledTimes(2);
-    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[0][0]).toEqual(
-      expect.stringContaining("watchlist=5666c5fa-80dc-4e16-8bcc-12a8314d0b07")
-    );
-    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[1][0]).toEqual(
-      expect.not.stringContaining("watchlist=")
-    );
-  });
-
-  test("maps nasdaq time tokens when stocktwits fallback is used", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>)
-      .mockResolvedValueOnce({
-        data: "<!DOCTYPE html><html><head><title>Just a moment...</title></head></html>",
-        headers: {
-          "content-type": "text/html; charset=UTF-8",
-        },
-      })
-      .mockResolvedValueOnce({
-        data: nasdaqTimeMappingResponse,
-      });
-
-    const earnings = await getEarnings(0, "today", "all");
-
-    expect(earnings).toEqual([
-      {
-        importance: 1,
-        date: "2024-01-02",
-        ticker: "PRE",
-        when: "before_open",
-      },
-      {
-        importance: 1,
-        date: "2024-01-02",
-        ticker: "AFT",
-        when: "after_close",
-      },
-      {
-        importance: 1,
-        date: "2024-01-02",
-        ticker: "NOS",
-        when: "during_session",
-      },
-      {
-        importance: 1,
-        date: "2024-01-02",
-        ticker: "UNK",
-        when: "during_session",
-      },
-    ]);
-  });
-
-  test("marks watchlist filter as dropped when fallback uses nasdaq", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>)
-      .mockResolvedValueOnce({
-        data: "<!DOCTYPE html><html><head><title>Just a moment...</title></head></html>",
-        headers: {
-          "content-type": "text/html; charset=UTF-8",
-        },
-      })
-      .mockResolvedValueOnce({
-        data: "<!DOCTYPE html><html><head><title>Just a moment...</title></head></html>",
-        headers: {
-          "content-type": "text/html; charset=UTF-8",
-        },
-      })
-      .mockResolvedValueOnce({
-        data: nasdaqFallbackResponse,
-      });
-
-    const result = await getEarningsResult(
-      0,
-      "today",
-      "5666c5fa-80dc-4e16-8bcc-12a8314d0b07"
-    );
-
-    expect(result).toEqual({
-      events: [
-        {
-          importance: 1,
-          date: "2024-01-02",
-          ticker: "AAPL",
-          when: "after_close",
-        },
-      ],
-      status: "ok",
-      watchlistFilterDropped: true,
-    });
-    expect(axios.get).toHaveBeenCalledTimes(3);
-    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[0][0]).toEqual(
-      expect.stringContaining("watchlist=5666c5fa-80dc-4e16-8bcc-12a8314d0b07")
-    );
-    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[1][0]).toEqual(
-      expect.not.stringContaining("watchlist=")
-    );
-    expect((axios.get as jest.MockedFunction<typeof axios.get>).mock.calls[2][0]).toEqual(
-      expect.stringContaining("api.nasdaq.com/api/calendar/earnings?date=2024-01-02")
-    );
-  });
-
-  test("returns blocked status when stocktwits is blocked and nasdaq fallback fails", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>)
-      .mockResolvedValueOnce({
-        data: "<!DOCTYPE html><html><head><title>Just a moment...</title></head></html>",
-        headers: {
-          "content-type": "text/html; charset=UTF-8",
-        },
-      })
-      .mockResolvedValueOnce({
-        data: {
-          status: {
-            rCode: 500,
-          },
-          data: {
-            rows: [],
-          },
-        },
-      });
-
-    const result = await getEarningsResult(0, "today", "all");
-
-    expect(result).toEqual({
-      events: [],
-      status: "blocked",
-      watchlistFilterDropped: false,
-    });
-  });
-
-  test("returns error status when stocktwits errors and nasdaq fallback fails", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>)
-      .mockRejectedValueOnce({
-        response: {
-          status: 400,
-        },
-      })
-      .mockResolvedValueOnce({
-        data: {
-          status: {
-            rCode: 500,
-          },
-          data: {
-            rows: [],
-          },
-        },
-      });
-
-    const result = await getEarningsResult(0, "today", "all");
+    const result = await getEarningsResult(0, "today");
 
     expect(result).toEqual({
       events: [],
       status: "error",
-      watchlistFilterDropped: false,
     });
   });
-
 });
 
 describe("getEarningsText", () => {
-  const earningEvents: EarningsEvent[] = [
-    {
-      ticker: "CALM",
-      date: "2024-01-03",
-      importance: 4,
-      when: "after_close",
-    },
-    {
-      ticker: "UNF",
-      date: "2024-01-03",
-      importance: 3,
-      when: "before_open",
-    },
-    {
-      importance: 1,
-      ticker: "RDUS",
-      date: "2024-01-03",
-      when: "after_close",
-    },
-    {
-      ticker: "LW",
-      date: "2024-01-03",
-      importance: 1,
-      when: "during_session",
-    },
-  ];
-
-  test("all", () => {
-    const text = getEarningsText(earningEvents, "all", []);
-    expect(text).toBe(`Earnings am Mittwoch, 3. Januar 2024:
-**Vor open:**
-UNF
-
-**Während der Handelszeiten:**
-LW
-
-**Nach close:**
-RDUS, CALM`);
+  test("returns none when no events are available", () => {
+    const text = getEarningsText([], "all", []);
+    expect(text).toBe("none");
   });
 
-  test("before_open", () => {
-    const text = getEarningsText(earningEvents, "before_open", []);
-    expect(text).toBe(`Earnings am Mittwoch, 3. Januar 2024:
-**Vor open:**
-UNF
+  test("returns grouped ticker-first one-line output", () => {
+    const earningEvents: EarningsEvent[] = [
+      {
+        ticker: "SMALL",
+        date: "2024-01-03",
+        importance: 1,
+        when: "after_close",
+        companyName: "Small Co",
+        marketCap: 100_000_000,
+        marketCapText: "100M",
+        epsConsensus: "0.50",
+      },
+      {
+        ticker: "BIG",
+        date: "2024-01-03",
+        importance: 1,
+        when: "during_session",
+        companyName: "Big Co",
+        marketCap: 1_000_000_000,
+        marketCapText: "1B",
+        epsConsensus: "1.20",
+      },
+      {
+        ticker: "NEXT",
+        date: "2024-01-04",
+        importance: 1,
+        when: "before_open",
+        companyName: "Next Co",
+        marketCap: 500_000_000,
+        marketCapText: "500M",
+        epsConsensus: "0.75",
+      },
+    ];
 
-`);
-  });
+    const text = getEarningsText(earningEvents, "all", [{symbol: "BIG"}] as any);
 
-  test("during_session", () => {
-    const text = getEarningsText(earningEvents, "during_session", []);
-    expect(text).toBe(`Earnings am Mittwoch, 3. Januar 2024:
-**Während der Handelszeiten:**
-LW
+    expect(text).toContain("**Zeitraum:** Mittwoch, 3. Januar 2024 bis Donnerstag, 4. Januar 2024");
+    expect(text).toContain("**Mittwoch, 3. Januar 2024:**");
+    expect(text).toContain("**Donnerstag, 4. Januar 2024:**");
 
-`);
-  });
-
-  test("after_close", () => {
-    const text = getEarningsText(earningEvents, "after_close", []);
-    expect(text).toBe(`Earnings am Mittwoch, 3. Januar 2024:
-**Nach close:**
-RDUS, CALM`);
-  });
-
-  test("single event", () => {
-    const text = getEarningsText([{
-      ticker: "AAPL",
-      date: "2024-01-03",
-      importance: 1,
-      when: "after_close",
-    }], "all", []);
-
-    expect(text).toBe(`Earnings am Mittwoch, 3. Januar 2024:
-**Nach close:**
-AAPL`);
+    const lines = text.split("\n").filter(line => line.includes(" | Zeitpunkt: "));
+    expect(lines[0].startsWith("**`BIG`** | ")).toBe(true);
+    expect(lines[1].startsWith("`SMALL` | ")).toBe(true);
+    expect(lines[2].startsWith("`NEXT` | ")).toBe(true);
+    expect(lines[0]).toContain("🔮 EPS: 1.20");
+    expect(lines[0]).toContain("MCap: 1B");
+    expect(lines[0]).toContain("Zeitpunkt: Während der Handelszeiten oder unbekannter Zeitpunkt");
   });
 });
 
 describe("getEarningsMessages", () => {
   const earningEvents: EarningsEvent[] = [
     {
-      ticker: "CALM",
+      ticker: "MID",
       date: "2024-01-03",
-      importance: 4,
-      when: "after_close",
-    },
-    {
-      ticker: "UNF",
-      date: "2024-01-03",
-      importance: 3,
-      when: "before_open",
-    },
-    {
       importance: 1,
-      ticker: "RDUS",
-      date: "2024-01-03",
       when: "after_close",
+      companyName: "Mid Co",
+      marketCap: 500_000_000,
+      marketCapText: "500M",
+      epsConsensus: "0.80",
     },
     {
-      ticker: "LW",
+      ticker: "BIG",
+      date: "2024-01-03",
+      importance: 1,
+      when: "before_open",
+      companyName: "Big Co",
+      marketCap: 1_500_000_000,
+      marketCapText: "1.5B",
+      epsConsensus: "2.20",
+    },
+    {
+      ticker: "SMALL",
       date: "2024-01-03",
       importance: 1,
       when: "during_session",
+      companyName: "Small Co",
+      marketCap: 100_000_000,
+      marketCapText: "100M",
+      epsConsensus: "0.10",
     },
   ];
 
-  test("returns one message with all sections when content fits", () => {
-    const batch = getEarningsMessages(earningEvents, "all", [], {
+  test("returns one message with one line per earning and ticker first", () => {
+    const batch = getEarningsMessages(earningEvents, "all", [{symbol: "BIG"}] as any, {
       maxMessageLength: 1800,
       maxMessages: 6,
     });
 
     expect(batch.messages).toHaveLength(1);
     expect(batch.truncated).toBe(false);
-    expect(batch.totalEvents).toBe(4);
-    expect(batch.includedEvents).toBe(4);
-    expect(batch.messages[0]).toContain("**Vor open:**");
-    expect(batch.messages[0]).toContain("**Während der Handelszeiten:**");
-    expect(batch.messages[0]).toContain("**Nach close:**");
+    expect(batch.totalEvents).toBe(3);
+    expect(batch.includedEvents).toBe(3);
+
+    const lines = batch.messages[0].split("\n").filter(line => line.includes(" | Zeitpunkt: "));
+    expect(lines[0].startsWith("**`BIG`** | ")).toBe(true);
+    expect(lines[1].startsWith("`MID` | ")).toBe(true);
+    expect(lines[2].startsWith("`SMALL` | ")).toBe(true);
+    expect(lines[0]).toContain("🔮 EPS: 2.20");
   });
 
-  test("returns one message when a single event exists", () => {
-    const batch = getEarningsMessages([{
-      ticker: "AAPL",
-      date: "2024-01-03",
-      importance: 1,
-      when: "after_close",
-    }], "all", [], {
+  test("filters by when and keeps ticker-first format", () => {
+    const batch = getEarningsMessages(earningEvents, "during_session", [], {
       maxMessageLength: 1800,
       maxMessages: 6,
     });
 
     expect(batch.messages).toHaveLength(1);
-    expect(batch.truncated).toBe(false);
-    expect(batch.totalEvents).toBe(1);
-    expect(batch.includedEvents).toBe(1);
-    expect(batch.messages[0]).toContain("AAPL");
+    const lines = batch.messages[0].split("\n").filter(line => line.includes(" | Zeitpunkt: "));
+    expect(lines).toHaveLength(1);
+    expect(lines[0].startsWith("`SMALL` | ")).toBe(true);
+    expect(lines[0]).toContain("Während der Handelszeiten oder unbekannter Zeitpunkt");
   });
 
-  test("splits oversized section into multiple messages", () => {
-    const manyAfterCloseEvents: EarningsEvent[] = [];
+  test("splits oversized date section into multiple messages", () => {
+    const manyEvents: EarningsEvent[] = [];
     for (let index = 0; index < 20; index++) {
-      manyAfterCloseEvents.push({
+      manyEvents.push({
         ticker: `TICKER${index}`,
         date: "2024-01-03",
         importance: 1,
         when: "after_close",
+        companyName: `Company ${index}`,
+        marketCap: 100_000_000 - index,
+        marketCapText: "100M",
+        epsConsensus: "0.01",
       });
     }
 
-    const batch = getEarningsMessages(manyAfterCloseEvents, "all", [], {
-      maxMessageLength: 120,
+    const batch = getEarningsMessages(manyEvents, "all", [], {
+      maxMessageLength: 200,
       maxMessages: 10,
     });
 
     expect(batch.messages.length).toBeGreaterThan(1);
-    expect(batch.messages[0]).toContain("**Nach close:**");
     expect(batch.messages[1]).toContain("(Fortsetzung)");
     for (const message of batch.messages) {
-      expect(message.length).toBeLessThanOrEqual(120);
+      expect(message.length).toBeLessThanOrEqual(200);
     }
   });
 
   test("adds truncation note when maxMessages is reached", () => {
-    const manyAfterCloseEvents: EarningsEvent[] = [];
-    for (let index = 0; index < 30; index++) {
-      manyAfterCloseEvents.push({
+    const manyEvents: EarningsEvent[] = [];
+    for (let index = 0; index < 40; index++) {
+      manyEvents.push({
         ticker: `E${index}`,
         date: "2024-01-03",
         importance: 1,
         when: "after_close",
+        companyName: `Company ${index}`,
+        marketCap: 1_000_000_000 - index,
+        marketCapText: "1B",
+        epsConsensus: "0.11",
       });
     }
 
-    const batch = getEarningsMessages(manyAfterCloseEvents, "all", [], {
-      maxMessageLength: 100,
+    const batch = getEarningsMessages(manyEvents, "all", [], {
+      maxMessageLength: 180,
       maxMessages: 2,
     });
 

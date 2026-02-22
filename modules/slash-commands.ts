@@ -9,7 +9,6 @@ import {getDiscordLogger, getLogger} from "./logging.js";
 import {getRandomQuote} from "./random-quote.js";
 import {readSecret} from "./secrets.js";
 import {
-  EARNINGS_BLOCKED_MESSAGE,
   EARNINGS_MAX_MESSAGE_LENGTH,
   EARNINGS_MAX_MESSAGES_SLASH,
   getEarningsResult,
@@ -139,17 +138,11 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
           {name: "Zu Handelszeiten", value: "during_session"},
           {name: "Nach close", value: "after_close"},
         ))
-    .addStringOption(option =>
-      option.setName("filter")
-        .setDescription("Welche earnings?")
-        .setRequired(false)
-        .addChoices(
-          {name: "Alle", value: "all"},
-          {name: "Most anticipated", value: "5666c5fa-80dc-4e16-8bcc-12a8314d0b07"},
-        ))
     .addNumberOption(option =>
       option.setName("days")
         .setDescription("Zeitraum in Tagen (ab morgen)")
+        .setMinValue(0)
+        .setMaxValue(10)
         .setRequired(false))
     .addStringOption(option =>
       option.setName("date")
@@ -546,10 +539,8 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         },
       );
 
-      let filter = "all";
       let earningsEvents = [];
-      let earningsStatus: "ok" | "blocked" | "error";
-      let watchlistFilterDropped = false;
+      let earningsStatus: "ok" | "error";
       let when: string;
       let date: string;
       let days: number;
@@ -575,11 +566,6 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         when = "all";
       }
 
-      const filterOption = interaction.options.getString("filter");
-      if (null !== filterOption) {
-        filter = validator.escape(filterOption);
-      }
-
       const deferred = await interaction.deferReply().then(() => true).catch(error => {
         logger.log(
           "error",
@@ -591,10 +577,9 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         return;
       }
 
-      const earningsResult = await getEarningsResult(days, date, filter);
+      const earningsResult = await getEarningsResult(days, date);
       earningsEvents = earningsResult.events;
       earningsStatus = earningsResult.status;
-      watchlistFilterDropped = earningsResult.watchlistFilterDropped;
 
       const earningsBatch = getEarningsMessages(earningsEvents, when, tickers, {
         maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
@@ -609,7 +594,6 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           includedEvents: earningsBatch.includedEvents,
           totalEvents: earningsBatch.totalEvents,
           status: earningsStatus,
-          watchlistFilterDropped,
         },
       );
       if (true === earningsBatch.truncated) {
@@ -626,19 +610,6 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       }
 
       if (0 === earningsBatch.messages.length) {
-        if ("blocked" === earningsStatus) {
-          await interaction.editReply({
-            content: `${EARNINGS_BLOCKED_MESSAGE}\nBitte in ein paar Minuten erneut versuchen.`,
-            allowedMentions: noMentions,
-          }).catch(error => {
-            logger.log(
-              "error",
-              `Error replying to earnings slashcommand: ${error}`,
-            );
-          });
-          return;
-        }
-
         if ("error" === earningsStatus) {
           await interaction.editReply({
             content: "Earnings konnten gerade nicht geladen werden. Bitte später erneut versuchen.",
@@ -673,18 +644,6 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           `Error replying to earnings slashcommand: ${error}`,
         );
       });
-
-      if (true === watchlistFilterDropped) {
-        await interaction.followUp({
-          content: "Hinweis: Der angeforderte Filter konnte nicht angewendet werden, daher werden ungefilterte Earnings angezeigt.",
-          allowedMentions: noMentions,
-        }).catch(error => {
-          logger.log(
-            "error",
-            `Error following up earnings slashcommand: ${error}`,
-          );
-        });
-      }
 
       for (let chunkIndex = 1; chunkIndex < earningsBatch.messages.length; chunkIndex++) {
         await interaction.followUp({

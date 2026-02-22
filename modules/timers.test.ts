@@ -63,7 +63,6 @@ jest.mock("./calendar.js", () => ({
 }));
 
 jest.mock("./earnings.js", () => ({
-  EARNINGS_BLOCKED_MESSAGE: "blocked",
   EARNINGS_MAX_MESSAGE_LENGTH: 1800,
   EARNINGS_MAX_MESSAGES_TIMER: 8,
   getEarningsResult: getEarningsResultMock,
@@ -151,7 +150,6 @@ describe("timers", () => {
     getEarningsResultMock.mockResolvedValue({
       events: [],
       status: "ok",
-      watchlistFilterDropped: false,
     });
     getEarningsMessagesMock.mockReturnValue({
       messages: ["earnings-text"],
@@ -376,7 +374,7 @@ describe("timers", () => {
     startOtherTimers(client as any, "channel-id", [], []);
     await scheduledJobs[1].callback();
 
-    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow", "all");
+    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow");
     expect(send).not.toHaveBeenCalled();
   });
 
@@ -392,7 +390,7 @@ describe("timers", () => {
     startOtherTimers(client as any, "channel-id", [], []);
     await scheduledJobs[1].callback();
 
-    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow", "all");
+    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow");
     expect(send).toHaveBeenNthCalledWith(1, {
       content: "earnings-1",
       allowedMentions: {

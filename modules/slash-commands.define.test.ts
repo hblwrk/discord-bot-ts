@@ -86,6 +86,9 @@ describe("defineSlashCommands", () => {
     const earningsCommand = commandPayload.find(command => command.name === "earnings");
     const whenOption = earningsCommand.options.find(option => option.name === "when");
     expect(whenOption.choices).toContainEqual({name: "Alle", value: "all"});
+    const daysOption = earningsCommand.options.find(option => option.name === "days");
+    expect(daysOption.max_value).toBe(10);
+    expect(earningsCommand.options.some(option => option.name === "filter")).toBe(false);
   });
 
   test("logs registration errors when REST command deployment fails", async () => {
