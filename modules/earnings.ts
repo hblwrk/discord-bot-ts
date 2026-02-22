@@ -44,9 +44,14 @@ export type EarningsMessageOptions = {
   continuationLabel?: string;
 };
 
+type EarningsSectionRow = {
+  when: EarningsWhen;
+  line: string;
+};
+
 type EarningsSection = {
   label: string;
-  rows: string[];
+  rows: EarningsSectionRow[];
 };
 
 type EarningsMessageChunk = {
@@ -134,7 +139,7 @@ export async function getEarningsResult(
       dateFromStamp = moment(usEasternTime).add(1, "days").format("YYYY-MM-DD");
       dateToStamp = dateFromStamp;
     } else {
-      dateFromStamp = moment(date).tz("US/Eastern").format("YYYY-MM-DD");
+      dateFromStamp = getUsEasternDateStampFromInput(date);
       dateToStamp = dateFromStamp;
     }
   } else {
@@ -194,6 +199,35 @@ export async function getEarningsResult(
     events: earningsEvents,
     status,
   };
+}
+
+function getUsEasternDateStampFromInput(dateInput: string): string {
+  const normalizedDateInput = dateInput.trim();
+
+  const dateOnly = moment.tz(
+    normalizedDateInput,
+    "YYYY-MM-DD",
+    true,
+    "US/Eastern"
+  );
+  if (true === dateOnly.isValid()) {
+    return dateOnly.format("YYYY-MM-DD");
+  }
+
+  const inputContainsExplicitTimezone = /(?:[zZ]|[+-]\d{2}(?::?\d{2})?)$/.test(normalizedDateInput);
+  if (true === inputContainsExplicitTimezone) {
+    const parsedWithOffset = moment.parseZone(normalizedDateInput, moment.ISO_8601, true);
+    if (true === parsedWithOffset.isValid()) {
+      return parsedWithOffset.tz("US/Eastern").format("YYYY-MM-DD");
+    }
+  }
+
+  const parsedInUsEastern = moment.tz(normalizedDateInput, moment.ISO_8601, true, "US/Eastern");
+  if (true === parsedInUsEastern.isValid()) {
+    return parsedInUsEastern.format("YYYY-MM-DD");
+  }
+
+  return moment.tz(normalizedDateInput, "US/Eastern").format("YYYY-MM-DD");
 }
 
 async function loadNasdaqEarnings(
@@ -320,7 +354,7 @@ function getNasdaqMarketCap(row: NasdaqEarningsRow): {value: number | null; text
   if ("number" === typeof rawValue && Number.isFinite(rawValue) && rawValue >= 0) {
     return {
       value: rawValue,
-      text: rawValue.toLocaleString("en-US"),
+      text: formatMarketCapUsdShort(rawValue),
     };
   }
 
@@ -333,9 +367,16 @@ function getNasdaqMarketCap(row: NasdaqEarningsRow): {value: number | null; text
   }
 
   const marketCapSortValue = getNumericValueFromNasdaqCapString(normalizedRawValue);
+  if (null === marketCapSortValue) {
+    return {
+      value: null,
+      text: "n/a",
+    };
+  }
+
   return {
     value: marketCapSortValue,
-    text: normalizedRawValue,
+    text: formatMarketCapUsdShort(marketCapSortValue),
   };
 }
 
@@ -491,7 +532,7 @@ export function getEarningsMessages(
     let rowIndex = 0;
     let continuation = false;
     while (rowIndex < section.rows.length) {
-      const sectionRows: string[] = [];
+      const sectionRows: EarningsSectionRow[] = [];
       while (rowIndex < section.rows.length) {
         const candidateRows = [...sectionRows, section.rows[rowIndex]];
         const candidateSectionText = getEarningsSectionText(
@@ -510,7 +551,8 @@ export function getEarningsMessages(
       }
 
       if (0 === sectionRows.length) {
-        const headingText = `${getEarningsSectionHeading(section.label, continuation, continuationLabel)}\n`;
+        const rawRow = section.rows[rowIndex];
+        const headingText = `${getEarningsSectionHeading(section.label, continuation, continuationLabel)}\n${getEarningsWhenSubheading(rawRow.when)}\n`;
         const availableRowLength = maxMessageLength - getAppendedEarningsChunkText(currentChunk, headingText).length - 1;
         if (availableRowLength <= 0 && 0 < currentChunk.eventCount) {
           chunks.push(cloneEarningsChunk(currentChunk));
@@ -518,11 +560,13 @@ export function getEarningsMessages(
           continue;
         }
 
-        const rawRow = section.rows[rowIndex];
-        const truncatedRow = truncateEarningsLine(rawRow, Math.max(availableRowLength, 1));
+        const truncatedRow = {
+          ...rawRow,
+          line: truncateEarningsLine(rawRow.line, Math.max(availableRowLength, 1)),
+        };
         sectionRows.push(truncatedRow);
         rowIndex++;
-        if (rawRow !== truncatedRow) {
+        if (rawRow.line !== truncatedRow.line) {
           contentTruncated = true;
         }
       }
@@ -593,7 +637,7 @@ function getEarningsTitle(earningsEvents: EarningsEvent[]): string {
 
   const earliestFriendlyDate = getFriendlyDate(earliestDate);
   if (earliestDate === latestDate) {
-    return `Earnings am ${earliestFriendlyDate}:`;
+    return "";
   }
 
   const latestFriendlyDate = getFriendlyDate(latestDate);
@@ -642,12 +686,13 @@ function getEarningsSections(
       sectionOrder.push(earningsEvent.date);
     }
 
-    section.rows.push(
-      getEarningsEventLine(
+    section.rows.push({
+      when: earningsEvent.when,
+      line: getEarningsEventLine(
         earningsEvent,
         highlightedTickerSymbols
-      )
-    );
+      ),
+    });
   }
 
   const orderedSections: EarningsSection[] = [];
@@ -680,19 +725,31 @@ function getEarningsSectionHeading(
 
 function getEarningsSectionText(
   label: string,
-  rows: string[],
+  rows: EarningsSectionRow[],
   continuation: boolean,
   continuationLabel: string
 ): string {
   const heading = getEarningsSectionHeading(label, continuation, continuationLabel);
-  return `${heading}\n${rows.join("\n")}\n\n`;
+  const sectionLines: string[] = [];
+  let previousWhen: EarningsWhen | null = null;
+
+  for (const row of rows) {
+    if (row.when !== previousWhen) {
+      sectionLines.push(getEarningsWhenSubheading(row.when));
+      previousWhen = row.when;
+    }
+
+    sectionLines.push(row.line);
+  }
+
+  return `${heading}\n${sectionLines.join("\n")}\n\n`;
 }
 
 function getEmptyEarningsMessageChunk(
   messageIndex: number,
   title: string
 ): EarningsMessageChunk {
-  const prefix = 0 === messageIndex ? `${title}\n` : "";
+  const prefix = (0 === messageIndex && 0 < title.length) ? `${title}\n` : "";
   return {
     content: prefix,
     eventCount: 0,
@@ -773,6 +830,12 @@ function compareEarningsEvents(first: EarningsEvent, second: EarningsEvent): num
     return first.date.localeCompare(second.date);
   }
 
+  const firstWhenRank = getEarningsWhenSortRank(first.when);
+  const secondWhenRank = getEarningsWhenSortRank(second.when);
+  if (firstWhenRank !== secondWhenRank) {
+    return firstWhenRank - secondWhenRank;
+  }
+
   const firstMarketCap = getSortableMarketCap(first.marketCap);
   const secondMarketCap = getSortableMarketCap(second.marketCap);
   if (firstMarketCap !== secondMarketCap) {
@@ -794,17 +857,58 @@ function getSortableMarketCap(marketCap: number | null | undefined): number {
   return marketCap;
 }
 
+function getEarningsWhenSortRank(earningsWhen: EarningsWhen): number {
+  if ("before_open" === earningsWhen) {
+    return 0;
+  }
+
+  if ("during_session" === earningsWhen) {
+    return 1;
+  }
+
+  return 2;
+}
+
 function getEarningsEventLine(
   earningsEvent: EarningsEvent,
   highlightedTickerSymbols: Set<string>
 ): string {
   const ticker = getFormattedTicker(earningsEvent.ticker, highlightedTickerSymbols);
   const companyName = getEarningsCompanyName(earningsEvent.companyName);
-  const whenLabel = getEarningsWhenLabel(earningsEvent.when);
-  const marketCapText = getNormalizedString(earningsEvent.marketCapText) ?? "n/a";
+  const marketCapText = getFormattedMarketCapText(earningsEvent.marketCap, earningsEvent.marketCapText);
   const epsConsensus = getNormalizedString(earningsEvent.epsConsensus) ?? "n/a";
 
-  return `${ticker} | ${companyName} | Zeitpunkt: ${whenLabel} | MCap: ${marketCapText} | 🔮 EPS: ${epsConsensus}`;
+  return `${ticker} | ${companyName} | MCap: ${marketCapText} | 🔮 EPS: ${epsConsensus}`;
+}
+
+function getFormattedMarketCapText(
+  marketCap: number | null | undefined,
+  marketCapText: string | undefined
+): string {
+  if ("number" === typeof marketCap && Number.isFinite(marketCap) && marketCap >= 0) {
+    return formatMarketCapUsdShort(marketCap);
+  }
+
+  const normalizedMarketCapText = getNormalizedString(marketCapText);
+  if (null === normalizedMarketCapText) {
+    return "n/a";
+  }
+
+  const parsedMarketCap = getNumericValueFromNasdaqCapString(normalizedMarketCapText);
+  if (null === parsedMarketCap) {
+    return "n/a";
+  }
+
+  return formatMarketCapUsdShort(parsedMarketCap);
+}
+
+function formatMarketCapUsdShort(value: number): string {
+  const compactValue = new Intl.NumberFormat("en-US", {
+    notation: "compact",
+    maximumFractionDigits: 1,
+  }).format(value);
+
+  return `$${compactValue}`;
 }
 
 function getFormattedTicker(
@@ -842,4 +946,8 @@ function getEarningsWhenLabel(earningsWhen: EarningsWhen): string {
   }
 
   return "Während der Handelszeiten oder unbekannter Zeitpunkt";
+}
+
+function getEarningsWhenSubheading(earningsWhen: EarningsWhen): string {
+  return `**${getEarningsWhenLabel(earningsWhen)}:**`;
 }

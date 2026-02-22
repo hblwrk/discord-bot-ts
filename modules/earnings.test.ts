@@ -44,7 +44,7 @@ describe("getEarnings/getEarningsResult", () => {
         when: "after_close",
         companyName: "Franklin Covey",
         marketCap: 1_200_000_000,
-        marketCapText: "1.2B",
+        marketCapText: "$1.2B",
         epsConsensus: "0.95",
       },
     ]);
@@ -84,7 +84,7 @@ describe("getEarnings/getEarningsResult", () => {
         when: "before_open",
         companyName: "Cal-Maine Foods",
         marketCap: 3_100_000_000,
-        marketCapText: "3.1B",
+        marketCapText: "$3.1B",
         epsConsensus: "2.05",
       },
     ]);
@@ -105,14 +105,14 @@ describe("getEarnings/getEarningsResult", () => {
       })
       .mockResolvedValueOnce({
         data: getNasdaqResponse([
-          {
-            symbol: "RPM",
-            name: "RPM International",
-            time: "time-after-hours",
-            marketCap: "12.4B",
-            epsForecast: "0.44",
-          },
-        ]),
+        {
+          symbol: "RPM",
+          name: "RPM International",
+          time: "time-after-hours",
+          marketCap: "12400000000",
+          epsForecast: "0.44",
+        },
+      ]),
       });
 
     const earnings = await getEarnings(2, "today");
@@ -125,7 +125,7 @@ describe("getEarnings/getEarningsResult", () => {
         when: "before_open",
         companyName: "UniFirst",
         marketCap: 6_200_000_000,
-        marketCapText: "6.2B",
+        marketCapText: "$6.2B",
         epsConsensus: "1.21",
       },
       {
@@ -135,7 +135,7 @@ describe("getEarnings/getEarningsResult", () => {
         when: "after_close",
         companyName: "RPM International",
         marketCap: 12_400_000_000,
-        marketCapText: "12.4B",
+        marketCapText: "$12.4B",
         epsConsensus: "0.44",
       },
     ]);
@@ -152,7 +152,7 @@ describe("getEarnings/getEarningsResult", () => {
           symbol: "AAPL",
           name: "Apple",
           time: "time-after-hours",
-          marketCap: "2.8T",
+          marketCap: 2_800_000_000_000,
           epsForecast: "2.13",
         },
       ]),
@@ -168,10 +168,57 @@ describe("getEarnings/getEarningsResult", () => {
         when: "after_close",
         companyName: "Apple",
         marketCap: 2_800_000_000_000,
-        marketCapText: "2.8T",
+        marketCapText: "$2.8T",
         epsConsensus: "2.13",
       },
     ]);
+  });
+
+  test("date-only input keeps the requested US/Eastern calendar date", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+      data: getNasdaqResponse([
+        {
+          symbol: "AAPL",
+          name: "Apple",
+          time: "time-after-hours",
+          marketCap: "2.8T",
+          epsForecast: "2.13",
+        },
+      ]),
+    });
+
+    const earnings = await getEarnings(0, "2026-02-25");
+
+    expect(earnings).toEqual([
+      expect.objectContaining({
+        date: "2026-02-25",
+      }),
+    ]);
+    expect(axios.get).toHaveBeenCalledWith(
+      expect.stringContaining("api.nasdaq.com/api/calendar/earnings?date=2026-02-25"),
+      expect.any(Object)
+    );
+  });
+
+  test("explicit Europe/Berlin timestamp maps to the corresponding US/Eastern date", async () => {
+    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+      data: getNasdaqResponse([
+        {
+          symbol: "AAPL",
+          name: "Apple",
+          time: "time-after-hours",
+          marketCap: "2.8T",
+          epsForecast: "2.13",
+        },
+      ]),
+    });
+
+    await getEarnings(0, "2026-02-25T00:30:00+01:00");
+
+    expect(axios.get).toHaveBeenCalledWith(
+      expect.stringContaining("api.nasdaq.com/api/calendar/earnings?date=2026-02-24"),
+      expect.any(Object)
+    );
   });
 
   test("clamps multi-day range to 10 days", async () => {
@@ -252,6 +299,34 @@ describe("getEarningsText", () => {
     expect(text).toBe("none");
   });
 
+  test("single-day output omits generic 'Earnings am' title line", () => {
+    const text = getEarningsText([
+      {
+        ticker: "AAPL",
+        date: "2024-01-03",
+        importance: 1,
+        when: "before_open",
+        companyName: "Apple",
+        marketCap: 2_800_000_000_000,
+        marketCapText: "$2.8T",
+        epsConsensus: "2.13",
+      },
+      {
+        ticker: "MSFT",
+        date: "2024-01-03",
+        importance: 1,
+        when: "after_close",
+        companyName: "Microsoft",
+        marketCap: 3_000_000_000_000,
+        marketCapText: "$3T",
+        epsConsensus: "2.95",
+      },
+    ], "all", []);
+
+    expect(text).not.toContain("Earnings am");
+    expect(text).toContain("**Mittwoch, 3. Januar 2024:**");
+  });
+
   test("returns grouped ticker-first one-line output", () => {
     const earningEvents: EarningsEvent[] = [
       {
@@ -261,7 +336,7 @@ describe("getEarningsText", () => {
         when: "after_close",
         companyName: "Small Co",
         marketCap: 100_000_000,
-        marketCapText: "100M",
+        marketCapText: "$100M",
         epsConsensus: "0.50",
       },
       {
@@ -271,7 +346,7 @@ describe("getEarningsText", () => {
         when: "during_session",
         companyName: "Big Co",
         marketCap: 1_000_000_000,
-        marketCapText: "1B",
+        marketCapText: "$1B",
         epsConsensus: "1.20",
       },
       {
@@ -281,7 +356,7 @@ describe("getEarningsText", () => {
         when: "before_open",
         companyName: "Next Co",
         marketCap: 500_000_000,
-        marketCapText: "500M",
+        marketCapText: "$500M",
         epsConsensus: "0.75",
       },
     ];
@@ -291,14 +366,17 @@ describe("getEarningsText", () => {
     expect(text).toContain("**Zeitraum:** Mittwoch, 3. Januar 2024 bis Donnerstag, 4. Januar 2024");
     expect(text).toContain("**Mittwoch, 3. Januar 2024:**");
     expect(text).toContain("**Donnerstag, 4. Januar 2024:**");
+    expect(text).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt:**");
+    expect(text).toContain("**Nach Handelsschluss:**");
+    expect(text).toContain("**Vor Handelsbeginn:**");
 
-    const lines = text.split("\n").filter(line => line.includes(" | Zeitpunkt: "));
+    const lines = text.split("\n").filter(line => line.includes(" | MCap: "));
     expect(lines[0].startsWith("**`BIG`** | ")).toBe(true);
     expect(lines[1].startsWith("`SMALL` | ")).toBe(true);
     expect(lines[2].startsWith("`NEXT` | ")).toBe(true);
     expect(lines[0]).toContain("🔮 EPS: 1.20");
-    expect(lines[0]).toContain("MCap: 1B");
-    expect(lines[0]).toContain("Zeitpunkt: Während der Handelszeiten oder unbekannter Zeitpunkt");
+    expect(lines[0]).toContain("MCap: $1B");
+    expect(lines[0]).not.toContain("Während der Handelszeiten oder unbekannter Zeitpunkt");
   });
 });
 
@@ -311,7 +389,7 @@ describe("getEarningsMessages", () => {
       when: "after_close",
       companyName: "Mid Co",
       marketCap: 500_000_000,
-      marketCapText: "500M",
+      marketCapText: "$500M",
       epsConsensus: "0.80",
     },
     {
@@ -321,7 +399,7 @@ describe("getEarningsMessages", () => {
       when: "before_open",
       companyName: "Big Co",
       marketCap: 1_500_000_000,
-      marketCapText: "1.5B",
+      marketCapText: "$1.5B",
       epsConsensus: "2.20",
     },
     {
@@ -331,7 +409,7 @@ describe("getEarningsMessages", () => {
       when: "during_session",
       companyName: "Small Co",
       marketCap: 100_000_000,
-      marketCapText: "100M",
+      marketCapText: "$100M",
       epsConsensus: "0.10",
     },
   ];
@@ -346,12 +424,62 @@ describe("getEarningsMessages", () => {
     expect(batch.truncated).toBe(false);
     expect(batch.totalEvents).toBe(3);
     expect(batch.includedEvents).toBe(3);
+    expect(batch.messages[0]).toContain("**Vor Handelsbeginn:**");
+    expect(batch.messages[0]).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt:**");
+    expect(batch.messages[0]).toContain("**Nach Handelsschluss:**");
+    expect(batch.messages[0]).not.toContain("Earnings am");
 
-    const lines = batch.messages[0].split("\n").filter(line => line.includes(" | Zeitpunkt: "));
+    const lines = batch.messages[0].split("\n").filter(line => line.includes(" | MCap: "));
     expect(lines[0].startsWith("**`BIG`** | ")).toBe(true);
-    expect(lines[1].startsWith("`MID` | ")).toBe(true);
-    expect(lines[2].startsWith("`SMALL` | ")).toBe(true);
+    expect(lines[1].startsWith("`SMALL` | ")).toBe(true);
+    expect(lines[2].startsWith("`MID` | ")).toBe(true);
     expect(lines[0]).toContain("🔮 EPS: 2.20");
+  });
+
+  test("sub-sorts a day by time bucket before market cap", () => {
+    const batch = getEarningsMessages([
+      {
+        ticker: "AFTER",
+        date: "2024-01-03",
+        importance: 1,
+        when: "after_close",
+        companyName: "After Co",
+        marketCap: 9_000_000_000,
+        marketCapText: "$9B",
+        epsConsensus: "1.00",
+      },
+      {
+        ticker: "BEFORE",
+        date: "2024-01-03",
+        importance: 1,
+        when: "before_open",
+        companyName: "Before Co",
+        marketCap: 1_000_000_000,
+        marketCapText: "$1B",
+        epsConsensus: "0.50",
+      },
+      {
+        ticker: "DURING",
+        date: "2024-01-03",
+        importance: 1,
+        when: "during_session",
+        companyName: "During Co",
+        marketCap: 500_000_000,
+        marketCapText: "$500M",
+        epsConsensus: "0.25",
+      },
+    ], "all", [], {
+      maxMessageLength: 1800,
+      maxMessages: 6,
+    });
+
+    const lines = batch.messages[0].split("\n").filter(line => line.includes(" | MCap: "));
+    expect(lines[0].startsWith("`BEFORE` | ")).toBe(true);
+    expect(lines[1].startsWith("`DURING` | ")).toBe(true);
+    expect(lines[2].startsWith("`AFTER` | ")).toBe(true);
+    const text = batch.messages[0];
+    expect(text.indexOf("**Vor Handelsbeginn:**")).toBeLessThan(text.indexOf("**Während der Handelszeiten oder unbekannter Zeitpunkt:**"));
+    expect(text.indexOf("**Während der Handelszeiten oder unbekannter Zeitpunkt:**")).toBeLessThan(text.indexOf("**Nach Handelsschluss:**"));
   });
 
   test("filters by when and keeps ticker-first format", () => {
@@ -361,10 +489,10 @@ describe("getEarningsMessages", () => {
     });
 
     expect(batch.messages).toHaveLength(1);
-    const lines = batch.messages[0].split("\n").filter(line => line.includes(" | Zeitpunkt: "));
+    const lines = batch.messages[0].split("\n").filter(line => line.includes(" | MCap: "));
     expect(lines).toHaveLength(1);
     expect(lines[0].startsWith("`SMALL` | ")).toBe(true);
-    expect(lines[0]).toContain("Während der Handelszeiten oder unbekannter Zeitpunkt");
+    expect(batch.messages[0]).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt:**");
   });
 
   test("splits oversized date section into multiple messages", () => {
@@ -377,7 +505,7 @@ describe("getEarningsMessages", () => {
         when: "after_close",
         companyName: `Company ${index}`,
         marketCap: 100_000_000 - index,
-        marketCapText: "100M",
+        marketCapText: "$100M",
         epsConsensus: "0.01",
       });
     }
@@ -404,7 +532,7 @@ describe("getEarningsMessages", () => {
         when: "after_close",
         companyName: `Company ${index}`,
         marketCap: 1_000_000_000 - index,
-        marketCapText: "1B",
+        marketCapText: "$1B",
         epsConsensus: "0.11",
       });
     }
