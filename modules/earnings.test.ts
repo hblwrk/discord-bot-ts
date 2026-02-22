@@ -485,6 +485,65 @@ describe("getEarningsMessages", () => {
     expect(batch.messages[0]).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt:**");
   });
 
+  test("balances multi-day output by highest market cap per day when limits are tight", () => {
+    const multiDayEvents: EarningsEvent[] = [
+      getEarningsEvent({
+        ticker: "D1TOP",
+        date: "2024-01-03",
+        when: "after_close",
+        companyName: "Day One Top",
+        marketCap: 900_000_000,
+        marketCapText: "$900M",
+        epsConsensus: "1.00",
+      }),
+      getEarningsEvent({
+        ticker: "D1LOW",
+        date: "2024-01-03",
+        when: "after_close",
+        companyName: "Day One Low",
+        marketCap: 100_000_000,
+        marketCapText: "$100M",
+        epsConsensus: "0.10",
+      }),
+      getEarningsEvent({
+        ticker: "D2TOP",
+        date: "2024-01-04",
+        when: "after_close",
+        companyName: "Day Two Top",
+        marketCap: 950_000_000,
+        marketCapText: "$950M",
+        epsConsensus: "1.10",
+      }),
+      getEarningsEvent({
+        ticker: "D2LOW",
+        date: "2024-01-04",
+        when: "after_close",
+        companyName: "Day Two Low",
+        marketCap: 120_000_000,
+        marketCapText: "$120M",
+        epsConsensus: "0.12",
+      }),
+    ];
+
+    const batch = getEarningsMessages(multiDayEvents, "all", [], {
+      maxMessageLength: 220,
+      maxMessages: 2,
+    });
+    const combinedText = batch.messages.join("\n");
+
+    expect(batch.truncated).toBe(true);
+    expect(batch.totalEvents).toBe(4);
+    expect(batch.includedEvents).toBeLessThan(4);
+    expect(batch.messages).toHaveLength(2);
+    expect(combinedText).toContain("**Mittwoch, 3. Januar 2024:**");
+    expect(combinedText).toContain("**Donnerstag, 4. Januar 2024:**");
+    expect(combinedText).toContain("`D1TOP` Day One Top");
+    expect(combinedText).toContain("`D2TOP` Day Two Top");
+    expect(combinedText).not.toContain("`D1LOW` Day One Low");
+    expect(combinedText).not.toContain("`D2LOW` Day Two Low");
+    expect(combinedText).toContain("... weitere Earnings konnten wegen Discord-Limits nicht angezeigt werden.");
+  });
+
   test("splits oversized date section into multiple messages", () => {
     const manyEvents: EarningsEvent[] = [];
     for (let index = 0; index < 20; index++) {

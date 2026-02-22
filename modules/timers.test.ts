@@ -121,6 +121,18 @@ function createClientWithoutChannel() {
   };
 }
 
+function getScheduledJobByTime(hour: number, minute: number, tz: string): ScheduledJob {
+  const scheduledJob = scheduledJobs.find(job =>
+    hour === job.rule.hour &&
+    minute === job.rule.minute &&
+    tz === job.rule.tz);
+  if (!scheduledJob) {
+    throw new Error(`Scheduled job not found for ${tz} ${hour}:${minute}.`);
+  }
+
+  return scheduledJob;
+}
+
 describe("timers", () => {
   beforeEach(() => {
     jest.useFakeTimers();
@@ -176,16 +188,17 @@ describe("timers", () => {
     const {client, send} = createClientWithChannel();
 
     startNyseTimers(client as any, "channel-id");
+    const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
 
     expect(scheduleJobMock).toHaveBeenCalledTimes(6);
-    expect(scheduledJobs[0].rule).toEqual(expect.objectContaining({
+    expect(premarketJob.rule).toEqual(expect.objectContaining({
       hour: 4,
       minute: 0,
       tz: "US/Eastern",
     }));
-    expect(scheduledJobs[0].rule.dayOfWeek).toEqual([expect.objectContaining({start: 1, end: 5})]);
+    expect(premarketJob.rule.dayOfWeek).toEqual([expect.objectContaining({start: 1, end: 5})]);
 
-    scheduledJobs[0].callback();
+    premarketJob.callback();
 
     expect(send).toHaveBeenCalledWith(expect.stringContaining("Der Pre-market hat geöffnet"));
     expect(isHolidayMock).toHaveBeenCalledTimes(1);
@@ -196,7 +209,8 @@ describe("timers", () => {
     isHolidayMock.mockReturnValue(true);
 
     startNyseTimers(client as any, "channel-id");
-    scheduledJobs[0].callback();
+    const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
+    premarketJob.callback();
 
     expect(send).toHaveBeenCalledWith(expect.stringContaining("Heute bleibt die Börse geschlossen"));
   });
@@ -206,7 +220,8 @@ describe("timers", () => {
     jest.setSystemTime(new Date("2025-11-28T10:00:00-05:00"));
 
     startNyseTimers(client as any, "channel-id");
-    scheduledJobs[0].callback();
+    const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
+    premarketJob.callback();
 
     expect(send).toHaveBeenCalledWith(expect.stringContaining("Tag nach dem Truthahn-Tag"));
     expect(send).toHaveBeenCalledWith(expect.stringContaining("19:00"));
@@ -239,7 +254,8 @@ describe("timers", () => {
 
     startNyseTimers(client as any, "channel-id");
     jest.setSystemTime(new Date("2026-11-27T10:00:00-05:00"));
-    scheduledJobs[0].callback();
+    const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
+    premarketJob.callback();
 
     expect(send).toHaveBeenCalledWith(expect.stringContaining("Tag nach dem Truthahn-Tag"));
     expect(getHolidaysMock).toHaveBeenLastCalledWith(2026);
@@ -252,7 +268,8 @@ describe("timers", () => {
     isHolidayMock.mockImplementation(date => date.toDateString() === "Thu Dec 25 2025");
 
     startNyseTimers(client as any, "channel-id");
-    scheduledJobs[4].callback();
+    const aftermarketJob = getScheduledJobByTime(20, 0, "US/Eastern");
+    aftermarketJob.callback();
 
     expect(send).not.toHaveBeenCalled();
     expect(isHolidayMock).toHaveBeenCalledWith(expect.any(Date));
@@ -262,9 +279,10 @@ describe("timers", () => {
     const {client} = createClientWithoutChannel();
 
     startNyseTimers(client as any, "channel-id");
+    const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
 
     expect(() => {
-      scheduledJobs[0].callback();
+      premarketJob.callback();
     }).not.toThrow();
     expect(loggerMock.log).toHaveBeenCalledWith("error", expect.stringContaining("Skipping NYSE announcement"));
   });
@@ -273,15 +291,16 @@ describe("timers", () => {
     const {client, send} = createClientWithChannel();
 
     startMncTimers(client as any, "channel-id");
+    const mncJob = getScheduledJobByTime(9, 0, "US/Eastern");
 
     expect(scheduleJobMock).toHaveBeenCalledTimes(1);
-    expect(scheduledJobs[0].rule).toEqual(expect.objectContaining({
+    expect(mncJob.rule).toEqual(expect.objectContaining({
       hour: 9,
       minute: 0,
       tz: "US/Eastern",
     }));
 
-    await scheduledJobs[0].callback();
+    await mncJob.callback();
     await Promise.resolve();
     await Promise.resolve();
 
@@ -300,7 +319,8 @@ describe("timers", () => {
     getMncMock.mockResolvedValueOnce(undefined);
 
     startMncTimers(client as any, "channel-id");
-    await scheduledJobs[0].callback();
+    const mncJob = getScheduledJobByTime(9, 0, "US/Eastern");
+    await mncJob.callback();
 
     expect(attachmentBuilderMock).not.toHaveBeenCalled();
     expect(send).not.toHaveBeenCalled();
@@ -311,7 +331,8 @@ describe("timers", () => {
     const {client} = createClientWithoutChannel();
 
     startMncTimers(client as any, "channel-id");
-    await scheduledJobs[0].callback();
+    const mncJob = getScheduledJobByTime(9, 0, "US/Eastern");
+    await mncJob.callback();
 
     expect(loggerMock.log).toHaveBeenCalledWith("error", expect.stringContaining("Skipping MNC announcement"));
   });
@@ -321,15 +342,25 @@ describe("timers", () => {
     const assets = [{title: "freitag"}];
 
     startOtherTimers(client as any, "channel-id", assets, []);
+    const fridayJob = getScheduledJobByTime(8, 0, "Europe/Berlin");
+    const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
+    const weeklyEarningsJob = getScheduledJobByTime(19, 45, "Europe/Berlin");
 
-    expect(scheduleJobMock).toHaveBeenCalledTimes(4);
-    expect(scheduledJobs[0].rule).toEqual(expect.objectContaining({
+    expect(scheduleJobMock).toHaveBeenCalledTimes(5);
+    expect(fridayJob.rule).toEqual(expect.objectContaining({
       hour: 8,
       minute: 0,
       tz: "Europe/Berlin",
     }));
+    expect(dailyEarningsJob.rule.dayOfWeek).toEqual([expect.objectContaining({start: 0, end: 6})]);
+    expect(weeklyEarningsJob.rule).toEqual(expect.objectContaining({
+      hour: 19,
+      minute: 45,
+      tz: "Europe/Berlin",
+    }));
+    expect(weeklyEarningsJob.rule.dayOfWeek).toEqual([5]);
 
-    await scheduledJobs[0].callback();
+    await fridayJob.callback();
 
     expect(getAssetByNameMock).toHaveBeenCalledWith("freitag", assets);
     expect(send).toHaveBeenCalledWith(expect.objectContaining({
@@ -342,7 +373,8 @@ describe("timers", () => {
     getAssetByNameMock.mockReturnValue(undefined);
 
     startOtherTimers(client as any, "channel-id", [], []);
-    await scheduledJobs[0].callback();
+    const fridayJob = getScheduledJobByTime(8, 0, "Europe/Berlin");
+    await fridayJob.callback();
 
     expect(send).not.toHaveBeenCalled();
     expect(loggerMock.log).toHaveBeenCalledWith(
@@ -356,7 +388,8 @@ describe("timers", () => {
     getAssetByNameMock.mockReturnValueOnce(undefined);
 
     startOtherTimers(client as any, "channel-id", [], []);
-    await scheduledJobs[0].callback();
+    const fridayJob = getScheduledJobByTime(8, 0, "Europe/Berlin");
+    await fridayJob.callback();
 
     expect(send).not.toHaveBeenCalled();
     expect(loggerMock.log).toHaveBeenCalledWith("warn", "Skipping friday announcement: asset missing or incomplete.");
@@ -372,10 +405,64 @@ describe("timers", () => {
     });
 
     startOtherTimers(client as any, "channel-id", [], []);
-    await scheduledJobs[1].callback();
+    const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
+    await dailyEarningsJob.callback();
 
     expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow");
     expect(send).not.toHaveBeenCalled();
+  });
+
+  test("startOtherTimers skips earnings timer when next US/Eastern day is a weekend", async () => {
+    const {client, send} = createClientWithChannel();
+    jest.setSystemTime(new Date("2025-02-21T19:30:00+01:00"));
+
+    startOtherTimers(client as any, "channel-id", [], []);
+    const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
+    await dailyEarningsJob.callback();
+
+    expect(getEarningsResultMock).not.toHaveBeenCalled();
+    expect(getEarningsMessagesMock).not.toHaveBeenCalled();
+    expect(send).not.toHaveBeenCalled();
+    expect(loggerMock.log).toHaveBeenCalledWith("info", expect.objectContaining({
+      source: "timer-earnings",
+      message: expect.stringContaining("not a trading day"),
+    }));
+  });
+
+  test("startOtherTimers skips earnings timer when next US/Eastern day is a holiday", async () => {
+    const {client, send} = createClientWithChannel();
+    jest.setSystemTime(new Date("2025-07-03T19:30:00+02:00"));
+    isHolidayMock.mockImplementation(date => date.toDateString() === "Fri Jul 04 2025");
+
+    startOtherTimers(client as any, "channel-id", [], []);
+    const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
+    await dailyEarningsJob.callback();
+
+    expect(isHolidayMock).toHaveBeenCalledWith(expect.any(Date));
+    expect(getEarningsResultMock).not.toHaveBeenCalled();
+    expect(getEarningsMessagesMock).not.toHaveBeenCalled();
+    expect(send).not.toHaveBeenCalled();
+    expect(loggerMock.log).toHaveBeenCalledWith("info", expect.objectContaining({
+      source: "timer-earnings",
+      message: expect.stringContaining("not a trading day"),
+    }));
+  });
+
+  test("startOtherTimers sends earnings on Sunday evening for Monday trading day", async () => {
+    const {client, send} = createClientWithChannel();
+    jest.setSystemTime(new Date("2025-02-23T19:30:00+01:00"));
+
+    startOtherTimers(client as any, "channel-id", [], []);
+    const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
+    await dailyEarningsJob.callback();
+
+    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow");
+    expect(send).toHaveBeenCalledWith(expect.objectContaining({
+      content: "earnings-text",
+      allowedMentions: {
+        parse: [],
+      },
+    }));
   });
 
   test("startOtherTimers sends chunked earnings messages in order with mention restrictions", async () => {
@@ -388,7 +475,8 @@ describe("timers", () => {
     });
 
     startOtherTimers(client as any, "channel-id", [], []);
-    await scheduledJobs[1].callback();
+    const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
+    await dailyEarningsJob.callback();
 
     expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow");
     expect(send).toHaveBeenNthCalledWith(1, {
@@ -411,6 +499,34 @@ describe("timers", () => {
     });
   });
 
+  test("startOtherTimers sends weekly earnings with dedicated headline on Friday evening", async () => {
+    const {client, send} = createClientWithChannel();
+    getEarningsMessagesMock.mockReturnValue({
+      messages: ["weekly-earnings-1", "weekly-earnings-2"],
+      truncated: false,
+      totalEvents: 10,
+      includedEvents: 10,
+    });
+
+    startOtherTimers(client as any, "channel-id", [], []);
+    const weeklyEarningsJob = getScheduledJobByTime(19, 45, "Europe/Berlin");
+    await weeklyEarningsJob.callback();
+
+    expect(getEarningsResultMock).toHaveBeenCalledWith(5, "today");
+    expect(send).toHaveBeenNthCalledWith(1, {
+      content: "📅 **Earnings der nächsten Handelswoche:**\n\nweekly-earnings-1",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+    expect(send).toHaveBeenNthCalledWith(2, {
+      content: "weekly-earnings-2",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+  });
+
   test("startOtherTimers sends chunked daily calendar messages in order with mention restrictions", async () => {
     const {client, send} = createClientWithChannel();
     getCalendarMessagesMock.mockReturnValueOnce({
@@ -423,7 +539,8 @@ describe("timers", () => {
     });
 
     startOtherTimers(client as any, "channel-id", [], []);
-    await scheduledJobs[2].callback();
+    const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
+    await dailyCalendarJob.callback();
 
     expect(getCalendarEventsMock).toHaveBeenCalledWith("", 0);
     expect(send).toHaveBeenNthCalledWith(1, {
@@ -467,7 +584,8 @@ describe("timers", () => {
     });
 
     startOtherTimers(client as any, "channel-id", [], []);
-    await scheduledJobs[3].callback();
+    const weeklyCalendarJob = getScheduledJobByTime(0, 0, "Europe/Berlin");
+    await weeklyCalendarJob.callback();
 
     expect(getCalendarEventsMock).toHaveBeenNthCalledWith(1, "", 2);
     expect(getCalendarEventsMock).toHaveBeenNthCalledWith(2, expect.any(String), 1);
@@ -506,7 +624,8 @@ describe("timers", () => {
     });
 
     startOtherTimers(client as any, "channel-id", [], []);
-    await scheduledJobs[2].callback();
+    const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
+    await dailyCalendarJob.callback();
 
     expect(send).toHaveBeenCalledTimes(2);
     expect(send).toHaveBeenNthCalledWith(1, expect.objectContaining({

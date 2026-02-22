@@ -82,6 +82,11 @@ type EarningsMessageChunk = {
   eventCount: number;
 };
 
+type EventsByDateBucket = {
+  dateStamp: string;
+  eventsByMarketCap: EarningsEvent[];
+};
+
 type NasdaqEarningsRow = {
   symbol?: string;
   name?: string;
@@ -548,15 +553,65 @@ export function getEarningsMessages(
     .filter(event => selectedWhen.has(event.when))
     .sort(compareEarningsEvents);
 
+  const totalEvents = filteredAndSortedEvents.length;
   if (0 === filteredAndSortedEvents.length) {
     return {
       messages: [],
       truncated: false,
-      totalEvents: filteredAndSortedEvents.length,
+      totalEvents,
       includedEvents: 0,
     };
   }
 
+  const initialBatch = buildEarningsMessageBatch(
+    filteredAndSortedEvents,
+    highlightedTickerSymbols,
+    {
+      maxMessageLength,
+      maxMessages,
+      continuationLabel,
+    }
+  );
+
+  if (initialBatch.includedEvents === totalEvents) {
+    return initialBatch;
+  }
+
+  const marketCapBalancedEvents = getMarketCapBalancedEventsForMultiDayFit(
+    filteredAndSortedEvents,
+    highlightedTickerSymbols,
+    {
+      maxMessageLength,
+      maxMessages,
+      continuationLabel,
+    }
+  );
+  if (null === marketCapBalancedEvents) {
+    return ensureBatchHasTruncationNote(initialBatch, maxMessageLength, totalEvents);
+  }
+
+  const balancedBatch = buildEarningsMessageBatch(
+    marketCapBalancedEvents,
+    highlightedTickerSymbols,
+    {
+      maxMessageLength,
+      maxMessages,
+      continuationLabel,
+    }
+  );
+  return ensureBatchHasTruncationNote(balancedBatch, maxMessageLength, totalEvents);
+}
+
+function buildEarningsMessageBatch(
+  filteredAndSortedEvents: EarningsEvent[],
+  highlightedTickerSymbols: Set<string>,
+  options: {
+    maxMessageLength: number;
+    maxMessages: number;
+    continuationLabel: string;
+  }
+): EarningsMessageBatch {
+  const {maxMessageLength, maxMessages, continuationLabel} = options;
   const sections = getEarningsSections(
     filteredAndSortedEvents,
     highlightedTickerSymbols
@@ -685,6 +740,138 @@ export function getEarningsMessages(
     truncated: true === contentTruncated || true === truncatedByMessageCount,
     totalEvents: filteredAndSortedEvents.length,
     includedEvents,
+  };
+}
+
+function getMarketCapBalancedEventsForMultiDayFit(
+  filteredAndSortedEvents: EarningsEvent[],
+  highlightedTickerSymbols: Set<string>,
+  options: {
+    maxMessageLength: number;
+    maxMessages: number;
+    continuationLabel: string;
+  }
+): EarningsEvent[] | null {
+  const buckets = getEventsByDateBuckets(filteredAndSortedEvents);
+  if (buckets.length < 2) {
+    return null;
+  }
+
+  const largestBucketSize = buckets.reduce(
+    (max, bucket) => Math.max(max, bucket.eventsByMarketCap.length),
+    0
+  );
+  for (let perDayCap = largestBucketSize; perDayCap >= 1; perDayCap--) {
+    const selectedEvents = getSelectedEventsByPerDayCap(
+      buckets,
+      perDayCap
+    ).sort(compareEarningsEvents);
+    const candidateBatch = buildEarningsMessageBatch(
+      selectedEvents,
+      highlightedTickerSymbols,
+      options
+    );
+    if (candidateBatch.includedEvents === selectedEvents.length) {
+      return selectedEvents;
+    }
+  }
+
+  return null;
+}
+
+function getEventsByDateBuckets(
+  sortedEvents: EarningsEvent[]
+): EventsByDateBucket[] {
+  const buckets: EventsByDateBucket[] = [];
+  let previousDateStamp = "";
+
+  for (const event of sortedEvents) {
+    if (event.date !== previousDateStamp) {
+      buckets.push({
+        dateStamp: event.date,
+        eventsByMarketCap: [],
+      });
+      previousDateStamp = event.date;
+    }
+
+    buckets[buckets.length - 1].eventsByMarketCap.push(event);
+  }
+
+  for (const bucket of buckets) {
+    bucket.eventsByMarketCap.sort(compareEventsByMarketCapPriority);
+  }
+
+  return buckets;
+}
+
+function compareEventsByMarketCapPriority(
+  first: EarningsEvent,
+  second: EarningsEvent
+): number {
+  const firstMarketCap = getSortableMarketCap(first.marketCap);
+  const secondMarketCap = getSortableMarketCap(second.marketCap);
+  if (firstMarketCap !== secondMarketCap) {
+    return secondMarketCap - firstMarketCap;
+  }
+
+  const firstWhenRank = getEarningsWhenSortRank(first.when);
+  const secondWhenRank = getEarningsWhenSortRank(second.when);
+  if (firstWhenRank !== secondWhenRank) {
+    return firstWhenRank - secondWhenRank;
+  }
+
+  if (first.ticker !== second.ticker) {
+    return first.ticker.localeCompare(second.ticker);
+  }
+
+  return first.importance - second.importance;
+}
+
+function getSelectedEventsByPerDayCap(
+  buckets: EventsByDateBucket[],
+  perDayCap: number
+): EarningsEvent[] {
+  const selectedEvents: EarningsEvent[] = [];
+
+  for (let bucketIndex = 0; bucketIndex < buckets.length; bucketIndex++) {
+    if (perDayCap <= 0) {
+      continue;
+    }
+
+    selectedEvents.push(
+      ...buckets[bucketIndex].eventsByMarketCap.slice(0, perDayCap)
+    );
+  }
+
+  return selectedEvents;
+}
+
+function ensureBatchHasTruncationNote(
+  batch: EarningsMessageBatch,
+  maxMessageLength: number,
+  totalEvents: number
+): EarningsMessageBatch {
+  if (batch.messages.length === 0 || batch.includedEvents >= totalEvents) {
+    return {
+      ...batch,
+      totalEvents,
+    };
+  }
+
+  const updatedMessages = [...batch.messages];
+  const lastMessageIndex = updatedMessages.length - 1;
+  if (false === updatedMessages[lastMessageIndex].includes(earningsTruncationNote)) {
+    updatedMessages[lastMessageIndex] = appendEarningsTruncationNote(
+      updatedMessages[lastMessageIndex],
+      maxMessageLength
+    );
+  }
+
+  return {
+    messages: updatedMessages,
+    truncated: true,
+    totalEvents,
+    includedEvents: batch.includedEvents,
   };
 }
 
