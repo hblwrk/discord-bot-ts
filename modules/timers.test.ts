@@ -275,6 +275,16 @@ describe("timers", () => {
     expect(isHolidayMock).toHaveBeenCalledWith(expect.any(Date));
   });
 
+  test("startNyseTimers points close announcement to Heutige Gains&Losses thread", () => {
+    const {client, send} = createClientWithChannel();
+
+    startNyseTimers(client as any, "channel-id", "thread-id");
+    const closeJob = getScheduledJobByTime(16, 0, "US/Eastern");
+    closeJob.callback();
+
+    expect(send).toHaveBeenCalledWith(expect.stringContaining("<#thread-id>"));
+  });
+
   test("startNyseTimers skips announcement when channel is missing", () => {
     const {client} = createClientWithoutChannel();
 
