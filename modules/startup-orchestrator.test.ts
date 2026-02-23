@@ -82,6 +82,7 @@ function createDependencies(overrides = {}) {
       environment: "staging",
       discord_token: "token",
       hblwrk_channel_NYSEAnnouncement_ID: "nyse",
+      hblwrk_gainslosses_thread_ID: "gains-losses-thread",
       hblwrk_channel_MNCAnnouncement_ID: "mnc",
       hblwrk_channel_OtherAnnouncement_ID: "other",
       hblwrk_channel_clownboard_ID: "clownboard",
@@ -253,6 +254,11 @@ describe("startBot", () => {
 
     expect(mocks.clownboard).toHaveBeenCalledTimes(1);
     expect(mocks.startNyseTimers).toHaveBeenCalledTimes(1);
+    expect(mocks.startNyseTimers).toHaveBeenCalledWith(
+      expect.anything(),
+      "nyse",
+      "gains-losses-thread",
+    );
     expect(mocks.startMncTimers).toHaveBeenCalledTimes(1);
     expect(mocks.addInlineResponses).toHaveBeenCalledTimes(1);
     expect(mocks.addTriggerResponses).toHaveBeenCalledTimes(1);

@@ -216,6 +216,7 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
   };
   const environment = dependencies.readSecret("environment").trim();
   const channelNyseId = dependencies.readSecret("hblwrk_channel_NYSEAnnouncement_ID");
+  const gainsLossesThreadId = dependencies.readSecret("hblwrk_gainslosses_thread_ID").trim();
   const channelMncId = dependencies.readSecret("hblwrk_channel_MNCAnnouncement_ID");
   const channelOtherId = dependencies.readSecret("hblwrk_channel_OtherAnnouncement_ID");
   const channelClownboardId = dependencies.readSecret("hblwrk_channel_clownboard_ID");
@@ -231,7 +232,7 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
     });
 
     dependencies.clownboard(client, channelClownboardId);
-    dependencies.startNyseTimers(client, channelNyseId);
+    dependencies.startNyseTimers(client, channelNyseId, gainsLossesThreadId);
     dependencies.startMncTimers(client, channelMncId);
     dependencies.addInlineResponses(client, sharedData.assets, sharedData.assetCommands);
     dependencies.addTriggerResponses(client, sharedData.assets, sharedData.assetCommandsWithPrefix, sharedData.whatIsAssets);

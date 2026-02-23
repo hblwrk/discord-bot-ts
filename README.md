@@ -90,10 +90,11 @@ echo -n "hunter2" | docker secret create production_discord_client_ID -
 echo -n "hunter3" | docker secret create production_discord_guild_ID -
 echo -n "hunter4" | docker secret create production_dracoon_password -
 echo -n "hunter5" | docker secret create production_hblwrk_channel_NYSEAnnouncement_ID -
-echo -n "hunter6" | docker secret create production_hblwrk_channel_MNCAnnouncement_ID -
-echo -n "hunter7" | docker secret create production_hblwrk_channel_OtherAnnouncement_ID -
-echo -n "hunter8" | docker secret create production_discord_btcusd_token -
-echo -n "hunter9" | docker secret create production_discord_btcusd_client_ID -
+echo -n "hunter6" | docker secret create production_hblwrk_gainslosses_thread_ID -
+echo -n "hunter7" | docker secret create production_hblwrk_channel_MNCAnnouncement_ID -
+echo -n "hunter8" | docker secret create production_hblwrk_channel_OtherAnnouncement_ID -
+echo -n "hunter9" | docker secret create production_discord_btcusd_token -
+echo -n "hunter10" | docker secret create production_discord_btcusd_client_ID -
 ...
 ```
 
@@ -144,6 +145,7 @@ The health-check server port can be overridden via the `HEALTHCHECK_PORT` enviro
   "discord_30y_client_ID": "",
   "dracoon_password": "",
   "hblwrk_channel_NYSEAnnouncement_ID": "",
+  "hblwrk_gainslosses_thread_ID": "",
   "hblwrk_channel_MNCAnnouncement_ID": "",
   "hblwrk_channel_OtherAnnouncement_ID": "",
   "hblwrk_channel_logging_ID": "",

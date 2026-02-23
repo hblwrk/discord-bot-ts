@@ -33,6 +33,7 @@ const weeklyEarningsHeadline = "📅 **Earnings der nächsten Handelswoche:**";
 const weeklyCalendarHeadline = "📅 **Wichtige Termine der nächsten Handelswoche:**";
 const europeBerlinTimezone = "Europe/Berlin";
 const usEasternWeekdays = [new Schedule.Range(1, 5)];
+const gainsAndLossesThreadName = "Heutige Gains&Losses";
 type SendableChannel = {
   send: (payload: unknown) => Promise<unknown> | unknown;
 };
@@ -63,6 +64,20 @@ function createRecurrenceRule(config: RecurrenceRuleConfig): Schedule.Recurrence
 
 function getCurrentNyseDate(): Date {
   return moment.tz(usEasternTimezone).startOf("day").toDate();
+}
+
+function getThreadMention(threadID: string | undefined): string {
+  const normalizedThreadID = threadID?.trim();
+  if (normalizedThreadID) {
+    return `<#${normalizedThreadID}>`;
+  }
+
+  return `"${gainsAndLossesThreadName}"`;
+}
+
+function getNyseCloseAnnouncement(gainsLossesThreadID: string | undefined): string {
+  const gainsAndLossesTarget = getThreadMention(gainsLossesThreadID);
+  return `🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! Teilt eure Ergebnisse in ${gainsAndLossesTarget} 🔔🔔🔔`;
 }
 
 function getNextUsEasternDate(): moment.Moment {
@@ -160,7 +175,7 @@ async function runEarningsAnnouncement(
   await sendChunkedMessages(channel, messages, "earnings");
 }
 
-export function startNyseTimers(client, channelID: string) {
+export function startNyseTimers(client, channelID: string, gainsLossesThreadID?: string) {
   const ruleNysePremarketOpen = createRecurrenceRule({
     hour: 4,
     minute: 0,
@@ -254,7 +269,7 @@ export function startNyseTimers(client, channelID: string) {
       void sendAnnouncement(
         client,
         channelID,
-        "🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! Teilt eure Ergebnisse in \"Heutige Gains&Losses\" 🔔🔔🔔",
+        getNyseCloseAnnouncement(gainsLossesThreadID),
         "NYSE",
       );
     }
@@ -266,7 +281,7 @@ export function startNyseTimers(client, channelID: string) {
       void sendAnnouncement(
         client,
         channelID,
-        "🔔🔔🔔 Es ist wieder so weit, die Börsen sind zu! Teilt eure Ergebnisse in \"Heutige Gains&Losses\" 🔔🔔🔔",
+        getNyseCloseAnnouncement(gainsLossesThreadID),
         "NYSE",
       );
     }
