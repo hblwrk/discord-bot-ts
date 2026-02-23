@@ -1177,7 +1177,7 @@ function getEarningsEventLine(
     lineWidths.eps
   );
 
-  return `${ticker} | MCap: \`${paddedMarketCapText}\` | 🔮 EPS: \`${paddedEpsConsensus}\` | ${companyName}`;
+  return `${ticker} MCap: \`${paddedMarketCapText}\` 🔮 EPS: \`${paddedEpsConsensus}\` ${companyName}`;
 }
 
 function getFormattedMarketCapText(

@@ -45,7 +45,7 @@ function getEarningsEvent(overrides: Partial<EarningsEvent> = {}): EarningsEvent
 function parseEarningsLine(
   line: string
 ): {ticker: string; marketCap: string; eps: string; companyName: string} {
-  const match = line.match(/^(?:\*\*)?`([^`]+)`(?:\*\*)? \| MCap: `([^`]+)` \| 🔮 EPS: `([^`]+)` \| (.+)$/);
+  const match = line.match(/^(?:\*\*)?`([^`]+)`(?:\*\*)? MCap: `([^`]+)` 🔮 EPS: `([^`]+)` (.+)$/);
   if (null === match) {
     throw new Error(`Unexpected earnings line format: ${line}`);
   }
@@ -388,7 +388,7 @@ describe("getEarningsText", () => {
     expect(text).toContain("**Nach Handelsschluss:**");
     expect(text).toContain("**Vor Handelsbeginn:**");
 
-    const lines = text.split("\n").filter(line => line.includes(" | MCap: "));
+    const lines = text.split("\n").filter(line => line.includes(" MCap: "));
     const parsedLines = lines.map(parseEarningsLine);
     expect(lines[0].startsWith("**`BIG")).toBe(true);
     expect(parsedLines[0]).toEqual(expect.objectContaining({
@@ -452,7 +452,7 @@ describe("getEarningsMessages", () => {
     expect(batch.messages[0]).toContain("**Nach Handelsschluss:**");
     expect(batch.messages[0]).not.toContain("Earnings am");
 
-    const lines = batch.messages[0].split("\n").filter(line => line.includes(" | MCap: "));
+    const lines = batch.messages[0].split("\n").filter(line => line.includes(" MCap: "));
     const parsedLines = lines.map(parseEarningsLine);
     expect(lines[0].startsWith("**`BIG")).toBe(true);
     expect(parsedLines[0].companyName).toBe("Big Co");
@@ -495,7 +495,7 @@ describe("getEarningsMessages", () => {
       maxMessages: 6,
     });
 
-    const lines = batch.messages[0].split("\n").filter(line => line.includes(" | MCap: "));
+    const lines = batch.messages[0].split("\n").filter(line => line.includes(" MCap: "));
     const parsedLines = lines.map(parseEarningsLine);
     expect(parsedLines[0]).toEqual(expect.objectContaining({companyName: "Before Co"}));
     expect(parsedLines[1]).toEqual(expect.objectContaining({companyName: "During Co"}));
@@ -515,7 +515,7 @@ describe("getEarningsMessages", () => {
     });
 
     expect(batch.messages).toHaveLength(1);
-    const lines = batch.messages[0].split("\n").filter(line => line.includes(" | MCap: "));
+    const lines = batch.messages[0].split("\n").filter(line => line.includes(" MCap: "));
     expect(lines).toHaveLength(1);
     const parsedLine = parseEarningsLine(lines[0]);
     expect(parsedLine.ticker.trim()).toBe("SMALL");
@@ -568,10 +568,10 @@ describe("getEarningsMessages", () => {
     expect(batch.messages).toHaveLength(1);
     expect(batch.messages[0]).toContain("`BLUE10`");
     expect(batch.messages[0]).toContain("`BLUE20`");
-    expect(batch.messages[0]).toContain(" | Bluechip Ten");
-    expect(batch.messages[0]).toContain(" | Bluechip Twenty");
-    expect(batch.messages[0]).not.toContain(" | Small Nine");
-    expect(batch.messages[0]).not.toContain(" | Unknown Cap");
+    expect(batch.messages[0]).toContain(" Bluechip Ten");
+    expect(batch.messages[0]).toContain(" Bluechip Twenty");
+    expect(batch.messages[0]).not.toContain(" Small Nine");
+    expect(batch.messages[0]).not.toContain(" Unknown Cap");
   });
 
   test("falls back to all market caps for unknown marketCapFilter values", () => {
@@ -639,10 +639,10 @@ describe("getEarningsMessages", () => {
     expect(combinedText).toContain("**Donnerstag, 4. Januar 2024:**");
     expect(combinedText).toContain("`D1TOP`");
     expect(combinedText).toContain("`D2TOP`");
-    expect(combinedText).toContain(" | Day One Top");
-    expect(combinedText).toContain(" | Day Two Top");
-    expect(combinedText).not.toContain(" | Day One Low");
-    expect(combinedText).not.toContain(" | Day Two Low");
+    expect(combinedText).toContain(" Day One Top");
+    expect(combinedText).toContain(" Day Two Top");
+    expect(combinedText).not.toContain(" Day One Low");
+    expect(combinedText).not.toContain(" Day Two Low");
     expect(combinedText).toContain("... weitere Earnings konnten wegen Discord-Limits nicht angezeigt werden.");
   });
 
