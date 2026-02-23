@@ -42,6 +42,22 @@ function getEarningsEvent(overrides: Partial<EarningsEvent> = {}): EarningsEvent
   };
 }
 
+function parseEarningsLine(
+  line: string
+): {ticker: string; marketCap: string; eps: string; companyName: string} {
+  const match = line.match(/^(?:\*\*)?`([^`]+)`(?:\*\*)? \| MCap: `([^`]+)` \| 🔮 EPS: `([^`]+)` \| (.+)$/);
+  if (null === match) {
+    throw new Error(`Unexpected earnings line format: ${line}`);
+  }
+
+  return {
+    ticker: match[1],
+    marketCap: match[2],
+    eps: match[3],
+    companyName: match[4],
+  };
+}
+
 describe("getEarnings/getEarningsResult", () => {
   beforeEach(() => {
     jest.clearAllMocks();
@@ -373,11 +389,22 @@ describe("getEarningsText", () => {
     expect(text).toContain("**Vor Handelsbeginn:**");
 
     const lines = text.split("\n").filter(line => line.includes(" | MCap: "));
-    expect(lines[0].startsWith("**`BIG`** Big Co | ")).toBe(true);
-    expect(lines[1].startsWith("`SMALL` Small Co | ")).toBe(true);
-    expect(lines[2].startsWith("`NEXT` Next Co | ")).toBe(true);
-    expect(lines[0]).toContain("🔮 EPS: `1.20`");
-    expect(lines[0]).toContain("MCap: `$1B`");
+    const parsedLines = lines.map(parseEarningsLine);
+    expect(lines[0].startsWith("**`BIG")).toBe(true);
+    expect(parsedLines[0]).toEqual(expect.objectContaining({
+      companyName: "Big Co",
+      marketCap: expect.stringMatching(/^\$1B +$/),
+      eps: "1.20",
+    }));
+    expect(parsedLines[1]).toEqual(expect.objectContaining({
+      companyName: "Small Co",
+    }));
+    expect(parsedLines[2]).toEqual(expect.objectContaining({
+      companyName: "Next Co",
+    }));
+    expect(new Set(parsedLines.map(entry => entry.ticker.length)).size).toBe(1);
+    expect(new Set(parsedLines.map(entry => entry.marketCap.length)).size).toBe(1);
+    expect(new Set(parsedLines.map(entry => entry.eps.length)).size).toBe(1);
     expect(lines[0]).not.toContain("Während der Handelszeiten oder unbekannter Zeitpunkt");
   });
 });
@@ -426,10 +453,15 @@ describe("getEarningsMessages", () => {
     expect(batch.messages[0]).not.toContain("Earnings am");
 
     const lines = batch.messages[0].split("\n").filter(line => line.includes(" | MCap: "));
-    expect(lines[0].startsWith("**`BIG`** Big Co | ")).toBe(true);
-    expect(lines[1].startsWith("`SMALL` Small Co | ")).toBe(true);
-    expect(lines[2].startsWith("`MID` Mid Co | ")).toBe(true);
-    expect(lines[0]).toContain("🔮 EPS: `2.20`");
+    const parsedLines = lines.map(parseEarningsLine);
+    expect(lines[0].startsWith("**`BIG")).toBe(true);
+    expect(parsedLines[0].companyName).toBe("Big Co");
+    expect(parsedLines[1].companyName).toBe("Small Co");
+    expect(parsedLines[2].companyName).toBe("Mid Co");
+    expect(parsedLines[0].eps.trim()).toBe("2.20");
+    expect(new Set(parsedLines.map(entry => entry.ticker.length)).size).toBe(1);
+    expect(new Set(parsedLines.map(entry => entry.marketCap.length)).size).toBe(1);
+    expect(new Set(parsedLines.map(entry => entry.eps.length)).size).toBe(1);
   });
 
   test("sub-sorts a day by time bucket before market cap", () => {
@@ -464,9 +496,13 @@ describe("getEarningsMessages", () => {
     });
 
     const lines = batch.messages[0].split("\n").filter(line => line.includes(" | MCap: "));
-    expect(lines[0].startsWith("`BEFORE` Before Co | ")).toBe(true);
-    expect(lines[1].startsWith("`DURING` During Co | ")).toBe(true);
-    expect(lines[2].startsWith("`AFTER` After Co | ")).toBe(true);
+    const parsedLines = lines.map(parseEarningsLine);
+    expect(parsedLines[0]).toEqual(expect.objectContaining({companyName: "Before Co"}));
+    expect(parsedLines[1]).toEqual(expect.objectContaining({companyName: "During Co"}));
+    expect(parsedLines[2]).toEqual(expect.objectContaining({companyName: "After Co"}));
+    expect(parsedLines[0].ticker.trim()).toBe("BEFORE");
+    expect(parsedLines[1].ticker.trim()).toBe("DURING");
+    expect(parsedLines[2].ticker.trim()).toBe("AFTER");
     const text = batch.messages[0];
     expect(text.indexOf("**Vor Handelsbeginn:**")).toBeLessThan(text.indexOf("**Während der Handelszeiten oder unbekannter Zeitpunkt:**"));
     expect(text.indexOf("**Während der Handelszeiten oder unbekannter Zeitpunkt:**")).toBeLessThan(text.indexOf("**Nach Handelsschluss:**"));
@@ -481,7 +517,9 @@ describe("getEarningsMessages", () => {
     expect(batch.messages).toHaveLength(1);
     const lines = batch.messages[0].split("\n").filter(line => line.includes(" | MCap: "));
     expect(lines).toHaveLength(1);
-    expect(lines[0].startsWith("`SMALL` Small Co | ")).toBe(true);
+    const parsedLine = parseEarningsLine(lines[0]);
+    expect(parsedLine.ticker.trim()).toBe("SMALL");
+    expect(parsedLine.companyName).toBe("Small Co");
     expect(batch.messages[0]).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt:**");
   });
 
@@ -528,10 +566,12 @@ describe("getEarningsMessages", () => {
     expect(batch.totalEvents).toBe(2);
     expect(batch.includedEvents).toBe(2);
     expect(batch.messages).toHaveLength(1);
-    expect(batch.messages[0]).toContain("`BLUE10` Bluechip Ten");
-    expect(batch.messages[0]).toContain("`BLUE20` Bluechip Twenty");
-    expect(batch.messages[0]).not.toContain("`SMALL9` Small Nine");
-    expect(batch.messages[0]).not.toContain("`UNKNOWN` Unknown Cap");
+    expect(batch.messages[0]).toContain("`BLUE10`");
+    expect(batch.messages[0]).toContain("`BLUE20`");
+    expect(batch.messages[0]).toContain(" | Bluechip Ten");
+    expect(batch.messages[0]).toContain(" | Bluechip Twenty");
+    expect(batch.messages[0]).not.toContain(" | Small Nine");
+    expect(batch.messages[0]).not.toContain(" | Unknown Cap");
   });
 
   test("falls back to all market caps for unknown marketCapFilter values", () => {
@@ -597,10 +637,12 @@ describe("getEarningsMessages", () => {
     expect(batch.messages).toHaveLength(2);
     expect(combinedText).toContain("**Mittwoch, 3. Januar 2024:**");
     expect(combinedText).toContain("**Donnerstag, 4. Januar 2024:**");
-    expect(combinedText).toContain("`D1TOP` Day One Top");
-    expect(combinedText).toContain("`D2TOP` Day Two Top");
-    expect(combinedText).not.toContain("`D1LOW` Day One Low");
-    expect(combinedText).not.toContain("`D2LOW` Day Two Low");
+    expect(combinedText).toContain("`D1TOP`");
+    expect(combinedText).toContain("`D2TOP`");
+    expect(combinedText).toContain(" | Day One Top");
+    expect(combinedText).toContain(" | Day Two Top");
+    expect(combinedText).not.toContain(" | Day One Low");
+    expect(combinedText).not.toContain(" | Day Two Low");
     expect(combinedText).toContain("... weitere Earnings konnten wegen Discord-Limits nicht angezeigt werden.");
   });
 

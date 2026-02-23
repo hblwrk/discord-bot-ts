@@ -79,6 +79,12 @@ type EarningsSection = {
   rows: EarningsSectionRow[];
 };
 
+type EarningsLineWidths = {
+  ticker: number;
+  marketCap: number;
+  eps: number;
+};
+
 type EarningsMessageChunk = {
   content: string;
   eventCount: number;
@@ -942,6 +948,7 @@ function getEarningsSections(
   highlightedTickerSymbols: Set<string>
 ): EarningsSection[] {
   const orderedSections: EarningsSection[] = [];
+  const lineWidths = getEarningsLineWidths(earningsEvents);
   let previousDateStamp = "";
 
   for (const earningsEvent of earningsEvents) {
@@ -957,12 +964,40 @@ function getEarningsSections(
       when: earningsEvent.when,
       line: getEarningsEventLine(
         earningsEvent,
-        highlightedTickerSymbols
+        highlightedTickerSymbols,
+        lineWidths
       ),
     });
   }
 
   return orderedSections;
+}
+
+function getEarningsLineWidths(
+  earningsEvents: EarningsEvent[]
+): EarningsLineWidths {
+  let tickerWidth = 1;
+  let marketCapWidth = unknownValueLabel.length;
+  let epsWidth = unknownValueLabel.length;
+
+  for (const earningsEvent of earningsEvents) {
+    tickerWidth = Math.max(tickerWidth, earningsEvent.ticker.length);
+
+    const marketCapText = getFormattedMarketCapText(
+      earningsEvent.marketCap,
+      earningsEvent.marketCapText
+    );
+    marketCapWidth = Math.max(marketCapWidth, marketCapText.length);
+
+    const epsConsensus = getFormattedEpsConsensusText(earningsEvent.epsConsensus);
+    epsWidth = Math.max(epsWidth, epsConsensus.length);
+  }
+
+  return {
+    ticker: tickerWidth,
+    marketCap: marketCapWidth,
+    eps: epsWidth,
+  };
 }
 
 function getFriendlyDate(dateStamp: string): string {
@@ -1122,14 +1157,27 @@ function getEarningsWhenSortRank(earningsWhen: EarningsWhen): number {
 
 function getEarningsEventLine(
   earningsEvent: EarningsEvent,
-  highlightedTickerSymbols: Set<string>
+  highlightedTickerSymbols: Set<string>,
+  lineWidths: EarningsLineWidths
 ): string {
-  const ticker = getFormattedTicker(earningsEvent.ticker, highlightedTickerSymbols);
+  const ticker = getFormattedTicker(
+    earningsEvent.ticker,
+    highlightedTickerSymbols,
+    lineWidths.ticker
+  );
   const companyName = getEarningsCompanyName(earningsEvent.companyName);
   const marketCapText = getFormattedMarketCapText(earningsEvent.marketCap, earningsEvent.marketCapText);
-  const epsConsensus = getNormalizedString(earningsEvent.epsConsensus) ?? unknownValueLabel;
+  const epsConsensus = getFormattedEpsConsensusText(earningsEvent.epsConsensus);
+  const paddedMarketCapText = getPaddedEarningsColumnText(
+    marketCapText,
+    lineWidths.marketCap
+  );
+  const paddedEpsConsensus = getPaddedEarningsColumnText(
+    epsConsensus,
+    lineWidths.eps
+  );
 
-  return `${ticker} ${companyName} | MCap: \`${marketCapText}\` | 🔮 EPS: \`${epsConsensus}\``;
+  return `${ticker} | MCap: \`${paddedMarketCapText}\` | 🔮 EPS: \`${paddedEpsConsensus}\` | ${companyName}`;
 }
 
 function getFormattedMarketCapText(
@@ -1153,15 +1201,29 @@ function getFormattedMarketCapText(
   return formatMarketCapUsdShort(parsedMarketCap);
 }
 
+function getFormattedEpsConsensusText(
+  epsConsensus: string | undefined
+): string {
+  return getNormalizedString(epsConsensus) ?? unknownValueLabel;
+}
+
+function getPaddedEarningsColumnText(
+  text: string,
+  width: number
+): string {
+  return text.padEnd(width, " ");
+}
+
 function formatMarketCapUsdShort(value: number): string {
   return `$${compactUsdFormatter.format(value)}`;
 }
 
 function getFormattedTicker(
   ticker: string,
-  highlightedTickerSymbols: Set<string>
+  highlightedTickerSymbols: Set<string>,
+  width: number
 ): string {
-  const tickerText = `\`${ticker}\``;
+  const tickerText = `\`${getPaddedEarningsColumnText(ticker, width)}\``;
   if (true === highlightedTickerSymbols.has(ticker)) {
     return `**${tickerText}**`;
   }
