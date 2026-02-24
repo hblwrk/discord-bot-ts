@@ -61,4 +61,39 @@ describe("index bootstrap", () => {
     );
     expect(exitSpy).toHaveBeenCalledWith(1);
   });
+
+  test("logs process warnings through logger", async () => {
+    startBotMock.mockResolvedValue(undefined);
+
+    await import("./index.js");
+    await new Promise(resolve => {
+      setImmediate(resolve);
+    });
+
+    const warning = new Error("Possible AsyncEventEmitter memory leak detected.");
+    warning.name = "MaxListenersExceededWarning";
+    (warning as any).code = "MAX_LISTENERS_EXCEEDED";
+    (warning as any).type = "error";
+    (warning as any).count = 11;
+    (warning as any).emitter = {
+      constructor: {
+        name: "WebSocketShard",
+      },
+    };
+
+    process.emit("warning", warning);
+
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "process-warning",
+        warning_name: "MaxListenersExceededWarning",
+        warning_code: "MAX_LISTENERS_EXCEEDED",
+        warning_type: "error",
+        warning_listener_count: 11,
+        warning_emitter: "WebSocketShard",
+        warning_message: "Possible AsyncEventEmitter memory leak detected.",
+      }),
+    );
+  });
 });
