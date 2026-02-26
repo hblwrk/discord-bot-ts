@@ -16,7 +16,7 @@
   },
   "keywords": [],
   "dependencies": {
-    "@types/node": "^25.3.0",
+    "@types/node": "^25.3.1",
     "axios": "^1.13.5",
     "class-transformer": "^0.5.1",
     "discord.js": "^14.25.1",
