@@ -343,21 +343,20 @@ export class EmojiAsset extends BaseAsset {
   }
 }
 
-async function populateDracoonAsset(type: string, asset: ImageAsset | UserQuoteAsset): Promise<boolean> {
+async function populateDracoonAsset(type: string, asset: ImageAsset | UserQuoteAsset): Promise<void> {
   if (false === asset.hasOwnProperty("_location") || "dracoon" !== asset.location) {
-    return true;
+    return;
   }
 
   try {
     asset.fileContent = await getFromDracoon(readSecret("dracoon_password"), asset.locationId);
-    return true;
   } catch (error: unknown) {
+    (asset as any).downloadFailed = true;
     const assetId = asset.name ?? asset.fileName ?? asset.locationId ?? "unknown";
     logger.log(
       "warn",
-      `Skipping ${type} asset "${assetId}" because DRACOON fetch failed: ${error}`,
+      `Failed to download ${type} asset "${assetId}" from DRACOON: ${error}`,
     );
-    return false;
   }
 }
 
@@ -382,10 +381,7 @@ export async function getAssets(type: string): Promise<any[]> {
       switch (type) {
         case "image": {
           const newAsset = plainToClass(ImageAsset, jsonObject);
-          if (false === await populateDracoonAsset(type, newAsset)) {
-            break;
-          }
-
+          await populateDracoonAsset(type, newAsset);
           newAssets.push(newAsset);
           break;
         }
@@ -410,20 +406,14 @@ export async function getAssets(type: string): Promise<any[]> {
 
         case "userquote": {
           const newAsset = plainToClass(UserQuoteAsset, jsonObject);
-          if (false === await populateDracoonAsset(type, newAsset)) {
-            break;
-          }
-
+          await populateDracoonAsset(type, newAsset);
           newAssets.push(newAsset);
           break;
         }
 
         case "whatis": {
           const newAsset = plainToClass(ImageAsset, jsonObject);
-          if (false === await populateDracoonAsset(type, newAsset)) {
-            break;
-          }
-
+          await populateDracoonAsset(type, newAsset);
           newAssets.push(newAsset);
           break;
         }

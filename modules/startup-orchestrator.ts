@@ -44,6 +44,8 @@ type StartupDependencies = {
   warmupInitialRetryDelayMs: number;
   warmupMaxRetryDelayMs: number;
   slashCommandDebounceMs: number;
+  assetRecoveryRetryMs: number;
+  assetRecoveryMaxRetryMs: number;
 };
 
 type StartupOptions = Partial<StartupDependencies>;
@@ -68,6 +70,8 @@ const defaultWarmupMaxAttempts = 4;
 const defaultWarmupInitialRetryDelayMs = 500;
 const defaultWarmupMaxRetryDelayMs = 15_000;
 const defaultSlashCommandDebounceMs = 250;
+const defaultAssetRecoveryRetryMs = 60_000;
+const defaultAssetRecoveryMaxRetryMs = 30 * 60_000;
 
 type ErrorLogDetails = {
   error_name?: string;
@@ -80,6 +84,7 @@ function createDiscordClient(): Client {
     intents: [
       GatewayIntentBits.Guilds,
       GatewayIntentBits.GuildMessages,
+      GatewayIntentBits.MessageContent,
       GatewayIntentBits.GuildMessageReactions,
     ],
     partials: [
@@ -132,6 +137,8 @@ function createDependencies(options: StartupOptions): StartupDependencies {
     warmupInitialRetryDelayMs: options.warmupInitialRetryDelayMs ?? defaultWarmupInitialRetryDelayMs,
     warmupMaxRetryDelayMs: options.warmupMaxRetryDelayMs ?? defaultWarmupMaxRetryDelayMs,
     slashCommandDebounceMs: options.slashCommandDebounceMs ?? defaultSlashCommandDebounceMs,
+    assetRecoveryRetryMs: options.assetRecoveryRetryMs ?? defaultAssetRecoveryRetryMs,
+    assetRecoveryMaxRetryMs: options.assetRecoveryMaxRetryMs ?? defaultAssetRecoveryMaxRetryMs,
   };
 }
 
@@ -258,7 +265,7 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
     phaseAFinished();
     logger.log(
       "info",
-      "Bot ready.",
+      "Bot connected. Warmup in progress.",
     );
   } catch (error) {
     startupState.setLastError(error);
@@ -308,9 +315,16 @@ async function warmRemoteData({
   startupState.setRemoteWarmupStatus("warming");
 
   let slashCommandDebounceHandle: ReturnType<typeof setTimeout> | undefined;
+  let assetRecoveryRetryHandle: ReturnType<typeof setTimeout> | undefined;
+  let assetRecoveryInProgress = false;
   let otherTimersStarted = false;
   let genericAssetsLoaded = false;
   let tickersLoaded = false;
+  let failedGenericAssetDownloads = 0;
+  let failedWhatisAssetDownloads = 0;
+  let assetRecoveryAttempt = 0;
+  let hasTaskFailure = false;
+  startupState.markWarmupTask("asset-downloads", "running");
 
   const scheduleSlashCommands = () => {
     if ("undefined" !== typeof slashCommandDebounceHandle) {
@@ -411,12 +425,136 @@ async function warmRemoteData({
     throw lastError;
   };
 
+  const getFailedAssetDownloads = () => failedGenericAssetDownloads + failedWhatisAssetDownloads;
+  const getAssetRecoveryRetryDelayMs = () => {
+    const cappedExponent = Math.min(assetRecoveryAttempt, 16);
+    const backoffMs = dependencies.assetRecoveryRetryMs * (2 ** cappedExponent);
+    return Math.min(backoffMs, dependencies.assetRecoveryMaxRetryMs);
+  };
+
+  const trackAssetDownloadFailures = (task: "generic-assets" | "whatis-assets", assets: any[]) => {
+    const failedDownloads = assets.filter(asset => true === (asset as any).downloadFailed).length;
+    if ("generic-assets" === task) {
+      failedGenericAssetDownloads = failedDownloads;
+    } else {
+      failedWhatisAssetDownloads = failedDownloads;
+    }
+
+    if (0 === failedDownloads) {
+      return;
+    }
+
+    logger.log(
+      "warn",
+      {
+        startup_phase: "phase-b",
+        degraded: true,
+        task,
+        failed_asset_downloads: failedDownloads,
+        message: "Some DRACOON assets could not be downloaded.",
+      },
+    );
+  };
+
+  const scheduleAssetRecovery = () => {
+    if (true === hasTaskFailure || 0 === getFailedAssetDownloads()) {
+      return;
+    }
+
+    if (true === assetRecoveryInProgress || "undefined" !== typeof assetRecoveryRetryHandle) {
+      return;
+    }
+
+    const retryInMs = getAssetRecoveryRetryDelayMs();
+    assetRecoveryRetryHandle = dependencies.setTimeoutFn(() => {
+      assetRecoveryRetryHandle = undefined;
+      void recoverFailedAssets();
+    }, retryInMs);
+    (assetRecoveryRetryHandle as any).unref?.();
+  };
+
+  const recoverFailedAssets = async () => {
+    if (true === hasTaskFailure || true === assetRecoveryInProgress || 0 === getFailedAssetDownloads()) {
+      return;
+    }
+
+    assetRecoveryInProgress = true;
+    startupState.markWarmupTask("asset-downloads", "running");
+
+    try {
+      const [genericAssets, whatIsAssets] = await Promise.all([
+        dependencies.getGenericAssets(),
+        dependencies.getAssets("whatis"),
+      ]);
+
+      replaceArray(sharedData.assets, genericAssets);
+      replaceArray(sharedData.whatIsAssets, whatIsAssets);
+      trackAssetDownloadFailures("generic-assets", genericAssets);
+      trackAssetDownloadFailures("whatis-assets", whatIsAssets);
+      rebuildAssetCommands(sharedData);
+      scheduleSlashCommands();
+
+      const failedAssetDownloads = getFailedAssetDownloads();
+      startupState.markWarmupTask("asset-downloads", 0 === failedAssetDownloads ? "success" : "failed");
+
+      if (0 === failedAssetDownloads) {
+        assetRecoveryAttempt = 0;
+        startupState.setRemoteWarmupStatus("ready");
+        logger.log(
+          "info",
+          {
+            startup_phase: "phase-b",
+            task: "asset-recovery",
+            degraded: false,
+            message: "Recovered previously failed asset downloads.",
+          },
+        );
+        logger.log(
+          "info",
+          "Bot ready.",
+        );
+      } else {
+        assetRecoveryAttempt += 1;
+        logger.log(
+          "warn",
+          {
+            startup_phase: "phase-b",
+            task: "asset-recovery",
+            degraded: true,
+            failed_asset_downloads: failedAssetDownloads,
+            retry_in_ms: getAssetRecoveryRetryDelayMs(),
+            message: "Asset recovery incomplete. Retrying.",
+          },
+        );
+      }
+    } catch (error: unknown) {
+      assetRecoveryAttempt += 1;
+      startupState.setLastError(error);
+      startupState.markWarmupTask("asset-downloads", "failed");
+      logger.log(
+        "warn",
+        {
+          startup_phase: "phase-b",
+          task: "asset-recovery",
+          degraded: true,
+          retry_in_ms: getAssetRecoveryRetryDelayMs(),
+          ...toErrorLogDetails(error),
+          message: "Asset recovery attempt failed. Retrying.",
+        },
+      );
+    } finally {
+      assetRecoveryInProgress = false;
+      scheduleAssetRecovery();
+    }
+  };
+
   try {
     const warmupTasks: Promise<void>[] = [];
 
     warmupTasks.push((async () => {
       const genericAssets = await runWarmupTaskWithRetry("generic-assets", async () => dependencies.getGenericAssets());
       replaceArray(sharedData.assets, genericAssets);
+      trackAssetDownloadFailures("generic-assets", genericAssets);
       rebuildAssetCommands(sharedData);
       genericAssetsLoaded = true;
       tryStartOtherTimers();
@@ -441,6 +579,7 @@ async function warmRemoteData({
     warmupTasks.push((async () => {
       const whatIsAssets = await runWarmupTaskWithRetry("whatis-assets", async () => dependencies.getAssets("whatis"));
       replaceArray(sharedData.whatIsAssets, whatIsAssets);
+      trackAssetDownloadFailures("whatis-assets", whatIsAssets);
       scheduleSlashCommands();
       logger.log(
         "info",
@@ -475,7 +614,10 @@ async function warmRemoteData({
     }
 
     const warmupResults = await Promise.allSettled(warmupTasks);
-    const hasWarmupFailure = warmupResults.some(result => "rejected" === result.status);
+    hasTaskFailure = warmupResults.some(result => "rejected" === result.status);
+    const failedAssetDownloads = getFailedAssetDownloads();
+    startupState.markWarmupTask("asset-downloads", 0 === failedAssetDownloads ? "success" : "failed");
+    const hasWarmupFailure = hasTaskFailure || failedAssetDownloads > 0;
 
     if (false === otherTimersStarted) {
       logger.log(
@@ -499,6 +641,7 @@ async function warmRemoteData({
           message: "Startup warmup completed in degraded mode.",
         },
       );
+      scheduleAssetRecovery();
     } else {
       startupState.setRemoteWarmupStatus("ready");
       logger.log(
@@ -508,6 +651,10 @@ async function warmRemoteData({
           degraded: false,
           message: "Startup warmup completed.",
         },
+      );
+      logger.log(
+        "info",
+        "Bot ready.",
       );
     }
   } catch (error) {

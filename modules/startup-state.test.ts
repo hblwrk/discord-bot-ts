@@ -31,14 +31,17 @@ describe("createStartupState", () => {
     expect(snapshot.warmupTasks).toEqual({});
   });
 
-  test("marks ready only after both discord login and handlers are attached", () => {
+  test("marks ready only after discord login, handlers, and remote warmup readiness", () => {
     const state = createStartupState(logger);
 
     state.markDiscordLoggedIn();
     expect(state.getSnapshot().ready).toBe(false);
 
-    jest.setSystemTime(new Date("2025-01-01T10:00:03.000Z"));
     state.markHandlersAttached();
+    expect(state.getSnapshot().ready).toBe(false);
+
+    jest.setSystemTime(new Date("2025-01-01T10:00:03.000Z"));
+    state.setRemoteWarmupStatus("ready");
 
     const snapshot = state.getSnapshot();
     expect(snapshot.ready).toBe(true);
@@ -52,6 +55,20 @@ describe("createStartupState", () => {
         message: "Startup readiness reached.",
       },
     );
+  });
+
+  test("drops readiness when remote warmup becomes degraded", () => {
+    const state = createStartupState(logger);
+    state.markDiscordLoggedIn();
+    state.markHandlersAttached();
+    state.setRemoteWarmupStatus("ready");
+
+    expect(state.getSnapshot().ready).toBe(true);
+
+    state.setRemoteWarmupStatus("degraded");
+    const snapshot = state.getSnapshot();
+    expect(snapshot.ready).toBe(false);
+    expect(snapshot.readyAt).toBeNull();
   });
 
   test("records phase timing and logs phase start and completion", () => {

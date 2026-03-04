@@ -187,6 +187,8 @@ The health-check server port can be overridden via the `HEALTHCHECK_PORT` enviro
 
 Larger files, for example images, are stored at an external cloud service, Dracoon. They are requested by the bot and uploaded as attachment to Discord. This avoids high bandwidth cost for us as well as messing up our repository with binary files. Access to such assets requires to know the asset ID and a password. A reference and metadata for each asset is stored at `assets/`. Discord limits uploads to 8MB.
 
+If DRACOON downloads fail during startup, the bot keeps those assets marked as temporarily unavailable, logs the failures at `WARN`, and retries failed downloads in the background with capped exponential backoff (starting at 60 seconds, max 30 minutes) until recovery.
+
 ## Market data
 
 Real-time market-data is being pulled in through a Websocket connection and distributed via Discord bot nickname and presence information. Those bots can be joined to the server separately and their runtime information is managed as an asset. They require no oAuth2 scopes other than "bot".
@@ -205,7 +207,7 @@ docker stack rm discord-bot-ts_production
 Our containers are designed to be minimal and include an in-container health-check in the `Dockerfile`, probing `/api/v1/health` for liveness. The bot exposes a simple HTTP server at the port configured by `HEALTHCHECK_PORT` (`11312/tcp` by default) with:
 
 * `/api/v1/health`: liveness endpoint (returns `HTTP 200` when process is running).
-* `/api/v1/ready`: readiness endpoint (returns `HTTP 200` only after Discord login and handler setup, otherwise `HTTP 503`).
+* `/api/v1/ready`: readiness endpoint (returns `HTTP 200` only after Discord login, handler setup and successful remote warmup, otherwise `HTTP 503`).
 * `/api/v1/startup`: startup diagnostics.
 
 The redeploy automation waits for `/api/v1/ready` before production rollout. Service availability monitoring is provided by HetrixTools <https://hetrixtools.com/report/uptime/7162c65d5357013beb43868c30e86e6a/>.

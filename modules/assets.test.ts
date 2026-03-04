@@ -42,7 +42,7 @@ describe("getAssets", () => {
     readSecretMock.mockReturnValue("dracoon-secret");
   });
 
-  test("skips only failing DRACOON assets and continues loading", async () => {
+  test("keeps failing DRACOON assets as unavailable and logs warning", async () => {
     yamlLoadMock.mockReturnValue([
       {
         fileName: "ok.png",
@@ -67,13 +67,15 @@ describe("getAssets", () => {
 
     const assets = await getAssets("image");
 
-    expect(assets).toHaveLength(1);
+    expect(assets).toHaveLength(2);
     expect(assets[0].name).toBe("asset-ok");
     expect(assets[0].fileContent).toEqual(Buffer.from("ok-buffer"));
+    expect(assets[1].name).toBe("asset-fail");
+    expect(assets[1].fileContent).toBeUndefined();
     expect(getFromDracoonMock).toHaveBeenCalledTimes(2);
     expect(loggerMock.log).toHaveBeenCalledWith(
       "warn",
-      expect.stringContaining("Skipping image asset \"asset-fail\""),
+      expect.stringContaining("Failed to download image asset \"asset-fail\""),
     );
   });
 

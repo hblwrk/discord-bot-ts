@@ -56,7 +56,19 @@ export function createStartupState(logger: StartupLogger = getLogger()) {
   };
 
   function refreshReadiness() {
-    if (false === state.ready && true === state.discordLoggedIn && true === state.handlersAttached) {
+    const shouldBeReady = (
+      true === state.discordLoggedIn &&
+      true === state.handlersAttached &&
+      "ready" === state.remoteWarmupStatus
+    );
+
+    if (true === state.ready && false === shouldBeReady) {
+      state.ready = false;
+      state.readyAt = null;
+      return;
+    }
+
+    if (false === state.ready && true === shouldBeReady) {
       state.ready = true;
       state.readyAt = new Date().toISOString();
       logger.log(
@@ -108,6 +120,7 @@ export function createStartupState(logger: StartupLogger = getLogger()) {
 
   function setRemoteWarmupStatus(status: RemoteWarmupStatus) {
     state.remoteWarmupStatus = status;
+    refreshReadiness();
   }
 
   function setLastError(error: unknown | null) {

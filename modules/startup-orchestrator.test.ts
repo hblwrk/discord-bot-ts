@@ -161,6 +161,7 @@ function createDependencies(overrides = {}) {
       warmupInitialRetryDelayMs: 1,
       warmupMaxRetryDelayMs: 5,
       slashCommandDebounceMs: 5,
+      assetRecoveryRetryMs: 10,
       ...overrides,
     },
     events,
@@ -186,7 +187,7 @@ function createDependencies(overrides = {}) {
 }
 
 describe("startBot", () => {
-  test("starts health first and reaches readiness even when remote warmup hangs", async () => {
+  test("starts health first and stays not-ready while remote warmup hangs", async () => {
     const genericDeferred = createDeferred<any[]>();
     const {dependencies, events, mocks} = createDependencies({
       getGenericAssets: jest.fn(async () => {
@@ -199,7 +200,7 @@ describe("startBot", () => {
     await sleep(10);
 
     const startupState = runtime.getStartupState();
-    expect(startupState.ready).toBe(true);
+    expect(startupState.ready).toBe(false);
     expect(startupState.discordLoggedIn).toBe(true);
     expect(startupState.handlersAttached).toBe(true);
     expect(startupState.remoteWarmupStatus).toBe("warming");
@@ -209,7 +210,7 @@ describe("startBot", () => {
     genericDeferred.resolve([]);
   });
 
-  test("retries failed warmup tasks without crashing phase A readiness", async () => {
+  test("retries failed warmup tasks and reaches readiness once warmup succeeds", async () => {
     const getTickersMock = jest.fn()
       .mockRejectedValueOnce(new Error("temporary ticker failure"))
       .mockResolvedValueOnce([]);
@@ -236,6 +237,57 @@ describe("startBot", () => {
         message: "Warmup task failed. Retrying.",
       }),
     );
+  });
+
+  test("keeps readiness false when any DRACOON asset download failed", async () => {
+    const {dependencies} = createDependencies({
+      getGenericAssets: jest.fn(async () => [
+        {
+          trigger: ["profi"],
+          downloadFailed: true,
+        },
+      ]),
+    });
+
+    const runtime = await startBot(dependencies);
+    await waitFor(() => "warming" !== runtime.getStartupState().remoteWarmupStatus);
+
+    const snapshot = runtime.getStartupState();
+    expect(snapshot.ready).toBe(false);
+    expect(snapshot.remoteWarmupStatus).toBe("degraded");
+    expect(snapshot.warmupTasks["asset-downloads"]).toBe("failed");
+  });
+
+  test("retries failed assets and becomes ready after recovery", async () => {
+    let genericAssetsCalls = 0;
+    const {dependencies} = createDependencies({
+      getGenericAssets: jest.fn(async () => {
+        genericAssetsCalls += 1;
+        if (1 === genericAssetsCalls) {
+          return [
+            {
+              trigger: ["profi"],
+              downloadFailed: true,
+            },
+          ];
+        }
+
+        return [
+          {
+            trigger: ["profi"],
+            downloadFailed: false,
+          },
+        ];
+      }),
+    });
+
+    const runtime = await startBot(dependencies);
+    await waitFor(() => true === runtime.getStartupState().ready, 1000);
+
+    const snapshot = runtime.getStartupState();
+    expect(snapshot.remoteWarmupStatus).toBe("ready");
+    expect(snapshot.warmupTasks["asset-downloads"]).toBe("success");
+    expect(genericAssetsCalls).toBeGreaterThanOrEqual(2);
   });
 
   test("attaches core handlers exactly once even when warmup retries happen", async () => {
