@@ -355,6 +355,24 @@ describe("startBot", () => {
     expect(mocks.defineSlashCommands.mock.calls.length).toBeGreaterThanOrEqual(2);
   });
 
+  test("does not register slash commands before generic assets are available", async () => {
+    const genericDeferred = createDeferred<any[]>();
+    const {dependencies, mocks} = createDependencies({
+      getGenericAssets: jest.fn(async () => genericDeferred.promise),
+      slashCommandDebounceMs: 5,
+    });
+
+    await startBot(dependencies);
+    await sleep(30);
+
+    expect(mocks.defineSlashCommands).not.toHaveBeenCalled();
+
+    genericDeferred.resolve([]);
+    await sleep(30);
+
+    expect(mocks.defineSlashCommands).toHaveBeenCalled();
+  });
+
   test("does not crash when slash command registration throws in debounce callback", async () => {
     const defineSlashCommandsMock = jest.fn(() => {
       throw new Error("slash registration failed");

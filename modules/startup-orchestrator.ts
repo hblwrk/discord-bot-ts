@@ -327,6 +327,10 @@ async function warmRemoteData({
   startupState.markWarmupTask("asset-downloads", "running");
 
   const scheduleSlashCommands = () => {
+    if (false === genericAssetsLoaded) {
+      return;
+    }
+
     if ("undefined" !== typeof slashCommandDebounceHandle) {
       dependencies.clearTimeoutFn(slashCommandDebounceHandle);
     }
@@ -618,6 +622,22 @@ async function warmRemoteData({
     const failedAssetDownloads = getFailedAssetDownloads();
     startupState.markWarmupTask("asset-downloads", 0 === failedAssetDownloads ? "success" : "failed");
     const hasWarmupFailure = hasTaskFailure || failedAssetDownloads > 0;
+
+    if (genericAssetsLoaded) {
+      try {
+        dependencies.defineSlashCommands(sharedData.assets, sharedData.whatIsAssets, sharedData.userAssets);
+      } catch (error) {
+        startupState.setLastError(error);
+        logger.log(
+          "error",
+          {
+            startup_phase: "phase-b",
+            task: "slash-commands",
+            message: `Failed to define slash commands: ${error}`,
+          },
+        );
+      }
+    }
 
     if (false === otherTimersStarted) {
       logger.log(
