@@ -57,7 +57,7 @@ function toSlashRegistrationErrorDetails(error: unknown) {
   };
 }
 
-export function defineSlashCommands(assets, whatIsAssets, userAssets) {
+export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
   const token = readSecret("discord_token").trim();
   const clientId = readSecret("discord_client_ID").trim();
   const guildId = readSecret("discord_guild_ID").trim();
@@ -243,36 +243,35 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
     version: "10",
   }).setToken(token);
 
-  (async () => {
-    try {
-      await rest.put(
-        Routes.applicationGuildCommands(clientId, guildId),
-        {
-          body: slashCommands,
-        },
-      );
-      logger.log(
-        "info",
-        `Successfully registered ${slashCommands.length} slash commands.`,
-      );
-    } catch (error: unknown) {
-      logger.log(
-        "warn",
-        {
-          source: "slash-registration",
-          guild_id: guildId,
-          client_id: clientId,
-          total_commands_registered: slashCommands.length,
-          ...toSlashRegistrationErrorDetails(error),
-          message: "Failed to register slash commands with Discord.",
-        },
-      );
-      logger.log(
-        "error",
-        error,
-      );
-    }
-  })();
+  try {
+    await rest.put(
+      Routes.applicationGuildCommands(clientId, guildId),
+      {
+        body: slashCommands,
+      },
+    );
+    logger.log(
+      "info",
+      `Successfully registered ${slashCommands.length} slash commands.`,
+    );
+  } catch (error: unknown) {
+    logger.log(
+      "warn",
+      {
+        source: "slash-registration",
+        guild_id: guildId,
+        client_id: clientId,
+        total_commands_registered: slashCommands.length,
+        ...toSlashRegistrationErrorDetails(error),
+        message: "Failed to register slash commands with Discord.",
+      },
+    );
+    logger.log(
+      "error",
+      error,
+    );
+    throw error;
+  }
 }
 
 export function interactSlashCommands(client, assets, assetCommands, whatIsAssets, tickers: Ticker[]) {

@@ -320,6 +320,7 @@ async function warmRemoteData({
   let otherTimersStarted = false;
   let genericAssetsLoaded = false;
   let tickersLoaded = false;
+  let slashCommandsReady = false;
   let slashRegistrationAttempts = 0;
   let slashRegistrationDeferredLogged = false;
   let failedGenericAssetDownloads = 0;
@@ -327,6 +328,30 @@ async function warmRemoteData({
   let assetRecoveryAttempt = 0;
   let hasTaskFailure = false;
   startupState.markWarmupTask("asset-downloads", "running");
+
+  const registerSlashCommandsOnce = async (message: string) => {
+    slashRegistrationAttempts += 1;
+    logger.log(
+      "warn",
+      {
+        startup_phase: "phase-b",
+        task: "slash-commands",
+        attempt: slashRegistrationAttempts,
+        asset_count: sharedData.assets.length,
+        whatis_asset_count: sharedData.whatIsAssets.length,
+        user_asset_count: sharedData.userAssets.length,
+        message,
+      },
+    );
+    await dependencies.defineSlashCommands(sharedData.assets, sharedData.whatIsAssets, sharedData.userAssets);
+  };
+
+  const registerSlashCommandsForReadiness = async (message: string) => {
+    await runWarmupTaskWithRetry("slash-commands", async () => {
+      await registerSlashCommandsOnce(message);
+    });
+    slashCommandsReady = true;
+  };
 
   const scheduleSlashCommands = () => {
     if (false === genericAssetsLoaded) {
@@ -354,22 +379,7 @@ async function warmRemoteData({
 
     slashCommandDebounceHandle = dependencies.setTimeoutFn(() => {
       slashCommandDebounceHandle = undefined;
-      try {
-        slashRegistrationAttempts += 1;
-        logger.log(
-          "warn",
-          {
-            startup_phase: "phase-b",
-            task: "slash-commands",
-            attempt: slashRegistrationAttempts,
-            asset_count: sharedData.assets.length,
-            whatis_asset_count: sharedData.whatIsAssets.length,
-            user_asset_count: sharedData.userAssets.length,
-            message: "Registering slash commands.",
-          },
-        );
-        dependencies.defineSlashCommands(sharedData.assets, sharedData.whatIsAssets, sharedData.userAssets);
-      } catch (error) {
+      void registerSlashCommandsOnce("Registering slash commands.").catch(error => {
         startupState.setLastError(error);
         logger.log(
           "error",
@@ -379,7 +389,7 @@ async function warmRemoteData({
             message: `Failed to define slash commands: ${error}`,
           },
         );
-      }
+      });
     }, dependencies.slashCommandDebounceMs);
     (slashCommandDebounceHandle as any).unref?.();
   };
@@ -491,7 +501,7 @@ async function warmRemoteData({
   };
 
   const scheduleAssetRecovery = () => {
-    if (true === hasTaskFailure || 0 === getFailedAssetDownloads()) {
+    if (true === hasTaskFailure || (0 === getFailedAssetDownloads() && true === slashCommandsReady)) {
       return;
     }
 
@@ -508,7 +518,7 @@ async function warmRemoteData({
   };
 
   const recoverFailedAssets = async () => {
-    if (true === hasTaskFailure || true === assetRecoveryInProgress || 0 === getFailedAssetDownloads()) {
+    if (true === hasTaskFailure || true === assetRecoveryInProgress || (0 === getFailedAssetDownloads() && true === slashCommandsReady)) {
       return;
     }
 
@@ -516,24 +526,33 @@ async function warmRemoteData({
     startupState.markWarmupTask("asset-downloads", "running");
 
     try {
-      const [genericAssets, whatIsAssets] = await Promise.all([
-        dependencies.getGenericAssets(),
-        dependencies.getAssets("whatis"),
-      ]);
+      if (0 < getFailedAssetDownloads()) {
+        const [genericAssets, whatIsAssets] = await Promise.all([
+          dependencies.getGenericAssets(),
+          dependencies.getAssets("whatis"),
+        ]);
 
-      replaceArray(sharedData.assets, genericAssets);
-      replaceArray(sharedData.whatIsAssets, whatIsAssets);
-      trackAssetDownloadFailures("generic-assets", genericAssets);
-      trackAssetDownloadFailures("whatis-assets", whatIsAssets);
-      rebuildAssetCommands(sharedData);
-      genericAssetsLoaded = true;
-      tryStartOtherTimers();
-      scheduleSlashCommands();
+        replaceArray(sharedData.assets, genericAssets);
+        replaceArray(sharedData.whatIsAssets, whatIsAssets);
+        trackAssetDownloadFailures("generic-assets", genericAssets);
+        trackAssetDownloadFailures("whatis-assets", whatIsAssets);
+        rebuildAssetCommands(sharedData);
+        genericAssetsLoaded = true;
+        tryStartOtherTimers();
+        scheduleSlashCommands();
+      }
+
+      if (genericAssetsLoaded) {
+        await registerSlashCommandsForReadiness("Registering slash commands during recovery.");
+      } else {
+        slashCommandsReady = false;
+        startupState.markWarmupTask("slash-commands", "failed");
+      }
 
       const failedAssetDownloads = getFailedAssetDownloads();
       startupState.markWarmupTask("asset-downloads", 0 === failedAssetDownloads ? "success" : "failed");
 
-      if (0 === failedAssetDownloads) {
+      if (0 === failedAssetDownloads && true === slashCommandsReady) {
         assetRecoveryAttempt = 0;
         startupState.setRemoteWarmupStatus("ready");
         logger.log(
@@ -558,15 +577,19 @@ async function warmRemoteData({
             task: "asset-recovery",
             degraded: true,
             failed_asset_downloads: failedAssetDownloads,
+            slash_commands_ready: slashCommandsReady,
             retry_in_ms: getAssetRecoveryRetryDelayMs(),
-            message: "Asset recovery incomplete. Retrying.",
+            message: "Recovery incomplete. Retrying.",
           },
         );
       }
     } catch (error: unknown) {
       assetRecoveryAttempt += 1;
       startupState.setLastError(error);
-      startupState.markWarmupTask("asset-downloads", "failed");
+      slashCommandsReady = false;
+      if (0 < getFailedAssetDownloads()) {
+        startupState.markWarmupTask("asset-downloads", "failed");
+      }
       logger.log(
         "warn",
         {
@@ -575,7 +598,7 @@ async function warmRemoteData({
           degraded: true,
           retry_in_ms: getAssetRecoveryRetryDelayMs(),
           ...toErrorLogDetails(error),
-          message: "Asset recovery attempt failed. Retrying.",
+          message: "Recovery attempt failed. Retrying.",
         },
       );
     } finally {
@@ -653,36 +676,27 @@ async function warmRemoteData({
     hasTaskFailure = warmupResults.some(result => "rejected" === result.status);
     const failedAssetDownloads = getFailedAssetDownloads();
     startupState.markWarmupTask("asset-downloads", 0 === failedAssetDownloads ? "success" : "failed");
-    const hasWarmupFailure = hasTaskFailure || failedAssetDownloads > 0;
-
     if (genericAssetsLoaded) {
       try {
-        slashRegistrationAttempts += 1;
-        logger.log(
-          "warn",
-          {
-            startup_phase: "phase-b",
-            task: "slash-commands",
-            attempt: slashRegistrationAttempts,
-            asset_count: sharedData.assets.length,
-            whatis_asset_count: sharedData.whatIsAssets.length,
-            user_asset_count: sharedData.userAssets.length,
-            message: "Registering slash commands after warmup completion.",
-          },
-        );
-        dependencies.defineSlashCommands(sharedData.assets, sharedData.whatIsAssets, sharedData.userAssets);
+        await registerSlashCommandsForReadiness("Registering slash commands after warmup completion.");
       } catch (error) {
+        slashCommandsReady = false;
         startupState.setLastError(error);
-        logger.log(
-          "error",
-          {
-            startup_phase: "phase-b",
-            task: "slash-commands",
-            message: `Failed to define slash commands: ${error}`,
-          },
-        );
       }
+    } else {
+      slashCommandsReady = false;
+      startupState.markWarmupTask("slash-commands", "failed");
+      logger.log(
+        "warn",
+        {
+          startup_phase: "phase-b",
+          task: "slash-commands",
+          degraded: true,
+          message: "Skipping slash command readiness deployment because generic assets are unavailable.",
+        },
+      );
     }
+    const hasWarmupFailure = hasTaskFailure || failedAssetDownloads > 0 || false === slashCommandsReady;
 
     if (false === otherTimersStarted) {
       logger.log(

@@ -60,15 +60,11 @@ describe("defineSlashCommands", () => {
     (asset as any).trigger = ["hello world"];
     asset.response = "Hello";
 
-    defineSlashCommands(
+    await defineSlashCommands(
       [asset],
       [{title: "FAQ", name: "whatis_faq"}],
       [{name: "alice"}],
     );
-
-    await new Promise(resolve => {
-      setImmediate(resolve);
-    });
 
     expect(mockRest).toHaveBeenCalledWith({version: "10"});
     expect(mockSetToken).toHaveBeenCalledWith("test-token");
@@ -97,11 +93,7 @@ describe("defineSlashCommands", () => {
     const expectedError = new Error("discord api unavailable");
     mockPut.mockRejectedValueOnce(expectedError);
 
-    defineSlashCommands([], [], []);
-
-    await new Promise(resolve => {
-      setImmediate(resolve);
-    });
+    await expect(defineSlashCommands([], [], [])).rejects.toThrow("discord api unavailable");
 
     expect(loggerMock.log).toHaveBeenCalledWith(
       "warn",
@@ -122,11 +114,7 @@ describe("defineSlashCommands", () => {
     (asset as any).trigger = ["kursänderung", "kursanderung", "!!!"];
     asset.response = "ok";
 
-    defineSlashCommands([asset], [], []);
-
-    await new Promise(resolve => {
-      setImmediate(resolve);
-    });
+    await defineSlashCommands([asset], [], []);
 
     const commandPayload = mockPut.mock.calls[0][1].body;
     const kursCommands = commandPayload.filter(command => command.name === "kursanderung");

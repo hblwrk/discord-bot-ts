@@ -115,7 +115,7 @@ function createDependencies(overrides = {}) {
   const startOtherTimers = jest.fn(() => {
     events.push("other-timers");
   });
-  const defineSlashCommands = jest.fn(() => {
+  const defineSlashCommands = jest.fn(async () => {
     events.push("slash-define");
   });
   const roleManager = jest.fn(async () => {
@@ -380,27 +380,46 @@ describe("startBot", () => {
     expect(mocks.defineSlashCommands).toHaveBeenCalled();
   });
 
-  test("does not crash when slash command registration throws in debounce callback", async () => {
-    const defineSlashCommandsMock = jest.fn(() => {
+  test("does not become ready before slash commands are successfully deployed", async () => {
+    const slashRegistrationDeferred = createDeferred<void>();
+    const {dependencies} = createDependencies({
+      defineSlashCommands: jest.fn(async () => slashRegistrationDeferred.promise),
+      slashCommandDebounceMs: 1000,
+    });
+
+    const runtime = await startBot(dependencies);
+    await sleep(30);
+
+    expect(runtime.getStartupState().ready).toBe(false);
+    expect(runtime.getStartupState().remoteWarmupStatus).toBe("warming");
+
+    slashRegistrationDeferred.resolve();
+    await waitFor(() => "warming" !== runtime.getStartupState().remoteWarmupStatus);
+
+    expect(runtime.getStartupState().ready).toBe(true);
+    expect(runtime.getStartupState().remoteWarmupStatus).toBe("ready");
+  });
+
+  test("keeps readiness false when slash command deployment fails", async () => {
+    const defineSlashCommandsMock = jest.fn(async () => {
       throw new Error("slash registration failed");
     });
     const {dependencies, mocks} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
       slashCommandDebounceMs: 5,
+      warmupMaxAttempts: 1,
     });
 
     const runtime = await startBot(dependencies);
-    await sleep(50);
+    await waitFor(() => "warming" !== runtime.getStartupState().remoteWarmupStatus);
 
-    expect(runtime.getStartupState().ready).toBe(true);
+    expect(runtime.getStartupState().ready).toBe(false);
+    expect(runtime.getStartupState().remoteWarmupStatus).toBe("degraded");
     expect(defineSlashCommandsMock).toHaveBeenCalled();
-    expect(mocks.logger.log).toHaveBeenCalledWith(
-      "error",
-      expect.objectContaining({
-        task: "slash-commands",
-        message: expect.stringContaining("slash registration failed"),
-      }),
-    );
+    const hasSlashErrorLog = mocks.logger.log.mock.calls.some(([level, payload]) => {
+      return "error" === level && "slash-commands" === payload?.task;
+    });
+    expect(hasSlashErrorLog).toBe(true);
   });
 
 });
