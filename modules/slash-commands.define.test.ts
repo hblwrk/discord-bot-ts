@@ -1,6 +1,15 @@
 const mockPut = jest.fn();
 const mockGet = jest.fn();
-const mockSetToken = jest.fn().mockReturnValue({put: mockPut, get: mockGet});
+const mockPost = jest.fn();
+const mockPatch = jest.fn();
+const mockDelete = jest.fn();
+const mockSetToken = jest.fn().mockReturnValue({
+  put: mockPut,
+  get: mockGet,
+  post: mockPost,
+  patch: mockPatch,
+  delete: mockDelete,
+});
 const mockRest = jest.fn().mockImplementation(() => ({setToken: mockSetToken}));
 const mockApplicationGuildCommands = jest.fn(() => "/applications/test/commands");
 const loggerMock = {
@@ -63,6 +72,9 @@ describe("defineSlashCommands", () => {
     mockedReadSecret.mockClear();
     mockPut.mockImplementation(async (_route, options) => options?.body ?? []);
     mockGet.mockImplementation(async () => getLastPutBody());
+    mockPost.mockImplementation(async (_route, options) => options?.body ?? {});
+    mockPatch.mockImplementation(async (_route, options) => options?.body ?? {});
+    mockDelete.mockImplementation(async () => undefined);
   });
 
   test("registers slash commands with v10 REST route and v14 choice structures", async () => {
@@ -196,6 +208,43 @@ describe("defineSlashCommands", () => {
       expect.objectContaining({
         source: "slash-registration",
         message: "Slash command registration returned unexpected response shape.",
+      }),
+    );
+  });
+
+  test("falls back to incremental deployment when bulk PUT times out", async () => {
+    const timeoutError = new Error("Slash command PUT stage timed out after 120000ms.");
+    timeoutError.name = "SlashRegistrationTimeoutError";
+    mockPut.mockRejectedValueOnce(timeoutError);
+
+    const incrementallyStoredCommands: any[] = [];
+    mockGet.mockImplementation(async () => {
+      if (0 === incrementallyStoredCommands.length) {
+        return [];
+      }
+
+      return incrementallyStoredCommands;
+    });
+    mockPost.mockImplementation(async (_route, options) => {
+      incrementallyStoredCommands.push(options?.body);
+      return options?.body;
+    });
+
+    await expect(defineSlashCommands([], [], [])).resolves.toBeUndefined();
+
+    expect(mockPost).toHaveBeenCalled();
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "slash-registration",
+        message: "Bulk slash command deployment timed out. Switching to incremental deployment.",
+      }),
+    );
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "slash-registration",
+        message: "Incremental slash command deployment finished.",
       }),
     );
   });

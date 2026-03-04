@@ -34,6 +34,10 @@ const slashCommandRestTimeoutMs = 120_000;
 const slashCommandRestRetries = 0;
 const slashCommandHeartbeatMs = 15_000;
 const slashCommandNameLogLimit = 20;
+const slashCommandFallbackInitialRetryMs = 500;
+const slashCommandFallbackMaxRetryMs = 5_000;
+const slashCommandFallbackMaxAttempts = 3;
+const slashCommandFallbackOperationDelayMs = 250;
 
 class SlashRegistrationMismatchError extends Error {
   constructor(message: string) {
@@ -56,6 +60,8 @@ type SlashRegistrationDiff = {
   unexpectedCommandNames: string[];
   truncated: boolean;
 };
+
+type SlashRegistrationStage = "put" | "get" | "upsert" | "delete";
 
 function toSlashCommandName(trigger: string): string {
   return trigger
@@ -126,6 +132,13 @@ function computeSlashRegistrationDiff(expectedCommandNames: string[], returnedCo
 
 function hasSlashRegistrationMismatch(diff: SlashRegistrationDiff): boolean {
   return 0 < diff.missingCommandNames.length || 0 < diff.unexpectedCommandNames.length;
+}
+
+function waitForMs(delayMs: number): Promise<void> {
+  return new Promise(resolve => {
+    const timeoutHandle = setTimeout(resolve, delayMs);
+    (timeoutHandle as any).unref?.();
+  });
 }
 
 export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
@@ -305,6 +318,7 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .setRequired(false));
   slashCommands.push(slashCommandCalendar.toJSON());
   const fixedCommandsRegistered = slashCommands.length - assetCommandsRegistered;
+  const slashCommandPayloadSizeBytes = Buffer.byteLength(JSON.stringify(slashCommands), "utf8");
   logger.log(
     "warn",
     {
@@ -313,6 +327,7 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
       client_id: clientId,
       request_timeout_ms: slashCommandRestTimeoutMs,
       rest_retries: slashCommandRestRetries,
+      payload_size_bytes: slashCommandPayloadSizeBytes,
       asset_triggers_total: assetTriggersTotal,
       asset_commands_registered: assetCommandsRegistered,
       fixed_commands_registered: fixedCommandsRegistered,
@@ -354,7 +369,7 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
     client_id: clientId,
   };
   const runWithSlashRegistrationHeartbeat = async <T>(
-    stage: "put" | "get",
+    stage: SlashRegistrationStage,
     timeoutMs: number,
     callback: (signal: AbortSignal) => Promise<T>,
   ) => {
@@ -392,6 +407,140 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
     }
   };
 
+  const deploySlashCommandsIncrementally = async () => {
+    logger.log(
+      "warn",
+      {
+        ...slashRegistrationLogBase,
+        fallback_max_attempts: slashCommandFallbackMaxAttempts,
+        fallback_initial_retry_ms: slashCommandFallbackInitialRetryMs,
+        fallback_max_retry_ms: slashCommandFallbackMaxRetryMs,
+        message: "Falling back to incremental slash command deployment.",
+      },
+    );
+
+    const existingRegistrationResponse = await runWithSlashRegistrationHeartbeat(
+      "get",
+      slashCommandRestTimeoutMs,
+      async signal => rest.get(Routes.applicationGuildCommands(clientId, guildId), {signal}),
+    );
+    if (false === Array.isArray(existingRegistrationResponse)) {
+      throw new SlashRegistrationMismatchError("Incremental slash command deployment requires array response from Discord.");
+    }
+
+    const existingCommandsByName = new Map<string, {id: string;}>();
+    for (const command of existingRegistrationResponse) {
+      if ("object" !== typeof command || null === command) {
+        continue;
+      }
+
+      const name = (command as any).name;
+      const id = (command as any).id;
+      if ("string" === typeof name && "" !== name && "string" === typeof id && "" !== id) {
+        existingCommandsByName.set(name, {id});
+      }
+    }
+
+    const runWithFallbackRetry = async (
+      operation: "upsert" | "delete",
+      commandName: string,
+      callback: () => Promise<void>,
+    ) => {
+      for (let attempt = 1; attempt <= slashCommandFallbackMaxAttempts; attempt++) {
+        try {
+          await callback();
+          return;
+        } catch (error) {
+          if (attempt === slashCommandFallbackMaxAttempts) {
+            throw error;
+          }
+
+          const retryInMs = Math.min(
+            slashCommandFallbackInitialRetryMs * (2 ** (attempt - 1)),
+            slashCommandFallbackMaxRetryMs,
+          );
+          logger.log(
+            "warn",
+            {
+              ...slashRegistrationLogBase,
+              operation,
+              command_name: commandName,
+              attempt,
+              max_attempts: slashCommandFallbackMaxAttempts,
+              retry_in_ms: retryInMs,
+              ...toSlashRegistrationErrorDetails(error),
+              message: "Incremental slash deployment operation failed. Retrying.",
+            },
+          );
+          await waitForMs(retryInMs);
+        }
+      }
+    };
+
+    for (const slashCommandPayload of slashCommands) {
+      const commandName = "string" === typeof (slashCommandPayload as any)?.name ? (slashCommandPayload as any).name : "";
+      if ("" === commandName) {
+        continue;
+      }
+
+      const existingCommand = existingCommandsByName.get(commandName);
+      await runWithFallbackRetry("upsert", commandName, async () => {
+        if (existingCommand) {
+          await runWithSlashRegistrationHeartbeat("upsert", slashCommandRestTimeoutMs, async signal => {
+            await rest.patch(
+              Routes.applicationGuildCommand(clientId, guildId, existingCommand.id),
+              {
+                body: slashCommandPayload,
+                signal,
+              },
+            );
+            return undefined;
+          });
+          return;
+        }
+
+        await runWithSlashRegistrationHeartbeat("upsert", slashCommandRestTimeoutMs, async signal => {
+          await rest.post(
+            Routes.applicationGuildCommands(clientId, guildId),
+            {
+              body: slashCommandPayload,
+              signal,
+            },
+          );
+          return undefined;
+        });
+      });
+
+      await waitForMs(slashCommandFallbackOperationDelayMs);
+    }
+
+    const expectedCommandNameSet = new Set(expectedCommandNames);
+    for (const [commandName, existingCommand] of existingCommandsByName.entries()) {
+      if (true === expectedCommandNameSet.has(commandName)) {
+        continue;
+      }
+
+      await runWithFallbackRetry("delete", commandName, async () => {
+        await runWithSlashRegistrationHeartbeat("delete", slashCommandRestTimeoutMs, async signal => {
+          await rest.delete(
+            Routes.applicationGuildCommand(clientId, guildId, existingCommand.id),
+            {signal},
+          );
+          return undefined;
+        });
+      });
+      await waitForMs(slashCommandFallbackOperationDelayMs);
+    }
+
+    logger.log(
+      "warn",
+      {
+        ...slashRegistrationLogBase,
+        message: "Incremental slash command deployment finished.",
+      },
+    );
+  };
+
   try {
     logger.log(
       "warn",
@@ -414,15 +563,33 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
         message: "slash-registration:put-sent",
       },
     );
-    await runWithSlashRegistrationHeartbeat("put", slashCommandRestTimeoutMs, async signal => {
-      return await rest.put(
-        Routes.applicationGuildCommands(clientId, guildId),
+    try {
+      await runWithSlashRegistrationHeartbeat("put", slashCommandRestTimeoutMs, async signal => {
+        return await rest.put(
+          Routes.applicationGuildCommands(clientId, guildId),
+          {
+            body: slashCommands,
+            signal,
+          },
+        );
+      });
+    } catch (error: unknown) {
+      const didBulkTimeout = error instanceof SlashRegistrationTimeoutError
+        || (error instanceof Error && "SlashRegistrationTimeoutError" === error.name);
+      if (false === didBulkTimeout) {
+        throw error;
+      }
+
+      logger.log(
+        "warn",
         {
-          body: slashCommands,
-          signal,
+          ...slashRegistrationLogBase,
+          ...toSlashRegistrationErrorDetails(error),
+          message: "Bulk slash command deployment timed out. Switching to incremental deployment.",
         },
       );
-    });
+      await deploySlashCommandsIncrementally();
+    }
     logger.log(
       "warn",
       {
