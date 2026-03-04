@@ -30,6 +30,7 @@ const noQuoteMessage = "Keine passenden Zitate gefunden.";
 const islandboiCooldownMs = 60_000;
 const islandboiCooldownByUser = new Map<string, number>();
 const islandboiUnmuteTimers = new Map<string, ReturnType<typeof setTimeout>>();
+const slashCommandRestTimeoutMs = 120_000;
 
 function toSlashCommandName(trigger: string): string {
   return trigger
@@ -251,6 +252,7 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
       source: "slash-registration",
       guild_id: guildId,
       client_id: clientId,
+      request_timeout_ms: slashCommandRestTimeoutMs,
       asset_triggers_total: assetTriggersTotal,
       asset_commands_registered: assetCommandsRegistered,
       fixed_commands_registered: fixedCommandsRegistered,
@@ -280,6 +282,7 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
   // Deploy slash-commands to Discord
   const rest = new REST({
     version: "10",
+    timeout: slashCommandRestTimeoutMs,
   }).setToken(token);
 
   try {

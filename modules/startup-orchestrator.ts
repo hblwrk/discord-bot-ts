@@ -44,7 +44,6 @@ type StartupDependencies = {
   warmupInitialRetryDelayMs: number;
   warmupMaxRetryDelayMs: number;
   slashCommandDebounceMs: number;
-  slashCommandDeployTimeoutMs: number;
   assetRecoveryRetryMs: number;
   assetRecoveryMaxRetryMs: number;
 };
@@ -71,7 +70,6 @@ const defaultWarmupMaxAttempts = 4;
 const defaultWarmupInitialRetryDelayMs = 500;
 const defaultWarmupMaxRetryDelayMs = 15_000;
 const defaultSlashCommandDebounceMs = 250;
-const defaultSlashCommandDeployTimeoutMs = 20_000;
 const defaultAssetRecoveryRetryMs = 60_000;
 const defaultAssetRecoveryMaxRetryMs = 30 * 60_000;
 
@@ -139,7 +137,6 @@ function createDependencies(options: StartupOptions): StartupDependencies {
     warmupInitialRetryDelayMs: options.warmupInitialRetryDelayMs ?? defaultWarmupInitialRetryDelayMs,
     warmupMaxRetryDelayMs: options.warmupMaxRetryDelayMs ?? defaultWarmupMaxRetryDelayMs,
     slashCommandDebounceMs: options.slashCommandDebounceMs ?? defaultSlashCommandDebounceMs,
-    slashCommandDeployTimeoutMs: options.slashCommandDeployTimeoutMs ?? defaultSlashCommandDeployTimeoutMs,
     assetRecoveryRetryMs: options.assetRecoveryRetryMs ?? defaultAssetRecoveryRetryMs,
     assetRecoveryMaxRetryMs: options.assetRecoveryMaxRetryMs ?? defaultAssetRecoveryMaxRetryMs,
   };
@@ -148,39 +145,6 @@ function createDependencies(options: StartupOptions): StartupDependencies {
 function waitWithTimer(delayMs: number, setTimeoutFn: typeof setTimeout): Promise<void> {
   return new Promise(resolve => {
     setTimeoutFn(resolve, delayMs);
-  });
-}
-
-function withTimeout<T>(
-  callback: () => Promise<T>,
-  timeoutMs: number,
-  setTimeoutFn: typeof setTimeout,
-  clearTimeoutFn: typeof clearTimeout,
-  label: string,
-): Promise<T> {
-  return new Promise((resolve, reject) => {
-    let settled = false;
-    const timeoutHandle = setTimeoutFn(() => {
-      if (false === settled) {
-        settled = true;
-        reject(new Error(`${label} timed out after ${timeoutMs}ms.`));
-      }
-    }, timeoutMs);
-    (timeoutHandle as any).unref?.();
-
-    callback().then(result => {
-      if (false === settled) {
-        settled = true;
-        clearTimeoutFn(timeoutHandle);
-        resolve(result);
-      }
-    }).catch(error => {
-      if (false === settled) {
-        settled = true;
-        clearTimeoutFn(timeoutHandle);
-        reject(error);
-      }
-    });
   });
 }
 
@@ -377,13 +341,7 @@ async function warmRemoteData({
         message,
       },
     );
-    await withTimeout(
-      async () => dependencies.defineSlashCommands(sharedData.assets, sharedData.whatIsAssets, sharedData.userAssets),
-      dependencies.slashCommandDeployTimeoutMs,
-      dependencies.setTimeoutFn,
-      dependencies.clearTimeoutFn,
-      "Slash command deployment",
-    );
+    await dependencies.defineSlashCommands(sharedData.assets, sharedData.whatIsAssets, sharedData.userAssets);
   };
 
   const registerSlashCommandsForReadiness = async (message: string) => {
