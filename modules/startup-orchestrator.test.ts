@@ -366,6 +366,13 @@ describe("startBot", () => {
     await sleep(30);
 
     expect(mocks.defineSlashCommands).not.toHaveBeenCalled();
+    expect(mocks.logger.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        task: "slash-commands",
+        message: "Deferring slash command registration until generic assets are loaded.",
+      }),
+    );
 
     genericDeferred.resolve([]);
     await sleep(30);
@@ -395,4 +402,5 @@ describe("startBot", () => {
       }),
     );
   });
+
 });

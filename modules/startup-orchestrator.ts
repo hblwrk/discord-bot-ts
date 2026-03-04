@@ -320,6 +320,8 @@ async function warmRemoteData({
   let otherTimersStarted = false;
   let genericAssetsLoaded = false;
   let tickersLoaded = false;
+  let slashRegistrationAttempts = 0;
+  let slashRegistrationDeferredLogged = false;
   let failedGenericAssetDownloads = 0;
   let failedWhatisAssetDownloads = 0;
   let assetRecoveryAttempt = 0;
@@ -328,8 +330,23 @@ async function warmRemoteData({
 
   const scheduleSlashCommands = () => {
     if (false === genericAssetsLoaded) {
+      if (false === slashRegistrationDeferredLogged) {
+        logger.log(
+          "warn",
+          {
+            startup_phase: "phase-b",
+            task: "slash-commands",
+            degraded: true,
+            message: "Deferring slash command registration until generic assets are loaded.",
+          },
+        );
+        slashRegistrationDeferredLogged = true;
+      }
+
       return;
     }
+
+    slashRegistrationDeferredLogged = false;
 
     if ("undefined" !== typeof slashCommandDebounceHandle) {
       dependencies.clearTimeoutFn(slashCommandDebounceHandle);
@@ -338,6 +355,19 @@ async function warmRemoteData({
     slashCommandDebounceHandle = dependencies.setTimeoutFn(() => {
       slashCommandDebounceHandle = undefined;
       try {
+        slashRegistrationAttempts += 1;
+        logger.log(
+          "warn",
+          {
+            startup_phase: "phase-b",
+            task: "slash-commands",
+            attempt: slashRegistrationAttempts,
+            asset_count: sharedData.assets.length,
+            whatis_asset_count: sharedData.whatIsAssets.length,
+            user_asset_count: sharedData.userAssets.length,
+            message: "Registering slash commands.",
+          },
+        );
         dependencies.defineSlashCommands(sharedData.assets, sharedData.whatIsAssets, sharedData.userAssets);
       } catch (error) {
         startupState.setLastError(error);
@@ -496,6 +526,8 @@ async function warmRemoteData({
       trackAssetDownloadFailures("generic-assets", genericAssets);
       trackAssetDownloadFailures("whatis-assets", whatIsAssets);
       rebuildAssetCommands(sharedData);
+      genericAssetsLoaded = true;
+      tryStartOtherTimers();
       scheduleSlashCommands();
 
       const failedAssetDownloads = getFailedAssetDownloads();
@@ -625,6 +657,19 @@ async function warmRemoteData({
 
     if (genericAssetsLoaded) {
       try {
+        slashRegistrationAttempts += 1;
+        logger.log(
+          "warn",
+          {
+            startup_phase: "phase-b",
+            task: "slash-commands",
+            attempt: slashRegistrationAttempts,
+            asset_count: sharedData.assets.length,
+            whatis_asset_count: sharedData.whatIsAssets.length,
+            user_asset_count: sharedData.userAssets.length,
+            message: "Registering slash commands after warmup completion.",
+          },
+        );
         dependencies.defineSlashCommands(sharedData.assets, sharedData.whatIsAssets, sharedData.userAssets);
       } catch (error) {
         startupState.setLastError(error);
