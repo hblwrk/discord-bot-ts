@@ -1,4 +1,4 @@
-const mockPut = jest.fn().mockResolvedValue(undefined);
+const mockPut = jest.fn();
 const mockSetToken = jest.fn().mockReturnValue({put: mockPut});
 const mockRest = jest.fn().mockImplementation(() => ({setToken: mockSetToken}));
 const mockApplicationGuildCommands = jest.fn(() => "/applications/test/commands");
@@ -52,6 +52,7 @@ describe("defineSlashCommands", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockedReadSecret.mockClear();
+    mockPut.mockImplementation(async (_route, options) => options?.body ?? []);
   });
 
   test("registers slash commands with v10 REST route and v14 choice structures", async () => {
@@ -101,11 +102,34 @@ describe("defineSlashCommands", () => {
         source: "slash-registration",
         guild_id: "guild-id",
         client_id: "client-id",
+        registration_rejected: true,
         error_message: "discord api unavailable",
-        message: "Failed to register slash commands with Discord.",
+        message: "Slash command registration was rejected by Discord.",
       }),
     );
     expect(loggerMock.log).toHaveBeenCalledWith("error", expectedError);
+  });
+
+  test("logs warning when Discord returns truncated slash registration payload", async () => {
+    const asset = new TextAsset();
+    asset.title = "Title";
+    (asset as any).trigger = ["hello"];
+    asset.response = "ok";
+    mockPut.mockImplementationOnce(async (_route, options) => {
+      return options?.body?.slice(0, 3) ?? [];
+    });
+
+    await defineSlashCommands([asset], [], []);
+
+    const mismatchLogCall = loggerMock.log.mock.calls.find(([level, payload]) => {
+      return "warn" === level && payload?.message === "Slash command registration response does not match requested payload.";
+    });
+    expect(mismatchLogCall).toBeDefined();
+    expect((mismatchLogCall as any)[1]).toEqual(expect.objectContaining({
+      source: "slash-registration",
+      truncated: true,
+    }));
+    expect((mismatchLogCall as any)[1].missing_command_count).toBeGreaterThan(0);
   });
 
   test("normalizes trigger names and skips invalid or duplicate slash command names", async () => {

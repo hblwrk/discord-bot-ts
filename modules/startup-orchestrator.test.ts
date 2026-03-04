@@ -332,7 +332,7 @@ describe("startBot", () => {
     expect(mocks.roleManager).toHaveBeenCalledTimes(1);
   });
 
-  test("re-registers slash commands as warmup data arrives", async () => {
+  test("registers slash commands once after warmup data is available", async () => {
     const getAssetsMock = jest.fn(async (type: string) => {
       if ("whatis" === type) {
         await sleep(20);
@@ -352,7 +352,7 @@ describe("startBot", () => {
     await startBot(dependencies);
     await sleep(90);
 
-    expect(mocks.defineSlashCommands.mock.calls.length).toBeGreaterThanOrEqual(2);
+    expect(mocks.defineSlashCommands.mock.calls.length).toBe(1);
   });
 
   test("does not register slash commands before generic assets are available", async () => {
@@ -366,16 +366,9 @@ describe("startBot", () => {
     await sleep(30);
 
     expect(mocks.defineSlashCommands).not.toHaveBeenCalled();
-    expect(mocks.logger.log).toHaveBeenCalledWith(
-      "warn",
-      expect.objectContaining({
-        task: "slash-commands",
-        message: "Deferring slash command registration until generic assets are loaded.",
-      }),
-    );
 
     genericDeferred.resolve([]);
-    await sleep(30);
+    await waitFor(() => mocks.defineSlashCommands.mock.calls.length > 0);
 
     expect(mocks.defineSlashCommands).toHaveBeenCalled();
   });

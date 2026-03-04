@@ -44,6 +44,7 @@ type StartupDependencies = {
   warmupInitialRetryDelayMs: number;
   warmupMaxRetryDelayMs: number;
   slashCommandDebounceMs: number;
+  slashCommandDeployTimeoutMs: number;
   assetRecoveryRetryMs: number;
   assetRecoveryMaxRetryMs: number;
 };
@@ -70,6 +71,7 @@ const defaultWarmupMaxAttempts = 4;
 const defaultWarmupInitialRetryDelayMs = 500;
 const defaultWarmupMaxRetryDelayMs = 15_000;
 const defaultSlashCommandDebounceMs = 250;
+const defaultSlashCommandDeployTimeoutMs = 20_000;
 const defaultAssetRecoveryRetryMs = 60_000;
 const defaultAssetRecoveryMaxRetryMs = 30 * 60_000;
 
@@ -137,6 +139,7 @@ function createDependencies(options: StartupOptions): StartupDependencies {
     warmupInitialRetryDelayMs: options.warmupInitialRetryDelayMs ?? defaultWarmupInitialRetryDelayMs,
     warmupMaxRetryDelayMs: options.warmupMaxRetryDelayMs ?? defaultWarmupMaxRetryDelayMs,
     slashCommandDebounceMs: options.slashCommandDebounceMs ?? defaultSlashCommandDebounceMs,
+    slashCommandDeployTimeoutMs: options.slashCommandDeployTimeoutMs ?? defaultSlashCommandDeployTimeoutMs,
     assetRecoveryRetryMs: options.assetRecoveryRetryMs ?? defaultAssetRecoveryRetryMs,
     assetRecoveryMaxRetryMs: options.assetRecoveryMaxRetryMs ?? defaultAssetRecoveryMaxRetryMs,
   };
@@ -145,6 +148,39 @@ function createDependencies(options: StartupOptions): StartupDependencies {
 function waitWithTimer(delayMs: number, setTimeoutFn: typeof setTimeout): Promise<void> {
   return new Promise(resolve => {
     setTimeoutFn(resolve, delayMs);
+  });
+}
+
+function withTimeout<T>(
+  callback: () => Promise<T>,
+  timeoutMs: number,
+  setTimeoutFn: typeof setTimeout,
+  clearTimeoutFn: typeof clearTimeout,
+  label: string,
+): Promise<T> {
+  return new Promise((resolve, reject) => {
+    let settled = false;
+    const timeoutHandle = setTimeoutFn(() => {
+      if (false === settled) {
+        settled = true;
+        reject(new Error(`${label} timed out after ${timeoutMs}ms.`));
+      }
+    }, timeoutMs);
+    (timeoutHandle as any).unref?.();
+
+    callback().then(result => {
+      if (false === settled) {
+        settled = true;
+        clearTimeoutFn(timeoutHandle);
+        resolve(result);
+      }
+    }).catch(error => {
+      if (false === settled) {
+        settled = true;
+        clearTimeoutFn(timeoutHandle);
+        reject(error);
+      }
+    });
   });
 }
 
@@ -314,7 +350,6 @@ async function warmRemoteData({
   const phaseBFinished = startupState.startPhase("phase-b");
   startupState.setRemoteWarmupStatus("warming");
 
-  let slashCommandDebounceHandle: ReturnType<typeof setTimeout> | undefined;
   let assetRecoveryRetryHandle: ReturnType<typeof setTimeout> | undefined;
   let assetRecoveryInProgress = false;
   let otherTimersStarted = false;
@@ -322,7 +357,6 @@ async function warmRemoteData({
   let tickersLoaded = false;
   let slashCommandsReady = false;
   let slashRegistrationAttempts = 0;
-  let slashRegistrationDeferredLogged = false;
   let failedGenericAssetDownloads = 0;
   let failedWhatisAssetDownloads = 0;
   let assetRecoveryAttempt = 0;
@@ -343,7 +377,13 @@ async function warmRemoteData({
         message,
       },
     );
-    await dependencies.defineSlashCommands(sharedData.assets, sharedData.whatIsAssets, sharedData.userAssets);
+    await withTimeout(
+      async () => dependencies.defineSlashCommands(sharedData.assets, sharedData.whatIsAssets, sharedData.userAssets),
+      dependencies.slashCommandDeployTimeoutMs,
+      dependencies.setTimeoutFn,
+      dependencies.clearTimeoutFn,
+      "Slash command deployment",
+    );
   };
 
   const registerSlashCommandsForReadiness = async (message: string) => {
@@ -351,47 +391,6 @@ async function warmRemoteData({
       await registerSlashCommandsOnce(message);
     });
     slashCommandsReady = true;
-  };
-
-  const scheduleSlashCommands = () => {
-    if (false === genericAssetsLoaded) {
-      if (false === slashRegistrationDeferredLogged) {
-        logger.log(
-          "warn",
-          {
-            startup_phase: "phase-b",
-            task: "slash-commands",
-            degraded: true,
-            message: "Deferring slash command registration until generic assets are loaded.",
-          },
-        );
-        slashRegistrationDeferredLogged = true;
-      }
-
-      return;
-    }
-
-    slashRegistrationDeferredLogged = false;
-
-    if ("undefined" !== typeof slashCommandDebounceHandle) {
-      dependencies.clearTimeoutFn(slashCommandDebounceHandle);
-    }
-
-    slashCommandDebounceHandle = dependencies.setTimeoutFn(() => {
-      slashCommandDebounceHandle = undefined;
-      void registerSlashCommandsOnce("Registering slash commands.").catch(error => {
-        startupState.setLastError(error);
-        logger.log(
-          "error",
-          {
-            startup_phase: "phase-b",
-            task: "slash-commands",
-            message: `Failed to define slash commands: ${error}`,
-          },
-        );
-      });
-    }, dependencies.slashCommandDebounceMs);
-    (slashCommandDebounceHandle as any).unref?.();
   };
 
   const tryStartOtherTimers = () => {
@@ -539,7 +538,6 @@ async function warmRemoteData({
         rebuildAssetCommands(sharedData);
         genericAssetsLoaded = true;
         tryStartOtherTimers();
-        scheduleSlashCommands();
       }
 
       if (genericAssetsLoaded) {
@@ -617,7 +615,6 @@ async function warmRemoteData({
       rebuildAssetCommands(sharedData);
       genericAssetsLoaded = true;
       tryStartOtherTimers();
-      scheduleSlashCommands();
       logger.log(
         "info",
         `Loaded and cached ${sharedData.assets.length} generic assets.`,
@@ -639,7 +636,6 @@ async function warmRemoteData({
       const whatIsAssets = await runWarmupTaskWithRetry("whatis-assets", async () => dependencies.getAssets("whatis"));
       replaceArray(sharedData.whatIsAssets, whatIsAssets);
       trackAssetDownloadFailures("whatis-assets", whatIsAssets);
-      scheduleSlashCommands();
       logger.log(
         "info",
         `Loaded and cached ${sharedData.whatIsAssets.length} whatis assets.`,
@@ -649,7 +645,6 @@ async function warmRemoteData({
     warmupTasks.push((async () => {
       const userAssets = await runWarmupTaskWithRetry("user-assets", async () => dependencies.getAssets("user"));
       replaceArray(sharedData.userAssets, userAssets);
-      scheduleSlashCommands();
       logger.log(
         "info",
         `Loaded and cached ${sharedData.userAssets.length} user assets.`,

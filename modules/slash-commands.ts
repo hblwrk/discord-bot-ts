@@ -57,6 +57,32 @@ function toSlashRegistrationErrorDetails(error: unknown) {
   };
 }
 
+function getSlashCommandNamesFromPayload(slashCommands: any[]): string[] {
+  const names: string[] = [];
+  for (const slashCommand of slashCommands) {
+    if ("string" === typeof slashCommand?.name && "" !== slashCommand.name) {
+      names.push(slashCommand.name);
+    }
+  }
+
+  return names;
+}
+
+function getSlashCommandNamesFromRegistrationResponse(registrationResponse: unknown): string[] {
+  if (false === Array.isArray(registrationResponse)) {
+    return [];
+  }
+
+  const names: string[] = [];
+  for (const command of registrationResponse) {
+    if ("object" === typeof command && null !== command && "string" === typeof (command as any).name && "" !== (command as any).name) {
+      names.push((command as any).name);
+    }
+  }
+
+  return names;
+}
+
 export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
   const token = readSecret("discord_token").trim();
   const clientId = readSecret("discord_client_ID").trim();
@@ -219,6 +245,19 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .setRequired(false));
   slashCommands.push(slashCommandCalendar.toJSON());
   const fixedCommandsRegistered = slashCommands.length - assetCommandsRegistered;
+  logger.log(
+    "warn",
+    {
+      source: "slash-registration",
+      guild_id: guildId,
+      client_id: clientId,
+      asset_triggers_total: assetTriggersTotal,
+      asset_commands_registered: assetCommandsRegistered,
+      fixed_commands_registered: fixedCommandsRegistered,
+      total_commands_registered: slashCommands.length,
+      message: "Deploying slash command payload to Discord.",
+    },
+  );
 
   if (0 < skippedEmptyTriggers || 0 < skippedDuplicateNames) {
     logger.log(
@@ -244,12 +283,51 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
   }).setToken(token);
 
   try {
-    await rest.put(
+    const registrationResponse = await rest.put(
       Routes.applicationGuildCommands(clientId, guildId),
       {
         body: slashCommands,
       },
     );
+
+    const expectedCommandNames = getSlashCommandNamesFromPayload(slashCommands);
+    const returnedCommandNames = getSlashCommandNamesFromRegistrationResponse(registrationResponse);
+    if (Array.isArray(registrationResponse)) {
+      const expectedCommandNameSet = new Set(expectedCommandNames);
+      const returnedCommandNameSet = new Set(returnedCommandNames);
+      const missingCommandNames = expectedCommandNames.filter(commandName => false === returnedCommandNameSet.has(commandName));
+      const unexpectedCommandNames = returnedCommandNames.filter(commandName => false === expectedCommandNameSet.has(commandName));
+      if (0 < missingCommandNames.length || 0 < unexpectedCommandNames.length) {
+        logger.log(
+          "warn",
+          {
+            source: "slash-registration",
+            guild_id: guildId,
+            client_id: clientId,
+            expected_command_count: expectedCommandNames.length,
+            returned_command_count: returnedCommandNames.length,
+            missing_command_count: missingCommandNames.length,
+            unexpected_command_count: unexpectedCommandNames.length,
+            missing_commands: missingCommandNames.slice(0, 20),
+            unexpected_commands: unexpectedCommandNames.slice(0, 20),
+            truncated: returnedCommandNames.length < expectedCommandNames.length,
+            message: "Slash command registration response does not match requested payload.",
+          },
+        );
+      }
+    } else {
+      logger.log(
+        "warn",
+        {
+          source: "slash-registration",
+          guild_id: guildId,
+          client_id: clientId,
+          expected_command_count: expectedCommandNames.length,
+          message: "Slash command registration returned unexpected response shape.",
+        },
+      );
+    }
+
     logger.log(
       "info",
       `Successfully registered ${slashCommands.length} slash commands.`,
@@ -262,8 +340,9 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
         guild_id: guildId,
         client_id: clientId,
         total_commands_registered: slashCommands.length,
+        registration_rejected: true,
         ...toSlashRegistrationErrorDetails(error),
-        message: "Failed to register slash commands with Discord.",
+        message: "Slash command registration was rejected by Discord.",
       },
     );
     logger.log(
