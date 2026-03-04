@@ -79,6 +79,8 @@ type ErrorLogDetails = {
   error_stack?: string;
 };
 
+type SlashCommandFailureReason = "timeout" | "rejected" | "mismatch" | "target_mismatch";
+
 function createDiscordClient(): Client {
   return new Client({
     intents: [
@@ -162,6 +164,24 @@ function toErrorLogDetails(error: unknown): ErrorLogDetails {
   };
 }
 
+function categorizeSlashCommandFailureReason(error: unknown): SlashCommandFailureReason {
+  if (error instanceof Error) {
+    if ("SlashRegistrationTargetMismatchError" === error.name) {
+      return "target_mismatch";
+    }
+
+    if ("SlashRegistrationMismatchError" === error.name) {
+      return "mismatch";
+    }
+
+    if (/timed out|timeout/i.test(error.message)) {
+      return "timeout";
+    }
+  }
+
+  return "rejected";
+}
+
 async function waitForDiscordReady(
   client: Client,
   token: string,
@@ -228,6 +248,8 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
   const channelOtherId = dependencies.readSecret("hblwrk_channel_OtherAnnouncement_ID");
   const channelClownboardId = dependencies.readSecret("hblwrk_channel_clownboard_ID");
   const token = dependencies.readSecret("discord_token");
+  const configuredDiscordClientId = dependencies.readSecret("discord_client_ID").trim();
+  const configuredDiscordGuildId = dependencies.readSecret("discord_guild_ID").trim();
 
   const phaseAFinished = startupState.startPhase("phase-a");
   try {
@@ -253,6 +275,16 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
         message: "Core handlers attached.",
       },
     );
+    logger.log(
+      "info",
+      {
+        startup_phase: "phase-a",
+        task: "slash-commands",
+        discord_client_id: configuredDiscordClientId,
+        discord_guild_id: configuredDiscordGuildId,
+        message: "Slash command registration target configured.",
+      },
+    );
 
     await waitForDiscordReady(
       client,
@@ -261,6 +293,26 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
       dependencies.setTimeoutFn,
       dependencies.clearTimeoutFn,
     );
+    const loggedInDiscordClientId = client.user?.id?.trim?.() ?? client.user?.id ?? "";
+    if (configuredDiscordClientId !== loggedInDiscordClientId) {
+      const targetMismatchError = new Error(
+        `Slash registration target mismatch: configured client ID "${configuredDiscordClientId}" does not match logged-in client ID "${loggedInDiscordClientId}".`,
+      );
+      targetMismatchError.name = "SlashRegistrationTargetMismatchError";
+      logger.log(
+        "error",
+        {
+          startup_phase: "phase-a",
+          task: "slash-commands",
+          failure_reason: "target_mismatch",
+          configured_discord_client_id: configuredDiscordClientId,
+          logged_in_discord_client_id: loggedInDiscordClientId,
+          message: "Slash command registration target mismatch detected. Aborting startup.",
+        },
+      );
+      throw targetMismatchError;
+    }
+
     startupState.markDiscordLoggedIn();
     phaseAFinished();
     logger.log(
@@ -385,6 +437,22 @@ async function warmRemoteData({
         lastError = error;
         startupState.setLastError(error);
         const errorDetails = toErrorLogDetails(error);
+        if ("slash-commands" === task) {
+          const failureReason = categorizeSlashCommandFailureReason(error);
+          logger.log(
+            "warn",
+            {
+              startup_phase: "phase-b",
+              task,
+              failure_reason: failureReason,
+              attempt,
+              max_attempts: dependencies.warmupMaxAttempts,
+              ...errorDetails,
+              message: "Slash command task attempt failed.",
+            },
+          );
+        }
+
         if (attempt === dependencies.warmupMaxAttempts) {
           logger.log(
             "error",
@@ -423,6 +491,17 @@ async function warmRemoteData({
     }
 
     startupState.markWarmupTask(task, "failed");
+    if ("slash-commands" === task) {
+      logger.log(
+        "warn",
+        {
+          startup_phase: "phase-b",
+          task,
+          failure_reason: categorizeSlashCommandFailureReason(lastError),
+          message: "Slash command task marked as failed.",
+        },
+      );
+    }
     throw lastError;
   };
 

@@ -31,6 +31,23 @@ const islandboiCooldownMs = 60_000;
 const islandboiCooldownByUser = new Map<string, number>();
 const islandboiUnmuteTimers = new Map<string, ReturnType<typeof setTimeout>>();
 const slashCommandRestTimeoutMs = 120_000;
+const slashCommandHeartbeatMs = 15_000;
+const slashCommandNameLogLimit = 20;
+
+class SlashRegistrationMismatchError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "SlashRegistrationMismatchError";
+  }
+}
+
+type SlashRegistrationDiff = {
+  expectedCommandNames: string[];
+  returnedCommandNames: string[];
+  missingCommandNames: string[];
+  unexpectedCommandNames: string[];
+  truncated: boolean;
+};
 
 function toSlashCommandName(trigger: string): string {
   return trigger
@@ -84,6 +101,25 @@ function getSlashCommandNamesFromRegistrationResponse(registrationResponse: unkn
   return names;
 }
 
+function computeSlashRegistrationDiff(expectedCommandNames: string[], returnedCommandNames: string[]): SlashRegistrationDiff {
+  const expectedCommandNameSet = new Set(expectedCommandNames);
+  const returnedCommandNameSet = new Set(returnedCommandNames);
+  const missingCommandNames = expectedCommandNames.filter(commandName => false === returnedCommandNameSet.has(commandName));
+  const unexpectedCommandNames = returnedCommandNames.filter(commandName => false === expectedCommandNameSet.has(commandName));
+
+  return {
+    expectedCommandNames,
+    returnedCommandNames,
+    missingCommandNames,
+    unexpectedCommandNames,
+    truncated: returnedCommandNames.length < expectedCommandNames.length,
+  };
+}
+
+function hasSlashRegistrationMismatch(diff: SlashRegistrationDiff): boolean {
+  return 0 < diff.missingCommandNames.length || 0 < diff.unexpectedCommandNames.length;
+}
+
 export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
   const token = readSecret("discord_token").trim();
   const clientId = readSecret("discord_client_ID").trim();
@@ -100,9 +136,13 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
 
   const slashCommands = [];
   const seenCommandNames = new Set<string>();
+  const dracoonAssetCommandNames = new Set<string>();
   let assetTriggersTotal = 0;
   let skippedEmptyTriggers = 0;
   let skippedDuplicateNames = 0;
+  let imageDracoonAssetCommandsRegistered = 0;
+  let imageNonDracoonAssetCommandsRegistered = 0;
+  let textAssetCommandsRegistered = 0;
   for (const asset of assets) {
     if ((asset instanceof ImageAsset || asset instanceof TextAsset) && 0 <= asset.trigger.length) {
       for (const trigger of asset.trigger) {
@@ -131,6 +171,17 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
           .setName(slashCommandName)
           .setDescription(asset.title);
         slashCommands.push(slashCommand.toJSON());
+
+        if (asset instanceof ImageAsset) {
+          if ("dracoon" === asset.location) {
+            imageDracoonAssetCommandsRegistered += 1;
+            dracoonAssetCommandNames.add(slashCommandName);
+          } else {
+            imageNonDracoonAssetCommandsRegistered += 1;
+          }
+        } else if (asset instanceof TextAsset) {
+          textAssetCommandsRegistered += 1;
+        }
       }
     }
   }
@@ -285,63 +336,135 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
     timeout: slashCommandRestTimeoutMs,
   }).setToken(token);
 
-  try {
-    const registrationResponse = await rest.put(
-      Routes.applicationGuildCommands(clientId, guildId),
-      {
-        body: slashCommands,
-      },
-    );
-
-    const expectedCommandNames = getSlashCommandNamesFromPayload(slashCommands);
-    const returnedCommandNames = getSlashCommandNamesFromRegistrationResponse(registrationResponse);
-    if (Array.isArray(registrationResponse)) {
-      const expectedCommandNameSet = new Set(expectedCommandNames);
-      const returnedCommandNameSet = new Set(returnedCommandNames);
-      const missingCommandNames = expectedCommandNames.filter(commandName => false === returnedCommandNameSet.has(commandName));
-      const unexpectedCommandNames = returnedCommandNames.filter(commandName => false === expectedCommandNameSet.has(commandName));
-      if (0 < missingCommandNames.length || 0 < unexpectedCommandNames.length) {
-        logger.log(
-          "warn",
-          {
-            source: "slash-registration",
-            guild_id: guildId,
-            client_id: clientId,
-            expected_command_count: expectedCommandNames.length,
-            returned_command_count: returnedCommandNames.length,
-            missing_command_count: missingCommandNames.length,
-            unexpected_command_count: unexpectedCommandNames.length,
-            missing_commands: missingCommandNames.slice(0, 20),
-            unexpected_commands: unexpectedCommandNames.slice(0, 20),
-            truncated: returnedCommandNames.length < expectedCommandNames.length,
-            message: "Slash command registration response does not match requested payload.",
-          },
-        );
-      }
-    } else {
+  const expectedCommandNames = getSlashCommandNamesFromPayload(slashCommands);
+  const slashRegistrationStartedAt = Date.now();
+  const slashRegistrationLogBase = {
+    source: "slash-registration",
+    guild_id: guildId,
+    client_id: clientId,
+  };
+  const runWithSlashRegistrationHeartbeat = async <T>(stage: "put" | "get", callback: () => Promise<T>) => {
+    const stageStartedAt = Date.now();
+    const heartbeatHandle = setInterval(() => {
       logger.log(
         "warn",
         {
-          source: "slash-registration",
-          guild_id: guildId,
-          client_id: clientId,
+          ...slashRegistrationLogBase,
+          stage,
+          elapsed_ms: Date.now() - stageStartedAt,
+          message: "slash-registration:in-flight",
+        },
+      );
+    }, slashCommandHeartbeatMs);
+    (heartbeatHandle as any).unref?.();
+
+    try {
+      return await callback();
+    } finally {
+      clearInterval(heartbeatHandle);
+    }
+  };
+
+  try {
+    logger.log(
+      "warn",
+      {
+        ...slashRegistrationLogBase,
+        expected_command_count: expectedCommandNames.length,
+        dracoon_asset_command_count: imageDracoonAssetCommandsRegistered,
+        asset_image_dracoon: imageDracoonAssetCommandsRegistered,
+        asset_image_non_dracoon: imageNonDracoonAssetCommandsRegistered,
+        asset_text: textAssetCommandsRegistered,
+        request_timeout_ms: slashCommandRestTimeoutMs,
+        message: "slash-registration:start",
+      },
+    );
+    logger.log(
+      "warn",
+      {
+        ...slashRegistrationLogBase,
+        message: "slash-registration:put-sent",
+      },
+    );
+    await runWithSlashRegistrationHeartbeat("put", async () => {
+      return await rest.put(
+        Routes.applicationGuildCommands(clientId, guildId),
+        {
+          body: slashCommands,
+        },
+      );
+    });
+    logger.log(
+      "warn",
+      {
+        ...slashRegistrationLogBase,
+        message: "slash-registration:get-sent",
+      },
+    );
+    const persistedRegistrationResponse = await runWithSlashRegistrationHeartbeat(
+      "get",
+      async () => rest.get(Routes.applicationGuildCommands(clientId, guildId)),
+    );
+    if (false === Array.isArray(persistedRegistrationResponse)) {
+      logger.log(
+        "warn",
+        {
+          ...slashRegistrationLogBase,
           expected_command_count: expectedCommandNames.length,
+          response_type: typeof persistedRegistrationResponse,
           message: "Slash command registration returned unexpected response shape.",
         },
       );
+      throw new SlashRegistrationMismatchError("Slash command registration returned unexpected response shape.");
     }
 
+    const returnedCommandNames = getSlashCommandNamesFromRegistrationResponse(persistedRegistrationResponse);
+    const diff = computeSlashRegistrationDiff(expectedCommandNames, returnedCommandNames);
+    if (hasSlashRegistrationMismatch(diff)) {
+      const missingDracoonCommandNames = diff.missingCommandNames.filter(commandName => true === dracoonAssetCommandNames.has(commandName));
+      logger.log(
+        "warn",
+        {
+          ...slashRegistrationLogBase,
+          expected_command_count: diff.expectedCommandNames.length,
+          returned_command_count: diff.returnedCommandNames.length,
+          missing_command_count: diff.missingCommandNames.length,
+          unexpected_command_count: diff.unexpectedCommandNames.length,
+          missing_commands: diff.missingCommandNames.slice(0, slashCommandNameLogLimit),
+          unexpected_commands: diff.unexpectedCommandNames.slice(0, slashCommandNameLogLimit),
+          truncated: diff.truncated,
+          missing_dracoon_command_count: missingDracoonCommandNames.length,
+          missing_dracoon_commands: missingDracoonCommandNames.slice(0, slashCommandNameLogLimit),
+          message: "Slash command registration response does not match requested payload.",
+        },
+      );
+      throw new SlashRegistrationMismatchError("Slash command registration response does not match requested payload.");
+    }
+
+    const slashRegistrationDurationMs = Date.now() - slashRegistrationStartedAt;
+    logger.log(
+      "warn",
+      {
+        ...slashRegistrationLogBase,
+        duration_ms: slashRegistrationDurationMs,
+        expected_command_count: expectedCommandNames.length,
+        returned_command_count: returnedCommandNames.length,
+        message: "slash-registration:completed",
+      },
+    );
     logger.log(
       "info",
       `Successfully registered ${slashCommands.length} slash commands.`,
     );
   } catch (error: unknown) {
+    if (error instanceof SlashRegistrationMismatchError) {
+      throw error;
+    }
+
     logger.log(
       "warn",
       {
-        source: "slash-registration",
-        guild_id: guildId,
-        client_id: clientId,
+        ...slashRegistrationLogBase,
         total_commands_registered: slashCommands.length,
         registration_rejected: true,
         ...toSlashRegistrationErrorDetails(error),

@@ -45,9 +45,12 @@ async function waitFor(
   throw new Error(`Condition not met within ${timeoutMs}ms.`);
 }
 
-function createMockClient() {
+function createMockClient(userId = "bot-client-id") {
   const emitter = new EventEmitter();
   const client: any = {
+    user: {
+      id: userId,
+    },
     on: jest.fn((eventName: string, handler: (...args: unknown[]) => unknown) => {
       emitter.on(eventName, handler as any);
       return client;
@@ -86,6 +89,8 @@ function createDependencies(overrides = {}) {
       hblwrk_channel_MNCAnnouncement_ID: "mnc",
       hblwrk_channel_OtherAnnouncement_ID: "other",
       hblwrk_channel_clownboard_ID: "clownboard",
+      discord_client_ID: "bot-client-id",
+      discord_guild_ID: "guild-id",
     };
 
     return defaults[secretName] ?? "";
@@ -413,6 +418,46 @@ describe("startBot", () => {
       return "error" === level && "slash-commands" === payload?.task;
     });
     expect(hasSlashErrorLog).toBe(true);
+  });
+
+  test("retries slash command registration after mismatch and reaches readiness", async () => {
+    const defineSlashCommandsMock = jest.fn()
+      .mockImplementationOnce(async () => {
+        const mismatchError = new Error("Slash command registration response does not match requested payload.");
+        mismatchError.name = "SlashRegistrationMismatchError";
+        throw mismatchError;
+      })
+      .mockImplementationOnce(async () => {});
+    const {dependencies} = createDependencies({
+      defineSlashCommands: defineSlashCommandsMock,
+      warmupMaxAttempts: 2,
+      warmupInitialRetryDelayMs: 1,
+      warmupMaxRetryDelayMs: 1,
+    });
+
+    const runtime = await startBot(dependencies);
+    await waitFor(() => "warming" !== runtime.getStartupState().remoteWarmupStatus);
+
+    expect(runtime.getStartupState().ready).toBe(true);
+    expect(defineSlashCommandsMock).toHaveBeenCalledTimes(2);
+  });
+
+  test("fails startup when logged-in client ID does not match configured client ID", async () => {
+    const {client} = createMockClient("different-client-id");
+    const {dependencies, mocks} = createDependencies({
+      createClient: () => client as any,
+      warmupMaxAttempts: 1,
+    });
+
+    await expect(startBot(dependencies)).rejects.toThrow("Slash registration target mismatch");
+    expect(mocks.logger.log).toHaveBeenCalledWith(
+      "error",
+      expect.objectContaining({
+        startup_phase: "phase-a",
+        task: "slash-commands",
+        failure_reason: "target_mismatch",
+      }),
+    );
   });
 
 });

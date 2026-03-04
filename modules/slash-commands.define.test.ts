@@ -1,5 +1,6 @@
 const mockPut = jest.fn();
-const mockSetToken = jest.fn().mockReturnValue({put: mockPut});
+const mockGet = jest.fn();
+const mockSetToken = jest.fn().mockReturnValue({put: mockPut, get: mockGet});
 const mockRest = jest.fn().mockImplementation(() => ({setToken: mockSetToken}));
 const mockApplicationGuildCommands = jest.fn(() => "/applications/test/commands");
 const loggerMock = {
@@ -19,7 +20,7 @@ jest.mock("discord.js", () => {
   };
 });
 
-import {TextAsset} from "./assets.js";
+import {ImageAsset, TextAsset} from "./assets.js";
 import {defineSlashCommands} from "./slash-commands.js";
 import {readSecret} from "./secrets.js";
 
@@ -47,12 +48,21 @@ jest.mock("./logging.js", () => ({
 }));
 
 const mockedReadSecret = readSecret as jest.MockedFunction<typeof readSecret>;
+const getLastPutBody = () => {
+  const lastCallIndex = mockPut.mock.calls.length - 1;
+  if (lastCallIndex < 0) {
+    return [];
+  }
+
+  return mockPut.mock.calls[lastCallIndex]?.[1]?.body ?? [];
+};
 
 describe("defineSlashCommands", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockedReadSecret.mockClear();
     mockPut.mockImplementation(async (_route, options) => options?.body ?? []);
+    mockGet.mockImplementation(async () => getLastPutBody());
   });
 
   test("registers slash commands with v10 REST route and v14 choice structures", async () => {
@@ -71,6 +81,7 @@ describe("defineSlashCommands", () => {
     expect(mockSetToken).toHaveBeenCalledWith("test-token");
     expect(mockApplicationGuildCommands).toHaveBeenCalledWith("client-id", "guild-id");
     expect(mockPut).toHaveBeenCalledTimes(1);
+    expect(mockGet).toHaveBeenCalledTimes(1);
 
     const commandPayload = mockPut.mock.calls[0][1].body;
 
@@ -88,6 +99,22 @@ describe("defineSlashCommands", () => {
     const filterOption = earningsCommand.options.find(option => option.name === "filter");
     expect(filterOption.choices).toContainEqual({name: "Alle", value: "all"});
     expect(filterOption.choices).toContainEqual({name: "Bluechips (>= $10B)", value: "bluechips"});
+
+    const lifecycleMessages = [
+      "slash-registration:start",
+      "slash-registration:put-sent",
+      "slash-registration:get-sent",
+      "slash-registration:completed",
+    ];
+    for (const message of lifecycleMessages) {
+      expect(loggerMock.log).toHaveBeenCalledWith(
+        "warn",
+        expect.objectContaining({
+          source: "slash-registration",
+          message,
+        }),
+      );
+    }
   });
 
   test("logs registration errors when REST command deployment fails", async () => {
@@ -110,16 +137,16 @@ describe("defineSlashCommands", () => {
     expect(loggerMock.log).toHaveBeenCalledWith("error", expectedError);
   });
 
-  test("logs warning when Discord returns truncated slash registration payload", async () => {
+  test("logs warning and throws when Discord returns truncated slash registration payload", async () => {
     const asset = new TextAsset();
     asset.title = "Title";
     (asset as any).trigger = ["hello"];
     asset.response = "ok";
-    mockPut.mockImplementationOnce(async (_route, options) => {
-      return options?.body?.slice(0, 3) ?? [];
+    mockGet.mockImplementationOnce(async () => {
+      return getLastPutBody().slice(0, 3);
     });
 
-    await defineSlashCommands([asset], [], []);
+    await expect(defineSlashCommands([asset], [], [])).rejects.toThrow("does not match requested payload");
 
     const mismatchLogCall = loggerMock.log.mock.calls.find(([level, payload]) => {
       return "warn" === level && payload?.message === "Slash command registration response does not match requested payload.";
@@ -130,6 +157,43 @@ describe("defineSlashCommands", () => {
       truncated: true,
     }));
     expect((mismatchLogCall as any)[1].missing_command_count).toBeGreaterThan(0);
+  });
+
+  test("logs missing dracoon command details when dracoon-backed slash commands are missing", async () => {
+    const dracoonImageAsset = new ImageAsset();
+    dracoonImageAsset.title = "Dracoon image";
+    (dracoonImageAsset as any).trigger = ["dracooncmd"];
+    dracoonImageAsset.location = "dracoon";
+
+    mockGet.mockImplementationOnce(async () => {
+      return getLastPutBody().filter(command => "dracooncmd" !== command.name);
+    });
+
+    await expect(defineSlashCommands([dracoonImageAsset], [], [])).rejects.toThrow("does not match requested payload");
+
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "slash-registration",
+        missing_dracoon_command_count: 1,
+        missing_dracoon_commands: ["dracooncmd"],
+        message: "Slash command registration response does not match requested payload.",
+      }),
+    );
+  });
+
+  test("logs warning and throws when slash registration GET response shape is unexpected", async () => {
+    mockGet.mockResolvedValueOnce({});
+
+    await expect(defineSlashCommands([], [], [])).rejects.toThrow("unexpected response shape");
+
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "slash-registration",
+        message: "Slash command registration returned unexpected response shape.",
+      }),
+    );
   });
 
   test("normalizes trigger names and skips invalid or duplicate slash command names", async () => {
