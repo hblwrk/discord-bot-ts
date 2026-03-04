@@ -30,13 +30,13 @@ jobs:
           dockerlabelvalidate: yes
 
       - name: Checkov GitHub Action (IaC/config)
-        uses: bridgecrewio/checkov-action@v12.3084.0
+        uses: bridgecrewio/checkov-action@v12.3086.0
         with:
           soft_fail: false
           skip_framework: secrets
 
       - name: Checkov GitHub Action (secrets)
-        uses: bridgecrewio/checkov-action@v12.3084.0
+        uses: bridgecrewio/checkov-action@v12.3086.0
         with:
           soft_fail: false
           framework: secrets
