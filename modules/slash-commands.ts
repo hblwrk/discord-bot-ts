@@ -70,6 +70,20 @@ type SlashRegistrationDiff = {
   truncated: boolean;
 };
 
+type RestRateLimitData = {
+  global?: boolean;
+  hash?: string;
+  limit?: number;
+  majorParameter?: string;
+  method?: string;
+  retryAfter?: number;
+  route?: string;
+  scope?: string;
+  sublimitTimeout?: number;
+  timeToReset?: number;
+  url?: string;
+};
+
 function toSlashCommandName(trigger: string): string {
   return trigger
     .normalize("NFKD")
@@ -82,12 +96,21 @@ function toSlashCommandName(trigger: string): string {
 
 function toSlashRegistrationErrorDetails(error: unknown) {
   if (error instanceof Error) {
-    const unknownError = error as Error & {code?: string | number; status?: number;};
+    const unknownError = error as Error & {
+      code?: string | number;
+      status?: number;
+      retry_after?: unknown;
+      rawError?: {retry_after?: unknown; global?: boolean;};
+    };
     return {
       error_name: unknownError.name,
       error_message: unknownError.message,
       error_code: unknownError.code,
       error_status: unknownError.status,
+      retry_after_ms: toRetryAfterMs(unknownError.retry_after) ?? toRetryAfterMs(unknownError.rawError?.retry_after),
+      rate_limit_global: "boolean" === typeof unknownError.rawError?.global
+        ? unknownError.rawError.global
+        : undefined,
     };
   }
 
@@ -448,6 +471,27 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
     guild_id: guildId,
     client_id: clientId,
   };
+  rest.on("rateLimited", (rateLimitData: RestRateLimitData) => {
+    logger.log(
+      "warn",
+      {
+        ...slashRegistrationLogBase,
+        registration_rejected: false,
+        rate_limited: true,
+        rate_limit_global: Boolean(rateLimitData.global),
+        retry_after_ms: toRetryAfterMs(rateLimitData.retryAfter),
+        rate_limit_scope: rateLimitData.scope,
+        rate_limit_method: rateLimitData.method,
+        rate_limit_route: rateLimitData.route,
+        rate_limit_hash: rateLimitData.hash,
+        rate_limit_limit: rateLimitData.limit,
+        rate_limit_major_parameter: rateLimitData.majorParameter,
+        time_to_reset_ms: toRetryAfterMs(rateLimitData.timeToReset),
+        sublimit_timeout_ms: toRetryAfterMs(rateLimitData.sublimitTimeout),
+        message: "Slash command registration request hit Discord rate limit.",
+      },
+    );
+  });
 
   try {
     logger.log(

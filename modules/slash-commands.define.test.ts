@@ -1,8 +1,10 @@
 const mockPut = jest.fn();
 const mockGet = jest.fn();
+const mockOn = jest.fn();
 const mockSetToken = jest.fn().mockReturnValue({
   put: mockPut,
   get: mockGet,
+  on: mockOn,
 });
 const mockRest = jest.fn().mockImplementation(() => ({setToken: mockSetToken}));
 const mockApplicationGuildCommands = jest.fn(() => "/applications/test/commands");
@@ -86,6 +88,7 @@ describe("defineSlashCommands", () => {
     }));
     expect(mockSetToken).toHaveBeenCalledWith("test-token");
     expect(mockApplicationGuildCommands).toHaveBeenCalledWith("client-id", "guild-id");
+    expect(mockOn).toHaveBeenCalledWith("rateLimited", expect.any(Function));
     expect(mockPut).toHaveBeenCalledTimes(1);
     expect(mockGet).toHaveBeenCalledTimes(1);
 
@@ -121,6 +124,48 @@ describe("defineSlashCommands", () => {
         }),
       );
     }
+  });
+
+  test("logs warn when Discord REST emits a rate-limit event during slash registration", async () => {
+    const asset = new TextAsset();
+    asset.title = "Hello title";
+    (asset as any).trigger = ["hello world"];
+    asset.response = "Hello";
+
+    await defineSlashCommands(
+      [asset],
+      [{title: "FAQ", name: "whatis_faq"}],
+      [{name: "alice"}],
+    );
+
+    const rateLimitedListener = mockOn.mock.calls.find(([eventName]) => "rateLimited" === eventName)?.[1];
+    expect(rateLimitedListener).toBeDefined();
+
+    rateLimitedListener({
+      global: false,
+      hash: "bucket-hash",
+      limit: 1,
+      majorParameter: "guild-id",
+      method: "PUT",
+      retryAfter: 11_902,
+      route: "/applications/client-id/guilds/guild-id/commands",
+      scope: "shared",
+      sublimitTimeout: 0,
+      timeToReset: 11_902,
+    });
+
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "slash-registration",
+        rate_limited: true,
+        rate_limit_global: false,
+        retry_after_ms: 11902,
+        rate_limit_method: "PUT",
+        rate_limit_scope: "shared",
+        message: "Slash command registration request hit Discord rate limit.",
+      }),
+    );
   });
 
   test("logs registration errors when REST command deployment fails", async () => {
