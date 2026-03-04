@@ -77,7 +77,11 @@ describe("defineSlashCommands", () => {
       [{name: "alice"}],
     );
 
-    expect(mockRest).toHaveBeenCalledWith(expect.objectContaining({version: "10"}));
+    expect(mockRest).toHaveBeenCalledWith(expect.objectContaining({
+      version: "10",
+      timeout: 120000,
+      retries: 0,
+    }));
     expect(mockSetToken).toHaveBeenCalledWith("test-token");
     expect(mockApplicationGuildCommands).toHaveBeenCalledWith("client-id", "guild-id");
     expect(mockPut).toHaveBeenCalledTimes(1);

@@ -442,6 +442,32 @@ describe("startBot", () => {
     expect(defineSlashCommandsMock).toHaveBeenCalledTimes(2);
   });
 
+  test("categorizes slash command AbortError failures as timeout", async () => {
+    const defineSlashCommandsMock = jest.fn(async () => {
+      const timeoutError = new Error("The operation was aborted.");
+      timeoutError.name = "AbortError";
+      throw timeoutError;
+    });
+    const {dependencies, mocks} = createDependencies({
+      defineSlashCommands: defineSlashCommandsMock,
+      warmupMaxAttempts: 1,
+    });
+
+    await startBot(dependencies);
+    await waitFor(() => mocks.logger.log.mock.calls.some(([level, payload]) => {
+      return "warn" === level && payload?.message === "Slash command task attempt failed.";
+    }));
+
+    expect(mocks.logger.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        task: "slash-commands",
+        message: "Slash command task attempt failed.",
+        failure_reason: "timeout",
+      }),
+    );
+  });
+
   test("fails startup when logged-in client ID does not match configured client ID", async () => {
     const {client} = createMockClient("different-client-id");
     const {dependencies, mocks} = createDependencies({

@@ -31,6 +31,7 @@ const islandboiCooldownMs = 60_000;
 const islandboiCooldownByUser = new Map<string, number>();
 const islandboiUnmuteTimers = new Map<string, ReturnType<typeof setTimeout>>();
 const slashCommandRestTimeoutMs = 120_000;
+const slashCommandRestRetries = 0;
 const slashCommandHeartbeatMs = 15_000;
 const slashCommandNameLogLimit = 20;
 
@@ -38,6 +39,13 @@ class SlashRegistrationMismatchError extends Error {
   constructor(message: string) {
     super(message);
     this.name = "SlashRegistrationMismatchError";
+  }
+}
+
+class SlashRegistrationTimeoutError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = "SlashRegistrationTimeoutError";
   }
 }
 
@@ -304,6 +312,7 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
       guild_id: guildId,
       client_id: clientId,
       request_timeout_ms: slashCommandRestTimeoutMs,
+      rest_retries: slashCommandRestRetries,
       asset_triggers_total: assetTriggersTotal,
       asset_commands_registered: assetCommandsRegistered,
       fixed_commands_registered: fixedCommandsRegistered,
@@ -334,6 +343,7 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
   const rest = new REST({
     version: "10",
     timeout: slashCommandRestTimeoutMs,
+    retries: slashCommandRestRetries,
   }).setToken(token);
 
   const expectedCommandNames = getSlashCommandNamesFromPayload(slashCommands);
@@ -343,8 +353,14 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
     guild_id: guildId,
     client_id: clientId,
   };
-  const runWithSlashRegistrationHeartbeat = async <T>(stage: "put" | "get", callback: () => Promise<T>) => {
+  const runWithSlashRegistrationHeartbeat = async <T>(
+    stage: "put" | "get",
+    timeoutMs: number,
+    callback: (signal: AbortSignal) => Promise<T>,
+  ) => {
     const stageStartedAt = Date.now();
+    let didTimeout = false;
+    const stageAbortController = new AbortController();
     const heartbeatHandle = setInterval(() => {
       logger.log(
         "warn",
@@ -357,11 +373,22 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
       );
     }, slashCommandHeartbeatMs);
     (heartbeatHandle as any).unref?.();
+    const timeoutHandle = setTimeout(() => {
+      didTimeout = true;
+      stageAbortController.abort();
+    }, timeoutMs);
+    (timeoutHandle as any).unref?.();
 
     try {
-      return await callback();
+      return await callback(stageAbortController.signal);
+    } catch (error) {
+      if (didTimeout) {
+        throw new SlashRegistrationTimeoutError(`Slash command ${stage.toUpperCase()} stage timed out after ${timeoutMs}ms.`);
+      }
+      throw error;
     } finally {
       clearInterval(heartbeatHandle);
+      clearTimeout(timeoutHandle);
     }
   };
 
@@ -376,6 +403,7 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
         asset_image_non_dracoon: imageNonDracoonAssetCommandsRegistered,
         asset_text: textAssetCommandsRegistered,
         request_timeout_ms: slashCommandRestTimeoutMs,
+        rest_retries: slashCommandRestRetries,
         message: "slash-registration:start",
       },
     );
@@ -386,11 +414,12 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
         message: "slash-registration:put-sent",
       },
     );
-    await runWithSlashRegistrationHeartbeat("put", async () => {
+    await runWithSlashRegistrationHeartbeat("put", slashCommandRestTimeoutMs, async signal => {
       return await rest.put(
         Routes.applicationGuildCommands(clientId, guildId),
         {
           body: slashCommands,
+          signal,
         },
       );
     });
@@ -403,7 +432,8 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
     );
     const persistedRegistrationResponse = await runWithSlashRegistrationHeartbeat(
       "get",
-      async () => rest.get(Routes.applicationGuildCommands(clientId, guildId)),
+      slashCommandRestTimeoutMs,
+      async signal => rest.get(Routes.applicationGuildCommands(clientId, guildId), {signal}),
     );
     if (false === Array.isArray(persistedRegistrationResponse)) {
       logger.log(

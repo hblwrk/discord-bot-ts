@@ -170,6 +170,10 @@ function categorizeSlashCommandFailureReason(error: unknown): SlashCommandFailur
       return "target_mismatch";
     }
 
+    if ("SlashRegistrationTimeoutError" === error.name || "AbortError" === error.name) {
+      return "timeout";
+    }
+
     if ("SlashRegistrationMismatchError" === error.name) {
       return "mismatch";
     }
