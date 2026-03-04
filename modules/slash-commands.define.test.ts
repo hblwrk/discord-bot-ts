@@ -103,6 +103,51 @@ describe("defineSlashCommands", () => {
       setImmediate(resolve);
     });
 
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "slash-registration",
+        guild_id: "guild-id",
+        client_id: "client-id",
+        error_message: "discord api unavailable",
+        message: "Failed to register slash commands with Discord.",
+      }),
+    );
     expect(loggerMock.log).toHaveBeenCalledWith("error", expectedError);
+  });
+
+  test("normalizes trigger names and skips invalid or duplicate slash command names", async () => {
+    const asset = new TextAsset();
+    asset.title = "Title";
+    (asset as any).trigger = ["kursänderung", "kursanderung", "!!!"];
+    asset.response = "ok";
+
+    defineSlashCommands([asset], [], []);
+
+    await new Promise(resolve => {
+      setImmediate(resolve);
+    });
+
+    const commandPayload = mockPut.mock.calls[0][1].body;
+    const kursCommands = commandPayload.filter(command => command.name === "kursanderung");
+    expect(kursCommands).toHaveLength(1);
+
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.stringContaining("Skipping duplicate slash command \"kursanderung\""),
+    );
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.stringContaining("Skipping slash command for trigger \"!!!\""),
+    );
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "slash-registration",
+        skipped_empty_triggers: 1,
+        skipped_duplicate_names: 1,
+        message: "Slash command payload built with skipped asset triggers.",
+      }),
+    );
   });
 });

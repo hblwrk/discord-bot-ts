@@ -31,6 +31,32 @@ const islandboiCooldownMs = 60_000;
 const islandboiCooldownByUser = new Map<string, number>();
 const islandboiUnmuteTimers = new Map<string, ReturnType<typeof setTimeout>>();
 
+function toSlashCommandName(trigger: string): string {
+  return trigger
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replaceAll(" ", "_")
+    .replace(/[^a-z0-9_-]/g, "")
+    .slice(0, 32);
+}
+
+function toSlashRegistrationErrorDetails(error: unknown) {
+  if (error instanceof Error) {
+    const unknownError = error as Error & {code?: string | number; status?: number;};
+    return {
+      error_name: unknownError.name,
+      error_message: unknownError.message,
+      error_code: unknownError.code,
+      error_status: unknownError.status,
+    };
+  }
+
+  return {
+    error_message: String(error),
+  };
+}
+
 export function defineSlashCommands(assets, whatIsAssets, userAssets) {
   const token = readSecret("discord_token").trim();
   const clientId = readSecret("discord_client_ID").trim();
@@ -46,16 +72,42 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
   }
 
   const slashCommands = [];
+  const seenCommandNames = new Set<string>();
+  let assetTriggersTotal = 0;
+  let skippedEmptyTriggers = 0;
+  let skippedDuplicateNames = 0;
   for (const asset of assets) {
     if ((asset instanceof ImageAsset || asset instanceof TextAsset) && 0 <= asset.trigger.length) {
       for (const trigger of asset.trigger) {
+        assetTriggersTotal += 1;
+        const slashCommandName = toSlashCommandName(trigger);
+        if ("" === slashCommandName) {
+          skippedEmptyTriggers += 1;
+          logger.log(
+            "warn",
+            `Skipping slash command for trigger "${trigger}" because normalized name is empty.`,
+          );
+          continue;
+        }
+
+        if (true === seenCommandNames.has(slashCommandName)) {
+          skippedDuplicateNames += 1;
+          logger.log(
+            "warn",
+            `Skipping duplicate slash command "${slashCommandName}" (trigger "${trigger}").`,
+          );
+          continue;
+        }
+
+        seenCommandNames.add(slashCommandName);
         const slashCommand = new SlashCommandBuilder()
-          .setName(trigger.replaceAll(" ", "_"))
+          .setName(slashCommandName)
           .setDescription(asset.title);
         slashCommands.push(slashCommand.toJSON());
       }
     }
   }
+  const assetCommandsRegistered = slashCommands.length;
 
   // Define non-asset related slash-commands
   const slashCommandCryptodice = new SlashCommandBuilder()
@@ -166,6 +218,25 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .setDescription("Zeitspanne in Tagen")
         .setRequired(false));
   slashCommands.push(slashCommandCalendar.toJSON());
+  const fixedCommandsRegistered = slashCommands.length - assetCommandsRegistered;
+
+  if (0 < skippedEmptyTriggers || 0 < skippedDuplicateNames) {
+    logger.log(
+      "warn",
+      {
+        source: "slash-registration",
+        guild_id: guildId,
+        client_id: clientId,
+        asset_triggers_total: assetTriggersTotal,
+        asset_commands_registered: assetCommandsRegistered,
+        fixed_commands_registered: fixedCommandsRegistered,
+        total_commands_registered: slashCommands.length,
+        skipped_empty_triggers: skippedEmptyTriggers,
+        skipped_duplicate_names: skippedDuplicateNames,
+        message: "Slash command payload built with skipped asset triggers.",
+      },
+    );
+  }
 
   // Deploy slash-commands to Discord
   const rest = new REST({
@@ -186,6 +257,17 @@ export function defineSlashCommands(assets, whatIsAssets, userAssets) {
       );
     } catch (error: unknown) {
       logger.log(
+        "warn",
+        {
+          source: "slash-registration",
+          guild_id: guildId,
+          client_id: clientId,
+          total_commands_registered: slashCommands.length,
+          ...toSlashRegistrationErrorDetails(error),
+          message: "Failed to register slash commands with Discord.",
+        },
+      );
+      logger.log(
         "error",
         error,
       );
@@ -202,45 +284,47 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     const commandName: string = validator.escape(interaction.commandName);
-    if (assetCommands.some(v => commandName.includes(v))) {
-      for (const asset of assets) {
-        for (const trigger of asset.trigger) {
-          if ("whatis" !== commandName && commandName === trigger.replaceAll(" ", "_")) {
-            if (asset instanceof ImageAsset) {
-              if (!asset?.fileContent || !asset.fileName) {
-                logger.log(
-                  "warn",
-                  `Asset ${asset.name ?? asset.fileName ?? trigger} is temporarily unavailable.`,
-                );
-                await interaction.reply("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch(error => {
-                  logger.log(
-                    "error",
-                    `Error replying to slashcommand: ${error}`,
-                  );
-                });
-                continue;
-              }
+    for (const asset of assets) {
+      if (false === Array.isArray(asset.trigger)) {
+        continue;
+      }
 
-              const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
-              if (asset instanceof ImageAsset && asset.hasText) {
-                // For images with text description, currently not used.
-                const embed = new EmbedBuilder();
-                embed.setImage(`attachment://${asset.fileName}`);
-                embed.addFields(
-                  {name: asset.title, value: asset.text},
-                );
-                await interaction.reply({embeds: [embed], files: [file]});
-              } else {
-                await interaction.reply({files: [file]});
-              }
-            } else if (asset instanceof TextAsset) {
-              await interaction.reply(asset.response).catch(error => {
+      for (const trigger of asset.trigger) {
+        if ("whatis" !== commandName && commandName === toSlashCommandName(trigger)) {
+          if (asset instanceof ImageAsset) {
+            if (!asset?.fileContent || !asset.fileName) {
+              logger.log(
+                "warn",
+                `Asset ${asset.name ?? asset.fileName ?? trigger} is temporarily unavailable.`,
+              );
+              await interaction.reply("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch(error => {
                 logger.log(
                   "error",
                   `Error replying to slashcommand: ${error}`,
                 );
               });
+              continue;
             }
+
+            const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
+            if (asset instanceof ImageAsset && asset.hasText) {
+              // For images with text description, currently not used.
+              const embed = new EmbedBuilder();
+              embed.setImage(`attachment://${asset.fileName}`);
+              embed.addFields(
+                {name: asset.title, value: asset.text},
+              );
+              await interaction.reply({embeds: [embed], files: [file]});
+            } else {
+              await interaction.reply({files: [file]});
+            }
+          } else if (asset instanceof TextAsset) {
+            await interaction.reply(asset.response).catch(error => {
+              logger.log(
+                "error",
+                `Error replying to slashcommand: ${error}`,
+              );
+            });
           }
         }
       }

@@ -59,6 +59,20 @@ describe("addInlineResponses", () => {
     expect(message.react).toHaveBeenCalledWith("\ud83d\ude00");
   });
 
+  test("reacts when trigger is followed by punctuation", async () => {
+    const {client, getHandler} = createEventClient();
+    const asset = createEmojiAsset("flash", ["\u26a1"]);
+
+    addInlineResponses(client, [asset], ["flash"]);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("flash!");
+
+    await handler(message);
+
+    expect(message.react).toHaveBeenCalledWith("\u26a1");
+  });
+
   test("reacts with resolved custom emoji when response uses custom: prefix", async () => {
     const {client, getHandler} = createEventClient();
     const asset = createEmojiAsset("party", ["custom:wave"]);

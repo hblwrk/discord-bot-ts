@@ -3,6 +3,35 @@ import {EmojiAsset} from "./assets.js";
 import {getLogger} from "./logging.js";
 
 const logger = getLogger();
+const triggerBoundaryRegex = "[^\\p{L}\\p{N}_-]";
+
+function escapeRegexValue(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function getSpecialTriggerRegex(triggerRegex: unknown): RegExp | null {
+  if ("string" === typeof triggerRegex && "" !== triggerRegex) {
+    return new RegExp(triggerRegex, "u");
+  }
+
+  if (Array.isArray(triggerRegex) && "string" === typeof triggerRegex[0] && "" !== triggerRegex[0]) {
+    return new RegExp(triggerRegex[0], "u");
+  }
+
+  return null;
+}
+
+function getTriggerRegex(trigger: string, triggerRegex: unknown): RegExp {
+  if ("wo" === trigger) {
+    const specialRegex = getSpecialTriggerRegex(triggerRegex);
+    if (specialRegex) {
+      return specialRegex;
+    }
+  }
+
+  const escapedTrigger = escapeRegexValue(trigger);
+  return new RegExp(`(?:^|${triggerBoundaryRegex})${escapedTrigger}(?:$|${triggerBoundaryRegex})`, "u");
+}
 
 export function addInlineResponses(client, assets, assetCommands) {
   // Message response to a message including with a trigger word
@@ -17,11 +46,7 @@ export function addInlineResponses(client, assets, assetCommands) {
       for (const asset of assets) {
         for (const trigger of asset.trigger) {
           // This may show up as possible DoS (RegExp() called with a variable, CWE-185) in Semgrep. However it is safe since the variable is based on assets, which cannot be user-supplied.
-          let triggerRex = new RegExp(`(?:^|\\s)${trigger}(?:$|\\s)`);
-          // Special case for lines containing "wo" and one more word before or after
-          if ("wo" === trigger) {
-            triggerRex = new RegExp(asset.triggerRegex);
-          }
+          const triggerRex = getTriggerRegex(trigger, asset.triggerRegex);
 
           if (asset instanceof EmojiAsset && triggerRex.test(messageContent)) {
             // Emoji reaction to a message
