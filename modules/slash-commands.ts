@@ -31,13 +31,7 @@ const islandboiCooldownMs = 60_000;
 const islandboiCooldownByUser = new Map<string, number>();
 const islandboiUnmuteTimers = new Map<string, ReturnType<typeof setTimeout>>();
 const slashCommandRestTimeoutMs = 120_000;
-const slashCommandRestRetries = 0;
-const slashCommandHeartbeatMs = 15_000;
 const slashCommandNameLogLimit = 20;
-const slashCommandFallbackInitialRetryMs = 500;
-const slashCommandFallbackMaxRetryMs = 5_000;
-const slashCommandFallbackMaxAttempts = 3;
-const slashCommandFallbackOperationDelayMs = 250;
 
 class SlashRegistrationMismatchError extends Error {
   constructor(message: string) {
@@ -46,10 +40,25 @@ class SlashRegistrationMismatchError extends Error {
   }
 }
 
-class SlashRegistrationTimeoutError extends Error {
-  constructor(message: string) {
+class SlashRegistrationCreateLimitError extends Error {
+  public readonly retryAfterMs: number;
+
+  constructor(message: string, retryAfterMs: number) {
     super(message);
-    this.name = "SlashRegistrationTimeoutError";
+    this.name = "SlashRegistrationCreateLimitError";
+    this.retryAfterMs = retryAfterMs;
+  }
+}
+
+class SlashRegistrationRateLimitError extends Error {
+  public readonly retryAfterMs: number;
+  public readonly isGlobal: boolean;
+
+  constructor(message: string, retryAfterMs: number, isGlobal: boolean) {
+    super(message);
+    this.name = "SlashRegistrationRateLimitError";
+    this.retryAfterMs = retryAfterMs;
+    this.isGlobal = isGlobal;
   }
 }
 
@@ -60,8 +69,6 @@ type SlashRegistrationDiff = {
   unexpectedCommandNames: string[];
   truncated: boolean;
 };
-
-type SlashRegistrationStage = "put" | "get" | "upsert" | "delete";
 
 function toSlashCommandName(trigger: string): string {
   return trigger
@@ -134,11 +141,88 @@ function hasSlashRegistrationMismatch(diff: SlashRegistrationDiff): boolean {
   return 0 < diff.missingCommandNames.length || 0 < diff.unexpectedCommandNames.length;
 }
 
-function waitForMs(delayMs: number): Promise<void> {
-  return new Promise(resolve => {
-    const timeoutHandle = setTimeout(resolve, delayMs);
-    (timeoutHandle as any).unref?.();
-  });
+function toRetryAfterMs(rawRetryAfter: unknown): number | undefined {
+  if ("number" === typeof rawRetryAfter && Number.isFinite(rawRetryAfter)) {
+    if (rawRetryAfter <= 0) {
+      return undefined;
+    }
+
+    // Discord often returns retry_after in seconds with fractional precision.
+    if (rawRetryAfter < 1_000) {
+      return Math.ceil(rawRetryAfter * 1_000);
+    }
+
+    return Math.ceil(rawRetryAfter);
+  }
+
+  if ("string" === typeof rawRetryAfter && "" !== rawRetryAfter.trim()) {
+    const parsedRetryAfter = Number(rawRetryAfter);
+    if (Number.isFinite(parsedRetryAfter)) {
+      return toRetryAfterMs(parsedRetryAfter);
+    }
+  }
+
+  return undefined;
+}
+
+function toSlashRegistrationCreateLimitError(error: unknown): SlashRegistrationCreateLimitError | undefined {
+  if (false === (error instanceof Error)) {
+    return undefined;
+  }
+
+  const unknownError = error as Error & {
+    code?: string | number;
+    retry_after?: unknown;
+    rawError?: {retry_after?: unknown; message?: string;};
+  };
+  const errorCode = Number(unknownError.code);
+  const errorMessage = unknownError.message ?? "";
+  const rawErrorMessage = unknownError.rawError?.message ?? "";
+  const isDailyCreateLimitError = 30034 === errorCode
+    || /daily application command creates/i.test(errorMessage)
+    || /daily application command creates/i.test(rawErrorMessage);
+  if (false === isDailyCreateLimitError) {
+    return undefined;
+  }
+
+  const retryAfterMs = toRetryAfterMs(unknownError.retry_after)
+    ?? toRetryAfterMs(unknownError.rawError?.retry_after)
+    ?? 5 * 60_000;
+  return new SlashRegistrationCreateLimitError(
+    "Slash command create limit reached. Waiting before retry.",
+    retryAfterMs,
+  );
+}
+
+function toSlashRegistrationRateLimitError(error: unknown): SlashRegistrationRateLimitError | undefined {
+  if (false === (error instanceof Error)) {
+    return undefined;
+  }
+
+  const unknownError = error as Error & {
+    status?: number;
+    retry_after?: unknown;
+    rawError?: {retry_after?: unknown; message?: string; global?: boolean;};
+  };
+  const errorStatus = Number(unknownError.status);
+  const errorMessage = unknownError.message ?? "";
+  const rawErrorMessage = unknownError.rawError?.message ?? "";
+  const isRateLimitError = 429 === errorStatus
+    || /you are being rate limited/i.test(errorMessage)
+    || /you are being rate limited/i.test(rawErrorMessage);
+  if (false === isRateLimitError) {
+    return undefined;
+  }
+
+  const retryAfterMs = toRetryAfterMs(unknownError.retry_after)
+    ?? toRetryAfterMs(unknownError.rawError?.retry_after)
+    ?? 15_000;
+  const isGlobal = Boolean(unknownError.rawError?.global);
+  return new SlashRegistrationRateLimitError(
+    "Slash command registration rate limited. Waiting before retry.",
+    retryAfterMs,
+    isGlobal,
+  );
 }
 
 export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
@@ -318,7 +402,6 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .setRequired(false));
   slashCommands.push(slashCommandCalendar.toJSON());
   const fixedCommandsRegistered = slashCommands.length - assetCommandsRegistered;
-  const slashCommandPayloadSizeBytes = Buffer.byteLength(JSON.stringify(slashCommands), "utf8");
   logger.log(
     "warn",
     {
@@ -326,8 +409,6 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
       guild_id: guildId,
       client_id: clientId,
       request_timeout_ms: slashCommandRestTimeoutMs,
-      rest_retries: slashCommandRestRetries,
-      payload_size_bytes: slashCommandPayloadSizeBytes,
       asset_triggers_total: assetTriggersTotal,
       asset_commands_registered: assetCommandsRegistered,
       fixed_commands_registered: fixedCommandsRegistered,
@@ -358,7 +439,6 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
   const rest = new REST({
     version: "10",
     timeout: slashCommandRestTimeoutMs,
-    retries: slashCommandRestRetries,
   }).setToken(token);
 
   const expectedCommandNames = getSlashCommandNamesFromPayload(slashCommands);
@@ -367,178 +447,6 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
     source: "slash-registration",
     guild_id: guildId,
     client_id: clientId,
-  };
-  const runWithSlashRegistrationHeartbeat = async <T>(
-    stage: SlashRegistrationStage,
-    timeoutMs: number,
-    callback: (signal: AbortSignal) => Promise<T>,
-  ) => {
-    const stageStartedAt = Date.now();
-    let didTimeout = false;
-    const stageAbortController = new AbortController();
-    const heartbeatHandle = setInterval(() => {
-      logger.log(
-        "warn",
-        {
-          ...slashRegistrationLogBase,
-          stage,
-          elapsed_ms: Date.now() - stageStartedAt,
-          message: "slash-registration:in-flight",
-        },
-      );
-    }, slashCommandHeartbeatMs);
-    (heartbeatHandle as any).unref?.();
-    const timeoutHandle = setTimeout(() => {
-      didTimeout = true;
-      stageAbortController.abort();
-    }, timeoutMs);
-    (timeoutHandle as any).unref?.();
-
-    try {
-      return await callback(stageAbortController.signal);
-    } catch (error) {
-      if (didTimeout) {
-        throw new SlashRegistrationTimeoutError(`Slash command ${stage.toUpperCase()} stage timed out after ${timeoutMs}ms.`);
-      }
-      throw error;
-    } finally {
-      clearInterval(heartbeatHandle);
-      clearTimeout(timeoutHandle);
-    }
-  };
-
-  const deploySlashCommandsIncrementally = async () => {
-    logger.log(
-      "warn",
-      {
-        ...slashRegistrationLogBase,
-        fallback_max_attempts: slashCommandFallbackMaxAttempts,
-        fallback_initial_retry_ms: slashCommandFallbackInitialRetryMs,
-        fallback_max_retry_ms: slashCommandFallbackMaxRetryMs,
-        message: "Falling back to incremental slash command deployment.",
-      },
-    );
-
-    const existingRegistrationResponse = await runWithSlashRegistrationHeartbeat(
-      "get",
-      slashCommandRestTimeoutMs,
-      async signal => rest.get(Routes.applicationGuildCommands(clientId, guildId), {signal}),
-    );
-    if (false === Array.isArray(existingRegistrationResponse)) {
-      throw new SlashRegistrationMismatchError("Incremental slash command deployment requires array response from Discord.");
-    }
-
-    const existingCommandsByName = new Map<string, {id: string;}>();
-    for (const command of existingRegistrationResponse) {
-      if ("object" !== typeof command || null === command) {
-        continue;
-      }
-
-      const name = (command as any).name;
-      const id = (command as any).id;
-      if ("string" === typeof name && "" !== name && "string" === typeof id && "" !== id) {
-        existingCommandsByName.set(name, {id});
-      }
-    }
-
-    const runWithFallbackRetry = async (
-      operation: "upsert" | "delete",
-      commandName: string,
-      callback: () => Promise<void>,
-    ) => {
-      for (let attempt = 1; attempt <= slashCommandFallbackMaxAttempts; attempt++) {
-        try {
-          await callback();
-          return;
-        } catch (error) {
-          if (attempt === slashCommandFallbackMaxAttempts) {
-            throw error;
-          }
-
-          const retryInMs = Math.min(
-            slashCommandFallbackInitialRetryMs * (2 ** (attempt - 1)),
-            slashCommandFallbackMaxRetryMs,
-          );
-          logger.log(
-            "warn",
-            {
-              ...slashRegistrationLogBase,
-              operation,
-              command_name: commandName,
-              attempt,
-              max_attempts: slashCommandFallbackMaxAttempts,
-              retry_in_ms: retryInMs,
-              ...toSlashRegistrationErrorDetails(error),
-              message: "Incremental slash deployment operation failed. Retrying.",
-            },
-          );
-          await waitForMs(retryInMs);
-        }
-      }
-    };
-
-    for (const slashCommandPayload of slashCommands) {
-      const commandName = "string" === typeof (slashCommandPayload as any)?.name ? (slashCommandPayload as any).name : "";
-      if ("" === commandName) {
-        continue;
-      }
-
-      const existingCommand = existingCommandsByName.get(commandName);
-      await runWithFallbackRetry("upsert", commandName, async () => {
-        if (existingCommand) {
-          await runWithSlashRegistrationHeartbeat("upsert", slashCommandRestTimeoutMs, async signal => {
-            await rest.patch(
-              Routes.applicationGuildCommand(clientId, guildId, existingCommand.id),
-              {
-                body: slashCommandPayload,
-                signal,
-              },
-            );
-            return undefined;
-          });
-          return;
-        }
-
-        await runWithSlashRegistrationHeartbeat("upsert", slashCommandRestTimeoutMs, async signal => {
-          await rest.post(
-            Routes.applicationGuildCommands(clientId, guildId),
-            {
-              body: slashCommandPayload,
-              signal,
-            },
-          );
-          return undefined;
-        });
-      });
-
-      await waitForMs(slashCommandFallbackOperationDelayMs);
-    }
-
-    const expectedCommandNameSet = new Set(expectedCommandNames);
-    for (const [commandName, existingCommand] of existingCommandsByName.entries()) {
-      if (true === expectedCommandNameSet.has(commandName)) {
-        continue;
-      }
-
-      await runWithFallbackRetry("delete", commandName, async () => {
-        await runWithSlashRegistrationHeartbeat("delete", slashCommandRestTimeoutMs, async signal => {
-          await rest.delete(
-            Routes.applicationGuildCommand(clientId, guildId, existingCommand.id),
-            {signal},
-          );
-          return undefined;
-        });
-      });
-      await waitForMs(slashCommandFallbackOperationDelayMs);
-    }
-
-    logger.log(
-      "warn",
-      {
-        ...slashRegistrationLogBase,
-        message: "Incremental slash command deployment finished.",
-      },
-    );
   };
 
   try {
@@ -552,7 +460,6 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
         asset_image_non_dracoon: imageNonDracoonAssetCommandsRegistered,
         asset_text: textAssetCommandsRegistered,
         request_timeout_ms: slashCommandRestTimeoutMs,
-        rest_retries: slashCommandRestRetries,
         message: "slash-registration:start",
       },
     );
@@ -563,33 +470,12 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
         message: "slash-registration:put-sent",
       },
     );
-    try {
-      await runWithSlashRegistrationHeartbeat("put", slashCommandRestTimeoutMs, async signal => {
-        return await rest.put(
-          Routes.applicationGuildCommands(clientId, guildId),
-          {
-            body: slashCommands,
-            signal,
-          },
-        );
-      });
-    } catch (error: unknown) {
-      const didBulkTimeout = error instanceof SlashRegistrationTimeoutError
-        || (error instanceof Error && "SlashRegistrationTimeoutError" === error.name);
-      if (false === didBulkTimeout) {
-        throw error;
-      }
-
-      logger.log(
-        "warn",
-        {
-          ...slashRegistrationLogBase,
-          ...toSlashRegistrationErrorDetails(error),
-          message: "Bulk slash command deployment timed out. Switching to incremental deployment.",
-        },
-      );
-      await deploySlashCommandsIncrementally();
-    }
+    await rest.put(
+      Routes.applicationGuildCommands(clientId, guildId),
+      {
+        body: slashCommands,
+      },
+    );
     logger.log(
       "warn",
       {
@@ -597,11 +483,7 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
         message: "slash-registration:get-sent",
       },
     );
-    const persistedRegistrationResponse = await runWithSlashRegistrationHeartbeat(
-      "get",
-      slashCommandRestTimeoutMs,
-      async signal => rest.get(Routes.applicationGuildCommands(clientId, guildId), {signal}),
-    );
+    const persistedRegistrationResponse = await rest.get(Routes.applicationGuildCommands(clientId, guildId));
     if (false === Array.isArray(persistedRegistrationResponse)) {
       logger.log(
         "warn",
@@ -656,6 +538,41 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
   } catch (error: unknown) {
     if (error instanceof SlashRegistrationMismatchError) {
       throw error;
+    }
+
+    const createLimitError = toSlashRegistrationCreateLimitError(error);
+    if (createLimitError) {
+      logger.log(
+        "warn",
+        {
+          ...slashRegistrationLogBase,
+          total_commands_registered: slashCommands.length,
+          registration_rejected: true,
+          daily_create_limit_reached: true,
+          retry_after_ms: createLimitError.retryAfterMs,
+          ...toSlashRegistrationErrorDetails(error),
+          message: "Discord daily slash command create limit reached. Retrying after cooldown.",
+        },
+      );
+      throw createLimitError;
+    }
+
+    const rateLimitError = toSlashRegistrationRateLimitError(error);
+    if (rateLimitError) {
+      logger.log(
+        "warn",
+        {
+          ...slashRegistrationLogBase,
+          total_commands_registered: slashCommands.length,
+          registration_rejected: true,
+          rate_limited: true,
+          rate_limit_global: rateLimitError.isGlobal,
+          retry_after_ms: rateLimitError.retryAfterMs,
+          ...toSlashRegistrationErrorDetails(error),
+          message: "Slash command registration was rate limited by Discord. Retrying after cooldown.",
+        },
+      );
+      throw rateLimitError;
     }
 
     logger.log(

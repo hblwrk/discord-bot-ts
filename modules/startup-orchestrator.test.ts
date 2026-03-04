@@ -442,28 +442,86 @@ describe("startBot", () => {
     expect(defineSlashCommandsMock).toHaveBeenCalledTimes(2);
   });
 
-  test("categorizes slash command AbortError failures as timeout", async () => {
-    const defineSlashCommandsMock = jest.fn(async () => {
-      const timeoutError = new Error("The operation was aborted.");
-      timeoutError.name = "AbortError";
-      throw timeoutError;
-    });
+  test("uses retry-after backoff for slash command create-limit failures", async () => {
+    const createLimitError: any = new Error("Slash command create limit reached.");
+    createLimitError.name = "SlashRegistrationCreateLimitError";
+    createLimitError.retryAfterMs = 360919;
+    const defineSlashCommandsMock = jest.fn()
+      .mockImplementationOnce(async () => {
+        throw createLimitError;
+      })
+      .mockImplementationOnce(async () => {});
+    const observedTimeoutDelays: number[] = [];
+    const setTimeoutFn = ((handler: (...args: unknown[]) => void, delay?: number, ...args: unknown[]) => {
+      const requestedDelay = Number(delay ?? 0);
+      observedTimeoutDelays.push(requestedDelay);
+      const boundedDelay = requestedDelay > 1_000 ? 1 : requestedDelay;
+      return setTimeout(handler as any, boundedDelay, ...args);
+    }) as typeof setTimeout;
     const {dependencies, mocks} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
-      warmupMaxAttempts: 1,
+      warmupMaxAttempts: 2,
+      warmupInitialRetryDelayMs: 1,
+      warmupMaxRetryDelayMs: 1,
+      setTimeoutFn,
+      clearTimeoutFn: clearTimeout,
     });
 
-    await startBot(dependencies);
-    await waitFor(() => mocks.logger.log.mock.calls.some(([level, payload]) => {
-      return "warn" === level && payload?.message === "Slash command task attempt failed.";
-    }));
+    const runtime = await startBot(dependencies);
+    await waitFor(() => "warming" !== runtime.getStartupState().remoteWarmupStatus);
 
+    expect(runtime.getStartupState().ready).toBe(true);
+    expect(defineSlashCommandsMock).toHaveBeenCalledTimes(2);
+    expect(observedTimeoutDelays.some(delay => 360919 === delay)).toBe(true);
     expect(mocks.logger.log).toHaveBeenCalledWith(
       "warn",
       expect.objectContaining({
         task: "slash-commands",
-        message: "Slash command task attempt failed.",
-        failure_reason: "timeout",
+        retry_after_ms: 360919,
+        retry_in_ms: 360919,
+        message: "Warmup task failed. Retrying.",
+      }),
+    );
+  });
+
+  test("uses retry-after backoff for slash command rate-limit failures", async () => {
+    const rateLimitError: any = new Error("Slash command registration rate limited.");
+    rateLimitError.name = "SlashRegistrationRateLimitError";
+    rateLimitError.retryAfterMs = 11902;
+    const defineSlashCommandsMock = jest.fn()
+      .mockImplementationOnce(async () => {
+        throw rateLimitError;
+      })
+      .mockImplementationOnce(async () => {});
+    const observedTimeoutDelays: number[] = [];
+    const setTimeoutFn = ((handler: (...args: unknown[]) => void, delay?: number, ...args: unknown[]) => {
+      const requestedDelay = Number(delay ?? 0);
+      observedTimeoutDelays.push(requestedDelay);
+      const boundedDelay = requestedDelay > 1_000 ? 1 : requestedDelay;
+      return setTimeout(handler as any, boundedDelay, ...args);
+    }) as typeof setTimeout;
+    const {dependencies, mocks} = createDependencies({
+      defineSlashCommands: defineSlashCommandsMock,
+      warmupMaxAttempts: 2,
+      warmupInitialRetryDelayMs: 1,
+      warmupMaxRetryDelayMs: 1,
+      setTimeoutFn,
+      clearTimeoutFn: clearTimeout,
+    });
+
+    const runtime = await startBot(dependencies);
+    await waitFor(() => "warming" !== runtime.getStartupState().remoteWarmupStatus);
+
+    expect(runtime.getStartupState().ready).toBe(true);
+    expect(defineSlashCommandsMock).toHaveBeenCalledTimes(2);
+    expect(observedTimeoutDelays.some(delay => 11902 === delay)).toBe(true);
+    expect(mocks.logger.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        task: "slash-commands",
+        retry_after_ms: 11902,
+        retry_in_ms: 11902,
+        message: "Warmup task failed. Retrying.",
       }),
     );
   });

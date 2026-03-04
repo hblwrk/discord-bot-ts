@@ -1,14 +1,8 @@
 const mockPut = jest.fn();
 const mockGet = jest.fn();
-const mockPost = jest.fn();
-const mockPatch = jest.fn();
-const mockDelete = jest.fn();
 const mockSetToken = jest.fn().mockReturnValue({
   put: mockPut,
   get: mockGet,
-  post: mockPost,
-  patch: mockPatch,
-  delete: mockDelete,
 });
 const mockRest = jest.fn().mockImplementation(() => ({setToken: mockSetToken}));
 const mockApplicationGuildCommands = jest.fn(() => "/applications/test/commands");
@@ -72,9 +66,6 @@ describe("defineSlashCommands", () => {
     mockedReadSecret.mockClear();
     mockPut.mockImplementation(async (_route, options) => options?.body ?? []);
     mockGet.mockImplementation(async () => getLastPutBody());
-    mockPost.mockImplementation(async (_route, options) => options?.body ?? {});
-    mockPatch.mockImplementation(async (_route, options) => options?.body ?? {});
-    mockDelete.mockImplementation(async () => undefined);
   });
 
   test("registers slash commands with v10 REST route and v14 choice structures", async () => {
@@ -92,7 +83,6 @@ describe("defineSlashCommands", () => {
     expect(mockRest).toHaveBeenCalledWith(expect.objectContaining({
       version: "10",
       timeout: 120000,
-      retries: 0,
     }));
     expect(mockSetToken).toHaveBeenCalledWith("test-token");
     expect(mockApplicationGuildCommands).toHaveBeenCalledWith("client-id", "guild-id");
@@ -212,39 +202,55 @@ describe("defineSlashCommands", () => {
     );
   });
 
-  test("falls back to incremental deployment when bulk PUT times out", async () => {
-    const timeoutError = new Error("Slash command PUT stage timed out after 120000ms.");
-    timeoutError.name = "SlashRegistrationTimeoutError";
-    mockPut.mockRejectedValueOnce(timeoutError);
+  test("throws create-limit error with retry-after details when Discord limit is reached", async () => {
+    const createLimitError: any = new Error("Max number of daily application command creates has been reached (200)");
+    createLimitError.code = 30034;
+    createLimitError.rawError = {
+      retry_after: 360.919,
+    };
+    mockPut.mockRejectedValueOnce(createLimitError);
 
-    const incrementallyStoredCommands: any[] = [];
-    mockGet.mockImplementation(async () => {
-      if (0 === incrementallyStoredCommands.length) {
-        return [];
-      }
-
-      return incrementallyStoredCommands;
-    });
-    mockPost.mockImplementation(async (_route, options) => {
-      incrementallyStoredCommands.push(options?.body);
-      return options?.body;
+    await expect(defineSlashCommands([], [], [])).rejects.toMatchObject({
+      name: "SlashRegistrationCreateLimitError",
+      retryAfterMs: 360919,
     });
 
-    await expect(defineSlashCommands([], [], [])).resolves.toBeUndefined();
-
-    expect(mockPost).toHaveBeenCalled();
     expect(loggerMock.log).toHaveBeenCalledWith(
       "warn",
       expect.objectContaining({
         source: "slash-registration",
-        message: "Bulk slash command deployment timed out. Switching to incremental deployment.",
+        registration_rejected: true,
+        daily_create_limit_reached: true,
+        retry_after_ms: 360919,
+        message: "Discord daily slash command create limit reached. Retrying after cooldown.",
       }),
     );
+  });
+
+  test("throws rate-limit error with retry-after details when Discord responds with 429", async () => {
+    const rateLimitError: any = new Error("You are being rate limited.");
+    rateLimitError.status = 429;
+    rateLimitError.rawError = {
+      retry_after: 11.902,
+      global: false,
+    };
+    mockPut.mockRejectedValueOnce(rateLimitError);
+
+    await expect(defineSlashCommands([], [], [])).rejects.toMatchObject({
+      name: "SlashRegistrationRateLimitError",
+      retryAfterMs: 11902,
+      isGlobal: false,
+    });
+
     expect(loggerMock.log).toHaveBeenCalledWith(
       "warn",
       expect.objectContaining({
         source: "slash-registration",
-        message: "Incremental slash command deployment finished.",
+        registration_rejected: true,
+        rate_limited: true,
+        rate_limit_global: false,
+        retry_after_ms: 11902,
+        message: "Slash command registration was rate limited by Discord. Retrying after cooldown.",
       }),
     );
   });

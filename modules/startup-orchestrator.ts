@@ -170,10 +170,6 @@ function categorizeSlashCommandFailureReason(error: unknown): SlashCommandFailur
       return "target_mismatch";
     }
 
-    if ("SlashRegistrationTimeoutError" === error.name || "AbortError" === error.name) {
-      return "timeout";
-    }
-
     if ("SlashRegistrationMismatchError" === error.name) {
       return "mismatch";
     }
@@ -184,6 +180,45 @@ function categorizeSlashCommandFailureReason(error: unknown): SlashCommandFailur
   }
 
   return "rejected";
+}
+
+function toRetryAfterMs(rawRetryAfter: unknown): number | undefined {
+  if ("number" === typeof rawRetryAfter && Number.isFinite(rawRetryAfter)) {
+    if (rawRetryAfter <= 0) {
+      return undefined;
+    }
+
+    if (rawRetryAfter < 1_000) {
+      return Math.ceil(rawRetryAfter * 1_000);
+    }
+
+    return Math.ceil(rawRetryAfter);
+  }
+
+  if ("string" === typeof rawRetryAfter && "" !== rawRetryAfter.trim()) {
+    const parsedRetryAfter = Number(rawRetryAfter);
+    if (Number.isFinite(parsedRetryAfter)) {
+      return toRetryAfterMs(parsedRetryAfter);
+    }
+  }
+
+  return undefined;
+}
+
+function getSlashCommandRetryAfterMs(error: unknown): number | undefined {
+  if (false === (error instanceof Error)) {
+    return undefined;
+  }
+
+  const unknownError = error as Error & {
+    retryAfterMs?: number;
+    retry_after?: unknown;
+    rawError?: {retry_after?: unknown;};
+  };
+
+  return toRetryAfterMs(unknownError.retryAfterMs)
+    ?? toRetryAfterMs(unknownError.retry_after)
+    ?? toRetryAfterMs(unknownError.rawError?.retry_after);
 }
 
 async function waitForDiscordReady(
@@ -473,10 +508,14 @@ async function warmRemoteData({
           break;
         }
 
-        const retryInMs = Math.min(
+        const exponentialRetryInMs = Math.min(
           dependencies.warmupInitialRetryDelayMs * (2 ** (attempt - 1)),
           dependencies.warmupMaxRetryDelayMs,
         );
+        const slashCommandRetryAfterMs = "slash-commands" === task
+          ? getSlashCommandRetryAfterMs(error)
+          : undefined;
+        const retryInMs = Math.max(exponentialRetryInMs, slashCommandRetryAfterMs ?? 0);
         logger.log(
           "warn",
           {
@@ -486,6 +525,7 @@ async function warmRemoteData({
             attempt,
             max_attempts: dependencies.warmupMaxAttempts,
             retry_in_ms: retryInMs,
+            ...(slashCommandRetryAfterMs ? {retry_after_ms: slashCommandRetryAfterMs} : {}),
             ...errorDetails,
             message: "Warmup task failed. Retrying.",
           },
