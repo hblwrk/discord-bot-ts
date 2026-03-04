@@ -119,6 +119,8 @@ jobs:
       - name: Scan image with Trivy
         uses: aquasecurity/trivy-action@0.34.0
         with:
+          # Pin to a known-good version after the 2026-03-01 upstream release-asset incident.
+          version: v0.69.2
           image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ needs.build.outputs.digest }}
           format: table
           vuln-type: os,library
