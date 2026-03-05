@@ -67,7 +67,49 @@ type SlashRegistrationDiff = {
   returnedCommandNames: string[];
   missingCommandNames: string[];
   unexpectedCommandNames: string[];
+  changedCommandNames: string[];
   truncated: boolean;
+};
+
+type SlashCommandPayloadBuildResult = {
+  slashCommands: any[];
+  dracoonAssetCommandNames: string[];
+  expectedCommandNames: string[];
+  assetTriggersTotal: number;
+  assetCommandsRegistered: number;
+  fixedCommandsRegistered: number;
+  skippedEmptyTriggers: number;
+  skippedDuplicateNames: number;
+  imageDracoonAssetCommandsRegistered: number;
+  imageNonDracoonAssetCommandsRegistered: number;
+  textAssetCommandsRegistered: number;
+};
+
+type CanonicalSlashCommandChoice = {
+  name: string;
+  value: unknown;
+};
+
+type CanonicalSlashCommandOption = {
+  type: number;
+  name: string;
+  description: string;
+  required: boolean;
+  autocomplete: boolean;
+  min_value?: number;
+  max_value?: number;
+  min_length?: number;
+  max_length?: number;
+  channel_types: number[];
+  choices: CanonicalSlashCommandChoice[];
+  options: CanonicalSlashCommandOption[];
+};
+
+type CanonicalSlashCommand = {
+  type: number;
+  name: string;
+  description: string;
+  options: CanonicalSlashCommandOption[];
 };
 
 type RestRateLimitData = {
@@ -119,49 +161,151 @@ function toSlashRegistrationErrorDetails(error: unknown) {
   };
 }
 
-function getSlashCommandNamesFromPayload(slashCommands: any[]): string[] {
-  const names: string[] = [];
-  for (const slashCommand of slashCommands) {
-    if ("string" === typeof slashCommand?.name && "" !== slashCommand.name) {
-      names.push(slashCommand.name);
-    }
+function toCanonicalSlashCommandChoice(choice: unknown): CanonicalSlashCommandChoice {
+  if ("object" !== typeof choice || null === choice) {
+    return {
+      name: "",
+      value: "",
+    };
   }
 
-  return names;
+  return {
+    name: "string" === typeof (choice as any).name ? (choice as any).name : "",
+    value: (choice as any).value,
+  };
 }
 
-function getSlashCommandNamesFromRegistrationResponse(registrationResponse: unknown): string[] {
-  if (false === Array.isArray(registrationResponse)) {
+function toCanonicalSlashCommandOption(option: unknown): CanonicalSlashCommandOption {
+  if ("object" !== typeof option || null === option) {
+    return {
+      type: 0,
+      name: "",
+      description: "",
+      required: false,
+      autocomplete: false,
+      channel_types: [],
+      choices: [],
+      options: [],
+    };
+  }
+
+  const rawOption = option as any;
+  const canonicalOption: CanonicalSlashCommandOption = {
+    type: Number(rawOption.type ?? 0),
+    name: "string" === typeof rawOption.name ? rawOption.name : "",
+    description: "string" === typeof rawOption.description ? rawOption.description : "",
+    required: true === rawOption.required,
+    autocomplete: true === rawOption.autocomplete,
+    channel_types: Array.isArray(rawOption.channel_types)
+      ? rawOption.channel_types.map((channelType: unknown) => Number(channelType))
+      : [],
+    choices: Array.isArray(rawOption.choices)
+      ? rawOption.choices.map(toCanonicalSlashCommandChoice)
+      : [],
+    options: Array.isArray(rawOption.options)
+      ? rawOption.options.map(toCanonicalSlashCommandOption)
+      : [],
+  };
+
+  if ("number" === typeof rawOption.min_value) {
+    canonicalOption.min_value = rawOption.min_value;
+  }
+
+  if ("number" === typeof rawOption.max_value) {
+    canonicalOption.max_value = rawOption.max_value;
+  }
+
+  if ("number" === typeof rawOption.min_length) {
+    canonicalOption.min_length = rawOption.min_length;
+  }
+
+  if ("number" === typeof rawOption.max_length) {
+    canonicalOption.max_length = rawOption.max_length;
+  }
+
+  return canonicalOption;
+}
+
+function toCanonicalSlashCommand(command: unknown): CanonicalSlashCommand {
+  if ("object" !== typeof command || null === command) {
+    return {
+      type: 1,
+      name: "",
+      description: "",
+      options: [],
+    };
+  }
+
+  const rawCommand = command as any;
+  return {
+    type: Number(rawCommand.type ?? 1),
+    name: "string" === typeof rawCommand.name ? rawCommand.name : "",
+    description: "string" === typeof rawCommand.description ? rawCommand.description : "",
+    options: Array.isArray(rawCommand.options)
+      ? rawCommand.options.map(toCanonicalSlashCommandOption)
+      : [],
+  };
+}
+
+function normalizeSlashCommandPayload(slashCommands: unknown): CanonicalSlashCommand[] {
+  if (false === Array.isArray(slashCommands)) {
     return [];
   }
 
-  const names: string[] = [];
-  for (const command of registrationResponse) {
-    if ("object" === typeof command && null !== command && "string" === typeof (command as any).name && "" !== (command as any).name) {
-      names.push((command as any).name);
-    }
-  }
-
-  return names;
+  return slashCommands
+    .map(toCanonicalSlashCommand)
+    .sort((left, right) => left.name.localeCompare(right.name));
 }
 
-function computeSlashRegistrationDiff(expectedCommandNames: string[], returnedCommandNames: string[]): SlashRegistrationDiff {
+function getSlashCommandPayloadHash(slashCommands: unknown): string {
+  return JSON.stringify(normalizeSlashCommandPayload(slashCommands));
+}
+
+function getSlashCommandNamesFromPayload(slashCommands: unknown): string[] {
+  return normalizeSlashCommandPayload(slashCommands)
+    .map(command => command.name)
+    .filter(commandName => "" !== commandName);
+}
+
+function computeSlashRegistrationDiff(expectedSlashCommands: unknown, returnedSlashCommands: unknown): SlashRegistrationDiff {
+  const expectedCommands = normalizeSlashCommandPayload(expectedSlashCommands);
+  const returnedCommands = normalizeSlashCommandPayload(returnedSlashCommands);
+  const expectedCommandNames = expectedCommands.map(command => command.name);
+  const returnedCommandNames = returnedCommands.map(command => command.name);
+  const expectedCommandHashes = new Map<string, string>();
+  const returnedCommandHashes = new Map<string, string>();
+
+  for (const command of expectedCommands) {
+    expectedCommandHashes.set(command.name, JSON.stringify(command));
+  }
+
+  for (const command of returnedCommands) {
+    returnedCommandHashes.set(command.name, JSON.stringify(command));
+  }
+
   const expectedCommandNameSet = new Set(expectedCommandNames);
   const returnedCommandNameSet = new Set(returnedCommandNames);
   const missingCommandNames = expectedCommandNames.filter(commandName => false === returnedCommandNameSet.has(commandName));
   const unexpectedCommandNames = returnedCommandNames.filter(commandName => false === expectedCommandNameSet.has(commandName));
+  const changedCommandNames = expectedCommandNames.filter(commandName => {
+    return true === returnedCommandNameSet.has(commandName)
+      && expectedCommandHashes.get(commandName) !== returnedCommandHashes.get(commandName);
+  });
 
   return {
     expectedCommandNames,
     returnedCommandNames,
     missingCommandNames,
     unexpectedCommandNames,
+    changedCommandNames,
     truncated: returnedCommandNames.length < expectedCommandNames.length,
   };
 }
 
 function hasSlashRegistrationMismatch(diff: SlashRegistrationDiff): boolean {
-  return 0 < diff.missingCommandNames.length || 0 < diff.unexpectedCommandNames.length;
+  return 0 < diff.missingCommandNames.length
+    || 0 < diff.unexpectedCommandNames.length
+    || 0 < diff.changedCommandNames.length;
 }
 
 function toRetryAfterMs(rawRetryAfter: unknown): number | undefined {
@@ -212,7 +356,7 @@ function toSlashRegistrationCreateLimitError(error: unknown): SlashRegistrationC
     ?? toRetryAfterMs(unknownError.rawError?.retry_after)
     ?? 5 * 60_000;
   return new SlashRegistrationCreateLimitError(
-    "Slash command create limit reached. Waiting before retry.",
+    "Slash command create limit reached. Further automatic retries should be suppressed for this process.",
     retryAfterMs,
   );
 }
@@ -248,10 +392,7 @@ function toSlashRegistrationRateLimitError(error: unknown): SlashRegistrationRat
   );
 }
 
-export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
-  const token = readSecret("discord_token").trim();
-  const clientId = readSecret("discord_client_ID").trim();
-  const guildId = readSecret("discord_guild_ID").trim();
+export function buildSlashCommandPayload(assets, whatIsAssets, userAssets): SlashCommandPayloadBuildResult {
   const whatIsAssetsChoices = [];
   for (const asset of whatIsAssets) {
     whatIsAssetsChoices.push({name: asset.title, value: asset.name});
@@ -425,28 +566,12 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
         .setRequired(false));
   slashCommands.push(slashCommandCalendar.toJSON());
   const fixedCommandsRegistered = slashCommands.length - assetCommandsRegistered;
-  logger.log(
-    "warn",
-    {
-      source: "slash-registration",
-      guild_id: guildId,
-      client_id: clientId,
-      request_timeout_ms: slashCommandRestTimeoutMs,
-      asset_triggers_total: assetTriggersTotal,
-      asset_commands_registered: assetCommandsRegistered,
-      fixed_commands_registered: fixedCommandsRegistered,
-      total_commands_registered: slashCommands.length,
-      message: "Deploying slash command payload to Discord.",
-    },
-  );
 
   if (0 < skippedEmptyTriggers || 0 < skippedDuplicateNames) {
     logger.log(
       "warn",
       {
         source: "slash-registration",
-        guild_id: guildId,
-        client_id: clientId,
         asset_triggers_total: assetTriggersTotal,
         asset_commands_registered: assetCommandsRegistered,
         fixed_commands_registered: fixedCommandsRegistered,
@@ -458,13 +583,32 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
     );
   }
 
-  // Deploy slash-commands to Discord
+  return {
+    slashCommands,
+    dracoonAssetCommandNames: [...dracoonAssetCommandNames],
+    expectedCommandNames: getSlashCommandNamesFromPayload(slashCommands),
+    assetTriggersTotal,
+    assetCommandsRegistered,
+    fixedCommandsRegistered,
+    skippedEmptyTriggers,
+    skippedDuplicateNames,
+    imageDracoonAssetCommandsRegistered,
+    imageNonDracoonAssetCommandsRegistered,
+    textAssetCommandsRegistered,
+  };
+}
+
+export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
+  const token = readSecret("discord_token").trim();
+  const clientId = readSecret("discord_client_ID").trim();
+  const guildId = readSecret("discord_guild_ID").trim();
+  const payload = buildSlashCommandPayload(assets, whatIsAssets, userAssets);
+  const expectedPayloadHash = getSlashCommandPayloadHash(payload.slashCommands);
   const rest = new REST({
     version: "10",
     timeout: slashCommandRestTimeoutMs,
   }).setToken(token);
 
-  const expectedCommandNames = getSlashCommandNamesFromPayload(slashCommands);
   const slashRegistrationStartedAt = Date.now();
   const slashRegistrationLogBase = {
     source: "slash-registration",
@@ -488,7 +632,7 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
         rate_limit_major_parameter: rateLimitData.majorParameter,
         time_to_reset_ms: toRetryAfterMs(rateLimitData.timeToReset),
         sublimit_timeout_ms: toRetryAfterMs(rateLimitData.sublimitTimeout),
-        message: "Slash command registration request hit Discord rate limit.",
+        message: "slash-registration:rate-limit-event",
       },
     );
   });
@@ -498,42 +642,104 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
       "warn",
       {
         ...slashRegistrationLogBase,
-        expected_command_count: expectedCommandNames.length,
-        dracoon_asset_command_count: imageDracoonAssetCommandsRegistered,
-        asset_image_dracoon: imageDracoonAssetCommandsRegistered,
-        asset_image_non_dracoon: imageNonDracoonAssetCommandsRegistered,
-        asset_text: textAssetCommandsRegistered,
+        expected_command_count: payload.expectedCommandNames.length,
+        dracoon_asset_command_count: payload.imageDracoonAssetCommandsRegistered,
+        asset_image_dracoon: payload.imageDracoonAssetCommandsRegistered,
+        asset_image_non_dracoon: payload.imageNonDracoonAssetCommandsRegistered,
+        asset_text: payload.textAssetCommandsRegistered,
+        asset_triggers_total: payload.assetTriggersTotal,
+        asset_commands_registered: payload.assetCommandsRegistered,
+        fixed_commands_registered: payload.fixedCommandsRegistered,
         request_timeout_ms: slashCommandRestTimeoutMs,
         message: "slash-registration:start",
       },
     );
+    const currentRegistrationResponse = await rest.get(Routes.applicationGuildCommands(clientId, guildId));
+    if (false === Array.isArray(currentRegistrationResponse)) {
+      logger.log(
+        "warn",
+        {
+          ...slashRegistrationLogBase,
+          expected_command_count: payload.expectedCommandNames.length,
+          response_type: typeof currentRegistrationResponse,
+          message: "Slash command registration returned unexpected response shape.",
+        },
+      );
+      throw new SlashRegistrationMismatchError("Slash command registration returned unexpected response shape.");
+    }
+
+    if (expectedPayloadHash === getSlashCommandPayloadHash(currentRegistrationResponse)) {
+      const slashRegistrationDurationMs = Date.now() - slashRegistrationStartedAt;
+      logger.log(
+        "info",
+        {
+          ...slashRegistrationLogBase,
+          duration_ms: slashRegistrationDurationMs,
+          expected_command_count: payload.expectedCommandNames.length,
+          returned_command_count: getSlashCommandNamesFromPayload(currentRegistrationResponse).length,
+          message: "slash-registration:noop",
+        },
+      );
+      return;
+    }
+
+    const currentDiff = computeSlashRegistrationDiff(payload.slashCommands, currentRegistrationResponse);
+    const missingDracoonCommandNames = currentDiff.missingCommandNames.filter(commandName => {
+      return true === payload.dracoonAssetCommandNames.includes(commandName);
+    });
     logger.log(
       "warn",
       {
         ...slashRegistrationLogBase,
+        expected_command_count: currentDiff.expectedCommandNames.length,
+        returned_command_count: currentDiff.returnedCommandNames.length,
+        missing_command_count: currentDiff.missingCommandNames.length,
+        unexpected_command_count: currentDiff.unexpectedCommandNames.length,
+        changed_command_count: currentDiff.changedCommandNames.length,
+        missing_commands: currentDiff.missingCommandNames.slice(0, slashCommandNameLogLimit),
+        unexpected_commands: currentDiff.unexpectedCommandNames.slice(0, slashCommandNameLogLimit),
+        changed_commands: currentDiff.changedCommandNames.slice(0, slashCommandNameLogLimit),
+        truncated: currentDiff.truncated,
+        missing_dracoon_command_count: missingDracoonCommandNames.length,
+        missing_dracoon_commands: missingDracoonCommandNames.slice(0, slashCommandNameLogLimit),
+        message: "slash-registration:diff-detected",
+      },
+    );
+
+    logger.log(
+      "warn",
+      {
+        ...slashRegistrationLogBase,
+        expected_command_count: payload.expectedCommandNames.length,
         message: "slash-registration:put-sent",
       },
     );
-    await rest.put(
+    const putRegistrationResponse = await rest.put(
       Routes.applicationGuildCommands(clientId, guildId),
       {
-        body: slashCommands,
+        body: payload.slashCommands,
       },
     );
-    logger.log(
-      "warn",
-      {
-        ...slashRegistrationLogBase,
-        message: "slash-registration:get-sent",
-      },
-    );
-    const persistedRegistrationResponse = await rest.get(Routes.applicationGuildCommands(clientId, guildId));
+
+    let persistedRegistrationResponse = putRegistrationResponse;
     if (false === Array.isArray(persistedRegistrationResponse)) {
       logger.log(
         "warn",
         {
           ...slashRegistrationLogBase,
-          expected_command_count: expectedCommandNames.length,
+          response_type: typeof persistedRegistrationResponse,
+          message: "slash-registration:verification-fallback-get",
+        },
+      );
+      persistedRegistrationResponse = await rest.get(Routes.applicationGuildCommands(clientId, guildId));
+    }
+
+    if (false === Array.isArray(persistedRegistrationResponse)) {
+      logger.log(
+        "warn",
+        {
+          ...slashRegistrationLogBase,
+          expected_command_count: payload.expectedCommandNames.length,
           response_type: typeof persistedRegistrationResponse,
           message: "Slash command registration returned unexpected response shape.",
         },
@@ -541,43 +747,44 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
       throw new SlashRegistrationMismatchError("Slash command registration returned unexpected response shape.");
     }
 
-    const returnedCommandNames = getSlashCommandNamesFromRegistrationResponse(persistedRegistrationResponse);
-    const diff = computeSlashRegistrationDiff(expectedCommandNames, returnedCommandNames);
-    if (hasSlashRegistrationMismatch(diff)) {
-      const missingDracoonCommandNames = diff.missingCommandNames.filter(commandName => true === dracoonAssetCommandNames.has(commandName));
-      logger.log(
-        "warn",
-        {
-          ...slashRegistrationLogBase,
-          expected_command_count: diff.expectedCommandNames.length,
-          returned_command_count: diff.returnedCommandNames.length,
-          missing_command_count: diff.missingCommandNames.length,
-          unexpected_command_count: diff.unexpectedCommandNames.length,
-          missing_commands: diff.missingCommandNames.slice(0, slashCommandNameLogLimit),
-          unexpected_commands: diff.unexpectedCommandNames.slice(0, slashCommandNameLogLimit),
-          truncated: diff.truncated,
-          missing_dracoon_command_count: missingDracoonCommandNames.length,
-          missing_dracoon_commands: missingDracoonCommandNames.slice(0, slashCommandNameLogLimit),
-          message: "Slash command registration response does not match requested payload.",
-        },
-      );
-      throw new SlashRegistrationMismatchError("Slash command registration response does not match requested payload.");
+    if (expectedPayloadHash !== getSlashCommandPayloadHash(persistedRegistrationResponse)) {
+      const persistedDiff = computeSlashRegistrationDiff(payload.slashCommands, persistedRegistrationResponse);
+      if (hasSlashRegistrationMismatch(persistedDiff)) {
+        const persistedMissingDracoonCommandNames = persistedDiff.missingCommandNames.filter(commandName => {
+          return true === payload.dracoonAssetCommandNames.includes(commandName);
+        });
+        logger.log(
+          "warn",
+          {
+            ...slashRegistrationLogBase,
+            expected_command_count: persistedDiff.expectedCommandNames.length,
+            returned_command_count: persistedDiff.returnedCommandNames.length,
+            missing_command_count: persistedDiff.missingCommandNames.length,
+            unexpected_command_count: persistedDiff.unexpectedCommandNames.length,
+            changed_command_count: persistedDiff.changedCommandNames.length,
+            missing_commands: persistedDiff.missingCommandNames.slice(0, slashCommandNameLogLimit),
+            unexpected_commands: persistedDiff.unexpectedCommandNames.slice(0, slashCommandNameLogLimit),
+            changed_commands: persistedDiff.changedCommandNames.slice(0, slashCommandNameLogLimit),
+            truncated: persistedDiff.truncated,
+            missing_dracoon_command_count: persistedMissingDracoonCommandNames.length,
+            missing_dracoon_commands: persistedMissingDracoonCommandNames.slice(0, slashCommandNameLogLimit),
+            message: "Slash command registration response does not match requested payload.",
+          },
+        );
+        throw new SlashRegistrationMismatchError("Slash command registration response does not match requested payload.");
+      }
     }
 
     const slashRegistrationDurationMs = Date.now() - slashRegistrationStartedAt;
     logger.log(
-      "warn",
+      "info",
       {
         ...slashRegistrationLogBase,
         duration_ms: slashRegistrationDurationMs,
-        expected_command_count: expectedCommandNames.length,
-        returned_command_count: returnedCommandNames.length,
+        expected_command_count: payload.expectedCommandNames.length,
+        returned_command_count: getSlashCommandNamesFromPayload(persistedRegistrationResponse).length,
         message: "slash-registration:completed",
       },
-    );
-    logger.log(
-      "info",
-      `Successfully registered ${slashCommands.length} slash commands.`,
     );
   } catch (error: unknown) {
     if (error instanceof SlashRegistrationMismatchError) {
@@ -590,12 +797,12 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
         "warn",
         {
           ...slashRegistrationLogBase,
-          total_commands_registered: slashCommands.length,
+          total_commands_registered: payload.slashCommands.length,
           registration_rejected: true,
           daily_create_limit_reached: true,
           retry_after_ms: createLimitError.retryAfterMs,
           ...toSlashRegistrationErrorDetails(error),
-          message: "Discord daily slash command create limit reached. Retrying after cooldown.",
+          message: "slash-registration:daily-create-limit-reached",
         },
       );
       throw createLimitError;
@@ -607,13 +814,13 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
         "warn",
         {
           ...slashRegistrationLogBase,
-          total_commands_registered: slashCommands.length,
+          total_commands_registered: payload.slashCommands.length,
           registration_rejected: true,
           rate_limited: true,
           rate_limit_global: rateLimitError.isGlobal,
           retry_after_ms: rateLimitError.retryAfterMs,
           ...toSlashRegistrationErrorDetails(error),
-          message: "Slash command registration was rate limited by Discord. Retrying after cooldown.",
+          message: "slash-registration:rate-limited",
         },
       );
       throw rateLimitError;
@@ -623,7 +830,7 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
       "warn",
       {
         ...slashRegistrationLogBase,
-        total_commands_registered: slashCommands.length,
+        total_commands_registered: payload.slashCommands.length,
         registration_rejected: true,
         ...toSlashRegistrationErrorDetails(error),
         message: "Slash command registration was rejected by Discord.",

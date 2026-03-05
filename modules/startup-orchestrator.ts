@@ -72,14 +72,13 @@ const defaultWarmupMaxRetryDelayMs = 15_000;
 const defaultSlashCommandDebounceMs = 250;
 const defaultAssetRecoveryRetryMs = 60_000;
 const defaultAssetRecoveryMaxRetryMs = 30 * 60_000;
+const slashCommandCreateLimitCooldownMs = 24 * 60 * 60_000;
 
 type ErrorLogDetails = {
   error_name?: string;
   error_message: string;
   error_stack?: string;
 };
-
-type SlashCommandFailureReason = "timeout" | "rejected" | "mismatch" | "target_mismatch";
 
 function createDiscordClient(): Client {
   return new Client({
@@ -164,22 +163,8 @@ function toErrorLogDetails(error: unknown): ErrorLogDetails {
   };
 }
 
-function categorizeSlashCommandFailureReason(error: unknown): SlashCommandFailureReason {
-  if (error instanceof Error) {
-    if ("SlashRegistrationTargetMismatchError" === error.name) {
-      return "target_mismatch";
-    }
-
-    if ("SlashRegistrationMismatchError" === error.name) {
-      return "mismatch";
-    }
-
-    if (/timed out|timeout/i.test(error.message)) {
-      return "timeout";
-    }
-  }
-
-  return "rejected";
+function isSlashCommandCreateLimitError(error: unknown): boolean {
+  return error instanceof Error && "SlashRegistrationCreateLimitError" === error.name;
 }
 
 function toRetryAfterMs(rawRetryAfter: unknown): number | undefined {
@@ -406,41 +391,22 @@ async function warmRemoteData({
   startupState.setRemoteWarmupStatus("warming");
 
   let assetRecoveryRetryHandle: ReturnType<typeof setTimeout> | undefined;
+  let slashCommandSyncScheduledHandle: ReturnType<typeof setTimeout> | undefined;
+  let slashCommandCreateLimitCooldownHandle: ReturnType<typeof setTimeout> | undefined;
   let assetRecoveryInProgress = false;
+  let slashCommandSyncInFlight = false;
+  let slashCommandSyncDirty = false;
   let otherTimersStarted = false;
   let genericAssetsLoaded = false;
   let tickersLoaded = false;
-  let slashCommandsReady = false;
-  let slashRegistrationAttempts = 0;
+  let slashCommandSyncAttempts = 0;
+  let slashCommandCreateLimitRetryAfterMs: number | undefined;
+  let slashCommandCreateLimitSuppressedUntilMs: number | undefined;
   let failedGenericAssetDownloads = 0;
   let failedWhatisAssetDownloads = 0;
   let assetRecoveryAttempt = 0;
   let hasTaskFailure = false;
   startupState.markWarmupTask("asset-downloads", "running");
-
-  const registerSlashCommandsOnce = async (message: string) => {
-    slashRegistrationAttempts += 1;
-    logger.log(
-      "warn",
-      {
-        startup_phase: "phase-b",
-        task: "slash-commands",
-        attempt: slashRegistrationAttempts,
-        asset_count: sharedData.assets.length,
-        whatis_asset_count: sharedData.whatIsAssets.length,
-        user_asset_count: sharedData.userAssets.length,
-        message,
-      },
-    );
-    await dependencies.defineSlashCommands(sharedData.assets, sharedData.whatIsAssets, sharedData.userAssets);
-  };
-
-  const registerSlashCommandsForReadiness = async (message: string) => {
-    await runWarmupTaskWithRetry("slash-commands", async () => {
-      await registerSlashCommandsOnce(message);
-    });
-    slashCommandsReady = true;
-  };
 
   const tryStartOtherTimers = () => {
     if (true === otherTimersStarted) {
@@ -475,23 +441,6 @@ async function warmRemoteData({
       } catch (error: unknown) {
         lastError = error;
         startupState.setLastError(error);
-        const errorDetails = toErrorLogDetails(error);
-        if ("slash-commands" === task) {
-          const failureReason = categorizeSlashCommandFailureReason(error);
-          logger.log(
-            "warn",
-            {
-              startup_phase: "phase-b",
-              task,
-              failure_reason: failureReason,
-              attempt,
-              max_attempts: dependencies.warmupMaxAttempts,
-              ...errorDetails,
-              message: "Slash command task attempt failed.",
-            },
-          );
-        }
-
         if (attempt === dependencies.warmupMaxAttempts) {
           logger.log(
             "error",
@@ -501,7 +450,7 @@ async function warmRemoteData({
               task,
               attempt,
               max_attempts: dependencies.warmupMaxAttempts,
-              ...errorDetails,
+              ...toErrorLogDetails(error),
               message: "Warmup task failed after maximum retries.",
             },
           );
@@ -512,10 +461,7 @@ async function warmRemoteData({
           dependencies.warmupInitialRetryDelayMs * (2 ** (attempt - 1)),
           dependencies.warmupMaxRetryDelayMs,
         );
-        const slashCommandRetryAfterMs = "slash-commands" === task
-          ? getSlashCommandRetryAfterMs(error)
-          : undefined;
-        const retryInMs = Math.max(exponentialRetryInMs, slashCommandRetryAfterMs ?? 0);
+        const retryInMs = exponentialRetryInMs;
         logger.log(
           "warn",
           {
@@ -525,8 +471,7 @@ async function warmRemoteData({
             attempt,
             max_attempts: dependencies.warmupMaxAttempts,
             retry_in_ms: retryInMs,
-            ...(slashCommandRetryAfterMs ? {retry_after_ms: slashCommandRetryAfterMs} : {}),
-            ...errorDetails,
+            ...toErrorLogDetails(error),
             message: "Warmup task failed. Retrying.",
           },
         );
@@ -535,17 +480,6 @@ async function warmRemoteData({
     }
 
     startupState.markWarmupTask(task, "failed");
-    if ("slash-commands" === task) {
-      logger.log(
-        "warn",
-        {
-          startup_phase: "phase-b",
-          task,
-          failure_reason: categorizeSlashCommandFailureReason(lastError),
-          message: "Slash command task marked as failed.",
-        },
-      );
-    }
     throw lastError;
   };
 
@@ -580,8 +514,219 @@ async function warmRemoteData({
     );
   };
 
+  const clearSlashCommandCreateLimitSuppression = () => {
+    slashCommandCreateLimitRetryAfterMs = undefined;
+    slashCommandCreateLimitSuppressedUntilMs = undefined;
+    if ("undefined" !== typeof slashCommandCreateLimitCooldownHandle) {
+      dependencies.clearTimeoutFn(slashCommandCreateLimitCooldownHandle);
+      slashCommandCreateLimitCooldownHandle = undefined;
+    }
+  };
+
+  const isSlashCommandSyncSuppressed = () => {
+    if ("number" !== typeof slashCommandCreateLimitSuppressedUntilMs) {
+      return false;
+    }
+
+    if (Date.now() >= slashCommandCreateLimitSuppressedUntilMs) {
+      clearSlashCommandCreateLimitSuppression();
+      return false;
+    }
+
+    return true;
+  };
+
+  const logSlashCommandSyncSuppressed = (message: string) => {
+    logger.log(
+      "warn",
+      {
+        startup_phase: "phase-b",
+        task: "slash-commands",
+        daily_create_limit_reached: true,
+        ...(slashCommandCreateLimitSuppressedUntilMs ? {suppressed_until_ms: slashCommandCreateLimitSuppressedUntilMs} : {}),
+        ...(slashCommandCreateLimitRetryAfterMs ? {retry_after_ms: slashCommandCreateLimitRetryAfterMs} : {}),
+        message,
+      },
+    );
+  };
+
+  const scheduleSlashCommandSync = (message: string, delayMs = dependencies.slashCommandDebounceMs, attempt = 1) => {
+    if (false === genericAssetsLoaded || "ready" !== startupState.getSnapshot().remoteWarmupStatus) {
+      return;
+    }
+
+    if (true === isSlashCommandSyncSuppressed()) {
+      logSlashCommandSyncSuppressed("slash-registration:daily-create-limit-suppressed");
+      return;
+    }
+
+    if (true === slashCommandSyncInFlight) {
+      slashCommandSyncDirty = true;
+      logger.log(
+        "info",
+        {
+          startup_phase: "phase-b",
+          task: "slash-commands",
+          delay_ms: delayMs,
+          attempt,
+          coalesced: true,
+          message: "slash-registration:scheduled",
+        },
+      );
+      return;
+    }
+
+    if ("undefined" !== typeof slashCommandSyncScheduledHandle) {
+      return;
+    }
+
+    logger.log(
+      "info",
+      {
+        startup_phase: "phase-b",
+        task: "slash-commands",
+        delay_ms: delayMs,
+        attempt,
+        message,
+      },
+    );
+
+    slashCommandSyncScheduledHandle = dependencies.setTimeoutFn(() => {
+      slashCommandSyncScheduledHandle = undefined;
+      void runSlashCommandSync(attempt);
+    }, delayMs);
+    (slashCommandSyncScheduledHandle as any).unref?.();
+  };
+
+  const scheduleSlashCommandCreateLimitCooldownRelease = () => {
+    if ("undefined" !== typeof slashCommandCreateLimitCooldownHandle) {
+      dependencies.clearTimeoutFn(slashCommandCreateLimitCooldownHandle);
+      slashCommandCreateLimitCooldownHandle = undefined;
+    }
+
+    slashCommandCreateLimitSuppressedUntilMs = Date.now() + slashCommandCreateLimitCooldownMs;
+    slashCommandCreateLimitCooldownHandle = dependencies.setTimeoutFn(() => {
+      slashCommandCreateLimitCooldownHandle = undefined;
+      clearSlashCommandCreateLimitSuppression();
+      logger.log(
+        "info",
+        {
+          startup_phase: "phase-b",
+          task: "slash-commands",
+          cooldown_ms: slashCommandCreateLimitCooldownMs,
+          message: "slash-registration:cooldown-expired-retry",
+        },
+      );
+      scheduleSlashCommandSync("slash-registration:scheduled", dependencies.slashCommandDebounceMs, 1);
+    }, slashCommandCreateLimitCooldownMs);
+    (slashCommandCreateLimitCooldownHandle as any).unref?.();
+  };
+
+  const runSlashCommandSync = async (attempt: number) => {
+    if (true === slashCommandSyncInFlight) {
+      slashCommandSyncDirty = true;
+      return;
+    }
+
+    if (false === genericAssetsLoaded || "ready" !== startupState.getSnapshot().remoteWarmupStatus) {
+      return;
+    }
+
+    if (true === isSlashCommandSyncSuppressed()) {
+      logSlashCommandSyncSuppressed("slash-registration:daily-create-limit-suppressed");
+      return;
+    }
+
+    slashCommandSyncInFlight = true;
+    slashCommandSyncAttempts += 1;
+    let queuedRetryDelayMs: number | undefined;
+    let queuedRetryAttempt: number | undefined;
+
+    try {
+      await dependencies.defineSlashCommands(sharedData.assets, sharedData.whatIsAssets, sharedData.userAssets);
+    } catch (error: unknown) {
+      startupState.setLastError(error);
+
+      if (true === isSlashCommandCreateLimitError(error)) {
+        slashCommandCreateLimitRetryAfterMs = getSlashCommandRetryAfterMs(error);
+        scheduleSlashCommandCreateLimitCooldownRelease();
+        logger.log(
+          "warn",
+          {
+            startup_phase: "phase-b",
+            task: "slash-commands",
+            attempt,
+            sync_attempt: slashCommandSyncAttempts,
+            cooldown_ms: slashCommandCreateLimitCooldownMs,
+            ...(slashCommandCreateLimitSuppressedUntilMs ? {suppressed_until_ms: slashCommandCreateLimitSuppressedUntilMs} : {}),
+            ...(slashCommandCreateLimitRetryAfterMs ? {retry_after_ms: slashCommandCreateLimitRetryAfterMs} : {}),
+            message: "slash-registration:daily-create-limit-suppressed",
+          },
+        );
+      } else if (error instanceof Error && "SlashRegistrationRateLimitError" === error.name) {
+        const retryAfterMs = getSlashCommandRetryAfterMs(error) ?? 15_000;
+        logger.log(
+          "warn",
+          {
+            startup_phase: "phase-b",
+            task: "slash-commands",
+            attempt,
+            max_attempts: dependencies.warmupMaxAttempts,
+            retry_after_ms: retryAfterMs,
+            retry_in_ms: retryAfterMs,
+            ...toErrorLogDetails(error),
+            message: "slash-registration:rate-limited",
+          },
+        );
+
+        if (attempt < dependencies.warmupMaxAttempts) {
+          queuedRetryDelayMs = retryAfterMs;
+          queuedRetryAttempt = attempt + 1;
+        } else {
+          logger.log(
+            "warn",
+            {
+              startup_phase: "phase-b",
+              task: "slash-commands",
+              attempt,
+              max_attempts: dependencies.warmupMaxAttempts,
+              retry_after_ms: retryAfterMs,
+              ...toErrorLogDetails(error),
+              message: "slash-registration:rate-limit-retries-exhausted",
+            },
+          );
+        }
+      } else {
+        logger.log(
+          "error",
+          {
+            startup_phase: "phase-b",
+            task: "slash-commands",
+            attempt,
+            sync_attempt: slashCommandSyncAttempts,
+            ...toErrorLogDetails(error),
+            message: "Automatic slash command sync failed.",
+          },
+        );
+      }
+    } finally {
+      slashCommandSyncInFlight = false;
+
+      if ("number" === typeof queuedRetryDelayMs && "number" === typeof queuedRetryAttempt) {
+        slashCommandSyncDirty = false;
+        scheduleSlashCommandSync("slash-registration:scheduled", queuedRetryDelayMs, queuedRetryAttempt);
+        return;
+      }
+
+      if (true === slashCommandSyncDirty) {
+        slashCommandSyncDirty = false;
+        scheduleSlashCommandSync("slash-registration:scheduled");
+      }
+    }
+  };
+
   const scheduleAssetRecovery = () => {
-    if (true === hasTaskFailure || (0 === getFailedAssetDownloads() && true === slashCommandsReady)) {
+    if (true === hasTaskFailure || 0 === getFailedAssetDownloads()) {
       return;
     }
 
@@ -598,7 +743,7 @@ async function warmRemoteData({
   };
 
   const recoverFailedAssets = async () => {
-    if (true === hasTaskFailure || true === assetRecoveryInProgress || (0 === getFailedAssetDownloads() && true === slashCommandsReady)) {
+    if (true === hasTaskFailure || true === assetRecoveryInProgress || 0 === getFailedAssetDownloads()) {
       return;
     }
 
@@ -621,17 +766,10 @@ async function warmRemoteData({
         tryStartOtherTimers();
       }
 
-      if (genericAssetsLoaded) {
-        await registerSlashCommandsForReadiness("Registering slash commands during recovery.");
-      } else {
-        slashCommandsReady = false;
-        startupState.markWarmupTask("slash-commands", "failed");
-      }
-
       const failedAssetDownloads = getFailedAssetDownloads();
       startupState.markWarmupTask("asset-downloads", 0 === failedAssetDownloads ? "success" : "failed");
 
-      if (0 === failedAssetDownloads && true === slashCommandsReady) {
+      if (0 === failedAssetDownloads) {
         assetRecoveryAttempt = 0;
         startupState.setRemoteWarmupStatus("ready");
         logger.log(
@@ -647,6 +785,7 @@ async function warmRemoteData({
           "info",
           "Bot ready.",
         );
+        scheduleSlashCommandSync("slash-registration:scheduled");
       } else {
         assetRecoveryAttempt += 1;
         logger.log(
@@ -656,7 +795,6 @@ async function warmRemoteData({
             task: "asset-recovery",
             degraded: true,
             failed_asset_downloads: failedAssetDownloads,
-            slash_commands_ready: slashCommandsReady,
             retry_in_ms: getAssetRecoveryRetryDelayMs(),
             message: "Recovery incomplete. Retrying.",
           },
@@ -665,7 +803,6 @@ async function warmRemoteData({
     } catch (error: unknown) {
       assetRecoveryAttempt += 1;
       startupState.setLastError(error);
-      slashCommandsReady = false;
       if (0 < getFailedAssetDownloads()) {
         startupState.markWarmupTask("asset-downloads", "failed");
       }
@@ -752,27 +889,7 @@ async function warmRemoteData({
     hasTaskFailure = warmupResults.some(result => "rejected" === result.status);
     const failedAssetDownloads = getFailedAssetDownloads();
     startupState.markWarmupTask("asset-downloads", 0 === failedAssetDownloads ? "success" : "failed");
-    if (genericAssetsLoaded) {
-      try {
-        await registerSlashCommandsForReadiness("Registering slash commands after warmup completion.");
-      } catch (error) {
-        slashCommandsReady = false;
-        startupState.setLastError(error);
-      }
-    } else {
-      slashCommandsReady = false;
-      startupState.markWarmupTask("slash-commands", "failed");
-      logger.log(
-        "warn",
-        {
-          startup_phase: "phase-b",
-          task: "slash-commands",
-          degraded: true,
-          message: "Skipping slash command readiness deployment because generic assets are unavailable.",
-        },
-      );
-    }
-    const hasWarmupFailure = hasTaskFailure || failedAssetDownloads > 0 || false === slashCommandsReady;
+    const hasWarmupFailure = hasTaskFailure || failedAssetDownloads > 0;
 
     if (false === otherTimersStarted) {
       logger.log(
@@ -811,6 +928,7 @@ async function warmRemoteData({
         "info",
         "Bot ready.",
       );
+      scheduleSlashCommandSync("slash-registration:scheduled");
     }
   } catch (error) {
     startupState.setLastError(error);

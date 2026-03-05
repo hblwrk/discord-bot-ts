@@ -265,7 +265,7 @@ describe("startBot", () => {
 
   test("retries failed assets and becomes ready after recovery", async () => {
     let genericAssetsCalls = 0;
-    const {dependencies} = createDependencies({
+    const {dependencies, mocks} = createDependencies({
       getGenericAssets: jest.fn(async () => {
         genericAssetsCalls += 1;
         if (1 === genericAssetsCalls) {
@@ -284,10 +284,12 @@ describe("startBot", () => {
           },
         ];
       }),
+      slashCommandDebounceMs: 5,
     });
 
     const runtime = await startBot(dependencies);
     await waitFor(() => true === runtime.getStartupState().ready, 1000);
+    await waitFor(() => mocks.defineSlashCommands.mock.calls.length === 1, 1000);
 
     const snapshot = runtime.getStartupState();
     expect(snapshot.remoteWarmupStatus).toBe("ready");
@@ -337,7 +339,7 @@ describe("startBot", () => {
     expect(mocks.roleManager).toHaveBeenCalledTimes(1);
   });
 
-  test("registers slash commands once after warmup data is available", async () => {
+  test("schedules slash command sync once after the bot becomes ready", async () => {
     const getAssetsMock = jest.fn(async (type: string) => {
       if ("whatis" === type) {
         await sleep(20);
@@ -354,95 +356,201 @@ describe("startBot", () => {
       slashCommandDebounceMs: 5,
     });
 
-    await startBot(dependencies);
-    await sleep(90);
+    const runtime = await startBot(dependencies);
+    await waitFor(() => true === runtime.getStartupState().ready);
+    await waitFor(() => mocks.defineSlashCommands.mock.calls.length === 1);
 
-    expect(mocks.defineSlashCommands.mock.calls.length).toBe(1);
+    expect(mocks.defineSlashCommands).toHaveBeenCalledTimes(1);
   });
 
-  test("does not register slash commands before generic assets are available", async () => {
+  test("does not schedule slash command sync before generic assets are available", async () => {
     const genericDeferred = createDeferred<any[]>();
     const {dependencies, mocks} = createDependencies({
       getGenericAssets: jest.fn(async () => genericDeferred.promise),
       slashCommandDebounceMs: 5,
     });
 
-    await startBot(dependencies);
-    await sleep(30);
-
-    expect(mocks.defineSlashCommands).not.toHaveBeenCalled();
-
-    genericDeferred.resolve([]);
-    await waitFor(() => mocks.defineSlashCommands.mock.calls.length > 0);
-
-    expect(mocks.defineSlashCommands).toHaveBeenCalled();
-  });
-
-  test("does not become ready before slash commands are successfully deployed", async () => {
-    const slashRegistrationDeferred = createDeferred<void>();
-    const {dependencies} = createDependencies({
-      defineSlashCommands: jest.fn(async () => slashRegistrationDeferred.promise),
-      slashCommandDebounceMs: 1000,
-    });
-
     const runtime = await startBot(dependencies);
     await sleep(30);
 
     expect(runtime.getStartupState().ready).toBe(false);
-    expect(runtime.getStartupState().remoteWarmupStatus).toBe("warming");
+    expect(mocks.defineSlashCommands).not.toHaveBeenCalled();
 
-    slashRegistrationDeferred.resolve();
-    await waitFor(() => "warming" !== runtime.getStartupState().remoteWarmupStatus);
-
-    expect(runtime.getStartupState().ready).toBe(true);
-    expect(runtime.getStartupState().remoteWarmupStatus).toBe("ready");
+    genericDeferred.resolve([]);
+    await waitFor(() => true === runtime.getStartupState().ready);
+    await waitFor(() => mocks.defineSlashCommands.mock.calls.length === 1);
   });
 
-  test("keeps readiness false when slash command deployment fails", async () => {
+  test("becomes ready before the background slash command sync completes", async () => {
+    const slashSyncDeferred = createDeferred<void>();
+    const defineSlashCommandsMock = jest.fn(async () => slashSyncDeferred.promise);
+    const {dependencies} = createDependencies({
+      defineSlashCommands: defineSlashCommandsMock,
+      slashCommandDebounceMs: 5,
+    });
+
+    const runtime = await startBot(dependencies);
+    await waitFor(() => true === runtime.getStartupState().ready);
+    await waitFor(() => defineSlashCommandsMock.mock.calls.length === 1);
+
+    expect(runtime.getStartupState().remoteWarmupStatus).toBe("ready");
+    expect(runtime.getStartupState().ready).toBe(true);
+
+    slashSyncDeferred.resolve();
+    await sleep(20);
+
+    expect(runtime.getStartupState().ready).toBe(true);
+  });
+
+  test("coalesces repeated slash command sync triggers into one follow-up run", async () => {
+    const slashSyncDeferred = createDeferred<void>();
+    const defineSlashCommandsMock = jest.fn(async () => slashSyncDeferred.promise);
+    let initialSlashSyncHandler: (() => void) | undefined;
+    let slashSyncScheduleCount = 0;
+    const setTimeoutFn = ((handler: (...args: unknown[]) => void, delay?: number, ...args: unknown[]) => {
+      const requestedDelay = Number(delay ?? 0);
+      if (5 === requestedDelay) {
+        slashSyncScheduleCount += 1;
+        if (1 === slashSyncScheduleCount) {
+          initialSlashSyncHandler = () => {
+            handler(...args);
+          };
+          return {
+            unref: jest.fn(),
+          } as any;
+        }
+      }
+
+      return setTimeout(handler as any, requestedDelay, ...args);
+    }) as typeof setTimeout;
+    const {dependencies} = createDependencies({
+      defineSlashCommands: defineSlashCommandsMock,
+      setTimeoutFn,
+      clearTimeoutFn: clearTimeout,
+      slashCommandDebounceMs: 5,
+    });
+
+    const runtime = await startBot(dependencies);
+    await waitFor(() => true === runtime.getStartupState().ready);
+    await waitFor(() => "function" === typeof initialSlashSyncHandler);
+
+    initialSlashSyncHandler?.();
+    await waitFor(() => defineSlashCommandsMock.mock.calls.length === 1);
+
+    initialSlashSyncHandler?.();
+    await sleep(10);
+    expect(defineSlashCommandsMock).toHaveBeenCalledTimes(1);
+
+    slashSyncDeferred.resolve();
+    await waitFor(() => defineSlashCommandsMock.mock.calls.length === 2);
+    await sleep(20);
+
+    expect(defineSlashCommandsMock).toHaveBeenCalledTimes(2);
+    expect(runtime.getStartupState().ready).toBe(true);
+  });
+
+  test("keeps readiness true when background slash command sync fails", async () => {
     const defineSlashCommandsMock = jest.fn(async () => {
-      throw new Error("slash registration failed");
+      throw new Error("slash sync failed");
     });
     const {dependencies, mocks} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
       slashCommandDebounceMs: 5,
-      warmupMaxAttempts: 1,
     });
 
     const runtime = await startBot(dependencies);
-    await waitFor(() => "warming" !== runtime.getStartupState().remoteWarmupStatus);
+    await waitFor(() => true === runtime.getStartupState().ready);
+    await waitFor(() => defineSlashCommandsMock.mock.calls.length === 1);
 
-    expect(runtime.getStartupState().ready).toBe(false);
-    expect(runtime.getStartupState().remoteWarmupStatus).toBe("degraded");
-    expect(defineSlashCommandsMock).toHaveBeenCalled();
-    const hasSlashErrorLog = mocks.logger.log.mock.calls.some(([level, payload]) => {
-      return "error" === level && "slash-commands" === payload?.task;
-    });
-    expect(hasSlashErrorLog).toBe(true);
+    expect(runtime.getStartupState().remoteWarmupStatus).toBe("ready");
+    expect(runtime.getStartupState().ready).toBe(true);
+    expect(mocks.logger.log).toHaveBeenCalledWith(
+      "error",
+      expect.objectContaining({
+        startup_phase: "phase-b",
+        task: "slash-commands",
+        error_message: "slash sync failed",
+        message: "Automatic slash command sync failed.",
+      }),
+    );
   });
 
-  test("retries slash command registration after mismatch and reaches readiness", async () => {
-    const defineSlashCommandsMock = jest.fn()
-      .mockImplementationOnce(async () => {
-        const mismatchError = new Error("Slash command registration response does not match requested payload.");
-        mismatchError.name = "SlashRegistrationMismatchError";
-        throw mismatchError;
-      })
-      .mockImplementationOnce(async () => {});
+  test("does not run slash command sync during repeated asset recovery attempts before the bot becomes ready", async () => {
+    let genericAssetsCalls = 0;
+    const defineSlashCommandsMock = jest.fn(async () => {});
     const {dependencies} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
-      warmupMaxAttempts: 2,
-      warmupInitialRetryDelayMs: 1,
-      warmupMaxRetryDelayMs: 1,
+      assetRecoveryRetryMs: 5,
+      slashCommandDebounceMs: 5,
+      getGenericAssets: jest.fn(async () => {
+        genericAssetsCalls += 1;
+        if (genericAssetsCalls < 3) {
+          return [
+            {
+              trigger: ["profi"],
+              downloadFailed: true,
+            },
+          ];
+        }
+
+        return [
+          {
+            trigger: ["profi"],
+            downloadFailed: false,
+          },
+        ];
+      }),
     });
 
     const runtime = await startBot(dependencies);
-    await waitFor(() => "warming" !== runtime.getStartupState().remoteWarmupStatus);
+    await waitFor(() => true === runtime.getStartupState().ready, 1500);
+    await waitFor(() => defineSlashCommandsMock.mock.calls.length === 1, 1500);
 
-    expect(runtime.getStartupState().ready).toBe(true);
-    expect(defineSlashCommandsMock).toHaveBeenCalledTimes(2);
+    expect(defineSlashCommandsMock).toHaveBeenCalledTimes(1);
   });
 
-  test("uses retry-after backoff for slash command create-limit failures", async () => {
+  test("suppresses further slash command sync attempts after a create-limit failure and keeps the bot ready", async () => {
+    const createLimitError: any = new Error("Slash command create limit reached.");
+    createLimitError.name = "SlashRegistrationCreateLimitError";
+    createLimitError.retryAfterMs = 360919;
+    const defineSlashCommandsMock = jest.fn(async () => {
+      throw createLimitError;
+    });
+    const observedTimeoutDelays: number[] = [];
+    const setTimeoutFn = ((handler: (...args: unknown[]) => void, delay?: number, ...args: unknown[]) => {
+      const requestedDelay = Number(delay ?? 0);
+      observedTimeoutDelays.push(requestedDelay);
+      return setTimeout(handler as any, requestedDelay, ...args);
+    }) as typeof setTimeout;
+    const {dependencies, mocks} = createDependencies({
+      defineSlashCommands: defineSlashCommandsMock,
+      setTimeoutFn,
+      clearTimeoutFn: clearTimeout,
+      slashCommandDebounceMs: 5,
+    });
+
+    const runtime = await startBot(dependencies);
+    await waitFor(() => true === runtime.getStartupState().ready);
+    await waitFor(() => defineSlashCommandsMock.mock.calls.length === 1);
+    await sleep(20);
+
+    expect(runtime.getStartupState().remoteWarmupStatus).toBe("ready");
+    expect(runtime.getStartupState().ready).toBe(true);
+    expect(defineSlashCommandsMock).toHaveBeenCalledTimes(1);
+    expect(observedTimeoutDelays).toContain(86_400_000);
+    expect(observedTimeoutDelays).not.toContain(360919);
+    expect(mocks.logger.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        task: "slash-commands",
+        cooldown_ms: 86_400_000,
+        retry_after_ms: 360919,
+        message: "slash-registration:daily-create-limit-suppressed",
+      }),
+    );
+  });
+
+  test("retries slash command sync after the create-limit cooldown expires", async () => {
     const createLimitError: any = new Error("Slash command create limit reached.");
     createLimitError.name = "SlashRegistrationCreateLimitError";
     createLimitError.retryAfterMs = 360919;
@@ -451,35 +559,43 @@ describe("startBot", () => {
         throw createLimitError;
       })
       .mockImplementationOnce(async () => {});
-    const observedTimeoutDelays: number[] = [];
+    let cooldownHandler: (() => void) | undefined;
     const setTimeoutFn = ((handler: (...args: unknown[]) => void, delay?: number, ...args: unknown[]) => {
       const requestedDelay = Number(delay ?? 0);
-      observedTimeoutDelays.push(requestedDelay);
-      const boundedDelay = requestedDelay > 1_000 ? 1 : requestedDelay;
-      return setTimeout(handler as any, boundedDelay, ...args);
+      if (86_400_000 === requestedDelay) {
+        cooldownHandler = () => {
+          handler(...args);
+        };
+        return {
+          unref: jest.fn(),
+        } as any;
+      }
+
+      return setTimeout(handler as any, requestedDelay, ...args);
     }) as typeof setTimeout;
     const {dependencies, mocks} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
-      warmupMaxAttempts: 2,
-      warmupInitialRetryDelayMs: 1,
-      warmupMaxRetryDelayMs: 1,
       setTimeoutFn,
       clearTimeoutFn: clearTimeout,
+      slashCommandDebounceMs: 5,
     });
 
     const runtime = await startBot(dependencies);
-    await waitFor(() => "warming" !== runtime.getStartupState().remoteWarmupStatus);
+    await waitFor(() => true === runtime.getStartupState().ready);
+    await waitFor(() => defineSlashCommandsMock.mock.calls.length === 1);
+    expect(cooldownHandler).toBeDefined();
+
+    cooldownHandler?.();
+    await waitFor(() => defineSlashCommandsMock.mock.calls.length === 2);
 
     expect(runtime.getStartupState().ready).toBe(true);
-    expect(defineSlashCommandsMock).toHaveBeenCalledTimes(2);
-    expect(observedTimeoutDelays.some(delay => 360919 === delay)).toBe(true);
+    expect(runtime.getStartupState().remoteWarmupStatus).toBe("ready");
     expect(mocks.logger.log).toHaveBeenCalledWith(
-      "warn",
+      "info",
       expect.objectContaining({
         task: "slash-commands",
-        retry_after_ms: 360919,
-        retry_in_ms: 360919,
-        message: "Warmup task failed. Retrying.",
+        cooldown_ms: 86_400_000,
+        message: "slash-registration:cooldown-expired-retry",
       }),
     );
   });
@@ -502,26 +618,25 @@ describe("startBot", () => {
     }) as typeof setTimeout;
     const {dependencies, mocks} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
-      warmupMaxAttempts: 2,
-      warmupInitialRetryDelayMs: 1,
-      warmupMaxRetryDelayMs: 1,
       setTimeoutFn,
       clearTimeoutFn: clearTimeout,
+      slashCommandDebounceMs: 5,
+      warmupMaxAttempts: 2,
     });
 
     const runtime = await startBot(dependencies);
-    await waitFor(() => "warming" !== runtime.getStartupState().remoteWarmupStatus);
+    await waitFor(() => true === runtime.getStartupState().ready);
+    await waitFor(() => defineSlashCommandsMock.mock.calls.length === 2);
 
     expect(runtime.getStartupState().ready).toBe(true);
-    expect(defineSlashCommandsMock).toHaveBeenCalledTimes(2);
-    expect(observedTimeoutDelays.some(delay => 11902 === delay)).toBe(true);
+    expect(observedTimeoutDelays).toContain(11902);
     expect(mocks.logger.log).toHaveBeenCalledWith(
       "warn",
       expect.objectContaining({
         task: "slash-commands",
         retry_after_ms: 11902,
         retry_in_ms: 11902,
-        message: "Warmup task failed. Retrying.",
+        message: "slash-registration:rate-limited",
       }),
     );
   });
@@ -543,5 +658,4 @@ describe("startBot", () => {
       }),
     );
   });
-
 });

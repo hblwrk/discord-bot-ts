@@ -26,7 +26,7 @@ jest.mock("discord.js", () => {
 });
 
 import {ImageAsset, TextAsset} from "./assets.js";
-import {defineSlashCommands} from "./slash-commands.js";
+import {buildSlashCommandPayload, defineSlashCommands} from "./slash-commands.js";
 import {readSecret} from "./secrets.js";
 
 jest.mock("./secrets.js", () => ({
@@ -53,28 +53,43 @@ jest.mock("./logging.js", () => ({
 }));
 
 const mockedReadSecret = readSecret as jest.MockedFunction<typeof readSecret>;
-const getLastPutBody = () => {
-  const lastCallIndex = mockPut.mock.calls.length - 1;
-  if (lastCallIndex < 0) {
-    return [];
-  }
 
-  return mockPut.mock.calls[lastCallIndex]?.[1]?.body ?? [];
-};
+function cloneJson<T>(value: T): T {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function toRemoteCommandPayload(commands: any[]): any[] {
+  return commands
+    .map((command, index) => ({
+      id: `command-${index}`,
+      application_id: "application-id",
+      guild_id: "guild-id",
+      version: "42",
+      dm_permission: true,
+      ...cloneJson(command),
+    }))
+    .reverse();
+}
 
 describe("defineSlashCommands", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockedReadSecret.mockClear();
     mockPut.mockImplementation(async (_route, options) => options?.body ?? []);
-    mockGet.mockImplementation(async () => getLastPutBody());
+    mockGet.mockResolvedValue([]);
   });
 
-  test("registers slash commands with v10 REST route and v14 choice structures", async () => {
+  test("does a GET-only noop when the remote payload already matches after canonicalization", async () => {
     const asset = new TextAsset();
     asset.title = "Hello title";
     (asset as any).trigger = ["hello world"];
     asset.response = "Hello";
+    const desiredPayload = buildSlashCommandPayload(
+      [asset],
+      [{title: "FAQ", name: "whatis_faq"}],
+      [{name: "alice"}],
+    ).slashCommands;
+    mockGet.mockResolvedValueOnce(toRemoteCommandPayload(desiredPayload));
 
     await defineSlashCommands(
       [asset],
@@ -89,54 +104,23 @@ describe("defineSlashCommands", () => {
     expect(mockSetToken).toHaveBeenCalledWith("test-token");
     expect(mockApplicationGuildCommands).toHaveBeenCalledWith("client-id", "guild-id");
     expect(mockOn).toHaveBeenCalledWith("rateLimited", expect.any(Function));
-    expect(mockPut).toHaveBeenCalledTimes(1);
     expect(mockGet).toHaveBeenCalledTimes(1);
+    expect(mockPut).not.toHaveBeenCalled();
 
-    const commandPayload = mockPut.mock.calls[0][1].body;
-
-    expect(commandPayload.some(command => command.name === "hello_world")).toBe(true);
-
-    const whatisCommand = commandPayload.find(command => command.name === "whatis");
-    const whatisSearchOption = whatisCommand.options.find(option => option.name === "search");
-    expect(whatisSearchOption.choices).toContainEqual({name: "FAQ", value: "whatis_faq"});
-
-    const earningsCommand = commandPayload.find(command => command.name === "earnings");
-    const whenOption = earningsCommand.options.find(option => option.name === "when");
-    expect(whenOption.choices).toContainEqual({name: "Alle", value: "all"});
-    const daysOption = earningsCommand.options.find(option => option.name === "days");
-    expect(daysOption.max_value).toBe(10);
-    const filterOption = earningsCommand.options.find(option => option.name === "filter");
-    expect(filterOption.choices).toContainEqual({name: "Alle", value: "all"});
-    expect(filterOption.choices).toContainEqual({name: "Bluechips (>= $10B)", value: "bluechips"});
-
-    const lifecycleMessages = [
-      "slash-registration:start",
-      "slash-registration:put-sent",
-      "slash-registration:get-sent",
-      "slash-registration:completed",
-    ];
-    for (const message of lifecycleMessages) {
-      expect(loggerMock.log).toHaveBeenCalledWith(
-        "warn",
-        expect.objectContaining({
-          source: "slash-registration",
-          message,
-        }),
-      );
-    }
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "info",
+      expect.objectContaining({
+        source: "slash-registration",
+        message: "slash-registration:noop",
+      }),
+    );
   });
 
-  test("logs warn when Discord REST emits a rate-limit event during slash registration", async () => {
-    const asset = new TextAsset();
-    asset.title = "Hello title";
-    (asset as any).trigger = ["hello world"];
-    asset.response = "Hello";
+  test("logs warn when Discord REST emits a rate-limit event during slash reconciliation", async () => {
+    const desiredPayload = buildSlashCommandPayload([], [], []).slashCommands;
+    mockGet.mockResolvedValueOnce(toRemoteCommandPayload(desiredPayload));
 
-    await defineSlashCommands(
-      [asset],
-      [{title: "FAQ", name: "whatis_faq"}],
-      [{name: "alice"}],
-    );
+    await defineSlashCommands([], [], []);
 
     const rateLimitedListener = mockOn.mock.calls.find(([eventName]) => "rateLimited" === eventName)?.[1];
     expect(rateLimitedListener).toBeDefined();
@@ -163,13 +147,117 @@ describe("defineSlashCommands", () => {
         retry_after_ms: 11902,
         rate_limit_method: "PUT",
         rate_limit_scope: "shared",
-        message: "Slash command registration request hit Discord rate limit.",
+        message: "slash-registration:rate-limit-event",
       }),
     );
   });
 
-  test("logs registration errors when REST command deployment fails", async () => {
+  test("updates slash commands when the remote payload differs and uses the PUT response for verification", async () => {
+    const asset = new TextAsset();
+    asset.title = "Hello title";
+    (asset as any).trigger = ["hello world"];
+    asset.response = "Hello";
+    const desiredPayload = buildSlashCommandPayload([asset], [], []).slashCommands;
+    const remotePayload = toRemoteCommandPayload(desiredPayload);
+    remotePayload.find(command => "hello_world" === command.name).description = "Old description";
+    mockGet.mockResolvedValueOnce(remotePayload);
+
+    await defineSlashCommands([asset], [], []);
+
+    expect(mockGet).toHaveBeenCalledTimes(1);
+    expect(mockPut).toHaveBeenCalledTimes(1);
+    expect(mockPut.mock.calls[0][1].body.find(command => command.name === "hello_world").description).toBe("Hello title");
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "slash-registration",
+        changed_command_count: 1,
+        changed_commands: ["hello_world"],
+        message: "slash-registration:diff-detected",
+      }),
+    );
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "slash-registration",
+        message: "slash-registration:put-sent",
+      }),
+    );
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "info",
+      expect.objectContaining({
+        source: "slash-registration",
+        message: "slash-registration:completed",
+      }),
+    );
+  });
+
+  test("falls back to GET when the PUT response shape is unexpected", async () => {
+    const asset = new TextAsset();
+    asset.title = "Hello title";
+    (asset as any).trigger = ["hello world"];
+    asset.response = "Hello";
+    const desiredPayload = buildSlashCommandPayload([asset], [], []).slashCommands;
+    const remotePayload = toRemoteCommandPayload(desiredPayload);
+    remotePayload.find(command => "hello_world" === command.name).description = "Old description";
+    mockGet
+      .mockResolvedValueOnce(remotePayload)
+      .mockResolvedValueOnce(toRemoteCommandPayload(desiredPayload));
+    mockPut.mockResolvedValueOnce({});
+
+    await defineSlashCommands([asset], [], []);
+
+    expect(mockGet).toHaveBeenCalledTimes(2);
+    expect(mockPut).toHaveBeenCalledTimes(1);
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "slash-registration",
+        message: "slash-registration:verification-fallback-get",
+      }),
+    );
+  });
+
+  test("logs warning and throws when post-write verification still mismatches", async () => {
+    const dracoonImageAsset = new ImageAsset();
+    dracoonImageAsset.title = "Dracoon image";
+    (dracoonImageAsset as any).trigger = ["dracooncmd"];
+    dracoonImageAsset.location = "dracoon";
+    mockGet
+      .mockResolvedValueOnce([])
+      .mockResolvedValueOnce([]);
+    mockPut.mockResolvedValueOnce({});
+
+    await expect(defineSlashCommands([dracoonImageAsset], [], [])).rejects.toThrow("does not match requested payload");
+
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "slash-registration",
+        missing_dracoon_command_count: 1,
+        missing_dracoon_commands: ["dracooncmd"],
+        message: "Slash command registration response does not match requested payload.",
+      }),
+    );
+  });
+
+  test("logs warning and throws when the current GET response shape is unexpected", async () => {
+    mockGet.mockResolvedValueOnce({});
+
+    await expect(defineSlashCommands([], [], [])).rejects.toThrow("unexpected response shape");
+
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "slash-registration",
+        message: "Slash command registration returned unexpected response shape.",
+      }),
+    );
+  });
+
+  test("logs registration errors when the REST PUT request fails", async () => {
     const expectedError = new Error("discord api unavailable");
+    mockGet.mockResolvedValueOnce([]);
     mockPut.mockRejectedValueOnce(expectedError);
 
     await expect(defineSlashCommands([], [], [])).rejects.toThrow("discord api unavailable");
@@ -188,71 +276,13 @@ describe("defineSlashCommands", () => {
     expect(loggerMock.log).toHaveBeenCalledWith("error", expectedError);
   });
 
-  test("logs warning and throws when Discord returns truncated slash registration payload", async () => {
-    const asset = new TextAsset();
-    asset.title = "Title";
-    (asset as any).trigger = ["hello"];
-    asset.response = "ok";
-    mockGet.mockImplementationOnce(async () => {
-      return getLastPutBody().slice(0, 3);
-    });
-
-    await expect(defineSlashCommands([asset], [], [])).rejects.toThrow("does not match requested payload");
-
-    const mismatchLogCall = loggerMock.log.mock.calls.find(([level, payload]) => {
-      return "warn" === level && payload?.message === "Slash command registration response does not match requested payload.";
-    });
-    expect(mismatchLogCall).toBeDefined();
-    expect((mismatchLogCall as any)[1]).toEqual(expect.objectContaining({
-      source: "slash-registration",
-      truncated: true,
-    }));
-    expect((mismatchLogCall as any)[1].missing_command_count).toBeGreaterThan(0);
-  });
-
-  test("logs missing dracoon command details when dracoon-backed slash commands are missing", async () => {
-    const dracoonImageAsset = new ImageAsset();
-    dracoonImageAsset.title = "Dracoon image";
-    (dracoonImageAsset as any).trigger = ["dracooncmd"];
-    dracoonImageAsset.location = "dracoon";
-
-    mockGet.mockImplementationOnce(async () => {
-      return getLastPutBody().filter(command => "dracooncmd" !== command.name);
-    });
-
-    await expect(defineSlashCommands([dracoonImageAsset], [], [])).rejects.toThrow("does not match requested payload");
-
-    expect(loggerMock.log).toHaveBeenCalledWith(
-      "warn",
-      expect.objectContaining({
-        source: "slash-registration",
-        missing_dracoon_command_count: 1,
-        missing_dracoon_commands: ["dracooncmd"],
-        message: "Slash command registration response does not match requested payload.",
-      }),
-    );
-  });
-
-  test("logs warning and throws when slash registration GET response shape is unexpected", async () => {
-    mockGet.mockResolvedValueOnce({});
-
-    await expect(defineSlashCommands([], [], [])).rejects.toThrow("unexpected response shape");
-
-    expect(loggerMock.log).toHaveBeenCalledWith(
-      "warn",
-      expect.objectContaining({
-        source: "slash-registration",
-        message: "Slash command registration returned unexpected response shape.",
-      }),
-    );
-  });
-
   test("throws create-limit error with retry-after details when Discord limit is reached", async () => {
     const createLimitError: any = new Error("Max number of daily application command creates has been reached (200)");
     createLimitError.code = 30034;
     createLimitError.rawError = {
       retry_after: 360.919,
     };
+    mockGet.mockResolvedValueOnce([]);
     mockPut.mockRejectedValueOnce(createLimitError);
 
     await expect(defineSlashCommands([], [], [])).rejects.toMatchObject({
@@ -267,7 +297,7 @@ describe("defineSlashCommands", () => {
         registration_rejected: true,
         daily_create_limit_reached: true,
         retry_after_ms: 360919,
-        message: "Discord daily slash command create limit reached. Retrying after cooldown.",
+        message: "slash-registration:daily-create-limit-reached",
       }),
     );
   });
@@ -279,6 +309,7 @@ describe("defineSlashCommands", () => {
       retry_after: 11.902,
       global: false,
     };
+    mockGet.mockResolvedValueOnce([]);
     mockPut.mockRejectedValueOnce(rateLimitError);
 
     await expect(defineSlashCommands([], [], [])).rejects.toMatchObject({
@@ -295,7 +326,7 @@ describe("defineSlashCommands", () => {
         rate_limited: true,
         rate_limit_global: false,
         retry_after_ms: 11902,
-        message: "Slash command registration was rate limited by Discord. Retrying after cooldown.",
+        message: "slash-registration:rate-limited",
       }),
     );
   });
@@ -305,6 +336,7 @@ describe("defineSlashCommands", () => {
     asset.title = "Title";
     (asset as any).trigger = ["kursänderung", "kursanderung", "!!!"];
     asset.response = "ok";
+    mockGet.mockResolvedValueOnce([]);
 
     await defineSlashCommands([asset], [], []);
 
