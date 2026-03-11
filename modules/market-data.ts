@@ -51,9 +51,10 @@ export async function updateMarketData() {
 
   for (const marketDataAsset of marketDataAssets) {
     // Create a new client instance. Bots do not need any permissions
+    const makeCache = getMarketDataClientCacheFactory();
     const client = new Client({
       intents: [],
-      makeCache: getMarketDataClientCacheFactory(),
+      ...(makeCache ? {makeCache} : {}),
     });
 
     // Login to Discord

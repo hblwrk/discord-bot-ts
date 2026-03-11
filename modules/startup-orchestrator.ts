@@ -82,6 +82,8 @@ type ErrorLogDetails = {
 };
 
 function createDiscordClient(): Client {
+  const makeCache = getInteractiveClientCacheFactory();
+
   return new Client({
     intents: [
       GatewayIntentBits.Guilds,
@@ -89,7 +91,7 @@ function createDiscordClient(): Client {
       GatewayIntentBits.MessageContent,
       GatewayIntentBits.GuildMessageReactions,
     ],
-    makeCache: getInteractiveClientCacheFactory(),
+    ...(makeCache ? {makeCache} : {}),
     partials: [
       Partials.Message,
       Partials.Channel,

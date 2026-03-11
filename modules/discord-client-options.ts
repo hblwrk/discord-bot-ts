@@ -1,29 +1,31 @@
-import {Options, type CacheWithLimitsOptions} from "discord.js";
+import {Options, type CacheFactory, type CacheWithLimitsOptions} from "discord.js";
 
-const baseCacheSettings: CacheWithLimitsOptions = {
-  ...Options.DefaultMakeCacheSettings,
-  MessageManager: 0,
-  PresenceManager: 0,
-  ReactionManager: 0,
-  ReactionUserManager: 0,
-};
+function getCacheFactory(settings: CacheWithLimitsOptions): CacheFactory | undefined {
+  if (!Options?.cacheWithLimits) {
+    return undefined;
+  }
 
-const interactiveClientCacheFactory = Options.cacheWithLimits({
-  ...baseCacheSettings,
-  GuildMemberManager: 200,
-  UserManager: 200,
-});
-
-const marketDataClientCacheFactory = Options.cacheWithLimits({
-  ...baseCacheSettings,
-  GuildMemberManager: 5,
-  UserManager: 5,
-});
+  const defaultCacheSettings = Options.DefaultMakeCacheSettings ?? {};
+  return Options.cacheWithLimits({
+    ...defaultCacheSettings,
+    MessageManager: 0,
+    PresenceManager: 0,
+    ReactionManager: 0,
+    ReactionUserManager: 0,
+    ...settings,
+  });
+}
 
 export function getInteractiveClientCacheFactory() {
-  return interactiveClientCacheFactory;
+  return getCacheFactory({
+    GuildMemberManager: 200,
+    UserManager: 200,
+  });
 }
 
 export function getMarketDataClientCacheFactory() {
-  return marketDataClientCacheFactory;
+  return getCacheFactory({
+    GuildMemberManager: 5,
+    UserManager: 5,
+  });
 }
