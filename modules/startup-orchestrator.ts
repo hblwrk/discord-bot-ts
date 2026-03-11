@@ -76,6 +76,7 @@ const defaultAssetRecoveryMaxRetryMs = 30 * 60_000;
 const slashCommandCreateLimitCooldownMs = 24 * 60 * 60_000;
 
 type ErrorLogDetails = {
+  discord_error_message?: string;
   error_name?: string;
   error_message: string;
   error_stack?: string;
@@ -155,7 +156,17 @@ function waitWithTimer(delayMs: number, setTimeoutFn: typeof setTimeout): Promis
 
 function toErrorLogDetails(error: unknown): ErrorLogDetails {
   if (error instanceof Error) {
+    const unknownError = error as Error & {
+      discordErrorMessage?: string;
+      rawError?: {message?: string;};
+    };
+    const discordErrorMessage = "string" === typeof unknownError.discordErrorMessage && "" !== unknownError.discordErrorMessage.trim()
+      ? unknownError.discordErrorMessage
+      : "string" === typeof unknownError.rawError?.message && "" !== unknownError.rawError.message.trim()
+        ? unknownError.rawError.message
+        : undefined;
     return {
+      ...(discordErrorMessage ? {discord_error_message: discordErrorMessage} : {}),
       error_name: error.name,
       error_message: error.message,
       error_stack: error.stack,
@@ -664,6 +675,7 @@ async function warmRemoteData({
             cooldown_ms: slashCommandCreateLimitCooldownMs,
             ...(slashCommandCreateLimitSuppressedUntilMs ? {suppressed_until_ms: slashCommandCreateLimitSuppressedUntilMs} : {}),
             ...(slashCommandCreateLimitRetryAfterMs ? {retry_after_ms: slashCommandCreateLimitRetryAfterMs} : {}),
+            ...toErrorLogDetails(error),
             message: "slash-registration:daily-create-limit-suppressed",
           },
         );

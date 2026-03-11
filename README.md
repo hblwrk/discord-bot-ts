@@ -81,7 +81,7 @@ Containers are created by multi-stage builds based on "distroless" base-images. 
 
 ## Secrets
 
-Values like the bots `token`, `guild_ID` and `client_ID` are considered secrets and specific to each user running the bot. When using Docker, those need to be specified prior to running `docker-compose`. Mind that there is a specific set of values for both production and staging environments, identified by the corresponding prefix.
+Values like the bots `token`, `guild_ID` and `client_ID` are considered secrets and specific to each user running the bot. When using Docker, those need to be specified prior to running `docker-compose`. Mind that there is a specific set of values for both production and staging environments, identified by the corresponding prefix. Runtime secret resolution is environment-scoped: mount exactly one of `production_environment` or `staging_environment`, and the bot will only read secrets from that active prefix. Mounting both prefixes or omitting the environment secret is treated as a startup error.
 
 ```bash
 echo -n "hunter0" | docker secret create production_environment -

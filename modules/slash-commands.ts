@@ -42,23 +42,27 @@ class SlashRegistrationMismatchError extends Error {
 
 class SlashRegistrationCreateLimitError extends Error {
   public readonly retryAfterMs: number;
+  public readonly discordErrorMessage?: string;
 
-  constructor(message: string, retryAfterMs: number) {
+  constructor(message: string, retryAfterMs: number, discordErrorMessage?: string) {
     super(message);
     this.name = "SlashRegistrationCreateLimitError";
     this.retryAfterMs = retryAfterMs;
+    this.discordErrorMessage = discordErrorMessage;
   }
 }
 
 class SlashRegistrationRateLimitError extends Error {
   public readonly retryAfterMs: number;
   public readonly isGlobal: boolean;
+  public readonly discordErrorMessage?: string;
 
-  constructor(message: string, retryAfterMs: number, isGlobal: boolean) {
+  constructor(message: string, retryAfterMs: number, isGlobal: boolean, discordErrorMessage?: string) {
     super(message);
     this.name = "SlashRegistrationRateLimitError";
     this.retryAfterMs = retryAfterMs;
     this.isGlobal = isGlobal;
+    this.discordErrorMessage = discordErrorMessage;
   }
 }
 
@@ -140,13 +144,16 @@ function toSlashRegistrationErrorDetails(error: unknown) {
   if (error instanceof Error) {
     const unknownError = error as Error & {
       code?: string | number;
+      discordErrorMessage?: string;
       status?: number;
       retry_after?: unknown;
-      rawError?: {retry_after?: unknown; global?: boolean;};
+      rawError?: {retry_after?: unknown; global?: boolean; message?: string;};
     };
+    const discordErrorMessage = getDiscordErrorMessage(error);
     return {
       error_name: unknownError.name,
       error_message: unknownError.message,
+      ...(discordErrorMessage ? {discord_error_message: discordErrorMessage} : {}),
       error_code: unknownError.code,
       error_status: unknownError.status,
       retry_after_ms: toRetryAfterMs(unknownError.retry_after) ?? toRetryAfterMs(unknownError.rawError?.retry_after),
@@ -332,6 +339,30 @@ function toRetryAfterMs(rawRetryAfter: unknown): number | undefined {
   return undefined;
 }
 
+function getDiscordErrorMessage(error: unknown): string | undefined {
+  if (false === (error instanceof Error)) {
+    return undefined;
+  }
+
+  const unknownError = error as Error & {
+    discordErrorMessage?: string;
+    rawError?: {message?: string;};
+  };
+  if ("string" === typeof unknownError.discordErrorMessage && "" !== unknownError.discordErrorMessage.trim()) {
+    return unknownError.discordErrorMessage;
+  }
+
+  if ("string" === typeof unknownError.rawError?.message && "" !== unknownError.rawError.message.trim()) {
+    return unknownError.rawError.message;
+  }
+
+  if ("" !== unknownError.message.trim()) {
+    return unknownError.message;
+  }
+
+  return undefined;
+}
+
 function toSlashRegistrationCreateLimitError(error: unknown): SlashRegistrationCreateLimitError | undefined {
   if (false === (error instanceof Error)) {
     return undefined;
@@ -358,6 +389,7 @@ function toSlashRegistrationCreateLimitError(error: unknown): SlashRegistrationC
   return new SlashRegistrationCreateLimitError(
     "Slash command create limit reached. Further automatic retries should be suppressed for this process.",
     retryAfterMs,
+    getDiscordErrorMessage(error),
   );
 }
 
@@ -389,6 +421,7 @@ function toSlashRegistrationRateLimitError(error: unknown): SlashRegistrationRat
     "Slash command registration rate limited. Waiting before retry.",
     retryAfterMs,
     isGlobal,
+    getDiscordErrorMessage(error),
   );
 }
 

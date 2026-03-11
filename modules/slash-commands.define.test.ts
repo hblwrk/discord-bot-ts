@@ -280,6 +280,7 @@ describe("defineSlashCommands", () => {
     const createLimitError: any = new Error("Max number of daily application command creates has been reached (200)");
     createLimitError.code = 30034;
     createLimitError.rawError = {
+      message: "Max number of daily application command creates has been reached (200)",
       retry_after: 360.919,
     };
     mockGet.mockResolvedValueOnce([]);
@@ -288,6 +289,7 @@ describe("defineSlashCommands", () => {
     await expect(defineSlashCommands([], [], [])).rejects.toMatchObject({
       name: "SlashRegistrationCreateLimitError",
       retryAfterMs: 360919,
+      discordErrorMessage: "Max number of daily application command creates has been reached (200)",
     });
 
     expect(loggerMock.log).toHaveBeenCalledWith(
@@ -296,6 +298,7 @@ describe("defineSlashCommands", () => {
         source: "slash-registration",
         registration_rejected: true,
         daily_create_limit_reached: true,
+        discord_error_message: "Max number of daily application command creates has been reached (200)",
         retry_after_ms: 360919,
         message: "slash-registration:daily-create-limit-reached",
       }),
@@ -306,6 +309,7 @@ describe("defineSlashCommands", () => {
     const rateLimitError: any = new Error("You are being rate limited.");
     rateLimitError.status = 429;
     rateLimitError.rawError = {
+      message: "You are being rate limited.",
       retry_after: 11.902,
       global: false,
     };
@@ -316,6 +320,7 @@ describe("defineSlashCommands", () => {
       name: "SlashRegistrationRateLimitError",
       retryAfterMs: 11902,
       isGlobal: false,
+      discordErrorMessage: "You are being rate limited.",
     });
 
     expect(loggerMock.log).toHaveBeenCalledWith(
@@ -324,6 +329,7 @@ describe("defineSlashCommands", () => {
         source: "slash-registration",
         registration_rejected: true,
         rate_limited: true,
+        discord_error_message: "You are being rate limited.",
         rate_limit_global: false,
         retry_after_ms: 11902,
         message: "slash-registration:rate-limited",

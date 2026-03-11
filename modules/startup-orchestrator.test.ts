@@ -512,6 +512,7 @@ describe("startBot", () => {
   test("suppresses further slash command sync attempts after a create-limit failure and keeps the bot ready", async () => {
     const createLimitError: any = new Error("Slash command create limit reached.");
     createLimitError.name = "SlashRegistrationCreateLimitError";
+    createLimitError.discordErrorMessage = "Max number of daily application command creates has been reached (200)";
     createLimitError.retryAfterMs = 360919;
     const defineSlashCommandsMock = jest.fn(async () => {
       throw createLimitError;
@@ -544,6 +545,7 @@ describe("startBot", () => {
       expect.objectContaining({
         task: "slash-commands",
         cooldown_ms: 86_400_000,
+        discord_error_message: "Max number of daily application command creates has been reached (200)",
         retry_after_ms: 360919,
         message: "slash-registration:daily-create-limit-suppressed",
       }),
@@ -603,6 +605,7 @@ describe("startBot", () => {
   test("uses retry-after backoff for slash command rate-limit failures", async () => {
     const rateLimitError: any = new Error("Slash command registration rate limited.");
     rateLimitError.name = "SlashRegistrationRateLimitError";
+    rateLimitError.discordErrorMessage = "You are being rate limited.";
     rateLimitError.retryAfterMs = 11902;
     const defineSlashCommandsMock = jest.fn()
       .mockImplementationOnce(async () => {
@@ -634,6 +637,7 @@ describe("startBot", () => {
       "warn",
       expect.objectContaining({
         task: "slash-commands",
+        discord_error_message: "You are being rate limited.",
         retry_after_ms: 11902,
         retry_in_ms: 11902,
         message: "slash-registration:rate-limited",
