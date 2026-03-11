@@ -2,6 +2,7 @@ import {Client} from "discord.js";
 import ReconnectingWebSocket from "reconnecting-websocket";
 import WS from "ws";
 import {getAssets} from "./assets.js";
+import {getMarketDataClientCacheFactory} from "./discord-client-options.js";
 import {getLogger} from "./logging.js";
 import {readSecret} from "./secrets.js";
 
@@ -52,6 +53,7 @@ export async function updateMarketData() {
     // Create a new client instance. Bots do not need any permissions
     const client = new Client({
       intents: [],
+      makeCache: getMarketDataClientCacheFactory(),
     });
 
     // Login to Discord

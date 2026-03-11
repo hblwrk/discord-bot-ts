@@ -69,4 +69,25 @@ describe("getLogger loglevel switching", () => {
     expect(logger.level).toBe("info");
     expect(logger.transports).toHaveLength(1);
   });
+
+  test("reuses the discord logger for the same client", () => {
+    mockedReadSecret.mockImplementation(secretName => {
+      if ("loglevel" === secretName) {
+        return "info";
+      }
+
+      if ("hblwrk_channel_logging_ID" === secretName) {
+        return "123456";
+      }
+
+      return "";
+    });
+
+    const client = {channels: {cache: {get: jest.fn()}}};
+
+    const firstLogger = getDiscordLogger(client);
+    const secondLogger = getDiscordLogger(client);
+
+    expect(firstLogger).toBe(secondLogger);
+  });
 });

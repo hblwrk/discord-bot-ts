@@ -11,6 +11,7 @@ const levels = {
   debug: 5,
   silly: 6,
 };
+const discordLoggerByClient = new WeakMap<object, winston.Logger>();
 
 function getConfiguredLogLevel(): string {
   const loglevelFromEnvironment = process.env.LOGLEVEL?.trim().toLowerCase();
@@ -31,6 +32,13 @@ function getConfiguredLogLevel(): string {
 }
 
 export function getDiscordLogger(client) {
+  if ("object" === typeof client && null !== client) {
+    const cachedLogger = discordLoggerByClient.get(client);
+    if (cachedLogger) {
+      return cachedLogger;
+    }
+  }
+
   const logger = winston.createLogger({
     levels,
     level: getConfiguredLogLevel(),
@@ -48,6 +56,10 @@ export function getDiscordLogger(client) {
       }),
     ],
   });
+
+  if ("object" === typeof client && null !== client) {
+    discordLoggerByClient.set(client, logger);
+  }
 
   return logger;
 }

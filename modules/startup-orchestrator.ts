@@ -2,6 +2,7 @@
 import {Client, GatewayIntentBits, Partials} from "discord.js";
 import {getGenericAssets, getAssets} from "./assets.js";
 import {clownboard} from "./clownboard.js";
+import {getInteractiveClientCacheFactory} from "./discord-client-options.js";
 import {runHealthCheck} from "./health-check.js";
 import {addInlineResponses} from "./inline-response.js";
 import {getLogger} from "./logging.js";
@@ -88,6 +89,7 @@ function createDiscordClient(): Client {
       GatewayIntentBits.MessageContent,
       GatewayIntentBits.GuildMessageReactions,
     ],
+    makeCache: getInteractiveClientCacheFactory(),
     partials: [
       Partials.Message,
       Partials.Channel,
