@@ -9,6 +9,7 @@
   id: 1175153
   suffix: ""
   unit: "PCT"
+  marketHours: "us_futures"
   decimals: 2
   lastUpdate: 0
   order: 0
@@ -22,6 +23,7 @@
   id: 1175151
   suffix: ""
   unit: "PCT"
+  marketHours: "us_futures"
   decimals: 2
   lastUpdate: 0
   order: 1
@@ -35,6 +37,7 @@
   id: 1174944
   suffix: ""
   unit: "PCT"
+  marketHours: "us_futures"
   decimals: 2
   lastUpdate: 0
   order: 2
@@ -48,6 +51,7 @@
   id: 8884
   suffix: ""
   unit: "PTS"
+  marketHours: "us_cash"
   decimals: 2
   lastUpdate: 0
   order: 3
@@ -61,6 +65,7 @@
   id: 8826
   suffix: ""
   unit: "PCT"
+  marketHours: "eu_cash"
   decimals: 2
   lastUpdate: 0
   order: 4
@@ -74,6 +79,7 @@
   id: 1057391
   suffix: "$"
   unit: "PCT"
+  marketHours: "crypto"
   decimals: 2
   lastUpdate: 0
   order: 0
@@ -86,8 +92,9 @@
   botName: "Ether/USD"
   id: 1061443
   suffix: "$"
-  decimals: 2
   unit: "PCT"
+  marketHours: "crypto"
+  decimals: 2
   lastUpdate: 0
   order: 1
 - name: solusd
@@ -100,6 +107,7 @@
   id: 1177183
   suffix: "$"
   unit: "PCT"
+  marketHours: "crypto"
   decimals: 2
   lastUpdate: 0
   order: 2
@@ -113,6 +121,7 @@
   id: 1176959
   suffix: "$"
   unit: "PCT"
+  marketHours: "crypto"
   decimals: 2
   lastUpdate: 0
   order: 3
@@ -126,6 +135,7 @@
   id: 8849
   suffix: "$"
   unit: "PCT"
+  marketHours: "us_futures"
   decimals: 2
   lastUpdate: 0
   order: 0
@@ -139,6 +149,7 @@
   id: 8830
   suffix: "$"
   unit: "PCT"
+  marketHours: "us_futures"
   decimals: 2
   lastUpdate: 0
   order: 1
@@ -152,6 +163,7 @@
   id: 1
   suffix: "$"
   unit: "PCT"
+  marketHours: "forex"
   decimals: 4
   lastUpdate: 0
   order: 2
@@ -165,6 +177,7 @@
   id: 23701
   suffix: "%"
   unit: "PCT"
+  marketHours: "us_futures"
   decimals: 4
   lastUpdate: 0
   order: 0
@@ -178,6 +191,7 @@
   id: 23705
   suffix: "%"
   unit: "PCT"
+  marketHours: "us_futures"
   decimals: 4
   lastUpdate: 0
   order: 1
@@ -191,6 +205,7 @@
   id: 23706
   suffix: "%"
   unit: "PCT"
+  marketHours: "us_futures"
   decimals: 4
   lastUpdate: 0
   order: 2

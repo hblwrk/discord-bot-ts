@@ -1,4 +1,6 @@
 import {Client} from "discord.js";
+import moment from "moment-timezone";
+import {isHoliday} from "nyse-holidays";
 import ReconnectingWebSocket from "reconnecting-websocket";
 import WS from "ws";
 import {getAssets} from "./assets.js";
@@ -9,9 +11,18 @@ import {readSecret} from "./secrets.js";
 const logger = getLogger();
 const websocketSubscribeDomain = "cmt-1-5-945629:%%domain-1:}";
 const discordUpdateIntervalSeconds = 15;
+const discordUpdateIntervalMs = discordUpdateIntervalSeconds * 1000;
+const pendingStatusFlushIntervalMs = 1000;
+const marketStatusCheckIntervalMs = 60_000;
 const streamWatchdogIntervalMs = 30_000;
 const streamStaleTimeoutMs = 300_000;
 const maxLoggedPayloadLength = 500;
+const marketClosedPresence = "Market closed.";
+const usEasternTimezone = "US/Eastern";
+const europeBerlinTimezone = "Europe/Berlin";
+
+type MarketHoursProfile = "crypto" | "eu_cash" | "forex" | "us_cash" | "us_futures";
+type DiscordPresenceStatus = "dnd" | "invisible" | "online";
 
 type MarketDataAsset = {
   botToken: string;
@@ -20,6 +31,7 @@ type MarketDataAsset = {
   id: number;
   suffix: string;
   unit: string;
+  marketHours?: MarketHoursProfile;
   decimals: number;
   lastUpdate: number;
   order: number;
@@ -32,8 +44,27 @@ type MarketStreamEvent = {
   percentageChange: number;
 };
 
-// Launching multiple bots and Websocket stream to display price information
-// Bot nickname and presence status updates have acceptable rate-limits (~5s)
+type ClientStatusState = {
+  nickname?: string;
+  presence?: string;
+  presenceStatus?: DiscordPresenceStatus;
+};
+
+type PendingClientStatusUpdate = {
+  marketDataAsset: MarketDataAsset;
+  nickname: string;
+  openPresence: string;
+  priceChange: number;
+  applying?: boolean;
+};
+
+type MarketPresenceData = {
+  presence: string;
+  presenceStatus: DiscordPresenceStatus;
+};
+
+// Launching multiple bots and websocket stream to display price information.
+// Discord-facing updates stay throttled, but the latest parsed tick is retained and flushed when due.
 export async function updateMarketData() {
   const marketDataAssets = await getAssets("marketdata") as MarketDataAsset[];
   if (0 === marketDataAssets.length) {
@@ -72,8 +103,11 @@ export async function updateMarketData() {
         `Launched market data bot (${marketDataAsset.botName})`,
       );
 
-      // Setting bot presence status to a default value
-      client.user.setPresence({activities: [{name: "Market closed."}]});
+      // Stay invisible until a live tick arrives; the status reconciler flips closed sessions back to grey later.
+      client.user.setPresence({
+        activities: [{name: marketClosedPresence}],
+        status: "invisible",
+      });
       clientsById.set(marketDataAsset.botClientId, client);
 
       if (false === streamStarted) {
@@ -123,9 +157,40 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
 
   const wsClient = new ReconnectingWebSocket(wsServerUrlProvider, [], options);
   const memberByClientId = new Map<string, Promise<any>>();
-  const statusByClientId = new Map<string, {nickname?: string; presence?: string;}>();
+  const statusByClientId = new Map<string, ClientStatusState>();
+  const pendingStatusByClientId = new Map<string, PendingClientStatusUpdate>();
   let lastMessageAt = Date.now();
   let streamLive = false;
+
+  const pendingStatusFlushTimer = setInterval(() => {
+    for (const clientId of pendingStatusByClientId.keys()) {
+      void flushPendingClientStatusUpdate(
+        clientId,
+        clientsById,
+        guildId,
+        memberByClientId,
+        statusByClientId,
+        pendingStatusByClientId,
+      );
+    }
+  }, pendingStatusFlushIntervalMs);
+  (pendingStatusFlushTimer as any).unref?.();
+
+  const marketStatusCheckTimer = setInterval(() => {
+    for (const marketDataAsset of marketDataAssets) {
+      const client = clientsById.get(marketDataAsset.botClientId);
+      if ("undefined" === typeof client) {
+        continue;
+      }
+
+      applyClosedMarketPresenceIfNeeded(
+        client,
+        marketDataAsset,
+        statusByClientId,
+      );
+    }
+  }, marketStatusCheckIntervalMs);
+  (marketStatusCheckTimer as any).unref?.();
 
   const streamWatchdog = setInterval(() => {
     const messageAgeMs = Date.now() - lastMessageAt;
@@ -205,11 +270,6 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
         return;
       }
 
-      // Discord blocks updates more frequent than ~15s
-      if (Math.floor((Date.now() / 1000) - marketDataAsset.lastUpdate) <= discordUpdateIntervalSeconds) {
-        return;
-      }
-
       const client = clientsById.get(marketDataAsset.botClientId);
       if ("undefined" === typeof client) {
         logger.log(
@@ -250,15 +310,18 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
         `${marketDataAsset.botName} ${name} ${presence}`,
       );
 
-      await applyClientStatusUpdate(
+      queuePendingClientStatusUpdate(
         client,
+        clientsById,
+        marketDataAsset,
+        name,
+        presence,
+        streamEvent.priceChange,
         guildId,
         memberByClientId,
         statusByClientId,
-        name,
-        presence,
+        pendingStatusByClientId,
       );
-      marketDataAsset.lastUpdate = Date.now() / 1000;
       streamLive = true;
     } catch (error) {
       logger.log(
@@ -511,10 +574,18 @@ async function applyClientStatusUpdate(
   client: Client,
   guildId: string,
   memberByClientId: Map<string, Promise<any>>,
-  statusByClientId: Map<string, {nickname?: string; presence?: string;}>,
+  statusByClientId: Map<string, ClientStatusState>,
   nickname: string,
   presence: string,
+  presenceStatus: DiscordPresenceStatus,
 ) {
+  applyClientPresenceUpdate(
+    client,
+    statusByClientId,
+    presence,
+    presenceStatus,
+  );
+
   const state = statusByClientId.get(client.user.id) ?? {};
 
   if (state.nickname !== nickname) {
@@ -542,17 +613,305 @@ async function applyClientStatusUpdate(
     }
   }
 
-  if (state.presence !== presence) {
-    try {
-      client.user.setPresence({activities: [{name: presence}]});
-      state.presence = presence;
-    } catch (error) {
-      logger.log(
-        "error",
-        `Error updating market data bot presence: ${error}`,
-      );
+  statusByClientId.set(client.user.id, state);
+}
+
+function queuePendingClientStatusUpdate(
+  client: Client,
+  clientsById: Map<string, Client>,
+  marketDataAsset: MarketDataAsset,
+  nickname: string,
+  openPresence: string,
+  priceChange: number,
+  guildId: string,
+  memberByClientId: Map<string, Promise<any>>,
+  statusByClientId: Map<string, ClientStatusState>,
+  pendingStatusByClientId: Map<string, PendingClientStatusUpdate>,
+) {
+  const pendingStatusUpdate = pendingStatusByClientId.get(client.user.id);
+
+  if ("undefined" === typeof pendingStatusUpdate) {
+    pendingStatusByClientId.set(client.user.id, {
+      marketDataAsset,
+      nickname,
+      openPresence,
+      priceChange,
+      applying: false,
+    });
+  } else {
+    pendingStatusUpdate.marketDataAsset = marketDataAsset;
+    pendingStatusUpdate.nickname = nickname;
+    pendingStatusUpdate.openPresence = openPresence;
+    pendingStatusUpdate.priceChange = priceChange;
+  }
+
+  void flushPendingClientStatusUpdate(
+    client.user.id,
+    clientsById,
+    guildId,
+    memberByClientId,
+    statusByClientId,
+    pendingStatusByClientId,
+  );
+}
+
+async function flushPendingClientStatusUpdate(
+  clientId: string,
+  clientsById: Map<string, Client>,
+  guildId: string,
+  memberByClientId: Map<string, Promise<any>>,
+  statusByClientId: Map<string, ClientStatusState>,
+  pendingStatusByClientId: Map<string, PendingClientStatusUpdate>,
+) {
+  const pendingStatusUpdate = pendingStatusByClientId.get(clientId);
+  if ("undefined" === typeof pendingStatusUpdate || true === pendingStatusUpdate.applying) {
+    return;
+  }
+
+  if (false === isDiscordUpdateDue(pendingStatusUpdate.marketDataAsset.lastUpdate)) {
+    return;
+  }
+
+  const client = clientsById.get(pendingStatusUpdate.marketDataAsset.botClientId);
+  if ("undefined" === typeof client) {
+    logger.log(
+      "warn",
+      `Pending market data update skipped because bot client ${pendingStatusUpdate.marketDataAsset.botClientId} is not ready.`,
+    );
+
+    return;
+  }
+
+  pendingStatusUpdate.applying = true;
+  const {nickname, openPresence, priceChange} = pendingStatusUpdate;
+  const marketPresenceData = getMarketPresenceData(
+    pendingStatusUpdate.marketDataAsset,
+    openPresence,
+    priceChange,
+  );
+  let didApply = false;
+
+  try {
+    await applyClientStatusUpdate(
+      client,
+      guildId,
+      memberByClientId,
+      statusByClientId,
+      nickname,
+      marketPresenceData.presence,
+      marketPresenceData.presenceStatus,
+    );
+    pendingStatusUpdate.marketDataAsset.lastUpdate = Date.now() / 1000;
+    didApply = true;
+  } catch (error) {
+    logger.log(
+      "error",
+      `Error updating market data bot status: ${error}`,
+    );
+  } finally {
+    const latestPendingStatusUpdate = pendingStatusByClientId.get(clientId);
+    if ("undefined" === typeof latestPendingStatusUpdate) {
+      return;
+    }
+
+    latestPendingStatusUpdate.applying = false;
+
+    if (
+      true === didApply
+      && latestPendingStatusUpdate.nickname === nickname
+      && latestPendingStatusUpdate.openPresence === openPresence
+      && latestPendingStatusUpdate.priceChange === priceChange
+    ) {
+      pendingStatusByClientId.delete(clientId);
+      return;
     }
   }
 
+  void flushPendingClientStatusUpdate(
+    clientId,
+    clientsById,
+    guildId,
+    memberByClientId,
+    statusByClientId,
+    pendingStatusByClientId,
+  );
+}
+
+function isDiscordUpdateDue(lastUpdate: number): boolean {
+  return (Date.now() - (lastUpdate * 1000)) >= discordUpdateIntervalMs;
+}
+
+function applyClosedMarketPresenceIfNeeded(
+  client: Client,
+  marketDataAsset: MarketDataAsset,
+  statusByClientId: Map<string, ClientStatusState>,
+) {
+  if (true === isMarketOpen(marketDataAsset)) {
+    return;
+  }
+
+  applyClientPresenceUpdate(
+    client,
+    statusByClientId,
+    marketClosedPresence,
+    "invisible",
+  );
+}
+
+function applyClientPresenceUpdate(
+  client: Client,
+  statusByClientId: Map<string, ClientStatusState>,
+  presence: string,
+  presenceStatus: DiscordPresenceStatus,
+) {
+  const state = statusByClientId.get(client.user.id) ?? {};
+
+  if (state.presence === presence && state.presenceStatus === presenceStatus) {
+    statusByClientId.set(client.user.id, state);
+    return;
+  }
+
+  try {
+    client.user.setPresence({
+      activities: [{name: presence}],
+      status: presenceStatus,
+    });
+    state.presence = presence;
+    state.presenceStatus = presenceStatus;
+  } catch (error) {
+    logger.log(
+      "error",
+      `Error updating market data bot presence: ${error}`,
+    );
+  }
+
   statusByClientId.set(client.user.id, state);
+}
+
+function buildClosedMarketPresenceData(): MarketPresenceData {
+  return {
+    presence: marketClosedPresence,
+    presenceStatus: "invisible",
+  };
+}
+
+function getMarketPresenceData(
+  marketDataAsset: MarketDataAsset,
+  openPresence: string,
+  priceChange: number,
+): MarketPresenceData {
+  if (false === isMarketOpen(marketDataAsset)) {
+    return buildClosedMarketPresenceData();
+  }
+
+  return {
+    presence: openPresence,
+    presenceStatus: priceChange < 0 ? "dnd" : "online",
+  };
+}
+
+function isMarketOpen(marketDataAsset: MarketDataAsset, referenceTime = Date.now()): boolean {
+  const marketHours = marketDataAsset.marketHours ?? "us_futures";
+
+  switch (marketHours) {
+    case "crypto": {
+      return true;
+    }
+
+    case "eu_cash": {
+      return isOpenDuringLocalWeekdayWindow(referenceTime, europeBerlinTimezone, 9, 0, 17, 30);
+    }
+
+    case "forex": {
+      return isForexMarketOpen(referenceTime);
+    }
+
+    case "us_cash": {
+      return isUsCashMarketOpen(referenceTime);
+    }
+
+    case "us_futures":
+    default: {
+      return isUsFuturesMarketOpen(referenceTime);
+    }
+  }
+}
+
+function isForexMarketOpen(referenceTime: number): boolean {
+  const easternTime = moment.tz(referenceTime, usEasternTimezone);
+  const day = easternTime.day();
+  const minuteOfDay = easternTime.hour() * 60 + easternTime.minute();
+
+  if (6 === day) {
+    return false;
+  }
+
+  if (5 === day) {
+    return minuteOfDay < (17 * 60);
+  }
+
+  if (0 === day) {
+    return minuteOfDay >= (17 * 60);
+  }
+
+  return true;
+}
+
+function isUsCashMarketOpen(referenceTime: number): boolean {
+  const easternTime = moment.tz(referenceTime, usEasternTimezone);
+
+  if (true === isWeekend(easternTime.day())) {
+    return false;
+  }
+
+  if (true === isHoliday(easternTime.clone().startOf("day").toDate())) {
+    return false;
+  }
+
+  const minuteOfDay = easternTime.hour() * 60 + easternTime.minute();
+  return minuteOfDay >= ((9 * 60) + 30) && minuteOfDay < ((16 * 60) + 15);
+}
+
+function isUsFuturesMarketOpen(referenceTime: number): boolean {
+  const easternTime = moment.tz(referenceTime, usEasternTimezone);
+  const day = easternTime.day();
+  const minuteOfDay = easternTime.hour() * 60 + easternTime.minute();
+
+  if (6 === day) {
+    return false;
+  }
+
+  if (5 === day) {
+    return minuteOfDay < (17 * 60);
+  }
+
+  if (0 === day) {
+    return minuteOfDay >= (18 * 60);
+  }
+
+  return minuteOfDay < (17 * 60) || minuteOfDay >= (18 * 60);
+}
+
+function isOpenDuringLocalWeekdayWindow(
+  referenceTime: number,
+  timezone: string,
+  startHour: number,
+  startMinute: number,
+  endHour: number,
+  endMinute: number,
+): boolean {
+  const localTime = moment.tz(referenceTime, timezone);
+  if (true === isWeekend(localTime.day())) {
+    return false;
+  }
+
+  const minuteOfDay = localTime.hour() * 60 + localTime.minute();
+  const startMinuteOfDay = (startHour * 60) + startMinute;
+  const endMinuteOfDay = (endHour * 60) + endMinute;
+
+  return minuteOfDay >= startMinuteOfDay && minuteOfDay < endMinuteOfDay;
+}
+
+function isWeekend(dayOfWeek: number): boolean {
+  return 0 === dayOfWeek || 6 === dayOfWeek;
 }

@@ -94,14 +94,29 @@ jest.mock("./secrets.js", () => ({
 
 import {updateMarketData} from "./market-data.js";
 
+const marketOpenReferenceTime = new Date("2026-03-12T15:00:00.000Z");
+const marketClosedReferenceTime = new Date("2026-03-12T21:00:00.000Z");
+
 async function flushAsyncWork() {
   await Promise.resolve();
   await Promise.resolve();
 }
 
+function buildSocketIoMarketMessage(payload: Record<string, unknown>) {
+  return `a["42::${JSON.stringify(payload).replaceAll("\"", "\\\"")}"]`;
+}
+
+function buildPresencePayload(name: string, status: "dnd" | "invisible" | "online") {
+  return {
+    activities: [{name}],
+    status,
+  };
+}
+
 describe("updateMarketData", () => {
   beforeEach(() => {
-    jest.useRealTimers();
+    jest.useFakeTimers();
+    jest.setSystemTime(marketOpenReferenceTime);
     jest.clearAllMocks();
     clientInstances.length = 0;
     websocketInstances.length = 0;
@@ -136,9 +151,9 @@ describe("updateMarketData", () => {
 
     readyHandler();
 
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenCalledWith({
-      activities: [{name: "Market closed."}],
-    });
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenCalledWith(
+      buildPresencePayload("Market closed.", "invisible"),
+    );
     expect(mockWebSocketConstructor).toHaveBeenCalledTimes(1);
   });
 
@@ -245,13 +260,12 @@ describe("updateMarketData", () => {
 
     const wsClient = websocketInstances[0];
     const messageHandler = wsClient.handlers.get("message");
-    const payload = JSON.stringify({
+    const websocketMessage = buildSocketIoMarketMessage({
       pid: 123,
       last_numeric: 100.5,
       pc: 1.2,
       pcp: 1.23,
     });
-    const websocketMessage = `a["42::${payload.replaceAll("\"", "\\\"")}"]`;
 
     messageHandler({
       data: websocketMessage,
@@ -259,9 +273,138 @@ describe("updateMarketData", () => {
     await flushAsyncWork();
 
     expect(clientInstances[0].setNickname).toHaveBeenCalledWith("1🟩 100.50$");
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith({
-      activities: [{name: "+1.20 (1.23%)"}],
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+      buildPresencePayload("+1.20 (1.23%)", "online"),
+    );
+  });
+
+  test("flushes queued market updates after the cooldown even without another tick", async () => {
+    queuedClientIds.push("client-1");
+    mockGetAssets.mockResolvedValue([
+      {
+        botToken: "token-1",
+        botName: "bot-one",
+        botClientId: "client-1",
+        id: 123,
+        decimals: 2,
+        order: 1,
+        suffix: "$",
+        unit: "PCT",
+        lastUpdate: 0,
+      },
+    ]);
+
+    await updateMarketData();
+    clientInstances[0].handlers.get("clientReady")();
+
+    const wsClient = websocketInstances[0];
+    const messageHandler = wsClient.handlers.get("message");
+
+    messageHandler({
+      data: buildSocketIoMarketMessage({
+        pid: 123,
+        last_numeric: 100.5,
+        pc: 1.2,
+        pcp: 1.23,
+      }),
     });
+    await flushAsyncWork();
+
+    expect(clientInstances[0].setNickname).toHaveBeenCalledTimes(1);
+    expect(clientInstances[0].setNickname).toHaveBeenLastCalledWith("1🟩 100.50$");
+
+    jest.advanceTimersByTime(5000);
+    messageHandler({
+      data: buildSocketIoMarketMessage({
+        pid: 123,
+        last_numeric: 101.5,
+        pc: 2.2,
+        pcp: 2.23,
+      }),
+    });
+    await flushAsyncWork();
+
+    expect(clientInstances[0].setNickname).toHaveBeenCalledTimes(1);
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenCalledTimes(2);
+
+    jest.advanceTimersByTime(9000);
+    await flushAsyncWork();
+    expect(clientInstances[0].setNickname).toHaveBeenCalledTimes(1);
+
+    jest.advanceTimersByTime(1000);
+    await flushAsyncWork();
+
+    expect(clientInstances[0].setNickname).toHaveBeenCalledTimes(2);
+    expect(clientInstances[0].setNickname).toHaveBeenLastCalledWith("1🟩 101.50$");
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+      buildPresencePayload("+2.20 (2.23%)", "online"),
+    );
+  });
+
+  test("keeps only the newest queued market update during the cooldown", async () => {
+    queuedClientIds.push("client-1");
+    mockGetAssets.mockResolvedValue([
+      {
+        botToken: "token-1",
+        botName: "bot-one",
+        botClientId: "client-1",
+        id: 123,
+        decimals: 2,
+        order: 1,
+        suffix: "$",
+        unit: "PCT",
+        lastUpdate: 0,
+      },
+    ]);
+
+    await updateMarketData();
+    clientInstances[0].handlers.get("clientReady")();
+
+    const wsClient = websocketInstances[0];
+    const messageHandler = wsClient.handlers.get("message");
+
+    messageHandler({
+      data: buildSocketIoMarketMessage({
+        pid: 123,
+        last_numeric: 100.5,
+        pc: 1.2,
+        pcp: 1.23,
+      }),
+    });
+    await flushAsyncWork();
+
+    jest.advanceTimersByTime(5000);
+    messageHandler({
+      data: buildSocketIoMarketMessage({
+        pid: 123,
+        last_numeric: 101.5,
+        pc: 2.2,
+        pcp: 2.23,
+      }),
+    });
+    await flushAsyncWork();
+
+    jest.advanceTimersByTime(5000);
+    messageHandler({
+      data: buildSocketIoMarketMessage({
+        pid: 123,
+        last_numeric: 102.5,
+        pc: 3.2,
+        pcp: 3.23,
+      }),
+    });
+    await flushAsyncWork();
+
+    expect(clientInstances[0].setNickname).toHaveBeenCalledTimes(1);
+
+    jest.advanceTimersByTime(5000);
+    await flushAsyncWork();
+
+    expect(clientInstances[0].setNickname).toHaveBeenCalledTimes(2);
+    expect(clientInstances[0].setNickname).toHaveBeenLastCalledWith("1🟩 102.50$");
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+      buildPresencePayload("+3.20 (3.23%)", "online"),
+    );
   });
 
   test("updates nickname and presence from nested market stream envelope payload", async () => {
@@ -298,9 +441,9 @@ describe("updateMarketData", () => {
     await flushAsyncWork();
 
     expect(clientInstances[0].setNickname).toHaveBeenCalledWith("1🟩 24755.80$");
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith({
-      activities: [{name: "+54.20 (0.22%)"}],
-    });
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+      buildPresencePayload("+54.20 (0.22%)", "online"),
+    );
   });
 
   test("updates nickname and presence when websocket payload is wrapped as a JSON string", async () => {
@@ -337,9 +480,9 @@ describe("updateMarketData", () => {
     await flushAsyncWork();
 
     expect(clientInstances[0].setNickname).toHaveBeenCalledWith("1🟩 64.02$");
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith({
-      activities: [{name: "+1.76 (2.83%)"}],
-    });
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+      buildPresencePayload("+1.76 (2.83%)", "online"),
+    );
   });
 
   test("updates nickname and presence from websocket envelope objects", async () => {
@@ -376,9 +519,9 @@ describe("updateMarketData", () => {
     await flushAsyncWork();
 
     expect(clientInstances[0].setNickname).toHaveBeenCalledWith("1🟩 6852.3");
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith({
-      activities: [{name: "+9.1 (0.13%)"}],
-    });
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+      buildPresencePayload("+9.1 (0.13%)", "online"),
+    );
   });
 
   test("ignores malformed stream payloads without crashing", async () => {
@@ -531,11 +674,12 @@ describe("updateMarketData", () => {
       "error",
       expect.stringContaining("Error updating market data bot nickname"),
     );
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+      buildPresencePayload("-1.00 (-0.50%)", "dnd"),
+    );
   });
 
   test("forces reconnect when stream stays stale while socket is open", async () => {
-    jest.useFakeTimers();
-
     queuedClientIds.push("client-1");
     mockGetAssets.mockResolvedValue([
       {
@@ -561,5 +705,50 @@ describe("updateMarketData", () => {
 
     jest.advanceTimersByTime(360_000);
     expect(wsClient.reconnect).toHaveBeenCalled();
+  });
+
+  test("sets invisible presence when the market session closes without a new tick", async () => {
+    queuedClientIds.push("client-1");
+    mockGetAssets.mockResolvedValue([
+      {
+        botToken: "token-1",
+        botName: "bot-one",
+        botClientId: "client-1",
+        id: 123,
+        decimals: 2,
+        order: 1,
+        suffix: "$",
+        unit: "PCT",
+        marketHours: "us_futures",
+        lastUpdate: 0,
+      },
+    ]);
+
+    await updateMarketData();
+    clientInstances[0].handlers.get("clientReady")();
+
+    const wsClient = websocketInstances[0];
+    const messageHandler = wsClient.handlers.get("message");
+    messageHandler({
+      data: buildSocketIoMarketMessage({
+        pid: 123,
+        last_numeric: 100.5,
+        pc: 1.2,
+        pcp: 1.23,
+      }),
+    });
+    await flushAsyncWork();
+
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+      buildPresencePayload("+1.20 (1.23%)", "online"),
+    );
+
+    jest.setSystemTime(marketClosedReferenceTime);
+    jest.advanceTimersByTime(60_000);
+    await flushAsyncWork();
+
+    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+      buildPresencePayload("Market closed.", "invisible"),
+    );
   });
 });

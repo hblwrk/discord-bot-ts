@@ -48,6 +48,7 @@ export class MarketDataAsset extends BaseAsset {
   private _id: number;
   private _suffix: string;
   private _unit: string;
+  private _marketHours: string;
   private _decimals: number;
   private _lastUpdate: number;
   private _order: number;
@@ -114,6 +115,14 @@ export class MarketDataAsset extends BaseAsset {
 
   public set unit(unit: string) {
     this._unit = unit;
+  }
+
+  public get marketHours() {
+    return this._marketHours;
+  }
+
+  public set marketHours(marketHours: string) {
+    this._marketHours = marketHours;
   }
 
   public get decimals() {
