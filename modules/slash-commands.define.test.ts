@@ -100,7 +100,11 @@ describe("defineSlashCommands", () => {
     expect(mockRest).toHaveBeenCalledWith(expect.objectContaining({
       version: "10",
       timeout: 120000,
+      rejectOnRateLimit: expect.any(Function),
     }));
+    expect(mockRest.mock.calls[0][0].rejectOnRateLimit({
+      route: "/applications/:id/guilds/:id/commands",
+    })).toBe(true);
     expect(mockSetToken).toHaveBeenCalledWith("test-token");
     expect(mockApplicationGuildCommands).toHaveBeenCalledWith("client-id", "guild-id");
     expect(mockOn).toHaveBeenCalledWith("rateLimited", expect.any(Function));

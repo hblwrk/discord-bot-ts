@@ -610,6 +610,8 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
   const rest = new REST({
     version: "10",
     timeout: slashCommandRestTimeoutMs,
+    // Reject rate limits so slash registration can log and reschedule explicitly.
+    rejectOnRateLimit: () => true,
   }).setToken(token);
 
   const slashRegistrationStartedAt = Date.now();
