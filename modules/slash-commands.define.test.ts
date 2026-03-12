@@ -145,6 +145,20 @@ describe("defineSlashCommands", () => {
         rate_limited: true,
         rate_limit_global: false,
         retry_after_ms: 11902,
+        retry_in_ms: 11902,
+        rate_limit_method: "PUT",
+        rate_limit_scope: "shared",
+        message: "slash-registration:rate-limit-event",
+      }),
+    );
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "info",
+      expect.objectContaining({
+        source: "slash-registration",
+        rate_limited: true,
+        rate_limit_global: false,
+        retry_after_ms: 11902,
+        retry_in_ms: 11902,
         rate_limit_method: "PUT",
         rate_limit_scope: "shared",
         message: "slash-registration:rate-limit-event",
@@ -332,6 +346,20 @@ describe("defineSlashCommands", () => {
         discord_error_message: "You are being rate limited.",
         rate_limit_global: false,
         retry_after_ms: 11902,
+        retry_in_ms: 11902,
+        message: "slash-registration:rate-limited",
+      }),
+    );
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "info",
+      expect.objectContaining({
+        source: "slash-registration",
+        registration_rejected: true,
+        rate_limited: true,
+        discord_error_message: "You are being rate limited.",
+        rate_limit_global: false,
+        retry_after_ms: 11902,
+        retry_in_ms: 11902,
         message: "slash-registration:rate-limited",
       }),
     );

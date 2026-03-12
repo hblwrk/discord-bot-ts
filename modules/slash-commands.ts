@@ -619,24 +619,31 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
     client_id: clientId,
   };
   rest.on("rateLimited", (rateLimitData: RestRateLimitData) => {
+    const retryAfterMs = toDiscordTimerMs(rateLimitData.retryAfter);
+    const rateLimitLog = {
+      ...slashRegistrationLogBase,
+      registration_rejected: false,
+      rate_limited: true,
+      rate_limit_global: Boolean(rateLimitData.global),
+      retry_after_ms: retryAfterMs,
+      retry_in_ms: retryAfterMs,
+      rate_limit_scope: rateLimitData.scope,
+      rate_limit_method: rateLimitData.method,
+      rate_limit_route: rateLimitData.route,
+      rate_limit_hash: rateLimitData.hash,
+      rate_limit_limit: rateLimitData.limit,
+      rate_limit_major_parameter: rateLimitData.majorParameter,
+      time_to_reset_ms: toDiscordTimerMs(rateLimitData.timeToReset),
+      sublimit_timeout_ms: toDiscordTimerMs(rateLimitData.sublimitTimeout),
+      message: "slash-registration:rate-limit-event",
+    };
     logger.log(
       "warn",
-      {
-        ...slashRegistrationLogBase,
-        registration_rejected: false,
-        rate_limited: true,
-        rate_limit_global: Boolean(rateLimitData.global),
-        retry_after_ms: toDiscordTimerMs(rateLimitData.retryAfter),
-        rate_limit_scope: rateLimitData.scope,
-        rate_limit_method: rateLimitData.method,
-        rate_limit_route: rateLimitData.route,
-        rate_limit_hash: rateLimitData.hash,
-        rate_limit_limit: rateLimitData.limit,
-        rate_limit_major_parameter: rateLimitData.majorParameter,
-        time_to_reset_ms: toDiscordTimerMs(rateLimitData.timeToReset),
-        sublimit_timeout_ms: toDiscordTimerMs(rateLimitData.sublimitTimeout),
-        message: "slash-registration:rate-limit-event",
-      },
+      rateLimitLog,
+    );
+    logger.log(
+      "info",
+      rateLimitLog,
     );
   });
 
@@ -813,18 +820,24 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
 
     const rateLimitError = toSlashRegistrationRateLimitError(error);
     if (rateLimitError) {
+      const rateLimitLog = {
+        ...slashRegistrationLogBase,
+        total_commands_registered: payload.slashCommands.length,
+        registration_rejected: true,
+        rate_limited: true,
+        rate_limit_global: rateLimitError.isGlobal,
+        retry_after_ms: rateLimitError.retryAfterMs,
+        retry_in_ms: rateLimitError.retryAfterMs,
+        ...toSlashRegistrationErrorDetails(error),
+        message: "slash-registration:rate-limited",
+      };
       logger.log(
         "warn",
-        {
-          ...slashRegistrationLogBase,
-          total_commands_registered: payload.slashCommands.length,
-          registration_rejected: true,
-          rate_limited: true,
-          rate_limit_global: rateLimitError.isGlobal,
-          retry_after_ms: rateLimitError.retryAfterMs,
-          ...toSlashRegistrationErrorDetails(error),
-          message: "slash-registration:rate-limited",
-        },
+        rateLimitLog,
+      );
+      logger.log(
+        "info",
+        rateLimitLog,
       );
       throw rateLimitError;
     }
