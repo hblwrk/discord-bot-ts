@@ -146,6 +146,7 @@ function toSlashRegistrationErrorDetails(error: unknown) {
     const unknownError = error as Error & {
       code?: string | number;
       discordErrorMessage?: string;
+      global?: boolean;
       status?: number;
       rawError?: {retry_after?: unknown; global?: boolean; message?: string;};
     };
@@ -157,7 +158,9 @@ function toSlashRegistrationErrorDetails(error: unknown) {
       error_code: unknownError.code,
       error_status: unknownError.status,
       retry_after_ms: getDiscordRateLimitRetryAfterMs(error),
-      rate_limit_global: "boolean" === typeof unknownError.rawError?.global
+      rate_limit_global: "boolean" === typeof unknownError.global
+        ? unknownError.global
+        : "boolean" === typeof unknownError.rawError?.global
         ? unknownError.rawError.global
         : undefined,
     };
@@ -372,6 +375,7 @@ function toSlashRegistrationRateLimitError(error: unknown): SlashRegistrationRat
   }
 
   const unknownError = error as Error & {
+    global?: boolean;
     status?: number;
     rawError?: {retry_after?: unknown; message?: string; global?: boolean;};
   };
@@ -379,6 +383,7 @@ function toSlashRegistrationRateLimitError(error: unknown): SlashRegistrationRat
   const errorMessage = unknownError.message ?? "";
   const rawErrorMessage = unknownError.rawError?.message ?? "";
   const isRateLimitError = 429 === errorStatus
+    || unknownError.name.startsWith("RateLimitError")
     || /you are being rate limited/i.test(errorMessage)
     || /you are being rate limited/i.test(rawErrorMessage);
   if (false === isRateLimitError) {
@@ -386,7 +391,7 @@ function toSlashRegistrationRateLimitError(error: unknown): SlashRegistrationRat
   }
 
   const retryAfterMs = getDiscordRateLimitRetryAfterMs(error) ?? 15_000;
-  const isGlobal = Boolean(unknownError.rawError?.global);
+  const isGlobal = true === unknownError.global || true === unknownError.rawError?.global;
   return new SlashRegistrationRateLimitError(
     "Slash command registration rate limited. Waiting before retry.",
     retryAfterMs,

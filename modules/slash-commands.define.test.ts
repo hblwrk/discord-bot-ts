@@ -400,9 +400,9 @@ describe("defineSlashCommands", () => {
   });
 
   test("uses retryAfter milliseconds from discord.js RateLimitError objects", async () => {
-    const rateLimitError: any = new Error("Unexpected rate limit");
-    rateLimitError.name = "RateLimitError";
-    rateLimitError.status = 429;
+    const rateLimitError: any = new Error("");
+    rateLimitError.name = "RateLimitError[/applications/:id/guilds/:id/commands]";
+    rateLimitError.global = false;
     rateLimitError.retryAfter = 11_902;
     mockGet.mockResolvedValueOnce([]);
     mockPut.mockRejectedValueOnce(rateLimitError);
@@ -410,7 +410,7 @@ describe("defineSlashCommands", () => {
     await expect(defineSlashCommands([], [], [])).rejects.toMatchObject({
       name: "SlashRegistrationRateLimitError",
       retryAfterMs: 11_902,
-      discordErrorMessage: "Unexpected rate limit",
+      isGlobal: false,
     });
 
     expect(loggerMock.log).toHaveBeenCalledWith(
@@ -419,6 +419,7 @@ describe("defineSlashCommands", () => {
         source: "slash-registration",
         registration_rejected: true,
         rate_limited: true,
+        rate_limit_global: false,
         retry_after_ms: 11_902,
         message: "slash-registration:rate-limited",
       }),
