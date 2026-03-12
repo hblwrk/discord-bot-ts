@@ -155,7 +155,8 @@ function waitWithTimer(delayMs: number, setTimeoutFn: typeof setTimeout): Promis
   });
 }
 
-function toErrorLogDetails(error: unknown): ErrorLogDetails {
+function toErrorLogDetails(error: unknown, options: {includeStack?: boolean;} = {}): ErrorLogDetails {
+  const includeStack = false !== options.includeStack;
   if (error instanceof Error) {
     const unknownError = error as Error & {
       discordErrorMessage?: string;
@@ -170,7 +171,7 @@ function toErrorLogDetails(error: unknown): ErrorLogDetails {
       ...(discordErrorMessage ? {discord_error_message: discordErrorMessage} : {}),
       error_name: error.name,
       error_message: error.message,
-      error_stack: error.stack,
+      ...(true === includeStack && "string" === typeof error.stack ? {error_stack: error.stack} : {}),
     };
   }
 
@@ -641,7 +642,7 @@ async function warmRemoteData({
             cooldown_ms: slashCommandCreateLimitCooldownMs,
             ...(slashCommandCreateLimitSuppressedUntilMs ? {suppressed_until_ms: slashCommandCreateLimitSuppressedUntilMs} : {}),
             ...(slashCommandCreateLimitRetryAfterMs ? {retry_after_ms: slashCommandCreateLimitRetryAfterMs} : {}),
-            ...toErrorLogDetails(error),
+            ...toErrorLogDetails(error, {includeStack: false}),
             message: "slash-registration:daily-create-limit-suppressed",
           },
         );
@@ -656,7 +657,7 @@ async function warmRemoteData({
             max_attempts: dependencies.warmupMaxAttempts,
             retry_after_ms: retryAfterMs,
             retry_in_ms: retryAfterMs,
-            ...toErrorLogDetails(error),
+            ...toErrorLogDetails(error, {includeStack: false}),
             message: "slash-registration:rate-limited",
           },
         );
@@ -673,7 +674,7 @@ async function warmRemoteData({
               attempt,
               max_attempts: dependencies.warmupMaxAttempts,
               retry_after_ms: retryAfterMs,
-              ...toErrorLogDetails(error),
+              ...toErrorLogDetails(error, {includeStack: false}),
               message: "slash-registration:rate-limit-retries-exhausted",
             },
           );

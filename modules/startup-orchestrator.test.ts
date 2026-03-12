@@ -690,6 +690,37 @@ describe("startBot", () => {
     );
   });
 
+  test("does not include error stack for exhausted slash command rate-limit retries", async () => {
+    const rateLimitError: any = new Error("Slash command registration rate limited.");
+    rateLimitError.name = "SlashRegistrationRateLimitError";
+    rateLimitError.retryAfterMs = 30_050;
+    const defineSlashCommandsMock = jest.fn(async () => {
+      throw rateLimitError;
+    });
+    const {dependencies, mocks} = createDependencies({
+      defineSlashCommands: defineSlashCommandsMock,
+      slashCommandDebounceMs: 5,
+      warmupMaxAttempts: 1,
+    });
+
+    const runtime = await startBot(dependencies);
+    await waitFor(() => true === runtime.getStartupState().ready);
+    await waitFor(() => defineSlashCommandsMock.mock.calls.length === 1);
+
+    const exhaustedRateLimitLogCall = mocks.logger.log.mock.calls.find(call => {
+      return "warn" === call[0]
+        && "slash-registration:rate-limit-retries-exhausted" === call[1]?.message;
+    });
+
+    expect(exhaustedRateLimitLogCall).toBeDefined();
+    expect(exhaustedRateLimitLogCall?.[1]).toEqual(expect.objectContaining({
+      task: "slash-commands",
+      retry_after_ms: 30_050,
+      message: "slash-registration:rate-limit-retries-exhausted",
+    }));
+    expect(exhaustedRateLimitLogCall?.[1]).not.toHaveProperty("error_stack");
+  });
+
   test("fails startup when logged-in client ID does not match configured client ID", async () => {
     const {client} = createMockClient("different-client-id");
     const {dependencies, mocks} = createDependencies({
