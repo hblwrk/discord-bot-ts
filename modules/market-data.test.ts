@@ -112,7 +112,7 @@ function buildSocketIoMarketMessage(payload: Record<string, unknown>) {
   return `a["42::${JSON.stringify(payload).replaceAll("\"", "\\\"")}"]`;
 }
 
-function buildPresencePayload(name: string, status: "dnd" | "invisible" | "online") {
+function buildPresencePayload(name: string, status: "dnd" | "idle" | "invisible" | "online") {
   return {
     activities: [{name}],
     status,
@@ -158,7 +158,7 @@ describe("updateMarketData", () => {
     readyHandler();
 
     expect(clientInstances[0].client.user.setPresence).toHaveBeenCalledWith(
-      buildPresencePayload("Market closed.", "invisible"),
+      buildPresencePayload("Market closed.", "idle"),
     );
     expect(mockWebSocketConstructor).toHaveBeenCalledTimes(1);
   });
@@ -744,7 +744,7 @@ describe("updateMarketData", () => {
     expect(wsClient.reconnect).toHaveBeenCalled();
   });
 
-  test("sets invisible presence when the market session closes without a new tick", async () => {
+  test("sets idle presence when the market session closes without a new tick", async () => {
     queuedClientIds.push("client-1");
     mockGetAssets.mockResolvedValue([
       {
@@ -786,7 +786,7 @@ describe("updateMarketData", () => {
 
     expect(clientInstances[0].setNickname).toHaveBeenLastCalledWith("1⬛ 100.50$");
     expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
-      buildPresencePayload("Market closed.", "invisible"),
+      buildPresencePayload("Market closed.", "idle"),
     );
     expect(mockLogger.log).toHaveBeenCalledWith(
       "debug",
@@ -798,7 +798,7 @@ describe("updateMarketData", () => {
         market_data_pid: 123,
         nickname: "1⬛ 100.50$",
         presence: "Market closed.",
-        presence_status: "invisible",
+        presence_status: "idle",
       }),
     );
   });
@@ -855,7 +855,7 @@ describe("updateMarketData", () => {
 
     expect(clientInstances[0].setNickname).toHaveBeenLastCalledWith("1⬛ 101.50$");
     expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
-      buildPresencePayload("Market closed.", "invisible"),
+      buildPresencePayload("Market closed.", "idle"),
     );
   });
 });

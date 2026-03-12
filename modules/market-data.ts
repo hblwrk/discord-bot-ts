@@ -23,7 +23,7 @@ const usEasternTimezone = "US/Eastern";
 const europeBerlinTimezone = "Europe/Berlin";
 
 type MarketHoursProfile = "crypto" | "eu_cash" | "forex" | "us_cash" | "us_futures";
-type DiscordPresenceStatus = "dnd" | "invisible" | "online";
+type DiscordPresenceStatus = "dnd" | "idle" | "invisible" | "online";
 
 type MarketDataAsset = {
   name?: string;
@@ -129,10 +129,10 @@ export async function updateMarketData() {
         `Launched market data bot (${marketDataAsset.botName})`,
       );
 
-      // Stay invisible until a live tick arrives; the status reconciler flips closed sessions back to grey later.
+      // Stay idle until a live tick arrives; the status reconciler flips closed sessions back later.
       client.user.setPresence({
         activities: [{name: marketClosedPresence}],
-        status: "invisible",
+        status: "idle",
       });
       clientsById.set(marketDataAsset.botClientId, client);
 
@@ -832,7 +832,7 @@ async function applyClosedMarketPresenceIfNeeded(
     client,
     statusByClientId,
     marketClosedPresence,
-    "invisible",
+    "idle",
   );
 
   const state = statusByClientId.get(client.user.id) ?? {};
@@ -859,7 +859,7 @@ async function applyClosedMarketPresenceIfNeeded(
     marketDataAsset,
     nickname: closedMarketNickname ?? state.nickname ?? null,
     presence: marketClosedPresence,
-    presenceStatus: "invisible",
+    presenceStatus: "idle",
   });
 }
 
@@ -938,7 +938,7 @@ function logIncomingMarketDataUpdate(logData: IncomingMarketDataUpdateLog) {
 function buildClosedMarketPresenceData(): Omit<MarketPresenceData, "nickname"> {
   return {
     presence: marketClosedPresence,
-    presenceStatus: "invisible",
+    presenceStatus: "idle",
   };
 }
 
