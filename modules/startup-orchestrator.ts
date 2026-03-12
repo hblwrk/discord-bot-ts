@@ -2,6 +2,7 @@
 import {Client, GatewayIntentBits, Partials} from "discord.js";
 import {getGenericAssets, getAssets} from "./assets.js";
 import {clownboard} from "./clownboard.js";
+import {getDiscordRateLimitRetryAfterMs} from "./discord-retry-after.js";
 import {getInteractiveClientCacheFactory} from "./discord-client-options.js";
 import {runHealthCheck} from "./health-check.js";
 import {addInlineResponses} from "./inline-response.js";
@@ -182,43 +183,8 @@ function isSlashCommandCreateLimitError(error: unknown): boolean {
   return error instanceof Error && "SlashRegistrationCreateLimitError" === error.name;
 }
 
-function toRetryAfterMs(rawRetryAfter: unknown): number | undefined {
-  if ("number" === typeof rawRetryAfter && Number.isFinite(rawRetryAfter)) {
-    if (rawRetryAfter <= 0) {
-      return undefined;
-    }
-
-    if (rawRetryAfter < 1_000) {
-      return Math.ceil(rawRetryAfter * 1_000);
-    }
-
-    return Math.ceil(rawRetryAfter);
-  }
-
-  if ("string" === typeof rawRetryAfter && "" !== rawRetryAfter.trim()) {
-    const parsedRetryAfter = Number(rawRetryAfter);
-    if (Number.isFinite(parsedRetryAfter)) {
-      return toRetryAfterMs(parsedRetryAfter);
-    }
-  }
-
-  return undefined;
-}
-
 function getSlashCommandRetryAfterMs(error: unknown): number | undefined {
-  if (false === (error instanceof Error)) {
-    return undefined;
-  }
-
-  const unknownError = error as Error & {
-    retryAfterMs?: number;
-    retry_after?: unknown;
-    rawError?: {retry_after?: unknown;};
-  };
-
-  return toRetryAfterMs(unknownError.retryAfterMs)
-    ?? toRetryAfterMs(unknownError.retry_after)
-    ?? toRetryAfterMs(unknownError.rawError?.retry_after);
+  return getDiscordRateLimitRetryAfterMs(error);
 }
 
 async function waitForDiscordReady(

@@ -4,6 +4,7 @@ import {AttachmentBuilder, EmbedBuilder, PermissionFlagsBits, REST, Routes, Slas
 import validator from "validator";
 import {getAssetByName, ImageAsset, TextAsset} from "./assets.js";
 import {cryptodice} from "./crypto-dice.js";
+import {getDiscordRateLimitRetryAfterMs, toDiscordTimerMs} from "./discord-retry-after.js";
 import {google, lmgtfy} from "./lmgtfy.js";
 import {getDiscordLogger, getLogger} from "./logging.js";
 import {getRandomQuote} from "./random-quote.js";
@@ -146,7 +147,6 @@ function toSlashRegistrationErrorDetails(error: unknown) {
       code?: string | number;
       discordErrorMessage?: string;
       status?: number;
-      retry_after?: unknown;
       rawError?: {retry_after?: unknown; global?: boolean; message?: string;};
     };
     const discordErrorMessage = getDiscordErrorMessage(error);
@@ -156,7 +156,7 @@ function toSlashRegistrationErrorDetails(error: unknown) {
       ...(discordErrorMessage ? {discord_error_message: discordErrorMessage} : {}),
       error_code: unknownError.code,
       error_status: unknownError.status,
-      retry_after_ms: toRetryAfterMs(unknownError.retry_after) ?? toRetryAfterMs(unknownError.rawError?.retry_after),
+      retry_after_ms: getDiscordRateLimitRetryAfterMs(error),
       rate_limit_global: "boolean" === typeof unknownError.rawError?.global
         ? unknownError.rawError.global
         : undefined,
@@ -315,30 +315,6 @@ function hasSlashRegistrationMismatch(diff: SlashRegistrationDiff): boolean {
     || 0 < diff.changedCommandNames.length;
 }
 
-function toRetryAfterMs(rawRetryAfter: unknown): number | undefined {
-  if ("number" === typeof rawRetryAfter && Number.isFinite(rawRetryAfter)) {
-    if (rawRetryAfter <= 0) {
-      return undefined;
-    }
-
-    // Discord often returns retry_after in seconds with fractional precision.
-    if (rawRetryAfter < 1_000) {
-      return Math.ceil(rawRetryAfter * 1_000);
-    }
-
-    return Math.ceil(rawRetryAfter);
-  }
-
-  if ("string" === typeof rawRetryAfter && "" !== rawRetryAfter.trim()) {
-    const parsedRetryAfter = Number(rawRetryAfter);
-    if (Number.isFinite(parsedRetryAfter)) {
-      return toRetryAfterMs(parsedRetryAfter);
-    }
-  }
-
-  return undefined;
-}
-
 function getDiscordErrorMessage(error: unknown): string | undefined {
   if (false === (error instanceof Error)) {
     return undefined;
@@ -370,7 +346,6 @@ function toSlashRegistrationCreateLimitError(error: unknown): SlashRegistrationC
 
   const unknownError = error as Error & {
     code?: string | number;
-    retry_after?: unknown;
     rawError?: {retry_after?: unknown; message?: string;};
   };
   const errorCode = Number(unknownError.code);
@@ -383,9 +358,7 @@ function toSlashRegistrationCreateLimitError(error: unknown): SlashRegistrationC
     return undefined;
   }
 
-  const retryAfterMs = toRetryAfterMs(unknownError.retry_after)
-    ?? toRetryAfterMs(unknownError.rawError?.retry_after)
-    ?? 5 * 60_000;
+  const retryAfterMs = getDiscordRateLimitRetryAfterMs(error) ?? 5 * 60_000;
   return new SlashRegistrationCreateLimitError(
     "Slash command create limit reached. Further automatic retries should be suppressed for this process.",
     retryAfterMs,
@@ -400,7 +373,6 @@ function toSlashRegistrationRateLimitError(error: unknown): SlashRegistrationRat
 
   const unknownError = error as Error & {
     status?: number;
-    retry_after?: unknown;
     rawError?: {retry_after?: unknown; message?: string; global?: boolean;};
   };
   const errorStatus = Number(unknownError.status);
@@ -413,9 +385,7 @@ function toSlashRegistrationRateLimitError(error: unknown): SlashRegistrationRat
     return undefined;
   }
 
-  const retryAfterMs = toRetryAfterMs(unknownError.retry_after)
-    ?? toRetryAfterMs(unknownError.rawError?.retry_after)
-    ?? 15_000;
+  const retryAfterMs = getDiscordRateLimitRetryAfterMs(error) ?? 15_000;
   const isGlobal = Boolean(unknownError.rawError?.global);
   return new SlashRegistrationRateLimitError(
     "Slash command registration rate limited. Waiting before retry.",
@@ -656,15 +626,15 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
         registration_rejected: false,
         rate_limited: true,
         rate_limit_global: Boolean(rateLimitData.global),
-        retry_after_ms: toRetryAfterMs(rateLimitData.retryAfter),
+        retry_after_ms: toDiscordTimerMs(rateLimitData.retryAfter),
         rate_limit_scope: rateLimitData.scope,
         rate_limit_method: rateLimitData.method,
         rate_limit_route: rateLimitData.route,
         rate_limit_hash: rateLimitData.hash,
         rate_limit_limit: rateLimitData.limit,
         rate_limit_major_parameter: rateLimitData.majorParameter,
-        time_to_reset_ms: toRetryAfterMs(rateLimitData.timeToReset),
-        sublimit_timeout_ms: toRetryAfterMs(rateLimitData.sublimitTimeout),
+        time_to_reset_ms: toDiscordTimerMs(rateLimitData.timeToReset),
+        sublimit_timeout_ms: toDiscordTimerMs(rateLimitData.sublimitTimeout),
         message: "slash-registration:rate-limit-event",
       },
     );

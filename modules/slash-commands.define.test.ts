@@ -337,6 +337,62 @@ describe("defineSlashCommands", () => {
     );
   });
 
+  test("uses the Retry-After header when Discord omits retry_after in a 429 response", async () => {
+    const rateLimitError: any = new Error("You are being rate limited.");
+    rateLimitError.status = 429;
+    rateLimitError.response = {
+      headers: {
+        "Retry-After": "12",
+      },
+    };
+    mockGet.mockResolvedValueOnce([]);
+    mockPut.mockRejectedValueOnce(rateLimitError);
+
+    await expect(defineSlashCommands([], [], [])).rejects.toMatchObject({
+      name: "SlashRegistrationRateLimitError",
+      retryAfterMs: 12_000,
+      discordErrorMessage: "You are being rate limited.",
+    });
+
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "slash-registration",
+        registration_rejected: true,
+        rate_limited: true,
+        discord_error_message: "You are being rate limited.",
+        retry_after_ms: 12_000,
+        message: "slash-registration:rate-limited",
+      }),
+    );
+  });
+
+  test("uses retryAfter milliseconds from discord.js RateLimitError objects", async () => {
+    const rateLimitError: any = new Error("Unexpected rate limit");
+    rateLimitError.name = "RateLimitError";
+    rateLimitError.status = 429;
+    rateLimitError.retryAfter = 11_902;
+    mockGet.mockResolvedValueOnce([]);
+    mockPut.mockRejectedValueOnce(rateLimitError);
+
+    await expect(defineSlashCommands([], [], [])).rejects.toMatchObject({
+      name: "SlashRegistrationRateLimitError",
+      retryAfterMs: 11_902,
+      discordErrorMessage: "Unexpected rate limit",
+    });
+
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "slash-registration",
+        registration_rejected: true,
+        rate_limited: true,
+        retry_after_ms: 11_902,
+        message: "slash-registration:rate-limited",
+      }),
+    );
+  });
+
   test("normalizes trigger names and skips invalid or duplicate slash command names", async () => {
     const asset = new TextAsset();
     asset.title = "Title";

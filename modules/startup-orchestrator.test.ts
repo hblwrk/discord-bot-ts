@@ -645,6 +645,51 @@ describe("startBot", () => {
     );
   });
 
+  test("uses Retry-After header backoff for slash command rate-limit failures when retryAfterMs is absent", async () => {
+    const rateLimitError: any = new Error("Slash command registration rate limited.");
+    rateLimitError.name = "SlashRegistrationRateLimitError";
+    rateLimitError.response = {
+      headers: {
+        "Retry-After": "12",
+      },
+    };
+    const defineSlashCommandsMock = jest.fn()
+      .mockImplementationOnce(async () => {
+        throw rateLimitError;
+      })
+      .mockImplementationOnce(async () => {});
+    const observedTimeoutDelays: number[] = [];
+    const setTimeoutFn = ((handler: (...args: unknown[]) => void, delay?: number, ...args: unknown[]) => {
+      const requestedDelay = Number(delay ?? 0);
+      observedTimeoutDelays.push(requestedDelay);
+      const boundedDelay = requestedDelay > 1_000 ? 1 : requestedDelay;
+      return setTimeout(handler as any, boundedDelay, ...args);
+    }) as typeof setTimeout;
+    const {dependencies, mocks} = createDependencies({
+      defineSlashCommands: defineSlashCommandsMock,
+      setTimeoutFn,
+      clearTimeoutFn: clearTimeout,
+      slashCommandDebounceMs: 5,
+      warmupMaxAttempts: 2,
+    });
+
+    const runtime = await startBot(dependencies);
+    await waitFor(() => true === runtime.getStartupState().ready);
+    await waitFor(() => defineSlashCommandsMock.mock.calls.length === 2);
+
+    expect(runtime.getStartupState().ready).toBe(true);
+    expect(observedTimeoutDelays).toContain(12_000);
+    expect(mocks.logger.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        task: "slash-commands",
+        retry_after_ms: 12_000,
+        retry_in_ms: 12_000,
+        message: "slash-registration:rate-limited",
+      }),
+    );
+  });
+
   test("fails startup when logged-in client ID does not match configured client ID", async () => {
     const {client} = createMockClient("different-client-id");
     const {dependencies, mocks} = createDependencies({
