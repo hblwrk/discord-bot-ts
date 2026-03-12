@@ -360,17 +360,19 @@ describe("defineSlashCommands", () => {
     });
   });
 
-  test("uses retryAfter milliseconds from discord.js RateLimitError objects", async () => {
+  test("uses the largest delay from discord.js RateLimitError objects", async () => {
     const rateLimitError: any = new Error("");
     rateLimitError.name = "RateLimitError[/applications/:id/guilds/:id/commands]";
     rateLimitError.global = false;
     rateLimitError.retryAfter = 11_902;
+    rateLimitError.timeToReset = 12_000;
+    rateLimitError.sublimitTimeout = 11_950;
     mockGet.mockResolvedValueOnce([]);
     mockPut.mockRejectedValueOnce(rateLimitError);
 
     await expect(defineSlashCommands([], [], [])).rejects.toMatchObject({
       name: "SlashRegistrationRateLimitError",
-      retryAfterMs: 11_902,
+      retryAfterMs: 12_000,
       isGlobal: false,
     });
   });

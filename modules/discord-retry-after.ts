@@ -110,6 +110,8 @@ export function getDiscordRateLimitRetryAfterMs(error: unknown, nowMs: number = 
   const unknownError = error as Error & {
     retryAfterMs?: unknown;
     retryAfter?: unknown;
+    sublimitTimeout?: unknown;
+    timeToReset?: unknown;
     retry_after?: unknown;
     rawError?: {
       retryAfter?: unknown;
@@ -121,11 +123,21 @@ export function getDiscordRateLimitRetryAfterMs(error: unknown, nowMs: number = 
     };
   };
 
-  return toDiscordTimerMs(unknownError.retryAfterMs)
-    ?? toDiscordTimerMs(unknownError.retryAfter)
-    ?? toDiscordRetryAfterFieldMs(unknownError.retry_after)
-    ?? toDiscordTimerMs(unknownError.rawError?.retryAfter)
-    ?? toDiscordRetryAfterFieldMs(unknownError.rawError?.retry_after)
-    ?? getDiscordRetryAfterHeaderMs(unknownError.headers, nowMs)
-    ?? getDiscordRetryAfterHeaderMs(unknownError.response?.headers, nowMs);
+  const timerCandidates = [
+    toDiscordTimerMs(unknownError.retryAfterMs),
+    toDiscordTimerMs(unknownError.retryAfter),
+    toDiscordTimerMs(unknownError.sublimitTimeout),
+    toDiscordTimerMs(unknownError.timeToReset),
+    toDiscordTimerMs(unknownError.rawError?.retryAfter),
+    toDiscordRetryAfterFieldMs(unknownError.retry_after),
+    toDiscordRetryAfterFieldMs(unknownError.rawError?.retry_after),
+    getDiscordRetryAfterHeaderMs(unknownError.headers, nowMs),
+    getDiscordRetryAfterHeaderMs(unknownError.response?.headers, nowMs),
+  ].filter((candidate): candidate is number => "number" === typeof candidate);
+
+  if (0 === timerCandidates.length) {
+    return undefined;
+  }
+
+  return Math.max(...timerCandidates);
 }

@@ -707,6 +707,9 @@ describe("startBot", () => {
     await waitFor(() => true === runtime.getStartupState().ready);
     await waitFor(() => defineSlashCommandsMock.mock.calls.length === 1);
 
+    expect(runtime.getStartupState().remoteWarmupStatus).toBe("ready");
+    expect(runtime.getStartupState().ready).toBe(true);
+
     const exhaustedRateLimitLogCall = mocks.logger.log.mock.calls.find(call => {
       return "warn" === call[0]
         && "slash-registration:rate-limit-retries-exhausted" === call[1]?.message;
