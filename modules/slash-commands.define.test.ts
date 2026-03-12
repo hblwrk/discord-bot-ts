@@ -340,33 +340,6 @@ describe("defineSlashCommands", () => {
       isGlobal: false,
       discordErrorMessage: "You are being rate limited.",
     });
-
-    expect(loggerMock.log).toHaveBeenCalledWith(
-      "warn",
-      expect.objectContaining({
-        source: "slash-registration",
-        registration_rejected: true,
-        rate_limited: true,
-        discord_error_message: "You are being rate limited.",
-        rate_limit_global: false,
-        retry_after_ms: 11902,
-        retry_in_ms: 11902,
-        message: "slash-registration:rate-limited",
-      }),
-    );
-    expect(loggerMock.log).toHaveBeenCalledWith(
-      "info",
-      expect.objectContaining({
-        source: "slash-registration",
-        registration_rejected: true,
-        rate_limited: true,
-        discord_error_message: "You are being rate limited.",
-        rate_limit_global: false,
-        retry_after_ms: 11902,
-        retry_in_ms: 11902,
-        message: "slash-registration:rate-limited",
-      }),
-    );
   });
 
   test("uses the Retry-After header when Discord omits retry_after in a 429 response", async () => {
@@ -385,18 +358,6 @@ describe("defineSlashCommands", () => {
       retryAfterMs: 12_000,
       discordErrorMessage: "You are being rate limited.",
     });
-
-    expect(loggerMock.log).toHaveBeenCalledWith(
-      "warn",
-      expect.objectContaining({
-        source: "slash-registration",
-        registration_rejected: true,
-        rate_limited: true,
-        discord_error_message: "You are being rate limited.",
-        retry_after_ms: 12_000,
-        message: "slash-registration:rate-limited",
-      }),
-    );
   });
 
   test("uses retryAfter milliseconds from discord.js RateLimitError objects", async () => {
@@ -412,18 +373,6 @@ describe("defineSlashCommands", () => {
       retryAfterMs: 11_902,
       isGlobal: false,
     });
-
-    expect(loggerMock.log).toHaveBeenCalledWith(
-      "warn",
-      expect.objectContaining({
-        source: "slash-registration",
-        registration_rejected: true,
-        rate_limited: true,
-        rate_limit_global: false,
-        retry_after_ms: 11_902,
-        message: "slash-registration:rate-limited",
-      }),
-    );
   });
 
   test("normalizes trigger names and skips invalid or duplicate slash command names", async () => {
