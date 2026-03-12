@@ -714,8 +714,13 @@ describe("startBot", () => {
       return "warn" === call[0]
         && "slash-registration:rate-limit-retries-exhausted" === call[1]?.message;
     });
+    const retryableRateLimitLogCall = mocks.logger.log.mock.calls.find(call => {
+      return "warn" === call[0]
+        && "slash-registration:rate-limited" === call[1]?.message;
+    });
 
     expect(exhaustedRateLimitLogCall).toBeDefined();
+    expect(retryableRateLimitLogCall).toBeUndefined();
     expect(exhaustedRateLimitLogCall?.[1]).toEqual(expect.objectContaining({
       task: "slash-commands",
       retry_after_ms: 30_050,

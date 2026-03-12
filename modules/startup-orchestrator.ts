@@ -648,21 +648,20 @@ async function warmRemoteData({
         );
       } else if (error instanceof Error && "SlashRegistrationRateLimitError" === error.name) {
         const retryAfterMs = getSlashCommandRetryAfterMs(error) ?? 15_000;
-        logger.log(
-          "warn",
-          {
-            startup_phase: "phase-b",
-            task: "slash-commands",
-            attempt,
-            max_attempts: dependencies.warmupMaxAttempts,
-            retry_after_ms: retryAfterMs,
-            retry_in_ms: retryAfterMs,
-            ...toErrorLogDetails(error, {includeStack: false}),
-            message: "slash-registration:rate-limited",
-          },
-        );
-
         if (attempt < dependencies.warmupMaxAttempts) {
+          logger.log(
+            "warn",
+            {
+              startup_phase: "phase-b",
+              task: "slash-commands",
+              attempt,
+              max_attempts: dependencies.warmupMaxAttempts,
+              retry_after_ms: retryAfterMs,
+              retry_in_ms: retryAfterMs,
+              ...toErrorLogDetails(error, {includeStack: false}),
+              message: "slash-registration:rate-limited",
+            },
+          );
           queuedRetryDelayMs = retryAfterMs;
           queuedRetryAttempt = attempt + 1;
         } else {
