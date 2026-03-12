@@ -18,6 +18,7 @@ const streamWatchdogIntervalMs = 30_000;
 const streamStaleTimeoutMs = 300_000;
 const maxLoggedPayloadLength = 500;
 const marketClosedPresence = "Market closed.";
+const marketClosedTrend = "⬛";
 const usEasternTimezone = "US/Eastern";
 const europeBerlinTimezone = "Europe/Berlin";
 
@@ -25,6 +26,7 @@ type MarketHoursProfile = "crypto" | "eu_cash" | "forex" | "us_cash" | "us_futur
 type DiscordPresenceStatus = "dnd" | "invisible" | "online";
 
 type MarketDataAsset = {
+  name?: string;
   botToken: string;
   botClientId: string;
   botName: string;
@@ -54,13 +56,37 @@ type PendingClientStatusUpdate = {
   marketDataAsset: MarketDataAsset;
   nickname: string;
   openPresence: string;
+  lastNumeric: number;
   priceChange: number;
+  percentageChange: number;
   applying?: boolean;
 };
 
 type MarketPresenceData = {
+  nickname: string;
   presence: string;
   presenceStatus: DiscordPresenceStatus;
+};
+
+type AppliedMarketDataUpdateLog = {
+  source: "market-close-reconciler" | "stream-flush";
+  marketDataAsset: MarketDataAsset;
+  nickname?: string | null;
+  presence: string;
+  presenceStatus: DiscordPresenceStatus;
+  lastNumeric?: number;
+  priceChange?: number;
+  percentageChange?: number;
+};
+
+type IncomingMarketDataUpdateLog = {
+  marketDataAsset: MarketDataAsset;
+  botReady: boolean;
+  nickname: string;
+  presence: string;
+  lastNumeric: number;
+  priceChange: number;
+  percentageChange: number;
 };
 
 // Launching multiple bots and websocket stream to display price information.
@@ -183,9 +209,11 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
         continue;
       }
 
-      applyClosedMarketPresenceIfNeeded(
+      void applyClosedMarketPresenceIfNeeded(
         client,
         marketDataAsset,
+        guildId,
+        memberByClientId,
         statusByClientId,
       );
     }
@@ -270,16 +298,6 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
         return;
       }
 
-      const client = clientsById.get(marketDataAsset.botClientId);
-      if ("undefined" === typeof client) {
-        logger.log(
-          "warn",
-          `Market data update skipped because bot client ${marketDataAsset.botClientId} is not ready.`,
-        );
-
-        return;
-      }
-
       // Always show configured decimals
       const lastPrice = streamEvent.lastNumeric.toFixed(marketDataAsset.decimals);
       let lastPriceChange = streamEvent.priceChange.toFixed(marketDataAsset.decimals);
@@ -304,11 +322,25 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
         presence = `${lastPriceChange}`;
       }
 
-      // Updating nickname and presence status
-      logger.log(
-        "debug",
-        `${marketDataAsset.botName} ${name} ${presence}`,
-      );
+      const client = clientsById.get(marketDataAsset.botClientId);
+      logIncomingMarketDataUpdate({
+        marketDataAsset,
+        botReady: "undefined" !== typeof client,
+        nickname: name,
+        presence,
+        lastNumeric: streamEvent.lastNumeric,
+        priceChange: streamEvent.priceChange,
+        percentageChange: streamEvent.percentageChange,
+      });
+
+      if ("undefined" === typeof client) {
+        logger.log(
+          "warn",
+          `Market data update skipped because bot client ${marketDataAsset.botClientId} is not ready.`,
+        );
+
+        return;
+      }
 
       queuePendingClientStatusUpdate(
         client,
@@ -316,7 +348,9 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
         marketDataAsset,
         name,
         presence,
+        streamEvent.lastNumeric,
         streamEvent.priceChange,
+        streamEvent.percentageChange,
         guildId,
         memberByClientId,
         statusByClientId,
@@ -579,13 +613,31 @@ async function applyClientStatusUpdate(
   presence: string,
   presenceStatus: DiscordPresenceStatus,
 ) {
-  applyClientPresenceUpdate(
+  const didPresenceUpdate = applyClientPresenceUpdate(
     client,
     statusByClientId,
     presence,
     presenceStatus,
   );
 
+  const didNicknameUpdate = await applyClientNicknameUpdate(
+    client,
+    guildId,
+    memberByClientId,
+    statusByClientId,
+    nickname,
+  );
+
+  return didPresenceUpdate || didNicknameUpdate;
+}
+
+async function applyClientNicknameUpdate(
+  client: Client,
+  guildId: string,
+  memberByClientId: Map<string, Promise<any>>,
+  statusByClientId: Map<string, ClientStatusState>,
+  nickname: string,
+) {
   const state = statusByClientId.get(client.user.id) ?? {};
 
   if (state.nickname !== nickname) {
@@ -604,6 +656,8 @@ async function applyClientStatusUpdate(
       const member = await memberPromise;
       await member.setNickname(nickname);
       state.nickname = nickname;
+      statusByClientId.set(client.user.id, state);
+      return true;
     } catch (error) {
       memberByClientId.delete(client.user.id);
       logger.log(
@@ -614,6 +668,7 @@ async function applyClientStatusUpdate(
   }
 
   statusByClientId.set(client.user.id, state);
+  return false;
 }
 
 function queuePendingClientStatusUpdate(
@@ -622,7 +677,9 @@ function queuePendingClientStatusUpdate(
   marketDataAsset: MarketDataAsset,
   nickname: string,
   openPresence: string,
+  lastNumeric: number,
   priceChange: number,
+  percentageChange: number,
   guildId: string,
   memberByClientId: Map<string, Promise<any>>,
   statusByClientId: Map<string, ClientStatusState>,
@@ -635,14 +692,18 @@ function queuePendingClientStatusUpdate(
       marketDataAsset,
       nickname,
       openPresence,
+      lastNumeric,
       priceChange,
+      percentageChange,
       applying: false,
     });
   } else {
     pendingStatusUpdate.marketDataAsset = marketDataAsset;
     pendingStatusUpdate.nickname = nickname;
     pendingStatusUpdate.openPresence = openPresence;
+    pendingStatusUpdate.lastNumeric = lastNumeric;
     pendingStatusUpdate.priceChange = priceChange;
+    pendingStatusUpdate.percentageChange = percentageChange;
   }
 
   void flushPendingClientStatusUpdate(
@@ -683,25 +744,40 @@ async function flushPendingClientStatusUpdate(
   }
 
   pendingStatusUpdate.applying = true;
-  const {nickname, openPresence, priceChange} = pendingStatusUpdate;
+  const {nickname, openPresence, lastNumeric, priceChange, percentageChange} = pendingStatusUpdate;
   const marketPresenceData = getMarketPresenceData(
     pendingStatusUpdate.marketDataAsset,
+    nickname,
     openPresence,
     priceChange,
   );
   let didApply = false;
 
   try {
-    await applyClientStatusUpdate(
+    const didUpdate = await applyClientStatusUpdate(
       client,
       guildId,
       memberByClientId,
       statusByClientId,
-      nickname,
+      marketPresenceData.nickname,
       marketPresenceData.presence,
       marketPresenceData.presenceStatus,
     );
     pendingStatusUpdate.marketDataAsset.lastUpdate = Date.now() / 1000;
+
+    if (true === didUpdate) {
+      logAppliedMarketDataUpdate({
+        source: "stream-flush",
+        marketDataAsset: pendingStatusUpdate.marketDataAsset,
+        nickname: marketPresenceData.nickname,
+        presence: marketPresenceData.presence,
+        presenceStatus: marketPresenceData.presenceStatus,
+        lastNumeric,
+        priceChange,
+        percentageChange,
+      });
+    }
+
     didApply = true;
   } catch (error) {
     logger.log(
@@ -741,21 +817,50 @@ function isDiscordUpdateDue(lastUpdate: number): boolean {
   return (Date.now() - (lastUpdate * 1000)) >= discordUpdateIntervalMs;
 }
 
-function applyClosedMarketPresenceIfNeeded(
+async function applyClosedMarketPresenceIfNeeded(
   client: Client,
   marketDataAsset: MarketDataAsset,
+  guildId: string,
+  memberByClientId: Map<string, Promise<any>>,
   statusByClientId: Map<string, ClientStatusState>,
 ) {
   if (true === isMarketOpen(marketDataAsset)) {
     return;
   }
 
-  applyClientPresenceUpdate(
+  const didPresenceUpdate = applyClientPresenceUpdate(
     client,
     statusByClientId,
     marketClosedPresence,
     "invisible",
   );
+
+  const state = statusByClientId.get(client.user.id) ?? {};
+  const closedMarketNickname = getClosedMarketNickname(
+    marketDataAsset,
+    state.nickname,
+  );
+  const didNicknameUpdate = null === closedMarketNickname
+    ? false
+    : await applyClientNicknameUpdate(
+      client,
+      guildId,
+      memberByClientId,
+      statusByClientId,
+      closedMarketNickname,
+    );
+
+  if (false === didPresenceUpdate && false === didNicknameUpdate) {
+    return;
+  }
+
+  logAppliedMarketDataUpdate({
+    source: "market-close-reconciler",
+    marketDataAsset,
+    nickname: closedMarketNickname ?? state.nickname ?? null,
+    presence: marketClosedPresence,
+    presenceStatus: "invisible",
+  });
 }
 
 function applyClientPresenceUpdate(
@@ -768,7 +873,7 @@ function applyClientPresenceUpdate(
 
   if (state.presence === presence && state.presenceStatus === presenceStatus) {
     statusByClientId.set(client.user.id, state);
-    return;
+    return false;
   }
 
   try {
@@ -778,6 +883,8 @@ function applyClientPresenceUpdate(
     });
     state.presence = presence;
     state.presenceStatus = presenceStatus;
+    statusByClientId.set(client.user.id, state);
+    return true;
   } catch (error) {
     logger.log(
       "error",
@@ -786,9 +893,49 @@ function applyClientPresenceUpdate(
   }
 
   statusByClientId.set(client.user.id, state);
+  return false;
 }
 
-function buildClosedMarketPresenceData(): MarketPresenceData {
+function logAppliedMarketDataUpdate(logData: AppliedMarketDataUpdateLog) {
+  logger.log("debug", {
+    message: "market-data:update-applied",
+    source: logData.source,
+    asset_name: logData.marketDataAsset.name,
+    bot_name: logData.marketDataAsset.botName,
+    bot_client_id: logData.marketDataAsset.botClientId,
+    market_data_pid: logData.marketDataAsset.id,
+    market_hours: logData.marketDataAsset.marketHours ?? "us_futures",
+    nickname: logData.nickname,
+    presence: logData.presence,
+    presence_status: logData.presenceStatus,
+    last_numeric: logData.lastNumeric,
+    price_change: logData.priceChange,
+    percentage_change: logData.percentageChange,
+    unit: logData.marketDataAsset.unit,
+    suffix: logData.marketDataAsset.suffix,
+  });
+}
+
+function logIncomingMarketDataUpdate(logData: IncomingMarketDataUpdateLog) {
+  logger.log("debug", {
+    message: "market-data:stream-received",
+    asset_name: logData.marketDataAsset.name,
+    bot_name: logData.marketDataAsset.botName,
+    bot_client_id: logData.marketDataAsset.botClientId,
+    market_data_pid: logData.marketDataAsset.id,
+    market_hours: logData.marketDataAsset.marketHours ?? "us_futures",
+    bot_ready: logData.botReady,
+    nickname: logData.nickname,
+    presence: logData.presence,
+    last_numeric: logData.lastNumeric,
+    price_change: logData.priceChange,
+    percentage_change: logData.percentageChange,
+    unit: logData.marketDataAsset.unit,
+    suffix: logData.marketDataAsset.suffix,
+  });
+}
+
+function buildClosedMarketPresenceData(): Omit<MarketPresenceData, "nickname"> {
   return {
     presence: marketClosedPresence,
     presenceStatus: "invisible",
@@ -797,17 +944,36 @@ function buildClosedMarketPresenceData(): MarketPresenceData {
 
 function getMarketPresenceData(
   marketDataAsset: MarketDataAsset,
+  openNickname: string,
   openPresence: string,
   priceChange: number,
 ): MarketPresenceData {
   if (false === isMarketOpen(marketDataAsset)) {
-    return buildClosedMarketPresenceData();
+    return {
+      nickname: getClosedMarketNickname(marketDataAsset, openNickname) ?? openNickname,
+      ...buildClosedMarketPresenceData(),
+    };
   }
 
   return {
+    nickname: openNickname,
     presence: openPresence,
     presenceStatus: priceChange < 0 ? "dnd" : "online",
   };
+}
+
+function getClosedMarketNickname(marketDataAsset: MarketDataAsset, nickname?: string): string | null {
+  const normalizedNickname = nickname?.trim();
+  if ("string" !== typeof normalizedNickname || "" === normalizedNickname) {
+    return null;
+  }
+
+  const firstSpacePosition = normalizedNickname.indexOf(" ");
+  if (-1 === firstSpacePosition) {
+    return `${marketDataAsset.order}${marketClosedTrend}`;
+  }
+
+  return `${marketDataAsset.order}${marketClosedTrend}${normalizedNickname.slice(firstSpacePosition)}`;
 }
 
 function isMarketOpen(marketDataAsset: MarketDataAsset, referenceTime = Date.now()): boolean {
