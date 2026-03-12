@@ -51,7 +51,7 @@
   id: 8884
   suffix: ""
   unit: "PTS"
-  marketHours: "us_cash"
+  marketHours: "us_futures"
   decimals: 2
   lastUpdate: 0
   order: 3
