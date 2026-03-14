@@ -1,4 +1,5 @@
 import {EventEmitter} from "node:events";
+import {PermissionFlagsBits} from "discord.js";
 import {startBot} from "./startup-orchestrator.js";
 
 type Deferred<T> = {
@@ -45,11 +46,101 @@ async function waitFor(
   throw new Error(`Condition not met within ${timeoutMs}ms.`);
 }
 
-function createMockClient(userId = "bot-client-id") {
+function createMockClient(options: {
+  channelPermissionsById?: Record<string, bigint[]>;
+  highestRolePosition?: number;
+  manageRoles?: boolean;
+  missingChannelIds?: string[];
+  roleById?: Record<string, {managed?: boolean; position: number;}>;
+  userId?: string;
+} = {}) {
+  const {
+    channelPermissionsById = {},
+    highestRolePosition = 100,
+    manageRoles = true,
+    missingChannelIds = [],
+    roleById = {},
+    userId = "bot-client-id",
+  } = options;
   const emitter = new EventEmitter();
+  const defaultChannelPermissions = [
+    PermissionFlagsBits.ViewChannel,
+    PermissionFlagsBits.SendMessages,
+    PermissionFlagsBits.AttachFiles,
+    PermissionFlagsBits.EmbedLinks,
+    PermissionFlagsBits.ReadMessageHistory,
+    PermissionFlagsBits.AddReactions,
+  ];
+  const missingChannelIdSet = new Set(missingChannelIds);
+  const channelIds = ["nyse", "mnc", "other", "clownboard", ...Object.keys(channelPermissionsById)];
+  const channelsById = new Map<string, any>();
+  for (const channelId of channelIds) {
+    if (true === missingChannelIdSet.has(channelId)) {
+      continue;
+    }
+
+    const permissions = new Set(channelPermissionsById[channelId] ?? defaultChannelPermissions);
+    channelsById.set(channelId, {
+      id: channelId,
+      send: jest.fn(),
+      permissionsFor: jest.fn(() => ({
+        has: jest.fn((permission: bigint) => permissions.has(permission)),
+      })),
+      messages: {
+        fetch: jest.fn(async messageId => ({id: messageId})),
+      },
+    });
+  }
+
+  const rolesById = new Map<string, any>(Object.entries(roleById).map(([roleId, role]) => [roleId, {id: roleId, ...role}]));
+  const botMember = {
+    permissions: {
+      has: jest.fn((permission: bigint) => {
+        return PermissionFlagsBits.ManageRoles === permission
+          ? manageRoles
+          : false;
+      }),
+    },
+    roles: {
+      highest: {
+        position: highestRolePosition,
+      },
+    },
+  };
+  const guild = {
+    channels: {
+      cache: {
+        get: jest.fn((channelId: string) => channelsById.get(channelId)),
+      },
+      fetch: jest.fn(async (channelId: string) => channelsById.get(channelId)),
+    },
+    members: {
+      me: botMember,
+      fetch: jest.fn(async () => ({})),
+      fetchMe: jest.fn(async () => botMember),
+    },
+    roles: {
+      cache: {
+        get: jest.fn((roleId: string) => rolesById.get(roleId)),
+      },
+      fetch: jest.fn(async (roleId: string) => rolesById.get(roleId)),
+    },
+  };
   const client: any = {
     user: {
       id: userId,
+    },
+    channels: {
+      cache: {
+        get: jest.fn((channelId: string) => channelsById.get(channelId)),
+      },
+      fetch: jest.fn(async (channelId: string) => channelsById.get(channelId)),
+    },
+    guilds: {
+      cache: {
+        get: jest.fn((guildId: string) => "guild-id" === guildId ? guild : undefined),
+      },
+      fetch: jest.fn(async (guildId: string) => "guild-id" === guildId ? guild : undefined),
     },
     on: jest.fn((eventName: string, handler: (...args: unknown[]) => unknown) => {
       emitter.on(eventName, handler as any);
@@ -70,6 +161,7 @@ function createMockClient(userId = "bot-client-id") {
 
   return {
     client,
+    guild,
   };
 }
 
@@ -91,6 +183,11 @@ function createDependencies(overrides = {}) {
       hblwrk_channel_clownboard_ID: "clownboard",
       discord_client_ID: "bot-client-id",
       discord_guild_ID: "guild-id",
+      hblwrk_role_assignment_channel_ID: "",
+      hblwrk_role_assignment_broker_message_ID: "",
+      hblwrk_role_assignment_special_message_ID: "",
+      hblwrk_role_muted_ID: "",
+      hblwrk_role_broker_yes_ID: "",
     };
 
     return defaults[secretName] ?? "";
@@ -730,7 +827,9 @@ describe("startBot", () => {
   });
 
   test("fails startup when logged-in client ID does not match configured client ID", async () => {
-    const {client} = createMockClient("different-client-id");
+    const {client} = createMockClient({
+      userId: "different-client-id",
+    });
     const {dependencies, mocks} = createDependencies({
       createClient: () => client as any,
       warmupMaxAttempts: 1,
@@ -743,6 +842,74 @@ describe("startBot", () => {
         startup_phase: "phase-a",
         task: "slash-commands",
         failure_reason: "target_mismatch",
+      }),
+    );
+  });
+
+  test("fails startup preflight when a critical channel is unavailable", async () => {
+    const {client} = createMockClient({
+      missingChannelIds: ["clownboard"],
+    });
+    const {dependencies, mocks} = createDependencies({
+      createClient: () => client as any,
+      warmupMaxAttempts: 1,
+    });
+
+    await expect(startBot(dependencies)).rejects.toThrow("Startup preflight failed");
+    expect(mocks.clownboard).not.toHaveBeenCalled();
+    expect(mocks.logger.log).toHaveBeenCalledWith(
+      "error",
+      expect.objectContaining({
+        startup_phase: "phase-a",
+        task: "preflight",
+        preflight_label: "clownboard",
+        preflight_reference: "clownboard",
+        message: "Critical channel is unavailable.",
+      }),
+    );
+  });
+
+  test("fails startup preflight when configured managed roles are above the bot", async () => {
+    const {client} = createMockClient({
+      highestRolePosition: 10,
+      manageRoles: true,
+      roleById: {
+        "muted-role-id": {
+          position: 10,
+        },
+      },
+    });
+    const readSecret = jest.fn((secretName: string) => {
+      const defaults = {
+        environment: "staging",
+        discord_token: "token",
+        hblwrk_channel_NYSEAnnouncement_ID: "nyse",
+        hblwrk_gainslosses_thread_ID: "gains-losses-thread",
+        hblwrk_channel_MNCAnnouncement_ID: "mnc",
+        hblwrk_channel_OtherAnnouncement_ID: "other",
+        hblwrk_channel_clownboard_ID: "clownboard",
+        discord_client_ID: "bot-client-id",
+        discord_guild_ID: "guild-id",
+        hblwrk_role_muted_ID: "muted-role-id",
+      };
+
+      return defaults[secretName] ?? "";
+    });
+    const {dependencies, mocks} = createDependencies({
+      createClient: () => client as any,
+      readSecret,
+      warmupMaxAttempts: 1,
+    });
+
+    await expect(startBot(dependencies)).rejects.toThrow("Startup preflight failed");
+    expect(mocks.logger.log).toHaveBeenCalledWith(
+      "error",
+      expect.objectContaining({
+        startup_phase: "phase-a",
+        task: "preflight",
+        preflight_label: "muted role",
+        preflight_reference: "muted-role-id",
+        message: "Configured role is not below the bot's highest role.",
       }),
     );
   });

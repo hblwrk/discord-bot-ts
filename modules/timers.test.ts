@@ -337,6 +337,19 @@ describe("timers", () => {
     expect(loggerMock.log).toHaveBeenCalledWith("warn", "Skipping MNC announcement: no file downloaded.");
   });
 
+  test("startMncTimers skips announcement on market holiday", async () => {
+    const {client, send} = createClientWithChannel();
+    isHolidayMock.mockReturnValue(true);
+
+    startMncTimers(client as any, "channel-id");
+    const mncJob = getScheduledJobByTime(9, 0, "US/Eastern");
+    await mncJob.callback();
+
+    expect(getMncMock).not.toHaveBeenCalled();
+    expect(send).not.toHaveBeenCalled();
+    expect(loggerMock.log).toHaveBeenCalledWith("info", "Skipping MNC announcement: market holiday.");
+  });
+
   test("startMncTimers logs and skips when channel is missing", async () => {
     const {client} = createClientWithoutChannel();
 

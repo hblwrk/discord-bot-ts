@@ -322,6 +322,14 @@ export function startMncTimers(client, channelID: string) {
   });
 
   Schedule.scheduleJob(ruleMnc, async () => {
+    if (true === isNyseHolidayToday()) {
+      logger.log(
+        "info",
+        "Skipping MNC announcement: market holiday.",
+      );
+      return;
+    }
+
     const buffer = await getMnc();
     if (!buffer) {
       logger.log(
