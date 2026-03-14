@@ -169,6 +169,59 @@ describe("interactSlashCommands", () => {
     await expect(handler(interaction)).resolves.toBeUndefined();
   });
 
+  test("replies to grouped asset slash command with the requested variant", async () => {
+    const {client, getHandler} = createEventClient();
+    const firstImage = new ImageAsset();
+    firstImage.title = "Betrug 1";
+    firstImage.fileName = "betrug-01.jpg";
+    firstImage.fileContent = Buffer.from("betrug-1");
+    (firstImage as any).trigger = ["betrug 1"];
+    const secondImage = new ImageAsset();
+    secondImage.title = "Betrug 2";
+    secondImage.fileName = "betrug-02.jpg";
+    secondImage.fileContent = Buffer.from("betrug-2");
+    (secondImage as any).trigger = ["betrug 2"];
+
+    interactSlashCommands(client, [firstImage, secondImage], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("betrug");
+    interaction.options.getInteger.mockImplementation(name => name === "variant" ? 2 : null);
+
+    await handler(interaction);
+
+    expect(interaction.reply).toHaveBeenCalledWith(expect.objectContaining({
+      files: expect.any(Array),
+    }));
+  });
+
+  test("replies to grouped asset slash command with a random variant when no parameter is provided", async () => {
+    const randomSpy = jest.spyOn(Math, "random").mockReturnValue(0.99);
+    const {client, getHandler} = createEventClient();
+    const firstImage = new ImageAsset();
+    firstImage.title = "Exchange 1";
+    firstImage.fileName = "exchange-01.gif";
+    firstImage.fileContent = Buffer.from("exchange-1");
+    (firstImage as any).trigger = ["exchange 1"];
+    const secondImage = new ImageAsset();
+    secondImage.title = "Exchange 2";
+    secondImage.fileName = "exchange-02.gif";
+    secondImage.fileContent = Buffer.from("exchange-2");
+    (secondImage as any).trigger = ["exchange 2"];
+
+    interactSlashCommands(client, [firstImage, secondImage], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("exchange");
+
+    await handler(interaction);
+
+    expect(interaction.reply).toHaveBeenCalledWith(expect.objectContaining({
+      files: expect.any(Array),
+    }));
+    randomSpy.mockRestore();
+  });
+
   test("replies with temporary unavailable message when image asset content is missing", async () => {
     const {client, getHandler} = createEventClient();
     const imageAsset = new ImageAsset();

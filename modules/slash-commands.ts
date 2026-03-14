@@ -7,6 +7,7 @@ import {cryptodice} from "./crypto-dice.js";
 import {getDiscordRateLimitRetryAfterMs, toDiscordTimerMs} from "./discord-retry-after.js";
 import {google, lmgtfy} from "./lmgtfy.js";
 import {getDiscordLogger, getLogger} from "./logging.js";
+import {getRandomAsset} from "./random-asset.js";
 import {getRandomQuote} from "./random-quote.js";
 import {readSecret} from "./secrets.js";
 import {
@@ -33,6 +34,8 @@ const islandboiCooldownByUser = new Map<string, number>();
 const islandboiUnmuteTimers = new Map<string, ReturnType<typeof setTimeout>>();
 const slashCommandRestTimeoutMs = 120_000;
 const slashCommandNameLogLimit = 20;
+const maxSlashCommandsPerScope = 100;
+const fixedSlashCommandNames = ["cryptodice", "lmgtfy", "google", "8ball", "whatis", "quote", "islandboi", "sara", "earnings", "calendar"];
 
 class SlashRegistrationMismatchError extends Error {
   constructor(message: string) {
@@ -83,11 +86,24 @@ type SlashCommandPayloadBuildResult = {
   assetTriggersTotal: number;
   assetCommandsRegistered: number;
   fixedCommandsRegistered: number;
+  skippedCommandLimit: number;
   skippedEmptyTriggers: number;
   skippedDuplicateNames: number;
   imageDracoonAssetCommandsRegistered: number;
   imageNonDracoonAssetCommandsRegistered: number;
   textAssetCommandsRegistered: number;
+};
+
+type GroupedAssetVariant = {
+  asset: ImageAsset | TextAsset;
+  trigger: string;
+  variant: number;
+};
+
+type GroupedAssetCommand = {
+  baseTrigger: string;
+  commandName: string;
+  variants: GroupedAssetVariant[];
 };
 
 type CanonicalSlashCommandChoice = {
@@ -400,75 +416,186 @@ function toSlashRegistrationRateLimitError(error: unknown): SlashRegistrationRat
   );
 }
 
-export function buildSlashCommandPayload(assets, whatIsAssets, userAssets): SlashCommandPayloadBuildResult {
-  const whatIsAssetsChoices = [];
-  for (const asset of whatIsAssets) {
-    whatIsAssetsChoices.push({name: asset.title, value: asset.name});
+function parseGroupedAssetTrigger(trigger: string) {
+  const groupedTriggerMatch = /^(.*)\s+(\d+)$/.exec(trigger.trim());
+  if (!groupedTriggerMatch) {
+    return undefined;
   }
 
-  const userAssetsChoices = [];
-  for (const asset of userAssets) {
-    userAssetsChoices.push({name: asset.name, value: asset.name});
+  const baseTrigger = groupedTriggerMatch[1].trim();
+  if ("" === baseTrigger) {
+    return undefined;
   }
 
-  const slashCommands = [];
-  const seenCommandNames = new Set<string>();
-  const dracoonAssetCommandNames = new Set<string>();
-  let assetTriggersTotal = 0;
-  let skippedEmptyTriggers = 0;
-  let skippedDuplicateNames = 0;
-  let imageDracoonAssetCommandsRegistered = 0;
-  let imageNonDracoonAssetCommandsRegistered = 0;
-  let textAssetCommandsRegistered = 0;
+  return {
+    baseTrigger,
+    variant: Number(groupedTriggerMatch[2]),
+  };
+}
+
+function isGroupedSlashAsset(asset: unknown): asset is ImageAsset | TextAsset {
+  return asset instanceof ImageAsset || asset instanceof TextAsset;
+}
+
+function getGroupedAssetCommands(assets: unknown[], reservedCommandNames: string[] = []): GroupedAssetCommand[] {
+  const reservedCommandNameSet = new Set(reservedCommandNames);
+  const exactCommandNames = new Set<string>();
+  const groupedAssetCandidates = new Map<string, {
+    baseTrigger: string;
+    firstSeenIndex: number;
+    rawBaseTriggers: Set<string>;
+    variants: GroupedAssetVariant[];
+  }>();
+  let triggerIndex = 0;
+
   for (const asset of assets) {
-    if ((asset instanceof ImageAsset || asset instanceof TextAsset) && 0 <= asset.trigger.length) {
-      for (const trigger of asset.trigger) {
-        assetTriggersTotal += 1;
-        const slashCommandName = toSlashCommandName(trigger);
-        if ("" === slashCommandName) {
-          skippedEmptyTriggers += 1;
-          logger.log(
-            "warn",
-            `Skipping slash command for trigger "${trigger}" because normalized name is empty.`,
-          );
-          continue;
+    if (false === isGroupedSlashAsset(asset) || false === Array.isArray(asset.trigger)) {
+      continue;
+    }
+
+    for (const trigger of asset.trigger) {
+      const groupedTrigger = parseGroupedAssetTrigger(trigger);
+      if (!groupedTrigger) {
+        const exactCommandName = toSlashCommandName(trigger);
+        if ("" !== exactCommandName) {
+          exactCommandNames.add(exactCommandName);
         }
 
-        if (true === seenCommandNames.has(slashCommandName)) {
-          skippedDuplicateNames += 1;
-          logger.log(
-            "warn",
-            `Skipping duplicate slash command "${slashCommandName}" (trigger "${trigger}").`,
-          );
-          continue;
-        }
-
-        seenCommandNames.add(slashCommandName);
-        const slashCommand = new SlashCommandBuilder()
-          .setName(slashCommandName)
-          .setDescription(asset.title);
-        slashCommands.push(slashCommand.toJSON());
-
-        if (asset instanceof ImageAsset) {
-          if ("dracoon" === asset.location) {
-            imageDracoonAssetCommandsRegistered += 1;
-            dracoonAssetCommandNames.add(slashCommandName);
-          } else {
-            imageNonDracoonAssetCommandsRegistered += 1;
-          }
-        } else if (asset instanceof TextAsset) {
-          textAssetCommandsRegistered += 1;
-        }
+        triggerIndex += 1;
+        continue;
       }
+
+      const commandName = toSlashCommandName(groupedTrigger.baseTrigger);
+      if ("" === commandName) {
+        triggerIndex += 1;
+        continue;
+      }
+
+      const groupedAssetCandidate = groupedAssetCandidates.get(commandName) ?? {
+        baseTrigger: groupedTrigger.baseTrigger,
+        firstSeenIndex: triggerIndex,
+        rawBaseTriggers: new Set<string>(),
+        variants: [],
+      };
+      groupedAssetCandidate.rawBaseTriggers.add(groupedTrigger.baseTrigger);
+      groupedAssetCandidate.variants.push({
+        asset,
+        trigger,
+        variant: groupedTrigger.variant,
+      });
+      groupedAssetCandidates.set(commandName, groupedAssetCandidate);
+      triggerIndex += 1;
     }
   }
-  const assetCommandsRegistered = slashCommands.length;
 
-  // Define non-asset related slash-commands
+  return [...groupedAssetCandidates.entries()]
+    .sort((left, right) => left[1].firstSeenIndex - right[1].firstSeenIndex)
+    .flatMap(([commandName, groupedAssetCandidate]) => {
+      if (groupedAssetCandidate.variants.length < 2) {
+        return [];
+      }
+
+      if (true === reservedCommandNameSet.has(commandName) || true === exactCommandNames.has(commandName)) {
+        return [];
+      }
+
+      if (1 !== groupedAssetCandidate.rawBaseTriggers.size) {
+        return [];
+      }
+
+      const variantNumbers = groupedAssetCandidate.variants.map(groupedAssetVariant => groupedAssetVariant.variant);
+      if (variantNumbers.length !== new Set(variantNumbers).size) {
+        return [];
+      }
+
+      return [{
+        baseTrigger: groupedAssetCandidate.baseTrigger,
+        commandName,
+        variants: [...groupedAssetCandidate.variants].sort((left, right) => left.variant - right.variant),
+      }];
+    });
+}
+
+function buildGroupedAssetSlashCommand(groupedAssetCommand: GroupedAssetCommand) {
+  const slashCommand = new SlashCommandBuilder()
+    .setName(groupedAssetCommand.commandName)
+    .setDescription(`Random oder Variante von ${groupedAssetCommand.baseTrigger}`.slice(0, 100));
+  const variantChoices = groupedAssetCommand.variants.map(groupedAssetVariant => ({
+    name: String(groupedAssetVariant.variant),
+    value: groupedAssetVariant.variant,
+  }));
+
+  slashCommand.addIntegerOption(option => {
+    option
+      .setName("variant")
+      .setDescription("Bestimmte Variante, leer = zufällig")
+      .setRequired(false);
+
+    if (variantChoices.length <= 25) {
+      option.addChoices(...variantChoices);
+    } else {
+      option
+        .setMinValue(groupedAssetCommand.variants[0].variant)
+        .setMaxValue(groupedAssetCommand.variants[groupedAssetCommand.variants.length - 1].variant);
+    }
+
+    return option;
+  });
+
+  return slashCommand.toJSON();
+}
+
+async function replyWithSlashAsset(interaction, asset: ImageAsset | TextAsset, fallbackLabel: string) {
+  if (asset instanceof ImageAsset) {
+    if (!asset?.fileContent || !asset.fileName) {
+      logger.log(
+        "warn",
+        `Asset ${asset.name ?? asset.fileName ?? fallbackLabel} is temporarily unavailable.`,
+      );
+      await interaction.reply("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch(error => {
+        logger.log(
+          "error",
+          `Error replying to slashcommand: ${error}`,
+        );
+      });
+      return true;
+    }
+
+    const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
+    if (asset.hasText) {
+      const embed = new EmbedBuilder();
+      embed.setImage(`attachment://${asset.fileName}`);
+      embed.addFields(
+        {name: asset.title, value: asset.text},
+      );
+      await interaction.reply({embeds: [embed], files: [file]});
+    } else {
+      await interaction.reply({files: [file]});
+    }
+
+    return true;
+  }
+
+  if (asset instanceof TextAsset) {
+    await interaction.reply(asset.response).catch(error => {
+      logger.log(
+        "error",
+        `Error replying to slashcommand: ${error}`,
+      );
+    });
+    return true;
+  }
+
+  return false;
+}
+
+function createFixedSlashCommands(whatIsAssetsChoices, userAssetsChoices) {
+  const fixedSlashCommands = [];
+
   const slashCommandCryptodice = new SlashCommandBuilder()
     .setName("cryptodice")
     .setDescription("Roll the dice...");
-  slashCommands.push(slashCommandCryptodice.toJSON());
+  fixedSlashCommands.push(slashCommandCryptodice.toJSON());
 
   const slashCommandLmgtfy = new SlashCommandBuilder()
     .setName("lmgtfy")
@@ -477,7 +604,7 @@ export function buildSlashCommandPayload(assets, whatIsAssets, userAssets): Slas
       option.setName("search")
         .setDescription("The search term")
         .setRequired(true));
-  slashCommands.push(slashCommandLmgtfy.toJSON());
+  fixedSlashCommands.push(slashCommandLmgtfy.toJSON());
 
   const slashCommandGoogle = new SlashCommandBuilder()
     .setName("google")
@@ -486,7 +613,7 @@ export function buildSlashCommandPayload(assets, whatIsAssets, userAssets): Slas
       option.setName("search")
         .setDescription("The search term")
         .setRequired(true));
-  slashCommands.push(slashCommandGoogle.toJSON());
+  fixedSlashCommands.push(slashCommandGoogle.toJSON());
 
   const slashCommand8ball = new SlashCommandBuilder()
     .setName("8ball")
@@ -495,7 +622,7 @@ export function buildSlashCommandPayload(assets, whatIsAssets, userAssets): Slas
       option.setName("frage")
         .setDescription("Stelle die Frage, sterblicher!")
         .setRequired(true));
-  slashCommands.push(slashCommand8ball.toJSON());
+  fixedSlashCommands.push(slashCommand8ball.toJSON());
 
   const slashWhatIs = new SlashCommandBuilder()
     .setName("whatis")
@@ -505,7 +632,7 @@ export function buildSlashCommandPayload(assets, whatIsAssets, userAssets): Slas
         .setDescription("The search term")
         .setRequired(true)
         .addChoices(...whatIsAssetsChoices));
-  slashCommands.push(slashWhatIs.toJSON());
+  fixedSlashCommands.push(slashWhatIs.toJSON());
 
   const slashUserquotequote = new SlashCommandBuilder()
     .setName("quote")
@@ -515,12 +642,12 @@ export function buildSlashCommandPayload(assets, whatIsAssets, userAssets): Slas
         .setDescription("Define user")
         .setRequired(false)
         .addChoices(...userAssetsChoices));
-  slashCommands.push(slashUserquotequote.toJSON());
+  fixedSlashCommands.push(slashUserquotequote.toJSON());
 
   const slashCommandIslandboi = new SlashCommandBuilder()
     .setName("islandboi")
     .setDescription("Island bwoi!");
-  slashCommands.push(slashCommandIslandboi.toJSON());
+  fixedSlashCommands.push(slashCommandIslandboi.toJSON());
 
   const slashSara = new SlashCommandBuilder()
     .setName("sara")
@@ -530,7 +657,7 @@ export function buildSlashCommandPayload(assets, whatIsAssets, userAssets): Slas
         .setDescription("Was soll Sara tun?")
         .setRequired(false),
     );
-  slashCommands.push(slashSara.toJSON());
+  fixedSlashCommands.push(slashSara.toJSON());
 
   const slashCommandEarnings = new SlashCommandBuilder()
     .setName("earnings")
@@ -563,7 +690,7 @@ export function buildSlashCommandPayload(assets, whatIsAssets, userAssets): Slas
       option.setName("date")
         .setDescription("Datum (YYYY-MM-DD)")
         .setRequired(false));
-  slashCommands.push(slashCommandEarnings.toJSON());
+  fixedSlashCommands.push(slashCommandEarnings.toJSON());
 
   const slashCommandCalendar = new SlashCommandBuilder()
     .setName("calendar")
@@ -572,18 +699,139 @@ export function buildSlashCommandPayload(assets, whatIsAssets, userAssets): Slas
       option.setName("range")
         .setDescription("Zeitspanne in Tagen")
         .setRequired(false));
-  slashCommands.push(slashCommandCalendar.toJSON());
-  const fixedCommandsRegistered = slashCommands.length - assetCommandsRegistered;
+  fixedSlashCommands.push(slashCommandCalendar.toJSON());
 
-  if (0 < skippedEmptyTriggers || 0 < skippedDuplicateNames) {
+  return fixedSlashCommands;
+}
+
+export function buildSlashCommandPayload(assets, whatIsAssets, userAssets): SlashCommandPayloadBuildResult {
+  const whatIsAssetsChoices = [];
+  for (const asset of whatIsAssets) {
+    whatIsAssetsChoices.push({name: asset.title, value: asset.name});
+  }
+
+  const userAssetsChoices = [];
+  for (const asset of userAssets) {
+    userAssetsChoices.push({name: asset.name, value: asset.name});
+  }
+
+  const fixedSlashCommands = createFixedSlashCommands(whatIsAssetsChoices, userAssetsChoices);
+  const fixedCommandsRegistered = fixedSlashCommands.length;
+  if (fixedCommandsRegistered > maxSlashCommandsPerScope) {
+    throw new Error(
+      `Fixed slash command count ${fixedCommandsRegistered} exceeds Discord's ${maxSlashCommandsPerScope} command limit.`,
+    );
+  }
+  const maxAssetCommands = maxSlashCommandsPerScope - fixedCommandsRegistered;
+  const groupedAssetCommands = getGroupedAssetCommands(assets, fixedSlashCommandNames);
+  const groupedAssetCommandByTrigger = new Map<string, GroupedAssetCommand>();
+  for (const groupedAssetCommand of groupedAssetCommands) {
+    for (const groupedAssetVariant of groupedAssetCommand.variants) {
+      groupedAssetCommandByTrigger.set(groupedAssetVariant.trigger, groupedAssetCommand);
+    }
+  }
+
+  const slashCommands = [];
+  const seenCommandNames = new Set<string>(getSlashCommandNamesFromPayload(fixedSlashCommands));
+  const dracoonAssetCommandNames = new Set<string>();
+  const registeredGroupedCommandNames = new Set<string>();
+  let assetTriggersTotal = 0;
+  let skippedCommandLimit = 0;
+  let skippedEmptyTriggers = 0;
+  let skippedDuplicateNames = 0;
+  let imageDracoonAssetCommandsRegistered = 0;
+  let imageNonDracoonAssetCommandsRegistered = 0;
+  let textAssetCommandsRegistered = 0;
+  for (const asset of assets) {
+    if ((asset instanceof ImageAsset || asset instanceof TextAsset) && 0 <= asset.trigger.length) {
+      for (const trigger of asset.trigger) {
+        assetTriggersTotal += 1;
+        const groupedAssetCommand = groupedAssetCommandByTrigger.get(trigger);
+        if (groupedAssetCommand) {
+          if (true === registeredGroupedCommandNames.has(groupedAssetCommand.commandName)) {
+            continue;
+          }
+
+          registeredGroupedCommandNames.add(groupedAssetCommand.commandName);
+          if (maxAssetCommands <= slashCommands.length) {
+            skippedCommandLimit += 1;
+            continue;
+          }
+
+          seenCommandNames.add(groupedAssetCommand.commandName);
+          slashCommands.push(buildGroupedAssetSlashCommand(groupedAssetCommand));
+
+          if (true === groupedAssetCommand.variants.some(groupedAssetVariant => {
+            return groupedAssetVariant.asset instanceof ImageAsset && "dracoon" === groupedAssetVariant.asset.location;
+          })) {
+            imageDracoonAssetCommandsRegistered += 1;
+            dracoonAssetCommandNames.add(groupedAssetCommand.commandName);
+          } else if (true === groupedAssetCommand.variants.some(groupedAssetVariant => groupedAssetVariant.asset instanceof ImageAsset)) {
+            imageNonDracoonAssetCommandsRegistered += 1;
+          } else if (true === groupedAssetCommand.variants.some(groupedAssetVariant => groupedAssetVariant.asset instanceof TextAsset)) {
+            textAssetCommandsRegistered += 1;
+          }
+
+          continue;
+        }
+
+        const slashCommandName = toSlashCommandName(trigger);
+        if ("" === slashCommandName) {
+          skippedEmptyTriggers += 1;
+          logger.log(
+            "warn",
+            `Skipping slash command for trigger "${trigger}" because normalized name is empty.`,
+          );
+          continue;
+        }
+
+        if (true === seenCommandNames.has(slashCommandName)) {
+          skippedDuplicateNames += 1;
+          logger.log(
+            "warn",
+            `Skipping duplicate slash command "${slashCommandName}" (trigger "${trigger}").`,
+          );
+          continue;
+        }
+
+        if (maxAssetCommands <= slashCommands.length) {
+          skippedCommandLimit += 1;
+          continue;
+        }
+
+        seenCommandNames.add(slashCommandName);
+        const slashCommand = new SlashCommandBuilder()
+          .setName(slashCommandName)
+          .setDescription(asset.title);
+        slashCommands.push(slashCommand.toJSON());
+
+        if (asset instanceof ImageAsset) {
+          if ("dracoon" === asset.location) {
+            imageDracoonAssetCommandsRegistered += 1;
+            dracoonAssetCommandNames.add(slashCommandName);
+          } else {
+            imageNonDracoonAssetCommandsRegistered += 1;
+          }
+        } else if (asset instanceof TextAsset) {
+          textAssetCommandsRegistered += 1;
+        }
+      }
+    }
+  }
+  const assetCommandsRegistered = slashCommands.length;
+  slashCommands.push(...fixedSlashCommands);
+
+  if (0 < skippedCommandLimit || 0 < skippedEmptyTriggers || 0 < skippedDuplicateNames) {
     logger.log(
       "warn",
       {
         source: "slash-registration",
+        max_commands_per_scope: maxSlashCommandsPerScope,
         asset_triggers_total: assetTriggersTotal,
         asset_commands_registered: assetCommandsRegistered,
         fixed_commands_registered: fixedCommandsRegistered,
         total_commands_registered: slashCommands.length,
+        skipped_command_limit: skippedCommandLimit,
         skipped_empty_triggers: skippedEmptyTriggers,
         skipped_duplicate_names: skippedDuplicateNames,
         message: "Slash command payload built with skipped asset triggers.",
@@ -598,6 +846,7 @@ export function buildSlashCommandPayload(assets, whatIsAssets, userAssets): Slas
     assetTriggersTotal,
     assetCommandsRegistered,
     fixedCommandsRegistered,
+    skippedCommandLimit,
     skippedEmptyTriggers,
     skippedDuplicateNames,
     imageDracoonAssetCommandsRegistered,
@@ -864,42 +1113,32 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       for (const trigger of asset.trigger) {
         if ("whatis" !== commandName && commandName === toSlashCommandName(trigger)) {
-          if (asset instanceof ImageAsset) {
-            if (!asset?.fileContent || !asset.fileName) {
-              logger.log(
-                "warn",
-                `Asset ${asset.name ?? asset.fileName ?? trigger} is temporarily unavailable.`,
-              );
-              await interaction.reply("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch(error => {
-                logger.log(
-                  "error",
-                  `Error replying to slashcommand: ${error}`,
-                );
-              });
-              continue;
-            }
-
-            const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
-            if (asset instanceof ImageAsset && asset.hasText) {
-              // For images with text description, currently not used.
-              const embed = new EmbedBuilder();
-              embed.setImage(`attachment://${asset.fileName}`);
-              embed.addFields(
-                {name: asset.title, value: asset.text},
-              );
-              await interaction.reply({embeds: [embed], files: [file]});
-            } else {
-              await interaction.reply({files: [file]});
-            }
-          } else if (asset instanceof TextAsset) {
-            await interaction.reply(asset.response).catch(error => {
-              logger.log(
-                "error",
-                `Error replying to slashcommand: ${error}`,
-              );
-            });
+          if (true === await replyWithSlashAsset(interaction, asset, trigger)) {
+            return;
           }
         }
+      }
+    }
+
+    const groupedAssetCommand = getGroupedAssetCommands(assets, fixedSlashCommandNames)
+      .find(candidate => candidate.commandName === commandName);
+    if (groupedAssetCommand) {
+      const requestedVariant = interaction.options.getInteger?.("variant") ?? null;
+      const selectedVariant = null !== requestedVariant
+        ? groupedAssetCommand.variants.find(groupedAssetVariant => groupedAssetVariant.variant === requestedVariant)
+        : getRandomAsset(groupedAssetCommand.variants);
+      if (!selectedVariant) {
+        await interaction.reply("Keine passende Variante gefunden.").catch(error => {
+          logger.log(
+            "error",
+            `Error replying to slashcommand: ${error}`,
+          );
+        });
+        return;
+      }
+
+      if (true === await replyWithSlashAsset(interaction, selectedVariant.asset, groupedAssetCommand.baseTrigger)) {
+        return;
       }
     }
 

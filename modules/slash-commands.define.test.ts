@@ -408,4 +408,69 @@ describe("defineSlashCommands", () => {
       }),
     );
   });
+
+  test("groups numbered asset triggers into one slash command with optional variant parameter", () => {
+    const firstImage = new ImageAsset();
+    firstImage.title = "Betrug 1";
+    firstImage.location = "dracoon";
+    (firstImage as any).trigger = ["betrug 1"];
+    const secondImage = new ImageAsset();
+    secondImage.title = "Betrug 2";
+    secondImage.location = "dracoon";
+    (secondImage as any).trigger = ["betrug 2"];
+
+    const payload = buildSlashCommandPayload([firstImage, secondImage], [], []);
+    const betrugCommand = payload.slashCommands.find(command => command.name === "betrug");
+
+    expect(payload.expectedCommandNames).toContain("betrug");
+    expect(payload.expectedCommandNames).not.toContain("betrug_1");
+    expect(payload.expectedCommandNames).not.toContain("betrug_2");
+    expect(payload.assetCommandsRegistered).toBe(1);
+    expect(payload.imageDracoonAssetCommandsRegistered).toBe(1);
+    expect(betrugCommand).toEqual(expect.objectContaining({
+      name: "betrug",
+      options: [
+        expect.objectContaining({
+          name: "variant",
+          required: false,
+          choices: [
+            {name: "1", value: 1},
+            {name: "2", value: 2},
+          ],
+        }),
+      ],
+    }));
+  });
+
+  test("caps slash command payload at 100 commands and preserves fixed commands", () => {
+    const assets: TextAsset[] = [];
+    for (let index = 1; index <= 95; index++) {
+      const asset = new TextAsset();
+      asset.title = `Title ${index}`;
+      asset.response = `Response ${index}`;
+      (asset as any).trigger = [`asset-${index}`];
+      assets.push(asset);
+    }
+
+    const payload = buildSlashCommandPayload(assets, [], []);
+
+    expect(payload.slashCommands).toHaveLength(100);
+    expect(payload.assetCommandsRegistered).toBe(90);
+    expect(payload.fixedCommandsRegistered).toBe(10);
+    expect(payload.skippedCommandLimit).toBe(5);
+    expect(payload.expectedCommandNames).toContain("quote");
+    expect(payload.expectedCommandNames).toContain("calendar");
+    expect(payload.expectedCommandNames).toContain("asset-90");
+    expect(payload.expectedCommandNames).not.toContain("asset-91");
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        source: "slash-registration",
+        max_commands_per_scope: 100,
+        total_commands_registered: 100,
+        skipped_command_limit: 5,
+        message: "Slash command payload built with skipped asset triggers.",
+      }),
+    );
+  });
 });

@@ -1,4 +1,5 @@
 import {UserQuoteAsset} from "./assets.js";
+import {getRandomAsset} from "./random-asset.js";
 
 export function getRandomQuote(username: string, assets: unknown[]): UserQuoteAsset | undefined {
   const randomQuotePool: UserQuoteAsset[] = [];
@@ -13,5 +14,5 @@ export function getRandomQuote(username: string, assets: unknown[]): UserQuoteAs
     return undefined;
   }
 
-  return randomQuotePool[Math.floor(Math.random() * randomQuotePool.length)];
+  return getRandomAsset(randomQuotePool);
 }

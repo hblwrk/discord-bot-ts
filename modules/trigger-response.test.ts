@@ -126,6 +126,87 @@ describe("addTriggerResponses", () => {
     }));
   });
 
+  test("sends a random quote attachment for bare quote trigger", async () => {
+    const randomSpy = jest.spyOn(Math, "random").mockReturnValue(0.99);
+    const {client, getHandler} = createEventClient();
+    const aliceQuote = new UserQuoteAsset();
+    aliceQuote.user = "alice";
+    aliceQuote.fileName = "quote-alice.png";
+    aliceQuote.fileContent = Buffer.from("alice");
+    (aliceQuote as any).trigger = [];
+    const bobQuote = new UserQuoteAsset();
+    bobQuote.user = "bob";
+    bobQuote.fileName = "quote-bob.png";
+    bobQuote.fileContent = Buffer.from("bob");
+    (bobQuote as any).trigger = [];
+
+    addTriggerResponses(client, [aliceQuote, bobQuote], [], []);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("!quote");
+    await handler(message);
+
+    expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({
+      files: expect.any(Array),
+    }));
+    randomSpy.mockRestore();
+  });
+
+  test("sends a fallback response for bare quote trigger when no quotes exist", async () => {
+    const {client, getHandler} = createEventClient();
+
+    addTriggerResponses(client, [], [], []);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("!quote");
+    await handler(message);
+
+    expect(message.channel.send).toHaveBeenCalledWith("Keine passenden Zitate gefunden.");
+  });
+
+  test("sends a random attachment for grouped image triggers like betrug", async () => {
+    const randomSpy = jest.spyOn(Math, "random").mockReturnValue(0.99);
+    const {client, getHandler} = createEventClient();
+    const firstImage = new ImageAsset();
+    firstImage.name = "betrug 1";
+    firstImage.fileName = "betrug-01.jpg";
+    firstImage.fileContent = undefined;
+    (firstImage as any).trigger = ["betrug 1"];
+    const secondImage = new ImageAsset();
+    secondImage.name = "betrug 2";
+    secondImage.fileName = "betrug-02.jpg";
+    secondImage.fileContent = Buffer.from("betrug-2");
+    (secondImage as any).trigger = ["betrug 2"];
+
+    addTriggerResponses(client, [firstImage, secondImage], [], []);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("!betrug");
+    await handler(message);
+
+    expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({
+      files: expect.any(Array),
+    }));
+    randomSpy.mockRestore();
+  });
+
+  test("sends unavailable response for grouped image trigger when the chosen asset is missing", async () => {
+    const {client, getHandler} = createEventClient();
+    const imageAsset = new ImageAsset();
+    imageAsset.name = "betrug 1";
+    imageAsset.fileName = "betrug-01.jpg";
+    imageAsset.fileContent = undefined;
+    (imageAsset as any).trigger = ["betrug 1"];
+
+    addTriggerResponses(client, [imageAsset], [], []);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("!betrug");
+    await handler(message);
+
+    expect(message.channel.send).toHaveBeenCalledWith("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.");
+  });
+
   test("replies with temporary unavailable message when whatis attachment is missing", async () => {
     const {client, getHandler} = createEventClient();
 

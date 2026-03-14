@@ -7,10 +7,106 @@ import {getAssetByName, ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "
 import {cryptodice} from "./crypto-dice.js";
 import {lmgtfy} from "./lmgtfy.js";
 import {getLogger} from "./logging.js";
+import {getRandomAssetByTriggerGroup} from "./random-asset.js";
 import {getRandomQuote} from "./random-quote.js";
 
 const logger = getLogger();
 const noQuoteMessage = "Keine passenden Zitate gefunden.";
+const unavailableMessage = "Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.";
+
+function getAssetLabel(asset: ImageAsset | UserQuoteAsset, fallback: string): string {
+  return asset.name ?? asset.fileName ?? fallback;
+}
+
+async function sendUnavailableResponse(message, errorContext: string) {
+  await message.channel.send(unavailableMessage).catch(error => {
+    logger.log(
+      "error",
+      `${errorContext}: ${error}`,
+    );
+  });
+}
+
+async function sendBinaryAssetResponse(message, asset: ImageAsset | UserQuoteAsset, fallbackLabel: string) {
+  const assetLabel = getAssetLabel(asset, fallbackLabel);
+  if (!asset?.fileContent || !asset.fileName) {
+    logger.log(
+      "warn",
+      `Asset ${assetLabel} is temporarily unavailable.`,
+    );
+    await sendUnavailableResponse(message, "Error sending unavailable-asset response");
+    return;
+  }
+
+  const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
+  if (asset instanceof ImageAsset && asset.hasText) {
+    const embed = new EmbedBuilder();
+    embed.setImage(`attachment://${asset.fileName}`);
+    embed.addFields(
+      {name: asset.title, value: asset.text},
+    );
+    message.channel.send({embeds: [embed], files: [file]}).catch(error => {
+      logger.log(
+        "error",
+        `Error sending response: ${error}`,
+      );
+    });
+    return;
+  }
+
+  message.channel.send({files: [file]}).catch(error => {
+    logger.log(
+      "error",
+      `Error sending response: ${error}`,
+    );
+  });
+}
+
+async function sendRandomQuoteResponse(message, assets: unknown[], username: string) {
+  const randomQuote = getRandomQuote(username, assets);
+  if (!randomQuote) {
+    await message.channel.send(noQuoteMessage).catch(error => {
+      logger.log(
+        "error",
+        `Error sending quote fallback response: ${error}`,
+      );
+    });
+    return;
+  }
+
+  if (!randomQuote.fileContent || !randomQuote.fileName) {
+    logger.log(
+      "warn",
+      `Quote asset for ${username} is temporarily unavailable.`,
+    );
+    await sendUnavailableResponse(message, "Error sending unavailable-quote response");
+    return;
+  }
+
+  const file = new AttachmentBuilder(Buffer.from(randomQuote.fileContent), {name: randomQuote.fileName});
+  await message.channel.send({files: [file]});
+}
+
+async function sendMatchedAssetResponse(message, asset: unknown, assets: unknown[], fallbackTrigger: string) {
+  if (asset instanceof ImageAsset || asset instanceof UserQuoteAsset) {
+    await sendBinaryAssetResponse(message, asset, fallbackTrigger);
+    return;
+  }
+
+  if (asset instanceof TextAsset) {
+    message.channel.send(asset.response).catch(error => {
+      logger.log(
+        "error",
+        `Error sending response: ${error}`,
+      );
+    });
+    return;
+  }
+
+  if (asset instanceof UserAsset) {
+    await sendRandomQuoteResponse(message, assets, asset.name);
+  }
+}
 
 export function addTriggerResponses(client, assets, assetCommandsWithPrefix, whatIsAssets) {
   // Message response to a trigger command (!command)
@@ -20,87 +116,31 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
     }
 
     const messageContent: string = validator.escape(message.content);
+    let matchedExactTrigger = false;
     if (assetCommandsWithPrefix.some(v => messageContent.includes(v))) {
       for (const asset of assets) {
         for (const trigger of asset.trigger) {
           if (`!${trigger}` === messageContent && 0 <= asset.trigger.length) {
-            if (asset instanceof ImageAsset || asset instanceof UserQuoteAsset) {
-              if (!asset?.fileContent || !asset.fileName) {
-                logger.log(
-                  "warn",
-                  `Asset ${asset.name ?? asset.fileName ?? trigger} is temporarily unavailable.`,
-                );
-                await message.channel.send("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch(error => {
-                  logger.log(
-                    "error",
-                    `Error sending unavailable-asset response: ${error}`,
-                  );
-                });
-                continue;
-              }
-
-              // Response with an image
-              const file = new AttachmentBuilder(Buffer.from(asset.fileContent), {name: asset.fileName});
-              if (asset instanceof ImageAsset && asset.hasText) {
-                const embed = new EmbedBuilder();
-                embed.setImage(`attachment://${asset.fileName}`);
-                embed.addFields(
-                  {name: asset.title, value: asset.text},
-                );
-                message.channel.send({embeds: [embed], files: [file]}).catch(error => {
-                  logger.log(
-                    "error",
-                    `Error sending response: ${error}`,
-                  );
-                });
-              } else {
-                message.channel.send({files: [file]}).catch(error => {
-                  logger.log(
-                    "error",
-                    `Error sending response: ${error}`,
-                  );
-                });
-              }
-            } else if (asset instanceof TextAsset) {
-              // Simple response to a message
-              message.channel.send(asset.response).catch(error => {
-                logger.log(
-                  "error",
-                  `Error sending response: ${error}`,
-                );
-              });
-            } else if (asset instanceof UserAsset) {
-              const randomQuote = getRandomQuote(asset.name, assets);
-              if (!randomQuote) {
-                await message.channel.send(noQuoteMessage).catch(error => {
-                  logger.log(
-                    "error",
-                    `Error sending quote fallback response: ${error}`,
-                  );
-                });
-                continue;
-              }
-
-              if (!randomQuote.fileContent || !randomQuote.fileName) {
-                logger.log(
-                  "warn",
-                  `Quote asset for ${asset.name} is temporarily unavailable.`,
-                );
-                await message.channel.send("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch(error => {
-                  logger.log(
-                    "error",
-                    `Error sending unavailable-quote response: ${error}`,
-                  );
-                });
-                continue;
-              }
-
-              const file = new AttachmentBuilder(Buffer.from(randomQuote.fileContent), {name: randomQuote.fileName});
-              await message.channel.send({files: [file]});
-            }
+            matchedExactTrigger = true;
+            await sendMatchedAssetResponse(message, asset, assets, trigger);
           }
         }
       }
+    }
+
+    if (true === matchedExactTrigger) {
+      return;
+    }
+
+    if ("!quote" === messageContent) {
+      await sendRandomQuoteResponse(message, assets, "any");
+      return;
+    }
+
+    const randomTriggerAsset = getRandomAssetByTriggerGroup(messageContent.slice(1), assets);
+    if (randomTriggerAsset) {
+      await sendMatchedAssetResponse(message, randomTriggerAsset, assets, messageContent.slice(1));
+      return;
     }
 
     if ("!cryptodice" === messageContent) {
