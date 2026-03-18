@@ -1,0 +1,9 @@
+---
+- name: us-cpi-1h
+  eventNameSubstrings:
+    - "consumer price index"
+    - "cpi"
+  countryFlags:
+    - "🇺🇸"
+  roleIdReference: "hblwrk_role_special_cryptoping_ID"
+  minutesBefore: 120

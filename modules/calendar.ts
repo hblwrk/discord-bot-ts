@@ -27,6 +27,11 @@ export const CALENDAR_MAX_MESSAGE_LENGTH = 1800;
 export const CALENDAR_MAX_MESSAGES_TIMER = 8;
 export const CALENDAR_MAX_MESSAGES_SLASH = 6;
 export const CALENDAR_CONTINUATION_LABEL = "(Fortsetzung)";
+export type CalendarLoadStatus = "ok" | "error";
+export type CalendarLoadResult = {
+  events: CalendarEvent[];
+  status: CalendarLoadStatus;
+};
 
 export type CalendarMessageBatch = {
   messages: string[];
@@ -93,9 +98,14 @@ function getCountryFlag(countryCode: number): string {
 }
 
 export async function getCalendarEvents(startDay: string, range: number): Promise<CalendarEvent[]> {
-  const {startDate, endDate} = getCalendarRangeInBerlin(startDay, range);
+  const calendarResult = await getCalendarEventsResult(startDay, range);
+  return calendarResult.events;
+}
 
-  const calendarEvents = [];
+export async function getCalendarEventsResult(startDay: string, range: number): Promise<CalendarLoadResult> {
+  const {startDate, endDate} = getCalendarRangeInBerlin(startDay, range);
+  const calendarEvents: CalendarEvent[] = [];
+  let status: CalendarLoadStatus = "ok";
 
   try {
     const calendarResponse = await postWithRetry(
@@ -130,13 +140,17 @@ export async function getCalendarEvents(startDay: string, range: number): Promis
       }
     }
   } catch (error) {
+    status = "error";
     logger.log(
       "error",
       `Loading calendar failed: ${error}`,
     );
   }
 
-  return calendarEvents;
+  return {
+    events: calendarEvents,
+    status,
+  };
 }
 
 export function getCalendarMessages(
@@ -320,6 +334,15 @@ export class CalendarEvent {
   public set name(name: string) {
     this._name = name;
   }
+}
+
+export function getCalendarEventDateTime(calendarEvent: CalendarEvent): moment.Moment {
+  return moment.tz(
+    `${calendarEvent.date} ${calendarEvent.time}`,
+    "YYYY-MM-DD HH:mm",
+    true,
+    europeBerlinTimezone,
+  );
 }
 
 function getCalendarDayBlocks(calendarEvents: CalendarEvent[]): CalendarDayBlock[] {

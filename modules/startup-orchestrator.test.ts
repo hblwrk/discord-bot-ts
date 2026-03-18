@@ -436,6 +436,45 @@ describe("startBot", () => {
     expect(mocks.roleManager).toHaveBeenCalledTimes(1);
   });
 
+  test("passes reminder assets into startOtherTimers after warmup", async () => {
+    const calendarReminderAssets = [
+      {
+        name: "us-cpi-1h",
+      },
+    ];
+    const earningsReminderAssets = [
+      {
+        name: "aapl-earnings",
+      },
+    ];
+    const getAssetsMock = jest.fn(async (type: string) => {
+      if ("calendarreminder" === type) {
+        return calendarReminderAssets;
+      }
+
+      if ("earningsreminder" === type) {
+        return earningsReminderAssets;
+      }
+
+      return [];
+    });
+    const {dependencies, mocks} = createDependencies({
+      getAssets: getAssetsMock,
+    });
+
+    const runtime = await startBot(dependencies);
+    await waitFor(() => true === runtime.getStartupState().ready);
+
+    expect(mocks.startOtherTimers).toHaveBeenCalledWith(
+      expect.anything(),
+      "other",
+      [],
+      [],
+      calendarReminderAssets,
+      earningsReminderAssets,
+    );
+  });
+
   test("schedules slash command sync once after the bot becomes ready", async () => {
     const getAssetsMock = jest.fn(async (type: string) => {
       if ("whatis" === type) {

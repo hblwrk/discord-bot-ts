@@ -62,6 +62,8 @@ type SharedStartupData = {
   whatIsAssets: any[];
   userAssets: any[];
   roleAssets: any[];
+  calendarReminderAssets: any[];
+  earningsReminderAssets: any[];
   tickers: Ticker[];
   assetCommands: string[];
   assetCommandsWithPrefix: string[];
@@ -638,6 +640,8 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
     whatIsAssets: [],
     userAssets: [],
     roleAssets: [],
+    calendarReminderAssets: [],
+    earningsReminderAssets: [],
     tickers: [],
     assetCommands: [],
     assetCommandsWithPrefix: [],
@@ -794,6 +798,8 @@ async function warmRemoteData({
   let otherTimersStarted = false;
   let genericAssetsLoaded = false;
   let tickersLoaded = false;
+  let calendarReminderAssetsLoaded = false;
+  let earningsReminderAssetsLoaded = false;
   let slashCommandSyncAttempts = 0;
   let slashCommandCreateLimitRetryAfterMs: number | undefined;
   let slashCommandCreateLimitSuppressedUntilMs: number | undefined;
@@ -808,11 +814,21 @@ async function warmRemoteData({
       return;
     }
 
-    if (false === genericAssetsLoaded || false === tickersLoaded) {
+    if (false === genericAssetsLoaded ||
+        false === tickersLoaded ||
+        false === calendarReminderAssetsLoaded ||
+        false === earningsReminderAssetsLoaded) {
       return;
     }
 
-    dependencies.startOtherTimers(client, channelOtherId, sharedData.assets, sharedData.tickers);
+    dependencies.startOtherTimers(
+      client,
+      channelOtherId,
+      sharedData.assets,
+      sharedData.tickers,
+      sharedData.calendarReminderAssets,
+      sharedData.earningsReminderAssets,
+    );
     otherTimersStarted = true;
     logger.log(
       "info",
@@ -1272,6 +1288,28 @@ async function warmRemoteData({
         `Loaded and cached ${sharedData.roleAssets.length} role assets.`,
       );
       await runWarmupTaskWithRetry("role-manager", async () => dependencies.roleManager(client, sharedData.roleAssets));
+    })());
+
+    warmupTasks.push((async () => {
+      const calendarReminderAssets = await runWarmupTaskWithRetry("calendar-reminder-assets", async () => dependencies.getAssets("calendarreminder"));
+      replaceArray(sharedData.calendarReminderAssets, calendarReminderAssets);
+      calendarReminderAssetsLoaded = true;
+      tryStartOtherTimers();
+      logger.log(
+        "info",
+        `Loaded and cached ${sharedData.calendarReminderAssets.length} calendar reminder assets.`,
+      );
+    })());
+
+    warmupTasks.push((async () => {
+      const earningsReminderAssets = await runWarmupTaskWithRetry("earnings-reminder-assets", async () => dependencies.getAssets("earningsreminder"));
+      replaceArray(sharedData.earningsReminderAssets, earningsReminderAssets);
+      earningsReminderAssetsLoaded = true;
+      tryStartOtherTimers();
+      logger.log(
+        "info",
+        `Loaded and cached ${sharedData.earningsReminderAssets.length} earnings reminder assets.`,
+      );
     })());
 
     if ("production" === environment) {

@@ -79,6 +79,60 @@ describe("getAssets", () => {
     );
   });
 
+  test("loads calendar reminder assets and resolves role references", async () => {
+    yamlLoadMock.mockReturnValue([
+      {
+        name: "us-cpi-1h",
+        eventNameSubstrings: ["consumer price index", "cpi"],
+        countryFlags: ["🇺🇸"],
+        roleIdReference: "hblwrk_role_special_cryptoping_ID",
+        minutesBefore: 60,
+      },
+    ]);
+    readSecretMock.mockImplementation(secretName => {
+      if ("hblwrk_role_special_cryptoping_ID" === secretName) {
+        return "role-123";
+      }
+
+      return "dracoon-secret";
+    });
+
+    const assets = await getAssets("calendarreminder");
+
+    expect(assets).toHaveLength(1);
+    expect(assets[0].name).toBe("us-cpi-1h");
+    expect(assets[0].eventNameSubstrings).toEqual(["consumer price index", "cpi"]);
+    expect(assets[0].countryFlags).toEqual(["🇺🇸"]);
+    expect(assets[0].minutesBefore).toBe(60);
+    expect(assets[0].roleIdReference).toBe("hblwrk_role_special_cryptoping_ID");
+    expect(assets[0].roleId).toBe("role-123");
+  });
+
+  test("loads earnings reminder assets and resolves role references", async () => {
+    yamlLoadMock.mockReturnValue([
+      {
+        name: "aapl-earnings",
+        tickerSymbols: ["AAPL"],
+        roleIdReference: "hblwrk_role_special_cryptoping_ID",
+      },
+    ]);
+    readSecretMock.mockImplementation(secretName => {
+      if ("hblwrk_role_special_cryptoping_ID" === secretName) {
+        return "role-456";
+      }
+
+      return "dracoon-secret";
+    });
+
+    const assets = await getAssets("earningsreminder");
+
+    expect(assets).toHaveLength(1);
+    expect(assets[0].name).toBe("aapl-earnings");
+    expect(assets[0].tickerSymbols).toEqual(["AAPL"]);
+    expect(assets[0].roleIdReference).toBe("hblwrk_role_special_cryptoping_ID");
+    expect(assets[0].roleId).toBe("role-456");
+  });
+
   test("returns empty array when loading assets fails", async () => {
     readFileSyncMock.mockImplementation(() => {
       throw new Error("read failure");

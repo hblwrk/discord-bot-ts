@@ -189,6 +189,42 @@ Larger files, for example images, are stored at an external cloud service, Draco
 
 If DRACOON downloads fail during startup, the bot keeps those assets marked as temporarily unavailable, logs the failures at `WARN`, and retries failed downloads in the background with capped exponential backoff (starting at 60 seconds, max 30 minutes) until recovery.
 
+### Reminder assets
+
+Calendar reminders and earnings reminders are configured as YAML assets and both post into `hblwrk_channel_OtherAnnouncement_ID`. The role ping is configured per asset through `roleIdReference`, so existing role secrets can be reused without adding a separate reminder-channel or reminder-role secret.
+
+Calendar reminders use exact event-relative lead times:
+
+```yaml
+---
+- name: us-cpi-1h
+  eventNameSubstrings:
+    - "consumer price index"
+    - "cpi"
+  countryFlags:
+    - "🇺🇸"
+  roleIdReference: "hblwrk_role_special_cryptoping_ID"
+  minutesBefore: 60
+```
+
+Earnings reminders use same-day ticker heads-ups at `08:00 Europe/Berlin` on weekdays:
+
+```yaml
+---
+- name: aapl-earnings
+  tickerSymbols:
+    - "AAPL"
+  roleIdReference: "hblwrk_role_special_cryptoping_ID"
+```
+
+Example Discord output:
+
+```text
+@cryptoping In 60 Minuten: `14:30` 🇺🇸 Consumer Price Index (CPI)
+@earnings Heute Earnings: AAPL (nach Handelsschluss)
+@earnings Heute Earnings: NVDA, MSFT (nach Handelsschluss)
+```
+
 ## Market data
 
 Real-time market-data is being pulled in through a Websocket connection and distributed via Discord bot nickname and presence information. Those bots can be joined to the server separately and their runtime information is managed as an asset. They require no oAuth2 scopes other than "bot".

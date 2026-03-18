@@ -2,6 +2,7 @@ import {
   CALENDAR_CONTINUATION_LABEL,
   CALENDAR_MAX_MESSAGE_LENGTH,
   CalendarEvent,
+  getCalendarEventDateTime,
   getCalendarMessages,
 } from "./calendar.js";
 
@@ -15,6 +16,15 @@ function createCalendarEvent(date: string, time: string, name: string, country =
 }
 
 describe("getCalendarMessages", () => {
+  test("converts calendar event date and time into a Berlin timestamp", () => {
+    const calendarEvent = createCalendarEvent("2025-03-03", "14:30", "CPI");
+
+    const eventDateTime = getCalendarEventDateTime(calendarEvent);
+
+    expect(eventDateTime.utcOffset()).toBe(60);
+    expect(eventDateTime.format("YYYY-MM-DD HH:mm")).toBe("2025-03-03 14:30");
+  });
+
   test("returns one message for a single day when content fits", () => {
     const calendarEvents: CalendarEvent[] = [
       createCalendarEvent("2025-03-03", "10:00", "Event A"),

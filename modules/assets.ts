@@ -189,6 +189,84 @@ export class RoleAsset extends BaseAsset {
   }
 }
 
+export class CalendarReminderAsset extends BaseAsset {
+  private _eventNameSubstrings: string[];
+  private _countryFlags: string[];
+  private _roleId: string;
+  private _roleIdReference: string;
+  private _minutesBefore: number;
+
+  public get eventNameSubstrings() {
+    return this._eventNameSubstrings;
+  }
+
+  public set eventNameSubstrings(eventNameSubstrings: string[]) {
+    this._eventNameSubstrings = eventNameSubstrings;
+  }
+
+  public get countryFlags() {
+    return this._countryFlags;
+  }
+
+  public set countryFlags(countryFlags: string[]) {
+    this._countryFlags = countryFlags;
+  }
+
+  public get roleId() {
+    return this._roleId;
+  }
+
+  public set roleId(roleId: string) {
+    this._roleId = roleId;
+  }
+
+  public get roleIdReference() {
+    return this._roleIdReference;
+  }
+
+  public set roleIdReference(roleIdReference: string) {
+    this._roleIdReference = roleIdReference;
+  }
+
+  public get minutesBefore() {
+    return this._minutesBefore;
+  }
+
+  public set minutesBefore(minutesBefore: number) {
+    this._minutesBefore = minutesBefore;
+  }
+}
+
+export class EarningsReminderAsset extends BaseAsset {
+  private _tickerSymbols: string[];
+  private _roleId: string;
+  private _roleIdReference: string;
+
+  public get tickerSymbols() {
+    return this._tickerSymbols;
+  }
+
+  public set tickerSymbols(tickerSymbols: string[]) {
+    this._tickerSymbols = tickerSymbols;
+  }
+
+  public get roleId() {
+    return this._roleId;
+  }
+
+  public set roleId(roleId: string) {
+    this._roleId = roleId;
+  }
+
+  public get roleIdReference() {
+    return this._roleIdReference;
+  }
+
+  public set roleIdReference(roleIdReference: string) {
+    this._roleIdReference = roleIdReference;
+  }
+}
+
 export class UserAsset extends BaseAsset {
   private _title: string;
 
@@ -439,6 +517,20 @@ export async function getAssets(type: string): Promise<any[]> {
           const newAsset = plainToClass(RoleAsset, jsonObject);
           newAsset.trigger = readSecret(newAsset.triggerReference);
           newAsset.id = readSecret(newAsset.idReference);
+          newAssets.push(newAsset);
+          break;
+        }
+
+        case "calendarreminder": {
+          const newAsset = plainToClass(CalendarReminderAsset, jsonObject);
+          newAsset.roleId = readSecret(newAsset.roleIdReference);
+          newAssets.push(newAsset);
+          break;
+        }
+
+        case "earningsreminder": {
+          const newAsset = plainToClass(EarningsReminderAsset, jsonObject);
+          newAsset.roleId = readSecret(newAsset.roleIdReference);
           newAssets.push(newAsset);
           break;
         }

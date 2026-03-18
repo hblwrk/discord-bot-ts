@@ -1,0 +1,5 @@
+---
+- name: aapl-earnings
+  tickerSymbols:
+    - "AAPL"
+  roleIdReference: "hblwrk_role_special_cryptoping_ID"

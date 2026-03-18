@@ -3,11 +3,17 @@ import {AttachmentBuilder} from "discord.js";
 import moment from "moment-timezone";
 import Schedule from "node-schedule";
 import {getHolidays, isHoliday} from "nyse-holidays";
-import {getAssetByName} from "./assets.js";
+import {
+  getAssetByName,
+  type CalendarReminderAsset,
+  type EarningsReminderAsset,
+} from "./assets.js";
 import {
   CALENDAR_MAX_MESSAGE_LENGTH,
   CALENDAR_MAX_MESSAGES_TIMER,
+  getCalendarEventDateTime,
   getCalendarEvents,
+  getCalendarEventsResult,
   getCalendarMessages,
   type CalendarEvent,
   type CalendarMessageBatch,
@@ -17,6 +23,7 @@ import {
   EARNINGS_MAX_MESSAGES_TIMER,
   getEarningsResult,
   getEarningsMessages,
+  type EarningsEvent,
   type EarningsMessageBatch,
 } from "./earnings.js";
 import {getLogger} from "./logging.js";
@@ -27,6 +34,9 @@ const logger = getLogger();
 const noMentions = {
   parse: [],
 };
+const calendarReminderRefreshSource = "calendar-reminder-refresh";
+const calendarReminderAnnouncementSource = "calendar-reminder";
+const earningsReminderSource = "earnings-reminder";
 const calendarMessageDelayMs = 500;
 const usEasternTimezone = "US/Eastern";
 const weeklyEarningsHeadline = "📅 **Earnings der nächsten Handelswoche:**";
@@ -34,8 +44,23 @@ const weeklyCalendarHeadline = "📅 **Wichtige Termine der nächsten Handelswoc
 const europeBerlinTimezone = "Europe/Berlin";
 const usEasternWeekdays = [new Schedule.Range(1, 5)];
 const gainsAndLossesThreadName = "Heutige Gains&Losses";
+const berlinWeekdays = [new Schedule.Range(1, 5)];
+const minutesPerDay = 24 * 60;
+const earningsReminderWhenSortRank = new Map<string, number>([
+  ["before_open", 0],
+  ["during_session", 1],
+  ["after_close", 2],
+]);
+const earningsReminderWhenLabel = new Map<string, string>([
+  ["before_open", "vor Handelsbeginn"],
+  ["during_session", "während der Handelszeiten"],
+  ["after_close", "nach Handelsschluss"],
+]);
 type SendableChannel = {
   send: (payload: unknown) => Promise<unknown> | unknown;
+};
+type ScheduledReminderJob = {
+  cancel: () => boolean | void;
 };
 type RecurrenceRuleConfig = {
   hour: number;
@@ -51,6 +76,12 @@ type EarningsAnnouncementConfig = {
   headline?: string;
   source: string;
   when: "all" | "before_open" | "during_session" | "after_close" | string;
+};
+type CalendarReminderCandidate = {
+  asset: CalendarReminderAsset;
+  event: CalendarEvent;
+  key: string;
+  remindAt: moment.Moment;
 };
 
 function createRecurrenceRule(config: RecurrenceRuleConfig): Schedule.RecurrenceRule {
@@ -173,6 +204,200 @@ async function runEarningsAnnouncement(
     ? prependHeadlineToFirstMessage(earningsBatch.messages, config.headline, EARNINGS_MAX_MESSAGE_LENGTH)
     : earningsBatch.messages;
   await sendChunkedMessages(channel, messages, "earnings");
+}
+
+function getAllowedRoleMentions(roleId: string) {
+  return {
+    parse: [],
+    roles: [roleId],
+  };
+}
+
+function getRoleMention(roleId: string): string {
+  return `<@&${roleId}>`;
+}
+
+function normalizeLowerCaseValue(value: string): string {
+  return value.trim().toLowerCase();
+}
+
+function normalizeTickerSymbol(value: string): string {
+  return value.trim().toUpperCase();
+}
+
+function getNormalizedRoleId(roleId: string | undefined): string | undefined {
+  const normalizedRoleId = roleId?.trim();
+  if (!normalizedRoleId) {
+    return undefined;
+  }
+
+  return normalizedRoleId;
+}
+
+function getNormalizedCalendarReminderLeadMinutes(calendarReminderAsset: CalendarReminderAsset): number | undefined {
+  if (false === Number.isFinite(calendarReminderAsset.minutesBefore)) {
+    return undefined;
+  }
+
+  return Math.max(0, Math.trunc(calendarReminderAsset.minutesBefore));
+}
+
+function getNormalizedCalendarReminderMatchers(calendarReminderAsset: CalendarReminderAsset): string[] {
+  if (false === Array.isArray(calendarReminderAsset.eventNameSubstrings)) {
+    return [];
+  }
+
+  return calendarReminderAsset.eventNameSubstrings
+    .filter((eventNameSubstring): eventNameSubstring is string => "string" === typeof eventNameSubstring)
+    .map(normalizeLowerCaseValue)
+    .filter(eventNameSubstring => "" !== eventNameSubstring);
+}
+
+function getNormalizedCalendarReminderCountryFlags(calendarReminderAsset: CalendarReminderAsset): string[] {
+  if (false === Array.isArray(calendarReminderAsset.countryFlags)) {
+    return [];
+  }
+
+  return calendarReminderAsset.countryFlags
+    .filter((countryFlag): countryFlag is string => "string" === typeof countryFlag)
+    .map(countryFlag => countryFlag.trim())
+    .filter(countryFlag => "" !== countryFlag);
+}
+
+function getNormalizedEarningsReminderTickers(earningsReminderAsset: EarningsReminderAsset): string[] {
+  if (false === Array.isArray(earningsReminderAsset.tickerSymbols)) {
+    return [];
+  }
+
+  return earningsReminderAsset.tickerSymbols
+    .filter((tickerSymbol): tickerSymbol is string => "string" === typeof tickerSymbol)
+    .map(normalizeTickerSymbol)
+    .filter(tickerSymbol => "" !== tickerSymbol);
+}
+
+function getNextCalendarReminderRefreshTime(nowBerlin: moment.Moment): moment.Moment {
+  const nextRefreshTime = nowBerlin.clone().set({
+    hour: 0,
+    minute: 5,
+    second: 0,
+    millisecond: 0,
+  });
+  if (true === nextRefreshTime.isSameOrBefore(nowBerlin)) {
+    nextRefreshTime.add(1, "day");
+  }
+
+  return nextRefreshTime;
+}
+
+function getCalendarReminderFetchRange(maxMinutesBefore: number, nowBerlin: moment.Moment): number {
+  const nextRefreshTime = getNextCalendarReminderRefreshTime(nowBerlin);
+  const fetchEndDate = nextRefreshTime.clone().add(maxMinutesBefore, "minutes").startOf("day");
+  return Math.max(0, fetchEndDate.diff(nowBerlin.clone().startOf("day"), "days"));
+}
+
+function getMaxCalendarReminderLeadMinutes(calendarReminderAssets: CalendarReminderAsset[]): number {
+  return calendarReminderAssets.reduce((maxMinutesBefore, calendarReminderAsset) => {
+    const minutesBefore = getNormalizedCalendarReminderLeadMinutes(calendarReminderAsset);
+    if ("number" !== typeof minutesBefore) {
+      return maxMinutesBefore;
+    }
+
+    return Math.max(maxMinutesBefore, minutesBefore);
+  }, 0);
+}
+
+function isCalendarReminderMatch(calendarReminderAsset: CalendarReminderAsset, calendarEvent: CalendarEvent): boolean {
+  const eventNameSubstrings = getNormalizedCalendarReminderMatchers(calendarReminderAsset);
+  if (0 === eventNameSubstrings.length) {
+    return false;
+  }
+
+  const countryFlags = getNormalizedCalendarReminderCountryFlags(calendarReminderAsset);
+  if (0 < countryFlags.length && false === countryFlags.includes(calendarEvent.country)) {
+    return false;
+  }
+
+  const normalizedEventName = normalizeLowerCaseValue(calendarEvent.name);
+  return eventNameSubstrings.some(eventNameSubstring => normalizedEventName.includes(eventNameSubstring));
+}
+
+function getCalendarReminderJobKey(calendarReminderAsset: CalendarReminderAsset, calendarEvent: CalendarEvent): string {
+  const assetName = calendarReminderAsset.name?.trim() || "calendar-reminder";
+  const roleId = getNormalizedRoleId(calendarReminderAsset.roleId) ?? "missing-role";
+  const minutesBefore = getNormalizedCalendarReminderLeadMinutes(calendarReminderAsset) ?? -1;
+  return `${assetName}|${roleId}|${minutesBefore}|${calendarEvent.date}|${calendarEvent.time}|${calendarEvent.country}|${calendarEvent.name}`;
+}
+
+function getCalendarReminderMessage(roleId: string, calendarEvent: CalendarEvent, minutesBefore: number): string {
+  return `${getRoleMention(roleId)} In ${minutesBefore} Minuten: \`${calendarEvent.time}\` ${calendarEvent.country} ${calendarEvent.name}`;
+}
+
+function compareEarningsReminderEvents(
+  first: EarningsEvent,
+  second: EarningsEvent,
+  tickerOrderBySymbol: Map<string, number>,
+): number {
+  const firstSortRank = earningsReminderWhenSortRank.get(first.when) ?? Number.MAX_SAFE_INTEGER;
+  const secondSortRank = earningsReminderWhenSortRank.get(second.when) ?? Number.MAX_SAFE_INTEGER;
+  if (firstSortRank !== secondSortRank) {
+    return firstSortRank - secondSortRank;
+  }
+
+  const firstTickerOrder = tickerOrderBySymbol.get(normalizeTickerSymbol(first.ticker)) ?? Number.MAX_SAFE_INTEGER;
+  const secondTickerOrder = tickerOrderBySymbol.get(normalizeTickerSymbol(second.ticker)) ?? Number.MAX_SAFE_INTEGER;
+  if (firstTickerOrder !== secondTickerOrder) {
+    return firstTickerOrder - secondTickerOrder;
+  }
+
+  return normalizeTickerSymbol(first.ticker).localeCompare(normalizeTickerSymbol(second.ticker));
+}
+
+function getEarningsReminderWhenText(when: string): string {
+  return earningsReminderWhenLabel.get(when) ?? "Zeitpunkt unbekannt";
+}
+
+function getMatchedEarningsReminderEvents(
+  earningsReminderAsset: EarningsReminderAsset,
+  earningsEvents: EarningsEvent[],
+): EarningsEvent[] {
+  const normalizedTickerSymbols = getNormalizedEarningsReminderTickers(earningsReminderAsset);
+  const tickerSymbols = new Set(normalizedTickerSymbols);
+  const tickerOrderBySymbol = new Map<string, number>(normalizedTickerSymbols.map((tickerSymbol, index) => [tickerSymbol, index]));
+  const matchedEvents: EarningsEvent[] = [];
+  const seenEventKeys = new Set<string>();
+
+  for (const earningsEvent of earningsEvents) {
+    const normalizedTicker = normalizeTickerSymbol(earningsEvent.ticker);
+    if (false === tickerSymbols.has(normalizedTicker)) {
+      continue;
+    }
+
+    const eventKey = `${normalizedTicker}|${earningsEvent.when}`;
+    if (true === seenEventKeys.has(eventKey)) {
+      continue;
+    }
+
+    matchedEvents.push(earningsEvent);
+    seenEventKeys.add(eventKey);
+  }
+
+  return matchedEvents.sort((first, second) => compareEarningsReminderEvents(first, second, tickerOrderBySymbol));
+}
+
+function getEarningsReminderMessage(roleId: string, earningsEvents: EarningsEvent[]): string {
+  const tickersByWhen = new Map<string, string[]>();
+
+  for (const earningsEvent of earningsEvents) {
+    const bucket = tickersByWhen.get(earningsEvent.when) ?? [];
+    bucket.push(normalizeTickerSymbol(earningsEvent.ticker));
+    tickersByWhen.set(earningsEvent.when, bucket);
+  }
+
+  const segments = [...tickersByWhen.entries()]
+    .sort(([firstWhen], [secondWhen]) => (earningsReminderWhenSortRank.get(firstWhen) ?? Number.MAX_SAFE_INTEGER) - (earningsReminderWhenSortRank.get(secondWhen) ?? Number.MAX_SAFE_INTEGER))
+    .map(([when, tickers]) => `${tickers.join(", ")} (${getEarningsReminderWhenText(when)})`);
+
+  return `${getRoleMention(roleId)} Heute Earnings: ${segments.join("; ")}`;
 }
 
 export function startNyseTimers(client, channelID: string, gainsLossesThreadID?: string) {
@@ -353,7 +578,110 @@ export function startMncTimers(client, channelID: string) {
   });
 }
 
-export function startOtherTimers(client, channelID: string, assets: any, tickers: Ticker[]) {
+export function startOtherTimers(
+  client,
+  channelID: string,
+  assets: any,
+  tickers: Ticker[],
+  calendarReminderAssets: CalendarReminderAsset[] = [],
+  earningsReminderAssets: EarningsReminderAsset[] = [],
+) {
+  const scheduledCalendarReminderJobs = new Map<string, ScheduledReminderJob>();
+
+  const cancelCalendarReminderJobs = (jobKeysToKeep: Set<string> = new Set<string>()) => {
+    for (const [jobKey, scheduledJob] of scheduledCalendarReminderJobs.entries()) {
+      if (true === jobKeysToKeep.has(jobKey)) {
+        continue;
+      }
+
+      scheduledJob.cancel();
+      scheduledCalendarReminderJobs.delete(jobKey);
+    }
+  };
+
+  const refreshCalendarReminderJobs = async () => {
+    if (0 === calendarReminderAssets.length) {
+      cancelCalendarReminderJobs();
+      return;
+    }
+
+    const nowBerlin = moment.tz(europeBerlinTimezone);
+    const nextRefreshTime = getNextCalendarReminderRefreshTime(nowBerlin);
+    const maxMinutesBefore = getMaxCalendarReminderLeadMinutes(calendarReminderAssets);
+    const fetchRange = getCalendarReminderFetchRange(maxMinutesBefore, nowBerlin);
+    const calendarLoadResult = await getCalendarEventsResult("", fetchRange);
+    if ("error" === calendarLoadResult.status) {
+      logger.log(
+        "warn",
+        {
+          source: calendarReminderRefreshSource,
+          message: "Skipping calendar reminder refresh because calendar events could not be loaded.",
+        },
+      );
+      return;
+    }
+
+    const desiredReminderCandidates = new Map<string, CalendarReminderCandidate>();
+    for (const calendarReminderAsset of calendarReminderAssets) {
+      const roleId = getNormalizedRoleId(calendarReminderAsset.roleId);
+      const minutesBefore = getNormalizedCalendarReminderLeadMinutes(calendarReminderAsset);
+      if (!roleId || "number" !== typeof minutesBefore) {
+        continue;
+      }
+
+      for (const calendarEvent of calendarLoadResult.events) {
+        if (false === isCalendarReminderMatch(calendarReminderAsset, calendarEvent)) {
+          continue;
+        }
+
+        const remindAt = getCalendarEventDateTime(calendarEvent).clone().subtract(minutesBefore, "minutes");
+        if (true === remindAt.isBefore(nowBerlin) || true === remindAt.isAfter(nextRefreshTime)) {
+          continue;
+        }
+
+        const reminderKey = getCalendarReminderJobKey(calendarReminderAsset, calendarEvent);
+        desiredReminderCandidates.set(reminderKey, {
+          asset: calendarReminderAsset,
+          event: calendarEvent,
+          key: reminderKey,
+          remindAt,
+        });
+      }
+    }
+
+    const desiredJobKeys = new Set<string>(desiredReminderCandidates.keys());
+    cancelCalendarReminderJobs(desiredJobKeys);
+
+    for (const reminderCandidate of desiredReminderCandidates.values()) {
+      if (true === scheduledCalendarReminderJobs.has(reminderCandidate.key)) {
+        continue;
+      }
+
+      const roleId = getNormalizedRoleId(reminderCandidate.asset.roleId);
+      const minutesBefore = getNormalizedCalendarReminderLeadMinutes(reminderCandidate.asset);
+      if (!roleId || "number" !== typeof minutesBefore) {
+        continue;
+      }
+
+      const scheduledJob = Schedule.scheduleJob(reminderCandidate.remindAt.toDate(), async () => {
+        try {
+          await sendAnnouncement(
+            client,
+            channelID,
+            {
+              content: getCalendarReminderMessage(roleId, reminderCandidate.event, minutesBefore),
+              allowedMentions: getAllowedRoleMentions(roleId),
+            },
+            calendarReminderAnnouncementSource,
+          );
+        } finally {
+          scheduledCalendarReminderJobs.delete(reminderCandidate.key);
+        }
+      }) as ScheduledReminderJob;
+      scheduledCalendarReminderJobs.set(reminderCandidate.key, scheduledJob);
+    }
+  };
+
   const ruleFriday = createRecurrenceRule({
     hour: 8,
     minute: 0,
@@ -373,6 +701,17 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
 
     const fridayFile = new AttachmentBuilder(Buffer.from(fridayAsset.fileContent), {name: fridayAsset.fileName});
     await sendAnnouncement(client, channelID, {files: [fridayFile]}, "friday");
+  });
+
+  const ruleCalendarReminderRefresh = createRecurrenceRule({
+    hour: 0,
+    minute: 5,
+    dayOfWeek: [new Schedule.Range(0, 6)],
+    tz: europeBerlinTimezone,
+  });
+
+  Schedule.scheduleJob(ruleCalendarReminderRefresh, () => {
+    void refreshCalendarReminderJobs();
   });
 
   const ruleEarnings = createRecurrenceRule({
@@ -422,6 +761,54 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
       source: "timer-earnings-weekly",
       when: "all",
     });
+  });
+
+  const ruleEarningsReminder = createRecurrenceRule({
+    hour: 8,
+    minute: 0,
+    dayOfWeek: berlinWeekdays,
+    tz: europeBerlinTimezone,
+  });
+
+  Schedule.scheduleJob(ruleEarningsReminder, async () => {
+    if (0 === earningsReminderAssets.length) {
+      return;
+    }
+
+    const earningsResult = await getEarningsResult(0, "today");
+    if ("error" === earningsResult.status) {
+      logger.log(
+        "warn",
+        {
+          source: earningsReminderSource,
+          status: earningsResult.status,
+          message: "Earnings-Erinnerungen konnten nicht geladen werden.",
+        },
+      );
+      return;
+    }
+
+    for (const earningsReminderAsset of earningsReminderAssets) {
+      const roleId = getNormalizedRoleId(earningsReminderAsset.roleId);
+      if (!roleId) {
+        continue;
+      }
+
+      const matchedEvents = getMatchedEarningsReminderEvents(earningsReminderAsset, earningsResult.events);
+      if (0 === matchedEvents.length) {
+        continue;
+      }
+
+      await sendAnnouncement(
+        client,
+        channelID,
+        {
+          content: getEarningsReminderMessage(roleId, matchedEvents),
+          allowedMentions: getAllowedRoleMentions(roleId),
+        },
+        earningsReminderSource,
+      );
+    }
   });
 
   const ruleEvents = createRecurrenceRule({
@@ -478,6 +865,8 @@ export function startOtherTimers(client, channelID: string, assets: any, tickers
       await sendChunkedMessages(channel, calendarBatch.messages, "calendar");
     }
   });
+
+  void refreshCalendarReminderJobs();
 }
 
 function dedupeCalendarEvents(calendarEvents: CalendarEvent[]): CalendarEvent[] {
