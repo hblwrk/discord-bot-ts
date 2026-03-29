@@ -1,4 +1,5 @@
 import {ImageAsset, TextAsset, UserQuoteAsset} from "./assets.js";
+import {getSecureRandomIndex} from "./secure-random.js";
 
 type RandomTriggerAsset = ImageAsset | TextAsset | UserQuoteAsset;
 
@@ -20,7 +21,7 @@ export function getRandomAsset<T>(assets: T[]): T | undefined {
     return undefined;
   }
 
-  return assets[Math.floor(Math.random() * assets.length)];
+  return assets[getSecureRandomIndex(assets.length)];
 }
 
 export function getRandomAssetByTriggerGroup(baseTrigger: string, assets: unknown[]): RandomTriggerAsset | undefined {

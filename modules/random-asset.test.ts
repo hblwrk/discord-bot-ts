@@ -1,21 +1,28 @@
 import {ImageAsset, TextAsset, UserQuoteAsset} from "./assets.js";
 import {getRandomAsset, getRandomAssetByTriggerGroup} from "./random-asset.js";
+import * as secureRandom from "./secure-random.js";
 
 describe("getRandomAsset", () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   test("returns undefined for an empty pool", () => {
     expect(getRandomAsset([])).toBeUndefined();
   });
 
   test("returns a random item from the pool", () => {
-    jest.spyOn(Math, "random").mockReturnValue(0.99);
+    jest.spyOn(secureRandom, "getSecureRandomIndex").mockReturnValue(1);
 
     expect(getRandomAsset(["first", "second"])).toBe("second");
-
-    (Math.random as jest.Mock).mockRestore();
   });
 });
 
 describe("getRandomAssetByTriggerGroup", () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   test("returns undefined when no grouped trigger exists", () => {
     const imageAsset = new ImageAsset();
     imageAsset.fileName = "betrug-01.jpg";
@@ -25,7 +32,7 @@ describe("getRandomAssetByTriggerGroup", () => {
   });
 
   test("selects a random asset from numbered trigger groups", () => {
-    jest.spyOn(Math, "random").mockReturnValue(0.99);
+    jest.spyOn(secureRandom, "getSecureRandomIndex").mockReturnValue(1);
     const firstImage = new ImageAsset();
     firstImage.fileName = "betrug-01.jpg";
     (firstImage as any).trigger = ["betrug 1"];
@@ -37,7 +44,5 @@ describe("getRandomAssetByTriggerGroup", () => {
     (unrelatedQuote as any).trigger = ["quote sara 1"];
 
     expect(getRandomAssetByTriggerGroup("betrug", [firstImage, secondText, unrelatedQuote])).toBe(secondText);
-
-    (Math.random as jest.Mock).mockRestore();
   });
 });

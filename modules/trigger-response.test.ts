@@ -1,4 +1,5 @@
 import {ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets.js";
+import * as secureRandom from "./secure-random.js";
 import {addTriggerResponses} from "./trigger-response.js";
 import {createEventClient, createMessage} from "./test-utils/discord-mocks.js";
 
@@ -165,7 +166,7 @@ describe("addTriggerResponses", () => {
   });
 
   test("sends a random attachment for grouped image triggers like betrug", async () => {
-    const randomSpy = jest.spyOn(Math, "random").mockReturnValue(0.99);
+    const randomSpy = jest.spyOn(secureRandom, "getSecureRandomIndex").mockReturnValue(1);
     const {client, getHandler} = createEventClient();
     const firstImage = new ImageAsset();
     firstImage.name = "betrug 1";
