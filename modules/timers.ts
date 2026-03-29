@@ -79,7 +79,7 @@ type EarningsAnnouncementConfig = {
 };
 type CalendarReminderCandidate = {
   asset: CalendarReminderAsset;
-  event: CalendarEvent;
+  events: CalendarEvent[];
   key: string;
   remindAt: moment.Moment;
 };
@@ -222,7 +222,11 @@ function normalizeLowerCaseValue(value: string): string {
 }
 
 function normalizeTickerSymbol(value: string): string {
-  return value.trim().toUpperCase();
+  return value
+    .trim()
+    .toUpperCase()
+    .replaceAll("/", ".")
+    .replaceAll("-", ".");
 }
 
 function getNormalizedRoleId(roleId: string | undefined): string | undefined {
@@ -325,11 +329,29 @@ function getCalendarReminderJobKey(calendarReminderAsset: CalendarReminderAsset,
   const assetName = calendarReminderAsset.name?.trim() || "calendar-reminder";
   const roleId = getNormalizedRoleId(calendarReminderAsset.roleId) ?? "missing-role";
   const minutesBefore = getNormalizedCalendarReminderLeadMinutes(calendarReminderAsset) ?? -1;
-  return `${assetName}|${roleId}|${minutesBefore}|${calendarEvent.date}|${calendarEvent.time}|${calendarEvent.country}|${calendarEvent.name}`;
+  return `${assetName}|${roleId}|${minutesBefore}|${calendarEvent.date}|${calendarEvent.time}|${calendarEvent.country}`;
 }
 
-function getCalendarReminderMessage(roleId: string, calendarEvent: CalendarEvent, minutesBefore: number): string {
-  return `${getRoleMention(roleId)} In ${minutesBefore} Minuten: \`${calendarEvent.time}\` ${calendarEvent.country} ${calendarEvent.name}`;
+function getCalendarReminderEventSummary(calendarEvents: CalendarEvent[]): string {
+  const uniqueEventNames: string[] = [];
+  const seenEventNames = new Set<string>();
+
+  for (const calendarEvent of calendarEvents) {
+    const normalizedEventName = calendarEvent.name?.trim();
+    if (!normalizedEventName || true === seenEventNames.has(normalizedEventName)) {
+      continue;
+    }
+
+    uniqueEventNames.push(normalizedEventName);
+    seenEventNames.add(normalizedEventName);
+  }
+
+  return uniqueEventNames.join(", ");
+}
+
+function getCalendarReminderMessage(roleId: string, calendarEvents: CalendarEvent[], minutesBefore: number): string {
+  const primaryEvent = calendarEvents[0];
+  return `${getRoleMention(roleId)} In ${minutesBefore} Minuten: \`${primaryEvent.time}\` ${primaryEvent.country} ${getCalendarReminderEventSummary(calendarEvents)}`;
 }
 
 function compareEarningsReminderEvents(
@@ -640,9 +662,15 @@ export function startOtherTimers(
         }
 
         const reminderKey = getCalendarReminderJobKey(calendarReminderAsset, calendarEvent);
+        const existingReminderCandidate = desiredReminderCandidates.get(reminderKey);
+        if (existingReminderCandidate) {
+          existingReminderCandidate.events.push(calendarEvent);
+          continue;
+        }
+
         desiredReminderCandidates.set(reminderKey, {
           asset: calendarReminderAsset,
-          event: calendarEvent,
+          events: [calendarEvent],
           key: reminderKey,
           remindAt,
         });
@@ -669,7 +697,7 @@ export function startOtherTimers(
             client,
             channelID,
             {
-              content: getCalendarReminderMessage(roleId, reminderCandidate.event, minutesBefore),
+              content: getCalendarReminderMessage(roleId, reminderCandidate.events, minutesBefore),
               allowedMentions: getAllowedRoleMentions(roleId),
             },
             calendarReminderAnnouncementSource,

@@ -125,11 +125,11 @@
   id:
   idReference: "hblwrk_role_special_content-creator-squad_ID"
   emoji: "🎙️"
-- name: cryptoping
+- name: alerts
   trigger:
   triggerReference: "hblwrk_role_assignment_special_message_ID"
   id:
-  idReference: "hblwrk_role_special_cryptoping_ID"
+  idReference: "hblwrk_role_special_alerts_ID"
   emoji: "🛎️"
 - name: nftping
   trigger:

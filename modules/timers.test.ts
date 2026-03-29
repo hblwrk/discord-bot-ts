@@ -506,6 +506,56 @@ describe("timers", () => {
     });
   });
 
+  test("startOtherTimers bundles same-minute calendar reminder matches into one reminder", async () => {
+    const {client, send} = createClientWithChannel();
+    getCalendarEventsResultMock.mockResolvedValue({
+      events: [
+        {
+          date: "2025-02-19",
+          time: "00:30",
+          country: "🇺🇸",
+          name: "CPI y/y",
+        },
+        {
+          date: "2025-02-19",
+          time: "00:30",
+          country: "🇺🇸",
+          name: "Core CPI y/y",
+        },
+        {
+          date: "2025-02-19",
+          time: "00:30",
+          country: "🇺🇸",
+          name: "CPI m/m",
+        },
+      ],
+      status: "ok",
+    });
+
+    startOtherTimers(client as any, "channel-id", [], [], [{
+      name: "us-cpi-1h",
+      eventNameSubstrings: ["cpi"],
+      countryFlags: ["🇺🇸"],
+      roleId: "role-123",
+      minutesBefore: 60,
+    }] as any, []);
+    await Promise.resolve();
+    await Promise.resolve();
+
+    const dateJobs = getScheduledDateJobs();
+    expect(dateJobs).toHaveLength(1);
+
+    await dateJobs[0].callback();
+
+    expect(send).toHaveBeenCalledWith({
+      content: "<@&role-123> In 60 Minuten: `00:30` 🇺🇸 CPI y/y, Core CPI y/y, CPI m/m",
+      allowedMentions: {
+        parse: [],
+        roles: ["role-123"],
+      },
+    });
+  });
+
   test("startOtherTimers skips calendar reminder jobs that are already past or beyond the next refresh window", async () => {
     const {client} = createClientWithChannel();
     getCalendarEventsResultMock.mockResolvedValue({
@@ -951,6 +1001,42 @@ describe("timers", () => {
     expect(send).toHaveBeenCalledTimes(1);
     expect(send).toHaveBeenCalledWith({
       content: "<@&role-456> Heute Earnings: NVDA, MSFT (nach Handelsschluss)",
+      allowedMentions: {
+        parse: [],
+        roles: ["role-456"],
+      },
+    });
+  });
+
+  test("startOtherTimers matches class-share earnings reminder tickers across punctuation variants", async () => {
+    const {client, send} = createClientWithChannel();
+    getEarningsResultMock.mockResolvedValue({
+      events: [
+        {
+          ticker: "BRK/B",
+          when: "after_close",
+          date: "2025-02-18",
+          importance: 1,
+        },
+        {
+          ticker: "BRK-B",
+          when: "after_close",
+          date: "2025-02-18",
+          importance: 1,
+        },
+      ],
+      status: "ok",
+    });
+
+    startOtherTimers(client as any, "channel-id", [], [], [], [{
+      name: "berkshire-earnings",
+      tickerSymbols: ["BRK.B"],
+      roleId: "role-456",
+    }] as any);
+    await getEarningsReminderJob().callback();
+
+    expect(send).toHaveBeenCalledWith({
+      content: "<@&role-456> Heute Earnings: BRK.B (nach Handelsschluss)",
       allowedMentions: {
         parse: [],
         roles: ["role-456"],

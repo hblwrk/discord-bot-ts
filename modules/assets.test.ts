@@ -85,12 +85,12 @@ describe("getAssets", () => {
         name: "us-cpi-1h",
         eventNameSubstrings: ["consumer price index", "cpi"],
         countryFlags: ["🇺🇸"],
-        roleIdReference: "hblwrk_role_special_cryptoping_ID",
+        roleIdReference: "hblwrk_role_special_alerts_ID",
         minutesBefore: 60,
       },
     ]);
     readSecretMock.mockImplementation(secretName => {
-      if ("hblwrk_role_special_cryptoping_ID" === secretName) {
+      if ("hblwrk_role_special_alerts_ID" === secretName) {
         return "role-123";
       }
 
@@ -104,7 +104,7 @@ describe("getAssets", () => {
     expect(assets[0].eventNameSubstrings).toEqual(["consumer price index", "cpi"]);
     expect(assets[0].countryFlags).toEqual(["🇺🇸"]);
     expect(assets[0].minutesBefore).toBe(60);
-    expect(assets[0].roleIdReference).toBe("hblwrk_role_special_cryptoping_ID");
+    expect(assets[0].roleIdReference).toBe("hblwrk_role_special_alerts_ID");
     expect(assets[0].roleId).toBe("role-123");
   });
 
@@ -113,11 +113,11 @@ describe("getAssets", () => {
       {
         name: "aapl-earnings",
         tickerSymbols: ["AAPL"],
-        roleIdReference: "hblwrk_role_special_cryptoping_ID",
+        roleIdReference: "hblwrk_role_special_alerts_ID",
       },
     ]);
     readSecretMock.mockImplementation(secretName => {
-      if ("hblwrk_role_special_cryptoping_ID" === secretName) {
+      if ("hblwrk_role_special_alerts_ID" === secretName) {
         return "role-456";
       }
 
@@ -129,7 +129,7 @@ describe("getAssets", () => {
     expect(assets).toHaveLength(1);
     expect(assets[0].name).toBe("aapl-earnings");
     expect(assets[0].tickerSymbols).toEqual(["AAPL"]);
-    expect(assets[0].roleIdReference).toBe("hblwrk_role_special_cryptoping_ID");
+    expect(assets[0].roleIdReference).toBe("hblwrk_role_special_alerts_ID");
     expect(assets[0].roleId).toBe("role-456");
   });
 

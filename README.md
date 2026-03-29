@@ -175,7 +175,7 @@ The health-check server port can be overridden via the `HEALTHCHECK_PORT` enviro
   "hblwrk_role_special_steuerkanzlei_ID": "",
   "hblwrk_role_special_business-karriere_ID": "",
   "hblwrk_role_special_content-creator-squad_ID": "",
-  "hblwrk_role_special_cryptoping_ID": "",
+  "hblwrk_role_special_alerts_ID": "",
   "hblwrk_role_special_nftping_ID": "",
   "hblwrk_role_special_stageping_ID": "",
   "hblwrk_role_special_realestate_ID": "",
@@ -191,9 +191,9 @@ If DRACOON downloads fail during startup, the bot keeps those assets marked as t
 
 ### Reminder assets
 
-Calendar reminders and earnings reminders are configured as YAML assets and both post into `hblwrk_channel_OtherAnnouncement_ID`. The role ping is configured per asset through `roleIdReference`, so existing role secrets can be reused without adding a separate reminder-channel or reminder-role secret.
+Calendar reminders and earnings reminders are configured as YAML assets and both post into `hblwrk_channel_OtherAnnouncement_ID`. They now ping the `alerts` special role, which is self-assignable from the roles channel via the `🛎️` bellhop bell reaction on the special roles message.
 
-Calendar reminders use exact event-relative lead times:
+Calendar reminders use exact event-relative lead times. If multiple matching calendar items share the same release minute, the bot bundles them into a single reminder ping:
 
 ```yaml
 ---
@@ -203,7 +203,7 @@ Calendar reminders use exact event-relative lead times:
     - "cpi"
   countryFlags:
     - "🇺🇸"
-  roleIdReference: "hblwrk_role_special_cryptoping_ID"
+  roleIdReference: "hblwrk_role_special_alerts_ID"
   minutesBefore: 60
 ```
 
@@ -211,18 +211,20 @@ Earnings reminders use same-day ticker heads-ups at `08:00 Europe/Berlin` on wee
 
 ```yaml
 ---
-- name: aapl-earnings
+- name: sp500-top20-earnings
   tickerSymbols:
+    - "NVDA"
     - "AAPL"
-  roleIdReference: "hblwrk_role_special_cryptoping_ID"
+    - "MSFT"
+  roleIdReference: "hblwrk_role_special_alerts_ID"
 ```
 
 Example Discord output:
 
 ```text
-@cryptoping In 60 Minuten: `14:30` 🇺🇸 Consumer Price Index (CPI)
-@earnings Heute Earnings: AAPL (nach Handelsschluss)
-@earnings Heute Earnings: NVDA, MSFT (nach Handelsschluss)
+@alerts In 60 Minuten: `14:30` 🇺🇸 Consumer Price Index (CPI)
+@alerts Heute Earnings: AAPL (nach Handelsschluss)
+@alerts Heute Earnings: NVDA, MSFT (nach Handelsschluss)
 ```
 
 ## Market data

@@ -1,5 +1,24 @@
 ---
-- name: aapl-earnings
+- name: sp500-top20-earnings
   tickerSymbols:
+    - "NVDA"
     - "AAPL"
-  roleIdReference: "hblwrk_role_special_cryptoping_ID"
+    - "MSFT"
+    - "AMZN"
+    - "GOOGL"
+    - "GOOG"
+    - "AVGO"
+    - "TSLA"
+    - "META"
+    - "BRK.B"
+    - "WMT"
+    - "LLY"
+    - "JPM"
+    - "XOM"
+    - "JNJ"
+    - "V"
+    - "COST"
+    - "MA"
+    - "CVX"
+    - "MU"
+  roleIdReference: "hblwrk_role_special_alerts_ID"

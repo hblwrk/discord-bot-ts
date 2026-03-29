@@ -177,6 +177,43 @@ describe("roleManager", () => {
     expect(guildUser.roles.remove).toHaveBeenCalledWith("broker-role-id");
   });
 
+  test("bootstraps and assigns alerts role from the special roles message via bellhop emoji", async () => {
+    const {client, guildUser, specialMessage, getHandler} = createRoleManagerClient();
+    const assetRoles = [{
+      name: "alerts",
+      triggerReference: "hblwrk_role_assignment_special_message_ID",
+      emoji: "🛎️",
+      trigger: "special-message-id",
+      id: "alerts-role-id",
+      idReference: "hblwrk_role_special_alerts_ID",
+    }];
+
+    await roleManager(client, assetRoles);
+    expect(specialMessage.react).toHaveBeenCalledWith("🛎️");
+
+    const reaction = {
+      partial: false,
+      message: {
+        partial: false,
+        id: "special-message-id",
+      },
+      emoji: {
+        id: null,
+        name: "🛎️",
+      },
+    };
+    const user = {
+      id: "member-id",
+      username: "member-name",
+    };
+
+    const addHandler = getHandler("messageReactionAdd");
+    await addHandler(reaction, user);
+
+    expect(guildUser.roles.add).toHaveBeenCalledWith("broker-yes-role-id");
+    expect(guildUser.roles.add).toHaveBeenCalledWith("alerts-role-id");
+  });
+
   test("logs warning and skips when custom emoji is missing", async () => {
     const missingEmojiClient = createRoleManagerClient(null);
     const assetRoles = [{

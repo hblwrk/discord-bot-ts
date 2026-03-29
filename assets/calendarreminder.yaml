@@ -5,5 +5,44 @@
     - "cpi"
   countryFlags:
     - "🇺🇸"
-  roleIdReference: "hblwrk_role_special_cryptoping_ID"
-  minutesBefore: 120
+  roleIdReference: "hblwrk_role_special_alerts_ID"
+  minutesBefore: 60
+- name: us-fed-rate-decision-1h
+  eventNameSubstrings:
+    - "fed interest rate decision"
+    - "federal reserve system (fed) interest rate decision"
+  countryFlags:
+    - "🇺🇸"
+  roleIdReference: "hblwrk_role_special_alerts_ID"
+  minutesBefore: 60
+- name: us-fomc-statement-1h
+  eventNameSubstrings:
+    - "fomc statement"
+    - "federal open market committee (fomc) statement"
+  countryFlags:
+    - "🇺🇸"
+  roleIdReference: "hblwrk_role_special_alerts_ID"
+  minutesBefore: 60
+- name: us-nonfarm-payrolls-1h
+  eventNameSubstrings:
+    - "nonfarm payrolls"
+  countryFlags:
+    - "🇺🇸"
+  roleIdReference: "hblwrk_role_special_alerts_ID"
+  minutesBefore: 60
+- name: us-ppi-1h
+  eventNameSubstrings:
+    - "producer price index"
+    - "ppi"
+  countryFlags:
+    - "🇺🇸"
+  roleIdReference: "hblwrk_role_special_alerts_ID"
+  minutesBefore: 60
+- name: us-gdp-1h
+  eventNameSubstrings:
+    - "gross domestic product"
+    - "gdp q/q"
+  countryFlags:
+    - "🇺🇸"
+  roleIdReference: "hblwrk_role_special_alerts_ID"
+  minutesBefore: 60
