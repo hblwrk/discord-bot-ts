@@ -193,7 +193,7 @@ If DRACOON downloads fail during startup, the bot keeps those assets marked as t
 
 Calendar reminders and earnings reminders are configured as YAML assets and both post into `hblwrk_channel_OtherAnnouncement_ID`. They now ping the `alerts` special role, which is self-assignable from the roles channel via the `🛎️` bellhop bell reaction on the special roles message.
 
-Calendar reminders use exact event-relative lead times. If multiple matching calendar items share the same release minute, the bot bundles them into a single reminder ping:
+Calendar reminder assets are matched against the current day and sent at `08:30 Europe/Berlin`, immediately after the general daily calendar post. If multiple matching calendar items share the same release minute, the bot bundles them into a single reminder ping:
 
 ```yaml
 ---
@@ -204,7 +204,6 @@ Calendar reminders use exact event-relative lead times. If multiple matching cal
   countryFlags:
     - "🇺🇸"
   roleIdReference: "hblwrk_role_special_alerts_ID"
-  minutesBefore: 60
 ```
 
 Earnings reminders use same-day ticker heads-ups at `08:00 Europe/Berlin` on weekdays:
@@ -222,7 +221,7 @@ Earnings reminders use same-day ticker heads-ups at `08:00 Europe/Berlin` on wee
 Example Discord output:
 
 ```text
-@alerts In 60 Minuten: `14:30` 🇺🇸 Consumer Price Index (CPI)
+@alerts Heute wichtig: `14:30` 🇺🇸 Consumer Price Index (CPI)
 @alerts Heute Earnings: AAPL (nach Handelsschluss)
 @alerts Heute Earnings: NVDA, MSFT (nach Handelsschluss)
 ```

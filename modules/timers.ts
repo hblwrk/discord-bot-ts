@@ -34,7 +34,6 @@ const logger = getLogger();
 const noMentions = {
   parse: [],
 };
-const calendarReminderRefreshSource = "calendar-reminder-refresh";
 const calendarReminderAnnouncementSource = "calendar-reminder";
 const earningsReminderSource = "earnings-reminder";
 const calendarMessageDelayMs = 500;
@@ -59,9 +58,6 @@ const earningsReminderWhenLabel = new Map<string, string>([
 type SendableChannel = {
   send: (payload: unknown) => Promise<unknown> | unknown;
 };
-type ScheduledReminderJob = {
-  cancel: () => boolean | void;
-};
 type RecurrenceRuleConfig = {
   hour: number;
   minute: number;
@@ -77,13 +73,6 @@ type EarningsAnnouncementConfig = {
   source: string;
   when: "all" | "before_open" | "during_session" | "after_close" | string;
 };
-type CalendarReminderCandidate = {
-  asset: CalendarReminderAsset;
-  events: CalendarEvent[];
-  key: string;
-  remindAt: moment.Moment;
-};
-
 function createRecurrenceRule(config: RecurrenceRuleConfig): Schedule.RecurrenceRule {
   const recurrenceRule = new Schedule.RecurrenceRule();
   recurrenceRule.hour = config.hour;
@@ -238,14 +227,6 @@ function getNormalizedRoleId(roleId: string | undefined): string | undefined {
   return normalizedRoleId;
 }
 
-function getNormalizedCalendarReminderLeadMinutes(calendarReminderAsset: CalendarReminderAsset): number | undefined {
-  if (false === Number.isFinite(calendarReminderAsset.minutesBefore)) {
-    return undefined;
-  }
-
-  return Math.max(0, Math.trunc(calendarReminderAsset.minutesBefore));
-}
-
 function getNormalizedCalendarReminderMatchers(calendarReminderAsset: CalendarReminderAsset): string[] {
   if (false === Array.isArray(calendarReminderAsset.eventNameSubstrings)) {
     return [];
@@ -279,37 +260,6 @@ function getNormalizedEarningsReminderTickers(earningsReminderAsset: EarningsRem
     .filter(tickerSymbol => "" !== tickerSymbol);
 }
 
-function getNextCalendarReminderRefreshTime(nowBerlin: moment.Moment): moment.Moment {
-  const nextRefreshTime = nowBerlin.clone().set({
-    hour: 0,
-    minute: 5,
-    second: 0,
-    millisecond: 0,
-  });
-  if (true === nextRefreshTime.isSameOrBefore(nowBerlin)) {
-    nextRefreshTime.add(1, "day");
-  }
-
-  return nextRefreshTime;
-}
-
-function getCalendarReminderFetchRange(maxMinutesBefore: number, nowBerlin: moment.Moment): number {
-  const nextRefreshTime = getNextCalendarReminderRefreshTime(nowBerlin);
-  const fetchEndDate = nextRefreshTime.clone().add(maxMinutesBefore, "minutes").startOf("day");
-  return Math.max(0, fetchEndDate.diff(nowBerlin.clone().startOf("day"), "days"));
-}
-
-function getMaxCalendarReminderLeadMinutes(calendarReminderAssets: CalendarReminderAsset[]): number {
-  return calendarReminderAssets.reduce((maxMinutesBefore, calendarReminderAsset) => {
-    const minutesBefore = getNormalizedCalendarReminderLeadMinutes(calendarReminderAsset);
-    if ("number" !== typeof minutesBefore) {
-      return maxMinutesBefore;
-    }
-
-    return Math.max(maxMinutesBefore, minutesBefore);
-  }, 0);
-}
-
 function isCalendarReminderMatch(calendarReminderAsset: CalendarReminderAsset, calendarEvent: CalendarEvent): boolean {
   const eventNameSubstrings = getNormalizedCalendarReminderMatchers(calendarReminderAsset);
   if (0 === eventNameSubstrings.length) {
@@ -328,8 +278,7 @@ function isCalendarReminderMatch(calendarReminderAsset: CalendarReminderAsset, c
 function getCalendarReminderJobKey(calendarReminderAsset: CalendarReminderAsset, calendarEvent: CalendarEvent): string {
   const assetName = calendarReminderAsset.name?.trim() || "calendar-reminder";
   const roleId = getNormalizedRoleId(calendarReminderAsset.roleId) ?? "missing-role";
-  const minutesBefore = getNormalizedCalendarReminderLeadMinutes(calendarReminderAsset) ?? -1;
-  return `${assetName}|${roleId}|${minutesBefore}|${calendarEvent.date}|${calendarEvent.time}|${calendarEvent.country}`;
+  return `${assetName}|${roleId}|${calendarEvent.date}|${calendarEvent.time}|${calendarEvent.country}`;
 }
 
 function getCalendarReminderEventSummary(calendarEvents: CalendarEvent[]): string {
@@ -349,9 +298,43 @@ function getCalendarReminderEventSummary(calendarEvents: CalendarEvent[]): strin
   return uniqueEventNames.join(", ");
 }
 
-function getCalendarReminderMessage(roleId: string, calendarEvents: CalendarEvent[], minutesBefore: number): string {
+function getCalendarReminderMessage(roleId: string, calendarEvents: CalendarEvent[]): string {
   const primaryEvent = calendarEvents[0];
-  return `${getRoleMention(roleId)} In ${minutesBefore} Minuten: \`${primaryEvent.time}\` ${primaryEvent.country} ${getCalendarReminderEventSummary(calendarEvents)}`;
+  return `${getRoleMention(roleId)} Heute wichtig: \`${primaryEvent.time}\` ${primaryEvent.country} ${getCalendarReminderEventSummary(calendarEvents)}`;
+}
+
+function getMatchedCalendarReminderEventGroups(
+  calendarReminderAssets: CalendarReminderAsset[],
+  calendarEvents: CalendarEvent[],
+): {asset: CalendarReminderAsset; events: CalendarEvent[]}[] {
+  const groupedReminderEvents = new Map<string, {asset: CalendarReminderAsset; events: CalendarEvent[]}>();
+
+  for (const calendarReminderAsset of calendarReminderAssets) {
+    const roleId = getNormalizedRoleId(calendarReminderAsset.roleId);
+    if (!roleId) {
+      continue;
+    }
+
+    for (const calendarEvent of calendarEvents) {
+      if (false === isCalendarReminderMatch(calendarReminderAsset, calendarEvent)) {
+        continue;
+      }
+
+      const reminderKey = getCalendarReminderJobKey(calendarReminderAsset, calendarEvent);
+      const existingReminderGroup = groupedReminderEvents.get(reminderKey);
+      if (existingReminderGroup) {
+        existingReminderGroup.events.push(calendarEvent);
+        continue;
+      }
+
+      groupedReminderEvents.set(reminderKey, {
+        asset: calendarReminderAsset,
+        events: [calendarEvent],
+      });
+    }
+  }
+
+  return [...groupedReminderEvents.values()];
 }
 
 function compareEarningsReminderEvents(
@@ -608,108 +591,6 @@ export function startOtherTimers(
   calendarReminderAssets: CalendarReminderAsset[] = [],
   earningsReminderAssets: EarningsReminderAsset[] = [],
 ) {
-  const scheduledCalendarReminderJobs = new Map<string, ScheduledReminderJob>();
-
-  const cancelCalendarReminderJobs = (jobKeysToKeep: Set<string> = new Set<string>()) => {
-    for (const [jobKey, scheduledJob] of scheduledCalendarReminderJobs.entries()) {
-      if (true === jobKeysToKeep.has(jobKey)) {
-        continue;
-      }
-
-      scheduledJob.cancel();
-      scheduledCalendarReminderJobs.delete(jobKey);
-    }
-  };
-
-  const refreshCalendarReminderJobs = async () => {
-    if (0 === calendarReminderAssets.length) {
-      cancelCalendarReminderJobs();
-      return;
-    }
-
-    const nowBerlin = moment.tz(europeBerlinTimezone);
-    const nextRefreshTime = getNextCalendarReminderRefreshTime(nowBerlin);
-    const maxMinutesBefore = getMaxCalendarReminderLeadMinutes(calendarReminderAssets);
-    const fetchRange = getCalendarReminderFetchRange(maxMinutesBefore, nowBerlin);
-    const calendarLoadResult = await getCalendarEventsResult("", fetchRange);
-    if ("error" === calendarLoadResult.status) {
-      logger.log(
-        "warn",
-        {
-          source: calendarReminderRefreshSource,
-          message: "Skipping calendar reminder refresh because calendar events could not be loaded.",
-        },
-      );
-      return;
-    }
-
-    const desiredReminderCandidates = new Map<string, CalendarReminderCandidate>();
-    for (const calendarReminderAsset of calendarReminderAssets) {
-      const roleId = getNormalizedRoleId(calendarReminderAsset.roleId);
-      const minutesBefore = getNormalizedCalendarReminderLeadMinutes(calendarReminderAsset);
-      if (!roleId || "number" !== typeof minutesBefore) {
-        continue;
-      }
-
-      for (const calendarEvent of calendarLoadResult.events) {
-        if (false === isCalendarReminderMatch(calendarReminderAsset, calendarEvent)) {
-          continue;
-        }
-
-        const remindAt = getCalendarEventDateTime(calendarEvent).clone().subtract(minutesBefore, "minutes");
-        if (true === remindAt.isBefore(nowBerlin) || true === remindAt.isAfter(nextRefreshTime)) {
-          continue;
-        }
-
-        const reminderKey = getCalendarReminderJobKey(calendarReminderAsset, calendarEvent);
-        const existingReminderCandidate = desiredReminderCandidates.get(reminderKey);
-        if (existingReminderCandidate) {
-          existingReminderCandidate.events.push(calendarEvent);
-          continue;
-        }
-
-        desiredReminderCandidates.set(reminderKey, {
-          asset: calendarReminderAsset,
-          events: [calendarEvent],
-          key: reminderKey,
-          remindAt,
-        });
-      }
-    }
-
-    const desiredJobKeys = new Set<string>(desiredReminderCandidates.keys());
-    cancelCalendarReminderJobs(desiredJobKeys);
-
-    for (const reminderCandidate of desiredReminderCandidates.values()) {
-      if (true === scheduledCalendarReminderJobs.has(reminderCandidate.key)) {
-        continue;
-      }
-
-      const roleId = getNormalizedRoleId(reminderCandidate.asset.roleId);
-      const minutesBefore = getNormalizedCalendarReminderLeadMinutes(reminderCandidate.asset);
-      if (!roleId || "number" !== typeof minutesBefore) {
-        continue;
-      }
-
-      const scheduledJob = Schedule.scheduleJob(reminderCandidate.remindAt.toDate(), async () => {
-        try {
-          await sendAnnouncement(
-            client,
-            channelID,
-            {
-              content: getCalendarReminderMessage(roleId, reminderCandidate.events, minutesBefore),
-              allowedMentions: getAllowedRoleMentions(roleId),
-            },
-            calendarReminderAnnouncementSource,
-          );
-        } finally {
-          scheduledCalendarReminderJobs.delete(reminderCandidate.key);
-        }
-      }) as ScheduledReminderJob;
-      scheduledCalendarReminderJobs.set(reminderCandidate.key, scheduledJob);
-    }
-  };
-
   const ruleFriday = createRecurrenceRule({
     hour: 8,
     minute: 0,
@@ -729,17 +610,6 @@ export function startOtherTimers(
 
     const fridayFile = new AttachmentBuilder(Buffer.from(fridayAsset.fileContent), {name: fridayAsset.fileName});
     await sendAnnouncement(client, channelID, {files: [fridayFile]}, "friday");
-  });
-
-  const ruleCalendarReminderRefresh = createRecurrenceRule({
-    hour: 0,
-    minute: 5,
-    dayOfWeek: [new Schedule.Range(0, 6)],
-    tz: europeBerlinTimezone,
-  });
-
-  Schedule.scheduleJob(ruleCalendarReminderRefresh, () => {
-    void refreshCalendarReminderJobs();
   });
 
   const ruleEarnings = createRecurrenceRule({
@@ -860,6 +730,24 @@ export function startOtherTimers(
       const channel = getSendableChannel(client, channelID, "calendar");
       await sendChunkedMessages(channel, calendarBatch.messages, "calendar");
     }
+
+    const matchedReminderGroups = getMatchedCalendarReminderEventGroups(calendarReminderAssets, calendarEvents);
+    for (const matchedReminderGroup of matchedReminderGroups) {
+      const roleId = getNormalizedRoleId(matchedReminderGroup.asset.roleId);
+      if (!roleId) {
+        continue;
+      }
+
+      await sendAnnouncement(
+        client,
+        channelID,
+        {
+          content: getCalendarReminderMessage(roleId, matchedReminderGroup.events),
+          allowedMentions: getAllowedRoleMentions(roleId),
+        },
+        calendarReminderAnnouncementSource,
+      );
+    }
   });
 
   const ruleEventsWeekly = createRecurrenceRule({
@@ -893,8 +781,6 @@ export function startOtherTimers(
       await sendChunkedMessages(channel, calendarBatch.messages, "calendar");
     }
   });
-
-  void refreshCalendarReminderJobs();
 }
 
 function dedupeCalendarEvents(calendarEvents: CalendarEvent[]): CalendarEvent[] {

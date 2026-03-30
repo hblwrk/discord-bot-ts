@@ -6,7 +6,6 @@
   countryFlags:
     - "🇺🇸"
   roleIdReference: "hblwrk_role_special_alerts_ID"
-  minutesBefore: 60
 - name: us-fed-rate-decision-1h
   eventNameSubstrings:
     - "fed interest rate decision"
@@ -14,7 +13,6 @@
   countryFlags:
     - "🇺🇸"
   roleIdReference: "hblwrk_role_special_alerts_ID"
-  minutesBefore: 60
 - name: us-fomc-statement-1h
   eventNameSubstrings:
     - "fomc statement"
@@ -22,14 +20,12 @@
   countryFlags:
     - "🇺🇸"
   roleIdReference: "hblwrk_role_special_alerts_ID"
-  minutesBefore: 60
 - name: us-nonfarm-payrolls-1h
   eventNameSubstrings:
     - "nonfarm payrolls"
   countryFlags:
     - "🇺🇸"
   roleIdReference: "hblwrk_role_special_alerts_ID"
-  minutesBefore: 60
 - name: us-ppi-1h
   eventNameSubstrings:
     - "producer price index"
@@ -37,7 +33,6 @@
   countryFlags:
     - "🇺🇸"
   roleIdReference: "hblwrk_role_special_alerts_ID"
-  minutesBefore: 60
 - name: us-gdp-1h
   eventNameSubstrings:
     - "gross domestic product"
@@ -45,4 +40,3 @@
   countryFlags:
     - "🇺🇸"
   roleIdReference: "hblwrk_role_special_alerts_ID"
-  minutesBefore: 60

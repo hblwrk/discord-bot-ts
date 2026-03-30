@@ -412,7 +412,6 @@ describe("timers", () => {
 
     startOtherTimers(client as any, "channel-id", assets, []);
     const fridayJob = getScheduledJobByTime(8, 0, "Europe/Berlin");
-    const calendarReminderRefreshJob = getScheduledJobByTime(0, 5, "Europe/Berlin");
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
     const weeklyEarningsJob = getScheduledJobByTime(23, 30, "Europe/Berlin");
     const earningsReminderJob = scheduledJobs.find(job =>
@@ -425,15 +424,10 @@ describe("timers", () => {
       5 === (job.rule.dayOfWeek[0] as MockRange).end);
     const weeklyCalendarJob = getScheduledJobByTime(23, 45, "Europe/Berlin");
 
-    expect(scheduleJobMock).toHaveBeenCalledTimes(7);
+    expect(scheduleJobMock).toHaveBeenCalledTimes(6);
     expect(fridayJob.rule).toEqual(expect.objectContaining({
       hour: 8,
       minute: 0,
-      tz: "Europe/Berlin",
-    }));
-    expect(calendarReminderRefreshJob.rule).toEqual(expect.objectContaining({
-      hour: 0,
-      minute: 5,
       tz: "Europe/Berlin",
     }));
     expect(dailyEarningsJob.rule.dayOfWeek).toEqual([expect.objectContaining({start: 0, end: 6})]);
@@ -467,19 +461,16 @@ describe("timers", () => {
     }));
   });
 
-  test("startOtherTimers schedules one-off calendar reminder jobs on startup and sends role-limited reminder payloads", async () => {
+  test("startOtherTimers sends calendar reminders after the daily calendar post", async () => {
     const {client, send} = createClientWithChannel();
-    getCalendarEventsResultMock.mockResolvedValue({
-      events: [
-        {
-          date: "2025-02-19",
-          time: "00:30",
-          country: "🇺🇸",
-          name: "Consumer Price Index (CPI)",
-        },
-      ],
-      status: "ok",
-    });
+    getCalendarEventsMock.mockResolvedValue([
+      {
+        date: "2025-02-19",
+        time: "14:30",
+        country: "🇺🇸",
+        name: "Consumer Price Index (CPI)",
+      },
+    ]);
 
     startOtherTimers(client as any, "channel-id", [], [], [{
       name: "us-cpi-1h",
@@ -488,17 +479,17 @@ describe("timers", () => {
       roleId: "role-123",
       minutesBefore: 60,
     }] as any, []);
-    await Promise.resolve();
-    await Promise.resolve();
+    const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
+    await dailyCalendarJob.callback();
 
-    expect(getCalendarEventsResultMock).toHaveBeenCalledWith("", 1);
-    const dateJobs = getScheduledDateJobs();
-    expect(dateJobs).toHaveLength(1);
-
-    await dateJobs[0].callback();
-
-    expect(send).toHaveBeenCalledWith({
-      content: "<@&role-123> In 60 Minuten: `00:30` 🇺🇸 Consumer Price Index (CPI)",
+    expect(send).toHaveBeenNthCalledWith(1, {
+      content: "calendar-text",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+    expect(send).toHaveBeenNthCalledWith(2, {
+      content: "<@&role-123> Heute wichtig: `14:30` 🇺🇸 Consumer Price Index (CPI)",
       allowedMentions: {
         parse: [],
         roles: ["role-123"],
@@ -508,29 +499,26 @@ describe("timers", () => {
 
   test("startOtherTimers bundles same-minute calendar reminder matches into one reminder", async () => {
     const {client, send} = createClientWithChannel();
-    getCalendarEventsResultMock.mockResolvedValue({
-      events: [
-        {
-          date: "2025-02-19",
-          time: "00:30",
-          country: "🇺🇸",
-          name: "CPI y/y",
-        },
-        {
-          date: "2025-02-19",
-          time: "00:30",
-          country: "🇺🇸",
-          name: "Core CPI y/y",
-        },
-        {
-          date: "2025-02-19",
-          time: "00:30",
-          country: "🇺🇸",
-          name: "CPI m/m",
-        },
-      ],
-      status: "ok",
-    });
+    getCalendarEventsMock.mockResolvedValue([
+      {
+        date: "2025-02-19",
+        time: "14:30",
+        country: "🇺🇸",
+        name: "CPI y/y",
+      },
+      {
+        date: "2025-02-19",
+        time: "14:30",
+        country: "🇺🇸",
+        name: "Core CPI y/y",
+      },
+      {
+        date: "2025-02-19",
+        time: "14:30",
+        country: "🇺🇸",
+        name: "CPI m/m",
+      },
+    ]);
 
     startOtherTimers(client as any, "channel-id", [], [], [{
       name: "us-cpi-1h",
@@ -539,16 +527,11 @@ describe("timers", () => {
       roleId: "role-123",
       minutesBefore: 60,
     }] as any, []);
-    await Promise.resolve();
-    await Promise.resolve();
+    const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
+    await dailyCalendarJob.callback();
 
-    const dateJobs = getScheduledDateJobs();
-    expect(dateJobs).toHaveLength(1);
-
-    await dateJobs[0].callback();
-
-    expect(send).toHaveBeenCalledWith({
-      content: "<@&role-123> In 60 Minuten: `00:30` 🇺🇸 CPI y/y, Core CPI y/y, CPI m/m",
+    expect(send).toHaveBeenNthCalledWith(2, {
+      content: "<@&role-123> Heute wichtig: `14:30` 🇺🇸 CPI y/y, Core CPI y/y, CPI m/m",
       allowedMentions: {
         parse: [],
         roles: ["role-123"],
@@ -556,52 +539,16 @@ describe("timers", () => {
     });
   });
 
-  test("startOtherTimers skips calendar reminder jobs that are already past or beyond the next refresh window", async () => {
-    const {client} = createClientWithChannel();
-    getCalendarEventsResultMock.mockResolvedValue({
-      events: [
-        {
-          date: "2025-02-18",
-          time: "16:30",
-          country: "🇺🇸",
-          name: "Consumer Price Index (CPI)",
-        },
-        {
-          date: "2025-02-19",
-          time: "01:30",
-          country: "🇺🇸",
-          name: "Consumer Price Index (CPI)",
-        },
-      ],
-      status: "ok",
-    });
-
-    startOtherTimers(client as any, "channel-id", [], [], [{
-      name: "us-cpi-1h",
-      eventNameSubstrings: ["cpi"],
-      countryFlags: ["🇺🇸"],
-      roleId: "role-123",
-      minutesBefore: 60,
-    }] as any, []);
-    await Promise.resolve();
-    await Promise.resolve();
-
-    expect(getScheduledDateJobs()).toHaveLength(0);
-  });
-
   test("startOtherTimers skips calendar reminder assets with wrong country or invalid config", async () => {
-    const {client} = createClientWithChannel();
-    getCalendarEventsResultMock.mockResolvedValue({
-      events: [
-        {
-          date: "2025-02-19",
-          time: "00:30",
-          country: "🇪🇺",
-          name: "Consumer Price Index (CPI)",
-        },
-      ],
-      status: "ok",
-    });
+    const {client, send} = createClientWithChannel();
+    getCalendarEventsMock.mockResolvedValue([
+      {
+        date: "2025-02-19",
+        time: "14:30",
+        country: "🇪🇺",
+        name: "Consumer Price Index (CPI)",
+      },
+    ]);
 
     startOtherTimers(client as any, "channel-id", [], [], [
       {
@@ -619,13 +566,6 @@ describe("timers", () => {
         minutesBefore: 60,
       },
       {
-        name: "invalid-lead",
-        eventNameSubstrings: ["cpi"],
-        countryFlags: ["🇪🇺"],
-        roleId: "role-123",
-        minutesBefore: Number.NaN,
-      },
-      {
         name: "missing-matchers",
         eventNameSubstrings: [],
         countryFlags: ["🇪🇺"],
@@ -633,123 +573,66 @@ describe("timers", () => {
         minutesBefore: 60,
       },
     ] as any, []);
-    await Promise.resolve();
-    await Promise.resolve();
+    const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
+    await dailyCalendarJob.callback();
 
-    expect(getScheduledDateJobs()).toHaveLength(0);
+    expect(send).toHaveBeenCalledTimes(1);
+    expect(send).toHaveBeenCalledWith({
+      content: "calendar-text",
+      allowedMentions: {
+        parse: [],
+      },
+    });
   });
 
-  test("startOtherTimers cancels stale calendar reminder jobs on refresh", async () => {
-    const {client} = createClientWithChannel();
-    getCalendarEventsResultMock.mockResolvedValueOnce({
-      events: [
-        {
-          date: "2025-02-19",
-          time: "00:30",
-          country: "🇺🇸",
-          name: "Consumer Price Index (CPI)",
-        },
-      ],
-      status: "ok",
-    }).mockResolvedValueOnce({
-      events: [],
-      status: "ok",
+  test("startOtherTimers sends multiple calendar reminder groups in event-time order after the daily calendar post", async () => {
+    const {client, send} = createClientWithChannel();
+    getCalendarEventsMock.mockResolvedValue([
+      {
+        date: "2025-02-19",
+        time: "14:30",
+        country: "🇺🇸",
+        name: "GDP q/q",
+      },
+      {
+        date: "2025-02-19",
+        time: "20:00",
+        country: "🇺🇸",
+        name: "FOMC Statement",
+      },
+    ]);
+
+    startOtherTimers(client as any, "channel-id", [], [], [
+      {
+        name: "us-gdp-1h",
+        eventNameSubstrings: ["gdp q/q"],
+        countryFlags: ["🇺🇸"],
+        roleId: "role-123",
+      },
+      {
+        name: "us-fomc-statement-1h",
+        eventNameSubstrings: ["fomc statement"],
+        countryFlags: ["🇺🇸"],
+        roleId: "role-123",
+      },
+    ] as any, []);
+    const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
+    await dailyCalendarJob.callback();
+
+    expect(send).toHaveBeenNthCalledWith(2, {
+      content: "<@&role-123> Heute wichtig: `14:30` 🇺🇸 GDP q/q",
+      allowedMentions: {
+        parse: [],
+        roles: ["role-123"],
+      },
     });
-
-    startOtherTimers(client as any, "channel-id", [], [], [{
-      name: "us-cpi-1h",
-      eventNameSubstrings: ["cpi"],
-      countryFlags: ["🇺🇸"],
-      roleId: "role-123",
-      minutesBefore: 60,
-    }] as any, []);
-    await Promise.resolve();
-    await Promise.resolve();
-
-    const initialDateJobs = getScheduledDateJobs();
-    expect(initialDateJobs).toHaveLength(1);
-
-    const refreshJob = getScheduledJobByTime(0, 5, "Europe/Berlin");
-    await refreshJob.callback();
-    await Promise.resolve();
-
-    expect(initialDateJobs[0].scheduledJob.cancel).toHaveBeenCalledTimes(1);
-  });
-
-  test("startOtherTimers does not duplicate calendar reminder jobs when a refresh sees the same event again", async () => {
-    const {client} = createClientWithChannel();
-    getCalendarEventsResultMock.mockResolvedValue({
-      events: [
-        {
-          date: "2025-02-19",
-          time: "00:30",
-          country: "🇺🇸",
-          name: "Consumer Price Index (CPI)",
-        },
-      ],
-      status: "ok",
+    expect(send).toHaveBeenNthCalledWith(3, {
+      content: "<@&role-123> Heute wichtig: `20:00` 🇺🇸 FOMC Statement",
+      allowedMentions: {
+        parse: [],
+        roles: ["role-123"],
+      },
     });
-
-    startOtherTimers(client as any, "channel-id", [], [], [{
-      name: "us-cpi-1h",
-      eventNameSubstrings: ["cpi"],
-      countryFlags: ["🇺🇸"],
-      roleId: "role-123",
-      minutesBefore: 60,
-    }] as any, []);
-    await Promise.resolve();
-    await Promise.resolve();
-
-    const initialDateJobs = getScheduledDateJobs();
-    expect(initialDateJobs).toHaveLength(1);
-
-    const refreshJob = getScheduledJobByTime(0, 5, "Europe/Berlin");
-    await refreshJob.callback();
-    await Promise.resolve();
-
-    expect(getScheduledDateJobs()).toHaveLength(1);
-    expect(initialDateJobs[0].scheduledJob.cancel).not.toHaveBeenCalled();
-  });
-
-  test("startOtherTimers keeps scheduled calendar reminder jobs when calendar refresh fails", async () => {
-    const {client} = createClientWithChannel();
-    getCalendarEventsResultMock.mockResolvedValueOnce({
-      events: [
-        {
-          date: "2025-02-19",
-          time: "00:30",
-          country: "🇺🇸",
-          name: "Consumer Price Index (CPI)",
-        },
-      ],
-      status: "ok",
-    }).mockResolvedValueOnce({
-      events: [],
-      status: "error",
-    });
-
-    startOtherTimers(client as any, "channel-id", [], [], [{
-      name: "us-cpi-1h",
-      eventNameSubstrings: ["cpi"],
-      countryFlags: ["🇺🇸"],
-      roleId: "role-123",
-      minutesBefore: 60,
-    }] as any, []);
-    await Promise.resolve();
-    await Promise.resolve();
-
-    const initialDateJobs = getScheduledDateJobs();
-    expect(initialDateJobs).toHaveLength(1);
-
-    const refreshJob = getScheduledJobByTime(0, 5, "Europe/Berlin");
-    await refreshJob.callback();
-    await Promise.resolve();
-
-    expect(initialDateJobs[0].scheduledJob.cancel).not.toHaveBeenCalled();
-    expect(loggerMock.log).toHaveBeenCalledWith("warn", expect.objectContaining({
-      source: "calendar-reminder-refresh",
-      message: "Skipping calendar reminder refresh because calendar events could not be loaded.",
-    }));
   });
 
   test("startOtherTimers skips Friday announcement when asset is unavailable", async () => {
