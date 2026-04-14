@@ -19,7 +19,7 @@
     "@types/node": "^25.5.0",
     "axios": "^1.15.0",
     "class-transformer": "^0.5.1",
-    "discord.js": "^14.25.1",
+    "discord.js": "^14.26.2",
     "express": "^5.2.1",
     "js-yaml": "^4.1.1",
     "moment-timezone": "^0.6.1",
