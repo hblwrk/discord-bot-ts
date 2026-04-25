@@ -52,7 +52,6 @@ export function getInflightCount(): number {
 
 const serviceRegistry: ServiceRegistry = {
   "archive.today": (url: string) => `https://archive.ph/newest/${url}`,
-  "1ft.io": (url: string) => `https://1ft.io/${url}`,
   "freedium": (url: string) => `https://freedium.cfd/${url}`,
   "google-webcache": (url: string) => `https://webcache.googleusercontent.com/search?q=cache:${url}`,
 };
