@@ -728,7 +728,7 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
     dependencies.startNyseTimers(client, channelNyseId, gainsLossesThreadId);
     dependencies.startMncTimers(client, channelMncId);
     dependencies.addInlineResponses(client, sharedData.assets, sharedData.assetCommands);
-    dependencies.addTriggerResponses(client, sharedData.assets, sharedData.assetCommandsWithPrefix, sharedData.whatIsAssets);
+    dependencies.addTriggerResponses(client, sharedData.assets, sharedData.assetCommandsWithPrefix, sharedData.whatIsAssets, sharedData.paywallAssets);
     dependencies.interactSlashCommands(client, sharedData.assets, sharedData.assetCommands, sharedData.whatIsAssets, sharedData.tickers, sharedData.paywallAssets);
     startupState.markHandlersAttached();
 

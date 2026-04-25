@@ -1223,7 +1223,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       if (false === validator.isURL(rawUrl)) {
         await interaction.reply({
-          content: "Ungueltige URL. Bitte eine vollstaendige URL angeben (z.B. https://www.example.com/article).",
+          content: "Ungültige URL. Bitte eine vollständige URL angeben (z.B. https://www.example.com/article).",
           ephemeral: true,
         }).catch(error => {
           logger.log(
@@ -1248,7 +1248,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       }
 
       await interaction.editReply({
-        content: `Suche nach Paywall-Bypass fuer <${url}>... Das kann bis zu 60 Sekunden dauern.`,
+        content: `Suche nach Paywall-Bypass für <${url}>... Das kann bis zu 60 Sekunden dauern.`,
       }).catch(error => {
         logger.log(
           "error",
@@ -1263,7 +1263,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         if (true === result.nofix) {
           embed.setTitle("Paywall Bypass");
           embed.setDescription(
-            `Fuer diese Seite ist kein Paywall-Service bekannt.\n\nAlternativen:\n• Browser-Extension: Bypass Paywalls Clean\n  <https://github.com/AsenCME/bypass-paywalls>`,
+            `Für diese Seite ist leider kein Paywall-Bypass bekannt.`,
           );
           embed.addFields({name: "URL", value: `<${url}>`});
         } else {
@@ -1286,7 +1286,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           }
 
           if (0 === lines.length) {
-            lines.push("Keine Services verfuegbar.");
+            lines.push("Keine Services verfügbar.");
           }
 
           embed.addFields(
@@ -1307,7 +1307,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           `Error processing paywall slashcommand: ${error}`,
         );
         await interaction.editReply({
-          content: "Fehler beim Verarbeiten der Anfrage. Bitte spaeter erneut versuchen.",
+          content: "Fehler beim Verarbeiten der Anfrage. Bitte später erneut versuchen.",
         }).catch(editError => {
           logger.log(
             "error",
