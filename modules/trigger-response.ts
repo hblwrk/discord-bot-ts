@@ -7,6 +7,7 @@ import {getAssetByName, ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "
 import {cryptodice} from "./crypto-dice.js";
 import {lmgtfy} from "./lmgtfy.js";
 import {getLogger} from "./logging.js";
+import {getPaywallLinks, PaywallResult} from "./paywall.js";
 import {getRandomAssetByTriggerGroup} from "./random-asset.js";
 import {getRandomQuote} from "./random-quote.js";
 
@@ -108,7 +109,7 @@ async function sendMatchedAssetResponse(message, asset: unknown, assets: unknown
   }
 }
 
-export function addTriggerResponses(client, assets, assetCommandsWithPrefix, whatIsAssets) {
+export function addTriggerResponses(client, assets, assetCommandsWithPrefix, whatIsAssets, paywallAssets?) {
   // Message response to a trigger command (!command)
   client.on("messageCreate", async message => {
     if (true === message.author?.bot || Boolean(message.webhookId)) {
@@ -161,6 +162,70 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
             `Error sending lmgtfy response: ${error}`,
           );
         });
+      }
+    }
+
+    if (messageContent.startsWith("!paywall")) {
+      const url = messageContent.split("!paywall ")[1];
+      if ("string" === typeof url && "" !== url.trim()) {
+        const cleanUrl = url.trim().startsWith("http") ? url.trim() : `https://${url.trim()}`;
+        const workingMessage = await message.channel.send(
+          `Suche nach Paywall-Bypass fuer <${cleanUrl}>... Das kann bis zu 60 Sekunden dauern.`,
+        ).catch(error => {
+          logger.log(
+            "error",
+            `Error sending paywall working message: ${error}`,
+          );
+          return undefined;
+        });
+
+        try {
+          const result: PaywallResult = await getPaywallLinks(cleanUrl, paywallAssets ?? []);
+
+          if (true === result.nofix) {
+            const noFixResponse = `Fuer diese Seite ist leider kein Paywall-Bypass bekannt.`;
+            if (undefined !== workingMessage) {
+              await workingMessage.edit(noFixResponse);
+            } else {
+              await message.channel.send(noFixResponse);
+            }
+          } else {
+            const lines: string[] = [];
+            if (true === result.isDefault) {
+              lines.push("Unbekannte Seite — versuche allgemeine Services:\n");
+            }
+
+            for (const service of result.services) {
+              if (true === service.available) {
+                lines.push(`✅ **${service.name}**: <${service.url}>`);
+              } else {
+                lines.push(`❌ **${service.name}**: Nicht gefunden`);
+              }
+            }
+
+            if (0 === lines.length) {
+              lines.push("Keine Services verfuegbar.");
+            }
+
+            const response = lines.join("\n");
+            if (undefined !== workingMessage) {
+              await workingMessage.edit(response);
+            } else {
+              await message.channel.send(response);
+            }
+          }
+        } catch (error: unknown) {
+          logger.log(
+            "error",
+            `Error processing paywall trigger: ${error}`,
+          );
+          const errorResponse = "Fehler beim Verarbeiten der Anfrage. Bitte spaeter erneut versuchen.";
+          if (undefined !== workingMessage) {
+            await workingMessage.edit(errorResponse);
+          } else {
+            await message.channel.send(errorResponse);
+          }
+        }
       }
     }
 

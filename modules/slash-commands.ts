@@ -1263,7 +1263,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         if (true === result.nofix) {
           embed.setTitle("Paywall Bypass");
           embed.setDescription(
-            `Fuer diese Seite ist kein Paywall-Service bekannt.\n\nAlternativen:\n• Browser-Extension: Bypass Paywalls Clean\n  <https://github.com/AsenCME/bypass-paywalls>`,
+            `Fuer diese Seite ist leider kein Paywall-Bypass bekannt.`,
           );
           embed.addFields({name: "URL", value: `<${url}>`});
         } else {
