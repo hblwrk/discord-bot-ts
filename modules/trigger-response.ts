@@ -170,7 +170,7 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
       if ("string" === typeof url && "" !== url.trim()) {
         const cleanUrl = url.trim().startsWith("http") ? url.trim() : `https://${url.trim()}`;
         const workingMessage = await message.channel.send(
-          `Suche nach Paywall-Bypass fuer <${cleanUrl}>... Das kann bis zu 60 Sekunden dauern.`,
+          `Suche nach Paywall-Bypass für <${cleanUrl}>... Das kann bis zu 60 Sekunden dauern.`,
         ).catch(error => {
           logger.log(
             "error",
@@ -183,7 +183,7 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
           const result: PaywallResult = await getPaywallLinks(cleanUrl, paywallAssets ?? []);
 
           if (true === result.nofix) {
-            const noFixResponse = `Fuer diese Seite ist leider kein Paywall-Bypass bekannt.`;
+            const noFixResponse = `Für diese Seite ist leider kein Paywall-Bypass bekannt.`;
             if (undefined !== workingMessage) {
               await workingMessage.edit(noFixResponse);
             } else {
@@ -204,7 +204,7 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
             }
 
             if (0 === lines.length) {
-              lines.push("Keine Services verfuegbar.");
+              lines.push("Keine Services verfügbar.");
             }
 
             const response = lines.join("\n");
@@ -219,7 +219,7 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
             "error",
             `Error processing paywall trigger: ${error}`,
           );
-          const errorResponse = "Fehler beim Verarbeiten der Anfrage. Bitte spaeter erneut versuchen.";
+          const errorResponse = "Fehler beim Verarbeiten der Anfrage. Bitte später erneut versuchen.";
           if (undefined !== workingMessage) {
             await workingMessage.edit(errorResponse);
           } else {
