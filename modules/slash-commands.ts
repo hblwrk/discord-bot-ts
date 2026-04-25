@@ -6,6 +6,7 @@ import {getAssetByName, ImageAsset, TextAsset} from "./assets.js";
 import {cryptodice} from "./crypto-dice.js";
 import {getDiscordRateLimitRetryAfterMs, toDiscordTimerMs} from "./discord-retry-after.js";
 import {google, lmgtfy} from "./lmgtfy.js";
+import {getPaywallLinks, PaywallResult} from "./paywall.js";
 import {getDiscordLogger, getLogger} from "./logging.js";
 import {getRandomAsset} from "./random-asset.js";
 import {getRandomQuote} from "./random-quote.js";
@@ -35,7 +36,7 @@ const islandboiUnmuteTimers = new Map<string, ReturnType<typeof setTimeout>>();
 const slashCommandRestTimeoutMs = 120_000;
 const slashCommandNameLogLimit = 20;
 const maxSlashCommandsPerScope = 100;
-const fixedSlashCommandNames = ["cryptodice", "lmgtfy", "google", "8ball", "whatis", "quote", "islandboi", "sara", "earnings", "calendar"];
+const fixedSlashCommandNames = ["cryptodice", "lmgtfy", "google", "8ball", "whatis", "quote", "islandboi", "sara", "earnings", "calendar", "paywall"];
 
 class SlashRegistrationMismatchError extends Error {
   constructor(message: string) {
@@ -701,6 +702,15 @@ function createFixedSlashCommands(whatIsAssetsChoices, userAssetsChoices) {
         .setRequired(false));
   fixedSlashCommands.push(slashCommandCalendar.toJSON());
 
+  const slashCommandPaywall = new SlashCommandBuilder()
+    .setName("paywall")
+    .setDescription("Paywall bypass")
+    .addStringOption(option =>
+      option.setName("url")
+        .setDescription("Article URL")
+        .setRequired(true));
+  fixedSlashCommands.push(slashCommandPaywall.toJSON());
+
   return fixedSlashCommands;
 }
 
@@ -1097,7 +1107,7 @@ export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
   }
 }
 
-export function interactSlashCommands(client, assets, assetCommands, whatIsAssets, tickers: Ticker[]) {
+export function interactSlashCommands(client, assets, assetCommands, whatIsAssets, tickers: Ticker[], paywallAssets?) {
   const guildId = readSecret("discord_guild_ID").trim();
   // Respond to slash-commands
   client.on("interactionCreate", async interaction => {
@@ -1206,6 +1216,105 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           `Error replying to google slashcommand: ${error}`,
         );
       });
+    }
+
+    if ("paywall" === commandName) {
+      const rawUrl = interaction.options.getString("url", true).trim();
+
+      if (false === validator.isURL(rawUrl)) {
+        await interaction.reply({
+          content: "Ungueltige URL. Bitte eine vollstaendige URL angeben (z.B. https://www.example.com/article).",
+          ephemeral: true,
+        }).catch(error => {
+          logger.log(
+            "error",
+            `Error replying to paywall slashcommand (invalid URL): ${error}`,
+          );
+        });
+        return;
+      }
+
+      const url = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+
+      const deferred = await interaction.deferReply().then(() => true).catch(error => {
+        logger.log(
+          "error",
+          `Error deferring paywall slashcommand reply: ${error}`,
+        );
+        return false;
+      });
+      if (false === deferred) {
+        return;
+      }
+
+      await interaction.editReply({
+        content: `Suche nach Paywall-Bypass fuer <${url}>... Das kann bis zu 60 Sekunden dauern.`,
+      }).catch(error => {
+        logger.log(
+          "error",
+          `Error sending paywall working message: ${error}`,
+        );
+      });
+
+      try {
+        const result: PaywallResult = await getPaywallLinks(url, paywallAssets ?? []);
+        const embed = new EmbedBuilder();
+
+        if (true === result.nofix) {
+          embed.setTitle("Paywall Bypass");
+          embed.setDescription(
+            `Fuer diese Seite ist kein Paywall-Service bekannt.\n\nAlternativen:\n• Browser-Extension: Bypass Paywalls Clean\n  <https://github.com/AsenCME/bypass-paywalls>`,
+          );
+          embed.addFields({name: "URL", value: `<${url}>`});
+        } else {
+          const title = true === result.isDefault
+            ? "Paywall Bypass (unbekannte Seite)"
+            : "Paywall Bypass";
+          embed.setTitle(title);
+
+          if (true === result.isDefault) {
+            embed.setDescription("Unbekannte Seite — versuche allgemeine Services:");
+          }
+
+          const lines: string[] = [];
+          for (const service of result.services) {
+            if (true === service.available) {
+              lines.push(`✅ **${service.name}**: <${service.url}>`);
+            } else {
+              lines.push(`❌ **${service.name}**: Nicht gefunden`);
+            }
+          }
+
+          if (0 === lines.length) {
+            lines.push("Keine Services verfuegbar.");
+          }
+
+          embed.addFields(
+            {name: "Original", value: `<${url}>`},
+            {name: "Ergebnisse", value: lines.join("\n")},
+          );
+        }
+
+        await interaction.editReply({content: "", embeds: [embed]}).catch(error => {
+          logger.log(
+            "error",
+            `Error replying to paywall slashcommand: ${error}`,
+          );
+        });
+      } catch (error: unknown) {
+        logger.log(
+          "error",
+          `Error processing paywall slashcommand: ${error}`,
+        );
+        await interaction.editReply({
+          content: "Fehler beim Verarbeiten der Anfrage. Bitte spaeter erneut versuchen.",
+        }).catch(editError => {
+          logger.log(
+            "error",
+            `Error sending paywall error message: ${editError}`,
+          );
+        });
+      }
     }
 
     if ("whatis" === commandName) {

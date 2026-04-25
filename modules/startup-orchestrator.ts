@@ -64,6 +64,7 @@ type SharedStartupData = {
   roleAssets: any[];
   calendarReminderAssets: any[];
   earningsReminderAssets: any[];
+  paywallAssets: any[];
   tickers: Ticker[];
   assetCommands: string[];
   assetCommandsWithPrefix: string[];
@@ -642,6 +643,7 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
     roleAssets: [],
     calendarReminderAssets: [],
     earningsReminderAssets: [],
+    paywallAssets: [],
     tickers: [],
     assetCommands: [],
     assetCommandsWithPrefix: [],
@@ -727,7 +729,7 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
     dependencies.startMncTimers(client, channelMncId);
     dependencies.addInlineResponses(client, sharedData.assets, sharedData.assetCommands);
     dependencies.addTriggerResponses(client, sharedData.assets, sharedData.assetCommandsWithPrefix, sharedData.whatIsAssets);
-    dependencies.interactSlashCommands(client, sharedData.assets, sharedData.assetCommands, sharedData.whatIsAssets, sharedData.tickers);
+    dependencies.interactSlashCommands(client, sharedData.assets, sharedData.assetCommands, sharedData.whatIsAssets, sharedData.tickers, sharedData.paywallAssets);
     startupState.markHandlersAttached();
 
     logger.log(
@@ -1309,6 +1311,15 @@ async function warmRemoteData({
       logger.log(
         "info",
         `Loaded and cached ${sharedData.earningsReminderAssets.length} earnings reminder assets.`,
+      );
+    })());
+
+    warmupTasks.push((async () => {
+      const paywallAssets = await runWarmupTaskWithRetry("paywall-assets", async () => dependencies.getAssets("paywall"));
+      replaceArray(sharedData.paywallAssets, paywallAssets);
+      logger.log(
+        "info",
+        `Loaded and cached ${sharedData.paywallAssets.length} paywall assets.`,
       );
     })());
 

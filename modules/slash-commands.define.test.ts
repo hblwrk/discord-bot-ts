@@ -455,20 +455,21 @@ describe("defineSlashCommands", () => {
     const payload = buildSlashCommandPayload(assets, [], []);
 
     expect(payload.slashCommands).toHaveLength(100);
-    expect(payload.assetCommandsRegistered).toBe(90);
-    expect(payload.fixedCommandsRegistered).toBe(10);
-    expect(payload.skippedCommandLimit).toBe(5);
+    expect(payload.assetCommandsRegistered).toBe(89);
+    expect(payload.fixedCommandsRegistered).toBe(11);
+    expect(payload.skippedCommandLimit).toBe(6);
     expect(payload.expectedCommandNames).toContain("quote");
     expect(payload.expectedCommandNames).toContain("calendar");
-    expect(payload.expectedCommandNames).toContain("asset-90");
-    expect(payload.expectedCommandNames).not.toContain("asset-91");
+    expect(payload.expectedCommandNames).toContain("paywall");
+    expect(payload.expectedCommandNames).toContain("asset-89");
+    expect(payload.expectedCommandNames).not.toContain("asset-90");
     expect(loggerMock.log).toHaveBeenCalledWith(
       "warn",
       expect.objectContaining({
         source: "slash-registration",
         max_commands_per_scope: 100,
         total_commands_registered: 100,
-        skipped_command_limit: 5,
+        skipped_command_limit: 6,
         message: "Slash command payload built with skipped asset triggers.",
       }),
     );

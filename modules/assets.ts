@@ -430,6 +430,54 @@ export class EmojiAsset extends BaseAsset {
   }
 }
 
+export class PaywallAsset {
+  private _name: string;
+  private _domains: string[];
+  private _services: string[];
+  private _nofix: boolean;
+  private _subdomainWildcard: boolean;
+
+  public get name() {
+    return this._name;
+  }
+
+  public set name(name: string) {
+    this._name = name;
+  }
+
+  public get domains() {
+    return this._domains;
+  }
+
+  public set domains(domains: string[]) {
+    this._domains = domains;
+  }
+
+  public get services() {
+    return this._services;
+  }
+
+  public set services(services: string[]) {
+    this._services = services;
+  }
+
+  public get nofix() {
+    return this._nofix;
+  }
+
+  public set nofix(nofix: boolean) {
+    this._nofix = nofix;
+  }
+
+  public get subdomainWildcard() {
+    return this._subdomainWildcard;
+  }
+
+  public set subdomainWildcard(subdomainWildcard: boolean) {
+    this._subdomainWildcard = subdomainWildcard;
+  }
+}
+
 async function populateDracoonAsset(type: string, asset: ImageAsset | UserQuoteAsset): Promise<void> {
   if (false === asset.hasOwnProperty("_location") || "dracoon" !== asset.location) {
     return;
@@ -531,6 +579,12 @@ export async function getAssets(type: string): Promise<any[]> {
         case "earningsreminder": {
           const newAsset = plainToClass(EarningsReminderAsset, jsonObject);
           newAsset.roleId = readSecret(newAsset.roleIdReference);
+          newAssets.push(newAsset);
+          break;
+        }
+
+        case "paywall": {
+          const newAsset = plainToClass(PaywallAsset, jsonObject);
           newAssets.push(newAsset);
           break;
         }

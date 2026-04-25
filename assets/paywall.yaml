@@ -1,0 +1,188 @@
+---
+# === German news sites — services work ===
+- name: spiegel
+  domains: ["spiegel.de"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: zeit
+  domains: ["zeit.de"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: faz
+  domains: ["faz.net"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: sueddeutsche
+  domains: ["sueddeutsche.de"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: welt
+  domains: ["welt.de"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: bild
+  domains: ["bild.de"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: tagesspiegel
+  domains: ["tagesspiegel.de"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: wiwo
+  domains: ["wiwo.de"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: cicero
+  domains: ["cicero.de"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: berliner-zeitung
+  domains: ["berliner-zeitung.de"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: deraktionaer
+  domains: ["deraktionaer.de"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: funke
+  domains: ["abendblatt.de", "morgenpost.de", "waz.de", "nrz.de", "wp.de", "wr.de", "braunschweiger-zeitung.de", "otz.de", "thueringer-allgemeine.de", "tlz.de"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: madsack
+  domains: ["haz.de", "kn-online.de", "ln-online.de", "lvz.de", "maz-online.de", "neuepresse.de", "ostsee-zeitung.de", "rnd.de"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+# === German news sites — NO known web service fix ===
+- name: handelsblatt
+  domains: ["handelsblatt.com"]
+  nofix: true
+
+- name: manager-magazin
+  domains: ["manager-magazin.de"]
+  nofix: true
+
+- name: stern
+  domains: ["stern.de"]
+  nofix: true
+
+- name: heise
+  domains: ["heise.de"]
+  nofix: true
+
+- name: golem
+  domains: ["golem.de"]
+  nofix: true
+
+- name: businessinsider-de
+  domains: ["businessinsider.de"]
+  nofix: true
+
+# === Swiss/Austrian German-language ===
+- name: nzz
+  domains: ["nzz.ch"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: diepresse
+  domains: ["diepresse.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+# === US news sites — services work ===
+- name: nytimes
+  domains: ["nytimes.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: washingtonpost
+  domains: ["washingtonpost.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: wsj
+  domains: ["wsj.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: bloomberg
+  domains: ["bloomberg.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: theatlantic
+  domains: ["theatlantic.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: newyorker
+  domains: ["newyorker.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: economist
+  domains: ["economist.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: ft
+  domains: ["ft.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: wired
+  domains: ["wired.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: businessinsider
+  domains: ["businessinsider.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: forbes
+  domains: ["forbes.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: fortune
+  domains: ["fortune.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: latimes
+  domains: ["latimes.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: reuters
+  domains: ["reuters.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: theathletic
+  domains: ["theathletic.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: seekingalpha
+  domains: ["seekingalpha.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: barrons
+  domains: ["barrons.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: gannett
+  domains: ["usatoday.com", "azcentral.com", "freep.com", "indystar.com", "jsonline.com", "cincinnati.com", "dispatch.com", "tennessean.com", "knoxnews.com", "democratandchronicle.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: mcclatchy
+  domains: ["miamiherald.com", "kansascity.com", "sacbee.com", "charlotteobserver.com", "newsobserver.com", "star-telegram.com", "fresnobee.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+- name: tribune
+  domains: ["chicagotribune.com", "baltimoresun.com", "nydailynews.com", "orlandosentinel.com", "sun-sentinel.com"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
+
+# === US sites — NO known web service fix ===
+- name: theinformation
+  domains: ["theinformation.com"]
+  nofix: true
+
+- name: puck
+  domains: ["puck.news"]
+  nofix: true
+
+# === Platform-specific ===
+- name: medium
+  domains: ["medium.com"]
+  subdomainWildcard: true
+  services: ["freedium"]
+
+# === Default fallback for unknown domains ===
+- name: default
+  domains: ["*"]
+  services: ["archive.today", "1ft.io", "google-webcache"]
