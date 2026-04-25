@@ -7,6 +7,7 @@ import {cryptodice} from "./crypto-dice.js";
 import {getDiscordRateLimitRetryAfterMs, toDiscordTimerMs} from "./discord-retry-after.js";
 import {google, lmgtfy} from "./lmgtfy.js";
 import {getPaywallLinks, PaywallResult} from "./paywall.js";
+import {assertSafeRequestUrl, UnsafeUrlError} from "./safe-http.js";
 import {getDiscordLogger, getLogger} from "./logging.js";
 import {getRandomAsset} from "./random-asset.js";
 import {getRandomQuote} from "./random-quote.js";
@@ -1234,7 +1235,26 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         return;
       }
 
-      const url = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+      const candidateUrl = rawUrl.startsWith("http") ? rawUrl : `https://${rawUrl}`;
+      let url: string;
+      try {
+        url = assertSafeRequestUrl(candidateUrl).toString();
+      } catch (error: unknown) {
+        if (error instanceof UnsafeUrlError) {
+          await interaction.reply({
+            content: "Ungültige URL. Bitte eine öffentliche http(s)-URL angeben.",
+            ephemeral: true,
+          }).catch(replyError => {
+            logger.log(
+              "error",
+              `Error replying to paywall slashcommand (unsafe URL): ${replyError}`,
+            );
+          });
+          return;
+        }
+
+        throw error;
+      }
 
       const deferred = await interaction.deferReply().then(() => true).catch(error => {
         logger.log(

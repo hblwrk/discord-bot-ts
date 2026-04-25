@@ -8,6 +8,7 @@ import {cryptodice} from "./crypto-dice.js";
 import {lmgtfy} from "./lmgtfy.js";
 import {getLogger} from "./logging.js";
 import {getPaywallLinks, PaywallResult} from "./paywall.js";
+import {assertSafeRequestUrl, UnsafeUrlError} from "./safe-http.js";
 import {getRandomAssetByTriggerGroup} from "./random-asset.js";
 import {getRandomQuote} from "./random-quote.js";
 
@@ -168,7 +169,24 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
     if (messageContent.startsWith("!paywall")) {
       const url = messageContent.split("!paywall ")[1];
       if ("string" === typeof url && "" !== url.trim()) {
-        const cleanUrl = url.trim().startsWith("http") ? url.trim() : `https://${url.trim()}`;
+        const candidateUrl = url.trim().startsWith("http") ? url.trim() : `https://${url.trim()}`;
+        let cleanUrl: string;
+        try {
+          cleanUrl = assertSafeRequestUrl(candidateUrl).toString();
+        } catch (error: unknown) {
+          if (error instanceof UnsafeUrlError) {
+            await message.channel.send("Ungültige URL. Bitte eine öffentliche http(s)-URL angeben.").catch(sendError => {
+              logger.log(
+                "error",
+                `Error sending paywall unsafe-URL response: ${sendError}`,
+              );
+            });
+            return;
+          }
+
+          throw error;
+        }
+
         const workingMessage = await message.channel.send(
           `Suche nach Paywall-Bypass für <${cleanUrl}>... Das kann bis zu 60 Sekunden dauern.`,
         ).catch(error => {

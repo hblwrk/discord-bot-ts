@@ -1,6 +1,7 @@
 import axios from "axios";
 import {PaywallAsset} from "./assets.js";
 import {getLogger} from "./logging.js";
+import {safeHttpAgent, safeHttpsAgent} from "./safe-http.js";
 
 const logger = getLogger();
 
@@ -125,6 +126,8 @@ export async function extractHeadline(url: string): Promise<string | null> {
         "User-Agent": "Mozilla/5.0 (compatible; bot)",
       },
       responseType: "text",
+      httpAgent: safeHttpAgent,
+      httpsAgent: safeHttpsAgent,
     });
 
     const html = String(response.data);
