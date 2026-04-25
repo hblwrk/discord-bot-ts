@@ -199,12 +199,8 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
               if (true === service.available) {
                 lines.push(`✅ **${service.name}**: <${service.url}>`);
               } else {
-                lines.push(`❌ **${service.name}**: Nicht gefunden`);
+                lines.push(`❓ **${service.name}**: <${service.url}>`);
               }
-            }
-
-            if (0 === lines.length) {
-              lines.push("Keine Services verfügbar.");
             }
 
             const response = lines.join("\n");

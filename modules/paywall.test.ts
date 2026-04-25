@@ -53,7 +53,7 @@ describe("matchPaywallAsset", () => {
     createPaywallAsset({name: "nytimes", domains: ["nytimes.com"], services: ["archive.today"]}),
     createPaywallAsset({name: "medium", domains: ["medium.com"], services: ["freedium"], subdomainWildcard: true}),
     createPaywallAsset({name: "handelsblatt", domains: ["handelsblatt.com"], nofix: true}),
-    createPaywallAsset({name: "default", domains: ["*"], services: ["archive.today", "1ft.io"]}),
+    createPaywallAsset({name: "default", domains: ["*"], services: ["archive.today", "google-webcache"]}),
   ];
 
   test("matches exact domain", () => {
@@ -91,11 +91,6 @@ describe("buildServiceUrl", () => {
   test("builds archive.today URL", () => {
     expect(buildServiceUrl("archive.today", "https://example.com/article"))
       .toBe("https://archive.ph/newest/https://example.com/article");
-  });
-
-  test("builds 1ft.io URL", () => {
-    expect(buildServiceUrl("1ft.io", "https://example.com/article"))
-      .toBe("https://1ft.io/https://example.com/article");
   });
 
   test("builds freedium URL", () => {
@@ -196,7 +191,7 @@ describe("checkService", () => {
 
 describe("getPaywallLinks", () => {
   const assets = [
-    createPaywallAsset({name: "nytimes", domains: ["nytimes.com"], services: ["archive.today", "1ft.io"]}),
+    createPaywallAsset({name: "nytimes", domains: ["nytimes.com"], services: ["archive.today", "google-webcache"]}),
     createPaywallAsset({name: "handelsblatt", domains: ["handelsblatt.com"], nofix: true}),
     createPaywallAsset({name: "default", domains: ["*"], services: ["archive.today"]}),
   ];
@@ -222,7 +217,7 @@ describe("getPaywallLinks", () => {
     expect(result.isDefault).toBe(false);
     expect(result.services).toHaveLength(2);
     const serviceNames = result.services.map(s => s.name).sort();
-    expect(serviceNames).toEqual(["1ft.io", "archive.today"]);
+    expect(serviceNames).toEqual(["archive.today", "google-webcache"]);
     expect(result.services.every(s => s.available)).toBe(true);
   });
 
