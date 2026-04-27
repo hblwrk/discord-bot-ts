@@ -17,7 +17,7 @@
   "keywords": [],
   "dependencies": {
     "@types/node": "^25.5.2",
-    "axios": "^1.15.0",
+    "axios": "^1.15.1",
     "class-transformer": "^0.5.1",
     "discord.js": "^14.26.2",
     "express": "^5.2.1",
