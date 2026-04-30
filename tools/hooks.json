@@ -1,21 +1,28 @@
-[  
+[
   {
-  "id": "redeploy-XXX",
-  "execute-command": "/home/user/webhook/redeploy.sh",
-  "command-working-directory": "/home/user/webhook",
-  "response-message": "Redeploying bot.",
-  "trigger-rule":
-  {
-    "match":
-    {
-      "type": "value",
-      "value": "XXX",
-      "parameter":
+    "id": "redeploy-XXX",
+    "execute-command": "/home/user/webhook/redeploy.sh",
+    "command-working-directory": "/home/user/webhook",
+    "response-message": "Redeploying bot.",
+    "pass-arguments-to-command": [
       {
-        "source": "header",
-        "name": "X-Hblwrk-Auth"
+        "source": "payload",
+        "name": "digest"
+      },
+      {
+        "source": "payload",
+        "name": "commit_sha"
+      }
+    ],
+    "trigger-rule": {
+      "match": {
+        "type": "value",
+        "value": "XXX",
+        "parameter": {
+          "source": "header",
+          "name": "X-Hblwrk-Auth"
+        }
       }
     }
   }
-}
 ]

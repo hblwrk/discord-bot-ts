@@ -62,8 +62,8 @@ The bot is deployed at our server, running as a docker container in Docker Swarm
 * Security scanning in the main workflow is executed using Checkov.
 * Additional security scanning is handled by dedicated CodeQL, njsscan and Semgrep workflows.
 * The container image is built, pushed and signed with cosign.
-* The server gets notified via webhook to start deployment.
-* The server-side redeploy script verifies the image signature and only deploys production after staging reports `/api/v1/ready`.
+* The server gets notified via webhook with the image digest and commit SHA to deploy.
+* The server-side redeploy script verifies that exact image digest and commit binding, then only deploys production after staging reports `/api/v1/ready`.
 
 The webhook runs as a user-mode `systemd` service for user `mheiland`, all relevant configuration can be found at that user's home directory.
 
@@ -235,6 +235,7 @@ Real-time market-data is being pulled in through a Websocket connection and dist
 The bots lifecycle is managed using the `tools/docker-compose-production.yml` file provided at this repository. It contains useful security settings, resource limits and injects secrets. The service is then deployed using Docker Swarm.
 
 ```bash
+DISCORD_BOT_IMAGE="ghcr.io/hblwrk/discord-bot-ts@sha256:<digest>" \
 docker stack deploy --with-registry-auth --prune --compose-file tools/docker-compose-production.yml discord-bot-ts_production
 docker stack rm discord-bot-ts_production
 ```
