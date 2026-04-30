@@ -9,6 +9,7 @@ import {
   getPaywallLinks,
   getServiceSuccessRate,
   getInflightCount,
+  PaywallLookupCapacityError,
 } from "./paywall.js";
 
 jest.mock("axios");
@@ -19,6 +20,10 @@ jest.mock("./logging.js", () => ({
 }));
 
 const mockedAxios = axios as jest.Mocked<typeof axios>;
+
+beforeEach(() => {
+  mockedAxios.get.mockReset();
+});
 
 function createPaywallAsset(overrides: Partial<{name: string; domains: string[]; services: string[]; nofix: boolean; subdomainWildcard: boolean}>): PaywallAsset {
   const asset = new PaywallAsset();
@@ -51,9 +56,9 @@ describe("extractHostname", () => {
 describe("matchPaywallAsset", () => {
   const assets = [
     createPaywallAsset({name: "nytimes", domains: ["nytimes.com"], services: ["archive.today"]}),
-    createPaywallAsset({name: "medium", domains: ["medium.com"], services: ["freedium"], subdomainWildcard: true}),
-    createPaywallAsset({name: "handelsblatt", domains: ["handelsblatt.com"], nofix: true}),
-    createPaywallAsset({name: "default", domains: ["*"], services: ["archive.today", "google-webcache"]}),
+    createPaywallAsset({name: "medium", domains: ["medium.com"], services: ["archive.today"], subdomainWildcard: true}),
+    createPaywallAsset({name: "puck", domains: ["puck.news"], nofix: true}),
+    createPaywallAsset({name: "default", domains: ["*"], services: ["archive.today"]}),
   ];
 
   test("matches exact domain", () => {
@@ -72,8 +77,8 @@ describe("matchPaywallAsset", () => {
   });
 
   test("matches nofix domain", () => {
-    const result = matchPaywallAsset("https://www.handelsblatt.com/article", assets);
-    expect(result?.name).toBe("handelsblatt");
+    const result = matchPaywallAsset("https://www.puck.news/article", assets);
+    expect(result?.name).toBe("puck");
   });
 
   test("falls back to default for unknown domain", () => {
@@ -93,18 +98,16 @@ describe("buildServiceUrl", () => {
       .toBe("https://archive.ph/newest/https://example.com/article");
   });
 
-  test("builds freedium URL", () => {
-    expect(buildServiceUrl("freedium", "https://medium.com/article"))
-      .toBe("https://freedium.cfd/https://medium.com/article");
-  });
-
-  test("builds google-webcache URL", () => {
-    expect(buildServiceUrl("google-webcache", "https://example.com/article"))
-      .toBe("https://webcache.googleusercontent.com/search?q=cache:https://example.com/article");
-  });
-
   test("returns undefined for unknown service", () => {
     expect(buildServiceUrl("nonexistent", "https://example.com")).toBeUndefined();
+  });
+
+  test("does not build retired freedium service URLs", () => {
+    expect(buildServiceUrl("freedium", "https://medium.com/article")).toBeUndefined();
+  });
+
+  test("does not build retired google cache service URLs", () => {
+    expect(buildServiceUrl("google-webcache", "https://example.com/article")).toBeUndefined();
   });
 });
 
@@ -116,6 +119,15 @@ describe("extractHeadline", () => {
 
     const result = await extractHeadline("https://example.com/article");
     expect(result).toBe("Breaking News Article");
+    expect(mockedAxios.get).toHaveBeenCalledWith(
+      "https://example.com/article",
+      expect.objectContaining({
+        maxContentLength: expect.any(Number),
+        maxBodyLength: expect.any(Number),
+        httpAgent: expect.any(Object),
+        httpsAgent: expect.any(Object),
+      }),
+    );
   });
 
   test("extracts og:title with reversed attribute order", async () => {
@@ -161,6 +173,15 @@ describe("checkService", () => {
 
     const result = await checkService("https://archive.ph/newest/test", "Breaking News Article");
     expect(result).toBe(true);
+    expect(mockedAxios.get).toHaveBeenCalledWith(
+      "https://archive.ph/newest/test",
+      expect.objectContaining({
+        maxContentLength: expect.any(Number),
+        maxBodyLength: expect.any(Number),
+        httpAgent: expect.any(Object),
+        httpsAgent: expect.any(Object),
+      }),
+    );
   });
 
   test("returns false when headline words not found in response", async () => {
@@ -191,13 +212,13 @@ describe("checkService", () => {
 
 describe("getPaywallLinks", () => {
   const assets = [
-    createPaywallAsset({name: "nytimes", domains: ["nytimes.com"], services: ["archive.today", "google-webcache"]}),
-    createPaywallAsset({name: "handelsblatt", domains: ["handelsblatt.com"], nofix: true}),
+    createPaywallAsset({name: "nytimes", domains: ["nytimes.com"], services: ["archive.today"]}),
+    createPaywallAsset({name: "puck", domains: ["puck.news"], nofix: true}),
     createPaywallAsset({name: "default", domains: ["*"], services: ["archive.today"]}),
   ];
 
   test("returns nofix result for nofix domain", async () => {
-    const result = await getPaywallLinks("https://www.handelsblatt.com/article", assets);
+    const result = await getPaywallLinks("https://www.puck.news/article", assets);
     expect(result.nofix).toBe(true);
     expect(result.services).toHaveLength(0);
   });
@@ -215,9 +236,9 @@ describe("getPaywallLinks", () => {
     const result = await getPaywallLinks("https://www.nytimes.com/article", assets);
     expect(result.nofix).toBe(false);
     expect(result.isDefault).toBe(false);
-    expect(result.services).toHaveLength(2);
+    expect(result.services).toHaveLength(1);
     const serviceNames = result.services.map(s => s.name).sort();
-    expect(serviceNames).toEqual(["archive.today", "google-webcache"]);
+    expect(serviceNames).toEqual(["archive.today"]);
     expect(result.services.every(s => s.available)).toBe(true);
   });
 
@@ -243,6 +264,70 @@ describe("getPaywallLinks", () => {
     ]);
 
     expect(result1).toBe(result2);
+    expect(getInflightCount()).toBe(0);
+  });
+
+  test("limits active unique lookups globally", async () => {
+    const limitedAssets = [
+      createPaywallAsset({name: "default", domains: ["*"], services: []}),
+    ];
+    const resolvers: ((value: {data: string}) => void)[] = [];
+    mockedAxios.get.mockImplementation(() => new Promise(resolve => {
+      resolvers.push(resolve);
+    }));
+
+    const activeLookups = [0, 1, 2, 3].map(index => getPaywallLinks(
+      `https://www.example-${index}.com/article`,
+      limitedAssets,
+      {requesterId: `user-${index}`},
+    ));
+
+    expect(getInflightCount()).toBe(4);
+    await expect(getPaywallLinks(
+      "https://www.example-overflow.com/article",
+      limitedAssets,
+      {requesterId: "overflow-user"},
+    )).rejects.toThrow(PaywallLookupCapacityError);
+
+    for (const resolve of resolvers) {
+      resolve({data: "<html><head><title>Done</title></head></html>"});
+    }
+
+    await Promise.all(activeLookups);
+    expect(getInflightCount()).toBe(0);
+  });
+
+  test("limits active lookups per requester while allowing duplicate URL dedupe", async () => {
+    const limitedAssets = [
+      createPaywallAsset({name: "default", domains: ["*"], services: []}),
+    ];
+    let resolveHeadline: ((value: {data: string}) => void) | undefined;
+    mockedAxios.get.mockImplementation(() => new Promise(resolve => {
+      resolveHeadline = resolve;
+    }));
+
+    const activeLookup = getPaywallLinks(
+      "https://www.example.com/first",
+      limitedAssets,
+      {requesterId: "same-user"},
+    );
+    const duplicateLookup = getPaywallLinks(
+      "https://www.example.com/first",
+      limitedAssets,
+      {requesterId: "same-user"},
+    );
+
+    await expect(getPaywallLinks(
+      "https://www.example.com/second",
+      limitedAssets,
+      {requesterId: "same-user"},
+    )).rejects.toThrow(PaywallLookupCapacityError);
+    expect(getInflightCount()).toBe(1);
+
+    resolveHeadline?.({data: "<html><head><title>Done</title></head></html>"});
+    const [result, duplicateResult] = await Promise.all([activeLookup, duplicateLookup]);
+    expect(result).toBe(duplicateResult);
+    expect(getInflightCount()).toBe(0);
   });
 
   test("ranks available services before unavailable ones", async () => {
