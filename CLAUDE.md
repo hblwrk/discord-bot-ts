@@ -32,7 +32,7 @@ Coding guidance for this repo. Extracts the rules a contributor (human or agent)
 ## CI/CD invariants
 
 - `main` is the released branch. All work goes via feature branches and PRs.
-- The CI pipeline runs: tests + typecheck → Dockerfile validator + Checkov + Sysdig CIS benchmark → image build/push to `ghcr.io` → Trivy scan (HIGH/CRITICAL, fixed only) → cosign sign → webhook redeploy. Staging must report `/api/v1/ready` before production rolls.
+- The CI pipeline runs: tests + typecheck → Dockerfile validator + Checkov + Sysdig CIS benchmark → image build/push to `ghcr.io` → Trivy scan (HIGH/CRITICAL, fixed only) → cosign sign → webhook redeploy by image digest. Staging must report `/api/v1/ready` before production rolls.
 - Separate workflows run CodeQL, njsscan, and Semgrep. Treat their findings as blocking.
 - Don't loosen any of: `coverageThreshold`, `npm audit --audit-level=high`, Trivy severity filters, Checkov framework scope, image signing, or the staging readiness gate. If one is genuinely the wrong fit, raise it explicitly rather than editing it through.
 

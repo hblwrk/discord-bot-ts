@@ -151,7 +151,15 @@ jobs:
         run: |
           echo "${{ secrets.COSIGN_KEY }}" > /tmp/cosign.key
           image_ref="${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ needs.build.outputs.digest }}"
-          cosign sign --yes --tlog-upload=true --key /tmp/cosign.key "${image_ref}"
+          commit_sha="${{ github.sha }}"
+          repository="${{ github.repository }}"
+          cosign sign \
+            --yes \
+            --tlog-upload=true \
+            --key /tmp/cosign.key \
+            -a "git_sha=${commit_sha}" \
+            -a "repository=${repository}" \
+            "${image_ref}"
         env:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
   
@@ -167,8 +175,12 @@ jobs:
           REDEPLOY_URL: ${{ secrets.REDEPLOY_URL }}
           REDEPLOY_AUTH: ${{ secrets.REDEPLOY_AUTH }}
         run: |
+          image_digest="${{ needs.build.outputs.digest }}"
+          commit_sha="${{ github.sha }}"
           curl -fsS -X POST \
             -H "X-Hblwrk-Auth: ${REDEPLOY_AUTH}" \
+            -H "Content-Type: application/json" \
+            --data "{\"digest\":\"${image_digest}\",\"commit_sha\":\"${commit_sha}\"}" \
             "${REDEPLOY_URL}"
 
       - name: Actions Status Discord
