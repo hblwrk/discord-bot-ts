@@ -2,60 +2,61 @@
 # === German news sites — services work ===
 - name: spiegel
   domains: ["spiegel.de"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: zeit
   domains: ["zeit.de"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: faz
   domains: ["faz.net"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: sueddeutsche
   domains: ["sueddeutsche.de"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: welt
   domains: ["welt.de"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: bild
   domains: ["bild.de"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: tagesspiegel
   domains: ["tagesspiegel.de"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: wiwo
   domains: ["wiwo.de"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: cicero
   domains: ["cicero.de"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: berliner-zeitung
   domains: ["berliner-zeitung.de"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: deraktionaer
   domains: ["deraktionaer.de"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: funke
   domains: ["abendblatt.de", "morgenpost.de", "waz.de", "nrz.de", "wp.de", "wr.de", "braunschweiger-zeitung.de", "otz.de", "thueringer-allgemeine.de", "tlz.de"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: madsack
   domains: ["haz.de", "kn-online.de", "ln-online.de", "lvz.de", "maz-online.de", "neuepresse.de", "ostsee-zeitung.de", "rnd.de"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
-# === German news sites — NO known web service fix ===
 - name: handelsblatt
   domains: ["handelsblatt.com"]
-  nofix: true
+  services: ["archive.today"]
+
+# === German news sites — NO known web service fix ===
 
 - name: manager-magazin
   domains: ["manager-magazin.de"]
@@ -80,92 +81,100 @@
 # === Swiss/Austrian German-language ===
 - name: nzz
   domains: ["nzz.ch"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: diepresse
   domains: ["diepresse.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 # === US news sites — services work ===
 - name: nytimes
   domains: ["nytimes.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: washingtonpost
   domains: ["washingtonpost.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: wsj
   domains: ["wsj.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: bloomberg
   domains: ["bloomberg.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: theatlantic
   domains: ["theatlantic.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: newyorker
   domains: ["newyorker.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: economist
   domains: ["economist.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: ft
   domains: ["ft.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: wired
   domains: ["wired.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: businessinsider
   domains: ["businessinsider.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: forbes
   domains: ["forbes.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: fortune
   domains: ["fortune.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: latimes
   domains: ["latimes.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: reuters
   domains: ["reuters.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: theathletic
   domains: ["theathletic.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: seekingalpha
   domains: ["seekingalpha.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: barrons
   domains: ["barrons.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
+
+- name: marketwatch
+  domains: ["marketwatch.com"]
+  services: ["archive.today"]
+
+- name: thetimes
+  domains: ["thetimes.com", "thetimes.co.uk"]
+  services: ["archive.today"]
 
 - name: gannett
   domains: ["usatoday.com", "azcentral.com", "freep.com", "indystar.com", "jsonline.com", "cincinnati.com", "dispatch.com", "tennessean.com", "knoxnews.com", "democratandchronicle.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: mcclatchy
   domains: ["miamiherald.com", "kansascity.com", "sacbee.com", "charlotteobserver.com", "newsobserver.com", "star-telegram.com", "fresnobee.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 - name: tribune
   domains: ["chicagotribune.com", "baltimoresun.com", "nydailynews.com", "orlandosentinel.com", "sun-sentinel.com"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]
 
 # === US sites — NO known web service fix ===
 - name: theinformation
@@ -180,9 +189,9 @@
 - name: medium
   domains: ["medium.com"]
   subdomainWildcard: true
-  services: ["freedium"]
+  services: ["archive.today"]
 
 # === Default fallback for unknown domains ===
 - name: default
   domains: ["*"]
-  services: ["archive.today", "google-webcache"]
+  services: ["archive.today"]

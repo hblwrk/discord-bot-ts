@@ -6,7 +6,12 @@ import {getAssetByName, ImageAsset, TextAsset} from "./assets.js";
 import {cryptodice} from "./crypto-dice.js";
 import {getDiscordRateLimitRetryAfterMs, toDiscordTimerMs} from "./discord-retry-after.js";
 import {google, lmgtfy} from "./lmgtfy.js";
-import {getPaywallLinks, PaywallResult} from "./paywall.js";
+import {
+  getPaywallLinks,
+  PaywallLookupCapacityError,
+  paywallLookupBusyMessage,
+  PaywallResult,
+} from "./paywall.js";
 import {assertSafeRequestUrl, UnsafeUrlError} from "./safe-http.js";
 import {getDiscordLogger, getLogger} from "./logging.js";
 import {getRandomAsset} from "./random-asset.js";
@@ -1277,7 +1282,9 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       });
 
       try {
-        const result: PaywallResult = await getPaywallLinks(url, paywallAssets ?? []);
+        const result: PaywallResult = await getPaywallLinks(url, paywallAssets ?? [], {
+          requesterId: interaction.user.id,
+        });
         const embed = new EmbedBuilder();
 
         if (true === result.nofix) {
@@ -1318,6 +1325,18 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           );
         });
       } catch (error: unknown) {
+        if (error instanceof PaywallLookupCapacityError) {
+          await interaction.editReply({
+            content: paywallLookupBusyMessage,
+          }).catch(editError => {
+            logger.log(
+              "error",
+              `Error sending paywall busy message: ${editError}`,
+            );
+          });
+          return;
+        }
+
         logger.log(
           "error",
           `Error processing paywall slashcommand: ${error}`,

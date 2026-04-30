@@ -7,7 +7,12 @@ import {getAssetByName, ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "
 import {cryptodice} from "./crypto-dice.js";
 import {lmgtfy} from "./lmgtfy.js";
 import {getLogger} from "./logging.js";
-import {getPaywallLinks, PaywallResult} from "./paywall.js";
+import {
+  getPaywallLinks,
+  PaywallLookupCapacityError,
+  paywallLookupBusyMessage,
+  PaywallResult,
+} from "./paywall.js";
 import {assertSafeRequestUrl, UnsafeUrlError} from "./safe-http.js";
 import {getRandomAssetByTriggerGroup} from "./random-asset.js";
 import {getRandomQuote} from "./random-quote.js";
@@ -198,7 +203,9 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
         });
 
         try {
-          const result: PaywallResult = await getPaywallLinks(cleanUrl, paywallAssets ?? []);
+          const result: PaywallResult = await getPaywallLinks(cleanUrl, paywallAssets ?? [], {
+            requesterId: message.author?.id,
+          });
 
           if (true === result.nofix) {
             const noFixResponse = `Für diese Seite ist leider kein Paywall-Bypass bekannt.`;
@@ -229,6 +236,15 @@ export function addTriggerResponses(client, assets, assetCommandsWithPrefix, wha
             }
           }
         } catch (error: unknown) {
+          if (error instanceof PaywallLookupCapacityError) {
+            if (undefined !== workingMessage) {
+              await workingMessage.edit(paywallLookupBusyMessage);
+            } else {
+              await message.channel.send(paywallLookupBusyMessage);
+            }
+            return;
+          }
+
           logger.log(
             "error",
             `Error processing paywall trigger: ${error}`,

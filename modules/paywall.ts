@@ -7,12 +7,31 @@ const logger = getLogger();
 
 const headlineTimeoutMs = 15_000;
 const serviceCheckTimeoutMs = 60_000;
-const inflightCacheTtlMs = 120_000;
+const headlineMaxResponseBytes = 256 * 1024;
+const serviceCheckMaxResponseBytes = 1024 * 1024;
+const maxActivePaywallLookups = 4;
+const maxActivePaywallLookupsPerRequester = 1;
+export const paywallLookupBusyMessage = "Paywall-Lookup ist gerade ausgelastet. Bitte gleich erneut versuchen.";
 
 type ServiceRegistry = Record<string, (url: string) => string>;
+type PaywallLookupCapacityScope = "global" | "requester";
+type PaywallLookupOptions = {
+  requesterId?: string;
+};
 
 const inflightRequests = new Map<string, Promise<PaywallResult>>();
+const activeLookupCountByRequester = new Map<string, number>();
 const serviceStats = new Map<string, {successes: number; failures: number}>();
+
+export class PaywallLookupCapacityError extends Error {
+  public readonly scope: PaywallLookupCapacityScope;
+
+  constructor(scope: PaywallLookupCapacityScope) {
+    super(paywallLookupBusyMessage);
+    this.name = "PaywallLookupCapacityError";
+    this.scope = scope;
+  }
+}
 
 export function getServiceSuccessRate(serviceName: string): number {
   const stats = serviceStats.get(serviceName);
@@ -51,10 +70,52 @@ export function getInflightCount(): number {
   return inflightRequests.size;
 }
 
+function normalizeRequesterId(requesterId: string | undefined): string | undefined {
+  const normalizedRequesterId = requesterId?.trim();
+  if (!normalizedRequesterId) {
+    return undefined;
+  }
+
+  return normalizedRequesterId;
+}
+
+function getActiveLookupCountForRequester(requesterId: string): number {
+  return activeLookupCountByRequester.get(requesterId) ?? 0;
+}
+
+function reserveLookupCapacity(requesterId: string | undefined): void {
+  if (inflightRequests.size >= maxActivePaywallLookups) {
+    throw new PaywallLookupCapacityError("global");
+  }
+
+  if (undefined === requesterId) {
+    return;
+  }
+
+  const activeRequesterLookups = getActiveLookupCountForRequester(requesterId);
+  if (activeRequesterLookups >= maxActivePaywallLookupsPerRequester) {
+    throw new PaywallLookupCapacityError("requester");
+  }
+
+  activeLookupCountByRequester.set(requesterId, activeRequesterLookups + 1);
+}
+
+function releaseLookupCapacity(requesterId: string | undefined): void {
+  if (undefined === requesterId) {
+    return;
+  }
+
+  const activeRequesterLookups = getActiveLookupCountForRequester(requesterId);
+  if (activeRequesterLookups <= 1) {
+    activeLookupCountByRequester.delete(requesterId);
+    return;
+  }
+
+  activeLookupCountByRequester.set(requesterId, activeRequesterLookups - 1);
+}
+
 const serviceRegistry: ServiceRegistry = {
   "archive.today": (url: string) => `https://archive.ph/newest/${url}`,
-  "freedium": (url: string) => `https://freedium.cfd/${url}`,
-  "google-webcache": (url: string) => `https://webcache.googleusercontent.com/search?q=cache:${url}`,
 };
 
 export type PaywallServiceResult = {
@@ -126,6 +187,8 @@ export async function extractHeadline(url: string): Promise<string | null> {
         "User-Agent": "Mozilla/5.0 (compatible; bot)",
       },
       responseType: "text",
+      maxContentLength: headlineMaxResponseBytes,
+      maxBodyLength: headlineMaxResponseBytes,
       httpAgent: safeHttpAgent,
       httpsAgent: safeHttpsAgent,
     });
@@ -162,6 +225,10 @@ export async function checkService(serviceUrl: string, headline: string | null):
         "User-Agent": "Mozilla/5.0 (compatible; bot)",
       },
       responseType: "text",
+      maxContentLength: serviceCheckMaxResponseBytes,
+      maxBodyLength: serviceCheckMaxResponseBytes,
+      httpAgent: safeHttpAgent,
+      httpsAgent: safeHttpsAgent,
       validateStatus: (status: number) => status < 400,
     });
 
@@ -249,7 +316,11 @@ async function executePaywallLookup(url: string, paywallAssets: PaywallAsset[]):
   };
 }
 
-export async function getPaywallLinks(url: string, paywallAssets: PaywallAsset[]): Promise<PaywallResult> {
+export async function getPaywallLinks(
+  url: string,
+  paywallAssets: PaywallAsset[],
+  options: PaywallLookupOptions = {},
+): Promise<PaywallResult> {
   const existing = inflightRequests.get(url);
   if (undefined !== existing) {
     logger.log(
@@ -259,11 +330,12 @@ export async function getPaywallLinks(url: string, paywallAssets: PaywallAsset[]
     return existing;
   }
 
+  const requesterId = normalizeRequesterId(options.requesterId);
+  reserveLookupCapacity(requesterId);
+
   const promise = executePaywallLookup(url, paywallAssets).finally(() => {
-    const timer = setTimeout(() => {
-      inflightRequests.delete(url);
-    }, inflightCacheTtlMs);
-    timer.unref();
+    inflightRequests.delete(url);
+    releaseLookupCapacity(requesterId);
   });
 
   inflightRequests.set(url, promise);
