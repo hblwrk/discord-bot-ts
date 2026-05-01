@@ -12,7 +12,6 @@ type StartupPreflightFailure = {
 type StartupPreflightOptions = {
   brokerYesRoleId: string;
   channelClownboardId: string;
-  channelBreakingNewsId: string;
   channelMncId: string;
   channelNyseId: string;
   channelOtherId: string;
@@ -254,15 +253,6 @@ export async function runStartupPreflight(
   await checkChannel({
     channelId: options.channelNyseId,
     label: "NYSE announcements",
-    requireSendCapability: true,
-    requiredPermissions: [
-      PermissionFlagsBits.ViewChannel,
-      PermissionFlagsBits.SendMessages,
-    ],
-  });
-  await checkChannel({
-    channelId: options.channelBreakingNewsId,
-    label: "Breaking news",
     requireSendCapability: true,
     requiredPermissions: [
       PermissionFlagsBits.ViewChannel,

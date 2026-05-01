@@ -107,7 +107,7 @@ export function createMockClient(options: {
     PermissionFlagsBits.AddReactions,
   ];
   const missingChannelIdSet = new Set(missingChannelIds);
-  const channelIds = ["nyse", "breaking-news", "mnc", "other", "clownboard", ...Object.keys(channelPermissionsById)];
+  const channelIds = ["nyse", "mnc", "other", "clownboard", ...Object.keys(channelPermissionsById)];
   const channelsById = new Map<string, MockChannel>();
   for (const channelId of channelIds) {
     if (true === missingChannelIdSet.has(channelId)) {
@@ -217,7 +217,6 @@ export function createDependencies(overrides = {}) {
       discord_token: "token",
       hblwrk_channel_NYSEAnnouncement_ID: "nyse",
       hblwrk_gainslosses_thread_ID: "gains-losses-thread",
-      hblwrk_channel_BreakingNews_ID: "breaking-news",
       hblwrk_channel_MNCAnnouncement_ID: "mnc",
       hblwrk_channel_OtherAnnouncement_ID: "other",
       hblwrk_channel_clownboard_ID: "clownboard",

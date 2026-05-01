@@ -9,7 +9,6 @@ function createOptions(overrides: Partial<StartupPreflightOptions> = {}): Startu
   return {
     brokerYesRoleId: "broker-yes-role-id",
     channelClownboardId: "clownboard-channel-id",
-    channelBreakingNewsId: "breaking-news-channel-id",
     channelMncId: "mnc-channel-id",
     channelNyseId: "nyse-channel-id",
     channelOtherId: "other-channel-id",
@@ -41,7 +40,6 @@ function createFixture(options = createOptions()) {
   };
   const channelsById = new Map<string, typeof channel>([
     [options.channelNyseId, channel],
-    [options.channelBreakingNewsId, channel],
     [options.channelMncId, channel],
     [options.channelOtherId, channel],
     [options.channelClownboardId, channel],
@@ -122,7 +120,7 @@ describe("runStartupPreflight", () => {
       "info",
       expect.objectContaining({
         task: "preflight",
-        checked_channels: 6,
+        checked_channels: 5,
         checked_roles: 2,
         checked_role_assignment_messages: 2,
         message: "Startup preflight passed.",
