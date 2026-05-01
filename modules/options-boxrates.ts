@@ -492,16 +492,17 @@ function formatStrike(strike: number): string {
   }).replace(/\.00$/, "");
 }
 
-function formatShortExpirationMonth(expiration: string): string {
+function formatShortExpiration(expiration: string): string {
   const date = parseExpirationDate(expiration);
   const month = shortMonths[date.getUTCMonth()] ?? "";
+  const day = date.getUTCDate().toString().padStart(2, "0");
   const year = date.getUTCFullYear().toString().slice(-2);
-  return `${month}${year}`;
+  return `${month}${day}'${year}`;
 }
 
 function formatBoxRateRow(row: BoxRateRow): string {
   return [
-    `\`${formatShortExpirationMonth(row.expiration)}\``,
+    `\`${formatShortExpiration(row.expiration)}\``,
     `\`${row.actualDte} DTE\``,
     `\`${formatStrike(row.lowerStrike)}/${formatStrike(row.upperStrike)} x${row.contracts}\``,
     `Mid \`${formatRate(row.midRate)}\``,

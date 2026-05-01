@@ -126,8 +126,8 @@ describe("options-boxrates", () => {
     expect(result.rows).toHaveLength(2);
     expect(formattedResult.split("\n")[0]).toBe("Boxspread rates für die nächsten 12 Monate");
     expect(formattedResult).toContain("`SPX` @ `6,501.00` | Notational `$100,000` | SOFR: `3.66%` (2026-04-30)");
-    expect(formattedResult).toContain("`Jun26` | `49 DTE` | `6000/7000 x1` | Mid");
-    expect(formattedResult).toContain("`Jul26` | `77 DTE` | `6000/7000 x1` | Mid");
+    expect(formattedResult).toContain("`Jun19'26` | `49 DTE` | `6000/7000 x1` | Mid");
+    expect(formattedResult).toContain("`Jul17'26` | `77 DTE` | `6000/7000 x1` | Mid");
   });
 
   test("rejects invalid inputs before requesting market data", async () => {
