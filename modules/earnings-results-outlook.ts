@@ -182,7 +182,7 @@ function normalizeOutlookValueText(value: string): string {
   return value
     .replace(/^[\s:|,-]+/, "")
     .replace(/\b(?:is|are|was|were|to\s+be|of|at|approximately|about|around|roughly|expected|expects|expect|guidance|outlook|projected|forecast|in\s+the\s+range\s+of|between)\b/gi, " ")
-    .replace(/\bto\s+(?:grow|increase|decline|decrease|range)\b/gi, " ")
+    .replace(/\bto\s+(?:grow|increase|range)\b/gi, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -213,7 +213,7 @@ function getOutlookRangeValue(value: string, valueType: OutlookValueType): strin
       : null;
   }
 
-  const moneyRangeMatch = value.match(/(\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:trillion|billion|million|t|b|m)?)(?:\s*(?:to|through|-|–|and)\s*)(\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:trillion|billion|million|t|b|m)?)/i);
+  const moneyRangeMatch = value.match(/(\(?\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:trillion|billion|million|t|b|m)?\)?)(?:\s*(?:to|through|-|–|and)\s*)(\(?\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:trillion|billion|million|t|b|m)?\)?)/i);
   if (!moneyRangeMatch) {
     return null;
   }

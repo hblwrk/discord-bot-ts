@@ -26,10 +26,10 @@ export default defineConfig({
         "modules/test-utils/**",
       ],
       thresholds: {
-        statements: 83,
-        lines: 83,
-        functions: 83,
-        branches: 71,
+        statements: 85,
+        lines: 85,
+        functions: 84,
+        branches: 74,
         "modules/assets.ts": {
           statements: 94,
           lines: 94,
@@ -108,6 +108,18 @@ export default defineConfig({
           functions: 84,
           branches: 59,
         },
+        "modules/earnings-results-outlook.ts": {
+          statements: 78,
+          lines: 77,
+          functions: 95,
+          branches: 69,
+        },
+        "modules/earnings-results-sec.ts": {
+          statements: 93,
+          lines: 92,
+          functions: 100,
+          branches: 82,
+        },
         "modules/market-data-hours.ts": {
           statements: 100,
           lines: 100,
@@ -133,10 +145,34 @@ export default defineConfig({
           branches: 90,
         },
         "modules/slash-commands-interact.ts": {
-          statements: 65,
-          lines: 65,
-          functions: 28,
-          branches: 67,
+          statements: 92,
+          lines: 92,
+          functions: 66,
+          branches: 90,
+        },
+        "modules/slash-commands-interact-events.ts": {
+          statements: 79,
+          lines: 78,
+          functions: 27,
+          branches: 71,
+        },
+        "modules/slash-commands-interact-islandboi.ts": {
+          statements: 70,
+          lines: 70,
+          functions: 31,
+          branches: 70,
+        },
+        "modules/slash-commands-interact-media.ts": {
+          statements: 82,
+          lines: 82,
+          functions: 71,
+          branches: 82,
+        },
+        "modules/slash-commands-interact-paywall.ts": {
+          statements: 82,
+          lines: 81,
+          functions: 33,
+          branches: 77,
         },
         "modules/startup-state.ts": {
           statements: 95,
