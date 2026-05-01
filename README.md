@@ -8,8 +8,8 @@
 * The `main` branch contains stable and tested code. Any development is done at feature branches.
 * We use `git config pull.rebase false`.
 * Mind `.gitignore`.
-* We use Airbnb's JS style guide <https://github.com/airbnb/javascript>. That's two spaces for indentation.
-* Linting is evaluated separately from this runtime setup. Prefer ESLint flat config with `typescript-eslint` type-checked rules for this codebase.
+* Code style follows the surrounding file: two-space indentation, double quotes, and explicit readable control flow.
+* Linter recommendation: ESLint flat config with type-aware `typescript-eslint`, `eslint-plugin-vitest` for tests, and `eslint-plugin-n` for Node.js runtime checks.
 
 ## Running
 

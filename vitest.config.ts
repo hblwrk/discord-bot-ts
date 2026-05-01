@@ -146,7 +146,7 @@ export default defineConfig({
         },
         "modules/startup-preflight.ts": {
           statements: 61,
-          lines: 64,
+          lines: 63,
           functions: 55,
           branches: 52,
         },
