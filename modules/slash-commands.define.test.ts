@@ -557,6 +557,44 @@ describe("defineSlashCommands", () => {
     ]);
   });
 
+  test("registers option strategy commands", () => {
+    const payload = buildSlashCommandPayload([], [], []);
+    const strangleCommand = findCommand(payload.slashCommands, "strangle");
+    const straddleCommand = findCommand(payload.slashCommands, "straddle");
+    const expectedMoveCommand = findCommand(payload.slashCommands, "expectedmove");
+
+    expect(strangleCommand.options).toEqual([
+      expect.objectContaining({
+        name: "symbol",
+        required: true,
+      }),
+      expect.objectContaining({
+        name: "dte",
+        required: true,
+      }),
+      expect.objectContaining({
+        name: "delta",
+        required: false,
+        choices: [
+          {name: "0.16 delta", value: 0.16},
+          {name: "0.30 delta", value: 0.3},
+        ],
+      }),
+    ]);
+    expect(straddleCommand.options).toEqual([
+      expect.objectContaining({
+        name: "symbol",
+        required: true,
+      }),
+      expect.objectContaining({
+        name: "dte",
+        required: true,
+      }),
+    ]);
+    expect(expectedMoveCommand.options).toEqual(straddleCommand.options);
+  });
+
+
   test("caps slash command payload at 100 commands and preserves fixed commands", () => {
     const assets: TextAsset[] = [];
     for (let index = 1; index <= 95; index++) {
@@ -570,22 +608,25 @@ describe("defineSlashCommands", () => {
     const payload = buildSlashCommandPayload(assets, [], []);
 
     expect(payload.slashCommands).toHaveLength(100);
-    expect(payload.assetCommandsRegistered).toBe(88);
-    expect(payload.fixedCommandsRegistered).toBe(12);
-    expect(payload.skippedCommandLimit).toBe(7);
+    expect(payload.assetCommandsRegistered).toBe(85);
+    expect(payload.fixedCommandsRegistered).toBe(15);
+    expect(payload.skippedCommandLimit).toBe(10);
     expect(payload.expectedCommandNames).toContain("quote");
     expect(payload.expectedCommandNames).toContain("calendar");
     expect(payload.expectedCommandNames).toContain("paywall");
     expect(payload.expectedCommandNames).toContain("delta");
-    expect(payload.expectedCommandNames).toContain("asset-88");
-    expect(payload.expectedCommandNames).not.toContain("asset-89");
+    expect(payload.expectedCommandNames).toContain("strangle");
+    expect(payload.expectedCommandNames).toContain("straddle");
+    expect(payload.expectedCommandNames).toContain("expectedmove");
+    expect(payload.expectedCommandNames).toContain("asset-85");
+    expect(payload.expectedCommandNames).not.toContain("asset-86");
     expect(loggerMock.log).toHaveBeenCalledWith(
       "warn",
       expect.objectContaining({
         source: "slash-registration",
         max_commands_per_scope: 100,
         total_commands_registered: 100,
-        skipped_command_limit: 7,
+        skipped_command_limit: 10,
         message: "Slash command payload built with skipped asset triggers.",
       }),
     );

@@ -1,5 +1,8 @@
 import TastytradeClient, {MarketDataSubscriptionType} from "@tastytrade/api";
 import WS from "ws";
+import {BoundedTtlCache} from "./bounded-ttl-cache.ts";
+import {optionDataRateLimiter, type BrokerApiRateLimiter} from "./broker-api-rate-limit.ts";
+export {formatOptionDeltaLookupResult, getClosestDeltaContract, getOptionContractMidPrice} from "./options-format.ts";
 
 export type OptionDeltaSide = "call" | "put";
 export type OptionDeltaRequestedSide = OptionDeltaSide | "both";
@@ -71,9 +74,13 @@ type TastytradeClientLike = {
   quoteStreamer: TastytradeQuoteStreamer;
 };
 type TastytradeClientFactory = (credentials: OptionDeltaCredentials) => TastytradeClientLike;
-type OptionDeltaLookupDependencies = {
+type OptionDeltaCache<Value> = Pick<BoundedTtlCache<Value>, "get" | "set">;
+export type OptionDeltaLookupDependencies = {
+  chainCache?: OptionDeltaCache<ChainExpiration[]>;
   clientFactory?: TastytradeClientFactory;
+  contractCache?: OptionDeltaCache<OptionDeltaContract[]>;
   marketDataTimeoutMs?: number;
+  rateLimiter?: Pick<BrokerApiRateLimiter, "run">;
 };
 type ChainStrike = {
   callStreamerSymbol: string | null;
@@ -82,7 +89,7 @@ type ChainStrike = {
   putSymbol: string | null;
   strike: number;
 };
-type ChainExpiration = {
+export type ChainExpiration = {
   daysToExpiration: number;
   expirationDate: string;
   strikes: ChainStrike[];
@@ -104,6 +111,16 @@ type StreamedMarketData = {
 };
 
 const defaultMarketDataTimeoutMs = 5500;
+const optionChainCacheTtlMs = 5 * 60 * 1000;
+const optionContractCacheTtlMs = 20 * 1000;
+const optionChainCache = new BoundedTtlCache<ChainExpiration[]>({
+  maxEntries: 32,
+  ttlMs: optionChainCacheTtlMs,
+});
+const optionContractCache = new BoundedTtlCache<OptionDeltaContract[]>({
+  maxEntries: 24,
+  ttlMs: optionContractCacheTtlMs,
+});
 const webSocketGlobal = globalThis as {
   WebSocket?: unknown;
 };
@@ -528,127 +545,208 @@ export async function getOptionDeltaLookup(
   const dte = normalizeDte(request.dte);
   const targetDelta = normalizeTargetDelta(request.delta);
   const requestedSides = getRequestedSides(request.side);
-  const client = (dependencies.clientFactory ?? createTastytradeClient)(credentials);
-  const chainData = await client.instrumentsService.getNestedOptionChain(symbol);
-  const expirations = parseTastytradeNestedOptionChain(chainData);
-  const selectedExpiration = selectExpirationForDte(expirations, dte);
+  const chainCache = dependencies.chainCache ?? optionChainCache;
+  const contractCache = dependencies.contractCache ?? optionContractCache;
+  const rateLimiter = dependencies.rateLimiter ?? optionDataRateLimiter;
+
+  const cachedExpirations = chainCache.get(symbol);
+  if (undefined === cachedExpirations) {
+    return rateLimiter.run(async () => {
+      const client = (dependencies.clientFactory ?? createTastytradeClient)(credentials);
+      const expirations = await getOptionChainExpirations(client, symbol, chainCache);
+      return buildLookupResultFromExpirations({
+        client,
+        contractCache,
+        dte,
+        marketDataTimeoutMs: dependencies.marketDataTimeoutMs ?? defaultMarketDataTimeoutMs,
+        requestedSide: request.side,
+        requestedSides,
+        symbol,
+        targetDelta,
+      }, expirations);
+    });
+  }
+
+  const selectedExpiration = selectExpirationForDte(cachedExpirations, dte);
   if (null === selectedExpiration) {
     throw new OptionDeltaDataError(`No option expiration found on or after ${dte} DTE for ${symbol}.`);
   }
 
-  const streamerSymbols = selectedExpiration.expiration.strikes.flatMap(strike => {
+  const cachedContracts = getCachedContracts(contractCache, symbol, selectedExpiration.expiration, requestedSides);
+  if (undefined !== cachedContracts) {
+    return buildLookupResult({
+      contracts: cachedContracts,
+      requestedDte: dte,
+      requestedSide: request.side,
+      requestedSides,
+      selectedExpiration,
+      symbol,
+      targetDelta,
+    });
+  }
+
+  return rateLimiter.run(async () => {
+    const client = (dependencies.clientFactory ?? createTastytradeClient)(credentials);
+    const contracts = await getOptionContracts(
+      client,
+      symbol,
+      selectedExpiration.expiration,
+      requestedSides,
+      dependencies.marketDataTimeoutMs ?? defaultMarketDataTimeoutMs,
+      contractCache,
+    );
+
+    return buildLookupResult({
+      contracts,
+      requestedDte: dte,
+      requestedSide: request.side,
+      requestedSides,
+      selectedExpiration,
+      symbol,
+      targetDelta,
+    });
+  });
+}
+
+async function getOptionChainExpirations(
+  client: TastytradeClientLike,
+  symbol: string,
+  chainCache: OptionDeltaCache<ChainExpiration[]>,
+): Promise<ChainExpiration[]> {
+  const cachedExpirations = chainCache.get(symbol);
+  if (undefined !== cachedExpirations) {
+    return cachedExpirations;
+  }
+
+  const chainData = await client.instrumentsService.getNestedOptionChain(symbol);
+  const expirations = parseTastytradeNestedOptionChain(chainData);
+  chainCache.set(symbol, expirations);
+  return expirations;
+}
+
+function getContractsCacheKey(symbol: string, expiration: ChainExpiration, requestedSides: OptionDeltaSide[]): string {
+  return `${symbol}:${expiration.expirationDate}:${requestedSides.join("+")}`;
+}
+
+function getCachedContracts(
+  contractCache: OptionDeltaCache<OptionDeltaContract[]>,
+  symbol: string,
+  expiration: ChainExpiration,
+  requestedSides: OptionDeltaSide[],
+): OptionDeltaContract[] | undefined {
+  const cachedContracts = contractCache.get(getContractsCacheKey(symbol, expiration, requestedSides));
+  if (undefined !== cachedContracts) {
+    return cachedContracts;
+  }
+
+  if (1 === requestedSides.length) {
+    const cachedBothSidesContracts = contractCache.get(getContractsCacheKey(symbol, expiration, ["call", "put"]));
+    if (undefined !== cachedBothSidesContracts) {
+      return cachedBothSidesContracts.filter(contract => contract.optionType === requestedSides[0]);
+    }
+  }
+
+  return undefined;
+}
+
+async function getOptionContracts(
+  client: TastytradeClientLike,
+  symbol: string,
+  expiration: ChainExpiration,
+  requestedSides: OptionDeltaSide[],
+  marketDataTimeoutMs: number,
+  contractCache: OptionDeltaCache<OptionDeltaContract[]>,
+): Promise<OptionDeltaContract[]> {
+  const cachedContracts = getCachedContracts(contractCache, symbol, expiration, requestedSides);
+  if (undefined !== cachedContracts) {
+    return cachedContracts;
+  }
+
+  const streamerSymbols = expiration.strikes.flatMap(strike => {
     return requestedSides.flatMap(side => getStrikeStreamerSymbol(strike, side) ?? []);
   });
   if (0 === streamerSymbols.length) {
-    throw new OptionDeltaDataError(`No option contracts found for ${symbol} ${selectedExpiration.expiration.expirationDate}.`);
+    throw new OptionDeltaDataError(`No option contracts found for ${symbol} ${expiration.expirationDate}.`);
   }
 
   const streamedData = await collectMarketData(
     client.quoteStreamer,
     [...new Set(streamerSymbols)],
-    dependencies.marketDataTimeoutMs ?? defaultMarketDataTimeoutMs,
+    marketDataTimeoutMs,
   );
-  const contracts = buildContracts(selectedExpiration.expiration, requestedSides, streamedData);
-  const sideResults = requestedSides.map(side => {
-    const sideContracts = contracts.filter(contract => contract.optionType === side);
+  const contracts = buildContracts(expiration, requestedSides, streamedData);
+  contractCache.set(getContractsCacheKey(symbol, expiration, requestedSides), contracts);
+  return contracts;
+}
+
+type BuildLookupResultFromExpirationsRequest = {
+  client: TastytradeClientLike;
+  contractCache: OptionDeltaCache<OptionDeltaContract[]>;
+  dte: number;
+  marketDataTimeoutMs: number;
+  requestedSide: OptionDeltaRequestedSide;
+  requestedSides: OptionDeltaSide[];
+  symbol: string;
+  targetDelta: number;
+};
+
+async function buildLookupResultFromExpirations(
+  request: BuildLookupResultFromExpirationsRequest,
+  expirations: ChainExpiration[],
+): Promise<OptionDeltaLookupResult> {
+  const selectedExpiration = selectExpirationForDte(expirations, request.dte);
+  if (null === selectedExpiration) {
+    throw new OptionDeltaDataError(`No option expiration found on or after ${request.dte} DTE for ${request.symbol}.`);
+  }
+
+  const contracts = await getOptionContracts(
+    request.client,
+    request.symbol,
+    selectedExpiration.expiration,
+    request.requestedSides,
+    request.marketDataTimeoutMs,
+    request.contractCache,
+  );
+
+  return buildLookupResult({
+    contracts,
+    requestedDte: request.dte,
+    requestedSide: request.requestedSide,
+    requestedSides: request.requestedSides,
+    selectedExpiration,
+    symbol: request.symbol,
+    targetDelta: request.targetDelta,
+  });
+}
+
+type BuildLookupResultRequest = {
+  contracts: OptionDeltaContract[];
+  requestedDte: number;
+  requestedSide: OptionDeltaRequestedSide;
+  requestedSides: OptionDeltaSide[];
+  selectedExpiration: SelectedExpiration;
+  symbol: string;
+  targetDelta: number;
+};
+
+function buildLookupResult(request: BuildLookupResultRequest): OptionDeltaLookupResult {
+  const sideResults = request.requestedSides.map(side => {
+    const sideContracts = request.contracts.filter(contract => contract.optionType === side);
     return {
-      brackets: findDeltaBrackets(sideContracts, targetDelta),
+      brackets: findDeltaBrackets(sideContracts, request.targetDelta),
       contractsConsidered: sideContracts.length,
       side,
     };
   });
 
   return {
-    actualDte: selectedExpiration.expiration.daysToExpiration,
-    expiration: selectedExpiration.expiration.expirationDate,
-    requestedDte: dte,
-    requestedSide: request.side,
-    rolled: selectedExpiration.rolled,
+    actualDte: request.selectedExpiration.expiration.daysToExpiration,
+    expiration: request.selectedExpiration.expiration.expirationDate,
+    requestedDte: request.requestedDte,
+    requestedSide: request.requestedSide,
+    rolled: request.selectedExpiration.rolled,
     sideResults,
-    symbol,
-    targetDelta,
+    symbol: request.symbol,
+    targetDelta: request.targetDelta,
   };
-}
-
-function formatDecimal(value: number, digits = 2): string {
-  return value.toLocaleString("en-US", {
-    maximumFractionDigits: digits,
-    minimumFractionDigits: digits,
-  });
-}
-
-function formatOptionalPrice(value: number | null): string {
-  if (null === value) {
-    return "n/a";
-  }
-
-  return formatDecimal(value);
-}
-
-function formatOptionalSize(value: number | null): string {
-  if (null === value) {
-    return "n/a";
-  }
-
-  return Math.round(value).toLocaleString("en-US", {
-    maximumFractionDigits: 0,
-  });
-}
-
-function formatOptionalPercent(value: number | null): string {
-  if (null === value) {
-    return "n/a";
-  }
-
-  return `${formatDecimal(value * 100, 1)}%`;
-}
-
-function getMidPrice(contract: OptionDeltaContract): number | null {
-  if (null !== contract.bid && null !== contract.ask) {
-    return (contract.bid + contract.ask) / 2;
-  }
-
-  return null;
-}
-
-function getContractName(contract: OptionDeltaContract): string {
-  const suffix = "call" === contract.optionType ? "C" : "P";
-  return `${formatDecimal(contract.strike).replace(/\.00$/, "")}${suffix}`;
-}
-
-function formatContractLine(label: string, contract: OptionDeltaContract | null): string {
-  if (null === contract) {
-    return `${label}: Keine passende Option gefunden.`;
-  }
-
-  const mid = getMidPrice(contract);
-  return [
-    `${label}: \`${getContractName(contract)}\``,
-    `strike \`${formatDecimal(contract.strike).replace(/\.00$/, "")}\``,
-    `delta \`${formatDecimal(Math.abs(contract.delta), 3)}\``,
-    `bid/mid/ask \`${formatOptionalPrice(contract.bid)} / ${formatOptionalPrice(mid)} / ${formatOptionalPrice(contract.ask)}\``,
-    `size \`${formatOptionalSize(contract.bidSize)} x ${formatOptionalSize(contract.askSize)}\``,
-    `IV \`${formatOptionalPercent(contract.iv)}\``,
-  ].join(" | ");
-}
-
-function formatSideTitle(side: OptionDeltaSide): string {
-  return "call" === side ? "Calls" : "Puts";
-}
-
-export function formatOptionDeltaLookupResult(result: OptionDeltaLookupResult): string {
-  const expirationText = true === result.rolled
-    ? `Expiry \`${result.expiration}\` (${result.actualDte} DTE, requested ${result.requestedDte})`
-    : `Expiry \`${result.expiration}\` (${result.actualDte} DTE)`;
-  const lines = [
-    `**${result.symbol} target delta ${formatDecimal(result.targetDelta, 2)} | ${expirationText}**`,
-  ];
-
-  for (const sideResult of result.sideResults) {
-    lines.push(`**${formatSideTitle(sideResult.side)}**`);
-    lines.push(formatContractLine("Below target", sideResult.brackets.below));
-    lines.push(formatContractLine("Above target", sideResult.brackets.above));
-  }
-
-  return lines.join("\n");
 }

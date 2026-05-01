@@ -1,6 +1,8 @@
 import {MarketDataSubscriptionType} from "@tastytrade/api";
 import {describe, expect, test, vi} from "vitest";
+import {BoundedTtlCache} from "./bounded-ttl-cache.ts";
 import {
+  type ChainExpiration,
   findDeltaBrackets,
   formatOptionDeltaLookupResult,
   getOptionDeltaLookup,
@@ -12,7 +14,26 @@ import {
   parseTastytradeNestedOptionChain,
   selectExpirationForDte,
   type OptionDeltaContract,
+  type OptionDeltaLookupDependencies,
 } from "./options-delta.ts";
+
+const immediateRateLimiter = {
+  run: <T>(operation: () => Promise<T>) => operation(),
+};
+
+function createLookupDependencies(): Pick<OptionDeltaLookupDependencies, "chainCache" | "contractCache" | "rateLimiter"> {
+  return {
+    chainCache: new BoundedTtlCache<ChainExpiration[]>({
+      maxEntries: 10,
+      ttlMs: 60_000,
+    }),
+    contractCache: new BoundedTtlCache<OptionDeltaContract[]>({
+      maxEntries: 10,
+      ttlMs: 60_000,
+    }),
+    rateLimiter: immediateRateLimiter,
+  };
+}
 
 function createNestedOptionChainItems() {
   return [{
@@ -188,6 +209,7 @@ describe("options-delta", () => {
       side: "both",
       symbol: "aapl",
     }, {
+      ...createLookupDependencies(),
       clientFactory: () => fakeClient,
       marketDataTimeoutMs: 20,
     });
@@ -224,9 +246,10 @@ describe("options-delta", () => {
     expect(putResult?.brackets.above?.strike).toBe(450);
 
     const formattedResult = formatOptionDeltaLookupResult(result);
-    expect(formattedResult).toContain("Expiry `2026-06-19` (49 DTE, requested 45)");
+    expect(formattedResult).toContain("Expiry `2026-06-19` (`49` DTE, requested `45`)");
     expect(formattedResult).toContain("`450C` | strike `450` | delta `0.250`");
     expect(formattedResult).toContain("bid/mid/ask `1.20 / 1.30 / 1.40`");
+    expect(formattedResult).toContain("spread `15.4%`");
     expect(formattedResult).toContain("IV `55.5%`");
     expect(formattedResult).toContain("`450P` | strike `450` | delta `0.340`");
   });
@@ -270,6 +293,7 @@ describe("options-delta", () => {
       side: "put",
       symbol: "aapl",
     }, {
+      ...createLookupDependencies(),
       clientFactory: () => ({
         instrumentsService: {
           getNestedOptionChain: vi.fn(async () => createNestedOptionChainItems()),
@@ -296,6 +320,71 @@ describe("options-delta", () => {
     expect(quoteStreamer.subscribe.mock.calls[0]![0]).not.toContain(".AAPL260619C440");
   });
 
+  test("reuses cached chain and contract snapshots without another broker call", async () => {
+    let listener: ((events: Record<string, unknown>[]) => void) | undefined;
+    const lookupDependencies = createLookupDependencies();
+    const quoteStreamer = {
+      addEventListener: vi.fn((nextListener: (events: Record<string, unknown>[]) => void) => {
+        listener = nextListener;
+        return vi.fn();
+      }),
+      connect: vi.fn(async () => {}),
+      disconnect: vi.fn(),
+      subscribe: vi.fn((streamerSymbols: string[]) => {
+        listener?.(streamerSymbols.flatMap(streamerSymbol => [
+          {
+            eventSymbol: streamerSymbol,
+            eventType: "Quote",
+            askPrice: 1.2,
+            bidPrice: 1.0,
+          },
+          {
+            eventSymbol: streamerSymbol,
+            eventType: "Greeks",
+            delta: streamerSymbol.includes("P") ? -0.31 : 0.31,
+            volatility: 0.45,
+          },
+        ]));
+      }),
+    };
+    const fakeClient = {
+      instrumentsService: {
+        getNestedOptionChain: vi.fn(async () => createNestedOptionChainItems()),
+      },
+      quoteStreamer,
+    };
+    const request = {
+      credentials: {
+        clientSecret: "client-secret",
+        refreshToken: "refresh-token",
+      },
+      delta: 0.3,
+      dte: 49,
+      side: "both" as const,
+      symbol: "AAPL",
+    };
+
+    await getOptionDeltaLookup(request, {
+      ...lookupDependencies,
+      clientFactory: () => fakeClient,
+      marketDataTimeoutMs: 20,
+    });
+    const cachedResult = await getOptionDeltaLookup({
+      ...request,
+      delta: 0.2,
+      side: "call",
+    }, {
+      ...lookupDependencies,
+      clientFactory: () => fakeClient,
+      marketDataTimeoutMs: 20,
+    });
+
+    expect(fakeClient.instrumentsService.getNestedOptionChain).toHaveBeenCalledTimes(1);
+    expect(quoteStreamer.subscribe).toHaveBeenCalledTimes(1);
+    expect(cachedResult.sideResults).toHaveLength(1);
+    expect(cachedResult.sideResults[0]?.side).toBe("call");
+  });
+
   test("reports missing credentials, expirations and streamer symbols as lookup errors", async () => {
     const emptyQuoteStreamer = {
       addEventListener: vi.fn(() => vi.fn()),
@@ -320,12 +409,13 @@ describe("options-delta", () => {
         clientSecret: " ",
         refreshToken: "refresh-token",
       },
-    })).rejects.toThrow(OptionDeltaConfigurationError);
+    }, createLookupDependencies())).rejects.toThrow(OptionDeltaConfigurationError);
     await expect(getOptionDeltaLookup({
       ...baseRequest,
       dte: 45.5,
-    })).rejects.toThrow(OptionDeltaInputError);
+    }, createLookupDependencies())).rejects.toThrow(OptionDeltaInputError);
     await expect(getOptionDeltaLookup(baseRequest, {
+      ...createLookupDependencies(),
       clientFactory: () => ({
         instrumentsService: {
           getNestedOptionChain: vi.fn(async () => []),
@@ -334,6 +424,7 @@ describe("options-delta", () => {
       }),
     })).rejects.toThrow(OptionDeltaDataError);
     await expect(getOptionDeltaLookup(baseRequest, {
+      ...createLookupDependencies(),
       clientFactory: () => ({
         instrumentsService: {
           getNestedOptionChain: vi.fn(async () => [{
@@ -377,7 +468,7 @@ describe("options-delta", () => {
       targetDelta: 0.3,
     });
 
-    expect(formattedResult).toContain("Expiry `2026-06-19` (49 DTE)");
+    expect(formattedResult).toContain("Expiry `2026-06-19` (`49` DTE)");
     expect(formattedResult).toContain("Below target: Keine passende Option gefunden.");
     expect(formattedResult).toContain("bid/mid/ask `n/a / n/a / n/a`");
     expect(formattedResult).toContain("size `n/a x n/a`");

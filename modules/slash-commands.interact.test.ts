@@ -280,7 +280,7 @@ describe("interactSlashCommands", () => {
 
     expect(getOptionDeltaLookupMockTyped).not.toHaveBeenCalled();
     expect(interaction.editReply).toHaveBeenCalledWith({
-      content: "Optionsdaten sind fuer /delta noch nicht konfiguriert.",
+      content: "Optionsdaten sind für /delta noch nicht konfiguriert.",
       allowedMentions: {
         parse: [],
       },
@@ -334,7 +334,7 @@ describe("interactSlashCommands", () => {
     await handler(interaction);
 
     expect(interaction.editReply).toHaveBeenCalledWith({
-      content: "Ungueltige Eingabe: bad delta",
+      content: "Ungültige Eingabe: bad delta",
       allowedMentions: {
         parse: [],
       },
@@ -406,7 +406,7 @@ describe("interactSlashCommands", () => {
     await handler(interaction);
 
     expect(interaction.editReply).toHaveBeenCalledWith({
-      content: "Optionsdaten konnten gerade nicht geladen werden. Bitte spaeter erneut versuchen.",
+      content: "Optionsdaten konnten gerade nicht geladen werden. Bitte später erneut versuchen.",
       allowedMentions: {
         parse: [],
       },

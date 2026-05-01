@@ -11,7 +11,7 @@ import {getSlashCommandNamesFromPayload} from "./slash-commands-canonical.ts";
 
 const logger = getLogger();
 const maxSlashCommandsPerScope = 100;
-export const fixedSlashCommandNames = ["cryptodice", "lmgtfy", "google", "8ball", "whatis", "quote", "islandboi", "sara", "earnings", "calendar", "paywall", "delta"];
+export const fixedSlashCommandNames = ["cryptodice", "lmgtfy", "google", "8ball", "whatis", "quote", "islandboi", "sara", "earnings", "calendar", "paywall", "delta", "strangle", "straddle", "expectedmove"];
 type SlashCommandJson = ReturnType<SlashCommandBuilder["toJSON"]>;
 type SlashCommandChoice = {
   name: string;
@@ -182,6 +182,61 @@ function createFixedSlashCommands(whatIsAssetsChoices: SlashCommandChoice[], use
           {name: "Puts", value: "put"},
         ));
   fixedSlashCommands.push(slashCommandDelta.toJSON());
+
+  const slashCommandStrangle = new SlashCommandBuilder()
+    .setName("strangle")
+    .setDescription("Find option legs for a short strangle")
+    .addStringOption(option =>
+      option.setName("symbol")
+        .setDescription("Underlying symbol")
+        .setRequired(true))
+    .addIntegerOption(option =>
+      option.setName("dte")
+        .setDescription("Target days to expiration")
+        .setMinValue(0)
+        .setMaxValue(3650)
+        .setRequired(true))
+    .addNumberOption(option =>
+      option.setName("delta")
+        .setDescription("Absolute target delta")
+        .setMinValue(0.01)
+        .setMaxValue(0.99)
+        .setRequired(false)
+        .addChoices(
+          {name: "0.16 delta", value: 0.16},
+          {name: "0.30 delta", value: 0.3},
+        ));
+  fixedSlashCommands.push(slashCommandStrangle.toJSON());
+
+  const slashCommandStraddle = new SlashCommandBuilder()
+    .setName("straddle")
+    .setDescription("Find the ATM option straddle")
+    .addStringOption(option =>
+      option.setName("symbol")
+        .setDescription("Underlying symbol")
+        .setRequired(true))
+    .addIntegerOption(option =>
+      option.setName("dte")
+        .setDescription("Target days to expiration")
+        .setMinValue(0)
+        .setMaxValue(3650)
+        .setRequired(true));
+  fixedSlashCommands.push(slashCommandStraddle.toJSON());
+
+  const slashCommandExpectedMove = new SlashCommandBuilder()
+    .setName("expectedmove")
+    .setDescription("Estimate the option-implied move from the ATM straddle")
+    .addStringOption(option =>
+      option.setName("symbol")
+        .setDescription("Underlying symbol")
+        .setRequired(true))
+    .addIntegerOption(option =>
+      option.setName("dte")
+        .setDescription("Target days to expiration")
+        .setMinValue(0)
+        .setMaxValue(3650)
+        .setRequired(true));
+  fixedSlashCommands.push(slashCommandExpectedMove.toJSON());
 
   return fixedSlashCommands;
 }
