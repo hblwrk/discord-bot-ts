@@ -4,6 +4,11 @@
     "esModuleInterop": true,
     "moduleResolution": "nodenext",
     "target": "es2020",
+    "strict": false,
+    "types": [
+      "jest",
+      "node"
+    ],
     "lib": [
       "ES2021.String",
       "es2020",
