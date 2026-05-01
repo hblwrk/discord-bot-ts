@@ -247,11 +247,11 @@ describe("options-delta", () => {
 
     const formattedResult = formatOptionDeltaLookupResult(result);
     expect(formattedResult).toContain("Expiry `2026-06-19` (`49` DTE, requested `45`)");
-    expect(formattedResult).toContain("`450C` | strike `450` | delta `0.250`");
-    expect(formattedResult).toContain("bid/mid/ask `1.20 / 1.30 / 1.40`");
+    expect(formattedResult).toContain("• Δ ≤ target: `450C` | K `450` | Δ `0.250` | mid `1.30`");
+    expect(formattedResult).toContain("bid/ask `1.20 / 1.40`");
     expect(formattedResult).toContain("spread `15.4%`");
     expect(formattedResult).toContain("IV `55.5%`");
-    expect(formattedResult).toContain("`450P` | strike `450` | delta `0.340`");
+    expect(formattedResult).toContain("• Δ ≥ target: `450P` | K `450` | Δ `0.340` | mid `2.50`");
   });
 
   test("supports single-side lookups and hyphenated dxlink event fields", async () => {
@@ -469,8 +469,8 @@ describe("options-delta", () => {
     });
 
     expect(formattedResult).toContain("Expiry `2026-06-19` (`49` DTE)");
-    expect(formattedResult).toContain("Below target: Keine passende Option gefunden.");
-    expect(formattedResult).toContain("bid/mid/ask `n/a / n/a / n/a`");
+    expect(formattedResult).toContain("• Δ ≤ target: Keine passende Option gefunden.");
+    expect(formattedResult).toContain("bid/ask `n/a / n/a`");
     expect(formattedResult).toContain("size `n/a x n/a`");
     expect(formattedResult).toContain("IV `n/a`");
   });

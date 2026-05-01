@@ -4,6 +4,7 @@ import {
   EarningsReminderAsset,
 } from "./assets.ts";
 import {
+  addExpectedMovesToEarningsEventsMock,
   createClientWithChannel,
   getAssetByNameMock,
   getCalendarEventsMock,
@@ -376,6 +377,10 @@ describe("timers: other announcements", () => {
     await dailyEarningsJob.callback();
 
     expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow");
+    expect(addExpectedMovesToEarningsEventsMock).toHaveBeenCalledWith([], {
+      marketCapFilter: "bluechips",
+      when: "all",
+    });
     expect(getEarningsMessagesMock).toHaveBeenCalledWith([], "all", [], {
       maxMessageLength: 1800,
       maxMessages: 8,
@@ -386,6 +391,48 @@ describe("timers: other announcements", () => {
       allowedMentions: {
         parse: [],
       },
+    }));
+  });
+
+  test("startOtherTimers enriches scheduled earnings with expected moves before formatting", async () => {
+    const {client, send} = createClientWithChannel();
+    const earningsEvents = [{
+      ticker: "NVDA",
+      when: "after_close",
+      date: "2025-02-24",
+      importance: 1,
+      companyName: "NVIDIA",
+      marketCap: 2_000_000_000_000,
+      marketCapText: "$2T",
+      epsConsensus: "0.80",
+    }];
+    const enrichedEvents = [{
+      ...earningsEvents[0]!,
+      expectedMove: 12.4,
+      expectedMoveActualDte: 1,
+      expectedMoveExpiration: "2025-02-25",
+    }];
+    getEarningsResultMock.mockResolvedValue({
+      events: earningsEvents,
+      status: "ok",
+    });
+    addExpectedMovesToEarningsEventsMock.mockResolvedValue(enrichedEvents);
+
+    startOtherTimers(client, "channel-id", [], []);
+    const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
+    await dailyEarningsJob.callback();
+
+    expect(addExpectedMovesToEarningsEventsMock).toHaveBeenCalledWith(earningsEvents, {
+      marketCapFilter: "bluechips",
+      when: "all",
+    });
+    expect(getEarningsMessagesMock).toHaveBeenCalledWith(enrichedEvents, "all", [], {
+      maxMessageLength: 1800,
+      maxMessages: 8,
+      marketCapFilter: "bluechips",
+    });
+    expect(send).toHaveBeenCalledWith(expect.objectContaining({
+      content: "earnings-text",
     }));
   });
 

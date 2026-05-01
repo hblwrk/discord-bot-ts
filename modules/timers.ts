@@ -22,6 +22,7 @@ import {
   getEarningsMessages,
   type EarningsMessageBatch,
 } from "./earnings.ts";
+import {addExpectedMovesToEarningsEvents} from "./earnings-expected-move.ts";
 import {getLogger} from "./logging.ts";
 import {getMnc} from "./mnc-downloader.ts";
 import {type Ticker} from "./tickers.ts";
@@ -274,7 +275,11 @@ async function runEarningsAnnouncement(
   config: EarningsAnnouncementConfig,
 ) {
   const earningsResult = await getEarningsResult(config.days, config.date);
-  const earningsBatch = getEarningsMessages(earningsResult.events, config.when, tickers, {
+  const earningsEvents = await addExpectedMovesToEarningsEvents(earningsResult.events, {
+    marketCapFilter: config.filter,
+    when: config.when,
+  });
+  const earningsBatch = getEarningsMessages(earningsEvents, config.when, tickers, {
     maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
     maxMessages: EARNINGS_MAX_MESSAGES_TIMER,
     marketCapFilter: config.filter,

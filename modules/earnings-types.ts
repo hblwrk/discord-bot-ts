@@ -9,6 +9,9 @@ export interface EarningsEvent {
   marketCap?: number | null;
   marketCapText?: string;
   epsConsensus?: string;
+  expectedMove?: number | null;
+  expectedMoveActualDte?: number;
+  expectedMoveExpiration?: string;
 }
 
 export type EarningsLoadStatus = "ok" | "error";
