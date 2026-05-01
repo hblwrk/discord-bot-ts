@@ -456,7 +456,7 @@ export function formatBoxSpreadLookupResult(result: BoxSpreadLookupResult): stri
     )} | Box Spread | ${directionLabel} | ${getExpirationText(result)}`,
     cashflowText,
     `Implied ${rateLabel} rate: \`${formatRate(result.impliedRate)}\` | ${result.benchmarkName}: \`${formatDecimal(result.sofr.percentRate, 2)}%\` (${result.sofr.effectiveDate}) | Δ: \`${formatSignedBasisPoints(result.rateDeltaToBenchmark)}\``,
-    `Limit: mid ${limitSide} \`${formatDecimal(result.limitPrice)}\` (${result.currency} \`${formatMoney(result.cashToday)}\`) | Width: \`${formatStrike(result.width)}\` | Contracts: \`${result.contracts}\``,
+    `Limit: mid ${limitSide} \`${formatDecimal(result.limitPrice)}\` (\`${formatMoney(result.cashToday)}\`) | Width: \`${formatStrike(result.width)}\` | Contracts: \`${result.contracts}\``,
     `Market: natural credit \`${formatDecimal(result.naturalCredit)}\` / mid \`${formatDecimal(result.limitPrice)}\` / natural debit \`${formatDecimal(result.naturalDebit)}\``,
     "",
     "Example trade",
