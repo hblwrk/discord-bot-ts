@@ -118,7 +118,7 @@ describe("earnings result announcements", () => {
     });
   });
 
-  test("builds a breaking-news announcement from a watched SEC filing", async () => {
+  test("builds an earnings result announcement from a watched SEC filing", async () => {
     const result = await getEarningsResultAnnouncements({
       dependencies: {
         getEarningsResultFn,

@@ -93,7 +93,6 @@ echo -n "hunter5" | docker secret create production_hblwrk_channel_NYSEAnnouncem
 echo -n "hunter6" | docker secret create production_hblwrk_gainslosses_thread_ID -
 echo -n "hunter7" | docker secret create production_hblwrk_channel_MNCAnnouncement_ID -
 echo -n "hunter8" | docker secret create production_hblwrk_channel_OtherAnnouncement_ID -
-echo -n "hunter8b" | docker secret create production_hblwrk_channel_BreakingNews_ID -
 echo -n "hunter9" | docker secret create production_discord_btcusd_token -
 echo -n "hunter10" | docker secret create production_discord_btcusd_client_ID -
 ...
@@ -147,7 +146,6 @@ The health-check server port can be overridden via the `HEALTHCHECK_PORT` enviro
   "dracoon_password": "",
   "hblwrk_channel_NYSEAnnouncement_ID": "",
   "hblwrk_gainslosses_thread_ID": "",
-  "hblwrk_channel_BreakingNews_ID": "",
   "hblwrk_channel_MNCAnnouncement_ID": "",
   "hblwrk_channel_OtherAnnouncement_ID": "",
   "hblwrk_channel_logging_ID": "",
@@ -193,7 +191,7 @@ If DRACOON downloads fail during startup, the bot keeps those assets marked as t
 
 ### Reminder assets
 
-Calendar reminders and earnings reminders are configured as YAML assets and both post into `hblwrk_channel_OtherAnnouncement_ID`. Earnings result announcements post into `hblwrk_channel_BreakingNews_ID` after a matching SEC EDGAR filing appears. Result announcements include an `Outlook` block when the filing has an explicit outlook or guidance section. They ping the `alerts` special role, which is self-assignable from the roles channel via the `🛎️` bellhop bell reaction on the special roles message.
+Calendar reminders, earnings reminders, and earnings result announcements post into `hblwrk_channel_OtherAnnouncement_ID`. Earnings result announcements are sent after a matching SEC EDGAR filing appears. Result announcements include an `Outlook` block when the filing has an explicit outlook or guidance section. They ping the `alerts` special role, which is self-assignable from the roles channel via the `🛎️` bellhop bell reaction on the special roles message.
 
 Calendar reminder assets are matched against the current day and sent at `08:30 Europe/Berlin`, immediately after the general daily calendar post. If multiple matching calendar items share the same release minute, the bot bundles them into a single reminder ping:
 
