@@ -1,5 +1,5 @@
 import {Client} from "discord.js";
-import ReconnectingWebSocket from "reconnecting-websocket";
+import ReconnectingWebSocketModule from "reconnecting-websocket";
 import WS from "ws";
 import {getAssets} from "./assets.js";
 import {getMarketDataClientCacheFactory} from "./discord-client-options.js";
@@ -35,6 +35,21 @@ const pendingStatusFlushIntervalMs = 1000;
 const marketStatusCheckIntervalMs = 60_000;
 const streamWatchdogIntervalMs = 30_000;
 const streamStaleTimeoutMs = 300_000;
+
+type ReconnectingWebSocketInstance = {
+  OPEN: number;
+  addEventListener: (type: "open" | "close" | "error" | "message", listener: (event: any) => void) => void;
+  readyState: number;
+  reconnect: () => void;
+  send: (data: string) => void;
+  url: string;
+};
+type ReconnectingWebSocketConstructor = new (
+  urlProvider: string | (() => string),
+  protocols?: string | string[],
+  options?: Record<string, unknown>
+) => ReconnectingWebSocketInstance;
+const ReconnectingWebSocket = ReconnectingWebSocketModule as unknown as ReconnectingWebSocketConstructor;
 
 // Launching multiple bots and websocket stream to display price information.
 // Discord-facing updates stay throttled, but the latest parsed tick is retained and flushed when due.
