@@ -38,6 +38,28 @@ const getCalendarMessagesMock = getCalendarMessages as MockedFunction<typeof get
 const getEarningsResultMock = getEarningsResult as MockedFunction<typeof getEarningsResult>;
 const getEarningsMessagesMock = getEarningsMessages as MockedFunction<typeof getEarningsMessages>;
 
+function createImageAsset({
+  fileContent,
+  fileName,
+  name,
+  text = "",
+  title = "",
+}: {
+  fileContent?: Buffer | undefined;
+  fileName: string;
+  name: string;
+  text?: string;
+  title?: string;
+}): ImageAsset {
+  const asset = new ImageAsset();
+  asset.name = name;
+  asset.title = title;
+  asset.text = text;
+  asset.fileName = fileName;
+  asset.fileContent = fileContent;
+  return asset;
+}
+
 describe("interactSlashCommands", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -276,14 +298,13 @@ describe("interactSlashCommands", () => {
   test("replies to whatis with embed and attachment payload", async () => {
     const {client, getHandler} = createEventClient();
     interactSlashCommands(client, [], [], [
-      {
+      createImageAsset({
         name: "whatis_faq",
         title: "FAQ",
         text: "Answer",
-        _fileName: "faq.png",
         fileName: "faq.png",
         fileContent: Buffer.from("test"),
-      },
+      }),
     ], []);
 
     const handler = getHandler("interactionCreate");
@@ -301,14 +322,13 @@ describe("interactSlashCommands", () => {
   test("handles whatis unavailable responses when reply itself fails", async () => {
     const {client, getHandler} = createEventClient();
     interactSlashCommands(client, [], [], [
-      {
+      createImageAsset({
         name: "whatis_faq",
         title: "FAQ",
         text: "Answer",
-        _fileName: "faq.png",
         fileName: "faq.png",
         fileContent: undefined,
-      },
+      }),
     ], []);
 
     const handler = getHandler("interactionCreate");
@@ -567,11 +587,11 @@ describe("interactSlashCommands", () => {
 
   test("sara replies with attachment when yes asset is present", async () => {
     const {client, getHandler} = createEventClient();
-    interactSlashCommands(client, [{
+    interactSlashCommands(client, [createImageAsset({
       name: "sara-yes",
       fileName: "yes.png",
       fileContent: Buffer.from("yes"),
-    }], [], [], []);
+    })], [], [], []);
 
     const handler = getHandler("interactionCreate");
     const interaction = createChatInputInteraction("sara");
@@ -586,11 +606,11 @@ describe("interactSlashCommands", () => {
 
   test("sara replies with attachment when shrug asset is present", async () => {
     const {client, getHandler} = createEventClient();
-    interactSlashCommands(client, [{
+    interactSlashCommands(client, [createImageAsset({
       name: "sara-shrug",
       fileName: "shrug.png",
       fileContent: Buffer.from("shrug"),
-    }], [], [], []);
+    })], [], [], []);
 
     const handler = getHandler("interactionCreate");
     const interaction = createChatInputInteraction("sara");

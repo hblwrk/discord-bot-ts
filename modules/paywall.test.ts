@@ -333,6 +333,9 @@ describe("getPaywallLinks", () => {
   });
 
   test("ranks available services before unavailable ones", async () => {
+    const rankAssets = [
+      createPaywallAsset({name: "nytimes", domains: ["nytimes.com"], services: ["archive.today", "archive.today"]}),
+    ];
     let callCount = 0;
     mockedAxios.get.mockImplementation(async () => {
       callCount += 1;
@@ -348,15 +351,16 @@ describe("getPaywallLinks", () => {
     });
 
     const rankUrl = `https://www.nytimes.com/rank-test-${Date.now()}`;
-    const result = await getPaywallLinks(rankUrl, assets);
+    const result = await getPaywallLinks(rankUrl, rankAssets);
     const availableServices = result.services.filter(s => s.available);
     const unavailableServices = result.services.filter(s => !s.available);
 
-    if (availableServices.length > 0 && unavailableServices.length > 0) {
-      const lastAvailableIndex = result.services.findIndex(s => s === availableServices[availableServices.length - 1]);
-      const firstUnavailableIndex = result.services.findIndex(s => s === unavailableServices[0]);
-      expect(lastAvailableIndex).toBeLessThan(firstUnavailableIndex);
-    }
+    expect(availableServices.length).toBeGreaterThan(0);
+    expect(unavailableServices.length).toBeGreaterThan(0);
+
+    const lastAvailableIndex = result.services.findIndex(s => s === availableServices[availableServices.length - 1]);
+    const firstUnavailableIndex = result.services.findIndex(s => s === unavailableServices[0]);
+    expect(lastAvailableIndex).toBeLessThan(firstUnavailableIndex);
   });
 });
 

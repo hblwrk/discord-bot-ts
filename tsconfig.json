@@ -33,6 +33,7 @@
   },
   "include": [
     "index.ts",
+    "modules/**/*.d.ts",
     "modules/**/*.ts"
   ],
   "exclude": [

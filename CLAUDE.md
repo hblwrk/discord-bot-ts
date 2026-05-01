@@ -12,7 +12,7 @@ Coding guidance for this repo. Extracts the rules a contributor (human or agent)
 ## Code conventions
 
 - Relative imports use the `.ts` extension in source files so Node.js can run the TypeScript sources natively. Example: `import {x} from "./foo.ts";`.
-- Airbnb style, 2-space indent, double quotes — match the surrounding file.
+- Local style: 2-space indent, double quotes, explicit readable control flow — match the surrounding file.
 - One feature per module under `modules/<feature>.ts`, with `<feature>.test.ts` alongside. `index.ts` only wires startup; feature logic does not belong there.
 - Keep modules under ~800 lines. Split before adding more.
 - Don't introduce code that requires a shell, package manager, or writable filesystem at runtime — the production image is distroless, nonroot, read-only. Writes only go to `/dev/shm` (set as `TMPDIR`).

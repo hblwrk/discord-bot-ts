@@ -1,36 +1,50 @@
 import type {Mock, MockedFunction} from "vitest";
+import type {StartupStateSnapshot} from "./startup-state.ts";
 import {runHealthCheck} from "./health-check.ts";
 import {afterAll, beforeEach, describe, expect, test, vi} from "vitest";
 
-type StartupStateSnapshot = import("./startup-state.ts").StartupStateSnapshot;
-
-var mockRouteHandlers: Map<string, (...args: unknown[]) => unknown>;
-var mockAppUse: Mock;
-var mockRouterUse: Mock;
-var mockRouterGet: Mock;
-var mockListen: Mock;
-var mockOn: Mock;
-var mockCreateServer: Mock;
-const mockLogger = {
-  log: vi.fn(),
-};
-
-vi.mock("express", () => {
-  mockRouteHandlers = new Map<string, (...args: unknown[]) => unknown>();
-  mockAppUse = vi.fn();
-  mockRouterUse = vi.fn();
-  mockRouterGet = vi.fn((path: string, handler: (...args: unknown[]) => unknown) => {
+const {
+  mockCreateServer,
+  mockExpress,
+  mockListen,
+  mockLogger,
+  mockOn,
+  mockRouteHandlers,
+} = vi.hoisted(() => {
+  const mockRouteHandlers = new Map<string, (...args: unknown[]) => unknown>();
+  const mockAppUse = vi.fn();
+  const mockRouterUse = vi.fn();
+  const mockRouterGet = vi.fn((path: string, handler: (...args: unknown[]) => unknown) => {
     mockRouteHandlers.set(path, handler);
   });
-
+  const mockListen = vi.fn();
+  const mockOn = vi.fn();
+  const mockCreateServer = vi.fn(() => ({
+    on: mockOn,
+    listen: mockListen,
+  }));
   const mockExpress = vi.fn(() => ({
     use: mockAppUse,
   }));
-  (mockExpress as any).Router = vi.fn(() => ({
+  (mockExpress as Mock & {Router: Mock}).Router = vi.fn(() => ({
     use: mockRouterUse,
     get: mockRouterGet,
   }));
+  const mockLogger = {
+    log: vi.fn(),
+  };
 
+  return {
+    mockCreateServer,
+    mockExpress,
+    mockListen,
+    mockLogger,
+    mockOn,
+    mockRouteHandlers,
+  };
+});
+
+vi.mock("express", () => {
   return {
     __esModule: true,
     default: mockExpress,
@@ -38,13 +52,6 @@ vi.mock("express", () => {
 });
 
 vi.mock("node:http", () => {
-  mockListen = vi.fn();
-  mockOn = vi.fn();
-  mockCreateServer = vi.fn(() => ({
-    on: mockOn,
-    listen: mockListen,
-  }));
-
   return {
     __esModule: true,
     default: {

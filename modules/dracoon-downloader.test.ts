@@ -112,14 +112,18 @@ describe("getFromDracoon", () => {
     const error = createAxiosError(503);
     postMock.mockRejectedValue(error);
 
-    const resultPromise = getFromDracoon("secret", "token");
-    const expectation = expect(resultPromise).rejects.toBe(error);
+    const resultPromise = getFromDracoon("secret", "token").then(
+      () => {
+        throw new Error("Expected getFromDracoon to reject.");
+      },
+      caughtError => caughtError,
+    );
 
     await Promise.resolve();
     await vi.advanceTimersByTimeAsync(500);
     await vi.advanceTimersByTimeAsync(1000);
 
-    await expectation;
+    await expect(resultPromise).resolves.toBe(error);
     expect(postMock).toHaveBeenCalledTimes(3);
   });
 });

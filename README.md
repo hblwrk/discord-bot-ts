@@ -9,7 +9,7 @@
 * We use `git config pull.rebase false`.
 * Mind `.gitignore`.
 * Code style follows the surrounding file: two-space indentation, double quotes, and explicit readable control flow.
-* Linter recommendation: ESLint flat config with type-aware `typescript-eslint`, `eslint-plugin-vitest` for tests, and `eslint-plugin-n` for Node.js runtime checks.
+* Linting uses ESLint flat config with type-aware `typescript-eslint`, `@vitest/eslint-plugin` for tests, and `eslint-plugin-n` for Node.js runtime checks.
 
 ## Running
 

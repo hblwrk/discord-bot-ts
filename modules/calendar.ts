@@ -1,8 +1,3 @@
-/* eslint-disable import/extensions */
-/* eslint-disable max-depth */
-/* eslint-disable @typescript-eslint/no-unnecessary-boolean-literal-compare */
-/* eslint-disable yoda */
-/* eslint-disable complexity */
 import moment from "moment-timezone";
 import {getLogger} from "./logging.ts";
 import {postWithRetry} from "./http-retry.ts";
@@ -62,6 +57,12 @@ type CalendarMessageChunk = {
   dayKeys: Set<string>;
 };
 
+type CalendarApiEvent = {
+  Country: number;
+  EventName: string;
+  FullDate: string;
+};
+
 function getCalendarRangeInBerlin(startDay: string, range: number): {startDate: moment.Moment; endDate: moment.Moment} {
   const effectiveStartDay = "" === startDay
     ? moment.tz(europeBerlinTimezone).format("YYYY-MM-DD")
@@ -108,7 +109,7 @@ export async function getCalendarEventsResult(startDay: string, range: number): 
   let status: CalendarLoadStatus = "ok";
 
   try {
-    const calendarResponse = await postWithRetry(
+    const calendarResponse = await postWithRetry<CalendarApiEvent[]>(
       "https://www.mql5.com/en/economic-calendar/content",
       `date_mode=0&from=${moment(startDate).format("YYYY-MM-DD")}T00%3A00%3A00&to=${moment(endDate).format("YYYY-MM-DD")}T23%3A59%3A59&importance=12&currencies=15`,
       {

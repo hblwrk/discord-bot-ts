@@ -71,10 +71,13 @@ describe("getAssets", () => {
     const assets = await getAssets("image");
 
     expect(assets).toHaveLength(2);
-    expect(assets[0].name).toBe("asset-ok");
-    expect(assets[0].fileContent).toEqual(Buffer.from("ok-buffer"));
-    expect(assets[1].name).toBe("asset-fail");
-    expect(assets[1].fileContent).toBeUndefined();
+    const [successfulAsset, failedAsset] = assets;
+    expect(successfulAsset).toBeDefined();
+    expect(failedAsset).toBeDefined();
+    expect(successfulAsset?.name).toBe("asset-ok");
+    expect(successfulAsset?.fileContent).toEqual(Buffer.from("ok-buffer"));
+    expect(failedAsset?.name).toBe("asset-fail");
+    expect(failedAsset?.fileContent).toBeUndefined();
     expect(getFromDracoonMock).toHaveBeenCalledTimes(2);
     expect(loggerMock.log).toHaveBeenCalledWith(
       "warn",
@@ -103,12 +106,14 @@ describe("getAssets", () => {
     const assets = await getAssets("calendarreminder");
 
     expect(assets).toHaveLength(1);
-    expect(assets[0].name).toBe("us-cpi-1h");
-    expect(assets[0].eventNameSubstrings).toEqual(["consumer price index", "cpi"]);
-    expect(assets[0].countryFlags).toEqual(["🇺🇸"]);
-    expect(assets[0].minutesBefore).toBe(60);
-    expect(assets[0].roleIdReference).toBe("hblwrk_role_special_alerts_ID");
-    expect(assets[0].roleId).toBe("role-123");
+    const [asset] = assets;
+    expect(asset).toBeDefined();
+    expect(asset?.name).toBe("us-cpi-1h");
+    expect(asset?.eventNameSubstrings).toEqual(["consumer price index", "cpi"]);
+    expect(asset?.countryFlags).toEqual(["🇺🇸"]);
+    expect(asset?.minutesBefore).toBe(60);
+    expect(asset?.roleIdReference).toBe("hblwrk_role_special_alerts_ID");
+    expect(asset?.roleId).toBe("role-123");
   });
 
   test("loads earnings reminder assets and resolves role references", async () => {
@@ -130,10 +135,12 @@ describe("getAssets", () => {
     const assets = await getAssets("earningsreminder");
 
     expect(assets).toHaveLength(1);
-    expect(assets[0].name).toBe("aapl-earnings");
-    expect(assets[0].tickerSymbols).toEqual(["AAPL"]);
-    expect(assets[0].roleIdReference).toBe("hblwrk_role_special_alerts_ID");
-    expect(assets[0].roleId).toBe("role-456");
+    const [asset] = assets;
+    expect(asset).toBeDefined();
+    expect(asset?.name).toBe("aapl-earnings");
+    expect(asset?.tickerSymbols).toEqual(["AAPL"]);
+    expect(asset?.roleIdReference).toBe("hblwrk_role_special_alerts_ID");
+    expect(asset?.roleId).toBe("role-456");
   });
 
   test("returns empty array when loading assets fails", async () => {

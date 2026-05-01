@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import {Client, GatewayIntentBits, Partials} from "discord.js";
 import {getGenericAssets, getAssets} from "./assets.ts";
 import {clownboard} from "./clownboard.ts";

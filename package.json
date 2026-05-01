@@ -6,6 +6,8 @@
   "description": "Hebelwerk Discord Bot",
   "main": "index.ts",
   "scripts": {
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --fix --max-warnings=0",
     "test": "vitest run",
     "test:coverage": "vitest run --coverage",
     "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.test.json",
@@ -39,13 +41,19 @@
   },
   "homepage": "https://github.com/hblwrk/discord-bot-ts#readme",
   "devDependencies": {
+    "@eslint/js": "^9.39.4",
     "@types/express": "^5.0.6",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^24.12.2",
     "@types/node-schedule": "^2.1.8",
     "@types/validator": "^13.15.10",
     "@vitest/coverage-v8": "^4.1.5",
+    "@vitest/eslint-plugin": "^1.6.16",
+    "eslint": "^9.39.4",
+    "eslint-plugin-n": "^17.24.0",
+    "globals": "^17.6.0",
     "typescript": "^6.0.3",
+    "typescript-eslint": "^8.59.1",
     "vitest": "^4.1.5"
   },
   "engines": {

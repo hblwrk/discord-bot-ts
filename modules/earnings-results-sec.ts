@@ -1,6 +1,3 @@
-/* eslint-disable complexity */
-/* eslint-disable yoda */
-/* eslint-disable import/extensions */
 import {type getWithRetry} from "./http-retry.ts";
 import {
   decodeHtmlEntities,
@@ -11,7 +8,7 @@ import {
 } from "./earnings-results-format.ts";
 
 type Logger = {
-  log: (level: string, message: any) => void;
+  log: (level: string, message: unknown) => void;
 };
 
 type SecRequestDependencies = {

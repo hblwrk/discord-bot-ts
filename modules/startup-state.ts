@@ -30,7 +30,7 @@ type StartupState = {
 };
 
 type StartupLogger = {
-  log: (level: string, message: any) => void;
+  log: (level: string, message: unknown) => void;
 };
 
 function toErrorString(error: unknown): string {

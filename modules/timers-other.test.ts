@@ -10,8 +10,8 @@ import {
   getScheduledJobByTime,
   isHolidayMock,
   loggerMock,
-  MockRecurrenceRule,
-  MockRange,
+  type MockRecurrenceRule,
+  type MockRange,
   resetTimerMocks,
   restoreTimerMocks,
   scheduleJobMock,
@@ -25,9 +25,9 @@ describe("timers: other announcements", () => {
 
   test("startOtherTimers schedules all other jobs and sends Friday asset", async () => {
     const {client, send} = createClientWithChannel();
-    const assets = [{title: "freitag"}];
+    const assets = [{name: "freitag"}];
 
-    startOtherTimers(client as any, "channel-id", assets, []);
+    startOtherTimers(client, "channel-id", assets, []);
     const fridayJob = getScheduledJobByTime(8, 0, "Europe/Berlin");
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
     const weeklyEarningsJob = getScheduledJobByTime(23, 30, "Europe/Berlin");
@@ -89,7 +89,7 @@ describe("timers: other announcements", () => {
       },
     ]);
 
-    startOtherTimers(client as any, "channel-id", [], [], [{
+    startOtherTimers(client, "channel-id", [], [], [{
       name: "us-cpi-1h",
       eventNameSubstrings: ["consumer price index", "cpi"],
       countryFlags: ["🇺🇸"],
@@ -137,7 +137,7 @@ describe("timers: other announcements", () => {
       },
     ]);
 
-    startOtherTimers(client as any, "channel-id", [], [], [{
+    startOtherTimers(client, "channel-id", [], [], [{
       name: "us-cpi-1h",
       eventNameSubstrings: ["cpi"],
       countryFlags: ["🇺🇸"],
@@ -167,7 +167,7 @@ describe("timers: other announcements", () => {
       },
     ]);
 
-    startOtherTimers(client as any, "channel-id", [], [], [
+    startOtherTimers(client, "channel-id", [], [], [
       {
         name: "wrong-country",
         eventNameSubstrings: ["cpi"],
@@ -219,7 +219,7 @@ describe("timers: other announcements", () => {
       },
     ]);
 
-    startOtherTimers(client as any, "channel-id", [], [], [
+    startOtherTimers(client, "channel-id", [], [], [
       {
         name: "us-gdp-1h",
         eventNameSubstrings: ["gdp q/q"],
@@ -256,7 +256,7 @@ describe("timers: other announcements", () => {
     const {client, send} = createClientWithChannel();
     getAssetByNameMock.mockReturnValue(undefined);
 
-    startOtherTimers(client as any, "channel-id", [], []);
+    startOtherTimers(client, "channel-id", [], []);
     const fridayJob = getScheduledJobByTime(8, 0, "Europe/Berlin");
     await fridayJob.callback();
 
@@ -271,7 +271,7 @@ describe("timers: other announcements", () => {
     const {client, send} = createClientWithChannel();
     getAssetByNameMock.mockReturnValueOnce(undefined);
 
-    startOtherTimers(client as any, "channel-id", [], []);
+    startOtherTimers(client, "channel-id", [], []);
     const fridayJob = getScheduledJobByTime(8, 0, "Europe/Berlin");
     await fridayJob.callback();
 
@@ -288,7 +288,7 @@ describe("timers: other announcements", () => {
       includedEvents: 0,
     });
 
-    startOtherTimers(client as any, "channel-id", [], []);
+    startOtherTimers(client, "channel-id", [], []);
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
     await dailyEarningsJob.callback();
 
@@ -300,7 +300,7 @@ describe("timers: other announcements", () => {
     const {client, send} = createClientWithChannel();
     vi.setSystemTime(new Date("2025-02-21T19:30:00+01:00"));
 
-    startOtherTimers(client as any, "channel-id", [], []);
+    startOtherTimers(client, "channel-id", [], []);
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
     await dailyEarningsJob.callback();
 
@@ -318,7 +318,7 @@ describe("timers: other announcements", () => {
     vi.setSystemTime(new Date("2025-07-03T19:30:00+02:00"));
     isHolidayMock.mockImplementation(date => date.toDateString() === "Fri Jul 04 2025");
 
-    startOtherTimers(client as any, "channel-id", [], []);
+    startOtherTimers(client, "channel-id", [], []);
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
     await dailyEarningsJob.callback();
 
@@ -336,7 +336,7 @@ describe("timers: other announcements", () => {
     const {client, send} = createClientWithChannel();
     vi.setSystemTime(new Date("2025-02-23T19:30:00+01:00"));
 
-    startOtherTimers(client as any, "channel-id", [], []);
+    startOtherTimers(client, "channel-id", [], []);
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
     await dailyEarningsJob.callback();
 
@@ -363,7 +363,7 @@ describe("timers: other announcements", () => {
       includedEvents: 9,
     });
 
-    startOtherTimers(client as any, "channel-id", [], []);
+    startOtherTimers(client, "channel-id", [], []);
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
     await dailyEarningsJob.callback();
 
@@ -397,7 +397,7 @@ describe("timers: other announcements", () => {
       includedEvents: 10,
     });
 
-    startOtherTimers(client as any, "channel-id", [], []);
+    startOtherTimers(client, "channel-id", [], []);
     const weeklyEarningsJob = getScheduledJobByTime(23, 30, "Europe/Berlin");
     await weeklyEarningsJob.callback();
 
@@ -441,7 +441,7 @@ describe("timers: other announcements", () => {
       status: "ok",
     });
 
-    startOtherTimers(client as any, "channel-id", [], [], [], [{
+    startOtherTimers(client, "channel-id", [], [], [], [{
       name: "big-tech-earnings",
       tickerSymbols: ["NVDA", "MSFT"],
       roleId: "role-456",
@@ -484,7 +484,7 @@ describe("timers: other announcements", () => {
       status: "ok",
     });
 
-    startOtherTimers(client as any, "channel-id", [], [], [], [
+    startOtherTimers(client, "channel-id", [], [], [], [
       {
         name: "big-tech-earnings",
         tickerSymbols: [" nvda ", "msft"],
@@ -528,7 +528,7 @@ describe("timers: other announcements", () => {
       status: "ok",
     });
 
-    startOtherTimers(client as any, "channel-id", [], [], [], [{
+    startOtherTimers(client, "channel-id", [], [], [], [{
       name: "berkshire-earnings",
       tickerSymbols: ["BRK.B"],
       roleId: "role-456",
@@ -558,7 +558,7 @@ describe("timers: other announcements", () => {
       status: "ok",
     });
 
-    startOtherTimers(client as any, "channel-id", [], [], [], [{
+    startOtherTimers(client, "channel-id", [], [], [], [{
       name: "aapl-earnings",
       tickerSymbols: ["AAPL"],
       roleId: "   ",
@@ -575,7 +575,7 @@ describe("timers: other announcements", () => {
       status: "error",
     });
 
-    startOtherTimers(client as any, "channel-id", [], [], [], [{
+    startOtherTimers(client, "channel-id", [], [], [], [{
       name: "aapl-earnings",
       tickerSymbols: ["AAPL"],
       roleId: "role-456",
@@ -601,7 +601,7 @@ describe("timers: other announcements", () => {
       includedDays: 3,
     });
 
-    startOtherTimers(client as any, "channel-id", [], []);
+    startOtherTimers(client, "channel-id", [], []);
     const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
     await dailyCalendarJob.callback();
 
@@ -646,7 +646,7 @@ describe("timers: other announcements", () => {
       includedDays: 3,
     });
 
-    startOtherTimers(client as any, "channel-id", [], []);
+    startOtherTimers(client, "channel-id", [], []);
     const weeklyCalendarJob = getScheduledJobByTime(23, 45, "Europe/Berlin");
     await weeklyCalendarJob.callback();
 
@@ -687,7 +687,7 @@ describe("timers: other announcements", () => {
       includedDays: 4,
     });
 
-    startOtherTimers(client as any, "channel-id", [], []);
+    startOtherTimers(client, "channel-id", [], []);
     const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
     await dailyCalendarJob.callback();
 

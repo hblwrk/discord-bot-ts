@@ -1,7 +1,3 @@
-/* eslint-disable complexity */
-/* eslint-disable max-depth */
-/* eslint-disable yoda */
-/* eslint-disable import/extensions */
 import moment from "moment-timezone";
 import {type EarningsEvent} from "./earnings.ts";
 import {

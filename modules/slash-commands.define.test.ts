@@ -1,4 +1,5 @@
 import type {MockedFunction} from "vitest";
+import type * as DiscordJs from "discord.js";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
 const {
@@ -33,7 +34,7 @@ const {
 });
 
 vi.mock("discord.js", async importOriginal => {
-  const actual = await importOriginal<typeof import("discord.js")>();
+  const actual = await importOriginal<typeof DiscordJs>();
 
   return {
     ...actual,
@@ -47,7 +48,7 @@ vi.mock("discord.js", async importOriginal => {
   };
 });
 
-import {ImageAsset, TextAsset} from "./assets.ts";
+import {ImageAsset, TextAsset, UserAsset} from "./assets.ts";
 import {buildSlashCommandPayload, defineSlashCommands} from "./slash-commands.ts";
 import {readSecret} from "./secrets.ts";
 
@@ -97,6 +98,19 @@ function toRemoteCommandPayload(commands: any[]): any[] {
     .reverse();
 }
 
+function createWhatIsAsset(name: string, title: string): ImageAsset {
+  const asset = new ImageAsset();
+  asset.name = name;
+  asset.title = title;
+  return asset;
+}
+
+function createUserAsset(name: string): UserAsset {
+  const asset = new UserAsset();
+  asset.name = name;
+  return asset;
+}
+
 describe("defineSlashCommands", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -112,15 +126,15 @@ describe("defineSlashCommands", () => {
     asset.response = "Hello";
     const desiredPayload = buildSlashCommandPayload(
       [asset],
-      [{title: "FAQ", name: "whatis_faq"}],
-      [{name: "alice"}],
+      [createWhatIsAsset("whatis_faq", "FAQ")],
+      [createUserAsset("alice")],
     ).slashCommands;
     mockGet.mockResolvedValueOnce(toRemoteCommandPayload(desiredPayload));
 
     await defineSlashCommands(
       [asset],
-      [{title: "FAQ", name: "whatis_faq"}],
-      [{name: "alice"}],
+      [createWhatIsAsset("whatis_faq", "FAQ")],
+      [createUserAsset("alice")],
     );
 
     expect(mockRest).toHaveBeenCalledWith(expect.objectContaining({

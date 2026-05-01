@@ -1,9 +1,3 @@
-/* eslint-disable max-depth */
-/* eslint-disable complexity */
-/* eslint-disable unicorn/prefer-ternary */
-/* eslint-disable @typescript-eslint/no-unnecessary-boolean-literal-compare */
-/* eslint-disable yoda */
-/* eslint-disable import/extensions */
 import moment from "moment-timezone";
 import {type Ticker} from "./tickers.ts";
 import {

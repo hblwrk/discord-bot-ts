@@ -147,12 +147,17 @@ describe("http-retry", () => {
       maxAttempts: 2,
       retryDelayMs: 20,
     });
-    const expectation = expect(responsePromise).rejects.toBe(secondError);
+    const rejectedResponsePromise = responsePromise.then(
+      () => {
+        throw new Error("Expected postWithRetry to reject.");
+      },
+      caughtError => caughtError,
+    );
 
     await Promise.resolve();
     await vi.advanceTimersByTimeAsync(20);
 
-    await expectation;
+    await expect(rejectedResponsePromise).resolves.toBe(secondError);
     expect(postMock).toHaveBeenCalledTimes(2);
   });
 });

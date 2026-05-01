@@ -1,8 +1,5 @@
-/* eslint-disable yoda */
-/* eslint-disable complexity */
-/* eslint-disable import/extensions */
 import {SlashCommandBuilder} from "discord.js";
-import {ImageAsset, TextAsset} from "./assets.ts";
+import {ImageAsset, TextAsset, type UserAsset} from "./assets.ts";
 import {getLogger} from "./logging.ts";
 import {
   buildGroupedAssetSlashCommand,
@@ -15,9 +12,14 @@ import {getSlashCommandNamesFromPayload} from "./slash-commands-canonical.ts";
 const logger = getLogger();
 const maxSlashCommandsPerScope = 100;
 export const fixedSlashCommandNames = ["cryptodice", "lmgtfy", "google", "8ball", "whatis", "quote", "islandboi", "sara", "earnings", "calendar", "paywall"];
+type SlashCommandJson = ReturnType<SlashCommandBuilder["toJSON"]>;
+type SlashCommandChoice = {
+  name: string;
+  value: string;
+};
 
 export type SlashCommandPayloadBuildResult = {
-  slashCommands: any[];
+  slashCommands: SlashCommandJson[];
   dracoonAssetCommandNames: string[];
   expectedCommandNames: string[];
   assetTriggersTotal: number;
@@ -31,8 +33,8 @@ export type SlashCommandPayloadBuildResult = {
   textAssetCommandsRegistered: number;
 };
 
-function createFixedSlashCommands(whatIsAssetsChoices: any[], userAssetsChoices: any[]) {
-  const fixedSlashCommands = [];
+function createFixedSlashCommands(whatIsAssetsChoices: SlashCommandChoice[], userAssetsChoices: SlashCommandChoice[]) {
+  const fixedSlashCommands: SlashCommandJson[] = [];
 
   const slashCommandCryptodice = new SlashCommandBuilder()
     .setName("cryptodice")
@@ -155,13 +157,13 @@ function createFixedSlashCommands(whatIsAssetsChoices: any[], userAssetsChoices:
   return fixedSlashCommands;
 }
 
-export function buildSlashCommandPayload(assets: any[], whatIsAssets: any[], userAssets: any[]): SlashCommandPayloadBuildResult {
-  const whatIsAssetsChoices = [];
+export function buildSlashCommandPayload(assets: unknown[], whatIsAssets: ImageAsset[], userAssets: UserAsset[]): SlashCommandPayloadBuildResult {
+  const whatIsAssetsChoices: SlashCommandChoice[] = [];
   for (const asset of whatIsAssets) {
     whatIsAssetsChoices.push({name: asset.title, value: asset.name});
   }
 
-  const userAssetsChoices = [];
+  const userAssetsChoices: SlashCommandChoice[] = [];
   for (const asset of userAssets) {
     userAssetsChoices.push({name: asset.name, value: asset.name});
   }
@@ -182,7 +184,7 @@ export function buildSlashCommandPayload(assets: any[], whatIsAssets: any[], use
     }
   }
 
-  const slashCommands = [];
+  const slashCommands: SlashCommandJson[] = [];
   const seenCommandNames = new Set<string>(getSlashCommandNamesFromPayload(fixedSlashCommands));
   const dracoonAssetCommandNames = new Set<string>();
   const registeredGroupedCommandNames = new Set<string>();

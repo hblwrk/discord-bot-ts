@@ -595,7 +595,7 @@ describe("startBot", () => {
       userId: "different-client-id",
     });
     const {dependencies, mocks} = createDependencies({
-      createClient: () => client as any,
+      createClient: () => client,
       warmupMaxAttempts: 1,
     });
 
@@ -615,7 +615,7 @@ describe("startBot", () => {
       missingChannelIds: ["clownboard"],
     });
     const {dependencies, mocks} = createDependencies({
-      createClient: () => client as any,
+      createClient: () => client,
       warmupMaxAttempts: 1,
     });
 
@@ -661,7 +661,7 @@ describe("startBot", () => {
       return defaults[secretName] ?? "";
     });
     const {dependencies, mocks} = createDependencies({
-      createClient: () => client as any,
+      createClient: () => client,
       readSecret,
       warmupMaxAttempts: 1,
     });

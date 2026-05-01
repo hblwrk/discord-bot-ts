@@ -1,9 +1,7 @@
-/* eslint-disable yoda */
-/* eslint-disable complexity */
-/* eslint-disable import/extensions */
-import {AttachmentBuilder, EmbedBuilder, PermissionFlagsBits} from "discord.js";
+import {AttachmentBuilder, type ChatInputCommandInteraction, EmbedBuilder, type Interaction, PermissionFlagsBits} from "discord.js";
 import validator from "validator";
-import {getAssetByName} from "./assets.ts";
+import {type GenericAsset, getAssetByName, ImageAsset, type PaywallAsset, TextAsset} from "./assets.ts";
+import {type DiscordTransportClient} from "./discord-logger.ts";
 import {CALENDAR_MAX_MESSAGE_LENGTH, CALENDAR_MAX_MESSAGES_SLASH, getCalendarEvents, getCalendarMessages} from "./calendar.ts";
 import {cryptodice} from "./crypto-dice.ts";
 import {EARNINGS_MAX_MESSAGE_LENGTH, EARNINGS_MAX_MESSAGES_SLASH, getEarningsMessages, getEarningsResult} from "./earnings.ts";
@@ -36,30 +34,74 @@ const islandboiCooldownMs = 60_000;
 const islandboiCooldownByUser = new Map<string, number>();
 const islandboiUnmuteTimers = new Map<string, ReturnType<typeof setTimeout>>();
 
+type SlashCommandMember = {
+  permissions?: {
+    has: (permission: bigint) => boolean;
+  };
+  roles: {
+    add: (roleId: string) => Promise<unknown>;
+    remove: (roleId: string) => Promise<unknown>;
+  };
+};
+
+type SlashCommandGuild = {
+  members: {
+    fetch: (userId: string) => Promise<SlashCommandMember | undefined>;
+    fetchMe: () => Promise<SlashCommandMember | undefined>;
+    me?: SlashCommandMember | null;
+  };
+};
+
+type SlashCommandClient = {
+  channels?: DiscordTransportClient["channels"];
+  guilds?: {
+    cache: {
+      get: (guildId: string) => SlashCommandGuild | undefined;
+    };
+    fetch: (guildId: string) => Promise<SlashCommandGuild | undefined>;
+  };
+  on: (eventName: "interactionCreate", handler: (interaction: Interaction) => unknown) => unknown;
+};
+
+function getDiscordLoggerClient(client: SlashCommandClient): DiscordTransportClient {
+  return {
+    channels: client.channels ?? {
+      cache: {
+        get: () => undefined,
+      },
+    },
+  };
+}
+
 export function interactSlashCommands(
-  client: any,
-  assets: any[],
+  client: SlashCommandClient,
+  assets: GenericAsset[],
   _assetCommands: string[],
-  whatIsAssets: any[],
+  whatIsAssets: ImageAsset[],
   tickers: Ticker[],
-  paywallAssets?: any[],
+  paywallAssets?: PaywallAsset[],
 ) {
   const guildId = readSecret("discord_guild_ID").trim();
   // Respond to slash-commands
-  client.on("interactionCreate", async (interaction: any) => {
+  client.on("interactionCreate", async interaction => {
     if (!interaction.isChatInputCommand()) {
       return;
     }
 
-    const commandName: string = validator.escape(interaction.commandName);
+    const chatInputInteraction: ChatInputCommandInteraction = interaction;
+    const commandName: string = validator.escape(chatInputInteraction.commandName);
     for (const asset of assets) {
+      if (!(asset instanceof ImageAsset) && !(asset instanceof TextAsset)) {
+        continue;
+      }
+
       if (false === Array.isArray(asset.trigger)) {
         continue;
       }
 
       for (const trigger of asset.trigger) {
         if ("whatis" !== commandName && commandName === toSlashCommandName(trigger)) {
-          if (true === await replyWithSlashAsset(interaction, asset, trigger)) {
+          if (true === await replyWithSlashAsset(chatInputInteraction, asset, trigger)) {
             return;
           }
         }
@@ -69,12 +111,12 @@ export function interactSlashCommands(
     const groupedAssetCommand = getGroupedAssetCommands(assets, fixedSlashCommandNames)
       .find(candidate => candidate.commandName === commandName);
     if (groupedAssetCommand) {
-      const requestedVariant = interaction.options.getInteger?.("variant") ?? null;
+      const requestedVariant = chatInputInteraction.options.getInteger?.("variant") ?? null;
       const selectedVariant = null !== requestedVariant
         ? groupedAssetCommand.variants.find(groupedAssetVariant => groupedAssetVariant.variant === requestedVariant)
         : getRandomAsset(groupedAssetCommand.variants);
       if (!selectedVariant) {
-        await interaction.reply("Keine passende Variante gefunden.").catch((error: unknown) => {
+        await chatInputInteraction.reply("Keine passende Variante gefunden.").catch((error: unknown) => {
           logger.log(
             "error",
             `Error replying to slashcommand: ${error}`,
@@ -83,7 +125,7 @@ export function interactSlashCommands(
         return;
       }
 
-      if (true === await replyWithSlashAsset(interaction, selectedVariant.asset, groupedAssetCommand.baseTrigger)) {
+      if (true === await replyWithSlashAsset(chatInputInteraction, selectedVariant.asset, groupedAssetCommand.baseTrigger)) {
         return;
       }
     }
@@ -387,7 +429,7 @@ export function interactSlashCommands(
         return;
       }
 
-      const guild = client.guilds.cache.get(guildId) ?? await client.guilds.fetch(guildId).catch((error: unknown) => {
+      const guild = client.guilds?.cache.get(guildId) ?? await client.guilds?.fetch(guildId).catch((error: unknown) => {
         logger.log(
           "error",
           `Error fetching guild for islandboi slashcommand: ${error}`,
@@ -412,7 +454,7 @@ export function interactSlashCommands(
           `Error fetching bot member for islandboi slashcommand: ${error}`,
         );
       });
-      if (!botMember || false === botMember.permissions.has(PermissionFlagsBits.ManageRoles)) {
+      if (!botMember || true !== botMember.permissions?.has(PermissionFlagsBits.ManageRoles)) {
         await interaction.reply({
           content: "No permissions to manage roles.",
           ephemeral: true,
@@ -501,12 +543,12 @@ export function interactSlashCommands(
           `Unmuted ${interaction.user.username} after 60 seconds.`,
         );
       }, islandboiCooldownMs);
-      (timer as any).unref?.();
+      timer.unref();
       islandboiUnmuteTimers.set(interaction.user.id, timer);
     }
 
     if ("earnings" === commandName) {
-      const discordLogger = getDiscordLogger(client);
+      const discordLogger = getDiscordLogger(getDiscordLoggerClient(client));
 
       discordLogger.log(
         "info",
@@ -517,8 +559,6 @@ export function interactSlashCommands(
         },
       );
 
-      let earningsEvents = [];
-      let earningsStatus: "ok" | "error";
       let when: string;
       let filter: string;
       let date: string;
@@ -564,8 +604,8 @@ export function interactSlashCommands(
       }
 
       const earningsResult = await getEarningsResult(days, date);
-      earningsEvents = earningsResult.events;
-      earningsStatus = earningsResult.status;
+      const earningsEvents = earningsResult.events;
+      const earningsStatus = earningsResult.status;
 
       const earningsBatch = getEarningsMessages(earningsEvents, when, tickers, {
         maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
@@ -624,8 +664,13 @@ export function interactSlashCommands(
         return;
       }
 
+      const firstEarningsMessage = earningsBatch.messages[0];
+      if (undefined === firstEarningsMessage) {
+        return;
+      }
+
       await interaction.editReply({
-        content: earningsBatch.messages[0],
+        content: firstEarningsMessage,
         allowedMentions: noMentions,
       }).catch((error: unknown) => {
         logger.log(
@@ -635,8 +680,13 @@ export function interactSlashCommands(
       });
 
       for (let chunkIndex = 1; chunkIndex < earningsBatch.messages.length; chunkIndex++) {
+        const followUpMessage = earningsBatch.messages[chunkIndex];
+        if (undefined === followUpMessage) {
+          continue;
+        }
+
         await interaction.followUp({
-          content: earningsBatch.messages[chunkIndex],
+          content: followUpMessage,
           allowedMentions: noMentions,
         }).catch((error: unknown) => {
           logger.log(
@@ -648,7 +698,7 @@ export function interactSlashCommands(
     }
 
     if ("calendar" === commandName) {
-      const discordLogger = getDiscordLogger(client);
+      const discordLogger = getDiscordLogger(getDiscordLoggerClient(client));
 
       discordLogger.log(
         "info",
@@ -718,8 +768,13 @@ export function interactSlashCommands(
         return;
       }
 
+      const firstCalendarMessage = calendarBatch.messages[0];
+      if (undefined === firstCalendarMessage) {
+        return;
+      }
+
       await interaction.reply({
-        content: calendarBatch.messages[0],
+        content: firstCalendarMessage,
         allowedMentions: noMentions,
       }).catch((error: unknown) => {
         logger.log(
@@ -729,8 +784,13 @@ export function interactSlashCommands(
       });
 
       for (let chunkIndex = 1; chunkIndex < calendarBatch.messages.length; chunkIndex++) {
+        const followUpMessage = calendarBatch.messages[chunkIndex];
+        if (undefined === followUpMessage) {
+          continue;
+        }
+
         await interaction.followUp({
-          content: calendarBatch.messages[chunkIndex],
+          content: followUpMessage,
           allowedMentions: noMentions,
         }).catch((error: unknown) => {
           logger.log(
@@ -742,7 +802,7 @@ export function interactSlashCommands(
     }
 
     async function saraDoesNotWant() {
-      await interaction.reply("Sara möchte das nicht.").catch((error: unknown) => {
+      await chatInputInteraction.reply("Sara möchte das nicht.").catch((error: unknown) => {
         logger.log(
           "error",
           `Error replying to sara slashcommand: ${error}`,
@@ -758,7 +818,7 @@ export function interactSlashCommands(
 
         if ("yes" === what.toLowerCase()) {
           const asset = getAssetByName("sara-yes", assets);
-          if (!asset?.fileContent || !asset.fileName) {
+          if (!(asset instanceof ImageAsset) || !asset.fileContent || !asset.fileName) {
             await saraDoesNotWant();
             return;
           }
@@ -767,7 +827,7 @@ export function interactSlashCommands(
           await interaction.reply({files: [file]});
         } else if ("shrug" === what.toLowerCase()) {
           const asset = getAssetByName("sara-shrug", assets);
-          if (!asset?.fileContent || !asset.fileName) {
+          if (!(asset instanceof ImageAsset) || !asset.fileContent || !asset.fileName) {
             await saraDoesNotWant();
             return;
           }

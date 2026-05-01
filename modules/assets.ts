@@ -10,9 +10,18 @@ const fileExtension = ".yaml";
 const logger = getLogger();
 
 class BaseAsset {
+  private _downloadFailed = false;
   private _name = "";
   private _trigger: string[] = [];
   private _triggerRegex: unknown = "";
+
+  public get downloadFailed(): boolean {
+    return this._downloadFailed;
+  }
+
+  public set downloadFailed(downloadFailed: boolean) {
+    this._downloadFailed = downloadFailed;
+  }
 
   public get name(): string {
     return this._name;
@@ -488,15 +497,23 @@ export class PaywallAsset {
   }
 }
 
+export type GenericAsset = EmojiAsset | ImageAsset | TextAsset | UserAsset | UserQuoteAsset;
+export type Asset = CalendarReminderAsset
+  | EarningsReminderAsset
+  | GenericAsset
+  | MarketDataAsset
+  | PaywallAsset
+  | RoleAsset;
+
 async function populateDracoonAsset(type: string, asset: ImageAsset | UserQuoteAsset): Promise<void> {
-  if (false === asset.hasOwnProperty("_location") || "dracoon" !== asset.location) {
+  if (false === Object.hasOwn(asset, "_location") || "dracoon" !== asset.location) {
     return;
   }
 
   try {
     asset.fileContent = await getFromDracoon(readSecret("dracoon_password"), asset.locationId);
   } catch (error: unknown) {
-    (asset as any).downloadFailed = true;
+    asset.downloadFailed = true;
     const assetId = asset.name ?? asset.fileName ?? asset.locationId ?? "unknown";
     logger.log(
       "warn",
@@ -505,22 +522,31 @@ async function populateDracoonAsset(type: string, asset: ImageAsset | UserQuoteA
   }
 }
 
-export async function getGenericAssets() {
-  const assetTypes = ["emoji", "image", "text", "user", "userquote"];
-  const newAssets = [];
-  for (const assetType of assetTypes) {
-    const assets = await getAssets(assetType) ?? [];
-    for (const asset of assets) {
-      newAssets.push(asset);
-    }
-  }
+export async function getGenericAssets(): Promise<GenericAsset[]> {
+  const newAssets: GenericAsset[] = [];
+  newAssets.push(...await getAssets("emoji"));
+  newAssets.push(...await getAssets("image"));
+  newAssets.push(...await getAssets("text"));
+  newAssets.push(...await getAssets("user"));
+  newAssets.push(...await getAssets("userquote"));
 
   return newAssets;
 }
 
-export async function getAssets(type: string): Promise<any[]> {
+export function getAssets(type: "calendarreminder"): Promise<CalendarReminderAsset[]>;
+export function getAssets(type: "earningsreminder"): Promise<EarningsReminderAsset[]>;
+export function getAssets(type: "emoji"): Promise<EmojiAsset[]>;
+export function getAssets(type: "image" | "whatis"): Promise<ImageAsset[]>;
+export function getAssets(type: "marketdata"): Promise<MarketDataAsset[]>;
+export function getAssets(type: "paywall"): Promise<PaywallAsset[]>;
+export function getAssets(type: "role"): Promise<RoleAsset[]>;
+export function getAssets(type: "text"): Promise<TextAsset[]>;
+export function getAssets(type: "user"): Promise<UserAsset[]>;
+export function getAssets(type: "userquote"): Promise<UserQuoteAsset[]>;
+export function getAssets(type: string): Promise<Asset[]>;
+export async function getAssets(type: string): Promise<Asset[]> {
   try {
-    const newAssets = [];
+    const newAssets: Asset[] = [];
     const yamlObjects = yaml.load(fs.readFileSync(`${directory}/${type}${fileExtension}`, "utf-8"));
     const jsonObjects = Array.isArray(yamlObjects) ? yamlObjects : [];
     for (const jsonObject of jsonObjects) {
@@ -617,7 +643,7 @@ export async function getAssets(type: string): Promise<any[]> {
   }
 }
 
-export function getAssetByName(name: string, assets: any[]): any | undefined {
+export function getAssetByName<T extends {name: string}>(name: string, assets: T[]): T | undefined {
   for (const asset of assets) {
     if (name === asset.name) {
       return asset;

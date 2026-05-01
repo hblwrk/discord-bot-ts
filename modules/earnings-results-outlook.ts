@@ -1,5 +1,3 @@
-/* eslint-disable complexity */
-/* eslint-disable yoda */
 
 export type EarningsOutlookMetric = {
   key: string;

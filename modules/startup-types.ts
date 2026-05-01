@@ -1,5 +1,15 @@
 import {type Client} from "discord.js";
-import {type getAssets, type getGenericAssets} from "./assets.ts";
+import {
+  type CalendarReminderAsset,
+  type EarningsReminderAsset,
+  type GenericAsset,
+  type getAssets,
+  type getGenericAssets,
+  type ImageAsset,
+  type PaywallAsset,
+  type RoleAsset,
+  type UserAsset,
+} from "./assets.ts";
 import {type clownboard} from "./clownboard.ts";
 import {type startEarningsResultWatcher} from "./earnings-results.ts";
 import {type runHealthCheck} from "./health-check.ts";
@@ -15,7 +25,7 @@ import {type addTriggerResponses} from "./trigger-response.ts";
 
 export type Logger = {
   level?: string;
-  log: (level: string, message: any) => void;
+  log: (level: string, message: unknown) => void;
 };
 
 export type StartupDependencies = {
@@ -56,13 +66,13 @@ export type StartupRuntime = {
 };
 
 export type SharedStartupData = {
-  assets: any[];
-  whatIsAssets: any[];
-  userAssets: any[];
-  roleAssets: any[];
-  calendarReminderAssets: any[];
-  earningsReminderAssets: any[];
-  paywallAssets: any[];
+  assets: GenericAsset[];
+  whatIsAssets: ImageAsset[];
+  userAssets: UserAsset[];
+  roleAssets: RoleAsset[];
+  calendarReminderAssets: CalendarReminderAsset[];
+  earningsReminderAssets: EarningsReminderAsset[];
+  paywallAssets: PaywallAsset[];
   tickers: Ticker[];
   assetCommands: string[];
   assetCommandsWithPrefix: string[];

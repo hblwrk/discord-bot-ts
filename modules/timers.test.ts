@@ -28,7 +28,7 @@ describe("timers: NYSE and MNC", () => {
   test("startNyseTimers registers NYSE jobs and sends regular pre-market announcement", () => {
     const {client, send} = createClientWithChannel();
 
-    startNyseTimers(client as any, "channel-id");
+    startNyseTimers(client, "channel-id");
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
 
     expect(scheduleJobMock).toHaveBeenCalledTimes(8);
@@ -54,7 +54,7 @@ describe("timers: NYSE and MNC", () => {
       },
     });
 
-    startNyseTimers(client as any, "channel-id");
+    startNyseTimers(client, "channel-id");
     const openJob = getScheduledJobByTime(9, 30, "US/Eastern");
     openJob.callback();
     await flushAsyncJobs();
@@ -93,7 +93,7 @@ describe("timers: NYSE and MNC", () => {
       },
     });
 
-    startNyseTimers(client as any, "channel-id");
+    startNyseTimers(client, "channel-id");
     const openJob = getScheduledJobByTime(9, 30, "US/Eastern");
     openJob.callback();
     await flushAsyncJobs();
@@ -115,7 +115,7 @@ describe("timers: NYSE and MNC", () => {
     const {client, send} = createClientWithChannel();
     isHolidayMock.mockReturnValue(true);
 
-    startNyseTimers(client as any, "channel-id");
+    startNyseTimers(client, "channel-id");
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
     premarketJob.callback();
 
@@ -126,7 +126,7 @@ describe("timers: NYSE and MNC", () => {
     const {client, send} = createClientWithChannel();
     vi.setSystemTime(new Date("2025-11-28T10:00:00-05:00"));
 
-    startNyseTimers(client as any, "channel-id");
+    startNyseTimers(client, "channel-id");
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
     premarketJob.callback();
 
@@ -159,7 +159,7 @@ describe("timers: NYSE and MNC", () => {
       return [];
     });
 
-    startNyseTimers(client as any, "channel-id");
+    startNyseTimers(client, "channel-id");
     vi.setSystemTime(new Date("2026-11-27T10:00:00-05:00"));
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
     premarketJob.callback();
@@ -174,7 +174,7 @@ describe("timers: NYSE and MNC", () => {
     vi.setSystemTime(new Date("2025-12-26T01:00:00Z"));
     isHolidayMock.mockImplementation(date => date.toDateString() === "Thu Dec 25 2025");
 
-    startNyseTimers(client as any, "channel-id");
+    startNyseTimers(client, "channel-id");
     const aftermarketJob = getScheduledJobByTime(20, 0, "US/Eastern");
     aftermarketJob.callback();
 
@@ -185,7 +185,7 @@ describe("timers: NYSE and MNC", () => {
   test("startNyseTimers points close announcement to Heutige Gains&Losses thread", () => {
     const {client, send} = createClientWithChannel();
 
-    startNyseTimers(client as any, "channel-id", "thread-id");
+    startNyseTimers(client, "channel-id", "thread-id");
     const closeJob = getScheduledJobByTime(16, 0, "US/Eastern");
     closeJob.callback();
 
@@ -195,7 +195,7 @@ describe("timers: NYSE and MNC", () => {
   test("startNyseTimers skips announcement when channel is missing", () => {
     const {client} = createClientWithoutChannel();
 
-    startNyseTimers(client as any, "channel-id");
+    startNyseTimers(client, "channel-id");
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
 
     expect(() => {
@@ -207,7 +207,7 @@ describe("timers: NYSE and MNC", () => {
   test("startMncTimers schedules MNC announcement and sends attachment payload", async () => {
     const {client, send} = createClientWithChannel();
 
-    startMncTimers(client as any, "channel-id");
+    startMncTimers(client, "channel-id");
     const mncJob = getScheduledJobByTime(9, 0, "US/Eastern");
 
     expect(scheduleJobMock).toHaveBeenCalledTimes(1);
@@ -235,7 +235,7 @@ describe("timers: NYSE and MNC", () => {
     const {client, send} = createClientWithChannel();
     getMncMock.mockResolvedValueOnce(undefined);
 
-    startMncTimers(client as any, "channel-id");
+    startMncTimers(client, "channel-id");
     const mncJob = getScheduledJobByTime(9, 0, "US/Eastern");
     await mncJob.callback();
 
@@ -248,7 +248,7 @@ describe("timers: NYSE and MNC", () => {
     const {client, send} = createClientWithChannel();
     isHolidayMock.mockReturnValue(true);
 
-    startMncTimers(client as any, "channel-id");
+    startMncTimers(client, "channel-id");
     const mncJob = getScheduledJobByTime(9, 0, "US/Eastern");
     await mncJob.callback();
 
@@ -260,7 +260,7 @@ describe("timers: NYSE and MNC", () => {
   test("startMncTimers logs and skips when channel is missing", async () => {
     const {client} = createClientWithoutChannel();
 
-    startMncTimers(client as any, "channel-id");
+    startMncTimers(client, "channel-id");
     const mncJob = getScheduledJobByTime(9, 0, "US/Eastern");
     await mncJob.callback();
 

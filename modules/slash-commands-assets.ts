@@ -1,7 +1,4 @@
-/* eslint-disable yoda */
-/* eslint-disable complexity */
-/* eslint-disable import/extensions */
-import {AttachmentBuilder, EmbedBuilder, SlashCommandBuilder} from "discord.js";
+import {AttachmentBuilder, type ChatInputCommandInteraction, EmbedBuilder, SlashCommandBuilder} from "discord.js";
 import {ImageAsset, TextAsset} from "./assets.ts";
 import {getLogger} from "./logging.ts";
 
@@ -18,6 +15,8 @@ export type GroupedAssetCommand = {
   commandName: string;
   variants: GroupedAssetVariant[];
 };
+
+type SlashAssetInteraction = Pick<ChatInputCommandInteraction, "reply">;
 
 export function toSlashCommandName(trigger: string): string {
   return trigger
@@ -129,7 +128,7 @@ export function getGroupedAssetCommands(assets: unknown[], reservedCommandNames:
     });
 }
 
-export function buildGroupedAssetSlashCommand(groupedAssetCommand: GroupedAssetCommand) {
+export function buildGroupedAssetSlashCommand(groupedAssetCommand: GroupedAssetCommand): ReturnType<SlashCommandBuilder["toJSON"]> {
   const slashCommand = new SlashCommandBuilder()
     .setName(groupedAssetCommand.commandName)
     .setDescription(`Random oder Variante von ${groupedAssetCommand.baseTrigger}`.slice(0, 100));
@@ -160,7 +159,7 @@ export function buildGroupedAssetSlashCommand(groupedAssetCommand: GroupedAssetC
   return slashCommand.toJSON();
 }
 
-export async function replyWithSlashAsset(interaction: any, asset: ImageAsset | TextAsset, fallbackLabel: string) {
+export async function replyWithSlashAsset(interaction: SlashAssetInteraction, asset: ImageAsset | TextAsset, fallbackLabel: string) {
   if (asset instanceof ImageAsset) {
     if (!asset?.fileContent || !asset.fileName) {
       logger.log(

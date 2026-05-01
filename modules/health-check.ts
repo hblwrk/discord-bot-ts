@@ -5,7 +5,7 @@ import {getLogger} from "./logging.ts";
 import {type StartupStateSnapshot} from "./startup-state.ts";
 
 type HealthcheckLogger = {
-  log: (level: string, message: any) => void;
+  log: (level: string, message: unknown) => void;
 };
 
 function toErrorMessage(error: unknown): string {

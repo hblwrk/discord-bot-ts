@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 export type SlashRegistrationDiff = {
   expectedCommandNames: string[];
   returnedCommandNames: string[];
@@ -35,8 +34,12 @@ type CanonicalSlashCommand = {
   options: CanonicalSlashCommandOption[];
 };
 
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return "object" === typeof value && null !== value;
+}
+
 function toCanonicalSlashCommandChoice(choice: unknown): CanonicalSlashCommandChoice {
-  if ("object" !== typeof choice || null === choice) {
+  if (!isRecord(choice)) {
     return {
       name: "",
       value: "",
@@ -44,13 +47,13 @@ function toCanonicalSlashCommandChoice(choice: unknown): CanonicalSlashCommandCh
   }
 
   return {
-    name: "string" === typeof (choice as any).name ? (choice as any).name : "",
-    value: (choice as any).value,
+    name: "string" === typeof choice["name"] ? choice["name"] : "",
+    value: choice["value"],
   };
 }
 
 function toCanonicalSlashCommandOption(option: unknown): CanonicalSlashCommandOption {
-  if ("object" !== typeof option || null === option) {
+  if (!isRecord(option)) {
     return {
       type: 0,
       name: "",
@@ -63,45 +66,44 @@ function toCanonicalSlashCommandOption(option: unknown): CanonicalSlashCommandOp
     };
   }
 
-  const rawOption = option as any;
   const canonicalOption: CanonicalSlashCommandOption = {
-    type: Number(rawOption.type ?? 0),
-    name: "string" === typeof rawOption.name ? rawOption.name : "",
-    description: "string" === typeof rawOption.description ? rawOption.description : "",
-    required: true === rawOption.required,
-    autocomplete: true === rawOption.autocomplete,
-    channel_types: Array.isArray(rawOption.channel_types)
-      ? rawOption.channel_types.map((channelType: unknown) => Number(channelType))
+    type: Number(option["type"] ?? 0),
+    name: "string" === typeof option["name"] ? option["name"] : "",
+    description: "string" === typeof option["description"] ? option["description"] : "",
+    required: true === option["required"],
+    autocomplete: true === option["autocomplete"],
+    channel_types: Array.isArray(option["channel_types"])
+      ? option["channel_types"].map((channelType: unknown) => Number(channelType))
       : [],
-    choices: Array.isArray(rawOption.choices)
-      ? rawOption.choices.map(toCanonicalSlashCommandChoice)
+    choices: Array.isArray(option["choices"])
+      ? option["choices"].map(toCanonicalSlashCommandChoice)
       : [],
-    options: Array.isArray(rawOption.options)
-      ? rawOption.options.map(toCanonicalSlashCommandOption)
+    options: Array.isArray(option["options"])
+      ? option["options"].map(toCanonicalSlashCommandOption)
       : [],
   };
 
-  if ("number" === typeof rawOption.min_value) {
-    canonicalOption.min_value = rawOption.min_value;
+  if ("number" === typeof option["min_value"]) {
+    canonicalOption.min_value = option["min_value"];
   }
 
-  if ("number" === typeof rawOption.max_value) {
-    canonicalOption.max_value = rawOption.max_value;
+  if ("number" === typeof option["max_value"]) {
+    canonicalOption.max_value = option["max_value"];
   }
 
-  if ("number" === typeof rawOption.min_length) {
-    canonicalOption.min_length = rawOption.min_length;
+  if ("number" === typeof option["min_length"]) {
+    canonicalOption.min_length = option["min_length"];
   }
 
-  if ("number" === typeof rawOption.max_length) {
-    canonicalOption.max_length = rawOption.max_length;
+  if ("number" === typeof option["max_length"]) {
+    canonicalOption.max_length = option["max_length"];
   }
 
   return canonicalOption;
 }
 
 function toCanonicalSlashCommand(command: unknown): CanonicalSlashCommand {
-  if ("object" !== typeof command || null === command) {
+  if (!isRecord(command)) {
     return {
       type: 1,
       name: "",
@@ -110,13 +112,12 @@ function toCanonicalSlashCommand(command: unknown): CanonicalSlashCommand {
     };
   }
 
-  const rawCommand = command as any;
   return {
-    type: Number(rawCommand.type ?? 1),
-    name: "string" === typeof rawCommand.name ? rawCommand.name : "",
-    description: "string" === typeof rawCommand.description ? rawCommand.description : "",
-    options: Array.isArray(rawCommand.options)
-      ? rawCommand.options.map(toCanonicalSlashCommandOption)
+    type: Number(command["type"] ?? 1),
+    name: "string" === typeof command["name"] ? command["name"] : "",
+    description: "string" === typeof command["description"] ? command["description"] : "",
+    options: Array.isArray(command["options"])
+      ? command["options"].map(toCanonicalSlashCommandOption)
       : [],
   };
 }

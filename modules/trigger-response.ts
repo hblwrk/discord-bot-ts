@@ -1,9 +1,6 @@
-/* eslint-disable yoda */
-/* eslint-disable import/extensions */
-/* eslint-disable complexity */
 import {AttachmentBuilder, EmbedBuilder} from "discord.js";
 import validator from "validator";
-import {getAssetByName, ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets.ts";
+import {getAssetByName, type GenericAsset, ImageAsset, type PaywallAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets.ts";
 import {cryptodice} from "./crypto-dice.ts";
 import {lmgtfy} from "./lmgtfy.ts";
 import {getLogger} from "./logging.ts";
@@ -21,11 +18,43 @@ const logger = getLogger();
 const noQuoteMessage = "Keine passenden Zitate gefunden.";
 const unavailableMessage = "Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.";
 
+type TriggerResponsePayload = string | {
+  embeds?: EmbedBuilder[];
+  files?: AttachmentBuilder[];
+};
+type TriggerResponseSentMessage = {
+  edit: (content: string) => Promise<unknown>;
+};
+type TriggerResponseChannel = {
+  send: (payload: TriggerResponsePayload) => Promise<TriggerResponseSentMessage | undefined>;
+};
+type TriggerResponseMessage = {
+  author?: {
+    bot?: boolean;
+    id?: string;
+  };
+  channel: TriggerResponseChannel;
+  content: string;
+  webhookId?: string | null;
+};
+type TriggerResponseClient = {
+  on: (eventName: "messageCreate", handler: (message: TriggerResponseMessage) => Promise<void>) => unknown;
+};
+type WhatIsAssetAttachment = {
+  _fileName?: string | undefined;
+  fileContent?: Buffer | undefined;
+  fileName?: string | undefined;
+  name: string;
+  text: string;
+  title: string;
+};
+type WhatIsAsset = ImageAsset | WhatIsAssetAttachment;
+
 function getAssetLabel(asset: ImageAsset | UserQuoteAsset, fallback: string): string {
   return asset.name ?? asset.fileName ?? fallback;
 }
 
-async function sendUnavailableResponse(message: any, errorContext: string) {
+async function sendUnavailableResponse(message: TriggerResponseMessage, errorContext: string) {
   await message.channel.send(unavailableMessage).catch((error: unknown) => {
     logger.log(
       "error",
@@ -34,7 +63,7 @@ async function sendUnavailableResponse(message: any, errorContext: string) {
   });
 }
 
-async function sendBinaryAssetResponse(message: any, asset: ImageAsset | UserQuoteAsset, fallbackLabel: string) {
+async function sendBinaryAssetResponse(message: TriggerResponseMessage, asset: ImageAsset | UserQuoteAsset, fallbackLabel: string) {
   const assetLabel = getAssetLabel(asset, fallbackLabel);
   if (!asset?.fileContent || !asset.fileName) {
     logger.log(
@@ -69,7 +98,7 @@ async function sendBinaryAssetResponse(message: any, asset: ImageAsset | UserQuo
   });
 }
 
-async function sendRandomQuoteResponse(message: any, assets: unknown[], username: string) {
+async function sendRandomQuoteResponse(message: TriggerResponseMessage, assets: GenericAsset[], username: string) {
   const randomQuote = getRandomQuote(username, assets);
   if (!randomQuote) {
     await message.channel.send(noQuoteMessage).catch((error: unknown) => {
@@ -94,7 +123,7 @@ async function sendRandomQuoteResponse(message: any, assets: unknown[], username
   await message.channel.send({files: [file]});
 }
 
-async function sendMatchedAssetResponse(message: any, asset: unknown, assets: unknown[], fallbackTrigger: string) {
+async function sendMatchedAssetResponse(message: TriggerResponseMessage, asset: GenericAsset, assets: GenericAsset[], fallbackTrigger: string) {
   if (asset instanceof ImageAsset || asset instanceof UserQuoteAsset) {
     await sendBinaryAssetResponse(message, asset, fallbackTrigger);
     return;
@@ -116,14 +145,14 @@ async function sendMatchedAssetResponse(message: any, asset: unknown, assets: un
 }
 
 export function addTriggerResponses(
-  client: any,
-  assets: any[],
+  client: TriggerResponseClient,
+  assets: GenericAsset[],
   assetCommandsWithPrefix: string[],
-  whatIsAssets: any[],
-  paywallAssets?: unknown[],
+  whatIsAssets: WhatIsAsset[],
+  paywallAssets?: PaywallAsset[],
 ) {
   // Message response to a trigger command (!command)
-  client.on("messageCreate", async (message: any) => {
+  client.on("messageCreate", async message => {
     if (true === message.author?.bot || Boolean(message.webhookId)) {
       return;
     }
@@ -209,9 +238,8 @@ export function addTriggerResponses(
         });
 
         try {
-          const result: PaywallResult = await getPaywallLinks(cleanUrl, paywallAssets as any[] ?? [], {
-            requesterId: message.author?.id,
-          });
+          const paywallOptions = message.author?.id ? {requesterId: message.author.id} : {};
+          const result: PaywallResult = await getPaywallLinks(cleanUrl, paywallAssets ?? [], paywallOptions);
 
           if (true === result.nofix) {
             const noFixResponse = `Für diese Seite ist leider kein Paywall-Bypass bekannt.`;
@@ -314,7 +342,7 @@ export function addTriggerResponses(
       if ("string" === typeof search) {
         if ("yes" === search.toLowerCase()) {
           const asset = getAssetByName("sara-yes", assets);
-          if (!asset?.fileContent || !asset.fileName) {
+          if (!(asset instanceof ImageAsset) || !asset.fileContent || !asset.fileName) {
             message.channel.send("Sara möchte das nicht.").catch((error: unknown) => {
               logger.log(
                 "error",
@@ -333,7 +361,7 @@ export function addTriggerResponses(
           });
         } else if ("shrug" === search.toLowerCase()) {
           const asset = getAssetByName("sara-shrug", assets);
-          if (!asset?.fileContent || !asset.fileName) {
+          if (!(asset instanceof ImageAsset) || !asset.fileContent || !asset.fileName) {
             message.channel.send("Sara möchte das nicht.").catch((error: unknown) => {
               logger.log(
                 "error",

@@ -1,7 +1,5 @@
-/* eslint-disable yoda */
-/* eslint-disable complexity */
-/* eslint-disable import/extensions */
 import {REST, Routes} from "discord.js";
+import {type GenericAsset, type ImageAsset, type UserAsset} from "./assets.ts";
 import {getDiscordRateLimitRetryAfterMs, toDiscordTimerMs} from "./discord-retry-after.ts";
 import {getLogger} from "./logging.ts";
 import {readSecret} from "./secrets.ts";
@@ -176,7 +174,7 @@ function toSlashRegistrationRateLimitError(error: unknown): SlashRegistrationRat
   );
 }
 
-export async function defineSlashCommands(assets: any[], whatIsAssets: any[], userAssets: any[]) {
+export async function defineSlashCommands(assets: GenericAsset[], whatIsAssets: ImageAsset[], userAssets: UserAsset[]) {
   const token = readSecret("discord_token").trim();
   const clientId = readSecret("discord_client_ID").trim();
   const guildId = readSecret("discord_guild_ID").trim();

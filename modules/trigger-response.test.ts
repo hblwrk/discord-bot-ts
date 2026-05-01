@@ -295,4 +295,20 @@ describe("addTriggerResponses", () => {
       files: expect.any(Array),
     }));
   });
+
+  test("replies with sara fallback when requested assets are missing", async () => {
+    const {client, getHandler} = createEventClient();
+
+    addTriggerResponses(client, [], [], []);
+
+    const handler = getHandler("messageCreate");
+
+    const yesMessage = createMessage("!sara yes");
+    await handler(yesMessage);
+    expect(yesMessage.channel.send).toHaveBeenCalledWith("Sara möchte das nicht.");
+
+    const shrugMessage = createMessage("!sara shrug");
+    await handler(shrugMessage);
+    expect(shrugMessage.channel.send).toHaveBeenCalledWith("Sara möchte das nicht.");
+  });
 });

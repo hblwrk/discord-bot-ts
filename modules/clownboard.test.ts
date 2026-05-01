@@ -11,6 +11,39 @@ type ClownboardTestClient = {
     };
   };
 };
+type TestEmbed = {
+  footer?: {
+    text: string;
+  };
+};
+type TestClownboardMessage = {
+  embeds: TestEmbed[];
+  edit?: Mock;
+  delete?: Mock;
+};
+type ExistingClownboardMessage = TestClownboardMessage & {
+  edit: Mock;
+  delete: Mock;
+};
+
+function createExistingMessage(): ExistingClownboardMessage {
+  return {
+    embeds: [{footer: {text: "source-message-id"}}],
+    delete: vi.fn().mockResolvedValue(undefined),
+    edit: vi.fn().mockResolvedValue(undefined),
+  };
+}
+
+function createMessages(existingMessage?: TestClownboardMessage) {
+  const storedMessages = [
+    {embeds: [{footer: {text: "different-message-id"}}]},
+    ...(existingMessage ? [existingMessage] : []),
+  ];
+
+  return {
+    find: vi.fn((predicate: (message: TestClownboardMessage) => boolean) => storedMessages.find(predicate)),
+  };
+}
 
 function createClientWithHandlers(clownboardChannel: unknown) {
   const handlers = new Map<string, EventHandler>();
@@ -39,7 +72,7 @@ function createClientWithHandlers(clownboardChannel: unknown) {
   };
 }
 
-function createReaction(count: number) {
+function createReaction(count: number, attachment?: {url: string}) {
   return {
     emoji: {name: "🤡"},
     count,
@@ -51,7 +84,7 @@ function createReaction(count: number) {
         toString: () => "#source-channel",
       },
       attachments: {
-        first: () => undefined,
+        first: () => attachment,
       },
       author: {
         tag: "user#0001",
@@ -67,7 +100,7 @@ function createReaction(count: number) {
 
 describe("clownboard", () => {
   test("posts to clownboard when threshold is reached", async () => {
-    const messages = {find: vi.fn(() => undefined)};
+    const messages = createMessages();
     const clownboardChannel = {
       messages: {
         fetch: vi.fn().mockResolvedValue(messages),
@@ -85,14 +118,52 @@ describe("clownboard", () => {
     expect(clownboardChannel.send).toHaveBeenCalledTimes(1);
   });
 
+  test("updates existing clownboard message when reaction is added again", async () => {
+    const existingMessage = createExistingMessage();
+    const messages = createMessages(existingMessage);
+    const clownboardChannel = {
+      messages: {
+        fetch: vi.fn().mockResolvedValue(messages),
+      },
+      send: vi.fn().mockResolvedValue(undefined),
+    };
+
+    const {client, getHandler} = createClientWithHandlers(clownboardChannel);
+    clownboard(client as any, "clownboard-channel-id");
+
+    const handler = getHandler("messageReactionAdd");
+    await handler(createReaction(12), {id: "user-1"});
+
+    expect(existingMessage.edit).toHaveBeenCalledWith("🤡 **12** #source-channel");
+    expect(clownboardChannel.send).not.toHaveBeenCalled();
+  });
+
+  test("posts attachment embeds to clownboard", async () => {
+    const messages = createMessages();
+    const clownboardChannel = {
+      messages: {
+        fetch: vi.fn().mockResolvedValue(messages),
+      },
+      send: vi.fn().mockResolvedValue(undefined),
+    };
+    const reaction = createReaction(10, {url: "https://cdn.example/image.png"});
+
+    const {client, getHandler} = createClientWithHandlers(clownboardChannel);
+    clownboard(client as any, "clownboard-channel-id");
+
+    const handler = getHandler("messageReactionAdd");
+    await handler(reaction, {id: "user-1"});
+
+    expect(clownboardChannel.send).toHaveBeenCalledWith(expect.objectContaining({
+      embeds: expect.any(Array),
+    }));
+  });
+
   test("schedules delete when reaction count drops to threshold", async () => {
     vi.useFakeTimers();
 
-    const existingMessage = {
-      delete: vi.fn().mockResolvedValue(undefined),
-      edit: vi.fn().mockResolvedValue(undefined),
-    };
-    const messages = {find: vi.fn(() => existingMessage)};
+    const existingMessage = createExistingMessage();
+    const messages = createMessages(existingMessage);
     const clownboardChannel = {
       messages: {
         fetch: vi.fn().mockResolvedValue(messages),
@@ -111,5 +182,25 @@ describe("clownboard", () => {
     expect(existingMessage.delete).toHaveBeenCalledTimes(1);
 
     vi.useRealTimers();
+  });
+
+  test("updates existing clownboard message when reaction remains above threshold", async () => {
+    const existingMessage = createExistingMessage();
+    const messages = createMessages(existingMessage);
+    const clownboardChannel = {
+      messages: {
+        fetch: vi.fn().mockResolvedValue(messages),
+      },
+      send: vi.fn().mockResolvedValue(undefined),
+    };
+
+    const {client, getHandler} = createClientWithHandlers(clownboardChannel);
+    clownboard(client as any, "clownboard-channel-id");
+
+    const handler = getHandler("messageReactionRemove");
+    await handler(createReaction(10), {id: "user-1"});
+
+    expect(existingMessage.edit).toHaveBeenCalledWith("🤡 **10** #source-channel");
+    expect(existingMessage.delete).not.toHaveBeenCalled();
   });
 });

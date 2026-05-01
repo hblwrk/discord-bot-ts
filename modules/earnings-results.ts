@@ -1,7 +1,3 @@
-/* eslint-disable complexity */
-/* eslint-disable max-depth */
-/* eslint-disable yoda */
-/* eslint-disable import/extensions */
 import moment from "moment-timezone";
 import {type EarningsEvent, getEarningsResult} from "./earnings.ts";
 import {
@@ -26,7 +22,7 @@ import {getWithRetry} from "./http-retry.ts";
 import {getLogger} from "./logging.ts";
 
 type Logger = {
-  log: (level: string, message: any) => void;
+  log: (level: string, message: unknown) => void;
 };
 
 type SendableChannel = {
@@ -196,7 +192,7 @@ export function startEarningsResultWatcher(
     timerHandle = setTimeoutFn(() => {
       void runAndSchedule();
     }, delayMs);
-    (timerHandle as any).unref?.();
+    timerHandle.unref();
   };
 
   const runAndSchedule = async () => {

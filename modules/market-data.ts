@@ -1,5 +1,4 @@
-/// <reference path="./reconnecting-websocket-dom-shim.d.ts" />
-import {Client} from "discord.js";
+import {Client, type GuildMember} from "discord.js";
 import ReconnectingWebSocketModule from "reconnecting-websocket";
 import WS from "ws";
 import {getAssets} from "./assets.ts";
@@ -149,7 +148,7 @@ function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAsse
   };
 
   const wsClient = new ReconnectingWebSocket(wsServerUrlProvider, [], options);
-  const memberByClientId = new Map<string, Promise<any>>();
+  const memberByClientId = new Map<string, Promise<GuildMember>>();
   const statusByClientId = new Map<string, ClientStatusState>();
   const pendingStatusByClientId = new Map<string, PendingClientStatusUpdate>();
   let lastMessageAt = Date.now();
@@ -167,7 +166,7 @@ function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAsse
       );
     }
   }, pendingStatusFlushIntervalMs);
-  (pendingStatusFlushTimer as any).unref?.();
+  pendingStatusFlushTimer.unref();
 
   const marketStatusCheckTimer = setInterval(() => {
     for (const marketDataAsset of marketDataAssets) {
@@ -185,7 +184,7 @@ function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAsse
       );
     }
   }, marketStatusCheckIntervalMs);
-  (marketStatusCheckTimer as any).unref?.();
+  marketStatusCheckTimer.unref();
 
   const streamWatchdog = setInterval(() => {
     const messageAgeMs = Date.now() - lastMessageAt;
@@ -198,7 +197,7 @@ function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAsse
       lastMessageAt = Date.now();
     }
   }, streamWatchdogIntervalMs);
-  (streamWatchdog as any).unref?.();
+  streamWatchdog.unref();
 
   // Respond to "connection open" event by sending subscription message
   wsClient.addEventListener("open", () => {
@@ -341,7 +340,7 @@ function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAsse
 async function applyClientStatusUpdate(
   client: Client<true>,
   guildId: string,
-  memberByClientId: Map<string, Promise<any>>,
+  memberByClientId: Map<string, Promise<GuildMember>>,
   statusByClientId: Map<string, ClientStatusState>,
   nickname: string,
   presence: string,
@@ -368,7 +367,7 @@ async function applyClientStatusUpdate(
 async function applyClientNicknameUpdate(
   client: Client<true>,
   guildId: string,
-  memberByClientId: Map<string, Promise<any>>,
+  memberByClientId: Map<string, Promise<GuildMember>>,
   statusByClientId: Map<string, ClientStatusState>,
   nickname: string,
 ) {
@@ -415,7 +414,7 @@ function queuePendingClientStatusUpdate(
   priceChange: number,
   percentageChange: number,
   guildId: string,
-  memberByClientId: Map<string, Promise<any>>,
+  memberByClientId: Map<string, Promise<GuildMember>>,
   statusByClientId: Map<string, ClientStatusState>,
   pendingStatusByClientId: Map<string, PendingClientStatusUpdate>,
 ) {
@@ -454,7 +453,7 @@ async function flushPendingClientStatusUpdate(
   clientId: string,
   clientsById: Map<string, Client<true>>,
   guildId: string,
-  memberByClientId: Map<string, Promise<any>>,
+  memberByClientId: Map<string, Promise<GuildMember>>,
   statusByClientId: Map<string, ClientStatusState>,
   pendingStatusByClientId: Map<string, PendingClientStatusUpdate>,
 ) {
@@ -486,6 +485,7 @@ async function flushPendingClientStatusUpdate(
     priceChange,
   );
   let didApply = false;
+  let shouldFlushNextPendingUpdate = true;
 
   try {
     const didUpdate = await applyClientStatusUpdate(
@@ -521,20 +521,24 @@ async function flushPendingClientStatusUpdate(
   } finally {
     const latestPendingStatusUpdate = pendingStatusByClientId.get(clientId);
     if ("undefined" === typeof latestPendingStatusUpdate) {
-      return;
-    }
+      shouldFlushNextPendingUpdate = false;
+    } else {
+      latestPendingStatusUpdate.applying = false;
 
-    latestPendingStatusUpdate.applying = false;
-
-    if (
-      true === didApply
-      && latestPendingStatusUpdate.nickname === nickname
-      && latestPendingStatusUpdate.openPresence === openPresence
-      && latestPendingStatusUpdate.priceChange === priceChange
-    ) {
-      pendingStatusByClientId.delete(clientId);
-      return;
+      if (
+        true === didApply
+        && latestPendingStatusUpdate.nickname === nickname
+        && latestPendingStatusUpdate.openPresence === openPresence
+        && latestPendingStatusUpdate.priceChange === priceChange
+      ) {
+        pendingStatusByClientId.delete(clientId);
+        shouldFlushNextPendingUpdate = false;
+      }
     }
+  }
+
+  if (false === shouldFlushNextPendingUpdate) {
+    return;
   }
 
   void flushPendingClientStatusUpdate(
@@ -555,7 +559,7 @@ async function applyClosedMarketPresenceIfNeeded(
   client: Client<true>,
   marketDataAsset: MarketDataAsset,
   guildId: string,
-  memberByClientId: Map<string, Promise<any>>,
+  memberByClientId: Map<string, Promise<GuildMember>>,
   statusByClientId: Map<string, ClientStatusState>,
 ) {
   if (true === isMarketOpen(marketDataAsset)) {

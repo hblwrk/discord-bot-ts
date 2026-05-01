@@ -1,4 +1,5 @@
 import type {Mock, MockedFunction} from "vitest";
+import type * as DiscordJs from "discord.js";
 import {vi} from "vitest";
 
 const mockLogger = {
@@ -119,7 +120,7 @@ const mockClientConstructor = vi.fn().mockImplementation(() => {
 });
 
 vi.mock("discord.js", async importOriginal => ({
-  ...(await importOriginal<typeof import("discord.js")>()),
+  ...(await importOriginal<typeof DiscordJs>()),
   Client: function MockClient(...args: unknown[]) {
     return mockClientConstructor(...args);
   },

@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import {
   type CalendarReminderAsset,
   type EarningsReminderAsset,

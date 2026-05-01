@@ -1,5 +1,5 @@
 import axios from "axios";
-import {PaywallAsset} from "./assets.ts";
+import {type PaywallAsset} from "./assets.ts";
 import {getLogger} from "./logging.ts";
 import {safeHttpAgent, safeHttpsAgent} from "./safe-http.ts";
 

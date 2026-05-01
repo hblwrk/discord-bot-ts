@@ -1,4 +1,3 @@
-/* eslint-disable max-depth */
 import {EmojiAsset} from "./assets.ts";
 import {getLogger} from "./logging.ts";
 

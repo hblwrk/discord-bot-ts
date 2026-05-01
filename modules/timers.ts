@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import {AttachmentBuilder} from "discord.js";
 import moment from "moment-timezone";
 import Schedule from "node-schedule";
@@ -38,6 +37,11 @@ import {
 const logger = getLogger();
 const noMentions = {
   parse: [],
+};
+type FileAnnouncementAsset = {
+  fileContent?: Buffer | undefined;
+  fileName?: string | undefined;
+  name: string;
 };
 const calendarReminderAnnouncementSource = "calendar-reminder";
 const earningsReminderSource = "earnings-reminder";
@@ -190,7 +194,7 @@ async function sendNyseOpenAnnouncement(
   sentimentPollState.message = undefined;
   const message = await sendAnnouncement(client, channelID, getNyseOpenAnnouncementPayload(), "NYSE");
   if (message && "object" === typeof message) {
-    sentimentPollState.message = message as NyseSentimentPollMessage;
+    sentimentPollState.message = message;
   }
 }
 
@@ -245,7 +249,7 @@ function getSendableChannel(client: TimerClient, channelID: string, source: stri
     return null;
   }
 
-  return channel as SendableChannel;
+  return channel;
 }
 
 async function sendAnnouncement(client: TimerClient, channelID: string, payload: unknown, source: string) {
@@ -511,7 +515,7 @@ export function startMncTimers(client: TimerClient, channelID: string) {
 export function startOtherTimers(
   client: TimerClient,
   channelID: string,
-  assets: any,
+  assets: FileAnnouncementAsset[],
   tickers: Ticker[],
   calendarReminderAssets: CalendarReminderAsset[] = [],
   earningsReminderAssets: EarningsReminderAsset[] = [],

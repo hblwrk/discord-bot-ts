@@ -2,6 +2,7 @@ import http from "node:http";
 import https from "node:https";
 import net from "node:net";
 import dns from "node:dns";
+import {type Duplex} from "node:stream";
 
 function isPrivateIpv4(ip: string): boolean {
   const parts = ip.split(".").map(Number);
@@ -67,14 +68,14 @@ export function isPrivateIp(ip: string): boolean {
 const safeLookup: net.LookupFunction = (hostname, options, callback) => {
   dns.lookup(hostname, options, (err, address, family) => {
     if (null !== err) {
-      callback(err, address as string, family);
+      callback(err, address, family);
       return;
     }
 
     const resolved = address as string;
     if (true === isPrivateIp(resolved)) {
       const blockError = new Error(`Refused to connect to private address ${resolved} for ${hostname}`);
-      callback(blockError as NodeJS.ErrnoException, "", 0);
+      callback(blockError, "", 0);
       return;
     }
 
@@ -83,16 +84,16 @@ const safeLookup: net.LookupFunction = (hostname, options, callback) => {
 };
 
 class SafeHttpAgent extends http.Agent {
-  public override createConnection(options: http.ClientRequestArgs, callback?: (err: Error | null, stream: net.Socket) => void): net.Socket {
+  public override createConnection(options: http.ClientRequestArgs, callback?: (err: Error | null, stream: Duplex) => void): Duplex | null | undefined {
     const merged = {...options, lookup: safeLookup} as http.ClientRequestArgs;
-    return (super.createConnection as any)(merged, callback);
+    return super.createConnection(merged, callback);
   }
 }
 
 class SafeHttpsAgent extends https.Agent {
-  public override createConnection(options: http.ClientRequestArgs, callback?: (err: Error | null, stream: net.Socket) => void): net.Socket {
+  public override createConnection(options: http.ClientRequestArgs, callback?: (err: Error | null, stream: Duplex) => void): Duplex | null | undefined {
     const merged = {...options, lookup: safeLookup} as http.ClientRequestArgs;
-    return (super.createConnection as any)(merged, callback);
+    return super.createConnection(merged, callback);
   }
 }
 

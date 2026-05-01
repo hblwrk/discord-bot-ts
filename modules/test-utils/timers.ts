@@ -157,7 +157,7 @@ function getScheduledJobByTime(hour: number, minute: number, tz: string): Recurr
     throw new Error(`Scheduled job not found for ${tz} ${hour}:${minute}.`);
   }
 
-  return scheduledJob as RecurringScheduledJob;
+  return scheduledJob;
 }
 
 function getScheduledDateJobs(): DateScheduledJob[] {
@@ -177,7 +177,7 @@ function getEarningsReminderJob(): RecurringScheduledJob {
     throw new Error("Scheduled earnings reminder job not found.");
   }
 
-  return earningsReminderJob as RecurringScheduledJob;
+  return earningsReminderJob;
 }
 
 

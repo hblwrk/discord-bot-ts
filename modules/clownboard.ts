@@ -1,6 +1,3 @@
-/* eslint-disable import/extensions */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
 
 import {EmbedBuilder} from "discord.js";
 import type {Client, TextChannel} from "discord.js";
@@ -41,7 +38,12 @@ export function clownboard(client: Client, channelID: string) {
       const existingMessages = messages.find(message =>
         message.embeds.length === 1 ? (Boolean(message.embeds[0]?.footer?.text.startsWith(reaction.message.id))) : false);
       if (existingMessages) {
-        existingMessages.edit(`${clownEmojiId} **${reactionCount}** ${reaction.message.channel}`);
+        await existingMessages.edit(`${clownEmojiId} **${reactionCount}** ${reaction.message.channel}`).catch(error => {
+          logger.log(
+            "error",
+            `Error updating clownboard message: ${error}`,
+          );
+        });
       } else {
         const attachment = reaction.message.attachments.first();
         const author = reaction.message.author;
@@ -53,7 +55,6 @@ export function clownboard(client: Client, channelID: string) {
           const embed = new EmbedBuilder()
             .setAuthor({
               name: author.tag,
-              // eslint-disable-next-line @typescript-eslint/naming-convention
               iconURL: author.displayAvatarURL(),
             })
             .setDescription(reaction.message.content)
@@ -73,7 +74,6 @@ export function clownboard(client: Client, channelID: string) {
           const embed = new EmbedBuilder()
             .setAuthor({
               name: author.tag,
-              // eslint-disable-next-line @typescript-eslint/naming-convention
               iconURL: author.displayAvatarURL(),
             })
             .setImage(attachment.url)
@@ -135,7 +135,12 @@ export function clownboard(client: Client, channelID: string) {
             });
           }, 2500);
         } else {
-          existingMessages.edit(`${clownEmojiId} **${reactionCount}** ${reaction.message.channel}`);
+          await existingMessages.edit(`${clownEmojiId} **${reactionCount}** ${reaction.message.channel}`).catch(error => {
+            logger.log(
+              "error",
+              `Error updating clownboard message: ${error}`,
+            );
+          });
         }
       }
     };
