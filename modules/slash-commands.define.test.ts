@@ -1,19 +1,38 @@
-const mockPut = jest.fn();
-const mockGet = jest.fn();
-const mockOn = jest.fn();
-const mockSetToken = jest.fn().mockReturnValue({
-  put: mockPut,
-  get: mockGet,
-  on: mockOn,
-});
-const mockRest = jest.fn().mockImplementation(() => ({setToken: mockSetToken}));
-const mockApplicationGuildCommands = jest.fn((_applicationId?: string, _guildId?: string) => "/applications/test/commands");
-const loggerMock = {
-  log: jest.fn(),
-};
+import type {MockedFunction} from "vitest";
 
-jest.mock("discord.js", () => {
-  const actual = jest.requireActual("discord.js");
+const {
+  loggerMock,
+  mockApplicationGuildCommands,
+  mockGet,
+  mockOn,
+  mockPut,
+  mockRest,
+  mockSetToken,
+} = vi.hoisted(() => {
+  const mockPut = vi.fn();
+  const mockGet = vi.fn();
+  const mockOn = vi.fn();
+  const mockSetToken = vi.fn().mockReturnValue({
+    put: mockPut,
+    get: mockGet,
+    on: mockOn,
+  });
+
+  return {
+    loggerMock: {
+      log: vi.fn(),
+    },
+    mockApplicationGuildCommands: vi.fn((_applicationId?: string, _guildId?: string) => "/applications/test/commands"),
+    mockGet,
+    mockOn,
+    mockPut,
+    mockRest: vi.fn().mockImplementation(() => ({setToken: mockSetToken})),
+    mockSetToken,
+  };
+});
+
+vi.mock("discord.js", async importOriginal => {
+  const actual = await importOriginal<typeof import("discord.js")>();
 
   return {
     ...actual,
@@ -31,8 +50,8 @@ import {ImageAsset, TextAsset} from "./assets.js";
 import {buildSlashCommandPayload, defineSlashCommands} from "./slash-commands.js";
 import {readSecret} from "./secrets.js";
 
-jest.mock("./secrets.js", () => ({
-  readSecret: jest.fn(secretName => {
+vi.mock("./secrets.js", () => ({
+  readSecret: vi.fn(secretName => {
     if ("discord_token" === secretName) {
       return "test-token";
     }
@@ -49,7 +68,7 @@ jest.mock("./secrets.js", () => ({
   }),
 }));
 
-jest.mock("./logging.js", () => ({
+vi.mock("./logging.js", () => ({
   getLogger: () => ({
     log: (...args: unknown[]) => loggerMock.log(...args),
   }),
@@ -58,7 +77,7 @@ jest.mock("./logging.js", () => ({
   }),
 }));
 
-const mockedReadSecret = readSecret as jest.MockedFunction<typeof readSecret>;
+const mockedReadSecret = readSecret as MockedFunction<typeof readSecret>;
 
 function cloneJson<T>(value: T): T {
   return JSON.parse(JSON.stringify(value));
@@ -79,7 +98,7 @@ function toRemoteCommandPayload(commands: any[]): any[] {
 
 describe("defineSlashCommands", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockedReadSecret.mockClear();
     mockPut.mockImplementation(async (_route, options) => options?.body ?? []);
     mockGet.mockResolvedValue([]);

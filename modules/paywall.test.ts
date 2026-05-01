@@ -1,3 +1,4 @@
+import type {Mocked} from "vitest";
 import axios from "axios";
 import {PaywallAsset} from "./assets.js";
 import {
@@ -12,14 +13,14 @@ import {
   PaywallLookupCapacityError,
 } from "./paywall.js";
 
-jest.mock("axios");
-jest.mock("./logging.js", () => ({
+vi.mock("axios");
+vi.mock("./logging.js", () => ({
   getLogger: () => ({
-    log: jest.fn(),
+    log: vi.fn(),
   }),
 }));
 
-const mockedAxios = axios as jest.Mocked<typeof axios>;
+const mockedAxios = axios as Mocked<typeof axios>;
 
 beforeEach(() => {
   mockedAxios.get.mockReset();

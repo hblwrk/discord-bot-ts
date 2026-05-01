@@ -297,7 +297,7 @@ describe("timers: other announcements", () => {
 
   test("startOtherTimers skips earnings timer when next US/Eastern day is a weekend", async () => {
     const {client, send} = createClientWithChannel();
-    jest.setSystemTime(new Date("2025-02-21T19:30:00+01:00"));
+    vi.setSystemTime(new Date("2025-02-21T19:30:00+01:00"));
 
     startOtherTimers(client as any, "channel-id", [], []);
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
@@ -314,7 +314,7 @@ describe("timers: other announcements", () => {
 
   test("startOtherTimers skips earnings timer when next US/Eastern day is a holiday", async () => {
     const {client, send} = createClientWithChannel();
-    jest.setSystemTime(new Date("2025-07-03T19:30:00+02:00"));
+    vi.setSystemTime(new Date("2025-07-03T19:30:00+02:00"));
     isHolidayMock.mockImplementation(date => date.toDateString() === "Fri Jul 04 2025");
 
     startOtherTimers(client as any, "channel-id", [], []);
@@ -333,7 +333,7 @@ describe("timers: other announcements", () => {
 
   test("startOtherTimers sends earnings on Sunday evening for Monday trading day", async () => {
     const {client, send} = createClientWithChannel();
-    jest.setSystemTime(new Date("2025-02-23T19:30:00+01:00"));
+    vi.setSystemTime(new Date("2025-02-23T19:30:00+01:00"));
 
     startOtherTimers(client as any, "channel-id", [], []);
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");

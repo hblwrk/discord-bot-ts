@@ -1,8 +1,8 @@
-const postMock = jest.fn();
-const getMock = jest.fn();
-const isAxiosErrorMock = jest.fn();
+const postMock = vi.fn();
+const getMock = vi.fn();
+const isAxiosErrorMock = vi.fn();
 
-jest.mock("axios", () => ({
+vi.mock("axios", () => ({
   __esModule: true,
   default: {
     post: (...args: unknown[]) => postMock(...args),
@@ -35,13 +35,13 @@ function createAxiosError(status?: number): MockAxiosError {
 
 describe("getFromDracoon", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.useFakeTimers();
+    vi.clearAllMocks();
+    vi.useFakeTimers();
     isAxiosErrorMock.mockImplementation(error => true === Boolean(error?.isAxiosError));
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test("posts for download URL, fetches binary, and returns a Buffer", async () => {
@@ -91,10 +91,10 @@ describe("getFromDracoon", () => {
     await Promise.resolve();
     expect(postMock).toHaveBeenCalledTimes(1);
 
-    await jest.advanceTimersByTimeAsync(500);
+    await vi.advanceTimersByTimeAsync(500);
     expect(postMock).toHaveBeenCalledTimes(2);
 
-    await jest.advanceTimersByTimeAsync(1000);
+    await vi.advanceTimersByTimeAsync(1000);
     await expect(resultPromise).resolves.toEqual(Buffer.from("ok", "binary"));
     expect(postMock).toHaveBeenCalledTimes(3);
   });
@@ -115,8 +115,8 @@ describe("getFromDracoon", () => {
     const expectation = expect(resultPromise).rejects.toBe(error);
 
     await Promise.resolve();
-    await jest.advanceTimersByTimeAsync(500);
-    await jest.advanceTimersByTimeAsync(1000);
+    await vi.advanceTimersByTimeAsync(500);
+    await vi.advanceTimersByTimeAsync(1000);
 
     await expectation;
     expect(postMock).toHaveBeenCalledTimes(3);

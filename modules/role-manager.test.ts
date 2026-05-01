@@ -1,39 +1,30 @@
+import type {Mock, MockedFunction} from "vitest";
 import {roleManager} from "./role-manager.js";
 import {readSecret} from "./secrets.js";
 
-jest.mock("./logging.js", () => ({
-  ...(() => {
-    const mockLogger = {
-      log: jest.fn(),
-    };
-
-    return {
-      getLogger: jest.fn(() => mockLogger),
-      __mockLogger: mockLogger,
-    };
-  })(),
+const mockLogger = vi.hoisted(() => ({
+  log: vi.fn(),
 }));
 
-jest.mock("./secrets.js", () => ({
-  readSecret: jest.fn(),
+vi.mock("./logging.js", () => ({
+  getLogger: vi.fn(() => mockLogger),
 }));
 
-const mockedReadSecret = readSecret as jest.MockedFunction<typeof readSecret>;
-const mockedLoggingModule = jest.requireMock("./logging.js") as {
-  __mockLogger: {
-    log: jest.Mock;
-  };
-};
+vi.mock("./secrets.js", () => ({
+  readSecret: vi.fn(),
+}));
+
+const mockedReadSecret = readSecret as MockedFunction<typeof readSecret>;
 
 type EventHandler = (...args: unknown[]) => Promise<void>;
 type RoleManagerTestClient = {
   guilds: {
     cache: {
-      get: jest.Mock;
+      get: Mock;
     };
-    fetch: jest.Mock;
+    fetch: Mock;
   };
-  on: jest.MockedFunction<(eventName: string, handler: EventHandler) => RoleManagerTestClient>;
+  on: MockedFunction<(eventName: string, handler: EventHandler) => RoleManagerTestClient>;
 };
 
 type TestEmoji = {
@@ -46,24 +37,24 @@ function createRoleManagerClient(customEmoji: TestEmoji | null = {id: "emoji-id"
 
   const guildUser = {
     roles: {
-      add: jest.fn().mockResolvedValue(undefined),
-      remove: jest.fn().mockResolvedValue(undefined),
+      add: vi.fn().mockResolvedValue(undefined),
+      remove: vi.fn().mockResolvedValue(undefined),
     },
   };
 
   const brokerMessage = {
     id: "broker-message-id",
-    react: jest.fn().mockResolvedValue(undefined),
+    react: vi.fn().mockResolvedValue(undefined),
   };
 
   const specialMessage = {
     id: "special-message-id",
-    react: jest.fn().mockResolvedValue(undefined),
+    react: vi.fn().mockResolvedValue(undefined),
   };
 
   const roleChannel = {
     messages: {
-      fetch: jest.fn(async messageId => {
+      fetch: vi.fn(async messageId => {
         if ("broker-message-id" === messageId) {
           return brokerMessage;
         }
@@ -76,7 +67,7 @@ function createRoleManagerClient(customEmoji: TestEmoji | null = {id: "emoji-id"
   const guild = {
     emojis: {
       cache: {
-        find: jest.fn((predicate: (emoji: TestEmoji) => boolean) => {
+        find: vi.fn((predicate: (emoji: TestEmoji) => boolean) => {
           if (!customEmoji) {
             return undefined;
           }
@@ -87,23 +78,23 @@ function createRoleManagerClient(customEmoji: TestEmoji | null = {id: "emoji-id"
     },
     channels: {
       cache: {
-        get: jest.fn(() => roleChannel),
+        get: vi.fn(() => roleChannel),
       },
-      fetch: jest.fn().mockResolvedValue(roleChannel),
+      fetch: vi.fn().mockResolvedValue(roleChannel),
     },
     members: {
-      fetch: jest.fn().mockResolvedValue(guildUser),
+      fetch: vi.fn().mockResolvedValue(guildUser),
     },
   };
 
   const client = {} as RoleManagerTestClient;
   client.guilds = {
       cache: {
-        get: jest.fn(() => guild),
+        get: vi.fn(() => guild),
       },
-      fetch: jest.fn().mockResolvedValue(guild),
+      fetch: vi.fn().mockResolvedValue(guild),
   };
-  client.on = jest.fn((eventName: string, handler: EventHandler) => {
+  client.on = vi.fn((eventName: string, handler: EventHandler) => {
     handlers.set(eventName, handler);
     return client;
   });
@@ -126,7 +117,7 @@ function createRoleManagerClient(customEmoji: TestEmoji | null = {id: "emoji-id"
 
 describe("roleManager", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockedReadSecret.mockImplementation(secretName => {
       if ("discord_client_ID" === secretName) {
         return "client-id";
@@ -246,7 +237,7 @@ describe("roleManager", () => {
 
     await roleManager(missingEmojiClient.client, assetRoles);
 
-    expect(mockedLoggingModule.__mockLogger.log).toHaveBeenCalledWith(
+    expect(mockLogger.log).toHaveBeenCalledWith(
       "warn",
       expect.stringContaining("custom emoji custom:missing not found"),
     );

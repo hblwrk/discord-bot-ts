@@ -2,17 +2,17 @@ import {createStartupState} from "./startup-state.js";
 
 describe("createStartupState", () => {
   const logger = {
-    log: jest.fn(),
+    log: vi.fn(),
   };
 
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.useFakeTimers();
-    jest.setSystemTime(new Date("2025-01-01T10:00:00.000Z"));
+    vi.clearAllMocks();
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2025-01-01T10:00:00.000Z"));
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test("returns initial snapshot defaults", () => {
@@ -40,7 +40,7 @@ describe("createStartupState", () => {
     state.markHandlersAttached();
     expect(state.getSnapshot().ready).toBe(false);
 
-    jest.setSystemTime(new Date("2025-01-01T10:00:03.000Z"));
+    vi.setSystemTime(new Date("2025-01-01T10:00:03.000Z"));
     state.setRemoteWarmupStatus("ready");
 
     const snapshot = state.getSnapshot();
@@ -75,7 +75,7 @@ describe("createStartupState", () => {
     const state = createStartupState(logger);
     const finishPhase = state.startPhase("warmup");
 
-    jest.advanceTimersByTime(75);
+    vi.advanceTimersByTime(75);
     finishPhase();
 
     const snapshot = state.getSnapshot();

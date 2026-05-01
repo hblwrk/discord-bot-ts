@@ -19,15 +19,23 @@
     "noImplicitReturns": true,
     "noPropertyAccessFromIndexSignature": true,
     "noUncheckedIndexedAccess": true,
+    "noUncheckedSideEffectImports": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "skipLibCheck": false,
     "strict": true,
     "target": "ES2024",
     "types": [
-      "node",
-      "jest"
+      "node"
     ],
     "verbatimModuleSyntax": true
-  }
+  },
+  "include": [
+    "index.ts",
+    "modules/**/*.ts"
+  ],
+  "exclude": [
+    "modules/**/*.test.ts",
+    "modules/test-utils/**"
+  ]
 }

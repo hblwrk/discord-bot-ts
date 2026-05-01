@@ -46,7 +46,7 @@ describe("timers: NYSE and MNC", () => {
 
   test("startNyseTimers sends native opening sentiment poll and ends it two hours before regular close", async () => {
     const {client, send} = createClientWithChannel();
-    const endPoll = jest.fn().mockResolvedValue(undefined);
+    const endPoll = vi.fn().mockResolvedValue(undefined);
     send.mockResolvedValueOnce({
       poll: {
         end: endPoll,
@@ -84,8 +84,8 @@ describe("timers: NYSE and MNC", () => {
 
   test("startNyseTimers ends early-close opening sentiment poll two hours before early close", async () => {
     const {client, send} = createClientWithChannel();
-    const endPoll = jest.fn().mockResolvedValue(undefined);
-    jest.setSystemTime(new Date("2025-11-28T09:30:00-05:00"));
+    const endPoll = vi.fn().mockResolvedValue(undefined);
+    vi.setSystemTime(new Date("2025-11-28T09:30:00-05:00"));
     send.mockResolvedValueOnce({
       poll: {
         end: endPoll,
@@ -123,7 +123,7 @@ describe("timers: NYSE and MNC", () => {
 
   test("startNyseTimers sends Thanksgiving early-close reminder on the day after Thanksgiving", () => {
     const {client, send} = createClientWithChannel();
-    jest.setSystemTime(new Date("2025-11-28T10:00:00-05:00"));
+    vi.setSystemTime(new Date("2025-11-28T10:00:00-05:00"));
 
     startNyseTimers(client as any, "channel-id");
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
@@ -135,7 +135,7 @@ describe("timers: NYSE and MNC", () => {
 
   test("startNyseTimers resolves Thanksgiving date based on the current US/Eastern year", () => {
     const {client, send} = createClientWithChannel();
-    jest.setSystemTime(new Date("2025-12-30T10:00:00-05:00"));
+    vi.setSystemTime(new Date("2025-12-30T10:00:00-05:00"));
     getHolidaysMock.mockImplementation(year => {
       if (2025 === year) {
         return [
@@ -159,7 +159,7 @@ describe("timers: NYSE and MNC", () => {
     });
 
     startNyseTimers(client as any, "channel-id");
-    jest.setSystemTime(new Date("2026-11-27T10:00:00-05:00"));
+    vi.setSystemTime(new Date("2026-11-27T10:00:00-05:00"));
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
     premarketJob.callback();
 
@@ -170,7 +170,7 @@ describe("timers: NYSE and MNC", () => {
   test("startNyseTimers treats holiday check by US/Eastern date for aftermarket close", () => {
     const {client, send} = createClientWithChannel();
     // 20:00 US/Eastern on 2025-12-25 equals 2025-12-26T01:00:00Z.
-    jest.setSystemTime(new Date("2025-12-26T01:00:00Z"));
+    vi.setSystemTime(new Date("2025-12-26T01:00:00Z"));
     isHolidayMock.mockImplementation(date => date.toDateString() === "Thu Dec 25 2025");
 
     startNyseTimers(client as any, "channel-id");

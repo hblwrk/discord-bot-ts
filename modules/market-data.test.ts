@@ -18,9 +18,9 @@ import {
 
 describe("updateMarketData", () => {
   beforeEach(() => {
-    jest.useFakeTimers();
-    jest.setSystemTime(marketOpenReferenceTime);
-    jest.clearAllMocks();
+    vi.useFakeTimers();
+    vi.setSystemTime(marketOpenReferenceTime);
+    vi.clearAllMocks();
     clientInstances.length = 0;
     websocketInstances.length = 0;
     queuedClientIds.length = 0;
@@ -45,7 +45,10 @@ describe("updateMarketData", () => {
 
     await updateMarketData();
 
-    expect(mockClientConstructor).toHaveBeenCalledWith({intents: []});
+    expect(mockClientConstructor).toHaveBeenCalledWith(expect.objectContaining({
+      intents: [],
+      makeCache: expect.any(Function),
+    }));
     expect(clientInstances).toHaveLength(1);
     expect(clientInstances[0]!.client.login).toHaveBeenCalledWith("token-1");
 
@@ -677,7 +680,7 @@ describe("updateMarketData", () => {
       buildPresencePayload("+1.20 (1.23%)", "online"),
     );
 
-    jest.setSystemTime(marketClosedReferenceTime);
+    vi.setSystemTime(marketClosedReferenceTime);
     await advanceFakeTime(60_000);
     await flushAsyncWork();
 
@@ -717,7 +720,7 @@ describe("updateMarketData", () => {
       },
     ]);
 
-    jest.setSystemTime(new Date("2026-03-12T20:59:50.000Z"));
+    vi.setSystemTime(new Date("2026-03-12T20:59:50.000Z"));
     await updateMarketData();
     clientInstances[0]!.handlers.get("clientReady")();
 

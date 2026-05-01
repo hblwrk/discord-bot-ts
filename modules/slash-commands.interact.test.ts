@@ -1,44 +1,45 @@
+import type {MockedFunction} from "vitest";
 import {ImageAsset, TextAsset, UserQuoteAsset} from "./assets.js";
 import {interactSlashCommands} from "./slash-commands.js";
 import {getCalendarEvents, getCalendarMessages} from "./calendar.js";
 import {getEarningsMessages, getEarningsResult} from "./earnings.js";
 import {createChatInputInteraction, createEventClient} from "./test-utils/discord-mocks.js";
 
-jest.mock("./secrets.js", () => ({
-  readSecret: jest.fn(() => ""),
+vi.mock("./secrets.js", () => ({
+  readSecret: vi.fn(() => ""),
 }));
 
-jest.mock("./logging.js", () => ({
+vi.mock("./logging.js", () => ({
   getLogger: () => ({
-    log: jest.fn(),
+    log: vi.fn(),
   }),
   getDiscordLogger: () => ({
-    log: jest.fn(),
+    log: vi.fn(),
   }),
 }));
 
-jest.mock("./calendar.js", () => ({
+vi.mock("./calendar.js", () => ({
   CALENDAR_MAX_MESSAGE_LENGTH: 1800,
   CALENDAR_MAX_MESSAGES_SLASH: 6,
-  getCalendarEvents: jest.fn(),
-  getCalendarMessages: jest.fn(),
+  getCalendarEvents: vi.fn(),
+  getCalendarMessages: vi.fn(),
 }));
 
-jest.mock("./earnings.js", () => ({
+vi.mock("./earnings.js", () => ({
   EARNINGS_MAX_MESSAGE_LENGTH: 1800,
   EARNINGS_MAX_MESSAGES_SLASH: 6,
-  getEarningsResult: jest.fn(),
-  getEarningsMessages: jest.fn(),
+  getEarningsResult: vi.fn(),
+  getEarningsMessages: vi.fn(),
 }));
 
-const getCalendarEventsMock = getCalendarEvents as jest.MockedFunction<typeof getCalendarEvents>;
-const getCalendarMessagesMock = getCalendarMessages as jest.MockedFunction<typeof getCalendarMessages>;
-const getEarningsResultMock = getEarningsResult as jest.MockedFunction<typeof getEarningsResult>;
-const getEarningsMessagesMock = getEarningsMessages as jest.MockedFunction<typeof getEarningsMessages>;
+const getCalendarEventsMock = getCalendarEvents as MockedFunction<typeof getCalendarEvents>;
+const getCalendarMessagesMock = getCalendarMessages as MockedFunction<typeof getCalendarMessages>;
+const getEarningsResultMock = getEarningsResult as MockedFunction<typeof getEarningsResult>;
+const getEarningsMessagesMock = getEarningsMessages as MockedFunction<typeof getEarningsMessages>;
 
 describe("interactSlashCommands", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     getCalendarEventsMock.mockResolvedValue([]);
     getCalendarMessagesMock.mockReturnValue({
       messages: [],
@@ -67,8 +68,8 @@ describe("interactSlashCommands", () => {
 
     const handler = getHandler("interactionCreate");
     const interaction = {
-      isChatInputCommand: jest.fn(() => false),
-      reply: jest.fn(),
+      isChatInputCommand: vi.fn(() => false),
+      reply: vi.fn(),
     };
 
     await handler(interaction);
@@ -77,7 +78,7 @@ describe("interactSlashCommands", () => {
   });
 
   test("replies to 8ball with embed payload", async () => {
-    const randomSpy = jest.spyOn(Math, "random").mockReturnValue(0);
+    const randomSpy = vi.spyOn(Math, "random").mockReturnValue(0);
     const {client, getHandler} = createEventClient();
     interactSlashCommands(client, [], [], [], []);
 
@@ -196,7 +197,7 @@ describe("interactSlashCommands", () => {
   });
 
   test("replies to grouped asset slash command with a random variant when no parameter is provided", async () => {
-    const randomSpy = jest.spyOn(Math, "random").mockReturnValue(0.99);
+    const randomSpy = vi.spyOn(Math, "random").mockReturnValue(0.99);
     const {client, getHandler} = createEventClient();
     const firstImage = new ImageAsset();
     firstImage.title = "Exchange 1";

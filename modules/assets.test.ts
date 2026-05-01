@@ -1,34 +1,34 @@
-const readFileSyncMock = jest.fn();
-const yamlLoadMock = jest.fn();
-const getFromDracoonMock = jest.fn();
-const readSecretMock = jest.fn();
+const readFileSyncMock = vi.fn();
+const yamlLoadMock = vi.fn();
+const getFromDracoonMock = vi.fn();
+const readSecretMock = vi.fn();
 const loggerMock = {
-  log: jest.fn(),
+  log: vi.fn(),
 };
 
-jest.mock("node:fs", () => ({
+vi.mock("node:fs", () => ({
   __esModule: true,
   default: {
     readFileSync: (...args: unknown[]) => readFileSyncMock(...args),
   },
 }));
 
-jest.mock("js-yaml", () => ({
+vi.mock("js-yaml", () => ({
   __esModule: true,
   default: {
     load: (...args: unknown[]) => yamlLoadMock(...args),
   },
 }));
 
-jest.mock("./dracoon-downloader.js", () => ({
+vi.mock("./dracoon-downloader.js", () => ({
   getFromDracoon: (...args: unknown[]) => getFromDracoonMock(...args),
 }));
 
-jest.mock("./secrets.js", () => ({
+vi.mock("./secrets.js", () => ({
   readSecret: (...args: unknown[]) => readSecretMock(...args),
 }));
 
-jest.mock("./logging.js", () => ({
+vi.mock("./logging.js", () => ({
   getLogger: () => ({
     log: (...args: unknown[]) => loggerMock.log(...args),
   }),
@@ -38,7 +38,7 @@ import {getAssets} from "./assets.js";
 
 describe("getAssets", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     readFileSyncMock.mockReturnValue("assets-file");
     yamlLoadMock.mockReturnValue([]);
     readSecretMock.mockReturnValue("dracoon-secret");

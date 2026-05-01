@@ -7,13 +7,13 @@ import {
 
 describe("earnings result announcements", () => {
   const logger = {
-    log: jest.fn(),
+    log: vi.fn(),
   };
-  const getEarningsResultFn = jest.fn();
-  const getWithRetryFn = jest.fn();
+  const getEarningsResultFn = vi.fn();
+  const getWithRetryFn = vi.fn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     clearEarningsResultCaches();
     getEarningsResultFn.mockResolvedValue({
       status: "ok",

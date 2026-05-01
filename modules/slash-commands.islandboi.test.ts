@@ -5,15 +5,15 @@ type SetupOptions = {
 };
 
 async function setupModule(options: SetupOptions = {}) {
-  jest.resetModules();
+  vi.resetModules();
 
   const loggerMock = {
-    log: jest.fn(),
+    log: vi.fn(),
   };
   const discordLoggerMock = {
-    log: jest.fn(),
+    log: vi.fn(),
   };
-  const readSecretMock = jest.fn((secretName: string) => {
+  const readSecretMock = vi.fn((secretName: string) => {
     if ("discord_guild_ID" === secretName) {
       return "guild-id";
     }
@@ -25,20 +25,20 @@ async function setupModule(options: SetupOptions = {}) {
     return "";
   });
 
-  jest.doMock("./secrets.js", () => ({
+  vi.doMock("./secrets.js", () => ({
     readSecret: readSecretMock,
   }));
 
-  jest.doMock("./logging.js", () => ({
+  vi.doMock("./logging.js", () => ({
     getLogger: () => loggerMock,
     getDiscordLogger: () => discordLoggerMock,
   }));
 
-  jest.doMock("./calendar.js", () => ({
+  vi.doMock("./calendar.js", () => ({
     CALENDAR_MAX_MESSAGE_LENGTH: 1800,
     CALENDAR_MAX_MESSAGES_SLASH: 6,
-    getCalendarEvents: jest.fn(async () => []),
-    getCalendarMessages: jest.fn(() => ({
+    getCalendarEvents: vi.fn(async () => []),
+    getCalendarMessages: vi.fn(() => ({
       messages: [],
       truncated: false,
       totalEvents: 0,
@@ -48,14 +48,14 @@ async function setupModule(options: SetupOptions = {}) {
     })),
   }));
 
-  jest.doMock("./earnings.js", () => ({
+  vi.doMock("./earnings.js", () => ({
     EARNINGS_MAX_MESSAGE_LENGTH: 1800,
     EARNINGS_MAX_MESSAGES_SLASH: 6,
-    getEarningsResult: jest.fn(async () => ({
+    getEarningsResult: vi.fn(async () => ({
       events: [],
       status: "ok",
     })),
-    getEarningsMessages: jest.fn(() => ({
+    getEarningsMessages: vi.fn(() => ({
       messages: [],
       truncated: false,
       totalEvents: 0,
@@ -77,8 +77,8 @@ function createGuild({
 }: {
   canManageRoles?: boolean;
 }) {
-  const addRoleMock = jest.fn().mockResolvedValue(undefined);
-  const removeRoleMock = jest.fn().mockResolvedValue(undefined);
+  const addRoleMock = vi.fn().mockResolvedValue(undefined);
+  const removeRoleMock = vi.fn().mockResolvedValue(undefined);
 
   const guildUser = {
     roles: {
@@ -91,15 +91,15 @@ function createGuild({
     members: {
       me: {
         permissions: {
-          has: jest.fn(() => canManageRoles),
+          has: vi.fn(() => canManageRoles),
         },
       },
-      fetchMe: jest.fn().mockResolvedValue({
+      fetchMe: vi.fn().mockResolvedValue({
         permissions: {
-          has: jest.fn(() => canManageRoles),
+          has: vi.fn(() => canManageRoles),
         },
       }),
-      fetch: jest.fn().mockResolvedValue(guildUser),
+      fetch: vi.fn().mockResolvedValue(guildUser),
     },
   };
 
@@ -113,13 +113,13 @@ function createGuild({
 
 describe("interactSlashCommands islandboi", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.useFakeTimers();
-    jest.setSystemTime(new Date("2025-01-01T00:00:00.000Z"));
+    vi.clearAllMocks();
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2025-01-01T00:00:00.000Z"));
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test("applies cooldown and replies with remaining time", async () => {
@@ -129,9 +129,9 @@ describe("interactSlashCommands islandboi", () => {
 
     (client as any).guilds = {
       cache: {
-        get: jest.fn(() => guild),
+        get: vi.fn(() => guild),
       },
-      fetch: jest.fn().mockResolvedValue(guild),
+      fetch: vi.fn().mockResolvedValue(guild),
     };
 
     interactSlashCommands(client, [], [], [], []);
@@ -162,9 +162,9 @@ describe("interactSlashCommands islandboi", () => {
 
     (client as any).guilds = {
       cache: {
-        get: jest.fn(),
+        get: vi.fn(),
       },
-      fetch: jest.fn(),
+      fetch: vi.fn(),
     };
 
     interactSlashCommands(client, [], [], [], []);
@@ -185,9 +185,9 @@ describe("interactSlashCommands islandboi", () => {
 
     (client as any).guilds = {
       cache: {
-        get: jest.fn(() => undefined),
+        get: vi.fn(() => undefined),
       },
-      fetch: jest.fn().mockRejectedValue(new Error("guild missing")),
+      fetch: vi.fn().mockRejectedValue(new Error("guild missing")),
     };
 
     interactSlashCommands(client, [], [], [], []);
@@ -211,9 +211,9 @@ describe("interactSlashCommands islandboi", () => {
 
     (client as any).guilds = {
       cache: {
-        get: jest.fn(() => guild),
+        get: vi.fn(() => guild),
       },
-      fetch: jest.fn().mockResolvedValue(guild),
+      fetch: vi.fn().mockResolvedValue(guild),
     };
 
     interactSlashCommands(client, [], [], [], []);
@@ -235,9 +235,9 @@ describe("interactSlashCommands islandboi", () => {
 
     (client as any).guilds = {
       cache: {
-        get: jest.fn(() => guild),
+        get: vi.fn(() => guild),
       },
-      fetch: jest.fn().mockResolvedValue(guild),
+      fetch: vi.fn().mockResolvedValue(guild),
     };
 
     interactSlashCommands(client, [], [], [], []);
@@ -248,7 +248,7 @@ describe("interactSlashCommands islandboi", () => {
 
     expect(addRoleMock).toHaveBeenCalledWith("muted-role");
 
-    await jest.advanceTimersByTimeAsync(60_000);
+    await vi.advanceTimersByTimeAsync(60_000);
     await Promise.resolve();
 
     expect(removeRoleMock).toHaveBeenCalledWith("muted-role");

@@ -1,11 +1,12 @@
+import type {Mock, MockedFunction} from "vitest";
 import {clownboard} from "./clownboard.js";
 
 type EventHandler = (...args: unknown[]) => Promise<void>;
 type ClownboardTestClient = {
-  on: jest.MockedFunction<(eventName: string, handler: EventHandler) => ClownboardTestClient>;
+  on: MockedFunction<(eventName: string, handler: EventHandler) => ClownboardTestClient>;
   channels: {
     cache: {
-      get: jest.Mock;
+      get: Mock;
     };
   };
 };
@@ -14,13 +15,13 @@ function createClientWithHandlers(clownboardChannel: unknown) {
   const handlers = new Map<string, EventHandler>();
 
   const client = {} as ClownboardTestClient;
-  client.on = jest.fn((eventName: string, handler: EventHandler) => {
+  client.on = vi.fn((eventName: string, handler: EventHandler) => {
     handlers.set(eventName, handler);
     return client;
   });
   client.channels = {
     cache: {
-      get: jest.fn(() => clownboardChannel),
+      get: vi.fn(() => clownboardChannel),
     },
   };
 
@@ -41,7 +42,7 @@ function createReaction(count: number) {
   return {
     emoji: {name: "🤡"},
     count,
-    fetch: jest.fn().mockResolvedValue(undefined),
+    fetch: vi.fn().mockResolvedValue(undefined),
     message: {
       id: "source-message-id",
       channel: {
@@ -58,19 +59,19 @@ function createReaction(count: number) {
       content: "content",
       url: "https://discord.example/jump",
       partial: false,
-      fetch: jest.fn().mockResolvedValue(undefined),
+      fetch: vi.fn().mockResolvedValue(undefined),
     },
   };
 }
 
 describe("clownboard", () => {
   test("posts to clownboard when threshold is reached", async () => {
-    const messages = {find: jest.fn(() => undefined)};
+    const messages = {find: vi.fn(() => undefined)};
     const clownboardChannel = {
       messages: {
-        fetch: jest.fn().mockResolvedValue(messages),
+        fetch: vi.fn().mockResolvedValue(messages),
       },
-      send: jest.fn().mockResolvedValue(undefined),
+      send: vi.fn().mockResolvedValue(undefined),
     };
 
     const {client, getHandler} = createClientWithHandlers(clownboardChannel);
@@ -84,18 +85,18 @@ describe("clownboard", () => {
   });
 
   test("schedules delete when reaction count drops to threshold", async () => {
-    jest.useFakeTimers();
+    vi.useFakeTimers();
 
     const existingMessage = {
-      delete: jest.fn().mockResolvedValue(undefined),
-      edit: jest.fn().mockResolvedValue(undefined),
+      delete: vi.fn().mockResolvedValue(undefined),
+      edit: vi.fn().mockResolvedValue(undefined),
     };
-    const messages = {find: jest.fn(() => existingMessage)};
+    const messages = {find: vi.fn(() => existingMessage)};
     const clownboardChannel = {
       messages: {
-        fetch: jest.fn().mockResolvedValue(messages),
+        fetch: vi.fn().mockResolvedValue(messages),
       },
-      send: jest.fn().mockResolvedValue(undefined),
+      send: vi.fn().mockResolvedValue(undefined),
     };
 
     const {client, getHandler} = createClientWithHandlers(clownboardChannel);
@@ -105,9 +106,9 @@ describe("clownboard", () => {
     await handler(createReaction(9), {id: "user-1"});
 
     expect(existingMessage.delete).not.toHaveBeenCalled();
-    jest.advanceTimersByTime(2500);
+    vi.advanceTimersByTime(2500);
     expect(existingMessage.delete).toHaveBeenCalledTimes(1);
 
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 });

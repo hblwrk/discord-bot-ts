@@ -80,12 +80,12 @@ export function createMockClient(options: {
     const permissions = new Set(channelPermissionsById[channelId] ?? defaultChannelPermissions);
     channelsById.set(channelId, {
       id: channelId,
-      send: jest.fn(),
-      permissionsFor: jest.fn(() => ({
-        has: jest.fn((permission: bigint) => permissions.has(permission)),
+      send: vi.fn(),
+      permissionsFor: vi.fn(() => ({
+        has: vi.fn((permission: bigint) => permissions.has(permission)),
       })),
       messages: {
-        fetch: jest.fn(async messageId => ({id: messageId})),
+        fetch: vi.fn(async messageId => ({id: messageId})),
       },
     });
   }
@@ -93,7 +93,7 @@ export function createMockClient(options: {
   const rolesById = new Map<string, any>(Object.entries(roleById).map(([roleId, role]) => [roleId, {id: roleId, ...role}]));
   const botMember = {
     permissions: {
-      has: jest.fn((permission: bigint) => {
+      has: vi.fn((permission: bigint) => {
         return PermissionFlagsBits.ManageRoles === permission
           ? manageRoles
           : false;
@@ -108,20 +108,20 @@ export function createMockClient(options: {
   const guild = {
     channels: {
       cache: {
-        get: jest.fn((channelId: string) => channelsById.get(channelId)),
+        get: vi.fn((channelId: string) => channelsById.get(channelId)),
       },
-      fetch: jest.fn(async (channelId: string) => channelsById.get(channelId)),
+      fetch: vi.fn(async (channelId: string) => channelsById.get(channelId)),
     },
     members: {
       me: botMember,
-      fetch: jest.fn(async () => ({})),
-      fetchMe: jest.fn(async () => botMember),
+      fetch: vi.fn(async () => ({})),
+      fetchMe: vi.fn(async () => botMember),
     },
     roles: {
       cache: {
-        get: jest.fn((roleId: string) => rolesById.get(roleId)),
+        get: vi.fn((roleId: string) => rolesById.get(roleId)),
       },
-      fetch: jest.fn(async (roleId: string) => rolesById.get(roleId)),
+      fetch: vi.fn(async (roleId: string) => rolesById.get(roleId)),
     },
   };
   const client: any = {
@@ -130,25 +130,25 @@ export function createMockClient(options: {
     },
     channels: {
       cache: {
-        get: jest.fn((channelId: string) => channelsById.get(channelId)),
+        get: vi.fn((channelId: string) => channelsById.get(channelId)),
       },
-      fetch: jest.fn(async (channelId: string) => channelsById.get(channelId)),
+      fetch: vi.fn(async (channelId: string) => channelsById.get(channelId)),
     },
     guilds: {
       cache: {
-        get: jest.fn((guildId: string) => "guild-id" === guildId ? guild : undefined),
+        get: vi.fn((guildId: string) => "guild-id" === guildId ? guild : undefined),
       },
-      fetch: jest.fn(async (guildId: string) => "guild-id" === guildId ? guild : undefined),
+      fetch: vi.fn(async (guildId: string) => "guild-id" === guildId ? guild : undefined),
     },
-    on: jest.fn((eventName: string, handler: (...args: unknown[]) => unknown) => {
+    on: vi.fn((eventName: string, handler: (...args: unknown[]) => unknown) => {
       emitter.on(eventName, handler as any);
       return client;
     }),
-    once: jest.fn((eventName: string, handler: (...args: unknown[]) => unknown) => {
+    once: vi.fn((eventName: string, handler: (...args: unknown[]) => unknown) => {
       emitter.once(eventName, handler as any);
       return client;
     }),
-    login: jest.fn(async () => {
+    login: vi.fn(async () => {
       setImmediate(() => {
         emitter.emit("clientReady");
       });
@@ -168,9 +168,9 @@ export function createDependencies(overrides = {}) {
   const events: string[] = [];
   const logger = {
     level: "info",
-    log: jest.fn(),
+    log: vi.fn(),
   };
-  const readSecret = jest.fn((secretName: string) => {
+  const readSecret = vi.fn((secretName: string) => {
     const defaults: Record<string, string> = {
       environment: "staging",
       discord_token: "token",
@@ -191,57 +191,57 @@ export function createDependencies(overrides = {}) {
 
     return defaults[secretName] ?? "";
   });
-  const runHealthCheck = jest.fn(() => {
+  const runHealthCheck = vi.fn(() => {
     events.push("health");
     return {} as any;
   });
-  const addInlineResponses = jest.fn(() => {
+  const addInlineResponses = vi.fn(() => {
     events.push("inline");
   });
-  const addTriggerResponses = jest.fn(() => {
+  const addTriggerResponses = vi.fn(() => {
     events.push("trigger");
   });
-  const interactSlashCommands = jest.fn(() => {
+  const interactSlashCommands = vi.fn(() => {
     events.push("slash-interact");
   });
-  const clownboard = jest.fn(() => {
+  const clownboard = vi.fn(() => {
     events.push("clownboard");
   });
-  const startNyseTimers = jest.fn(() => {
+  const startNyseTimers = vi.fn(() => {
     events.push("nyse");
   });
-  const startMncTimers = jest.fn(() => {
+  const startMncTimers = vi.fn(() => {
     events.push("mnc");
   });
-  const startEarningsResultWatcher = jest.fn(() => {
+  const startEarningsResultWatcher = vi.fn(() => {
     events.push("earnings-results");
     return {
-      runOnce: jest.fn(),
-      stop: jest.fn(),
+      runOnce: vi.fn(),
+      stop: vi.fn(),
     };
   });
-  const startOtherTimers = jest.fn(() => {
+  const startOtherTimers = vi.fn(() => {
     events.push("other-timers");
   });
-  const defineSlashCommands = jest.fn(async () => {
+  const defineSlashCommands = vi.fn(async () => {
     events.push("slash-define");
   });
-  const roleManager = jest.fn(async () => {
+  const roleManager = vi.fn(async () => {
     events.push("role-manager");
   });
-  const getGenericAssets = jest.fn(async () => {
+  const getGenericAssets = vi.fn(async () => {
     events.push("generic-assets");
     return [];
   });
-  const getTickers = jest.fn(async () => {
+  const getTickers = vi.fn(async () => {
     events.push("tickers");
     return [];
   });
-  const getAssets = jest.fn(async (type: string) => {
+  const getAssets = vi.fn(async (type: string) => {
     events.push(`${type}-assets`);
     return [];
   });
-  const updateMarketData = jest.fn(async () => {
+  const updateMarketData = vi.fn(async () => {
     events.push("market-data");
   });
 

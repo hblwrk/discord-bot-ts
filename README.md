@@ -3,7 +3,7 @@
 ## Conventions
 
 * This is a TypeScript 6 project using ECMAScript modules with TypeScript's NodeNext module system, an ES2024 target, and strict compiler settings <https://www.typescriptlang.org/>.
-* Tests run on Jest with SWC transforming TypeScript for the test runtime.
+* Tests run on Vitest with native Vite-powered TypeScript transforms and V8 coverage.
 * The project follows a rolling release model <https://en.wikipedia.org/wiki/Rolling_release>.
 * The `main` branch contains stable and tested code. Any development is done at feature branches.
 * We use `git config pull.rebase false`.

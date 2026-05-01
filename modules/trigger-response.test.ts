@@ -127,7 +127,7 @@ describe("addTriggerResponses", () => {
   });
 
   test("sends a random quote attachment for bare quote trigger", async () => {
-    const randomSpy = jest.spyOn(Math, "random").mockReturnValue(0.99);
+    const randomSpy = vi.spyOn(Math, "random").mockReturnValue(0.99);
     const {client, getHandler} = createEventClient();
     const aliceQuote = new UserQuoteAsset();
     aliceQuote.user = "alice";

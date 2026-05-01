@@ -1,8 +1,8 @@
-const getMock = jest.fn();
-const postMock = jest.fn();
-const isAxiosErrorMock = jest.fn();
+const getMock = vi.fn();
+const postMock = vi.fn();
+const isAxiosErrorMock = vi.fn();
 
-jest.mock("axios", () => ({
+vi.mock("axios", () => ({
   __esModule: true,
   default: {
     get: (...args: unknown[]) => getMock(...args),
@@ -35,13 +35,13 @@ function createAxiosError(status?: number): MockAxiosError {
 
 describe("http-retry", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.useFakeTimers();
+    vi.clearAllMocks();
+    vi.useFakeTimers();
     isAxiosErrorMock.mockImplementation(error => true === Boolean(error?.isAxiosError));
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test("getWithRetry succeeds on first attempt and applies default timeout", async () => {
@@ -74,7 +74,7 @@ describe("http-retry", () => {
     await Promise.resolve();
     expect(getMock).toHaveBeenCalledTimes(1);
 
-    await jest.advanceTimersByTimeAsync(10);
+    await vi.advanceTimersByTimeAsync(10);
     const response = await responsePromise;
 
     expect(response).toEqual({data: {ok: true}});
@@ -92,7 +92,7 @@ describe("http-retry", () => {
     });
 
     await Promise.resolve();
-    await jest.advanceTimersByTimeAsync(5);
+    await vi.advanceTimersByTimeAsync(5);
 
     await expect(responsePromise).resolves.toEqual({data: {ok: true}});
     expect(getMock).toHaveBeenCalledTimes(2);
@@ -149,7 +149,7 @@ describe("http-retry", () => {
     const expectation = expect(responsePromise).rejects.toBe(secondError);
 
     await Promise.resolve();
-    await jest.advanceTimersByTimeAsync(20);
+    await vi.advanceTimersByTimeAsync(20);
 
     await expectation;
     expect(postMock).toHaveBeenCalledTimes(2);

@@ -1,24 +1,29 @@
-const startBotMock = jest.fn();
-const loggerMock = {
-  level: "info",
-  log: jest.fn(),
-};
+import type {MockInstance} from "vitest";
 
-jest.mock("./modules/startup-orchestrator.js", () => ({
+const {loggerMock, startBotMock} = vi.hoisted(() => ({
+  loggerMock: {
+    level: "info",
+    log: vi.fn(),
+  },
+  startBotMock: vi.fn(),
+}));
+const warningHandlerSymbol = Symbol.for("hblwrk.discord-bot-ts.warning-handler");
+
+vi.mock("./modules/startup-orchestrator.js", () => ({
   startBot: startBotMock,
 }));
 
-jest.mock("./modules/logging.js", () => ({
+vi.mock("./modules/logging.js", () => ({
   getLogger: () => loggerMock,
 }));
 
 describe("index bootstrap", () => {
-  let exitSpy: jest.SpyInstance;
+  let exitSpy: MockInstance;
 
   beforeEach(() => {
-    jest.resetModules();
-    jest.clearAllMocks();
-    exitSpy = jest.spyOn(process, "exit").mockImplementation((() => undefined) as never);
+    vi.resetModules();
+    vi.clearAllMocks();
+    exitSpy = vi.spyOn(process, "exit").mockImplementation((() => undefined) as never);
   });
 
   afterEach(() => {
@@ -81,7 +86,11 @@ describe("index bootstrap", () => {
       },
     };
 
-    process.emit("warning", warning);
+    const warningHandler = (process as NodeJS.Process & {
+      [warningHandlerSymbol]?: (processWarning: Error) => void;
+    })[warningHandlerSymbol];
+    expect(warningHandler).toEqual(expect.any(Function));
+    warningHandler?.(warning);
 
     expect(loggerMock.log).toHaveBeenCalledWith(
       "warn",

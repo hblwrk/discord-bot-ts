@@ -1,6 +1,6 @@
-const readSecretMock = jest.fn();
+const readSecretMock = vi.fn();
 
-jest.mock("./secrets.js", () => ({
+vi.mock("./secrets.js", () => ({
   readSecret: (...args: unknown[]) => readSecretMock(...args),
 }));
 
@@ -8,7 +8,7 @@ import DiscordTransport from "./discord-logger.js";
 
 describe("DiscordTransport", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     readSecretMock.mockReturnValue("logging-channel");
   });
 
@@ -25,7 +25,7 @@ describe("DiscordTransport", () => {
     const client = {
       channels: {
         cache: {
-          get: jest.fn(),
+          get: vi.fn(),
         },
       },
     };
@@ -37,11 +37,11 @@ describe("DiscordTransport", () => {
   });
 
   test("emits logged event, invokes callback, and sends embed to a text channel", async () => {
-    const sendMock = jest.fn().mockResolvedValue(undefined);
+    const sendMock = vi.fn().mockResolvedValue(undefined);
     const client = {
       channels: {
         cache: {
-          get: jest.fn(() => ({
+          get: vi.fn(() => ({
             isTextBased: () => true,
             send: sendMock,
           })),
@@ -50,8 +50,8 @@ describe("DiscordTransport", () => {
     };
 
     const transport = new DiscordTransport({client});
-    const callback = jest.fn();
-    const loggedHandler = jest.fn();
+    const callback = vi.fn();
+    const loggedHandler = vi.fn();
     transport.on("logged", loggedHandler);
 
     const info = createInfo();
@@ -70,7 +70,7 @@ describe("DiscordTransport", () => {
   });
 
   test("does not send when channel does not exist", async () => {
-    const getMock = jest.fn(() => undefined);
+    const getMock = vi.fn(() => undefined);
     const client = {
       channels: {
         cache: {
@@ -80,7 +80,7 @@ describe("DiscordTransport", () => {
     };
 
     const transport = new DiscordTransport({client});
-    transport.log(createInfo(), jest.fn());
+    transport.log(createInfo(), vi.fn());
 
     await new Promise(resolve => {
       setImmediate(resolve);
@@ -90,11 +90,11 @@ describe("DiscordTransport", () => {
   });
 
   test("does not send when channel is not text-based", async () => {
-    const sendMock = jest.fn().mockResolvedValue(undefined);
+    const sendMock = vi.fn().mockResolvedValue(undefined);
     const client = {
       channels: {
         cache: {
-          get: jest.fn(() => ({
+          get: vi.fn(() => ({
             isTextBased: () => false,
             send: sendMock,
           })),
@@ -103,7 +103,7 @@ describe("DiscordTransport", () => {
     };
 
     const transport = new DiscordTransport({client});
-    transport.log(createInfo(), jest.fn());
+    transport.log(createInfo(), vi.fn());
 
     await new Promise(resolve => {
       setImmediate(resolve);
@@ -114,12 +114,12 @@ describe("DiscordTransport", () => {
 
   test("logs to console when channel send fails", async () => {
     const sendError = new Error("send failed");
-    const sendMock = jest.fn().mockRejectedValue(sendError);
-    const consoleSpy = jest.spyOn(console, "log").mockImplementation(() => undefined);
+    const sendMock = vi.fn().mockRejectedValue(sendError);
+    const consoleSpy = vi.spyOn(console, "log").mockImplementation(() => undefined);
     const client = {
       channels: {
         cache: {
-          get: jest.fn(() => ({
+          get: vi.fn(() => ({
             isTextBased: () => true,
             send: sendMock,
           })),
@@ -128,7 +128,7 @@ describe("DiscordTransport", () => {
     };
 
     const transport = new DiscordTransport({client});
-    transport.log(createInfo(), jest.fn());
+    transport.log(createInfo(), vi.fn());
 
     await new Promise(resolve => {
       setImmediate(resolve);

@@ -1,10 +1,11 @@
+import type {MockedFunction} from "vitest";
 import {type EarningsEvent, getEarnings, getEarningsMessages, getEarningsResult, getEarningsText} from "./earnings.js";
 import axios from "axios";
 
-jest.mock("axios");
-jest.useFakeTimers();
+vi.mock("axios");
+vi.useFakeTimers();
 const defaultNow = new Date("2024-01-02T19:30:00+01:00");
-jest.setSystemTime(defaultNow);
+vi.setSystemTime(defaultNow);
 
 function getNasdaqResponse(rows: any[] = []) {
   return {
@@ -60,12 +61,12 @@ function parseEarningsLine(
 
 describe("getEarnings/getEarningsResult", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.setSystemTime(defaultNow);
+    vi.clearAllMocks();
+    vi.setSystemTime(defaultNow);
   });
 
   test("today loads Nasdaq earnings for the current day", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+    (axios.get as MockedFunction<typeof axios.get>).mockResolvedValue({
       data: getNasdaqResponse([
         getNasdaqRow({
           symbol: "FC",
@@ -103,7 +104,7 @@ describe("getEarnings/getEarningsResult", () => {
   });
 
   test("tomorrow loads Nasdaq earnings for the next day", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+    (axios.get as MockedFunction<typeof axios.get>).mockResolvedValue({
       data: getNasdaqResponse([
         getNasdaqRow({
           symbol: "CALM",
@@ -131,7 +132,7 @@ describe("getEarnings/getEarningsResult", () => {
   });
 
   test("days loads earnings for the requested date range", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>)
+    (axios.get as MockedFunction<typeof axios.get>)
       .mockResolvedValueOnce({
         data: getNasdaqResponse([
           getNasdaqRow({
@@ -177,13 +178,13 @@ describe("getEarnings/getEarningsResult", () => {
       }),
     ]);
 
-    const calledUrls = (axios.get as jest.MockedFunction<typeof axios.get>).mock.calls.map(call => String(call[0]));
+    const calledUrls = (axios.get as MockedFunction<typeof axios.get>).mock.calls.map(call => String(call[0]));
     expect(calledUrls).toContainEqual(expect.stringContaining("date=2024-01-03"));
     expect(calledUrls).toContainEqual(expect.stringContaining("date=2024-01-04"));
   });
 
   test("date uses the provided date in US/Eastern", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+    (axios.get as MockedFunction<typeof axios.get>).mockResolvedValue({
       data: getNasdaqResponse([
         getNasdaqRow({
           marketCap: 2_800_000_000_000,
@@ -204,7 +205,7 @@ describe("getEarnings/getEarningsResult", () => {
   });
 
   test("date-only input keeps the requested US/Eastern calendar date", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+    (axios.get as MockedFunction<typeof axios.get>).mockResolvedValue({
       data: getNasdaqResponse([
         getNasdaqRow(),
       ]),
@@ -224,7 +225,7 @@ describe("getEarnings/getEarningsResult", () => {
   });
 
   test("explicit Europe/Berlin timestamp maps to the corresponding US/Eastern date", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+    (axios.get as MockedFunction<typeof axios.get>).mockResolvedValue({
       data: getNasdaqResponse([
         getNasdaqRow(),
       ]),
@@ -239,7 +240,7 @@ describe("getEarnings/getEarningsResult", () => {
   });
 
   test("clamps multi-day range to 10 days", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+    (axios.get as MockedFunction<typeof axios.get>).mockResolvedValue({
       data: getNasdaqResponse([]),
     });
 
@@ -251,28 +252,28 @@ describe("getEarnings/getEarningsResult", () => {
     });
     expect(axios.get).toHaveBeenCalledTimes(10);
 
-    const calledUrls = (axios.get as jest.MockedFunction<typeof axios.get>).mock.calls.map(call => String(call[0]));
+    const calledUrls = (axios.get as MockedFunction<typeof axios.get>).mock.calls.map(call => String(call[0]));
     expect(calledUrls).toContainEqual(expect.stringContaining("date=2024-01-03"));
     expect(calledUrls).toContainEqual(expect.stringContaining("date=2024-01-12"));
     expect(calledUrls).not.toContainEqual(expect.stringContaining("date=2024-01-13"));
   });
 
   test("days range starts from the next trading day on a weekend", async () => {
-    jest.setSystemTime(new Date("2026-02-22T12:00:00-05:00"));
-    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+    vi.setSystemTime(new Date("2026-02-22T12:00:00-05:00"));
+    (axios.get as MockedFunction<typeof axios.get>).mockResolvedValue({
       data: getNasdaqResponse([]),
     });
 
     await getEarningsResult(2, "today");
 
-    const calledUrls = (axios.get as jest.MockedFunction<typeof axios.get>).mock.calls.map(call => String(call[0]));
+    const calledUrls = (axios.get as MockedFunction<typeof axios.get>).mock.calls.map(call => String(call[0]));
     expect(calledUrls).toContainEqual(expect.stringContaining("date=2026-02-23"));
     expect(calledUrls).toContainEqual(expect.stringContaining("date=2026-02-24"));
     expect(calledUrls).not.toContainEqual(expect.stringContaining("date=2026-02-25"));
   });
 
   test("maps Nasdaq time tokens and skips malformed rows", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>).mockResolvedValue({
+    (axios.get as MockedFunction<typeof axios.get>).mockResolvedValue({
       data: getNasdaqResponse([
         {
           symbol: "PRE",
@@ -309,7 +310,7 @@ describe("getEarnings/getEarningsResult", () => {
   });
 
   test("returns error when all Nasdaq requests fail", async () => {
-    (axios.get as jest.MockedFunction<typeof axios.get>).mockRejectedValue({
+    (axios.get as MockedFunction<typeof axios.get>).mockRejectedValue({
       response: {
         status: 400,
       },

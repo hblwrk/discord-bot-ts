@@ -4,7 +4,7 @@ import {createEventClient, createMessage} from "./test-utils/discord-mocks.js";
 
 describe("addInlineResponses", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   function createEmojiAsset(trigger: string, response: unknown[], triggerRegex = "") {

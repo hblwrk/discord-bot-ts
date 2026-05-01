@@ -1,22 +1,22 @@
-const formatMock = jest.fn();
-const tzMock = jest.fn();
-const getWithRetryMock = jest.fn();
+const formatMock = vi.fn();
+const tzMock = vi.fn();
+const getWithRetryMock = vi.fn();
 const loggerMock = {
-  log: jest.fn(),
+  log: vi.fn(),
 };
 
-jest.mock("moment-timezone", () => ({
+vi.mock("moment-timezone", () => ({
   __esModule: true,
   default: {
     tz: (...args: unknown[]) => tzMock(...args),
   },
 }));
 
-jest.mock("./http-retry.js", () => ({
+vi.mock("./http-retry.js", () => ({
   getWithRetry: (...args: unknown[]) => getWithRetryMock(...args),
 }));
 
-jest.mock("./logging.js", () => ({
+vi.mock("./logging.js", () => ({
   getLogger: () => ({
     log: (...args: unknown[]) => loggerMock.log(...args),
   }),
@@ -26,7 +26,7 @@ import {getMnc} from "./mnc-downloader.js";
 
 describe("getMnc", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     formatMock.mockReturnValue("01022024");
     tzMock.mockReturnValue({
       format: formatMock,

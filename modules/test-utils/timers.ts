@@ -1,6 +1,7 @@
+import type {Mock} from "vitest";
 import moment from "moment-timezone";
 
-const scheduleJobMock = jest.fn();
+const scheduleJobMock = vi.fn();
 
 interface MockRecurrenceRule {
   hour?: number;
@@ -21,30 +22,30 @@ function MockRange(this: MockRange, start: number, end: number) {
   this.end = end;
 }
 
-const attachmentBuilderMock = jest.fn().mockImplementation(function mockAttachmentBuilder(file: Buffer, options: {name: string}) {
+const attachmentBuilderMock = vi.fn().mockImplementation(function mockAttachmentBuilder(file: Buffer, options: {name: string}) {
   return {file, ...options};
 });
 
-const getHolidaysMock = jest.fn();
-const isHolidayMock = jest.fn();
-const getAssetByNameMock = jest.fn();
-const getCalendarEventsMock = jest.fn();
-const getCalendarEventsResultMock = jest.fn();
-const getCalendarMessagesMock = jest.fn();
-const getEarningsResultMock = jest.fn();
-const getEarningsMessagesMock = jest.fn();
-const getMncMock = jest.fn();
+const getHolidaysMock = vi.fn();
+const isHolidayMock = vi.fn();
+const getAssetByNameMock = vi.fn();
+const getCalendarEventsMock = vi.fn();
+const getCalendarEventsResultMock = vi.fn();
+const getCalendarMessagesMock = vi.fn();
+const getEarningsResultMock = vi.fn();
+const getEarningsMessagesMock = vi.fn();
+const getMncMock = vi.fn();
 const loggerMock = {
-  log: jest.fn(),
+  log: vi.fn(),
 };
 
-jest.mock("discord.js", () => ({
+vi.mock("discord.js", () => ({
   AttachmentBuilder: function MockAttachmentBuilder(...args: [Buffer, {name: string}]) {
     return attachmentBuilderMock(...args);
   },
 }));
 
-jest.mock("node-schedule", () => ({
+vi.mock("node-schedule", () => ({
   __esModule: true,
   default: {
     RecurrenceRule: MockRecurrenceRule,
@@ -53,16 +54,16 @@ jest.mock("node-schedule", () => ({
   },
 }));
 
-jest.mock("nyse-holidays", () => ({
+vi.mock("nyse-holidays", () => ({
   getHolidays: (...args: unknown[]) => getHolidaysMock(...args),
   isHoliday: (...args: unknown[]) => isHolidayMock(...args),
 }));
 
-jest.mock("../assets.js", () => ({
+vi.mock("../assets.js", () => ({
   getAssetByName: (...args: unknown[]) => getAssetByNameMock(...args),
 }));
 
-jest.mock("../calendar.js", () => ({
+vi.mock("../calendar.js", () => ({
   CALENDAR_MAX_MESSAGE_LENGTH: 1800,
   CALENDAR_MAX_MESSAGES_TIMER: 8,
   getCalendarEventDateTime: (event: {date: string; time: string}) => moment.tz(
@@ -75,30 +76,30 @@ jest.mock("../calendar.js", () => ({
   getCalendarMessages: (...args: unknown[]) => getCalendarMessagesMock(...args),
 }));
 
-jest.mock("../earnings.js", () => ({
+vi.mock("../earnings.js", () => ({
   EARNINGS_MAX_MESSAGE_LENGTH: 1800,
   EARNINGS_MAX_MESSAGES_TIMER: 8,
   getEarningsResult: (...args: unknown[]) => getEarningsResultMock(...args),
   getEarningsMessages: (...args: unknown[]) => getEarningsMessagesMock(...args),
 }));
 
-jest.mock("../mnc-downloader.js", () => ({
+vi.mock("../mnc-downloader.js", () => ({
   getMnc: (...args: unknown[]) => getMncMock(...args),
 }));
 
-jest.mock("../logging.js", () => ({
+vi.mock("../logging.js", () => ({
   getLogger: () => ({
     log: (...args: unknown[]) => loggerMock.log(...args),
   }),
 }));
 
-import {startMncTimers, startNyseTimers, startOtherTimers} from "../timers.js";
+const {startMncTimers, startNyseTimers, startOtherTimers} = await import("../timers.js");
 
 type ScheduledJob = {
   callback: (...args: unknown[]) => unknown;
   rule: MockRecurrenceRule | Date;
   scheduledJob: {
-    cancel: jest.Mock;
+    cancel: Mock;
   };
 };
 type RecurringScheduledJob = ScheduledJob & {
@@ -111,9 +112,9 @@ type DateScheduledJob = ScheduledJob & {
 const scheduledJobs: ScheduledJob[] = [];
 
 function createClientWithChannel() {
-  const send = jest.fn().mockResolvedValue(undefined);
+  const send = vi.fn().mockResolvedValue(undefined);
   const channel = {send};
-  const get = jest.fn(() => channel);
+  const get = vi.fn(() => channel);
   const client = {
     channels: {
       cache: {
@@ -130,7 +131,7 @@ function createClientWithChannel() {
 }
 
 function createClientWithoutChannel() {
-  const get = jest.fn(() => undefined);
+  const get = vi.fn(() => undefined);
   const client = {
     channels: {
       cache: {
@@ -180,14 +181,14 @@ function getEarningsReminderJob(): RecurringScheduledJob {
 
 
 export function resetTimerMocks() {
-  jest.useFakeTimers();
-  jest.setSystemTime(new Date("2025-02-18T10:00:00-05:00"));
-  jest.clearAllMocks();
+  vi.useFakeTimers();
+  vi.setSystemTime(new Date("2025-02-18T10:00:00-05:00"));
+  vi.clearAllMocks();
   scheduledJobs.length = 0;
 
   scheduleJobMock.mockImplementation((rule: MockRecurrenceRule, callback: (...args: unknown[]) => unknown) => {
     const scheduledJob = {
-      cancel: jest.fn(),
+      cancel: vi.fn(),
     };
     scheduledJobs.push({rule, callback, scheduledJob});
     return scheduledJob;
@@ -233,7 +234,7 @@ export function resetTimerMocks() {
 }
 
 export function restoreTimerMocks() {
-  jest.useRealTimers();
+  vi.useRealTimers();
 }
 
 export {

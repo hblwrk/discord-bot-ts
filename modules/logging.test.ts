@@ -1,16 +1,17 @@
+import type {MockedFunction} from "vitest";
 import {getDiscordLogger, getLogger} from "./logging.js";
 import {readSecret} from "./secrets.js";
 
-jest.mock("./secrets.js", () => ({
-  readSecret: jest.fn(),
+vi.mock("./secrets.js", () => ({
+  readSecret: vi.fn(),
 }));
 
-const mockedReadSecret = readSecret as jest.MockedFunction<typeof readSecret>;
+const mockedReadSecret = readSecret as MockedFunction<typeof readSecret>;
 const originalLoglevel = process.env["LOGLEVEL"];
 
 describe("getLogger loglevel switching", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     delete process.env["LOGLEVEL"];
   });
 
@@ -64,7 +65,7 @@ describe("getLogger loglevel switching", () => {
       return "";
     });
 
-    const logger = getDiscordLogger({channels: {cache: {get: jest.fn()}}});
+    const logger = getDiscordLogger({channels: {cache: {get: vi.fn()}}});
 
     expect(logger.level).toBe("info");
     expect(logger.transports).toHaveLength(1);
@@ -83,7 +84,7 @@ describe("getLogger loglevel switching", () => {
       return "";
     });
 
-    const client = {channels: {cache: {get: jest.fn()}}};
+    const client = {channels: {cache: {get: vi.fn()}}};
 
     const firstLogger = getDiscordLogger(client);
     const secondLogger = getDiscordLogger(client);

@@ -1,28 +1,31 @@
+import type {Mock, MockedFunction} from "vitest";
+import {runHealthCheck} from "./health-check.js";
+
 type StartupStateSnapshot = import("./startup-state.js").StartupStateSnapshot;
 
 var mockRouteHandlers: Map<string, (...args: unknown[]) => unknown>;
-var mockAppUse: jest.Mock;
-var mockRouterUse: jest.Mock;
-var mockRouterGet: jest.Mock;
-var mockListen: jest.Mock;
-var mockOn: jest.Mock;
-var mockCreateServer: jest.Mock;
+var mockAppUse: Mock;
+var mockRouterUse: Mock;
+var mockRouterGet: Mock;
+var mockListen: Mock;
+var mockOn: Mock;
+var mockCreateServer: Mock;
 const mockLogger = {
-  log: jest.fn(),
+  log: vi.fn(),
 };
 
-jest.mock("express", () => {
+vi.mock("express", () => {
   mockRouteHandlers = new Map<string, (...args: unknown[]) => unknown>();
-  mockAppUse = jest.fn();
-  mockRouterUse = jest.fn();
-  mockRouterGet = jest.fn((path: string, handler: (...args: unknown[]) => unknown) => {
+  mockAppUse = vi.fn();
+  mockRouterUse = vi.fn();
+  mockRouterGet = vi.fn((path: string, handler: (...args: unknown[]) => unknown) => {
     mockRouteHandlers.set(path, handler);
   });
 
-  const mockExpress = jest.fn(() => ({
+  const mockExpress = vi.fn(() => ({
     use: mockAppUse,
   }));
-  (mockExpress as any).Router = jest.fn(() => ({
+  (mockExpress as any).Router = vi.fn(() => ({
     use: mockRouterUse,
     get: mockRouterGet,
   }));
@@ -33,10 +36,10 @@ jest.mock("express", () => {
   };
 });
 
-jest.mock("node:http", () => {
-  mockListen = jest.fn();
-  mockOn = jest.fn();
-  mockCreateServer = jest.fn(() => ({
+vi.mock("node:http", () => {
+  mockListen = vi.fn();
+  mockOn = vi.fn();
+  mockCreateServer = vi.fn(() => ({
     on: mockOn,
     listen: mockListen,
   }));
@@ -49,7 +52,6 @@ jest.mock("node:http", () => {
   };
 });
 
-const {runHealthCheck} = require("./health-check.js");
 const originalHealthcheckPort = process.env["HEALTHCHECK_PORT"];
 
 function createState(partial: Partial<StartupStateSnapshot> = {}): StartupStateSnapshot {
@@ -72,10 +74,10 @@ type TestResponse = {
   statusCode: number;
   body: unknown;
   headers: Record<string, string>;
-  header: jest.MockedFunction<(key: string, value: string) => TestResponse>;
-  status: jest.MockedFunction<(statusCode: number) => TestResponse>;
-  send: jest.MockedFunction<(body: unknown) => TestResponse>;
-  json: jest.MockedFunction<(body: unknown) => TestResponse>;
+  header: MockedFunction<(key: string, value: string) => TestResponse>;
+  status: MockedFunction<(statusCode: number) => TestResponse>;
+  send: MockedFunction<(body: unknown) => TestResponse>;
+  json: MockedFunction<(body: unknown) => TestResponse>;
 };
 
 function createResponse() {
@@ -83,19 +85,19 @@ function createResponse() {
   response.statusCode = 200;
   response.body = undefined;
   response.headers = {};
-  response.header = jest.fn((key: string, value: string) => {
+  response.header = vi.fn((key: string, value: string) => {
     response.headers[key] = value;
     return response;
   });
-  response.status = jest.fn((statusCode: number) => {
+  response.status = vi.fn((statusCode: number) => {
     response.statusCode = statusCode;
     return response;
   });
-  response.send = jest.fn((body: unknown) => {
+  response.send = vi.fn((body: unknown) => {
     response.body = body;
     return response;
   });
-  response.json = jest.fn((body: unknown) => {
+  response.json = vi.fn((body: unknown) => {
     response.body = body;
     return response;
   });
@@ -105,7 +107,7 @@ function createResponse() {
 
 describe("runHealthCheck", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockRouteHandlers.clear();
     delete process.env["HEALTHCHECK_PORT"];
   });
@@ -212,7 +214,7 @@ describe("runHealthCheck", () => {
   test("logs listener errors when binding fails", () => {
     runHealthCheck(() => createState(), mockLogger);
 
-    const errorHandler = mockOn.mock.calls.find(([eventName]: [string]) => "error" === eventName)?.[1];
+    const errorHandler = mockOn.mock.calls.find(call => "error" === call[0])?.[1] as ((error: Error) => void) | undefined;
     expect(errorHandler).toEqual(expect.any(Function));
 
     const bindError = Object.assign(
