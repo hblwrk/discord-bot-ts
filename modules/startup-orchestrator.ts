@@ -148,7 +148,6 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
   const environment = dependencies.readSecret("environment").trim();
   const channelNyseId = dependencies.readSecret("hblwrk_channel_NYSEAnnouncement_ID").trim();
   const gainsLossesThreadId = dependencies.readSecret("hblwrk_gainslosses_thread_ID").trim();
-  const channelBreakingNewsId = dependencies.readSecret("hblwrk_channel_BreakingNews_ID").trim();
   const channelMncId = dependencies.readSecret("hblwrk_channel_MNCAnnouncement_ID").trim();
   const channelOtherId = dependencies.readSecret("hblwrk_channel_OtherAnnouncement_ID").trim();
   const channelClownboardId = dependencies.readSecret("hblwrk_channel_clownboard_ID").trim();
@@ -211,7 +210,6 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
     startupState.markDiscordLoggedIn();
     await runStartupPreflight(client, logger, {
       brokerYesRoleId,
-      channelBreakingNewsId,
       channelClownboardId,
       channelMncId,
       channelNyseId,
@@ -226,7 +224,7 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
     dependencies.clownboard(client, channelClownboardId);
     dependencies.startNyseTimers(client, channelNyseId, gainsLossesThreadId);
     dependencies.startMncTimers(client, channelMncId);
-    dependencies.startEarningsResultWatcher(client, channelBreakingNewsId);
+    dependencies.startEarningsResultWatcher(client, channelOtherId);
     dependencies.addInlineResponses(client, sharedData.assets, sharedData.assetCommands);
     dependencies.addTriggerResponses(client, sharedData.assets, sharedData.assetCommandsWithPrefix, sharedData.whatIsAssets, sharedData.paywallAssets);
     dependencies.interactSlashCommands(client, sharedData.assets, sharedData.assetCommands, sharedData.whatIsAssets, sharedData.tickers, sharedData.paywallAssets);

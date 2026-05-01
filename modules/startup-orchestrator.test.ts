@@ -138,7 +138,7 @@ describe("startBot", () => {
     expect(mocks.startEarningsResultWatcher).toHaveBeenCalledTimes(1);
     expect(mocks.startEarningsResultWatcher).toHaveBeenCalledWith(
       expect.anything(),
-      "breaking-news",
+      "other",
     );
     expect(mocks.addInlineResponses).toHaveBeenCalledTimes(1);
     expect(mocks.addTriggerResponses).toHaveBeenCalledTimes(1);
@@ -648,7 +648,6 @@ describe("startBot", () => {
         discord_token: "token",
         hblwrk_channel_NYSEAnnouncement_ID: "nyse",
         hblwrk_gainslosses_thread_ID: "gains-losses-thread",
-        hblwrk_channel_BreakingNews_ID: "breaking-news",
         hblwrk_channel_MNCAnnouncement_ID: "mnc",
         hblwrk_channel_OtherAnnouncement_ID: "other",
         hblwrk_channel_clownboard_ID: "clownboard",

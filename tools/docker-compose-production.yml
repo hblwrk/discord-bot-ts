@@ -51,7 +51,6 @@ services:
       - production_discord_30y_client_ID
       - production_dracoon_password
       - production_hblwrk_channel_NYSEAnnouncement_ID
-      - production_hblwrk_channel_BreakingNews_ID
       - production_hblwrk_channel_MNCAnnouncement_ID
       - production_hblwrk_channel_OtherAnnouncement_ID
       - production_hblwrk_channel_logging_ID
@@ -151,8 +150,6 @@ secrets:
   production_dracoon_password:
     external: true
   production_hblwrk_channel_NYSEAnnouncement_ID:
-    external: true
-  production_hblwrk_channel_BreakingNews_ID:
     external: true
   production_hblwrk_channel_MNCAnnouncement_ID:
     external: true
