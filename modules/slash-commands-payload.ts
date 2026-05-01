@@ -11,7 +11,7 @@ import {getSlashCommandNamesFromPayload} from "./slash-commands-canonical.ts";
 
 const logger = getLogger();
 const maxSlashCommandsPerScope = 100;
-export const fixedSlashCommandNames = ["cryptodice", "lmgtfy", "8ball", "whatis", "quote", "sara", "earnings", "calendar", "paywall", "delta", "strangle", "straddle", "expectedmove", "boxspread"];
+export const fixedSlashCommandNames = ["cryptodice", "lmgtfy", "8ball", "whatis", "quote", "sara", "earnings", "calendar", "paywall", "delta", "strangle", "straddle", "expectedmove", "boxspread", "boxrates"];
 type SlashCommandJson = ReturnType<SlashCommandBuilder["toJSON"]>;
 type SlashCommandChoice = {
   name: string;
@@ -247,6 +247,16 @@ function createFixedSlashCommands(whatIsAssetsChoices: SlashCommandChoice[], use
         .setMinValue(1)
         .setRequired(true));
   fixedSlashCommands.push(slashCommandBoxSpread.toJSON());
+
+  const slashCommandBoxRates = new SlashCommandBuilder()
+    .setName("boxrates")
+    .setDescription("Show SPX box-spread implied rates for the next 12 months")
+    .addNumberOption(option =>
+      option.setName("notational")
+        .setDescription("Maturity notational per row; defaults to 100000")
+        .setMinValue(1)
+        .setRequired(false));
+  fixedSlashCommands.push(slashCommandBoxRates.toJSON());
 
   return fixedSlashCommands;
 }
