@@ -3,11 +3,38 @@ import {ImageAsset, TextAsset, UserQuoteAsset} from "./assets.ts";
 import {interactSlashCommands} from "./slash-commands.ts";
 import {getCalendarEvents, getCalendarMessages} from "./calendar.ts";
 import {getEarningsMessages, getEarningsResult} from "./earnings.ts";
+import {
+  formatOptionDeltaLookupResult,
+  getOptionDeltaLookup,
+  OptionDeltaDataError,
+  OptionDeltaInputError,
+  type OptionDeltaLookupResult,
+} from "./options-delta.ts";
 import {createChatInputInteraction, createEventClient} from "./test-utils/discord-mocks.ts";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
+const readSecretMock = vi.hoisted(() => vi.fn((secretName: string) => {
+  void secretName;
+  return "";
+}));
+const {
+  formatOptionDeltaLookupResultMock,
+  getOptionDeltaLookupMock,
+} = vi.hoisted(() => ({
+  formatOptionDeltaLookupResultMock: vi.fn(),
+  getOptionDeltaLookupMock: vi.fn(),
+}));
+
 vi.mock("./secrets.ts", () => ({
-  readSecret: vi.fn(() => ""),
+  readSecret: readSecretMock,
+}));
+
+vi.mock("./options-delta.ts", () => ({
+  formatOptionDeltaLookupResult: formatOptionDeltaLookupResultMock,
+  getOptionDeltaLookup: getOptionDeltaLookupMock,
+  OptionDeltaConfigurationError: class OptionDeltaConfigurationError extends Error {},
+  OptionDeltaDataError: class OptionDeltaDataError extends Error {},
+  OptionDeltaInputError: class OptionDeltaInputError extends Error {},
 }));
 
 const loggerMock = vi.hoisted(() => ({
@@ -40,6 +67,8 @@ const getCalendarEventsMock = getCalendarEvents as MockedFunction<typeof getCale
 const getCalendarMessagesMock = getCalendarMessages as MockedFunction<typeof getCalendarMessages>;
 const getEarningsResultMock = getEarningsResult as MockedFunction<typeof getEarningsResult>;
 const getEarningsMessagesMock = getEarningsMessages as MockedFunction<typeof getEarningsMessages>;
+const getOptionDeltaLookupMockTyped = getOptionDeltaLookup as MockedFunction<typeof getOptionDeltaLookup>;
+const formatOptionDeltaLookupResultMockTyped = formatOptionDeltaLookupResult as MockedFunction<typeof formatOptionDeltaLookupResult>;
 
 function createImageAsset({
   fileContent,
@@ -87,6 +116,9 @@ function getReplyPayload(interaction: ReturnType<typeof createChatInputInteracti
 describe("interactSlashCommands", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+    readSecretMock.mockImplementation(secretName => "discord_guild_ID" === secretName ? "guild-id" : "");
+    getOptionDeltaLookupMockTyped.mockReset();
+    formatOptionDeltaLookupResultMockTyped.mockReset();
     getCalendarEventsMock.mockResolvedValue([]);
     getCalendarMessagesMock.mockReturnValue({
       messages: [],
@@ -105,6 +137,279 @@ describe("interactSlashCommands", () => {
       truncated: false,
       totalEvents: 0,
       includedEvents: 0,
+    });
+  });
+
+  test("delta defaults to both sides and replies with formatted lookup", async () => {
+    const lookupResult: OptionDeltaLookupResult = {
+      actualDte: 49,
+      expiration: "2026-06-19",
+      requestedDte: 45,
+      requestedSide: "both",
+      rolled: true,
+      sideResults: [],
+      symbol: "AAPL",
+      targetDelta: 0.3,
+    };
+    readSecretMock.mockImplementation(secretName => {
+      if ("discord_guild_ID" === secretName) {
+        return "guild-id";
+      }
+
+      if ("tastytrade_client_secret" === secretName) {
+        return "client-secret";
+      }
+
+      if ("tastytrade_refresh_token" === secretName) {
+        return "refresh-token";
+      }
+
+      return "";
+    });
+    getOptionDeltaLookupMockTyped.mockResolvedValue(lookupResult);
+    formatOptionDeltaLookupResultMockTyped.mockReturnValue("delta-response");
+    const {client, getHandler} = createEventClient();
+    interactSlashCommands(client, [], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("delta");
+    interaction.options.getString.mockImplementation(name => {
+      if ("symbol" === name) {
+        return "AAPL";
+      }
+
+      return null;
+    });
+    interaction.options.getInteger.mockImplementation(name => "dte" === name ? 45 : null);
+    interaction.options.getNumber.mockImplementation(name => "delta" === name ? 0.3 : null);
+
+    await handler(interaction);
+
+    expect(interaction.deferReply).toHaveBeenCalledTimes(1);
+    expect(getOptionDeltaLookupMockTyped).toHaveBeenCalledWith({
+      credentials: {
+        clientSecret: "client-secret",
+        refreshToken: "refresh-token",
+      },
+      delta: 0.3,
+      dte: 45,
+      side: "both",
+      symbol: "AAPL",
+    });
+    expect(formatOptionDeltaLookupResultMockTyped).toHaveBeenCalledWith(lookupResult);
+    expect(interaction.editReply).toHaveBeenCalledWith({
+      content: "delta-response",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+  });
+
+  test("delta forwards an explicit put side option", async () => {
+    const lookupResult: OptionDeltaLookupResult = {
+      actualDte: 49,
+      expiration: "2026-06-19",
+      requestedDte: 45,
+      requestedSide: "put",
+      rolled: true,
+      sideResults: [],
+      symbol: "AAPL",
+      targetDelta: 0.3,
+    };
+    readSecretMock.mockImplementation(secretName => {
+      if ("discord_guild_ID" === secretName) {
+        return "guild-id";
+      }
+
+      if ("tastytrade_client_secret" === secretName) {
+        return "client-secret";
+      }
+
+      if ("tastytrade_refresh_token" === secretName) {
+        return "refresh-token";
+      }
+
+      return "";
+    });
+    getOptionDeltaLookupMockTyped.mockResolvedValue(lookupResult);
+    formatOptionDeltaLookupResultMockTyped.mockReturnValue("delta-response");
+    const {client, getHandler} = createEventClient();
+    interactSlashCommands(client, [], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("delta");
+    interaction.options.getString.mockImplementation(name => {
+      if ("symbol" === name) {
+        return "AAPL";
+      }
+
+      if ("side" === name) {
+        return "put";
+      }
+
+      return null;
+    });
+    interaction.options.getInteger.mockImplementation(name => "dte" === name ? 45 : null);
+    interaction.options.getNumber.mockImplementation(name => "delta" === name ? 0.3 : null);
+
+    await handler(interaction);
+
+    expect(getOptionDeltaLookupMockTyped).toHaveBeenCalledWith(expect.objectContaining({
+      side: "put",
+    }));
+  });
+
+  test("delta replies with configuration fallback when tastytrade secrets are missing", async () => {
+    readSecretMock.mockImplementation(secretName => {
+      if ("discord_guild_ID" === secretName) {
+        return "guild-id";
+      }
+
+      throw new Error(`missing ${secretName}`);
+    });
+    const {client, getHandler} = createEventClient();
+    interactSlashCommands(client, [], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("delta");
+    interaction.options.getString.mockImplementation(name => "symbol" === name ? "AAPL" : null);
+    interaction.options.getInteger.mockImplementation(name => "dte" === name ? 45 : null);
+    interaction.options.getNumber.mockImplementation(name => "delta" === name ? 0.3 : null);
+
+    await handler(interaction);
+
+    expect(getOptionDeltaLookupMockTyped).not.toHaveBeenCalled();
+    expect(interaction.editReply).toHaveBeenCalledWith({
+      content: "Optionsdaten sind fuer /delta noch nicht konfiguriert.",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+  });
+
+  test("delta logs and stops when deferReply fails", async () => {
+    const {client, getHandler} = createEventClient();
+    interactSlashCommands(client, [], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("delta");
+    interaction.deferReply.mockRejectedValueOnce(new Error("defer failed"));
+
+    await handler(interaction);
+
+    expect(getOptionDeltaLookupMockTyped).not.toHaveBeenCalled();
+    expect(interaction.editReply).not.toHaveBeenCalled();
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("Error deferring delta slashcommand"),
+    );
+  });
+
+  test("delta replies with input error fallback", async () => {
+    readSecretMock.mockImplementation(secretName => {
+      if ("discord_guild_ID" === secretName) {
+        return "guild-id";
+      }
+
+      if ("tastytrade_client_secret" === secretName) {
+        return "client-secret";
+      }
+
+      if ("tastytrade_refresh_token" === secretName) {
+        return "refresh-token";
+      }
+
+      return "";
+    });
+    getOptionDeltaLookupMockTyped.mockRejectedValue(new OptionDeltaInputError("bad delta"));
+    const {client, getHandler} = createEventClient();
+    interactSlashCommands(client, [], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("delta");
+    interaction.options.getString.mockImplementation(name => "symbol" === name ? "AAPL" : null);
+    interaction.options.getInteger.mockImplementation(name => "dte" === name ? 45 : null);
+    interaction.options.getNumber.mockImplementation(name => "delta" === name ? 0.3 : null);
+
+    await handler(interaction);
+
+    expect(interaction.editReply).toHaveBeenCalledWith({
+      content: "Ungueltige Eingabe: bad delta",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+  });
+
+  test("delta replies with data error fallback", async () => {
+    readSecretMock.mockImplementation(secretName => {
+      if ("discord_guild_ID" === secretName) {
+        return "guild-id";
+      }
+
+      if ("tastytrade_client_secret" === secretName) {
+        return "client-secret";
+      }
+
+      if ("tastytrade_refresh_token" === secretName) {
+        return "refresh-token";
+      }
+
+      return "";
+    });
+    getOptionDeltaLookupMockTyped.mockRejectedValue(new OptionDeltaDataError("No option expiration found."));
+    const {client, getHandler} = createEventClient();
+    interactSlashCommands(client, [], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("delta");
+    interaction.options.getString.mockImplementation(name => "symbol" === name ? "AAPL" : null);
+    interaction.options.getInteger.mockImplementation(name => "dte" === name ? 45 : null);
+    interaction.options.getNumber.mockImplementation(name => "delta" === name ? 0.3 : null);
+
+    await handler(interaction);
+
+    expect(interaction.editReply).toHaveBeenCalledWith({
+      content: "No option expiration found.",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+  });
+
+  test("delta replies with generic fallback for unexpected errors", async () => {
+    readSecretMock.mockImplementation(secretName => {
+      if ("discord_guild_ID" === secretName) {
+        return "guild-id";
+      }
+
+      if ("tastytrade_client_secret" === secretName) {
+        return "client-secret";
+      }
+
+      if ("tastytrade_refresh_token" === secretName) {
+        return "refresh-token";
+      }
+
+      return "";
+    });
+    getOptionDeltaLookupMockTyped.mockRejectedValue(new Error("upstream failed"));
+    const {client, getHandler} = createEventClient();
+    interactSlashCommands(client, [], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("delta");
+    interaction.options.getString.mockImplementation(name => "symbol" === name ? "AAPL" : null);
+    interaction.options.getInteger.mockImplementation(name => "dte" === name ? 45 : null);
+    interaction.options.getNumber.mockImplementation(name => "delta" === name ? 0.3 : null);
+
+    await handler(interaction);
+
+    expect(interaction.editReply).toHaveBeenCalledWith({
+      content: "Optionsdaten konnten gerade nicht geladen werden. Bitte spaeter erneut versuchen.",
+      allowedMentions: {
+        parse: [],
+      },
     });
   });
 

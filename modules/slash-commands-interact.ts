@@ -8,6 +8,7 @@ import {readSecret} from "./secrets.ts";
 import {handleCalendarSlashCommand, handleEarningsSlashCommand} from "./slash-commands-interact-events.ts";
 import {handleIslandboiSlashCommand} from "./slash-commands-interact-islandboi.ts";
 import {handleMediaSlashCommand} from "./slash-commands-interact-media.ts";
+import {handleDeltaSlashCommand} from "./slash-commands-interact-options.ts";
 import {handlePaywallSlashCommand} from "./slash-commands-interact-paywall.ts";
 import {type SlashCommandClient} from "./slash-commands-interact-shared.ts";
 import {type Ticker} from "./tickers.ts";
@@ -110,6 +111,10 @@ export function interactSlashCommands(
     }
 
     if (true === await handleIslandboiSlashCommand(client, chatInputInteraction, commandName, guildId)) {
+      return;
+    }
+
+    if (true === await handleDeltaSlashCommand(client, chatInputInteraction, commandName)) {
       return;
     }
 

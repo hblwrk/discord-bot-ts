@@ -11,7 +11,7 @@ import {getSlashCommandNamesFromPayload} from "./slash-commands-canonical.ts";
 
 const logger = getLogger();
 const maxSlashCommandsPerScope = 100;
-export const fixedSlashCommandNames = ["cryptodice", "lmgtfy", "google", "8ball", "whatis", "quote", "islandboi", "sara", "earnings", "calendar", "paywall"];
+export const fixedSlashCommandNames = ["cryptodice", "lmgtfy", "google", "8ball", "whatis", "quote", "islandboi", "sara", "earnings", "calendar", "paywall", "delta"];
 type SlashCommandJson = ReturnType<SlashCommandBuilder["toJSON"]>;
 type SlashCommandChoice = {
   name: string;
@@ -153,6 +153,35 @@ function createFixedSlashCommands(whatIsAssetsChoices: SlashCommandChoice[], use
         .setDescription("Article URL")
         .setRequired(true));
   fixedSlashCommands.push(slashCommandPaywall.toJSON());
+
+  const slashCommandDelta = new SlashCommandBuilder()
+    .setName("delta")
+    .setDescription("Find option strikes around a target delta")
+    .addStringOption(option =>
+      option.setName("symbol")
+        .setDescription("Underlying symbol")
+        .setRequired(true))
+    .addIntegerOption(option =>
+      option.setName("dte")
+        .setDescription("Target days to expiration")
+        .setMinValue(0)
+        .setMaxValue(3650)
+        .setRequired(true))
+    .addNumberOption(option =>
+      option.setName("delta")
+        .setDescription("Absolute target delta, for example 0.30")
+        .setMinValue(0.01)
+        .setMaxValue(0.99)
+        .setRequired(true))
+    .addStringOption(option =>
+      option.setName("side")
+        .setDescription("Calls, puts, or both when omitted")
+        .setRequired(false)
+        .addChoices(
+          {name: "Calls", value: "call"},
+          {name: "Puts", value: "put"},
+        ));
+  fixedSlashCommands.push(slashCommandDelta.toJSON());
 
   return fixedSlashCommands;
 }
