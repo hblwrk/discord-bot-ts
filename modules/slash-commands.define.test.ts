@@ -614,6 +614,12 @@ describe("defineSlashCommands", () => {
     ]);
   });
 
+  test("does not register google as a fixed slash command", () => {
+    const payload = buildSlashCommandPayload([], [], []);
+
+    expect(payload.fixedCommandsRegistered).toBe(14);
+    expect(payload.expectedCommandNames).not.toContain("google");
+  });
 
   test("caps slash command payload at 100 commands and preserves fixed commands", () => {
     const assets: TextAsset[] = [];
@@ -628,9 +634,9 @@ describe("defineSlashCommands", () => {
     const payload = buildSlashCommandPayload(assets, [], []);
 
     expect(payload.slashCommands).toHaveLength(100);
-    expect(payload.assetCommandsRegistered).toBe(85);
-    expect(payload.fixedCommandsRegistered).toBe(15);
-    expect(payload.skippedCommandLimit).toBe(10);
+    expect(payload.assetCommandsRegistered).toBe(86);
+    expect(payload.fixedCommandsRegistered).toBe(14);
+    expect(payload.skippedCommandLimit).toBe(9);
     expect(payload.expectedCommandNames).toContain("quote");
     expect(payload.expectedCommandNames).toContain("calendar");
     expect(payload.expectedCommandNames).toContain("paywall");
@@ -639,15 +645,16 @@ describe("defineSlashCommands", () => {
     expect(payload.expectedCommandNames).toContain("straddle");
     expect(payload.expectedCommandNames).toContain("expectedmove");
     expect(payload.expectedCommandNames).toContain("boxspread");
-    expect(payload.expectedCommandNames).toContain("asset-85");
-    expect(payload.expectedCommandNames).not.toContain("asset-86");
+    expect(payload.expectedCommandNames).not.toContain("google");
+    expect(payload.expectedCommandNames).toContain("asset-86");
+    expect(payload.expectedCommandNames).not.toContain("asset-87");
     expect(loggerMock.log).toHaveBeenCalledWith(
       "warn",
       expect.objectContaining({
         source: "slash-registration",
         max_commands_per_scope: 100,
         total_commands_registered: 100,
-        skipped_command_limit: 10,
+        skipped_command_limit: 9,
         message: "Slash command payload built with skipped asset triggers.",
       }),
     );

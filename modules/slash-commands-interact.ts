@@ -2,7 +2,7 @@ import {type ChatInputCommandInteraction, EmbedBuilder} from "discord.js";
 import validator from "validator";
 import type {GenericAsset, ImageAsset, PaywallAsset} from "./assets.ts";
 import {cryptodice} from "./crypto-dice.ts";
-import {google, lmgtfy} from "./lmgtfy.ts";
+import {lmgtfy} from "./lmgtfy.ts";
 import {getLogger} from "./logging.ts";
 import {handleCalendarSlashCommand, handleEarningsSlashCommand} from "./slash-commands-interact-events.ts";
 import {handleMediaSlashCommand} from "./slash-commands-interact-media.ts";
@@ -86,17 +86,6 @@ export function interactSlashCommands(
         logger.log(
           "error",
           `Error replying to lmgtfy slashcommand: ${error}`,
-        );
-      });
-      return;
-    }
-
-    if (commandName.startsWith("google")) {
-      const search = validator.escape(chatInputInteraction.options.getString("search", true));
-      await chatInputInteraction.reply(`Here you go: ${google(search)}.`).catch((error: unknown) => {
-        logger.log(
-          "error",
-          `Error replying to google slashcommand: ${error}`,
         );
       });
       return;

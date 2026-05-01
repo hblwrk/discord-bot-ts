@@ -52,4 +52,59 @@ describe("BrokerApiRateLimiter", () => {
     await expect(first).resolves.toBe("first");
     await expect(second).resolves.toBe("second");
   });
+
+  test("keeps one pending delay timer and clears it when work can start", async () => {
+    let now = 0;
+    const clearTimeoutMock = vi.fn();
+    const timers: {callback: () => void; timer: ReturnType<typeof setTimeout>}[] = [];
+    const limiter = new BrokerApiRateLimiter({
+      clearTimeout: clearTimeoutMock,
+      maxQueueSize: 4,
+      minIntervalMs: 100,
+      now: () => now,
+      setTimeout: callback => {
+        const timer = Symbol("timer") as unknown as ReturnType<typeof setTimeout>;
+        timers.push({callback, timer});
+        return timer;
+      },
+    });
+    const started: string[] = [];
+
+    await expect(limiter.run(async () => {
+      started.push("first");
+      return "first";
+    })).resolves.toBe("first");
+
+    now = 50;
+    const second = limiter.run(async () => {
+      started.push("second");
+      return "second";
+    });
+    expect(timers).toHaveLength(1);
+
+    now = 60;
+    const third = limiter.run(async () => {
+      started.push("third");
+      return "third";
+    });
+    expect(timers).toHaveLength(1);
+
+    now = 100;
+    const fourth = limiter.run(async () => {
+      started.push("fourth");
+      return "fourth";
+    });
+
+    expect(clearTimeoutMock).toHaveBeenCalledWith(timers[0]?.timer);
+    await expect(second).resolves.toBe("second");
+
+    now = 200;
+    timers[1]?.callback();
+    await expect(third).resolves.toBe("third");
+
+    now = 300;
+    timers[2]?.callback();
+    await expect(fourth).resolves.toBe("fourth");
+    expect(started).toEqual(["first", "second", "third", "fourth"]);
+  });
 });

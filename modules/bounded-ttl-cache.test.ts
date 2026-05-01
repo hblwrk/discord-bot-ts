@@ -24,6 +24,19 @@ describe("BoundedTtlCache", () => {
     expect(cache.size).toBe(0);
   });
 
+  test("updates an existing entry without increasing cache size", () => {
+    const cache = new BoundedTtlCache<string>({
+      maxEntries: 2,
+      ttlMs: 1_000,
+    });
+
+    cache.set("key", "first");
+    cache.set("key", "second");
+
+    expect(cache.get("key")).toBe("second");
+    expect(cache.size).toBe(1);
+  });
+
   test("does not store entries when disabled by size or ttl", () => {
     const zeroSizeCache = new BoundedTtlCache<string>({
       maxEntries: 0,

@@ -11,7 +11,7 @@ import {getSlashCommandNamesFromPayload} from "./slash-commands-canonical.ts";
 
 const logger = getLogger();
 const maxSlashCommandsPerScope = 100;
-export const fixedSlashCommandNames = ["cryptodice", "lmgtfy", "google", "8ball", "whatis", "quote", "sara", "earnings", "calendar", "paywall", "delta", "strangle", "straddle", "expectedmove", "boxspread"];
+export const fixedSlashCommandNames = ["cryptodice", "lmgtfy", "8ball", "whatis", "quote", "sara", "earnings", "calendar", "paywall", "delta", "strangle", "straddle", "expectedmove", "boxspread"];
 type SlashCommandJson = ReturnType<SlashCommandBuilder["toJSON"]>;
 type SlashCommandChoice = {
   name: string;
@@ -49,15 +49,6 @@ function createFixedSlashCommands(whatIsAssetsChoices: SlashCommandChoice[], use
         .setDescription("The search term")
         .setRequired(true));
   fixedSlashCommands.push(slashCommandLmgtfy.toJSON());
-
-  const slashCommandGoogle = new SlashCommandBuilder()
-    .setName("google")
-    .setDescription("Search...")
-    .addStringOption(option =>
-      option.setName("search")
-        .setDescription("The search term")
-        .setRequired(true));
-  fixedSlashCommands.push(slashCommandGoogle.toJSON());
 
   const slashCommand8ball = new SlashCommandBuilder()
     .setName("8ball")
