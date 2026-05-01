@@ -1,9 +1,10 @@
 import moment from "moment-timezone";
+import {beforeEach, describe, expect, test, vi} from "vitest";
 import {
   clearEarningsResultCaches,
   getEarningsResultAnnouncements,
   getExampleEarningsResultOutput,
-} from "./earnings-results.js";
+} from "./earnings-results.ts";
 
 describe("earnings result announcements", () => {
   const logger = {

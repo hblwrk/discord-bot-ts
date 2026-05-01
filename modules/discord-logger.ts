@@ -1,6 +1,6 @@
 import Transport from "winston-transport";
 import {EmbedBuilder} from "discord.js";
-import {readSecret} from "./secrets.js";
+import {readSecret} from "./secrets.ts";
 
 type DiscordLogChannel = {
   isTextBased: () => boolean;

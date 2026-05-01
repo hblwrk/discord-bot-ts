@@ -1,16 +1,17 @@
 import type {Mock, MockedFunction} from "vitest";
-import {roleManager} from "./role-manager.js";
-import {readSecret} from "./secrets.js";
+import {roleManager} from "./role-manager.ts";
+import {readSecret} from "./secrets.ts";
+import {beforeEach, describe, expect, test, vi} from "vitest";
 
 const mockLogger = vi.hoisted(() => ({
   log: vi.fn(),
 }));
 
-vi.mock("./logging.js", () => ({
+vi.mock("./logging.ts", () => ({
   getLogger: vi.fn(() => mockLogger),
 }));
 
-vi.mock("./secrets.js", () => ({
+vi.mock("./secrets.ts", () => ({
   readSecret: vi.fn(),
 }));
 

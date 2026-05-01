@@ -3,7 +3,7 @@ import {isHoliday} from "nyse-holidays";
 import {
   type MarketDataAsset,
   type MarketPresenceData,
-} from "./market-data-types.js";
+} from "./market-data-types.ts";
 
 export const marketClosedPresence = "Market closed.";
 const marketClosedTrend = "⬛";

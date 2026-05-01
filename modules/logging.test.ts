@@ -1,8 +1,9 @@
 import type {MockedFunction} from "vitest";
-import {getDiscordLogger, getLogger} from "./logging.js";
-import {readSecret} from "./secrets.js";
+import {getDiscordLogger, getLogger} from "./logging.ts";
+import {readSecret} from "./secrets.ts";
+import {afterAll, beforeEach, describe, expect, test, vi} from "vitest";
 
-vi.mock("./secrets.js", () => ({
+vi.mock("./secrets.ts", () => ({
   readSecret: vi.fn(),
 }));
 

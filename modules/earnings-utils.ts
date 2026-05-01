@@ -1,4 +1,4 @@
-import {unknownValueLabel} from "./earnings-types.js";
+import {unknownValueLabel} from "./earnings-types.ts";
 
 const compactUsdFormatter = new Intl.NumberFormat("en-US", {
   notation: "compact",

@@ -1,6 +1,6 @@
 /* eslint-disable import/extensions */
 import {Client, PermissionFlagsBits} from "discord.js";
-import {type Logger} from "./startup-types.js";
+import {type Logger} from "./startup-types.ts";
 
 type StartupPreflightFailure = {
   detail: string;

@@ -1,10 +1,11 @@
+import {beforeEach, describe, expect, test, vi} from "vitest";
 const readSecretMock = vi.fn();
 
-vi.mock("./secrets.js", () => ({
+vi.mock("./secrets.ts", () => ({
   readSecret: (...args: unknown[]) => readSecretMock(...args),
 }));
 
-import DiscordTransport from "./discord-logger.js";
+import DiscordTransport from "./discord-logger.ts";
 
 describe("DiscordTransport", () => {
   beforeEach(() => {

@@ -1,6 +1,7 @@
-import {ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets.js";
-import {addTriggerResponses} from "./trigger-response.js";
-import {createEventClient, createMessage} from "./test-utils/discord-mocks.js";
+import {ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets.ts";
+import {addTriggerResponses} from "./trigger-response.ts";
+import {createEventClient, createMessage} from "./test-utils/discord-mocks.ts";
+import {describe, expect, test, vi} from "vitest";
 
 describe("addTriggerResponses", () => {
   test("sends plain text for text assets", async () => {

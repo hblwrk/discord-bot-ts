@@ -1,4 +1,5 @@
 import type {Mock, MockedFunction} from "vitest";
+import {vi} from "vitest";
 
 const mockLogger = {
   log: vi.fn(),
@@ -136,21 +137,21 @@ vi.mock("ws", () => ({
   default: class MockWs {},
 }));
 
-vi.mock("../assets.js", () => ({
+vi.mock("../assets.ts", () => ({
   getAssets: (...args: unknown[]) => mockGetAssets(...args),
 }));
 
-vi.mock("../logging.js", () => ({
+vi.mock("../logging.ts", () => ({
   getLogger: () => ({
     log: (...args: unknown[]) => mockLogger.log(...args),
   }),
 }));
 
-vi.mock("../secrets.js", () => ({
+vi.mock("../secrets.ts", () => ({
   readSecret: (...args: unknown[]) => mockReadSecret(...args),
 }));
 
-const {updateMarketData} = await import("../market-data.js");
+const {updateMarketData} = await import("../market-data.ts");
 
 const marketOpenReferenceTime = new Date("2026-03-12T15:00:00.000Z");
 const marketClosedReferenceTime = new Date("2026-03-12T21:00:00.000Z");

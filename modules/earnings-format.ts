@@ -5,7 +5,7 @@
 /* eslint-disable yoda */
 /* eslint-disable import/extensions */
 import moment from "moment-timezone";
-import {type Ticker} from "./tickers.js";
+import {type Ticker} from "./tickers.ts";
 import {
   bluechipMinMarketCap,
   EARNINGS_CONTINUATION_LABEL,
@@ -18,12 +18,12 @@ import {
   type EarningsMessageOptions,
   type EarningsWhen,
   unknownValueLabel,
-} from "./earnings-types.js";
+} from "./earnings-types.ts";
 import {
   formatMarketCapUsdShort,
   getNormalizedString,
   getNumericValueFromNasdaqCapString,
-} from "./earnings-utils.js";
+} from "./earnings-utils.ts";
 
 type EarningsSectionRow = {
   when: EarningsWhen;

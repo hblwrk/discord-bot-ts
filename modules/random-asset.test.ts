@@ -1,5 +1,6 @@
-import {ImageAsset, TextAsset, UserQuoteAsset} from "./assets.js";
-import {getRandomAsset, getRandomAssetByTriggerGroup} from "./random-asset.js";
+import {ImageAsset, TextAsset, UserQuoteAsset} from "./assets.ts";
+import {getRandomAsset, getRandomAssetByTriggerGroup} from "./random-asset.ts";
+import {describe, expect, test} from "vitest";
 
 describe("getRandomAsset", () => {
   test("returns undefined for an empty pool", () => {

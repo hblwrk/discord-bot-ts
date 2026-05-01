@@ -1,15 +1,16 @@
 import type {MockedFunction} from "vitest";
-import {ImageAsset, TextAsset, UserQuoteAsset} from "./assets.js";
-import {interactSlashCommands} from "./slash-commands.js";
-import {getCalendarEvents, getCalendarMessages} from "./calendar.js";
-import {getEarningsMessages, getEarningsResult} from "./earnings.js";
-import {createChatInputInteraction, createEventClient} from "./test-utils/discord-mocks.js";
+import {ImageAsset, TextAsset, UserQuoteAsset} from "./assets.ts";
+import {interactSlashCommands} from "./slash-commands.ts";
+import {getCalendarEvents, getCalendarMessages} from "./calendar.ts";
+import {getEarningsMessages, getEarningsResult} from "./earnings.ts";
+import {createChatInputInteraction, createEventClient} from "./test-utils/discord-mocks.ts";
+import {beforeEach, describe, expect, test, vi} from "vitest";
 
-vi.mock("./secrets.js", () => ({
+vi.mock("./secrets.ts", () => ({
   readSecret: vi.fn(() => ""),
 }));
 
-vi.mock("./logging.js", () => ({
+vi.mock("./logging.ts", () => ({
   getLogger: () => ({
     log: vi.fn(),
   }),
@@ -18,14 +19,14 @@ vi.mock("./logging.js", () => ({
   }),
 }));
 
-vi.mock("./calendar.js", () => ({
+vi.mock("./calendar.ts", () => ({
   CALENDAR_MAX_MESSAGE_LENGTH: 1800,
   CALENDAR_MAX_MESSAGES_SLASH: 6,
   getCalendarEvents: vi.fn(),
   getCalendarMessages: vi.fn(),
 }));
 
-vi.mock("./earnings.js", () => ({
+vi.mock("./earnings.ts", () => ({
   EARNINGS_MAX_MESSAGE_LENGTH: 1800,
   EARNINGS_MAX_MESSAGES_SLASH: 6,
   getEarningsResult: vi.fn(),

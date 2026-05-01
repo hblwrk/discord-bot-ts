@@ -5,8 +5,8 @@
 /* eslint-disable yoda */
 /* eslint-disable import/extensions */
 import moment from "moment-timezone";
-import {getWithRetry} from "./http-retry.js";
-import {getLogger} from "./logging.js";
+import {getWithRetry} from "./http-retry.ts";
+import {getLogger} from "./logging.ts";
 import {
   dateStampFormat,
   earningsWhenByNasdaqTimeToken,
@@ -17,12 +17,12 @@ import {
   type EarningsWhen,
   unknownValueLabel,
   usEasternTimezone,
-} from "./earnings-types.js";
+} from "./earnings-types.ts";
 import {
   formatMarketCapUsdShort,
   getNormalizedString,
   getNumericValueFromNasdaqCapString,
-} from "./earnings-utils.js";
+} from "./earnings-utils.ts";
 
 const logger = getLogger();
 

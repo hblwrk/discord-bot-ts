@@ -1,4 +1,4 @@
-import {getLogger} from "./logging.js";
+import {getLogger} from "./logging.ts";
 
 export type RemoteWarmupStatus = "idle" | "warming" | "ready" | "degraded";
 export type WarmupTaskStatus = "idle" | "running" | "success" | "failed";

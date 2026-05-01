@@ -1,9 +1,9 @@
 import {plainToInstance} from "class-transformer";
 import yaml from "js-yaml";
 import fs from "node:fs";
-import {getFromDracoon} from "./dracoon-downloader.js";
-import {getLogger} from "./logging.js";
-import {readSecret} from "./secrets.js";
+import {getFromDracoon} from "./dracoon-downloader.ts";
+import {getLogger} from "./logging.ts";
+import {readSecret} from "./secrets.ts";
 
 const directory = "./assets";
 const fileExtension = ".yaml";

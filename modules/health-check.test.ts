@@ -1,7 +1,8 @@
 import type {Mock, MockedFunction} from "vitest";
-import {runHealthCheck} from "./health-check.js";
+import {runHealthCheck} from "./health-check.ts";
+import {afterAll, beforeEach, describe, expect, test, vi} from "vitest";
 
-type StartupStateSnapshot = import("./startup-state.js").StartupStateSnapshot;
+type StartupStateSnapshot = import("./startup-state.ts").StartupStateSnapshot;
 
 var mockRouteHandlers: Map<string, (...args: unknown[]) => unknown>;
 var mockAppUse: Mock;

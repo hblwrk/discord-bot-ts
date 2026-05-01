@@ -1,5 +1,6 @@
-import {TextAsset, UserQuoteAsset} from "./assets.js";
-import {getRandomQuote} from "./random-quote.js";
+import {TextAsset, UserQuoteAsset} from "./assets.ts";
+import {getRandomQuote} from "./random-quote.ts";
+import {describe, expect, test} from "vitest";
 
 describe("getRandomQuote", () => {
   function createQuote(user: string, fileName: string) {

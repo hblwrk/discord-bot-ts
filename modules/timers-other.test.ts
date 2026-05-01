@@ -1,3 +1,4 @@
+import {afterEach, beforeEach, describe, expect, test, vi} from "vitest";
 import {
   createClientWithChannel,
   getAssetByNameMock,
@@ -16,7 +17,7 @@ import {
   scheduleJobMock,
   scheduledJobs,
   startOtherTimers,
-} from "./test-utils/timers.js";
+} from "./test-utils/timers.ts";
 
 describe("timers: other announcements", () => {
   beforeEach(resetTimerMocks);

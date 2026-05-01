@@ -1,3 +1,4 @@
+import {afterEach, beforeEach, describe, expect, test, vi} from "vitest";
 const getMock = vi.fn();
 const postMock = vi.fn();
 const isAxiosErrorMock = vi.fn();
@@ -11,7 +12,7 @@ vi.mock("axios", () => ({
   },
 }));
 
-import {getWithRetry, postWithRetry} from "./http-retry.js";
+import {getWithRetry, postWithRetry} from "./http-retry.ts";
 
 type MockAxiosError = {
   isAxiosError: boolean;

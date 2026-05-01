@@ -7,7 +7,7 @@ import {
   getAssetByName,
   type CalendarReminderAsset,
   type EarningsReminderAsset,
-} from "./assets.js";
+} from "./assets.ts";
 import {
   CALENDAR_MAX_MESSAGE_LENGTH,
   CALENDAR_MAX_MESSAGES_TIMER,
@@ -15,17 +15,17 @@ import {
   getCalendarMessages,
   type CalendarEvent,
   type CalendarMessageBatch,
-} from "./calendar.js";
+} from "./calendar.ts";
 import {
   EARNINGS_MAX_MESSAGE_LENGTH,
   EARNINGS_MAX_MESSAGES_TIMER,
   getEarningsResult,
   getEarningsMessages,
   type EarningsMessageBatch,
-} from "./earnings.js";
-import {getLogger} from "./logging.js";
-import {getMnc} from "./mnc-downloader.js";
-import {type Ticker} from "./tickers.js";
+} from "./earnings.ts";
+import {getLogger} from "./logging.ts";
+import {getMnc} from "./mnc-downloader.ts";
+import {type Ticker} from "./tickers.ts";
 import {
   getAllowedRoleMentions,
   getCalendarReminderMessage,
@@ -33,7 +33,7 @@ import {
   getMatchedCalendarReminderEventGroups,
   getMatchedEarningsReminderEvents,
   getNormalizedRoleId,
-} from "./timer-reminders.js";
+} from "./timer-reminders.ts";
 
 const logger = getLogger();
 const noMentions = {

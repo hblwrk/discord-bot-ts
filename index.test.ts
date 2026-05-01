@@ -1,4 +1,5 @@
 import type {MockInstance} from "vitest";
+import {afterEach, beforeEach, describe, expect, test, vi} from "vitest";
 
 const {loggerMock, startBotMock} = vi.hoisted(() => ({
   loggerMock: {
@@ -9,11 +10,11 @@ const {loggerMock, startBotMock} = vi.hoisted(() => ({
 }));
 const warningHandlerSymbol = Symbol.for("hblwrk.discord-bot-ts.warning-handler");
 
-vi.mock("./modules/startup-orchestrator.js", () => ({
+vi.mock("./modules/startup-orchestrator.ts", () => ({
   startBot: startBotMock,
 }));
 
-vi.mock("./modules/logging.js", () => ({
+vi.mock("./modules/logging.ts", () => ({
   getLogger: () => loggerMock,
 }));
 
@@ -33,7 +34,7 @@ describe("index bootstrap", () => {
   test("delegates startup to orchestrator", async () => {
     startBotMock.mockResolvedValue(undefined);
 
-    await import("./index.js");
+    await import("./index.ts");
     await new Promise(resolve => {
       setImmediate(resolve);
     });
@@ -55,7 +56,7 @@ describe("index bootstrap", () => {
   test("exits process when startup fails", async () => {
     startBotMock.mockRejectedValueOnce(new Error("boom"));
 
-    await import("./index.js");
+    await import("./index.ts");
     await new Promise(resolve => {
       setImmediate(resolve);
     });
@@ -70,7 +71,7 @@ describe("index bootstrap", () => {
   test("logs process warnings through logger", async () => {
     startBotMock.mockResolvedValue(undefined);
 
-    await import("./index.js");
+    await import("./index.ts");
     await new Promise(resolve => {
       setImmediate(resolve);
     });

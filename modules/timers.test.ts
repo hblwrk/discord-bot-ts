@@ -1,3 +1,4 @@
+import {afterEach, beforeEach, describe, expect, test, vi} from "vitest";
 import {
   attachmentBuilderMock,
   createClientWithChannel,
@@ -12,7 +13,7 @@ import {
   scheduleJobMock,
   startMncTimers,
   startNyseTimers,
-} from "./test-utils/timers.js";
+} from "./test-utils/timers.ts";
 
 async function flushAsyncJobs() {
   for (let index = 0; index < 5; index++) {

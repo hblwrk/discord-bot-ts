@@ -1,5 +1,5 @@
-import {UserQuoteAsset} from "./assets.js";
-import {getRandomAsset} from "./random-asset.js";
+import {UserQuoteAsset} from "./assets.ts";
+import {getRandomAsset} from "./random-asset.ts";
 
 type RandomIndexFn = (length: number) => number;
 

@@ -1,4 +1,4 @@
 /* eslint-disable import/extensions */
-export * from "./earnings-types.js";
-export {getEarnings, getEarningsResult} from "./earnings-source.js";
-export {getEarningsMessages, getEarningsText} from "./earnings-format.js";
+export * from "./earnings-types.ts";
+export {getEarnings, getEarningsResult} from "./earnings-source.ts";
+export {getEarningsMessages, getEarningsText} from "./earnings-format.ts";

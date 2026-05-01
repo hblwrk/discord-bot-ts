@@ -1,4 +1,5 @@
-import {createChatInputInteraction, createEventClient} from "./test-utils/discord-mocks.js";
+import {createChatInputInteraction, createEventClient} from "./test-utils/discord-mocks.ts";
+import {afterEach, beforeEach, describe, expect, test, vi} from "vitest";
 
 type SetupOptions = {
   mutedRole?: string;
@@ -25,16 +26,16 @@ async function setupModule(options: SetupOptions = {}) {
     return "";
   });
 
-  vi.doMock("./secrets.js", () => ({
+  vi.doMock("./secrets.ts", () => ({
     readSecret: readSecretMock,
   }));
 
-  vi.doMock("./logging.js", () => ({
+  vi.doMock("./logging.ts", () => ({
     getLogger: () => loggerMock,
     getDiscordLogger: () => discordLoggerMock,
   }));
 
-  vi.doMock("./calendar.js", () => ({
+  vi.doMock("./calendar.ts", () => ({
     CALENDAR_MAX_MESSAGE_LENGTH: 1800,
     CALENDAR_MAX_MESSAGES_SLASH: 6,
     getCalendarEvents: vi.fn(async () => []),
@@ -48,7 +49,7 @@ async function setupModule(options: SetupOptions = {}) {
     })),
   }));
 
-  vi.doMock("./earnings.js", () => ({
+  vi.doMock("./earnings.ts", () => ({
     EARNINGS_MAX_MESSAGE_LENGTH: 1800,
     EARNINGS_MAX_MESSAGES_SLASH: 6,
     getEarningsResult: vi.fn(async () => ({
@@ -63,7 +64,7 @@ async function setupModule(options: SetupOptions = {}) {
     })),
   }));
 
-  const slashCommandsModule = await import("./slash-commands.js");
+  const slashCommandsModule = await import("./slash-commands.ts");
 
   return {
     interactSlashCommands: slashCommandsModule.interactSlashCommands,

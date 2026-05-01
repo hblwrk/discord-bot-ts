@@ -2,8 +2,8 @@
 /* eslint-disable complexity */
 /* eslint-disable import/extensions */
 import {AttachmentBuilder, EmbedBuilder, SlashCommandBuilder} from "discord.js";
-import {ImageAsset, TextAsset} from "./assets.js";
-import {getLogger} from "./logging.js";
+import {ImageAsset, TextAsset} from "./assets.ts";
+import {getLogger} from "./logging.ts";
 
 const logger = getLogger();
 

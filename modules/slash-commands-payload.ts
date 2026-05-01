@@ -2,15 +2,15 @@
 /* eslint-disable complexity */
 /* eslint-disable import/extensions */
 import {SlashCommandBuilder} from "discord.js";
-import {ImageAsset, TextAsset} from "./assets.js";
-import {getLogger} from "./logging.js";
+import {ImageAsset, TextAsset} from "./assets.ts";
+import {getLogger} from "./logging.ts";
 import {
   buildGroupedAssetSlashCommand,
   getGroupedAssetCommands,
   type GroupedAssetCommand,
   toSlashCommandName,
-} from "./slash-commands-assets.js";
-import {getSlashCommandNamesFromPayload} from "./slash-commands-canonical.js";
+} from "./slash-commands-assets.ts";
+import {getSlashCommandNamesFromPayload} from "./slash-commands-canonical.ts";
 
 const logger = getLogger();
 const maxSlashCommandsPerScope = 100;

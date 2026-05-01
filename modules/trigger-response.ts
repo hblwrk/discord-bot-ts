@@ -3,19 +3,19 @@
 /* eslint-disable complexity */
 import {AttachmentBuilder, EmbedBuilder} from "discord.js";
 import validator from "validator";
-import {getAssetByName, ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets.js";
-import {cryptodice} from "./crypto-dice.js";
-import {lmgtfy} from "./lmgtfy.js";
-import {getLogger} from "./logging.js";
+import {getAssetByName, ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets.ts";
+import {cryptodice} from "./crypto-dice.ts";
+import {lmgtfy} from "./lmgtfy.ts";
+import {getLogger} from "./logging.ts";
 import {
   getPaywallLinks,
   PaywallLookupCapacityError,
   paywallLookupBusyMessage,
-} from "./paywall.js";
-import type {PaywallResult} from "./paywall.js";
-import {assertSafeRequestUrl, UnsafeUrlError} from "./safe-http.js";
-import {getRandomAssetByTriggerGroup} from "./random-asset.js";
-import {getRandomQuote} from "./random-quote.js";
+} from "./paywall.ts";
+import type {PaywallResult} from "./paywall.ts";
+import {assertSafeRequestUrl, UnsafeUrlError} from "./safe-http.ts";
+import {getRandomAssetByTriggerGroup} from "./random-asset.ts";
+import {getRandomQuote} from "./random-quote.ts";
 
 const logger = getLogger();
 const noQuoteMessage = "Keine passenden Zitate gefunden.";

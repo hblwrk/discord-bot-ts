@@ -3,7 +3,7 @@
 /* eslint-disable yoda */
 /* eslint-disable import/extensions */
 import moment from "moment-timezone";
-import {type EarningsEvent, getEarningsResult} from "./earnings.js";
+import {type EarningsEvent, getEarningsResult} from "./earnings.ts";
 import {
   formatUsdCompact,
   getEarningsResultMessage,
@@ -12,7 +12,7 @@ import {
   parseEarningsDocument,
   parseNumber,
   type NasdaqSurprise,
-} from "./earnings-results-format.js";
+} from "./earnings-results-format.ts";
 import {
   clearSecEarningsResultCaches,
   isLikelyEarningsFiling,
@@ -21,9 +21,9 @@ import {
   loadSecTickerMap,
   type SecCompany,
   type SecCurrentFiling,
-} from "./earnings-results-sec.js";
-import {getWithRetry} from "./http-retry.js";
-import {getLogger} from "./logging.js";
+} from "./earnings-results-sec.ts";
+import {getWithRetry} from "./http-retry.ts";
+import {getLogger} from "./logging.ts";
 
 type Logger = {
   log: (level: string, message: any) => void;

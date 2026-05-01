@@ -1,3 +1,4 @@
+import {beforeEach, describe, expect, test, vi} from "vitest";
 const readFileSyncMock = vi.hoisted(() => vi.fn());
 
 vi.mock("node:fs", () => ({
@@ -9,7 +10,7 @@ vi.mock("node:fs", () => ({
 
 async function loadReadSecret() {
   vi.resetModules();
-  return (await import("./secrets.js")).readSecret;
+  return (await import("./secrets.ts")).readSecret;
 }
 
 function mockDockerSecrets(secretMap: Record<string, string>) {

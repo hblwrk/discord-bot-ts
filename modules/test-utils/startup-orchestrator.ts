@@ -1,5 +1,6 @@
 import {EventEmitter} from "node:events";
 import {PermissionFlagsBits} from "discord.js";
+import {vi} from "vitest";
 type Deferred<T> = {
   promise: Promise<T>;
   resolve: (value: T) => void;

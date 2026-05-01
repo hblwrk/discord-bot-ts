@@ -1,17 +1,17 @@
 import {type Client} from "discord.js";
-import {type getAssets, type getGenericAssets} from "./assets.js";
-import {type clownboard} from "./clownboard.js";
-import {type startEarningsResultWatcher} from "./earnings-results.js";
-import {type runHealthCheck} from "./health-check.js";
-import {type addInlineResponses} from "./inline-response.js";
-import {type updateMarketData} from "./market-data.js";
-import {type roleManager} from "./role-manager.js";
-import {type readSecret} from "./secrets.js";
-import {type defineSlashCommands, type interactSlashCommands} from "./slash-commands.js";
-import {type StartupStateSnapshot} from "./startup-state.js";
-import {type getTickers, type Ticker} from "./tickers.js";
-import {type startMncTimers, type startNyseTimers, type startOtherTimers} from "./timers.js";
-import {type addTriggerResponses} from "./trigger-response.js";
+import {type getAssets, type getGenericAssets} from "./assets.ts";
+import {type clownboard} from "./clownboard.ts";
+import {type startEarningsResultWatcher} from "./earnings-results.ts";
+import {type runHealthCheck} from "./health-check.ts";
+import {type addInlineResponses} from "./inline-response.ts";
+import {type updateMarketData} from "./market-data.ts";
+import {type roleManager} from "./role-manager.ts";
+import {type readSecret} from "./secrets.ts";
+import {type defineSlashCommands, type interactSlashCommands} from "./slash-commands.ts";
+import {type StartupStateSnapshot} from "./startup-state.ts";
+import {type getTickers, type Ticker} from "./tickers.ts";
+import {type startMncTimers, type startNyseTimers, type startOtherTimers} from "./timers.ts";
+import {type addTriggerResponses} from "./trigger-response.ts";
 
 export type Logger = {
   level?: string;

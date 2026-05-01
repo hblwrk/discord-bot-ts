@@ -1,12 +1,12 @@
 /* eslint-disable import/extensions */
 import {Client} from "discord.js";
-import {getDiscordRateLimitRetryAfterMs} from "./discord-retry-after.js";
-import {type createStartupState} from "./startup-state.js";
+import {getDiscordRateLimitRetryAfterMs} from "./discord-retry-after.ts";
+import {type createStartupState} from "./startup-state.ts";
 import {
   type ErrorLogDetails,
   type SharedStartupData,
   type StartupDependencies,
-} from "./startup-types.js";
+} from "./startup-types.ts";
 
 const slashCommandCreateLimitCooldownMs = 24 * 60 * 60_000;
 

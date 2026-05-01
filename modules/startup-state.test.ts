@@ -1,4 +1,5 @@
-import {createStartupState} from "./startup-state.js";
+import {createStartupState} from "./startup-state.ts";
+import {afterEach, beforeEach, describe, expect, test, vi} from "vitest";
 
 describe("createStartupState", () => {
   const logger = {

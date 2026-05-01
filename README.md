@@ -2,22 +2,22 @@
 
 ## Conventions
 
-* This is a TypeScript 6 project using ECMAScript modules with TypeScript's NodeNext module system, an ES2024 target, and strict compiler settings <https://www.typescriptlang.org/>.
-* Tests run on Vitest with native Vite-powered TypeScript transforms and V8 coverage.
+* This is a TypeScript 6 project using ECMAScript modules with TypeScript's NodeNext module system, an ESNext target, native Node.js TypeScript runtime support, and strict compiler settings <https://www.typescriptlang.org/>.
+* Tests run on Vitest with explicit imports, native Vite-powered TypeScript transforms and V8 coverage.
 * The project follows a rolling release model <https://en.wikipedia.org/wiki/Rolling_release>.
 * The `main` branch contains stable and tested code. Any development is done at feature branches.
 * We use `git config pull.rebase false`.
 * Mind `.gitignore`.
 * We use Airbnb's JS style guide <https://github.com/airbnb/javascript>. That's two spaces for indentation.
-* Consider using ESLint/XO <https://github.com/xojs/xo> for linting.
+* Linting is evaluated separately from this runtime setup. Prefer ESLint flat config with `typescript-eslint` type-checked rules for this codebase.
 
 ## Running
 
-Install NodeJS v22.12 or newer, below v27, and start the bot like this:
+Install Node.js 24 LTS and start the bot like this:
 
 ```bash
 npm install
-node --import tsx index.ts
+node index.ts
 ```
 
 ## Workflow

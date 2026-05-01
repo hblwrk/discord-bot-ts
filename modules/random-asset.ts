@@ -1,5 +1,5 @@
-import {ImageAsset, TextAsset, UserQuoteAsset} from "./assets.js";
-import {getSecureRandomIndex} from "./secure-random.js";
+import {ImageAsset, TextAsset, UserQuoteAsset} from "./assets.ts";
+import {getSecureRandomIndex} from "./secure-random.ts";
 
 type RandomTriggerAsset = ImageAsset | TextAsset | UserQuoteAsset;
 type RandomIndexFn = (length: number) => number;

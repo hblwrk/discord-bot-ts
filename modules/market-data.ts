@@ -1,22 +1,23 @@
+/// <reference path="./reconnecting-websocket-dom-shim.d.ts" />
 import {Client} from "discord.js";
 import ReconnectingWebSocketModule from "reconnecting-websocket";
 import WS from "ws";
-import {getAssets} from "./assets.js";
-import {getMarketDataClientCacheFactory} from "./discord-client-options.js";
-import {getLogger} from "./logging.js";
-import {readSecret} from "./secrets.js";
+import {getAssets} from "./assets.ts";
+import {getMarketDataClientCacheFactory} from "./discord-client-options.ts";
+import {getLogger} from "./logging.ts";
+import {readSecret} from "./secrets.ts";
 import {
   getClosedMarketNickname,
   getMarketPresenceData,
   isMarketOpen,
   marketClosedPresence,
-} from "./market-data-hours.js";
+} from "./market-data-hours.ts";
 import {
   getPayloadLogPreview,
   isPotentialMarketDataPayload,
   normalizeEventData,
   parseStreamEvent,
-} from "./market-data-stream.js";
+} from "./market-data-stream.ts";
 import {
   type AppliedMarketDataUpdateLog,
   type ClientStatusState,
@@ -24,7 +25,7 @@ import {
   type IncomingMarketDataUpdateLog,
   type MarketDataAsset,
   type PendingClientStatusUpdate,
-} from "./market-data-types.js";
+} from "./market-data-types.ts";
 
 const logger = getLogger();
 const websocketSubscribeDomain = "cmt-1-5-945629:%%domain-1:}";

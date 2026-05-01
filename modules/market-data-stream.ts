@@ -1,4 +1,4 @@
-import {type MarketStreamEvent} from "./market-data-types.js";
+import {type MarketStreamEvent} from "./market-data-types.ts";
 
 const maxLoggedPayloadLength = 500;
 

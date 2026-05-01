@@ -1,7 +1,8 @@
+import {describe, expect, test} from "vitest";
 import {
   isLikelyEarningsFiling,
   parseSecCurrentFilingsAtom,
-} from "./earnings-results-sec.js";
+} from "./earnings-results-sec.ts";
 
 describe("SEC earnings result source", () => {
   test("parses current filings atom entries and extracts earnings items", () => {

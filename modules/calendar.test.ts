@@ -1,10 +1,11 @@
+import {describe, expect, test} from "vitest";
 import {
   CALENDAR_CONTINUATION_LABEL,
   CALENDAR_MAX_MESSAGE_LENGTH,
   CalendarEvent,
   getCalendarEventDateTime,
   getCalendarMessages,
-} from "./calendar.js";
+} from "./calendar.ts";
 
 function createCalendarEvent(date: string, time: string, name: string, country = "🇺🇸"): CalendarEvent {
   const calendarEvent = new CalendarEvent();

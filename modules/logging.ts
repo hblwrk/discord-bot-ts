@@ -1,7 +1,7 @@
 import winston from "winston";
-import DiscordTransport from "./discord-logger.js";
-import type {DiscordTransportClient} from "./discord-logger.js";
-import {readSecret} from "./secrets.js";
+import DiscordTransport from "./discord-logger.ts";
+import type {DiscordTransportClient} from "./discord-logger.ts";
+import {readSecret} from "./secrets.ts";
 
 const levels = {
   error: 0,

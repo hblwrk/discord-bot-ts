@@ -1,19 +1,20 @@
+import {beforeEach, describe, expect, test, vi} from "vitest";
 const getWithRetryMock = vi.fn();
 const loggerMock = {
   log: vi.fn(),
 };
 
-vi.mock("./http-retry.js", () => ({
+vi.mock("./http-retry.ts", () => ({
   getWithRetry: (...args: unknown[]) => getWithRetryMock(...args),
 }));
 
-vi.mock("./logging.js", () => ({
+vi.mock("./logging.ts", () => ({
   getLogger: () => ({
     log: (...args: unknown[]) => loggerMock.log(...args),
   }),
 }));
 
-import {getTickers} from "./tickers.js";
+import {getTickers} from "./tickers.ts";
 
 describe("getTickers", () => {
   beforeEach(() => {

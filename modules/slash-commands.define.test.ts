@@ -1,4 +1,5 @@
 import type {MockedFunction} from "vitest";
+import {beforeEach, describe, expect, test, vi} from "vitest";
 
 const {
   loggerMock,
@@ -46,11 +47,11 @@ vi.mock("discord.js", async importOriginal => {
   };
 });
 
-import {ImageAsset, TextAsset} from "./assets.js";
-import {buildSlashCommandPayload, defineSlashCommands} from "./slash-commands.js";
-import {readSecret} from "./secrets.js";
+import {ImageAsset, TextAsset} from "./assets.ts";
+import {buildSlashCommandPayload, defineSlashCommands} from "./slash-commands.ts";
+import {readSecret} from "./secrets.ts";
 
-vi.mock("./secrets.js", () => ({
+vi.mock("./secrets.ts", () => ({
   readSecret: vi.fn(secretName => {
     if ("discord_token" === secretName) {
       return "test-token";
@@ -68,7 +69,7 @@ vi.mock("./secrets.js", () => ({
   }),
 }));
 
-vi.mock("./logging.js", () => ({
+vi.mock("./logging.ts", () => ({
   getLogger: () => ({
     log: (...args: unknown[]) => loggerMock.log(...args),
   }),

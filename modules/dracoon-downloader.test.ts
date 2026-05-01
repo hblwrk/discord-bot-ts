@@ -1,3 +1,4 @@
+import {afterEach, beforeEach, describe, expect, test, vi} from "vitest";
 const postMock = vi.fn();
 const getMock = vi.fn();
 const isAxiosErrorMock = vi.fn();
@@ -11,7 +12,7 @@ vi.mock("axios", () => ({
   },
 }));
 
-import {getFromDracoon} from "./dracoon-downloader.js";
+import {getFromDracoon} from "./dracoon-downloader.ts";
 
 type MockAxiosError = {
   isAxiosError: boolean;

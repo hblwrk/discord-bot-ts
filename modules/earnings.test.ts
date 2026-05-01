@@ -1,6 +1,7 @@
 import type {MockedFunction} from "vitest";
-import {type EarningsEvent, getEarnings, getEarningsMessages, getEarningsResult, getEarningsText} from "./earnings.js";
+import {type EarningsEvent, getEarnings, getEarningsMessages, getEarningsResult, getEarningsText} from "./earnings.ts";
 import axios from "axios";
+import {beforeEach, describe, expect, test, vi} from "vitest";
 
 vi.mock("axios");
 vi.useFakeTimers();

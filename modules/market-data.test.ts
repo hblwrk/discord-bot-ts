@@ -1,3 +1,4 @@
+import {beforeEach, describe, expect, test, vi} from "vitest";
 import {
   advanceFakeTime,
   buildPresencePayload,
@@ -14,7 +15,7 @@ import {
   queuedClientIds,
   updateMarketData,
   websocketInstances,
-} from "./test-utils/market-data.js";
+} from "./test-utils/market-data.ts";
 
 describe("updateMarketData", () => {
   beforeEach(() => {

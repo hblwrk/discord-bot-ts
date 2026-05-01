@@ -1,3 +1,4 @@
+import {beforeEach, describe, expect, test, vi} from "vitest";
 const readFileSyncMock = vi.fn();
 const yamlLoadMock = vi.fn();
 const getFromDracoonMock = vi.fn();
@@ -20,21 +21,21 @@ vi.mock("js-yaml", () => ({
   },
 }));
 
-vi.mock("./dracoon-downloader.js", () => ({
+vi.mock("./dracoon-downloader.ts", () => ({
   getFromDracoon: (...args: unknown[]) => getFromDracoonMock(...args),
 }));
 
-vi.mock("./secrets.js", () => ({
+vi.mock("./secrets.ts", () => ({
   readSecret: (...args: unknown[]) => readSecretMock(...args),
 }));
 
-vi.mock("./logging.js", () => ({
+vi.mock("./logging.ts", () => ({
   getLogger: () => ({
     log: (...args: unknown[]) => loggerMock.log(...args),
   }),
 }));
 
-import {getAssets} from "./assets.js";
+import {getAssets} from "./assets.ts";
 
 describe("getAssets", () => {
   beforeEach(() => {

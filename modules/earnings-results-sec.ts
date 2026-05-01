@@ -1,14 +1,14 @@
 /* eslint-disable complexity */
 /* eslint-disable yoda */
 /* eslint-disable import/extensions */
-import {type getWithRetry} from "./http-retry.js";
+import {type getWithRetry} from "./http-retry.ts";
 import {
   decodeHtmlEntities,
   getNormalizedString,
   htmlToText,
   normalizeCik,
   normalizeTickerSymbol,
-} from "./earnings-results-format.js";
+} from "./earnings-results-format.ts";
 
 type Logger = {
   log: (level: string, message: any) => void;

@@ -2,9 +2,13 @@ import {defineConfig} from "vitest/config";
 
 export default defineConfig({
   test: {
+    clearMocks: true,
     environment: "node",
-    fileParallelism: false,
-    globals: true,
+    fileParallelism: true,
+    globals: false,
+    restoreMocks: true,
+    unstubEnvs: true,
+    unstubGlobals: true,
     coverage: {
       provider: "v8",
       reporter: [
@@ -22,15 +26,39 @@ export default defineConfig({
         "modules/test-utils/**",
       ],
       thresholds: {
-        statements: 75,
-        lines: 75,
-        functions: 65,
-        branches: 58,
+        statements: 78,
+        lines: 78,
+        functions: 77,
+        branches: 66,
+        "modules/assets.ts": {
+          statements: 56,
+          lines: 56,
+          functions: 60,
+          branches: 35,
+        },
+        "modules/calendar.ts": {
+          statements: 72,
+          lines: 72,
+          functions: 82,
+          branches: 60,
+        },
+        "modules/clownboard.ts": {
+          statements: 63,
+          lines: 63,
+          functions: 58,
+          branches: 50,
+        },
         "modules/crypto-dice.ts": {
           statements: 100,
           lines: 100,
           functions: 100,
           branches: 100,
+        },
+        "modules/discord-client-options.ts": {
+          statements: 66,
+          lines: 66,
+          functions: 66,
+          branches: 50,
         },
         "modules/discord-logger.ts": {
           statements: 85,
@@ -74,11 +102,41 @@ export default defineConfig({
           functions: 100,
           branches: 80,
         },
+        "modules/earnings-results.ts": {
+          statements: 54,
+          lines: 53,
+          functions: 50,
+          branches: 38,
+        },
+        "modules/market-data-hours.ts": {
+          statements: 40,
+          lines: 40,
+          functions: 55,
+          branches: 40,
+        },
         "modules/slash-commands.ts": {
           statements: 70,
           lines: 70,
           functions: 45,
           branches: 50,
+        },
+        "modules/role-manager.ts": {
+          statements: 56,
+          lines: 58,
+          functions: 21,
+          branches: 52,
+        },
+        "modules/safe-http.ts": {
+          statements: 78,
+          lines: 74,
+          functions: 55,
+          branches: 90,
+        },
+        "modules/slash-commands-interact.ts": {
+          statements: 65,
+          lines: 65,
+          functions: 28,
+          branches: 67,
         },
         "modules/startup-state.ts": {
           statements: 95,
@@ -86,11 +144,23 @@ export default defineConfig({
           functions: 100,
           branches: 75,
         },
+        "modules/startup-preflight.ts": {
+          statements: 61,
+          lines: 64,
+          functions: 55,
+          branches: 52,
+        },
         "modules/tickers.ts": {
           statements: 90,
           lines: 90,
           functions: 100,
           branches: 70,
+        },
+        "modules/trigger-response.ts": {
+          statements: 57,
+          lines: 57,
+          functions: 32,
+          branches: 61,
         },
       },
     },

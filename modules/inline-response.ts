@@ -1,6 +1,6 @@
 /* eslint-disable max-depth */
-import {EmojiAsset} from "./assets.js";
-import {getLogger} from "./logging.js";
+import {EmojiAsset} from "./assets.ts";
+import {getLogger} from "./logging.ts";
 
 const logger = getLogger();
 const triggerBoundaryRegex = "[^\\p{L}\\p{N}_-]";

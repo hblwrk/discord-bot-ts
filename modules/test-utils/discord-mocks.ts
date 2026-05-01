@@ -1,4 +1,5 @@
 import type {MockedFunction} from "vitest";
+import {vi} from "vitest";
 
 type EventHandler = (...args: any[]) => unknown | Promise<unknown>;
 type EventClient = {

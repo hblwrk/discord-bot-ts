@@ -1,11 +1,12 @@
+import {describe, expect, test} from "vitest";
 import {
   decodeHtmlEntities,
   getEarningsResultMessage,
   getMessageMetrics,
   htmlToText,
   parseEarningsDocument,
-} from "./earnings-results-format.js";
-import {type EarningsEvent} from "./earnings.js";
+} from "./earnings-results-format.ts";
+import {type EarningsEvent} from "./earnings.ts";
 
 describe("earnings result formatting", () => {
   test("parses high-confidence metrics and marks beats against analyst estimates", () => {

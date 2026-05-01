@@ -1,6 +1,7 @@
 import type {Mocked} from "vitest";
 import axios from "axios";
-import {PaywallAsset} from "./assets.js";
+import {PaywallAsset} from "./assets.ts";
+import {beforeEach, describe, expect, test, vi} from "vitest";
 import {
   extractHostname,
   matchPaywallAsset,
@@ -11,10 +12,10 @@ import {
   getServiceSuccessRate,
   getInflightCount,
   PaywallLookupCapacityError,
-} from "./paywall.js";
+} from "./paywall.ts";
 
 vi.mock("axios");
-vi.mock("./logging.js", () => ({
+vi.mock("./logging.ts", () => ({
   getLogger: () => ({
     log: vi.fn(),
   }),

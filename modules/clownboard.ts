@@ -4,7 +4,7 @@
 
 import {EmbedBuilder} from "discord.js";
 import type {Client, TextChannel} from "discord.js";
-import {getLogger} from "./logging.js";
+import {getLogger} from "./logging.ts";
 
 const logger = getLogger();
 

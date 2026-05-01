@@ -1,6 +1,7 @@
-import {EmojiAsset} from "./assets.js";
-import {addInlineResponses} from "./inline-response.js";
-import {createEventClient, createMessage} from "./test-utils/discord-mocks.js";
+import {EmojiAsset} from "./assets.ts";
+import {addInlineResponses} from "./inline-response.ts";
+import {createEventClient, createMessage} from "./test-utils/discord-mocks.ts";
+import {beforeEach, describe, expect, test, vi} from "vitest";
 
 describe("addInlineResponses", () => {
   beforeEach(() => {

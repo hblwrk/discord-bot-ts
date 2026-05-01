@@ -3,29 +3,29 @@
 /* eslint-disable import/extensions */
 import {AttachmentBuilder, EmbedBuilder, PermissionFlagsBits} from "discord.js";
 import validator from "validator";
-import {getAssetByName} from "./assets.js";
-import {CALENDAR_MAX_MESSAGE_LENGTH, CALENDAR_MAX_MESSAGES_SLASH, getCalendarEvents, getCalendarMessages} from "./calendar.js";
-import {cryptodice} from "./crypto-dice.js";
-import {EARNINGS_MAX_MESSAGE_LENGTH, EARNINGS_MAX_MESSAGES_SLASH, getEarningsMessages, getEarningsResult} from "./earnings.js";
-import {google, lmgtfy} from "./lmgtfy.js";
-import {getDiscordLogger, getLogger} from "./logging.js";
+import {getAssetByName} from "./assets.ts";
+import {CALENDAR_MAX_MESSAGE_LENGTH, CALENDAR_MAX_MESSAGES_SLASH, getCalendarEvents, getCalendarMessages} from "./calendar.ts";
+import {cryptodice} from "./crypto-dice.ts";
+import {EARNINGS_MAX_MESSAGE_LENGTH, EARNINGS_MAX_MESSAGES_SLASH, getEarningsMessages, getEarningsResult} from "./earnings.ts";
+import {google, lmgtfy} from "./lmgtfy.ts";
+import {getDiscordLogger, getLogger} from "./logging.ts";
 import {
   getPaywallLinks,
   PaywallLookupCapacityError,
   paywallLookupBusyMessage,
   type PaywallResult,
-} from "./paywall.js";
-import {getRandomAsset} from "./random-asset.js";
-import {getRandomQuote} from "./random-quote.js";
-import {assertSafeRequestUrl, UnsafeUrlError} from "./safe-http.js";
-import {readSecret} from "./secrets.js";
+} from "./paywall.ts";
+import {getRandomAsset} from "./random-asset.ts";
+import {getRandomQuote} from "./random-quote.ts";
+import {assertSafeRequestUrl, UnsafeUrlError} from "./safe-http.ts";
+import {readSecret} from "./secrets.ts";
 import {
   getGroupedAssetCommands,
   replyWithSlashAsset,
   toSlashCommandName,
-} from "./slash-commands-assets.js";
-import {fixedSlashCommandNames} from "./slash-commands-payload.js";
-import {type Ticker} from "./tickers.js";
+} from "./slash-commands-assets.ts";
+import {fixedSlashCommandNames} from "./slash-commands-payload.ts";
+import {type Ticker} from "./tickers.ts";
 
 const logger = getLogger();
 const noMentions = {

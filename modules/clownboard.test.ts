@@ -1,5 +1,6 @@
 import type {Mock, MockedFunction} from "vitest";
-import {clownboard} from "./clownboard.js";
+import {clownboard} from "./clownboard.ts";
+import {describe, expect, test, vi} from "vitest";
 
 type EventHandler = (...args: unknown[]) => Promise<void>;
 type ClownboardTestClient = {

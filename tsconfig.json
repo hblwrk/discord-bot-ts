@@ -1,14 +1,14 @@
 {
   "compilerOptions": {
     "allowUnreachableCode": false,
+    "allowImportingTsExtensions": true,
     "allowUnusedLabels": false,
     "erasableSyntaxOnly": true,
     "exactOptionalPropertyTypes": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "lib": [
-      "ES2024",
-      "DOM"
+      "ES2024"
     ],
     "module": "nodenext",
     "moduleDetection": "force",
@@ -24,7 +24,8 @@
     "noUnusedParameters": true,
     "skipLibCheck": false,
     "strict": true,
-    "target": "ES2024",
+    "rewriteRelativeImportExtensions": true,
+    "target": "ESNext",
     "types": [
       "node"
     ],

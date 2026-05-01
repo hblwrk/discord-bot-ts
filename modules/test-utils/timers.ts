@@ -1,5 +1,6 @@
 import type {Mock} from "vitest";
 import moment from "moment-timezone";
+import {vi} from "vitest";
 
 const scheduleJobMock = vi.fn();
 
@@ -59,11 +60,11 @@ vi.mock("nyse-holidays", () => ({
   isHoliday: (...args: unknown[]) => isHolidayMock(...args),
 }));
 
-vi.mock("../assets.js", () => ({
+vi.mock("../assets.ts", () => ({
   getAssetByName: (...args: unknown[]) => getAssetByNameMock(...args),
 }));
 
-vi.mock("../calendar.js", () => ({
+vi.mock("../calendar.ts", () => ({
   CALENDAR_MAX_MESSAGE_LENGTH: 1800,
   CALENDAR_MAX_MESSAGES_TIMER: 8,
   getCalendarEventDateTime: (event: {date: string; time: string}) => moment.tz(
@@ -76,24 +77,24 @@ vi.mock("../calendar.js", () => ({
   getCalendarMessages: (...args: unknown[]) => getCalendarMessagesMock(...args),
 }));
 
-vi.mock("../earnings.js", () => ({
+vi.mock("../earnings.ts", () => ({
   EARNINGS_MAX_MESSAGE_LENGTH: 1800,
   EARNINGS_MAX_MESSAGES_TIMER: 8,
   getEarningsResult: (...args: unknown[]) => getEarningsResultMock(...args),
   getEarningsMessages: (...args: unknown[]) => getEarningsMessagesMock(...args),
 }));
 
-vi.mock("../mnc-downloader.js", () => ({
+vi.mock("../mnc-downloader.ts", () => ({
   getMnc: (...args: unknown[]) => getMncMock(...args),
 }));
 
-vi.mock("../logging.js", () => ({
+vi.mock("../logging.ts", () => ({
   getLogger: () => ({
     log: (...args: unknown[]) => loggerMock.log(...args),
   }),
 }));
 
-const {startMncTimers, startNyseTimers, startOtherTimers} = await import("../timers.js");
+const {startMncTimers, startNyseTimers, startOtherTimers} = await import("../timers.ts");
 
 type ScheduledJob = {
   callback: (...args: unknown[]) => unknown;

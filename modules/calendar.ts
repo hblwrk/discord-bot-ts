@@ -4,8 +4,8 @@
 /* eslint-disable yoda */
 /* eslint-disable complexity */
 import moment from "moment-timezone";
-import {getLogger} from "./logging.js";
-import {postWithRetry} from "./http-retry.js";
+import {getLogger} from "./logging.ts";
+import {postWithRetry} from "./http-retry.ts";
 
 const logger = getLogger();
 const calendarTitle = "Wichtige Termine:";

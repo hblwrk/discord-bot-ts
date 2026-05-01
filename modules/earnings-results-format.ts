@@ -3,11 +3,11 @@
 /* eslint-disable yoda */
 /* eslint-disable import/extensions */
 import moment from "moment-timezone";
-import {type EarningsEvent} from "./earnings.js";
+import {type EarningsEvent} from "./earnings.ts";
 import {
   extractOutlookMetrics,
   type EarningsOutlookMetric,
-} from "./earnings-results-outlook.js";
+} from "./earnings-results-outlook.ts";
 
 export type EarningsResultOutcome = "beat" | "inline" | "miss";
 

@@ -1,7 +1,7 @@
 import axios from "axios";
-import {PaywallAsset} from "./assets.js";
-import {getLogger} from "./logging.js";
-import {safeHttpAgent, safeHttpsAgent} from "./safe-http.js";
+import {PaywallAsset} from "./assets.ts";
+import {getLogger} from "./logging.ts";
+import {safeHttpAgent, safeHttpsAgent} from "./safe-http.ts";
 
 const logger = getLogger();
 

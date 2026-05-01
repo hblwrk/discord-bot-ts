@@ -1,7 +1,7 @@
 /* eslint-disable yoda */
 /* eslint-disable import/extensions */
-import {getLogger} from "./logging.js";
-import {getWithRetry} from "./http-retry.js";
+import {getLogger} from "./logging.ts";
+import {getWithRetry} from "./http-retry.ts";
 
 const logger = getLogger();
 

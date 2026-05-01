@@ -2,16 +2,16 @@
 /* eslint-disable complexity */
 /* eslint-disable import/extensions */
 import {REST, Routes} from "discord.js";
-import {getDiscordRateLimitRetryAfterMs, toDiscordTimerMs} from "./discord-retry-after.js";
-import {getLogger} from "./logging.js";
-import {readSecret} from "./secrets.js";
-import {buildSlashCommandPayload} from "./slash-commands-payload.js";
+import {getDiscordRateLimitRetryAfterMs, toDiscordTimerMs} from "./discord-retry-after.ts";
+import {getLogger} from "./logging.ts";
+import {readSecret} from "./secrets.ts";
+import {buildSlashCommandPayload} from "./slash-commands-payload.ts";
 import {
   computeSlashRegistrationDiff,
   getSlashCommandNamesFromPayload,
   getSlashCommandPayloadHash,
   hasSlashRegistrationMismatch,
-} from "./slash-commands-canonical.js";
+} from "./slash-commands-canonical.ts";
 
 const logger = getLogger();
 const slashCommandRestTimeoutMs = 120_000;

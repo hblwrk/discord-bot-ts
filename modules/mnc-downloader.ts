@@ -1,8 +1,8 @@
 /* eslint-disable import/extensions */
 import {Buffer} from "node:buffer";
 import moment from "moment-timezone";
-import {getLogger} from "./logging.js";
-import {getWithRetry} from "./http-retry.js";
+import {getLogger} from "./logging.ts";
+import {getWithRetry} from "./http-retry.ts";
 
 const logger = getLogger();
 

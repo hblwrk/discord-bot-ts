@@ -1,11 +1,12 @@
-import {startBot} from "./startup-orchestrator.js";
+import {startBot} from "./startup-orchestrator.ts";
+import {describe, expect, test, vi} from "vitest";
 import {
   createDeferred,
   createDependencies,
   createMockClient,
   sleep,
   waitFor,
-} from "./test-utils/startup-orchestrator.js";
+} from "./test-utils/startup-orchestrator.ts";
 
 describe("startBot", () => {
   test("starts health first and stays not-ready while remote warmup hangs", async () => {

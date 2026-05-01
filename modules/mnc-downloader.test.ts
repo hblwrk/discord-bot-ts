@@ -1,3 +1,4 @@
+import {beforeEach, describe, expect, test, vi} from "vitest";
 const formatMock = vi.fn();
 const tzMock = vi.fn();
 const getWithRetryMock = vi.fn();
@@ -12,17 +13,17 @@ vi.mock("moment-timezone", () => ({
   },
 }));
 
-vi.mock("./http-retry.js", () => ({
+vi.mock("./http-retry.ts", () => ({
   getWithRetry: (...args: unknown[]) => getWithRetryMock(...args),
 }));
 
-vi.mock("./logging.js", () => ({
+vi.mock("./logging.ts", () => ({
   getLogger: () => ({
     log: (...args: unknown[]) => loggerMock.log(...args),
   }),
 }));
 
-import {getMnc} from "./mnc-downloader.js";
+import {getMnc} from "./mnc-downloader.ts";
 
 describe("getMnc", () => {
   beforeEach(() => {

@@ -2,9 +2,9 @@
 import {
   type CalendarReminderAsset,
   type EarningsReminderAsset,
-} from "./assets.js";
-import {type CalendarEvent} from "./calendar.js";
-import {type EarningsEvent} from "./earnings.js";
+} from "./assets.ts";
+import {type CalendarEvent} from "./calendar.ts";
+import {type EarningsEvent} from "./earnings.ts";
 
 const earningsReminderWhenSortRank = new Map<string, number>([
   ["before_open", 0],

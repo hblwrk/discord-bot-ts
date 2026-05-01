@@ -1,4 +1,5 @@
-import {cryptodice} from "./crypto-dice.js";
+import {cryptodice} from "./crypto-dice.ts";
+import {afterEach, describe, expect, test, vi} from "vitest";
 
 describe("cryptodice", () => {
   afterEach(() => {
