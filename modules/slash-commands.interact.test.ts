@@ -150,6 +150,8 @@ describe("interactSlashCommands", () => {
       sideResults: [],
       symbol: "AAPL",
       targetDelta: 0.3,
+      underlyingPrice: 190.42,
+      underlyingPriceIsRealtime: true,
     };
     readSecretMock.mockImplementation(secretName => {
       if ("discord_guild_ID" === secretName) {
@@ -215,6 +217,8 @@ describe("interactSlashCommands", () => {
       sideResults: [],
       symbol: "AAPL",
       targetDelta: 0.3,
+      underlyingPrice: 190.42,
+      underlyingPriceIsRealtime: true,
     };
     readSecretMock.mockImplementation(secretName => {
       if ("discord_guild_ID" === secretName) {

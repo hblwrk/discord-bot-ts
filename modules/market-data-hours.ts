@@ -2,6 +2,7 @@ import moment from "moment-timezone";
 import {isHoliday} from "nyse-holidays";
 import {
   type MarketDataAsset,
+  type MarketHoursProfile,
   type MarketPresenceData,
 } from "./market-data-types.ts";
 
@@ -55,6 +56,10 @@ export function getClosedMarketNickname(marketDataAsset: MarketDataAsset, nickna
 export function isMarketOpen(marketDataAsset: MarketDataAsset, referenceTime = Date.now()): boolean {
   const marketHours = marketDataAsset.marketHours ?? "us_futures";
 
+  return isMarketHoursOpen(marketHours, referenceTime);
+}
+
+export function isMarketHoursOpen(marketHours: MarketHoursProfile, referenceTime = Date.now()): boolean {
   switch (marketHours) {
     case "crypto": {
       return true;

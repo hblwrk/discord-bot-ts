@@ -25,6 +25,15 @@ export function formatOptionalPrice(value: number | null): string {
   return formatDecimal(value);
 }
 
+export function formatSymbolWithUnderlyingPrice(
+  symbol: string,
+  underlyingPrice: number | null,
+  underlyingPriceIsRealtime: boolean,
+): string {
+  const realtimeNote = true === underlyingPriceIsRealtime ? "" : " (market closed)";
+  return `\`${symbol}\` @ \`${formatOptionalPrice(underlyingPrice)}\`${realtimeNote}`;
+}
+
 export function formatOptionalSize(value: number | null): string {
   if (null === value) {
     return "n/a";
@@ -89,7 +98,6 @@ function formatContractLine(label: string, contract: OptionDeltaContract | null)
   const liquidityNote = null !== spreadPercent && 0.2 < spreadPercent ? " | `wide spread`" : "";
   const headline = [
     `• ${label}: \`${getContractName(contract)}\``,
-    `K \`${formatDecimal(contract.strike).replace(/\.00$/, "")}\``,
     `Δ \`${formatDecimal(Math.abs(contract.delta), 3)}\``,
     `mid \`${formatOptionalPrice(mid)}\``,
   ].join(" | ");
@@ -137,7 +145,11 @@ export function formatOptionDeltaLookupResult(result: OptionDeltaLookupResult): 
     ? `Expiry \`${result.expiration}\` (\`${result.actualDte}\` DTE, requested \`${result.requestedDte}\`)`
     : `Expiry \`${result.expiration}\` (\`${result.actualDte}\` DTE)`;
   const lines = [
-    `**\`${result.symbol}\` Δ target \`${formatDecimal(result.targetDelta, 2)}\` | ${expirationText}**`,
+    `**${formatSymbolWithUnderlyingPrice(
+      result.symbol,
+      result.underlyingPrice,
+      result.underlyingPriceIsRealtime,
+    )} | Δ target \`${formatDecimal(result.targetDelta, 2)}\` | ${expirationText}**`,
   ];
 
   for (const sideResult of result.sideResults) {

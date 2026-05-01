@@ -7,7 +7,7 @@ import {
   type OptionDeltaLookupDependencies,
   type OptionDeltaLookupResult,
 } from "./options-delta.ts";
-import {formatDecimal, formatOptionalPrice, getContractName} from "./options-format.ts";
+import {formatDecimal, formatOptionalPrice, formatSymbolWithUnderlyingPrice, getContractName} from "./options-format.ts";
 
 export type OptionStrategyLookupRequest = {
   credentials: OptionDeltaCredentials;
@@ -26,6 +26,8 @@ export type OptionStrategyLookupResult = {
   rolled: boolean;
   symbol: string;
   targetDelta: number;
+  underlyingPrice: number | null;
+  underlyingPriceIsRealtime: boolean;
 };
 
 const defaultStrangleDelta = 0.16;
@@ -64,6 +66,8 @@ function toStrategyResult(result: OptionDeltaLookupResult): OptionStrategyLookup
     rolled: result.rolled,
     symbol: result.symbol,
     targetDelta: result.targetDelta,
+    underlyingPrice: result.underlyingPrice,
+    underlyingPriceIsRealtime: result.underlyingPriceIsRealtime,
   };
 }
 
@@ -111,7 +115,6 @@ function formatLeg(label: string, contract: OptionDeltaContract | null): string 
   const mid = getOptionContractMidPrice(contract);
   return [
     `• ${label}: \`${getContractName(contract)}\``,
-    `K \`${formatDecimal(contract.strike).replace(/\.00$/, "")}\``,
     `Δ \`${formatDecimal(Math.abs(contract.delta), 3)}\``,
     `mid \`${formatOptionalPrice(mid)}\``,
   ].join(" | ");
@@ -127,7 +130,11 @@ function formatBreakevens(result: OptionStrategyLookupResult): string {
 
 export function formatOptionStrangleLookupResult(result: OptionStrategyLookupResult): string {
   return [
-    `**\`${result.symbol}\` Strangle | Δ target \`${formatDecimal(result.targetDelta, 2)}\` | ${formatExpiration(result)}**`,
+    `**${formatSymbolWithUnderlyingPrice(
+      result.symbol,
+      result.underlyingPrice,
+      result.underlyingPriceIsRealtime,
+    )} | Strangle | Δ target \`${formatDecimal(result.targetDelta, 2)}\` | ${formatExpiration(result)}**`,
     formatLeg("Put", result.put),
     formatLeg("Call", result.call),
     `Mid credit: \`${formatOptionalPrice(result.midTotal)}\``,
@@ -137,7 +144,11 @@ export function formatOptionStrangleLookupResult(result: OptionStrategyLookupRes
 
 export function formatOptionStraddleLookupResult(result: OptionStrategyLookupResult): string {
   return [
-    `**\`${result.symbol}\` ATM Straddle | ${formatExpiration(result)}**`,
+    `**${formatSymbolWithUnderlyingPrice(
+      result.symbol,
+      result.underlyingPrice,
+      result.underlyingPriceIsRealtime,
+    )} | ATM Straddle | ${formatExpiration(result)}**`,
     formatLeg("Put", result.put),
     formatLeg("Call", result.call),
     `Mid debit: \`${formatOptionalPrice(result.midTotal)}\``,
@@ -146,7 +157,11 @@ export function formatOptionStraddleLookupResult(result: OptionStrategyLookupRes
 
 export function formatExpectedMoveLookupResult(result: OptionStrategyLookupResult): string {
   return [
-    `**\`${result.symbol}\` Expected Move | ${formatExpiration(result)}**`,
+    `**${formatSymbolWithUnderlyingPrice(
+      result.symbol,
+      result.underlyingPrice,
+      result.underlyingPriceIsRealtime,
+    )} | Expected Move | ${formatExpiration(result)}**`,
     `Move proxy: \`+/- ${formatOptionalPrice(result.midTotal)}\` | ATM straddle mid \`${formatOptionalPrice(result.midTotal)}\``,
     formatLeg("Put", result.put),
     formatLeg("Call", result.call),
