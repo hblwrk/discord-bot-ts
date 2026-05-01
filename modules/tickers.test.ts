@@ -4,11 +4,13 @@ const loggerMock = {
 };
 
 jest.mock("./http-retry.js", () => ({
-  getWithRetry: getWithRetryMock,
+  getWithRetry: (...args: unknown[]) => getWithRetryMock(...args),
 }));
 
 jest.mock("./logging.js", () => ({
-  getLogger: () => loggerMock,
+  getLogger: () => ({
+    log: (...args: unknown[]) => loggerMock.log(...args),
+  }),
 }));
 
 import {getTickers} from "./tickers.js";

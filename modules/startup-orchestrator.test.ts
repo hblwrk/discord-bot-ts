@@ -643,7 +643,7 @@ describe("startBot", () => {
       },
     });
     const readSecret = jest.fn((secretName: string) => {
-      const defaults = {
+      const defaults: Record<string, string> = {
         environment: "staging",
         discord_token: "token",
         hblwrk_channel_NYSEAnnouncement_ID: "nyse",

@@ -2,13 +2,6 @@
 import {Client, PermissionFlagsBits} from "discord.js";
 import {type Logger} from "./startup-types.js";
 
-type ErrorLogDetails = {
-  discord_error_message?: string;
-  error_name?: string;
-  error_message: string;
-  error_stack?: string;
-};
-
 type StartupPreflightFailure = {
   detail: string;
   label: string;
@@ -291,8 +284,13 @@ export async function runStartupPreflight(
       ],
     });
 
-    if ("function" === typeof (roleAssignmentChannel as any)?.messages?.fetch) {
-      const brokerMessage = await roleAssignmentChannel.messages.fetch(options.roleAssignmentBrokerMessageId).catch(() => undefined);
+    const roleMessageChannel = roleAssignmentChannel as {
+      messages?: {
+        fetch?: (messageId: string) => Promise<unknown>;
+      };
+    } | undefined;
+    if ("function" === typeof roleMessageChannel?.messages?.fetch) {
+      const brokerMessage = await roleMessageChannel.messages.fetch(options.roleAssignmentBrokerMessageId).catch(() => undefined);
       if (!brokerMessage) {
         addFailure({
           scope: "message",
@@ -304,7 +302,7 @@ export async function runStartupPreflight(
         checkedRoleAssignmentMessages += 1;
       }
 
-      const specialMessage = await roleAssignmentChannel.messages.fetch(options.roleAssignmentSpecialMessageId).catch(() => undefined);
+      const specialMessage = await roleMessageChannel.messages.fetch(options.roleAssignmentSpecialMessageId).catch(() => undefined);
       if (!specialMessage) {
         addFailure({
           scope: "message",

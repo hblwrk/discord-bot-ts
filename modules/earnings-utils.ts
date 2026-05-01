@@ -27,20 +27,26 @@ export function getNumericValueFromNasdaqCapString(value: string): number | null
 
   const unitMatch = normalizedValue.match(/^([0-9]*\.?[0-9]+)\s*([TMBK])$/);
   if (null !== unitMatch) {
-    const parsedValue = Number.parseFloat(unitMatch[1]);
+    const numericToken = unitMatch[1];
+    const unitToken = unitMatch[2];
+    if (undefined === numericToken || undefined === unitToken) {
+      return null;
+    }
+
+    const parsedValue = Number.parseFloat(numericToken);
     if (false === Number.isFinite(parsedValue)) {
       return null;
     }
 
-    if ("T" === unitMatch[2]) {
+    if ("T" === unitToken) {
       return parsedValue * 1_000_000_000_000;
     }
 
-    if ("B" === unitMatch[2]) {
+    if ("B" === unitToken) {
       return parsedValue * 1_000_000_000;
     }
 
-    if ("M" === unitMatch[2]) {
+    if ("M" === unitToken) {
       return parsedValue * 1_000_000;
     }
 

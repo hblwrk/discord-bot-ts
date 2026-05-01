@@ -25,8 +25,24 @@ const mockedLoggingModule = jest.requireMock("./logging.js") as {
   };
 };
 
-function createRoleManagerClient(customEmoji: any = {id: "emoji-id", name: "broker"}) {
-  const handlers = new Map<string, (...args: any[]) => Promise<void>>();
+type EventHandler = (...args: unknown[]) => Promise<void>;
+type RoleManagerTestClient = {
+  guilds: {
+    cache: {
+      get: jest.Mock;
+    };
+    fetch: jest.Mock;
+  };
+  on: jest.MockedFunction<(eventName: string, handler: EventHandler) => RoleManagerTestClient>;
+};
+
+type TestEmoji = {
+  id: string;
+  name: string;
+};
+
+function createRoleManagerClient(customEmoji: TestEmoji | null = {id: "emoji-id", name: "broker"}) {
+  const handlers = new Map<string, EventHandler>();
 
   const guildUser = {
     roles: {
@@ -60,7 +76,7 @@ function createRoleManagerClient(customEmoji: any = {id: "emoji-id", name: "brok
   const guild = {
     emojis: {
       cache: {
-        find: jest.fn((predicate: (emoji: any) => boolean) => {
+        find: jest.fn((predicate: (emoji: TestEmoji) => boolean) => {
           if (!customEmoji) {
             return undefined;
           }
@@ -80,18 +96,17 @@ function createRoleManagerClient(customEmoji: any = {id: "emoji-id", name: "brok
     },
   };
 
-  const client = {
-    guilds: {
+  const client = {} as RoleManagerTestClient;
+  client.guilds = {
       cache: {
         get: jest.fn(() => guild),
       },
       fetch: jest.fn().mockResolvedValue(guild),
-    },
-    on: jest.fn((eventName, handler) => {
-      handlers.set(eventName, handler);
-      return client;
-    }),
   };
+  client.on = jest.fn((eventName: string, handler: EventHandler) => {
+    handlers.set(eventName, handler);
+    return client;
+  });
 
   return {
     client,
@@ -99,7 +114,12 @@ function createRoleManagerClient(customEmoji: any = {id: "emoji-id", name: "brok
     brokerMessage,
     specialMessage,
     getHandler(eventName: string) {
-      return handlers.get(eventName);
+      const handler = handlers.get(eventName);
+      if (!handler) {
+        throw new Error(`Missing handler for ${eventName}.`);
+      }
+
+      return handler;
     },
   };
 }

@@ -1,4 +1,4 @@
-import {EarningsEvent, getEarnings, getEarningsMessages, getEarningsResult, getEarningsText} from "./earnings.js";
+import {type EarningsEvent, getEarnings, getEarningsMessages, getEarningsResult, getEarningsText} from "./earnings.js";
 import axios from "axios";
 
 jest.mock("axios");
@@ -51,10 +51,10 @@ function parseEarningsLine(
   }
 
   return {
-    ticker: match[1],
-    marketCap: match[2],
-    eps: match[3],
-    companyName: match[4],
+    ticker: match[1]!,
+    marketCap: match[2]!,
+    eps: match[3]!,
+    companyName: match[4]!,
   };
 }
 
@@ -390,22 +390,22 @@ describe("getEarningsText", () => {
 
     const lines = text.split("\n").filter(line => line.includes(" MCap: "));
     const parsedLines = lines.map(parseEarningsLine);
-    expect(lines[0].startsWith("**`BIG")).toBe(true);
-    expect(parsedLines[0]).toEqual(expect.objectContaining({
+    expect(lines[0]!.startsWith("**`BIG")).toBe(true);
+    expect(parsedLines[0]!).toEqual(expect.objectContaining({
       companyName: "Big Co",
       marketCap: expect.stringMatching(/^\$1B +$/),
       eps: "1.20",
     }));
-    expect(parsedLines[1]).toEqual(expect.objectContaining({
+    expect(parsedLines[1]!).toEqual(expect.objectContaining({
       companyName: "Small Co",
     }));
-    expect(parsedLines[2]).toEqual(expect.objectContaining({
+    expect(parsedLines[2]!).toEqual(expect.objectContaining({
       companyName: "Next Co",
     }));
     expect(new Set(parsedLines.map(entry => entry.ticker.length)).size).toBe(1);
     expect(new Set(parsedLines.map(entry => entry.marketCap.length)).size).toBe(1);
     expect(new Set(parsedLines.map(entry => entry.eps.length)).size).toBe(1);
-    expect(lines[0]).not.toContain("Während der Handelszeiten oder unbekannter Zeitpunkt");
+    expect(lines[0]!).not.toContain("Während der Handelszeiten oder unbekannter Zeitpunkt");
   });
 });
 
@@ -447,18 +447,18 @@ describe("getEarningsMessages", () => {
     expect(batch.truncated).toBe(false);
     expect(batch.totalEvents).toBe(3);
     expect(batch.includedEvents).toBe(3);
-    expect(batch.messages[0]).toContain("**Vor Handelsbeginn:**");
-    expect(batch.messages[0]).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt:**");
-    expect(batch.messages[0]).toContain("**Nach Handelsschluss:**");
-    expect(batch.messages[0]).not.toContain("Earnings am");
+    expect(batch.messages[0]!).toContain("**Vor Handelsbeginn:**");
+    expect(batch.messages[0]!).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt:**");
+    expect(batch.messages[0]!).toContain("**Nach Handelsschluss:**");
+    expect(batch.messages[0]!).not.toContain("Earnings am");
 
-    const lines = batch.messages[0].split("\n").filter(line => line.includes(" MCap: "));
+    const lines = batch.messages[0]!.split("\n").filter(line => line.includes(" MCap: "));
     const parsedLines = lines.map(parseEarningsLine);
-    expect(lines[0].startsWith("**`BIG")).toBe(true);
-    expect(parsedLines[0].companyName).toBe("Big Co");
-    expect(parsedLines[1].companyName).toBe("Small Co");
-    expect(parsedLines[2].companyName).toBe("Mid Co");
-    expect(parsedLines[0].eps.trim()).toBe("2.20");
+    expect(lines[0]!.startsWith("**`BIG")).toBe(true);
+    expect(parsedLines[0]!.companyName).toBe("Big Co");
+    expect(parsedLines[1]!.companyName).toBe("Small Co");
+    expect(parsedLines[2]!.companyName).toBe("Mid Co");
+    expect(parsedLines[0]!.eps.trim()).toBe("2.20");
     expect(new Set(parsedLines.map(entry => entry.ticker.length)).size).toBe(1);
     expect(new Set(parsedLines.map(entry => entry.marketCap.length)).size).toBe(1);
     expect(new Set(parsedLines.map(entry => entry.eps.length)).size).toBe(1);
@@ -495,15 +495,15 @@ describe("getEarningsMessages", () => {
       maxMessages: 6,
     });
 
-    const lines = batch.messages[0].split("\n").filter(line => line.includes(" MCap: "));
+    const lines = batch.messages[0]!.split("\n").filter(line => line.includes(" MCap: "));
     const parsedLines = lines.map(parseEarningsLine);
-    expect(parsedLines[0]).toEqual(expect.objectContaining({companyName: "Before Co"}));
-    expect(parsedLines[1]).toEqual(expect.objectContaining({companyName: "During Co"}));
-    expect(parsedLines[2]).toEqual(expect.objectContaining({companyName: "After Co"}));
-    expect(parsedLines[0].ticker.trim()).toBe("BEFORE");
-    expect(parsedLines[1].ticker.trim()).toBe("DURING");
-    expect(parsedLines[2].ticker.trim()).toBe("AFTER");
-    const text = batch.messages[0];
+    expect(parsedLines[0]!).toEqual(expect.objectContaining({companyName: "Before Co"}));
+    expect(parsedLines[1]!).toEqual(expect.objectContaining({companyName: "During Co"}));
+    expect(parsedLines[2]!).toEqual(expect.objectContaining({companyName: "After Co"}));
+    expect(parsedLines[0]!.ticker.trim()).toBe("BEFORE");
+    expect(parsedLines[1]!.ticker.trim()).toBe("DURING");
+    expect(parsedLines[2]!.ticker.trim()).toBe("AFTER");
+    const text = batch.messages[0]!;
     expect(text.indexOf("**Vor Handelsbeginn:**")).toBeLessThan(text.indexOf("**Während der Handelszeiten oder unbekannter Zeitpunkt:**"));
     expect(text.indexOf("**Während der Handelszeiten oder unbekannter Zeitpunkt:**")).toBeLessThan(text.indexOf("**Nach Handelsschluss:**"));
   });
@@ -515,12 +515,12 @@ describe("getEarningsMessages", () => {
     });
 
     expect(batch.messages).toHaveLength(1);
-    const lines = batch.messages[0].split("\n").filter(line => line.includes(" MCap: "));
+    const lines = batch.messages[0]!.split("\n").filter(line => line.includes(" MCap: "));
     expect(lines).toHaveLength(1);
-    const parsedLine = parseEarningsLine(lines[0]);
+    const parsedLine = parseEarningsLine(lines[0]!);
     expect(parsedLine.ticker.trim()).toBe("SMALL");
     expect(parsedLine.companyName).toBe("Small Co");
-    expect(batch.messages[0]).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt:**");
+    expect(batch.messages[0]!).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt:**");
   });
 
   test("filters by bluechip market cap threshold when marketCapFilter is bluechips", () => {
@@ -566,12 +566,12 @@ describe("getEarningsMessages", () => {
     expect(batch.totalEvents).toBe(2);
     expect(batch.includedEvents).toBe(2);
     expect(batch.messages).toHaveLength(1);
-    expect(batch.messages[0]).toContain("`BLUE10`");
-    expect(batch.messages[0]).toContain("`BLUE20`");
-    expect(batch.messages[0]).toContain(" Bluechip Ten");
-    expect(batch.messages[0]).toContain(" Bluechip Twenty");
-    expect(batch.messages[0]).not.toContain(" Small Nine");
-    expect(batch.messages[0]).not.toContain(" Unknown Cap");
+    expect(batch.messages[0]!).toContain("`BLUE10`");
+    expect(batch.messages[0]!).toContain("`BLUE20`");
+    expect(batch.messages[0]!).toContain(" Bluechip Ten");
+    expect(batch.messages[0]!).toContain(" Bluechip Twenty");
+    expect(batch.messages[0]!).not.toContain(" Small Nine");
+    expect(batch.messages[0]!).not.toContain(" Unknown Cap");
   });
 
   test("falls back to all market caps for unknown marketCapFilter values", () => {
@@ -667,7 +667,7 @@ describe("getEarningsMessages", () => {
     });
 
     expect(batch.messages.length).toBeGreaterThan(1);
-    expect(batch.messages[1]).toContain("(Fortsetzung)");
+    expect(batch.messages[1]!).toContain("(Fortsetzung)");
     for (const message of batch.messages) {
       expect(message.length).toBeLessThanOrEqual(200);
     }
@@ -696,6 +696,6 @@ describe("getEarningsMessages", () => {
     expect(batch.truncated).toBe(true);
     expect(batch.messages).toHaveLength(2);
     expect(batch.includedEvents).toBeLessThan(batch.totalEvents);
-    expect(batch.messages[1]).toContain("... weitere Earnings konnten wegen Discord-Limits nicht angezeigt werden.");
+    expect(batch.messages[1]!).toContain("... weitere Earnings konnten wegen Discord-Limits nicht angezeigt werden.");
   });
 });

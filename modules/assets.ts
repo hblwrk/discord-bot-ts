@@ -1,4 +1,4 @@
-import {plainToClass} from "class-transformer";
+import {plainToInstance} from "class-transformer";
 import yaml from "js-yaml";
 import fs from "node:fs";
 import {getFromDracoon} from "./dracoon-downloader.js";
@@ -10,11 +10,11 @@ const fileExtension = ".yaml";
 const logger = getLogger();
 
 class BaseAsset {
-  private _name: string;
-  private _trigger: string;
-  private _triggerRegex: string;
+  private _name = "";
+  private _trigger: string[] = [];
+  private _triggerRegex: unknown = "";
 
-  public get name() {
+  public get name(): string {
     return this._name;
   }
 
@@ -22,36 +22,41 @@ class BaseAsset {
     this._name = name;
   }
 
-  public get trigger() {
+  public get trigger(): string[] {
     return this._trigger;
   }
 
-  public set trigger(trigger: string) {
-    this._trigger = trigger;
+  public set trigger(trigger: unknown) {
+    if (Array.isArray(trigger)) {
+      this._trigger = trigger.filter((value): value is string => "string" === typeof value);
+      return;
+    }
+
+    this._trigger = "string" === typeof trigger ? [trigger] : [];
   }
 
-  public get triggerRegex() {
+  public get triggerRegex(): unknown {
     return this._triggerRegex;
   }
 
-  public set triggerRegex(triggerRegex: string) {
+  public set triggerRegex(triggerRegex: unknown) {
     this._triggerRegex = triggerRegex;
   }
 }
 
 export class MarketDataAsset extends BaseAsset {
-  private _botToken: string;
-  private _botTokenReference: string;
-  private _botClientId: string;
-  private _botClientIdReference: string;
-  private _botName: string;
-  private _id: number;
-  private _suffix: string;
-  private _unit: string;
-  private _marketHours: string;
-  private _decimals: number;
-  private _lastUpdate: number;
-  private _order: number;
+  private _botToken = "";
+  private _botTokenReference = "";
+  private _botClientId = "";
+  private _botClientIdReference = "";
+  private _botName = "";
+  private _id = 0;
+  private _suffix = "";
+  private _unit = "";
+  private _marketHours = "";
+  private _decimals = 0;
+  private _lastUpdate = 0;
+  private _order = 0;
 
   public get botToken() {
     return this._botToken;
@@ -151,10 +156,10 @@ export class MarketDataAsset extends BaseAsset {
 }
 
 export class RoleAsset extends BaseAsset {
-  private _triggerReference: string;
-  private _id: string;
-  private _idReference: string;
-  private _emoji: string;
+  private _triggerReference = "";
+  private _id = "";
+  private _idReference = "";
+  private _emoji = "";
 
   public get triggerReference() {
     return this._triggerReference;
@@ -190,11 +195,11 @@ export class RoleAsset extends BaseAsset {
 }
 
 export class CalendarReminderAsset extends BaseAsset {
-  private _eventNameSubstrings: string[];
-  private _countryFlags: string[];
-  private _roleId: string;
-  private _roleIdReference: string;
-  private _minutesBefore: number;
+  private _eventNameSubstrings: string[] = [];
+  private _countryFlags: string[] = [];
+  private _roleId = "";
+  private _roleIdReference = "";
+  private _minutesBefore = 0;
 
   public get eventNameSubstrings() {
     return this._eventNameSubstrings;
@@ -238,9 +243,9 @@ export class CalendarReminderAsset extends BaseAsset {
 }
 
 export class EarningsReminderAsset extends BaseAsset {
-  private _tickerSymbols: string[];
-  private _roleId: string;
-  private _roleIdReference: string;
+  private _tickerSymbols: string[] = [];
+  private _roleId = "";
+  private _roleIdReference = "";
 
   public get tickerSymbols() {
     return this._tickerSymbols;
@@ -268,7 +273,7 @@ export class EarningsReminderAsset extends BaseAsset {
 }
 
 export class UserAsset extends BaseAsset {
-  private _title: string;
+  private _title = "";
 
   public get title() {
     return this._title;
@@ -280,12 +285,12 @@ export class UserAsset extends BaseAsset {
 }
 
 export class UserQuoteAsset extends BaseAsset {
-  private _user: string;
-  private _fileName: string;
-  private _title: string;
-  private _location: string;
-  private _locationId: string;
-  private _fileContent: any;
+  private _user = "";
+  private _fileName = "";
+  private _title = "";
+  private _location = "";
+  private _locationId = "";
+  private _fileContent: Buffer | undefined;
 
   public get user() {
     return this._user;
@@ -331,18 +336,18 @@ export class UserQuoteAsset extends BaseAsset {
     return this._fileContent;
   }
 
-  public set fileContent(buffer: any) {
+  public set fileContent(buffer: Buffer | undefined) {
     this._fileContent = buffer;
   }
 }
 
 export class ImageAsset extends BaseAsset {
-  private _fileName: string;
-  private _title: string;
-  private _location: string;
-  private _locationId: string;
-  private _text: string;
-  private _fileContent: any;
+  private _fileName = "";
+  private _title = "";
+  private _location = "";
+  private _locationId = "";
+  private _text = "";
+  private _fileContent: Buffer | undefined;
 
   public get fileName() {
     return this._fileName;
@@ -392,16 +397,16 @@ export class ImageAsset extends BaseAsset {
     return this._fileContent;
   }
 
-  public set fileContent(buffer: any) {
+  public set fileContent(buffer: Buffer | undefined) {
     this._fileContent = buffer;
   }
 }
 
 export class TextAsset extends BaseAsset {
-  private _response: string;
-  private _title: string;
+  private _response = "";
+  private _title = "";
 
-  public get response() {
+  public get response(): string {
     return this._response;
   }
 
@@ -419,23 +424,28 @@ export class TextAsset extends BaseAsset {
 }
 
 export class EmojiAsset extends BaseAsset {
-  private _response: string;
+  private _response: string[] = [];
 
   public get response() {
     return this._response;
   }
 
-  public set response(response: string) {
-    this._response = response;
+  public set response(response: unknown) {
+    if (Array.isArray(response)) {
+      this._response = response.filter((value): value is string => "string" === typeof value);
+      return;
+    }
+
+    this._response = "string" === typeof response ? [response] : [];
   }
 }
 
 export class PaywallAsset {
-  private _name: string;
-  private _domains: string[];
-  private _services: string[];
-  private _nofix: boolean;
-  private _subdomainWildcard: boolean;
+  private _name = "";
+  private _domains: string[] = [];
+  private _services: string[] = [];
+  private _nofix = false;
+  private _subdomainWildcard = false;
 
   public get name() {
     return this._name;
@@ -511,50 +521,51 @@ export async function getGenericAssets() {
 export async function getAssets(type: string): Promise<any[]> {
   try {
     const newAssets = [];
-    const jsonObjects = yaml.load(fs.readFileSync(`${directory}/${type}${fileExtension}`, "utf-8"));
+    const yamlObjects = yaml.load(fs.readFileSync(`${directory}/${type}${fileExtension}`, "utf-8"));
+    const jsonObjects = Array.isArray(yamlObjects) ? yamlObjects : [];
     for (const jsonObject of jsonObjects) {
       switch (type) {
         case "image": {
-          const newAsset = plainToClass(ImageAsset, jsonObject);
+          const newAsset = plainToInstance(ImageAsset, jsonObject);
           await populateDracoonAsset(type, newAsset);
           newAssets.push(newAsset);
           break;
         }
 
         case "text": {
-          const newAsset = plainToClass(TextAsset, jsonObject);
+          const newAsset = plainToInstance(TextAsset, jsonObject);
           newAssets.push(newAsset);
           break;
         }
 
         case "emoji": {
-          const newAsset = plainToClass(EmojiAsset, jsonObject);
+          const newAsset = plainToInstance(EmojiAsset, jsonObject);
           newAssets.push(newAsset);
           break;
         }
 
         case "user": {
-          const newAsset = plainToClass(UserAsset, jsonObject);
+          const newAsset = plainToInstance(UserAsset, jsonObject);
           newAssets.push(newAsset);
           break;
         }
 
         case "userquote": {
-          const newAsset = plainToClass(UserQuoteAsset, jsonObject);
+          const newAsset = plainToInstance(UserQuoteAsset, jsonObject);
           await populateDracoonAsset(type, newAsset);
           newAssets.push(newAsset);
           break;
         }
 
         case "whatis": {
-          const newAsset = plainToClass(ImageAsset, jsonObject);
+          const newAsset = plainToInstance(ImageAsset, jsonObject);
           await populateDracoonAsset(type, newAsset);
           newAssets.push(newAsset);
           break;
         }
 
         case "marketdata": {
-          const newAsset = plainToClass(MarketDataAsset, jsonObject);
+          const newAsset = plainToInstance(MarketDataAsset, jsonObject);
           newAsset.botToken = readSecret(newAsset.botTokenReference);
           newAsset.botClientId = readSecret(newAsset.botClientIdReference);
           newAssets.push(newAsset);
@@ -562,7 +573,7 @@ export async function getAssets(type: string): Promise<any[]> {
         }
 
         case "role": {
-          const newAsset = plainToClass(RoleAsset, jsonObject);
+          const newAsset = plainToInstance(RoleAsset, jsonObject);
           newAsset.trigger = readSecret(newAsset.triggerReference);
           newAsset.id = readSecret(newAsset.idReference);
           newAssets.push(newAsset);
@@ -570,21 +581,21 @@ export async function getAssets(type: string): Promise<any[]> {
         }
 
         case "calendarreminder": {
-          const newAsset = plainToClass(CalendarReminderAsset, jsonObject);
+          const newAsset = plainToInstance(CalendarReminderAsset, jsonObject);
           newAsset.roleId = readSecret(newAsset.roleIdReference);
           newAssets.push(newAsset);
           break;
         }
 
         case "earningsreminder": {
-          const newAsset = plainToClass(EarningsReminderAsset, jsonObject);
+          const newAsset = plainToInstance(EarningsReminderAsset, jsonObject);
           newAsset.roleId = readSecret(newAsset.roleIdReference);
           newAssets.push(newAsset);
           break;
         }
 
         case "paywall": {
-          const newAsset = plainToClass(PaywallAsset, jsonObject);
+          const newAsset = plainToInstance(PaywallAsset, jsonObject);
           newAssets.push(newAsset);
           break;
         }

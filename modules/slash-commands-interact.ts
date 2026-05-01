@@ -36,10 +36,17 @@ const islandboiCooldownMs = 60_000;
 const islandboiCooldownByUser = new Map<string, number>();
 const islandboiUnmuteTimers = new Map<string, ReturnType<typeof setTimeout>>();
 
-export function interactSlashCommands(client, assets, assetCommands, whatIsAssets, tickers: Ticker[], paywallAssets?) {
+export function interactSlashCommands(
+  client: any,
+  assets: any[],
+  _assetCommands: string[],
+  whatIsAssets: any[],
+  tickers: Ticker[],
+  paywallAssets?: any[],
+) {
   const guildId = readSecret("discord_guild_ID").trim();
   // Respond to slash-commands
-  client.on("interactionCreate", async interaction => {
+  client.on("interactionCreate", async (interaction: any) => {
     if (!interaction.isChatInputCommand()) {
       return;
     }
@@ -67,7 +74,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         ? groupedAssetCommand.variants.find(groupedAssetVariant => groupedAssetVariant.variant === requestedVariant)
         : getRandomAsset(groupedAssetCommand.variants);
       if (!selectedVariant) {
-        await interaction.reply("Keine passende Variante gefunden.").catch(error => {
+        await interaction.reply("Keine passende Variante gefunden.").catch((error: unknown) => {
           logger.log(
             "error",
             `Error replying to slashcommand: ${error}`,
@@ -82,7 +89,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     if ("cryptodice" === commandName) {
-      await interaction.reply(`Rolling the crypto dice... ${cryptodice()}.`).catch(error => {
+      await interaction.reply(`Rolling the crypto dice... ${cryptodice()}.`).catch((error: unknown) => {
         logger.log(
           "error",
           `Error replying to cryptodice slashcommand: ${error}`,
@@ -117,9 +124,9 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       const randomElement = options[Math.floor(Math.random() * options.length)];
       const embed = new EmbedBuilder();
       embed.addFields(
-        {name: interaction.options.getString("frage", true), value: randomElement},
+        {name: interaction.options.getString("frage", true), value: randomElement ?? "Antwort unklar."},
       );
-      await interaction.reply({embeds: [embed]}).catch(error => {
+      await interaction.reply({embeds: [embed]}).catch((error: unknown) => {
         logger.log(
           "error",
           `Error replying to 8ball slashcommand: ${error}`,
@@ -129,7 +136,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
     if (commandName.startsWith("lmgtfy")) {
       const search = validator.escape(interaction.options.getString("search", true));
-      await interaction.reply(`Let me google that for you... ${lmgtfy(search)}.`).catch(error => {
+      await interaction.reply(`Let me google that for you... ${lmgtfy(search)}.`).catch((error: unknown) => {
         logger.log(
           "error",
           `Error replying to lmgtfy slashcommand: ${error}`,
@@ -139,7 +146,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
     if (commandName.startsWith("google")) {
       const search = validator.escape(interaction.options.getString("search", true));
-      await interaction.reply(`Here you go: ${google(search)}.`).catch(error => {
+      await interaction.reply(`Here you go: ${google(search)}.`).catch((error: unknown) => {
         logger.log(
           "error",
           `Error replying to google slashcommand: ${error}`,
@@ -154,7 +161,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         await interaction.reply({
           content: "Ungültige URL. Bitte eine vollständige URL angeben (z.B. https://www.example.com/article).",
           ephemeral: true,
-        }).catch(error => {
+        }).catch((error: unknown) => {
           logger.log(
             "error",
             `Error replying to paywall slashcommand (invalid URL): ${error}`,
@@ -172,7 +179,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           await interaction.reply({
             content: "Ungültige URL. Bitte eine öffentliche http(s)-URL angeben.",
             ephemeral: true,
-          }).catch(replyError => {
+          }).catch((replyError: unknown) => {
             logger.log(
               "error",
               `Error replying to paywall slashcommand (unsafe URL): ${replyError}`,
@@ -184,7 +191,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         throw error;
       }
 
-      const deferred = await interaction.deferReply().then(() => true).catch(error => {
+      const deferred = await interaction.deferReply().then(() => true).catch((error: unknown) => {
         logger.log(
           "error",
           `Error deferring paywall slashcommand reply: ${error}`,
@@ -197,7 +204,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       await interaction.editReply({
         content: `Suche nach Paywall-Bypass für <${url}>... Das kann bis zu 60 Sekunden dauern.`,
-      }).catch(error => {
+      }).catch((error: unknown) => {
         logger.log(
           "error",
           `Error sending paywall working message: ${error}`,
@@ -241,7 +248,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           );
         }
 
-        await interaction.editReply({content: "", embeds: [embed]}).catch(error => {
+        await interaction.editReply({content: "", embeds: [embed]}).catch((error: unknown) => {
           logger.log(
             "error",
             `Error replying to paywall slashcommand: ${error}`,
@@ -251,7 +258,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         if (error instanceof PaywallLookupCapacityError) {
           await interaction.editReply({
             content: paywallLookupBusyMessage,
-          }).catch(editError => {
+          }).catch((editError: unknown) => {
             logger.log(
               "error",
               `Error sending paywall busy message: ${editError}`,
@@ -266,7 +273,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         );
         await interaction.editReply({
           content: "Fehler beim Verarbeiten der Anfrage. Bitte später erneut versuchen.",
-        }).catch(editError => {
+        }).catch((editError: unknown) => {
           logger.log(
             "error",
             `Error sending paywall error message: ${editError}`,
@@ -291,7 +298,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
                 "warn",
                 `Whatis asset ${asset.name} is temporarily unavailable.`,
               );
-              await interaction.reply("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch(error => {
+              await interaction.reply("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch((error: unknown) => {
                 logger.log(
                   "error",
                   `Error replying to whatis slashcommand: ${error}`,
@@ -322,7 +329,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
 
       const randomQuote = getRandomQuote(who, assets);
       if (!randomQuote) {
-        await interaction.reply(noQuoteMessage).catch(error => {
+        await interaction.reply(noQuoteMessage).catch((error: unknown) => {
           logger.log(
             "error",
             `Error replying to quote slashcommand: ${error}`,
@@ -336,7 +343,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           "warn",
           `Quote asset for ${who} is temporarily unavailable.`,
         );
-        await interaction.reply("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch(error => {
+        await interaction.reply("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch((error: unknown) => {
           logger.log(
             "error",
             `Error replying to quote slashcommand: ${error}`,
@@ -357,7 +364,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         await interaction.reply({
           content: `Please wait ${remainingSeconds} more seconds.`,
           ephemeral: true,
-        }).catch(error => {
+        }).catch((error: unknown) => {
           logger.log(
             "error",
             `Error replying to islandboi slashcommand: ${error}`,
@@ -371,7 +378,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         await interaction.reply({
           content: "Muted role is not configured.",
           ephemeral: true,
-        }).catch(error => {
+        }).catch((error: unknown) => {
           logger.log(
             "error",
             `Error replying to islandboi slashcommand: ${error}`,
@@ -380,7 +387,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         return;
       }
 
-      const guild = client.guilds.cache.get(guildId) ?? await client.guilds.fetch(guildId).catch(error => {
+      const guild = client.guilds.cache.get(guildId) ?? await client.guilds.fetch(guildId).catch((error: unknown) => {
         logger.log(
           "error",
           `Error fetching guild for islandboi slashcommand: ${error}`,
@@ -390,7 +397,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         await interaction.reply({
           content: "Guild is currently unavailable.",
           ephemeral: true,
-        }).catch(error => {
+        }).catch((error: unknown) => {
           logger.log(
             "error",
             `Error replying to islandboi slashcommand: ${error}`,
@@ -399,7 +406,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         return;
       }
 
-      const botMember = guild.members.me ?? await guild.members.fetchMe().catch(error => {
+      const botMember = guild.members.me ?? await guild.members.fetchMe().catch((error: unknown) => {
         logger.log(
           "error",
           `Error fetching bot member for islandboi slashcommand: ${error}`,
@@ -409,7 +416,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         await interaction.reply({
           content: "No permissions to manage roles.",
           ephemeral: true,
-        }).catch(error => {
+        }).catch((error: unknown) => {
           logger.log(
             "error",
             `Error replying to islandboi slashcommand: ${error}`,
@@ -418,7 +425,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         return;
       }
 
-      const guildUser = await guild.members.fetch(interaction.user.id).catch(error => {
+      const guildUser = await guild.members.fetch(interaction.user.id).catch((error: unknown) => {
         logger.log(
           "error",
           `Error fetching user for islandboi slashcommand: ${error}`,
@@ -428,7 +435,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         await interaction.reply({
           content: "Konnte Benutzer nicht laden.",
           ephemeral: true,
-        }).catch(error => {
+        }).catch((error: unknown) => {
           logger.log(
             "error",
             `Error replying to islandboi slashcommand: ${error}`,
@@ -437,7 +444,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         return;
       }
 
-      const addRoleSuccess = await guildUser.roles.add(mutedRole).then(() => true).catch(error => {
+      const addRoleSuccess = await guildUser.roles.add(mutedRole).then(() => true).catch((error: unknown) => {
         logger.log(
           "error",
           `Error muting user for islandboi slashcommand: ${error}`,
@@ -448,7 +455,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         await interaction.reply({
           content: "Unable to assign muted role.",
           ephemeral: true,
-        }).catch(error => {
+        }).catch((error: unknown) => {
           logger.log(
             "error",
             `Error replying to islandboi slashcommand: ${error}`,
@@ -467,7 +474,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       await interaction.reply({
         content: "You are now muted for 60 seconds.",
         ephemeral: true,
-      }).catch(error => {
+      }).catch((error: unknown) => {
         logger.log(
           "error",
           `Error replying to islandboi slashcommand: ${error}`,
@@ -480,7 +487,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       );
 
       const timer = setTimeout(() => {
-        guildUser.roles.remove(mutedRole).catch(error => {
+        guildUser.roles.remove(mutedRole).catch((error: unknown) => {
           logger.log(
             "error",
             `Error unmuting user for islandboi slashcommand: ${error}`,
@@ -545,7 +552,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         filter = "bluechips";
       }
 
-      const deferred = await interaction.deferReply().then(() => true).catch(error => {
+      const deferred = await interaction.deferReply().then(() => true).catch((error: unknown) => {
         logger.log(
           "error",
           `Error deferring earnings slashcommand: ${error}`,
@@ -596,7 +603,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
           await interaction.editReply({
             content: "Earnings konnten gerade nicht geladen werden. Bitte später erneut versuchen.",
             allowedMentions: noMentions,
-          }).catch(error => {
+          }).catch((error: unknown) => {
             logger.log(
               "error",
               `Error replying to earnings slashcommand: ${error}`,
@@ -608,7 +615,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         await interaction.editReply({
           content: "Es stehen keine relevanten Quartalszahlen an.",
           allowedMentions: noMentions,
-        }).catch(error => {
+        }).catch((error: unknown) => {
           logger.log(
             "error",
             `Error replying to earnings slashcommand: ${error}`,
@@ -620,7 +627,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       await interaction.editReply({
         content: earningsBatch.messages[0],
         allowedMentions: noMentions,
-      }).catch(error => {
+      }).catch((error: unknown) => {
         logger.log(
           "error",
           `Error replying to earnings slashcommand: ${error}`,
@@ -631,7 +638,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         await interaction.followUp({
           content: earningsBatch.messages[chunkIndex],
           allowedMentions: noMentions,
-        }).catch(error => {
+        }).catch((error: unknown) => {
           logger.log(
             "error",
             `Error following up earnings slashcommand: ${error}`,
@@ -702,7 +709,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         await interaction.reply({
           content: "Heute passiert nichts wichtiges 😴.",
           allowedMentions: noMentions,
-        }).catch(error => {
+        }).catch((error: unknown) => {
           logger.log(
             "error",
             `Error replying to calendar slashcommand: ${error}`,
@@ -714,7 +721,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
       await interaction.reply({
         content: calendarBatch.messages[0],
         allowedMentions: noMentions,
-      }).catch(error => {
+      }).catch((error: unknown) => {
         logger.log(
           "error",
           `Error replying to calendar slashcommand: ${error}`,
@@ -725,7 +732,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
         await interaction.followUp({
           content: calendarBatch.messages[chunkIndex],
           allowedMentions: noMentions,
-        }).catch(error => {
+        }).catch((error: unknown) => {
           logger.log(
             "error",
             `Error following up calendar slashcommand: ${error}`,
@@ -735,7 +742,7 @@ export function interactSlashCommands(client, assets, assetCommands, whatIsAsset
     }
 
     async function saraDoesNotWant() {
-      await interaction.reply("Sara möchte das nicht.").catch(error => {
+      await interaction.reply("Sara möchte das nicht.").catch((error: unknown) => {
         logger.log(
           "error",
           `Error replying to sara slashcommand: ${error}`,

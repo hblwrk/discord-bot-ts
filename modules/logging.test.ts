@@ -6,19 +6,19 @@ jest.mock("./secrets.js", () => ({
 }));
 
 const mockedReadSecret = readSecret as jest.MockedFunction<typeof readSecret>;
-const originalLoglevel = process.env.LOGLEVEL;
+const originalLoglevel = process.env["LOGLEVEL"];
 
 describe("getLogger loglevel switching", () => {
   beforeEach(() => {
     jest.clearAllMocks();
-    delete process.env.LOGLEVEL;
+    delete process.env["LOGLEVEL"];
   });
 
   afterAll(() => {
     if (undefined === originalLoglevel) {
-      delete process.env.LOGLEVEL;
+      delete process.env["LOGLEVEL"];
     } else {
-      process.env.LOGLEVEL = originalLoglevel;
+      process.env["LOGLEVEL"] = originalLoglevel;
     }
   });
 
@@ -42,7 +42,7 @@ describe("getLogger loglevel switching", () => {
   });
 
   test("uses LOGLEVEL environment value over secret", () => {
-    process.env.LOGLEVEL = "warn";
+    process.env["LOGLEVEL"] = "warn";
     mockedReadSecret.mockReturnValue("debug");
 
     const logger = getLogger();

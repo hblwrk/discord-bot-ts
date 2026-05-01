@@ -26,7 +26,7 @@ class SlashRegistrationMismatchError extends Error {
 
 class SlashRegistrationCreateLimitError extends Error {
   public readonly retryAfterMs: number;
-  public readonly discordErrorMessage?: string;
+  public readonly discordErrorMessage: string | undefined;
 
   constructor(message: string, retryAfterMs: number, discordErrorMessage?: string) {
     super(message);
@@ -39,7 +39,7 @@ class SlashRegistrationCreateLimitError extends Error {
 class SlashRegistrationRateLimitError extends Error {
   public readonly retryAfterMs: number;
   public readonly isGlobal: boolean;
-  public readonly discordErrorMessage?: string;
+  public readonly discordErrorMessage: string | undefined;
 
   constructor(message: string, retryAfterMs: number, isGlobal: boolean, discordErrorMessage?: string) {
     super(message);
@@ -176,7 +176,7 @@ function toSlashRegistrationRateLimitError(error: unknown): SlashRegistrationRat
   );
 }
 
-export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
+export async function defineSlashCommands(assets: any[], whatIsAssets: any[], userAssets: any[]) {
   const token = readSecret("discord_token").trim();
   const clientId = readSecret("discord_client_ID").trim();
   const guildId = readSecret("discord_guild_ID").trim();

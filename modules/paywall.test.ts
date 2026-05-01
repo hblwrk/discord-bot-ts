@@ -332,7 +332,7 @@ describe("getPaywallLinks", () => {
 
   test("ranks available services before unavailable ones", async () => {
     let callCount = 0;
-    mockedAxios.get.mockImplementation(async (url: string) => {
+    mockedAxios.get.mockImplementation(async () => {
       callCount += 1;
       if (1 === callCount) {
         return {data: '<html><head><title>Rank Test</title></head><body>Rank Test article</body></html>'};

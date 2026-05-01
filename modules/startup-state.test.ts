@@ -79,7 +79,7 @@ describe("createStartupState", () => {
     finishPhase();
 
     const snapshot = state.getSnapshot();
-    expect(snapshot.phaseDurationsMs.warmup).toBe(75);
+    expect(snapshot.phaseDurationsMs["warmup"]).toBe(75);
     expect(logger.log).toHaveBeenCalledWith(
       "info",
       {
@@ -122,11 +122,11 @@ describe("createStartupState", () => {
       tickers: "failed",
     });
 
-    snapshot.warmupTasks.assets = "success";
-    snapshot.phaseDurationsMs.fake = 123;
+    snapshot.warmupTasks["assets"] = "success";
+    snapshot.phaseDurationsMs["fake"] = 123;
 
     const secondSnapshot = state.getSnapshot();
-    expect(secondSnapshot.warmupTasks.assets).toBe("running");
-    expect(secondSnapshot.phaseDurationsMs.fake).toBeUndefined();
+    expect(secondSnapshot.warmupTasks["assets"]).toBe("running");
+    expect(secondSnapshot.phaseDurationsMs["fake"]).toBeUndefined();
   });
 });

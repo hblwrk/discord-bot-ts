@@ -50,7 +50,7 @@ jest.mock("node:http", () => {
 });
 
 const {runHealthCheck} = require("./health-check.js");
-const originalHealthcheckPort = process.env.HEALTHCHECK_PORT;
+const originalHealthcheckPort = process.env["HEALTHCHECK_PORT"];
 
 function createState(partial: Partial<StartupStateSnapshot> = {}): StartupStateSnapshot {
   return {
@@ -68,28 +68,37 @@ function createState(partial: Partial<StartupStateSnapshot> = {}): StartupStateS
   };
 }
 
+type TestResponse = {
+  statusCode: number;
+  body: unknown;
+  headers: Record<string, string>;
+  header: jest.MockedFunction<(key: string, value: string) => TestResponse>;
+  status: jest.MockedFunction<(statusCode: number) => TestResponse>;
+  send: jest.MockedFunction<(body: unknown) => TestResponse>;
+  json: jest.MockedFunction<(body: unknown) => TestResponse>;
+};
+
 function createResponse() {
-  const response = {
-    statusCode: 200,
-    body: undefined as any,
-    headers: {} as Record<string, string>,
-    header: jest.fn((key: string, value: string) => {
-      response.headers[key] = value;
-      return response;
-    }),
-    status: jest.fn((statusCode: number) => {
-      response.statusCode = statusCode;
-      return response;
-    }),
-    send: jest.fn((body: any) => {
-      response.body = body;
-      return response;
-    }),
-    json: jest.fn((body: any) => {
-      response.body = body;
-      return response;
-    }),
-  };
+  const response = {} as TestResponse;
+  response.statusCode = 200;
+  response.body = undefined;
+  response.headers = {};
+  response.header = jest.fn((key: string, value: string) => {
+    response.headers[key] = value;
+    return response;
+  });
+  response.status = jest.fn((statusCode: number) => {
+    response.statusCode = statusCode;
+    return response;
+  });
+  response.send = jest.fn((body: unknown) => {
+    response.body = body;
+    return response;
+  });
+  response.json = jest.fn((body: unknown) => {
+    response.body = body;
+    return response;
+  });
 
   return response;
 }
@@ -98,16 +107,16 @@ describe("runHealthCheck", () => {
   beforeEach(() => {
     jest.clearAllMocks();
     mockRouteHandlers.clear();
-    delete process.env.HEALTHCHECK_PORT;
+    delete process.env["HEALTHCHECK_PORT"];
   });
 
   afterAll(() => {
     if ("undefined" === typeof originalHealthcheckPort) {
-      delete process.env.HEALTHCHECK_PORT;
+      delete process.env["HEALTHCHECK_PORT"];
       return;
     }
 
-    process.env.HEALTHCHECK_PORT = originalHealthcheckPort;
+    process.env["HEALTHCHECK_PORT"] = originalHealthcheckPort;
   });
 
   test("registers liveness endpoint and binds localhost listener", () => {
@@ -133,14 +142,14 @@ describe("runHealthCheck", () => {
   });
 
   test("binds listener on configured healthcheck port", () => {
-    process.env.HEALTHCHECK_PORT = "12000";
+    process.env["HEALTHCHECK_PORT"] = "12000";
     runHealthCheck(() => createState(), mockLogger);
 
     expect(mockListen).toHaveBeenCalledWith(12000, "127.0.0.1");
   });
 
   test("falls back to default healthcheck port for invalid environment value", () => {
-    process.env.HEALTHCHECK_PORT = "abc";
+    process.env["HEALTHCHECK_PORT"] = "abc";
     runHealthCheck(() => createState(), mockLogger);
 
     expect(mockListen).toHaveBeenCalledWith(11312, "127.0.0.1");

@@ -31,7 +31,7 @@ export type SlashCommandPayloadBuildResult = {
   textAssetCommandsRegistered: number;
 };
 
-function createFixedSlashCommands(whatIsAssetsChoices, userAssetsChoices) {
+function createFixedSlashCommands(whatIsAssetsChoices: any[], userAssetsChoices: any[]) {
   const fixedSlashCommands = [];
 
   const slashCommandCryptodice = new SlashCommandBuilder()
@@ -155,7 +155,7 @@ function createFixedSlashCommands(whatIsAssetsChoices, userAssetsChoices) {
   return fixedSlashCommands;
 }
 
-export function buildSlashCommandPayload(assets, whatIsAssets, userAssets): SlashCommandPayloadBuildResult {
+export function buildSlashCommandPayload(assets: any[], whatIsAssets: any[], userAssets: any[]): SlashCommandPayloadBuildResult {
   const whatIsAssetsChoices = [];
   for (const asset of whatIsAssets) {
     whatIsAssetsChoices.push({name: asset.title, value: asset.name});

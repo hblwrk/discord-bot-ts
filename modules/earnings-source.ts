@@ -92,6 +92,9 @@ export async function getEarningsResult(
 
   for (const [requestIndex, settledRequest] of settledRequests.entries()) {
     const dateStamp = dateStamps[requestIndex];
+    if (undefined === dateStamp) {
+      continue;
+    }
     if ("fulfilled" === settledRequest.status) {
       successfulRequestCount++;
       appendNasdaqEarningsEvents(

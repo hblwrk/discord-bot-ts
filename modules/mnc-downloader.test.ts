@@ -8,16 +8,18 @@ const loggerMock = {
 jest.mock("moment-timezone", () => ({
   __esModule: true,
   default: {
-    tz: tzMock,
+    tz: (...args: unknown[]) => tzMock(...args),
   },
 }));
 
 jest.mock("./http-retry.js", () => ({
-  getWithRetry: getWithRetryMock,
+  getWithRetry: (...args: unknown[]) => getWithRetryMock(...args),
 }));
 
 jest.mock("./logging.js", () => ({
-  getLogger: () => loggerMock,
+  getLogger: () => ({
+    log: (...args: unknown[]) => loggerMock.log(...args),
+  }),
 }));
 
 import {getMnc} from "./mnc-downloader.js";

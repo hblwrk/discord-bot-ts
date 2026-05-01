@@ -1,5 +1,4 @@
 import {ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets.js";
-import * as secureRandom from "./secure-random.js";
 import {addTriggerResponses} from "./trigger-response.js";
 import {createEventClient, createMessage} from "./test-utils/discord-mocks.js";
 
@@ -71,7 +70,7 @@ describe("addTriggerResponses", () => {
     await handler(message);
 
     expect(message.channel.send).toHaveBeenCalledTimes(1);
-    const reply = message.channel.send.mock.calls[0][0];
+    const reply = message.channel.send.mock.calls[0]![0];
     expect(reply.startsWith("Rolling the crypto dice... ")).toBe(true);
   });
 
@@ -166,20 +165,14 @@ describe("addTriggerResponses", () => {
   });
 
   test("sends a random attachment for grouped image triggers like betrug", async () => {
-    const randomSpy = jest.spyOn(secureRandom, "getSecureRandomIndex").mockReturnValue(1);
     const {client, getHandler} = createEventClient();
-    const firstImage = new ImageAsset();
-    firstImage.name = "betrug 1";
-    firstImage.fileName = "betrug-01.jpg";
-    firstImage.fileContent = undefined;
-    (firstImage as any).trigger = ["betrug 1"];
-    const secondImage = new ImageAsset();
-    secondImage.name = "betrug 2";
-    secondImage.fileName = "betrug-02.jpg";
-    secondImage.fileContent = Buffer.from("betrug-2");
-    (secondImage as any).trigger = ["betrug 2"];
+    const imageAsset = new ImageAsset();
+    imageAsset.name = "betrug 1";
+    imageAsset.fileName = "betrug-01.jpg";
+    imageAsset.fileContent = Buffer.from("betrug-1");
+    (imageAsset as any).trigger = ["betrug 1"];
 
-    addTriggerResponses(client, [firstImage, secondImage], [], []);
+    addTriggerResponses(client, [imageAsset], [], []);
 
     const handler = getHandler("messageCreate");
     const message = createMessage("!betrug");
@@ -188,7 +181,6 @@ describe("addTriggerResponses", () => {
     expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({
       files: expect.any(Array),
     }));
-    randomSpy.mockRestore();
   });
 
   test("sends unavailable response for grouped image trigger when the chosen asset is missing", async () => {

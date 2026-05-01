@@ -1,12 +1,7 @@
 import {TextAsset, UserQuoteAsset} from "./assets.js";
 import {getRandomQuote} from "./random-quote.js";
-import * as secureRandom from "./secure-random.js";
 
 describe("getRandomQuote", () => {
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
-
   function createQuote(user: string, fileName: string) {
     const quote = new UserQuoteAsset();
     quote.user = user;
@@ -36,9 +31,8 @@ describe("getRandomQuote", () => {
   test("includes all quotes when username is any", () => {
     const aliceQuote = createQuote("alice", "alice-1.png");
     const bobQuote = createQuote("bob", "bob-1.png");
-    jest.spyOn(secureRandom, "getSecureRandomIndex").mockReturnValue(1);
 
-    const quote = getRandomQuote("any", [aliceQuote, bobQuote]);
+    const quote = getRandomQuote("any", [aliceQuote, bobQuote], () => 1);
 
     expect(quote).toBe(bobQuote);
   });

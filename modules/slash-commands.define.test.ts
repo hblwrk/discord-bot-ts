@@ -7,7 +7,7 @@ const mockSetToken = jest.fn().mockReturnValue({
   on: mockOn,
 });
 const mockRest = jest.fn().mockImplementation(() => ({setToken: mockSetToken}));
-const mockApplicationGuildCommands = jest.fn(() => "/applications/test/commands");
+const mockApplicationGuildCommands = jest.fn((_applicationId?: string, _guildId?: string) => "/applications/test/commands");
 const loggerMock = {
   log: jest.fn(),
 };
@@ -17,10 +17,12 @@ jest.mock("discord.js", () => {
 
   return {
     ...actual,
-    REST: mockRest,
+    REST: function MockRest(...args: unknown[]) {
+      return mockRest(...args);
+    },
     Routes: {
       ...actual.Routes,
-      applicationGuildCommands: mockApplicationGuildCommands,
+      applicationGuildCommands: (applicationId: string, guildId: string) => mockApplicationGuildCommands(applicationId, guildId),
     },
   };
 });
@@ -48,8 +50,12 @@ jest.mock("./secrets.js", () => ({
 }));
 
 jest.mock("./logging.js", () => ({
-  getLogger: () => loggerMock,
-  getDiscordLogger: () => loggerMock,
+  getLogger: () => ({
+    log: (...args: unknown[]) => loggerMock.log(...args),
+  }),
+  getDiscordLogger: () => ({
+    log: (...args: unknown[]) => loggerMock.log(...args),
+  }),
 }));
 
 const mockedReadSecret = readSecret as jest.MockedFunction<typeof readSecret>;
@@ -102,7 +108,7 @@ describe("defineSlashCommands", () => {
       timeout: 120000,
       rejectOnRateLimit: expect.any(Function),
     }));
-    expect(mockRest.mock.calls[0][0].rejectOnRateLimit({
+    expect(mockRest.mock.calls[0]![0].rejectOnRateLimit({
       route: "/applications/:id/guilds/:id/commands",
     })).toBe(true);
     expect(mockSetToken).toHaveBeenCalledWith("test-token");
@@ -184,7 +190,7 @@ describe("defineSlashCommands", () => {
 
     expect(mockGet).toHaveBeenCalledTimes(1);
     expect(mockPut).toHaveBeenCalledTimes(1);
-    expect(mockPut.mock.calls[0][1].body.find(command => command.name === "hello_world").description).toBe("Hello title");
+    expect(mockPut.mock.calls[0]![1].body.find((command: any) => command.name === "hello_world").description).toBe("Hello title");
     expect(loggerMock.log).toHaveBeenCalledWith(
       "warn",
       expect.objectContaining({
@@ -386,8 +392,8 @@ describe("defineSlashCommands", () => {
 
     await defineSlashCommands([asset], [], []);
 
-    const commandPayload = mockPut.mock.calls[0][1].body;
-    const kursCommands = commandPayload.filter(command => command.name === "kursanderung");
+    const commandPayload = mockPut.mock.calls[0]![1].body;
+    const kursCommands = commandPayload.filter((command: any) => command.name === "kursanderung");
     expect(kursCommands).toHaveLength(1);
 
     expect(loggerMock.log).toHaveBeenCalledWith(

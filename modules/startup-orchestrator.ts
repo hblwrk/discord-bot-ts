@@ -12,7 +12,7 @@ import {roleManager} from "./role-manager.js";
 import {readSecret} from "./secrets.js";
 import {defineSlashCommands, interactSlashCommands} from "./slash-commands.js";
 import {createStartupState} from "./startup-state.js";
-import {getTickers, type Ticker} from "./tickers.js";
+import {getTickers} from "./tickers.js";
 import {startMncTimers, startNyseTimers, startOtherTimers} from "./timers.js";
 import {addTriggerResponses} from "./trigger-response.js";
 import {runStartupPreflight} from "./startup-preflight.js";

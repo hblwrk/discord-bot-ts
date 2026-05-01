@@ -30,7 +30,7 @@ describe("SEC earnings result source", () => {
       title: "8-K - EXXON MOBIL CORP",
       updated: "2026-05-01T10:01:00-04:00",
     }]);
-    expect(isLikelyEarningsFiling(filings[0])).toBe(true);
+    expect(isLikelyEarningsFiling(filings[0]!)).toBe(true);
   });
 
   test("rejects non-earnings 8-K items", () => {

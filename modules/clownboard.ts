@@ -2,12 +2,13 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 
-import {EmbedBuilder, TextChannel} from "discord.js";
+import {EmbedBuilder} from "discord.js";
+import type {Client, TextChannel} from "discord.js";
 import {getLogger} from "./logging.js";
 
 const logger = getLogger();
 
-export function clownboard(client, channelID) {
+export function clownboard(client: Client, channelID: string) {
   const reactionThreshold = 9;
   const clownEmojiName = "🤡";
   const clownEmojiId = clownEmojiName;
@@ -38,50 +39,58 @@ export function clownboard(client, channelID) {
       const reactionCount = reaction.count ?? 0;
       const messages = await clownboard.messages.fetch({limit: 100});
       const existingMessages = messages.find(message =>
-        message.embeds.length === 1 ? (Boolean(message.embeds[0].footer.text.startsWith(reaction.message.id))) : false);
+        message.embeds.length === 1 ? (Boolean(message.embeds[0]?.footer?.text.startsWith(reaction.message.id))) : false);
       if (existingMessages) {
         existingMessages.edit(`${clownEmojiId} **${reactionCount}** ${reaction.message.channel}`);
-      } else if (undefined === reaction.message.attachments.first()) {
-        const embed = new EmbedBuilder()
-          .setAuthor({
-            name: reaction.message.author.tag,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            iconURL: reaction.message.author.displayAvatarURL(),
-          })
-          .setDescription(reaction.message.content)
-          .setFooter({
-            text: reaction.message.id,
-          })
-          .addFields(
-            {name: "Source", value: `[Jump!](${reaction.message.url})`, inline: true},
-          );
-        clownboard.send({content: `${clownEmojiId} **${reactionThreshold + 1}** ${reaction.message.channel}`, embeds: [embed]}).catch(error => {
-          logger.log(
-            "error",
-            `Error posting to clownboard: ${error}`,
-          );
-        });
       } else {
-        const embed = new EmbedBuilder()
-          .setAuthor({
-            name: reaction.message.author.tag,
-            // eslint-disable-next-line @typescript-eslint/naming-convention
-            iconURL: reaction.message.author.displayAvatarURL(),
-          })
-          .setImage(reaction.message.attachments.first().url)
-          .setDescription(reaction.message.content)
-          .setFooter({
-            text: reaction.message.id,
-          })
-          .addFields(
-            {name: "Source", value: `[Jump!](${reaction.message.url})`, inline: true},
-          );
-        clownboard.send({content: `${clownEmojiId} **${reactionThreshold + 1}** ${reaction.message.channel}`, embeds: [embed]}).catch(error => {
-          logger.log(
-            "error",
-            `Error posting to clownboard: ${error}`,
-          );
-        });
+        const attachment = reaction.message.attachments.first();
+        const author = reaction.message.author;
+        if (!author) {
+          return;
+        }
+
+        if (undefined === attachment) {
+          const embed = new EmbedBuilder()
+            .setAuthor({
+              name: author.tag,
+              // eslint-disable-next-line @typescript-eslint/naming-convention
+              iconURL: author.displayAvatarURL(),
+            })
+            .setDescription(reaction.message.content)
+            .setFooter({
+              text: reaction.message.id,
+            })
+            .addFields(
+              {name: "Source", value: `[Jump!](${reaction.message.url})`, inline: true},
+            );
+          clownboard.send({content: `${clownEmojiId} **${reactionThreshold + 1}** ${reaction.message.channel}`, embeds: [embed]}).catch(error => {
+            logger.log(
+              "error",
+              `Error posting to clownboard: ${error}`,
+            );
+          });
+        } else {
+          const embed = new EmbedBuilder()
+            .setAuthor({
+              name: author.tag,
+              // eslint-disable-next-line @typescript-eslint/naming-convention
+              iconURL: author.displayAvatarURL(),
+            })
+            .setImage(attachment.url)
+            .setDescription(reaction.message.content)
+            .setFooter({
+              text: reaction.message.id,
+            })
+            .addFields(
+              {name: "Source", value: `[Jump!](${reaction.message.url})`, inline: true},
+            );
+          clownboard.send({content: `${clownEmojiId} **${reactionThreshold + 1}** ${reaction.message.channel}`, embeds: [embed]}).catch(error => {
+            logger.log(
+              "error",
+              `Error posting to clownboard: ${error}`,
+            );
+          });
+        }
       }
     };
 
@@ -114,7 +123,7 @@ export function clownboard(client, channelID) {
       const reactionCount = reaction.count ?? 0;
       const messages = await clownboard.messages.fetch({limit: 100});
       const existingMessages = messages.find(message =>
-        message.embeds.length === 1 ? (Boolean(message.embeds[0].footer.text.startsWith(reaction.message.id))) : false);
+        message.embeds.length === 1 ? (Boolean(message.embeds[0]?.footer?.text.startsWith(reaction.message.id))) : false);
       if (existingMessages) {
         if (reactionThreshold === reactionCount) {
           setTimeout(() => {

@@ -126,6 +126,10 @@ function getCalendarReminderEventSummary(calendarEvents: CalendarEvent[]): strin
 
 export function getCalendarReminderMessage(roleId: string, calendarEvents: CalendarEvent[]): string {
   const primaryEvent = calendarEvents[0];
+  if (undefined === primaryEvent) {
+    return `${getRoleMention(roleId)} Heute wichtig:`;
+  }
+
   return `${getRoleMention(roleId)} Heute wichtig: \`${primaryEvent.time}\` ${primaryEvent.country} ${getCalendarReminderEventSummary(calendarEvents)}`;
 }
 

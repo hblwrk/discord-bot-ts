@@ -9,27 +9,29 @@ const loggerMock = {
 jest.mock("node:fs", () => ({
   __esModule: true,
   default: {
-    readFileSync: readFileSyncMock,
+    readFileSync: (...args: unknown[]) => readFileSyncMock(...args),
   },
 }));
 
 jest.mock("js-yaml", () => ({
   __esModule: true,
   default: {
-    load: yamlLoadMock,
+    load: (...args: unknown[]) => yamlLoadMock(...args),
   },
 }));
 
 jest.mock("./dracoon-downloader.js", () => ({
-  getFromDracoon: getFromDracoonMock,
+  getFromDracoon: (...args: unknown[]) => getFromDracoonMock(...args),
 }));
 
 jest.mock("./secrets.js", () => ({
-  readSecret: readSecretMock,
+  readSecret: (...args: unknown[]) => readSecretMock(...args),
 }));
 
 jest.mock("./logging.js", () => ({
-  getLogger: () => loggerMock,
+  getLogger: () => ({
+    log: (...args: unknown[]) => loggerMock.log(...args),
+  }),
 }));
 
 import {getAssets} from "./assets.js";

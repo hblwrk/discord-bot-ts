@@ -16,7 +16,7 @@ function shouldRetry(error: unknown): boolean {
   return statusCode >= 500 || 429 === statusCode;
 }
 
-export async function getFromDracoon(secret: string, downloadToken: string) {
+export async function getFromDracoon(secret: string, downloadToken: string): Promise<Buffer> {
   const data = JSON.stringify({
     password: secret,
   });

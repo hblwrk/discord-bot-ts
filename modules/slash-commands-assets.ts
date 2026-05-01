@@ -35,7 +35,7 @@ function parseGroupedAssetTrigger(trigger: string) {
     return undefined;
   }
 
-  const baseTrigger = groupedTriggerMatch[1].trim();
+  const baseTrigger = groupedTriggerMatch[1]?.trim() ?? "";
   if ("" === baseTrigger) {
     return undefined;
   }
@@ -144,12 +144,14 @@ export function buildGroupedAssetSlashCommand(groupedAssetCommand: GroupedAssetC
       .setDescription("Bestimmte Variante, leer = zufällig")
       .setRequired(false);
 
+    const firstVariant = groupedAssetCommand.variants[0];
+    const lastVariant = groupedAssetCommand.variants[groupedAssetCommand.variants.length - 1];
     if (variantChoices.length <= 25) {
       option.addChoices(...variantChoices);
-    } else {
+    } else if (undefined !== firstVariant && undefined !== lastVariant) {
       option
-        .setMinValue(groupedAssetCommand.variants[0].variant)
-        .setMaxValue(groupedAssetCommand.variants[groupedAssetCommand.variants.length - 1].variant);
+        .setMinValue(firstVariant.variant)
+        .setMaxValue(lastVariant.variant);
     }
 
     return option;
@@ -158,14 +160,14 @@ export function buildGroupedAssetSlashCommand(groupedAssetCommand: GroupedAssetC
   return slashCommand.toJSON();
 }
 
-export async function replyWithSlashAsset(interaction, asset: ImageAsset | TextAsset, fallbackLabel: string) {
+export async function replyWithSlashAsset(interaction: any, asset: ImageAsset | TextAsset, fallbackLabel: string) {
   if (asset instanceof ImageAsset) {
     if (!asset?.fileContent || !asset.fileName) {
       logger.log(
         "warn",
         `Asset ${asset.name ?? asset.fileName ?? fallbackLabel} is temporarily unavailable.`,
       );
-      await interaction.reply("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch(error => {
+      await interaction.reply("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.").catch((error: unknown) => {
         logger.log(
           "error",
           `Error replying to slashcommand: ${error}`,
@@ -190,7 +192,7 @@ export async function replyWithSlashAsset(interaction, asset: ImageAsset | TextA
   }
 
   if (asset instanceof TextAsset) {
-    await interaction.reply(asset.response).catch(error => {
+    await interaction.reply(asset.response).catch((error: unknown) => {
       logger.log(
         "error",
         `Error replying to slashcommand: ${error}`,

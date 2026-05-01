@@ -16,6 +16,10 @@ function isPrivateIpv4(ip: string): boolean {
   }
 
   const [a, b] = parts;
+  if (undefined === a || undefined === b) {
+    return true;
+  }
+
   if (0 === a) return true;                            // 0.0.0.0/8
   if (10 === a) return true;                           // 10.0.0.0/8 RFC1918
   if (100 === a && b >= 64 && b <= 127) return true;   // 100.64.0.0/10 CGNAT
@@ -37,7 +41,8 @@ function isPrivateIpv6(ip: string): boolean {
 
   const v4mapped = /^::ffff:(\d+\.\d+\.\d+\.\d+)$/.exec(lower);
   if (null !== v4mapped) {
-    return isPrivateIpv4(v4mapped[1]);
+    const mappedIpv4 = v4mapped[1];
+    return undefined === mappedIpv4 ? true : isPrivateIpv4(mappedIpv4);
   }
 
   if (/^fe[89ab]/.test(lower)) return true; // fe80::/10 link-local
@@ -78,14 +83,14 @@ const safeLookup: net.LookupFunction = (hostname, options, callback) => {
 };
 
 class SafeHttpAgent extends http.Agent {
-  createConnection(options: http.ClientRequestArgs, callback?: (err: Error | null, stream: net.Socket) => void): net.Socket {
+  public override createConnection(options: http.ClientRequestArgs, callback?: (err: Error | null, stream: net.Socket) => void): net.Socket {
     const merged = {...options, lookup: safeLookup} as http.ClientRequestArgs;
     return (super.createConnection as any)(merged, callback);
   }
 }
 
 class SafeHttpsAgent extends https.Agent {
-  createConnection(options: http.ClientRequestArgs, callback?: (err: Error | null, stream: net.Socket) => void): net.Socket {
+  public override createConnection(options: http.ClientRequestArgs, callback?: (err: Error | null, stream: net.Socket) => void): net.Socket {
     const merged = {...options, lookup: safeLookup} as http.ClientRequestArgs;
     return (super.createConnection as any)(merged, callback);
   }

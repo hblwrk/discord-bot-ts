@@ -131,10 +131,10 @@ describe("earnings result announcements", () => {
     expect(result.active).toBe(true);
     expect(result.watchedCompanies).toBe(1);
     expect(result.announcements).toHaveLength(1);
-    expect(result.announcements[0].message).toContain("Earnings: Exxon Mobil (`XOM`) Q1 2026");
-    expect(result.announcements[0].message).toContain("Adj EPS: `$1.16` vs est. `$0.96` - beat");
-    expect(result.announcements[0].message).toContain("Revenue: `$85.14B` vs est. `$80.74B` - beat");
-    expect(result.announcements[0].message).toContain("SEC: 8-K Item 2.02, 9.01");
+    expect(result.announcements[0]!.message).toContain("Earnings: Exxon Mobil (`XOM`) Q1 2026");
+    expect(result.announcements[0]!.message).toContain("Adj EPS: `$1.16` vs est. `$0.96` - beat");
+    expect(result.announcements[0]!.message).toContain("Revenue: `$85.14B` vs est. `$80.74B` - beat");
+    expect(result.announcements[0]!.message).toContain("SEC: 8-K Item 2.02, 9.01");
   });
 
   test("skips accessions that were already announced", async () => {

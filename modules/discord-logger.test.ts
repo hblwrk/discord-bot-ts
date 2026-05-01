@@ -1,7 +1,7 @@
 const readSecretMock = jest.fn();
 
 jest.mock("./secrets.js", () => ({
-  readSecret: readSecretMock,
+  readSecret: (...args: unknown[]) => readSecretMock(...args),
 }));
 
 import DiscordTransport from "./discord-logger.js";

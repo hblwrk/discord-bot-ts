@@ -2,63 +2,112 @@ const mockLogger = {
   log: jest.fn(),
 };
 
+type EventHandler = (...args: unknown[]) => unknown;
+
+type HandlerRegistry = {
+  get: (eventName: string) => EventHandler;
+  set: (eventName: string, handler: EventHandler) => void;
+};
+
+type MockWebSocketClient = {
+  OPEN: number;
+  readyState: number;
+  addEventListener: jest.MockedFunction<(eventName: string, handler: EventHandler) => MockWebSocketClient>;
+  send: jest.Mock;
+  reconnect: jest.Mock;
+  url: string;
+  handlers: HandlerRegistry;
+};
+
+type MockMarketClient = {
+  login: jest.Mock;
+  on: jest.MockedFunction<(eventName: string, handler: EventHandler) => MockMarketClient>;
+  user: {
+    id: string;
+    setPresence: jest.Mock;
+  };
+  guilds: {
+    cache: {
+      get: jest.Mock;
+    };
+  };
+};
+
+type MockMarketClientInstance = {
+  client: MockMarketClient;
+  handlers: HandlerRegistry;
+  fetchMember: jest.Mock;
+  setNickname: jest.Mock;
+};
+
 const mockGetAssets = jest.fn();
 const mockReadSecret = jest.fn();
-const websocketInstances: any[] = [];
-const mockWebSocketConstructor = jest.fn().mockImplementation((urlProvider: (() => string)) => {
-  const handlers = new Map<string, (...args: any[]) => unknown>();
-  const wsClient = {
-    OPEN: 1,
-    readyState: 1,
-    addEventListener: jest.fn((eventName: string, handler: (...args: any[]) => unknown) => {
+const websocketInstances: MockWebSocketClient[] = [];
+
+function createHandlerRegistry(): HandlerRegistry {
+  const handlers = new Map<string, EventHandler>();
+  return {
+    get: (eventName: string) => {
+      const handler = handlers.get(eventName);
+      if (!handler) {
+        throw new Error(`Missing handler for ${eventName}.`);
+      }
+
+      return handler;
+    },
+    set: (eventName: string, handler: EventHandler) => {
       handlers.set(eventName, handler);
-      return wsClient;
-    }),
-    send: jest.fn(),
-    reconnect: jest.fn(),
-    url: "function" === typeof urlProvider ? urlProvider() : "wss://streaming.forexpros.com/mock/websocket",
-    handlers,
+    },
   };
+}
+
+const mockWebSocketConstructor = jest.fn().mockImplementation((urlProvider: (() => string)) => {
+  const handlers = createHandlerRegistry();
+  const wsClient = {} as MockWebSocketClient;
+  wsClient.OPEN = 1;
+  wsClient.readyState = 1;
+  wsClient.addEventListener = jest.fn((eventName: string, handler: EventHandler) => {
+    handlers.set(eventName, handler);
+    return wsClient;
+  });
+  wsClient.send = jest.fn();
+  wsClient.reconnect = jest.fn();
+  wsClient.url = "function" === typeof urlProvider ? urlProvider() : "wss://streaming.forexpros.com/mock/websocket";
+  wsClient.handlers = handlers;
 
   websocketInstances.push(wsClient);
 
   return wsClient;
 });
 
-const clientInstances: Array<{
-  client: any;
-  handlers: Map<string, (...args: any[]) => unknown>;
-  fetchMember: jest.Mock;
-  setNickname: jest.Mock;
-}> = [];
+const clientInstances: MockMarketClientInstance[] = [];
 const queuedClientIds: string[] = [];
 
 const mockClientConstructor = jest.fn().mockImplementation(() => {
-  const handlers = new Map<string, (...args: any[]) => unknown>();
+  const handlers = createHandlerRegistry();
   const setNickname = jest.fn().mockResolvedValue(undefined);
   const fetchMember = jest.fn().mockResolvedValue({
     setNickname,
   });
   const clientId = queuedClientIds.shift() ?? "market-bot-client";
 
-  const client = {
-    login: jest.fn().mockResolvedValue(undefined),
-    on: jest.fn((eventName: string, handler: (...args: any[]) => unknown) => {
-      handlers.set(eventName, handler);
-      return client;
-    }),
-    user: {
-      id: clientId,
-      setPresence: jest.fn(),
-    },
-    guilds: {
-      cache: {
-        get: jest.fn(() => ({
-          members: {
-            fetch: fetchMember,
-          },
-        })),
-      },
+  const client = {} as MockMarketClient;
+  client.login = jest.fn().mockResolvedValue(undefined);
+  client.on = jest.fn((eventName: string, handler: EventHandler) => {
+    handlers.set(eventName, handler);
+    return client;
+  });
+  client.user = {
+    id: clientId,
+    setPresence: jest.fn(),
+  };
+  client.guilds = {
+    cache: {
+      get: jest.fn(() => ({
+        members: {
+          fetch: fetchMember,
+        },
+      })),
     },
   };
 
@@ -67,12 +116,16 @@ const mockClientConstructor = jest.fn().mockImplementation(() => {
 });
 
 jest.mock("discord.js", () => ({
-  Client: mockClientConstructor,
+  Client: function MockClient(...args: unknown[]) {
+    return mockClientConstructor(...args);
+  },
 }));
 
 jest.mock("reconnecting-websocket", () => ({
   __esModule: true,
-  default: mockWebSocketConstructor,
+  default: function MockWebSocket(...args: [() => string]) {
+    return mockWebSocketConstructor(...args);
+  },
 }));
 
 jest.mock("ws", () => ({
@@ -81,15 +134,17 @@ jest.mock("ws", () => ({
 }));
 
 jest.mock("../assets.js", () => ({
-  getAssets: mockGetAssets,
+  getAssets: (...args: unknown[]) => mockGetAssets(...args),
 }));
 
 jest.mock("../logging.js", () => ({
-  getLogger: () => mockLogger,
+  getLogger: () => ({
+    log: (...args: unknown[]) => mockLogger.log(...args),
+  }),
 }));
 
 jest.mock("../secrets.js", () => ({
-  readSecret: mockReadSecret,
+  readSecret: (...args: unknown[]) => mockReadSecret(...args),
 }));
 
 import {updateMarketData} from "../market-data.js";

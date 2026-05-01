@@ -1,18 +1,33 @@
 {
   "compilerOptions": {
-    "module": "nodenext",
-    "esModuleInterop": true,
-    "moduleResolution": "nodenext",
-    "target": "es2020",
-    "strict": false,
-    "types": [
-      "jest",
-      "node"
-    ],
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "erasableSyntaxOnly": true,
+    "exactOptionalPropertyTypes": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
     "lib": [
-      "ES2021.String",
-      "es2020",
+      "ES2024",
       "DOM"
-    ]
-  },
+    ],
+    "module": "nodenext",
+    "moduleDetection": "force",
+    "moduleResolution": "nodenext",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitOverride": true,
+    "noImplicitReturns": true,
+    "noPropertyAccessFromIndexSignature": true,
+    "noUncheckedIndexedAccess": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "skipLibCheck": false,
+    "strict": true,
+    "target": "ES2024",
+    "types": [
+      "node",
+      "jest"
+    ],
+    "verbatimModuleSyntax": true
+  }
 }

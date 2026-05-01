@@ -1,24 +1,38 @@
 import {clownboard} from "./clownboard.js";
 
-function createClientWithHandlers(clownboardChannel) {
-  const handlers = new Map<string, (...args: any[]) => Promise<void>>();
+type EventHandler = (...args: unknown[]) => Promise<void>;
+type ClownboardTestClient = {
+  on: jest.MockedFunction<(eventName: string, handler: EventHandler) => ClownboardTestClient>;
+  channels: {
+    cache: {
+      get: jest.Mock;
+    };
+  };
+};
 
-  const client = {
-    on: jest.fn((eventName, handler) => {
-      handlers.set(eventName, handler);
-      return client;
-    }),
-    channels: {
-      cache: {
-        get: jest.fn(() => clownboardChannel),
-      },
+function createClientWithHandlers(clownboardChannel: unknown) {
+  const handlers = new Map<string, EventHandler>();
+
+  const client = {} as ClownboardTestClient;
+  client.on = jest.fn((eventName: string, handler: EventHandler) => {
+    handlers.set(eventName, handler);
+    return client;
+  });
+  client.channels = {
+    cache: {
+      get: jest.fn(() => clownboardChannel),
     },
   };
 
   return {
     client,
     getHandler(eventName: string) {
-      return handlers.get(eventName);
+      const handler = handlers.get(eventName);
+      if (!handler) {
+        throw new Error(`Missing handler for ${eventName}.`);
+      }
+
+      return handler;
     },
   };
 }
@@ -60,7 +74,7 @@ describe("clownboard", () => {
     };
 
     const {client, getHandler} = createClientWithHandlers(clownboardChannel);
-    clownboard(client, "clownboard-channel-id");
+    clownboard(client as any, "clownboard-channel-id");
 
     const handler = getHandler("messageReactionAdd");
     await handler(createReaction(10), {id: "user-1"});
@@ -85,7 +99,7 @@ describe("clownboard", () => {
     };
 
     const {client, getHandler} = createClientWithHandlers(clownboardChannel);
-    clownboard(client, "clownboard-channel-id");
+    clownboard(client as any, "clownboard-channel-id");
 
     const handler = getHandler("messageReactionRemove");
     await handler(createReaction(9), {id: "user-1"});

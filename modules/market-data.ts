@@ -23,7 +23,6 @@ import {
   type DiscordPresenceStatus,
   type IncomingMarketDataUpdateLog,
   type MarketDataAsset,
-  type MarketPresenceData,
   type PendingClientStatusUpdate,
 } from "./market-data-types.js";
 
@@ -38,7 +37,11 @@ const streamStaleTimeoutMs = 300_000;
 
 type ReconnectingWebSocketInstance = {
   OPEN: number;
-  addEventListener: (type: "open" | "close" | "error" | "message", listener: (event: any) => void) => void;
+  addEventListener: (type: "open" | "close" | "error" | "message", listener: (event: {
+    code?: number;
+    data?: unknown;
+    reason?: string;
+  }) => void) => void;
   readyState: number;
   reconnect: () => void;
   send: (data: string) => void;
@@ -65,7 +68,7 @@ export async function updateMarketData() {
   }
 
   const guildId = readSecret("discord_guild_ID").trim();
-  const clientsById = new Map<string, Client>();
+  const clientsById = new Map<string, Client<true>>();
   let streamStarted = false;
 
   for (const marketDataAsset of marketDataAssets) {
@@ -92,11 +95,12 @@ export async function updateMarketData() {
       );
 
       // Stay idle until a live tick arrives; the status reconciler flips closed sessions back later.
-      client.user.setPresence({
+      const readyClient = client as Client<true>;
+      readyClient.user.setPresence({
         activities: [{name: marketClosedPresence}],
         status: "idle",
       });
-      clientsById.set(marketDataAsset.botClientId, client);
+      clientsById.set(marketDataAsset.botClientId, readyClient);
 
       if (false === streamStarted) {
         // Start stream as soon as one bot is ready; lagging bots attach later.
@@ -107,7 +111,7 @@ export async function updateMarketData() {
   }
 }
 
-function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: MarketDataAsset[], guildId: string) {
+function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAssets: MarketDataAsset[], guildId: string) {
   // Generating multiple Websocket endpoint options in case we get blocked.
   // const wsServerIds = ["265", "68", "104", "226", "103", "220", "47"];
   const wsServerIds = ["714/crhl6wg7", "543/fkv260lc", "145/gdlsxdet", "034/7546_2ip", "145/_g8m6m_l", "560/q2_xpw87", "271/l5mgl1s6", "120/9hovf5kb", "303/0lllaqe7", "859/o3a31oc_"];
@@ -121,7 +125,7 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
   let urlIndex = 0;
 
   // Round-robin assignment for Websocket endpoints
-  const wsServerUrlProvider = () => wsServerUrls[urlIndex++ % wsServerUrls.length];
+  const wsServerUrlProvider = () => wsServerUrls[urlIndex++ % wsServerUrls.length] ?? wsServerUrls[0] ?? "";
 
   let pids = "";
 
@@ -219,7 +223,7 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
     );
   });
 
-  const handleWebsocketMessage = async event => {
+  const handleWebsocketMessage = async (event: {data?: unknown}) => {
     try {
       const rawMessage = normalizeEventData(event.data);
       if (null === rawMessage) {
@@ -334,7 +338,7 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
 }
 
 async function applyClientStatusUpdate(
-  client: Client,
+  client: Client<true>,
   guildId: string,
   memberByClientId: Map<string, Promise<any>>,
   statusByClientId: Map<string, ClientStatusState>,
@@ -361,7 +365,7 @@ async function applyClientStatusUpdate(
 }
 
 async function applyClientNicknameUpdate(
-  client: Client,
+  client: Client<true>,
   guildId: string,
   memberByClientId: Map<string, Promise<any>>,
   statusByClientId: Map<string, ClientStatusState>,
@@ -401,8 +405,8 @@ async function applyClientNicknameUpdate(
 }
 
 function queuePendingClientStatusUpdate(
-  client: Client,
-  clientsById: Map<string, Client>,
+  client: Client<true>,
+  clientsById: Map<string, Client<true>>,
   marketDataAsset: MarketDataAsset,
   nickname: string,
   openPresence: string,
@@ -447,7 +451,7 @@ function queuePendingClientStatusUpdate(
 
 async function flushPendingClientStatusUpdate(
   clientId: string,
-  clientsById: Map<string, Client>,
+  clientsById: Map<string, Client<true>>,
   guildId: string,
   memberByClientId: Map<string, Promise<any>>,
   statusByClientId: Map<string, ClientStatusState>,
@@ -547,7 +551,7 @@ function isDiscordUpdateDue(lastUpdate: number): boolean {
 }
 
 async function applyClosedMarketPresenceIfNeeded(
-  client: Client,
+  client: Client<true>,
   marketDataAsset: MarketDataAsset,
   guildId: string,
   memberByClientId: Map<string, Promise<any>>,
@@ -593,7 +597,7 @@ async function applyClosedMarketPresenceIfNeeded(
 }
 
 function applyClientPresenceUpdate(
-  client: Client,
+  client: Client<true>,
   statusByClientId: Map<string, ClientStatusState>,
   presence: string,
   presenceStatus: DiscordPresenceStatus,

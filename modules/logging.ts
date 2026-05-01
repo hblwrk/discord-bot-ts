@@ -1,5 +1,6 @@
 import winston from "winston";
 import DiscordTransport from "./discord-logger.js";
+import type {DiscordTransportClient} from "./discord-logger.js";
 import {readSecret} from "./secrets.js";
 
 const levels = {
@@ -14,8 +15,8 @@ const levels = {
 const discordLoggerByClient = new WeakMap<object, winston.Logger>();
 
 function getConfiguredLogLevel(): string {
-  const loglevelFromEnvironment = process.env.LOGLEVEL?.trim().toLowerCase();
-  if (loglevelFromEnvironment in levels) {
+  const loglevelFromEnvironment = process.env["LOGLEVEL"]?.trim().toLowerCase();
+  if (undefined !== loglevelFromEnvironment && loglevelFromEnvironment in levels) {
     return loglevelFromEnvironment;
   }
 
@@ -31,7 +32,7 @@ function getConfiguredLogLevel(): string {
   return "info";
 }
 
-export function getDiscordLogger(client) {
+export function getDiscordLogger(client: DiscordTransportClient) {
   if ("object" === typeof client && null !== client) {
     const cachedLogger = discordLoggerByClient.get(client);
     if (cachedLogger) {

@@ -1,13 +1,19 @@
-/** @type {import('ts-jest').JestConfigWithTsJest} */
+/** @type {import('jest').Config} */
 module.exports = {
   testEnvironment: 'node',
   testEnvironmentOptions: {
     globalsCleanup: 'off',
   },
   transform: {
-    '^.+\\.tsx?$': ['ts-jest', {
-      diagnostics: {
-        ignoreCodes: [151002],
+    '^.+\\.tsx?$': ['@swc/jest', {
+      jsc: {
+        parser: {
+          syntax: 'typescript',
+        },
+        target: 'es2024',
+      },
+      module: {
+        type: 'commonjs',
       },
     }],
   },

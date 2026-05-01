@@ -5,6 +5,32 @@ import {getLogger} from "./logging.js";
 const logger = getLogger();
 const triggerBoundaryRegex = "[^\\p{L}\\p{N}_-]";
 
+type InlineResponseAsset = {
+  response?: unknown;
+  trigger: string[];
+  triggerRegex?: unknown;
+};
+
+type InlineResponseMessage = {
+  author?: {
+    bot?: boolean;
+  };
+  content: string;
+  guild: {
+    emojis: {
+      cache: {
+        find: (predicate: (emoji: {name: string | null}) => boolean) => unknown;
+      };
+    };
+  };
+  react: (emoji: unknown) => Promise<unknown>;
+  webhookId?: string | null;
+};
+
+type InlineResponseClient = {
+  on: (eventName: "messageCreate", handler: (message: InlineResponseMessage) => Promise<void>) => void;
+};
+
 function escapeRegexValue(value: string): string {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -33,7 +59,11 @@ function getTriggerRegex(trigger: string, triggerRegex: unknown): RegExp {
   return new RegExp(`(?:^|${triggerBoundaryRegex})${escapedTrigger}(?:$|${triggerBoundaryRegex})`, "u");
 }
 
-export function addInlineResponses(client, assets, assetCommands) {
+function isEmojiResponse(response: unknown): response is string[] {
+  return Array.isArray(response) && response.every(value => "string" === typeof value);
+}
+
+export function addInlineResponses(client: InlineResponseClient, assets: InlineResponseAsset[], assetCommands: string[]) {
   // Message response to a message including with a trigger word
   client.on("messageCreate", async message => {
     if (true === message.author?.bot || Boolean(message.webhookId)) {
@@ -42,25 +72,25 @@ export function addInlineResponses(client, assets, assetCommands) {
 
     const messageContent: string = message.content.toLowerCase();
     // Triggers without prefix
-    if (assetCommands.some(v => messageContent.replaceAll(" ", "_").includes(v))) {
+    if (assetCommands.some((v: string) => messageContent.replaceAll(" ", "_").includes(v))) {
       for (const asset of assets) {
         for (const trigger of asset.trigger) {
           // This may show up as possible DoS (RegExp() called with a variable, CWE-185) in Semgrep. However it is safe since the variable is based on assets, which cannot be user-supplied.
           const triggerRex = getTriggerRegex(trigger, asset.triggerRegex);
 
-          if (asset instanceof EmojiAsset && triggerRex.test(messageContent)) {
+          if (asset instanceof EmojiAsset && isEmojiResponse(asset.response) && triggerRex.test(messageContent)) {
             // Emoji reaction to a message
             for (const response of asset.response) {
               if (response.startsWith("custom:")) {
                 const reactionEmoji = message.guild.emojis.cache.find(emoji => emoji.name === response.replace("custom:", ""));
-                message.react(reactionEmoji).catch(error => {
+                message.react(reactionEmoji).catch((error: unknown) => {
                   logger.log(
                     "error",
                     `Error posting emoji reaction: ${error}`,
                   );
                 });
               } else {
-                message.react(response).catch(error => {
+                message.react(response).catch((error: unknown) => {
                   logger.log(
                     "error",
                     `Error posting emoji reaction: ${error}`,

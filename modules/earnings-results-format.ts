@@ -12,27 +12,27 @@ import {
 export type EarningsResultOutcome = "beat" | "inline" | "miss";
 
 export type EarningsResultMetric = {
-  estimate?: string;
+  estimate?: string | undefined;
   key: string;
   label: string;
-  numericValue?: number;
-  outcome?: EarningsResultOutcome;
+  numericValue?: number | undefined;
+  outcome?: EarningsResultOutcome | undefined;
   value: string;
 };
 
 export type ParsedEarningsDocument = {
-  headline?: string;
+  headline?: string | undefined;
   metrics: EarningsResultMetric[];
   outlook: EarningsOutlookMetric[];
-  quarterLabel?: string;
+  quarterLabel?: string | undefined;
 };
 
 export type NasdaqSurprise = {
-  actualEps?: number;
-  actualRevenue?: number;
-  consensusEps?: number;
-  consensusRevenue?: number;
-  percentageSurprise?: number;
+  actualEps?: number | undefined;
+  actualRevenue?: number | undefined;
+  consensusEps?: number | undefined;
+  consensusRevenue?: number | undefined;
+  percentageSurprise?: number | undefined;
 };
 
 type SecCurrentFilingForMessage = {
@@ -50,8 +50,6 @@ type MetricDefinition = {
   valueType: MetricValueType;
 };
 
-const dateStampFormat = "YYYY-MM-DD";
-const usEasternTimezone = "US/Eastern";
 const earningsMetricDefinitions: MetricDefinition[] = [
   {
     key: "adjusted_eps",
@@ -261,12 +259,12 @@ function getDocumentHeadline(lines: string[]): string | undefined {
 
 function getQuarterLabel(text: string): string | undefined {
   const directQuarterMatch = text.match(/\b(Q[1-4])\s+(20\d{2})\b/i);
-  if (directQuarterMatch) {
+  if (undefined !== directQuarterMatch?.[1] && undefined !== directQuarterMatch[2]) {
     return `${directQuarterMatch[1].toUpperCase()} ${directQuarterMatch[2]}`;
   }
 
   const writtenQuarterMatch = text.match(/\b(first|second|third|fourth)\s+quarter\s+(?:of\s+)?(20\d{2})\b/i);
-  if (writtenQuarterMatch) {
+  if (undefined !== writtenQuarterMatch?.[1] && undefined !== writtenQuarterMatch[2]) {
     const quarterByName = new Map<string, string>([
       ["first", "Q1"],
       ["second", "Q2"],
@@ -280,7 +278,7 @@ function getQuarterLabel(text: string): string | undefined {
   }
 
   const quarterEndedMatch = text.match(/\bquarter\s+ended\s+([A-Z][a-z]+)\s+\d{1,2},\s+(20\d{2})\b/);
-  if (quarterEndedMatch) {
+  if (undefined !== quarterEndedMatch?.[1] && undefined !== quarterEndedMatch[2]) {
     const month = moment(quarterEndedMatch[1], "MMMM", true);
     if (true === month.isValid()) {
       return `Q${Math.floor(month.month() / 3) + 1} ${quarterEndedMatch[2]}`;
@@ -399,11 +397,11 @@ function getMoneyScale(text: string): number {
 
 function getExplicitMoneyScale(text: string): number | null {
   const unitMatch = text.match(/\b(billion|billions|bn|million|millions|mm)\b/i);
-  if (!unitMatch) {
+  const unit = unitMatch?.[1]?.toLowerCase();
+  if (!unit) {
     return null;
   }
 
-  const unit = unitMatch[1].toLowerCase();
   if ("billion" === unit || "billions" === unit || "bn" === unit) {
     return 1_000_000_000;
   }
@@ -464,7 +462,7 @@ export function parseNumber(value: unknown): number | null {
   }
 
   const centsMatch = normalizedValue.match(/^(-?\d+(?:\.\d+)?)\s*c$/);
-  if (centsMatch) {
+  if (undefined !== centsMatch?.[1]) {
     return Number.parseFloat(centsMatch[1]) / 100;
   }
 
@@ -508,7 +506,7 @@ function formatPlainNumber(value: number, unit: string | null): string {
 
 function getTrailingUnit(text: string): string | null {
   const unitMatch = text.match(/\b(kbd|koebd|boepd|bpd|mmboe|bcfe|mmcf|mw|gw)\b/i);
-  return unitMatch ? unitMatch[1] : null;
+  return unitMatch?.[1] ?? null;
 }
 
 export function normalizeTickerSymbol(value: string): string {

@@ -3,7 +3,16 @@ import {readSecret} from "./secrets.js";
 
 const logger = getLogger();
 
-export async function roleManager(client, assetRoles) {
+type ManagedRoleAsset = {
+  emoji: string;
+  id: string;
+  idReference: string;
+  name?: string;
+  trigger: string | string[];
+  triggerReference: string;
+};
+
+export async function roleManager(client: any, assetRoles: ManagedRoleAsset[]) {
   // Cache existing messages
   const clientId = readSecret("discord_client_ID").trim();
   const guildId = readSecret("discord_guild_ID").trim();
@@ -20,7 +29,7 @@ export async function roleManager(client, assetRoles) {
     return;
   }
 
-  const guild = client.guilds.cache.get(guildId) ?? await client.guilds.fetch(guildId).catch(error => {
+  const guild = client.guilds.cache.get(guildId) ?? await client.guilds.fetch(guildId).catch((error: unknown) => {
     logger.log(
       "error",
       `Role manager: unable to fetch guild ${guildId}: ${error}`,
@@ -30,7 +39,7 @@ export async function roleManager(client, assetRoles) {
     return;
   }
 
-  const channel = guild.channels.cache.get(channelId) ?? await guild.channels.fetch(channelId).catch(error => {
+  const channel = guild.channels.cache.get(channelId) ?? await guild.channels.fetch(channelId).catch((error: unknown) => {
     logger.log(
       "error",
       `Role manager: unable to fetch channel ${channelId}: ${error}`,
@@ -50,13 +59,13 @@ export async function roleManager(client, assetRoles) {
 
   const roleChannel = channel as any;
 
-  const brokerMessage = await roleChannel.messages.fetch(brokerMessageId).catch(error => {
+  const brokerMessage = await roleChannel.messages.fetch(brokerMessageId).catch((error: unknown) => {
     logger.log(
       "error",
       `Role manager: unable to fetch broker message ${brokerMessageId}: ${error}`,
     );
   });
-  const specialMessage = await roleChannel.messages.fetch(specialMessageId).catch(error => {
+  const specialMessage = await roleChannel.messages.fetch(specialMessageId).catch((error: unknown) => {
     logger.log(
       "error",
       `Role manager: unable to fetch special message ${specialMessageId}: ${error}`,
@@ -71,7 +80,7 @@ export async function roleManager(client, assetRoles) {
     if ("hblwrk_role_assignment_broker_message_ID" === role.triggerReference) {
       let emoji = "";
       if (role.emoji.startsWith("custom:")) {
-        const customEmoji = guild.emojis.cache.find(emoji => emoji.name === role.emoji.replace("custom:", ""));
+        const customEmoji = guild.emojis.cache.find((emoji: {name: string | null}) => emoji.name === role.emoji.replace("custom:", ""));
         if (!customEmoji) {
           logger.log(
             "warn",
@@ -85,7 +94,7 @@ export async function roleManager(client, assetRoles) {
         emoji = role.emoji;
       }
 
-      await brokerMessage.react(emoji).catch(error => {
+      await brokerMessage.react(emoji).catch((error: unknown) => {
         logger.log(
           "error",
           `Role manager: unable to add reaction ${emoji} on broker message: ${error}`,
@@ -94,7 +103,7 @@ export async function roleManager(client, assetRoles) {
     } else if ("hblwrk_role_assignment_special_message_ID" === role.triggerReference) {
       let emoji = "";
       if (role.emoji.startsWith("custom:")) {
-        const customEmoji = guild.emojis.cache.find(emoji => emoji.name === role.emoji.replace("custom:", ""));
+        const customEmoji = guild.emojis.cache.find((emoji: {name: string | null}) => emoji.name === role.emoji.replace("custom:", ""));
         if (!customEmoji) {
           logger.log(
             "warn",
@@ -107,7 +116,7 @@ export async function roleManager(client, assetRoles) {
       } else {
         emoji = role.emoji;
       }
-      await specialMessage.react(emoji).catch(error => {
+      await specialMessage.react(emoji).catch((error: unknown) => {
         logger.log(
           "error",
           `Role manager: unable to add reaction ${emoji} on special message: ${error}`,
@@ -117,18 +126,18 @@ export async function roleManager(client, assetRoles) {
   }
 
   // Assign user-role based on emoji selection
-  client.on("messageReactionAdd", async (reaction, user) => {
+  client.on("messageReactionAdd", async (reaction: any, user: any) => {
     await addRemoveRole(reaction, user, "add");
   });
 
   // Remove user-role based on emoji selection
-  client.on("messageReactionRemove", async (reaction, user) => {
+  client.on("messageReactionRemove", async (reaction: any, user: any) => {
     await addRemoveRole(reaction, user, "remove");
   });
 
-  async function addRemoveRole(reaction, user, action) {
+  async function addRemoveRole(reaction: any, user: any, action: "add" | "remove") {
     if (reaction.partial) {
-      const fetchedReaction = await reaction.fetch().catch(error => {
+      const fetchedReaction = await reaction.fetch().catch((error: unknown) => {
         logger.log(
           "error",
           `Role manager: unable to fetch partial reaction: ${error}`,
@@ -140,7 +149,7 @@ export async function roleManager(client, assetRoles) {
     }
 
     if (reaction.message.partial) {
-      const fetchedMessage = await reaction.message.fetch().catch(error => {
+      const fetchedMessage = await reaction.message.fetch().catch((error: unknown) => {
         logger.log(
           "error",
           `Role manager: unable to fetch partial message: ${error}`,
@@ -155,7 +164,7 @@ export async function roleManager(client, assetRoles) {
       let emoji = "";
       let reactionEmoji = "";
       if (role.emoji.startsWith("custom:")) {
-        const customEmoji = guild.emojis.cache.find(emoji => emoji.name === role.emoji.replace("custom:", ""));
+        const customEmoji = guild.emojis.cache.find((emoji: {name: string | null}) => emoji.name === role.emoji.replace("custom:", ""));
         if (!customEmoji) {
           continue;
         }
@@ -167,14 +176,15 @@ export async function roleManager(client, assetRoles) {
 
       if (null === reaction.emoji.id) {
         // Native emoji
-        reactionEmoji = reaction.emoji.name;
+        reactionEmoji = reaction.emoji.name ?? "";
       } else {
         // Custom emoji
         reactionEmoji = reaction.emoji.id;
       }
 
-      if (role.trigger === reaction.message.id && emoji === reactionEmoji && clientId !== user.id) {
-        const guildUser = await guild.members.fetch(user.id).catch(error => {
+      const roleTriggers = Array.isArray(role.trigger) ? role.trigger : [role.trigger];
+      if (roleTriggers.includes(reaction.message.id) && emoji === reactionEmoji && clientId !== user.id) {
+        const guildUser = await guild.members.fetch(user.id).catch((error: unknown) => {
           logger.log(
             "error",
             `Role manager: unable to fetch guild user ${user.id}: ${error}`,
@@ -185,7 +195,7 @@ export async function roleManager(client, assetRoles) {
         }
 
         if ("remove" === action) {
-          await guildUser.roles.remove(role.id).catch(error => {
+          await guildUser.roles.remove(role.id).catch((error: unknown) => {
             logger.log(
               "error",
               `Role manager: unable to remove role ${role.id} from ${user.id}: ${error}`,
@@ -196,13 +206,13 @@ export async function roleManager(client, assetRoles) {
             `Removing role ${role.id} (${role.idReference}) from user ${user.id} (${user.username})`,
           );
         } else if ("add" === action) {
-          await guildUser.roles.add(brokerYesRole).catch(error => {
+          await guildUser.roles.add(brokerYesRole).catch((error: unknown) => {
             logger.log(
               "error",
               `Role manager: unable to add broker role ${brokerYesRole} for ${user.id}: ${error}`,
             );
           });
-          await guildUser.roles.add(role.id).catch(error => {
+          await guildUser.roles.add(role.id).catch((error: unknown) => {
             logger.log(
               "error",
               `Role manager: unable to add role ${role.id} for ${user.id}: ${error}`,

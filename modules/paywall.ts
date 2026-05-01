@@ -197,13 +197,15 @@ export async function extractHeadline(url: string): Promise<string | null> {
 
     const ogTitleMatch = html.match(/<meta[^>]+property=["']og:title["'][^>]+content=["']([^"']+)["']/i)
       ?? html.match(/<meta[^>]+content=["']([^"']+)["'][^>]+property=["']og:title["']/i);
-    if (null !== ogTitleMatch) {
-      return ogTitleMatch[1].trim();
+    const ogTitle = ogTitleMatch?.[1];
+    if (undefined !== ogTitle) {
+      return ogTitle.trim();
     }
 
     const titleMatch = html.match(/<title[^>]*>([^<]+)<\/title>/i);
-    if (null !== titleMatch) {
-      return titleMatch[1].trim();
+    const title = titleMatch?.[1];
+    if (undefined !== title) {
+      return title.trim();
     }
 
     return null;

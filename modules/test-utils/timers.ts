@@ -2,21 +2,23 @@ import moment from "moment-timezone";
 
 const scheduleJobMock = jest.fn();
 
-class MockRecurrenceRule {
+interface MockRecurrenceRule {
   hour?: number;
   minute?: number;
   dayOfWeek?: unknown[];
   tz?: string;
 }
 
-class MockRange {
+function MockRecurrenceRule(this: MockRecurrenceRule) {}
+
+interface MockRange {
   start: number;
   end: number;
+}
 
-  constructor(start: number, end: number) {
-    this.start = start;
-    this.end = end;
-  }
+function MockRange(this: MockRange, start: number, end: number) {
+  this.start = start;
+  this.end = end;
 }
 
 const attachmentBuilderMock = jest.fn().mockImplementation(function mockAttachmentBuilder(file: Buffer, options: {name: string}) {
@@ -37,7 +39,9 @@ const loggerMock = {
 };
 
 jest.mock("discord.js", () => ({
-  AttachmentBuilder: attachmentBuilderMock,
+  AttachmentBuilder: function MockAttachmentBuilder(...args: [Buffer, {name: string}]) {
+    return attachmentBuilderMock(...args);
+  },
 }));
 
 jest.mock("node-schedule", () => ({
@@ -45,17 +49,17 @@ jest.mock("node-schedule", () => ({
   default: {
     RecurrenceRule: MockRecurrenceRule,
     Range: MockRange,
-    scheduleJob: scheduleJobMock,
+    scheduleJob: (...args: unknown[]) => scheduleJobMock(...args),
   },
 }));
 
 jest.mock("nyse-holidays", () => ({
-  getHolidays: getHolidaysMock,
-  isHoliday: isHolidayMock,
+  getHolidays: (...args: unknown[]) => getHolidaysMock(...args),
+  isHoliday: (...args: unknown[]) => isHolidayMock(...args),
 }));
 
 jest.mock("../assets.js", () => ({
-  getAssetByName: getAssetByNameMock,
+  getAssetByName: (...args: unknown[]) => getAssetByNameMock(...args),
 }));
 
 jest.mock("../calendar.js", () => ({
@@ -66,24 +70,26 @@ jest.mock("../calendar.js", () => ({
     "YYYY-MM-DD HH:mm",
     "Europe/Berlin",
   ),
-  getCalendarEvents: getCalendarEventsMock,
-  getCalendarEventsResult: getCalendarEventsResultMock,
-  getCalendarMessages: getCalendarMessagesMock,
+  getCalendarEvents: (...args: unknown[]) => getCalendarEventsMock(...args),
+  getCalendarEventsResult: (...args: unknown[]) => getCalendarEventsResultMock(...args),
+  getCalendarMessages: (...args: unknown[]) => getCalendarMessagesMock(...args),
 }));
 
 jest.mock("../earnings.js", () => ({
   EARNINGS_MAX_MESSAGE_LENGTH: 1800,
   EARNINGS_MAX_MESSAGES_TIMER: 8,
-  getEarningsResult: getEarningsResultMock,
-  getEarningsMessages: getEarningsMessagesMock,
+  getEarningsResult: (...args: unknown[]) => getEarningsResultMock(...args),
+  getEarningsMessages: (...args: unknown[]) => getEarningsMessagesMock(...args),
 }));
 
 jest.mock("../mnc-downloader.js", () => ({
-  getMnc: getMncMock,
+  getMnc: (...args: unknown[]) => getMncMock(...args),
 }));
 
 jest.mock("../logging.js", () => ({
-  getLogger: () => loggerMock,
+  getLogger: () => ({
+    log: (...args: unknown[]) => loggerMock.log(...args),
+  }),
 }));
 
 import {startMncTimers, startNyseTimers, startOtherTimers} from "../timers.js";

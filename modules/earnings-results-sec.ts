@@ -304,12 +304,15 @@ function getXmlTagText(xml: string, tagName: string): string | null {
     return null;
   }
 
-  return decodeHtmlEntities(tagMatch[1].replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+  const tagContent = tagMatch[1];
+  return undefined === tagContent
+    ? null
+    : decodeHtmlEntities(tagContent.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
 }
 
 function getXmlLinkHref(xml: string): string {
   const linkMatch = xml.match(/<link\b[^>]*\bhref=["']([^"']+)["'][^>]*>/i);
-  return linkMatch ? decodeHtmlEntities(linkMatch[1]) : "";
+  return undefined !== linkMatch?.[1] ? decodeHtmlEntities(linkMatch[1]) : "";
 }
 
 function getAccessionNumber(entry: string, filingUrl: string): string | null {
@@ -326,7 +329,9 @@ function getAccessionNumber(entry: string, filingUrl: string): string | null {
       continue;
     }
 
-    return normalizeAccessionNumber(match[1]);
+    if (undefined !== match[1]) {
+      return normalizeAccessionNumber(match[1]);
+    }
   }
 
   return null;
@@ -367,7 +372,7 @@ function getSecFilingForm(entry: string, fallbackForm: string): string {
 
   const title = getXmlTagText(entry, "title") ?? "";
   const titleFormMatch = title.match(/\b(8-K|6-K)\b/i);
-  if (titleFormMatch) {
+  if (undefined !== titleFormMatch?.[1]) {
     return titleFormMatch[1].toUpperCase();
   }
 
@@ -381,7 +386,12 @@ function getSecFilingItems(entry: string): string[] {
     return [];
   }
 
-  return itemMatch[1]
+  const itemList = itemMatch[1];
+  if (undefined === itemList) {
+    return [];
+  }
+
+  return itemList
     .split(",")
     .map(item => item.trim())
     .filter(item => /^\d+\.\d{2}$/.test(item));

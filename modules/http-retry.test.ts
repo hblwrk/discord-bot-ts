@@ -5,9 +5,9 @@ const isAxiosErrorMock = jest.fn();
 jest.mock("axios", () => ({
   __esModule: true,
   default: {
-    get: getMock,
-    post: postMock,
-    isAxiosError: isAxiosErrorMock,
+    get: (...args: unknown[]) => getMock(...args),
+    post: (...args: unknown[]) => postMock(...args),
+    isAxiosError: (...args: unknown[]) => isAxiosErrorMock(...args),
   },
 }));
 

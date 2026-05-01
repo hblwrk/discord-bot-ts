@@ -2,6 +2,7 @@ import {ImageAsset, TextAsset, UserQuoteAsset} from "./assets.js";
 import {getSecureRandomIndex} from "./secure-random.js";
 
 type RandomTriggerAsset = ImageAsset | TextAsset | UserQuoteAsset;
+type RandomIndexFn = (length: number) => number;
 
 function isRandomTriggerMatch(baseTrigger: string, trigger: string): boolean {
   if (false === trigger.startsWith(`${baseTrigger} `)) {
@@ -16,15 +17,19 @@ function isRandomTriggerAsset(asset: unknown): asset is RandomTriggerAsset {
   return asset instanceof ImageAsset || asset instanceof TextAsset || asset instanceof UserQuoteAsset;
 }
 
-export function getRandomAsset<T>(assets: T[]): T | undefined {
+export function getRandomAsset<T>(assets: T[], randomIndex: RandomIndexFn = getSecureRandomIndex): T | undefined {
   if (0 === assets.length) {
     return undefined;
   }
 
-  return assets[getSecureRandomIndex(assets.length)];
+  return assets[randomIndex(assets.length)];
 }
 
-export function getRandomAssetByTriggerGroup(baseTrigger: string, assets: unknown[]): RandomTriggerAsset | undefined {
+export function getRandomAssetByTriggerGroup(
+  baseTrigger: string,
+  assets: unknown[],
+  randomIndex: RandomIndexFn = getSecureRandomIndex,
+): RandomTriggerAsset | undefined {
   const normalizedBaseTrigger = baseTrigger.trim();
   if ("" === normalizedBaseTrigger) {
     return undefined;
@@ -45,5 +50,5 @@ export function getRandomAssetByTriggerGroup(baseTrigger: string, assets: unknow
     }
   }
 
-  return getRandomAsset(randomAssetPool);
+  return getRandomAsset(randomAssetPool, randomIndex);
 }

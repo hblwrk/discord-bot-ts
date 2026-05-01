@@ -1,7 +1,13 @@
 import {UserQuoteAsset} from "./assets.js";
 import {getRandomAsset} from "./random-asset.js";
 
-export function getRandomQuote(username: string, assets: unknown[]): UserQuoteAsset | undefined {
+type RandomIndexFn = (length: number) => number;
+
+export function getRandomQuote(
+  username: string,
+  assets: unknown[],
+  randomIndex?: RandomIndexFn,
+): UserQuoteAsset | undefined {
   const randomQuotePool: UserQuoteAsset[] = [];
 
   for (const asset of assets) {
@@ -14,5 +20,5 @@ export function getRandomQuote(username: string, assets: unknown[]): UserQuoteAs
     return undefined;
   }
 
-  return getRandomAsset(randomQuotePool);
+  return getRandomAsset(randomQuotePool, randomIndex);
 }
