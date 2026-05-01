@@ -2,7 +2,7 @@
 
 ## Conventions
 
-* This is a TypeScript project using ECMAScript modules (ES2020) <https://www.typescriptlang.org/>.
+* This is a TypeScript 6 project using ECMAScript modules with TypeScript's NodeNext module system and an ES2020 target <https://www.typescriptlang.org/>.
 * The project follows a rolling release model <https://en.wikipedia.org/wiki/Rolling_release>.
 * The `main` branch contains stable and tested code. Any development is done at feature branches.
 * We use `git config pull.rebase false`.
@@ -12,7 +12,7 @@
 
 ## Running
 
-Install NodeJS v22.12 or newer and start the bot like this:
+Install NodeJS v22.12 or newer, below v27, and start the bot like this:
 
 ```bash
 npm install
@@ -57,7 +57,7 @@ git pull
 
 The bot is deployed at our server, running as a docker container in Docker Swarm using compose files. Every time the `main` branch gets updated, the GitHub Actions workflows make sure that:
 
-* Software tests and type checks are executed (`npm run test`, `npm run typecheck`).
+* Software tests and type checks are executed (`npm run test:coverage`, `npm run typecheck`).
 * The `Dockerfile` is validated and checked against CIS benchmark rules.
 * Security scanning in the main workflow is executed using Checkov.
 * Additional security scanning is handled by dedicated CodeQL, njsscan and Semgrep workflows.
