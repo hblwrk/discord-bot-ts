@@ -102,6 +102,8 @@ echo -n "hunter10" | docker secret create production_discord_btcusd_client_ID -
 
 Check the `config.json` example below for a reference set of configuration parameters. Keep it in sync with key references in `assets/*.yaml` and secrets in `tools/docker-compose-production.yml`.
 
+The `/delta` command reads `tastytrade_client_secret` and `tastytrade_refresh_token` only when the command is used. Deployments without these secrets start normally and return a not-configured response for `/delta`.
+
 By defining a set of secrets per developer, multiple bots can be run at the same time based off different code streams. When running outside of Docker, the code looks for `config.json` and expects the following syntax. Mind that all values which are not set in this example require some sort of password or Discord bot- or server-specific ID.
 
 `loglevel` is optional and defaults to `info`. Supported values are `error`, `warn`, `info`, `http`, `verbose`, `debug` and `silly`.  
@@ -145,6 +147,8 @@ The health-check server port can be overridden via the `HEALTHCHECK_PORT` enviro
   "discord_10y_client_ID": "",
   "discord_30y_token": "",
   "discord_30y_client_ID": "",
+  "tastytrade_client_secret": "",
+  "tastytrade_refresh_token": "",
   "dracoon_password": "",
   "hblwrk_channel_NYSEAnnouncement_ID": "",
   "hblwrk_gainslosses_thread_ID": "",
@@ -236,6 +240,8 @@ SEC: 8-K Item 2.02, 9.01 https://www.sec.gov/Archives/edgar/data/320193/00003201
 ## Market data
 
 Real-time market-data is being pulled in through a Websocket connection and distributed via Discord bot nickname and presence information. Those bots can be joined to the server separately and their runtime information is managed as an asset. They require no oAuth2 scopes other than "bot".
+
+The `/delta` command uses tastytrade OAuth read access for option chains and live quote-streamer snapshots. It selects the first expiration on or after the requested DTE and returns the call and put strikes around the requested absolute delta, including bid, mid, ask, size and IV.
 
 ## Service lifecycle
 
