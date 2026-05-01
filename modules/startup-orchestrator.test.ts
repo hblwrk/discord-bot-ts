@@ -72,7 +72,7 @@ function createMockClient(options: {
     PermissionFlagsBits.AddReactions,
   ];
   const missingChannelIdSet = new Set(missingChannelIds);
-  const channelIds = ["nyse", "mnc", "other", "clownboard", ...Object.keys(channelPermissionsById)];
+  const channelIds = ["nyse", "breaking-news", "mnc", "other", "clownboard", ...Object.keys(channelPermissionsById)];
   const channelsById = new Map<string, any>();
   for (const channelId of channelIds) {
     if (true === missingChannelIdSet.has(channelId)) {
@@ -178,6 +178,7 @@ function createDependencies(overrides = {}) {
       discord_token: "token",
       hblwrk_channel_NYSEAnnouncement_ID: "nyse",
       hblwrk_gainslosses_thread_ID: "gains-losses-thread",
+      hblwrk_channel_BreakingNews_ID: "breaking-news",
       hblwrk_channel_MNCAnnouncement_ID: "mnc",
       hblwrk_channel_OtherAnnouncement_ID: "other",
       hblwrk_channel_clownboard_ID: "clownboard",
@@ -213,6 +214,13 @@ function createDependencies(overrides = {}) {
   });
   const startMncTimers = jest.fn(() => {
     events.push("mnc");
+  });
+  const startEarningsResultWatcher = jest.fn(() => {
+    events.push("earnings-results");
+    return {
+      runOnce: jest.fn(),
+      stop: jest.fn(),
+    };
   });
   const startOtherTimers = jest.fn(() => {
     events.push("other-timers");
@@ -251,6 +259,7 @@ function createDependencies(overrides = {}) {
       clownboard,
       startNyseTimers,
       startMncTimers,
+      startEarningsResultWatcher,
       startOtherTimers,
       defineSlashCommands,
       roleManager,
@@ -277,6 +286,7 @@ function createDependencies(overrides = {}) {
       clownboard,
       startNyseTimers,
       startMncTimers,
+      startEarningsResultWatcher,
       startOtherTimers,
       defineSlashCommands,
       roleManager,
@@ -416,6 +426,11 @@ describe("startBot", () => {
       "gains-losses-thread",
     );
     expect(mocks.startMncTimers).toHaveBeenCalledTimes(1);
+    expect(mocks.startEarningsResultWatcher).toHaveBeenCalledTimes(1);
+    expect(mocks.startEarningsResultWatcher).toHaveBeenCalledWith(
+      expect.anything(),
+      "breaking-news",
+    );
     expect(mocks.addInlineResponses).toHaveBeenCalledTimes(1);
     expect(mocks.addTriggerResponses).toHaveBeenCalledTimes(1);
     expect(mocks.interactSlashCommands).toHaveBeenCalledTimes(1);
@@ -924,6 +939,7 @@ describe("startBot", () => {
         discord_token: "token",
         hblwrk_channel_NYSEAnnouncement_ID: "nyse",
         hblwrk_gainslosses_thread_ID: "gains-losses-thread",
+        hblwrk_channel_BreakingNews_ID: "breaking-news",
         hblwrk_channel_MNCAnnouncement_ID: "mnc",
         hblwrk_channel_OtherAnnouncement_ID: "other",
         hblwrk_channel_clownboard_ID: "clownboard",

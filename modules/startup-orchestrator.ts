@@ -4,6 +4,7 @@ import {getGenericAssets, getAssets} from "./assets.js";
 import {clownboard} from "./clownboard.js";
 import {getDiscordRateLimitRetryAfterMs} from "./discord-retry-after.js";
 import {getInteractiveClientCacheFactory} from "./discord-client-options.js";
+import {startEarningsResultWatcher} from "./earnings-results.js";
 import {runHealthCheck} from "./health-check.js";
 import {addInlineResponses} from "./inline-response.js";
 import {getLogger} from "./logging.js";
@@ -29,6 +30,7 @@ type StartupDependencies = {
   startNyseTimers: typeof startNyseTimers;
   startMncTimers: typeof startMncTimers;
   startOtherTimers: typeof startOtherTimers;
+  startEarningsResultWatcher: typeof startEarningsResultWatcher;
   updateMarketData: typeof updateMarketData;
   defineSlashCommands: typeof defineSlashCommands;
   interactSlashCommands: typeof interactSlashCommands;
@@ -97,6 +99,7 @@ type StartupPreflightFailure = {
 type StartupPreflightOptions = {
   brokerYesRoleId: string;
   channelClownboardId: string;
+  channelBreakingNewsId: string;
   channelMncId: string;
   channelNyseId: string;
   channelOtherId: string;
@@ -161,6 +164,7 @@ function createDependencies(options: StartupOptions): StartupDependencies {
     startNyseTimers: options.startNyseTimers ?? startNyseTimers,
     startMncTimers: options.startMncTimers ?? startMncTimers,
     startOtherTimers: options.startOtherTimers ?? startOtherTimers,
+    startEarningsResultWatcher: options.startEarningsResultWatcher ?? startEarningsResultWatcher,
     updateMarketData: options.updateMarketData ?? updateMarketData,
     defineSlashCommands: options.defineSlashCommands ?? defineSlashCommands,
     interactSlashCommands: options.interactSlashCommands ?? interactSlashCommands,
@@ -416,6 +420,15 @@ async function runStartupPreflight(
     ],
   });
   await checkChannel({
+    channelId: options.channelBreakingNewsId,
+    label: "Breaking news",
+    requireSendCapability: true,
+    requiredPermissions: [
+      PermissionFlagsBits.ViewChannel,
+      PermissionFlagsBits.SendMessages,
+    ],
+  });
+  await checkChannel({
     channelId: options.channelMncId,
     label: "MNC announcements",
     requireSendCapability: true,
@@ -651,6 +664,7 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
   const environment = dependencies.readSecret("environment").trim();
   const channelNyseId = dependencies.readSecret("hblwrk_channel_NYSEAnnouncement_ID").trim();
   const gainsLossesThreadId = dependencies.readSecret("hblwrk_gainslosses_thread_ID").trim();
+  const channelBreakingNewsId = dependencies.readSecret("hblwrk_channel_BreakingNews_ID").trim();
   const channelMncId = dependencies.readSecret("hblwrk_channel_MNCAnnouncement_ID").trim();
   const channelOtherId = dependencies.readSecret("hblwrk_channel_OtherAnnouncement_ID").trim();
   const channelClownboardId = dependencies.readSecret("hblwrk_channel_clownboard_ID").trim();
@@ -713,6 +727,7 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
     startupState.markDiscordLoggedIn();
     await runStartupPreflight(client, logger, {
       brokerYesRoleId,
+      channelBreakingNewsId,
       channelClownboardId,
       channelMncId,
       channelNyseId,
@@ -727,6 +742,7 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
     dependencies.clownboard(client, channelClownboardId);
     dependencies.startNyseTimers(client, channelNyseId, gainsLossesThreadId);
     dependencies.startMncTimers(client, channelMncId);
+    dependencies.startEarningsResultWatcher(client, channelBreakingNewsId);
     dependencies.addInlineResponses(client, sharedData.assets, sharedData.assetCommands);
     dependencies.addTriggerResponses(client, sharedData.assets, sharedData.assetCommandsWithPrefix, sharedData.whatIsAssets, sharedData.paywallAssets);
     dependencies.interactSlashCommands(client, sharedData.assets, sharedData.assetCommands, sharedData.whatIsAssets, sharedData.tickers, sharedData.paywallAssets);

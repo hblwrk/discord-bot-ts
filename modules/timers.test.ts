@@ -833,7 +833,7 @@ describe("timers", () => {
 
     expect(getEarningsResultMock).toHaveBeenCalledWith(0, "today");
     expect(send).toHaveBeenCalledWith({
-      content: "<@&role-456> Heute Earnings: NVDA, MSFT (nach Handelsschluss)",
+      content: "<@&role-456> Heute Earnings: `NVDA`, `MSFT` (nach Handelsschluss)",
       allowedMentions: {
         parse: [],
         roles: ["role-456"],
@@ -883,7 +883,7 @@ describe("timers", () => {
 
     expect(send).toHaveBeenCalledTimes(1);
     expect(send).toHaveBeenCalledWith({
-      content: "<@&role-456> Heute Earnings: NVDA, MSFT (nach Handelsschluss)",
+      content: "<@&role-456> Heute Earnings: `NVDA`, `MSFT` (nach Handelsschluss)",
       allowedMentions: {
         parse: [],
         roles: ["role-456"],
@@ -919,7 +919,7 @@ describe("timers", () => {
     await getEarningsReminderJob().callback();
 
     expect(send).toHaveBeenCalledWith({
-      content: "<@&role-456> Heute Earnings: BRK.B (nach Handelsschluss)",
+      content: "<@&role-456> Heute Earnings: `BRK.B` (nach Handelsschluss)",
       allowedMentions: {
         parse: [],
         roles: ["role-456"],

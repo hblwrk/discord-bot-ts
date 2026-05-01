@@ -206,6 +206,10 @@ function getRoleMention(roleId: string): string {
   return `<@&${roleId}>`;
 }
 
+function getDiscordMonospaceText(value: string): string {
+  return `\`${value.replaceAll("`", "")}\``;
+}
+
 function normalizeLowerCaseValue(value: string): string {
   return value.trim().toLowerCase();
 }
@@ -400,7 +404,7 @@ function getEarningsReminderMessage(roleId: string, earningsEvents: EarningsEven
 
   const segments = [...tickersByWhen.entries()]
     .sort(([firstWhen], [secondWhen]) => (earningsReminderWhenSortRank.get(firstWhen) ?? Number.MAX_SAFE_INTEGER) - (earningsReminderWhenSortRank.get(secondWhen) ?? Number.MAX_SAFE_INTEGER))
-    .map(([when, tickers]) => `${tickers.join(", ")} (${getEarningsReminderWhenText(when)})`);
+    .map(([when, tickers]) => `${tickers.map(getDiscordMonospaceText).join(", ")} (${getEarningsReminderWhenText(when)})`);
 
   return `${getRoleMention(roleId)} Heute Earnings: ${segments.join("; ")}`;
 }
