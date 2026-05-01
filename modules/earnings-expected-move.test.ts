@@ -1,7 +1,7 @@
 import moment from "moment-timezone";
-import {describe, expect, test, vi} from "vitest";
+import {beforeEach, describe, expect, test, vi} from "vitest";
 import {type BrokerApiRateLimiter} from "./broker-api-rate-limit.ts";
-import {addExpectedMovesToEarningsEvents} from "./earnings-expected-move.ts";
+import {addExpectedMovesToEarningsEvents, clearExpectedMoveCacheForTests} from "./earnings-expected-move.ts";
 import {type EarningsEvent} from "./earnings-types.ts";
 import {type OptionDeltaCredentials} from "./options-delta.ts";
 import {type OptionStrategyLookupResult, type getOptionStraddleLookup} from "./options-strategy.ts";
@@ -47,6 +47,10 @@ function createLookupResult(overrides: Partial<OptionStrategyLookupResult> = {})
 }
 
 describe("earnings expected move enrichment", () => {
+  beforeEach(() => {
+    clearExpectedMoveCacheForTests();
+  });
+
   test("skips lookups when credentials are unavailable", async () => {
     const lookupMock = vi.fn();
     const events = [createEarningsEvent()];
@@ -58,7 +62,7 @@ describe("earnings expected move enrichment", () => {
       rateLimiter,
     });
 
-    expect(result).toBe(events);
+    expect(result).toEqual(events);
     expect(lookupMock).not.toHaveBeenCalled();
   });
 
@@ -98,7 +102,61 @@ describe("earnings expected move enrichment", () => {
       expectedMove: 13.25,
       expectedMoveActualDte: 4,
       expectedMoveExpiration: "2025-02-22",
+      expectedMoveUnderlyingPrice: 190.42,
+      expectedMoveUnderlyingPriceIsRealtime: true,
     });
+  });
+
+  test("reuses fresh cached expected moves without another lookup", async () => {
+    const lookupMock = vi.fn(async () => createLookupResult({
+      expiration: "2025-02-22",
+      midTotal: 13.25,
+    }));
+    const event = createEarningsEvent({ticker: "NVDA"});
+    const options = {
+      credentials,
+      getOptionStraddleLookupFn: lookupMock as unknown as typeof getOptionStraddleLookup,
+      now,
+      rateLimiter,
+    };
+
+    const firstResult = await addExpectedMovesToEarningsEvents([event], options);
+    const secondResult = await addExpectedMovesToEarningsEvents([event], options);
+
+    expect(lookupMock).toHaveBeenCalledTimes(1);
+    expect(firstResult[0]?.expectedMove).toBe(13.25);
+    expect(secondResult[0]).toEqual(firstResult[0]);
+  });
+
+  test("prioritizes visible output order before applying the max event cap", async () => {
+    const lookupMock = vi.fn(async () => createLookupResult({
+      midTotal: 7.5,
+    }));
+    const lowerMarketCapEvent = createEarningsEvent({
+      ticker: "LOWER",
+      marketCap: 12_000_000_000,
+    });
+    const higherMarketCapEvent = createEarningsEvent({
+      ticker: "HIGHER",
+      marketCap: 50_000_000_000,
+    });
+
+    const result = await addExpectedMovesToEarningsEvents([lowerMarketCapEvent, higherMarketCapEvent], {
+      credentials,
+      getOptionStraddleLookupFn: lookupMock as unknown as typeof getOptionStraddleLookup,
+      marketCapFilter: "bluechips",
+      maxEvents: 1,
+      now,
+      rateLimiter,
+      when: "all",
+    });
+
+    expect(lookupMock).toHaveBeenCalledTimes(1);
+    expect(lookupMock).toHaveBeenCalledWith(expect.objectContaining({
+      symbol: "HIGHER",
+    }), expect.any(Object));
+    expect(result[0]).toEqual(lowerMarketCapEvent);
+    expect(result[1]?.expectedMove).toBe(7.5);
   });
 
   test("keeps earnings events when expected moves are unavailable", async () => {

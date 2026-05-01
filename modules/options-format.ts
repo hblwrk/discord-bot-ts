@@ -145,11 +145,11 @@ export function formatOptionDeltaLookupResult(result: OptionDeltaLookupResult): 
     ? `Expiry \`${result.expiration}\` (\`${result.actualDte}\` DTE, requested \`${result.requestedDte}\`)`
     : `Expiry \`${result.expiration}\` (\`${result.actualDte}\` DTE)`;
   const lines = [
-    `**${formatSymbolWithUnderlyingPrice(
+    `${formatSymbolWithUnderlyingPrice(
       result.symbol,
       result.underlyingPrice,
       result.underlyingPriceIsRealtime,
-    )} | Δ target \`${formatDecimal(result.targetDelta, 2)}\` | ${expirationText}**`,
+    )} | Δ target \`${formatDecimal(result.targetDelta, 2)}\` | ${expirationText}`,
   ];
 
   for (const sideResult of result.sideResults) {

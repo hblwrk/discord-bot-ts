@@ -7,6 +7,7 @@ import {
 } from "./options-delta.ts";
 import {
   formatExpectedMoveLookupResult,
+  formatOptionStraddleLookupResult,
   formatOptionStrangleLookupResult,
   getOptionStraddleLookup,
   getOptionStrangleLookup,
@@ -133,8 +134,9 @@ describe("options-strategy", () => {
     expect(result.put?.strike).toBe(440);
     expect(result.midTotal).toBe(4.4);
     expect(result.underlyingPrice).toBe(442);
-    expect(formatOptionStrangleLookupResult(result)).toContain("**`AAPL` @ `442.00` | Strangle | Δ target `0.16`");
-    expect(formatOptionStrangleLookupResult(result)).toContain("Breakevens: `435.60 / 449.40`");
+    const formattedResult = formatOptionStrangleLookupResult(result);
+    expect(formattedResult.split("\n")[0]).toBe("`AAPL` @ `442.00` | Strangle | Δ target `0.16` | Expiry `2026-06-19` (`49` DTE)");
+    expect(formattedResult).toContain("Breakevens: `435.60 / 449.40`");
   });
 
   test("builds an ATM straddle and expected-move output with monospace market values", async () => {
@@ -152,12 +154,14 @@ describe("options-strategy", () => {
       marketDataTimeoutMs: 20,
     });
 
+    const formattedStraddleResult = formatOptionStraddleLookupResult(result);
     const formattedResult = formatExpectedMoveLookupResult(result);
     expect(result.targetDelta).toBe(0.5);
     expect(result.call?.strike).toBe(440);
     expect(result.put?.strike).toBe(445);
     expect(result.midTotal).toBe(12.4);
-    expect(formattedResult).toContain("**`AAPL` @ `442.00` | Expected Move");
+    expect(formattedStraddleResult.split("\n")[0]).toBe("`AAPL` @ `442.00` | ATM Straddle | Expiry `2026-06-19` (`49` DTE)");
+    expect(formattedResult.split("\n")[0]).toBe("`AAPL` @ `442.00` | Expected Move | Expiry `2026-06-19` (`49` DTE)");
     expect(formattedResult).toContain("ATM straddle mid `12.40`");
     expect(formattedResult).toContain("Move proxy: `+/- 12.40`");
   });

@@ -9,13 +9,22 @@ function getExpectedMoveDteText(expectedMoveActualDte: number | undefined): stri
   return ` (\`${Math.round(expectedMoveActualDte)}\` DTE)`;
 }
 
+export function getFormattedExpectedMoveUnderlyingPriceText(earningsEvent: EarningsEvent): string {
+  if (
+    "number" !== typeof earningsEvent.expectedMoveUnderlyingPrice
+      || false === Number.isFinite(earningsEvent.expectedMoveUnderlyingPrice)
+      || earningsEvent.expectedMoveUnderlyingPrice < 0
+  ) {
+    return "";
+  }
+
+  return ` 📈 Last: \`$${formatOptionalPrice(earningsEvent.expectedMoveUnderlyingPrice)}\``;
+}
+
 export function getFormattedExpectedMoveText(earningsEvent: EarningsEvent): string {
   if ("number" !== typeof earningsEvent.expectedMove || false === Number.isFinite(earningsEvent.expectedMove) || earningsEvent.expectedMove < 0) {
     return "";
   }
 
-  const expirationText = "string" === typeof earningsEvent.expectedMoveExpiration && "" !== earningsEvent.expectedMoveExpiration.trim()
-    ? ` Exp \`${earningsEvent.expectedMoveExpiration.trim()}\`${getExpectedMoveDteText(earningsEvent.expectedMoveActualDte)}`
-    : "";
-  return ` 🎯 Move: \`+/- ${formatOptionalPrice(earningsEvent.expectedMove)}\`${expirationText}`;
+  return ` 🎯 Move: \`+/- ${formatOptionalPrice(earningsEvent.expectedMove)}\`${getExpectedMoveDteText(earningsEvent.expectedMoveActualDte)}`;
 }

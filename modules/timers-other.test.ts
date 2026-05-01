@@ -65,7 +65,9 @@ describe("timers: other announcements", () => {
 
     startOtherTimers(client, "channel-id", assets, []);
     const fridayJob = getScheduledJobByTime(8, 0, "Europe/Berlin");
+    const dailyEarningsWarmupJob = getScheduledJobByTime(19, 28, "Europe/Berlin");
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
+    const weeklyEarningsWarmupJob = getScheduledJobByTime(23, 28, "Europe/Berlin");
     const weeklyEarningsJob = getScheduledJobByTime(23, 30, "Europe/Berlin");
     const earningsReminderJob = scheduledJobs.find(job =>
       false === (job.rule instanceof Date) &&
@@ -77,13 +79,20 @@ describe("timers: other announcements", () => {
       5 === (job.rule.dayOfWeek[0] as MockRange).end);
     const weeklyCalendarJob = getScheduledJobByTime(23, 45, "Europe/Berlin");
 
-    expect(scheduleJobMock).toHaveBeenCalledTimes(6);
+    expect(scheduleJobMock).toHaveBeenCalledTimes(8);
     expect(fridayJob.rule).toEqual(expect.objectContaining({
       hour: 8,
       minute: 0,
       tz: "Europe/Berlin",
     }));
     expect(dailyEarningsJob.rule.dayOfWeek).toEqual([expect.objectContaining({start: 0, end: 6})]);
+    expect(dailyEarningsWarmupJob.rule.dayOfWeek).toEqual([expect.objectContaining({start: 0, end: 6})]);
+    expect(weeklyEarningsWarmupJob.rule).toEqual(expect.objectContaining({
+      hour: 23,
+      minute: 28,
+      tz: "Europe/Berlin",
+    }));
+    expect(weeklyEarningsWarmupJob.rule.dayOfWeek).toEqual([5]);
     expect(weeklyEarningsJob.rule).toEqual(expect.objectContaining({
       hour: 23,
       minute: 30,

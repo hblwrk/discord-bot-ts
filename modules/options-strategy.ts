@@ -130,11 +130,11 @@ function formatBreakevens(result: OptionStrategyLookupResult): string {
 
 export function formatOptionStrangleLookupResult(result: OptionStrategyLookupResult): string {
   return [
-    `**${formatSymbolWithUnderlyingPrice(
+    `${formatSymbolWithUnderlyingPrice(
       result.symbol,
       result.underlyingPrice,
       result.underlyingPriceIsRealtime,
-    )} | Strangle | Δ target \`${formatDecimal(result.targetDelta, 2)}\` | ${formatExpiration(result)}**`,
+    )} | Strangle | Δ target \`${formatDecimal(result.targetDelta, 2)}\` | ${formatExpiration(result)}`,
     formatLeg("Put", result.put),
     formatLeg("Call", result.call),
     `Mid credit: \`${formatOptionalPrice(result.midTotal)}\``,
@@ -144,11 +144,11 @@ export function formatOptionStrangleLookupResult(result: OptionStrategyLookupRes
 
 export function formatOptionStraddleLookupResult(result: OptionStrategyLookupResult): string {
   return [
-    `**${formatSymbolWithUnderlyingPrice(
+    `${formatSymbolWithUnderlyingPrice(
       result.symbol,
       result.underlyingPrice,
       result.underlyingPriceIsRealtime,
-    )} | ATM Straddle | ${formatExpiration(result)}**`,
+    )} | ATM Straddle | ${formatExpiration(result)}`,
     formatLeg("Put", result.put),
     formatLeg("Call", result.call),
     `Mid debit: \`${formatOptionalPrice(result.midTotal)}\``,
@@ -157,11 +157,11 @@ export function formatOptionStraddleLookupResult(result: OptionStrategyLookupRes
 
 export function formatExpectedMoveLookupResult(result: OptionStrategyLookupResult): string {
   return [
-    `**${formatSymbolWithUnderlyingPrice(
+    `${formatSymbolWithUnderlyingPrice(
       result.symbol,
       result.underlyingPrice,
       result.underlyingPriceIsRealtime,
-    )} | Expected Move | ${formatExpiration(result)}**`,
+    )} | Expected Move | ${formatExpiration(result)}`,
     `Move proxy: \`+/- ${formatOptionalPrice(result.midTotal)}\` | ATM straddle mid \`${formatOptionalPrice(result.midTotal)}\``,
     formatLeg("Put", result.put),
     formatLeg("Call", result.call),

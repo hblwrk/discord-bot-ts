@@ -11,6 +11,11 @@ import {
   type OptionDeltaCredentials,
 } from "./options-delta.ts";
 import {
+  formatBoxSpreadLookupResult,
+  getBoxSpreadLookup,
+  type BoxSpreadDirection,
+} from "./options-boxspread.ts";
+import {
   formatExpectedMoveLookupResult,
   formatOptionStraddleLookupResult,
   formatOptionStrangleLookupResult,
@@ -21,7 +26,7 @@ import {readSecret} from "./secrets.ts";
 import {getDiscordLoggerClient, noMentions, type SlashCommandClient} from "./slash-commands-interact-shared.ts";
 
 const logger = getLogger();
-const optionCommandNames = new Set(["delta", "strangle", "straddle", "expectedmove"]);
+const optionCommandNames = new Set(["delta", "strangle", "straddle", "expectedmove", "boxspread"]);
 
 function getRequestedSide(sideOption: string | null): OptionDeltaRequestedSide {
   if ("call" === sideOption || "put" === sideOption) {
@@ -29,6 +34,14 @@ function getRequestedSide(sideOption: string | null): OptionDeltaRequestedSide {
   }
 
   return "both";
+}
+
+function getBoxSpreadDirection(directionOption: string): BoxSpreadDirection {
+  if ("borrow" === directionOption || "lend" === directionOption) {
+    return directionOption;
+  }
+
+  throw new OptionDeltaInputError("Direction must be borrow or lend.");
 }
 
 function getTastytradeCredentials(): OptionDeltaCredentials {
@@ -42,13 +55,13 @@ function getTastytradeCredentials(): OptionDeltaCredentials {
   }
 }
 
-function getDeltaErrorMessage(error: unknown): string {
+function getDeltaErrorMessage(error: unknown, commandName: string): string {
   if (error instanceof BrokerApiRateLimitError) {
     return "Optionsdaten sind gerade ausgelastet. Bitte gleich erneut versuchen.";
   }
 
   if (error instanceof OptionDeltaConfigurationError) {
-    return "Optionsdaten sind für /delta noch nicht konfiguriert.";
+    return `Optionsdaten sind für /${commandName} noch nicht konfiguriert.`;
   }
 
   if (error instanceof OptionDeltaInputError) {
@@ -63,9 +76,19 @@ function getDeltaErrorMessage(error: unknown): string {
 }
 
 async function getOptionsCommandResponse(interaction: ChatInputCommandInteraction, commandName: string): Promise<string> {
-  const symbol = interaction.options.getString("symbol", true);
   const dte = interaction.options.getInteger("dte", true);
   const credentials = getTastytradeCredentials();
+  if ("boxspread" === commandName) {
+    const result = await getBoxSpreadLookup({
+      credentials,
+      direction: getBoxSpreadDirection(interaction.options.getString("direction", true)),
+      dte,
+      notational: interaction.options.getNumber("notational", true),
+    });
+    return formatBoxSpreadLookupResult(result);
+  }
+
+  const symbol = interaction.options.getString("symbol", true);
   if ("strangle" === commandName) {
     const delta = interaction.options.getNumber("delta");
     const result = await getOptionStrangleLookup({
@@ -129,7 +152,7 @@ export async function handleDeltaSlashCommand(
   const deferred = await interaction.deferReply().then(() => true).catch((error: unknown) => {
     logger.log(
       "error",
-      `Error deferring delta slashcommand: ${error}`,
+      `Error deferring ${commandName} slashcommand: ${error}`,
     );
     return false;
   });
@@ -144,21 +167,21 @@ export async function handleDeltaSlashCommand(
     }).catch((error: unknown) => {
       logger.log(
         "error",
-        `Error replying to delta slashcommand: ${error}`,
+        `Error replying to ${commandName} slashcommand: ${error}`,
       );
     });
   } catch (error: unknown) {
     logger.log(
       "warn",
-      `Error loading delta slashcommand: ${error}`,
+      `Error loading ${commandName} slashcommand: ${error}`,
     );
     await interaction.editReply({
-      content: getDeltaErrorMessage(error),
+      content: getDeltaErrorMessage(error, commandName),
       allowedMentions: noMentions,
     }).catch((replyError: unknown) => {
       logger.log(
         "error",
-        `Error replying to delta slashcommand failure: ${replyError}`,
+        `Error replying to ${commandName} slashcommand failure: ${replyError}`,
       );
     });
   }

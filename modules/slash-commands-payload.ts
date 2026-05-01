@@ -11,7 +11,7 @@ import {getSlashCommandNamesFromPayload} from "./slash-commands-canonical.ts";
 
 const logger = getLogger();
 const maxSlashCommandsPerScope = 100;
-export const fixedSlashCommandNames = ["cryptodice", "lmgtfy", "google", "8ball", "whatis", "quote", "islandboi", "sara", "earnings", "calendar", "paywall", "delta", "strangle", "straddle", "expectedmove"];
+export const fixedSlashCommandNames = ["cryptodice", "lmgtfy", "google", "8ball", "whatis", "quote", "sara", "earnings", "calendar", "paywall", "delta", "strangle", "straddle", "expectedmove", "boxspread"];
 type SlashCommandJson = ReturnType<SlashCommandBuilder["toJSON"]>;
 type SlashCommandChoice = {
   name: string;
@@ -87,11 +87,6 @@ function createFixedSlashCommands(whatIsAssetsChoices: SlashCommandChoice[], use
         .setRequired(false)
         .addChoices(...userAssetsChoices));
   fixedSlashCommands.push(slashUserquotequote.toJSON());
-
-  const slashCommandIslandboi = new SlashCommandBuilder()
-    .setName("islandboi")
-    .setDescription("Island bwoi!");
-  fixedSlashCommands.push(slashCommandIslandboi.toJSON());
 
   const slashSara = new SlashCommandBuilder()
     .setName("sara")
@@ -237,6 +232,30 @@ function createFixedSlashCommands(whatIsAssetsChoices: SlashCommandChoice[], use
         .setMaxValue(3650)
         .setRequired(true));
   fixedSlashCommands.push(slashCommandExpectedMove.toJSON());
+
+  const slashCommandBoxSpread = new SlashCommandBuilder()
+    .setName("boxspread")
+    .setDescription("Price an SPX box spread")
+    .addIntegerOption(option =>
+      option.setName("dte")
+        .setDescription("Target days to expiration")
+        .setMinValue(0)
+        .setMaxValue(3650)
+        .setRequired(true))
+    .addStringOption(option =>
+      option.setName("direction")
+        .setDescription("Borrow cash with a short box, or lend cash with a long box")
+        .setRequired(true)
+        .addChoices(
+          {name: "Borrow cash (short box)", value: "borrow"},
+          {name: "Lend cash (long box)", value: "lend"},
+        ))
+    .addNumberOption(option =>
+      option.setName("notational")
+        .setDescription("Maturity notational, e.g. 100000 for one 1000-wide SPX box")
+        .setMinValue(1)
+        .setRequired(true));
+  fixedSlashCommands.push(slashCommandBoxSpread.toJSON());
 
   return fixedSlashCommands;
 }

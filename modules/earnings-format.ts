@@ -18,7 +18,7 @@ import {
   getNormalizedString,
   getNumericValueFromNasdaqCapString,
 } from "./earnings-utils.ts";
-import {getFormattedExpectedMoveText} from "./earnings-option-format.ts";
+import {getFormattedExpectedMoveText, getFormattedExpectedMoveUnderlyingPriceText} from "./earnings-option-format.ts";
 
 type EarningsSectionRow = {
   when: EarningsWhen;
@@ -82,7 +82,7 @@ export function getEarningsMessages(
   const filteredAndSortedEvents = [...earningsEvents]
     .filter(event => selectedWhen.has(event.when))
     .filter(event => isIncludedByMarketCapFilter(event, selectedMarketCapFilter))
-    .sort(compareEarningsEvents);
+    .sort(compareEarningsEventsForDisplay);
 
   const totalEvents = filteredAndSortedEvents.length;
   if (0 === filteredAndSortedEvents.length) {
@@ -308,7 +308,7 @@ function getMarketCapBalancedEventsForMultiDayFit(
     const selectedEvents = getSelectedEventsByPerDayCap(
       buckets,
       perDayCap
-    ).sort(compareEarningsEvents);
+    ).sort(compareEarningsEventsForDisplay);
     const candidateBatch = buildEarningsMessageBatch(
       selectedEvents,
       highlightedTickerSymbols,
@@ -664,7 +664,7 @@ function appendEarningsTruncationNote(
   return `${trimmedContent}${suffix}`;
 }
 
-function compareEarningsEvents(first: EarningsEvent, second: EarningsEvent): number {
+export function compareEarningsEventsForDisplay(first: EarningsEvent, second: EarningsEvent): number {
   if (first.date !== second.date) {
     return first.date.localeCompare(second.date);
   }
@@ -710,7 +710,6 @@ function getEarningsEventLine(
     highlightedTickerSymbols,
     lineWidths.ticker
   );
-  const companyName = getEarningsCompanyName(earningsEvent.companyName);
   const marketCapText = getFormattedMarketCapText(earningsEvent.marketCap, earningsEvent.marketCapText);
   const epsConsensus = getFormattedEpsConsensusText(earningsEvent.epsConsensus);
   const paddedMarketCapText = getPaddedEarningsColumnText(
@@ -722,8 +721,9 @@ function getEarningsEventLine(
     lineWidths.eps
   );
   const expectedMoveText = getFormattedExpectedMoveText(earningsEvent);
+  const underlyingPriceText = getFormattedExpectedMoveUnderlyingPriceText(earningsEvent);
 
-  return `${ticker} MCap: \`${paddedMarketCapText}\` 🔮 EPS: \`${paddedEpsConsensus}\`${expectedMoveText} ${companyName}`;
+  return `${ticker} 💰 MCap: \`${paddedMarketCapText}\`${underlyingPriceText} 🔮 EPS: \`${paddedEpsConsensus}\`${expectedMoveText}`;
 }
 
 function getFormattedMarketCapText(
@@ -771,19 +771,6 @@ function getFormattedTicker(
   }
 
   return tickerText;
-}
-
-function getEarningsCompanyName(companyName: string | undefined): string {
-  if ("string" !== typeof companyName) {
-    return "Unternehmen unbekannt";
-  }
-
-  const normalizedCompanyName = companyName.trim();
-  if (0 === normalizedCompanyName.length) {
-    return "Unternehmen unbekannt";
-  }
-
-  return normalizedCompanyName;
 }
 
 function getEarningsWhenLabel(earningsWhen: EarningsWhen): string {

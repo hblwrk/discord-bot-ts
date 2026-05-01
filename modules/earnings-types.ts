@@ -12,6 +12,8 @@ export interface EarningsEvent {
   expectedMove?: number | null;
   expectedMoveActualDte?: number;
   expectedMoveExpiration?: string;
+  expectedMoveUnderlyingPrice?: number | null;
+  expectedMoveUnderlyingPriceIsRealtime?: boolean;
 }
 
 export type EarningsLoadStatus = "ok" | "error";

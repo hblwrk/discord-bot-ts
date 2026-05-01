@@ -10,6 +10,11 @@ import {
   OptionDeltaInputError,
   type OptionDeltaLookupResult,
 } from "./options-delta.ts";
+import {
+  formatBoxSpreadLookupResult,
+  getBoxSpreadLookup,
+  type BoxSpreadLookupResult,
+} from "./options-boxspread.ts";
 import {createChatInputInteraction, createEventClient} from "./test-utils/discord-mocks.ts";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
@@ -18,10 +23,14 @@ const readSecretMock = vi.hoisted(() => vi.fn((secretName: string) => {
   return "";
 }));
 const {
+  formatBoxSpreadLookupResultMock,
   formatOptionDeltaLookupResultMock,
+  getBoxSpreadLookupMock,
   getOptionDeltaLookupMock,
 } = vi.hoisted(() => ({
+  formatBoxSpreadLookupResultMock: vi.fn(),
   formatOptionDeltaLookupResultMock: vi.fn(),
+  getBoxSpreadLookupMock: vi.fn(),
   getOptionDeltaLookupMock: vi.fn(),
 }));
 
@@ -35,6 +44,11 @@ vi.mock("./options-delta.ts", () => ({
   OptionDeltaConfigurationError: class OptionDeltaConfigurationError extends Error {},
   OptionDeltaDataError: class OptionDeltaDataError extends Error {},
   OptionDeltaInputError: class OptionDeltaInputError extends Error {},
+}));
+
+vi.mock("./options-boxspread.ts", () => ({
+  formatBoxSpreadLookupResult: formatBoxSpreadLookupResultMock,
+  getBoxSpreadLookup: getBoxSpreadLookupMock,
 }));
 
 const loggerMock = vi.hoisted(() => ({
@@ -69,6 +83,8 @@ const getEarningsResultMock = getEarningsResult as MockedFunction<typeof getEarn
 const getEarningsMessagesMock = getEarningsMessages as MockedFunction<typeof getEarningsMessages>;
 const getOptionDeltaLookupMockTyped = getOptionDeltaLookup as MockedFunction<typeof getOptionDeltaLookup>;
 const formatOptionDeltaLookupResultMockTyped = formatOptionDeltaLookupResult as MockedFunction<typeof formatOptionDeltaLookupResult>;
+const getBoxSpreadLookupMockTyped = getBoxSpreadLookup as MockedFunction<typeof getBoxSpreadLookup>;
+const formatBoxSpreadLookupResultMockTyped = formatBoxSpreadLookupResult as MockedFunction<typeof formatBoxSpreadLookupResult>;
 
 function createImageAsset({
   fileContent,
@@ -119,6 +135,8 @@ describe("interactSlashCommands", () => {
     readSecretMock.mockImplementation(secretName => "discord_guild_ID" === secretName ? "guild-id" : "");
     getOptionDeltaLookupMockTyped.mockReset();
     formatOptionDeltaLookupResultMockTyped.mockReset();
+    getBoxSpreadLookupMockTyped.mockReset();
+    formatBoxSpreadLookupResultMockTyped.mockReset();
     getCalendarEventsMock.mockResolvedValue([]);
     getCalendarMessagesMock.mockReturnValue({
       messages: [],
@@ -261,6 +279,76 @@ describe("interactSlashCommands", () => {
     expect(getOptionDeltaLookupMockTyped).toHaveBeenCalledWith(expect.objectContaining({
       side: "put",
     }));
+  });
+
+  test("boxspread prices the default SPX box from dte, direction, and notational", async () => {
+    const lookupResult = {
+      actualDte: 112,
+      benchmarkName: "SOFR",
+      cashToday: 98_790,
+      contracts: 1,
+      currency: "USD",
+      direction: "borrow",
+      expiration: "2026-08-21",
+      financingAmount: 1_210,
+      impliedRate: 0.0394,
+      legs: [],
+      limitPrice: 987.9,
+      naturalCredit: 985.9,
+      naturalDebit: 989.9,
+      notational: 100_000,
+      rateDeltaToBenchmark: 0.0028,
+      requestedDte: 112,
+      rolled: false,
+      sofr: {
+        effectiveDate: "2026-04-30",
+        percentRate: 3.66,
+      },
+      symbol: "SPX",
+      underlyingPrice: 6500,
+      underlyingPriceIsRealtime: true,
+      width: 1000,
+    } satisfies BoxSpreadLookupResult;
+    readSecretMock.mockImplementation(secretName => {
+      if ("tastytrade_client_secret" === secretName) {
+        return "client-secret";
+      }
+
+      if ("tastytrade_refresh_token" === secretName) {
+        return "refresh-token";
+      }
+
+      return "";
+    });
+    getBoxSpreadLookupMockTyped.mockResolvedValue(lookupResult);
+    formatBoxSpreadLookupResultMockTyped.mockReturnValue("boxspread-response");
+    const {client, getHandler} = createEventClient();
+    interactSlashCommands(client, [], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("boxspread");
+    interaction.options.getString.mockImplementation(name => "direction" === name ? "borrow" : null);
+    interaction.options.getInteger.mockImplementation(name => "dte" === name ? 112 : null);
+    interaction.options.getNumber.mockImplementation(name => "notational" === name ? 100_000 : null);
+
+    await handler(interaction);
+
+    expect(getBoxSpreadLookupMockTyped).toHaveBeenCalledWith({
+      credentials: {
+        clientSecret: "client-secret",
+        refreshToken: "refresh-token",
+      },
+      direction: "borrow",
+      dte: 112,
+      notational: 100_000,
+    });
+    expect(formatBoxSpreadLookupResultMockTyped).toHaveBeenCalledWith(lookupResult);
+    expect(interaction.editReply).toHaveBeenCalledWith({
+      content: "boxspread-response",
+      allowedMentions: {
+        parse: [],
+      },
+    });
   });
 
   test("delta replies with configuration fallback when tastytrade secrets are missing", async () => {
