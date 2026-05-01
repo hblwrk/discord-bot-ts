@@ -345,8 +345,23 @@ async function getTodaysEarningsWatches(
 
   const [earningsResult, tickerToCompany] = await Promise.all([
     dependencies.getEarningsResultFn(0, dateStamp),
-    loadSecTickerMap(dependencies),
+    loadSecTickerMap(dependencies).catch(error => {
+      dependencies.logger.log(
+        "warn",
+        `Skipping earnings result scan: SEC ticker map could not be loaded: ${error}`,
+      );
+      return null;
+    }),
   ]);
+  if (null === tickerToCompany) {
+    earningsWatchCache = {
+      dateStamp,
+      loadedAtMs,
+      watches: [],
+    };
+    return [];
+  }
+
   if ("error" === earningsResult.status) {
     dependencies.logger.log(
       "warn",
@@ -425,7 +440,17 @@ async function buildEarningsResultAnnouncement(
   dependencies: EarningsResultDependencies,
   now: moment.Moment,
 ): Promise<EarningsResultAnnouncement | null> {
-  const filingDetails = await loadSecFilingDetails(filing, dependencies);
+  const filingDetails = await loadSecFilingDetails(filing, dependencies).catch(error => {
+    dependencies.logger.log(
+      "warn",
+      `Skipping earnings result announcement for ${watch.event.ticker}: SEC filing details could not be loaded: ${error}`,
+    );
+    return null;
+  });
+  if (null === filingDetails) {
+    return null;
+  }
+
   const surprise = await loadNasdaqSurprise(watch.event.ticker, dependencies, now);
   const parsedDocument = parseEarningsDocument(filingDetails.html);
   const metrics = getMessageMetrics(parsedDocument.metrics, surprise, watch.event);
