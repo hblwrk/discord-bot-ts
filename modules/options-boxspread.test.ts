@@ -93,7 +93,7 @@ describe("options-boxspread", () => {
     expect(result.financingAmount).toBeCloseTo(1_210);
     expect(formattedResult).toContain("Borrow `$98,790` today, repay `$100,000` for a cost of `$1,210` on August 21st, 2026");
     expect(formattedResult).toContain("Implied borrow rate: `3.94%` | SOFR: `3.66%` (2026-04-30) | Δ: `+28 bps`");
-    expect(formattedResult).toContain("Limit: mid credit `987.90` (USD `$98,790`)");
+    expect(formattedResult).toContain("Limit: mid credit `987.90` (`$98,790`)");
     expect(formattedResult).toContain("Market: natural credit `985.90` / mid `987.90` / natural debit `989.90`");
     expect(formattedResult).toContain("Sell 1 Aug21'26 6000 Call");
     expect(formattedResult).toContain("Buy 1 Aug21'26 6000 Put");
@@ -106,7 +106,7 @@ describe("options-boxspread", () => {
 
     expect(formattedResult).toContain("Lend `$98,790` today, receive `$100,000` for interest of `$1,210` on August 21st, 2026");
     expect(formattedResult).toContain("Implied lending rate: `3.94%`");
-    expect(formattedResult).toContain("Limit: mid debit `987.90` (USD `$98,790`)");
+    expect(formattedResult).toContain("Limit: mid debit `987.90` (`$98,790`)");
     expect(formattedResult).toContain("Buy 1 Aug21'26 6000 Call");
     expect(formattedResult).toContain("Sell 1 Aug21'26 6000 Put");
     expect(formattedResult).toContain("Sell 1 Aug21'26 7000 Call");

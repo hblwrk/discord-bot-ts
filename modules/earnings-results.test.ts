@@ -153,6 +153,100 @@ describe("earnings result announcements", () => {
     expect(result.announcements).toHaveLength(0);
   });
 
+  test("skips the scan when the SEC ticker map is blocked", async () => {
+    getWithRetryFn.mockImplementation(async (url: string) => {
+      if (url.includes("company_tickers.json")) {
+        throw new Error("Request failed with status code 403");
+      }
+
+      throw new Error(`Unexpected URL ${url}`);
+    });
+
+    const result = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      },
+    });
+
+    expect(result).toEqual({
+      active: false,
+      announcements: [],
+      watchedCompanies: 0,
+    });
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "Skipping earnings result scan: SEC ticker map could not be loaded: Error: Request failed with status code 403",
+    );
+  });
+
+  test("skips one announcement when SEC filing details are blocked", async () => {
+    getWithRetryFn.mockImplementation(async (url: string) => {
+      if (url.includes("company_tickers.json")) {
+        return {
+          data: {
+            0: {
+              cik_str: 34088,
+              ticker: "XOM",
+              title: "EXXON MOBIL CORP",
+            },
+          },
+        };
+      }
+
+      if (url.includes("type=8-K")) {
+        return {
+          data: `
+            <feed>
+              <entry>
+                <title>8-K - EXXON MOBIL CORP</title>
+                <id>urn:tag:sec.gov,2026:accession-number=0000034088-26-000042</id>
+                <updated>2026-05-01T08:01:00-04:00</updated>
+                <category term="8-K" />
+                <link href="https://www.sec.gov/Archives/edgar/data/34088/000003408826000042/0000034088-26-000042-index.htm" />
+                <summary>
+                  &lt;b&gt;CIK:&lt;/b&gt; 0000034088&lt;br/&gt;
+                  &lt;b&gt;Items:&lt;/b&gt; 2.02, 9.01
+                </summary>
+              </entry>
+            </feed>
+          `,
+        };
+      }
+
+      if (url.includes("type=6-K")) {
+        return {
+          data: "<feed></feed>",
+        };
+      }
+
+      if (url.endsWith("/index.json")) {
+        throw new Error("Request failed with status code 403");
+      }
+
+      throw new Error(`Unexpected URL ${url}`);
+    });
+
+    const result = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      },
+    });
+
+    expect(result.active).toBe(true);
+    expect(result.watchedCompanies).toBe(1);
+    expect(result.announcements).toEqual([]);
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "Skipping earnings result announcement for XOM: SEC filing details could not be loaded: Error: Request failed with status code 403",
+    );
+  });
+
   test("watcher sends new announcements once, schedules active polling, and clears its timer on stop", async () => {
     const send = vi.fn().mockResolvedValue(undefined);
     const timeoutHandle = {

@@ -126,8 +126,8 @@ describe("options-boxrates", () => {
     expect(result.rows).toHaveLength(2);
     expect(formattedResult.split("\n")[0]).toBe("Boxspread rates für die nächsten 12 Monate");
     expect(formattedResult).toContain("`SPX` @ `6,501.00` | Notational `$100,000` | SOFR: `3.66%` (2026-04-30)");
-    expect(formattedResult).toContain("`Jun26` | `49 DTE` | `6000/7000 x1` | Lend");
-    expect(formattedResult).toContain("`Jul26` | `77 DTE` | `6000/7000 x1` | Lend");
+    expect(formattedResult).toContain("`Jun19'26` | `49 DTE` | `6000/7000 x1` | Mid");
+    expect(formattedResult).toContain("`Jul17'26` | `77 DTE` | `6000/7000 x1` | Mid");
   });
 
   test("rejects invalid inputs before requesting market data", async () => {
@@ -317,6 +317,16 @@ describe("options-boxrates", () => {
         midRate: 0.015,
         rateDeltaToBenchmark: -0.01,
         upperStrike: 7000,
+      }, {
+        actualDte: 77,
+        borrowRate: 0.68,
+        contracts: 1,
+        expiration: "2026-07-17",
+        lendRate: -0.57,
+        lowerStrike: 6000,
+        midRate: 0.04,
+        rateDeltaToBenchmark: 0.004,
+        upperStrike: 7000,
       }],
       sofr: {
         effectiveDate: "2026-04-30",
@@ -328,6 +338,8 @@ describe("options-boxrates", () => {
     });
 
     expect(formattedResult).toContain("Notational `-$100,000`");
+    expect(formattedResult).toContain("Mkt `1.00%-2.00%`");
+    expect(formattedResult).toContain("Mkt `wide`");
     expect(formattedResult).toContain("Δ `-100 bps`");
   });
 });

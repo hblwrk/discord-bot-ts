@@ -83,6 +83,8 @@ const spxBoxRatesMarket: BoxRatesMarket = {
   preferredWidth: 1000,
   symbol: "SPX",
 };
+const boxRateCandidatesPerExpiration = 5;
+const maxDisplayedNaturalBandBps = 1000;
 const shortMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 function normalizeNotational(notational: number): number {
@@ -343,6 +345,43 @@ function getRateRow(
   };
 }
 
+function getNaturalBandBps(row: BoxRateRow): number {
+  return (row.borrowRate - row.lendRate) * 10_000;
+}
+
+function isDisplayableNaturalBand(row: BoxRateRow): boolean {
+  return row.lendRate > 0
+    && row.borrowRate > row.lendRate
+    && getNaturalBandBps(row) <= maxDisplayedNaturalBandBps;
+}
+
+function compareRateRows(first: BoxRateRow, second: BoxRateRow): number {
+  const firstWide = false === isDisplayableNaturalBand(first);
+  const secondWide = false === isDisplayableNaturalBand(second);
+  if (firstWide !== secondWide) {
+    return true === firstWide ? 1 : -1;
+  }
+
+  const naturalBandDifference = getNaturalBandBps(first) - getNaturalBandBps(second);
+  if (0 !== naturalBandDifference) {
+    return naturalBandDifference;
+  }
+
+  return first.lowerStrike - second.lowerStrike;
+}
+
+function selectBestRateRows(rows: BoxRateRow[]): BoxRateRow[] {
+  const rowsByExpiration = new Map<string, BoxRateRow>();
+  for (const row of rows) {
+    const existingRow = rowsByExpiration.get(row.expiration);
+    if (undefined === existingRow || compareRateRows(row, existingRow) < 0) {
+      rowsByExpiration.set(row.expiration, row);
+    }
+  }
+
+  return [...rowsByExpiration.values()].sort((first, second) => first.expiration.localeCompare(second.expiration));
+}
+
 function getSharedClientDependencies(
   dependencies: BoxRatesLookupDependencies,
 ): BoxRatesLookupDependencies {
@@ -392,8 +431,8 @@ export async function getBoxRatesLookup(
     months,
   );
   const strikePairs = monthlyExpirations.flatMap(expiration => {
-    const pair = getStrikePairs(expiration, spxBoxRatesMarket, notational, underlyingLookup.underlyingPrice)[0];
-    return undefined === pair ? [] : [pair];
+    return getStrikePairs(expiration, spxBoxRatesMarket, notational, underlyingLookup.underlyingPrice)
+      .slice(0, boxRateCandidatesPerExpiration);
   });
   if (0 === strikePairs.length) {
     throw new OptionDeltaDataError(`No SPX monthly box spreads found for ${notational.toLocaleString("en-US")} notational.`);
@@ -404,7 +443,7 @@ export async function getBoxRatesLookup(
     selections: getSelections(strikePairs),
     symbol: spxBoxRatesMarket.symbol,
   }, marketDataDependencies);
-  const rows = strikePairs.flatMap(strikePair => {
+  const rowCandidates = strikePairs.flatMap(strikePair => {
     const pair = getContractPair(selectedContractsLookup.contracts, strikePair);
     if (null === pair) {
       return [];
@@ -413,6 +452,7 @@ export async function getBoxRatesLookup(
     const row = getRateRow(pair, spxBoxRatesMarket, sofr, notational);
     return null === row ? [] : [row];
   });
+  const rows = selectBestRateRows(rowCandidates);
   if (0 === rows.length) {
     throw new OptionDeltaDataError("SPX box rate market data is unavailable.");
   }
@@ -452,21 +492,23 @@ function formatStrike(strike: number): string {
   }).replace(/\.00$/, "");
 }
 
-function formatShortExpirationMonth(expiration: string): string {
+function formatShortExpiration(expiration: string): string {
   const date = parseExpirationDate(expiration);
   const month = shortMonths[date.getUTCMonth()] ?? "";
+  const day = date.getUTCDate().toString().padStart(2, "0");
   const year = date.getUTCFullYear().toString().slice(-2);
-  return `${month}${year}`;
+  return `${month}${day}'${year}`;
 }
 
 function formatBoxRateRow(row: BoxRateRow): string {
   return [
-    `\`${formatShortExpirationMonth(row.expiration)}\``,
+    `\`${formatShortExpiration(row.expiration)}\``,
     `\`${row.actualDte} DTE\``,
     `\`${formatStrike(row.lowerStrike)}/${formatStrike(row.upperStrike)} x${row.contracts}\``,
-    `Lend \`${formatRate(row.lendRate)}\``,
     `Mid \`${formatRate(row.midRate)}\``,
-    `Borrow \`${formatRate(row.borrowRate)}\``,
+    true === isDisplayableNaturalBand(row)
+      ? `Mkt \`${formatRate(row.lendRate)}-${formatRate(row.borrowRate)}\``
+      : "Mkt `wide`",
     `Δ \`${formatSignedBasisPoints(row.rateDeltaToBenchmark)}\``,
   ].join(" | ");
 }
