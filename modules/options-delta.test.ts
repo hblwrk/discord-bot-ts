@@ -4,8 +4,10 @@ import {BoundedTtlCache} from "./bounded-ttl-cache.ts";
 import {
   type ChainExpiration,
   findDeltaBrackets,
+  getOptionChainLookup,
   formatOptionDeltaLookupResult,
   getOptionDeltaLookup,
+  getSelectedOptionContractsLookup,
   normalizeOptionSymbol,
   normalizeTargetDelta,
   OptionDeltaConfigurationError,
@@ -396,6 +398,204 @@ describe("options-delta", () => {
     expect(quoteStreamer.subscribe).toHaveBeenCalledTimes(2);
     expect(cachedResult.sideResults).toHaveLength(1);
     expect(cachedResult.sideResults[0]?.side).toBe("call");
+  });
+
+  test("fetches chain and selected contract market data without subscribing to every strike", async () => {
+    let listener: ((events: Record<string, unknown>[]) => void) | undefined;
+    const quoteStreamer = {
+      addEventListener: vi.fn((nextListener: (events: Record<string, unknown>[]) => void) => {
+        listener = nextListener;
+        return vi.fn();
+      }),
+      connect: vi.fn(async () => {}),
+      disconnect: vi.fn(),
+      subscribe: vi.fn((streamerSymbols: string[]) => {
+        listener?.(streamerSymbols.flatMap(streamerSymbol => {
+          const quoteEvent = {
+            eventSymbol: streamerSymbol,
+            eventType: "Quote",
+            askPrice: "AAPL" === streamerSymbol ? 190.5 : 2.2,
+            askSize: 10,
+            bidPrice: "AAPL" === streamerSymbol ? 190.3 : 2.0,
+            bidSize: 8,
+          };
+          if ("AAPL" === streamerSymbol) {
+            return [quoteEvent];
+          }
+
+          return [
+            quoteEvent,
+            {
+              eventSymbol: streamerSymbol,
+              eventType: "Greeks",
+              delta: streamerSymbol.includes("P") ? -0.31 : 0.31,
+              gamma: 0.02,
+              theta: -0.04,
+              vega: 0.08,
+              volatility: 0.45,
+            },
+          ];
+        }));
+      }),
+    };
+    const fakeClient = {
+      instrumentsService: {
+        getNestedOptionChain: vi.fn(async () => createNestedOptionChainItems()),
+      },
+      quoteStreamer,
+    };
+    const dependencies = {
+      ...createLookupDependencies(),
+      clientFactory: () => fakeClient,
+      marketDataTimeoutMs: 20,
+      now: () => new Date("2026-05-01T10:00:00-04:00").valueOf(),
+    };
+
+    const chainResult = await getOptionChainLookup({
+      credentials: {
+        clientSecret: "client-secret",
+        refreshToken: "refresh-token",
+      },
+      symbol: "aapl",
+    }, dependencies);
+    const selectedExpiration = chainResult.expirations.find(expiration => "2026-06-19" === expiration.expirationDate);
+    if (undefined === selectedExpiration) {
+      throw new Error("Expected test expiration.");
+    }
+
+    const result = await getSelectedOptionContractsLookup({
+      credentials: {
+        clientSecret: "client-secret",
+        refreshToken: "refresh-token",
+      },
+      selections: [
+        {expiration: selectedExpiration, side: "call", strike: 440},
+        {expiration: selectedExpiration, side: "put", strike: 450},
+      ],
+      symbol: "aapl",
+    }, dependencies);
+
+    expect(fakeClient.instrumentsService.getNestedOptionChain).toHaveBeenCalledTimes(1);
+    expect(quoteStreamer.subscribe).toHaveBeenNthCalledWith(1, [
+      ".AAPL260619C440",
+      ".AAPL260619P450",
+    ], [
+      MarketDataSubscriptionType.Greeks,
+      MarketDataSubscriptionType.Quote,
+    ]);
+    expect(quoteStreamer.subscribe).toHaveBeenNthCalledWith(2, ["AAPL"], [
+      MarketDataSubscriptionType.Quote,
+    ]);
+    expect(result.symbol).toBe("AAPL");
+    expect(result.underlyingPrice).toBeCloseTo(190.4);
+    expect(result.underlyingPriceIsRealtime).toBe(true);
+    expect(result.contracts.map(contract => `${contract.strike}${contract.optionType}`)).toEqual(["440call", "450put"]);
+  });
+
+  test("supports selected underlying-only quotes and selection validation errors", async () => {
+    let listener: ((events: Record<string, unknown>[]) => void) | undefined;
+    const selectedExpiration = parseTastytradeNestedOptionChain(createNestedOptionChainItems())[1]!;
+    const quoteStreamer = {
+      addEventListener: vi.fn((nextListener: (events: Record<string, unknown>[]) => void) => {
+        listener = nextListener;
+        return vi.fn();
+      }),
+      connect: vi.fn(async () => {}),
+      disconnect: vi.fn(),
+      subscribe: vi.fn((streamerSymbols: string[]) => {
+        listener?.(streamerSymbols.map(streamerSymbol => ({
+          eventSymbol: streamerSymbol,
+          eventType: "Quote",
+          askPrice: 190.5,
+          bidPrice: 190.3,
+        })));
+      }),
+    };
+    const fakeClient = {
+      instrumentsService: {
+        getNestedOptionChain: vi.fn(async () => createNestedOptionChainItems()),
+      },
+      quoteStreamer,
+    };
+    const dependencies = {
+      ...createLookupDependencies(),
+      clientFactory: () => fakeClient,
+      marketDataTimeoutMs: 20,
+    };
+
+    const underlyingResult = await getSelectedOptionContractsLookup({
+      credentials: {
+        clientSecret: "client-secret",
+        refreshToken: "refresh-token",
+      },
+      selections: [],
+      symbol: "aapl",
+    }, dependencies);
+
+    expect(underlyingResult.contracts).toEqual([]);
+    expect(underlyingResult.underlyingPrice).toBeCloseTo(190.4);
+    expect(quoteStreamer.subscribe).toHaveBeenCalledTimes(1);
+    expect(quoteStreamer.subscribe).toHaveBeenCalledWith(["AAPL"], [
+      MarketDataSubscriptionType.Quote,
+    ]);
+
+    await expect(getSelectedOptionContractsLookup({
+      credentials: {
+        clientSecret: "client-secret",
+        refreshToken: "refresh-token",
+      },
+      selections: [{expiration: selectedExpiration, side: "call", strike: 999}],
+      symbol: "aapl",
+    }, dependencies)).rejects.toThrow(OptionDeltaDataError);
+
+    await expect(getSelectedOptionContractsLookup({
+      credentials: {
+        clientSecret: "client-secret",
+        refreshToken: "refresh-token",
+      },
+      selections: [{
+        expiration: {
+          ...selectedExpiration,
+          strikes: [{
+            callStreamerSymbol: null,
+            callSymbol: "AAPL 260619C00440000",
+            putStreamerSymbol: ".AAPL260619P440",
+            putSymbol: "AAPL 260619P00440000",
+            strike: 440,
+          }],
+        },
+        side: "call",
+        strike: 440,
+      }],
+      symbol: "aapl",
+    }, dependencies)).rejects.toThrow(OptionDeltaDataError);
+  });
+
+  test("returns cached chain lookups without invoking the broker client", async () => {
+    const selectedExpiration = parseTastytradeNestedOptionChain(createNestedOptionChainItems())[1]!;
+    const chainCache = new BoundedTtlCache<ChainExpiration[]>({
+      maxEntries: 10,
+      ttlMs: 60_000,
+    });
+    chainCache.set("AAPL", [selectedExpiration]);
+    const rateLimiter = {
+      run: vi.fn(),
+    };
+
+    const result = await getOptionChainLookup({
+      credentials: {
+        clientSecret: "client-secret",
+        refreshToken: "refresh-token",
+      },
+      symbol: "aapl",
+    }, {
+      chainCache,
+      clientFactory: vi.fn(),
+      rateLimiter,
+    });
+
+    expect(result.expirations).toEqual([selectedExpiration]);
+    expect(rateLimiter.run).not.toHaveBeenCalled();
   });
 
   test("reports missing credentials, expirations and streamer symbols as lookup errors", async () => {

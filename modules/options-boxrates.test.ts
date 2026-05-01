@@ -7,6 +7,8 @@ import {
   type ChainExpiration,
   type OptionDeltaContract,
   type OptionSelectedContractsLookupRequest,
+  OptionDeltaDataError,
+  OptionDeltaInputError,
 } from "./options-delta.ts";
 
 const credentials = {
@@ -42,11 +44,15 @@ function createContract(
   };
 }
 
-function createChainExpiration(expirationDate: string, daysToExpiration: number): ChainExpiration {
+function createChainExpiration(
+  expirationDate: string,
+  daysToExpiration: number,
+  strikes = [6000, 7000],
+): ChainExpiration {
   return {
     daysToExpiration,
     expirationDate,
-    strikes: [6000, 7000].map(strike => ({
+    strikes: strikes.map(strike => ({
       callStreamerSymbol: `.SPX${getOptionCode(expirationDate)}C${strike}`,
       callSymbol: `SPX ${getOptionCode(expirationDate)}C${strike}`,
       putStreamerSymbol: `.SPX${getOptionCode(expirationDate)}P${strike}`,
@@ -54,6 +60,13 @@ function createChainExpiration(expirationDate: string, daysToExpiration: number)
       strike,
     })),
   };
+}
+
+function createSofrRateLookup() {
+  return vi.fn(async () => ({
+    effectiveDate: "2026-04-30",
+    percentRate: 3.66,
+  }));
 }
 
 describe("options-boxrates", () => {
@@ -98,10 +111,8 @@ describe("options-boxrates", () => {
     }, {
       getOptionChainLookupFn,
       getSelectedOptionContractsLookupFn,
-      getSofrRateFn: vi.fn(async () => ({
-        effectiveDate: "2026-04-30",
-        percentRate: 3.66,
-      })),
+      getSofrRateFn: createSofrRateLookup(),
+      clientFactory: vi.fn(),
       now: () => Date.parse("2026-05-01T12:00:00Z"),
     });
     const formattedResult = formatBoxRatesLookupResult(result);
@@ -117,5 +128,206 @@ describe("options-boxrates", () => {
     expect(formattedResult).toContain("`SPX` @ `6,501.00` | Notational `$100,000` | SOFR: `3.66%` (2026-04-30)");
     expect(formattedResult).toContain("`Jun26` | `49 DTE` | `6000/7000 x1` | Lend");
     expect(formattedResult).toContain("`Jul26` | `77 DTE` | `6000/7000 x1` | Lend");
+  });
+
+  test("rejects invalid inputs before requesting market data", async () => {
+    await expect(getBoxRatesLookup({
+      credentials,
+      months: 0,
+    })).rejects.toThrow(OptionDeltaInputError);
+    await expect(getBoxRatesLookup({
+      credentials,
+      notational: 0,
+    })).rejects.toThrow(OptionDeltaInputError);
+  });
+
+  test("reports when no monthly strike pair can match the requested notational", async () => {
+    const getSelectedOptionContractsLookupFn = vi.fn(async () => ({
+      contracts: [],
+      symbol: "SPX",
+      underlyingPrice: null,
+      underlyingPriceIsRealtime: false,
+    }));
+
+    await expect(getBoxRatesLookup({
+      credentials,
+      months: 1,
+      notational: 100_000,
+    }, {
+      getOptionChainLookupFn: vi.fn(async () => ({
+        expirations: [createChainExpiration("2026-06-19", 49, [6000, 6501])],
+        symbol: "SPX",
+      })),
+      getSelectedOptionContractsLookupFn,
+      getSofrRateFn: createSofrRateLookup(),
+      now: () => Date.parse("2026-05-01T12:00:00Z"),
+    })).rejects.toThrow(OptionDeltaDataError);
+    expect(getSelectedOptionContractsLookupFn).toHaveBeenCalledTimes(1);
+  });
+
+  test("skips unavailable rows and keeps available monthly rates", async () => {
+    const juneExpiration = createChainExpiration("2026-06-19", 49);
+    const julyExpiration = createChainExpiration("2026-07-17", 77);
+    const getSelectedOptionContractsLookupFn = vi.fn(async (request: OptionSelectedContractsLookupRequest) => {
+      if (0 === request.selections.length) {
+        return {
+          contracts: [],
+          symbol: "SPX",
+          underlyingPrice: null,
+          underlyingPriceIsRealtime: false,
+        };
+      }
+
+      return {
+        contracts: [
+          createContract(6000, "call", 545, "2026-07-17"),
+          createContract(6000, "put", 50, "2026-07-17"),
+          createContract(7000, "call", 88, "2026-07-17"),
+          createContract(7000, "put", 583, "2026-07-17"),
+        ],
+        symbol: "SPX",
+        underlyingPrice: null,
+        underlyingPriceIsRealtime: false,
+      };
+    });
+
+    const result = await getBoxRatesLookup({
+      credentials,
+      months: 2,
+    }, {
+      getOptionChainLookupFn: vi.fn(async () => ({
+        expirations: [juneExpiration, julyExpiration],
+        symbol: "SPX",
+      })),
+      getSelectedOptionContractsLookupFn,
+      getSofrRateFn: createSofrRateLookup(),
+      now: () => Date.parse("2026-05-01T12:00:00Z"),
+    });
+
+    expect(result.notational).toBe(100_000);
+    expect(result.rows).toHaveLength(1);
+    expect(result.rows[0]?.expiration).toBe("2026-07-17");
+  });
+
+  test("reports when selected legs never produce a complete rate row", async () => {
+    const expiration = createChainExpiration("2026-06-19", 49);
+    const getSelectedOptionContractsLookupFn = vi.fn(async (request: OptionSelectedContractsLookupRequest) => {
+      return {
+        contracts: 0 === request.selections.length
+          ? []
+          : [createContract(6000, "call", 525, "2026-06-19")],
+        symbol: "SPX",
+        underlyingPrice: 6500,
+        underlyingPriceIsRealtime: true,
+      };
+    });
+
+    await expect(getBoxRatesLookup({
+      credentials,
+      months: 1,
+    }, {
+      getOptionChainLookupFn: vi.fn(async () => ({
+        expirations: [expiration],
+        symbol: "SPX",
+      })),
+      getSelectedOptionContractsLookupFn,
+      getSofrRateFn: createSofrRateLookup(),
+      now: () => Date.parse("2026-05-01T12:00:00Z"),
+    })).rejects.toThrow(OptionDeltaDataError);
+  });
+
+  test("skips rows whose selected legs cannot produce a positive mid rate", async () => {
+    const expiration = createChainExpiration("2026-06-19", 49);
+    const getSelectedOptionContractsLookupFn = vi.fn(async (request: OptionSelectedContractsLookupRequest) => {
+      return {
+        contracts: 0 === request.selections.length
+          ? []
+          : [
+            createContract(6000, "call", 1, "2026-06-19"),
+            createContract(6000, "put", 1, "2026-06-19"),
+            createContract(7000, "call", 1, "2026-06-19"),
+            createContract(7000, "put", 1, "2026-06-19"),
+          ],
+        symbol: "SPX",
+        underlyingPrice: 6500,
+        underlyingPriceIsRealtime: true,
+      };
+    });
+
+    await expect(getBoxRatesLookup({
+      credentials,
+      months: 1,
+    }, {
+      getOptionChainLookupFn: vi.fn(async () => ({
+        expirations: [expiration],
+        symbol: "SPX",
+      })),
+      getSelectedOptionContractsLookupFn,
+      getSofrRateFn: createSofrRateLookup(),
+      now: () => Date.parse("2026-05-01T12:00:00Z"),
+    })).rejects.toThrow(OptionDeltaDataError);
+  });
+
+  test("prefers the third-Friday expiration inside a month", async () => {
+    const weeklyExpiration = createChainExpiration("2026-06-12", 42);
+    const monthlyExpiration = createChainExpiration("2026-06-19", 49);
+    const getSelectedOptionContractsLookupFn = vi.fn(async (request: OptionSelectedContractsLookupRequest) => {
+      return {
+        contracts: 0 === request.selections.length
+          ? []
+          : [
+            createContract(6000, "call", 525, "2026-06-19"),
+            createContract(6000, "put", 50, "2026-06-19"),
+            createContract(7000, "call", 80, "2026-06-19"),
+            createContract(7000, "put", 595, "2026-06-19"),
+          ],
+        symbol: "SPX",
+        underlyingPrice: 6500,
+        underlyingPriceIsRealtime: true,
+      };
+    });
+
+    const result = await getBoxRatesLookup({
+      credentials,
+      months: 1,
+    }, {
+      getOptionChainLookupFn: vi.fn(async () => ({
+        expirations: [weeklyExpiration, monthlyExpiration],
+        symbol: "SPX",
+      })),
+      getSelectedOptionContractsLookupFn,
+      getSofrRateFn: createSofrRateLookup(),
+      now: () => Date.parse("2026-05-01T12:00:00Z"),
+    });
+
+    expect(result.rows[0]?.expiration).toBe("2026-06-19");
+  });
+
+  test("formats signed money and basis points", () => {
+    const formattedResult = formatBoxRatesLookupResult({
+      benchmarkName: "SOFR",
+      notational: -100_000,
+      rows: [{
+        actualDte: 49,
+        borrowRate: 0.02,
+        contracts: 1,
+        expiration: "2026-06-19",
+        lendRate: 0.01,
+        lowerStrike: 6000,
+        midRate: 0.015,
+        rateDeltaToBenchmark: -0.01,
+        upperStrike: 7000,
+      }],
+      sofr: {
+        effectiveDate: "2026-04-30",
+        percentRate: 2.5,
+      },
+      symbol: "SPX",
+      underlyingPrice: null,
+      underlyingPriceIsRealtime: false,
+    });
+
+    expect(formattedResult).toContain("Notational `-$100,000`");
+    expect(formattedResult).toContain("Δ `-100 bps`");
   });
 });
