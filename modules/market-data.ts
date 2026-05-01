@@ -223,7 +223,7 @@ function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAsse
     );
   });
 
-  const handleWebsocketMessage = async (event: {data?: unknown}) => {
+  const handleWebsocketMessage = (event: {data?: unknown}) => {
     try {
       const rawMessage = normalizeEventData(event.data);
       if (null === rawMessage) {
@@ -333,7 +333,7 @@ function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAsse
 
   // Responding to Websocket message
   wsClient.addEventListener("message", event => {
-    void handleWebsocketMessage(event);
+    handleWebsocketMessage(event);
   });
 }
 

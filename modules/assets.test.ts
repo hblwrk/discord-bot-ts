@@ -35,7 +35,7 @@ vi.mock("./logging.ts", () => ({
   }),
 }));
 
-import {getAssets} from "./assets.ts";
+import {EmojiAsset, getAssetByName, getAssets, getGenericAssets} from "./assets.ts";
 
 describe("getAssets", () => {
   beforeEach(() => {
@@ -141,6 +141,157 @@ describe("getAssets", () => {
     expect(asset?.tickerSymbols).toEqual(["AAPL"]);
     expect(asset?.roleIdReference).toBe("hblwrk_role_special_alerts_ID");
     expect(asset?.roleId).toBe("role-456");
+  });
+
+  test("loads market-data, role, and paywall assets with secret references resolved", async () => {
+    const yamlObjectsByType: Record<string, unknown[]> = {
+      marketdata: [{
+        botTokenReference: "market_token_ref",
+        botClientIdReference: "market_client_ref",
+        botName: "SPX",
+        id: 1175151,
+        suffix: "$",
+        unit: "PCT",
+        marketHours: "us_cash",
+        decimals: 2,
+        order: 1,
+      }],
+      role: [{
+        triggerReference: "role_trigger_ref",
+        idReference: "role_id_ref",
+        emoji: "✅",
+      }],
+      paywall: [{
+        name: "default",
+        domains: ["*"],
+        services: ["archive.today"],
+        nofix: false,
+        subdomainWildcard: true,
+      }],
+    };
+    readFileSyncMock.mockImplementation(path => String(path));
+    yamlLoadMock.mockImplementation(filePath => {
+      const match = /assets\/(.+)\.yaml/.exec(String(filePath));
+      const type = match?.[1] ?? "";
+      return yamlObjectsByType[type] ?? [];
+    });
+    readSecretMock.mockImplementation(secretName => {
+      if ("market_token_ref" === secretName) {
+        return "market-token";
+      }
+
+      if ("market_client_ref" === secretName) {
+        return "market-client-id";
+      }
+
+      if ("role_trigger_ref" === secretName) {
+        return "role-message-id";
+      }
+
+      if ("role_id_ref" === secretName) {
+        return "role-id";
+      }
+
+      return "dracoon-secret";
+    });
+
+    const [marketAsset] = await getAssets("marketdata");
+    const [roleAsset] = await getAssets("role");
+    const [paywallAsset] = await getAssets("paywall");
+
+    expect(marketAsset?.botToken).toBe("market-token");
+    expect(marketAsset?.botClientId).toBe("market-client-id");
+    expect(marketAsset?.marketHours).toBe("us_cash");
+    expect(roleAsset?.trigger).toEqual(["role-message-id"]);
+    expect(roleAsset?.id).toBe("role-id");
+    expect(paywallAsset?.name).toBe("default");
+    expect(paywallAsset?.domains).toEqual(["*"]);
+    expect(paywallAsset?.services).toEqual(["archive.today"]);
+    expect(paywallAsset?.subdomainWildcard).toBe(true);
+  });
+
+  test("loads generic assets across all generic asset files", async () => {
+    const yamlObjectsByType: Record<string, unknown[]> = {
+      emoji: [{
+        name: "party",
+        response: "🎉",
+        trigger: "party",
+      }],
+      image: [{
+        fileName: "chart.png",
+        location: "local",
+        name: "chart",
+        trigger: ["chart"],
+      }],
+      text: [{
+        name: "hello",
+        response: "hello response",
+        title: "hello",
+        trigger: ["hello"],
+      }],
+      user: [{
+        name: "alice",
+        title: "Alice",
+        trigger: ["alice"],
+      }],
+      userquote: [{
+        fileName: "quote.png",
+        location: "local",
+        name: "quote",
+        trigger: [],
+        user: "alice",
+      }],
+    };
+    readFileSyncMock.mockImplementation(path => String(path));
+    yamlLoadMock.mockImplementation(filePath => {
+      const match = /assets\/(.+)\.yaml/.exec(String(filePath));
+      const type = match?.[1] ?? "";
+      return yamlObjectsByType[type] ?? [];
+    });
+
+    const assets = await getGenericAssets();
+
+    expect(assets.map(asset => asset.name)).toEqual([
+      "party",
+      "chart",
+      "hello",
+      "alice",
+      "quote",
+    ]);
+    const emojiAsset = assets[0];
+    expect(emojiAsset).toBeInstanceOf(EmojiAsset);
+    expect(emojiAsset?.trigger).toEqual(["party"]);
+    expect(emojiAsset instanceof EmojiAsset ? emojiAsset.response : []).toEqual(["🎉"]);
+  });
+
+  test("normalizes trigger and emoji response values from loose asset config", () => {
+    const emojiAsset = new EmojiAsset();
+
+    emojiAsset.trigger = ["party", 123, "charts", null];
+    emojiAsset.response = ["🎉", false, "📈"];
+
+    expect(emojiAsset.trigger).toEqual(["party", "charts"]);
+    expect(emojiAsset.response).toEqual(["🎉", "📈"]);
+
+    emojiAsset.trigger = "single";
+    emojiAsset.response = "✅";
+
+    expect(emojiAsset.trigger).toEqual(["single"]);
+    expect(emojiAsset.response).toEqual(["✅"]);
+
+    emojiAsset.trigger = false;
+    emojiAsset.response = false;
+
+    expect(emojiAsset.trigger).toEqual([]);
+    expect(emojiAsset.response).toEqual([]);
+  });
+
+  test("finds assets by exact name", () => {
+    const matchingAsset = {name: "match"};
+    const otherAsset = {name: "other"};
+
+    expect(getAssetByName("match", [otherAsset, matchingAsset])).toBe(matchingAsset);
+    expect(getAssetByName("missing", [otherAsset, matchingAsset])).toBeUndefined();
   });
 
   test("returns empty array when loading assets fails", async () => {

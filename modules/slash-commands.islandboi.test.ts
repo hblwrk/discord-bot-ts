@@ -94,10 +94,18 @@ function createGuild({
         permissions: {
           has: vi.fn(() => canManageRoles),
         },
+        roles: {
+          add: vi.fn().mockResolvedValue(undefined),
+          remove: vi.fn().mockResolvedValue(undefined),
+        },
       },
       fetchMe: vi.fn().mockResolvedValue({
         permissions: {
           has: vi.fn(() => canManageRoles),
+        },
+        roles: {
+          add: vi.fn().mockResolvedValue(undefined),
+          remove: vi.fn().mockResolvedValue(undefined),
         },
       }),
       fetch: vi.fn().mockResolvedValue(guildUser),
@@ -110,6 +118,23 @@ function createGuild({
     addRoleMock,
     removeRoleMock,
   };
+}
+
+type IslandboiGuild = ReturnType<typeof createGuild>["guild"];
+type IslandboiClient = ReturnType<typeof createEventClient>["client"] & {
+  guilds: {
+    cache: {
+      get: (guildId: string) => IslandboiGuild | undefined;
+    };
+    fetch: (guildId: string) => Promise<IslandboiGuild | undefined>;
+  };
+};
+
+function withGuilds(
+  client: ReturnType<typeof createEventClient>["client"],
+  guilds: IslandboiClient["guilds"],
+): IslandboiClient {
+  return Object.assign(client, {guilds});
 }
 
 describe("interactSlashCommands islandboi", () => {
@@ -128,14 +153,14 @@ describe("interactSlashCommands islandboi", () => {
     const {client, getHandler} = createEventClient();
     const {guild, addRoleMock} = createGuild({});
 
-    (client as any).guilds = {
+    const slashClient = withGuilds(client, {
       cache: {
         get: vi.fn(() => guild),
       },
       fetch: vi.fn().mockResolvedValue(guild),
-    };
+    });
 
-    interactSlashCommands(client, [], [], [], []);
+    interactSlashCommands(slashClient, [], [], [], []);
 
     const handler = getHandler("interactionCreate");
     const firstInteraction = createChatInputInteraction("islandboi");
@@ -161,14 +186,14 @@ describe("interactSlashCommands islandboi", () => {
     });
     const {client, getHandler} = createEventClient();
 
-    (client as any).guilds = {
+    const slashClient = withGuilds(client, {
       cache: {
-        get: vi.fn(),
+        get: vi.fn(() => undefined),
       },
-      fetch: vi.fn(),
-    };
+      fetch: vi.fn(async () => undefined),
+    });
 
-    interactSlashCommands(client, [], [], [], []);
+    interactSlashCommands(slashClient, [], [], [], []);
 
     const handler = getHandler("interactionCreate");
     const interaction = createChatInputInteraction("islandboi");
@@ -184,14 +209,16 @@ describe("interactSlashCommands islandboi", () => {
     const {interactSlashCommands} = await setupModule();
     const {client, getHandler} = createEventClient();
 
-    (client as any).guilds = {
+    const slashClient = withGuilds(client, {
       cache: {
         get: vi.fn(() => undefined),
       },
-      fetch: vi.fn().mockRejectedValue(new Error("guild missing")),
-    };
+      fetch: vi.fn(async () => {
+        throw new Error("guild missing");
+      }),
+    });
 
-    interactSlashCommands(client, [], [], [], []);
+    interactSlashCommands(slashClient, [], [], [], []);
 
     const handler = getHandler("interactionCreate");
     const interaction = createChatInputInteraction("islandboi");
@@ -210,14 +237,14 @@ describe("interactSlashCommands islandboi", () => {
       canManageRoles: false,
     });
 
-    (client as any).guilds = {
+    const slashClient = withGuilds(client, {
       cache: {
         get: vi.fn(() => guild),
       },
       fetch: vi.fn().mockResolvedValue(guild),
-    };
+    });
 
-    interactSlashCommands(client, [], [], [], []);
+    interactSlashCommands(slashClient, [], [], [], []);
 
     const handler = getHandler("interactionCreate");
     const interaction = createChatInputInteraction("islandboi");
@@ -234,14 +261,14 @@ describe("interactSlashCommands islandboi", () => {
     const {client, getHandler} = createEventClient();
     const {guild, addRoleMock, removeRoleMock} = createGuild({});
 
-    (client as any).guilds = {
+    const slashClient = withGuilds(client, {
       cache: {
         get: vi.fn(() => guild),
       },
       fetch: vi.fn().mockResolvedValue(guild),
-    };
+    });
 
-    interactSlashCommands(client, [], [], [], []);
+    interactSlashCommands(slashClient, [], [], [], []);
 
     const handler = getHandler("interactionCreate");
     const firstInteraction = createChatInputInteraction("islandboi");

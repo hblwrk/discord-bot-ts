@@ -157,7 +157,8 @@ export function addTriggerResponses(
       return;
     }
 
-    const messageContent: string = validator.escape(message.content);
+    const rawMessageContent = message.content;
+    const messageContent: string = validator.escape(rawMessageContent);
     let matchedExactTrigger = false;
     if (assetCommandsWithPrefix.some((v: string) => messageContent.includes(v))) {
       for (const asset of assets) {
@@ -206,8 +207,8 @@ export function addTriggerResponses(
       }
     }
 
-    if (messageContent.startsWith("!paywall")) {
-      const url = messageContent.split("!paywall ")[1];
+    if (rawMessageContent.startsWith("!paywall")) {
+      const url = rawMessageContent.split("!paywall ")[1];
       if ("string" === typeof url && "" !== url.trim()) {
         const candidateUrl = url.trim().startsWith("http") ? url.trim() : `https://${url.trim()}`;
         let cleanUrl: string;

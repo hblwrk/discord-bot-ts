@@ -82,7 +82,7 @@ function unwrapSocketFrames(rawMessage: string): string[] {
   }
 
   try {
-    const parsedFrames = JSON.parse(trimmedMessage.slice(1));
+    const parsedFrames: unknown = JSON.parse(trimmedMessage.slice(1));
     if (Array.isArray(parsedFrames)) {
       return parsedFrames
         .map(frame => {

@@ -198,9 +198,8 @@ describe("timers: NYSE and MNC", () => {
     startNyseTimers(client, "channel-id");
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
 
-    expect(() => {
-      premarketJob.callback();
-    }).not.toThrow();
+    premarketJob.callback();
+
     expect(loggerMock.log).toHaveBeenCalledWith("error", expect.stringContaining("Skipping NYSE announcement"));
   });
 

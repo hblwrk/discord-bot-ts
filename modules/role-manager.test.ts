@@ -55,7 +55,7 @@ function createRoleManagerClient(customEmoji: TestEmoji | null = {id: "emoji-id"
 
   const roleChannel = {
     messages: {
-      fetch: vi.fn(async messageId => {
+      fetch: vi.fn(async (messageId: string): Promise<typeof brokerMessage | typeof specialMessage | undefined> => {
         if ("broker-message-id" === messageId) {
           return brokerMessage;
         }
@@ -79,7 +79,7 @@ function createRoleManagerClient(customEmoji: TestEmoji | null = {id: "emoji-id"
     },
     channels: {
       cache: {
-        get: vi.fn(() => roleChannel),
+        get: vi.fn((_channelId: string): typeof roleChannel | undefined => roleChannel),
       },
       fetch: vi.fn().mockResolvedValue(roleChannel),
     },
@@ -102,8 +102,10 @@ function createRoleManagerClient(customEmoji: TestEmoji | null = {id: "emoji-id"
 
   return {
     client,
+    guild,
     guildUser,
     brokerMessage,
+    roleChannel,
     specialMessage,
     getHandler(eventName: string) {
       const handler = handlers.get(eventName);
@@ -242,5 +244,105 @@ describe("roleManager", () => {
       "warn",
       expect.stringContaining("custom emoji custom:missing not found"),
     );
+  });
+
+  test("skips setup when role-assignment configuration is incomplete", async () => {
+    mockedReadSecret.mockImplementation(secretName => {
+      if ("discord_guild_ID" === secretName) {
+        return "";
+      }
+
+      return "configured";
+    });
+    const {client} = createRoleManagerClient();
+
+    await roleManager(client, []);
+
+    expect(client.on).not.toHaveBeenCalled();
+    expect(mockLogger.log).toHaveBeenCalledWith(
+      "warn",
+      "Skipping role manager: missing guild/channel/message IDs for role assignment.",
+    );
+  });
+
+  test("uses Discord fetch fallbacks and assigns custom-emoji roles after resolving partials", async () => {
+    const {client, guild, guildUser, brokerMessage, getHandler} = createRoleManagerClient({
+      id: "emoji-id",
+      name: "broker",
+    });
+    client.guilds.cache.get.mockReturnValue(undefined);
+    guild.channels.cache.get.mockReturnValue(undefined);
+    const assetRoles = [{
+      triggerReference: "hblwrk_role_assignment_broker_message_ID",
+      emoji: "custom:broker",
+      trigger: ["broker-message-id"],
+      id: "broker-role-id",
+      idReference: "hblwrk_role_broker_test_ID",
+    }];
+
+    await roleManager(client, assetRoles);
+
+    expect(client.guilds.fetch).toHaveBeenCalledWith("guild-id");
+    expect(guild.channels.fetch).toHaveBeenCalledWith("channel-id");
+    expect(brokerMessage.react).toHaveBeenCalledWith("emoji-id");
+
+    const reaction = {
+      partial: true,
+      fetch: vi.fn().mockResolvedValue({}),
+      message: {
+        partial: true,
+        fetch: vi.fn().mockResolvedValue({}),
+        id: "broker-message-id",
+      },
+      emoji: {
+        id: "emoji-id",
+        name: null,
+      },
+    };
+    const user = {
+      id: "member-id",
+      username: "member-name",
+    };
+
+    const addHandler = getHandler("messageReactionAdd");
+    await addHandler(reaction, user);
+
+    expect(reaction.fetch).toHaveBeenCalledTimes(1);
+    expect(reaction.message.fetch).toHaveBeenCalledTimes(1);
+    expect(guildUser.roles.add).toHaveBeenCalledWith("broker-yes-role-id");
+    expect(guildUser.roles.add).toHaveBeenCalledWith("broker-role-id");
+  });
+
+  test("ignores invalid reactions and the bot user's own reactions", async () => {
+    const {client, guild, getHandler} = createRoleManagerClient();
+    const assetRoles = [{
+      triggerReference: "hblwrk_role_assignment_broker_message_ID",
+      emoji: "✅",
+      trigger: "broker-message-id",
+      id: "broker-role-id",
+      idReference: "hblwrk_role_broker_test_ID",
+    }];
+
+    await roleManager(client, assetRoles);
+    guild.members.fetch.mockClear();
+
+    const addHandler = getHandler("messageReactionAdd");
+    await addHandler({invalid: true}, {id: "member-id"});
+    await addHandler({
+      partial: false,
+      message: {
+        partial: false,
+        id: "broker-message-id",
+      },
+      emoji: {
+        id: null,
+        name: "✅",
+      },
+    }, {
+      id: "client-id",
+      username: "bot-user",
+    });
+
+    expect(guild.members.fetch).not.toHaveBeenCalled();
   });
 });

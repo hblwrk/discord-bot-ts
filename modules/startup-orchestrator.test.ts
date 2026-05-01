@@ -8,9 +8,23 @@ import {
   waitFor,
 } from "./test-utils/startup-orchestrator.ts";
 
+type SlashRegistrationTestError = Error & {
+  discordErrorMessage?: string;
+  response?: {
+    headers?: Record<string, string>;
+  };
+  retryAfterMs?: number;
+};
+
+function createStoppedTimer(): ReturnType<typeof setTimeout> {
+  const timer = setTimeout(() => undefined, 0);
+  clearTimeout(timer);
+  return timer;
+}
+
 describe("startBot", () => {
   test("starts health first and stays not-ready while remote warmup hangs", async () => {
-    const genericDeferred = createDeferred<any[]>();
+    const genericDeferred = createDeferred<unknown[]>();
     const {dependencies, events, mocks} = createDependencies({
       getGenericAssets: vi.fn(async () => {
         events.push("generic-assets");
@@ -225,7 +239,7 @@ describe("startBot", () => {
   });
 
   test("does not schedule slash command sync before generic assets are available", async () => {
-    const genericDeferred = createDeferred<any[]>();
+    const genericDeferred = createDeferred<unknown[]>();
     const {dependencies, mocks} = createDependencies({
       getGenericAssets: vi.fn(async () => genericDeferred.promise),
       slashCommandDebounceMs: 5,
@@ -276,13 +290,13 @@ describe("startBot", () => {
           initialSlashSyncHandler = () => {
             handler(...args);
           };
-          return {
-            unref: vi.fn(),
-          } as any;
+          return createStoppedTimer();
         }
       }
 
-      return setTimeout(handler as any, requestedDelay, ...args);
+      return setTimeout(() => {
+        handler(...args);
+      }, requestedDelay);
     }) as typeof setTimeout;
     const {dependencies} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
@@ -371,7 +385,7 @@ describe("startBot", () => {
   });
 
   test("suppresses further slash command sync attempts after a create-limit failure and keeps the bot ready", async () => {
-    const createLimitError: any = new Error("Slash command create limit reached.");
+    const createLimitError: SlashRegistrationTestError = new Error("Slash command create limit reached.");
     createLimitError.name = "SlashRegistrationCreateLimitError";
     createLimitError.discordErrorMessage = "Max number of daily application command creates has been reached (200)";
     createLimitError.retryAfterMs = 360919;
@@ -382,7 +396,9 @@ describe("startBot", () => {
     const setTimeoutFn = ((handler: (...args: unknown[]) => void, delay?: number, ...args: unknown[]) => {
       const requestedDelay = Number(delay ?? 0);
       observedTimeoutDelays.push(requestedDelay);
-      return setTimeout(handler as any, requestedDelay, ...args);
+      return setTimeout(() => {
+        handler(...args);
+      }, requestedDelay);
     }) as typeof setTimeout;
     const {dependencies, mocks} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
@@ -414,7 +430,7 @@ describe("startBot", () => {
   });
 
   test("retries slash command sync after the create-limit cooldown expires", async () => {
-    const createLimitError: any = new Error("Slash command create limit reached.");
+    const createLimitError: SlashRegistrationTestError = new Error("Slash command create limit reached.");
     createLimitError.name = "SlashRegistrationCreateLimitError";
     createLimitError.retryAfterMs = 360919;
     const defineSlashCommandsMock = vi.fn()
@@ -429,12 +445,12 @@ describe("startBot", () => {
         cooldownHandler = () => {
           handler(...args);
         };
-        return {
-          unref: vi.fn(),
-        } as any;
+        return createStoppedTimer();
       }
 
-      return setTimeout(handler as any, requestedDelay, ...args);
+      return setTimeout(() => {
+        handler(...args);
+      }, requestedDelay);
     }) as typeof setTimeout;
     const {dependencies, mocks} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
@@ -464,7 +480,7 @@ describe("startBot", () => {
   });
 
   test("uses retry-after backoff for slash command rate-limit failures", async () => {
-    const rateLimitError: any = new Error("Slash command registration rate limited.");
+    const rateLimitError: SlashRegistrationTestError = new Error("Slash command registration rate limited.");
     rateLimitError.name = "SlashRegistrationRateLimitError";
     rateLimitError.discordErrorMessage = "You are being rate limited.";
     rateLimitError.retryAfterMs = 11902;
@@ -478,7 +494,9 @@ describe("startBot", () => {
       const requestedDelay = Number(delay ?? 0);
       observedTimeoutDelays.push(requestedDelay);
       const boundedDelay = requestedDelay > 1_000 ? 1 : requestedDelay;
-      return setTimeout(handler as any, boundedDelay, ...args);
+      return setTimeout(() => {
+        handler(...args);
+      }, boundedDelay);
     }) as typeof setTimeout;
     const {dependencies, mocks} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
@@ -507,7 +525,7 @@ describe("startBot", () => {
   });
 
   test("uses Retry-After header backoff for slash command rate-limit failures when retryAfterMs is absent", async () => {
-    const rateLimitError: any = new Error("Slash command registration rate limited.");
+    const rateLimitError: SlashRegistrationTestError = new Error("Slash command registration rate limited.");
     rateLimitError.name = "SlashRegistrationRateLimitError";
     rateLimitError.response = {
       headers: {
@@ -524,7 +542,9 @@ describe("startBot", () => {
       const requestedDelay = Number(delay ?? 0);
       observedTimeoutDelays.push(requestedDelay);
       const boundedDelay = requestedDelay > 1_000 ? 1 : requestedDelay;
-      return setTimeout(handler as any, boundedDelay, ...args);
+      return setTimeout(() => {
+        handler(...args);
+      }, boundedDelay);
     }) as typeof setTimeout;
     const {dependencies, mocks} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
@@ -552,7 +572,7 @@ describe("startBot", () => {
   });
 
   test("does not include error stack for exhausted slash command rate-limit retries", async () => {
-    const rateLimitError: any = new Error("Slash command registration rate limited.");
+    const rateLimitError: SlashRegistrationTestError = new Error("Slash command registration rate limited.");
     rateLimitError.name = "SlashRegistrationRateLimitError";
     rateLimitError.retryAfterMs = 30_050;
     const defineSlashCommandsMock = vi.fn(async () => {

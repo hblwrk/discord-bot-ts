@@ -1,5 +1,9 @@
 import {afterEach, beforeEach, describe, expect, test, vi} from "vitest";
 import {
+  CalendarReminderAsset,
+  EarningsReminderAsset,
+} from "./assets.ts";
+import {
   createClientWithChannel,
   getAssetByNameMock,
   getCalendarEventsMock,
@@ -18,6 +22,37 @@ import {
   scheduledJobs,
   startOtherTimers,
 } from "./test-utils/timers.ts";
+
+type CalendarReminderOptions = {
+  countryFlags?: string[];
+  eventNameSubstrings: string[];
+  minutesBefore?: number;
+  name: string;
+  roleId: string;
+};
+type EarningsReminderOptions = {
+  name: string;
+  roleId: string;
+  tickerSymbols: string[];
+};
+
+function createCalendarReminderAsset(options: CalendarReminderOptions): CalendarReminderAsset {
+  const asset = new CalendarReminderAsset();
+  asset.name = options.name;
+  asset.eventNameSubstrings = options.eventNameSubstrings;
+  asset.countryFlags = options.countryFlags ?? [];
+  asset.roleId = options.roleId;
+  asset.minutesBefore = options.minutesBefore ?? 0;
+  return asset;
+}
+
+function createEarningsReminderAsset(options: EarningsReminderOptions): EarningsReminderAsset {
+  const asset = new EarningsReminderAsset();
+  asset.name = options.name;
+  asset.roleId = options.roleId;
+  asset.tickerSymbols = options.tickerSymbols;
+  return asset;
+}
 
 describe("timers: other announcements", () => {
   beforeEach(resetTimerMocks);
@@ -89,13 +124,13 @@ describe("timers: other announcements", () => {
       },
     ]);
 
-    startOtherTimers(client, "channel-id", [], [], [{
+    startOtherTimers(client, "channel-id", [], [], [createCalendarReminderAsset({
       name: "us-cpi-1h",
       eventNameSubstrings: ["consumer price index", "cpi"],
       countryFlags: ["🇺🇸"],
       roleId: "role-123",
       minutesBefore: 60,
-    }] as any, []);
+    })], []);
     const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
     await dailyCalendarJob.callback();
 
@@ -137,13 +172,13 @@ describe("timers: other announcements", () => {
       },
     ]);
 
-    startOtherTimers(client, "channel-id", [], [], [{
+    startOtherTimers(client, "channel-id", [], [], [createCalendarReminderAsset({
       name: "us-cpi-1h",
       eventNameSubstrings: ["cpi"],
       countryFlags: ["🇺🇸"],
       roleId: "role-123",
       minutesBefore: 60,
-    }] as any, []);
+    })], []);
     const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
     await dailyCalendarJob.callback();
 
@@ -168,28 +203,28 @@ describe("timers: other announcements", () => {
     ]);
 
     startOtherTimers(client, "channel-id", [], [], [
-      {
+      createCalendarReminderAsset({
         name: "wrong-country",
         eventNameSubstrings: ["cpi"],
         countryFlags: ["🇺🇸"],
         roleId: "role-123",
         minutesBefore: 60,
-      },
-      {
+      }),
+      createCalendarReminderAsset({
         name: "missing-role",
         eventNameSubstrings: ["cpi"],
         countryFlags: ["🇪🇺"],
         roleId: "   ",
         minutesBefore: 60,
-      },
-      {
+      }),
+      createCalendarReminderAsset({
         name: "missing-matchers",
         eventNameSubstrings: [],
         countryFlags: ["🇪🇺"],
         roleId: "role-123",
         minutesBefore: 60,
-      },
-    ] as any, []);
+      }),
+    ], []);
     const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
     await dailyCalendarJob.callback();
 
@@ -220,19 +255,19 @@ describe("timers: other announcements", () => {
     ]);
 
     startOtherTimers(client, "channel-id", [], [], [
-      {
+      createCalendarReminderAsset({
         name: "us-gdp-1h",
         eventNameSubstrings: ["gdp q/q"],
         countryFlags: ["🇺🇸"],
         roleId: "role-123",
-      },
-      {
+      }),
+      createCalendarReminderAsset({
         name: "us-fomc-statement-1h",
         eventNameSubstrings: ["fomc statement"],
         countryFlags: ["🇺🇸"],
         roleId: "role-123",
-      },
-    ] as any, []);
+      }),
+    ], []);
     const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
     await dailyCalendarJob.callback();
 
@@ -441,11 +476,11 @@ describe("timers: other announcements", () => {
       status: "ok",
     });
 
-    startOtherTimers(client, "channel-id", [], [], [], [{
+    startOtherTimers(client, "channel-id", [], [], [], [createEarningsReminderAsset({
       name: "big-tech-earnings",
       tickerSymbols: ["NVDA", "MSFT"],
       roleId: "role-456",
-    }] as any);
+    })]);
     await getEarningsReminderJob().callback();
 
     expect(getEarningsResultMock).toHaveBeenCalledWith(0, "today");
@@ -485,17 +520,17 @@ describe("timers: other announcements", () => {
     });
 
     startOtherTimers(client, "channel-id", [], [], [], [
-      {
+      createEarningsReminderAsset({
         name: "big-tech-earnings",
         tickerSymbols: [" nvda ", "msft"],
         roleId: "role-456",
-      },
-      {
+      }),
+      createEarningsReminderAsset({
         name: "no-match",
         tickerSymbols: ["AAPL"],
         roleId: "role-789",
-      },
-    ] as any);
+      }),
+    ]);
     await getEarningsReminderJob().callback();
 
     expect(send).toHaveBeenCalledTimes(1);
@@ -528,11 +563,11 @@ describe("timers: other announcements", () => {
       status: "ok",
     });
 
-    startOtherTimers(client, "channel-id", [], [], [], [{
+    startOtherTimers(client, "channel-id", [], [], [], [createEarningsReminderAsset({
       name: "berkshire-earnings",
       tickerSymbols: ["BRK.B"],
       roleId: "role-456",
-    }] as any);
+    })]);
     await getEarningsReminderJob().callback();
 
     expect(send).toHaveBeenCalledWith({
@@ -558,11 +593,11 @@ describe("timers: other announcements", () => {
       status: "ok",
     });
 
-    startOtherTimers(client, "channel-id", [], [], [], [{
+    startOtherTimers(client, "channel-id", [], [], [], [createEarningsReminderAsset({
       name: "aapl-earnings",
       tickerSymbols: ["AAPL"],
       roleId: "   ",
-    }] as any);
+    })]);
     await getEarningsReminderJob().callback();
 
     expect(send).not.toHaveBeenCalled();
@@ -575,11 +610,11 @@ describe("timers: other announcements", () => {
       status: "error",
     });
 
-    startOtherTimers(client, "channel-id", [], [], [], [{
+    startOtherTimers(client, "channel-id", [], [], [], [createEarningsReminderAsset({
       name: "aapl-earnings",
       tickerSymbols: ["AAPL"],
       roleId: "role-456",
-    }] as any);
+    })]);
     await getEarningsReminderJob().callback();
 
     expect(send).not.toHaveBeenCalled();

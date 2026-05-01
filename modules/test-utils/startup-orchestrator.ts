@@ -1,10 +1,46 @@
 import {EventEmitter} from "node:events";
 import {PermissionFlagsBits} from "discord.js";
+import type {Client} from "discord.js";
 import {vi} from "vitest";
+import type {runHealthCheck as runHealthCheckType} from "../health-check.ts";
+
 type Deferred<T> = {
   promise: Promise<T>;
   resolve: (value: T) => void;
   reject: (reason?: unknown) => void;
+};
+type MockChannel = {
+  id: string;
+  messages: {
+    fetch: ReturnType<typeof vi.fn>;
+  };
+  permissionsFor: ReturnType<typeof vi.fn>;
+  send: ReturnType<typeof vi.fn>;
+};
+type MockRole = {
+  id: string;
+  managed?: boolean;
+  position: number;
+};
+type MockStartupClient = {
+  channels: {
+    cache: {
+      get: ReturnType<typeof vi.fn>;
+    };
+    fetch: ReturnType<typeof vi.fn>;
+  };
+  guilds: {
+    cache: {
+      get: ReturnType<typeof vi.fn>;
+    };
+    fetch: ReturnType<typeof vi.fn>;
+  };
+  login: ReturnType<typeof vi.fn>;
+  on: ReturnType<typeof vi.fn>;
+  once: ReturnType<typeof vi.fn>;
+  user: {
+    id: string;
+  };
 };
 
 export function createDeferred<T>(): Deferred<T> {
@@ -72,7 +108,7 @@ export function createMockClient(options: {
   ];
   const missingChannelIdSet = new Set(missingChannelIds);
   const channelIds = ["nyse", "breaking-news", "mnc", "other", "clownboard", ...Object.keys(channelPermissionsById)];
-  const channelsById = new Map<string, any>();
+  const channelsById = new Map<string, MockChannel>();
   for (const channelId of channelIds) {
     if (true === missingChannelIdSet.has(channelId)) {
       continue;
@@ -91,7 +127,7 @@ export function createMockClient(options: {
     });
   }
 
-  const rolesById = new Map<string, any>(Object.entries(roleById).map(([roleId, role]) => [roleId, {id: roleId, ...role}]));
+  const rolesById = new Map<string, MockRole>(Object.entries(roleById).map(([roleId, role]) => [roleId, {id: roleId, ...role}]));
   const botMember = {
     permissions: {
       has: vi.fn((permission: bigint) => {
@@ -125,7 +161,7 @@ export function createMockClient(options: {
       fetch: vi.fn(async (roleId: string) => rolesById.get(roleId)),
     },
   };
-  const client: any = {
+  const client: MockStartupClient = {
     user: {
       id: userId,
     },
@@ -142,11 +178,15 @@ export function createMockClient(options: {
       fetch: vi.fn(async (guildId: string) => "guild-id" === guildId ? guild : undefined),
     },
     on: vi.fn((eventName: string, handler: (...args: unknown[]) => unknown) => {
-      emitter.on(eventName, handler as any);
+      emitter.on(eventName, (...args: unknown[]) => {
+        handler(...args);
+      });
       return client;
     }),
     once: vi.fn((eventName: string, handler: (...args: unknown[]) => unknown) => {
-      emitter.once(eventName, handler as any);
+      emitter.once(eventName, (...args: unknown[]) => {
+        handler(...args);
+      });
       return client;
     }),
     login: vi.fn(async () => {
@@ -159,7 +199,7 @@ export function createMockClient(options: {
   };
 
   return {
-    client,
+    client: client as unknown as Client,
     guild,
   };
 }
@@ -194,7 +234,7 @@ export function createDependencies(overrides = {}) {
   });
   const runHealthCheck = vi.fn(() => {
     events.push("health");
-    return {} as any;
+    return {} as ReturnType<typeof runHealthCheckType>;
   });
   const addInlineResponses = vi.fn(() => {
     events.push("inline");

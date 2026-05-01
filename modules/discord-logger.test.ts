@@ -70,6 +70,49 @@ describe("DiscordTransport", () => {
     }));
   });
 
+  test("serializes non-string log fields before sending embed", async () => {
+    const sendMock = vi.fn().mockResolvedValue(undefined);
+    const namedFunction = function sampleFormatter() {};
+    const client = {
+      channels: {
+        cache: {
+          get: vi.fn(() => ({
+            isTextBased: () => true,
+            send: sendMock,
+          })),
+        },
+      },
+    };
+
+    const transport = new DiscordTransport({client});
+    transport.log({
+      message: {event: "ready"},
+      timestamp: 1_735_689_600_000,
+      username: Symbol("system"),
+      channel: namedFunction,
+    }, vi.fn());
+
+    await new Promise(resolve => {
+      setImmediate(resolve);
+    });
+
+    const payload = sendMock.mock.calls[0]?.[0] as {
+      embeds: {
+        data: {
+          description?: string;
+          fields?: {name: string; value: string}[];
+        };
+      }[];
+    } | undefined;
+
+    expect(payload?.embeds[0]?.data.description).toBe("{\"event\":\"ready\"}");
+    expect(payload?.embeds[0]?.data.fields).toEqual(expect.arrayContaining([
+      expect.objectContaining({name: "Timestamp", value: "1735689600000"}),
+      expect.objectContaining({name: "User", value: "system"}),
+      expect.objectContaining({name: "Channel", value: "sampleFormatter"}),
+    ]));
+  });
+
   test("does not send when channel does not exist", async () => {
     const getMock = vi.fn(() => undefined);
     const client = {

@@ -110,7 +110,7 @@ async function waitForDiscordReady(
       if (false === settled) {
         settled = true;
         clearTimeoutFn(timeoutHandle);
-        reject(error);
+        reject(error instanceof Error ? error : new Error(String(error)));
       }
     });
   });

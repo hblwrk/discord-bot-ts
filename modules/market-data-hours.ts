@@ -22,8 +22,9 @@ export function getMarketPresenceData(
   openNickname: string,
   openPresence: string,
   priceChange: number,
+  referenceTime = Date.now(),
 ): MarketPresenceData {
-  if (false === isMarketOpen(marketDataAsset)) {
+  if (false === isMarketOpen(marketDataAsset, referenceTime)) {
     return {
       nickname: getClosedMarketNickname(marketDataAsset, openNickname) ?? openNickname,
       ...buildClosedMarketPresenceData(),

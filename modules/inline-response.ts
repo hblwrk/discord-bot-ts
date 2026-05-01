@@ -27,7 +27,7 @@ type InlineResponseMessage = {
 };
 
 type InlineResponseClient = {
-  on: (eventName: "messageCreate", handler: (message: InlineResponseMessage) => Promise<void>) => void;
+  on: (eventName: "messageCreate", handler: (message: InlineResponseMessage) => void | Promise<void>) => void;
 };
 
 function escapeRegexValue(value: string): string {
@@ -64,7 +64,7 @@ function isEmojiResponse(response: unknown): response is string[] {
 
 export function addInlineResponses(client: InlineResponseClient, assets: InlineResponseAsset[], assetCommands: string[]) {
   // Message response to a message including with a trigger word
-  client.on("messageCreate", async message => {
+  client.on("messageCreate", message => {
     if (true === message.author?.bot || Boolean(message.webhookId)) {
       return;
     }

@@ -31,7 +31,27 @@ function getLogField(value: unknown): string {
     return value;
   }
 
-  return undefined === value ? "" : String(value);
+  if (undefined === value) {
+    return "";
+  }
+
+  if ("object" === typeof value && null !== value) {
+    return JSON.stringify(value) ?? "";
+  }
+
+  if ("number" === typeof value || "boolean" === typeof value || "bigint" === typeof value) {
+    return value.toString();
+  }
+
+  if ("symbol" === typeof value) {
+    return value.description ?? "";
+  }
+
+  if ("function" === typeof value) {
+    return value.name;
+  }
+
+  return "";
 }
 
 export default class DiscordTransport extends Transport {
@@ -75,11 +95,10 @@ export default class DiscordTransport extends Transport {
 }
 
 function isDiscordLogChannel(channel: unknown): channel is DiscordLogChannel {
-  return "object" === typeof channel
-    && null !== channel
-    && "isTextBased" in channel
-    && "function" === typeof channel.isTextBased
-    && true === channel.isTextBased()
-    && "send" in channel
-    && "function" === typeof channel.send;
+  const candidate = channel as Partial<DiscordLogChannel> | null;
+  return null !== candidate
+    && "object" === typeof candidate
+    && "function" === typeof candidate.isTextBased
+    && true === candidate.isTextBased()
+    && "function" === typeof candidate.send;
 }

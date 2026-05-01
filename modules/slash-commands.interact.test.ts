@@ -10,13 +10,16 @@ vi.mock("./secrets.ts", () => ({
   readSecret: vi.fn(() => ""),
 }));
 
+const loggerMock = vi.hoisted(() => ({
+  log: vi.fn(),
+}));
+const discordLoggerMock = vi.hoisted(() => ({
+  log: vi.fn(),
+}));
+
 vi.mock("./logging.ts", () => ({
-  getLogger: () => ({
-    log: vi.fn(),
-  }),
-  getDiscordLogger: () => ({
-    log: vi.fn(),
-  }),
+  getLogger: () => loggerMock,
+  getDiscordLogger: () => discordLoggerMock,
 }));
 
 vi.mock("./calendar.ts", () => ({
@@ -58,6 +61,27 @@ function createImageAsset({
   asset.fileName = fileName;
   asset.fileContent = fileContent;
   return asset;
+}
+
+type ReplyAttachment = {
+  attachment?: Buffer;
+  name?: string;
+};
+type ReplyEmbed = {
+  toJSON: () => {
+    fields?: {name: string; value: string}[];
+    image?: {
+      url?: string;
+    };
+  };
+};
+type ReplyPayload = {
+  embeds?: ReplyEmbed[];
+  files?: ReplyAttachment[];
+};
+
+function getReplyPayload(interaction: ReturnType<typeof createChatInputInteraction>): ReplyPayload {
+  return interaction.reply.mock.calls[0]![0] as ReplyPayload;
 }
 
 describe("interactSlashCommands", () => {
@@ -112,9 +136,13 @@ describe("interactSlashCommands", () => {
     await handler(interaction);
 
     expect(interaction.reply).toHaveBeenCalledTimes(1);
-    expect(interaction.reply).toHaveBeenCalledWith(expect.objectContaining({
-      embeds: expect.any(Array),
-    }));
+    const payload = getReplyPayload(interaction);
+    expect(payload.embeds?.[0]?.toJSON()).toEqual({
+      fields: [{
+        name: "Ist das gut?",
+        value: ":8ball: Ziemlich sicher.",
+      }],
+    });
 
     randomSpy.mockRestore();
   });
@@ -158,6 +186,10 @@ describe("interactSlashCommands", () => {
     interaction.reply.mockRejectedValueOnce(new Error("send failed"));
 
     await expect(handler(interaction)).resolves.toBeUndefined();
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("Error replying to cryptodice slashcommand"),
+    );
   });
 
   test("replies to asset-backed text command", async () => {
@@ -165,7 +197,7 @@ describe("interactSlashCommands", () => {
     const textAsset = new TextAsset();
     textAsset.title = "hello";
     textAsset.response = "hello-response";
-    (textAsset as any).trigger = ["hello"];
+    textAsset.trigger = ["hello"];
 
     interactSlashCommands(client, [textAsset], ["hello"], [], []);
 
@@ -182,7 +214,7 @@ describe("interactSlashCommands", () => {
     const textAsset = new TextAsset();
     textAsset.title = "hello";
     textAsset.response = "hello-response";
-    (textAsset as any).trigger = ["hello"];
+    textAsset.trigger = ["hello"];
 
     interactSlashCommands(client, [textAsset], ["hello"], [], []);
 
@@ -191,6 +223,10 @@ describe("interactSlashCommands", () => {
     interaction.reply.mockRejectedValueOnce(new Error("send failed"));
 
     await expect(handler(interaction)).resolves.toBeUndefined();
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("Error replying to slashcommand"),
+    );
   });
 
   test("replies to grouped asset slash command with the requested variant", async () => {
@@ -199,12 +235,12 @@ describe("interactSlashCommands", () => {
     firstImage.title = "Betrug 1";
     firstImage.fileName = "betrug-01.jpg";
     firstImage.fileContent = Buffer.from("betrug-1");
-    (firstImage as any).trigger = ["betrug 1"];
+    firstImage.trigger = ["betrug 1"];
     const secondImage = new ImageAsset();
     secondImage.title = "Betrug 2";
     secondImage.fileName = "betrug-02.jpg";
     secondImage.fileContent = Buffer.from("betrug-2");
-    (secondImage as any).trigger = ["betrug 2"];
+    secondImage.trigger = ["betrug 2"];
 
     interactSlashCommands(client, [firstImage, secondImage], [], [], []);
 
@@ -214,9 +250,9 @@ describe("interactSlashCommands", () => {
 
     await handler(interaction);
 
-    expect(interaction.reply).toHaveBeenCalledWith(expect.objectContaining({
-      files: expect.any(Array),
-    }));
+    const payload = getReplyPayload(interaction);
+    expect(payload.files?.[0]?.name).toBe("betrug-02.jpg");
+    expect(payload.files?.[0]?.attachment).toEqual(Buffer.from("betrug-2"));
   });
 
   test("replies to grouped asset slash command with a random variant when no parameter is provided", async () => {
@@ -226,12 +262,12 @@ describe("interactSlashCommands", () => {
     firstImage.title = "Exchange 1";
     firstImage.fileName = "exchange-01.gif";
     firstImage.fileContent = Buffer.from("exchange-1");
-    (firstImage as any).trigger = ["exchange 1"];
+    firstImage.trigger = ["exchange 1"];
     const secondImage = new ImageAsset();
     secondImage.title = "Exchange 2";
     secondImage.fileName = "exchange-02.gif";
     secondImage.fileContent = Buffer.from("exchange-2");
-    (secondImage as any).trigger = ["exchange 2"];
+    secondImage.trigger = ["exchange 2"];
 
     interactSlashCommands(client, [firstImage, secondImage], [], [], []);
 
@@ -240,9 +276,8 @@ describe("interactSlashCommands", () => {
 
     await handler(interaction);
 
-    expect(interaction.reply).toHaveBeenCalledWith(expect.objectContaining({
-      files: expect.any(Array),
-    }));
+    const payload = getReplyPayload(interaction);
+    expect(["exchange-01.gif", "exchange-02.gif"]).toContain(payload.files?.[0]?.name);
     randomSpy.mockRestore();
   });
 
@@ -252,7 +287,7 @@ describe("interactSlashCommands", () => {
     imageAsset.title = "image";
     imageAsset.fileName = "image.png";
     imageAsset.text = "image text";
-    (imageAsset as any).trigger = ["image"];
+    imageAsset.trigger = ["image"];
 
     interactSlashCommands(client, [imageAsset], ["image"], [], []);
 
@@ -283,7 +318,7 @@ describe("interactSlashCommands", () => {
     quoteAsset.user = "alice";
     quoteAsset.fileName = "quote.png";
     quoteAsset.fileContent = undefined;
-    (quoteAsset as any).trigger = [];
+    quoteAsset.trigger = [];
     interactSlashCommands(client, [quoteAsset], [], [], []);
 
     const handler = getHandler("interactionCreate");
@@ -313,10 +348,18 @@ describe("interactSlashCommands", () => {
 
     await handler(interaction);
 
-    expect(interaction.reply).toHaveBeenCalledWith(expect.objectContaining({
-      embeds: expect.any(Array),
-      files: expect.any(Array),
-    }));
+    const payload = getReplyPayload(interaction);
+    expect(payload.files?.[0]?.name).toBe("faq.png");
+    expect(payload.files?.[0]?.attachment).toEqual(Buffer.from("test"));
+    expect(payload.embeds?.[0]?.toJSON()).toEqual({
+      image: {
+        url: "attachment://faq.png",
+      },
+      fields: [{
+        name: "FAQ",
+        value: "Answer",
+      }],
+    });
   });
 
   test("handles whatis unavailable responses when reply itself fails", async () => {
@@ -337,6 +380,10 @@ describe("interactSlashCommands", () => {
     interaction.reply.mockRejectedValueOnce(new Error("send failed"));
 
     await expect(handler(interaction)).resolves.toBeUndefined();
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("Error replying to whatis slashcommand"),
+    );
   });
 
   test("calendar replies with first chunk and follows up remaining chunks in order", async () => {
@@ -599,9 +646,9 @@ describe("interactSlashCommands", () => {
 
     await handler(interaction);
 
-    expect(interaction.reply).toHaveBeenCalledWith(expect.objectContaining({
-      files: expect.any(Array),
-    }));
+    const payload = getReplyPayload(interaction);
+    expect(payload.files?.[0]?.name).toBe("yes.png");
+    expect(payload.files?.[0]?.attachment).toEqual(Buffer.from("yes"));
   });
 
   test("sara replies with attachment when shrug asset is present", async () => {
@@ -618,9 +665,9 @@ describe("interactSlashCommands", () => {
 
     await handler(interaction);
 
-    expect(interaction.reply).toHaveBeenCalledWith(expect.objectContaining({
-      files: expect.any(Array),
-    }));
+    const payload = getReplyPayload(interaction);
+    expect(payload.files?.[0]?.name).toBe("shrug.png");
+    expect(payload.files?.[0]?.attachment).toEqual(Buffer.from("shrug"));
   });
 
   test("handles lmgtfy send failure without throwing", async () => {
@@ -633,5 +680,9 @@ describe("interactSlashCommands", () => {
     interaction.reply.mockRejectedValueOnce(new Error("send failed"));
 
     await expect(handler(interaction)).resolves.toBeUndefined();
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("Error replying to lmgtfy slashcommand"),
+    );
   });
 });

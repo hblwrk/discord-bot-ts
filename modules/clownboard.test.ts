@@ -1,4 +1,5 @@
 import type {Mock, MockedFunction} from "vitest";
+import type {Client} from "discord.js";
 import {clownboard} from "./clownboard.ts";
 import {describe, expect, test, vi} from "vitest";
 
@@ -24,6 +25,25 @@ type TestClownboardMessage = {
 type ExistingClownboardMessage = TestClownboardMessage & {
   edit: Mock;
   delete: Mock;
+};
+type SentClownboardPayload = {
+  content?: string;
+  embeds?: {
+    toJSON: () => {
+      author?: {
+        icon_url?: string;
+        name?: string;
+      };
+      description?: string;
+      fields?: {inline?: boolean; name: string; value: string}[];
+      footer?: {
+        text?: string;
+      };
+      image?: {
+        url?: string;
+      };
+    };
+  }[];
 };
 
 function createExistingMessage(): ExistingClownboardMessage {
@@ -98,6 +118,10 @@ function createReaction(count: number, attachment?: {url: string}) {
   };
 }
 
+function getSentPayload(clownboardChannel: {send: Mock}): SentClownboardPayload {
+  return clownboardChannel.send.mock.calls[0]![0] as SentClownboardPayload;
+}
+
 describe("clownboard", () => {
   test("posts to clownboard when threshold is reached", async () => {
     const messages = createMessages();
@@ -109,13 +133,29 @@ describe("clownboard", () => {
     };
 
     const {client, getHandler} = createClientWithHandlers(clownboardChannel);
-    clownboard(client as any, "clownboard-channel-id");
+    clownboard(client as unknown as Client, "clownboard-channel-id");
 
     const handler = getHandler("messageReactionAdd");
     await handler(createReaction(10), {id: "user-1"});
 
     expect(clownboardChannel.messages.fetch).toHaveBeenCalledWith({limit: 100});
-    expect(clownboardChannel.send).toHaveBeenCalledTimes(1);
+    const payload = getSentPayload(clownboardChannel);
+    expect(payload.content).toBe("🤡 **10** #source-channel");
+    expect(payload.embeds?.[0]?.toJSON()).toEqual({
+      author: {
+        name: "user#0001",
+        icon_url: "https://avatar.example",
+      },
+      description: "content",
+      footer: {
+        text: "source-message-id",
+      },
+      fields: [{
+        name: "Source",
+        value: "[Jump!](https://discord.example/jump)",
+        inline: true,
+      }],
+    });
   });
 
   test("updates existing clownboard message when reaction is added again", async () => {
@@ -129,7 +169,7 @@ describe("clownboard", () => {
     };
 
     const {client, getHandler} = createClientWithHandlers(clownboardChannel);
-    clownboard(client as any, "clownboard-channel-id");
+    clownboard(client as unknown as Client, "clownboard-channel-id");
 
     const handler = getHandler("messageReactionAdd");
     await handler(createReaction(12), {id: "user-1"});
@@ -149,14 +189,31 @@ describe("clownboard", () => {
     const reaction = createReaction(10, {url: "https://cdn.example/image.png"});
 
     const {client, getHandler} = createClientWithHandlers(clownboardChannel);
-    clownboard(client as any, "clownboard-channel-id");
+    clownboard(client as unknown as Client, "clownboard-channel-id");
 
     const handler = getHandler("messageReactionAdd");
     await handler(reaction, {id: "user-1"});
 
-    expect(clownboardChannel.send).toHaveBeenCalledWith(expect.objectContaining({
-      embeds: expect.any(Array),
-    }));
+    const payload = getSentPayload(clownboardChannel);
+    expect(payload.content).toBe("🤡 **10** #source-channel");
+    expect(payload.embeds?.[0]?.toJSON()).toEqual({
+      author: {
+        name: "user#0001",
+        icon_url: "https://avatar.example",
+      },
+      description: "content",
+      footer: {
+        text: "source-message-id",
+      },
+      image: {
+        url: "https://cdn.example/image.png",
+      },
+      fields: [{
+        name: "Source",
+        value: "[Jump!](https://discord.example/jump)",
+        inline: true,
+      }],
+    });
   });
 
   test("schedules delete when reaction count drops to threshold", async () => {
@@ -172,7 +229,7 @@ describe("clownboard", () => {
     };
 
     const {client, getHandler} = createClientWithHandlers(clownboardChannel);
-    clownboard(client as any, "clownboard-channel-id");
+    clownboard(client as unknown as Client, "clownboard-channel-id");
 
     const handler = getHandler("messageReactionRemove");
     await handler(createReaction(9), {id: "user-1"});
@@ -195,7 +252,7 @@ describe("clownboard", () => {
     };
 
     const {client, getHandler} = createClientWithHandlers(clownboardChannel);
-    clownboard(client as any, "clownboard-channel-id");
+    clownboard(client as unknown as Client, "clownboard-channel-id");
 
     const handler = getHandler("messageReactionRemove");
     await handler(createReaction(10), {id: "user-1"});

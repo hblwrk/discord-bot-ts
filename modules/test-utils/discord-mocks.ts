@@ -1,35 +1,36 @@
-import type {MockedFunction} from "vitest";
 import {vi} from "vitest";
 
-type EventHandler = (...args: any[]) => unknown | Promise<unknown>;
+type RegisteredEventHandler = (...args: unknown[]) => unknown | Promise<unknown>;
+type AcceptedEventHandler = (...args: never[]) => unknown | Promise<unknown>;
+type EventRegistrar = <Handler extends AcceptedEventHandler>(eventName: string, handler: Handler) => EventClient;
 type EventClient = {
-  on: MockedFunction<(eventName: string, handler: EventHandler) => EventClient>;
-  once: MockedFunction<(eventName: string, handler: EventHandler) => EventClient>;
+  on: EventRegistrar;
+  once: EventRegistrar;
 };
 
 export function createEventClient() {
-  const handlers = new Map<string, EventHandler>();
+  const handlers = new Map<string, RegisteredEventHandler>();
 
   const client = {} as EventClient;
-  client.on = vi.fn((eventName: string, handler: EventHandler) => {
-    handlers.set(eventName, handler);
+  client.on = vi.fn((eventName: string, handler: AcceptedEventHandler) => {
+    handlers.set(eventName, handler as unknown as RegisteredEventHandler);
     return client;
   });
-  client.once = vi.fn((eventName: string, handler: EventHandler) => {
-    handlers.set(eventName, handler);
+  client.once = vi.fn((eventName: string, handler: AcceptedEventHandler) => {
+    handlers.set(eventName, handler as unknown as RegisteredEventHandler);
     return client;
   });
 
   return {
     client,
     handlers,
-    getHandler(eventName: string) {
+    getHandler<Handler extends RegisteredEventHandler = RegisteredEventHandler>(eventName: string): Handler {
       const handler = handlers.get(eventName);
       if (!handler) {
         throw new Error(`Missing handler for ${eventName}.`);
       }
 
-      return handler;
+      return handler as Handler;
     },
   };
 }
@@ -57,6 +58,7 @@ export function createChatInputInteraction(commandName: string) {
 
 export function createMessage(content: string) {
   return {
+    author: undefined as {bot?: boolean; id?: string} | undefined,
     content,
     channel: {
       send: vi.fn().mockResolvedValue(undefined),
@@ -69,5 +71,6 @@ export function createMessage(content: string) {
       },
     },
     react: vi.fn().mockResolvedValue(undefined),
+    webhookId: undefined as string | null | undefined,
   };
 }

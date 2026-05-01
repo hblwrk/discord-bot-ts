@@ -3,6 +3,14 @@ import {addInlineResponses} from "./inline-response.ts";
 import {createEventClient, createMessage} from "./test-utils/discord-mocks.ts";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
+const loggerMock = vi.hoisted(() => ({
+  log: vi.fn(),
+}));
+
+vi.mock("./logging.ts", () => ({
+  getLogger: () => loggerMock,
+}));
+
 describe("addInlineResponses", () => {
   beforeEach(() => {
     vi.clearAllMocks();
@@ -10,9 +18,9 @@ describe("addInlineResponses", () => {
 
   function createEmojiAsset(trigger: string, response: unknown[], triggerRegex = "") {
     const asset = new EmojiAsset();
-    (asset as any).trigger = [trigger];
-    (asset as any).response = response;
-    (asset as any).triggerRegex = triggerRegex;
+    asset.trigger = [trigger];
+    asset.response = response;
+    asset.triggerRegex = triggerRegex;
     return asset;
   }
 
@@ -24,7 +32,7 @@ describe("addInlineResponses", () => {
 
     const handler = getHandler("messageCreate");
     const message = createMessage("party now");
-    (message as any).author = {bot: true};
+    message.author = {bot: true};
 
     await handler(message);
 
@@ -39,7 +47,7 @@ describe("addInlineResponses", () => {
 
     const handler = getHandler("messageCreate");
     const message = createMessage("party now");
-    (message as any).webhookId = "webhook-1";
+    message.webhookId = "webhook-1";
 
     await handler(message);
 
@@ -118,8 +126,13 @@ describe("addInlineResponses", () => {
     const message = createMessage("party now");
     message.react.mockRejectedValue(new Error("react failed"));
 
-    await expect(handler(message)).resolves.toBeUndefined();
+    handler(message);
     await Promise.resolve();
+
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("Error posting emoji reaction"),
+    );
   });
 
   test("handles custom emoji reaction failures without crashing", async () => {
@@ -136,7 +149,12 @@ describe("addInlineResponses", () => {
     });
     message.react.mockRejectedValue(new Error("custom react failed"));
 
-    await expect(handler(message)).resolves.toBeUndefined();
+    handler(message);
     await Promise.resolve();
+
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("Error posting emoji reaction"),
+    );
   });
 });

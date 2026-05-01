@@ -9,6 +9,16 @@ const {loggerMock, startBotMock} = vi.hoisted(() => ({
   startBotMock: vi.fn(),
 }));
 const warningHandlerSymbol = Symbol.for("hblwrk.discord-bot-ts.warning-handler");
+type ProcessWarningWithMetadata = Error & {
+  code?: string;
+  count?: number;
+  emitter?: {
+    constructor?: {
+      name?: string;
+    };
+  };
+  type?: string;
+};
 
 vi.mock("./modules/startup-orchestrator.ts", () => ({
   startBot: startBotMock,
@@ -76,12 +86,12 @@ describe("index bootstrap", () => {
       setImmediate(resolve);
     });
 
-    const warning = new Error("Possible AsyncEventEmitter memory leak detected.");
+    const warning: ProcessWarningWithMetadata = new Error("Possible AsyncEventEmitter memory leak detected.");
     warning.name = "MaxListenersExceededWarning";
-    (warning as any).code = "MAX_LISTENERS_EXCEEDED";
-    (warning as any).type = "error";
-    (warning as any).count = 11;
-    (warning as any).emitter = {
+    warning.code = "MAX_LISTENERS_EXCEEDED";
+    warning.type = "error";
+    warning.count = 11;
+    warning.emitter = {
       constructor: {
         name: "WebSocketShard",
       },

@@ -1,5 +1,6 @@
 import type {MockedFunction} from "vitest";
 import {type EarningsEvent, getEarnings, getEarningsMessages, getEarningsResult, getEarningsText} from "./earnings.ts";
+import {Ticker} from "./tickers.ts";
 import axios from "axios";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 
@@ -8,7 +9,7 @@ vi.useFakeTimers();
 const defaultNow = new Date("2024-01-02T19:30:00+01:00");
 vi.setSystemTime(defaultNow);
 
-function getNasdaqResponse(rows: any[] = []) {
+function getNasdaqResponse(rows: Record<string, unknown>[] = []) {
   return {
     data: {
       rows,
@@ -17,6 +18,12 @@ function getNasdaqResponse(rows: any[] = []) {
       rCode: 200,
     },
   };
+}
+
+function getTicker(symbol: string): Ticker {
+  const ticker = new Ticker();
+  ticker.symbol = symbol;
+  return ticker;
 }
 
 function getNasdaqRow(overrides: Record<string, unknown> = {}): Record<string, unknown> {
@@ -381,7 +388,7 @@ describe("getEarningsText", () => {
       }),
     ];
 
-    const text = getEarningsText(earningEvents, "all", [{symbol: "BIG"}] as any);
+    const text = getEarningsText(earningEvents, "all", [getTicker("BIG")]);
 
     expect(text).toContain("**Zeitraum:** Mittwoch, 3. Januar 2024 bis Donnerstag, 4. Januar 2024");
     expect(text).toContain("**Mittwoch, 3. Januar 2024:**");
@@ -440,7 +447,7 @@ describe("getEarningsMessages", () => {
   ];
 
   test("returns one message with one line per earning and ticker first", () => {
-    const batch = getEarningsMessages(earningEvents, "all", [{symbol: "BIG"}] as any, {
+    const batch = getEarningsMessages(earningEvents, "all", [getTicker("BIG")], {
       maxMessageLength: 1800,
       maxMessages: 6,
     });
