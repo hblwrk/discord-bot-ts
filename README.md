@@ -239,7 +239,7 @@ SEC: 8-K Item 2.02, 9.01 https://www.sec.gov/Archives/edgar/data/320193/00003201
 
 Real-time market-data is being pulled in through a Websocket connection and distributed via Discord bot nickname and presence information. Those bots can be joined to the server separately and their runtime information is managed as an asset. They require no oAuth2 scopes other than "bot".
 
-The `/delta` command uses tastytrade OAuth read access for option chains and live quote-streamer snapshots. It selects the first expiration on or after the requested DTE and returns the call and put strikes around the requested absolute delta, including bid, mid, ask, size and IV.
+The `/delta` command uses tastytrade OAuth read access for option chains and live quote-streamer snapshots. It selects the first expiration on or after the requested DTE and returns the call and put strikes around the requested absolute delta, including bid, mid, ask, size and IV. Broker-backed option-data lookups are serialized, spaced by 10 seconds, and protected by a bounded queue.
 
 ## Service lifecycle
 

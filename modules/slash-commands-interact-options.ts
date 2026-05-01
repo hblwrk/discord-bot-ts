@@ -1,4 +1,5 @@
 import {type ChatInputCommandInteraction} from "discord.js";
+import {BrokerApiRateLimitError} from "./broker-api-rate-limit.ts";
 import {getDiscordLogger, getLogger} from "./logging.ts";
 import {
   formatOptionDeltaLookupResult,
@@ -9,10 +10,18 @@ import {
   type OptionDeltaRequestedSide,
   type OptionDeltaCredentials,
 } from "./options-delta.ts";
+import {
+  formatExpectedMoveLookupResult,
+  formatOptionStraddleLookupResult,
+  formatOptionStrangleLookupResult,
+  getOptionStraddleLookup,
+  getOptionStrangleLookup,
+} from "./options-strategy.ts";
 import {readSecret} from "./secrets.ts";
 import {getDiscordLoggerClient, noMentions, type SlashCommandClient} from "./slash-commands-interact-shared.ts";
 
 const logger = getLogger();
+const optionCommandNames = new Set(["delta", "strangle", "straddle", "expectedmove"]);
 
 function getRequestedSide(sideOption: string | null): OptionDeltaRequestedSide {
   if ("call" === sideOption || "put" === sideOption) {
@@ -34,19 +43,68 @@ function getTastytradeCredentials(): OptionDeltaCredentials {
 }
 
 function getDeltaErrorMessage(error: unknown): string {
+  if (error instanceof BrokerApiRateLimitError) {
+    return "Optionsdaten sind gerade ausgelastet. Bitte gleich erneut versuchen.";
+  }
+
   if (error instanceof OptionDeltaConfigurationError) {
-    return "Optionsdaten sind fuer /delta noch nicht konfiguriert.";
+    return "Optionsdaten sind für /delta noch nicht konfiguriert.";
   }
 
   if (error instanceof OptionDeltaInputError) {
-    return `Ungueltige Eingabe: ${error.message}`;
+    return `Ungültige Eingabe: ${error.message}`;
   }
 
   if (error instanceof OptionDeltaDataError) {
     return error.message;
   }
 
-  return "Optionsdaten konnten gerade nicht geladen werden. Bitte spaeter erneut versuchen.";
+  return "Optionsdaten konnten gerade nicht geladen werden. Bitte später erneut versuchen.";
+}
+
+async function getOptionsCommandResponse(interaction: ChatInputCommandInteraction, commandName: string): Promise<string> {
+  const symbol = interaction.options.getString("symbol", true);
+  const dte = interaction.options.getInteger("dte", true);
+  const credentials = getTastytradeCredentials();
+  if ("strangle" === commandName) {
+    const delta = interaction.options.getNumber("delta");
+    const result = await getOptionStrangleLookup({
+      credentials,
+      dte,
+      symbol,
+      ...(null === delta ? {} : {delta}),
+    });
+    return formatOptionStrangleLookupResult(result);
+  }
+
+  if ("straddle" === commandName) {
+    const result = await getOptionStraddleLookup({
+      credentials,
+      dte,
+      symbol,
+    });
+    return formatOptionStraddleLookupResult(result);
+  }
+
+  if ("expectedmove" === commandName) {
+    const result = await getOptionStraddleLookup({
+      credentials,
+      dte,
+      symbol,
+    });
+    return formatExpectedMoveLookupResult(result);
+  }
+
+  const delta = interaction.options.getNumber("delta", true);
+  const side = getRequestedSide(interaction.options.getString("side"));
+  const result = await getOptionDeltaLookup({
+    credentials,
+    delta,
+    dte,
+    side,
+    symbol,
+  });
+  return formatOptionDeltaLookupResult(result);
 }
 
 export async function handleDeltaSlashCommand(
@@ -54,7 +112,7 @@ export async function handleDeltaSlashCommand(
   interaction: ChatInputCommandInteraction,
   commandName: string,
 ): Promise<boolean> {
-  if ("delta" !== commandName) {
+  if (false === optionCommandNames.has(commandName)) {
     return false;
   }
 
@@ -63,7 +121,7 @@ export async function handleDeltaSlashCommand(
     "info",
     {
       username: `${interaction.user.username}`,
-      message: "Using delta slashcommand",
+      message: `Using ${commandName} slashcommand`,
       channel: `${interaction.channel}`,
     },
   );
@@ -80,20 +138,8 @@ export async function handleDeltaSlashCommand(
   }
 
   try {
-    const symbol = interaction.options.getString("symbol", true);
-    const dte = interaction.options.getInteger("dte", true);
-    const delta = interaction.options.getNumber("delta", true);
-    const side = getRequestedSide(interaction.options.getString("side"));
-    const result = await getOptionDeltaLookup({
-      credentials: getTastytradeCredentials(),
-      delta,
-      dte,
-      side,
-      symbol,
-    });
-
     await interaction.editReply({
-      content: formatOptionDeltaLookupResult(result),
+      content: await getOptionsCommandResponse(interaction, commandName),
       allowedMentions: noMentions,
     }).catch((error: unknown) => {
       logger.log(
