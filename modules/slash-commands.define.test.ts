@@ -562,6 +562,7 @@ describe("defineSlashCommands", () => {
     const strangleCommand = findCommand(payload.slashCommands, "strangle");
     const straddleCommand = findCommand(payload.slashCommands, "straddle");
     const expectedMoveCommand = findCommand(payload.slashCommands, "expectedmove");
+    const boxSpreadCommand = findCommand(payload.slashCommands, "boxspread");
 
     expect(strangleCommand.options).toEqual([
       expect.objectContaining({
@@ -592,6 +593,25 @@ describe("defineSlashCommands", () => {
       }),
     ]);
     expect(expectedMoveCommand.options).toEqual(straddleCommand.options);
+    expect(boxSpreadCommand.options).toEqual([
+      expect.objectContaining({
+        name: "dte",
+        required: true,
+      }),
+      expect.objectContaining({
+        name: "direction",
+        required: true,
+        choices: [
+          {name: "Borrow cash (short box)", value: "borrow"},
+          {name: "Lend cash (long box)", value: "lend"},
+        ],
+      }),
+      expect.objectContaining({
+        name: "notational",
+        min_value: 1,
+        required: true,
+      }),
+    ]);
   });
 
 
@@ -618,6 +638,7 @@ describe("defineSlashCommands", () => {
     expect(payload.expectedCommandNames).toContain("strangle");
     expect(payload.expectedCommandNames).toContain("straddle");
     expect(payload.expectedCommandNames).toContain("expectedmove");
+    expect(payload.expectedCommandNames).toContain("boxspread");
     expect(payload.expectedCommandNames).toContain("asset-85");
     expect(payload.expectedCommandNames).not.toContain("asset-86");
     expect(loggerMock.log).toHaveBeenCalledWith(

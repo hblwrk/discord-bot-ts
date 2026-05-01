@@ -4,9 +4,7 @@ import type {GenericAsset, ImageAsset, PaywallAsset} from "./assets.ts";
 import {cryptodice} from "./crypto-dice.ts";
 import {google, lmgtfy} from "./lmgtfy.ts";
 import {getLogger} from "./logging.ts";
-import {readSecret} from "./secrets.ts";
 import {handleCalendarSlashCommand, handleEarningsSlashCommand} from "./slash-commands-interact-events.ts";
-import {handleIslandboiSlashCommand} from "./slash-commands-interact-islandboi.ts";
 import {handleMediaSlashCommand} from "./slash-commands-interact-media.ts";
 import {handleDeltaSlashCommand} from "./slash-commands-interact-options.ts";
 import {handlePaywallSlashCommand} from "./slash-commands-interact-paywall.ts";
@@ -23,8 +21,6 @@ export function interactSlashCommands(
   tickers: Ticker[],
   paywallAssets?: PaywallAsset[],
 ) {
-  const guildId = readSecret("discord_guild_ID").trim();
-
   client.on("interactionCreate", async interaction => {
     if (!interaction.isChatInputCommand()) {
       return;
@@ -107,10 +103,6 @@ export function interactSlashCommands(
     }
 
     if (true === await handlePaywallSlashCommand(chatInputInteraction, commandName, paywallAssets)) {
-      return;
-    }
-
-    if (true === await handleIslandboiSlashCommand(client, chatInputInteraction, commandName, guildId)) {
       return;
     }
 

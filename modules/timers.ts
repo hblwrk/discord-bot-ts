@@ -22,7 +22,7 @@ import {
   getEarningsMessages,
   type EarningsMessageBatch,
 } from "./earnings.ts";
-import {addExpectedMovesToEarningsEvents} from "./earnings-expected-move.ts";
+import {addExpectedMovesToEarningsEvents, warmExpectedMoveCacheForEarningsEvents} from "./earnings-expected-move.ts";
 import {getLogger} from "./logging.ts";
 import {getMnc} from "./mnc-downloader.ts";
 import {type Ticker} from "./tickers.ts";
@@ -308,6 +308,26 @@ async function runEarningsAnnouncement(
   await sendChunkedMessages(channel, messages, "earnings");
 }
 
+async function warmExpectedMovesForAnnouncement(config: EarningsAnnouncementConfig) {
+  const earningsResult = await getEarningsResult(config.days, config.date);
+  if ("error" === earningsResult.status) {
+    logger.log(
+      "warn",
+      {
+        source: `${config.source}-expected-move-warmup`,
+        status: earningsResult.status,
+        message: config.errorMessage,
+      },
+    );
+    return;
+  }
+
+  await warmExpectedMoveCacheForEarningsEvents(earningsResult.events, {
+    marketCapFilter: config.filter,
+    when: config.when,
+  });
+}
+
 export function startNyseTimers(client: TimerClient, channelID: string, gainsLossesThreadID?: string) {
   const sentimentPollState: NyseSentimentPollState = {
     ended: true,
@@ -552,6 +572,28 @@ export function startOtherTimers(
     dayOfWeek: [new Schedule.Range(0, 6)],
     tz: europeBerlinTimezone,
   });
+  const ruleEarningsExpectedMoveWarmup = createRecurrenceRule({
+    hour: 19,
+    minute: 28,
+    dayOfWeek: [new Schedule.Range(0, 6)],
+    tz: europeBerlinTimezone,
+  });
+
+  Schedule.scheduleJob(ruleEarningsExpectedMoveWarmup, async () => {
+    const nextUsEasternDate = getNextUsEasternDate();
+    if (false === isNyseTradingDay(nextUsEasternDate)) {
+      return;
+    }
+
+    await warmExpectedMovesForAnnouncement({
+      date: "tomorrow",
+      days: 0,
+      errorMessage: "Earnings konnten nicht geladen werden.",
+      filter: "bluechips",
+      source: "timer-earnings",
+      when: "all",
+    });
+  });
 
   Schedule.scheduleJob(ruleEarnings, async () => {
     const nextUsEasternDate = getNextUsEasternDate();
@@ -581,6 +623,24 @@ export function startOtherTimers(
     minute: 30,
     dayOfWeek: [5],
     tz: europeBerlinTimezone,
+  });
+  const ruleEarningsWeeklyExpectedMoveWarmup = createRecurrenceRule({
+    hour: 23,
+    minute: 28,
+    dayOfWeek: [5],
+    tz: europeBerlinTimezone,
+  });
+
+  Schedule.scheduleJob(ruleEarningsWeeklyExpectedMoveWarmup, async () => {
+    await warmExpectedMovesForAnnouncement({
+      date: "tomorrow",
+      days: 5,
+      errorMessage: "Wöchentliche Earnings konnten nicht geladen werden.",
+      filter: "bluechips",
+      headline: weeklyEarningsHeadline,
+      source: "timer-earnings-weekly",
+      when: "all",
+    });
   });
 
   Schedule.scheduleJob(ruleEarningsWeekly, async () => {

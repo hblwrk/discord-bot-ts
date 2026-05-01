@@ -61,6 +61,23 @@ export type OptionDeltaLookupResult = {
   underlyingPrice: number | null;
   underlyingPriceIsRealtime: boolean;
 };
+export type OptionContractsLookupRequest = {
+  credentials: OptionDeltaCredentials;
+  dte: number;
+  side?: OptionDeltaRequestedSide;
+  symbol: string;
+};
+export type OptionContractsLookupResult = {
+  actualDte: number;
+  contracts: OptionDeltaContract[];
+  expiration: string;
+  requestedDte: number;
+  requestedSide: OptionDeltaRequestedSide;
+  rolled: boolean;
+  symbol: string;
+  underlyingPrice: number | null;
+  underlyingPriceIsRealtime: boolean;
+};
 
 type TastytradeEvent = Record<string, unknown>;
 type TastytradeEventListener = (events: TastytradeEvent[]) => void;
@@ -70,13 +87,13 @@ type TastytradeQuoteStreamer = {
   disconnect: () => void;
   subscribe: (streamerSymbols: string[], types?: MarketDataSubscriptionType[] | null) => void;
 };
-type TastytradeClientLike = {
+export type OptionDeltaLookupClient = {
   instrumentsService: {
     getNestedOptionChain: (symbol: string) => Promise<unknown>;
   };
   quoteStreamer: TastytradeQuoteStreamer;
 };
-type TastytradeClientFactory = (credentials: OptionDeltaCredentials) => TastytradeClientLike;
+type TastytradeClientFactory = (credentials: OptionDeltaCredentials) => OptionDeltaLookupClient;
 type OptionDeltaCache<Value> = Pick<BoundedTtlCache<Value>, "get" | "set">;
 export type OptionMarketDataSnapshot = {contracts: OptionDeltaContract[]; underlyingPrice: number | null};
 export type OptionDeltaLookupDependencies = {
@@ -230,7 +247,7 @@ export function normalizeTargetDelta(delta: number): number {
   return delta;
 }
 
-function normalizeDte(dte: number): number {
+export function normalizeDte(dte: number): number {
   if (false === Number.isInteger(dte) || dte < 0 || dte > 3650) {
     throw new OptionDeltaInputError("DTE must be an integer from 0 to 3650.");
   }
@@ -244,7 +261,7 @@ function ensureWebSocketGlobal() {
   }
 }
 
-function createTastytradeClient(credentials: OptionDeltaCredentials): TastytradeClientLike {
+export function createOptionDeltaLookupClient(credentials: OptionDeltaCredentials): OptionDeltaLookupClient {
   ensureWebSocketGlobal();
   return new TastytradeClient({
     baseUrl: "https://api.tastyworks.com",
@@ -559,6 +576,79 @@ export function findDeltaBrackets(contracts: OptionDeltaContract[], targetDelta:
   };
 }
 
+export async function getOptionContractsLookup(
+  request: OptionContractsLookupRequest,
+  dependencies: OptionDeltaLookupDependencies = {},
+): Promise<OptionContractsLookupResult> {
+  const credentials = normalizeCredentials(request.credentials);
+  const symbol = normalizeOptionSymbol(request.symbol);
+  const dte = normalizeDte(request.dte);
+  const requestedSide = request.side ?? "both";
+  const requestedSides = getRequestedSides(requestedSide);
+  const chainCache = dependencies.chainCache ?? optionChainCache;
+  const contractCache = dependencies.contractCache ?? optionContractCache;
+  const rateLimiter = dependencies.rateLimiter ?? optionDataRateLimiter;
+  const underlyingPriceIsRealtime = isMarketHoursOpen("us_cash", (dependencies.now ?? Date.now)());
+
+  const cachedExpirations = chainCache.get(symbol);
+  if (undefined === cachedExpirations) {
+    return rateLimiter.run(async () => {
+      const client = (dependencies.clientFactory ?? createOptionDeltaLookupClient)(credentials);
+      const expirations = await getOptionChainExpirations(client, symbol, chainCache);
+      return buildContractsLookupResultFromExpirations({
+        client,
+        contractCache,
+        dte,
+        marketDataTimeoutMs: dependencies.marketDataTimeoutMs ?? defaultMarketDataTimeoutMs,
+        requestedSide,
+        requestedSides,
+        symbol,
+        underlyingPriceIsRealtime,
+      }, expirations);
+    });
+  }
+
+  const selectedExpiration = selectExpirationForDte(cachedExpirations, dte);
+  if (null === selectedExpiration) {
+    throw new OptionDeltaDataError(`No option expiration found on or after ${dte} DTE for ${symbol}.`);
+  }
+
+  const cachedSnapshot = getCachedMarketDataSnapshot(contractCache, symbol, selectedExpiration.expiration, requestedSides);
+  if (undefined !== cachedSnapshot) {
+    return buildContractsLookupResult({
+      contracts: cachedSnapshot.contracts,
+      requestedDte: dte,
+      requestedSide,
+      selectedExpiration,
+      symbol,
+      underlyingPrice: cachedSnapshot.underlyingPrice,
+      underlyingPriceIsRealtime,
+    });
+  }
+
+  return rateLimiter.run(async () => {
+    const client = (dependencies.clientFactory ?? createOptionDeltaLookupClient)(credentials);
+    const snapshot = await getOptionContracts(
+      client,
+      symbol,
+      selectedExpiration.expiration,
+      requestedSides,
+      dependencies.marketDataTimeoutMs ?? defaultMarketDataTimeoutMs,
+      contractCache,
+    );
+
+    return buildContractsLookupResult({
+      contracts: snapshot.contracts,
+      requestedDte: dte,
+      requestedSide,
+      selectedExpiration,
+      symbol,
+      underlyingPrice: snapshot.underlyingPrice,
+      underlyingPriceIsRealtime,
+    });
+  });
+}
+
 export async function getOptionDeltaLookup(
   request: OptionDeltaLookupRequest,
   dependencies: OptionDeltaLookupDependencies = {},
@@ -576,7 +666,7 @@ export async function getOptionDeltaLookup(
   const cachedExpirations = chainCache.get(symbol);
   if (undefined === cachedExpirations) {
     return rateLimiter.run(async () => {
-      const client = (dependencies.clientFactory ?? createTastytradeClient)(credentials);
+      const client = (dependencies.clientFactory ?? createOptionDeltaLookupClient)(credentials);
       const expirations = await getOptionChainExpirations(client, symbol, chainCache);
       return buildLookupResultFromExpirations({
         client,
@@ -613,7 +703,7 @@ export async function getOptionDeltaLookup(
   }
 
   return rateLimiter.run(async () => {
-    const client = (dependencies.clientFactory ?? createTastytradeClient)(credentials);
+    const client = (dependencies.clientFactory ?? createOptionDeltaLookupClient)(credentials);
     const snapshot = await getOptionContracts(
       client,
       symbol,
@@ -638,7 +728,7 @@ export async function getOptionDeltaLookup(
 }
 
 async function getOptionChainExpirations(
-  client: TastytradeClientLike,
+  client: OptionDeltaLookupClient,
   symbol: string,
   chainCache: OptionDeltaCache<ChainExpiration[]>,
 ): Promise<ChainExpiration[]> {
@@ -682,7 +772,7 @@ function getCachedMarketDataSnapshot(
 }
 
 async function getOptionContracts(
-  client: TastytradeClientLike,
+  client: OptionDeltaLookupClient,
   symbol: string,
   expiration: ChainExpiration,
   requestedSides: OptionDeltaSide[],
@@ -716,7 +806,7 @@ async function getOptionContracts(
 }
 
 type BuildLookupResultFromExpirationsRequest = {
-  client: TastytradeClientLike;
+  client: OptionDeltaLookupClient;
   contractCache: OptionDeltaCache<OptionMarketDataSnapshot>;
   dte: number;
   marketDataTimeoutMs: number;
@@ -769,6 +859,70 @@ type BuildLookupResultRequest = {
   underlyingPrice: number | null;
   underlyingPriceIsRealtime: boolean;
 };
+
+type BuildContractsLookupResultFromExpirationsRequest = {
+  client: OptionDeltaLookupClient;
+  contractCache: OptionDeltaCache<OptionMarketDataSnapshot>;
+  dte: number;
+  marketDataTimeoutMs: number;
+  requestedSide: OptionDeltaRequestedSide;
+  requestedSides: OptionDeltaSide[];
+  symbol: string;
+  underlyingPriceIsRealtime: boolean;
+};
+
+async function buildContractsLookupResultFromExpirations(
+  request: BuildContractsLookupResultFromExpirationsRequest,
+  expirations: ChainExpiration[],
+): Promise<OptionContractsLookupResult> {
+  const selectedExpiration = selectExpirationForDte(expirations, request.dte);
+  if (null === selectedExpiration) {
+    throw new OptionDeltaDataError(`No option expiration found on or after ${request.dte} DTE for ${request.symbol}.`);
+  }
+
+  const snapshot = await getOptionContracts(
+    request.client,
+    request.symbol,
+    selectedExpiration.expiration,
+    request.requestedSides,
+    request.marketDataTimeoutMs,
+    request.contractCache,
+  );
+
+  return buildContractsLookupResult({
+    contracts: snapshot.contracts,
+    requestedDte: request.dte,
+    requestedSide: request.requestedSide,
+    selectedExpiration,
+    symbol: request.symbol,
+    underlyingPrice: snapshot.underlyingPrice,
+    underlyingPriceIsRealtime: request.underlyingPriceIsRealtime,
+  });
+}
+
+type BuildContractsLookupResultRequest = {
+  contracts: OptionDeltaContract[];
+  requestedDte: number;
+  requestedSide: OptionDeltaRequestedSide;
+  selectedExpiration: SelectedExpiration;
+  symbol: string;
+  underlyingPrice: number | null;
+  underlyingPriceIsRealtime: boolean;
+};
+
+function buildContractsLookupResult(request: BuildContractsLookupResultRequest): OptionContractsLookupResult {
+  return {
+    actualDte: request.selectedExpiration.expiration.daysToExpiration,
+    contracts: request.contracts,
+    expiration: request.selectedExpiration.expiration.expirationDate,
+    requestedDte: request.requestedDte,
+    requestedSide: request.requestedSide,
+    rolled: request.selectedExpiration.rolled,
+    symbol: request.symbol,
+    underlyingPrice: request.underlyingPrice,
+    underlyingPriceIsRealtime: request.underlyingPriceIsRealtime,
+  };
+}
 
 function buildLookupResult(request: BuildLookupResultRequest): OptionDeltaLookupResult {
   const sideResults = request.requestedSides.map(side => {

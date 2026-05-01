@@ -34,6 +34,7 @@ const getCalendarEventsMock = vi.fn();
 const getCalendarEventsResultMock = vi.fn();
 const getCalendarMessagesMock = vi.fn();
 const addExpectedMovesToEarningsEventsMock = vi.fn();
+const warmExpectedMoveCacheForEarningsEventsMock = vi.fn();
 const getEarningsResultMock = vi.fn();
 const getEarningsMessagesMock = vi.fn();
 const getMncMock = vi.fn();
@@ -87,6 +88,7 @@ vi.mock("../earnings.ts", () => ({
 
 vi.mock("../earnings-expected-move.ts", () => ({
   addExpectedMovesToEarningsEvents: (...args: unknown[]) => addExpectedMovesToEarningsEventsMock(...args),
+  warmExpectedMoveCacheForEarningsEvents: (...args: unknown[]) => warmExpectedMoveCacheForEarningsEventsMock(...args),
 }));
 
 vi.mock("../mnc-downloader.ts", () => ({
@@ -219,6 +221,7 @@ export function resetTimerMocks() {
     status: "ok",
   });
   addExpectedMovesToEarningsEventsMock.mockImplementation(async events => events);
+  warmExpectedMoveCacheForEarningsEventsMock.mockResolvedValue(undefined);
   getEarningsMessagesMock.mockReturnValue({
     messages: ["earnings-text"],
     truncated: false,
@@ -269,4 +272,5 @@ export {
   startMncTimers,
   startNyseTimers,
   startOtherTimers,
+  warmExpectedMoveCacheForEarningsEventsMock,
 };

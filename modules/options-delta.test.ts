@@ -258,7 +258,7 @@ describe("options-delta", () => {
     expect(putResult?.brackets.above?.strike).toBe(450);
 
     const formattedResult = formatOptionDeltaLookupResult(result);
-    expect(formattedResult).toContain("**`AAPL` @ `190.42` | Δ target `0.30`");
+    expect(formattedResult.split("\n")[0]).toBe("`AAPL` @ `190.42` | Δ target `0.30` | Expiry `2026-06-19` (`49` DTE, requested `45`)");
     expect(formattedResult).toContain("Expiry `2026-06-19` (`49` DTE, requested `45`)");
     expect(formattedResult).toContain("• Δ ≤ target: `450C` | Δ `0.250` | mid `1.30`");
     expect(formattedResult).toContain("bid/ask `1.20 / 1.40`");
@@ -483,7 +483,7 @@ describe("options-delta", () => {
       underlyingPriceIsRealtime: false,
     });
 
-    expect(formattedResult).toContain("**`AAPL` @ `190.42` (market closed) | Δ target `0.30`");
+    expect(formattedResult.split("\n")[0]).toBe("`AAPL` @ `190.42` (market closed) | Δ target `0.30` | Expiry `2026-06-19` (`49` DTE)");
     expect(formattedResult).toContain("Expiry `2026-06-19` (`49` DTE)");
     expect(formattedResult).toContain("• Δ ≤ target: Keine passende Option gefunden.");
     expect(formattedResult).toContain("bid/ask `n/a / n/a`");

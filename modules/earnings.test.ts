@@ -53,8 +53,8 @@ function getEarningsEvent(overrides: Partial<EarningsEvent> = {}): EarningsEvent
 
 function parseEarningsLine(
   line: string
-): {ticker: string; marketCap: string; eps: string; companyName: string} {
-  const match = line.match(/^(?:\*\*)?`([^`]+)`(?:\*\*)? MCap: `([^`]+)` 🔮 EPS: `([^`]+)` (.+)$/);
+): {ticker: string; marketCap: string; eps: string} {
+  const match = line.match(/^(?:\*\*)?`([^`]+)`(?:\*\*)? 💰 MCap: `([^`]+)`(?: 📈 Last: `\$[^`]+`)? 🔮 EPS: `([^`]+)`(?: .*)?$/);
   if (null === match) {
     throw new Error(`Unexpected earnings line format: ${line}`);
   }
@@ -63,7 +63,6 @@ function parseEarningsLine(
     ticker: match[1]!,
     marketCap: match[2]!,
     eps: match[3]!,
-    companyName: match[4]!,
   };
 }
 
@@ -401,16 +400,12 @@ describe("getEarningsText", () => {
     const parsedLines = lines.map(parseEarningsLine);
     expect(lines[0]!.startsWith("**`BIG")).toBe(true);
     expect(parsedLines[0]!).toEqual(expect.objectContaining({
-      companyName: "Big Co",
+      ticker: "BIG  ",
       marketCap: expect.stringMatching(/^\$1B +$/),
       eps: "1.20",
     }));
-    expect(parsedLines[1]!).toEqual(expect.objectContaining({
-      companyName: "Small Co",
-    }));
-    expect(parsedLines[2]!).toEqual(expect.objectContaining({
-      companyName: "Next Co",
-    }));
+    expect(parsedLines[1]!.ticker.trim()).toBe("SMALL");
+    expect(parsedLines[2]!.ticker.trim()).toBe("NEXT");
     expect(new Set(parsedLines.map(entry => entry.ticker.length)).size).toBe(1);
     expect(new Set(parsedLines.map(entry => entry.marketCap.length)).size).toBe(1);
     expect(new Set(parsedLines.map(entry => entry.eps.length)).size).toBe(1);
@@ -464,9 +459,9 @@ describe("getEarningsMessages", () => {
     const lines = batch.messages[0]!.split("\n").filter(line => line.includes(" MCap: "));
     const parsedLines = lines.map(parseEarningsLine);
     expect(lines[0]!.startsWith("**`BIG")).toBe(true);
-    expect(parsedLines[0]!.companyName).toBe("Big Co");
-    expect(parsedLines[1]!.companyName).toBe("Small Co");
-    expect(parsedLines[2]!.companyName).toBe("Mid Co");
+    expect(parsedLines[0]!.ticker.trim()).toBe("BIG");
+    expect(parsedLines[1]!.ticker.trim()).toBe("SMALL");
+    expect(parsedLines[2]!.ticker.trim()).toBe("MID");
     expect(parsedLines[0]!.eps.trim()).toBe("2.20");
     expect(new Set(parsedLines.map(entry => entry.ticker.length)).size).toBe(1);
     expect(new Set(parsedLines.map(entry => entry.marketCap.length)).size).toBe(1);
@@ -480,13 +475,16 @@ describe("getEarningsMessages", () => {
         expectedMove: 12.4,
         expectedMoveActualDte: 3,
         expectedMoveExpiration: "2025-02-21",
+        expectedMoveUnderlyingPrice: 190.42,
+        expectedMoveUnderlyingPriceIsRealtime: false,
       }),
     ], "all", [], {
       maxMessageLength: 1800,
       maxMessages: 6,
     });
 
-    expect(batch.messages[0]!).toContain("🎯 Move: `+/- 12.40` Exp `2025-02-21` (`3` DTE)");
+    expect(batch.messages[0]!).toContain("💰 MCap: `$2.8T` 📈 Last: `$190.42` 🔮 EPS:");
+    expect(batch.messages[0]!).toContain("🎯 Move: `+/- 12.40` (`3` DTE)");
   });
 
   test("sub-sorts a day by time bucket before market cap", () => {
@@ -522,9 +520,6 @@ describe("getEarningsMessages", () => {
 
     const lines = batch.messages[0]!.split("\n").filter(line => line.includes(" MCap: "));
     const parsedLines = lines.map(parseEarningsLine);
-    expect(parsedLines[0]!).toEqual(expect.objectContaining({companyName: "Before Co"}));
-    expect(parsedLines[1]!).toEqual(expect.objectContaining({companyName: "During Co"}));
-    expect(parsedLines[2]!).toEqual(expect.objectContaining({companyName: "After Co"}));
     expect(parsedLines[0]!.ticker.trim()).toBe("BEFORE");
     expect(parsedLines[1]!.ticker.trim()).toBe("DURING");
     expect(parsedLines[2]!.ticker.trim()).toBe("AFTER");
@@ -544,7 +539,6 @@ describe("getEarningsMessages", () => {
     expect(lines).toHaveLength(1);
     const parsedLine = parseEarningsLine(lines[0]!);
     expect(parsedLine.ticker.trim()).toBe("SMALL");
-    expect(parsedLine.companyName).toBe("Small Co");
     expect(batch.messages[0]!).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt:**");
   });
 
@@ -593,10 +587,10 @@ describe("getEarningsMessages", () => {
     expect(batch.messages).toHaveLength(1);
     expect(batch.messages[0]!).toContain("`BLUE10`");
     expect(batch.messages[0]!).toContain("`BLUE20`");
-    expect(batch.messages[0]!).toContain(" Bluechip Ten");
-    expect(batch.messages[0]!).toContain(" Bluechip Twenty");
-    expect(batch.messages[0]!).not.toContain(" Small Nine");
-    expect(batch.messages[0]!).not.toContain(" Unknown Cap");
+    expect(batch.messages[0]!).not.toContain("`SMALL9`");
+    expect(batch.messages[0]!).not.toContain("`UNKNOWN`");
+    expect(batch.messages[0]!).not.toContain("Bluechip Ten");
+    expect(batch.messages[0]!).not.toContain("Bluechip Twenty");
   });
 
   test("falls back to all market caps for unknown marketCapFilter values", () => {
@@ -651,7 +645,7 @@ describe("getEarningsMessages", () => {
     ];
 
     const batch = getEarningsMessages(multiDayEvents, "all", [], {
-      maxMessageLength: 220,
+      maxMessageLength: 160,
       maxMessages: 2,
     });
     const combinedText = batch.messages.join("\n");
@@ -664,10 +658,8 @@ describe("getEarningsMessages", () => {
     expect(combinedText).toContain("**Donnerstag, 4. Januar 2024:**");
     expect(combinedText).toContain("`D1TOP`");
     expect(combinedText).toContain("`D2TOP`");
-    expect(combinedText).toContain(" Day One Top");
-    expect(combinedText).toContain(" Day Two Top");
-    expect(combinedText).not.toContain(" Day One Low");
-    expect(combinedText).not.toContain(" Day Two Low");
+    expect(combinedText).not.toContain("`D1LOW`");
+    expect(combinedText).not.toContain("`D2LOW`");
     expect(combinedText).toContain("... weitere Earnings konnten wegen Discord-Limits nicht angezeigt werden.");
   });
 
