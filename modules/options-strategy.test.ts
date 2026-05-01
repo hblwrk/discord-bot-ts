@@ -2,8 +2,8 @@ import {describe, expect, test, vi} from "vitest";
 import {BoundedTtlCache} from "./bounded-ttl-cache.ts";
 import {
   type ChainExpiration,
-  type OptionDeltaContract,
   type OptionDeltaLookupDependencies,
+  type OptionMarketDataSnapshot,
 } from "./options-delta.ts";
 import {
   formatExpectedMoveLookupResult,
@@ -22,7 +22,7 @@ function createLookupDependencies(): Pick<OptionDeltaLookupDependencies, "chainC
       maxEntries: 10,
       ttlMs: 60_000,
     }),
-    contractCache: new BoundedTtlCache<OptionDeltaContract[]>({
+    contractCache: new BoundedTtlCache<OptionMarketDataSnapshot>({
       maxEntries: 10,
       ttlMs: 60_000,
     }),
@@ -62,6 +62,7 @@ function createFakeClient() {
     bid: number;
     delta: number;
   }>([
+    ["AAPL", {ask: 442.02, bid: 441.98, delta: 0}],
     [".AAPL260619C440", {ask: 6.2, bid: 6.0, delta: 0.52}],
     [".AAPL260619C445", {ask: 2.2, bid: 2.0, delta: 0.17}],
     [".AAPL260619P440", {ask: 2.4, bid: 2.2, delta: -0.18}],
@@ -93,18 +94,23 @@ function createFakeClient() {
               askPrice: marketData.ask,
               bidPrice: marketData.bid,
             },
-            {
+            ...("AAPL" === streamerSymbol ? [] : [{
               eventSymbol: streamerSymbol,
               eventType: "Greeks",
               delta: marketData.delta,
               volatility: 0.45,
-            },
+            }]),
           ];
         }));
       }),
     },
   };
 }
+
+const marketOpenLookupDependencies = {
+  ...createLookupDependencies(),
+  now: () => new Date("2026-05-01T10:00:00-04:00").valueOf(),
+};
 
 describe("options-strategy", () => {
   test("builds and formats a default-delta strangle", async () => {
@@ -117,7 +123,7 @@ describe("options-strategy", () => {
       dte: 49,
       symbol: "AAPL",
     }, {
-      ...createLookupDependencies(),
+      ...marketOpenLookupDependencies,
       clientFactory: () => fakeClient,
       marketDataTimeoutMs: 20,
     });
@@ -126,7 +132,8 @@ describe("options-strategy", () => {
     expect(result.call?.strike).toBe(445);
     expect(result.put?.strike).toBe(440);
     expect(result.midTotal).toBe(4.4);
-    expect(formatOptionStrangleLookupResult(result)).toContain("**`AAPL` Strangle | Δ target `0.16`");
+    expect(result.underlyingPrice).toBe(442);
+    expect(formatOptionStrangleLookupResult(result)).toContain("**`AAPL` @ `442.00` | Strangle | Δ target `0.16`");
     expect(formatOptionStrangleLookupResult(result)).toContain("Breakevens: `435.60 / 449.40`");
   });
 
@@ -140,7 +147,7 @@ describe("options-strategy", () => {
       dte: 49,
       symbol: "AAPL",
     }, {
-      ...createLookupDependencies(),
+      ...marketOpenLookupDependencies,
       clientFactory: () => fakeClient,
       marketDataTimeoutMs: 20,
     });
@@ -150,7 +157,7 @@ describe("options-strategy", () => {
     expect(result.call?.strike).toBe(440);
     expect(result.put?.strike).toBe(445);
     expect(result.midTotal).toBe(12.4);
-    expect(formattedResult).toContain("**`AAPL` Expected Move");
+    expect(formattedResult).toContain("**`AAPL` @ `442.00` | Expected Move");
     expect(formattedResult).toContain("ATM straddle mid `12.40`");
     expect(formattedResult).toContain("Move proxy: `+/- 12.40`");
   });

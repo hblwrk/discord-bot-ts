@@ -40,6 +40,8 @@ function createLookupResult(overrides: Partial<OptionStrategyLookupResult> = {})
     rolled: false,
     symbol: "AAPL",
     targetDelta: 0.5,
+    underlyingPrice: 190.42,
+    underlyingPriceIsRealtime: true,
     ...overrides,
   };
 }

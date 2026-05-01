@@ -15,6 +15,7 @@ import {
   selectExpirationForDte,
   type OptionDeltaContract,
   type OptionDeltaLookupDependencies,
+  type OptionMarketDataSnapshot,
 } from "./options-delta.ts";
 
 const immediateRateLimiter = {
@@ -27,7 +28,7 @@ function createLookupDependencies(): Pick<OptionDeltaLookupDependencies, "chainC
       maxEntries: 10,
       ttlMs: 60_000,
     }),
-    contractCache: new BoundedTtlCache<OptionDeltaContract[]>({
+    contractCache: new BoundedTtlCache<OptionMarketDataSnapshot>({
       maxEntries: 10,
       ttlMs: 60_000,
     }),
@@ -148,6 +149,7 @@ describe("options-delta", () => {
       delta: number;
       volatility: number;
     }>([
+      ["AAPL", {ask: 190.44, askSize: 100, bid: 190.40, bidSize: 100, delta: 0, volatility: 0}],
       [".AAPL260619C440", {ask: 3.2, askSize: 12, bid: 3.0, bidSize: 8, delta: 0.38, volatility: 0.51}],
       [".AAPL260619C445", {ask: 2.3, askSize: 10, bid: 2.1, bidSize: 7, delta: 0.32, volatility: 0.53}],
       [".AAPL260619C450", {ask: 1.4, askSize: 20, bid: 1.2, bidSize: 10, delta: 0.25, volatility: 0.555}],
@@ -178,6 +180,10 @@ describe("options-delta", () => {
             bidPrice: marketData.bid,
             bidSize: marketData.bidSize,
           });
+          if ("AAPL" === streamerSymbol) {
+            continue;
+          }
+
           events.push({
             eventSymbol: streamerSymbol,
             eventType: "Greeks",
@@ -212,12 +218,13 @@ describe("options-delta", () => {
       ...createLookupDependencies(),
       clientFactory: () => fakeClient,
       marketDataTimeoutMs: 20,
+      now: () => new Date("2026-05-01T10:00:00-04:00").valueOf(),
     });
 
     const callResult = result.sideResults.find(sideResult => "call" === sideResult.side);
     const putResult = result.sideResults.find(sideResult => "put" === sideResult.side);
     expect(fakeClient.instrumentsService.getNestedOptionChain).toHaveBeenCalledWith("AAPL");
-    expect(quoteStreamer.subscribe).toHaveBeenCalledWith(expect.arrayContaining([
+    expect(quoteStreamer.subscribe).toHaveBeenNthCalledWith(1, expect.arrayContaining([
       ".AAPL260619C440",
       ".AAPL260619C445",
       ".AAPL260619C450",
@@ -226,6 +233,9 @@ describe("options-delta", () => {
       ".AAPL260619P450",
     ]), [
       MarketDataSubscriptionType.Greeks,
+      MarketDataSubscriptionType.Quote,
+    ]);
+    expect(quoteStreamer.subscribe).toHaveBeenNthCalledWith(2, ["AAPL"], [
       MarketDataSubscriptionType.Quote,
     ]);
     expect(quoteStreamer.disconnect).toHaveBeenCalledTimes(1);
@@ -237,7 +247,9 @@ describe("options-delta", () => {
       rolled: true,
       symbol: "AAPL",
       targetDelta: 0.3,
+      underlyingPriceIsRealtime: true,
     });
+    expect(result.underlyingPrice).toBeCloseTo(190.42);
     expect(callResult?.contractsConsidered).toBe(3);
     expect(callResult?.brackets.below?.strike).toBe(450);
     expect(callResult?.brackets.above?.strike).toBe(445);
@@ -246,12 +258,13 @@ describe("options-delta", () => {
     expect(putResult?.brackets.above?.strike).toBe(450);
 
     const formattedResult = formatOptionDeltaLookupResult(result);
+    expect(formattedResult).toContain("**`AAPL` @ `190.42` | Δ target `0.30`");
     expect(formattedResult).toContain("Expiry `2026-06-19` (`49` DTE, requested `45`)");
-    expect(formattedResult).toContain("• Δ ≤ target: `450C` | K `450` | Δ `0.250` | mid `1.30`");
+    expect(formattedResult).toContain("• Δ ≤ target: `450C` | Δ `0.250` | mid `1.30`");
     expect(formattedResult).toContain("bid/ask `1.20 / 1.40`");
     expect(formattedResult).toContain("spread `15.4%`");
     expect(formattedResult).toContain("IV `55.5%`");
-    expect(formattedResult).toContain("• Δ ≥ target: `450P` | K `450` | Δ `0.340` | mid `2.50`");
+    expect(formattedResult).toContain("• Δ ≥ target: `450P` | Δ `0.340` | mid `2.50`");
   });
 
   test("supports single-side lookups and hyphenated dxlink event fields", async () => {
@@ -380,7 +393,7 @@ describe("options-delta", () => {
     });
 
     expect(fakeClient.instrumentsService.getNestedOptionChain).toHaveBeenCalledTimes(1);
-    expect(quoteStreamer.subscribe).toHaveBeenCalledTimes(1);
+    expect(quoteStreamer.subscribe).toHaveBeenCalledTimes(2);
     expect(cachedResult.sideResults).toHaveLength(1);
     expect(cachedResult.sideResults[0]?.side).toBe("call");
   });
@@ -466,8 +479,11 @@ describe("options-delta", () => {
       }],
       symbol: "AAPL",
       targetDelta: 0.3,
+      underlyingPrice: 190.42,
+      underlyingPriceIsRealtime: false,
     });
 
+    expect(formattedResult).toContain("**`AAPL` @ `190.42` (market closed) | Δ target `0.30`");
     expect(formattedResult).toContain("Expiry `2026-06-19` (`49` DTE)");
     expect(formattedResult).toContain("• Δ ≤ target: Keine passende Option gefunden.");
     expect(formattedResult).toContain("bid/ask `n/a / n/a`");
