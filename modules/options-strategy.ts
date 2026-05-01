@@ -105,14 +105,15 @@ function formatExpiration(result: OptionStrategyLookupResult): string {
 
 function formatLeg(label: string, contract: OptionDeltaContract | null): string {
   if (null === contract) {
-    return `${label}: Keine passende Option gefunden.`;
+    return `• ${label}: Keine passende Option gefunden.`;
   }
 
+  const mid = getOptionContractMidPrice(contract);
   return [
-    `${label}: \`${getContractName(contract)}\``,
-    `strike \`${formatDecimal(contract.strike).replace(/\.00$/, "")}\``,
-    `delta \`${formatDecimal(Math.abs(contract.delta), 3)}\``,
-    `mid \`${formatOptionalPrice(getOptionContractMidPrice(contract))}\``,
+    `• ${label}: \`${getContractName(contract)}\``,
+    `K \`${formatDecimal(contract.strike).replace(/\.00$/, "")}\``,
+    `Δ \`${formatDecimal(Math.abs(contract.delta), 3)}\``,
+    `mid \`${formatOptionalPrice(mid)}\``,
   ].join(" | ");
 }
 
@@ -126,28 +127,27 @@ function formatBreakevens(result: OptionStrategyLookupResult): string {
 
 export function formatOptionStrangleLookupResult(result: OptionStrategyLookupResult): string {
   return [
-    `**\`${result.symbol}\` \`${formatDecimal(result.targetDelta, 2)}\` delta strangle | ${formatExpiration(result)}**`,
+    `**\`${result.symbol}\` Strangle | Δ target \`${formatDecimal(result.targetDelta, 2)}\` | ${formatExpiration(result)}**`,
     formatLeg("Put", result.put),
     formatLeg("Call", result.call),
-    `Credit mid: \`${formatOptionalPrice(result.midTotal)}\``,
+    `Mid credit: \`${formatOptionalPrice(result.midTotal)}\``,
     formatBreakevens(result),
   ].join("\n");
 }
 
 export function formatOptionStraddleLookupResult(result: OptionStrategyLookupResult): string {
   return [
-    `**\`${result.symbol}\` ATM straddle | ${formatExpiration(result)}**`,
+    `**\`${result.symbol}\` ATM Straddle | ${formatExpiration(result)}**`,
     formatLeg("Put", result.put),
     formatLeg("Call", result.call),
-    `Straddle mid: \`${formatOptionalPrice(result.midTotal)}\``,
+    `Mid debit: \`${formatOptionalPrice(result.midTotal)}\``,
   ].join("\n");
 }
 
 export function formatExpectedMoveLookupResult(result: OptionStrategyLookupResult): string {
   return [
-    `**\`${result.symbol}\` expected move | ${formatExpiration(result)}**`,
-    `ATM straddle mid: \`${formatOptionalPrice(result.midTotal)}\``,
-    `Move proxy: \`+/- ${formatOptionalPrice(result.midTotal)}\``,
+    `**\`${result.symbol}\` Expected Move | ${formatExpiration(result)}**`,
+    `Move proxy: \`+/- ${formatOptionalPrice(result.midTotal)}\` | ATM straddle mid \`${formatOptionalPrice(result.midTotal)}\``,
     formatLeg("Put", result.put),
     formatLeg("Call", result.call),
   ].join("\n");

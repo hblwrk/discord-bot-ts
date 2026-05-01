@@ -473,6 +473,22 @@ describe("getEarningsMessages", () => {
     expect(new Set(parsedLines.map(entry => entry.eps.length)).size).toBe(1);
   });
 
+  test("includes expected move details when earnings events are enriched", () => {
+    const batch = getEarningsMessages([
+      getEarningsEvent({
+        ticker: "NVDA",
+        expectedMove: 12.4,
+        expectedMoveActualDte: 3,
+        expectedMoveExpiration: "2025-02-21",
+      }),
+    ], "all", [], {
+      maxMessageLength: 1800,
+      maxMessages: 6,
+    });
+
+    expect(batch.messages[0]!).toContain("🎯 Move: `+/- 12.40` Exp `2025-02-21` (`3` DTE)");
+  });
+
   test("sub-sorts a day by time bucket before market cap", () => {
     const batch = getEarningsMessages([
       getEarningsEvent({

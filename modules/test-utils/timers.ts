@@ -33,6 +33,7 @@ const getAssetByNameMock = vi.fn();
 const getCalendarEventsMock = vi.fn();
 const getCalendarEventsResultMock = vi.fn();
 const getCalendarMessagesMock = vi.fn();
+const addExpectedMovesToEarningsEventsMock = vi.fn();
 const getEarningsResultMock = vi.fn();
 const getEarningsMessagesMock = vi.fn();
 const getMncMock = vi.fn();
@@ -82,6 +83,10 @@ vi.mock("../earnings.ts", () => ({
   EARNINGS_MAX_MESSAGES_TIMER: 8,
   getEarningsResult: (...args: unknown[]) => getEarningsResultMock(...args),
   getEarningsMessages: (...args: unknown[]) => getEarningsMessagesMock(...args),
+}));
+
+vi.mock("../earnings-expected-move.ts", () => ({
+  addExpectedMovesToEarningsEvents: (...args: unknown[]) => addExpectedMovesToEarningsEventsMock(...args),
 }));
 
 vi.mock("../mnc-downloader.ts", () => ({
@@ -213,6 +218,7 @@ export function resetTimerMocks() {
     events: [],
     status: "ok",
   });
+  addExpectedMovesToEarningsEventsMock.mockImplementation(async events => events);
   getEarningsMessagesMock.mockReturnValue({
     messages: ["earnings-text"],
     truncated: false,
@@ -239,6 +245,7 @@ export function restoreTimerMocks() {
 }
 
 export {
+  addExpectedMovesToEarningsEventsMock,
   attachmentBuilderMock,
   createClientWithChannel,
   createClientWithoutChannel,

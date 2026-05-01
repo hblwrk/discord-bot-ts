@@ -18,6 +18,7 @@ import {
   getNormalizedString,
   getNumericValueFromNasdaqCapString,
 } from "./earnings-utils.ts";
+import {getFormattedExpectedMoveText} from "./earnings-option-format.ts";
 
 type EarningsSectionRow = {
   when: EarningsWhen;
@@ -720,8 +721,9 @@ function getEarningsEventLine(
     epsConsensus,
     lineWidths.eps
   );
+  const expectedMoveText = getFormattedExpectedMoveText(earningsEvent);
 
-  return `${ticker} MCap: \`${paddedMarketCapText}\` 🔮 EPS: \`${paddedEpsConsensus}\` ${companyName}`;
+  return `${ticker} MCap: \`${paddedMarketCapText}\` 🔮 EPS: \`${paddedEpsConsensus}\`${expectedMoveText} ${companyName}`;
 }
 
 function getFormattedMarketCapText(

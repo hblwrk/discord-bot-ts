@@ -5,6 +5,11 @@ import {
   type OptionDeltaSide,
 } from "./options-delta.ts";
 
+type FormattedDeltaBracketEntry = {
+  contract: OptionDeltaContract | null;
+  label: string;
+};
+
 export function formatDecimal(value: number, digits = 2): string {
   return value.toLocaleString("en-US", {
     maximumFractionDigits: digits,
@@ -76,21 +81,51 @@ export function getContractName(contract: OptionDeltaContract): string {
 
 function formatContractLine(label: string, contract: OptionDeltaContract | null): string {
   if (null === contract) {
-    return `${label}: Keine passende Option gefunden.`;
+    return `• ${label}: Keine passende Option gefunden.`;
   }
 
   const mid = getOptionContractMidPrice(contract);
   const spreadPercent = getOptionContractSpreadPercent(contract);
   const liquidityNote = null !== spreadPercent && 0.2 < spreadPercent ? " | `wide spread`" : "";
-  return [
-    `${label}: \`${getContractName(contract)}\``,
-    `strike \`${formatDecimal(contract.strike).replace(/\.00$/, "")}\``,
-    `delta \`${formatDecimal(Math.abs(contract.delta), 3)}\``,
-    `bid/mid/ask \`${formatOptionalPrice(contract.bid)} / ${formatOptionalPrice(mid)} / ${formatOptionalPrice(contract.ask)}\``,
+  const headline = [
+    `• ${label}: \`${getContractName(contract)}\``,
+    `K \`${formatDecimal(contract.strike).replace(/\.00$/, "")}\``,
+    `Δ \`${formatDecimal(Math.abs(contract.delta), 3)}\``,
+    `mid \`${formatOptionalPrice(mid)}\``,
+  ].join(" | ");
+  const details = [
+    `bid/ask \`${formatOptionalPrice(contract.bid)} / ${formatOptionalPrice(contract.ask)}\``,
     `spread \`${formatOptionalPercent(spreadPercent)}\`${liquidityNote}`,
     `size \`${formatOptionalSize(contract.bidSize)} x ${formatOptionalSize(contract.askSize)}\``,
     `IV \`${formatOptionalPercent(contract.iv)}\``,
   ].join(" | ");
+  return `${headline}\n  ${details}`;
+}
+
+function getFormattedDeltaBracketEntries(bracket: OptionDeltaBracket): FormattedDeltaBracketEntry[] {
+  const entries: FormattedDeltaBracketEntry[] = [
+    {
+      contract: bracket.below,
+      label: "Δ ≤ target",
+    },
+    {
+      contract: bracket.above,
+      label: "Δ ≥ target",
+    },
+  ];
+  const entriesWithContracts = entries
+    .filter(entry => null !== entry.contract)
+    .sort((first, second) => {
+      const firstContract = first.contract;
+      const secondContract = second.contract;
+      if (null === firstContract || null === secondContract) {
+        return 0;
+      }
+
+      return firstContract.strike - secondContract.strike;
+    });
+  const entriesWithoutContracts = entries.filter(entry => null === entry.contract);
+  return [...entriesWithContracts, ...entriesWithoutContracts];
 }
 
 function formatSideTitle(side: OptionDeltaSide): string {
@@ -102,13 +137,14 @@ export function formatOptionDeltaLookupResult(result: OptionDeltaLookupResult): 
     ? `Expiry \`${result.expiration}\` (\`${result.actualDte}\` DTE, requested \`${result.requestedDte}\`)`
     : `Expiry \`${result.expiration}\` (\`${result.actualDte}\` DTE)`;
   const lines = [
-    `**\`${result.symbol}\` target delta \`${formatDecimal(result.targetDelta, 2)}\` | ${expirationText}**`,
+    `**\`${result.symbol}\` Δ target \`${formatDecimal(result.targetDelta, 2)}\` | ${expirationText}**`,
   ];
 
   for (const sideResult of result.sideResults) {
     lines.push(`**${formatSideTitle(sideResult.side)}**`);
-    lines.push(formatContractLine("Below target", sideResult.brackets.below));
-    lines.push(formatContractLine("Above target", sideResult.brackets.above));
+    for (const entry of getFormattedDeltaBracketEntries(sideResult.brackets)) {
+      lines.push(formatContractLine(entry.label, entry.contract));
+    }
   }
 
   return lines.join("\n");

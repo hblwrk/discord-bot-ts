@@ -126,7 +126,7 @@ describe("options-strategy", () => {
     expect(result.call?.strike).toBe(445);
     expect(result.put?.strike).toBe(440);
     expect(result.midTotal).toBe(4.4);
-    expect(formatOptionStrangleLookupResult(result)).toContain("**`AAPL` `0.16` delta strangle");
+    expect(formatOptionStrangleLookupResult(result)).toContain("**`AAPL` Strangle | Δ target `0.16`");
     expect(formatOptionStrangleLookupResult(result)).toContain("Breakevens: `435.60 / 449.40`");
   });
 
@@ -150,8 +150,8 @@ describe("options-strategy", () => {
     expect(result.call?.strike).toBe(440);
     expect(result.put?.strike).toBe(445);
     expect(result.midTotal).toBe(12.4);
-    expect(formattedResult).toContain("**`AAPL` expected move");
-    expect(formattedResult).toContain("ATM straddle mid: `12.40`");
+    expect(formattedResult).toContain("**`AAPL` Expected Move");
+    expect(formattedResult).toContain("ATM straddle mid `12.40`");
     expect(formattedResult).toContain("Move proxy: `+/- 12.40`");
   });
 });
