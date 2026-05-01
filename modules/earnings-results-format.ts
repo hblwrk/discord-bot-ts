@@ -224,8 +224,8 @@ function getOutcome(actual: number | undefined, estimate: number): EarningsResul
 
 export function htmlToText(html: string): string {
   return decodeHtmlEntities(html)
-    .replace(/<script\b[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style\b[\s\S]*?<\/style>/gi, " ")
+    .replace(/<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi, " ")
+    .replace(/<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/gi, " ")
     .replace(/<br\s*\/?>/gi, "\n")
     .replace(/<\/(?:p|div|tr|h[1-6])>/gi, "\n")
     .replace(/<\/t[dh]>/gi, " | ")
@@ -239,13 +239,13 @@ export function htmlToText(html: string): string {
 export function decodeHtmlEntities(value: string): string {
   return value
     .replace(/&nbsp;/gi, " ")
-    .replace(/&amp;/gi, "&")
     .replace(/&lt;/gi, "<")
     .replace(/&gt;/gi, ">")
     .replace(/&quot;/gi, "\"")
     .replace(/&#39;/gi, "'")
     .replace(/&#x([0-9a-f]+);/gi, (_match, hexValue: string) => String.fromCodePoint(Number.parseInt(hexValue, 16)))
-    .replace(/&#([0-9]+);/g, (_match, numericValue: string) => String.fromCodePoint(Number.parseInt(numericValue, 10)));
+    .replace(/&#([0-9]+);/g, (_match, numericValue: string) => String.fromCodePoint(Number.parseInt(numericValue, 10)))
+    .replace(/&amp;/gi, "&");
 }
 
 function getMeaningfulLines(text: string): string[] {

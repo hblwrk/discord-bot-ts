@@ -1,12 +1,31 @@
 import {Client} from "discord.js";
-import moment from "moment-timezone";
-import {isHoliday} from "nyse-holidays";
 import ReconnectingWebSocket from "reconnecting-websocket";
 import WS from "ws";
 import {getAssets} from "./assets.js";
 import {getMarketDataClientCacheFactory} from "./discord-client-options.js";
 import {getLogger} from "./logging.js";
 import {readSecret} from "./secrets.js";
+import {
+  getClosedMarketNickname,
+  getMarketPresenceData,
+  isMarketOpen,
+  marketClosedPresence,
+} from "./market-data-hours.js";
+import {
+  getPayloadLogPreview,
+  isPotentialMarketDataPayload,
+  normalizeEventData,
+  parseStreamEvent,
+} from "./market-data-stream.js";
+import {
+  type AppliedMarketDataUpdateLog,
+  type ClientStatusState,
+  type DiscordPresenceStatus,
+  type IncomingMarketDataUpdateLog,
+  type MarketDataAsset,
+  type MarketPresenceData,
+  type PendingClientStatusUpdate,
+} from "./market-data-types.js";
 
 const logger = getLogger();
 const websocketSubscribeDomain = "cmt-1-5-945629:%%domain-1:}";
@@ -16,78 +35,6 @@ const pendingStatusFlushIntervalMs = 1000;
 const marketStatusCheckIntervalMs = 60_000;
 const streamWatchdogIntervalMs = 30_000;
 const streamStaleTimeoutMs = 300_000;
-const maxLoggedPayloadLength = 500;
-const marketClosedPresence = "Market closed.";
-const marketClosedTrend = "⬛";
-const usEasternTimezone = "US/Eastern";
-const europeBerlinTimezone = "Europe/Berlin";
-
-type MarketHoursProfile = "crypto" | "eu_cash" | "forex" | "us_cash" | "us_futures";
-type DiscordPresenceStatus = "dnd" | "idle" | "invisible" | "online";
-
-type MarketDataAsset = {
-  name?: string;
-  botToken: string;
-  botClientId: string;
-  botName: string;
-  id: number;
-  suffix: string;
-  unit: string;
-  marketHours?: MarketHoursProfile;
-  decimals: number;
-  lastUpdate: number;
-  order: number;
-};
-
-type MarketStreamEvent = {
-  pid: number;
-  lastNumeric: number;
-  priceChange: number;
-  percentageChange: number;
-};
-
-type ClientStatusState = {
-  nickname?: string;
-  presence?: string;
-  presenceStatus?: DiscordPresenceStatus;
-};
-
-type PendingClientStatusUpdate = {
-  marketDataAsset: MarketDataAsset;
-  nickname: string;
-  openPresence: string;
-  lastNumeric: number;
-  priceChange: number;
-  percentageChange: number;
-  applying?: boolean;
-};
-
-type MarketPresenceData = {
-  nickname: string;
-  presence: string;
-  presenceStatus: DiscordPresenceStatus;
-};
-
-type AppliedMarketDataUpdateLog = {
-  source: "market-close-reconciler" | "stream-flush";
-  marketDataAsset: MarketDataAsset;
-  nickname?: string | null;
-  presence: string;
-  presenceStatus: DiscordPresenceStatus;
-  lastNumeric?: number;
-  priceChange?: number;
-  percentageChange?: number;
-};
-
-type IncomingMarketDataUpdateLog = {
-  marketDataAsset: MarketDataAsset;
-  botReady: boolean;
-  nickname: string;
-  presence: string;
-  lastNumeric: number;
-  priceChange: number;
-  percentageChange: number;
-};
 
 // Launching multiple bots and websocket stream to display price information.
 // Discord-facing updates stay throttled, but the latest parsed tick is retained and flushed when due.
@@ -369,239 +316,6 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
   wsClient.addEventListener("message", event => {
     void handleWebsocketMessage(event);
   });
-}
-
-function normalizeEventData(rawData: unknown): string | null {
-  if ("string" === typeof rawData) {
-    return rawData;
-  }
-
-  if (Buffer.isBuffer(rawData)) {
-    return rawData.toString("utf8");
-  }
-
-  if (rawData instanceof ArrayBuffer) {
-    return Buffer.from(rawData).toString("utf8");
-  }
-
-  return null;
-}
-
-function parseStreamEvent(rawMessage: string): MarketStreamEvent | null {
-  const rawEventData = extractStreamEventPayload(rawMessage);
-  if (null === rawEventData) {
-    return null;
-  }
-
-  const pid = parseNumericValue(rawEventData.pid);
-  const lastNumeric = parseNumericValue(rawEventData.last_numeric);
-  const priceChange = parseNumericValue(rawEventData.pc);
-  const percentageChange = parseNumericValue(rawEventData.pcp);
-
-  if ([pid, lastNumeric, priceChange, percentageChange].every(Number.isFinite)) {
-    return {
-      pid,
-      lastNumeric,
-      priceChange,
-      percentageChange,
-    };
-  }
-
-  return null;
-}
-
-function isPotentialMarketDataPayload(rawMessage: string): boolean {
-  const normalizedMessage = rawMessage.toLowerCase();
-
-  return normalizedMessage.includes("pid-")
-    || normalizedMessage.includes("last_numeric")
-    || normalizedMessage.includes("\"pid\"")
-    || normalizedMessage.includes("\\\"pid\\\"");
-}
-
-function getPayloadLogPreview(rawMessage: string): string {
-  const normalizedWhitespace = rawMessage
-    .replace(/\s+/g, " ")
-    .trim();
-
-  if (normalizedWhitespace.length <= maxLoggedPayloadLength) {
-    return normalizedWhitespace;
-  }
-
-  return `${normalizedWhitespace.slice(0, maxLoggedPayloadLength)}...`;
-}
-
-function extractStreamEventPayload(rawMessage: string): Record<string, unknown> | null {
-  const frameCandidates = unwrapSocketFrames(rawMessage);
-
-  for (const frameCandidate of frameCandidates) {
-    const payload = parsePayloadCandidate(frameCandidate, 0);
-    if (null !== payload) {
-      return payload;
-    }
-  }
-
-  return null;
-}
-
-function unwrapSocketFrames(rawMessage: string): string[] {
-  const trimmedMessage = rawMessage.trim();
-  if (false === trimmedMessage.startsWith("a[")) {
-    return [trimmedMessage];
-  }
-
-  try {
-    const parsedFrames = JSON.parse(trimmedMessage.slice(1));
-    if (Array.isArray(parsedFrames)) {
-      return parsedFrames
-        .map(frame => {
-          if ("string" === typeof frame) {
-            return frame.trim();
-          }
-
-          if ("object" === typeof frame && null !== frame) {
-            return JSON.stringify(frame);
-          }
-
-          return null;
-        })
-        .filter((frame): frame is string => "string" === typeof frame && "" !== frame);
-    }
-  } catch {
-    // Ignore malformed frame envelope and let parser continue with raw text.
-  }
-
-  return [trimmedMessage];
-}
-
-function parsePayloadCandidate(candidate: string, depth: number): Record<string, unknown> | null {
-  if (depth > 6) {
-    return null;
-  }
-
-  const trimmedCandidate = candidate.trim();
-  if ("" === trimmedCandidate) {
-    return null;
-  }
-
-  if (trimmedCandidate.startsWith("a[")) {
-    const unwrappedFrames = unwrapSocketFrames(trimmedCandidate);
-    for (const unwrappedFrame of unwrappedFrames) {
-      if (unwrappedFrame !== trimmedCandidate) {
-        const parsedUnwrappedFrame = parsePayloadCandidate(unwrappedFrame, depth + 1);
-        if (null !== parsedUnwrappedFrame) {
-          return parsedUnwrappedFrame;
-        }
-      }
-    }
-  }
-
-  const parsedCandidate = tryParseJsonValue(trimmedCandidate);
-  if (null !== parsedCandidate) {
-    if ("string" === typeof parsedCandidate) {
-      const parsedStringPayload = parsePayloadCandidate(parsedCandidate, depth + 1);
-      if (null !== parsedStringPayload) {
-        return parsedStringPayload;
-      }
-    } else if (Array.isArray(parsedCandidate)) {
-      for (const frameCandidate of parsedCandidate) {
-        if ("string" === typeof frameCandidate) {
-          const parsedFrameCandidate = parsePayloadCandidate(frameCandidate, depth + 1);
-          if (null !== parsedFrameCandidate) {
-            return parsedFrameCandidate;
-          }
-        } else if ("object" === typeof frameCandidate && null !== frameCandidate) {
-          const parsedFrameCandidate = parsePayloadCandidate(JSON.stringify(frameCandidate), depth + 1);
-          if (null !== parsedFrameCandidate) {
-            return parsedFrameCandidate;
-          }
-        }
-      }
-    } else {
-      const parsedObjectCandidate = parsedCandidate as Record<string, unknown>;
-      if ("string" === typeof parsedObjectCandidate.message) {
-        const parsedMessage = parsePayloadCandidate(parsedObjectCandidate.message, depth + 1);
-        if (null !== parsedMessage) {
-          return parsedMessage;
-        }
-      }
-
-      if (true === hasStreamEventFields(parsedObjectCandidate)) {
-        return parsedObjectCandidate;
-      }
-    }
-  }
-
-  const delimiterPosition = trimmedCandidate.lastIndexOf("::");
-  if (-1 !== delimiterPosition) {
-    const parsedAfterDelimiter = parsePayloadCandidate(trimmedCandidate.slice(delimiterPosition + 2), depth + 1);
-    if (null !== parsedAfterDelimiter) {
-      return parsedAfterDelimiter;
-    }
-  }
-
-  const extractedObject = extractJsonObject(trimmedCandidate);
-  if (null !== extractedObject && extractedObject !== trimmedCandidate) {
-    const extractedPayload = parsePayloadCandidate(extractedObject, depth + 1);
-    if (null !== extractedPayload) {
-      return extractedPayload;
-    }
-  }
-
-  return null;
-}
-
-function tryParseJsonValue(candidate: string): unknown | null {
-  try {
-    return JSON.parse(candidate);
-  } catch {
-    // Ignore malformed payloads and let caller continue.
-  }
-
-  return null;
-}
-
-function hasStreamEventFields(candidate: Record<string, unknown>): boolean {
-  return "pid" in candidate && "last_numeric" in candidate && "pc" in candidate && "pcp" in candidate;
-}
-
-function extractJsonObject(candidate: string): string | null {
-  const firstBrace = candidate.indexOf("{");
-  const lastBrace = candidate.lastIndexOf("}");
-  if (-1 === firstBrace || -1 === lastBrace || lastBrace <= firstBrace) {
-    return null;
-  }
-
-  return candidate.slice(firstBrace, lastBrace + 1);
-}
-
-function parseNumericValue(value: unknown): number {
-  if ("number" === typeof value) {
-    return Number.isFinite(value) ? value : Number.NaN;
-  }
-
-  if ("string" === typeof value) {
-    const normalizedValue = value
-      .replaceAll(",", "")
-      .trim()
-      .replace(/%$/, "");
-
-    if ("" === normalizedValue) {
-      return Number.NaN;
-    }
-
-    const parsedValue = Number(normalizedValue);
-    if (Number.isFinite(parsedValue)) {
-      return parsedValue;
-    }
-
-    const parsedFloat = Number.parseFloat(normalizedValue);
-    if (Number.isFinite(parsedFloat)) {
-      return parsedFloat;
-    }
-  }
-
-  return Number.NaN;
 }
 
 async function applyClientStatusUpdate(
@@ -933,151 +647,4 @@ function logIncomingMarketDataUpdate(logData: IncomingMarketDataUpdateLog) {
     unit: logData.marketDataAsset.unit,
     suffix: logData.marketDataAsset.suffix,
   });
-}
-
-function buildClosedMarketPresenceData(): Omit<MarketPresenceData, "nickname"> {
-  return {
-    presence: marketClosedPresence,
-    presenceStatus: "idle",
-  };
-}
-
-function getMarketPresenceData(
-  marketDataAsset: MarketDataAsset,
-  openNickname: string,
-  openPresence: string,
-  priceChange: number,
-): MarketPresenceData {
-  if (false === isMarketOpen(marketDataAsset)) {
-    return {
-      nickname: getClosedMarketNickname(marketDataAsset, openNickname) ?? openNickname,
-      ...buildClosedMarketPresenceData(),
-    };
-  }
-
-  return {
-    nickname: openNickname,
-    presence: openPresence,
-    presenceStatus: priceChange < 0 ? "dnd" : "online",
-  };
-}
-
-function getClosedMarketNickname(marketDataAsset: MarketDataAsset, nickname?: string): string | null {
-  const normalizedNickname = nickname?.trim();
-  if ("string" !== typeof normalizedNickname || "" === normalizedNickname) {
-    return null;
-  }
-
-  const firstSpacePosition = normalizedNickname.indexOf(" ");
-  if (-1 === firstSpacePosition) {
-    return `${marketDataAsset.order}${marketClosedTrend}`;
-  }
-
-  return `${marketDataAsset.order}${marketClosedTrend}${normalizedNickname.slice(firstSpacePosition)}`;
-}
-
-function isMarketOpen(marketDataAsset: MarketDataAsset, referenceTime = Date.now()): boolean {
-  const marketHours = marketDataAsset.marketHours ?? "us_futures";
-
-  switch (marketHours) {
-    case "crypto": {
-      return true;
-    }
-
-    case "eu_cash": {
-      return isOpenDuringLocalWeekdayWindow(referenceTime, europeBerlinTimezone, 9, 0, 17, 30);
-    }
-
-    case "forex": {
-      return isForexMarketOpen(referenceTime);
-    }
-
-    case "us_cash": {
-      return isUsCashMarketOpen(referenceTime);
-    }
-
-    case "us_futures":
-    default: {
-      return isUsFuturesMarketOpen(referenceTime);
-    }
-  }
-}
-
-function isForexMarketOpen(referenceTime: number): boolean {
-  const easternTime = moment.tz(referenceTime, usEasternTimezone);
-  const day = easternTime.day();
-  const minuteOfDay = easternTime.hour() * 60 + easternTime.minute();
-
-  if (6 === day) {
-    return false;
-  }
-
-  if (5 === day) {
-    return minuteOfDay < (17 * 60);
-  }
-
-  if (0 === day) {
-    return minuteOfDay >= (17 * 60);
-  }
-
-  return true;
-}
-
-function isUsCashMarketOpen(referenceTime: number): boolean {
-  const easternTime = moment.tz(referenceTime, usEasternTimezone);
-
-  if (true === isWeekend(easternTime.day())) {
-    return false;
-  }
-
-  if (true === isHoliday(easternTime.clone().startOf("day").toDate())) {
-    return false;
-  }
-
-  const minuteOfDay = easternTime.hour() * 60 + easternTime.minute();
-  return minuteOfDay >= ((9 * 60) + 30) && minuteOfDay < ((16 * 60) + 15);
-}
-
-function isUsFuturesMarketOpen(referenceTime: number): boolean {
-  const easternTime = moment.tz(referenceTime, usEasternTimezone);
-  const day = easternTime.day();
-  const minuteOfDay = easternTime.hour() * 60 + easternTime.minute();
-
-  if (6 === day) {
-    return false;
-  }
-
-  if (5 === day) {
-    return minuteOfDay < (17 * 60);
-  }
-
-  if (0 === day) {
-    return minuteOfDay >= (18 * 60);
-  }
-
-  return minuteOfDay < (17 * 60) || minuteOfDay >= (18 * 60);
-}
-
-function isOpenDuringLocalWeekdayWindow(
-  referenceTime: number,
-  timezone: string,
-  startHour: number,
-  startMinute: number,
-  endHour: number,
-  endMinute: number,
-): boolean {
-  const localTime = moment.tz(referenceTime, timezone);
-  if (true === isWeekend(localTime.day())) {
-    return false;
-  }
-
-  const minuteOfDay = localTime.hour() * 60 + localTime.minute();
-  const startMinuteOfDay = (startHour * 60) + startMinute;
-  const endMinuteOfDay = (endHour * 60) + endMinute;
-
-  return minuteOfDay >= startMinuteOfDay && minuteOfDay < endMinuteOfDay;
-}
-
-function isWeekend(dayOfWeek: number): boolean {
-  return 0 === dayOfWeek || 6 === dayOfWeek;
 }
