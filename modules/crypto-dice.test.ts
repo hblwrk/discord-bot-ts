@@ -1,8 +1,9 @@
-import {cryptodice} from "./crypto-dice.js";
+import {cryptodice} from "./crypto-dice.ts";
+import {afterEach, describe, expect, test, vi} from "vitest";
 
 describe("cryptodice", () => {
   afterEach(() => {
-    jest.restoreAllMocks();
+    vi.restoreAllMocks();
   });
 
   test("returns an integer between 1 and 100", () => {
@@ -14,13 +15,13 @@ describe("cryptodice", () => {
   });
 
   test("returns 1 when Math.random is 0", () => {
-    jest.spyOn(Math, "random").mockReturnValue(0);
+    vi.spyOn(Math, "random").mockReturnValue(0);
 
     expect(cryptodice()).toBe(1);
   });
 
   test("returns 100 when Math.random is near 1", () => {
-    jest.spyOn(Math, "random").mockReturnValue(0.999999);
+    vi.spyOn(Math, "random").mockReturnValue(0.999999);
 
     expect(cryptodice()).toBe(100);
   });

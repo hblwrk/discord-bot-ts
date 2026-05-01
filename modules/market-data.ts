@@ -1,31 +1,30 @@
-import {Client} from "discord.js";
+import {Client, type GuildMember} from "discord.js";
 import ReconnectingWebSocketModule from "reconnecting-websocket";
 import WS from "ws";
-import {getAssets} from "./assets.js";
-import {getMarketDataClientCacheFactory} from "./discord-client-options.js";
-import {getLogger} from "./logging.js";
-import {readSecret} from "./secrets.js";
+import {getAssets} from "./assets.ts";
+import {getMarketDataClientCacheFactory} from "./discord-client-options.ts";
+import {getLogger} from "./logging.ts";
+import {readSecret} from "./secrets.ts";
 import {
   getClosedMarketNickname,
   getMarketPresenceData,
   isMarketOpen,
   marketClosedPresence,
-} from "./market-data-hours.js";
+} from "./market-data-hours.ts";
 import {
   getPayloadLogPreview,
   isPotentialMarketDataPayload,
   normalizeEventData,
   parseStreamEvent,
-} from "./market-data-stream.js";
+} from "./market-data-stream.ts";
 import {
   type AppliedMarketDataUpdateLog,
   type ClientStatusState,
   type DiscordPresenceStatus,
   type IncomingMarketDataUpdateLog,
   type MarketDataAsset,
-  type MarketPresenceData,
   type PendingClientStatusUpdate,
-} from "./market-data-types.js";
+} from "./market-data-types.ts";
 
 const logger = getLogger();
 const websocketSubscribeDomain = "cmt-1-5-945629:%%domain-1:}";
@@ -38,7 +37,11 @@ const streamStaleTimeoutMs = 300_000;
 
 type ReconnectingWebSocketInstance = {
   OPEN: number;
-  addEventListener: (type: "open" | "close" | "error" | "message", listener: (event: any) => void) => void;
+  addEventListener: (type: "open" | "close" | "error" | "message", listener: (event: {
+    code?: number;
+    data?: unknown;
+    reason?: string;
+  }) => void) => void;
   readyState: number;
   reconnect: () => void;
   send: (data: string) => void;
@@ -65,7 +68,7 @@ export async function updateMarketData() {
   }
 
   const guildId = readSecret("discord_guild_ID").trim();
-  const clientsById = new Map<string, Client>();
+  const clientsById = new Map<string, Client<true>>();
   let streamStarted = false;
 
   for (const marketDataAsset of marketDataAssets) {
@@ -92,11 +95,12 @@ export async function updateMarketData() {
       );
 
       // Stay idle until a live tick arrives; the status reconciler flips closed sessions back later.
-      client.user.setPresence({
+      const readyClient = client as Client<true>;
+      readyClient.user.setPresence({
         activities: [{name: marketClosedPresence}],
         status: "idle",
       });
-      clientsById.set(marketDataAsset.botClientId, client);
+      clientsById.set(marketDataAsset.botClientId, readyClient);
 
       if (false === streamStarted) {
         // Start stream as soon as one bot is ready; lagging bots attach later.
@@ -107,7 +111,7 @@ export async function updateMarketData() {
   }
 }
 
-function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: MarketDataAsset[], guildId: string) {
+function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAssets: MarketDataAsset[], guildId: string) {
   // Generating multiple Websocket endpoint options in case we get blocked.
   // const wsServerIds = ["265", "68", "104", "226", "103", "220", "47"];
   const wsServerIds = ["714/crhl6wg7", "543/fkv260lc", "145/gdlsxdet", "034/7546_2ip", "145/_g8m6m_l", "560/q2_xpw87", "271/l5mgl1s6", "120/9hovf5kb", "303/0lllaqe7", "859/o3a31oc_"];
@@ -121,7 +125,7 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
   let urlIndex = 0;
 
   // Round-robin assignment for Websocket endpoints
-  const wsServerUrlProvider = () => wsServerUrls[urlIndex++ % wsServerUrls.length];
+  const wsServerUrlProvider = () => wsServerUrls[urlIndex++ % wsServerUrls.length] ?? wsServerUrls[0] ?? "";
 
   let pids = "";
 
@@ -144,7 +148,7 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
   };
 
   const wsClient = new ReconnectingWebSocket(wsServerUrlProvider, [], options);
-  const memberByClientId = new Map<string, Promise<any>>();
+  const memberByClientId = new Map<string, Promise<GuildMember>>();
   const statusByClientId = new Map<string, ClientStatusState>();
   const pendingStatusByClientId = new Map<string, PendingClientStatusUpdate>();
   let lastMessageAt = Date.now();
@@ -162,7 +166,7 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
       );
     }
   }, pendingStatusFlushIntervalMs);
-  (pendingStatusFlushTimer as any).unref?.();
+  pendingStatusFlushTimer.unref();
 
   const marketStatusCheckTimer = setInterval(() => {
     for (const marketDataAsset of marketDataAssets) {
@@ -180,7 +184,7 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
       );
     }
   }, marketStatusCheckIntervalMs);
-  (marketStatusCheckTimer as any).unref?.();
+  marketStatusCheckTimer.unref();
 
   const streamWatchdog = setInterval(() => {
     const messageAgeMs = Date.now() - lastMessageAt;
@@ -193,7 +197,7 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
       lastMessageAt = Date.now();
     }
   }, streamWatchdogIntervalMs);
-  (streamWatchdog as any).unref?.();
+  streamWatchdog.unref();
 
   // Respond to "connection open" event by sending subscription message
   wsClient.addEventListener("open", () => {
@@ -219,7 +223,7 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
     );
   });
 
-  const handleWebsocketMessage = async event => {
+  const handleWebsocketMessage = (event: {data?: unknown}) => {
     try {
       const rawMessage = normalizeEventData(event.data);
       if (null === rawMessage) {
@@ -329,14 +333,14 @@ function initInvestingCom(clientsById: Map<string, Client>, marketDataAssets: Ma
 
   // Responding to Websocket message
   wsClient.addEventListener("message", event => {
-    void handleWebsocketMessage(event);
+    handleWebsocketMessage(event);
   });
 }
 
 async function applyClientStatusUpdate(
-  client: Client,
+  client: Client<true>,
   guildId: string,
-  memberByClientId: Map<string, Promise<any>>,
+  memberByClientId: Map<string, Promise<GuildMember>>,
   statusByClientId: Map<string, ClientStatusState>,
   nickname: string,
   presence: string,
@@ -361,9 +365,9 @@ async function applyClientStatusUpdate(
 }
 
 async function applyClientNicknameUpdate(
-  client: Client,
+  client: Client<true>,
   guildId: string,
-  memberByClientId: Map<string, Promise<any>>,
+  memberByClientId: Map<string, Promise<GuildMember>>,
   statusByClientId: Map<string, ClientStatusState>,
   nickname: string,
 ) {
@@ -401,8 +405,8 @@ async function applyClientNicknameUpdate(
 }
 
 function queuePendingClientStatusUpdate(
-  client: Client,
-  clientsById: Map<string, Client>,
+  client: Client<true>,
+  clientsById: Map<string, Client<true>>,
   marketDataAsset: MarketDataAsset,
   nickname: string,
   openPresence: string,
@@ -410,7 +414,7 @@ function queuePendingClientStatusUpdate(
   priceChange: number,
   percentageChange: number,
   guildId: string,
-  memberByClientId: Map<string, Promise<any>>,
+  memberByClientId: Map<string, Promise<GuildMember>>,
   statusByClientId: Map<string, ClientStatusState>,
   pendingStatusByClientId: Map<string, PendingClientStatusUpdate>,
 ) {
@@ -447,9 +451,9 @@ function queuePendingClientStatusUpdate(
 
 async function flushPendingClientStatusUpdate(
   clientId: string,
-  clientsById: Map<string, Client>,
+  clientsById: Map<string, Client<true>>,
   guildId: string,
-  memberByClientId: Map<string, Promise<any>>,
+  memberByClientId: Map<string, Promise<GuildMember>>,
   statusByClientId: Map<string, ClientStatusState>,
   pendingStatusByClientId: Map<string, PendingClientStatusUpdate>,
 ) {
@@ -481,6 +485,7 @@ async function flushPendingClientStatusUpdate(
     priceChange,
   );
   let didApply = false;
+  let shouldFlushNextPendingUpdate = true;
 
   try {
     const didUpdate = await applyClientStatusUpdate(
@@ -516,20 +521,24 @@ async function flushPendingClientStatusUpdate(
   } finally {
     const latestPendingStatusUpdate = pendingStatusByClientId.get(clientId);
     if ("undefined" === typeof latestPendingStatusUpdate) {
-      return;
-    }
+      shouldFlushNextPendingUpdate = false;
+    } else {
+      latestPendingStatusUpdate.applying = false;
 
-    latestPendingStatusUpdate.applying = false;
-
-    if (
-      true === didApply
-      && latestPendingStatusUpdate.nickname === nickname
-      && latestPendingStatusUpdate.openPresence === openPresence
-      && latestPendingStatusUpdate.priceChange === priceChange
-    ) {
-      pendingStatusByClientId.delete(clientId);
-      return;
+      if (
+        true === didApply
+        && latestPendingStatusUpdate.nickname === nickname
+        && latestPendingStatusUpdate.openPresence === openPresence
+        && latestPendingStatusUpdate.priceChange === priceChange
+      ) {
+        pendingStatusByClientId.delete(clientId);
+        shouldFlushNextPendingUpdate = false;
+      }
     }
+  }
+
+  if (false === shouldFlushNextPendingUpdate) {
+    return;
   }
 
   void flushPendingClientStatusUpdate(
@@ -547,10 +556,10 @@ function isDiscordUpdateDue(lastUpdate: number): boolean {
 }
 
 async function applyClosedMarketPresenceIfNeeded(
-  client: Client,
+  client: Client<true>,
   marketDataAsset: MarketDataAsset,
   guildId: string,
-  memberByClientId: Map<string, Promise<any>>,
+  memberByClientId: Map<string, Promise<GuildMember>>,
   statusByClientId: Map<string, ClientStatusState>,
 ) {
   if (true === isMarketOpen(marketDataAsset)) {
@@ -593,7 +602,7 @@ async function applyClosedMarketPresenceIfNeeded(
 }
 
 function applyClientPresenceUpdate(
-  client: Client,
+  client: Client<true>,
   statusByClientId: Map<string, ClientStatusState>,
   presence: string,
   presenceStatus: DiscordPresenceStatus,

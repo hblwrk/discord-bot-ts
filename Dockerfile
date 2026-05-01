@@ -19,7 +19,6 @@ COPY --chown=65532:65532 --from=builder /home/node/app /app
 WORKDIR /app
 
 ENV HEALTHCHECK_PORT=11312
-ENV TSX_DISABLE_CACHE=1
 ENV TMPDIR=/dev/shm
 
 USER 65532:65532
@@ -29,4 +28,4 @@ HEALTHCHECK --interval=30s --timeout=5s --start-period=15s --retries=3 \
 
 EXPOSE 11312/tcp
 
-CMD ["--import", "tsx", "index.ts"]
+CMD ["index.ts"]

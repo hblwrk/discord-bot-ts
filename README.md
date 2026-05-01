@@ -2,21 +2,22 @@
 
 ## Conventions
 
-* This is a TypeScript project using ECMAScript modules (ES2020) <https://www.typescriptlang.org/>.
+* This is a TypeScript 6 project using ECMAScript modules with TypeScript's NodeNext module system, an ESNext target, native Node.js TypeScript runtime support, and strict compiler settings <https://www.typescriptlang.org/>.
+* Tests run on Vitest with explicit imports, native Vite-powered TypeScript transforms and V8 coverage.
 * The project follows a rolling release model <https://en.wikipedia.org/wiki/Rolling_release>.
 * The `main` branch contains stable and tested code. Any development is done at feature branches.
 * We use `git config pull.rebase false`.
 * Mind `.gitignore`.
-* We use Airbnb's JS style guide <https://github.com/airbnb/javascript>. That's two spaces for indentation.
-* Consider using ESLint/XO <https://github.com/xojs/xo> for linting.
+* Code style follows the surrounding file: two-space indentation, double quotes, and explicit readable control flow.
+* Linting uses ESLint flat config with type-aware `typescript-eslint`, `@vitest/eslint-plugin` for tests, and `eslint-plugin-n` for Node.js runtime checks.
 
 ## Running
 
-Install NodeJS v22.12 or newer and start the bot like this:
+Install Node.js 24 LTS and start the bot like this:
 
 ```bash
 npm install
-node --import tsx index.ts
+node index.ts
 ```
 
 ## Workflow
@@ -57,7 +58,7 @@ git pull
 
 The bot is deployed at our server, running as a docker container in Docker Swarm using compose files. Every time the `main` branch gets updated, the GitHub Actions workflows make sure that:
 
-* Software tests and type checks are executed (`npm run test`, `npm run typecheck`).
+* Software tests and type checks are executed (`npm run test:coverage`, `npm run typecheck`).
 * The `Dockerfile` is validated and checked against CIS benchmark rules.
 * Security scanning in the main workflow is executed using Checkov.
 * Additional security scanning is handled by dedicated CodeQL, njsscan and Semgrep workflows.

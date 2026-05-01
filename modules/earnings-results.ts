@@ -1,9 +1,5 @@
-/* eslint-disable complexity */
-/* eslint-disable max-depth */
-/* eslint-disable yoda */
-/* eslint-disable import/extensions */
 import moment from "moment-timezone";
-import {type EarningsEvent, getEarningsResult} from "./earnings.js";
+import {type EarningsEvent, getEarningsResult} from "./earnings.ts";
 import {
   formatUsdCompact,
   getEarningsResultMessage,
@@ -12,7 +8,7 @@ import {
   parseEarningsDocument,
   parseNumber,
   type NasdaqSurprise,
-} from "./earnings-results-format.js";
+} from "./earnings-results-format.ts";
 import {
   clearSecEarningsResultCaches,
   isLikelyEarningsFiling,
@@ -21,16 +17,24 @@ import {
   loadSecTickerMap,
   type SecCompany,
   type SecCurrentFiling,
-} from "./earnings-results-sec.js";
-import {getWithRetry} from "./http-retry.js";
-import {getLogger} from "./logging.js";
+} from "./earnings-results-sec.ts";
+import {getWithRetry} from "./http-retry.ts";
+import {getLogger} from "./logging.ts";
 
 type Logger = {
-  log: (level: string, message: any) => void;
+  log: (level: string, message: unknown) => void;
 };
 
 type SendableChannel = {
   send: (payload: unknown) => Promise<unknown> | unknown;
+};
+
+type EarningsResultClient = {
+  channels?: {
+    cache?: {
+      get?: (channelID: string) => unknown;
+    };
+  };
 };
 
 type TimerHandle = ReturnType<typeof setTimeout>;
@@ -133,7 +137,7 @@ export function clearEarningsResultCaches() {
 }
 
 export function startEarningsResultWatcher(
-  client,
+  client: EarningsResultClient,
   channelID: string,
   options: EarningsResultWatcherOptions = {},
 ): EarningsResultWatcher {
@@ -147,12 +151,23 @@ export function startEarningsResultWatcher(
   let timerHandle: TimerHandle | undefined;
 
   const runOnce = async (): Promise<EarningsResultScanResult> => {
-    const result = await getEarningsResultAnnouncements({
+    const announcementOptions: {
+      dependencies: EarningsResultDependencies;
+      maxAnnouncementsPerScan?: number;
+      secCurrentFilingsLimit?: number;
+      seenAccessions: Set<string>;
+    } = {
       dependencies,
-      maxAnnouncementsPerScan: options.maxAnnouncementsPerScan,
-      secCurrentFilingsLimit: options.secCurrentFilingsLimit,
       seenAccessions,
-    });
+    };
+    if (undefined !== options.maxAnnouncementsPerScan) {
+      announcementOptions.maxAnnouncementsPerScan = options.maxAnnouncementsPerScan;
+    }
+    if (undefined !== options.secCurrentFilingsLimit) {
+      announcementOptions.secCurrentFilingsLimit = options.secCurrentFilingsLimit;
+    }
+
+    const result = await getEarningsResultAnnouncements(announcementOptions);
 
     for (const announcement of result.announcements) {
       const sent = await sendEarningsResultAnnouncement(
@@ -177,7 +192,7 @@ export function startEarningsResultWatcher(
     timerHandle = setTimeoutFn(() => {
       void runAndSchedule();
     }, delayMs);
-    (timerHandle as any).unref?.();
+    timerHandle.unref();
   };
 
   const runAndSchedule = async () => {
@@ -244,7 +259,8 @@ export async function getEarningsResultAnnouncements({
     }
 
     const filingWatches = watchesByCik.get(filing.cik);
-    if (!filingWatches || 0 === filingWatches.length) {
+    const filingWatch = filingWatches?.[0];
+    if (!filingWatch) {
       continue;
     }
 
@@ -254,7 +270,7 @@ export async function getEarningsResultAnnouncements({
 
     const announcement = await buildEarningsResultAnnouncement(
       filing,
-      filingWatches[0],
+      filingWatch,
       dependencies,
       now,
     );
@@ -279,14 +295,21 @@ function getDependencies(options: EarningsResultWatcherOptions = {}): EarningsRe
   };
 }
 
+function isSendableChannel(channel: unknown): channel is SendableChannel {
+  return "object" === typeof channel &&
+    null !== channel &&
+    "send" in channel &&
+    "function" === typeof channel.send;
+}
+
 async function sendEarningsResultAnnouncement(
-  client,
+  client: EarningsResultClient,
   channelID: string,
   message: string,
   loggerInstance: Logger,
 ): Promise<boolean> {
-  const channel = client?.channels?.cache?.get(channelID);
-  if (!channel || "function" !== typeof channel.send) {
+  const channel = client.channels?.cache?.get?.(channelID);
+  if (false === isSendableChannel(channel)) {
     loggerInstance.log(
       "error",
       `Skipping earnings result announcement: channel ${channelID} not found or not send-capable.`,
@@ -294,7 +317,7 @@ async function sendEarningsResultAnnouncement(
     return false;
   }
 
-  return Promise.resolve((channel as SendableChannel).send({
+  return Promise.resolve(channel.send({
     content: message,
     allowedMentions: noMentions,
   }))

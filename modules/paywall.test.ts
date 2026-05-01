@@ -1,5 +1,7 @@
+import type {Mocked} from "vitest";
 import axios from "axios";
-import {PaywallAsset} from "./assets.js";
+import {PaywallAsset} from "./assets.ts";
+import {beforeEach, describe, expect, test, vi} from "vitest";
 import {
   extractHostname,
   matchPaywallAsset,
@@ -10,16 +12,16 @@ import {
   getServiceSuccessRate,
   getInflightCount,
   PaywallLookupCapacityError,
-} from "./paywall.js";
+} from "./paywall.ts";
 
-jest.mock("axios");
-jest.mock("./logging.js", () => ({
+vi.mock("axios");
+vi.mock("./logging.ts", () => ({
   getLogger: () => ({
-    log: jest.fn(),
+    log: vi.fn(),
   }),
 }));
 
-const mockedAxios = axios as jest.Mocked<typeof axios>;
+const mockedAxios = axios as Mocked<typeof axios>;
 
 beforeEach(() => {
   mockedAxios.get.mockReset();
@@ -331,8 +333,11 @@ describe("getPaywallLinks", () => {
   });
 
   test("ranks available services before unavailable ones", async () => {
+    const rankAssets = [
+      createPaywallAsset({name: "nytimes", domains: ["nytimes.com"], services: ["archive.today", "archive.today"]}),
+    ];
     let callCount = 0;
-    mockedAxios.get.mockImplementation(async (url: string) => {
+    mockedAxios.get.mockImplementation(async () => {
       callCount += 1;
       if (1 === callCount) {
         return {data: '<html><head><title>Rank Test</title></head><body>Rank Test article</body></html>'};
@@ -346,15 +351,16 @@ describe("getPaywallLinks", () => {
     });
 
     const rankUrl = `https://www.nytimes.com/rank-test-${Date.now()}`;
-    const result = await getPaywallLinks(rankUrl, assets);
+    const result = await getPaywallLinks(rankUrl, rankAssets);
     const availableServices = result.services.filter(s => s.available);
     const unavailableServices = result.services.filter(s => !s.available);
 
-    if (availableServices.length > 0 && unavailableServices.length > 0) {
-      const lastAvailableIndex = result.services.findIndex(s => s === availableServices[availableServices.length - 1]);
-      const firstUnavailableIndex = result.services.findIndex(s => s === unavailableServices[0]);
-      expect(lastAvailableIndex).toBeLessThan(firstUnavailableIndex);
-    }
+    expect(availableServices.length).toBeGreaterThan(0);
+    expect(unavailableServices.length).toBeGreaterThan(0);
+
+    const lastAvailableIndex = result.services.findIndex(s => s === availableServices[availableServices.length - 1]);
+    const firstUnavailableIndex = result.services.findIndex(s => s === unavailableServices[0]);
+    expect(lastAvailableIndex).toBeLessThan(firstUnavailableIndex);
   });
 });
 

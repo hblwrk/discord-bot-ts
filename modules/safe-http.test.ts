@@ -1,4 +1,5 @@
-import {assertSafeRequestUrl, isPrivateIp, UnsafeUrlError} from "./safe-http.js";
+import {assertSafeRequestUrl, isPrivateIp, UnsafeUrlError} from "./safe-http.ts";
+import {describe, expect, test} from "vitest";
 
 describe("isPrivateIp", () => {
   test.each([

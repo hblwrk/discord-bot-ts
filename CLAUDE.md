@@ -4,15 +4,15 @@ Coding guidance for this repo. Extracts the rules a contributor (human or agent)
 
 ## Stack
 
-- TypeScript with native ES2020 modules. **No build step** — runtime is `node --import tsx index.ts`. Don't add `tsc` emit, a `dist/` directory, or a bundler.
-- Node `>=22.12 <27` (`.nvmrc` pins 22.12.0; image is `node:24` builder + `gcr.io/distroless/nodejs24:nonroot` runtime).
+- TypeScript with native ESNext modules. **No build step** — runtime is `node index.ts` through Node.js native TypeScript support. Don't add `tsc` emit, a `dist/` directory, or a bundler.
+- Node 24 LTS only (`.nvmrc` resolves to Node 24; image is `node:24` builder + `gcr.io/distroless/nodejs24:nonroot` runtime).
 - discord.js v14, Express v5 (healthcheck only), Winston, axios, ws, node-schedule.
-- Jest + ts-jest for tests. `npm run typecheck` is `tsc --noEmit` — there is no separate compile.
+- Vitest for tests. `npm run typecheck` checks the production config and the test config — there is no separate compile.
 
 ## Code conventions
 
-- Relative imports use the `.js` extension even from `.ts` files (jest's `moduleNameMapper` rewrites `.js` → source). Example: `import {x} from "./foo.js";`. Imports without `.js` will fail at runtime.
-- Airbnb style, 2-space indent, double quotes — match the surrounding file.
+- Relative imports use the `.ts` extension in source files so Node.js can run the TypeScript sources natively. Example: `import {x} from "./foo.ts";`.
+- Local style: 2-space indent, double quotes, explicit readable control flow — match the surrounding file.
 - One feature per module under `modules/<feature>.ts`, with `<feature>.test.ts` alongside. `index.ts` only wires startup; feature logic does not belong there.
 - Keep modules under ~800 lines. Split before adding more.
 - Don't introduce code that requires a shell, package manager, or writable filesystem at runtime — the production image is distroless, nonroot, read-only. Writes only go to `/dev/shm` (set as `TMPDIR`).
@@ -20,7 +20,7 @@ Coding guidance for this repo. Extracts the rules a contributor (human or agent)
 ## Tests, types, and coverage
 
 - `npm run test:coverage` and `npm run typecheck` must both pass. CI runs them on every PR.
-- `jest.config.cjs` enforces global thresholds (75/75/65/58 stmt/lines/funcs/branches) and stricter per-module thresholds for several modules in `modules/` (90–100% in some). Don't lower a threshold to make a change pass — write the test, or split the module.
+- `vitest.config.ts` enforces global thresholds (78/78/77/66 stmt/lines/funcs/branches) and stricter per-module thresholds for several modules in `modules/` (90–100% in some). Don't lower a threshold to make a change pass — write the test, or split the module.
 - Tests use `*.test.ts` next to the source file; `modules/test-utils/` is excluded from coverage.
 
 ## Configuration & secrets
@@ -38,5 +38,5 @@ Coding guidance for this repo. Extracts the rules a contributor (human or agent)
 
 ## Dependencies
 
-- `package.json` pins `engines.node` and uses `overrides` to force-resolve a few transitive dependencies (`undici`, `glob`, `minimatch`, `test-exclude`). Preserve those overrides when bumping deps unless you've verified the underlying advisory no longer applies.
+- `package.json` pins `engines.node` and uses `overrides` to force-resolve `undici`. Preserve that override when bumping deps unless you've verified the underlying advisory no longer applies.
 - Dependabot is configured under `.github/dependabot.yml` — prefer letting it open PRs over manual bumps.

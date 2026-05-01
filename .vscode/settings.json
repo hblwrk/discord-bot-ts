@@ -1,0 +1,10 @@
+{
+  "eslint.useFlatConfig": true,
+  "eslint.validate": [
+    "javascript",
+    "typescript"
+  ],
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  }
+}

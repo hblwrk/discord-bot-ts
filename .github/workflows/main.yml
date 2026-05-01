@@ -61,6 +61,8 @@ jobs:
         run: npm ci
       - name: Audit dependencies
         run: npm audit --audit-level=high
+      - name: Run lint
+        run: npm run lint
       - name: Run tests
         run: npm run test:coverage
       - name: Run typecheck

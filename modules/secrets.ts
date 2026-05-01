@@ -59,6 +59,12 @@ function getActiveEnvironment(): SecretEnvironment {
   }
 
   const mountedEnvironmentSecret = mountedEnvironmentSecrets[0];
+  if (undefined === mountedEnvironmentSecret) {
+    throw new Error(
+      "Missing environment secret. Expected exactly one of /run/secrets/production_environment or /run/secrets/staging_environment.",
+    );
+  }
+
   const normalizedEnvironment = mountedEnvironmentSecret.value.trim();
   if (false === isSupportedEnvironment(normalizedEnvironment)) {
     throw new Error(

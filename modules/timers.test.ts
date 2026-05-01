@@ -1,27 +1,19 @@
+import {afterEach, beforeEach, describe, expect, test, vi} from "vitest";
 import {
   attachmentBuilderMock,
   createClientWithChannel,
   createClientWithoutChannel,
-  getAssetByNameMock,
-  getCalendarEventsMock,
-  getCalendarMessagesMock,
-  getEarningsMessagesMock,
-  getEarningsReminderJob,
-  getEarningsResultMock,
   getHolidaysMock,
   getMncMock,
   getScheduledJobByTime,
   isHolidayMock,
   loggerMock,
-  MockRange,
   resetTimerMocks,
   restoreTimerMocks,
   scheduleJobMock,
-  scheduledJobs,
   startMncTimers,
   startNyseTimers,
-  startOtherTimers,
-} from "./test-utils/timers.js";
+} from "./test-utils/timers.ts";
 
 async function flushAsyncJobs() {
   for (let index = 0; index < 5; index++) {
@@ -36,7 +28,7 @@ describe("timers: NYSE and MNC", () => {
   test("startNyseTimers registers NYSE jobs and sends regular pre-market announcement", () => {
     const {client, send} = createClientWithChannel();
 
-    startNyseTimers(client as any, "channel-id");
+    startNyseTimers(client, "channel-id");
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
 
     expect(scheduleJobMock).toHaveBeenCalledTimes(8);
@@ -55,14 +47,14 @@ describe("timers: NYSE and MNC", () => {
 
   test("startNyseTimers sends native opening sentiment poll and ends it two hours before regular close", async () => {
     const {client, send} = createClientWithChannel();
-    const endPoll = jest.fn().mockResolvedValue(undefined);
+    const endPoll = vi.fn().mockResolvedValue(undefined);
     send.mockResolvedValueOnce({
       poll: {
         end: endPoll,
       },
     });
 
-    startNyseTimers(client as any, "channel-id");
+    startNyseTimers(client, "channel-id");
     const openJob = getScheduledJobByTime(9, 30, "US/Eastern");
     openJob.callback();
     await flushAsyncJobs();
@@ -93,15 +85,15 @@ describe("timers: NYSE and MNC", () => {
 
   test("startNyseTimers ends early-close opening sentiment poll two hours before early close", async () => {
     const {client, send} = createClientWithChannel();
-    const endPoll = jest.fn().mockResolvedValue(undefined);
-    jest.setSystemTime(new Date("2025-11-28T09:30:00-05:00"));
+    const endPoll = vi.fn().mockResolvedValue(undefined);
+    vi.setSystemTime(new Date("2025-11-28T09:30:00-05:00"));
     send.mockResolvedValueOnce({
       poll: {
         end: endPoll,
       },
     });
 
-    startNyseTimers(client as any, "channel-id");
+    startNyseTimers(client, "channel-id");
     const openJob = getScheduledJobByTime(9, 30, "US/Eastern");
     openJob.callback();
     await flushAsyncJobs();
@@ -123,7 +115,7 @@ describe("timers: NYSE and MNC", () => {
     const {client, send} = createClientWithChannel();
     isHolidayMock.mockReturnValue(true);
 
-    startNyseTimers(client as any, "channel-id");
+    startNyseTimers(client, "channel-id");
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
     premarketJob.callback();
 
@@ -132,9 +124,9 @@ describe("timers: NYSE and MNC", () => {
 
   test("startNyseTimers sends Thanksgiving early-close reminder on the day after Thanksgiving", () => {
     const {client, send} = createClientWithChannel();
-    jest.setSystemTime(new Date("2025-11-28T10:00:00-05:00"));
+    vi.setSystemTime(new Date("2025-11-28T10:00:00-05:00"));
 
-    startNyseTimers(client as any, "channel-id");
+    startNyseTimers(client, "channel-id");
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
     premarketJob.callback();
 
@@ -144,7 +136,7 @@ describe("timers: NYSE and MNC", () => {
 
   test("startNyseTimers resolves Thanksgiving date based on the current US/Eastern year", () => {
     const {client, send} = createClientWithChannel();
-    jest.setSystemTime(new Date("2025-12-30T10:00:00-05:00"));
+    vi.setSystemTime(new Date("2025-12-30T10:00:00-05:00"));
     getHolidaysMock.mockImplementation(year => {
       if (2025 === year) {
         return [
@@ -167,8 +159,8 @@ describe("timers: NYSE and MNC", () => {
       return [];
     });
 
-    startNyseTimers(client as any, "channel-id");
-    jest.setSystemTime(new Date("2026-11-27T10:00:00-05:00"));
+    startNyseTimers(client, "channel-id");
+    vi.setSystemTime(new Date("2026-11-27T10:00:00-05:00"));
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
     premarketJob.callback();
 
@@ -179,10 +171,10 @@ describe("timers: NYSE and MNC", () => {
   test("startNyseTimers treats holiday check by US/Eastern date for aftermarket close", () => {
     const {client, send} = createClientWithChannel();
     // 20:00 US/Eastern on 2025-12-25 equals 2025-12-26T01:00:00Z.
-    jest.setSystemTime(new Date("2025-12-26T01:00:00Z"));
+    vi.setSystemTime(new Date("2025-12-26T01:00:00Z"));
     isHolidayMock.mockImplementation(date => date.toDateString() === "Thu Dec 25 2025");
 
-    startNyseTimers(client as any, "channel-id");
+    startNyseTimers(client, "channel-id");
     const aftermarketJob = getScheduledJobByTime(20, 0, "US/Eastern");
     aftermarketJob.callback();
 
@@ -193,7 +185,7 @@ describe("timers: NYSE and MNC", () => {
   test("startNyseTimers points close announcement to Heutige Gains&Losses thread", () => {
     const {client, send} = createClientWithChannel();
 
-    startNyseTimers(client as any, "channel-id", "thread-id");
+    startNyseTimers(client, "channel-id", "thread-id");
     const closeJob = getScheduledJobByTime(16, 0, "US/Eastern");
     closeJob.callback();
 
@@ -203,19 +195,18 @@ describe("timers: NYSE and MNC", () => {
   test("startNyseTimers skips announcement when channel is missing", () => {
     const {client} = createClientWithoutChannel();
 
-    startNyseTimers(client as any, "channel-id");
+    startNyseTimers(client, "channel-id");
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
 
-    expect(() => {
-      premarketJob.callback();
-    }).not.toThrow();
+    premarketJob.callback();
+
     expect(loggerMock.log).toHaveBeenCalledWith("error", expect.stringContaining("Skipping NYSE announcement"));
   });
 
   test("startMncTimers schedules MNC announcement and sends attachment payload", async () => {
     const {client, send} = createClientWithChannel();
 
-    startMncTimers(client as any, "channel-id");
+    startMncTimers(client, "channel-id");
     const mncJob = getScheduledJobByTime(9, 0, "US/Eastern");
 
     expect(scheduleJobMock).toHaveBeenCalledTimes(1);
@@ -243,7 +234,7 @@ describe("timers: NYSE and MNC", () => {
     const {client, send} = createClientWithChannel();
     getMncMock.mockResolvedValueOnce(undefined);
 
-    startMncTimers(client as any, "channel-id");
+    startMncTimers(client, "channel-id");
     const mncJob = getScheduledJobByTime(9, 0, "US/Eastern");
     await mncJob.callback();
 
@@ -256,7 +247,7 @@ describe("timers: NYSE and MNC", () => {
     const {client, send} = createClientWithChannel();
     isHolidayMock.mockReturnValue(true);
 
-    startMncTimers(client as any, "channel-id");
+    startMncTimers(client, "channel-id");
     const mncJob = getScheduledJobByTime(9, 0, "US/Eastern");
     await mncJob.callback();
 
@@ -268,7 +259,7 @@ describe("timers: NYSE and MNC", () => {
   test("startMncTimers logs and skips when channel is missing", async () => {
     const {client} = createClientWithoutChannel();
 
-    startMncTimers(client as any, "channel-id");
+    startMncTimers(client, "channel-id");
     const mncJob = getScheduledJobByTime(9, 0, "US/Eastern");
     await mncJob.callback();
 

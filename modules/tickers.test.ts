@@ -1,21 +1,24 @@
-const getWithRetryMock = jest.fn();
+import {beforeEach, describe, expect, test, vi} from "vitest";
+const getWithRetryMock = vi.fn();
 const loggerMock = {
-  log: jest.fn(),
+  log: vi.fn(),
 };
 
-jest.mock("./http-retry.js", () => ({
-  getWithRetry: getWithRetryMock,
+vi.mock("./http-retry.ts", () => ({
+  getWithRetry: (...args: unknown[]) => getWithRetryMock(...args),
 }));
 
-jest.mock("./logging.js", () => ({
-  getLogger: () => loggerMock,
+vi.mock("./logging.ts", () => ({
+  getLogger: () => ({
+    log: (...args: unknown[]) => loggerMock.log(...args),
+  }),
 }));
 
-import {getTickers} from "./tickers.js";
+import {getTickers} from "./tickers.ts";
 
 describe("getTickers", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
   });
 
   test("loads and maps sp500 tickers", async () => {

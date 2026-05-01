@@ -1,3 +1,4 @@
+import {beforeEach, describe, expect, test, vi} from "vitest";
 import {
   advanceFakeTime,
   buildPresencePayload,
@@ -14,13 +15,13 @@ import {
   queuedClientIds,
   updateMarketData,
   websocketInstances,
-} from "./test-utils/market-data.js";
+} from "./test-utils/market-data.ts";
 
 describe("updateMarketData", () => {
   beforeEach(() => {
-    jest.useFakeTimers();
-    jest.setSystemTime(marketOpenReferenceTime);
-    jest.clearAllMocks();
+    vi.useFakeTimers();
+    vi.setSystemTime(marketOpenReferenceTime);
+    vi.clearAllMocks();
     clientInstances.length = 0;
     websocketInstances.length = 0;
     queuedClientIds.length = 0;
@@ -45,16 +46,19 @@ describe("updateMarketData", () => {
 
     await updateMarketData();
 
-    expect(mockClientConstructor).toHaveBeenCalledWith({intents: []});
+    expect(mockClientConstructor).toHaveBeenCalledWith(expect.objectContaining({
+      intents: [],
+      makeCache: expect.any(Function),
+    }));
     expect(clientInstances).toHaveLength(1);
-    expect(clientInstances[0].client.login).toHaveBeenCalledWith("token-1");
+    expect(clientInstances[0]!.client.login).toHaveBeenCalledWith("token-1");
 
-    const readyHandler = clientInstances[0].handlers.get("clientReady");
+    const readyHandler = clientInstances[0]!.handlers.get("clientReady");
     expect(readyHandler).toBeDefined();
 
     readyHandler();
 
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenCalledWith(
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenCalledWith(
       buildPresencePayload("Market closed.", "idle"),
     );
     expect(mockWebSocketConstructor).toHaveBeenCalledTimes(1);
@@ -89,8 +93,8 @@ describe("updateMarketData", () => {
 
     await updateMarketData();
 
-    const firstReady = clientInstances[0].handlers.get("clientReady");
-    const secondReady = clientInstances[1].handlers.get("clientReady");
+    const firstReady = clientInstances[0]!.handlers.get("clientReady");
+    const secondReady = clientInstances[1]!.handlers.get("clientReady");
 
     firstReady();
     expect(mockWebSocketConstructor).toHaveBeenCalledTimes(1);
@@ -98,7 +102,7 @@ describe("updateMarketData", () => {
     secondReady();
     expect(mockWebSocketConstructor).toHaveBeenCalledTimes(1); // not started twice
 
-    const wsClient = mockWebSocketConstructor.mock.results[0].value;
+    const wsClient = mockWebSocketConstructor.mock.results[0]!.value;
     expect(wsClient.addEventListener).toHaveBeenCalledWith("open", expect.any(Function));
     expect(wsClient.addEventListener).toHaveBeenCalledWith("close", expect.any(Function));
     expect(wsClient.addEventListener).toHaveBeenCalledWith("error", expect.any(Function));
@@ -123,17 +127,17 @@ describe("updateMarketData", () => {
 
     await updateMarketData();
 
-    const readyHandler = clientInstances[0].handlers.get("clientReady");
+    const readyHandler = clientInstances[0]!.handlers.get("clientReady");
     readyHandler();
 
     expect(mockWebSocketConstructor).toHaveBeenCalledTimes(1);
-    const constructorOptions = mockWebSocketConstructor.mock.calls[0][2];
+    const constructorOptions = mockWebSocketConstructor.mock.calls[0]![2];
     expect(constructorOptions.connectionTimeout).toBe(5000);
     expect(constructorOptions.maxRetries).toBe(Number.POSITIVE_INFINITY);
     expect(constructorOptions.minReconnectionDelay).toBe(1000);
     expect(constructorOptions.maxReconnectionDelay).toBe(15_000);
 
-    const wsClient = websocketInstances[0];
+    const wsClient = websocketInstances[0]!;
     const openHandler = wsClient.handlers.get("open");
     openHandler();
 
@@ -158,10 +162,10 @@ describe("updateMarketData", () => {
     ]);
 
     await updateMarketData();
-    const readyHandler = clientInstances[0].handlers.get("clientReady");
+    const readyHandler = clientInstances[0]!.handlers.get("clientReady");
     readyHandler();
 
-    const wsClient = websocketInstances[0];
+    const wsClient = websocketInstances[0]!;
     const messageHandler = wsClient.handlers.get("message");
     const websocketMessage = buildSocketIoMarketMessage({
       pid: 123,
@@ -175,8 +179,8 @@ describe("updateMarketData", () => {
     });
     await flushAsyncWork();
 
-    expect(clientInstances[0].setNickname).toHaveBeenCalledWith("1🟩 100.50$");
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+    expect(clientInstances[0]!.setNickname).toHaveBeenCalledWith("1🟩 100.50$");
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
       buildPresencePayload("+1.20 (1.23%)", "online"),
     );
     expect(mockLogger.log).toHaveBeenCalledWith(
@@ -229,9 +233,9 @@ describe("updateMarketData", () => {
     ]);
 
     await updateMarketData();
-    clientInstances[0].handlers.get("clientReady")();
+    clientInstances[0]!.handlers.get("clientReady")();
 
-    const wsClient = websocketInstances[0];
+    const wsClient = websocketInstances[0]!;
     const messageHandler = wsClient.handlers.get("message");
 
     messageHandler({
@@ -244,8 +248,8 @@ describe("updateMarketData", () => {
     });
     await flushAsyncWork();
 
-    expect(clientInstances[0].setNickname).toHaveBeenCalledTimes(1);
-    expect(clientInstances[0].setNickname).toHaveBeenLastCalledWith("1🟩 100.50$");
+    expect(clientInstances[0]!.setNickname).toHaveBeenCalledTimes(1);
+    expect(clientInstances[0]!.setNickname).toHaveBeenLastCalledWith("1🟩 100.50$");
 
     await advanceFakeTime(5000);
     messageHandler({
@@ -258,19 +262,19 @@ describe("updateMarketData", () => {
     });
     await flushAsyncWork();
 
-    expect(clientInstances[0].setNickname).toHaveBeenCalledTimes(1);
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenCalledTimes(2);
+    expect(clientInstances[0]!.setNickname).toHaveBeenCalledTimes(1);
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenCalledTimes(2);
 
     await advanceFakeTime(9000);
     await flushAsyncWork();
-    expect(clientInstances[0].setNickname).toHaveBeenCalledTimes(1);
+    expect(clientInstances[0]!.setNickname).toHaveBeenCalledTimes(1);
 
     await advanceFakeTime(1000);
     await flushAsyncWork();
 
-    expect(clientInstances[0].setNickname).toHaveBeenCalledTimes(2);
-    expect(clientInstances[0].setNickname).toHaveBeenLastCalledWith("1🟩 101.50$");
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+    expect(clientInstances[0]!.setNickname).toHaveBeenCalledTimes(2);
+    expect(clientInstances[0]!.setNickname).toHaveBeenLastCalledWith("1🟩 101.50$");
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
       buildPresencePayload("+2.20 (2.23%)", "online"),
     );
   });
@@ -292,9 +296,9 @@ describe("updateMarketData", () => {
     ]);
 
     await updateMarketData();
-    clientInstances[0].handlers.get("clientReady")();
+    clientInstances[0]!.handlers.get("clientReady")();
 
-    const wsClient = websocketInstances[0];
+    const wsClient = websocketInstances[0]!;
     const messageHandler = wsClient.handlers.get("message");
 
     messageHandler({
@@ -329,14 +333,14 @@ describe("updateMarketData", () => {
     });
     await flushAsyncWork();
 
-    expect(clientInstances[0].setNickname).toHaveBeenCalledTimes(1);
+    expect(clientInstances[0]!.setNickname).toHaveBeenCalledTimes(1);
 
     await advanceFakeTime(5000);
     await flushAsyncWork();
 
-    expect(clientInstances[0].setNickname).toHaveBeenCalledTimes(2);
-    expect(clientInstances[0].setNickname).toHaveBeenLastCalledWith("1🟩 102.50$");
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+    expect(clientInstances[0]!.setNickname).toHaveBeenCalledTimes(2);
+    expect(clientInstances[0]!.setNickname).toHaveBeenLastCalledWith("1🟩 102.50$");
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
       buildPresencePayload("+3.20 (3.23%)", "online"),
     );
   });
@@ -358,10 +362,10 @@ describe("updateMarketData", () => {
     ]);
 
     await updateMarketData();
-    const readyHandler = clientInstances[0].handlers.get("clientReady");
+    const readyHandler = clientInstances[0]!.handlers.get("clientReady");
     readyHandler();
 
-    const wsClient = websocketInstances[0];
+    const wsClient = websocketInstances[0]!;
     const messageHandler = wsClient.handlers.get("message");
 
     const websocketMessagePayload = {
@@ -374,8 +378,8 @@ describe("updateMarketData", () => {
     });
     await flushAsyncWork();
 
-    expect(clientInstances[0].setNickname).toHaveBeenCalledWith("1🟩 24755.80$");
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+    expect(clientInstances[0]!.setNickname).toHaveBeenCalledWith("1🟩 24755.80$");
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
       buildPresencePayload("+54.20 (0.22%)", "online"),
     );
   });
@@ -397,10 +401,10 @@ describe("updateMarketData", () => {
     ]);
 
     await updateMarketData();
-    const readyHandler = clientInstances[0].handlers.get("clientReady");
+    const readyHandler = clientInstances[0]!.handlers.get("clientReady");
     readyHandler();
 
-    const wsClient = websocketInstances[0];
+    const wsClient = websocketInstances[0]!;
     const messageHandler = wsClient.handlers.get("message");
 
     const websocketMessagePayload = {
@@ -413,8 +417,8 @@ describe("updateMarketData", () => {
     });
     await flushAsyncWork();
 
-    expect(clientInstances[0].setNickname).toHaveBeenCalledWith("1🟩 64.02$");
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+    expect(clientInstances[0]!.setNickname).toHaveBeenCalledWith("1🟩 64.02$");
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
       buildPresencePayload("+1.76 (2.83%)", "online"),
     );
   });
@@ -436,10 +440,10 @@ describe("updateMarketData", () => {
     ]);
 
     await updateMarketData();
-    const readyHandler = clientInstances[0].handlers.get("clientReady");
+    const readyHandler = clientInstances[0]!.handlers.get("clientReady");
     readyHandler();
 
-    const wsClient = websocketInstances[0];
+    const wsClient = websocketInstances[0]!;
     const messageHandler = wsClient.handlers.get("message");
 
     const websocketMessagePayload = {
@@ -452,8 +456,8 @@ describe("updateMarketData", () => {
     });
     await flushAsyncWork();
 
-    expect(clientInstances[0].setNickname).toHaveBeenCalledWith("1🟩 6852.3");
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+    expect(clientInstances[0]!.setNickname).toHaveBeenCalledWith("1🟩 6852.3");
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
       buildPresencePayload("+9.1 (0.13%)", "online"),
     );
   });
@@ -475,9 +479,9 @@ describe("updateMarketData", () => {
     ]);
 
     await updateMarketData();
-    clientInstances[0].handlers.get("clientReady")();
+    clientInstances[0]!.handlers.get("clientReady")();
 
-    const wsClient = websocketInstances[0];
+    const wsClient = websocketInstances[0]!;
     const messageHandler = wsClient.handlers.get("message");
 
     messageHandler({
@@ -485,8 +489,8 @@ describe("updateMarketData", () => {
     });
     await flushAsyncWork();
 
-    expect(clientInstances[0].setNickname).not.toHaveBeenCalled();
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenCalledTimes(1); // default only
+    expect(clientInstances[0]!.setNickname).not.toHaveBeenCalled();
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenCalledTimes(1); // default only
   });
 
   test("ignores comment stream payloads without logging parse warnings", async () => {
@@ -506,9 +510,9 @@ describe("updateMarketData", () => {
     ]);
 
     await updateMarketData();
-    clientInstances[0].handlers.get("clientReady")();
+    clientInstances[0]!.handlers.get("clientReady")();
 
-    const wsClient = websocketInstances[0];
+    const wsClient = websocketInstances[0]!;
     const messageHandler = wsClient.handlers.get("message");
     const commentPayload = {
       message: "cmt-1-5-945629::{\"ID\":\"46266029\",\"commentContent\":\"test\"}",
@@ -520,7 +524,7 @@ describe("updateMarketData", () => {
     });
     await flushAsyncWork();
 
-    expect(clientInstances[0].setNickname).not.toHaveBeenCalled();
+    expect(clientInstances[0]!.setNickname).not.toHaveBeenCalled();
     expect(mockLogger.log).not.toHaveBeenCalledWith(
       "warn",
       expect.stringContaining("Ignoring unparseable market data payload"),
@@ -548,9 +552,9 @@ describe("updateMarketData", () => {
     ]);
 
     await updateMarketData();
-    clientInstances[0].handlers.get("clientReady")();
+    clientInstances[0]!.handlers.get("clientReady")();
 
-    const wsClient = websocketInstances[0];
+    const wsClient = websocketInstances[0]!;
     const messageHandler = wsClient.handlers.get("message");
     const marketPayload = {
       message: "pid-123::{\"pid\":\"123\",\"last_numeric\":\"\",\"pc\":\"+1.2\",\"pcp\":\"+1.0%\"}",
@@ -562,7 +566,7 @@ describe("updateMarketData", () => {
     });
     await flushAsyncWork();
 
-    expect(clientInstances[0].setNickname).not.toHaveBeenCalled();
+    expect(clientInstances[0]!.setNickname).not.toHaveBeenCalled();
     expect(mockLogger.log).toHaveBeenCalledWith(
       "warn",
       expect.stringContaining("Ignoring unparseable market data payload"),
@@ -586,10 +590,10 @@ describe("updateMarketData", () => {
     ]);
 
     await updateMarketData();
-    clientInstances[0].handlers.get("clientReady")();
-    clientInstances[0].setNickname.mockRejectedValueOnce(new Error("nick-failed"));
+    clientInstances[0]!.handlers.get("clientReady")();
+    clientInstances[0]!.setNickname.mockRejectedValueOnce(new Error("nick-failed"));
 
-    const wsClient = websocketInstances[0];
+    const wsClient = websocketInstances[0]!;
     const messageHandler = wsClient.handlers.get("message");
     const payload = JSON.stringify({
       pid: 123,
@@ -608,7 +612,7 @@ describe("updateMarketData", () => {
       "error",
       expect.stringContaining("Error updating market data bot nickname"),
     );
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
       buildPresencePayload("-1.00 (-0.50%)", "dnd"),
     );
   });
@@ -630,9 +634,9 @@ describe("updateMarketData", () => {
     ]);
 
     await updateMarketData();
-    clientInstances[0].handlers.get("clientReady")();
+    clientInstances[0]!.handlers.get("clientReady")();
 
-    const wsClient = websocketInstances[0];
+    const wsClient = websocketInstances[0]!;
     const messageHandler = wsClient.handlers.get("message");
     messageHandler({data: "o"});
     await flushAsyncWork();
@@ -659,9 +663,9 @@ describe("updateMarketData", () => {
     ]);
 
     await updateMarketData();
-    clientInstances[0].handlers.get("clientReady")();
+    clientInstances[0]!.handlers.get("clientReady")();
 
-    const wsClient = websocketInstances[0];
+    const wsClient = websocketInstances[0]!;
     const messageHandler = wsClient.handlers.get("message");
     messageHandler({
       data: buildSocketIoMarketMessage({
@@ -673,16 +677,16 @@ describe("updateMarketData", () => {
     });
     await flushAsyncWork();
 
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
       buildPresencePayload("+1.20 (1.23%)", "online"),
     );
 
-    jest.setSystemTime(marketClosedReferenceTime);
+    vi.setSystemTime(marketClosedReferenceTime);
     await advanceFakeTime(60_000);
     await flushAsyncWork();
 
-    expect(clientInstances[0].setNickname).toHaveBeenLastCalledWith("1⬛ 100.50$");
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+    expect(clientInstances[0]!.setNickname).toHaveBeenLastCalledWith("1⬛ 100.50$");
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
       buildPresencePayload("Market closed.", "idle"),
     );
     expect(mockLogger.log).toHaveBeenCalledWith(
@@ -717,11 +721,11 @@ describe("updateMarketData", () => {
       },
     ]);
 
-    jest.setSystemTime(new Date("2026-03-12T20:59:50.000Z"));
+    vi.setSystemTime(new Date("2026-03-12T20:59:50.000Z"));
     await updateMarketData();
-    clientInstances[0].handlers.get("clientReady")();
+    clientInstances[0]!.handlers.get("clientReady")();
 
-    const wsClient = websocketInstances[0];
+    const wsClient = websocketInstances[0]!;
     const messageHandler = wsClient.handlers.get("message");
 
     messageHandler({
@@ -734,7 +738,7 @@ describe("updateMarketData", () => {
     });
     await flushAsyncWork();
 
-    expect(clientInstances[0].setNickname).toHaveBeenLastCalledWith("1🟩 100.50$");
+    expect(clientInstances[0]!.setNickname).toHaveBeenLastCalledWith("1🟩 100.50$");
 
     await advanceFakeTime(5000);
     messageHandler({
@@ -750,8 +754,8 @@ describe("updateMarketData", () => {
     await advanceFakeTime(10_000);
     await flushAsyncWork();
 
-    expect(clientInstances[0].setNickname).toHaveBeenLastCalledWith("1⬛ 101.50$");
-    expect(clientInstances[0].client.user.setPresence).toHaveBeenLastCalledWith(
+    expect(clientInstances[0]!.setNickname).toHaveBeenLastCalledWith("1⬛ 101.50$");
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
       buildPresencePayload("Market closed.", "idle"),
     );
   });

@@ -1,28 +1,27 @@
-/* eslint-disable import/extensions */
 import {Client, GatewayIntentBits, Partials} from "discord.js";
-import {getGenericAssets, getAssets} from "./assets.js";
-import {clownboard} from "./clownboard.js";
-import {getInteractiveClientCacheFactory} from "./discord-client-options.js";
-import {startEarningsResultWatcher} from "./earnings-results.js";
-import {runHealthCheck} from "./health-check.js";
-import {addInlineResponses} from "./inline-response.js";
-import {getLogger} from "./logging.js";
-import {updateMarketData} from "./market-data.js";
-import {roleManager} from "./role-manager.js";
-import {readSecret} from "./secrets.js";
-import {defineSlashCommands, interactSlashCommands} from "./slash-commands.js";
-import {createStartupState} from "./startup-state.js";
-import {getTickers, type Ticker} from "./tickers.js";
-import {startMncTimers, startNyseTimers, startOtherTimers} from "./timers.js";
-import {addTriggerResponses} from "./trigger-response.js";
-import {runStartupPreflight} from "./startup-preflight.js";
+import {getGenericAssets, getAssets} from "./assets.ts";
+import {clownboard} from "./clownboard.ts";
+import {getInteractiveClientCacheFactory} from "./discord-client-options.ts";
+import {startEarningsResultWatcher} from "./earnings-results.ts";
+import {runHealthCheck} from "./health-check.ts";
+import {addInlineResponses} from "./inline-response.ts";
+import {getLogger} from "./logging.ts";
+import {updateMarketData} from "./market-data.ts";
+import {roleManager} from "./role-manager.ts";
+import {readSecret} from "./secrets.ts";
+import {defineSlashCommands, interactSlashCommands} from "./slash-commands.ts";
+import {createStartupState} from "./startup-state.ts";
+import {getTickers} from "./tickers.ts";
+import {startMncTimers, startNyseTimers, startOtherTimers} from "./timers.ts";
+import {addTriggerResponses} from "./trigger-response.ts";
+import {runStartupPreflight} from "./startup-preflight.ts";
 import {
   type SharedStartupData,
   type StartupDependencies,
   type StartupOptions,
   type StartupRuntime,
-} from "./startup-types.js";
-import {warmRemoteData} from "./startup-warmup.js";
+} from "./startup-types.ts";
+import {warmRemoteData} from "./startup-warmup.ts";
 
 const defaultLoginTimeoutMs = 30_000;
 const defaultWarmupMaxAttempts = 4;
@@ -111,7 +110,7 @@ async function waitForDiscordReady(
       if (false === settled) {
         settled = true;
         clearTimeoutFn(timeoutHandle);
-        reject(error);
+        reject(error instanceof Error ? error : new Error(String(error)));
       }
     });
   });

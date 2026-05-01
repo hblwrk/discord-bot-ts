@@ -1,19 +1,21 @@
 import moment from "moment-timezone";
+import {beforeEach, describe, expect, test, vi} from "vitest";
 import {
   clearEarningsResultCaches,
   getEarningsResultAnnouncements,
   getExampleEarningsResultOutput,
-} from "./earnings-results.js";
+  startEarningsResultWatcher,
+} from "./earnings-results.ts";
 
 describe("earnings result announcements", () => {
   const logger = {
-    log: jest.fn(),
+    log: vi.fn(),
   };
-  const getEarningsResultFn = jest.fn();
-  const getWithRetryFn = jest.fn();
+  const getEarningsResultFn = vi.fn();
+  const getWithRetryFn = vi.fn();
 
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     clearEarningsResultCaches();
     getEarningsResultFn.mockResolvedValue({
       status: "ok",
@@ -131,10 +133,10 @@ describe("earnings result announcements", () => {
     expect(result.active).toBe(true);
     expect(result.watchedCompanies).toBe(1);
     expect(result.announcements).toHaveLength(1);
-    expect(result.announcements[0].message).toContain("Earnings: Exxon Mobil (`XOM`) Q1 2026");
-    expect(result.announcements[0].message).toContain("Adj EPS: `$1.16` vs est. `$0.96` - beat");
-    expect(result.announcements[0].message).toContain("Revenue: `$85.14B` vs est. `$80.74B` - beat");
-    expect(result.announcements[0].message).toContain("SEC: 8-K Item 2.02, 9.01");
+    expect(result.announcements[0]!.message).toContain("Earnings: Exxon Mobil (`XOM`) Q1 2026");
+    expect(result.announcements[0]!.message).toContain("Adj EPS: `$1.16` vs est. `$0.96` - beat");
+    expect(result.announcements[0]!.message).toContain("Revenue: `$85.14B` vs est. `$80.74B` - beat");
+    expect(result.announcements[0]!.message).toContain("SEC: 8-K Item 2.02, 9.01");
   });
 
   test("skips accessions that were already announced", async () => {
@@ -149,6 +151,54 @@ describe("earnings result announcements", () => {
     });
 
     expect(result.announcements).toHaveLength(0);
+  });
+
+  test("watcher sends new announcements once, schedules active polling, and clears its timer on stop", async () => {
+    const send = vi.fn().mockResolvedValue(undefined);
+    const timeoutHandle = {
+      unref: vi.fn(),
+    } as unknown as ReturnType<typeof setTimeout>;
+    const setTimeoutMock = vi.fn((_callback: () => void, _delayMs: number) => timeoutHandle);
+    const clearTimeoutFn = vi.fn();
+
+    const watcher = startEarningsResultWatcher({
+      channels: {
+        cache: {
+          get: vi.fn(() => ({
+            send,
+          })),
+        },
+      },
+    }, "breaking-news-channel-id", {
+      clearTimeoutFn,
+      getEarningsResultFn,
+      getWithRetryFn,
+      logger,
+      now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      pollIntervalMs: 123,
+      setTimeoutFn: setTimeoutMock as unknown as typeof setTimeout,
+    });
+
+    await vi.waitFor(() => {
+      expect(send).toHaveBeenCalledTimes(1);
+    });
+
+    expect(send).toHaveBeenCalledWith({
+      content: expect.stringContaining("Earnings: Exxon Mobil (`XOM`) Q1 2026"),
+      allowedMentions: {
+        parse: [],
+      },
+    });
+    expect(setTimeoutMock).toHaveBeenCalledWith(expect.any(Function), 123);
+    expect(timeoutHandle.unref).toHaveBeenCalledTimes(1);
+
+    const secondScan = await watcher.runOnce();
+    expect(secondScan.announcements).toEqual([]);
+    expect(send).toHaveBeenCalledTimes(1);
+
+    watcher.stop();
+
+    expect(clearTimeoutFn).toHaveBeenCalledWith(timeoutHandle);
   });
 
   test("provides a concrete example output", () => {

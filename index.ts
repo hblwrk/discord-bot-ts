@@ -1,10 +1,9 @@
-/* eslint-disable import/extensions */
-import {getHealthcheckPort} from "./modules/health-check-config.js";
-import {getLogger} from "./modules/logging.js";
-import {startBot} from "./modules/startup-orchestrator.js";
+import {getHealthcheckPort} from "./modules/health-check-config.ts";
+import {getLogger} from "./modules/logging.ts";
+import {startBot} from "./modules/startup-orchestrator.ts";
 
 type Logger = {
-  log: (level: string, message: any) => void;
+  log: (level: string, message: unknown) => void;
 };
 
 type ProcessWarning = Error & {

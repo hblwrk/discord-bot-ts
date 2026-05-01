@@ -2,7 +2,7 @@ const defaultHealthcheckPort = 11312;
 const maxPortNumber = 65535;
 
 export function getHealthcheckPort(): number {
-  const configuredPort = process.env.HEALTHCHECK_PORT;
+  const configuredPort = process.env["HEALTHCHECK_PORT"];
   if ("undefined" === typeof configuredPort) {
     return defaultHealthcheckPort;
   }

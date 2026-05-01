@@ -1,4 +1,3 @@
-/* eslint-disable import/extensions */
 import {AttachmentBuilder} from "discord.js";
 import moment from "moment-timezone";
 import Schedule from "node-schedule";
@@ -7,28 +6,25 @@ import {
   getAssetByName,
   type CalendarReminderAsset,
   type EarningsReminderAsset,
-} from "./assets.js";
+} from "./assets.ts";
 import {
   CALENDAR_MAX_MESSAGE_LENGTH,
   CALENDAR_MAX_MESSAGES_TIMER,
-  getCalendarEventDateTime,
   getCalendarEvents,
-  getCalendarEventsResult,
   getCalendarMessages,
   type CalendarEvent,
   type CalendarMessageBatch,
-} from "./calendar.js";
+} from "./calendar.ts";
 import {
   EARNINGS_MAX_MESSAGE_LENGTH,
   EARNINGS_MAX_MESSAGES_TIMER,
   getEarningsResult,
   getEarningsMessages,
-  type EarningsEvent,
   type EarningsMessageBatch,
-} from "./earnings.js";
-import {getLogger} from "./logging.js";
-import {getMnc} from "./mnc-downloader.js";
-import {type Ticker} from "./tickers.js";
+} from "./earnings.ts";
+import {getLogger} from "./logging.ts";
+import {getMnc} from "./mnc-downloader.ts";
+import {type Ticker} from "./tickers.ts";
 import {
   getAllowedRoleMentions,
   getCalendarReminderMessage,
@@ -36,11 +32,16 @@ import {
   getMatchedCalendarReminderEventGroups,
   getMatchedEarningsReminderEvents,
   getNormalizedRoleId,
-} from "./timer-reminders.js";
+} from "./timer-reminders.ts";
 
 const logger = getLogger();
 const noMentions = {
   parse: [],
+};
+type FileAnnouncementAsset = {
+  fileContent?: Buffer | undefined;
+  fileName?: string | undefined;
+  name: string;
 };
 const calendarReminderAnnouncementSource = "calendar-reminder";
 const earningsReminderSource = "earnings-reminder";
@@ -52,13 +53,19 @@ const europeBerlinTimezone = "Europe/Berlin";
 const usEasternWeekdays = [new Schedule.Range(1, 5)];
 const gainsAndLossesThreadName = "Heutige Gains&Losses";
 const berlinWeekdays = [new Schedule.Range(1, 5)];
-const minutesPerDay = 24 * 60;
 const nyseOpenAnnouncement = "🔔🔔🔔 Ich bin ready. Ihr seid ready?! Na dann loooos! Huuuiiii! 🚀 Der Börsenritt beginnt, meine Freunde. Seid dabei, ihr dürft nichts verpassen! 🥳 🎠 🔔🔔🔔";
 const nyseSentimentPollQuestion = "Opening Sentiment: Wie geht ihr in den Handel?";
 const nyseRegularSentimentPollFallbackHours = 5;
 const nyseEarlyCloseSentimentPollFallbackHours = 2;
 type SendableChannel = {
   send: (payload: unknown) => Promise<unknown> | unknown;
+};
+type TimerClient = {
+  channels?: {
+    cache?: {
+      get?: (channelId: string) => unknown;
+    };
+  };
 };
 type NyseSentimentPollMessage = {
   channel?: {
@@ -73,7 +80,7 @@ type NyseSentimentPollMessage = {
 };
 type NyseSentimentPollState = {
   ended: boolean;
-  message?: NyseSentimentPollMessage;
+  message?: NyseSentimentPollMessage | undefined;
 };
 type RecurrenceRuleConfig = {
   hour: number;
@@ -179,7 +186,7 @@ function getNyseOpenAnnouncementPayload() {
 }
 
 async function sendNyseOpenAnnouncement(
-  client,
+  client: TimerClient,
   channelID: string,
   sentimentPollState: NyseSentimentPollState,
 ) {
@@ -187,7 +194,7 @@ async function sendNyseOpenAnnouncement(
   sentimentPollState.message = undefined;
   const message = await sendAnnouncement(client, channelID, getNyseOpenAnnouncementPayload(), "NYSE");
   if (message && "object" === typeof message) {
-    sentimentPollState.message = message as NyseSentimentPollMessage;
+    sentimentPollState.message = message;
   }
 }
 
@@ -225,9 +232,16 @@ async function endNyseSentimentPoll(sentimentPollState: NyseSentimentPollState, 
   }
 }
 
-function getSendableChannel(client, channelID: string, source: string): SendableChannel | null {
-  const channel = client?.channels?.cache?.get(channelID);
-  if (!channel || "function" !== typeof channel.send) {
+function isSendableChannel(channel: unknown): channel is SendableChannel {
+  return "object" === typeof channel
+    && null !== channel
+    && "send" in channel
+    && "function" === typeof channel.send;
+}
+
+function getSendableChannel(client: TimerClient, channelID: string, source: string): SendableChannel | null {
+  const channel = client.channels?.cache?.get?.(channelID);
+  if (false === isSendableChannel(channel)) {
     logger.log(
       "error",
       `Skipping ${source} announcement: channel ${channelID} not found or not send-capable.`,
@@ -235,10 +249,10 @@ function getSendableChannel(client, channelID: string, source: string): Sendable
     return null;
   }
 
-  return channel as SendableChannel;
+  return channel;
 }
 
-async function sendAnnouncement(client, channelID: string, payload: unknown, source: string) {
+async function sendAnnouncement(client: TimerClient, channelID: string, payload: unknown, source: string) {
   const channel = getSendableChannel(client, channelID, source);
   if (!channel) {
     return undefined;
@@ -254,7 +268,7 @@ async function sendAnnouncement(client, channelID: string, payload: unknown, sou
 }
 
 async function runEarningsAnnouncement(
-  client,
+  client: TimerClient,
   channelID: string,
   tickers: Ticker[],
   config: EarningsAnnouncementConfig,
@@ -289,7 +303,7 @@ async function runEarningsAnnouncement(
   await sendChunkedMessages(channel, messages, "earnings");
 }
 
-export function startNyseTimers(client, channelID: string, gainsLossesThreadID?: string) {
+export function startNyseTimers(client: TimerClient, channelID: string, gainsLossesThreadID?: string) {
   const sentimentPollState: NyseSentimentPollState = {
     ended: true,
   };
@@ -458,7 +472,7 @@ export function startNyseTimers(client, channelID: string, gainsLossesThreadID?:
   });
 }
 
-export function startMncTimers(client, channelID: string) {
+export function startMncTimers(client: TimerClient, channelID: string) {
   const ruleMnc = createRecurrenceRule({
     hour: 9,
     minute: 0,
@@ -499,9 +513,9 @@ export function startMncTimers(client, channelID: string) {
 }
 
 export function startOtherTimers(
-  client,
+  client: TimerClient,
   channelID: string,
-  assets: any,
+  assets: FileAnnouncementAsset[],
   tickers: Ticker[],
   calendarReminderAssets: CalendarReminderAsset[] = [],
   earningsReminderAssets: EarningsReminderAsset[] = [],
@@ -722,7 +736,12 @@ function prependHeadlineToFirstMessage(
     return messages;
   }
 
-  const firstMessageWithHeadline = `${headline}\n\n${messages[0]}`;
+  const firstMessage = messages[0];
+  if (undefined === firstMessage) {
+    return [headline];
+  }
+
+  const firstMessageWithHeadline = `${headline}\n\n${firstMessage}`;
   if (firstMessageWithHeadline.length <= maxMessageLength) {
     return [firstMessageWithHeadline, ...messages.slice(1)];
   }
@@ -736,8 +755,13 @@ async function sendChunkedMessages(channel: SendableChannel | null, messages: st
   }
 
   for (let index = 0; index < messages.length; index++) {
+    const message = messages[index];
+    if (undefined === message) {
+      continue;
+    }
+
     await Promise.resolve(channel.send({
-      content: messages[index],
+      content: message,
       allowedMentions: noMentions,
     })).catch(error => {
       logger.log(
@@ -805,7 +829,7 @@ function logEarningsBatch(source: string, earningsBatch: EarningsMessageBatch) {
 }
 
 async function waitBeforeNextChunkedMessage() {
-  if ("test" === process.env.NODE_ENV) {
+  if ("test" === process.env["NODE_ENV"]) {
     return;
   }
 

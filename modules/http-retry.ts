@@ -41,7 +41,7 @@ function wait(delayMs: number) {
   });
 }
 
-export async function getWithRetry<T = any>(
+export async function getWithRetry<T = unknown>(
   url: string,
   config?: AxiosRequestConfig,
   options?: RetryOptions,
@@ -67,9 +67,9 @@ export async function getWithRetry<T = any>(
   throw lastError;
 }
 
-export async function postWithRetry<T = any>(
+export async function postWithRetry<T = unknown>(
   url: string,
-  data?: any,
+  data?: unknown,
   config?: AxiosRequestConfig,
   options?: RetryOptions,
 ): Promise<AxiosResponse<T>> {

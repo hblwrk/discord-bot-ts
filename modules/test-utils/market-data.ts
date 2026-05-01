@@ -1,64 +1,117 @@
+import type {Mock, MockedFunction} from "vitest";
+import type * as DiscordJs from "discord.js";
+import {vi} from "vitest";
+
 const mockLogger = {
-  log: jest.fn(),
+  log: vi.fn(),
 };
 
-const mockGetAssets = jest.fn();
-const mockReadSecret = jest.fn();
-const websocketInstances: any[] = [];
-const mockWebSocketConstructor = jest.fn().mockImplementation((urlProvider: (() => string)) => {
-  const handlers = new Map<string, (...args: any[]) => unknown>();
-  const wsClient = {
-    OPEN: 1,
-    readyState: 1,
-    addEventListener: jest.fn((eventName: string, handler: (...args: any[]) => unknown) => {
-      handlers.set(eventName, handler);
-      return wsClient;
-    }),
-    send: jest.fn(),
-    reconnect: jest.fn(),
-    url: "function" === typeof urlProvider ? urlProvider() : "wss://streaming.forexpros.com/mock/websocket",
-    handlers,
+type EventHandler = (...args: unknown[]) => unknown;
+
+type HandlerRegistry = {
+  get: (eventName: string) => EventHandler;
+  set: (eventName: string, handler: EventHandler) => void;
+};
+
+type MockWebSocketClient = {
+  OPEN: number;
+  readyState: number;
+  addEventListener: MockedFunction<(eventName: string, handler: EventHandler) => MockWebSocketClient>;
+  send: Mock;
+  reconnect: Mock;
+  url: string;
+  handlers: HandlerRegistry;
+};
+
+type MockMarketClient = {
+  login: Mock;
+  on: MockedFunction<(eventName: string, handler: EventHandler) => MockMarketClient>;
+  user: {
+    id: string;
+    setPresence: Mock;
   };
+  guilds: {
+    cache: {
+      get: Mock;
+    };
+  };
+};
+
+type MockMarketClientInstance = {
+  client: MockMarketClient;
+  handlers: HandlerRegistry;
+  fetchMember: Mock;
+  setNickname: Mock;
+};
+
+const mockGetAssets = vi.fn();
+const mockReadSecret = vi.fn();
+const websocketInstances: MockWebSocketClient[] = [];
+
+function createHandlerRegistry(): HandlerRegistry {
+  const handlers = new Map<string, EventHandler>();
+  return {
+    get: (eventName: string) => {
+      const handler = handlers.get(eventName);
+      if (!handler) {
+        throw new Error(`Missing handler for ${eventName}.`);
+      }
+
+      return handler;
+    },
+    set: (eventName: string, handler: EventHandler) => {
+      handlers.set(eventName, handler);
+    },
+  };
+}
+
+const mockWebSocketConstructor = vi.fn().mockImplementation((urlProvider: (() => string)) => {
+  const handlers = createHandlerRegistry();
+  const wsClient = {} as MockWebSocketClient;
+  wsClient.OPEN = 1;
+  wsClient.readyState = 1;
+  wsClient.addEventListener = vi.fn((eventName: string, handler: EventHandler) => {
+    handlers.set(eventName, handler);
+    return wsClient;
+  });
+  wsClient.send = vi.fn();
+  wsClient.reconnect = vi.fn();
+  wsClient.url = "function" === typeof urlProvider ? urlProvider() : "wss://streaming.forexpros.com/mock/websocket";
+  wsClient.handlers = handlers;
 
   websocketInstances.push(wsClient);
 
   return wsClient;
 });
 
-const clientInstances: Array<{
-  client: any;
-  handlers: Map<string, (...args: any[]) => unknown>;
-  fetchMember: jest.Mock;
-  setNickname: jest.Mock;
-}> = [];
+const clientInstances: MockMarketClientInstance[] = [];
 const queuedClientIds: string[] = [];
 
-const mockClientConstructor = jest.fn().mockImplementation(() => {
-  const handlers = new Map<string, (...args: any[]) => unknown>();
-  const setNickname = jest.fn().mockResolvedValue(undefined);
-  const fetchMember = jest.fn().mockResolvedValue({
+const mockClientConstructor = vi.fn().mockImplementation(() => {
+  const handlers = createHandlerRegistry();
+  const setNickname = vi.fn().mockResolvedValue(undefined);
+  const fetchMember = vi.fn().mockResolvedValue({
     setNickname,
   });
   const clientId = queuedClientIds.shift() ?? "market-bot-client";
 
-  const client = {
-    login: jest.fn().mockResolvedValue(undefined),
-    on: jest.fn((eventName: string, handler: (...args: any[]) => unknown) => {
-      handlers.set(eventName, handler);
-      return client;
-    }),
-    user: {
-      id: clientId,
-      setPresence: jest.fn(),
-    },
-    guilds: {
-      cache: {
-        get: jest.fn(() => ({
-          members: {
-            fetch: fetchMember,
-          },
-        })),
-      },
+  const client = {} as MockMarketClient;
+  client.login = vi.fn().mockResolvedValue(undefined);
+  client.on = vi.fn((eventName: string, handler: EventHandler) => {
+    handlers.set(eventName, handler);
+    return client;
+  });
+  client.user = {
+    id: clientId,
+    setPresence: vi.fn(),
+  };
+  client.guilds = {
+    cache: {
+      get: vi.fn(() => ({
+        members: {
+          fetch: fetchMember,
+        },
+      })),
     },
   };
 
@@ -66,33 +119,40 @@ const mockClientConstructor = jest.fn().mockImplementation(() => {
   return client;
 });
 
-jest.mock("discord.js", () => ({
-  Client: mockClientConstructor,
+vi.mock("discord.js", async importOriginal => ({
+  ...(await importOriginal<typeof DiscordJs>()),
+  Client: function MockClient(...args: unknown[]) {
+    return mockClientConstructor(...args);
+  },
 }));
 
-jest.mock("reconnecting-websocket", () => ({
+vi.mock("reconnecting-websocket", () => ({
   __esModule: true,
-  default: mockWebSocketConstructor,
+  default: function MockWebSocket(...args: [() => string]) {
+    return mockWebSocketConstructor(...args);
+  },
 }));
 
-jest.mock("ws", () => ({
+vi.mock("ws", () => ({
   __esModule: true,
   default: class MockWs {},
 }));
 
-jest.mock("../assets.js", () => ({
-  getAssets: mockGetAssets,
+vi.mock("../assets.ts", () => ({
+  getAssets: (...args: unknown[]) => mockGetAssets(...args),
 }));
 
-jest.mock("../logging.js", () => ({
-  getLogger: () => mockLogger,
+vi.mock("../logging.ts", () => ({
+  getLogger: () => ({
+    log: (...args: unknown[]) => mockLogger.log(...args),
+  }),
 }));
 
-jest.mock("../secrets.js", () => ({
-  readSecret: mockReadSecret,
+vi.mock("../secrets.ts", () => ({
+  readSecret: (...args: unknown[]) => mockReadSecret(...args),
 }));
 
-import {updateMarketData} from "../market-data.js";
+const {updateMarketData} = await import("../market-data.ts");
 
 const marketOpenReferenceTime = new Date("2026-03-12T15:00:00.000Z");
 const marketClosedReferenceTime = new Date("2026-03-12T21:00:00.000Z");
@@ -105,7 +165,7 @@ async function flushAsyncWork() {
 }
 
 async function advanceFakeTime(durationMs: number) {
-  await jest.advanceTimersByTimeAsync(durationMs);
+  await vi.advanceTimersByTimeAsync(durationMs);
 }
 
 function buildSocketIoMarketMessage(payload: Record<string, unknown>) {

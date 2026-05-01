@@ -1,4 +1,4 @@
-import {type MarketStreamEvent} from "./market-data-types.js";
+import {type MarketStreamEvent} from "./market-data-types.ts";
 
 const maxLoggedPayloadLength = 500;
 
@@ -24,10 +24,10 @@ export function parseStreamEvent(rawMessage: string): MarketStreamEvent | null {
     return null;
   }
 
-  const pid = parseNumericValue(rawEventData.pid);
-  const lastNumeric = parseNumericValue(rawEventData.last_numeric);
-  const priceChange = parseNumericValue(rawEventData.pc);
-  const percentageChange = parseNumericValue(rawEventData.pcp);
+  const pid = parseNumericValue(rawEventData["pid"]);
+  const lastNumeric = parseNumericValue(rawEventData["last_numeric"]);
+  const priceChange = parseNumericValue(rawEventData["pc"]);
+  const percentageChange = parseNumericValue(rawEventData["pcp"]);
 
   if ([pid, lastNumeric, priceChange, percentageChange].every(Number.isFinite)) {
     return {
@@ -82,7 +82,7 @@ function unwrapSocketFrames(rawMessage: string): string[] {
   }
 
   try {
-    const parsedFrames = JSON.parse(trimmedMessage.slice(1));
+    const parsedFrames: unknown = JSON.parse(trimmedMessage.slice(1));
     if (Array.isArray(parsedFrames)) {
       return parsedFrames
         .map(frame => {
@@ -150,8 +150,8 @@ function parsePayloadCandidate(candidate: string, depth: number): Record<string,
       }
     } else {
       const parsedObjectCandidate = parsedCandidate as Record<string, unknown>;
-      if ("string" === typeof parsedObjectCandidate.message) {
-        const parsedMessage = parsePayloadCandidate(parsedObjectCandidate.message, depth + 1);
+      if ("string" === typeof parsedObjectCandidate["message"]) {
+        const parsedMessage = parsePayloadCandidate(parsedObjectCandidate["message"], depth + 1);
         if (null !== parsedMessage) {
           return parsedMessage;
         }

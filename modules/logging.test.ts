@@ -1,24 +1,26 @@
-import {getDiscordLogger, getLogger} from "./logging.js";
-import {readSecret} from "./secrets.js";
+import type {MockedFunction} from "vitest";
+import {getDiscordLogger, getLogger} from "./logging.ts";
+import {readSecret} from "./secrets.ts";
+import {afterAll, beforeEach, describe, expect, test, vi} from "vitest";
 
-jest.mock("./secrets.js", () => ({
-  readSecret: jest.fn(),
+vi.mock("./secrets.ts", () => ({
+  readSecret: vi.fn(),
 }));
 
-const mockedReadSecret = readSecret as jest.MockedFunction<typeof readSecret>;
-const originalLoglevel = process.env.LOGLEVEL;
+const mockedReadSecret = readSecret as MockedFunction<typeof readSecret>;
+const originalLoglevel = process.env["LOGLEVEL"];
 
 describe("getLogger loglevel switching", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    delete process.env.LOGLEVEL;
+    vi.clearAllMocks();
+    delete process.env["LOGLEVEL"];
   });
 
   afterAll(() => {
     if (undefined === originalLoglevel) {
-      delete process.env.LOGLEVEL;
+      delete process.env["LOGLEVEL"];
     } else {
-      process.env.LOGLEVEL = originalLoglevel;
+      process.env["LOGLEVEL"] = originalLoglevel;
     }
   });
 
@@ -42,7 +44,7 @@ describe("getLogger loglevel switching", () => {
   });
 
   test("uses LOGLEVEL environment value over secret", () => {
-    process.env.LOGLEVEL = "warn";
+    process.env["LOGLEVEL"] = "warn";
     mockedReadSecret.mockReturnValue("debug");
 
     const logger = getLogger();
@@ -64,7 +66,7 @@ describe("getLogger loglevel switching", () => {
       return "";
     });
 
-    const logger = getDiscordLogger({channels: {cache: {get: jest.fn()}}});
+    const logger = getDiscordLogger({channels: {cache: {get: vi.fn()}}});
 
     expect(logger.level).toBe("info");
     expect(logger.transports).toHaveLength(1);
@@ -83,7 +85,7 @@ describe("getLogger loglevel switching", () => {
       return "";
     });
 
-    const client = {channels: {cache: {get: jest.fn()}}};
+    const client = {channels: {cache: {get: vi.fn()}}};
 
     const firstLogger = getDiscordLogger(client);
     const secondLogger = getDiscordLogger(client);

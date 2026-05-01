@@ -1,53 +1,61 @@
-import {roleManager} from "./role-manager.js";
-import {readSecret} from "./secrets.js";
+import type {Mock, MockedFunction} from "vitest";
+import {roleManager} from "./role-manager.ts";
+import {readSecret} from "./secrets.ts";
+import {beforeEach, describe, expect, test, vi} from "vitest";
 
-jest.mock("./logging.js", () => ({
-  ...(() => {
-    const mockLogger = {
-      log: jest.fn(),
-    };
-
-    return {
-      getLogger: jest.fn(() => mockLogger),
-      __mockLogger: mockLogger,
-    };
-  })(),
+const mockLogger = vi.hoisted(() => ({
+  log: vi.fn(),
 }));
 
-jest.mock("./secrets.js", () => ({
-  readSecret: jest.fn(),
+vi.mock("./logging.ts", () => ({
+  getLogger: vi.fn(() => mockLogger),
 }));
 
-const mockedReadSecret = readSecret as jest.MockedFunction<typeof readSecret>;
-const mockedLoggingModule = jest.requireMock("./logging.js") as {
-  __mockLogger: {
-    log: jest.Mock;
+vi.mock("./secrets.ts", () => ({
+  readSecret: vi.fn(),
+}));
+
+const mockedReadSecret = readSecret as MockedFunction<typeof readSecret>;
+
+type EventHandler = (...args: unknown[]) => Promise<void>;
+type RoleManagerTestClient = {
+  guilds: {
+    cache: {
+      get: Mock;
+    };
+    fetch: Mock;
   };
+  on: MockedFunction<(eventName: string, handler: EventHandler) => RoleManagerTestClient>;
 };
 
-function createRoleManagerClient(customEmoji: any = {id: "emoji-id", name: "broker"}) {
-  const handlers = new Map<string, (...args: any[]) => Promise<void>>();
+type TestEmoji = {
+  id: string;
+  name: string;
+};
+
+function createRoleManagerClient(customEmoji: TestEmoji | null = {id: "emoji-id", name: "broker"}) {
+  const handlers = new Map<string, EventHandler>();
 
   const guildUser = {
     roles: {
-      add: jest.fn().mockResolvedValue(undefined),
-      remove: jest.fn().mockResolvedValue(undefined),
+      add: vi.fn().mockResolvedValue(undefined),
+      remove: vi.fn().mockResolvedValue(undefined),
     },
   };
 
   const brokerMessage = {
     id: "broker-message-id",
-    react: jest.fn().mockResolvedValue(undefined),
+    react: vi.fn().mockResolvedValue(undefined),
   };
 
   const specialMessage = {
     id: "special-message-id",
-    react: jest.fn().mockResolvedValue(undefined),
+    react: vi.fn().mockResolvedValue(undefined),
   };
 
   const roleChannel = {
     messages: {
-      fetch: jest.fn(async messageId => {
+      fetch: vi.fn(async (messageId: string): Promise<typeof brokerMessage | typeof specialMessage | undefined> => {
         if ("broker-message-id" === messageId) {
           return brokerMessage;
         }
@@ -60,7 +68,7 @@ function createRoleManagerClient(customEmoji: any = {id: "emoji-id", name: "brok
   const guild = {
     emojis: {
       cache: {
-        find: jest.fn((predicate: (emoji: any) => boolean) => {
+        find: vi.fn((predicate: (emoji: TestEmoji) => boolean) => {
           if (!customEmoji) {
             return undefined;
           }
@@ -71,42 +79,48 @@ function createRoleManagerClient(customEmoji: any = {id: "emoji-id", name: "brok
     },
     channels: {
       cache: {
-        get: jest.fn(() => roleChannel),
+        get: vi.fn((_channelId: string): typeof roleChannel | undefined => roleChannel),
       },
-      fetch: jest.fn().mockResolvedValue(roleChannel),
+      fetch: vi.fn().mockResolvedValue(roleChannel),
     },
     members: {
-      fetch: jest.fn().mockResolvedValue(guildUser),
+      fetch: vi.fn().mockResolvedValue(guildUser),
     },
   };
 
-  const client = {
-    guilds: {
+  const client = {} as RoleManagerTestClient;
+  client.guilds = {
       cache: {
-        get: jest.fn(() => guild),
+        get: vi.fn(() => guild),
       },
-      fetch: jest.fn().mockResolvedValue(guild),
-    },
-    on: jest.fn((eventName, handler) => {
-      handlers.set(eventName, handler);
-      return client;
-    }),
+      fetch: vi.fn().mockResolvedValue(guild),
   };
+  client.on = vi.fn((eventName: string, handler: EventHandler) => {
+    handlers.set(eventName, handler);
+    return client;
+  });
 
   return {
     client,
+    guild,
     guildUser,
     brokerMessage,
+    roleChannel,
     specialMessage,
     getHandler(eventName: string) {
-      return handlers.get(eventName);
+      const handler = handlers.get(eventName);
+      if (!handler) {
+        throw new Error(`Missing handler for ${eventName}.`);
+      }
+
+      return handler;
     },
   };
 }
 
 describe("roleManager", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockedReadSecret.mockImplementation(secretName => {
       if ("discord_client_ID" === secretName) {
         return "client-id";
@@ -226,9 +240,109 @@ describe("roleManager", () => {
 
     await roleManager(missingEmojiClient.client, assetRoles);
 
-    expect(mockedLoggingModule.__mockLogger.log).toHaveBeenCalledWith(
+    expect(mockLogger.log).toHaveBeenCalledWith(
       "warn",
       expect.stringContaining("custom emoji custom:missing not found"),
     );
+  });
+
+  test("skips setup when role-assignment configuration is incomplete", async () => {
+    mockedReadSecret.mockImplementation(secretName => {
+      if ("discord_guild_ID" === secretName) {
+        return "";
+      }
+
+      return "configured";
+    });
+    const {client} = createRoleManagerClient();
+
+    await roleManager(client, []);
+
+    expect(client.on).not.toHaveBeenCalled();
+    expect(mockLogger.log).toHaveBeenCalledWith(
+      "warn",
+      "Skipping role manager: missing guild/channel/message IDs for role assignment.",
+    );
+  });
+
+  test("uses Discord fetch fallbacks and assigns custom-emoji roles after resolving partials", async () => {
+    const {client, guild, guildUser, brokerMessage, getHandler} = createRoleManagerClient({
+      id: "emoji-id",
+      name: "broker",
+    });
+    client.guilds.cache.get.mockReturnValue(undefined);
+    guild.channels.cache.get.mockReturnValue(undefined);
+    const assetRoles = [{
+      triggerReference: "hblwrk_role_assignment_broker_message_ID",
+      emoji: "custom:broker",
+      trigger: ["broker-message-id"],
+      id: "broker-role-id",
+      idReference: "hblwrk_role_broker_test_ID",
+    }];
+
+    await roleManager(client, assetRoles);
+
+    expect(client.guilds.fetch).toHaveBeenCalledWith("guild-id");
+    expect(guild.channels.fetch).toHaveBeenCalledWith("channel-id");
+    expect(brokerMessage.react).toHaveBeenCalledWith("emoji-id");
+
+    const reaction = {
+      partial: true,
+      fetch: vi.fn().mockResolvedValue({}),
+      message: {
+        partial: true,
+        fetch: vi.fn().mockResolvedValue({}),
+        id: "broker-message-id",
+      },
+      emoji: {
+        id: "emoji-id",
+        name: null,
+      },
+    };
+    const user = {
+      id: "member-id",
+      username: "member-name",
+    };
+
+    const addHandler = getHandler("messageReactionAdd");
+    await addHandler(reaction, user);
+
+    expect(reaction.fetch).toHaveBeenCalledTimes(1);
+    expect(reaction.message.fetch).toHaveBeenCalledTimes(1);
+    expect(guildUser.roles.add).toHaveBeenCalledWith("broker-yes-role-id");
+    expect(guildUser.roles.add).toHaveBeenCalledWith("broker-role-id");
+  });
+
+  test("ignores invalid reactions and the bot user's own reactions", async () => {
+    const {client, guild, getHandler} = createRoleManagerClient();
+    const assetRoles = [{
+      triggerReference: "hblwrk_role_assignment_broker_message_ID",
+      emoji: "✅",
+      trigger: "broker-message-id",
+      id: "broker-role-id",
+      idReference: "hblwrk_role_broker_test_ID",
+    }];
+
+    await roleManager(client, assetRoles);
+    guild.members.fetch.mockClear();
+
+    const addHandler = getHandler("messageReactionAdd");
+    await addHandler({invalid: true}, {id: "member-id"});
+    await addHandler({
+      partial: false,
+      message: {
+        partial: false,
+        id: "broker-message-id",
+      },
+      emoji: {
+        id: null,
+        name: "✅",
+      },
+    }, {
+      id: "client-id",
+      username: "bot-user",
+    });
+
+    expect(guild.members.fetch).not.toHaveBeenCalled();
   });
 });

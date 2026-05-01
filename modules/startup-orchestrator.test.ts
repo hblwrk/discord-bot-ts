@@ -1,17 +1,32 @@
-import {startBot} from "./startup-orchestrator.js";
+import {startBot} from "./startup-orchestrator.ts";
+import {describe, expect, test, vi} from "vitest";
 import {
   createDeferred,
   createDependencies,
   createMockClient,
   sleep,
   waitFor,
-} from "./test-utils/startup-orchestrator.js";
+} from "./test-utils/startup-orchestrator.ts";
+
+type SlashRegistrationTestError = Error & {
+  discordErrorMessage?: string;
+  response?: {
+    headers?: Record<string, string>;
+  };
+  retryAfterMs?: number;
+};
+
+function createStoppedTimer(): ReturnType<typeof setTimeout> {
+  const timer = setTimeout(() => undefined, 0);
+  clearTimeout(timer);
+  return timer;
+}
 
 describe("startBot", () => {
   test("starts health first and stays not-ready while remote warmup hangs", async () => {
-    const genericDeferred = createDeferred<any[]>();
+    const genericDeferred = createDeferred<unknown[]>();
     const {dependencies, events, mocks} = createDependencies({
-      getGenericAssets: jest.fn(async () => {
+      getGenericAssets: vi.fn(async () => {
         events.push("generic-assets");
         return genericDeferred.promise;
       }),
@@ -32,7 +47,7 @@ describe("startBot", () => {
   });
 
   test("retries failed warmup tasks and reaches readiness once warmup succeeds", async () => {
-    const getTickersMock = jest.fn()
+    const getTickersMock = vi.fn()
       .mockRejectedValueOnce(new Error("temporary ticker failure"))
       .mockResolvedValueOnce([]);
     const {dependencies, mocks} = createDependencies({
@@ -62,7 +77,7 @@ describe("startBot", () => {
 
   test("keeps readiness false when any DRACOON asset download failed", async () => {
     const {dependencies} = createDependencies({
-      getGenericAssets: jest.fn(async () => [
+      getGenericAssets: vi.fn(async () => [
         {
           trigger: ["profi"],
           downloadFailed: true,
@@ -82,7 +97,7 @@ describe("startBot", () => {
   test("retries failed assets and becomes ready after recovery", async () => {
     let genericAssetsCalls = 0;
     const {dependencies, mocks} = createDependencies({
-      getGenericAssets: jest.fn(async () => {
+      getGenericAssets: vi.fn(async () => {
         genericAssetsCalls += 1;
         if (1 === genericAssetsCalls) {
           return [
@@ -114,7 +129,7 @@ describe("startBot", () => {
   });
 
   test("attaches core handlers exactly once even when warmup retries happen", async () => {
-    const getTickersMock = jest.fn()
+    const getTickersMock = vi.fn()
       .mockRejectedValueOnce(new Error("temporary ticker failure"))
       .mockResolvedValueOnce([]);
     const {dependencies, mocks} = createDependencies({
@@ -147,7 +162,7 @@ describe("startBot", () => {
 
   test("runs startOtherTimers only with both prerequisites and roleManager after role assets load", async () => {
     const {dependencies, mocks} = createDependencies({
-      getGenericAssets: jest.fn(async () => {
+      getGenericAssets: vi.fn(async () => {
         throw new Error("generic assets unavailable");
       }),
       warmupMaxAttempts: 1,
@@ -171,7 +186,7 @@ describe("startBot", () => {
         name: "aapl-earnings",
       },
     ];
-    const getAssetsMock = jest.fn(async (type: string) => {
+    const getAssetsMock = vi.fn(async (type: string) => {
       if ("calendarreminder" === type) {
         return calendarReminderAssets;
       }
@@ -200,7 +215,7 @@ describe("startBot", () => {
   });
 
   test("schedules slash command sync once after the bot becomes ready", async () => {
-    const getAssetsMock = jest.fn(async (type: string) => {
+    const getAssetsMock = vi.fn(async (type: string) => {
       if ("whatis" === type) {
         await sleep(20);
       }
@@ -224,9 +239,9 @@ describe("startBot", () => {
   });
 
   test("does not schedule slash command sync before generic assets are available", async () => {
-    const genericDeferred = createDeferred<any[]>();
+    const genericDeferred = createDeferred<unknown[]>();
     const {dependencies, mocks} = createDependencies({
-      getGenericAssets: jest.fn(async () => genericDeferred.promise),
+      getGenericAssets: vi.fn(async () => genericDeferred.promise),
       slashCommandDebounceMs: 5,
     });
 
@@ -243,7 +258,7 @@ describe("startBot", () => {
 
   test("becomes ready before the background slash command sync completes", async () => {
     const slashSyncDeferred = createDeferred<void>();
-    const defineSlashCommandsMock = jest.fn(async () => slashSyncDeferred.promise);
+    const defineSlashCommandsMock = vi.fn(async () => slashSyncDeferred.promise);
     const {dependencies} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
       slashCommandDebounceMs: 5,
@@ -264,7 +279,7 @@ describe("startBot", () => {
 
   test("coalesces repeated slash command sync triggers into one follow-up run", async () => {
     const slashSyncDeferred = createDeferred<void>();
-    const defineSlashCommandsMock = jest.fn(async () => slashSyncDeferred.promise);
+    const defineSlashCommandsMock = vi.fn(async () => slashSyncDeferred.promise);
     let initialSlashSyncHandler: (() => void) | undefined;
     let slashSyncScheduleCount = 0;
     const setTimeoutFn = ((handler: (...args: unknown[]) => void, delay?: number, ...args: unknown[]) => {
@@ -275,13 +290,13 @@ describe("startBot", () => {
           initialSlashSyncHandler = () => {
             handler(...args);
           };
-          return {
-            unref: jest.fn(),
-          } as any;
+          return createStoppedTimer();
         }
       }
 
-      return setTimeout(handler as any, requestedDelay, ...args);
+      return setTimeout(() => {
+        handler(...args);
+      }, requestedDelay);
     }) as typeof setTimeout;
     const {dependencies} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
@@ -310,7 +325,7 @@ describe("startBot", () => {
   });
 
   test("keeps readiness true when background slash command sync fails", async () => {
-    const defineSlashCommandsMock = jest.fn(async () => {
+    const defineSlashCommandsMock = vi.fn(async () => {
       throw new Error("slash sync failed");
     });
     const {dependencies, mocks} = createDependencies({
@@ -337,12 +352,12 @@ describe("startBot", () => {
 
   test("does not run slash command sync during repeated asset recovery attempts before the bot becomes ready", async () => {
     let genericAssetsCalls = 0;
-    const defineSlashCommandsMock = jest.fn(async () => {});
+    const defineSlashCommandsMock = vi.fn(async () => {});
     const {dependencies} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
       assetRecoveryRetryMs: 5,
       slashCommandDebounceMs: 5,
-      getGenericAssets: jest.fn(async () => {
+      getGenericAssets: vi.fn(async () => {
         genericAssetsCalls += 1;
         if (genericAssetsCalls < 3) {
           return [
@@ -370,18 +385,20 @@ describe("startBot", () => {
   });
 
   test("suppresses further slash command sync attempts after a create-limit failure and keeps the bot ready", async () => {
-    const createLimitError: any = new Error("Slash command create limit reached.");
+    const createLimitError: SlashRegistrationTestError = new Error("Slash command create limit reached.");
     createLimitError.name = "SlashRegistrationCreateLimitError";
     createLimitError.discordErrorMessage = "Max number of daily application command creates has been reached (200)";
     createLimitError.retryAfterMs = 360919;
-    const defineSlashCommandsMock = jest.fn(async () => {
+    const defineSlashCommandsMock = vi.fn(async () => {
       throw createLimitError;
     });
     const observedTimeoutDelays: number[] = [];
     const setTimeoutFn = ((handler: (...args: unknown[]) => void, delay?: number, ...args: unknown[]) => {
       const requestedDelay = Number(delay ?? 0);
       observedTimeoutDelays.push(requestedDelay);
-      return setTimeout(handler as any, requestedDelay, ...args);
+      return setTimeout(() => {
+        handler(...args);
+      }, requestedDelay);
     }) as typeof setTimeout;
     const {dependencies, mocks} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
@@ -413,10 +430,10 @@ describe("startBot", () => {
   });
 
   test("retries slash command sync after the create-limit cooldown expires", async () => {
-    const createLimitError: any = new Error("Slash command create limit reached.");
+    const createLimitError: SlashRegistrationTestError = new Error("Slash command create limit reached.");
     createLimitError.name = "SlashRegistrationCreateLimitError";
     createLimitError.retryAfterMs = 360919;
-    const defineSlashCommandsMock = jest.fn()
+    const defineSlashCommandsMock = vi.fn()
       .mockImplementationOnce(async () => {
         throw createLimitError;
       })
@@ -428,12 +445,12 @@ describe("startBot", () => {
         cooldownHandler = () => {
           handler(...args);
         };
-        return {
-          unref: jest.fn(),
-        } as any;
+        return createStoppedTimer();
       }
 
-      return setTimeout(handler as any, requestedDelay, ...args);
+      return setTimeout(() => {
+        handler(...args);
+      }, requestedDelay);
     }) as typeof setTimeout;
     const {dependencies, mocks} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
@@ -463,11 +480,11 @@ describe("startBot", () => {
   });
 
   test("uses retry-after backoff for slash command rate-limit failures", async () => {
-    const rateLimitError: any = new Error("Slash command registration rate limited.");
+    const rateLimitError: SlashRegistrationTestError = new Error("Slash command registration rate limited.");
     rateLimitError.name = "SlashRegistrationRateLimitError";
     rateLimitError.discordErrorMessage = "You are being rate limited.";
     rateLimitError.retryAfterMs = 11902;
-    const defineSlashCommandsMock = jest.fn()
+    const defineSlashCommandsMock = vi.fn()
       .mockImplementationOnce(async () => {
         throw rateLimitError;
       })
@@ -477,7 +494,9 @@ describe("startBot", () => {
       const requestedDelay = Number(delay ?? 0);
       observedTimeoutDelays.push(requestedDelay);
       const boundedDelay = requestedDelay > 1_000 ? 1 : requestedDelay;
-      return setTimeout(handler as any, boundedDelay, ...args);
+      return setTimeout(() => {
+        handler(...args);
+      }, boundedDelay);
     }) as typeof setTimeout;
     const {dependencies, mocks} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
@@ -506,14 +525,14 @@ describe("startBot", () => {
   });
 
   test("uses Retry-After header backoff for slash command rate-limit failures when retryAfterMs is absent", async () => {
-    const rateLimitError: any = new Error("Slash command registration rate limited.");
+    const rateLimitError: SlashRegistrationTestError = new Error("Slash command registration rate limited.");
     rateLimitError.name = "SlashRegistrationRateLimitError";
     rateLimitError.response = {
       headers: {
         "Retry-After": "12",
       },
     };
-    const defineSlashCommandsMock = jest.fn()
+    const defineSlashCommandsMock = vi.fn()
       .mockImplementationOnce(async () => {
         throw rateLimitError;
       })
@@ -523,7 +542,9 @@ describe("startBot", () => {
       const requestedDelay = Number(delay ?? 0);
       observedTimeoutDelays.push(requestedDelay);
       const boundedDelay = requestedDelay > 1_000 ? 1 : requestedDelay;
-      return setTimeout(handler as any, boundedDelay, ...args);
+      return setTimeout(() => {
+        handler(...args);
+      }, boundedDelay);
     }) as typeof setTimeout;
     const {dependencies, mocks} = createDependencies({
       defineSlashCommands: defineSlashCommandsMock,
@@ -551,10 +572,10 @@ describe("startBot", () => {
   });
 
   test("does not include error stack for exhausted slash command rate-limit retries", async () => {
-    const rateLimitError: any = new Error("Slash command registration rate limited.");
+    const rateLimitError: SlashRegistrationTestError = new Error("Slash command registration rate limited.");
     rateLimitError.name = "SlashRegistrationRateLimitError";
     rateLimitError.retryAfterMs = 30_050;
-    const defineSlashCommandsMock = jest.fn(async () => {
+    const defineSlashCommandsMock = vi.fn(async () => {
       throw rateLimitError;
     });
     const {dependencies, mocks} = createDependencies({
@@ -594,7 +615,7 @@ describe("startBot", () => {
       userId: "different-client-id",
     });
     const {dependencies, mocks} = createDependencies({
-      createClient: () => client as any,
+      createClient: () => client,
       warmupMaxAttempts: 1,
     });
 
@@ -614,7 +635,7 @@ describe("startBot", () => {
       missingChannelIds: ["clownboard"],
     });
     const {dependencies, mocks} = createDependencies({
-      createClient: () => client as any,
+      createClient: () => client,
       warmupMaxAttempts: 1,
     });
 
@@ -642,8 +663,8 @@ describe("startBot", () => {
         },
       },
     });
-    const readSecret = jest.fn((secretName: string) => {
-      const defaults = {
+    const readSecret = vi.fn((secretName: string) => {
+      const defaults: Record<string, string> = {
         environment: "staging",
         discord_token: "token",
         hblwrk_channel_NYSEAnnouncement_ID: "nyse",
@@ -659,7 +680,7 @@ describe("startBot", () => {
       return defaults[secretName] ?? "";
     });
     const {dependencies, mocks} = createDependencies({
-      createClient: () => client as any,
+      createClient: () => client,
       readSecret,
       warmupMaxAttempts: 1,
     });

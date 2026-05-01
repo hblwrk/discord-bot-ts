@@ -1,46 +1,57 @@
-type StartupStateSnapshot = import("./startup-state.js").StartupStateSnapshot;
+import type {Mock, MockedFunction} from "vitest";
+import type {StartupStateSnapshot} from "./startup-state.ts";
+import {runHealthCheck} from "./health-check.ts";
+import {afterAll, beforeEach, describe, expect, test, vi} from "vitest";
 
-var mockRouteHandlers: Map<string, (...args: unknown[]) => unknown>;
-var mockAppUse: jest.Mock;
-var mockRouterUse: jest.Mock;
-var mockRouterGet: jest.Mock;
-var mockListen: jest.Mock;
-var mockOn: jest.Mock;
-var mockCreateServer: jest.Mock;
-const mockLogger = {
-  log: jest.fn(),
-};
-
-jest.mock("express", () => {
-  mockRouteHandlers = new Map<string, (...args: unknown[]) => unknown>();
-  mockAppUse = jest.fn();
-  mockRouterUse = jest.fn();
-  mockRouterGet = jest.fn((path: string, handler: (...args: unknown[]) => unknown) => {
+const {
+  mockCreateServer,
+  mockExpress,
+  mockListen,
+  mockLogger,
+  mockOn,
+  mockRouteHandlers,
+} = vi.hoisted(() => {
+  const mockRouteHandlers = new Map<string, (...args: unknown[]) => unknown>();
+  const mockAppUse = vi.fn();
+  const mockRouterUse = vi.fn();
+  const mockRouterGet = vi.fn((path: string, handler: (...args: unknown[]) => unknown) => {
     mockRouteHandlers.set(path, handler);
   });
-
-  const mockExpress = jest.fn(() => ({
+  const mockListen = vi.fn();
+  const mockOn = vi.fn();
+  const mockCreateServer = vi.fn(() => ({
+    on: mockOn,
+    listen: mockListen,
+  }));
+  const mockExpress = vi.fn(() => ({
     use: mockAppUse,
   }));
-  (mockExpress as any).Router = jest.fn(() => ({
+  (mockExpress as Mock & {Router: Mock}).Router = vi.fn(() => ({
     use: mockRouterUse,
     get: mockRouterGet,
   }));
+  const mockLogger = {
+    log: vi.fn(),
+  };
 
+  return {
+    mockCreateServer,
+    mockExpress,
+    mockListen,
+    mockLogger,
+    mockOn,
+    mockRouteHandlers,
+  };
+});
+
+vi.mock("express", () => {
   return {
     __esModule: true,
     default: mockExpress,
   };
 });
 
-jest.mock("node:http", () => {
-  mockListen = jest.fn();
-  mockOn = jest.fn();
-  mockCreateServer = jest.fn(() => ({
-    on: mockOn,
-    listen: mockListen,
-  }));
-
+vi.mock("node:http", () => {
   return {
     __esModule: true,
     default: {
@@ -49,8 +60,7 @@ jest.mock("node:http", () => {
   };
 });
 
-const {runHealthCheck} = require("./health-check.js");
-const originalHealthcheckPort = process.env.HEALTHCHECK_PORT;
+const originalHealthcheckPort = process.env["HEALTHCHECK_PORT"];
 
 function createState(partial: Partial<StartupStateSnapshot> = {}): StartupStateSnapshot {
   return {
@@ -68,46 +78,55 @@ function createState(partial: Partial<StartupStateSnapshot> = {}): StartupStateS
   };
 }
 
+type TestResponse = {
+  statusCode: number;
+  body: unknown;
+  headers: Record<string, string>;
+  header: MockedFunction<(key: string, value: string) => TestResponse>;
+  status: MockedFunction<(statusCode: number) => TestResponse>;
+  send: MockedFunction<(body: unknown) => TestResponse>;
+  json: MockedFunction<(body: unknown) => TestResponse>;
+};
+
 function createResponse() {
-  const response = {
-    statusCode: 200,
-    body: undefined as any,
-    headers: {} as Record<string, string>,
-    header: jest.fn((key: string, value: string) => {
-      response.headers[key] = value;
-      return response;
-    }),
-    status: jest.fn((statusCode: number) => {
-      response.statusCode = statusCode;
-      return response;
-    }),
-    send: jest.fn((body: any) => {
-      response.body = body;
-      return response;
-    }),
-    json: jest.fn((body: any) => {
-      response.body = body;
-      return response;
-    }),
-  };
+  const response = {} as TestResponse;
+  response.statusCode = 200;
+  response.body = undefined;
+  response.headers = {};
+  response.header = vi.fn((key: string, value: string) => {
+    response.headers[key] = value;
+    return response;
+  });
+  response.status = vi.fn((statusCode: number) => {
+    response.statusCode = statusCode;
+    return response;
+  });
+  response.send = vi.fn((body: unknown) => {
+    response.body = body;
+    return response;
+  });
+  response.json = vi.fn((body: unknown) => {
+    response.body = body;
+    return response;
+  });
 
   return response;
 }
 
 describe("runHealthCheck", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockRouteHandlers.clear();
-    delete process.env.HEALTHCHECK_PORT;
+    delete process.env["HEALTHCHECK_PORT"];
   });
 
   afterAll(() => {
     if ("undefined" === typeof originalHealthcheckPort) {
-      delete process.env.HEALTHCHECK_PORT;
+      delete process.env["HEALTHCHECK_PORT"];
       return;
     }
 
-    process.env.HEALTHCHECK_PORT = originalHealthcheckPort;
+    process.env["HEALTHCHECK_PORT"] = originalHealthcheckPort;
   });
 
   test("registers liveness endpoint and binds localhost listener", () => {
@@ -133,14 +152,14 @@ describe("runHealthCheck", () => {
   });
 
   test("binds listener on configured healthcheck port", () => {
-    process.env.HEALTHCHECK_PORT = "12000";
+    process.env["HEALTHCHECK_PORT"] = "12000";
     runHealthCheck(() => createState(), mockLogger);
 
     expect(mockListen).toHaveBeenCalledWith(12000, "127.0.0.1");
   });
 
   test("falls back to default healthcheck port for invalid environment value", () => {
-    process.env.HEALTHCHECK_PORT = "abc";
+    process.env["HEALTHCHECK_PORT"] = "abc";
     runHealthCheck(() => createState(), mockLogger);
 
     expect(mockListen).toHaveBeenCalledWith(11312, "127.0.0.1");
@@ -203,7 +222,7 @@ describe("runHealthCheck", () => {
   test("logs listener errors when binding fails", () => {
     runHealthCheck(() => createState(), mockLogger);
 
-    const errorHandler = mockOn.mock.calls.find(([eventName]: [string]) => "error" === eventName)?.[1];
+    const errorHandler = mockOn.mock.calls.find(call => "error" === call[0])?.[1] as ((error: Error) => void) | undefined;
     expect(errorHandler).toEqual(expect.any(Function));
 
     const bindError = Object.assign(

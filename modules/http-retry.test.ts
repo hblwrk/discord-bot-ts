@@ -1,17 +1,18 @@
-const getMock = jest.fn();
-const postMock = jest.fn();
-const isAxiosErrorMock = jest.fn();
+import {afterEach, beforeEach, describe, expect, test, vi} from "vitest";
+const getMock = vi.fn();
+const postMock = vi.fn();
+const isAxiosErrorMock = vi.fn();
 
-jest.mock("axios", () => ({
+vi.mock("axios", () => ({
   __esModule: true,
   default: {
-    get: getMock,
-    post: postMock,
-    isAxiosError: isAxiosErrorMock,
+    get: (...args: unknown[]) => getMock(...args),
+    post: (...args: unknown[]) => postMock(...args),
+    isAxiosError: (...args: unknown[]) => isAxiosErrorMock(...args),
   },
 }));
 
-import {getWithRetry, postWithRetry} from "./http-retry.js";
+import {getWithRetry, postWithRetry} from "./http-retry.ts";
 
 type MockAxiosError = {
   isAxiosError: boolean;
@@ -35,13 +36,13 @@ function createAxiosError(status?: number): MockAxiosError {
 
 describe("http-retry", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
-    jest.useFakeTimers();
+    vi.clearAllMocks();
+    vi.useFakeTimers();
     isAxiosErrorMock.mockImplementation(error => true === Boolean(error?.isAxiosError));
   });
 
   afterEach(() => {
-    jest.useRealTimers();
+    vi.useRealTimers();
   });
 
   test("getWithRetry succeeds on first attempt and applies default timeout", async () => {
@@ -74,7 +75,7 @@ describe("http-retry", () => {
     await Promise.resolve();
     expect(getMock).toHaveBeenCalledTimes(1);
 
-    await jest.advanceTimersByTimeAsync(10);
+    await vi.advanceTimersByTimeAsync(10);
     const response = await responsePromise;
 
     expect(response).toEqual({data: {ok: true}});
@@ -92,7 +93,7 @@ describe("http-retry", () => {
     });
 
     await Promise.resolve();
-    await jest.advanceTimersByTimeAsync(5);
+    await vi.advanceTimersByTimeAsync(5);
 
     await expect(responsePromise).resolves.toEqual({data: {ok: true}});
     expect(getMock).toHaveBeenCalledTimes(2);
@@ -146,12 +147,17 @@ describe("http-retry", () => {
       maxAttempts: 2,
       retryDelayMs: 20,
     });
-    const expectation = expect(responsePromise).rejects.toBe(secondError);
+    const rejectedResponsePromise = responsePromise.then(
+      () => {
+        throw new Error("Expected postWithRetry to reject.");
+      },
+      caughtError => caughtError,
+    );
 
     await Promise.resolve();
-    await jest.advanceTimersByTimeAsync(20);
+    await vi.advanceTimersByTimeAsync(20);
 
-    await expectation;
+    await expect(rejectedResponsePromise).resolves.toBe(secondError);
     expect(postMock).toHaveBeenCalledTimes(2);
   });
 });

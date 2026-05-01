@@ -1,17 +1,14 @@
-/* eslint-disable complexity */
-/* eslint-disable yoda */
-/* eslint-disable import/extensions */
-import {type getWithRetry} from "./http-retry.js";
+import {type getWithRetry} from "./http-retry.ts";
 import {
   decodeHtmlEntities,
   getNormalizedString,
   htmlToText,
   normalizeCik,
   normalizeTickerSymbol,
-} from "./earnings-results-format.js";
+} from "./earnings-results-format.ts";
 
 type Logger = {
-  log: (level: string, message: any) => void;
+  log: (level: string, message: unknown) => void;
 };
 
 type SecRequestDependencies = {
@@ -196,7 +193,7 @@ export function isLikelyEarningsFiling(filing: SecCurrentFiling): boolean {
     return true;
   }
 
-  return filing.items.some(item => "2.02" === item || "9.01" === item);
+  return filing.items.some(item => "2.02" === item);
 }
 
 export async function loadSecFilingDetails(
@@ -263,26 +260,73 @@ function normalizeSecArchiveDocuments(value: SecArchiveDocument[] | SecArchiveDo
 }
 
 function selectEarningsReleaseDocument(documents: SecArchiveDocument[]): SecArchiveDocument | undefined {
-  const contentDocuments = documents.filter(document => {
-    const name = document.name?.toLowerCase() ?? "";
-    return "" !== name &&
-      false === name.endsWith(".xml") &&
-      false === name.endsWith(".xsd") &&
-      false === name.endsWith(".json");
-  });
+  const rankedDocuments = documents
+    .filter(isPotentialSecFilingDocument)
+    .map((document, index) => ({
+      document,
+      index,
+      score: getSecArchiveDocumentScore(document),
+    }))
+    .sort((first, second) => {
+      if (first.score !== second.score) {
+        return second.score - first.score;
+      }
 
-  return contentDocuments.find(document => {
-    const name = document.name?.toLowerCase() ?? "";
-    const type = document.type?.toLowerCase() ?? "";
-    return type.startsWith("ex-99") ||
+      return first.index - second.index;
+    });
+
+  return rankedDocuments[0]?.document;
+}
+
+function isPotentialSecFilingDocument(document: SecArchiveDocument): boolean {
+  const name = document.name?.toLowerCase() ?? "";
+  if ("" === name || true === isSecArchiveWrapperDocument(name)) {
+    return false;
+  }
+
+  return /\.(?:htm|html|txt)$/i.test(name);
+}
+
+function isSecArchiveWrapperDocument(name: string): boolean {
+  return name.endsWith("-index.html") ||
+    name.endsWith("-index-headers.html") ||
+    "filingsummary.xml" === name ||
+    "metalink.json" === name ||
+    /^r\d+\.htm$/i.test(name);
+}
+
+function getSecArchiveDocumentScore(document: SecArchiveDocument): number {
+  const name = document.name?.toLowerCase() ?? "";
+  const type = document.type?.toLowerCase() ?? "";
+  let score = 0;
+
+  if (type.startsWith("ex-99")) {
+    score += 100;
+  }
+
+  if (/(?:^|[^a-z0-9])ex(?:hibit)?[-_\s]?99(?:[-_.\s]?1)?(?:[^a-z0-9]|$)/i.test(name) ||
       name.includes("ex99") ||
-      name.includes("ex-99") ||
-      name.includes("earnings") ||
-      name.includes("release");
-  }) ?? contentDocuments.find(document => {
-    const type = document.type?.toLowerCase() ?? "";
-    return "8-k" === type || "6-k" === type;
-  }) ?? contentDocuments[0];
+      name.includes("exhibit991")) {
+    score += 90;
+  }
+
+  if (/(?:^|[^0-9])99[-_.]?1?(?:[^0-9]|$)/i.test(name) || name.includes("991")) {
+    score += 70;
+  }
+
+  if (/\b(?:earnings|release|results)\b/i.test(name)) {
+    score += 30;
+  }
+
+  if ("8-k" === type || "6-k" === type || /\b(?:8k|6k)\b/i.test(name)) {
+    score += 10;
+  }
+
+  if (name.endsWith(".txt")) {
+    score -= 20;
+  }
+
+  return score;
 }
 
 function getSecArchiveBaseUrl(filing: SecCurrentFiling): string {
@@ -304,12 +348,15 @@ function getXmlTagText(xml: string, tagName: string): string | null {
     return null;
   }
 
-  return decodeHtmlEntities(tagMatch[1].replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
+  const tagContent = tagMatch[1];
+  return undefined === tagContent
+    ? null
+    : decodeHtmlEntities(tagContent.replace(/<[^>]+>/g, " ")).replace(/\s+/g, " ").trim();
 }
 
 function getXmlLinkHref(xml: string): string {
   const linkMatch = xml.match(/<link\b[^>]*\bhref=["']([^"']+)["'][^>]*>/i);
-  return linkMatch ? decodeHtmlEntities(linkMatch[1]) : "";
+  return undefined !== linkMatch?.[1] ? decodeHtmlEntities(linkMatch[1]) : "";
 }
 
 function getAccessionNumber(entry: string, filingUrl: string): string | null {
@@ -326,7 +373,9 @@ function getAccessionNumber(entry: string, filingUrl: string): string | null {
       continue;
     }
 
-    return normalizeAccessionNumber(match[1]);
+    if (undefined !== match[1]) {
+      return normalizeAccessionNumber(match[1]);
+    }
   }
 
   return null;
@@ -367,7 +416,7 @@ function getSecFilingForm(entry: string, fallbackForm: string): string {
 
   const title = getXmlTagText(entry, "title") ?? "";
   const titleFormMatch = title.match(/\b(8-K|6-K)\b/i);
-  if (titleFormMatch) {
+  if (undefined !== titleFormMatch?.[1]) {
     return titleFormMatch[1].toUpperCase();
   }
 
@@ -381,7 +430,12 @@ function getSecFilingItems(entry: string): string[] {
     return [];
   }
 
-  return itemMatch[1]
+  const itemList = itemMatch[1];
+  if (undefined === itemList) {
+    return [];
+  }
+
+  return itemList
     .split(",")
     .map(item => item.trim())
     .filter(item => /^\d+\.\d{2}$/.test(item));

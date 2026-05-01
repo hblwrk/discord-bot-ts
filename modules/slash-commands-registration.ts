@@ -1,17 +1,15 @@
-/* eslint-disable yoda */
-/* eslint-disable complexity */
-/* eslint-disable import/extensions */
 import {REST, Routes} from "discord.js";
-import {getDiscordRateLimitRetryAfterMs, toDiscordTimerMs} from "./discord-retry-after.js";
-import {getLogger} from "./logging.js";
-import {readSecret} from "./secrets.js";
-import {buildSlashCommandPayload} from "./slash-commands-payload.js";
+import {type GenericAsset, type ImageAsset, type UserAsset} from "./assets.ts";
+import {getDiscordRateLimitRetryAfterMs, toDiscordTimerMs} from "./discord-retry-after.ts";
+import {getLogger} from "./logging.ts";
+import {readSecret} from "./secrets.ts";
+import {buildSlashCommandPayload} from "./slash-commands-payload.ts";
 import {
   computeSlashRegistrationDiff,
   getSlashCommandNamesFromPayload,
   getSlashCommandPayloadHash,
   hasSlashRegistrationMismatch,
-} from "./slash-commands-canonical.js";
+} from "./slash-commands-canonical.ts";
 
 const logger = getLogger();
 const slashCommandRestTimeoutMs = 120_000;
@@ -26,7 +24,7 @@ class SlashRegistrationMismatchError extends Error {
 
 class SlashRegistrationCreateLimitError extends Error {
   public readonly retryAfterMs: number;
-  public readonly discordErrorMessage?: string;
+  public readonly discordErrorMessage: string | undefined;
 
   constructor(message: string, retryAfterMs: number, discordErrorMessage?: string) {
     super(message);
@@ -39,7 +37,7 @@ class SlashRegistrationCreateLimitError extends Error {
 class SlashRegistrationRateLimitError extends Error {
   public readonly retryAfterMs: number;
   public readonly isGlobal: boolean;
-  public readonly discordErrorMessage?: string;
+  public readonly discordErrorMessage: string | undefined;
 
   constructor(message: string, retryAfterMs: number, isGlobal: boolean, discordErrorMessage?: string) {
     super(message);
@@ -176,7 +174,7 @@ function toSlashRegistrationRateLimitError(error: unknown): SlashRegistrationRat
   );
 }
 
-export async function defineSlashCommands(assets, whatIsAssets, userAssets) {
+export async function defineSlashCommands(assets: GenericAsset[], whatIsAssets: ImageAsset[], userAssets: UserAsset[]) {
   const token = readSecret("discord_token").trim();
   const clientId = readSecret("discord_client_ID").trim();
   const guildId = readSecret("discord_guild_ID").trim();

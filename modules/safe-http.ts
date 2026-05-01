@@ -2,6 +2,7 @@ import http from "node:http";
 import https from "node:https";
 import net from "node:net";
 import dns from "node:dns";
+import {type Duplex} from "node:stream";
 
 function isPrivateIpv4(ip: string): boolean {
   const parts = ip.split(".").map(Number);
@@ -16,6 +17,10 @@ function isPrivateIpv4(ip: string): boolean {
   }
 
   const [a, b] = parts;
+  if (undefined === a || undefined === b) {
+    return true;
+  }
+
   if (0 === a) return true;                            // 0.0.0.0/8
   if (10 === a) return true;                           // 10.0.0.0/8 RFC1918
   if (100 === a && b >= 64 && b <= 127) return true;   // 100.64.0.0/10 CGNAT
@@ -37,7 +42,8 @@ function isPrivateIpv6(ip: string): boolean {
 
   const v4mapped = /^::ffff:(\d+\.\d+\.\d+\.\d+)$/.exec(lower);
   if (null !== v4mapped) {
-    return isPrivateIpv4(v4mapped[1]);
+    const mappedIpv4 = v4mapped[1];
+    return undefined === mappedIpv4 ? true : isPrivateIpv4(mappedIpv4);
   }
 
   if (/^fe[89ab]/.test(lower)) return true; // fe80::/10 link-local
@@ -62,14 +68,14 @@ export function isPrivateIp(ip: string): boolean {
 const safeLookup: net.LookupFunction = (hostname, options, callback) => {
   dns.lookup(hostname, options, (err, address, family) => {
     if (null !== err) {
-      callback(err, address as string, family);
+      callback(err, address, family);
       return;
     }
 
     const resolved = address as string;
     if (true === isPrivateIp(resolved)) {
       const blockError = new Error(`Refused to connect to private address ${resolved} for ${hostname}`);
-      callback(blockError as NodeJS.ErrnoException, "", 0);
+      callback(blockError, "", 0);
       return;
     }
 
@@ -78,16 +84,16 @@ const safeLookup: net.LookupFunction = (hostname, options, callback) => {
 };
 
 class SafeHttpAgent extends http.Agent {
-  createConnection(options: http.ClientRequestArgs, callback?: (err: Error | null, stream: net.Socket) => void): net.Socket {
+  public override createConnection(options: http.ClientRequestArgs, callback?: (err: Error | null, stream: Duplex) => void): Duplex | null | undefined {
     const merged = {...options, lookup: safeLookup} as http.ClientRequestArgs;
-    return (super.createConnection as any)(merged, callback);
+    return super.createConnection(merged, callback);
   }
 }
 
 class SafeHttpsAgent extends https.Agent {
-  createConnection(options: http.ClientRequestArgs, callback?: (err: Error | null, stream: net.Socket) => void): net.Socket {
+  public override createConnection(options: http.ClientRequestArgs, callback?: (err: Error | null, stream: Duplex) => void): Duplex | null | undefined {
     const merged = {...options, lookup: safeLookup} as http.ClientRequestArgs;
-    return (super.createConnection as any)(merged, callback);
+    return super.createConnection(merged, callback);
   }
 }
 

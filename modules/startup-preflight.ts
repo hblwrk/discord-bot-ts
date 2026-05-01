@@ -1,13 +1,5 @@
-/* eslint-disable import/extensions */
-import {Client, PermissionFlagsBits} from "discord.js";
-import {type Logger} from "./startup-types.js";
-
-type ErrorLogDetails = {
-  discord_error_message?: string;
-  error_name?: string;
-  error_message: string;
-  error_stack?: string;
-};
+import {type Client, PermissionFlagsBits} from "discord.js";
+import {type Logger} from "./startup-types.ts";
 
 type StartupPreflightFailure = {
   detail: string;
@@ -28,6 +20,38 @@ type StartupPreflightOptions = {
   roleAssignmentBrokerMessageId: string;
   roleAssignmentChannelId: string;
   roleAssignmentSpecialMessageId: string;
+};
+
+type ChannelPermissionsLike = {
+  has: (permission: bigint) => boolean;
+};
+
+type PermissionInspectableChannel = {
+  permissionsFor?: (member: unknown) => ChannelPermissionsLike | null | undefined;
+};
+
+type RoleLookupGuild = {
+  roles?: {
+    cache?: {
+      get?: (roleId: string) => PreflightRole | undefined;
+    };
+    fetch?: (roleId: string) => Promise<PreflightRole | null | undefined>;
+  };
+};
+
+type PreflightRole = {
+  managed?: boolean;
+  position?: number;
+};
+
+type SendCapableChannel = {
+  send?: unknown;
+};
+
+type MessageFetchCapableChannel = {
+  messages?: {
+    fetch?: unknown;
+  };
 };
 
 class StartupPreflightError extends Error {
@@ -72,7 +96,7 @@ async function getClientChannel(client: Client, channelId: string) {
   return client.channels.fetch(channelId).catch(() => undefined);
 }
 
-async function getGuildRole(guild: any, roleId: string) {
+async function getGuildRole(guild: RoleLookupGuild | undefined, roleId: string) {
   const cachedRole = guild?.roles?.cache?.get?.(roleId);
   if (cachedRole) {
     return cachedRole;
@@ -85,7 +109,7 @@ async function getGuildRole(guild: any, roleId: string) {
   return guild.roles.fetch(roleId).catch(() => undefined);
 }
 
-function getChannelPermissions(channel: any, member: any) {
+function getChannelPermissions(channel: PermissionInspectableChannel, member: unknown) {
   if ("function" !== typeof channel?.permissionsFor) {
     return undefined;
   }
@@ -176,7 +200,8 @@ export async function runStartupPreflight(
 
     checkedChannels += 1;
 
-    if (true === requireSendCapability && "function" !== typeof (channel as any).send) {
+    const sendCapableChannel = channel as SendCapableChannel;
+    if (true === requireSendCapability && "function" !== typeof sendCapableChannel.send) {
       addFailure({
         scope: "channel",
         label,
@@ -185,7 +210,8 @@ export async function runStartupPreflight(
       });
     }
 
-    if (true === requireMessageFetch && "function" !== typeof (channel as any).messages?.fetch) {
+    const messageFetchCapableChannel = channel as MessageFetchCapableChannel;
+    if (true === requireMessageFetch && "function" !== typeof messageFetchCapableChannel.messages?.fetch) {
       addFailure({
         scope: "channel",
         label,
@@ -198,7 +224,7 @@ export async function runStartupPreflight(
       return channel;
     }
 
-    const permissions = getChannelPermissions(channel, botMember);
+    const permissions = getChannelPermissions(channel as PermissionInspectableChannel, botMember);
     if (!permissions || "function" !== typeof permissions.has) {
       addFailure({
         scope: "permission",
@@ -281,8 +307,13 @@ export async function runStartupPreflight(
       ],
     });
 
-    if ("function" === typeof (roleAssignmentChannel as any)?.messages?.fetch) {
-      const brokerMessage = await roleAssignmentChannel.messages.fetch(options.roleAssignmentBrokerMessageId).catch(() => undefined);
+    const roleMessageChannel = roleAssignmentChannel as {
+      messages?: {
+        fetch?: (messageId: string) => Promise<unknown>;
+      };
+    } | undefined;
+    if ("function" === typeof roleMessageChannel?.messages?.fetch) {
+      const brokerMessage = await roleMessageChannel.messages.fetch(options.roleAssignmentBrokerMessageId).catch(() => undefined);
       if (!brokerMessage) {
         addFailure({
           scope: "message",
@@ -294,7 +325,7 @@ export async function runStartupPreflight(
         checkedRoleAssignmentMessages += 1;
       }
 
-      const specialMessage = await roleAssignmentChannel.messages.fetch(options.roleAssignmentSpecialMessageId).catch(() => undefined);
+      const specialMessage = await roleMessageChannel.messages.fetch(options.roleAssignmentSpecialMessageId).catch(() => undefined);
       if (!specialMessage) {
         addFailure({
           scope: "message",

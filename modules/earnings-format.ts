@@ -1,11 +1,5 @@
-/* eslint-disable max-depth */
-/* eslint-disable complexity */
-/* eslint-disable unicorn/prefer-ternary */
-/* eslint-disable @typescript-eslint/no-unnecessary-boolean-literal-compare */
-/* eslint-disable yoda */
-/* eslint-disable import/extensions */
 import moment from "moment-timezone";
-import {type Ticker} from "./tickers.js";
+import {type Ticker} from "./tickers.ts";
 import {
   bluechipMinMarketCap,
   EARNINGS_CONTINUATION_LABEL,
@@ -18,12 +12,12 @@ import {
   type EarningsMessageOptions,
   type EarningsWhen,
   unknownValueLabel,
-} from "./earnings-types.js";
+} from "./earnings-types.ts";
 import {
   formatMarketCapUsdShort,
   getNormalizedString,
   getNumericValueFromNasdaqCapString,
-} from "./earnings-utils.js";
+} from "./earnings-utils.ts";
 
 type EarningsSectionRow = {
   when: EarningsWhen;
@@ -66,7 +60,7 @@ export function getEarningsText(
     return "none";
   }
 
-  return earningsBatch.messages[0];
+  return earningsBatch.messages[0] ?? "none";
 }
 
 export function getEarningsMessages(
@@ -194,7 +188,12 @@ function buildEarningsMessageBatch(
     while (rowIndex < section.rows.length) {
       const sectionRows: EarningsSectionRow[] = [];
       while (rowIndex < section.rows.length) {
-        const candidateRows = [...sectionRows, section.rows[rowIndex]];
+        const nextRow = section.rows[rowIndex];
+        if (undefined === nextRow) {
+          break;
+        }
+
+        const candidateRows = [...sectionRows, nextRow];
         const candidateSectionText = getEarningsSectionText(
           section.label,
           candidateRows,
@@ -203,7 +202,7 @@ function buildEarningsMessageBatch(
         );
 
         if (canAppendToEarningsChunk(currentChunk, candidateSectionText, maxMessageLength)) {
-          sectionRows.push(section.rows[rowIndex]);
+          sectionRows.push(nextRow);
           rowIndex++;
         } else {
           break;
@@ -212,6 +211,10 @@ function buildEarningsMessageBatch(
 
       if (0 === sectionRows.length) {
         const rawRow = section.rows[rowIndex];
+        if (undefined === rawRow) {
+          break;
+        }
+
         const headingText = `${getEarningsSectionHeading(section.label, continuation, continuationLabel)}\n${getEarningsWhenSubheading(rawRow.when)}\n`;
         const availableRowLength = maxMessageLength - getAppendedEarningsChunkText(currentChunk, headingText).length - 1;
         if (availableRowLength <= 0 && 0 < currentChunk.eventCount) {
@@ -265,10 +268,13 @@ function buildEarningsMessageBatch(
   );
 
   if (true === truncatedByMessageCount && 0 < messages.length) {
-    messages[messages.length - 1] = appendEarningsTruncationNote(
-      messages[messages.length - 1],
-      maxMessageLength
-    );
+    const lastMessage = messages[messages.length - 1];
+    if (undefined !== lastMessage) {
+      messages[messages.length - 1] = appendEarningsTruncationNote(
+        lastMessage,
+        maxMessageLength
+      );
+    }
   }
 
   return {
@@ -330,7 +336,7 @@ function getEventsByDateBuckets(
       previousDateStamp = event.date;
     }
 
-    buckets[buckets.length - 1].eventsByMarketCap.push(event);
+    buckets.at(-1)?.eventsByMarketCap.push(event);
   }
 
   for (const bucket of buckets) {
@@ -374,9 +380,12 @@ function getSelectedEventsByPerDayCap(
       continue;
     }
 
-    selectedEvents.push(
-      ...buckets[bucketIndex].eventsByMarketCap.slice(0, perDayCap)
-    );
+    const bucket = buckets[bucketIndex];
+    if (undefined !== bucket) {
+      selectedEvents.push(
+        ...bucket.eventsByMarketCap.slice(0, perDayCap)
+      );
+    }
   }
 
   return selectedEvents;
@@ -396,9 +405,10 @@ function ensureBatchHasTruncationNote(
 
   const updatedMessages = [...batch.messages];
   const lastMessageIndex = updatedMessages.length - 1;
-  if (false === updatedMessages[lastMessageIndex].includes(earningsTruncationNote)) {
+  const lastMessage = updatedMessages[lastMessageIndex];
+  if (undefined !== lastMessage && false === lastMessage.includes(earningsTruncationNote)) {
     updatedMessages[lastMessageIndex] = appendEarningsTruncationNote(
-      updatedMessages[lastMessageIndex],
+      lastMessage,
       maxMessageLength
     );
   }
@@ -412,8 +422,12 @@ function ensureBatchHasTruncationNote(
 }
 
 function getEarningsTitle(earningsEvents: EarningsEvent[]): string {
-  const earliestDate = earningsEvents[0].date;
-  const latestDate = earningsEvents[earningsEvents.length - 1].date;
+  const earliestDate = earningsEvents[0]?.date;
+  const latestDate = earningsEvents[earningsEvents.length - 1]?.date;
+  if (undefined === earliestDate || undefined === latestDate) {
+    return "";
+  }
+
   const earliestFriendlyDate = getFriendlyDate(earliestDate);
   if (earliestDate === latestDate) {
     return "";
@@ -485,7 +499,12 @@ function getEarningsSections(
       previousDateStamp = earningsEvent.date;
     }
 
-    orderedSections[orderedSections.length - 1].rows.push({
+    const currentSection = orderedSections[orderedSections.length - 1];
+    if (undefined === currentSection) {
+      continue;
+    }
+
+    currentSection.rows.push({
       when: earningsEvent.when,
       line: getEarningsEventLine(
         earningsEvent,

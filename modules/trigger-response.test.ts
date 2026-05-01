@@ -1,15 +1,67 @@
-import {ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets.js";
-import * as secureRandom from "./secure-random.js";
-import {addTriggerResponses} from "./trigger-response.js";
-import {createEventClient, createMessage} from "./test-utils/discord-mocks.js";
+import {ImageAsset, TextAsset, UserAsset, UserQuoteAsset} from "./assets.ts";
+import {
+  PaywallLookupCapacityError,
+  paywallLookupBusyMessage,
+  type PaywallResult,
+} from "./paywall.ts";
+import type * as PaywallModule from "./paywall.ts";
+import {addTriggerResponses} from "./trigger-response.ts";
+import {createEventClient, createMessage} from "./test-utils/discord-mocks.ts";
+import {beforeEach, describe, expect, test, vi} from "vitest";
+
+const getPaywallLinksMock = vi.hoisted(() => vi.fn());
+
+vi.mock("./paywall.ts", async importOriginal => {
+  const actual = await importOriginal<typeof PaywallModule>();
+  return {
+    ...actual,
+    getPaywallLinks: getPaywallLinksMock,
+  };
+});
+
+type SentAttachment = {
+  attachment?: Buffer;
+  name?: string;
+};
+type SentEmbed = {
+  toJSON: () => {
+    fields?: {name: string; value: string}[];
+    image?: {
+      url?: string;
+    };
+  };
+};
+type SentPayload = {
+  embeds?: SentEmbed[];
+  files?: SentAttachment[];
+};
+
+function getFirstPayload(message: ReturnType<typeof createMessage>): SentPayload {
+  return message.channel.send.mock.calls[0]![0] as SentPayload;
+}
+
+function paywallResult(overrides: Partial<PaywallResult> = {}): PaywallResult {
+  return {
+    originalUrl: "https://example.com/article",
+    nofix: false,
+    isDefault: false,
+    headline: "Article headline",
+    services: [],
+    ...overrides,
+  };
+}
 
 describe("addTriggerResponses", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   test("sends plain text for text assets", async () => {
     const {client, getHandler} = createEventClient();
     const textAsset = new TextAsset();
     textAsset.title = "hello";
     textAsset.response = "hello response";
-    (textAsset as any).trigger = ["hello"];
+    textAsset.trigger = ["hello"];
 
     addTriggerResponses(client, [textAsset], ["!hello"], []);
 
@@ -28,7 +80,7 @@ describe("addTriggerResponses", () => {
     imageAsset.fileName = "image.png";
     imageAsset.fileContent = Buffer.from("file");
     imageAsset.text = "image text";
-    (imageAsset as any).trigger = ["image"];
+    imageAsset.trigger = ["image"];
 
     addTriggerResponses(client, [imageAsset], ["!image"], []);
 
@@ -37,10 +89,18 @@ describe("addTriggerResponses", () => {
 
     await handler(message);
 
-    expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({
-      embeds: expect.any(Array),
-      files: expect.any(Array),
-    }));
+    const payload = getFirstPayload(message);
+    expect(payload.files?.[0]?.name).toBe("image.png");
+    expect(payload.files?.[0]?.attachment).toEqual(Buffer.from("file"));
+    expect(payload.embeds?.[0]?.toJSON()).toEqual({
+      image: {
+        url: "attachment://image.png",
+      },
+      fields: [{
+        name: "image",
+        value: "image text",
+      }],
+    });
   });
 
   test("replies with temporary unavailable message when image asset content is missing", async () => {
@@ -49,7 +109,7 @@ describe("addTriggerResponses", () => {
     imageAsset.title = "image";
     imageAsset.fileName = "image.png";
     imageAsset.text = "image text";
-    (imageAsset as any).trigger = ["image"];
+    imageAsset.trigger = ["image"];
 
     addTriggerResponses(client, [imageAsset], ["!image"], []);
 
@@ -71,7 +131,7 @@ describe("addTriggerResponses", () => {
     await handler(message);
 
     expect(message.channel.send).toHaveBeenCalledTimes(1);
-    const reply = message.channel.send.mock.calls[0][0];
+    const reply = message.channel.send.mock.calls[0]![0];
     expect(reply.startsWith("Rolling the crypto dice... ")).toBe(true);
   });
 
@@ -93,7 +153,7 @@ describe("addTriggerResponses", () => {
     const {client, getHandler} = createEventClient();
     const userAsset = new UserAsset();
     userAsset.name = "missing-user";
-    (userAsset as any).trigger = ["missing-user"];
+    userAsset.trigger = ["missing-user"];
 
     addTriggerResponses(client, [userAsset], ["!missing-user"], []);
 
@@ -108,13 +168,13 @@ describe("addTriggerResponses", () => {
     const {client, getHandler} = createEventClient();
     const userAsset = new UserAsset();
     userAsset.name = "alice";
-    (userAsset as any).trigger = ["alice"];
+    userAsset.trigger = ["alice"];
 
     const userQuoteAsset = new UserQuoteAsset();
     userQuoteAsset.user = "alice";
     userQuoteAsset.fileName = "quote.png";
     userQuoteAsset.fileContent = Buffer.from("quote");
-    (userQuoteAsset as any).trigger = [];
+    userQuoteAsset.trigger = [];
 
     addTriggerResponses(client, [userAsset, userQuoteAsset], ["!alice"], []);
 
@@ -122,24 +182,24 @@ describe("addTriggerResponses", () => {
     const message = createMessage("!alice");
     await handler(message);
 
-    expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({
-      files: expect.any(Array),
-    }));
+    const payload = getFirstPayload(message);
+    expect(payload.files?.[0]?.name).toBe("quote.png");
+    expect(payload.files?.[0]?.attachment).toEqual(Buffer.from("quote"));
   });
 
   test("sends a random quote attachment for bare quote trigger", async () => {
-    const randomSpy = jest.spyOn(Math, "random").mockReturnValue(0.99);
+    const randomSpy = vi.spyOn(Math, "random").mockReturnValue(0.99);
     const {client, getHandler} = createEventClient();
     const aliceQuote = new UserQuoteAsset();
     aliceQuote.user = "alice";
     aliceQuote.fileName = "quote-alice.png";
     aliceQuote.fileContent = Buffer.from("alice");
-    (aliceQuote as any).trigger = [];
+    aliceQuote.trigger = [];
     const bobQuote = new UserQuoteAsset();
     bobQuote.user = "bob";
     bobQuote.fileName = "quote-bob.png";
     bobQuote.fileContent = Buffer.from("bob");
-    (bobQuote as any).trigger = [];
+    bobQuote.trigger = [];
 
     addTriggerResponses(client, [aliceQuote, bobQuote], [], []);
 
@@ -147,9 +207,8 @@ describe("addTriggerResponses", () => {
     const message = createMessage("!quote");
     await handler(message);
 
-    expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({
-      files: expect.any(Array),
-    }));
+    const payload = getFirstPayload(message);
+    expect(["quote-alice.png", "quote-bob.png"]).toContain(payload.files?.[0]?.name);
     randomSpy.mockRestore();
   });
 
@@ -166,29 +225,22 @@ describe("addTriggerResponses", () => {
   });
 
   test("sends a random attachment for grouped image triggers like betrug", async () => {
-    const randomSpy = jest.spyOn(secureRandom, "getSecureRandomIndex").mockReturnValue(1);
     const {client, getHandler} = createEventClient();
-    const firstImage = new ImageAsset();
-    firstImage.name = "betrug 1";
-    firstImage.fileName = "betrug-01.jpg";
-    firstImage.fileContent = undefined;
-    (firstImage as any).trigger = ["betrug 1"];
-    const secondImage = new ImageAsset();
-    secondImage.name = "betrug 2";
-    secondImage.fileName = "betrug-02.jpg";
-    secondImage.fileContent = Buffer.from("betrug-2");
-    (secondImage as any).trigger = ["betrug 2"];
+    const imageAsset = new ImageAsset();
+    imageAsset.name = "betrug 1";
+    imageAsset.fileName = "betrug-01.jpg";
+    imageAsset.fileContent = Buffer.from("betrug-1");
+    imageAsset.trigger = ["betrug 1"];
 
-    addTriggerResponses(client, [firstImage, secondImage], [], []);
+    addTriggerResponses(client, [imageAsset], [], []);
 
     const handler = getHandler("messageCreate");
     const message = createMessage("!betrug");
     await handler(message);
 
-    expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({
-      files: expect.any(Array),
-    }));
-    randomSpy.mockRestore();
+    const payload = getFirstPayload(message);
+    expect(payload.files?.[0]?.name).toBe("betrug-01.jpg");
+    expect(payload.files?.[0]?.attachment).toEqual(Buffer.from("betrug-1"));
   });
 
   test("sends unavailable response for grouped image trigger when the chosen asset is missing", async () => {
@@ -197,7 +249,7 @@ describe("addTriggerResponses", () => {
     imageAsset.name = "betrug 1";
     imageAsset.fileName = "betrug-01.jpg";
     imageAsset.fileContent = undefined;
-    (imageAsset as any).trigger = ["betrug 1"];
+    imageAsset.trigger = ["betrug 1"];
 
     addTriggerResponses(client, [imageAsset], [], []);
 
@@ -247,10 +299,18 @@ describe("addTriggerResponses", () => {
     const message = createMessage("!whatis faq");
     await handler(message);
 
-    expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({
-      embeds: expect.any(Array),
-      files: expect.any(Array),
-    }));
+    const payload = getFirstPayload(message);
+    expect(payload.files?.[0]?.name).toBe("faq.png");
+    expect(payload.files?.[0]?.attachment).toEqual(Buffer.from("file"));
+    expect(payload.embeds?.[0]?.toJSON()).toEqual({
+      image: {
+        url: "attachment://faq.png",
+      },
+      fields: [{
+        name: "FAQ",
+        value: "Answer",
+      }],
+    });
   });
 
   test("replies with whatis embed-only when no attachment exists", async () => {
@@ -268,9 +328,108 @@ describe("addTriggerResponses", () => {
     const message = createMessage("!whatis faq");
     await handler(message);
 
-    expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({
-      embeds: expect.any(Array),
+    const payload = getFirstPayload(message);
+    expect(payload.files).toBeUndefined();
+    expect(payload.embeds?.[0]?.toJSON()).toEqual({
+      fields: [{
+        name: "FAQ",
+        value: "Answer",
+      }],
+    });
+  });
+
+  test("paywall normalizes URLs, edits the working message, and formats service availability", async () => {
+    getPaywallLinksMock.mockResolvedValueOnce(paywallResult({
+      isDefault: true,
+      services: [
+        {
+          name: "archive.today",
+          url: "https://archive.ph/newest/https://example.com/article",
+          available: true,
+        },
+        {
+          name: "backup",
+          url: "https://backup.example/article",
+          available: false,
+        },
+      ],
     }));
+    const {client, getHandler} = createEventClient();
+    addTriggerResponses(client, [], [], []);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("!paywall example.com/article");
+    const edit = vi.fn().mockResolvedValue(undefined);
+    message.author = {
+      id: "requester-id",
+    };
+    message.channel.send.mockResolvedValueOnce({
+      edit,
+    });
+
+    await handler(message);
+
+    expect(message.channel.send).toHaveBeenCalledWith(
+      "Suche nach Paywall-Bypass für <https://example.com/article>... Das kann bis zu 60 Sekunden dauern.",
+    );
+    expect(getPaywallLinksMock).toHaveBeenCalledWith("https://example.com/article", [], {
+      requesterId: "requester-id",
+    });
+    expect(edit).toHaveBeenCalledWith([
+      "Unbekannte Seite — versuche allgemeine Services:\n",
+      "✅ **archive.today**: <https://archive.ph/newest/https://example.com/article>",
+      "❓ **backup**: <https://backup.example/article>",
+    ].join("\n"));
+  });
+
+  test("paywall rejects unsafe private-network URLs before lookup", async () => {
+    const {client, getHandler} = createEventClient();
+    addTriggerResponses(client, [], [], []);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("!paywall http://127.0.0.1/admin");
+
+    await handler(message);
+
+    expect(message.channel.send).toHaveBeenCalledWith("Ungültige URL. Bitte eine öffentliche http(s)-URL angeben.");
+    expect(getPaywallLinksMock).not.toHaveBeenCalled();
+  });
+
+  test("paywall edits busy fallback when lookup capacity is exhausted", async () => {
+    getPaywallLinksMock.mockRejectedValueOnce(new PaywallLookupCapacityError("global"));
+    const {client, getHandler} = createEventClient();
+    addTriggerResponses(client, [], [], []);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("!paywall https://example.com/article");
+    const edit = vi.fn().mockResolvedValue(undefined);
+    message.channel.send.mockResolvedValueOnce({
+      edit,
+    });
+
+    await handler(message);
+
+    expect(edit).toHaveBeenCalledWith(paywallLookupBusyMessage);
+  });
+
+  test("paywall edits nofix fallback when no bypass is known", async () => {
+    getPaywallLinksMock.mockResolvedValueOnce(paywallResult({
+      nofix: true,
+      services: [],
+    }));
+    const {client, getHandler} = createEventClient();
+    addTriggerResponses(client, [], [], []);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("!paywall https://example.com/article");
+    const edit = vi.fn().mockResolvedValue(undefined);
+    message.channel.send.mockResolvedValueOnce({
+      edit,
+    });
+
+    await handler(message);
+
+    expect(edit).toHaveBeenCalledWith("Für diese Seite ist leider kein Paywall-Bypass bekannt.");
   });
 
   test("replies with sara attachment for yes and shrug", async () => {
@@ -279,12 +438,12 @@ describe("addTriggerResponses", () => {
     saraYesAsset.name = "sara-yes";
     saraYesAsset.fileName = "yes.png";
     saraYesAsset.fileContent = Buffer.from("yes");
-    (saraYesAsset as any).trigger = [];
+    saraYesAsset.trigger = [];
     const saraShrugAsset = new ImageAsset();
     saraShrugAsset.name = "sara-shrug";
     saraShrugAsset.fileName = "shrug.png";
     saraShrugAsset.fileContent = Buffer.from("shrug");
-    (saraShrugAsset as any).trigger = [];
+    saraShrugAsset.trigger = [];
 
     addTriggerResponses(client, [saraYesAsset, saraShrugAsset], [], []);
 
@@ -292,14 +451,30 @@ describe("addTriggerResponses", () => {
 
     const yesMessage = createMessage("!sara yes");
     await handler(yesMessage);
-    expect(yesMessage.channel.send).toHaveBeenCalledWith(expect.objectContaining({
-      files: expect.any(Array),
-    }));
+    const yesPayload = getFirstPayload(yesMessage);
+    expect(yesPayload.files?.[0]?.name).toBe("yes.png");
+    expect(yesPayload.files?.[0]?.attachment).toEqual(Buffer.from("yes"));
 
     const shrugMessage = createMessage("!sara shrug");
     await handler(shrugMessage);
-    expect(shrugMessage.channel.send).toHaveBeenCalledWith(expect.objectContaining({
-      files: expect.any(Array),
-    }));
+    const shrugPayload = getFirstPayload(shrugMessage);
+    expect(shrugPayload.files?.[0]?.name).toBe("shrug.png");
+    expect(shrugPayload.files?.[0]?.attachment).toEqual(Buffer.from("shrug"));
+  });
+
+  test("replies with sara fallback when requested assets are missing", async () => {
+    const {client, getHandler} = createEventClient();
+
+    addTriggerResponses(client, [], [], []);
+
+    const handler = getHandler("messageCreate");
+
+    const yesMessage = createMessage("!sara yes");
+    await handler(yesMessage);
+    expect(yesMessage.channel.send).toHaveBeenCalledWith("Sara möchte das nicht.");
+
+    const shrugMessage = createMessage("!sara shrug");
+    await handler(shrugMessage);
+    expect(shrugMessage.channel.send).toHaveBeenCalledWith("Sara möchte das nicht.");
   });
 });

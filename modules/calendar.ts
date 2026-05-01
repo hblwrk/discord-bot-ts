@@ -1,11 +1,6 @@
-/* eslint-disable import/extensions */
-/* eslint-disable max-depth */
-/* eslint-disable @typescript-eslint/no-unnecessary-boolean-literal-compare */
-/* eslint-disable yoda */
-/* eslint-disable complexity */
 import moment from "moment-timezone";
-import {getLogger} from "./logging.js";
-import {postWithRetry} from "./http-retry.js";
+import {getLogger} from "./logging.ts";
+import {postWithRetry} from "./http-retry.ts";
 
 const logger = getLogger();
 const calendarTitle = "Wichtige Termine:";
@@ -62,6 +57,12 @@ type CalendarMessageChunk = {
   dayKeys: Set<string>;
 };
 
+type CalendarApiEvent = {
+  Country: number;
+  EventName: string;
+  FullDate: string;
+};
+
 function getCalendarRangeInBerlin(startDay: string, range: number): {startDate: moment.Moment; endDate: moment.Moment} {
   const effectiveStartDay = "" === startDay
     ? moment.tz(europeBerlinTimezone).format("YYYY-MM-DD")
@@ -108,7 +109,7 @@ export async function getCalendarEventsResult(startDay: string, range: number): 
   let status: CalendarLoadStatus = "ok";
 
   try {
-    const calendarResponse = await postWithRetry(
+    const calendarResponse = await postWithRetry<CalendarApiEvent[]>(
       "https://www.mql5.com/en/economic-calendar/content",
       `date_mode=0&from=${moment(startDate).format("YYYY-MM-DD")}T00%3A00%3A00&to=${moment(endDate).format("YYYY-MM-DD")}T23%3A59%3A59&importance=12&currencies=15`,
       {
@@ -205,10 +206,15 @@ export function getCalendarMessages(
       const lines: string[] = [];
 
       while (lineIndex < dayBlock.lines.length) {
-        const candidateLines = [...lines, dayBlock.lines[lineIndex]];
+        const nextLine = dayBlock.lines[lineIndex];
+        if (undefined === nextLine) {
+          break;
+        }
+
+        const candidateLines = [...lines, nextLine];
         const candidatePart = getDayText(header, candidateLines);
         if (canAppendToChunk(currentChunk, candidatePart, maxMessageLength)) {
-          lines.push(dayBlock.lines[lineIndex]);
+          lines.push(nextLine);
           lineIndex++;
         } else {
           break;
@@ -225,6 +231,10 @@ export function getCalendarMessages(
         }
 
         const rawLine = dayBlock.lines[lineIndex];
+        if (undefined === rawLine) {
+          break;
+        }
+
         const truncatedLine = truncateLine(rawLine, Math.max(availableLineLength, 1));
         lines.push(truncatedLine);
         lineIndex++;
@@ -269,7 +279,10 @@ export function getCalendarMessages(
   }
 
   if (true === truncatedByMessageCount && 0 < messages.length) {
-    messages[messages.length - 1] = appendTruncationNote(messages[messages.length - 1], maxMessageLength);
+    const lastMessage = messages[messages.length - 1];
+    if (undefined !== lastMessage) {
+      messages[messages.length - 1] = appendTruncationNote(lastMessage, maxMessageLength);
+    }
   }
 
   return {
@@ -291,17 +304,17 @@ export function getCalendarText(calendarEvents: CalendarEvent[]): string {
   });
 
   if (0 < batch.messages.length) {
-    return batch.messages[0];
+    return batch.messages[0] ?? "none";
   }
 
   return "none";
 }
 
 export class CalendarEvent {
-  private _date: string;
-  private _time: string;
-  private _country: string;
-  private _name: string;
+  private _date = "";
+  private _time = "";
+  private _country = "";
+  private _name = "";
 
   public get date() {
     return this._date;

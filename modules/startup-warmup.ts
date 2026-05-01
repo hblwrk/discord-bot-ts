@@ -1,12 +1,11 @@
-/* eslint-disable import/extensions */
-import {Client} from "discord.js";
-import {getDiscordRateLimitRetryAfterMs} from "./discord-retry-after.js";
-import {type createStartupState} from "./startup-state.js";
+import {type Client} from "discord.js";
+import {getDiscordRateLimitRetryAfterMs} from "./discord-retry-after.ts";
+import {type createStartupState} from "./startup-state.ts";
 import {
   type ErrorLogDetails,
   type SharedStartupData,
   type StartupDependencies,
-} from "./startup-types.js";
+} from "./startup-types.ts";
 
 const slashCommandCreateLimitCooldownMs = 24 * 60 * 60_000;
 
@@ -196,8 +195,8 @@ export async function warmRemoteData({
     return Math.min(backoffMs, dependencies.assetRecoveryMaxRetryMs);
   };
 
-  const trackAssetDownloadFailures = (task: "generic-assets" | "whatis-assets", assets: any[]) => {
-    const failedDownloads = assets.filter(asset => true === (asset as any).downloadFailed).length;
+  const trackAssetDownloadFailures = (task: "generic-assets" | "whatis-assets", assets: Array<{downloadFailed?: boolean}>) => {
+    const failedDownloads = assets.filter(asset => true === (asset).downloadFailed).length;
     if ("generic-assets" === task) {
       failedGenericAssetDownloads = failedDownloads;
     } else {
@@ -301,7 +300,7 @@ export async function warmRemoteData({
       slashCommandSyncScheduledHandle = undefined;
       void runSlashCommandSync(attempt);
     }, delayMs);
-    (slashCommandSyncScheduledHandle as any).unref?.();
+    slashCommandSyncScheduledHandle.unref();
   };
 
   const scheduleSlashCommandCreateLimitCooldownRelease = () => {
@@ -325,7 +324,7 @@ export async function warmRemoteData({
       );
       scheduleSlashCommandSync("slash-registration:scheduled", dependencies.slashCommandDebounceMs, 1);
     }, slashCommandCreateLimitCooldownMs);
-    (slashCommandCreateLimitCooldownHandle as any).unref?.();
+    slashCommandCreateLimitCooldownHandle.unref();
   };
 
   const runSlashCommandSync = async (attempt: number) => {
@@ -421,10 +420,7 @@ export async function warmRemoteData({
       if ("number" === typeof queuedRetryDelayMs && "number" === typeof queuedRetryAttempt) {
         slashCommandSyncDirty = false;
         scheduleSlashCommandSync("slash-registration:scheduled", queuedRetryDelayMs, queuedRetryAttempt);
-        return;
-      }
-
-      if (true === slashCommandSyncDirty) {
+      } else if (true === slashCommandSyncDirty) {
         slashCommandSyncDirty = false;
         scheduleSlashCommandSync("slash-registration:scheduled");
       }
@@ -445,7 +441,7 @@ export async function warmRemoteData({
       assetRecoveryRetryHandle = undefined;
       void recoverFailedAssets();
     }, retryInMs);
-    (assetRecoveryRetryHandle as any).unref?.();
+    assetRecoveryRetryHandle.unref();
   };
 
   const recoverFailedAssets = async () => {

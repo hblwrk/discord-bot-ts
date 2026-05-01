@@ -1,12 +1,6 @@
-/* eslint-disable max-depth */
-/* eslint-disable complexity */
-/* eslint-disable unicorn/prefer-ternary */
-/* eslint-disable @typescript-eslint/no-unnecessary-boolean-literal-compare */
-/* eslint-disable yoda */
-/* eslint-disable import/extensions */
 import moment from "moment-timezone";
-import {getWithRetry} from "./http-retry.js";
-import {getLogger} from "./logging.js";
+import {getWithRetry} from "./http-retry.ts";
+import {getLogger} from "./logging.ts";
 import {
   dateStampFormat,
   earningsWhenByNasdaqTimeToken,
@@ -17,12 +11,12 @@ import {
   type EarningsWhen,
   unknownValueLabel,
   usEasternTimezone,
-} from "./earnings-types.js";
+} from "./earnings-types.ts";
 import {
   formatMarketCapUsdShort,
   getNormalizedString,
   getNumericValueFromNasdaqCapString,
-} from "./earnings-utils.js";
+} from "./earnings-utils.ts";
 
 const logger = getLogger();
 
@@ -92,6 +86,9 @@ export async function getEarningsResult(
 
   for (const [requestIndex, settledRequest] of settledRequests.entries()) {
     const dateStamp = dateStamps[requestIndex];
+    if (undefined === dateStamp) {
+      continue;
+    }
     if ("fulfilled" === settledRequest.status) {
       successfulRequestCount++;
       appendNasdaqEarningsEvents(

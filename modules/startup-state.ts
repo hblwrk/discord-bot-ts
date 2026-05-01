@@ -1,4 +1,4 @@
-import {getLogger} from "./logging.js";
+import {getLogger} from "./logging.ts";
 
 export type RemoteWarmupStatus = "idle" | "warming" | "ready" | "degraded";
 export type WarmupTaskStatus = "idle" | "running" | "success" | "failed";
@@ -30,7 +30,7 @@ type StartupState = {
 };
 
 type StartupLogger = {
-  log: (level: string, message: any) => void;
+  log: (level: string, message: unknown) => void;
 };
 
 function toErrorString(error: unknown): string {

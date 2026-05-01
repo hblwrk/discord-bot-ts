@@ -1,42 +1,45 @@
-const readFileSyncMock = jest.fn();
-const yamlLoadMock = jest.fn();
-const getFromDracoonMock = jest.fn();
-const readSecretMock = jest.fn();
+import {beforeEach, describe, expect, test, vi} from "vitest";
+const readFileSyncMock = vi.fn();
+const yamlLoadMock = vi.fn();
+const getFromDracoonMock = vi.fn();
+const readSecretMock = vi.fn();
 const loggerMock = {
-  log: jest.fn(),
+  log: vi.fn(),
 };
 
-jest.mock("node:fs", () => ({
+vi.mock("node:fs", () => ({
   __esModule: true,
   default: {
-    readFileSync: readFileSyncMock,
+    readFileSync: (...args: unknown[]) => readFileSyncMock(...args),
   },
 }));
 
-jest.mock("js-yaml", () => ({
+vi.mock("js-yaml", () => ({
   __esModule: true,
   default: {
-    load: yamlLoadMock,
+    load: (...args: unknown[]) => yamlLoadMock(...args),
   },
 }));
 
-jest.mock("./dracoon-downloader.js", () => ({
-  getFromDracoon: getFromDracoonMock,
+vi.mock("./dracoon-downloader.ts", () => ({
+  getFromDracoon: (...args: unknown[]) => getFromDracoonMock(...args),
 }));
 
-jest.mock("./secrets.js", () => ({
-  readSecret: readSecretMock,
+vi.mock("./secrets.ts", () => ({
+  readSecret: (...args: unknown[]) => readSecretMock(...args),
 }));
 
-jest.mock("./logging.js", () => ({
-  getLogger: () => loggerMock,
+vi.mock("./logging.ts", () => ({
+  getLogger: () => ({
+    log: (...args: unknown[]) => loggerMock.log(...args),
+  }),
 }));
 
-import {getAssets} from "./assets.js";
+import {EmojiAsset, getAssetByName, getAssets, getGenericAssets} from "./assets.ts";
 
 describe("getAssets", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     readFileSyncMock.mockReturnValue("assets-file");
     yamlLoadMock.mockReturnValue([]);
     readSecretMock.mockReturnValue("dracoon-secret");
@@ -68,10 +71,13 @@ describe("getAssets", () => {
     const assets = await getAssets("image");
 
     expect(assets).toHaveLength(2);
-    expect(assets[0].name).toBe("asset-ok");
-    expect(assets[0].fileContent).toEqual(Buffer.from("ok-buffer"));
-    expect(assets[1].name).toBe("asset-fail");
-    expect(assets[1].fileContent).toBeUndefined();
+    const [successfulAsset, failedAsset] = assets;
+    expect(successfulAsset).toBeDefined();
+    expect(failedAsset).toBeDefined();
+    expect(successfulAsset?.name).toBe("asset-ok");
+    expect(successfulAsset?.fileContent).toEqual(Buffer.from("ok-buffer"));
+    expect(failedAsset?.name).toBe("asset-fail");
+    expect(failedAsset?.fileContent).toBeUndefined();
     expect(getFromDracoonMock).toHaveBeenCalledTimes(2);
     expect(loggerMock.log).toHaveBeenCalledWith(
       "warn",
@@ -100,12 +106,14 @@ describe("getAssets", () => {
     const assets = await getAssets("calendarreminder");
 
     expect(assets).toHaveLength(1);
-    expect(assets[0].name).toBe("us-cpi-1h");
-    expect(assets[0].eventNameSubstrings).toEqual(["consumer price index", "cpi"]);
-    expect(assets[0].countryFlags).toEqual(["🇺🇸"]);
-    expect(assets[0].minutesBefore).toBe(60);
-    expect(assets[0].roleIdReference).toBe("hblwrk_role_special_alerts_ID");
-    expect(assets[0].roleId).toBe("role-123");
+    const [asset] = assets;
+    expect(asset).toBeDefined();
+    expect(asset?.name).toBe("us-cpi-1h");
+    expect(asset?.eventNameSubstrings).toEqual(["consumer price index", "cpi"]);
+    expect(asset?.countryFlags).toEqual(["🇺🇸"]);
+    expect(asset?.minutesBefore).toBe(60);
+    expect(asset?.roleIdReference).toBe("hblwrk_role_special_alerts_ID");
+    expect(asset?.roleId).toBe("role-123");
   });
 
   test("loads earnings reminder assets and resolves role references", async () => {
@@ -127,10 +135,163 @@ describe("getAssets", () => {
     const assets = await getAssets("earningsreminder");
 
     expect(assets).toHaveLength(1);
-    expect(assets[0].name).toBe("aapl-earnings");
-    expect(assets[0].tickerSymbols).toEqual(["AAPL"]);
-    expect(assets[0].roleIdReference).toBe("hblwrk_role_special_alerts_ID");
-    expect(assets[0].roleId).toBe("role-456");
+    const [asset] = assets;
+    expect(asset).toBeDefined();
+    expect(asset?.name).toBe("aapl-earnings");
+    expect(asset?.tickerSymbols).toEqual(["AAPL"]);
+    expect(asset?.roleIdReference).toBe("hblwrk_role_special_alerts_ID");
+    expect(asset?.roleId).toBe("role-456");
+  });
+
+  test("loads market-data, role, and paywall assets with secret references resolved", async () => {
+    const yamlObjectsByType: Record<string, unknown[]> = {
+      marketdata: [{
+        botTokenReference: "market_token_ref",
+        botClientIdReference: "market_client_ref",
+        botName: "SPX",
+        id: 1175151,
+        suffix: "$",
+        unit: "PCT",
+        marketHours: "us_cash",
+        decimals: 2,
+        order: 1,
+      }],
+      role: [{
+        triggerReference: "role_trigger_ref",
+        idReference: "role_id_ref",
+        emoji: "✅",
+      }],
+      paywall: [{
+        name: "default",
+        domains: ["*"],
+        services: ["archive.today"],
+        nofix: false,
+        subdomainWildcard: true,
+      }],
+    };
+    readFileSyncMock.mockImplementation(path => String(path));
+    yamlLoadMock.mockImplementation(filePath => {
+      const match = /assets\/(.+)\.yaml/.exec(String(filePath));
+      const type = match?.[1] ?? "";
+      return yamlObjectsByType[type] ?? [];
+    });
+    readSecretMock.mockImplementation(secretName => {
+      if ("market_token_ref" === secretName) {
+        return "market-token";
+      }
+
+      if ("market_client_ref" === secretName) {
+        return "market-client-id";
+      }
+
+      if ("role_trigger_ref" === secretName) {
+        return "role-message-id";
+      }
+
+      if ("role_id_ref" === secretName) {
+        return "role-id";
+      }
+
+      return "dracoon-secret";
+    });
+
+    const [marketAsset] = await getAssets("marketdata");
+    const [roleAsset] = await getAssets("role");
+    const [paywallAsset] = await getAssets("paywall");
+
+    expect(marketAsset?.botToken).toBe("market-token");
+    expect(marketAsset?.botClientId).toBe("market-client-id");
+    expect(marketAsset?.marketHours).toBe("us_cash");
+    expect(roleAsset?.trigger).toEqual(["role-message-id"]);
+    expect(roleAsset?.id).toBe("role-id");
+    expect(paywallAsset?.name).toBe("default");
+    expect(paywallAsset?.domains).toEqual(["*"]);
+    expect(paywallAsset?.services).toEqual(["archive.today"]);
+    expect(paywallAsset?.subdomainWildcard).toBe(true);
+  });
+
+  test("loads generic assets across all generic asset files", async () => {
+    const yamlObjectsByType: Record<string, unknown[]> = {
+      emoji: [{
+        name: "party",
+        response: "🎉",
+        trigger: "party",
+      }],
+      image: [{
+        fileName: "chart.png",
+        location: "local",
+        name: "chart",
+        trigger: ["chart"],
+      }],
+      text: [{
+        name: "hello",
+        response: "hello response",
+        title: "hello",
+        trigger: ["hello"],
+      }],
+      user: [{
+        name: "alice",
+        title: "Alice",
+        trigger: ["alice"],
+      }],
+      userquote: [{
+        fileName: "quote.png",
+        location: "local",
+        name: "quote",
+        trigger: [],
+        user: "alice",
+      }],
+    };
+    readFileSyncMock.mockImplementation(path => String(path));
+    yamlLoadMock.mockImplementation(filePath => {
+      const match = /assets\/(.+)\.yaml/.exec(String(filePath));
+      const type = match?.[1] ?? "";
+      return yamlObjectsByType[type] ?? [];
+    });
+
+    const assets = await getGenericAssets();
+
+    expect(assets.map(asset => asset.name)).toEqual([
+      "party",
+      "chart",
+      "hello",
+      "alice",
+      "quote",
+    ]);
+    const emojiAsset = assets[0];
+    expect(emojiAsset).toBeInstanceOf(EmojiAsset);
+    expect(emojiAsset?.trigger).toEqual(["party"]);
+    expect(emojiAsset instanceof EmojiAsset ? emojiAsset.response : []).toEqual(["🎉"]);
+  });
+
+  test("normalizes trigger and emoji response values from loose asset config", () => {
+    const emojiAsset = new EmojiAsset();
+
+    emojiAsset.trigger = ["party", 123, "charts", null];
+    emojiAsset.response = ["🎉", false, "📈"];
+
+    expect(emojiAsset.trigger).toEqual(["party", "charts"]);
+    expect(emojiAsset.response).toEqual(["🎉", "📈"]);
+
+    emojiAsset.trigger = "single";
+    emojiAsset.response = "✅";
+
+    expect(emojiAsset.trigger).toEqual(["single"]);
+    expect(emojiAsset.response).toEqual(["✅"]);
+
+    emojiAsset.trigger = false;
+    emojiAsset.response = false;
+
+    expect(emojiAsset.trigger).toEqual([]);
+    expect(emojiAsset.response).toEqual([]);
+  });
+
+  test("finds assets by exact name", () => {
+    const matchingAsset = {name: "match"};
+    const otherAsset = {name: "other"};
+
+    expect(getAssetByName("match", [otherAsset, matchingAsset])).toBe(matchingAsset);
+    expect(getAssetByName("missing", [otherAsset, matchingAsset])).toBeUndefined();
   });
 
   test("returns empty array when loading assets fails", async () => {

@@ -2,6 +2,9 @@ import axios from "axios";
 
 const retryDelayMs = 500;
 const maxAttempts = 3;
+type DracoonDownloadResponse = {
+  downloadUrl: string;
+};
 
 function shouldRetry(error: unknown): boolean {
   if (false === axios.isAxiosError(error)) {
@@ -16,7 +19,7 @@ function shouldRetry(error: unknown): boolean {
   return statusCode >= 500 || 429 === statusCode;
 }
 
-export async function getFromDracoon(secret: string, downloadToken: string) {
+export async function getFromDracoon(secret: string, downloadToken: string): Promise<Buffer> {
   const data = JSON.stringify({
     password: secret,
   });
@@ -31,13 +34,13 @@ export async function getFromDracoon(secret: string, downloadToken: string) {
   let lastError: unknown;
   for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     try {
-      const urlResponse = await axios.post(`https://dracoon.team/api/v4/public/shares/downloads/${downloadToken}`, data, config);
-      const getResponse = await axios.get(urlResponse.data.downloadUrl, {
+      const urlResponse = await axios.post<DracoonDownloadResponse>(`https://dracoon.team/api/v4/public/shares/downloads/${downloadToken}`, data, config);
+      const getResponse = await axios.get<ArrayBuffer>(urlResponse.data.downloadUrl, {
         responseType: "arraybuffer",
         timeout: 10_000,
       });
 
-      const dataResponse = Buffer.from(getResponse.data, "binary");
+      const dataResponse = Buffer.from(getResponse.data);
       return dataResponse;
     } catch (error: unknown) {
       lastError = error;

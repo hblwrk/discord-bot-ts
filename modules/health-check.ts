@@ -1,11 +1,11 @@
 import http from "node:http";
 import express from "express";
-import {getHealthcheckPort} from "./health-check-config.js";
-import {getLogger} from "./logging.js";
-import {type StartupStateSnapshot} from "./startup-state.js";
+import {getHealthcheckPort} from "./health-check-config.ts";
+import {getLogger} from "./logging.ts";
+import {type StartupStateSnapshot} from "./startup-state.ts";
 
 type HealthcheckLogger = {
-  log: (level: string, message: any) => void;
+  log: (level: string, message: unknown) => void;
 };
 
 function toErrorMessage(error: unknown): string {

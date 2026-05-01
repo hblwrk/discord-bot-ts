@@ -1,5 +1,3 @@
-/* eslint-disable complexity */
-/* eslint-disable yoda */
 
 export type EarningsOutlookMetric = {
   key: string;
@@ -184,14 +182,14 @@ function normalizeOutlookValueText(value: string): string {
   return value
     .replace(/^[\s:|,-]+/, "")
     .replace(/\b(?:is|are|was|were|to\s+be|of|at|approximately|about|around|roughly|expected|expects|expect|guidance|outlook|projected|forecast|in\s+the\s+range\s+of|between)\b/gi, " ")
-    .replace(/\bto\s+(?:grow|increase|decline|decrease|range)\b/gi, " ")
+    .replace(/\bto\s+(?:grow|increase|range)\b/gi, " ")
     .replace(/\s+/g, " ")
     .trim();
 }
 
 function getGrowthOutlookValue(value: string): string | null {
   const growthMatch = value.match(/\b(low|mid|high)\s+(single|double)[-\s]+digit(?:s)?(?:\s+(?:growth|increase|decline|decrease))?\b/i);
-  if (growthMatch) {
+  if (undefined !== growthMatch?.[1] && undefined !== growthMatch[2]) {
     return `${growthMatch[1].toLowerCase()} ${growthMatch[2].toLowerCase()}-digit ${getGrowthDirection(value)}`;
   }
 
@@ -210,25 +208,33 @@ function getGrowthDirection(value: string): "growth" | "decline" {
 function getOutlookRangeValue(value: string, valueType: OutlookValueType): string | null {
   if ("percent" === valueType) {
     const percentRangeMatch = value.match(/(-?\d+(?:\.\d+)?)\s*%\s*(?:to|through|-|–|and)\s*(-?\d+(?:\.\d+)?)\s*%/i);
-    return percentRangeMatch ? `${formatPercent(Number.parseFloat(percentRangeMatch[1]))} to ${formatPercent(Number.parseFloat(percentRangeMatch[2]))}` : null;
+    return undefined !== percentRangeMatch?.[1] && undefined !== percentRangeMatch[2]
+      ? `${formatPercent(Number.parseFloat(percentRangeMatch[1]))} to ${formatPercent(Number.parseFloat(percentRangeMatch[2]))}`
+      : null;
   }
 
-  const moneyRangeMatch = value.match(/(\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:trillion|billion|million|t|b|m)?)(?:\s*(?:to|through|-|–|and)\s*)(\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:trillion|billion|million|t|b|m)?)/i);
+  const moneyRangeMatch = value.match(/(\(?\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:trillion|billion|million|t|b|m)?\)?)(?:\s*(?:to|through|-|–|and)\s*)(\(?\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:trillion|billion|million|t|b|m)?\)?)/i);
   if (!moneyRangeMatch) {
     return null;
   }
 
+  const firstRangeValue = moneyRangeMatch[1];
+  const secondRangeValue = moneyRangeMatch[2];
+  if (undefined === firstRangeValue || undefined === secondRangeValue) {
+    return null;
+  }
+
   if ("eps" === valueType) {
-    const firstValue = parseNumber(moneyRangeMatch[1]);
-    const secondValue = parseNumber(moneyRangeMatch[2]);
+    const firstValue = parseNumber(firstRangeValue);
+    const secondValue = parseNumber(secondRangeValue);
     return null === firstValue || null === secondValue
       ? null
       : `${formatEps(firstValue)} to ${formatEps(secondValue)}`;
   }
 
-  const inferredUnit = getMoneyUnit(moneyRangeMatch[2]) ?? getMoneyUnit(moneyRangeMatch[1]);
-  const firstMoneyValue = parseMoneyWithOptionalUnit(moneyRangeMatch[1], inferredUnit);
-  const secondMoneyValue = parseMoneyWithOptionalUnit(moneyRangeMatch[2], inferredUnit);
+  const inferredUnit = getMoneyUnit(secondRangeValue) ?? getMoneyUnit(firstRangeValue);
+  const firstMoneyValue = parseMoneyWithOptionalUnit(firstRangeValue, inferredUnit);
+  const secondMoneyValue = parseMoneyWithOptionalUnit(secondRangeValue, inferredUnit);
   return null === firstMoneyValue || null === secondMoneyValue
     ? null
     : `${formatUsdCompact(firstMoneyValue)} to ${formatUsdCompact(secondMoneyValue)}`;
@@ -255,7 +261,7 @@ function getSingleOutlookValue(value: string, valueType: OutlookValueType): stri
 }
 
 function getFallbackOutlookValue(value: string): string | null {
-  const fallbackValue = value.split(/[.;]/)[0].trim();
+  const fallbackValue = value.split(/[.;]/)[0]?.trim() ?? "";
   if (fallbackValue.length < 2 || fallbackValue.length > 80) {
     return null;
   }
@@ -338,7 +344,7 @@ function parseMoneyWithOptionalUnit(value: string, inferredUnit?: string): numbe
 }
 
 function getMoneyUnit(value: string): string | undefined {
-  return value.match(/(trillion|billion|million|[tbm])\b/i)?.[1].toLowerCase();
+  return value.match(/(trillion|billion|million|[tbm])\b/i)?.[1]?.toLowerCase();
 }
 
 function formatEps(value: number): string {

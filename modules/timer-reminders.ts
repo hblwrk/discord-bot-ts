@@ -1,10 +1,9 @@
-/* eslint-disable import/extensions */
 import {
   type CalendarReminderAsset,
   type EarningsReminderAsset,
-} from "./assets.js";
-import {type CalendarEvent} from "./calendar.js";
-import {type EarningsEvent} from "./earnings.js";
+} from "./assets.ts";
+import {type CalendarEvent} from "./calendar.ts";
+import {type EarningsEvent} from "./earnings.ts";
 
 const earningsReminderWhenSortRank = new Map<string, number>([
   ["before_open", 0],
@@ -126,6 +125,10 @@ function getCalendarReminderEventSummary(calendarEvents: CalendarEvent[]): strin
 
 export function getCalendarReminderMessage(roleId: string, calendarEvents: CalendarEvent[]): string {
   const primaryEvent = calendarEvents[0];
+  if (undefined === primaryEvent) {
+    return `${getRoleMention(roleId)} Heute wichtig:`;
+  }
+
   return `${getRoleMention(roleId)} Heute wichtig: \`${primaryEvent.time}\` ${primaryEvent.country} ${getCalendarReminderEventSummary(calendarEvents)}`;
 }
 

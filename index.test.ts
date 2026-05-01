@@ -1,24 +1,40 @@
-const startBotMock = jest.fn();
-const loggerMock = {
-  level: "info",
-  log: jest.fn(),
+import type {MockInstance} from "vitest";
+import {afterEach, beforeEach, describe, expect, test, vi} from "vitest";
+
+const {loggerMock, startBotMock} = vi.hoisted(() => ({
+  loggerMock: {
+    level: "info",
+    log: vi.fn(),
+  },
+  startBotMock: vi.fn(),
+}));
+const warningHandlerSymbol = Symbol.for("hblwrk.discord-bot-ts.warning-handler");
+type ProcessWarningWithMetadata = Error & {
+  code?: string;
+  count?: number;
+  emitter?: {
+    constructor?: {
+      name?: string;
+    };
+  };
+  type?: string;
 };
 
-jest.mock("./modules/startup-orchestrator.js", () => ({
+vi.mock("./modules/startup-orchestrator.ts", () => ({
   startBot: startBotMock,
 }));
 
-jest.mock("./modules/logging.js", () => ({
+vi.mock("./modules/logging.ts", () => ({
   getLogger: () => loggerMock,
 }));
 
 describe("index bootstrap", () => {
-  let exitSpy: jest.SpyInstance;
+  let exitSpy: MockInstance;
 
   beforeEach(() => {
-    jest.resetModules();
-    jest.clearAllMocks();
-    exitSpy = jest.spyOn(process, "exit").mockImplementation((() => undefined) as never);
+    vi.resetModules();
+    vi.clearAllMocks();
+    exitSpy = vi.spyOn(process, "exit").mockImplementation((() => undefined) as never);
   });
 
   afterEach(() => {
@@ -28,7 +44,7 @@ describe("index bootstrap", () => {
   test("delegates startup to orchestrator", async () => {
     startBotMock.mockResolvedValue(undefined);
 
-    await import("./index.js");
+    await import("./index.ts");
     await new Promise(resolve => {
       setImmediate(resolve);
     });
@@ -50,7 +66,7 @@ describe("index bootstrap", () => {
   test("exits process when startup fails", async () => {
     startBotMock.mockRejectedValueOnce(new Error("boom"));
 
-    await import("./index.js");
+    await import("./index.ts");
     await new Promise(resolve => {
       setImmediate(resolve);
     });
@@ -65,23 +81,27 @@ describe("index bootstrap", () => {
   test("logs process warnings through logger", async () => {
     startBotMock.mockResolvedValue(undefined);
 
-    await import("./index.js");
+    await import("./index.ts");
     await new Promise(resolve => {
       setImmediate(resolve);
     });
 
-    const warning = new Error("Possible AsyncEventEmitter memory leak detected.");
+    const warning: ProcessWarningWithMetadata = new Error("Possible AsyncEventEmitter memory leak detected.");
     warning.name = "MaxListenersExceededWarning";
-    (warning as any).code = "MAX_LISTENERS_EXCEEDED";
-    (warning as any).type = "error";
-    (warning as any).count = 11;
-    (warning as any).emitter = {
+    warning.code = "MAX_LISTENERS_EXCEEDED";
+    warning.type = "error";
+    warning.count = 11;
+    warning.emitter = {
       constructor: {
         name: "WebSocketShard",
       },
     };
 
-    process.emit("warning", warning);
+    const warningHandler = (process as NodeJS.Process & {
+      [warningHandlerSymbol]?: (processWarning: Error) => void;
+    })[warningHandlerSymbol];
+    expect(warningHandler).toEqual(expect.any(Function));
+    warningHandler?.(warning);
 
     expect(loggerMock.log).toHaveBeenCalledWith(
       "warn",

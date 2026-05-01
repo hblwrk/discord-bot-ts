@@ -3,7 +3,7 @@ import {isHoliday} from "nyse-holidays";
 import {
   type MarketDataAsset,
   type MarketPresenceData,
-} from "./market-data-types.js";
+} from "./market-data-types.ts";
 
 export const marketClosedPresence = "Market closed.";
 const marketClosedTrend = "⬛";
@@ -22,8 +22,9 @@ export function getMarketPresenceData(
   openNickname: string,
   openPresence: string,
   priceChange: number,
+  referenceTime = Date.now(),
 ): MarketPresenceData {
-  if (false === isMarketOpen(marketDataAsset)) {
+  if (false === isMarketOpen(marketDataAsset, referenceTime)) {
     return {
       nickname: getClosedMarketNickname(marketDataAsset, openNickname) ?? openNickname,
       ...buildClosedMarketPresenceData(),

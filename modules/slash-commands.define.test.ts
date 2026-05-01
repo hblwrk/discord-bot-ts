@@ -1,36 +1,59 @@
-const mockPut = jest.fn();
-const mockGet = jest.fn();
-const mockOn = jest.fn();
-const mockSetToken = jest.fn().mockReturnValue({
-  put: mockPut,
-  get: mockGet,
-  on: mockOn,
-});
-const mockRest = jest.fn().mockImplementation(() => ({setToken: mockSetToken}));
-const mockApplicationGuildCommands = jest.fn(() => "/applications/test/commands");
-const loggerMock = {
-  log: jest.fn(),
-};
+import type {MockedFunction} from "vitest";
+import type * as DiscordJs from "discord.js";
+import {beforeEach, describe, expect, test, vi} from "vitest";
 
-jest.mock("discord.js", () => {
-  const actual = jest.requireActual("discord.js");
+const {
+  loggerMock,
+  mockApplicationGuildCommands,
+  mockGet,
+  mockOn,
+  mockPut,
+  mockRest,
+  mockSetToken,
+} = vi.hoisted(() => {
+  const mockPut = vi.fn();
+  const mockGet = vi.fn();
+  const mockOn = vi.fn();
+  const mockSetToken = vi.fn().mockReturnValue({
+    put: mockPut,
+    get: mockGet,
+    on: mockOn,
+  });
+
+  return {
+    loggerMock: {
+      log: vi.fn(),
+    },
+    mockApplicationGuildCommands: vi.fn((_applicationId?: string, _guildId?: string) => "/applications/test/commands"),
+    mockGet,
+    mockOn,
+    mockPut,
+    mockRest: vi.fn().mockImplementation(() => ({setToken: mockSetToken})),
+    mockSetToken,
+  };
+});
+
+vi.mock("discord.js", async importOriginal => {
+  const actual = await importOriginal<typeof DiscordJs>();
 
   return {
     ...actual,
-    REST: mockRest,
+    REST: function MockRest(...args: unknown[]) {
+      return mockRest(...args);
+    },
     Routes: {
       ...actual.Routes,
-      applicationGuildCommands: mockApplicationGuildCommands,
+      applicationGuildCommands: (applicationId: string, guildId: string) => mockApplicationGuildCommands(applicationId, guildId),
     },
   };
 });
 
-import {ImageAsset, TextAsset} from "./assets.js";
-import {buildSlashCommandPayload, defineSlashCommands} from "./slash-commands.js";
-import {readSecret} from "./secrets.js";
+import {ImageAsset, TextAsset, UserAsset} from "./assets.ts";
+import {buildSlashCommandPayload, defineSlashCommands} from "./slash-commands.ts";
+import {readSecret} from "./secrets.ts";
 
-jest.mock("./secrets.js", () => ({
-  readSecret: jest.fn(secretName => {
+vi.mock("./secrets.ts", () => ({
+  readSecret: vi.fn(secretName => {
     if ("discord_token" === secretName) {
       return "test-token";
     }
@@ -47,33 +70,92 @@ jest.mock("./secrets.js", () => ({
   }),
 }));
 
-jest.mock("./logging.js", () => ({
-  getLogger: () => loggerMock,
-  getDiscordLogger: () => loggerMock,
+vi.mock("./logging.ts", () => ({
+  getLogger: () => ({
+    log: (...args: unknown[]) => loggerMock.log(...args),
+  }),
+  getDiscordLogger: () => ({
+    log: (...args: unknown[]) => loggerMock.log(...args),
+  }),
 }));
 
-const mockedReadSecret = readSecret as jest.MockedFunction<typeof readSecret>;
+const mockedReadSecret = readSecret as MockedFunction<typeof readSecret>;
+type SlashCommandPayload = ReturnType<typeof buildSlashCommandPayload>["slashCommands"];
+type SlashCommandPayloadCommand = SlashCommandPayload[number];
+type RemoteSlashCommandPayloadCommand = SlashCommandPayloadCommand & {
+  application_id: string;
+  dm_permission: boolean;
+  guild_id: string;
+  id: string;
+  version: string;
+};
+type SlashCommandPutOptions = {
+  body: SlashCommandPayload;
+};
+type DiscordRestTestError = Error & {
+  code?: number;
+  global?: boolean;
+  rawError?: {
+    global?: boolean;
+    message?: string;
+    retry_after?: number;
+  };
+  response?: {
+    headers?: Record<string, string>;
+  };
+  retryAfter?: number;
+  status?: number;
+  sublimitTimeout?: number;
+  timeToReset?: number;
+};
 
 function cloneJson<T>(value: T): T {
   return JSON.parse(JSON.stringify(value));
 }
 
-function toRemoteCommandPayload(commands: any[]): any[] {
+function toRemoteCommandPayload(commands: SlashCommandPayload): RemoteSlashCommandPayloadCommand[] {
   return commands
     .map((command, index) => ({
+      ...cloneJson(command),
       id: `command-${index}`,
       application_id: "application-id",
       guild_id: "guild-id",
       version: "42",
       dm_permission: true,
-      ...cloneJson(command),
     }))
     .reverse();
 }
 
+function getLastPutBody(): SlashCommandPayload {
+  const putOptions = mockPut.mock.calls[0]?.[1] as SlashCommandPutOptions | undefined;
+  return putOptions?.body ?? [];
+}
+
+function findCommand(commands: SlashCommandPayload, commandName: string): SlashCommandPayloadCommand {
+  const command = commands.find(candidate => candidate.name === commandName);
+  if (!command) {
+    throw new Error(`Missing command ${commandName}.`);
+  }
+
+  return command;
+}
+
+function createWhatIsAsset(name: string, title: string): ImageAsset {
+  const asset = new ImageAsset();
+  asset.name = name;
+  asset.title = title;
+  return asset;
+}
+
+function createUserAsset(name: string): UserAsset {
+  const asset = new UserAsset();
+  asset.name = name;
+  return asset;
+}
+
 describe("defineSlashCommands", () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    vi.clearAllMocks();
     mockedReadSecret.mockClear();
     mockPut.mockImplementation(async (_route, options) => options?.body ?? []);
     mockGet.mockResolvedValue([]);
@@ -82,19 +164,19 @@ describe("defineSlashCommands", () => {
   test("does a GET-only noop when the remote payload already matches after canonicalization", async () => {
     const asset = new TextAsset();
     asset.title = "Hello title";
-    (asset as any).trigger = ["hello world"];
+    asset.trigger = ["hello world"];
     asset.response = "Hello";
     const desiredPayload = buildSlashCommandPayload(
       [asset],
-      [{title: "FAQ", name: "whatis_faq"}],
-      [{name: "alice"}],
+      [createWhatIsAsset("whatis_faq", "FAQ")],
+      [createUserAsset("alice")],
     ).slashCommands;
     mockGet.mockResolvedValueOnce(toRemoteCommandPayload(desiredPayload));
 
     await defineSlashCommands(
       [asset],
-      [{title: "FAQ", name: "whatis_faq"}],
-      [{name: "alice"}],
+      [createWhatIsAsset("whatis_faq", "FAQ")],
+      [createUserAsset("alice")],
     );
 
     expect(mockRest).toHaveBeenCalledWith(expect.objectContaining({
@@ -102,7 +184,7 @@ describe("defineSlashCommands", () => {
       timeout: 120000,
       rejectOnRateLimit: expect.any(Function),
     }));
-    expect(mockRest.mock.calls[0][0].rejectOnRateLimit({
+    expect(mockRest.mock.calls[0]![0].rejectOnRateLimit({
       route: "/applications/:id/guilds/:id/commands",
     })).toBe(true);
     expect(mockSetToken).toHaveBeenCalledWith("test-token");
@@ -173,18 +255,18 @@ describe("defineSlashCommands", () => {
   test("updates slash commands when the remote payload differs and uses the PUT response for verification", async () => {
     const asset = new TextAsset();
     asset.title = "Hello title";
-    (asset as any).trigger = ["hello world"];
+    asset.trigger = ["hello world"];
     asset.response = "Hello";
     const desiredPayload = buildSlashCommandPayload([asset], [], []).slashCommands;
     const remotePayload = toRemoteCommandPayload(desiredPayload);
-    remotePayload.find(command => "hello_world" === command.name).description = "Old description";
+    findCommand(remotePayload, "hello_world").description = "Old description";
     mockGet.mockResolvedValueOnce(remotePayload);
 
     await defineSlashCommands([asset], [], []);
 
     expect(mockGet).toHaveBeenCalledTimes(1);
     expect(mockPut).toHaveBeenCalledTimes(1);
-    expect(mockPut.mock.calls[0][1].body.find(command => command.name === "hello_world").description).toBe("Hello title");
+    expect(getLastPutBody().find(command => command.name === "hello_world")?.description).toBe("Hello title");
     expect(loggerMock.log).toHaveBeenCalledWith(
       "warn",
       expect.objectContaining({
@@ -213,11 +295,11 @@ describe("defineSlashCommands", () => {
   test("falls back to GET when the PUT response shape is unexpected", async () => {
     const asset = new TextAsset();
     asset.title = "Hello title";
-    (asset as any).trigger = ["hello world"];
+    asset.trigger = ["hello world"];
     asset.response = "Hello";
     const desiredPayload = buildSlashCommandPayload([asset], [], []).slashCommands;
     const remotePayload = toRemoteCommandPayload(desiredPayload);
-    remotePayload.find(command => "hello_world" === command.name).description = "Old description";
+    findCommand(remotePayload, "hello_world").description = "Old description";
     mockGet
       .mockResolvedValueOnce(remotePayload)
       .mockResolvedValueOnce(toRemoteCommandPayload(desiredPayload));
@@ -239,7 +321,7 @@ describe("defineSlashCommands", () => {
   test("logs warning and throws when post-write verification still mismatches", async () => {
     const dracoonImageAsset = new ImageAsset();
     dracoonImageAsset.title = "Dracoon image";
-    (dracoonImageAsset as any).trigger = ["dracooncmd"];
+    dracoonImageAsset.trigger = ["dracooncmd"];
     dracoonImageAsset.location = "dracoon";
     mockGet
       .mockResolvedValueOnce([])
@@ -295,7 +377,7 @@ describe("defineSlashCommands", () => {
   });
 
   test("throws create-limit error with retry-after details when Discord limit is reached", async () => {
-    const createLimitError: any = new Error("Max number of daily application command creates has been reached (200)");
+    const createLimitError: DiscordRestTestError = new Error("Max number of daily application command creates has been reached (200)");
     createLimitError.code = 30034;
     createLimitError.rawError = {
       message: "Max number of daily application command creates has been reached (200)",
@@ -324,7 +406,7 @@ describe("defineSlashCommands", () => {
   });
 
   test("throws rate-limit error with retry-after details when Discord responds with 429", async () => {
-    const rateLimitError: any = new Error("You are being rate limited.");
+    const rateLimitError: DiscordRestTestError = new Error("You are being rate limited.");
     rateLimitError.status = 429;
     rateLimitError.rawError = {
       message: "You are being rate limited.",
@@ -343,7 +425,7 @@ describe("defineSlashCommands", () => {
   });
 
   test("uses the Retry-After header when Discord omits retry_after in a 429 response", async () => {
-    const rateLimitError: any = new Error("You are being rate limited.");
+    const rateLimitError: DiscordRestTestError = new Error("You are being rate limited.");
     rateLimitError.status = 429;
     rateLimitError.response = {
       headers: {
@@ -361,7 +443,7 @@ describe("defineSlashCommands", () => {
   });
 
   test("uses the largest delay from discord.js RateLimitError objects", async () => {
-    const rateLimitError: any = new Error("");
+    const rateLimitError: DiscordRestTestError = new Error("");
     rateLimitError.name = "RateLimitError[/applications/:id/guilds/:id/commands]";
     rateLimitError.global = false;
     rateLimitError.retryAfter = 11_902;
@@ -380,13 +462,13 @@ describe("defineSlashCommands", () => {
   test("normalizes trigger names and skips invalid or duplicate slash command names", async () => {
     const asset = new TextAsset();
     asset.title = "Title";
-    (asset as any).trigger = ["kursänderung", "kursanderung", "!!!"];
+    asset.trigger = ["kursänderung", "kursanderung", "!!!"];
     asset.response = "ok";
     mockGet.mockResolvedValueOnce([]);
 
     await defineSlashCommands([asset], [], []);
 
-    const commandPayload = mockPut.mock.calls[0][1].body;
+    const commandPayload = getLastPutBody();
     const kursCommands = commandPayload.filter(command => command.name === "kursanderung");
     expect(kursCommands).toHaveLength(1);
 
@@ -413,11 +495,11 @@ describe("defineSlashCommands", () => {
     const firstImage = new ImageAsset();
     firstImage.title = "Betrug 1";
     firstImage.location = "dracoon";
-    (firstImage as any).trigger = ["betrug 1"];
+    firstImage.trigger = ["betrug 1"];
     const secondImage = new ImageAsset();
     secondImage.title = "Betrug 2";
     secondImage.location = "dracoon";
-    (secondImage as any).trigger = ["betrug 2"];
+    secondImage.trigger = ["betrug 2"];
 
     const payload = buildSlashCommandPayload([firstImage, secondImage], [], []);
     const betrugCommand = payload.slashCommands.find(command => command.name === "betrug");
@@ -448,7 +530,7 @@ describe("defineSlashCommands", () => {
       const asset = new TextAsset();
       asset.title = `Title ${index}`;
       asset.response = `Response ${index}`;
-      (asset as any).trigger = [`asset-${index}`];
+      asset.trigger = [`asset-${index}`];
       assets.push(asset);
     }
 

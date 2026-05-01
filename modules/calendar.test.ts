@@ -1,10 +1,11 @@
+import {describe, expect, test} from "vitest";
 import {
   CALENDAR_CONTINUATION_LABEL,
   CALENDAR_MAX_MESSAGE_LENGTH,
   CalendarEvent,
   getCalendarEventDateTime,
   getCalendarMessages,
-} from "./calendar.js";
+} from "./calendar.ts";
 
 function createCalendarEvent(date: string, time: string, name: string, country = "🇺🇸"): CalendarEvent {
   const calendarEvent = new CalendarEvent();
@@ -41,10 +42,10 @@ describe("getCalendarMessages", () => {
     expect(batch.truncated).toBe(false);
     expect(batch.totalEvents).toBe(2);
     expect(batch.includedEvents).toBe(2);
-    expect(batch.messages[0]).toContain("Wichtige Termine:");
-    expect(batch.messages[0]).toContain("Wichtige Termine:\n\n**Montag, 3. März 2025**");
-    expect(batch.messages[0]).toContain("Event A");
-    expect(batch.messages[0]).toContain("Event B");
+    expect(batch.messages[0]!).toContain("Wichtige Termine:");
+    expect(batch.messages[0]!).toContain("Wichtige Termine:\n\n**Montag, 3. März 2025**");
+    expect(batch.messages[0]!).toContain("Event A");
+    expect(batch.messages[0]!).toContain("Event B");
   });
 
   test("uses a custom title when provided", () => {
@@ -59,8 +60,8 @@ describe("getCalendarMessages", () => {
       keepDayTogether: true,
     });
 
-    expect(batch.messages[0]).toContain("📅 **Wichtige Termine der nächsten Handelswoche:**");
-    expect(batch.messages[0]).not.toContain("Wichtige Termine:\n");
+    expect(batch.messages[0]!).toContain("📅 **Wichtige Termine der nächsten Handelswoche:**");
+    expect(batch.messages[0]!).not.toContain("Wichtige Termine:\n");
   });
 
   test("chunks by day boundaries across multiple days", () => {
@@ -72,8 +73,8 @@ describe("getCalendarMessages", () => {
       createCalendarEvent("2025-03-04", "11:00", "Day2-Event1"),
       createCalendarEvent("2025-03-04", "12:00", "Day2-Event2"),
     ];
-    const firstDayLength = getCalendarMessages(dayOneEvents).messages[0].length;
-    const secondDayLength = getCalendarMessages(dayTwoEvents).messages[0].length;
+    const firstDayLength = getCalendarMessages(dayOneEvents).messages[0]!.length;
+    const secondDayLength = getCalendarMessages(dayTwoEvents).messages[0]!.length;
     const maxMessageLength = Math.max(firstDayLength, secondDayLength) + 5;
 
     const batch = getCalendarMessages([...dayOneEvents, ...dayTwoEvents], {
@@ -83,11 +84,11 @@ describe("getCalendarMessages", () => {
     });
 
     expect(batch.messages).toHaveLength(2);
-    expect(batch.messages[0]).toContain("Day1-Event1");
-    expect(batch.messages[0]).toContain("Day1-Event2");
-    expect(batch.messages[0]).not.toContain("Day2-Event1");
-    expect(batch.messages[1]).toContain("Day2-Event1");
-    expect(batch.messages[1]).toContain("Day2-Event2");
+    expect(batch.messages[0]!).toContain("Day1-Event1");
+    expect(batch.messages[0]!).toContain("Day1-Event2");
+    expect(batch.messages[0]!).not.toContain("Day2-Event1");
+    expect(batch.messages[1]!).toContain("Day2-Event1");
+    expect(batch.messages[1]!).toContain("Day2-Event2");
   });
 
   test("does not split same-day events when the full day fits in an empty message", () => {
@@ -98,7 +99,7 @@ describe("getCalendarMessages", () => {
       createCalendarEvent("2025-03-04", "09:00", "Day2-Event1"),
       createCalendarEvent("2025-03-04", "10:00", "Day2-Event2"),
     ];
-    const secondDayLength = getCalendarMessages(secondDayEvents).messages[0].length;
+    const secondDayLength = getCalendarMessages(secondDayEvents).messages[0]!.length;
     const maxMessageLength = secondDayLength + 5;
 
     const batch = getCalendarMessages([...firstDayEvents, ...secondDayEvents], {
@@ -108,11 +109,11 @@ describe("getCalendarMessages", () => {
     });
 
     expect(batch.messages).toHaveLength(2);
-    expect(batch.messages[0]).toContain("Day1-Event");
-    expect(batch.messages[0]).not.toContain("Day2-Event1");
-    expect(batch.messages[1]).toContain("Day2-Event1");
-    expect(batch.messages[1]).toContain("Day2-Event2");
-    expect(batch.messages[1]).not.toContain(CALENDAR_CONTINUATION_LABEL);
+    expect(batch.messages[0]!).toContain("Day1-Event");
+    expect(batch.messages[0]!).not.toContain("Day2-Event1");
+    expect(batch.messages[1]!).toContain("Day2-Event1");
+    expect(batch.messages[1]!).toContain("Day2-Event2");
+    expect(batch.messages[1]!).not.toContain(CALENDAR_CONTINUATION_LABEL);
   });
 
   test("splits oversized single-day content with continuation headers", () => {
@@ -128,8 +129,8 @@ describe("getCalendarMessages", () => {
     });
 
     expect(batch.messages.length).toBeGreaterThan(1);
-    expect(batch.messages[0]).toContain("Event 0");
-    expect(batch.messages[1]).toContain(CALENDAR_CONTINUATION_LABEL);
+    expect(batch.messages[0]!).toContain("Event 0");
+    expect(batch.messages[1]!).toContain(CALENDAR_CONTINUATION_LABEL);
     expect(batch.includedEvents).toBe(16);
     expect(batch.totalEvents).toBe(16);
     for (const message of batch.messages) {
@@ -154,7 +155,7 @@ describe("getCalendarMessages", () => {
     expect(batch.truncated).toBe(true);
     expect(batch.messages).toHaveLength(3);
     expect(batch.includedEvents).toBeLessThan(batch.totalEvents);
-    expect(batch.messages[2]).toContain("... weitere Termine konnten wegen Discord-Limits nicht angezeigt werden.");
+    expect(batch.messages[2]!).toContain("... weitere Termine konnten wegen Discord-Limits nicht angezeigt werden.");
   });
 
   test("keeps each chunk at or below the default Discord-safe message length", () => {
@@ -190,7 +191,7 @@ describe("getCalendarMessages", () => {
           maxMessageLength: 5000,
           maxMessages: 4,
           keepDayTogether: true,
-        }).messages[0].length;
+        }).messages[0]!.length;
         if (renderedLength === targetLength) {
           return nameLength;
         }
@@ -222,9 +223,9 @@ describe("getCalendarMessages", () => {
     expect(batch1799.truncated).toBe(false);
     expect(batch1800.truncated).toBe(true);
     expect(batch1801.truncated).toBe(true);
-    expect(batch1799.messages[0].length).toBe(1799);
-    expect(batch1800.messages[0].length).toBeLessThanOrEqual(1800);
-    expect(batch1801.messages[0].length).toBeLessThanOrEqual(1800);
+    expect(batch1799.messages[0]!.length).toBe(1799);
+    expect(batch1800.messages[0]!.length).toBeLessThanOrEqual(1800);
+    expect(batch1801.messages[0]!.length).toBeLessThanOrEqual(1800);
   });
 
   test("handles multiple days when one day is extremely large", () => {

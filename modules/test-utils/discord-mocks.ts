@@ -1,24 +1,36 @@
-type EventHandler = (...args: any[]) => unknown | Promise<unknown>;
+import {vi} from "vitest";
+
+type RegisteredEventHandler = (...args: unknown[]) => unknown | Promise<unknown>;
+type AcceptedEventHandler = (...args: never[]) => unknown | Promise<unknown>;
+type EventRegistrar = <Handler extends AcceptedEventHandler>(eventName: string, handler: Handler) => EventClient;
+type EventClient = {
+  on: EventRegistrar;
+  once: EventRegistrar;
+};
 
 export function createEventClient() {
-  const handlers = new Map<string, EventHandler>();
+  const handlers = new Map<string, RegisteredEventHandler>();
 
-  const client = {
-    on: jest.fn((eventName: string, handler: EventHandler) => {
-      handlers.set(eventName, handler);
-      return client;
-    }),
-    once: jest.fn((eventName: string, handler: EventHandler) => {
-      handlers.set(eventName, handler);
-      return client;
-    }),
-  };
+  const client = {} as EventClient;
+  client.on = vi.fn((eventName: string, handler: AcceptedEventHandler) => {
+    handlers.set(eventName, handler as unknown as RegisteredEventHandler);
+    return client;
+  });
+  client.once = vi.fn((eventName: string, handler: AcceptedEventHandler) => {
+    handlers.set(eventName, handler as unknown as RegisteredEventHandler);
+    return client;
+  });
 
   return {
     client,
     handlers,
-    getHandler(eventName: string) {
-      return handlers.get(eventName);
+    getHandler<Handler extends RegisteredEventHandler = RegisteredEventHandler>(eventName: string): Handler {
+      const handler = handlers.get(eventName);
+      if (!handler) {
+        throw new Error(`Missing handler for ${eventName}.`);
+      }
+
+      return handler as Handler;
     },
   };
 }
@@ -26,16 +38,16 @@ export function createEventClient() {
 export function createChatInputInteraction(commandName: string) {
   return {
     commandName,
-    isChatInputCommand: jest.fn(() => true),
+    isChatInputCommand: vi.fn(() => true),
     options: {
-      getString: jest.fn((_name?: string) => null),
-      getNumber: jest.fn((_name?: string) => null),
-      getInteger: jest.fn((_name?: string) => null),
+      getString: vi.fn((_name?: string): string | null => null),
+      getNumber: vi.fn((_name?: string): number | null => null),
+      getInteger: vi.fn((_name?: string): number | null => null),
     },
-    deferReply: jest.fn().mockResolvedValue(undefined),
-    editReply: jest.fn().mockResolvedValue(undefined),
-    reply: jest.fn().mockResolvedValue(undefined),
-    followUp: jest.fn().mockResolvedValue(undefined),
+    deferReply: vi.fn().mockResolvedValue(undefined),
+    editReply: vi.fn().mockResolvedValue(undefined),
+    reply: vi.fn().mockResolvedValue(undefined),
+    followUp: vi.fn().mockResolvedValue(undefined),
     user: {
       id: "user-id",
       username: "user-name",
@@ -46,17 +58,19 @@ export function createChatInputInteraction(commandName: string) {
 
 export function createMessage(content: string) {
   return {
+    author: undefined as {bot?: boolean; id?: string} | undefined,
     content,
     channel: {
-      send: jest.fn().mockResolvedValue(undefined),
+      send: vi.fn().mockResolvedValue(undefined),
     },
     guild: {
       emojis: {
         cache: {
-          find: jest.fn(),
+          find: vi.fn(),
         },
       },
     },
-    react: jest.fn().mockResolvedValue(undefined),
+    react: vi.fn().mockResolvedValue(undefined),
+    webhookId: undefined as string | null | undefined,
   };
 }

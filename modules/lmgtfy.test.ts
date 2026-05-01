@@ -1,4 +1,5 @@
-import {google, lmgtfy} from "./lmgtfy.js";
+import {google, lmgtfy} from "./lmgtfy.ts";
+import {describe, expect, test} from "vitest";
 
 describe("lmgtfy helpers", () => {
   test("lmgtfy URL-encodes search terms", () => {
