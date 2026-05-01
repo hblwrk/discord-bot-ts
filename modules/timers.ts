@@ -53,8 +53,27 @@ const usEasternWeekdays = [new Schedule.Range(1, 5)];
 const gainsAndLossesThreadName = "Heutige Gains&Losses";
 const berlinWeekdays = [new Schedule.Range(1, 5)];
 const minutesPerDay = 24 * 60;
+const nyseOpenAnnouncement = "🔔🔔🔔 Ich bin ready. Ihr seid ready?! Na dann loooos! Huuuiiii! 🚀 Der Börsenritt beginnt, meine Freunde. Seid dabei, ihr dürft nichts verpassen! 🥳 🎠 🔔🔔🔔";
+const nyseSentimentPollQuestion = "Opening Sentiment: Wie geht ihr in den Handel?";
+const nyseRegularSentimentPollFallbackHours = 5;
+const nyseEarlyCloseSentimentPollFallbackHours = 2;
 type SendableChannel = {
   send: (payload: unknown) => Promise<unknown> | unknown;
+};
+type NyseSentimentPollMessage = {
+  channel?: {
+    messages?: {
+      endPoll?: (messageId: string) => Promise<unknown> | unknown;
+    };
+  };
+  id?: string;
+  poll?: {
+    end?: () => Promise<unknown> | unknown;
+  };
+};
+type NyseSentimentPollState = {
+  ended: boolean;
+  message?: NyseSentimentPollMessage;
 };
 type RecurrenceRuleConfig = {
   hour: number;
@@ -71,6 +90,13 @@ type EarningsAnnouncementConfig = {
   source: string;
   when: "all" | "before_open" | "during_session" | "after_close" | string;
 };
+const nyseSentimentPollAnswers = [
+  {emoji: "🟢", text: "Risk-on"},
+  {emoji: "🔴", text: "Risk-off"},
+  {emoji: "💵", text: "Cash"},
+  {emoji: "🎢", text: "Chaos"},
+];
+
 function createRecurrenceRule(config: RecurrenceRuleConfig): Schedule.RecurrenceRule {
   const recurrenceRule = new Schedule.RecurrenceRule();
   recurrenceRule.hour = config.hour;
@@ -130,6 +156,75 @@ function isDayAfterThanksgiving(): boolean {
   return nowUsEastern.format("YYYY-MM-DD") === dayAfterThanksgiving;
 }
 
+function getNyseSentimentPollDurationHours(): number {
+  if (true === isDayAfterThanksgiving()) {
+    return nyseEarlyCloseSentimentPollFallbackHours;
+  }
+
+  return nyseRegularSentimentPollFallbackHours;
+}
+
+function getNyseOpenAnnouncementPayload() {
+  return {
+    content: nyseOpenAnnouncement,
+    poll: {
+      question: {
+        text: nyseSentimentPollQuestion,
+      },
+      answers: nyseSentimentPollAnswers,
+      duration: getNyseSentimentPollDurationHours(),
+      allowMultiselect: false,
+    },
+  };
+}
+
+async function sendNyseOpenAnnouncement(
+  client,
+  channelID: string,
+  sentimentPollState: NyseSentimentPollState,
+) {
+  sentimentPollState.ended = false;
+  sentimentPollState.message = undefined;
+  const message = await sendAnnouncement(client, channelID, getNyseOpenAnnouncementPayload(), "NYSE");
+  if (message && "object" === typeof message) {
+    sentimentPollState.message = message as NyseSentimentPollMessage;
+  }
+}
+
+async function endNyseSentimentPoll(sentimentPollState: NyseSentimentPollState, source: string) {
+  if (true === sentimentPollState.ended) {
+    return;
+  }
+
+  const pollMessage = sentimentPollState.message;
+  if (!pollMessage) {
+    return;
+  }
+
+  if ("function" === typeof pollMessage.poll?.end) {
+    await Promise.resolve(pollMessage.poll.end()).then(() => {
+      sentimentPollState.ended = true;
+    }).catch(error => {
+      logger.log(
+        "error",
+        `Error ending ${source} poll: ${error}`,
+      );
+    });
+    return;
+  }
+
+  if (pollMessage.id && "function" === typeof pollMessage.channel?.messages?.endPoll) {
+    await Promise.resolve(pollMessage.channel.messages.endPoll(pollMessage.id)).then(() => {
+      sentimentPollState.ended = true;
+    }).catch(error => {
+      logger.log(
+        "error",
+        `Error ending ${source} poll: ${error}`,
+      );
+    });
+  }
+}
+
 function getSendableChannel(client, channelID: string, source: string): SendableChannel | null {
   const channel = client?.channels?.cache?.get(channelID);
   if (!channel || "function" !== typeof channel.send) {
@@ -146,14 +241,15 @@ function getSendableChannel(client, channelID: string, source: string): Sendable
 async function sendAnnouncement(client, channelID: string, payload: unknown, source: string) {
   const channel = getSendableChannel(client, channelID, source);
   if (!channel) {
-    return;
+    return undefined;
   }
 
-  await Promise.resolve(channel.send(payload)).catch(error => {
+  return Promise.resolve(channel.send(payload)).catch(error => {
     logger.log(
       "error",
       `Error sending ${source} announcement: ${error}`,
     );
+    return undefined;
   });
 }
 
@@ -194,6 +290,10 @@ async function runEarningsAnnouncement(
 }
 
 export function startNyseTimers(client, channelID: string, gainsLossesThreadID?: string) {
+  const sentimentPollState: NyseSentimentPollState = {
+    ended: true,
+  };
+
   const ruleNysePremarketOpen = createRecurrenceRule({
     hour: 4,
     minute: 0,
@@ -204,6 +304,20 @@ export function startNyseTimers(client, channelID: string, gainsLossesThreadID?:
   const ruleNyseOpen = createRecurrenceRule({
     hour: 9,
     minute: 30,
+    dayOfWeek: usEasternWeekdays,
+    tz: usEasternTimezone,
+  });
+
+  const ruleNyseSentimentPollClose = createRecurrenceRule({
+    hour: 14,
+    minute: 0,
+    dayOfWeek: usEasternWeekdays,
+    tz: usEasternTimezone,
+  });
+
+  const ruleNyseSentimentPollCloseEarly = createRecurrenceRule({
+    hour: 11,
+    minute: 0,
     dayOfWeek: usEasternWeekdays,
     tz: usEasternTimezone,
   });
@@ -271,12 +385,25 @@ export function startNyseTimers(client, channelID: string, gainsLossesThreadID?:
 
   Schedule.scheduleJob(ruleNyseOpen, () => {
     if (false === isNyseHolidayToday()) {
-      void sendAnnouncement(
+      void sendNyseOpenAnnouncement(
         client,
         channelID,
-        "🔔🔔🔔 Ich bin ready. Ihr seid ready?! Na dann loooos! Huuuiiii! 🚀 Der Börsenritt beginnt, meine Freunde. Seid dabei, ihr dürft nichts verpassen! 🥳 🎠 🔔🔔🔔",
-        "NYSE",
+        sentimentPollState,
       );
+    }
+  });
+
+  Schedule.scheduleJob(ruleNyseSentimentPollClose, () => {
+    const thanksgivingEarlyClose = isDayAfterThanksgiving();
+    if (false === isNyseHolidayToday() &&
+        false === thanksgivingEarlyClose) {
+      void endNyseSentimentPoll(sentimentPollState, "NYSE sentiment");
+    }
+  });
+
+  Schedule.scheduleJob(ruleNyseSentimentPollCloseEarly, () => {
+    if (true === isDayAfterThanksgiving()) {
+      void endNyseSentimentPoll(sentimentPollState, "NYSE sentiment");
     }
   });
 

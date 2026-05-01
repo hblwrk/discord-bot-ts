@@ -23,6 +23,12 @@ import {
   startOtherTimers,
 } from "./test-utils/timers.js";
 
+async function flushAsyncJobs() {
+  for (let index = 0; index < 5; index++) {
+    await Promise.resolve();
+  }
+}
+
 describe("timers: NYSE and MNC", () => {
   beforeEach(resetTimerMocks);
   afterEach(restoreTimerMocks);
@@ -33,7 +39,7 @@ describe("timers: NYSE and MNC", () => {
     startNyseTimers(client as any, "channel-id");
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
 
-    expect(scheduleJobMock).toHaveBeenCalledTimes(6);
+    expect(scheduleJobMock).toHaveBeenCalledTimes(8);
     expect(premarketJob.rule).toEqual(expect.objectContaining({
       hour: 4,
       minute: 0,
@@ -45,6 +51,72 @@ describe("timers: NYSE and MNC", () => {
 
     expect(send).toHaveBeenCalledWith(expect.stringContaining("Der Pre-market hat geöffnet"));
     expect(isHolidayMock).toHaveBeenCalledTimes(1);
+  });
+
+  test("startNyseTimers sends native opening sentiment poll and ends it two hours before regular close", async () => {
+    const {client, send} = createClientWithChannel();
+    const endPoll = jest.fn().mockResolvedValue(undefined);
+    send.mockResolvedValueOnce({
+      poll: {
+        end: endPoll,
+      },
+    });
+
+    startNyseTimers(client as any, "channel-id");
+    const openJob = getScheduledJobByTime(9, 30, "US/Eastern");
+    openJob.callback();
+    await flushAsyncJobs();
+
+    expect(send).toHaveBeenCalledWith(expect.objectContaining({
+      content: expect.stringContaining("Der Börsenritt beginnt"),
+      poll: expect.objectContaining({
+        question: {
+          text: "Opening Sentiment: Wie geht ihr in den Handel?",
+        },
+        answers: [
+          {emoji: "🟢", text: "Risk-on"},
+          {emoji: "🔴", text: "Risk-off"},
+          {emoji: "💵", text: "Cash"},
+          {emoji: "🎢", text: "Chaos"},
+        ],
+        duration: 5,
+        allowMultiselect: false,
+      }),
+    }));
+
+    const sentimentCloseJob = getScheduledJobByTime(14, 0, "US/Eastern");
+    sentimentCloseJob.callback();
+    await flushAsyncJobs();
+
+    expect(endPoll).toHaveBeenCalledTimes(1);
+  });
+
+  test("startNyseTimers ends early-close opening sentiment poll two hours before early close", async () => {
+    const {client, send} = createClientWithChannel();
+    const endPoll = jest.fn().mockResolvedValue(undefined);
+    jest.setSystemTime(new Date("2025-11-28T09:30:00-05:00"));
+    send.mockResolvedValueOnce({
+      poll: {
+        end: endPoll,
+      },
+    });
+
+    startNyseTimers(client as any, "channel-id");
+    const openJob = getScheduledJobByTime(9, 30, "US/Eastern");
+    openJob.callback();
+    await flushAsyncJobs();
+
+    expect(send).toHaveBeenCalledWith(expect.objectContaining({
+      poll: expect.objectContaining({
+        duration: 2,
+      }),
+    }));
+
+    const sentimentCloseEarlyJob = getScheduledJobByTime(11, 0, "US/Eastern");
+    sentimentCloseEarlyJob.callback();
+    await flushAsyncJobs();
+
+    expect(endPoll).toHaveBeenCalledTimes(1);
   });
 
   test("startNyseTimers sends holiday closed message on market holiday", () => {
