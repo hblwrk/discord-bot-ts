@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "module": "es2020",
+    "module": "nodenext",
     "esModuleInterop": true,
-    "moduleResolution": "node",
+    "moduleResolution": "nodenext",
     "target": "es2020",
     "lib": [
       "ES2021.String",
