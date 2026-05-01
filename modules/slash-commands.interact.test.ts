@@ -544,6 +544,32 @@ describe("interactSlashCommands", () => {
     randomSpy.mockRestore();
   });
 
+  test("handles 8ball reply failure without throwing", async () => {
+    const randomSpy = vi.spyOn(Math, "random").mockReturnValue(1);
+    const {client, getHandler} = createEventClient();
+    interactSlashCommands(client, [], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("8ball");
+    interaction.options.getString.mockImplementation(name => name === "frage" ? "Ist das gut?" : null);
+    interaction.reply.mockRejectedValueOnce(new Error("send failed"));
+
+    await expect(handler(interaction)).resolves.toBeUndefined();
+    const payload = getReplyPayload(interaction);
+    expect(payload.embeds?.[0]?.toJSON()).toEqual({
+      fields: [{
+        name: "Ist das gut?",
+        value: "Antwort unklar.",
+      }],
+    });
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("Error replying to 8ball slashcommand"),
+    );
+
+    randomSpy.mockRestore();
+  });
+
   test("replies to lmgtfy command", async () => {
     const {client, getHandler} = createEventClient();
     interactSlashCommands(client, [], [], [], []);
@@ -556,21 +582,6 @@ describe("interactSlashCommands", () => {
 
     expect(interaction.reply).toHaveBeenCalledWith(
       "Let me google that for you... <http://letmegooglethat.com/?q=test%20search>.",
-    );
-  });
-
-  test("replies to google command", async () => {
-    const {client, getHandler} = createEventClient();
-    interactSlashCommands(client, [], [], [], []);
-
-    const handler = getHandler("interactionCreate");
-    const interaction = createChatInputInteraction("google");
-    interaction.options.getString.mockImplementation(name => name === "search" ? "test search" : null);
-
-    await handler(interaction);
-
-    expect(interaction.reply).toHaveBeenCalledWith(
-      "Here you go: <https://www.google.com/search?q=test%20search>.",
     );
   });
 
@@ -725,6 +736,30 @@ describe("interactSlashCommands", () => {
     await handler(interaction);
 
     expect(interaction.reply).toHaveBeenCalledWith("Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.");
+  });
+
+  test("routes paywall command through paywall handler", async () => {
+    const {client, getHandler} = createEventClient();
+    interactSlashCommands(client, [], [], [], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("paywall");
+    interaction.options.getString.mockImplementation((name, required?: boolean) => {
+      if ("url" === name && true === required) {
+        return "not a url";
+      }
+
+      return null;
+    });
+
+    await handler(interaction);
+
+    expect(interaction.reply).toHaveBeenCalledWith({
+      content: "Ungültige URL. Bitte eine vollständige URL angeben (z.B. https://www.example.com/article).",
+      ephemeral: true,
+    });
+    expect(interaction.deferReply).not.toHaveBeenCalled();
+    expect(getCalendarEventsMock).not.toHaveBeenCalled();
   });
 
   test("replies to whatis with embed and attachment payload", async () => {

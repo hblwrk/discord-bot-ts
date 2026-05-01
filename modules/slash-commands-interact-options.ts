@@ -11,6 +11,10 @@ import {
   type OptionDeltaCredentials,
 } from "./options-delta.ts";
 import {
+  formatBoxRatesLookupResult,
+  getBoxRatesLookup,
+} from "./options-boxrates.ts";
+import {
   formatBoxSpreadLookupResult,
   getBoxSpreadLookup,
   type BoxSpreadDirection,
@@ -26,7 +30,7 @@ import {readSecret} from "./secrets.ts";
 import {getDiscordLoggerClient, noMentions, type SlashCommandClient} from "./slash-commands-interact-shared.ts";
 
 const logger = getLogger();
-const optionCommandNames = new Set(["delta", "strangle", "straddle", "expectedmove", "boxspread"]);
+const optionCommandNames = new Set(["delta", "strangle", "straddle", "expectedmove", "boxspread", "boxrates"]);
 
 function getRequestedSide(sideOption: string | null): OptionDeltaRequestedSide {
   if ("call" === sideOption || "put" === sideOption) {
@@ -76,8 +80,17 @@ function getDeltaErrorMessage(error: unknown, commandName: string): string {
 }
 
 async function getOptionsCommandResponse(interaction: ChatInputCommandInteraction, commandName: string): Promise<string> {
-  const dte = interaction.options.getInteger("dte", true);
   const credentials = getTastytradeCredentials();
+  if ("boxrates" === commandName) {
+    const notational = interaction.options.getNumber("notational");
+    const result = await getBoxRatesLookup({
+      credentials,
+      ...(null === notational ? {} : {notational}),
+    });
+    return formatBoxRatesLookupResult(result);
+  }
+
+  const dte = interaction.options.getInteger("dte", true);
   if ("boxspread" === commandName) {
     const result = await getBoxSpreadLookup({
       credentials,

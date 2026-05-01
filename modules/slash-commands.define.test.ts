@@ -563,6 +563,7 @@ describe("defineSlashCommands", () => {
     const straddleCommand = findCommand(payload.slashCommands, "straddle");
     const expectedMoveCommand = findCommand(payload.slashCommands, "expectedmove");
     const boxSpreadCommand = findCommand(payload.slashCommands, "boxspread");
+    const boxRatesCommand = findCommand(payload.slashCommands, "boxrates");
 
     expect(strangleCommand.options).toEqual([
       expect.objectContaining({
@@ -612,8 +613,21 @@ describe("defineSlashCommands", () => {
         required: true,
       }),
     ]);
+    expect(boxRatesCommand.options).toEqual([
+      expect.objectContaining({
+        name: "notational",
+        min_value: 1,
+        required: false,
+      }),
+    ]);
   });
 
+  test("does not register google as a fixed slash command", () => {
+    const payload = buildSlashCommandPayload([], [], []);
+
+    expect(payload.fixedCommandsRegistered).toBe(15);
+    expect(payload.expectedCommandNames).not.toContain("google");
+  });
 
   test("caps slash command payload at 100 commands and preserves fixed commands", () => {
     const assets: TextAsset[] = [];
@@ -639,6 +653,8 @@ describe("defineSlashCommands", () => {
     expect(payload.expectedCommandNames).toContain("straddle");
     expect(payload.expectedCommandNames).toContain("expectedmove");
     expect(payload.expectedCommandNames).toContain("boxspread");
+    expect(payload.expectedCommandNames).toContain("boxrates");
+    expect(payload.expectedCommandNames).not.toContain("google");
     expect(payload.expectedCommandNames).toContain("asset-85");
     expect(payload.expectedCommandNames).not.toContain("asset-86");
     expect(loggerMock.log).toHaveBeenCalledWith(

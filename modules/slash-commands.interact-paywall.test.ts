@@ -160,6 +160,39 @@ describe("handlePaywallSlashCommand", () => {
     });
   });
 
+  test("formats known service results and defaults missing assets to an empty list", async () => {
+    getPaywallLinksMock.mockResolvedValueOnce(paywallResult({
+      services: [
+        {
+          name: "archive.today",
+          url: "https://archive.ph/newest/https://example.com/article",
+          available: true,
+        },
+      ],
+    }));
+    const interaction = createPaywallInteraction("https://example.com/article");
+
+    await expect(handlePaywallSlashCommand(asChatInputInteraction(interaction), "paywall")).resolves.toBe(true);
+
+    expect(getPaywallLinksMock).toHaveBeenCalledWith("https://example.com/article", [], {
+      requesterId: "user-id",
+    });
+    const finalPayload = interaction.editReply.mock.calls[1]![0] as {content: string; embeds: EditedEmbed[]};
+    expect(finalPayload.embeds[0]?.toJSON()).toEqual({
+      title: "Paywall Bypass",
+      fields: [
+        {
+          name: "Original",
+          value: "<https://example.com/article>",
+        },
+        {
+          name: "Ergebnisse",
+          value: "✅ **archive.today**: <https://archive.ph/newest/https://example.com/article>",
+        },
+      ],
+    });
+  });
+
   test("edits busy message when lookup capacity is exhausted", async () => {
     getPaywallLinksMock.mockRejectedValueOnce(new PaywallLookupCapacityError("requester"));
     const interaction = createPaywallInteraction("https://example.com/article");
@@ -168,6 +201,17 @@ describe("handlePaywallSlashCommand", () => {
 
     expect(interaction.editReply).toHaveBeenLastCalledWith({
       content: paywallLookupBusyMessage,
+    });
+  });
+
+  test("edits generic error message when lookup fails unexpectedly", async () => {
+    getPaywallLinksMock.mockRejectedValueOnce(new Error("lookup failed"));
+    const interaction = createPaywallInteraction("https://example.com/article");
+
+    await expect(handlePaywallSlashCommand(asChatInputInteraction(interaction), "paywall", [])).resolves.toBe(true);
+
+    expect(interaction.editReply).toHaveBeenLastCalledWith({
+      content: "Fehler beim Verarbeiten der Anfrage. Bitte später erneut versuchen.",
     });
   });
 

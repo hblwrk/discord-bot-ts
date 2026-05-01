@@ -78,6 +78,30 @@ export type OptionContractsLookupResult = {
   underlyingPrice: number | null;
   underlyingPriceIsRealtime: boolean;
 };
+export type OptionChainLookupRequest = {
+  credentials: OptionDeltaCredentials;
+  symbol: string;
+};
+export type OptionChainLookupResult = {
+  expirations: ChainExpiration[];
+  symbol: string;
+};
+export type OptionContractSelection = {
+  expiration: ChainExpiration;
+  side: OptionDeltaSide;
+  strike: number;
+};
+export type OptionSelectedContractsLookupRequest = {
+  credentials: OptionDeltaCredentials;
+  selections: OptionContractSelection[];
+  symbol: string;
+};
+export type OptionSelectedContractsLookupResult = {
+  contracts: OptionDeltaContract[];
+  symbol: string;
+  underlyingPrice: number | null;
+  underlyingPriceIsRealtime: boolean;
+};
 
 type TastytradeEvent = Record<string, unknown>;
 type TastytradeEventListener = (events: TastytradeEvent[]) => void;
@@ -104,7 +128,7 @@ export type OptionDeltaLookupDependencies = {
   now?: () => number;
   rateLimiter?: Pick<BrokerApiRateLimiter, "run">;
 };
-type ChainStrike = {
+export type ChainStrike = {
   callStreamerSymbol: string | null;
   callSymbol: string | null;
   putStreamerSymbol: string | null;
@@ -478,10 +502,12 @@ async function collectMarketData(
   try {
     removeListener = quoteStreamer.addEventListener(listener);
     await quoteStreamer.connect();
-    quoteStreamer.subscribe(optionStreamerSymbols, [
-      MarketDataSubscriptionType.Greeks,
-      MarketDataSubscriptionType.Quote,
-    ]);
+    if (0 < optionStreamerSymbols.length) {
+      quoteStreamer.subscribe(optionStreamerSymbols, [
+        MarketDataSubscriptionType.Greeks,
+        MarketDataSubscriptionType.Quote,
+      ]);
+    }
     quoteStreamer.subscribe([underlyingStreamerSymbol], [MarketDataSubscriptionType.Quote]);
 
     const startTime = Date.now();
@@ -576,6 +602,32 @@ export function findDeltaBrackets(contracts: OptionDeltaContract[], targetDelta:
   };
 }
 
+export async function getOptionChainLookup(
+  request: OptionChainLookupRequest,
+  dependencies: OptionDeltaLookupDependencies = {},
+): Promise<OptionChainLookupResult> {
+  const credentials = normalizeCredentials(request.credentials);
+  const symbol = normalizeOptionSymbol(request.symbol);
+  const chainCache = dependencies.chainCache ?? optionChainCache;
+  const rateLimiter = dependencies.rateLimiter ?? optionDataRateLimiter;
+
+  const cachedExpirations = chainCache.get(symbol);
+  if (undefined !== cachedExpirations) {
+    return {
+      expirations: cachedExpirations,
+      symbol,
+    };
+  }
+
+  return rateLimiter.run(async () => {
+    const client = (dependencies.clientFactory ?? createOptionDeltaLookupClient)(credentials);
+    return {
+      expirations: await getOptionChainExpirations(client, symbol, chainCache),
+      symbol,
+    };
+  });
+}
+
 export async function getOptionContractsLookup(
   request: OptionContractsLookupRequest,
   dependencies: OptionDeltaLookupDependencies = {},
@@ -646,6 +698,33 @@ export async function getOptionContractsLookup(
       underlyingPrice: snapshot.underlyingPrice,
       underlyingPriceIsRealtime,
     });
+  });
+}
+
+export async function getSelectedOptionContractsLookup(
+  request: OptionSelectedContractsLookupRequest,
+  dependencies: OptionDeltaLookupDependencies = {},
+): Promise<OptionSelectedContractsLookupResult> {
+  const credentials = normalizeCredentials(request.credentials);
+  const symbol = normalizeOptionSymbol(request.symbol);
+  const rateLimiter = dependencies.rateLimiter ?? optionDataRateLimiter;
+  const underlyingPriceIsRealtime = isMarketHoursOpen("us_cash", (dependencies.now ?? Date.now)());
+
+  return rateLimiter.run(async () => {
+    const client = (dependencies.clientFactory ?? createOptionDeltaLookupClient)(credentials);
+    const snapshot = await getSelectedOptionContracts(
+      client,
+      symbol,
+      request.selections,
+      dependencies.marketDataTimeoutMs ?? defaultMarketDataTimeoutMs,
+    );
+
+    return {
+      contracts: snapshot.contracts,
+      symbol,
+      underlyingPrice: snapshot.underlyingPrice,
+      underlyingPriceIsRealtime,
+    };
   });
 }
 
@@ -803,6 +882,60 @@ async function getOptionContracts(
   };
   contractCache.set(getContractsCacheKey(symbol, expiration, requestedSides), snapshot);
   return snapshot;
+}
+
+function getSelectionKey(expirationDate: string, strike: number, side: OptionDeltaSide): string {
+  return `${expirationDate}:${strike}:${side}`;
+}
+
+function getSelectionStreamerSymbol(selection: OptionContractSelection): string {
+  const strike = selection.expiration.strikes.find(candidate => candidate.strike === selection.strike);
+  if (undefined === strike) {
+    throw new OptionDeltaDataError(
+      `No ${selection.expiration.expirationDate} option strike found at ${selection.strike}.`,
+    );
+  }
+
+  const streamerSymbol = getStrikeStreamerSymbol(strike, selection.side);
+  if (null === streamerSymbol) {
+    throw new OptionDeltaDataError(
+      `No ${selection.side} option found for ${selection.expiration.expirationDate} ${selection.strike}.`,
+    );
+  }
+
+  return streamerSymbol;
+}
+
+async function getSelectedOptionContracts(
+  client: OptionDeltaLookupClient,
+  symbol: string,
+  selections: OptionContractSelection[],
+  marketDataTimeoutMs: number,
+): Promise<OptionMarketDataSnapshot> {
+  const selectionKeys = new Set(selections.map(selection => {
+    return getSelectionKey(selection.expiration.expirationDate, selection.strike, selection.side);
+  }));
+  const streamerSymbols = selections.map(getSelectionStreamerSymbol);
+  const marketData = await collectMarketData(
+    client.quoteStreamer,
+    [...new Set(streamerSymbols)],
+    symbol,
+    marketDataTimeoutMs,
+  );
+
+  const expirationByDate = new Map<string, ChainExpiration>();
+  for (const selection of selections) {
+    expirationByDate.set(selection.expiration.expirationDate, selection.expiration);
+  }
+
+  const contracts = [...expirationByDate.values()]
+    .flatMap(expiration => buildContracts(expiration, ["call", "put"], marketData.streamedData))
+    .filter(contract => selectionKeys.has(getSelectionKey(contract.expirationDate, contract.strike, contract.optionType)));
+
+  return {
+    contracts,
+    underlyingPrice: marketData.underlyingPrice,
+  };
 }
 
 type BuildLookupResultFromExpirationsRequest = {
