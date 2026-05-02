@@ -140,6 +140,15 @@ describe("SEC earnings result source", () => {
     expect(firstMap.has("BAD")).toBe(false);
     expect(secondMap).toBe(firstMap);
     expect(getWithRetryFn).toHaveBeenCalledTimes(1);
+    expect(getWithRetryFn).toHaveBeenCalledWith(
+      "https://www.sec.gov/files/company_tickers.json",
+      expect.objectContaining({
+        headers: expect.objectContaining({
+          "Accept-Encoding": "gzip, deflate",
+          "User-Agent": "hblwrk discord-bot-ts admin@hblwrk.de",
+        }),
+      }),
+    );
   });
 
   test("loads current 8-K and 6-K filings, logs failed feeds, and dedupes accessions", async () => {

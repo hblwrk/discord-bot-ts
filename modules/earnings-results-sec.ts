@@ -60,8 +60,9 @@ const secTickerMapTtlMs = 24 * 60 * 60_000;
 const secCompanyTickersEndpoint = "https://www.sec.gov/files/company_tickers.json";
 const secCurrentFilingsEndpoint = "https://www.sec.gov/cgi-bin/browse-edgar";
 const secRequestHeaders = {
-  "User-Agent": "hblwrk-discord-bot/1.0 github.com/hblwrk/discord-bot-ts",
+  "User-Agent": "hblwrk discord-bot-ts admin@hblwrk.de",
   "Accept": "application/json, text/plain, */*",
+  "Accept-Encoding": "gzip, deflate",
 };
 
 let secTickerMapCache: SecTickerMapCache | undefined;
