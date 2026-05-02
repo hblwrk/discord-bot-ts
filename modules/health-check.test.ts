@@ -245,4 +245,30 @@ describe("runHealthCheck", () => {
       }),
     );
   });
+
+  test("normalizes non-Error listener failures", () => {
+    runHealthCheck(() => createState(), mockLogger);
+
+    const errorHandler = mockOn.mock.calls.find(call => "error" === call[0])?.[1] as ((error: unknown) => void) | undefined;
+    errorHandler?.("plain failure");
+
+    expect(mockLogger.log).toHaveBeenCalledWith(
+      "error",
+      expect.objectContaining({
+        error_code: "UNKNOWN",
+        error_message: "plain failure",
+      }),
+    );
+
+    const codedError = Object.assign(new Error("numeric code"), {code: 123});
+    errorHandler?.(codedError);
+
+    expect(mockLogger.log).toHaveBeenCalledWith(
+      "error",
+      expect.objectContaining({
+        error_code: "UNKNOWN",
+        error_message: "numeric code",
+      }),
+    );
+  });
 });

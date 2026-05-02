@@ -99,4 +99,64 @@ describe("extractOutlookMetrics", () => {
       "EPS $1.20.",
     ])).toEqual([]);
   });
+
+  test("extracts single-value outlook metrics across supported value types", () => {
+    const metrics = extractOutlookMetrics([
+      "Guidance",
+      "Revenue should show double-digit growth.",
+      "Earnings per share expected to be ($0.25).",
+      "Gross margin approximately 44.5%.",
+      "Operating income about $1.2 trillion.",
+      "Opex of $2.4bn.",
+      "Capital expenditures roughly $12m.",
+      "Tax rate not available.",
+    ]);
+
+    expect(metrics).toEqual([
+      {
+        key: "revenue",
+        label: "Revenue",
+        value: "double-digit growth",
+      },
+      {
+        key: "eps",
+        label: "EPS",
+        value: "-$0.25",
+      },
+      {
+        key: "gross_margin",
+        label: "Gross margin",
+        value: "44.5%",
+      },
+      {
+        key: "operating_income",
+        label: "Operating income",
+        value: "$1.2T",
+      },
+      {
+        key: "operating_expenses",
+        label: "Operating expenses",
+        value: "$2.4B",
+      },
+      {
+        key: "tax_rate",
+        label: "Tax rate",
+        value: "not available",
+      },
+    ]);
+  });
+
+  test("limits outlook scanning and ignores unusable fallback values", () => {
+    const lines = [
+      "Business Outlook",
+      "Revenue:",
+      `Free cash flow ${"x".repeat(90)}.`,
+    ];
+    for (let index = 0; index < 35; index++) {
+      lines.push(`Filler ${index}`);
+    }
+    lines.push("Revenue $99B");
+
+    expect(extractOutlookMetrics(lines)).toEqual([]);
+  });
 });

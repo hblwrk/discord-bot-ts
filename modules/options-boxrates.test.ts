@@ -137,6 +137,10 @@ describe("options-boxrates", () => {
     })).rejects.toThrow(OptionDeltaInputError);
     await expect(getBoxRatesLookup({
       credentials,
+      months: 25,
+    })).rejects.toThrow(OptionDeltaInputError);
+    await expect(getBoxRatesLookup({
+      credentials,
       notational: 0,
     })).rejects.toThrow(OptionDeltaInputError);
   });
@@ -303,6 +307,54 @@ describe("options-boxrates", () => {
     expect(result.rows[0]?.expiration).toBe("2026-06-19");
   });
 
+  test("filters expired and incomplete chain strikes and falls back to underlying probe price", async () => {
+    const expiredExpiration = createChainExpiration("2026-04-17", 0);
+    const incompleteExpiration = createChainExpiration("2026-05-15", 14);
+    incompleteExpiration.strikes[0]!.callSymbol = null;
+    const validExpiration = createChainExpiration("2026-06-19", 49, [6000, 6500, 7000]);
+    const getSelectedOptionContractsLookupFn = vi.fn(async (request: OptionSelectedContractsLookupRequest) => {
+      if (0 === request.selections.length) {
+        return {
+          contracts: [],
+          symbol: "SPX",
+          underlyingPrice: 6500,
+          underlyingPriceIsRealtime: false,
+        };
+      }
+
+      return {
+        contracts: [
+          createContract(6000, "call", 525, "2026-06-19"),
+          createContract(6000, "put", 50, "2026-06-19"),
+          createContract(7000, "call", 80, "2026-06-19"),
+          createContract(7000, "put", 595, "2026-06-19"),
+        ],
+        symbol: "SPX",
+        underlyingPrice: null,
+        underlyingPriceIsRealtime: false,
+      };
+    });
+
+    const result = await getBoxRatesLookup({
+      credentials,
+      months: 3,
+      notational: 100_000,
+    }, {
+      getOptionChainLookupFn: vi.fn(async () => ({
+        expirations: [expiredExpiration, incompleteExpiration, validExpiration],
+        symbol: "SPX",
+      })),
+      getSelectedOptionContractsLookupFn,
+      getSofrRateFn: createSofrRateLookup(),
+      now: () => Date.parse("2026-05-01T12:00:00Z"),
+    });
+
+    expect(result.rows).toHaveLength(1);
+    expect(result.rows[0]?.expiration).toBe("2026-06-19");
+    expect(result.underlyingPrice).toBe(6500);
+    expect(formatBoxRatesLookupResult(result)).toContain("`SPX` @ `6,500.00` (market closed)");
+  });
+
   test("formats signed money and basis points", () => {
     const formattedResult = formatBoxRatesLookupResult({
       benchmarkName: "SOFR",
@@ -341,5 +393,27 @@ describe("options-boxrates", () => {
     expect(formattedResult).toContain("Mkt `1.00%-2.00%`");
     expect(formattedResult).toContain("Mkt `wide`");
     expect(formattedResult).toContain("Δ `-100 bps`");
+    expect(() => formatBoxRatesLookupResult({
+      benchmarkName: "SOFR",
+      notational: 100_000,
+      rows: [{
+        actualDte: 1,
+        borrowRate: 0.02,
+        contracts: 1,
+        expiration: "not-a-date",
+        lendRate: 0.01,
+        lowerStrike: 6000,
+        midRate: 0.015,
+        rateDeltaToBenchmark: 0,
+        upperStrike: 7000,
+      }],
+      sofr: {
+        effectiveDate: "2026-04-30",
+        percentRate: 2.5,
+      },
+      symbol: "SPX",
+      underlyingPrice: 6500,
+      underlyingPriceIsRealtime: true,
+    })).toThrow(OptionDeltaDataError);
   });
 });

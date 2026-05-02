@@ -1,10 +1,32 @@
-import {describe, expect, test} from "vitest";
+import {beforeEach, describe, expect, test, vi} from "vitest";
+
+const {
+  mockLogger,
+  mockPostWithRetry,
+} = vi.hoisted(() => ({
+  mockLogger: {
+    log: vi.fn(),
+  },
+  mockPostWithRetry: vi.fn(),
+}));
+
+vi.mock("./http-retry.ts", () => ({
+  postWithRetry: mockPostWithRetry,
+}));
+
+vi.mock("./logging.ts", () => ({
+  getLogger: () => mockLogger,
+}));
+
 import {
   CALENDAR_CONTINUATION_LABEL,
   CALENDAR_MAX_MESSAGE_LENGTH,
   CalendarEvent,
+  getCalendarEvents,
+  getCalendarEventsResult,
   getCalendarEventDateTime,
   getCalendarMessages,
+  getCalendarText,
 } from "./calendar.ts";
 
 function createCalendarEvent(date: string, time: string, name: string, country = "🇺🇸"): CalendarEvent {
@@ -17,6 +39,15 @@ function createCalendarEvent(date: string, time: string, name: string, country =
 }
 
 describe("getCalendarMessages", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    vi.useFakeTimers();
+    vi.setSystemTime(new Date("2026-05-01T12:00:00+02:00"));
+    mockPostWithRetry.mockResolvedValue({
+      data: [],
+    });
+  });
+
   test("converts calendar event date and time into a Berlin timestamp", () => {
     const calendarEvent = createCalendarEvent("2025-03-03", "14:30", "CPI");
 
@@ -46,6 +77,70 @@ describe("getCalendarMessages", () => {
     expect(batch.messages[0]!).toContain("Wichtige Termine:\n\n**Montag, 3. März 2025**");
     expect(batch.messages[0]!).toContain("Event A");
     expect(batch.messages[0]!).toContain("Event B");
+  });
+
+  test("loads calendar events, rolls weekend starts, filters range, and maps country flags", async () => {
+    mockPostWithRetry.mockResolvedValueOnce({
+      data: [
+        {
+          Country: 840,
+          EventName: "US Payrolls",
+          FullDate: "2026-05-04T12:30:00Z",
+        },
+        {
+          Country: 999,
+          EventName: "Eurozone CPI",
+          FullDate: "2026-05-05T08:00:00Z",
+        },
+        {
+          Country: 123,
+          EventName: "Out of range",
+          FullDate: "2026-05-07T08:00:00Z",
+        },
+      ],
+    });
+
+    const result = await getCalendarEventsResult("2026-05-02", 1);
+
+    expect(mockPostWithRetry).toHaveBeenCalledWith(
+      "https://www.mql5.com/en/economic-calendar/content",
+      expect.stringContaining("from=2026-05-04T00%3A00%3A00&to=2026-05-05T23%3A59%3A59"),
+      expect.objectContaining({
+        headers: expect.objectContaining({
+          "X-Requested-With": "XMLHttpRequest",
+        }),
+      }),
+    );
+    expect(result.status).toBe("ok");
+    expect(result.events.map(event => `${event.time} ${event.country} ${event.name}`)).toEqual([
+      "14:30 🇺🇸 US Payrolls",
+      "10:00 🇪🇺 Eurozone CPI",
+    ]);
+  });
+
+  test("handles empty, short and failed calendar loader responses", async () => {
+    mockPostWithRetry.mockResolvedValueOnce({
+      data: [{
+        Country: 840,
+        EventName: "Ignored singleton",
+        FullDate: "2026-05-01T12:30:00Z",
+      }],
+    });
+    await expect(getCalendarEvents("", 0)).resolves.toEqual([]);
+
+    mockPostWithRetry.mockRejectedValueOnce(new Error("network"));
+    await expect(getCalendarEventsResult("2026-05-03", 0)).resolves.toEqual({
+      events: [],
+      status: "error",
+    });
+    expect(mockLogger.log).toHaveBeenCalledWith("error", expect.stringContaining("Loading calendar failed"));
+  });
+
+  test("formats calendar text wrapper for empty and non-empty event lists", () => {
+    expect(getCalendarText([])).toBe("none");
+    expect(getCalendarText([
+      createCalendarEvent("2025-03-03", "10:00", "Event A"),
+    ])).toContain("Event A");
   });
 
   test("uses a custom title when provided", () => {
@@ -156,6 +251,28 @@ describe("getCalendarMessages", () => {
     expect(batch.messages).toHaveLength(3);
     expect(batch.includedEvents).toBeLessThan(batch.totalEvents);
     expect(batch.messages[2]!).toContain("... weitere Termine konnten wegen Discord-Limits nicht angezeigt werden.");
+  });
+
+  test("supports keepDayTogether false and truncation note fit/fallback paths", () => {
+    const calendarEvents = [
+      createCalendarEvent("2025-03-03", "09:00", `Event A ${"X".repeat(120)}`),
+      createCalendarEvent("2025-03-04", "09:00", `Event B ${"Y".repeat(120)}`),
+    ];
+
+    const roomy = getCalendarMessages(calendarEvents, {
+      maxMessageLength: 220,
+      maxMessages: 1,
+      keepDayTogether: false,
+    });
+    expect(roomy.truncated).toBe(true);
+    expect(roomy.messages[0]).toContain("... weitere Termine konnten wegen Discord-Limits nicht angezeigt werden.");
+
+    const tiny = getCalendarMessages(calendarEvents, {
+      maxMessageLength: 10,
+      maxMessages: 1,
+      keepDayTogether: false,
+    });
+    expect(tiny.messages[0]).toBe("... weiter");
   });
 
   test("keeps each chunk at or below the default Discord-safe message length", () => {
