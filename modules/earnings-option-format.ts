@@ -1,24 +1,40 @@
 import {type EarningsEvent} from "./earnings-types.ts";
-import {formatOptionalPrice} from "./options-format.ts";
+import {formatOptionalPercent, formatOptionalPrice} from "./options-format.ts";
 
-function getExpectedMoveDteText(expectedMoveActualDte: number | undefined): string {
-  if ("number" !== typeof expectedMoveActualDte || false === Number.isFinite(expectedMoveActualDte)) {
+function getExpectedMoveDetailsText(earningsEvent: EarningsEvent): string {
+  const details: string[] = [];
+  const underlyingPrice = earningsEvent.expectedMoveUnderlyingPrice;
+  if (
+    "number" === typeof underlyingPrice
+      && Number.isFinite(underlyingPrice)
+      && underlyingPrice > 0
+      && "number" === typeof earningsEvent.expectedMove
+  ) {
+    details.push(formatOptionalPercent(earningsEvent.expectedMove / underlyingPrice));
+  }
+
+  if ("number" === typeof earningsEvent.expectedMoveActualDte && true === Number.isFinite(earningsEvent.expectedMoveActualDte)) {
+    details.push(`${Math.round(earningsEvent.expectedMoveActualDte)} DTE`);
+  }
+
+  if (0 === details.length) {
     return "";
   }
 
-  return ` (\`${Math.round(expectedMoveActualDte)}\` DTE)`;
+  return ` (${details.join(", ")})`;
 }
 
 export function getFormattedExpectedMoveUnderlyingPriceText(earningsEvent: EarningsEvent): string {
+  const underlyingPrice = earningsEvent.expectedMoveUnderlyingPrice;
   if (
-    "number" !== typeof earningsEvent.expectedMoveUnderlyingPrice
-      || false === Number.isFinite(earningsEvent.expectedMoveUnderlyingPrice)
-      || earningsEvent.expectedMoveUnderlyingPrice < 0
+    "number" !== typeof underlyingPrice
+      || false === Number.isFinite(underlyingPrice)
+      || underlyingPrice <= 0
   ) {
     return "";
   }
 
-  return ` 📈 Last: \`$${formatOptionalPrice(earningsEvent.expectedMoveUnderlyingPrice)}\``;
+  return ` 📈 Last: \`$${formatOptionalPrice(underlyingPrice)}\``;
 }
 
 export function getFormattedExpectedMoveText(earningsEvent: EarningsEvent): string {
@@ -26,5 +42,5 @@ export function getFormattedExpectedMoveText(earningsEvent: EarningsEvent): stri
     return "";
   }
 
-  return ` 🎯 Move: \`+/- ${formatOptionalPrice(earningsEvent.expectedMove)}\`${getExpectedMoveDteText(earningsEvent.expectedMoveActualDte)}`;
+  return ` 🎯 Move: \`+/- $${formatOptionalPrice(earningsEvent.expectedMove)}${getExpectedMoveDetailsText(earningsEvent)}\``;
 }

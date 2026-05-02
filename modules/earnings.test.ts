@@ -484,7 +484,7 @@ describe("getEarningsMessages", () => {
     });
 
     expect(batch.messages[0]!).toContain("💰 MCap: `$2.8T` 📈 Last: `$190.42` 🔮 EPS:");
-    expect(batch.messages[0]!).toContain("🎯 Move: `+/- 12.40` (`3` DTE)");
+    expect(batch.messages[0]!).toContain("🎯 Move: `+/- $12.40 (6.5%, 3 DTE)`");
   });
 
   test("sub-sorts a day by time bucket before market cap", () => {
