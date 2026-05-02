@@ -781,7 +781,7 @@ describe("updateMarketData", () => {
     await updateMarketData();
     clientInstances[0]!.handlers.get("clientReady")();
 
-    const tastytradeOptions = mockStartTastytradeCryptoStream.mock.calls[0]![0] as unknown as {
+    const tastytradeOptions = mockStartTastytradeCryptoStream.mock.calls[0]![0] as {
       onMarketData: (asset: typeof cryptoAsset, lastNumeric: number, priceChange: number, percentageChange: number) => void;
     };
     tastytradeOptions.onMarketData(cryptoAsset, 100.5, 1.2, 1.23);
@@ -827,7 +827,7 @@ describe("updateMarketData", () => {
     await updateMarketData();
     clientInstances[0]!.handlers.get("clientReady")();
 
-    const tastytradeOptions = mockStartTastytradeCryptoStream.mock.calls[0]![0] as unknown as {
+    const tastytradeOptions = mockStartTastytradeCryptoStream.mock.calls[0]![0] as {
       onFallback: (reason: string) => void;
       onMarketData: (asset: typeof cryptoAsset, lastNumeric: number, priceChange: number, percentageChange: number) => void;
     };

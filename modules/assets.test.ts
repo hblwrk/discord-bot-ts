@@ -35,7 +35,7 @@ vi.mock("./logging.ts", () => ({
   }),
 }));
 
-import {EmojiAsset, getAssetByName, getAssets, getGenericAssets} from "./assets.ts";
+import {EmojiAsset, getAssetByName, getAssets, getGenericAssets, MarketDataAsset} from "./assets.ts";
 
 describe("getAssets", () => {
   beforeEach(() => {
@@ -210,6 +210,51 @@ describe("getAssets", () => {
     expect(paywallAsset?.domains).toEqual(["*"]);
     expect(paywallAsset?.services).toEqual(["archive.today"]);
     expect(paywallAsset?.subdomainWildcard).toBe(true);
+  });
+
+  test("loads whatis assets through the DRACOON image path", async () => {
+    yamlLoadMock.mockReturnValue([
+      {
+        fileName: "faq.png",
+        location: "dracoon",
+        locationId: "faq-id",
+        name: "whatis_faq",
+        title: "FAQ",
+        trigger: ["faq"],
+      },
+    ]);
+    getFromDracoonMock.mockResolvedValue(Buffer.from("faq-buffer"));
+
+    const assets = await getAssets("whatis");
+
+    expect(assets).toHaveLength(1);
+    expect(assets[0]?.name).toBe("whatis_faq");
+    expect(assets[0]?.fileContent).toEqual(Buffer.from("faq-buffer"));
+    expect(getFromDracoonMock).toHaveBeenCalledWith("dracoon-secret", "faq-id");
+  });
+
+  test("ignores unknown asset types", async () => {
+    yamlLoadMock.mockReturnValue([{name: "unknown"}]);
+
+    await expect(getAssets("unknown")).resolves.toEqual([]);
+  });
+
+  test("normalizes market data streaming config values", () => {
+    const marketDataAsset = new MarketDataAsset();
+
+    marketDataAsset.marketHours = "crypto";
+    marketDataAsset.tastytradeStreamerSymbol = " BTC/USD:CXTALP ";
+
+    expect(marketDataAsset.marketHours).toBe("crypto");
+    expect(marketDataAsset.tastytradeStreamerSymbol).toBe("BTC/USD:CXTALP");
+
+    marketDataAsset.marketHours = "unsupported";
+
+    expect(marketDataAsset.marketHours).toBeUndefined();
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      "Ignoring unsupported market data hours profile: unsupported",
+    );
   });
 
   test("loads generic assets across all generic asset files", async () => {
