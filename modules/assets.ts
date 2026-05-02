@@ -3,11 +3,35 @@ import yaml from "js-yaml";
 import fs from "node:fs";
 import {getFromDracoon} from "./dracoon-downloader.ts";
 import {getLogger} from "./logging.ts";
+import {type MarketHoursProfile} from "./market-data-types.ts";
 import {readSecret} from "./secrets.ts";
 
 const directory = "./assets";
 const fileExtension = ".yaml";
 const logger = getLogger();
+const supportedMarketHoursProfiles = new Set<string>([
+  "crypto",
+  "eu_cash",
+  "forex",
+  "us_cash",
+  "us_futures",
+]);
+
+function normalizeMarketHoursProfile(marketHours: string): MarketHoursProfile | undefined {
+  const normalizedMarketHours = marketHours.trim();
+  if (true === supportedMarketHoursProfiles.has(normalizedMarketHours)) {
+    return normalizedMarketHours as MarketHoursProfile;
+  }
+
+  if ("" !== normalizedMarketHours) {
+    logger.log(
+      "warn",
+      `Ignoring unsupported market data hours profile: ${normalizedMarketHours}`,
+    );
+  }
+
+  return undefined;
+}
 
 class BaseAsset {
   private _downloadFailed = false;
@@ -62,7 +86,8 @@ export class MarketDataAsset extends BaseAsset {
   private _id = 0;
   private _suffix = "";
   private _unit = "";
-  private _marketHours = "";
+  private _marketHours: MarketHoursProfile | undefined;
+  private _tastytradeStreamerSymbol = "";
   private _decimals = 0;
   private _lastUpdate = 0;
   private _order = 0;
@@ -131,12 +156,20 @@ export class MarketDataAsset extends BaseAsset {
     this._unit = unit;
   }
 
-  public get marketHours() {
+  public get marketHours(): MarketHoursProfile | undefined {
     return this._marketHours;
   }
 
-  public set marketHours(marketHours: string) {
-    this._marketHours = marketHours;
+  public set marketHours(marketHours: string | undefined) {
+    this._marketHours = normalizeMarketHoursProfile(marketHours ?? "");
+  }
+
+  public get tastytradeStreamerSymbol() {
+    return this._tastytradeStreamerSymbol;
+  }
+
+  public set tastytradeStreamerSymbol(tastytradeStreamerSymbol: string) {
+    this._tastytradeStreamerSymbol = tastytradeStreamerSymbol.trim();
   }
 
   public get decimals() {

@@ -46,6 +46,9 @@ type MockMarketClientInstance = {
 
 const mockGetAssets = vi.fn();
 const mockReadSecret = vi.fn();
+const mockStartTastytradeCryptoStream = vi.fn((_options: unknown) => ({
+  stop: vi.fn(),
+}));
 const websocketInstances: MockWebSocketClient[] = [];
 
 function createHandlerRegistry(): HandlerRegistry {
@@ -152,6 +155,10 @@ vi.mock("../secrets.ts", () => ({
   readSecret: (...args: unknown[]) => mockReadSecret(...args),
 }));
 
+vi.mock("../market-data-tastytrade.ts", () => ({
+  startTastytradeCryptoStream: (options: unknown) => mockStartTastytradeCryptoStream(options),
+}));
+
 const {updateMarketData} = await import("../market-data.ts");
 
 const marketOpenReferenceTime = new Date("2026-03-12T15:00:00.000Z");
@@ -192,6 +199,7 @@ export {
   mockGetAssets,
   mockLogger,
   mockReadSecret,
+  mockStartTastytradeCryptoStream,
   mockWebSocketConstructor,
   queuedClientIds,
   updateMarketData,

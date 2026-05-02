@@ -11,6 +11,7 @@ import {
   mockGetAssets,
   mockLogger,
   mockReadSecret,
+  mockStartTastytradeCryptoStream,
   mockWebSocketConstructor,
   queuedClientIds,
   updateMarketData,
@@ -757,6 +758,140 @@ describe("updateMarketData", () => {
     expect(clientInstances[0]!.setNickname).toHaveBeenLastCalledWith("1⬛ 101.50$");
     expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
       buildPresencePayload("Market closed.", "idle"),
+    );
+  });
+
+  test("uses tastytrade crypto updates and ignores Investing.com while tastytrade is active", async () => {
+    queuedClientIds.push("client-1");
+    const cryptoAsset = {
+      botToken: "token-1",
+      botName: "Bitcoin/USD",
+      botClientId: "client-1",
+      id: 1057391,
+      decimals: 2,
+      order: 0,
+      suffix: "$",
+      unit: "PCT",
+      marketHours: "crypto",
+      tastytradeStreamerSymbol: "BTC/USD:CXTALP",
+      lastUpdate: 0,
+    };
+    mockGetAssets.mockResolvedValue([cryptoAsset]);
+
+    await updateMarketData();
+    clientInstances[0]!.handlers.get("clientReady")();
+
+    const tastytradeOptions = mockStartTastytradeCryptoStream.mock.calls[0]![0] as unknown as {
+      onMarketData: (asset: typeof cryptoAsset, lastNumeric: number, priceChange: number, percentageChange: number) => void;
+    };
+    tastytradeOptions.onMarketData(cryptoAsset, 100.5, 1.2, 1.23);
+    await flushAsyncWork();
+
+    expect(clientInstances[0]!.setNickname).toHaveBeenCalledWith("0🟩 100.50$");
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
+      buildPresencePayload("+1.20 (1.23%)", "online"),
+    );
+
+    await advanceFakeTime(16_000);
+    websocketInstances[0]!.handlers.get("message")({
+      data: buildSocketIoMarketMessage({
+        pid: 1057391,
+        last_numeric: 90,
+        pc: -10,
+        pcp: -10,
+      }),
+    });
+    await flushAsyncWork();
+
+    expect(clientInstances[0]!.setNickname).toHaveBeenCalledTimes(1);
+    expect(clientInstances[0]!.setNickname).toHaveBeenLastCalledWith("0🟩 100.50$");
+  });
+
+  test("uses Investing.com fallback for crypto after tastytrade fallback", async () => {
+    queuedClientIds.push("client-1");
+    const cryptoAsset = {
+      botToken: "token-1",
+      botName: "Bitcoin/USD",
+      botClientId: "client-1",
+      id: 1057391,
+      decimals: 2,
+      order: 0,
+      suffix: "$",
+      unit: "PCT",
+      marketHours: "crypto",
+      tastytradeStreamerSymbol: "BTC/USD:CXTALP",
+      lastUpdate: 0,
+    };
+    mockGetAssets.mockResolvedValue([cryptoAsset]);
+
+    await updateMarketData();
+    clientInstances[0]!.handlers.get("clientReady")();
+
+    const tastytradeOptions = mockStartTastytradeCryptoStream.mock.calls[0]![0] as unknown as {
+      onFallback: (reason: string) => void;
+      onMarketData: (asset: typeof cryptoAsset, lastNumeric: number, priceChange: number, percentageChange: number) => void;
+    };
+    tastytradeOptions.onMarketData(cryptoAsset, 100.5, 1.2, 1.23);
+    await flushAsyncWork();
+
+    tastytradeOptions.onFallback("stream stale");
+    await advanceFakeTime(16_000);
+    websocketInstances[0]!.handlers.get("message")({
+      data: buildSocketIoMarketMessage({
+        pid: 1057391,
+        last_numeric: 90,
+        pc: -10,
+        pcp: -10,
+      }),
+    });
+    await flushAsyncWork();
+
+    expect(clientInstances[0]!.setNickname).toHaveBeenLastCalledWith("0🟥 90.00$");
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
+      buildPresencePayload("-10.00 (-10.00%)", "dnd"),
+    );
+  });
+
+  test("does not mark crypto market-data bots closed during the market reconciler", async () => {
+    queuedClientIds.push("client-1");
+    mockGetAssets.mockResolvedValue([
+      {
+        botToken: "token-1",
+        botName: "Bitcoin/USD",
+        botClientId: "client-1",
+        id: 1057391,
+        decimals: 2,
+        order: 0,
+        suffix: "$",
+        unit: "PCT",
+        marketHours: "crypto",
+        lastUpdate: 0,
+      },
+    ]);
+
+    await updateMarketData();
+    clientInstances[0]!.handlers.get("clientReady")();
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
+      buildPresencePayload("Market open.", "idle"),
+    );
+
+    websocketInstances[0]!.handlers.get("message")({
+      data: buildSocketIoMarketMessage({
+        pid: 1057391,
+        last_numeric: 100.5,
+        pc: 1.2,
+        pcp: 1.23,
+      }),
+    });
+    await flushAsyncWork();
+
+    vi.setSystemTime(new Date("2026-05-02T12:00:00.000Z"));
+    await advanceFakeTime(60_000);
+    await flushAsyncWork();
+
+    expect(clientInstances[0]!.setNickname).toHaveBeenLastCalledWith("0🟩 100.50$");
+    expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
+      buildPresencePayload("+1.20 (1.23%)", "online"),
     );
   });
 });
