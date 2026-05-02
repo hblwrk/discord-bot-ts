@@ -29,7 +29,7 @@ export default defineConfig({
         statements: 85,
         lines: 85,
         functions: 84,
-        branches: 74,
+        branches: 80,
         "modules/assets.ts": {
           statements: 94,
           lines: 94,

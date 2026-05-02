@@ -8,7 +8,9 @@ import {
   formatOptionDeltaLookupResult,
   getOptionDeltaLookup,
   getSelectedOptionContractsLookup,
+  getOptionContractsLookup,
   normalizeOptionSymbol,
+  normalizeDte,
   normalizeTargetDelta,
   OptionDeltaConfigurationError,
   OptionDeltaDataError,
@@ -102,6 +104,9 @@ describe("options-delta", () => {
     expect(() => normalizeOptionSymbol("AAPL$")).toThrow(OptionDeltaInputError);
     expect(normalizeTargetDelta(0.4)).toBe(0.4);
     expect(() => normalizeTargetDelta(1)).toThrow(OptionDeltaInputError);
+    expect(normalizeDte(0)).toBe(0);
+    expect(() => normalizeDte(-1)).toThrow(OptionDeltaInputError);
+    expect(() => normalizeDte(3651)).toThrow(OptionDeltaInputError);
   });
 
   test("parses sdk and raw option-chain shapes and rolls to the next expiration", () => {
@@ -128,6 +133,50 @@ describe("options-delta", () => {
       },
       rolled: true,
     });
+    expect(selectExpirationForDte(sdkExpirations, 3650)).toBeNull();
+  });
+
+  test("ignores malformed option-chain items while preserving valid strikes", () => {
+    expect(parseTastytradeNestedOptionChain(null)).toEqual([]);
+    expect(parseTastytradeNestedOptionChain({
+      items: [
+        null,
+        {
+          expirations: [
+            null,
+            {
+              "expiration-date": "2026-06-19",
+              "days-to-expiration": "49",
+              strikes: [
+                null,
+                {"strike-price": "bad"},
+                {
+                  "strike-price": "450",
+                  call: "AAPL 260619C00450000",
+                  "call-streamer-symbol": ".AAPL260619C450",
+                  put: " ",
+                },
+              ],
+            },
+            {
+              "expiration-date": " ",
+              "days-to-expiration": 56,
+              strikes: [],
+            },
+          ],
+        },
+      ],
+    })).toEqual([{
+      daysToExpiration: 49,
+      expirationDate: "2026-06-19",
+      strikes: [{
+        callStreamerSymbol: ".AAPL260619C450",
+        callSymbol: "AAPL 260619C00450000",
+        putStreamerSymbol: null,
+        putSymbol: null,
+        strike: 450,
+      }],
+    }]);
   });
 
   test("finds contracts below and above an absolute target delta", () => {
@@ -139,6 +188,15 @@ describe("options-delta", () => {
 
     expect(brackets.below?.strike).toBe(450);
     expect(brackets.above?.strike).toBe(445);
+
+    expect(findDeltaBrackets([
+      createOptionContract(430, 0, "call"),
+      createOptionContract(435, Number.NaN, "call"),
+      createOptionContract(440, 1.2, "call"),
+    ], 0.3)).toEqual({
+      above: null,
+      below: null,
+    });
   });
 
   test("fetches the selected expiration and brackets calls and puts from streamed greeks", async () => {
@@ -598,6 +656,115 @@ describe("options-delta", () => {
     expect(rateLimiter.run).not.toHaveBeenCalled();
   });
 
+  test("returns cached contract lookup snapshots and filters one side from both-side cache", async () => {
+    const selectedExpiration = parseTastytradeNestedOptionChain(createNestedOptionChainItems())[1]!;
+    const chainCache = new BoundedTtlCache<ChainExpiration[]>({
+      maxEntries: 10,
+      ttlMs: 60_000,
+    });
+    const contractCache = new BoundedTtlCache<OptionMarketDataSnapshot>({
+      maxEntries: 10,
+      ttlMs: 60_000,
+    });
+    chainCache.set("AAPL", [selectedExpiration]);
+    contractCache.set("AAPL:2026-06-19:call+put", {
+      contracts: [
+        createOptionContract(440, 0.31, "call"),
+        createOptionContract(440, -0.31, "put"),
+      ],
+      underlyingPrice: 190.1,
+    });
+    const rateLimiter = {
+      run: vi.fn(),
+    };
+
+    const result = await getOptionContractsLookup({
+      credentials: {
+        clientSecret: "client-secret",
+        refreshToken: "refresh-token",
+      },
+      dte: 49,
+      side: "put",
+      symbol: "aapl",
+    }, {
+      chainCache,
+      clientFactory: vi.fn(),
+      contractCache,
+      now: () => new Date("2026-05-01T20:00:00-04:00").valueOf(),
+      rateLimiter,
+    });
+
+    expect(result.contracts).toHaveLength(1);
+    expect(result.contracts[0]?.optionType).toBe("put");
+    expect(result.underlyingPrice).toBe(190.1);
+    expect(result.underlyingPriceIsRealtime).toBe(false);
+    expect(rateLimiter.run).not.toHaveBeenCalled();
+  });
+
+  test("fetches option contracts with default both side and quote-only underlying price", async () => {
+    let listener: ((events: Record<string, unknown>[]) => void) | undefined;
+    const quoteStreamer = {
+      addEventListener: vi.fn((nextListener: (events: Record<string, unknown>[]) => void) => {
+        listener = nextListener;
+        return undefined as unknown as () => void;
+      }),
+      connect: vi.fn(async () => {}),
+      disconnect: vi.fn(),
+      subscribe: vi.fn((streamerSymbols: string[]) => {
+        listener?.([
+          {eventType: "Quote"},
+          {eventSymbol: "IGNORED", eventType: "Quote", askPrice: 1},
+          {eventSymbol: ".AAPL260619C440", eventType: "Trade", askPrice: 9},
+          ...streamerSymbols.flatMap(streamerSymbol => {
+            if ("AAPL" === streamerSymbol) {
+              return [{
+                eventSymbol: streamerSymbol,
+                eventType: "Quote",
+                askPrice: 190.5,
+              }];
+            }
+
+            return [
+              {
+                eventSymbol: streamerSymbol,
+                eventType: "Quote",
+                askPrice: 2.2,
+              },
+              {
+                eventSymbol: streamerSymbol,
+                eventType: "Greeks",
+                delta: streamerSymbol.includes("P") ? -0.31 : 0.31,
+              },
+            ];
+          }),
+        ]);
+      }),
+    };
+
+    const result = await getOptionContractsLookup({
+      credentials: {
+        clientSecret: "client-secret",
+        refreshToken: "refresh-token",
+      },
+      dte: 49,
+      symbol: "aapl",
+    }, {
+      ...createLookupDependencies(),
+      clientFactory: () => ({
+        instrumentsService: {
+          getNestedOptionChain: vi.fn(async () => createNestedOptionChainItems()),
+        },
+        quoteStreamer,
+      }),
+      marketDataTimeoutMs: 20,
+    });
+
+    expect(result.requestedSide).toBe("both");
+    expect(result.contracts).toHaveLength(6);
+    expect(result.underlyingPrice).toBe(190.5);
+    expect(quoteStreamer.disconnect).toHaveBeenCalledTimes(1);
+  });
+
   test("reports missing credentials, expirations and streamer symbols as lookup errors", async () => {
     const emptyQuoteStreamer = {
       addEventListener: vi.fn(() => vi.fn()),
@@ -652,6 +819,24 @@ describe("options-delta", () => {
         },
         quoteStreamer: emptyQuoteStreamer,
       }),
+    })).rejects.toThrow(OptionDeltaDataError);
+    const selectedExpiration = parseTastytradeNestedOptionChain(createNestedOptionChainItems())[0]!;
+    const chainCache = new BoundedTtlCache<ChainExpiration[]>({
+      maxEntries: 10,
+      ttlMs: 60_000,
+    });
+    chainCache.set("AAPL", [selectedExpiration]);
+    await expect(getOptionContractsLookup({
+      credentials: baseRequest.credentials,
+      dte: 500,
+      symbol: "AAPL",
+    }, {
+      chainCache,
+      contractCache: new BoundedTtlCache<OptionMarketDataSnapshot>({
+        maxEntries: 10,
+        ttlMs: 60_000,
+      }),
+      rateLimiter: immediateRateLimiter,
     })).rejects.toThrow(OptionDeltaDataError);
   });
 

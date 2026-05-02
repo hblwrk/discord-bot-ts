@@ -1,10 +1,15 @@
 import {describe, expect, test} from "vitest";
 import {
   decodeHtmlEntities,
+  formatEps,
+  formatUsdCompact,
   getEarningsResultMessage,
   getMessageMetrics,
   htmlToText,
+  normalizeCik,
+  normalizeTickerSymbol,
   parseEarningsDocument,
+  parseNumber,
 } from "./earnings-results-format.ts";
 import {type EarningsEvent} from "./earnings.ts";
 
@@ -202,5 +207,125 @@ describe("earnings result formatting", () => {
     expect(decodeHtmlEntities("A&amp;B &lt;tag&gt; &amp;lt;safe&amp;gt; &#36;1")).toBe(
       "A&B <tag> &lt;safe&gt; $1",
     );
+  });
+
+  test("uses Nasdaq actual EPS when SEC metrics do not contain EPS", () => {
+    const event: EarningsEvent = {
+      ticker: "ABC",
+      when: "after_close",
+      date: "2026-05-01",
+      importance: 1,
+      epsConsensus: "$1.00",
+    };
+
+    const metrics = getMessageMetrics([
+      {
+        key: "revenue",
+        label: "Revenue",
+        numericValue: 99_500_000_000,
+        value: "$99.5B",
+      },
+    ], {
+      actualEps: 1,
+      consensusEps: 1,
+      consensusRevenue: 100_000_000_000,
+    }, event);
+
+    expect(metrics[0]).toMatchObject({
+      key: "nasdaq_eps",
+      estimate: "$1",
+      outcome: "inline",
+      value: "$1",
+    });
+    expect(metrics.find(metric => "revenue" === metric.key)).toMatchObject({
+      estimate: "$100B",
+      outcome: "miss",
+    });
+  });
+
+  test("formats message without quarter, filing items, estimate or outlook", () => {
+    const message = getEarningsResultMessage({
+      companyName: "Example",
+      filing: {
+        form: "10-Q",
+        items: [],
+      },
+      filingUrl: "https://www.sec.gov/example",
+      metrics: [{
+        key: "production",
+        label: "Production",
+        value: "1,200 boepd",
+      }],
+      parsedDocument: {
+        metrics: [],
+        outlook: [],
+      },
+      ticker: " ex ",
+    });
+
+    expect(message).toBe([
+      "💰 **Earnings: Example (`EX`)**",
+      "Production: `1,200 boepd`",
+      "SEC: 10-Q https://www.sec.gov/example",
+    ].join("\n"));
+  });
+
+  test("parses alternate metric shapes and numeric edge cases", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Example reports Q3 2026 results</h1>
+          <p>$ in billions</p>
+          <p>Guidance EPS $9.99</p>
+          <p>GAAP diluted EPS $0.24</p>
+          <p>Net sales were $2.5 billion, up from 2025.</p>
+          <p>Net income was $300 million.</p>
+          <p>Production was 1,234 boepd.</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.quarterLabel).toBe("Q3 2026");
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "gaap_eps",
+        value: "$0.24",
+      }),
+      expect.objectContaining({
+        key: "revenue",
+        numericValue: 2_500_000_000,
+        value: "$2.5B",
+      }),
+      expect.objectContaining({
+        key: "net_income",
+        numericValue: 300_000_000,
+        value: "$300M",
+      }),
+      expect.objectContaining({
+        key: "production",
+        value: "1,234 boepd",
+      }),
+    ]));
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$9.99");
+  });
+
+  test("formats and normalizes exported result helpers", () => {
+    expect(parseNumber(1.5)).toBe(1.5);
+    expect(parseNumber(Number.NaN)).toBeNull();
+    expect(parseNumber("(1,234.5)")).toBe(-1234.5);
+    expect(parseNumber("24c")).toBe(0.24);
+    expect(parseNumber("--")).toBeNull();
+    expect(parseNumber({})).toBeNull();
+
+    expect(formatEps(-1.2)).toBe("-$1.2");
+    expect(formatUsdCompact(-1_250_000_000_000)).toBe("-$1.25T");
+    expect(formatUsdCompact(12_300_000)).toBe("$12.3M");
+    expect(formatUsdCompact(123)).toBe("$123");
+
+    expect(normalizeTickerSymbol(" brk-b ")).toBe("BRK.B");
+    expect(normalizeCik(123.9)).toBe("0000000123");
+    expect(normalizeCik("0000012345")).toBe("0000012345");
+    expect(normalizeCik("abc")).toBeNull();
+    expect(normalizeCik(null)).toBeNull();
   });
 });

@@ -1,4 +1,4 @@
-import {EmojiAsset} from "./assets.ts";
+import {EmojiAsset, TextAsset} from "./assets.ts";
 import {addInlineResponses} from "./inline-response.ts";
 import {createEventClient, createMessage} from "./test-utils/discord-mocks.ts";
 import {beforeEach, describe, expect, test, vi} from "vitest";
@@ -114,6 +114,61 @@ describe("addInlineResponses", () => {
     await handler(message);
 
     expect(message.react).toHaveBeenCalledWith("\ud83d\ude4c");
+  });
+
+  test("uses first array triggerRegex for wo trigger special case", async () => {
+    const {client, getHandler} = createEventClient();
+    const asset = createEmojiAsset("wo", ["\ud83d\ude4c"], ["\\bwo\\b!"] as unknown as string);
+
+    addInlineResponses(client, [asset], ["wo"]);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("wo!");
+
+    await handler(message);
+
+    expect(message.react).toHaveBeenCalledWith("\ud83d\ude4c");
+  });
+
+  test("falls back to normal wo trigger matching when special regex is empty", async () => {
+    const {client, getHandler} = createEventClient();
+    const asset = createEmojiAsset("wo", ["\ud83d\ude4c"], [] as unknown as string);
+
+    addInlineResponses(client, [asset], ["wo"]);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("wo now");
+
+    await handler(message);
+
+    expect(message.react).toHaveBeenCalledWith("\ud83d\ude4c");
+  });
+
+
+  test("does not react when command token, asset type, response, or trigger boundary do not match", async () => {
+    const {client, getHandler} = createEventClient();
+    const emojiAsset = createEmojiAsset("party", [123]);
+    const textAsset = new TextAsset();
+    textAsset.trigger = ["party"];
+
+    addInlineResponses(client, [
+      emojiAsset,
+      textAsset,
+      createEmojiAsset("cash", ["💵"]),
+    ], ["party", "cash"]);
+
+    const handler = getHandler("messageCreate");
+    const noCommandMessage = createMessage("nothing here");
+    await handler(noCommandMessage);
+    expect(noCommandMessage.react).not.toHaveBeenCalled();
+
+    const invalidResponseMessage = createMessage("party now");
+    await handler(invalidResponseMessage);
+    expect(invalidResponseMessage.react).not.toHaveBeenCalled();
+
+    const boundaryMessage = createMessage("cashflow");
+    await handler(boundaryMessage);
+    expect(boundaryMessage.react).not.toHaveBeenCalled();
   });
 
   test("handles reaction failures without crashing", async () => {

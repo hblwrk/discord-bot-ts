@@ -1,10 +1,27 @@
 import {describe, expect, test, vi} from "vitest";
+
+const {
+  mockGetWithRetry,
+} = vi.hoisted(() => ({
+  mockGetWithRetry: vi.fn(),
+}));
+
+vi.mock("./http-retry.ts", () => ({
+  getWithRetry: mockGetWithRetry,
+}));
+
 import {
   formatBoxSpreadLookupResult,
   getBoxSpreadLookup,
+  getSofrRate,
   type BoxSpreadDirection,
 } from "./options-boxspread.ts";
-import {type OptionContractsLookupResult, type OptionDeltaContract} from "./options-delta.ts";
+import {
+  type OptionContractsLookupResult,
+  type OptionDeltaContract,
+  OptionDeltaDataError,
+  OptionDeltaInputError,
+} from "./options-delta.ts";
 
 const credentials = {
   clientSecret: "client-secret",
@@ -75,6 +92,46 @@ async function getFormattedBoxSpread(direction: BoxSpreadDirection) {
 }
 
 describe("options-boxspread", () => {
+  test("loads, validates and caches SOFR from the New York Fed response", async () => {
+    mockGetWithRetry
+      .mockResolvedValueOnce({
+        data: {
+          refRates: [],
+        },
+      })
+      .mockResolvedValueOnce({
+        data: {
+          refRates: [{
+            effectiveDate: "2026-04-30",
+            percentRate: "3.66",
+            type: "SOFR",
+          }],
+        },
+      })
+      .mockResolvedValueOnce({
+        data: {
+          refRates: [{
+            effectiveDate: "2026-04-30",
+            percentRate: 3.66,
+            type: "SOFR",
+          }],
+        },
+      });
+
+    await expect(getSofrRate()).rejects.toThrow(OptionDeltaDataError);
+    await expect(getSofrRate()).rejects.toThrow(OptionDeltaDataError);
+
+    await expect(getSofrRate()).resolves.toEqual({
+      effectiveDate: "2026-04-30",
+      percentRate: 3.66,
+    });
+    await expect(getSofrRate()).resolves.toEqual({
+      effectiveDate: "2026-04-30",
+      percentRate: 3.66,
+    });
+    expect(mockGetWithRetry).toHaveBeenCalledTimes(3);
+  });
+
   test("builds and formats an SPX borrow box from the four-leg mid", async () => {
     const {
       formattedResult,
@@ -142,5 +199,118 @@ describe("options-boxspread", () => {
     expect(result.width).toBe(1000);
     expect(result.contracts).toBe(10);
     expect(formatBoxSpreadLookupResult(result)).toContain("Sell 10 Aug21'26 6000 Call");
+  });
+
+  test("rejects invalid direction and notational before market data is used", async () => {
+    const getOptionContractsLookupFn = vi.fn(async () => createContractsLookupResult());
+    const getSofrRateFn = vi.fn(async () => ({
+      effectiveDate: "2026-04-30",
+      percentRate: 3.66,
+    }));
+
+    await expect(getBoxSpreadLookup({
+      credentials,
+      direction: "hold" as BoxSpreadDirection,
+      dte: 112,
+      notational: 100_000,
+    }, {
+      getOptionContractsLookupFn,
+      getSofrRateFn,
+    })).rejects.toThrow(OptionDeltaInputError);
+    await expect(getBoxSpreadLookup({
+      credentials,
+      direction: "borrow",
+      dte: 112,
+      notational: 0,
+    }, {
+      getOptionContractsLookupFn,
+      getSofrRateFn,
+    })).rejects.toThrow(OptionDeltaInputError);
+    expect(getOptionContractsLookupFn).not.toHaveBeenCalled();
+  });
+
+  test("reports unavailable box pairs and non-finite market prices", async () => {
+    await expect(getBoxSpreadLookup({
+      credentials,
+      direction: "borrow",
+      dte: 112,
+      notational: 100_000,
+    }, {
+      getOptionContractsLookupFn: vi.fn(async () => createContractsLookupResult({
+        contracts: [
+          createContract(6000, "call", 560),
+          createContract(6501, "put", 567),
+        ],
+      })),
+      getSofrRateFn: vi.fn(async () => ({
+        effectiveDate: "2026-04-30",
+        percentRate: 3.66,
+      })),
+    })).rejects.toThrow(OptionDeltaDataError);
+
+    await expect(getBoxSpreadLookup({
+      credentials,
+      direction: "borrow",
+      dte: 112,
+      notational: 100_000,
+    }, {
+      getOptionContractsLookupFn: vi.fn(async () => createContractsLookupResult({
+        contracts: [
+          {...createContract(6000, "call", 560), bid: Number.NaN},
+          createContract(6000, "put", 50),
+          createContract(7000, "call", 90),
+          createContract(7000, "put", 567.9),
+        ],
+      })),
+      getSofrRateFn: vi.fn(async () => ({
+        effectiveDate: "2026-04-30",
+        percentRate: 3.66,
+      })),
+    })).rejects.toThrow("Box spread limit price is unavailable.");
+  });
+
+  test("formats rolled expirations, closed markets, ordinal suffixes and negative rate delta", () => {
+    const baseResult = {
+      actualDte: 113,
+      benchmarkName: "SOFR",
+      cashToday: 98_790,
+      contracts: 1,
+      currency: "USD",
+      direction: "borrow" as const,
+      expiration: "2026-08-01",
+      financingAmount: 1_210,
+      impliedRate: 0.03,
+      legs: [
+        {action: "Sell" as const, contract: createContract(6000.5, "call", 560), quantity: 1},
+        {action: "Buy" as const, contract: createContract(6000.5, "put", 50), quantity: 1},
+      ],
+      limitPrice: 987.9,
+      naturalCredit: 985.9,
+      naturalDebit: 989.9,
+      notational: 100_000,
+      rateDeltaToBenchmark: -0.0066,
+      requestedDte: 112,
+      rolled: true,
+      sofr: {
+        effectiveDate: "2026-04-30",
+        percentRate: 3.66,
+      },
+      symbol: "SPX",
+      underlyingPrice: null,
+      underlyingPriceIsRealtime: false,
+      width: 1000.5,
+    };
+
+    const first = formatBoxSpreadLookupResult(baseResult);
+    expect(first).toContain("`SPX` @ `n/a` (market closed)");
+    expect(first).toContain("Expiry `2026-08-01` (`113` DTE, requested `112`)");
+    expect(first).toContain("August 1st, 2026");
+    expect(first).toContain("Δ: `-66 bps`");
+    expect(first).toContain("Sell 1 Aug21'26 6000.50 Call");
+
+    expect(formatBoxSpreadLookupResult({...baseResult, expiration: "2026-08-02"})).toContain("August 2nd, 2026");
+    expect(formatBoxSpreadLookupResult({...baseResult, expiration: "2026-08-03"})).toContain("August 3rd, 2026");
+    expect(formatBoxSpreadLookupResult({...baseResult, expiration: "2026-08-11"})).toContain("August 11th, 2026");
+    expect(() => formatBoxSpreadLookupResult({...baseResult, expiration: "not-a-date"})).toThrow(OptionDeltaDataError);
   });
 });
