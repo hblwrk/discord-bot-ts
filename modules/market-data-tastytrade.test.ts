@@ -124,6 +124,67 @@ describe("tastytrade crypto market data stream", () => {
     );
   });
 
+  test("resolves crypto display symbols to tastytrade streamer symbols", async () => {
+    const stream = createStreamer();
+    const getCryptocurrencies = vi.fn().mockResolvedValue([{
+      symbol: "BTC/USD",
+      "streamer-symbol": "BTC/USD:CXTALP",
+    }]);
+    const options = createOptions({
+      clientFactory: vi.fn(() => ({
+        instrumentsService: {
+          getCryptocurrencies,
+        },
+        quoteStreamer: stream.streamer,
+      })),
+    });
+
+    startTastytradeCryptoStream(options);
+    await flushAsyncWork();
+
+    expect(getCryptocurrencies).toHaveBeenCalledWith(["BTC/USD"]);
+    expect(stream.streamer.subscribe).toHaveBeenCalledWith(
+      ["BTC/USD:CXTALP"],
+      [
+        MarketDataSubscriptionType.Trade,
+        MarketDataSubscriptionType.Quote,
+        MarketDataSubscriptionType.Summary,
+      ],
+    );
+
+    stream.emit([{
+      eventSymbol: "BTC/USD:CXTALP",
+      eventType: "Trade",
+      price: 100,
+    }]);
+
+    expect(options.onMarketData).toHaveBeenCalledWith(
+      expect.objectContaining({botClientId: "btc-client"}),
+      100,
+      0,
+      0,
+    );
+  });
+
+  test("resubscribes once when no initial quote arrives", async () => {
+    const stream = createStreamer();
+    const options = createOptions({
+      clientFactory: vi.fn(() => ({
+        quoteStreamer: stream.streamer,
+      })),
+    });
+
+    startTastytradeCryptoStream(options);
+    await flushAsyncWork();
+
+    expect(stream.streamer.subscribe).toHaveBeenCalledTimes(1);
+    await vi.advanceTimersByTimeAsync(4_999);
+    expect(stream.streamer.subscribe).toHaveBeenCalledTimes(1);
+    await vi.advanceTimersByTimeAsync(1);
+
+    expect(stream.streamer.subscribe).toHaveBeenCalledTimes(2);
+  });
+
   test("uses quote mid price when bid and ask are available", async () => {
     const stream = createStreamer();
     const options = createOptions({

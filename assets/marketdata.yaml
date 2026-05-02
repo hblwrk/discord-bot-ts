@@ -125,6 +125,7 @@
   suffix: "$"
   unit: "PCT"
   marketHours: "crypto"
+  # XMR/USD and ONE/USD are not tastytrade cryptocurrency instruments; this bot uses Investing.com only.
   decimals: 2
   lastUpdate: 0
   order: 3
