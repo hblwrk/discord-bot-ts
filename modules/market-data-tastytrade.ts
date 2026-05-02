@@ -406,7 +406,7 @@ function parseNumericValue(value: unknown): number | null {
   }
 
   if ("string" === typeof value) {
-    const parsedValue = Number(value.replaceAll(",", "").replace("%", "").trim());
+    const parsedValue = Number(value.replaceAll(",", "").replaceAll("%", "").trim());
     if (Number.isFinite(parsedValue)) {
       return parsedValue;
     }
