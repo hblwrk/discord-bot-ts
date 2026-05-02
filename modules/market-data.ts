@@ -22,9 +22,11 @@ import {
   type ClientStatusState,
   type DiscordPresenceStatus,
   type IncomingMarketDataUpdateLog,
+  type MarketDataSource,
   type MarketDataAsset,
   type PendingClientStatusUpdate,
 } from "./market-data-types.ts";
+import {startTastytradeCryptoStream} from "./market-data-tastytrade.ts";
 
 const logger = getLogger();
 const websocketSubscribeDomain = "cmt-1-5-945629:%%domain-1:}";
@@ -34,6 +36,7 @@ const pendingStatusFlushIntervalMs = 1000;
 const marketStatusCheckIntervalMs = 60_000;
 const streamWatchdogIntervalMs = 30_000;
 const streamStaleTimeoutMs = 300_000;
+const marketOpenPresence = "Market open.";
 
 type ReconnectingWebSocketInstance = {
   OPEN: number;
@@ -97,7 +100,7 @@ export async function updateMarketData() {
       // Stay idle until a live tick arrives; the status reconciler flips closed sessions back later.
       const readyClient = client as Client<true>;
       readyClient.user.setPresence({
-        activities: [{name: marketClosedPresence}],
+        activities: [{name: getInitialMarketDataPresence(marketDataAsset)}],
         status: "idle",
       });
       clientsById.set(marketDataAsset.botClientId, readyClient);
@@ -151,8 +154,21 @@ function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAsse
   const memberByClientId = new Map<string, Promise<GuildMember>>();
   const statusByClientId = new Map<string, ClientStatusState>();
   const pendingStatusByClientId = new Map<string, PendingClientStatusUpdate>();
+  const activeSourceByAssetKey = new Map<string, MarketDataSource>();
+  const tastytradeCryptoAssetKeys = new Set(
+    marketDataAssets
+      .filter(isTastytradeCryptoAsset)
+      .map(getMarketDataAssetKey),
+  );
   let lastMessageAt = Date.now();
   let streamLive = false;
+
+  for (const cryptoAssetWithoutStreamerSymbol of marketDataAssets.filter(isCryptoAssetWithoutTastytradeStreamerSymbol)) {
+    logger.log(
+      "warn",
+      `Crypto market data asset ${cryptoAssetWithoutStreamerSymbol.name ?? cryptoAssetWithoutStreamerSymbol.botName} has no tastytrade streamer symbol; using Investing.com only.`,
+    );
+  }
 
   const pendingStatusFlushTimer = setInterval(() => {
     for (const clientId of pendingStatusByClientId.keys()) {
@@ -198,6 +214,123 @@ function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAsse
     }
   }, streamWatchdogIntervalMs);
   streamWatchdog.unref();
+
+  const handleMarketDataUpdate = (
+    marketDataAsset: MarketDataAsset,
+    lastNumeric: number,
+    priceChange: number,
+    percentageChange: number,
+    source: MarketDataSource,
+  ) => {
+    try {
+      const assetKey = getMarketDataAssetKey(marketDataAsset);
+      if ("tastytrade" === source) {
+        activeSourceByAssetKey.set(assetKey, "tastytrade");
+      } else if ("tastytrade" === activeSourceByAssetKey.get(assetKey)) {
+        return;
+      }
+
+      // Always show configured decimals
+      const lastPrice = lastNumeric.toFixed(marketDataAsset.decimals);
+      let lastPriceChange = priceChange.toFixed(marketDataAsset.decimals);
+      const lastPercentageChange = percentageChange.toFixed(2);
+
+      // Setting trend and presence information
+      let trend = "🟩";
+      if (lastPriceChange.startsWith("-")) {
+        trend = "🟥";
+      } else {
+        lastPriceChange = `+${lastPriceChange}`;
+      }
+
+      let presence = `${lastPriceChange} (${lastPercentageChange}%)`;
+
+      // Add ticker sorting
+      const name = `${marketDataAsset.order}${trend} ${lastPrice}${marketDataAsset.suffix}`;
+
+      // Wisdom by yolohama:
+      // % chg suggeriert dass die veränderung von 10 auf 15 (50%+) das selbe sind wie die veränderung von 100 auf 150. das ergibt aber nur bei einer stationären zeitreihe sinn. der vix ist nicht stationär. also quotiert man veränderungen in vol punkten
+      if ("PTS" === marketDataAsset.unit) {
+        presence = `${lastPriceChange}`;
+      }
+
+      const client = clientsById.get(marketDataAsset.botClientId);
+      logIncomingMarketDataUpdate({
+        source,
+        marketDataAsset,
+        botReady: "undefined" !== typeof client,
+        nickname: name,
+        presence,
+        lastNumeric,
+        priceChange,
+        percentageChange,
+      });
+
+      if ("undefined" === typeof client) {
+        logger.log(
+          "warn",
+          `Market data update skipped because bot client ${marketDataAsset.botClientId} is not ready.`,
+        );
+
+        return;
+      }
+
+      queuePendingClientStatusUpdate(
+        client,
+        clientsById,
+        marketDataAsset,
+        name,
+        presence,
+        lastNumeric,
+        priceChange,
+        percentageChange,
+        guildId,
+        memberByClientId,
+        statusByClientId,
+        pendingStatusByClientId,
+        source,
+      );
+      streamLive = true;
+    } catch (error) {
+      logger.log(
+        "error",
+        `Error updating market data bot status: ${error}`,
+      );
+    }
+  };
+
+  startTastytradeCryptoStream({
+    assets: marketDataAssets,
+    logger,
+    onFallback: (reason, marketDataAsset) => {
+      if (undefined !== marketDataAsset) {
+        activeSourceByAssetKey.set(getMarketDataAssetKey(marketDataAsset), "investing");
+      } else {
+        for (const assetKey of tastytradeCryptoAssetKeys) {
+          activeSourceByAssetKey.set(assetKey, "investing");
+        }
+      }
+      logger.log(
+        "warn",
+        `Using Investing.com fallback for crypto market data: ${reason}`,
+      );
+    },
+    onMarketData: (marketDataAsset, lastNumeric, priceChange, percentageChange) => {
+      handleMarketDataUpdate(
+        marketDataAsset,
+        lastNumeric,
+        priceChange,
+        percentageChange,
+        "tastytrade",
+      );
+    },
+    onRecovered: () => {
+      logger.log(
+        "info",
+        "Tastytrade crypto stream recovered.",
+      );
+    },
+  });
 
   // Respond to "connection open" event by sending subscription message
   wsClient.addEventListener("open", () => {
@@ -264,65 +397,13 @@ function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAsse
         return;
       }
 
-      // Always show configured decimals
-      const lastPrice = streamEvent.lastNumeric.toFixed(marketDataAsset.decimals);
-      let lastPriceChange = streamEvent.priceChange.toFixed(marketDataAsset.decimals);
-      const lastPercentageChange = streamEvent.percentageChange.toFixed(2);
-
-      // Setting trend and presence information
-      let trend = "🟩";
-      if (lastPriceChange.startsWith("-")) {
-        trend = "🟥";
-      } else {
-        lastPriceChange = `+${lastPriceChange}`;
-      }
-
-      let presence = `${lastPriceChange} (${lastPercentageChange}%)`;
-
-      // Add ticker sorting
-      const name = `${marketDataAsset.order}${trend} ${lastPrice}${marketDataAsset.suffix}`;
-
-      // Wisdom by yolohama:
-      // % chg suggeriert dass die veränderung von 10 auf 15 (50%+) das selbe sind wie die veränderung von 100 auf 150. das ergibt aber nur bei einer stationären zeitreihe sinn. der vix ist nicht stationär. also quotiert man veränderungen in vol punkten
-      if ("PTS" === marketDataAsset.unit) {
-        presence = `${lastPriceChange}`;
-      }
-
-      const client = clientsById.get(marketDataAsset.botClientId);
-      logIncomingMarketDataUpdate({
+      handleMarketDataUpdate(
         marketDataAsset,
-        botReady: "undefined" !== typeof client,
-        nickname: name,
-        presence,
-        lastNumeric: streamEvent.lastNumeric,
-        priceChange: streamEvent.priceChange,
-        percentageChange: streamEvent.percentageChange,
-      });
-
-      if ("undefined" === typeof client) {
-        logger.log(
-          "warn",
-          `Market data update skipped because bot client ${marketDataAsset.botClientId} is not ready.`,
-        );
-
-        return;
-      }
-
-      queuePendingClientStatusUpdate(
-        client,
-        clientsById,
-        marketDataAsset,
-        name,
-        presence,
         streamEvent.lastNumeric,
         streamEvent.priceChange,
         streamEvent.percentageChange,
-        guildId,
-        memberByClientId,
-        statusByClientId,
-        pendingStatusByClientId,
+        "investing",
       );
-      streamLive = true;
     } catch (error) {
       logger.log(
         "error",
@@ -417,12 +498,14 @@ function queuePendingClientStatusUpdate(
   memberByClientId: Map<string, Promise<GuildMember>>,
   statusByClientId: Map<string, ClientStatusState>,
   pendingStatusByClientId: Map<string, PendingClientStatusUpdate>,
+  source: MarketDataSource,
 ) {
   const pendingStatusUpdate = pendingStatusByClientId.get(client.user.id);
 
   if ("undefined" === typeof pendingStatusUpdate) {
     pendingStatusByClientId.set(client.user.id, {
       marketDataAsset,
+      marketDataSource: source,
       nickname,
       openPresence,
       lastNumeric,
@@ -432,6 +515,7 @@ function queuePendingClientStatusUpdate(
     });
   } else {
     pendingStatusUpdate.marketDataAsset = marketDataAsset;
+    pendingStatusUpdate.marketDataSource = source;
     pendingStatusUpdate.nickname = nickname;
     pendingStatusUpdate.openPresence = openPresence;
     pendingStatusUpdate.lastNumeric = lastNumeric;
@@ -502,6 +586,7 @@ async function flushPendingClientStatusUpdate(
     if (true === didUpdate) {
       logAppliedMarketDataUpdate({
         source: "stream-flush",
+        marketDataSource: pendingStatusUpdate.marketDataSource,
         marketDataAsset: pendingStatusUpdate.marketDataAsset,
         nickname: marketPresenceData.nickname,
         presence: marketPresenceData.presence,
@@ -634,6 +719,26 @@ function applyClientPresenceUpdate(
   return false;
 }
 
+function getMarketDataAssetKey(marketDataAsset: MarketDataAsset): string {
+  return marketDataAsset.botClientId || marketDataAsset.name || String(marketDataAsset.id);
+}
+
+function isTastytradeCryptoAsset(marketDataAsset: MarketDataAsset): boolean {
+  return "crypto" === marketDataAsset.marketHours &&
+    "string" === typeof marketDataAsset.tastytradeStreamerSymbol &&
+    "" !== marketDataAsset.tastytradeStreamerSymbol.trim();
+}
+
+function isCryptoAssetWithoutTastytradeStreamerSymbol(marketDataAsset: MarketDataAsset): boolean {
+  return "crypto" === marketDataAsset.marketHours && false === isTastytradeCryptoAsset(marketDataAsset);
+}
+
+function getInitialMarketDataPresence(marketDataAsset: MarketDataAsset): string {
+  return "crypto" === marketDataAsset.marketHours
+    ? marketOpenPresence
+    : marketClosedPresence;
+}
+
 function logAppliedMarketDataUpdate(logData: AppliedMarketDataUpdateLog) {
   logger.log("debug", {
     message: "market-data:update-applied",
@@ -642,6 +747,7 @@ function logAppliedMarketDataUpdate(logData: AppliedMarketDataUpdateLog) {
     bot_name: logData.marketDataAsset.botName,
     bot_client_id: logData.marketDataAsset.botClientId,
     market_data_pid: logData.marketDataAsset.id,
+    market_data_source: logData.marketDataSource,
     market_hours: logData.marketDataAsset.marketHours ?? "us_futures",
     nickname: logData.nickname,
     presence: logData.presence,
@@ -661,6 +767,7 @@ function logIncomingMarketDataUpdate(logData: IncomingMarketDataUpdateLog) {
     bot_name: logData.marketDataAsset.botName,
     bot_client_id: logData.marketDataAsset.botClientId,
     market_data_pid: logData.marketDataAsset.id,
+    market_data_source: logData.source,
     market_hours: logData.marketDataAsset.marketHours ?? "us_futures",
     bot_ready: logData.botReady,
     nickname: logData.nickname,

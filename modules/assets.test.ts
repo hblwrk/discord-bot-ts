@@ -152,7 +152,8 @@ describe("getAssets", () => {
         id: 1175151,
         suffix: "$",
         unit: "PCT",
-        marketHours: "us_cash",
+        marketHours: "crypto",
+        tastytradeStreamerSymbol: "BTC/USD:CXTALP",
         decimals: 2,
         order: 1,
       }],
@@ -201,7 +202,8 @@ describe("getAssets", () => {
 
     expect(marketAsset?.botToken).toBe("market-token");
     expect(marketAsset?.botClientId).toBe("market-client-id");
-    expect(marketAsset?.marketHours).toBe("us_cash");
+    expect(marketAsset?.marketHours).toBe("crypto");
+    expect(marketAsset?.tastytradeStreamerSymbol).toBe("BTC/USD:CXTALP");
     expect(roleAsset?.trigger).toEqual(["role-message-id"]);
     expect(roleAsset?.id).toBe("role-id");
     expect(paywallAsset?.name).toBe("default");
