@@ -773,7 +773,7 @@ describe("updateMarketData", () => {
       suffix: "$",
       unit: "PCT",
       marketHours: "crypto",
-      tastytradeStreamerSymbol: "BTC/USD:CXTALP",
+      tastytradeStreamerSymbol: "BTC/USD",
       lastUpdate: 0,
     };
     mockGetAssets.mockResolvedValue([cryptoAsset]);
@@ -819,7 +819,7 @@ describe("updateMarketData", () => {
       suffix: "$",
       unit: "PCT",
       marketHours: "crypto",
-      tastytradeStreamerSymbol: "BTC/USD:CXTALP",
+      tastytradeStreamerSymbol: "BTC/USD",
       lastUpdate: 0,
     };
     mockGetAssets.mockResolvedValue([cryptoAsset]);

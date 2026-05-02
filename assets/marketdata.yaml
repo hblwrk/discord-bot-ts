@@ -80,7 +80,7 @@
   suffix: "$"
   unit: "PCT"
   marketHours: "crypto"
-  tastytradeStreamerSymbol: "BTC/USD:CXTALP"
+  tastytradeStreamerSymbol: "BTC/USD"
   decimals: 2
   lastUpdate: 0
   order: 0
@@ -95,7 +95,7 @@
   suffix: "$"
   unit: "PCT"
   marketHours: "crypto"
-  tastytradeStreamerSymbol: "ETH/USD:CXTALP"
+  tastytradeStreamerSymbol: "ETH/USD"
   decimals: 2
   lastUpdate: 0
   order: 1
@@ -110,7 +110,7 @@
   suffix: "$"
   unit: "PCT"
   marketHours: "crypto"
-  tastytradeStreamerSymbol: "SOL/USD:CXTALP"
+  tastytradeStreamerSymbol: "SOL/USD"
   decimals: 2
   lastUpdate: 0
   order: 2
