@@ -17,7 +17,7 @@ function createCryptoAsset(overrides: Partial<MarketDataAsset> = {}): MarketData
     suffix: "$",
     unit: "PCT",
     marketHours: "crypto",
-    tastytradeStreamerSymbol: "BTC/USD:CXTALP",
+    tastytradeStreamerSymbol: "BTC/USD",
     decimals: 2,
     lastUpdate: 0,
     order: 0,
@@ -99,7 +99,7 @@ describe("tastytrade crypto market data stream", () => {
 
     expect(stream.streamer.connect).toHaveBeenCalledTimes(1);
     expect(stream.streamer.subscribe).toHaveBeenCalledWith(
-      ["BTC/USD:CXTALP"],
+      ["BTC/USD"],
       [
         MarketDataSubscriptionType.Trade,
         MarketDataSubscriptionType.Quote,
@@ -108,7 +108,7 @@ describe("tastytrade crypto market data stream", () => {
     );
 
     stream.emit([{
-      eventSymbol: "BTC/USD:CXTALP",
+      eventSymbol: "BTC/USD",
       eventType: "Trade",
       price: 100,
       priceChange: 1.5,
@@ -136,7 +136,7 @@ describe("tastytrade crypto market data stream", () => {
     await flushAsyncWork();
 
     stream.emit([{
-      "event-symbol": "BTC/USD:CXTALP",
+      "event-symbol": "BTC/USD",
       "event-type": "Quote",
       "bid-price": 99,
       "ask-price": 101,
@@ -204,7 +204,7 @@ describe("tastytrade crypto market data stream", () => {
     await vi.advanceTimersByTimeAsync(30_000);
     await flushAsyncWork();
     stream.emit([{
-      eventSymbol: "BTC/USD:CXTALP",
+      eventSymbol: "BTC/USD",
       eventType: "Trade",
       price: 101,
     }]);
@@ -222,11 +222,11 @@ describe("tastytrade crypto market data stream", () => {
     const stream = createStreamer();
     const btcAsset = createCryptoAsset({
       botClientId: "btc-client",
-      tastytradeStreamerSymbol: "BTC/USD:CXTALP",
+      tastytradeStreamerSymbol: "BTC/USD",
     });
     const ethAsset = createCryptoAsset({
       botClientId: "eth-client",
-      tastytradeStreamerSymbol: "ETH/USD:CXTALP",
+      tastytradeStreamerSymbol: "ETH/USD",
     });
     const options = createOptions({
       assets: [btcAsset, ethAsset],
@@ -239,13 +239,13 @@ describe("tastytrade crypto market data stream", () => {
     await flushAsyncWork();
 
     stream.emit([{
-      eventSymbol: "BTC/USD:CXTALP",
+      eventSymbol: "BTC/USD",
       eventType: "Trade",
       price: 100,
     }]);
     await vi.advanceTimersByTimeAsync(299_999);
     stream.emit([{
-      eventSymbol: "BTC/USD:CXTALP",
+      eventSymbol: "BTC/USD",
       eventType: "Trade",
       price: 101,
     }]);
@@ -253,11 +253,11 @@ describe("tastytrade crypto market data stream", () => {
     await flushAsyncWork();
 
     expect(options.onFallback).toHaveBeenCalledWith(
-      "no valid ETH/USD:CXTALP crypto quote for 300s",
+      "no valid ETH/USD crypto quote for 300s",
       ethAsset,
     );
     expect(options.onFallback).not.toHaveBeenCalledWith(
-      expect.stringContaining("BTC/USD:CXTALP"),
+      expect.stringContaining("BTC/USD"),
       btcAsset,
     );
   });

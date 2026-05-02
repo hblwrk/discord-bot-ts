@@ -153,7 +153,7 @@ describe("getAssets", () => {
         suffix: "$",
         unit: "PCT",
         marketHours: "crypto",
-        tastytradeStreamerSymbol: "BTC/USD:CXTALP",
+        tastytradeStreamerSymbol: "BTC/USD",
         decimals: 2,
         order: 1,
       }],
@@ -203,7 +203,7 @@ describe("getAssets", () => {
     expect(marketAsset?.botToken).toBe("market-token");
     expect(marketAsset?.botClientId).toBe("market-client-id");
     expect(marketAsset?.marketHours).toBe("crypto");
-    expect(marketAsset?.tastytradeStreamerSymbol).toBe("BTC/USD:CXTALP");
+    expect(marketAsset?.tastytradeStreamerSymbol).toBe("BTC/USD");
     expect(roleAsset?.trigger).toEqual(["role-message-id"]);
     expect(roleAsset?.id).toBe("role-id");
     expect(paywallAsset?.name).toBe("default");
@@ -243,10 +243,10 @@ describe("getAssets", () => {
     const marketDataAsset = new MarketDataAsset();
 
     marketDataAsset.marketHours = "crypto";
-    marketDataAsset.tastytradeStreamerSymbol = " BTC/USD:CXTALP ";
+    marketDataAsset.tastytradeStreamerSymbol = " BTC/USD ";
 
     expect(marketDataAsset.marketHours).toBe("crypto");
-    expect(marketDataAsset.tastytradeStreamerSymbol).toBe("BTC/USD:CXTALP");
+    expect(marketDataAsset.tastytradeStreamerSymbol).toBe("BTC/USD");
 
     marketDataAsset.marketHours = "unsupported";
 
