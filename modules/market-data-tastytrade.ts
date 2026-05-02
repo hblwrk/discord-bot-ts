@@ -16,7 +16,11 @@ type TastytradeQuoteStreamer = {
   disconnect: () => void;
   subscribe: (streamerSymbols: string[], types?: MarketDataSubscriptionType[] | null) => void;
 };
+type TastytradeInstrumentsService = {
+  getCryptocurrencies: (symbols: string[]) => Promise<Record<string, unknown>[]>;
+};
 type TastytradeMarketDataClient = {
+  instrumentsService?: TastytradeInstrumentsService;
   quoteStreamer: TastytradeQuoteStreamer;
 };
 type TastytradeMarketDataClientFactory = (credentials: {
@@ -26,6 +30,7 @@ type TastytradeMarketDataClientFactory = (credentials: {
 
 type CryptoStreamAsset = {
   asset: MarketDataAsset;
+  configuredSymbol: string;
   streamerSymbol: string;
 };
 
@@ -52,6 +57,7 @@ const retryMaxDelayMs = 30 * 60_000;
 const retryJitterRatio = 0.2;
 const staleTimeoutMs = 300_000;
 const staleCheckIntervalMs = 30_000;
+const initialResubscribeDelayMs = 5_000;
 const quoteSubscriptionTypes = [
   MarketDataSubscriptionType.Trade,
   MarketDataSubscriptionType.Quote,
@@ -75,18 +81,15 @@ export function startTastytradeCryptoStream({
   readSecretFn = readSecret,
   setTimeoutFn = setTimeout,
 }: TastytradeCryptoStreamOptions): TastytradeCryptoStreamHandle {
-  const streamAssets = getCryptoStreamAssets(assets);
-  if (0 === streamAssets.length) {
+  const configuredStreamAssets = getCryptoStreamAssets(assets);
+  if (0 === configuredStreamAssets.length) {
     return {
       stop: () => {},
     };
   }
 
-  const assetByStreamerSymbol = new Map<string, MarketDataAsset>();
-  for (const streamAsset of streamAssets) {
-    assetByStreamerSymbol.set(streamAsset.streamerSymbol, streamAsset.asset);
-  }
-
+  let streamAssets = configuredStreamAssets;
+  let assetByStreamerSymbol = getAssetByStreamerSymbol(streamAssets);
   let client: TastytradeMarketDataClient | undefined;
   let connectedAtMs = 0;
   let lastValidEventAtMs = 0;
@@ -95,13 +98,23 @@ export function startTastytradeCryptoStream({
   let live = false;
   let reconnecting = false;
   let retryDelayMs = retryBaseDelayMs;
+  let initialResubscribeTimer: TimerHandle | undefined;
   let retryTimer: TimerHandle | undefined;
   let staleTimer: TimerHandle | undefined;
   let removeListener: (() => void) | undefined;
   let stopped = false;
   const previousPrices = new Map<string, number>();
 
+  const clearTimer = (timer: TimerHandle | undefined) => {
+    if (undefined !== timer) {
+      clearTimeoutFn(timer);
+    }
+  };
+
   const disconnect = () => {
+    clearTimer(initialResubscribeTimer);
+    initialResubscribeTimer = undefined;
+
     if (undefined !== removeListener) {
       removeListener();
       removeListener = undefined;
@@ -114,12 +127,6 @@ export function startTastytradeCryptoStream({
 
     connectedAtMs = 0;
     live = false;
-  };
-
-  const clearTimer = (timer: TimerHandle | undefined) => {
-    if (undefined !== timer) {
-      clearTimeoutFn(timer);
-    }
   };
 
   const scheduleRetry = (reason: string) => {
@@ -142,10 +149,46 @@ export function startTastytradeCryptoStream({
   };
 
   const fail = (reason: string) => {
+    clearTimer(initialResubscribeTimer);
     clearTimer(staleTimer);
     disconnect();
     onFallback(reason);
     scheduleRetry(reason);
+  };
+
+  const subscribeToStreamAssets = () => {
+    if (undefined === client) {
+      return;
+    }
+
+    client.quoteStreamer.subscribe(
+      streamAssets.map(streamAsset => streamAsset.streamerSymbol),
+      quoteSubscriptionTypes,
+    );
+  };
+
+  const scheduleInitialResubscribe = () => {
+    clearTimer(initialResubscribeTimer);
+    if (true === stopped) {
+      return;
+    }
+
+    initialResubscribeTimer = setTimeoutFn(() => {
+      if (true === stopped || undefined === client || 0 !== lastValidEventAtMs) {
+        return;
+      }
+
+      try {
+        subscribeToStreamAssets();
+        logger.log(
+          "info",
+          `Tastytrade crypto stream resubscribed to ${streamAssets.length} symbols after no initial quote.`,
+        );
+      } catch (error) {
+        fail(`resubscribe failed: ${String(error)}`);
+      }
+    }, initialResubscribeDelayMs);
+    initialResubscribeTimer.unref();
   };
 
   const handleEvents: TastytradeEventListener = events => {
@@ -168,6 +211,8 @@ export function startTastytradeCryptoStream({
       previousPrices.set(getAssetKey(streamEvent.asset), streamEvent.lastNumeric);
       const eventTimeMs = now();
       lastValidEventAtMs = eventTimeMs;
+      clearTimer(initialResubscribeTimer);
+      initialResubscribeTimer = undefined;
       lastValidEventAtBySymbol.set(streamEvent.streamerSymbol, eventTimeMs);
       fallbackSymbols.delete(streamEvent.streamerSymbol);
       if (false === live) {
@@ -232,20 +277,20 @@ export function startTastytradeCryptoStream({
 
       disconnect();
       client = clientFactory({clientSecret, refreshToken});
+      streamAssets = await resolveCryptoStreamAssets(configuredStreamAssets, client, logger);
+      assetByStreamerSymbol = getAssetByStreamerSymbol(streamAssets);
       removeListener = client.quoteStreamer.addEventListener(handleEvents);
       await client.quoteStreamer.connect();
       connectedAtMs = now();
       lastValidEventAtMs = 0;
       lastValidEventAtBySymbol.clear();
       fallbackSymbols.clear();
-      client.quoteStreamer.subscribe(
-        streamAssets.map(streamAsset => streamAsset.streamerSymbol),
-        quoteSubscriptionTypes,
-      );
+      subscribeToStreamAssets();
       logger.log(
         "info",
         `Tastytrade crypto stream subscribed to ${streamAssets.length} symbols.`,
       );
+      scheduleInitialResubscribe();
       scheduleStaleCheck();
     } catch (error) {
       fail(String(error));
@@ -259,6 +304,7 @@ export function startTastytradeCryptoStream({
   return {
     stop: () => {
       stopped = true;
+      clearTimer(initialResubscribeTimer);
       clearTimer(retryTimer);
       clearTimer(staleTimer);
       disconnect();
@@ -298,9 +344,67 @@ function getCryptoStreamAssets(assets: MarketDataAsset[]): CryptoStreamAsset[] {
 
     return [{
       asset,
+      configuredSymbol: streamerSymbol,
       streamerSymbol,
     }];
   });
+}
+
+function getAssetByStreamerSymbol(streamAssets: CryptoStreamAsset[]): Map<string, MarketDataAsset> {
+  const assetByStreamerSymbol = new Map<string, MarketDataAsset>();
+  for (const streamAsset of streamAssets) {
+    assetByStreamerSymbol.set(streamAsset.streamerSymbol, streamAsset.asset);
+  }
+
+  return assetByStreamerSymbol;
+}
+
+async function resolveCryptoStreamAssets(
+  configuredStreamAssets: CryptoStreamAsset[],
+  client: TastytradeMarketDataClient,
+  logger: Logger,
+): Promise<CryptoStreamAsset[]> {
+  const symbolsToResolve = [...new Set(configuredStreamAssets.flatMap(streamAsset => (
+    true === streamAsset.configuredSymbol.includes(":") ? [] : [streamAsset.configuredSymbol]
+  )))];
+  if (0 === symbolsToResolve.length || undefined === client.instrumentsService) {
+    return configuredStreamAssets;
+  }
+
+  try {
+    const instruments = await client.instrumentsService.getCryptocurrencies(symbolsToResolve);
+    const streamerSymbolBySymbol = new Map<string, string>();
+    for (const instrument of instruments) {
+      const symbol = getStringField(instrument, ["symbol"]);
+      const streamerSymbol = getStringField(instrument, ["streamer-symbol", "streamerSymbol"]);
+      if (null !== symbol && null !== streamerSymbol) {
+        streamerSymbolBySymbol.set(symbol, streamerSymbol);
+      }
+    }
+
+    return configuredStreamAssets.map(streamAsset => {
+      const resolvedStreamerSymbol = streamerSymbolBySymbol.get(streamAsset.configuredSymbol);
+      if (undefined === resolvedStreamerSymbol || resolvedStreamerSymbol === streamAsset.streamerSymbol) {
+        return streamAsset;
+      }
+
+      logger.log(
+        "info",
+        `Resolved tastytrade crypto streamer symbol ${streamAsset.configuredSymbol} -> ${resolvedStreamerSymbol}.`,
+      );
+
+      return {
+        ...streamAsset,
+        streamerSymbol: resolvedStreamerSymbol,
+      };
+    });
+  } catch (error) {
+    logger.log(
+      "warn",
+      `Resolving tastytrade crypto streamer symbols failed: ${String(error)}. Using configured symbols.`,
+    );
+    return configuredStreamAssets;
+  }
 }
 
 function getAssetKey(asset: MarketDataAsset): string {
