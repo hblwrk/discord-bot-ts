@@ -408,7 +408,7 @@ describe("getEarningsText", () => {
     expect(parsedLines[2]!.ticker.trim()).toBe("NEXT");
     expect(new Set(parsedLines.map(entry => entry.ticker.length)).size).toBe(1);
     expect(new Set(parsedLines.map(entry => entry.marketCap.length)).size).toBe(1);
-    expect(new Set(parsedLines.map(entry => entry.eps.length)).size).toBe(1);
+    expect(parsedLines.map(entry => entry.eps)).toEqual(["1.20", "0.50", "0.75"]);
     expect(lines[0]!).not.toContain("Während der Handelszeiten oder unbekannter Zeitpunkt");
   });
 });
@@ -465,7 +465,7 @@ describe("getEarningsMessages", () => {
     expect(parsedLines[0]!.eps.trim()).toBe("2.20");
     expect(new Set(parsedLines.map(entry => entry.ticker.length)).size).toBe(1);
     expect(new Set(parsedLines.map(entry => entry.marketCap.length)).size).toBe(1);
-    expect(new Set(parsedLines.map(entry => entry.eps.length)).size).toBe(1);
+    expect(parsedLines.map(entry => entry.eps)).toEqual(["2.20", "0.10", "0.80"]);
   });
 
   test("includes expected move details when earnings events are enriched", () => {
@@ -484,7 +484,40 @@ describe("getEarningsMessages", () => {
     });
 
     expect(batch.messages[0]!).toContain("💰 MCap: `$2.8T` 📈 Last: `$190.42` 🔮 EPS:");
-    expect(batch.messages[0]!).toContain("🎯 Move: `+/- $12.40 (6.5%, 3 DTE)`");
+    expect(batch.messages[0]!).toContain("🎯 Move: `± $12.40 (6.5%, 3 DTE)`");
+  });
+
+  test("scopes ticker and market cap padding to each message chunk", () => {
+    const batch = getEarningsMessages([
+      getEarningsEvent({
+        ticker: "VERYLONGTICKER",
+        when: "before_open",
+        companyName: "Very Long Co",
+        marketCap: 999_500_000_000,
+        marketCapText: "$999.5B",
+        epsConsensus: "10.00",
+      }),
+      getEarningsEvent({
+        ticker: "SM",
+        when: "before_open",
+        companyName: "Small Co",
+        marketCap: 1_000_000_000,
+        marketCapText: "$1B",
+        epsConsensus: "0.10",
+      }),
+    ], "all", [], {
+      maxMessageLength: 150,
+      maxMessages: 3,
+    });
+
+    expect(batch.messages).toHaveLength(2);
+    const secondMessageLine = batch.messages[1]!
+      .split("\n")
+      .find(line => line.includes(" MCap: "));
+    expect(secondMessageLine).toBeDefined();
+    const parsedLine = parseEarningsLine(secondMessageLine!);
+    expect(parsedLine.ticker).toBe("SM");
+    expect(parsedLine.marketCap).toBe("$1B");
   });
 
   test("sub-sorts a day by time bucket before market cap", () => {
