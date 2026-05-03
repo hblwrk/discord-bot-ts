@@ -42,5 +42,5 @@ export function getFormattedExpectedMoveText(earningsEvent: EarningsEvent): stri
     return "";
   }
 
-  return ` 🎯 Move: \`+/- $${formatOptionalPrice(earningsEvent.expectedMove)}${getExpectedMoveDetailsText(earningsEvent)}\``;
+  return ` 🎯 Move: \`± $${formatOptionalPrice(earningsEvent.expectedMove)}${getExpectedMoveDetailsText(earningsEvent)}\``;
 }

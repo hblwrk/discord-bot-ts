@@ -162,7 +162,7 @@ export function formatExpectedMoveLookupResult(result: OptionStrategyLookupResul
       result.underlyingPrice,
       result.underlyingPriceIsRealtime,
     )} | Expected Move | ${formatExpiration(result)}`,
-    `Move proxy: \`+/- ${formatOptionalPrice(result.midTotal)}\` | ATM straddle mid \`${formatOptionalPrice(result.midTotal)}\``,
+    `Move proxy: \`± ${formatOptionalPrice(result.midTotal)}\` | ATM straddle mid \`${formatOptionalPrice(result.midTotal)}\``,
     formatLeg("Put", result.put),
     formatLeg("Call", result.call),
   ].join("\n");

@@ -5,40 +5,27 @@ import {
   EARNINGS_CONTINUATION_LABEL,
   EARNINGS_MAX_MESSAGE_LENGTH,
   earningsTruncationNote,
-  earningsWhenLabelByWhen,
   earningsWhenSortRankByWhen,
   type EarningsEvent,
   type EarningsMessageBatch,
   type EarningsMessageOptions,
   type EarningsWhen,
-  unknownValueLabel,
 } from "./earnings-types.ts";
 import {
-  formatMarketCapUsdShort,
-  getNormalizedString,
-  getNumericValueFromNasdaqCapString,
-} from "./earnings-utils.ts";
-import {getFormattedExpectedMoveText, getFormattedExpectedMoveUnderlyingPriceText} from "./earnings-option-format.ts";
-
-type EarningsSectionRow = {
-  when: EarningsWhen;
-  line: string;
-};
+  appendToEarningsChunk,
+  canAppendToEarningsChunk,
+  cloneEarningsChunk,
+  getEarningsChunkText,
+  getEarningsMessageChunkSection,
+  getEmptyEarningsMessageChunk,
+  getTruncatedEarningsSectionRow,
+  type EarningsMessageChunk,
+  type EarningsSectionRow,
+} from "./earnings-format-render.ts";
 
 type EarningsSection = {
   label: string;
   rows: EarningsSectionRow[];
-};
-
-type EarningsLineWidths = {
-  ticker: number;
-  marketCap: number;
-  eps: number;
-};
-
-type EarningsMessageChunk = {
-  content: string;
-  eventCount: number;
 };
 
 type EventsByDateBucket = {
@@ -144,8 +131,7 @@ function buildEarningsMessageBatch(
 ): EarningsMessageBatch {
   const {maxMessageLength, maxMessages, continuationLabel} = options;
   const sections = getEarningsSections(
-    filteredAndSortedEvents,
-    highlightedTickerSymbols
+    filteredAndSortedEvents
   );
   if (0 === sections.length) {
     return {
@@ -159,28 +145,27 @@ function buildEarningsMessageBatch(
   const title = getEarningsTitle(filteredAndSortedEvents);
 
   const chunks: EarningsMessageChunk[] = [];
-  let currentChunk = getEmptyEarningsMessageChunk(0, title);
+  let currentChunk = getEmptyEarningsMessageChunk(0);
   let contentTruncated = false;
 
   for (const section of sections) {
-    const fullSectionText = getEarningsSectionText(
+    const fullSection = getEarningsMessageChunkSection(
       section.label,
       section.rows,
-      false,
-      continuationLabel
+      false
     );
-    if (true === canAppendToEarningsChunk(currentChunk, fullSectionText, maxMessageLength)) {
-      appendToEarningsChunk(currentChunk, fullSectionText, section.rows.length);
+    if (true === canAppendToEarningsChunk(currentChunk, fullSection, highlightedTickerSymbols, maxMessageLength, title, continuationLabel)) {
+      appendToEarningsChunk(currentChunk, fullSection);
       continue;
     }
 
     if (0 < currentChunk.eventCount) {
       chunks.push(cloneEarningsChunk(currentChunk));
-      currentChunk = getEmptyEarningsMessageChunk(chunks.length, title);
+      currentChunk = getEmptyEarningsMessageChunk(chunks.length);
     }
 
-    if (true === canAppendToEarningsChunk(currentChunk, fullSectionText, maxMessageLength)) {
-      appendToEarningsChunk(currentChunk, fullSectionText, section.rows.length);
+    if (true === canAppendToEarningsChunk(currentChunk, fullSection, highlightedTickerSymbols, maxMessageLength, title, continuationLabel)) {
+      appendToEarningsChunk(currentChunk, fullSection);
       continue;
     }
 
@@ -195,14 +180,13 @@ function buildEarningsMessageBatch(
         }
 
         const candidateRows = [...sectionRows, nextRow];
-        const candidateSectionText = getEarningsSectionText(
+        const candidateSection = getEarningsMessageChunkSection(
           section.label,
           candidateRows,
-          continuation,
-          continuationLabel
+          continuation
         );
 
-        if (canAppendToEarningsChunk(currentChunk, candidateSectionText, maxMessageLength)) {
+        if (canAppendToEarningsChunk(currentChunk, candidateSection, highlightedTickerSymbols, maxMessageLength, title, continuationLabel)) {
           sectionRows.push(nextRow);
           rowIndex++;
         } else {
@@ -211,41 +195,44 @@ function buildEarningsMessageBatch(
       }
 
       if (0 === sectionRows.length) {
+        if (0 < currentChunk.eventCount) {
+          chunks.push(cloneEarningsChunk(currentChunk));
+          currentChunk = getEmptyEarningsMessageChunk(chunks.length);
+          continue;
+        }
+
         const rawRow = section.rows[rowIndex];
         if (undefined === rawRow) {
           break;
         }
 
-        const headingText = `${getEarningsSectionHeading(section.label, continuation, continuationLabel)}\n${getEarningsWhenSubheading(rawRow.when)}\n`;
-        const availableRowLength = maxMessageLength - getAppendedEarningsChunkText(currentChunk, headingText).length - 1;
-        if (availableRowLength <= 0 && 0 < currentChunk.eventCount) {
-          chunks.push(cloneEarningsChunk(currentChunk));
-          currentChunk = getEmptyEarningsMessageChunk(chunks.length, title);
-          continue;
-        }
-
-        const truncatedRow = {
-          ...rawRow,
-          line: truncateEarningsLine(rawRow.line, Math.max(availableRowLength, 1)),
-        };
+        const truncatedRow = getTruncatedEarningsSectionRow(
+          rawRow,
+          section.label,
+          continuation,
+          currentChunk,
+          highlightedTickerSymbols,
+          maxMessageLength,
+          title,
+          continuationLabel
+        );
         sectionRows.push(truncatedRow);
         rowIndex++;
-        if (rawRow.line !== truncatedRow.line) {
+        if (undefined !== truncatedRow.lineOverride) {
           contentTruncated = true;
         }
       }
 
-      const sectionText = getEarningsSectionText(
+      const sectionChunk = getEarningsMessageChunkSection(
         section.label,
         sectionRows,
-        continuation,
-        continuationLabel
+        continuation
       );
-      appendToEarningsChunk(currentChunk, sectionText, sectionRows.length);
+      appendToEarningsChunk(currentChunk, sectionChunk);
 
       if (rowIndex < section.rows.length) {
         chunks.push(cloneEarningsChunk(currentChunk));
-        currentChunk = getEmptyEarningsMessageChunk(chunks.length, title);
+        currentChunk = getEmptyEarningsMessageChunk(chunks.length);
         continuation = true;
       }
     }
@@ -262,7 +249,12 @@ function buildEarningsMessageBatch(
     visibleChunks = visibleChunks.slice(0, maxMessages);
   }
 
-  const messages = visibleChunks.map(chunk => chunk.content.trimEnd());
+  const messages = visibleChunks.map(chunk => getEarningsChunkText(
+    chunk,
+    title,
+    highlightedTickerSymbols,
+    continuationLabel
+  ).trimEnd());
   const includedEvents = visibleChunks.reduce(
     (sum, chunk) => sum + chunk.eventCount,
     0
@@ -483,12 +475,8 @@ function isBluechipMarketCap(marketCap: number | null | undefined): boolean {
   return marketCap >= bluechipMinMarketCap;
 }
 
-function getEarningsSections(
-  earningsEvents: EarningsEvent[],
-  highlightedTickerSymbols: Set<string>
-): EarningsSection[] {
+function getEarningsSections(earningsEvents: EarningsEvent[]): EarningsSection[] {
   const orderedSections: EarningsSection[] = [];
-  const lineWidths = getEarningsLineWidths(earningsEvents);
   let previousDateStamp = "";
 
   for (const earningsEvent of earningsEvents) {
@@ -506,144 +494,16 @@ function getEarningsSections(
     }
 
     currentSection.rows.push({
+      event: earningsEvent,
       when: earningsEvent.when,
-      line: getEarningsEventLine(
-        earningsEvent,
-        highlightedTickerSymbols,
-        lineWidths
-      ),
     });
   }
 
   return orderedSections;
 }
 
-function getEarningsLineWidths(
-  earningsEvents: EarningsEvent[]
-): EarningsLineWidths {
-  let tickerWidth = 1;
-  let marketCapWidth = unknownValueLabel.length;
-  let epsWidth = unknownValueLabel.length;
-
-  for (const earningsEvent of earningsEvents) {
-    tickerWidth = Math.max(tickerWidth, earningsEvent.ticker.length);
-
-    const marketCapText = getFormattedMarketCapText(
-      earningsEvent.marketCap,
-      earningsEvent.marketCapText
-    );
-    marketCapWidth = Math.max(marketCapWidth, marketCapText.length);
-
-    const epsConsensus = getFormattedEpsConsensusText(earningsEvent.epsConsensus);
-    epsWidth = Math.max(epsWidth, epsConsensus.length);
-  }
-
-  return {
-    ticker: tickerWidth,
-    marketCap: marketCapWidth,
-    eps: epsWidth,
-  };
-}
-
 function getFriendlyDate(dateStamp: string): string {
   return moment(dateStamp).locale("de").format("dddd, Do MMMM YYYY");
-}
-
-function getEarningsSectionHeading(
-  label: string,
-  continuation: boolean,
-  continuationLabel: string
-): string {
-  if (false === continuation) {
-    return `**${label}:**`;
-  }
-
-  return `**${label} ${continuationLabel}:**`;
-}
-
-function getEarningsSectionText(
-  label: string,
-  rows: EarningsSectionRow[],
-  continuation: boolean,
-  continuationLabel: string
-): string {
-  const heading = getEarningsSectionHeading(label, continuation, continuationLabel);
-  const sectionLines: string[] = [];
-  let previousWhen: EarningsWhen | null = null;
-
-  for (const row of rows) {
-    if (row.when !== previousWhen) {
-      sectionLines.push("");
-      sectionLines.push(getEarningsWhenSubheading(row.when));
-      previousWhen = row.when;
-    }
-
-    sectionLines.push(row.line);
-  }
-
-  return `${heading}\n${sectionLines.join("\n")}\n\n`;
-}
-
-function getEmptyEarningsMessageChunk(
-  messageIndex: number,
-  title: string
-): EarningsMessageChunk {
-  const prefix = (0 === messageIndex && 0 < title.length) ? `${title}\n` : "";
-  return {
-    content: prefix,
-    eventCount: 0,
-  };
-}
-
-function getAppendedEarningsChunkText(
-  chunk: EarningsMessageChunk,
-  text: string
-): string {
-  if ("" === chunk.content) {
-    return text;
-  }
-
-  if (chunk.content.endsWith("\n")) {
-    return `${chunk.content}${text}`;
-  }
-
-  return `${chunk.content}\n${text}`;
-}
-
-function canAppendToEarningsChunk(
-  chunk: EarningsMessageChunk,
-  text: string,
-  maxMessageLength: number
-): boolean {
-  return getAppendedEarningsChunkText(chunk, text).length <= maxMessageLength;
-}
-
-function appendToEarningsChunk(
-  chunk: EarningsMessageChunk,
-  text: string,
-  eventCount: number
-) {
-  chunk.content = getAppendedEarningsChunkText(chunk, text);
-  chunk.eventCount += eventCount;
-}
-
-function cloneEarningsChunk(chunk: EarningsMessageChunk): EarningsMessageChunk {
-  return {
-    content: chunk.content,
-    eventCount: chunk.eventCount,
-  };
-}
-
-function truncateEarningsLine(line: string, maxLength: number): string {
-  if (line.length <= maxLength) {
-    return line;
-  }
-
-  if (maxLength <= 3) {
-    return line.slice(0, maxLength);
-  }
-
-  return `${line.slice(0, maxLength - 3)}...`;
 }
 
 function appendEarningsTruncationNote(
@@ -698,90 +558,4 @@ function getSortableMarketCap(marketCap: number | null | undefined): number {
 
 function getEarningsWhenSortRank(earningsWhen: EarningsWhen): number {
   return earningsWhenSortRankByWhen.get(earningsWhen) ?? Number.MAX_SAFE_INTEGER;
-}
-
-function getEarningsEventLine(
-  earningsEvent: EarningsEvent,
-  highlightedTickerSymbols: Set<string>,
-  lineWidths: EarningsLineWidths
-): string {
-  const ticker = getFormattedTicker(
-    earningsEvent.ticker,
-    highlightedTickerSymbols,
-    lineWidths.ticker
-  );
-  const marketCapText = getFormattedMarketCapText(earningsEvent.marketCap, earningsEvent.marketCapText);
-  const epsConsensus = getFormattedEpsConsensusText(earningsEvent.epsConsensus);
-  const paddedMarketCapText = getPaddedEarningsColumnText(
-    marketCapText,
-    lineWidths.marketCap
-  );
-  const paddedEpsConsensus = getPaddedEarningsColumnText(
-    epsConsensus,
-    lineWidths.eps
-  );
-  const expectedMoveText = getFormattedExpectedMoveText(earningsEvent);
-  const underlyingPriceText = getFormattedExpectedMoveUnderlyingPriceText(earningsEvent);
-
-  return `${ticker} 💰 MCap: \`${paddedMarketCapText}\`${underlyingPriceText} 🔮 EPS: \`${paddedEpsConsensus}\`${expectedMoveText}`;
-}
-
-function getFormattedMarketCapText(
-  marketCap: number | null | undefined,
-  marketCapText: string | undefined
-): string {
-  if ("number" === typeof marketCap && Number.isFinite(marketCap) && marketCap >= 0) {
-    return formatMarketCapUsdShort(marketCap);
-  }
-
-  const normalizedMarketCapText = getNormalizedString(marketCapText);
-  if (null === normalizedMarketCapText) {
-    return unknownValueLabel;
-  }
-
-  const parsedMarketCap = getNumericValueFromNasdaqCapString(normalizedMarketCapText);
-  if (null === parsedMarketCap) {
-    return unknownValueLabel;
-  }
-
-  return formatMarketCapUsdShort(parsedMarketCap);
-}
-
-function getFormattedEpsConsensusText(
-  epsConsensus: string | undefined
-): string {
-  return getNormalizedString(epsConsensus) ?? unknownValueLabel;
-}
-
-function getPaddedEarningsColumnText(
-  text: string,
-  width: number
-): string {
-  return text.padEnd(width, " ");
-}
-
-function getFormattedTicker(
-  ticker: string,
-  highlightedTickerSymbols: Set<string>,
-  width: number
-): string {
-  const tickerText = `\`${getPaddedEarningsColumnText(ticker, width)}\``;
-  if (true === highlightedTickerSymbols.has(ticker)) {
-    return `**${tickerText}**`;
-  }
-
-  return tickerText;
-}
-
-function getEarningsWhenLabel(earningsWhen: EarningsWhen): string {
-  const label = earningsWhenLabelByWhen.get(earningsWhen);
-  if (undefined !== label) {
-    return label;
-  }
-
-  return "Während der Handelszeiten oder unbekannter Zeitpunkt";
-}
-
-function getEarningsWhenSubheading(earningsWhen: EarningsWhen): string {
-  return `**${getEarningsWhenLabel(earningsWhen)}:**`;
 }

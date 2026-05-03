@@ -163,6 +163,6 @@ describe("options-strategy", () => {
     expect(formattedStraddleResult.split("\n")[0]).toBe("`AAPL` @ `442.00` | ATM Straddle | Expiry `2026-06-19` (`49` DTE)");
     expect(formattedResult.split("\n")[0]).toBe("`AAPL` @ `442.00` | Expected Move | Expiry `2026-06-19` (`49` DTE)");
     expect(formattedResult).toContain("ATM straddle mid `12.40`");
-    expect(formattedResult).toContain("Move proxy: `+/- 12.40`");
+    expect(formattedResult).toContain("Move proxy: `± 12.40`");
   });
 });
