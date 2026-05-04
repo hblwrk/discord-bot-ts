@@ -168,9 +168,8 @@ export async function handleCalendarSlashCommand(
     },
   );
 
-  let calendarEvents = [];
-
   const rangeOption = interaction.options.getString("range");
+  let calendarRangeDays = 0;
   if (null !== rangeOption) {
     let range: number = Number.parseInt(validator.escape(rangeOption), 10);
     if (Number.isNaN(range)) {
@@ -181,11 +180,10 @@ export async function handleCalendarSlashCommand(
       range = 31;
     }
 
-    calendarEvents = await getCalendarEvents("", range - 1);
-  } else {
-    calendarEvents = await getCalendarEvents("", 0);
+    calendarRangeDays = range - 1;
   }
 
+  const calendarEvents = await getCalendarEvents("", calendarRangeDays);
   const calendarBatch = getCalendarMessages(calendarEvents, {
     maxMessageLength: CALENDAR_MAX_MESSAGE_LENGTH,
     maxMessages: CALENDAR_MAX_MESSAGES_SLASH,

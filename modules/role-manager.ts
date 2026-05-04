@@ -309,26 +309,14 @@ export async function roleManager(client: RoleManagerClient, assetRoles: Managed
     }
 
     for (const role of assetRoles) {
-      let emoji = "";
-      let reactionEmoji = "";
-      if (role.emoji.startsWith("custom:")) {
-        const customEmoji = roleGuild.emojis.cache.find((emoji: RoleEmoji) => emoji.name === role.emoji.replace("custom:", ""));
-        if (!customEmoji) {
-          continue;
-        }
-
-        emoji = customEmoji.id;
-      } else {
-        emoji = role.emoji;
+      const emoji = role.emoji.startsWith("custom:")
+        ? roleGuild.emojis.cache.find((customEmoji: RoleEmoji) => customEmoji.name === role.emoji.replace("custom:", ""))?.id
+        : role.emoji;
+      if (!emoji) {
+        continue;
       }
 
-      if (null === reaction.emoji.id) {
-        // Native emoji
-        reactionEmoji = reaction.emoji.name ?? "";
-      } else {
-        // Custom emoji
-        reactionEmoji = reaction.emoji.id;
-      }
+      const reactionEmoji = reaction.emoji.id ?? reaction.emoji.name ?? "";
 
       const roleTriggers = Array.isArray(role.trigger) ? role.trigger : [role.trigger];
       if (roleTriggers.includes(reaction.message.id) && emoji === reactionEmoji && clientId !== user.id) {

@@ -42,7 +42,7 @@
   },
   "homepage": "https://github.com/hblwrk/discord-bot-ts#readme",
   "devDependencies": {
-    "@eslint/js": "^9.39.4",
+    "@eslint/js": "^10.0.1",
     "@types/express": "^5.0.6",
     "@types/js-yaml": "^4.0.9",
     "@types/node": "^24.12.2",

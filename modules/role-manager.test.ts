@@ -244,6 +244,24 @@ describe("roleManager", () => {
       "warn",
       expect.stringContaining("custom emoji custom:missing not found"),
     );
+
+    const addHandler = missingEmojiClient.getHandler("messageReactionAdd");
+    await addHandler({
+      partial: false,
+      message: {
+        partial: false,
+        id: "broker-message-id",
+      },
+      emoji: {
+        id: "emoji-id",
+        name: null,
+      },
+    }, {
+      id: "member-id",
+      username: "member-name",
+    });
+
+    expect(missingEmojiClient.guild.members.fetch).not.toHaveBeenCalled();
   });
 
   test("skips setup when role-assignment configuration is incomplete", async () => {
@@ -328,6 +346,8 @@ describe("roleManager", () => {
 
     const addHandler = getHandler("messageReactionAdd");
     await addHandler({invalid: true}, {id: "member-id"});
+    const removeHandler = getHandler("messageReactionRemove");
+    await removeHandler({invalid: true}, {id: "member-id"});
     await addHandler({
       partial: false,
       message: {
