@@ -29,6 +29,10 @@ type SendableChannel = {
   send: (payload: unknown) => Promise<unknown> | unknown;
 };
 
+type FetchableMessageManager = {
+  fetch: (options: {limit: number}) => Promise<unknown> | unknown;
+};
+
 type EarningsResultClient = {
   channels?: {
     cache?: {
@@ -118,6 +122,7 @@ const defaultPollIntervalMs = 60_000;
 const defaultInactivePollIntervalMs = 15 * 60_000;
 const defaultSecCurrentFilingsLimit = 100;
 const defaultMaxAnnouncementsPerScan = 10;
+const defaultRecentMessageFetchLimit = 100;
 const earningsWatchTtlMs = 15 * 60_000;
 const nasdaqEarningsSurpriseEndpoint = "https://api.nasdaq.com/api/company";
 const noMentions = {
@@ -147,10 +152,29 @@ export function startEarningsResultWatcher(
   const inactivePollIntervalMs = options.inactivePollIntervalMs ?? defaultInactivePollIntervalMs;
   const seenAccessions = new Set<string>();
   const dependencies = getDependencies(options);
+  let seenAccessionsSeeded = false;
   let stopped = false;
   let timerHandle: TimerHandle | undefined;
 
   const runOnce = async (): Promise<EarningsResultScanResult> => {
+    if (false === seenAccessionsSeeded) {
+      const seeded = await seedSeenAccessionsFromChannelHistory(
+        client,
+        channelID,
+        seenAccessions,
+        dependencies.logger,
+      );
+      if (false === seeded) {
+        return {
+          active: true,
+          announcements: [],
+          watchedCompanies: 0,
+        };
+      }
+
+      seenAccessionsSeeded = true;
+    }
+
     const announcementOptions: {
       dependencies: EarningsResultDependencies;
       maxAnnouncementsPerScan?: number;
@@ -304,6 +328,99 @@ function isSendableChannel(channel: unknown): channel is SendableChannel {
     null !== channel &&
     "send" in channel &&
     "function" === typeof channel.send;
+}
+
+function isFetchableMessageManager(value: unknown): value is FetchableMessageManager {
+  return "object" === typeof value &&
+    null !== value &&
+    "fetch" in value &&
+    "function" === typeof value.fetch;
+}
+
+async function seedSeenAccessionsFromChannelHistory(
+  client: EarningsResultClient,
+  channelID: string,
+  seenAccessions: Set<string>,
+  loggerInstance: Logger,
+): Promise<boolean> {
+  const channel = client.channels?.cache?.get?.(channelID);
+  const messages = "object" === typeof channel && null !== channel && "messages" in channel
+    ? channel.messages
+    : undefined;
+  if (false === isFetchableMessageManager(messages)) {
+    loggerInstance.log(
+      "warn",
+      `Skipping earnings result scan: channel ${channelID} message history is not fetchable.`,
+    );
+    return false;
+  }
+
+  const fetchedMessages = await Promise.resolve(messages.fetch({
+    limit: defaultRecentMessageFetchLimit,
+  })).catch(error => {
+    loggerInstance.log(
+      "warn",
+      `Could not seed earnings result announcements from channel history: ${error}`,
+    );
+    return null;
+  });
+  if (null === fetchedMessages) {
+    return false;
+  }
+
+  for (const message of getFetchedMessageValues(fetchedMessages)) {
+    const content = getMessageContent(message);
+    if (null === content) {
+      continue;
+    }
+
+    for (const accessionNumber of extractSecAccessionNumbers(content)) {
+      seenAccessions.add(accessionNumber);
+    }
+  }
+
+  return true;
+}
+
+function getFetchedMessageValues(fetchedMessages: unknown): unknown[] {
+  if ("object" === typeof fetchedMessages &&
+      null !== fetchedMessages &&
+      "values" in fetchedMessages &&
+      "function" === typeof fetchedMessages.values) {
+    return Array.from(fetchedMessages.values());
+  }
+
+  return [];
+}
+
+function getMessageContent(message: unknown): string | null {
+  if ("object" !== typeof message || null === message || false === "content" in message) {
+    return null;
+  }
+
+  return "string" === typeof message.content ? message.content : null;
+}
+
+function extractSecAccessionNumbers(content: string): string[] {
+  const accessions = new Set<string>();
+  for (const match of content.matchAll(/\b\d{10}-\d{2}-\d{6}\b/g)) {
+    accessions.add(match[0]);
+  }
+
+  for (const match of content.matchAll(/\/Archives\/edgar\/data\/\d+\/(\d{18})\//gi)) {
+    const compactAccession = match[1];
+    if (undefined === compactAccession) {
+      continue;
+    }
+
+    accessions.add(formatCompactAccessionNumber(compactAccession));
+  }
+
+  return [...accessions];
+}
+
+function formatCompactAccessionNumber(value: string): string {
+  return `${value.slice(0, 10)}-${value.slice(10, 12)}-${value.slice(12)}`;
 }
 
 async function sendEarningsResultAnnouncement(
