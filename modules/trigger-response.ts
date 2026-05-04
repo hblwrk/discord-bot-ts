@@ -10,6 +10,7 @@ import {
   paywallLookupBusyMessage,
 } from "./paywall.ts";
 import type {PaywallResult} from "./paywall.ts";
+import {buildPaywallResponsePayload, type PaywallResponsePayload} from "./paywall-response.ts";
 import {assertSafeRequestUrl, UnsafeUrlError} from "./safe-http.ts";
 import {getRandomAssetByTriggerGroup} from "./random-asset.ts";
 import {getRandomQuote} from "./random-quote.ts";
@@ -19,11 +20,12 @@ const noQuoteMessage = "Keine passenden Zitate gefunden.";
 const unavailableMessage = "Dieser Inhalt ist gerade nicht verfügbar. Bitte später erneut versuchen.";
 
 type TriggerResponsePayload = string | {
+  content?: string;
   embeds?: EmbedBuilder[];
   files?: AttachmentBuilder[];
 };
 type TriggerResponseSentMessage = {
-  edit: (content: string) => Promise<unknown>;
+  edit: (content: string | PaywallResponsePayload) => Promise<unknown>;
 };
 type TriggerResponseChannel = {
   send: (payload: TriggerResponsePayload) => Promise<TriggerResponseSentMessage | undefined>;
@@ -242,33 +244,11 @@ export function addTriggerResponses(
           const paywallOptions = message.author?.id ? {requesterId: message.author.id} : {};
           const result: PaywallResult = await getPaywallLinks(cleanUrl, paywallAssets ?? [], paywallOptions);
 
-          if (true === result.nofix) {
-            const noFixResponse = `Für diese Seite ist leider kein Paywall-Bypass bekannt.`;
-            if (undefined !== workingMessage) {
-              await workingMessage.edit(noFixResponse);
-            } else {
-              await message.channel.send(noFixResponse);
-            }
+          const response = buildPaywallResponsePayload(cleanUrl, result);
+          if (undefined !== workingMessage) {
+            await workingMessage.edit(response);
           } else {
-            const lines: string[] = [];
-            if (true === result.isDefault) {
-              lines.push("Unbekannte Seite — versuche allgemeine Services:\n");
-            }
-
-            for (const service of result.services) {
-              if (true === service.available) {
-                lines.push(`✅ **${service.name}**: <${service.url}>`);
-              } else {
-                lines.push(`❓ **${service.name}**: <${service.url}>`);
-              }
-            }
-
-            const response = lines.join("\n");
-            if (undefined !== workingMessage) {
-              await workingMessage.edit(response);
-            } else {
-              await message.channel.send(response);
-            }
+            await message.channel.send(response);
           }
         } catch (error: unknown) {
           if (error instanceof PaywallLookupCapacityError) {

@@ -72,6 +72,17 @@ describe("earnings result formatting", () => {
       parsedDocument,
       ticker: "XOM",
     })).toContain("Adj EPS: `$1.16` vs est. `$0.96` - beat");
+    expect(getEarningsResultMessage({
+      companyName: "Exxon Mobil",
+      filing: {
+        form: "8-K",
+        items: ["2.02", "9.01"],
+      },
+      filingUrl: "https://www.sec.gov/Archives/edgar/data/34088/example/ex-991.htm",
+      metrics,
+      parsedDocument,
+      ticker: "XOM",
+    })).toContain("SEC: [8-K](https://www.sec.gov/Archives/edgar/data/34088/example/ex-991.htm) Item 2.02, 9.01");
   });
 
   test("parses and renders table-based outlook metrics", () => {
@@ -417,7 +428,7 @@ describe("earnings result formatting", () => {
     expect(message).toBe([
       "💰 **Earnings: Example (`EX`)**",
       "Production: `1,200 boepd`",
-      "SEC: 10-Q https://www.sec.gov/example",
+      "SEC: [10-Q](https://www.sec.gov/example)",
     ].join("\n"));
   });
 

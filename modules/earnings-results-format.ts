@@ -190,7 +190,8 @@ export function getEarningsResultMessage({
   }
 
   const filingItems = filing.items.length > 0 ? ` Item ${filing.items.join(", ")}` : "";
-  lines.push(`SEC: ${filing.form}${filingItems} ${filingUrl}`);
+  const filingForm = "" === filingUrl ? filing.form : `[${filing.form}](${filingUrl})`;
+  lines.push(`SEC: ${filingForm}${filingItems}`);
   return lines.join("\n");
 }
 

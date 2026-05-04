@@ -25,13 +25,16 @@ type SentAttachment = {
 };
 type SentEmbed = {
   toJSON: () => {
+    description?: string;
     fields?: {name: string; value: string}[];
     image?: {
       url?: string;
     };
+    title?: string;
   };
 };
 type SentPayload = {
+  content?: string;
   embeds?: SentEmbed[];
   files?: SentAttachment[];
 };
@@ -375,11 +378,19 @@ describe("addTriggerResponses", () => {
     expect(getPaywallLinksMock).toHaveBeenCalledWith("https://example.com/article", [], {
       requesterId: "requester-id",
     });
-    expect(edit).toHaveBeenCalledWith([
-      "Unbekannte Seite — versuche allgemeine Services:\n",
-      "✅ **archive.today**: <https://archive.ph/newest/https://example.com/article>",
-      "❓ **backup**: <https://backup.example/article>",
-    ].join("\n"));
+    const finalPayload = edit.mock.calls[0]![0] as SentPayload;
+    expect(finalPayload.content).toBe("https://example.com/article");
+    expect(finalPayload.embeds?.[0]?.toJSON()).toEqual({
+      title: "Paywall Bypass (unbekannte Seite)",
+      description: "Unbekannte Seite — versuche allgemeine Services:",
+      fields: [{
+        name: "Ergebnisse",
+        value: [
+          "✅ **archive.today**: <https://archive.ph/newest/https://example.com/article>",
+          "❓ **backup**: <https://backup.example/article>",
+        ].join("\n"),
+      }],
+    });
   });
 
   test("paywall rejects unsafe private-network URLs before lookup", async () => {
@@ -393,6 +404,38 @@ describe("addTriggerResponses", () => {
 
     expect(message.channel.send).toHaveBeenCalledWith("Ungültige URL. Bitte eine öffentliche http(s)-URL angeben.");
     expect(getPaywallLinksMock).not.toHaveBeenCalled();
+  });
+
+  test("paywall sends final payload when the working message cannot be created", async () => {
+    getPaywallLinksMock.mockResolvedValueOnce(paywallResult({
+      services: [{
+        name: "archive.today",
+        url: "https://archive.ph/newest/https://example.com/article",
+        available: true,
+      }],
+    }));
+    const {client, getHandler} = createEventClient();
+    addTriggerResponses(client, [], [], []);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("!paywall https://example.com/article");
+    message.channel.send.mockRejectedValueOnce(new Error("send failed"));
+
+    await handler(message);
+
+    expect(message.channel.send).toHaveBeenNthCalledWith(
+      1,
+      "Suche nach Paywall-Bypass für <https://example.com/article>... Das kann bis zu 60 Sekunden dauern.",
+    );
+    const finalPayload = message.channel.send.mock.calls[1]![0] as SentPayload;
+    expect(finalPayload.content).toBe("https://example.com/article");
+    expect(finalPayload.embeds?.[0]?.toJSON()).toEqual({
+      title: "Paywall Bypass",
+      fields: [{
+        name: "Ergebnisse",
+        value: "✅ **archive.today**: <https://archive.ph/newest/https://example.com/article>",
+      }],
+    });
   });
 
   test("paywall edits busy fallback when lookup capacity is exhausted", async () => {
@@ -429,7 +472,12 @@ describe("addTriggerResponses", () => {
 
     await handler(message);
 
-    expect(edit).toHaveBeenCalledWith("Für diese Seite ist leider kein Paywall-Bypass bekannt.");
+    const finalPayload = edit.mock.calls[0]![0] as SentPayload;
+    expect(finalPayload.content).toBe("https://example.com/article");
+    expect(finalPayload.embeds?.[0]?.toJSON()).toEqual({
+      title: "Paywall Bypass",
+      description: "Für diese Seite ist leider kein Paywall-Bypass bekannt.",
+    });
   });
 
   test("replies with sara attachment for yes and shrug", async () => {
