@@ -25,6 +25,8 @@ describe("earnings result announcements", () => {
         date: "2026-05-01",
         importance: 1,
         companyName: "Exxon Mobil",
+        marketCap: 475_000_000_000,
+        marketCapText: "$475B",
         epsConsensus: "$0.96",
       }],
     });
@@ -151,6 +153,106 @@ describe("earnings result announcements", () => {
     });
 
     expect(result.announcements).toHaveLength(0);
+  });
+
+  test("skips companies outside the scheduled earnings announcement scope", async () => {
+    getEarningsResultFn.mockResolvedValue({
+      status: "ok",
+      events: [{
+        ticker: "XOM",
+        when: "before_open",
+        date: "2026-05-01",
+        importance: 1,
+        companyName: "Exxon Mobil",
+        marketCap: 9_999_999_999,
+        marketCapText: "$10B",
+        epsConsensus: "$0.96",
+      }],
+    });
+
+    const result = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      },
+    });
+
+    expect(result).toEqual({
+      active: false,
+      announcements: [],
+      watchedCompanies: 0,
+    });
+    expect(getWithRetryFn).toHaveBeenCalledWith(
+      "https://www.sec.gov/files/company_tickers.json",
+      expect.anything(),
+    );
+    expect(getWithRetryFn).not.toHaveBeenCalledWith(
+      expect.stringContaining("browse-edgar"),
+      expect.anything(),
+    );
+  });
+
+  test("skips SEC filings updated on a different US Eastern day", async () => {
+    getWithRetryFn.mockImplementation(async (url: string) => {
+      if (url.includes("company_tickers.json")) {
+        return {
+          data: {
+            0: {
+              cik_str: 34088,
+              ticker: "XOM",
+              title: "EXXON MOBIL CORP",
+            },
+          },
+        };
+      }
+
+      if (url.includes("type=8-K")) {
+        return {
+          data: `
+            <feed>
+              <entry>
+                <title>8-K - EXXON MOBIL CORP</title>
+                <id>urn:tag:sec.gov,2026:accession-number=0000034088-26-000042</id>
+                <updated>2026-04-30T23:59:00-04:00</updated>
+                <category term="8-K" />
+                <link href="https://www.sec.gov/Archives/edgar/data/34088/000003408826000042/0000034088-26-000042-index.htm" />
+                <summary>
+                  &lt;b&gt;CIK:&lt;/b&gt; 0000034088&lt;br/&gt;
+                  &lt;b&gt;Items:&lt;/b&gt; 2.02, 9.01
+                </summary>
+              </entry>
+            </feed>
+          `,
+        };
+      }
+
+      if (url.includes("type=6-K")) {
+        return {
+          data: "<feed></feed>",
+        };
+      }
+
+      throw new Error(`Unexpected URL ${url}`);
+    });
+
+    const result = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      },
+    });
+
+    expect(result.active).toBe(true);
+    expect(result.watchedCompanies).toBe(1);
+    expect(result.announcements).toEqual([]);
+    expect(getWithRetryFn).not.toHaveBeenCalledWith(
+      expect.stringContaining("/index.json"),
+      expect.anything(),
+    );
   });
 
   test("skips the scan when the SEC ticker map is blocked", async () => {
