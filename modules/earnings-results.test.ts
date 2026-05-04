@@ -356,11 +356,15 @@ describe("earnings result announcements", () => {
     } as unknown as ReturnType<typeof setTimeout>;
     const setTimeoutMock = vi.fn((_callback: () => void, _delayMs: number) => timeoutHandle);
     const clearTimeoutFn = vi.fn();
+    const fetchMessages = vi.fn().mockResolvedValue(new Map());
 
     const watcher = startEarningsResultWatcher({
       channels: {
         cache: {
           get: vi.fn(() => ({
+            messages: {
+              fetch: fetchMessages,
+            },
             send,
           })),
         },
@@ -385,6 +389,9 @@ describe("earnings result announcements", () => {
         parse: [],
       },
     });
+    expect(fetchMessages).toHaveBeenCalledWith({
+      limit: 100,
+    });
     expect(setTimeoutMock).toHaveBeenCalledWith(expect.any(Function), 123);
     expect(timeoutHandle.unref).toHaveBeenCalledTimes(1);
 
@@ -395,6 +402,96 @@ describe("earnings result announcements", () => {
     watcher.stop();
 
     expect(clearTimeoutFn).toHaveBeenCalledWith(timeoutHandle);
+  });
+
+  test("watcher seeds announced accessions from channel history before scanning", async () => {
+    const send = vi.fn().mockResolvedValue(undefined);
+    const timeoutHandle = {
+      unref: vi.fn(),
+    } as unknown as ReturnType<typeof setTimeout>;
+    const setTimeoutMock = vi.fn((_callback: () => void, _delayMs: number) => timeoutHandle);
+    const fetchMessages = vi.fn().mockResolvedValue(new Map([
+      ["message-id", {
+        content: "SEC: [8-K](https://www.sec.gov/Archives/edgar/data/34088/000003408826000042/xom-ex991.htm) Item 2.02, 9.01",
+      }],
+    ]));
+
+    const watcher = startEarningsResultWatcher({
+      channels: {
+        cache: {
+          get: vi.fn(() => ({
+            messages: {
+              fetch: fetchMessages,
+            },
+            send,
+          })),
+        },
+      },
+    }, "breaking-news-channel-id", {
+      getEarningsResultFn,
+      getWithRetryFn,
+      logger,
+      now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      pollIntervalMs: 123,
+      setTimeoutFn: setTimeoutMock as unknown as typeof setTimeout,
+    });
+
+    await vi.waitFor(() => {
+      expect(setTimeoutMock).toHaveBeenCalled();
+    });
+
+    expect(fetchMessages).toHaveBeenCalledWith({
+      limit: 100,
+    });
+    expect(send).not.toHaveBeenCalled();
+    expect(getWithRetryFn).not.toHaveBeenCalledWith(
+      expect.stringContaining("/index.json"),
+      expect.anything(),
+    );
+
+    watcher.stop();
+  });
+
+  test("watcher skips scans until channel history can be checked", async () => {
+    const send = vi.fn().mockResolvedValue(undefined);
+    const timeoutHandle = {
+      unref: vi.fn(),
+    } as unknown as ReturnType<typeof setTimeout>;
+    const setTimeoutMock = vi.fn((_callback: () => void, _delayMs: number) => timeoutHandle);
+
+    const watcher = startEarningsResultWatcher({
+      channels: {
+        cache: {
+          get: vi.fn(() => ({
+            messages: {
+              fetch: vi.fn().mockRejectedValue(new Error("missing permission")),
+            },
+            send,
+          })),
+        },
+      },
+    }, "breaking-news-channel-id", {
+      getEarningsResultFn,
+      getWithRetryFn,
+      logger,
+      now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      pollIntervalMs: 123,
+      setTimeoutFn: setTimeoutMock as unknown as typeof setTimeout,
+    });
+
+    await vi.waitFor(() => {
+      expect(setTimeoutMock).toHaveBeenCalledWith(expect.any(Function), 123);
+    });
+
+    expect(getEarningsResultFn).not.toHaveBeenCalled();
+    expect(getWithRetryFn).not.toHaveBeenCalled();
+    expect(send).not.toHaveBeenCalled();
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "Could not seed earnings result announcements from channel history: Error: missing permission",
+    );
+
+    watcher.stop();
   });
 
   test("provides a concrete example output", () => {
