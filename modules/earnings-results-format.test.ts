@@ -187,6 +187,157 @@ describe("earnings result formatting", () => {
     expect(parsedDocument.outlook).toEqual([]);
   });
 
+  test("ignores release-title guidance and raw comparison rows in outlook output", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>L.B. Foster Company Announces Strong Sales Growth and Profitability Expansion in 2026 First Quarter; Reaffirms Full Year 2026 Financial Guidance</h1>
+          <p>First quarter net sales totaled $121.1 million, up 23.9% over last year.</p>
+          <p>First quarter net income of $1.5 million was up $3.6 million over last year.</p>
+          <table>
+            <tr><td>$ in thousands, unless otherwise noted:</td></tr>
+            <tr><td>Net sales</td><td>$</td><td>121,144</td><td>$</td><td>97,792</td><td>23.9%</td></tr>
+            <tr><td>Operating income (loss)</td><td>2,045</td><td>(1,923)</td><td>206.3%</td></tr>
+          </table>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "revenue",
+        numericValue: 121_100_000,
+        value: "$121.1M",
+      }),
+      expect.objectContaining({
+        key: "net_income",
+        numericValue: 1_500_000,
+        value: "$1.5M",
+      }),
+    ]));
+    expect(parsedDocument.outlook).toEqual([]);
+  });
+
+  test("applies local table money units for main metrics", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Example reports Q1 2026 results</h1>
+          <table>
+            <tr><td>$ in thousands, except per share amounts</td></tr>
+            <tr><td>Product revenue, net</td></tr>
+            <tr><td>$</td><td>116,357</td><td>$</td><td>88,158</td></tr>
+            <tr><td>Net income</td><td>$</td><td>55,932</td><td>$</td><td>35,733</td></tr>
+          </table>
+          <table>
+            <tr><td>(in millions, except per share data)</td></tr>
+            <tr><td>Sales</td><td>$</td><td>13,653</td><td>$</td><td>13,074</td></tr>
+          </table>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "revenue",
+        numericValue: 116_357_000,
+        value: "$116.36M",
+      }),
+      expect.objectContaining({
+        key: "net_income",
+        numericValue: 55_932_000,
+        value: "$55.93M",
+      }),
+    ]));
+
+    const salesOnlyDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>SalesCo reports Q2 2026 results</h1>
+          <table>
+            <tr><td>(in millions, except per share data)</td></tr>
+            <tr><td>Sales</td><td>$</td><td>13,653</td><td>$</td><td>13,074</td></tr>
+            <tr><td>Net Income Per Share</td><td>$</td><td>0.73</td></tr>
+          </table>
+        </body>
+      </html>
+    `);
+
+    expect(salesOnlyDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "revenue",
+        numericValue: 13_653_000_000,
+        value: "$13.65B",
+      }),
+    ]));
+
+    const perShareDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>IncomeCo reports Q1 2026 results</h1>
+          <p>Net income for the three months ended March 31, 2026 was $55.9 million, or $1.91 per common share.</p>
+        </body>
+      </html>
+    `);
+
+    expect(perShareDocument.metrics).toEqual([
+      expect.objectContaining({
+        key: "net_income",
+        numericValue: 55_900_000,
+        value: "$55.9M",
+      }),
+    ]);
+  });
+
+  test("skips generic production mentions without operational units", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Example reports Q1 2026 results</h1>
+          <p>Company took delivery of a new venue featuring its latest in-house production on March 31, 2026.</p>
+          <p>Production was 1,234 boepd.</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "production",
+        value: "1,234 boepd",
+      }),
+    ]));
+    expect(parsedDocument.metrics).not.toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "production",
+        value: "31",
+      }),
+    ]));
+  });
+
+  test("does not use per-share headline values as net income", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Example reports first quarter 2026 results</h1>
+          <p>NET INCOME OF $0.78 PER SHARE AND CORE INCOME OF $0.83 PER SHARE</p>
+          <p>Net income of $211 million versus $274 million in the prior year quarter.</p>
+          <table>
+            <tr><td>($ millions, except per share data)</td></tr>
+            <tr><td>Non-insurance warranty revenue (expense)</td><td>18</td></tr>
+          </table>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual([
+      expect.objectContaining({
+        key: "net_income",
+        numericValue: 211_000_000,
+        value: "$211M",
+      }),
+    ]);
+  });
+
   test("removes script/style blocks with spaced closing tags", () => {
     const text = htmlToText(`
       <p>Revenue $10 billion</p>
@@ -320,6 +471,7 @@ describe("earnings result formatting", () => {
     expect(formatEps(-1.2)).toBe("-$1.2");
     expect(formatUsdCompact(-1_250_000_000_000)).toBe("-$1.25T");
     expect(formatUsdCompact(12_300_000)).toBe("$12.3M");
+    expect(formatUsdCompact(750_000)).toBe("$750K");
     expect(formatUsdCompact(123)).toBe("$123");
 
     expect(normalizeTickerSymbol(" brk-b ")).toBe("BRK.B");

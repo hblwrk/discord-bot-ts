@@ -1,5 +1,5 @@
 import moment from "moment-timezone";
-import {type EarningsEvent, getEarningsResult} from "./earnings.ts";
+import {bluechipMinMarketCap, type EarningsEvent, getEarningsResult} from "./earnings.ts";
 import {
   formatUsdCompact,
   getEarningsResultMessage,
@@ -258,6 +258,10 @@ export async function getEarningsResultAnnouncements({
       continue;
     }
 
+    if (false === isFilingUpdatedToday(filing, now)) {
+      continue;
+    }
+
     const filingWatches = watchesByCik.get(filing.cik);
     const filingWatch = filingWatches?.[0];
     if (!filingWatch) {
@@ -392,6 +396,10 @@ function buildEarningsWatches(
   const watches: EarningsWatchEntry[] = [];
 
   for (const event of earningsEvents) {
+    if (false === isEarningsResultAnnouncementScope(event)) {
+      continue;
+    }
+
     const normalizedTicker = normalizeTickerSymbol(event.ticker);
     const secCompany = tickerToCompany.get(normalizedTicker);
     if (!secCompany || true === seenCiks.has(secCompany.cik)) {
@@ -408,6 +416,12 @@ function buildEarningsWatches(
   }
 
   return watches;
+}
+
+function isEarningsResultAnnouncementScope(event: EarningsEvent): boolean {
+  return "number" === typeof event.marketCap &&
+    true === Number.isFinite(event.marketCap) &&
+    event.marketCap >= bluechipMinMarketCap;
 }
 
 function groupWatchesByCik(watches: EarningsWatchEntry[]): Map<string, EarningsWatchEntry[]> {
@@ -432,6 +446,15 @@ function isWatchActive(event: EarningsEvent, now: moment.Moment): boolean {
   }
 
   return minuteOfDay >= 4 * 60 && minuteOfDay <= 23 * 60 + 30;
+}
+
+function isFilingUpdatedToday(filing: SecCurrentFiling, now: moment.Moment): boolean {
+  const updatedAt = moment.parseZone(filing.updated, moment.ISO_8601, true);
+  if (false === updatedAt.isValid()) {
+    return false;
+  }
+
+  return updatedAt.tz(usEasternTimezone).format(dateStampFormat) === now.format(dateStampFormat);
 }
 
 async function buildEarningsResultAnnouncement(

@@ -98,6 +98,42 @@ describe("extractOutlookMetrics", () => {
       "Appendix",
       "EPS $1.20.",
     ])).toEqual([]);
+
+    expect(extractOutlookMetrics([
+      "ExampleCo Announces First Quarter Results; Reaffirms Full Year Guidance",
+      "Revenue | $ | 121,144 | | | $ | 97,792 | | | | | 23.9",
+      "Operating income (loss) | | 2,045 | | | (1,923) | | | | | 206.3",
+    ])).toEqual([]);
+  });
+
+  test("ignores dense comparison-table rows inside outlook sections", () => {
+    expect(extractOutlookMetrics([
+      "Business Outlook",
+      "Revenue | $ | 121,144 | | | $ | 97,792 | | | | | 23.9",
+      "Operating income (loss) | | 2,045 | | | (1,923) | | | | | 206.3",
+    ])).toEqual([]);
+  });
+
+  test("ignores outlook mentions in summary bullets and extracts later guidance", () => {
+    expect(extractOutlookMetrics([
+      "Revenue guidance raised to $442-$447M; Reiterating Q4 FY26 Adj EBITDA breakeven",
+      "Revenue exceeded guidance, coming in at $110.7 million.",
+      "Fiscal 2026 Financial Guidance",
+      "The following statements are based on current expectations for fiscal 2026. The following statements are forward-looking, and actual results could differ materially depending on market conditions.",
+      "Total revenue in the range of $442 million to $447 million.",
+      "Gross margin to be above 52% for fiscal 2026.",
+    ])).toEqual([
+      {
+        key: "revenue",
+        label: "Revenue",
+        value: "$442M to $447M",
+      },
+      {
+        key: "gross_margin",
+        label: "Gross margin",
+        value: "52%",
+      },
+    ]);
   });
 
   test("extracts single-value outlook metrics across supported value types", () => {

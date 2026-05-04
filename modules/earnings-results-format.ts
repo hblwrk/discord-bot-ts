@@ -75,18 +75,19 @@ const earningsMetricDefinitions: MetricDefinition[] = [
       /\btotal\s+revenues?(?:\s+and\s+other\s+income)?\b/i,
       /\bnet\s+sales\b/i,
       /\brevenues?\b/i,
+      /\bsales\b/i,
     ],
-    skipPattern: /\bcost\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b/i,
+    skipPattern: /\bcost\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b/i,
     valueType: "money",
   },
   {
     key: "net_income",
     label: "Net income",
     patterns: [
-      /\bnet\s+income(?:\s+attributable[^|,]*)?\b/i,
-      /\bnet\s+earnings\b/i,
+      /\bnet\s+income(?!\s+per\s+(?:common\s+)?share)(?:\s+attributable[^|,]*)?\b/i,
+      /\bnet\s+earnings(?!\s+per\s+(?:common\s+)?share)\b/i,
     ],
-    skipPattern: /\bper\s+(?:common\s+)?share\b|\beps\b/i,
+    skipPattern: /\beps\b/i,
     valueType: "money",
   },
   {
@@ -111,7 +112,7 @@ export function parseEarningsDocument(html: string): ParsedEarningsDocument {
   const lines = getMeaningfulLines(text);
   return {
     headline: getDocumentHeadline(lines),
-    metrics: extractEarningsMetrics(lines, text),
+    metrics: extractEarningsMetrics(lines),
     outlook: extractOutlookMetrics(lines),
     quarterLabel: getQuarterLabel(text),
   };
@@ -284,17 +285,16 @@ function getQuarterLabel(text: string): string | undefined {
   return undefined;
 }
 
-function extractEarningsMetrics(lines: string[], text: string): EarningsResultMetric[] {
+function extractEarningsMetrics(lines: string[]): EarningsResultMetric[] {
   const metrics: EarningsResultMetric[] = [];
   const seenKeys = new Set<string>();
-  const moneyScale = getMoneyScale(text);
 
   for (const definition of earningsMetricDefinitions) {
     if (true === seenKeys.has(definition.key)) {
       continue;
     }
 
-    const metric = extractMetric(lines, definition, moneyScale);
+    const metric = extractMetric(lines, definition);
     if (null === metric) {
       continue;
     }
@@ -309,19 +309,28 @@ function extractEarningsMetrics(lines: string[], text: string): EarningsResultMe
 function extractMetric(
   lines: string[],
   definition: MetricDefinition,
-  moneyScale: number,
 ): EarningsResultMetric | null {
-  for (const line of lines) {
+  for (const [lineIndex, line] of lines.entries()) {
     if (definition.skipPattern?.test(line)) {
       continue;
     }
 
-    const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(line));
+    if ("net_income" === definition.key && true === isPerShareOnlyNetIncomeLine(line)) {
+      continue;
+    }
+
+    const metricLine = getMetricLineWithContinuation(lines, lineIndex);
+    const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(metricLine));
     if (!pattern) {
       continue;
     }
 
-    const metricValue = extractMetricValue(line, pattern, definition.valueType, moneyScale);
+    const metricValue = extractMetricValue(
+      metricLine,
+      pattern,
+      definition.valueType,
+      getContextMoneyScale(lines, lineIndex),
+    );
     if (null === metricValue) {
       continue;
     }
@@ -337,11 +346,30 @@ function extractMetric(
   return null;
 }
 
+function isPerShareOnlyNetIncomeLine(line: string): boolean {
+  return /\bper\s+(?:common\s+|diluted\s+)?share\b/i.test(line) &&
+    false === /\b(?:trillion|billion|million|thousand)s?\b/i.test(line);
+}
+
+function getMetricLineWithContinuation(lines: string[], lineIndex: number): string {
+  const line = lines[lineIndex] ?? "";
+  const nextLine = lines[lineIndex + 1];
+  if (undefined === nextLine || false === isValueOnlyLine(nextLine)) {
+    return line;
+  }
+
+  return `${line} ${nextLine}`;
+}
+
+function isValueOnlyLine(line: string): boolean {
+  return /^[\s|$€£¥(),.\-\d%—–]+$/.test(line);
+}
+
 function extractMetricValue(
   line: string,
   pattern: RegExp,
   valueType: MetricValueType,
-  moneyScale: number,
+  contextMoneyScale: number,
 ): {numericValue: number; value: string} | null {
   pattern.lastIndex = 0;
   const patternMatch = pattern.exec(line);
@@ -353,13 +381,16 @@ function extractMetricValue(
   }
 
   if ("money" === valueType) {
-    const parsedValue = findNumericValue(searchText, {skipPercentages: true});
+    const parsedValue = findNumericValue(searchText, {
+      requireMoneyCue: 1 === contextMoneyScale,
+      skipPercentages: true,
+    });
     if (null === parsedValue) {
       return null;
     }
 
     const explicitScale = getExplicitMoneyScale(searchText);
-    const amount = parsedValue * (explicitScale ?? moneyScale);
+    const amount = parsedValue * (explicitScale ?? contextMoneyScale);
     return {
       numericValue: amount,
       value: formatUsdCompact(amount),
@@ -371,35 +402,66 @@ function extractMetricValue(
     return null;
   }
 
+  const trailingUnit = getTrailingUnit(searchText);
+  if (null === trailingUnit) {
+    return null;
+  }
+
   return {
     numericValue: value,
-    value: formatPlainNumber(value, getTrailingUnit(searchText)),
+    value: formatPlainNumber(value, trailingUnit),
   };
 }
 
-function getMoneyScale(text: string): number {
-  if (/\b(?:in\s+)?(?:millions|million)\s+of\s+dollars\b/i.test(text) ||
-      /\$\s+in\s+millions\b/i.test(text)) {
-    return 1_000_000;
-  }
+function getContextMoneyScale(lines: string[], lineIndex: number): number {
+  for (let index = lineIndex; index >= 0 && index >= lineIndex - 30; index--) {
+    const line = lines[index];
+    if (undefined === line) {
+      continue;
+    }
 
-  if (/\b(?:in\s+)?(?:billions|billion)\s+of\s+dollars\b/i.test(text) ||
-      /\$\s+in\s+billions\b/i.test(text)) {
-    return 1_000_000_000;
+    const scale = getMoneyScaleFromContextText(line);
+    if (null !== scale) {
+      return scale;
+    }
   }
 
   return 1;
 }
 
+function getMoneyScaleFromContextText(text: string): number | null {
+  if (/\b(?:\$|amounts?|dollars?)?\s*(?:in\s+)?thousands(?:\s+of\s+dollars)?\b/i.test(text)) {
+    return 1_000;
+  }
+
+  if (/\b(?:\$|amounts?|dollars?)?\s*(?:in\s+)?millions(?:\s+of\s+dollars)?\b/i.test(text)) {
+    return 1_000_000;
+  }
+
+  if (/\b(?:\$|amounts?|dollars?)?\s*(?:in\s+)?billions(?:\s+of\s+dollars)?\b/i.test(text)) {
+    return 1_000_000_000;
+  }
+
+  return null;
+}
+
 function getExplicitMoneyScale(text: string): number | null {
-  const unitMatch = text.match(/\b(billion|billions|bn|million|millions|mm)\b/i);
+  const unitMatch = text.match(/\b(trillion|trillions|tn|billion|billions|bn|million|millions|mm|thousand|thousands)\b/i);
   const unit = unitMatch?.[1]?.toLowerCase();
   if (!unit) {
     return null;
   }
 
+  if ("trillion" === unit || "trillions" === unit || "tn" === unit) {
+    return 1_000_000_000_000;
+  }
+
   if ("billion" === unit || "billions" === unit || "bn" === unit) {
     return 1_000_000_000;
+  }
+
+  if ("thousand" === unit || "thousands" === unit) {
+    return 1_000;
   }
 
   return 1_000_000;
@@ -407,9 +469,9 @@ function getExplicitMoneyScale(text: string): number | null {
 
 function findNumericValue(
   text: string,
-  options: {maxAbsValue?: number; skipPercentages?: boolean;} = {},
+  options: {maxAbsValue?: number; requireMoneyCue?: boolean; skipPercentages?: boolean;} = {},
 ): number | null {
-  const numberMatches = text.matchAll(/\(?-?\$?\d{1,3}(?:,\d{3})*(?:\.\d+)?\)?|\(?-?\$?\d+(?:\.\d+)?\)?/g);
+  const numberMatches = text.matchAll(/\(?-?\$?\s*(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?/g);
   for (const numberMatch of numberMatches) {
     const token = numberMatch[0];
     const endIndex = numberMatch.index + token.length;
@@ -419,6 +481,11 @@ function findNumericValue(
 
     const value = parseNumber(token);
     if (null === value) {
+      continue;
+    }
+
+    if (true === options.requireMoneyCue &&
+        false === hasMoneyCue(text, numberMatch.index, endIndex, token)) {
       continue;
     }
 
@@ -436,6 +503,20 @@ function findNumericValue(
   return null;
 }
 
+function hasMoneyCue(text: string, startIndex: number, endIndex: number, token: string): boolean {
+  if (token.includes("$")) {
+    return true;
+  }
+
+  const beforeToken = text.slice(Math.max(0, startIndex - 8), startIndex);
+  if (/\$[\s|()–-]*$/.test(beforeToken)) {
+    return true;
+  }
+
+  const afterToken = text.slice(endIndex, endIndex + 18);
+  return /^\s*(?:trillion|trillions|tn|billion|billions|bn|million|millions|mm|thousand|thousands)\b/i.test(afterToken);
+}
+
 export function parseNumber(value: unknown): number | null {
   if ("number" === typeof value) {
     return Number.isFinite(value) ? value : null;
@@ -447,6 +528,7 @@ export function parseNumber(value: unknown): number | null {
 
   const normalizedValue = value
     .replace(/^\((.*)\)$/, "-$1")
+    .replace(/^\((.*)$/, "-$1")
     .replaceAll("$", "")
     .replaceAll(",", "")
     .replaceAll("%", "")
@@ -484,6 +566,10 @@ export function formatUsdCompact(value: number): string {
 
   if (absoluteValue >= 1_000_000) {
     return `${sign}$${formatDecimal(absoluteValue / 1_000_000)}M`;
+  }
+
+  if (absoluteValue >= 1_000) {
+    return `${sign}$${formatDecimal(absoluteValue / 1_000)}K`;
   }
 
   return `${sign}$${formatDecimal(absoluteValue)}`;

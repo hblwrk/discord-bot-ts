@@ -120,13 +120,28 @@ function getOutlookSectionLines(lines: string[]): string[] {
 }
 
 function isOutlookHeading(line: string): boolean {
-  return line.length <= 140 &&
-    /\b(?:outlook|guidance|business\s+outlook|financial\s+outlook|fiscal\s+\d{4}\s+outlook|quarter\s+outlook)\b/i.test(line) &&
-    false === /\bforward-looking\s+statements?\b/i.test(line);
+  if (line.length > 140 ||
+      /\b(?:announces?|reports?|reported|results?)\b/i.test(line) ||
+      /\bforward-looking\s+statements?\b/i.test(line)) {
+    return false;
+  }
+
+  const normalizedLine = line
+    .replace(/^[\s•–—-]+/, "")
+    .replace(/[\s|–—-]+$/, "")
+    .trim();
+
+  return /^(?:business\s+|financial\s+)?(?:outlook|guidance)\b/i.test(normalizedLine) ||
+    /^(?:fiscal\s+)?(?:20\d{2}|fy\s?\d{2}|q[1-4]\s+20\d{2}|quarter)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine);
 }
 
 function isOutlookSectionEnd(line: string): boolean {
-  if (/\b(?:forward-looking\s+statements?|safe\s+harbor|conference\s+call|about\s+|press\s+contact|investor\s+relations|condensed\s+consolidated|financial\s+statements?|non-gaap|reconciliation)\b/i.test(line)) {
+  if (line.length <= 140 &&
+      /\b(?:forward-looking\s+statements?|safe\s+harbor|legal\s+notice\s+regarding\s+forward-looking)\b/i.test(line)) {
+    return true;
+  }
+
+  if (/\b(?:conference\s+call|about\s+|press\s+contact|investor\s+relations|condensed\s+consolidated|financial\s+statements?|non-gaap|reconciliation)\b/i.test(line)) {
     return true;
   }
 
@@ -139,6 +154,10 @@ function extractOutlookMetric(
   definition: OutlookMetricDefinition,
 ): EarningsOutlookMetric | null {
   for (const line of lines) {
+    if (true === isNoisyOutlookLine(line)) {
+      continue;
+    }
+
     const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(line));
     if (!pattern) {
       continue;
@@ -159,6 +178,11 @@ function extractOutlookMetric(
   return null;
 }
 
+function isNoisyOutlookLine(line: string): boolean {
+  const pipeCount = line.match(/\|/g)?.length ?? 0;
+  return pipeCount >= 4;
+}
+
 function extractOutlookValue(
   line: string,
   pattern: RegExp,
@@ -174,6 +198,7 @@ function extractOutlookValue(
 
   return getGrowthOutlookValue(valueText) ??
     getOutlookRangeValue(valueText, valueType) ??
+    ("text" === valueType ? getSingleOutlookValue(valueText, "money") : null) ??
     getSingleOutlookValue(valueText, valueType) ??
     getFallbackOutlookValue(valueText);
 }
@@ -262,7 +287,11 @@ function getSingleOutlookValue(value: string, valueType: OutlookValueType): stri
 
 function getFallbackOutlookValue(value: string): string | null {
   const fallbackValue = value.split(/[.;]/)[0]?.trim() ?? "";
-  if (fallbackValue.length < 2 || fallbackValue.length > 80) {
+  if (fallbackValue.length < 2 ||
+      fallbackValue.length > 80 ||
+      fallbackValue.includes("|") ||
+      /^n\/?a$/i.test(fallbackValue) ||
+      /\$\s*\d/.test(fallbackValue)) {
     return null;
   }
 
@@ -273,7 +302,7 @@ function findNumericValue(
   text: string,
   options: {maxAbsValue?: number; skipPercentages?: boolean;} = {},
 ): number | null {
-  const numberMatches = text.matchAll(/\(?-?\$?\d{1,3}(?:,\d{3})*(?:\.\d+)?\)?|\(?-?\$?\d+(?:\.\d+)?\)?/g);
+  const numberMatches = text.matchAll(/\(?-?\$?\s*(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?/g);
   for (const numberMatch of numberMatches) {
     const token = numberMatch[0];
     const endIndex = numberMatch.index + token.length;
@@ -365,6 +394,10 @@ function formatUsdCompact(value: number): string {
 
   if (absoluteValue >= 1_000_000) {
     return `${sign}$${formatDecimal(absoluteValue / 1_000_000)}M`;
+  }
+
+  if (absoluteValue >= 1_000) {
+    return `${sign}$${formatDecimal(absoluteValue / 1_000)}K`;
   }
 
   return `${sign}$${formatDecimal(absoluteValue)}`;
