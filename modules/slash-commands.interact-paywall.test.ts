@@ -105,8 +105,10 @@ describe("handlePaywallSlashCommand", () => {
     expect(interaction.editReply).toHaveBeenNthCalledWith(1, {
       content: "Suche nach Paywall-Bypass für <https://example.com/article>... Das kann bis zu 60 Sekunden dauern.",
     });
-    const finalPayload = interaction.editReply.mock.calls[1]![0] as {content: string; embeds: EditedEmbed[]};
-    expect(finalPayload.content).toBe("https://example.com/article");
+    expect(interaction.editReply).toHaveBeenNthCalledWith(2, {
+      content: "https://example.com/article",
+    });
+    const finalPayload = interaction.followUp.mock.calls[0]![0] as {embeds: EditedEmbed[]};
     expect(finalPayload.embeds[0]?.toJSON()).toEqual({
       title: "Paywall Bypass",
       description: "Für diese Seite ist leider kein Paywall-Bypass bekannt.",
@@ -136,8 +138,10 @@ describe("handlePaywallSlashCommand", () => {
     expect(getPaywallLinksMock).toHaveBeenCalledWith("https://example.com/article", [], {
       requesterId: "user-id",
     });
-    const finalPayload = interaction.editReply.mock.calls[1]![0] as {content: string; embeds: EditedEmbed[]};
-    expect(finalPayload.content).toBe("https://example.com/article");
+    expect(interaction.editReply).toHaveBeenNthCalledWith(2, {
+      content: "https://example.com/article",
+    });
+    const finalPayload = interaction.followUp.mock.calls[0]![0] as {embeds: EditedEmbed[]};
     expect(finalPayload.embeds[0]?.toJSON()).toEqual({
       title: "Paywall Bypass (unbekannte Seite)",
       description: "Unbekannte Seite — versuche allgemeine Services:",
@@ -170,8 +174,10 @@ describe("handlePaywallSlashCommand", () => {
     expect(getPaywallLinksMock).toHaveBeenCalledWith("https://example.com/article", [], {
       requesterId: "user-id",
     });
-    const finalPayload = interaction.editReply.mock.calls[1]![0] as {content: string; embeds: EditedEmbed[]};
-    expect(finalPayload.content).toBe("https://example.com/article");
+    expect(interaction.editReply).toHaveBeenNthCalledWith(2, {
+      content: "https://example.com/article",
+    });
+    const finalPayload = interaction.followUp.mock.calls[0]![0] as {embeds: EditedEmbed[]};
     expect(finalPayload.embeds[0]?.toJSON()).toEqual({
       title: "Paywall Bypass",
       fields: [
@@ -201,6 +207,28 @@ describe("handlePaywallSlashCommand", () => {
     await expect(handlePaywallSlashCommand(asChatInputInteraction(interaction), "paywall")).resolves.toBe(true);
 
     expect(interaction.editReply).toHaveBeenCalledTimes(2);
+    expect(interaction.followUp).toHaveBeenCalledTimes(1);
+  });
+
+  test("logs and completes when the bypass embed follow-up fails", async () => {
+    getPaywallLinksMock.mockResolvedValueOnce(paywallResult({
+      services: [
+        {
+          name: "archive.today",
+          url: "https://archive.ph/newest/https://example.com/article",
+          available: true,
+        },
+      ],
+    }));
+    const interaction = createPaywallInteraction("https://example.com/article");
+    interaction.followUp.mockRejectedValueOnce(new Error("follow-up failed"));
+
+    await expect(handlePaywallSlashCommand(asChatInputInteraction(interaction), "paywall")).resolves.toBe(true);
+
+    expect(interaction.editReply).toHaveBeenNthCalledWith(2, {
+      content: "https://example.com/article",
+    });
+    expect(interaction.followUp).toHaveBeenCalledTimes(1);
   });
 
   test("edits busy message when lookup capacity is exhausted", async () => {
@@ -214,6 +242,18 @@ describe("handlePaywallSlashCommand", () => {
     });
   });
 
+  test("logs when editing the busy message fails", async () => {
+    getPaywallLinksMock.mockRejectedValueOnce(new PaywallLookupCapacityError("requester"));
+    const interaction = createPaywallInteraction("https://example.com/article");
+    interaction.editReply
+      .mockResolvedValueOnce(undefined)
+      .mockRejectedValueOnce(new Error("busy edit failed"));
+
+    await expect(handlePaywallSlashCommand(asChatInputInteraction(interaction), "paywall", [])).resolves.toBe(true);
+
+    expect(interaction.editReply).toHaveBeenCalledTimes(2);
+  });
+
   test("edits generic error message when lookup fails unexpectedly", async () => {
     getPaywallLinksMock.mockRejectedValueOnce(new Error("lookup failed"));
     const interaction = createPaywallInteraction("https://example.com/article");
@@ -223,6 +263,18 @@ describe("handlePaywallSlashCommand", () => {
     expect(interaction.editReply).toHaveBeenLastCalledWith({
       content: "Fehler beim Verarbeiten der Anfrage. Bitte später erneut versuchen.",
     });
+  });
+
+  test("logs when editing the generic error message fails", async () => {
+    getPaywallLinksMock.mockRejectedValueOnce(new Error("lookup failed"));
+    const interaction = createPaywallInteraction("https://example.com/article");
+    interaction.editReply
+      .mockResolvedValueOnce(undefined)
+      .mockRejectedValueOnce(new Error("error edit failed"));
+
+    await expect(handlePaywallSlashCommand(asChatInputInteraction(interaction), "paywall", [])).resolves.toBe(true);
+
+    expect(interaction.editReply).toHaveBeenCalledTimes(2);
   });
 
   test("returns after failed defer without running lookup", async () => {

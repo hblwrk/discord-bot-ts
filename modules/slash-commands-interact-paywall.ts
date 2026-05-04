@@ -82,10 +82,17 @@ export async function handlePaywallSlashCommand(
       requesterId: interaction.user.id,
     });
 
-    await interaction.editReply(buildPaywallResponsePayload(url, result)).catch((error: unknown) => {
+    await interaction.editReply({content: url}).catch((error: unknown) => {
       logger.log(
         "error",
-        `Error replying to paywall slashcommand: ${error}`,
+        `Error sending paywall original URL: ${error}`,
+      );
+    });
+
+    await interaction.followUp(buildPaywallResponsePayload(result)).catch((error: unknown) => {
+      logger.log(
+        "error",
+        `Error sending paywall bypass embed: ${error}`,
       );
     });
   } catch (error: unknown) {

@@ -2,18 +2,16 @@ import {EmbedBuilder} from "discord.js";
 import type {PaywallResult} from "./paywall.ts";
 
 export type PaywallResponsePayload = {
-  content: string;
   embeds: EmbedBuilder[];
 };
 
-export function buildPaywallResponsePayload(url: string, result: PaywallResult): PaywallResponsePayload {
+export function buildPaywallResponsePayload(result: PaywallResult): PaywallResponsePayload {
   const embed = new EmbedBuilder();
 
   if (true === result.nofix) {
     embed.setTitle("Paywall Bypass");
     embed.setDescription("Für diese Seite ist leider kein Paywall-Bypass bekannt.");
     return {
-      content: url,
       embeds: [embed],
     };
   }
@@ -39,7 +37,6 @@ export function buildPaywallResponsePayload(url: string, result: PaywallResult):
   embed.addFields({name: "Ergebnisse", value: lines.join("\n")});
 
   return {
-    content: url,
     embeds: [embed],
   };
 }
