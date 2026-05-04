@@ -54,15 +54,15 @@ function getEarningsEvent(overrides: Partial<EarningsEvent> = {}): EarningsEvent
 function parseEarningsLine(
   line: string
 ): {ticker: string; marketCap: string; eps: string} {
-  const match = line.match(/^(?:\*\*)?`([^`]+)`(?:\*\*)? 💰 MCap: `([^`]+)`(?: 📈 Last: `\$[^`]+`)? 🔮 EPS: `([^`]+)`(?: .*)?$/);
+  const match = line.match(/^(?:(?:\*\*)?`([^`]+)`(?:\*\*)?|\*\*([^*]+)\*\*)( *) 💰 MCap: `([^`]+)`( *)(?: 📈 Last: `\$[^`]+`)? 🔮 EPS: `([^`]+)`(?: .*)?$/);
   if (null === match) {
     throw new Error(`Unexpected earnings line format: ${line}`);
   }
 
   return {
-    ticker: match[1]!,
-    marketCap: match[2]!,
-    eps: match[3]!,
+    ticker: `${match[1] ?? match[2]}${match[3]}`,
+    marketCap: `${match[4]}${match[5]}`,
+    eps: match[6]!,
   };
 }
 
@@ -398,7 +398,9 @@ describe("getEarningsText", () => {
 
     const lines = text.split("\n").filter(line => line.includes(" MCap: "));
     const parsedLines = lines.map(parseEarningsLine);
-    expect(lines[0]!.startsWith("**`BIG")).toBe(true);
+    expect(lines[0]!.startsWith("**BIG**")).toBe(true);
+    expect(lines[0]!).not.toContain("`BIG ");
+    expect(lines[0]!).not.toContain("$1B ");
     expect(parsedLines[0]!).toEqual(expect.objectContaining({
       ticker: "BIG  ",
       marketCap: expect.stringMatching(/^\$1B +$/),
@@ -458,7 +460,9 @@ describe("getEarningsMessages", () => {
 
     const lines = batch.messages[0]!.split("\n").filter(line => line.includes(" MCap: "));
     const parsedLines = lines.map(parseEarningsLine);
-    expect(lines[0]!.startsWith("**`BIG")).toBe(true);
+    expect(lines[0]!.startsWith("**BIG**")).toBe(true);
+    expect(lines[0]!).not.toContain("`BIG ");
+    expect(lines[0]!).not.toContain("$1.5B ");
     expect(parsedLines[0]!.ticker.trim()).toBe("BIG");
     expect(parsedLines[1]!.ticker.trim()).toBe("SMALL");
     expect(parsedLines[2]!.ticker.trim()).toBe("MID");

@@ -479,6 +479,40 @@ describe("timers: other announcements", () => {
     });
   });
 
+  test("startOtherTimers sends upcoming earnings to the optional expectations thread", async () => {
+    const channelSend = vi.fn().mockResolvedValue(undefined);
+    const threadSend = vi.fn().mockResolvedValue(undefined);
+    const client = {
+      channels: {
+        cache: {
+          get: vi.fn((channelId: string) => {
+            if ("earnings-expectations-thread" === channelId) {
+              return {
+                send: threadSend,
+              };
+            }
+
+            return {
+              send: channelSend,
+            };
+          }),
+        },
+      },
+    };
+
+    startOtherTimers(client, "channel-id", [], [], [], [], "earnings-expectations-thread");
+    const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
+    await dailyEarningsJob.callback();
+
+    expect(threadSend).toHaveBeenCalledWith({
+      content: "earnings-text",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+    expect(channelSend).not.toHaveBeenCalled();
+  });
+
   test("startOtherTimers sends weekly earnings with dedicated headline on Friday evening", async () => {
     const {client, send} = createClientWithChannel();
     getEarningsMessagesMock.mockReturnValue({

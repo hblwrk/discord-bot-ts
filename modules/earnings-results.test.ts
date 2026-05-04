@@ -349,6 +349,96 @@ describe("earnings result announcements", () => {
     );
   });
 
+  test("skips SEC-only filings when no earnings metrics or outlook can be parsed", async () => {
+    getWithRetryFn.mockImplementation(async (url: string) => {
+      if (url.includes("company_tickers.json")) {
+        return {
+          data: {
+            0: {
+              cik_str: 34088,
+              ticker: "XOM",
+              title: "EXXON MOBIL CORP",
+            },
+          },
+        };
+      }
+
+      if (url.includes("type=8-K")) {
+        return {
+          data: `
+            <feed>
+              <entry>
+                <title>8-K - EXXON MOBIL CORP</title>
+                <id>urn:tag:sec.gov,2026:accession-number=0000034088-26-000042</id>
+                <updated>2026-05-01T08:01:00-04:00</updated>
+                <category term="8-K" />
+                <link href="https://www.sec.gov/Archives/edgar/data/34088/000003408826000042/0000034088-26-000042-index.htm" />
+                <summary>
+                  &lt;b&gt;CIK:&lt;/b&gt; 0000034088&lt;br/&gt;
+                  &lt;b&gt;Items:&lt;/b&gt; 2.02, 9.01
+                </summary>
+              </entry>
+            </feed>
+          `,
+        };
+      }
+
+      if (url.includes("type=6-K")) {
+        return {
+          data: "<feed></feed>",
+        };
+      }
+
+      if (url.endsWith("/index.json")) {
+        return {
+          data: {
+            directory: {
+              item: [{
+                name: "xom-ex991.htm",
+                type: "EX-99.1",
+              }],
+            },
+          },
+        };
+      }
+
+      if (url.endsWith("/xom-ex991.htm")) {
+        return {
+          data: "<html><body><h1>Exxon Mobil reports first quarter 2026 results</h1></body></html>",
+        };
+      }
+
+      if (url.includes("/XOM/earnings-surprise")) {
+        return {
+          data: {
+            data: {
+              earningsSurpriseTable: {
+                rows: [],
+              },
+            },
+          },
+        };
+      }
+
+      throw new Error(`Unexpected URL ${url}`);
+    });
+
+    const result = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      },
+    });
+
+    expect(result.announcements).toEqual([]);
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "Skipping earnings result announcement for XOM: no filing details could be parsed.",
+    );
+  });
+
   test("watcher sends new announcements once, schedules active polling, and clears its timer on stop", async () => {
     const send = vi.fn().mockResolvedValue(undefined);
     const timeoutHandle = {
@@ -402,6 +492,69 @@ describe("earnings result announcements", () => {
     watcher.stop();
 
     expect(clearTimeoutFn).toHaveBeenCalledWith(timeoutHandle);
+  });
+
+  test("watcher sends announcements to the optional results thread and seeds thread plus parent history", async () => {
+    const parentSend = vi.fn().mockResolvedValue(undefined);
+    const threadSend = vi.fn().mockResolvedValue(undefined);
+    const parentFetchMessages = vi.fn().mockResolvedValue(new Map());
+    const threadFetchMessages = vi.fn().mockResolvedValue(new Map());
+    const timeoutHandle = {
+      unref: vi.fn(),
+    } as unknown as ReturnType<typeof setTimeout>;
+    const setTimeoutMock = vi.fn((_callback: () => void, _delayMs: number) => timeoutHandle);
+
+    const watcher = startEarningsResultWatcher({
+      channels: {
+        cache: {
+          get: vi.fn((channelID: string) => {
+            if ("earnings-results-thread-id" === channelID) {
+              return {
+                messages: {
+                  fetch: threadFetchMessages,
+                },
+                send: threadSend,
+              };
+            }
+
+            return {
+              messages: {
+                fetch: parentFetchMessages,
+              },
+              send: parentSend,
+            };
+          }),
+        },
+      },
+    }, "breaking-news-channel-id", {
+      announcementThreadID: "earnings-results-thread-id",
+      getEarningsResultFn,
+      getWithRetryFn,
+      logger,
+      now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      pollIntervalMs: 123,
+      setTimeoutFn: setTimeoutMock as unknown as typeof setTimeout,
+    });
+
+    await vi.waitFor(() => {
+      expect(threadSend).toHaveBeenCalledTimes(1);
+    });
+
+    expect(threadFetchMessages).toHaveBeenCalledWith({
+      limit: 100,
+    });
+    expect(parentFetchMessages).toHaveBeenCalledWith({
+      limit: 100,
+    });
+    expect(threadSend).toHaveBeenCalledWith({
+      content: expect.stringContaining("Earnings: Exxon Mobil (`XOM`) Q1 2026"),
+      allowedMentions: {
+        parse: [],
+      },
+    });
+    expect(parentSend).not.toHaveBeenCalled();
+
+    watcher.stop();
   });
 
   test("watcher seeds announced accessions from channel history before scanning", async () => {

@@ -154,6 +154,9 @@ describe("startBot", () => {
     expect(mocks.startEarningsResultWatcher).toHaveBeenCalledWith(
       expect.anything(),
       "other",
+      {
+        announcementThreadID: undefined,
+      },
     );
     expect(mocks.addInlineResponses).toHaveBeenCalledTimes(1);
     expect(mocks.addTriggerResponses).toHaveBeenCalledTimes(1);
@@ -211,6 +214,55 @@ describe("startBot", () => {
       [],
       calendarReminderAssets,
       earningsReminderAssets,
+      undefined,
+    );
+  });
+
+  test("passes optional earnings thread targets when configured", async () => {
+    const readSecret = vi.fn((secretName: string) => {
+      const defaults: Record<string, string> = {
+        environment: "staging",
+        discord_token: "token",
+        hblwrk_channel_NYSEAnnouncement_ID: "nyse",
+        hblwrk_gainslosses_thread_ID: "gains-losses-thread",
+        hblwrk_channel_MNCAnnouncement_ID: "mnc",
+        hblwrk_channel_OtherAnnouncement_ID: "other",
+        hblwrk_earnings_expectations_thread_ID: "earnings-expectations-thread",
+        hblwrk_earnings_results_thread_ID: "earnings-results-thread",
+        hblwrk_channel_clownboard_ID: "clownboard",
+        discord_client_ID: "bot-client-id",
+        discord_guild_ID: "guild-id",
+        hblwrk_role_assignment_channel_ID: "",
+        hblwrk_role_assignment_broker_message_ID: "",
+        hblwrk_role_assignment_special_message_ID: "",
+        hblwrk_role_muted_ID: "",
+        hblwrk_role_broker_yes_ID: "",
+      };
+
+      return defaults[secretName] ?? "";
+    });
+    const {dependencies, mocks} = createDependencies({
+      readSecret,
+    });
+
+    const runtime = await startBot(dependencies);
+    await waitFor(() => true === runtime.getStartupState().ready);
+
+    expect(mocks.startEarningsResultWatcher).toHaveBeenCalledWith(
+      expect.anything(),
+      "other",
+      {
+        announcementThreadID: "earnings-results-thread",
+      },
+    );
+    expect(mocks.startOtherTimers).toHaveBeenCalledWith(
+      expect.anything(),
+      "other",
+      [],
+      [],
+      [],
+      [],
+      "earnings-expectations-thread",
     );
   });
 

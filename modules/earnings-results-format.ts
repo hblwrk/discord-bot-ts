@@ -123,10 +123,10 @@ export function getMessageMetrics(
   surprise: NasdaqSurprise | null,
   event: EarningsEvent,
 ): EarningsResultMetric[] {
-  const metrics = [...secMetrics];
+  const consensusEps = surprise?.consensusEps ?? parseNumber(event.epsConsensus) ?? undefined;
+  const metrics = normalizeEpsMetrics([...secMetrics], surprise, consensusEps);
   const hasAdjustedEps = metrics.some(metric => "adjusted_eps" === metric.key);
   const hasGaapEps = metrics.some(metric => "gaap_eps" === metric.key);
-  const consensusEps = surprise?.consensusEps ?? parseNumber(event.epsConsensus);
 
   if ("number" === typeof surprise?.actualEps &&
       false === hasAdjustedEps &&
@@ -153,6 +153,77 @@ export function getMessageMetrics(
   }
 
   return metrics.slice(0, 7);
+}
+
+function normalizeEpsMetrics(
+  metrics: EarningsResultMetric[],
+  surprise: NasdaqSurprise | null,
+  consensusEps: number | undefined,
+): EarningsResultMetric[] {
+  const actualEps = surprise?.actualEps;
+  const adjustedEpsMetric = metrics.find(metric => "adjusted_eps" === metric.key);
+  const gaapEpsMetric = metrics.find(metric => "gaap_eps" === metric.key);
+  const primaryEpsMetric = adjustedEpsMetric ?? gaapEpsMetric;
+
+  if ("number" === typeof actualEps &&
+      undefined !== primaryEpsMetric &&
+      true === isImplausibleSecEps(primaryEpsMetric.numericValue, actualEps, consensusEps)) {
+    primaryEpsMetric.numericValue = actualEps;
+    primaryEpsMetric.value = formatEps(actualEps);
+  }
+
+  if (adjustedEpsMetric &&
+      gaapEpsMetric &&
+      true === isImplausibleSecondaryGaapEps(gaapEpsMetric.numericValue, adjustedEpsMetric.numericValue)) {
+    return metrics.filter(metric => "gaap_eps" !== metric.key);
+  }
+
+  return metrics;
+}
+
+function isImplausibleSecEps(
+  secValue: number | undefined,
+  actualEps: number,
+  consensusEps: number | undefined,
+): boolean {
+  if ("number" !== typeof secValue || false === Number.isFinite(secValue)) {
+    return false;
+  }
+
+  const referenceEps = consensusEps ?? actualEps;
+  const closeEnoughTolerance = Math.max(0.25, Math.abs(actualEps) * 0.25);
+  if (Math.abs(secValue - actualEps) <= closeEnoughTolerance) {
+    return false;
+  }
+
+  if (Math.abs(secValue) >= 10 && Math.abs(referenceEps) < 5) {
+    return true;
+  }
+
+  if (Math.sign(secValue) !== Math.sign(actualEps) &&
+      Math.abs(secValue - actualEps) > 0.5) {
+    return true;
+  }
+
+  return Math.abs(secValue - actualEps) > Math.max(1, Math.abs(referenceEps) * 2);
+}
+
+function isImplausibleSecondaryGaapEps(
+  gaapValue: number | undefined,
+  adjustedValue: number | undefined,
+): boolean {
+  if ("number" !== typeof gaapValue ||
+      "number" !== typeof adjustedValue ||
+      false === Number.isFinite(gaapValue) ||
+      false === Number.isFinite(adjustedValue)) {
+    return false;
+  }
+
+  if (Math.abs(gaapValue) >= 10 && Math.abs(adjustedValue) < 5) {
+    return true;
+  }
+
+  return Math.abs(gaapValue - adjustedValue) > Math.max(10, Math.abs(adjustedValue) * 5);
 }
 
 export function getEarningsResultMessage({

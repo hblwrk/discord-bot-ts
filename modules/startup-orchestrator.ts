@@ -82,6 +82,15 @@ function createDependencies(options: StartupOptions): StartupDependencies {
   };
 }
 
+function readOptionalSecretValue(readSecretFn: typeof readSecret, secretName: string): string | undefined {
+  try {
+    const value = readSecretFn(secretName).trim();
+    return "" === value ? undefined : value;
+  } catch {
+    return undefined;
+  }
+}
+
 async function waitForDiscordReady(
   client: Client,
   token: string,
@@ -149,6 +158,8 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
   const gainsLossesThreadId = dependencies.readSecret("hblwrk_gainslosses_thread_ID").trim();
   const channelMncId = dependencies.readSecret("hblwrk_channel_MNCAnnouncement_ID").trim();
   const channelOtherId = dependencies.readSecret("hblwrk_channel_OtherAnnouncement_ID").trim();
+  const earningsExpectationsThreadId = readOptionalSecretValue(dependencies.readSecret, "hblwrk_earnings_expectations_thread_ID");
+  const earningsResultsThreadId = readOptionalSecretValue(dependencies.readSecret, "hblwrk_earnings_results_thread_ID");
   const channelClownboardId = dependencies.readSecret("hblwrk_channel_clownboard_ID").trim();
   const roleAssignmentChannelId = dependencies.readSecret("hblwrk_role_assignment_channel_ID").trim();
   const roleAssignmentBrokerMessageId = dependencies.readSecret("hblwrk_role_assignment_broker_message_ID").trim();
@@ -223,7 +234,9 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
     dependencies.clownboard(client, channelClownboardId);
     dependencies.startNyseTimers(client, channelNyseId, gainsLossesThreadId);
     dependencies.startMncTimers(client, channelMncId);
-    dependencies.startEarningsResultWatcher(client, channelOtherId);
+    dependencies.startEarningsResultWatcher(client, channelOtherId, {
+      announcementThreadID: earningsResultsThreadId,
+    });
     dependencies.addInlineResponses(client, sharedData.assets, sharedData.assetCommands);
     dependencies.addTriggerResponses(client, sharedData.assets, sharedData.assetCommandsWithPrefix, sharedData.whatIsAssets, sharedData.paywallAssets);
     dependencies.interactSlashCommands(client, sharedData.assets, sharedData.assetCommands, sharedData.whatIsAssets, sharedData.tickers, sharedData.paywallAssets);
@@ -260,6 +273,7 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
     dependencies,
     startupState,
     channelOtherId,
+    earningsExpectationsThreadId,
     environment,
   });
 
