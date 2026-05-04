@@ -184,6 +184,27 @@ describe("earnings result formatting", () => {
     ]);
   });
 
+  test("drops noisy non-text outlook values", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h2>Financial Outlook</h2>
+          <p>Operating income and net income in each quarter this year are expected to improve.</p>
+          <p>Tax rate (% Pre-Tax Income Attributable to the Company) (1)</p>
+          <p>Free cash flow is expected to be between $4.2 billion and $4.4 billion.</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.outlook).toEqual([
+      {
+        key: "free_cash_flow",
+        label: "Free cash flow",
+        value: "$4.2B to $4.4B",
+      },
+    ]);
+  });
+
   test("does not emit outlook metrics without an outlook section", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>
@@ -403,6 +424,58 @@ describe("earnings result formatting", () => {
       estimate: "$100B",
       outcome: "miss",
     });
+  });
+
+  test("uses Nasdaq EPS when parsed SEC EPS is implausible and drops bogus secondary GAAP EPS", () => {
+    const event: EarningsEvent = {
+      ticker: "RBA",
+      when: "after_close",
+      date: "2026-05-04",
+      importance: 1,
+      epsConsensus: "$0.89",
+    };
+
+    const metrics = getMessageMetrics([
+      {
+        key: "adjusted_eps",
+        label: "Adj EPS",
+        numericValue: 13,
+        value: "$13",
+      },
+      {
+        key: "gaap_eps",
+        label: "EPS",
+        numericValue: 20,
+        value: "$20",
+      },
+      {
+        key: "revenue",
+        label: "Revenue",
+        numericValue: 1_200_000_000,
+        value: "$1.2B",
+      },
+    ], {
+      actualEps: 1.13,
+      consensusEps: 0.89,
+    }, event);
+
+    expect(metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "adjusted_eps",
+        estimate: "$0.89",
+        outcome: "beat",
+        value: "$1.13",
+      }),
+      expect.objectContaining({
+        key: "revenue",
+        value: "$1.2B",
+      }),
+    ]));
+    expect(metrics).not.toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "gaap_eps",
+      }),
+    ]));
   });
 
   test("formats message without quarter, filing items, estimate or outlook", () => {

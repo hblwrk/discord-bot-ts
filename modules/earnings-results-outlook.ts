@@ -200,7 +200,7 @@ function extractOutlookValue(
     getOutlookRangeValue(valueText, valueType) ??
     ("text" === valueType ? getSingleOutlookValue(valueText, "money") : null) ??
     getSingleOutlookValue(valueText, valueType) ??
-    getFallbackOutlookValue(valueText);
+    getFallbackOutlookValue(valueText, valueType);
 }
 
 function normalizeOutlookValueText(value: string): string {
@@ -285,7 +285,7 @@ function getSingleOutlookValue(value: string, valueType: OutlookValueType): stri
   return null;
 }
 
-function getFallbackOutlookValue(value: string): string | null {
+function getFallbackOutlookValue(value: string, valueType: OutlookValueType): string | null {
   const fallbackValue = value.split(/[.;]/)[0]?.trim() ?? "";
   if (fallbackValue.length < 2 ||
       fallbackValue.length > 80 ||
@@ -295,7 +295,21 @@ function getFallbackOutlookValue(value: string): string | null {
     return null;
   }
 
+  if ("text" !== valueType && false === isUsefulNonTextFallbackValue(fallbackValue)) {
+    return null;
+  }
+
   return fallbackValue;
+}
+
+function isUsefulNonTextFallbackValue(value: string): boolean {
+  if (/^(?:and|or)\b/i.test(value) ||
+      /^\(?\s*%/i.test(value) ||
+      /\bpre-tax\s+income\s+attributable\b/i.test(value)) {
+    return false;
+  }
+
+  return /\b(?:positive|negative|not\s+available|unavailable|breakeven|break-even|flat|unchanged|growth|decline|increase|decrease)\b/i.test(value);
 }
 
 function findNumericValue(

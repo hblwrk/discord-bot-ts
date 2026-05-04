@@ -254,14 +254,14 @@ function getEarningsEventLine(
   );
   const marketCapText = getFormattedMarketCapText(earningsEvent.marketCap, earningsEvent.marketCapText);
   const epsConsensus = getFormattedEpsConsensusText(earningsEvent.epsConsensus);
-  const paddedMarketCapText = getPaddedEarningsColumnText(
+  const marketCapPadding = getEarningsColumnPadding(
     marketCapText,
     lineWidths.marketCap
   );
   const expectedMoveText = getFormattedExpectedMoveText(earningsEvent);
   const underlyingPriceText = getFormattedExpectedMoveUnderlyingPriceText(earningsEvent);
 
-  return `${ticker} 💰 MCap: \`${paddedMarketCapText}\`${underlyingPriceText} 🔮 EPS: \`${epsConsensus}\`${expectedMoveText}`;
+  return `${ticker} 💰 MCap: \`${marketCapText}\`${marketCapPadding}${underlyingPriceText} 🔮 EPS: \`${epsConsensus}\`${expectedMoveText}`;
 }
 
 function getFormattedMarketCapText(
@@ -291,11 +291,11 @@ function getFormattedEpsConsensusText(
   return getNormalizedString(epsConsensus) ?? unknownValueLabel;
 }
 
-function getPaddedEarningsColumnText(
+function getEarningsColumnPadding(
   text: string,
   width: number
 ): string {
-  return text.padEnd(width, " ");
+  return " ".repeat(Math.max(0, width - text.length));
 }
 
 function getFormattedTicker(
@@ -303,12 +303,12 @@ function getFormattedTicker(
   highlightedTickerSymbols: Set<string>,
   width: number
 ): string {
-  const tickerText = `\`${getPaddedEarningsColumnText(ticker, width)}\``;
+  const tickerPadding = getEarningsColumnPadding(ticker, width);
   if (true === highlightedTickerSymbols.has(ticker)) {
-    return `**${tickerText}**`;
+    return `**${ticker}**${tickerPadding}`;
   }
 
-  return tickerText;
+  return `\`${ticker}\`${tickerPadding}`;
 }
 
 function getEarningsWhenLabel(earningsWhen: EarningsWhen): string {

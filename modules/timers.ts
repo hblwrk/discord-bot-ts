@@ -66,6 +66,7 @@ type TimerClient = {
     cache?: {
       get?: (channelId: string) => unknown;
     };
+    fetch?: (channelId: string) => Promise<unknown> | unknown;
   };
 };
 type NyseSentimentPollMessage = {
@@ -253,8 +254,72 @@ function getSendableChannel(client: TimerClient, channelID: string, source: stri
   return channel;
 }
 
+function getOptionalChannelID(channelID: string | undefined): string | undefined {
+  const normalizedChannelID = channelID?.trim();
+  return normalizedChannelID ? normalizedChannelID : undefined;
+}
+
+async function fetchChannel(client: TimerClient, channelID: string, source: string): Promise<unknown> {
+  const cachedChannel = client.channels?.cache?.get?.(channelID);
+  if (undefined !== cachedChannel) {
+    return cachedChannel;
+  }
+
+  const fetchChannelFn = client.channels?.fetch;
+  if ("function" !== typeof fetchChannelFn) {
+    return undefined;
+  }
+
+  return Promise.resolve(fetchChannelFn(channelID)).catch(error => {
+    logger.log(
+      "warn",
+      `Could not fetch ${source} channel ${channelID}: ${error}`,
+    );
+    return undefined;
+  });
+}
+
+async function getFetchableSendableChannel(client: TimerClient, channelID: string, source: string): Promise<SendableChannel | null> {
+  const channel = await fetchChannel(client, channelID, source);
+  if (false === isSendableChannel(channel)) {
+    logger.log(
+      "error",
+      `Skipping ${source} announcement: channel ${channelID} not found or not send-capable.`,
+    );
+    return null;
+  }
+
+  return channel;
+}
+
+async function getOptionalThreadTargetChannel(
+  client: TimerClient,
+  channelID: string,
+  threadID: string | undefined,
+  source: string,
+): Promise<SendableChannel | null> {
+  const normalizedThreadID = getOptionalChannelID(threadID);
+  if (undefined !== normalizedThreadID) {
+    const thread = await getFetchableSendableChannel(client, normalizedThreadID, `${source} thread`);
+    if (null !== thread) {
+      return thread;
+    }
+
+    logger.log(
+      "warn",
+      `Configured ${source} thread ${normalizedThreadID} is unavailable; falling back to channel ${channelID}.`,
+    );
+  }
+
+  return getSendableChannel(client, channelID, source);
+}
+
 async function sendAnnouncement(client: TimerClient, channelID: string, payload: unknown, source: string) {
   const channel = getSendableChannel(client, channelID, source);
+  return sendToChannel(channel, payload, source);
+}
+
+async function sendToChannel(channel: SendableChannel | null, payload: unknown, source: string) {
   if (!channel) {
     return undefined;
   }
@@ -273,6 +338,7 @@ async function runEarningsAnnouncement(
   channelID: string,
   tickers: Ticker[],
   config: EarningsAnnouncementConfig,
+  earningsExpectationsThreadID?: string,
 ) {
   const earningsResult = await getEarningsResult(config.days, config.date);
   const earningsEvents = await addExpectedMovesToEarningsEvents(earningsResult.events, {
@@ -301,7 +367,7 @@ async function runEarningsAnnouncement(
     return;
   }
 
-  const channel = getSendableChannel(client, channelID, "earnings");
+  const channel = await getOptionalThreadTargetChannel(client, channelID, earningsExpectationsThreadID, "earnings");
   const messages = config.headline
     ? prependHeadlineToFirstMessage(earningsBatch.messages, config.headline, EARNINGS_MAX_MESSAGE_LENGTH)
     : earningsBatch.messages;
@@ -544,6 +610,7 @@ export function startOtherTimers(
   tickers: Ticker[],
   calendarReminderAssets: CalendarReminderAsset[] = [],
   earningsReminderAssets: EarningsReminderAsset[] = [],
+  earningsExpectationsThreadID?: string,
 ) {
   const ruleFriday = createRecurrenceRule({
     hour: 8,
@@ -615,7 +682,7 @@ export function startOtherTimers(
       filter: "bluechips",
       source: "timer-earnings",
       when: "all",
-    });
+    }, earningsExpectationsThreadID);
   });
 
   const ruleEarningsWeekly = createRecurrenceRule({
@@ -652,7 +719,7 @@ export function startOtherTimers(
       headline: weeklyEarningsHeadline,
       source: "timer-earnings-weekly",
       when: "all",
-    });
+    }, earningsExpectationsThreadID);
   });
 
   const ruleEarningsReminder = createRecurrenceRule({
@@ -691,9 +758,9 @@ export function startOtherTimers(
         continue;
       }
 
-      await sendAnnouncement(
-        client,
-        channelID,
+      const channel = await getOptionalThreadTargetChannel(client, channelID, earningsExpectationsThreadID, earningsReminderSource);
+      await sendToChannel(
+        channel,
         {
           content: getEarningsReminderMessage(roleId, matchedEvents),
           allowedMentions: getAllowedRoleMentions(roleId),

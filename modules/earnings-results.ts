@@ -42,12 +42,14 @@ type EarningsResultClient = {
     cache?: {
       get?: (channelID: string) => unknown;
     };
+    fetch?: (channelID: string) => Promise<unknown> | unknown;
   };
 };
 
 type TimerHandle = ReturnType<typeof setTimeout>;
 
 type EarningsResultWatcherOptions = {
+  announcementThreadID?: string | undefined;
   clearTimeoutFn?: typeof clearTimeout;
   getEarningsResultFn?: typeof getEarningsResult;
   getWithRetryFn?: typeof getWithRetry;
@@ -154,6 +156,7 @@ export function startEarningsResultWatcher(
   const clearTimeoutFn = options.clearTimeoutFn ?? clearTimeout;
   const pollIntervalMs = options.pollIntervalMs ?? defaultPollIntervalMs;
   const inactivePollIntervalMs = options.inactivePollIntervalMs ?? defaultInactivePollIntervalMs;
+  const announcementThreadID = getOptionalChannelID(options.announcementThreadID);
   const seenAccessions = new Set<string>();
   const dependencies = getDependencies(options);
   let seenAccessionsSeeded = false;
@@ -162,9 +165,10 @@ export function startEarningsResultWatcher(
 
   const runOnce = async (): Promise<EarningsResultScanResult> => {
     if (false === seenAccessionsSeeded) {
-      const seeded = await seedSeenAccessionsFromChannelHistory(
+      const seeded = await seedSeenAccessionsFromAnnouncementHistory(
         client,
         channelID,
+        announcementThreadID,
         seenAccessions,
         dependencies.logger,
       );
@@ -201,6 +205,7 @@ export function startEarningsResultWatcher(
       const sent = await sendEarningsResultAnnouncement(
         client,
         channelID,
+        announcementThreadID,
         announcement.message,
         dependencies.logger,
       );
@@ -328,17 +333,75 @@ function getDependencies(options: EarningsResultWatcherOptions = {}): EarningsRe
 }
 
 function isSendableChannel(channel: unknown): channel is SendableChannel {
-  return "object" === typeof channel &&
-    null !== channel &&
+  return isObjectLike(channel) &&
     "send" in channel &&
     "function" === typeof channel.send;
 }
 
 function isFetchableMessageManager(value: unknown): value is FetchableMessageManager {
-  return "object" === typeof value &&
-    null !== value &&
+  return isObjectLike(value) &&
     "fetch" in value &&
     "function" === typeof value.fetch;
+}
+
+function getOptionalChannelID(channelID: string | undefined): string | undefined {
+  const normalizedChannelID = channelID?.trim();
+  return normalizedChannelID ? normalizedChannelID : undefined;
+}
+
+async function fetchChannel(
+  client: EarningsResultClient,
+  channelID: string,
+  loggerInstance: Logger,
+): Promise<unknown> {
+  const cachedChannel = client.channels?.cache?.get?.(channelID);
+  if (undefined !== cachedChannel) {
+    return cachedChannel;
+  }
+
+  const fetchChannelFn = client.channels?.fetch;
+  if ("function" !== typeof fetchChannelFn) {
+    return undefined;
+  }
+
+  return Promise.resolve(fetchChannelFn(channelID)).catch(error => {
+    loggerInstance.log(
+      "warn",
+      `Could not fetch earnings result channel ${channelID}: ${error}`,
+    );
+    return undefined;
+  });
+}
+
+async function seedSeenAccessionsFromAnnouncementHistory(
+  client: EarningsResultClient,
+  channelID: string,
+  announcementThreadID: string | undefined,
+  seenAccessions: Set<string>,
+  loggerInstance: Logger,
+): Promise<boolean> {
+  const targetChannelID = announcementThreadID ?? channelID;
+  const seededTarget = await seedSeenAccessionsFromChannelHistory(
+    client,
+    targetChannelID,
+    seenAccessions,
+    loggerInstance,
+  );
+  if (false === seededTarget) {
+    return false;
+  }
+
+  if (undefined !== announcementThreadID && announcementThreadID !== channelID) {
+    await seedSeenAccessionsFromChannelHistory(
+      client,
+      channelID,
+      seenAccessions,
+      loggerInstance,
+      false,
+    );
+  }
+
+  return true;
 }
 
 async function seedSeenAccessionsFromChannelHistory(
@@ -346,17 +409,20 @@ async function seedSeenAccessionsFromChannelHistory(
   channelID: string,
   seenAccessions: Set<string>,
   loggerInstance: Logger,
+  required = true,
 ): Promise<boolean> {
-  const channel = client.channels?.cache?.get?.(channelID);
-  const messages = "object" === typeof channel && null !== channel && "messages" in channel
+  const channel = await fetchChannel(client, channelID, loggerInstance);
+  const messages = isObjectLike(channel) && "messages" in channel
     ? channel.messages
     : undefined;
   if (false === isFetchableMessageManager(messages)) {
     loggerInstance.log(
       "warn",
-      `Skipping earnings result scan: channel ${channelID} message history is not fetchable.`,
+      true === required
+        ? `Skipping earnings result scan: channel ${channelID} message history is not fetchable.`
+        : `Could not seed earnings result announcements from optional channel ${channelID}: message history is not fetchable.`,
     );
-    return false;
+    return false === required;
   }
 
   const fetchedMessages = await Promise.resolve(messages.fetch({
@@ -369,7 +435,7 @@ async function seedSeenAccessionsFromChannelHistory(
     return null;
   });
   if (null === fetchedMessages) {
-    return false;
+    return false === required;
   }
 
   for (const message of getFetchedMessageValues(fetchedMessages)) {
@@ -438,14 +504,16 @@ function formatCompactAccessionNumber(value: string): string {
 async function sendEarningsResultAnnouncement(
   client: EarningsResultClient,
   channelID: string,
+  announcementThreadID: string | undefined,
   message: string,
   loggerInstance: Logger,
 ): Promise<boolean> {
-  const channel = client.channels?.cache?.get?.(channelID);
+  const targetChannelID = announcementThreadID ?? channelID;
+  const channel = await fetchChannel(client, targetChannelID, loggerInstance);
   if (false === isSendableChannel(channel)) {
     loggerInstance.log(
       "error",
-      `Skipping earnings result announcement: channel ${channelID} not found or not send-capable.`,
+      `Skipping earnings result announcement: channel ${targetChannelID} not found or not send-capable.`,
     );
     return false;
   }
@@ -608,7 +676,7 @@ async function buildEarningsResultAnnouncement(
   const metrics = getMessageMetrics(parsedDocument.metrics, surprise, watch.event);
   const filingUrl = filingDetails.documentUrl || filing.filingUrl;
 
-  if (0 === metrics.length && "" === filingUrl) {
+  if (0 === metrics.length && 0 === parsedDocument.outlook.length) {
     dependencies.logger.log(
       "warn",
       `Skipping earnings result announcement for ${watch.event.ticker}: no filing details could be parsed.`,
