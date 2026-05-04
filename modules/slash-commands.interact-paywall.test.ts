@@ -106,14 +106,10 @@ describe("handlePaywallSlashCommand", () => {
       content: "Suche nach Paywall-Bypass für <https://example.com/article>... Das kann bis zu 60 Sekunden dauern.",
     });
     const finalPayload = interaction.editReply.mock.calls[1]![0] as {content: string; embeds: EditedEmbed[]};
-    expect(finalPayload.content).toBe("");
+    expect(finalPayload.content).toBe("https://example.com/article");
     expect(finalPayload.embeds[0]?.toJSON()).toEqual({
       title: "Paywall Bypass",
       description: "Für diese Seite ist leider kein Paywall-Bypass bekannt.",
-      fields: [{
-        name: "URL",
-        value: "<https://example.com/article>",
-      }],
     });
   });
 
@@ -141,14 +137,11 @@ describe("handlePaywallSlashCommand", () => {
       requesterId: "user-id",
     });
     const finalPayload = interaction.editReply.mock.calls[1]![0] as {content: string; embeds: EditedEmbed[]};
+    expect(finalPayload.content).toBe("https://example.com/article");
     expect(finalPayload.embeds[0]?.toJSON()).toEqual({
       title: "Paywall Bypass (unbekannte Seite)",
       description: "Unbekannte Seite — versuche allgemeine Services:",
       fields: [
-        {
-          name: "Original",
-          value: "<https://example.com/article>",
-        },
         {
           name: "Ergebnisse",
           value: [
@@ -178,19 +171,36 @@ describe("handlePaywallSlashCommand", () => {
       requesterId: "user-id",
     });
     const finalPayload = interaction.editReply.mock.calls[1]![0] as {content: string; embeds: EditedEmbed[]};
+    expect(finalPayload.content).toBe("https://example.com/article");
     expect(finalPayload.embeds[0]?.toJSON()).toEqual({
       title: "Paywall Bypass",
       fields: [
-        {
-          name: "Original",
-          value: "<https://example.com/article>",
-        },
         {
           name: "Ergebnisse",
           value: "✅ **archive.today**: <https://archive.ph/newest/https://example.com/article>",
         },
       ],
     });
+  });
+
+  test("logs and completes when the final paywall edit fails", async () => {
+    getPaywallLinksMock.mockResolvedValueOnce(paywallResult({
+      services: [
+        {
+          name: "archive.today",
+          url: "https://archive.ph/newest/https://example.com/article",
+          available: true,
+        },
+      ],
+    }));
+    const interaction = createPaywallInteraction("https://example.com/article");
+    interaction.editReply
+      .mockResolvedValueOnce(undefined)
+      .mockRejectedValueOnce(new Error("edit failed"));
+
+    await expect(handlePaywallSlashCommand(asChatInputInteraction(interaction), "paywall")).resolves.toBe(true);
+
+    expect(interaction.editReply).toHaveBeenCalledTimes(2);
   });
 
   test("edits busy message when lookup capacity is exhausted", async () => {
