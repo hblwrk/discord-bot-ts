@@ -378,8 +378,8 @@ describe("addTriggerResponses", () => {
     expect(getPaywallLinksMock).toHaveBeenCalledWith("https://example.com/article", [], {
       requesterId: "requester-id",
     });
-    const finalPayload = edit.mock.calls[0]![0] as SentPayload;
-    expect(finalPayload.content).toBe("https://example.com/article");
+    expect(edit).toHaveBeenCalledWith("https://example.com/article");
+    const finalPayload = message.channel.send.mock.calls[1]![0] as SentPayload;
     expect(finalPayload.embeds?.[0]?.toJSON()).toEqual({
       title: "Paywall Bypass (unbekannte Seite)",
       description: "Unbekannte Seite — versuche allgemeine Services:",
@@ -427,8 +427,8 @@ describe("addTriggerResponses", () => {
       1,
       "Suche nach Paywall-Bypass für <https://example.com/article>... Das kann bis zu 60 Sekunden dauern.",
     );
-    const finalPayload = message.channel.send.mock.calls[1]![0] as SentPayload;
-    expect(finalPayload.content).toBe("https://example.com/article");
+    expect(message.channel.send).toHaveBeenNthCalledWith(2, "https://example.com/article");
+    const finalPayload = message.channel.send.mock.calls[2]![0] as SentPayload;
     expect(finalPayload.embeds?.[0]?.toJSON()).toEqual({
       title: "Paywall Bypass",
       fields: [{
@@ -472,8 +472,8 @@ describe("addTriggerResponses", () => {
 
     await handler(message);
 
-    const finalPayload = edit.mock.calls[0]![0] as SentPayload;
-    expect(finalPayload.content).toBe("https://example.com/article");
+    expect(edit).toHaveBeenCalledWith("https://example.com/article");
+    const finalPayload = message.channel.send.mock.calls[1]![0] as SentPayload;
     expect(finalPayload.embeds?.[0]?.toJSON()).toEqual({
       title: "Paywall Bypass",
       description: "Für diese Seite ist leider kein Paywall-Bypass bekannt.",

@@ -10,7 +10,7 @@ import {
   paywallLookupBusyMessage,
 } from "./paywall.ts";
 import type {PaywallResult} from "./paywall.ts";
-import {buildPaywallResponsePayload, type PaywallResponsePayload} from "./paywall-response.ts";
+import {buildPaywallResponsePayload} from "./paywall-response.ts";
 import {assertSafeRequestUrl, UnsafeUrlError} from "./safe-http.ts";
 import {getRandomAssetByTriggerGroup} from "./random-asset.ts";
 import {getRandomQuote} from "./random-quote.ts";
@@ -24,8 +24,12 @@ type TriggerResponsePayload = string | {
   embeds?: EmbedBuilder[];
   files?: AttachmentBuilder[];
 };
+type TriggerResponseEditPayload = string | {
+  content?: string;
+  embeds?: EmbedBuilder[];
+};
 type TriggerResponseSentMessage = {
-  edit: (content: string | PaywallResponsePayload) => Promise<unknown>;
+  edit: (content: TriggerResponseEditPayload) => Promise<unknown>;
 };
 type TriggerResponseChannel = {
   send: (payload: TriggerResponsePayload) => Promise<TriggerResponseSentMessage | undefined>;
@@ -244,12 +248,13 @@ export function addTriggerResponses(
           const paywallOptions = message.author?.id ? {requesterId: message.author.id} : {};
           const result: PaywallResult = await getPaywallLinks(cleanUrl, paywallAssets ?? [], paywallOptions);
 
-          const response = buildPaywallResponsePayload(cleanUrl, result);
+          const response = buildPaywallResponsePayload(result);
           if (undefined !== workingMessage) {
-            await workingMessage.edit(response);
+            await workingMessage.edit(cleanUrl);
           } else {
-            await message.channel.send(response);
+            await message.channel.send(cleanUrl);
           }
+          await message.channel.send(response);
         } catch (error: unknown) {
           if (error instanceof PaywallLookupCapacityError) {
             if (undefined !== workingMessage) {
