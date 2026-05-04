@@ -33,6 +33,10 @@ type FetchableMessageManager = {
   fetch: (options: {limit: number}) => Promise<unknown> | unknown;
 };
 
+type FetchedMessageCollection = {
+  values: () => Iterable<unknown>;
+};
+
 type EarningsResultClient = {
   channels?: {
     cache?: {
@@ -383,14 +387,22 @@ async function seedSeenAccessionsFromChannelHistory(
 }
 
 function getFetchedMessageValues(fetchedMessages: unknown): unknown[] {
-  if ("object" === typeof fetchedMessages &&
-      null !== fetchedMessages &&
-      "values" in fetchedMessages &&
-      "function" === typeof fetchedMessages.values) {
-    return Array.from(fetchedMessages.values());
+  if (true === isFetchedMessageCollection(fetchedMessages)) {
+    return [...fetchedMessages.values()];
   }
 
   return [];
+}
+
+function isFetchedMessageCollection(value: unknown): value is FetchedMessageCollection {
+  const values = isObjectLike(value) && "values" in value
+    ? value.values
+    : undefined;
+  return "function" === typeof values;
+}
+
+function isObjectLike(value: unknown): value is object {
+  return Object(value) === value;
 }
 
 function getMessageContent(message: unknown): string | null {
