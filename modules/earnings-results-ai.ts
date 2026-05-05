@@ -365,6 +365,20 @@ export function getSuspiciousEarningsReasons(
   }
 
   const netIncomeMetric = metrics.find(metric => "net_income" === metric.key);
+  if (undefined !== revenueMetric &&
+      undefined !== netIncomeMetric &&
+      "number" === typeof revenueMetric.numericValue &&
+      "number" === typeof netIncomeMetric.numericValue &&
+      revenueMetric.numericValue > 0 &&
+      netIncomeMetric.numericValue > 0 &&
+      revenueMetric.numericValue < netIncomeMetric.numericValue) {
+    reasons.push({
+      message: `Revenue ${revenueMetric.value} is lower than net income ${netIncomeMetric.value}.`,
+      metricKey: "revenue",
+      severity: revenueMetric.numericValue <= netIncomeMetric.numericValue * 0.5 ? "high" : "medium",
+    });
+  }
+
   if (undefined !== netIncomeMetric &&
       "number" === typeof netIncomeMetric.numericValue &&
       "number" === typeof event.marketCap &&

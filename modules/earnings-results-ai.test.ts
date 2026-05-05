@@ -640,8 +640,32 @@ describe("AI earnings helpers", () => {
       "gaap_eps",
       "revenue",
       "revenue",
+      "revenue",
       "net_income",
     ]);
+    expect(hasHighSeveritySuspicion(reasons)).toBe(true);
+  });
+
+  test("identifies revenue that is implausibly lower than net income", () => {
+    const reasons = getSuspiciousEarningsReasons([{
+      key: "revenue",
+      label: "Revenue",
+      numericValue: 2_000_000,
+      value: "$2M",
+    }, {
+      key: "net_income",
+      label: "Net income",
+      numericValue: 274_100_000,
+      value: "$274.1M",
+    }], null, getEvent({
+      marketCap: 9_000_000_000,
+    }));
+
+    expect(reasons).toEqual([{
+      message: "Revenue $2M is lower than net income $274.1M.",
+      metricKey: "revenue",
+      severity: "high",
+    }]);
     expect(hasHighSeveritySuspicion(reasons)).toBe(true);
   });
 
