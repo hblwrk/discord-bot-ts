@@ -245,6 +245,7 @@ export function getEarningsResultMessage({
   filingUrl,
   metrics,
   parsedDocument,
+  summary,
   ticker,
 }: {
   companyName: string;
@@ -252,6 +253,7 @@ export function getEarningsResultMessage({
   filingUrl: string;
   metrics: EarningsResultMetric[];
   parsedDocument: ParsedEarningsDocument;
+  summary?: string | undefined;
   ticker: string;
 }): string {
   const normalizedTicker = ticker.trim().toUpperCase().replaceAll("`", "'");
@@ -262,7 +264,14 @@ export function getEarningsResultMessage({
   titleParts.push(` - ${getFilingFormText(filing, filingUrl)}`);
 
   const lines = [titleParts.join("")];
+  if (undefined !== summary && "" !== summary.trim()) {
+    lines.push(`📝 ${summary.trim()}`);
+  }
+
   if (0 < metrics.length) {
+    if (1 < lines.length) {
+      lines.push("");
+    }
     lines.push("📊 **Results**");
     for (const metric of metrics) {
       lines.push(getMetricMessageLine(metric));

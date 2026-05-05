@@ -41,7 +41,7 @@ describe("MNC AI summary", () => {
       readSecretFn,
     });
 
-    expect(summary).toBe("**Morning News Call - TL;DR**\n- Futures firm ahead of payrolls.");
+    expect(summary).toBe("📰 **Morning News Call - TL;DR**\n- Futures firm ahead of payrolls.");
     expect(postWithRetryFn).toHaveBeenCalledWith(
       expect.stringContaining("gemini-2.5-flash-lite:generateContent"),
       expect.objectContaining({
@@ -52,7 +52,7 @@ describe("MNC AI summary", () => {
               mime_type: "application/pdf",
             },
           }, {
-            text: expect.stringContaining("otherwise format the company name itself as inline code"),
+            text: expect.stringContaining("start with Company Name `TICKER`"),
           }],
         }],
       }),
@@ -126,8 +126,109 @@ describe("MNC AI summary", () => {
 
     expect(summary).toBeDefined();
     expect(summary).not.toContain("```");
-    expect(summary!.length).toBeLessThanOrEqual(1_700);
-    expect(summary).toContain("\n- ...");
+    expect(summary).toContain("📰 **Morning News Call - TL;DR**");
+    expect(summary!.length).toBeLessThanOrEqual(1_930);
+    expect(summary).toContain("\n...");
+    expect(summary).not.toContain("\n- ...");
+  });
+
+  test("compacts sectioned summaries before falling back to a hard truncation", async () => {
+    const longSectionedSummary = [
+      "📰 **Morning News Call - TL;DR**",
+      "- Futures are firmer while yields drift lower, with traders waiting for jobs data, services activity, and Fed speakers to reset rate expectations.",
+      "- Oil is softer, gold is bid, and the dollar is steady as risk appetite improves without removing the main macro and geopolitical overhangs.",
+      "",
+      "**Stocks in focus**",
+      ...Array.from({length: 7}, (_value, index) => `- Company ${index} \`CMP${index}\` moved premarket after management updated guidance, highlighted margin drivers, and flagged demand trends that could matter for today's sector rotation.`),
+      "",
+      "**Watchlist**",
+      "- Watch Treasury supply, afternoon Fed remarks, and the market reaction to services data for signs that rate-sensitive groups can keep leading.",
+      "- Also monitor energy headlines, breadth in megacap technology, and closing auction flows after a busy earnings calendar.",
+    ].join("\n");
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                summaryMarkdown: longSectionedSummary,
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
+      logger,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(summary).toBeDefined();
+    expect(summary!.length).toBeLessThanOrEqual(1_930);
+    expect(summary).toContain("**Stocks in focus**");
+    expect(summary).toContain("**Watchlist**");
+    expect(summary).toContain("Watch Treasury supply");
+    expect(summary).not.toContain("\n...");
+  });
+
+  test("hard-truncates summaries that cannot be compacted or split by line", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                summaryMarkdown: "One very long generated line without section breaks. ".repeat(80),
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
+      logger,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(summary).toBeDefined();
+    expect(summary!.length).toBeLessThanOrEqual(1_930);
+    expect(summary).toMatch(/\n\.\.\.$/);
+  });
+
+  test("falls back to line truncation for malformed section summaries", async () => {
+    const malformedSectionSummary = [
+      "📰 **Morning News Call - TL;DR**",
+      "**Stocks in focus**",
+      "**Watchlist**",
+      "A watchlist paragraph without a bullet. ".repeat(90),
+    ].join("\n");
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                summaryMarkdown: malformedSectionSummary,
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
+      logger,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(summary).toBeDefined();
+    expect(summary!.length).toBeLessThanOrEqual(1_930);
+    expect(summary).toContain("\n...");
   });
 
   test("returns no summary for invalid AI JSON", async () => {
@@ -139,6 +240,76 @@ describe("MNC AI summary", () => {
             content: {
               parts: [{
                 text: "{not-json",
+              }],
+            },
+          }],
+        },
+      }),
+      readSecretFn,
+    });
+
+    expect(summary).toBeUndefined();
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "AI MNC summary returned invalid JSON.",
+    );
+  });
+
+  test("returns no summary for missing summaryMarkdown", async () => {
+    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
+      logger,
+      postWithRetryFn: vi.fn().mockResolvedValue({
+        data: {
+          candidates: [{
+            content: {
+              parts: [{
+                text: JSON.stringify({}),
+              }],
+            },
+          }],
+        },
+      }),
+      readSecretFn,
+    });
+
+    expect(summary).toBeUndefined();
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "AI MNC summary response did not contain summaryMarkdown.",
+    );
+  });
+
+  test("returns no summary for empty normalized summaries", async () => {
+    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
+      logger,
+      postWithRetryFn: vi.fn().mockResolvedValue({
+        data: {
+          candidates: [{
+            content: {
+              parts: [{
+                text: JSON.stringify({
+                  summaryMarkdown: "```markdown\n```",
+                }),
+              }],
+            },
+          }],
+        },
+      }),
+      readSecretFn,
+    });
+
+    expect(summary).toBeUndefined();
+  });
+
+  test("returns no summary for AI JSON arrays", async () => {
+    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
+      logger,
+      postWithRetryFn: vi.fn().mockResolvedValue({
+        data: {
+          candidates: [{
+            content: {
+              parts: [{
+                text: "[]",
               }],
             },
           }],
