@@ -3,7 +3,9 @@ import {
   attachmentBuilderMock,
   createClientWithChannel,
   createClientWithoutChannel,
+  findMarketOpenSentimentPollMessageMock,
   getHolidaysMock,
+  getMarketCloseRecapMock,
   getMncMock,
   getMncSummaryMock,
   getScheduledJobByTime,
@@ -32,7 +34,7 @@ describe("timers: NYSE and MNC", () => {
     startNyseTimers(client, "channel-id");
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
 
-    expect(scheduleJobMock).toHaveBeenCalledTimes(8);
+    expect(scheduleJobMock).toHaveBeenCalledTimes(10);
     expect(premarketJob.rule).toEqual(expect.objectContaining({
       hour: 4,
       minute: 0,
@@ -191,6 +193,88 @@ describe("timers: NYSE and MNC", () => {
     closeJob.callback();
 
     expect(send).toHaveBeenCalledWith(expect.stringContaining("<#thread-id>"));
+  });
+
+  test("startNyseTimers posts optional market close recap with poll winners", async () => {
+    const {client, send} = createClientWithChannel();
+    const pollMessage = {
+      poll: {
+        question: {
+          text: "Opening Sentiment: Wie geht ihr in den Handel?",
+        },
+      },
+    };
+    send.mockResolvedValueOnce(pollMessage);
+    getMarketCloseRecapMock.mockResolvedValueOnce({
+      allowedUserIds: ["123", "456"],
+      content: "**Börsenschluss - Kurzüberblick**\n`VIX` fiel um `1,2 Punkte`.",
+    });
+
+    startNyseTimers(client, "channel-id");
+    const openJob = getScheduledJobByTime(9, 30, "US/Eastern");
+    openJob.callback();
+    await flushAsyncJobs();
+
+    const recapJob = getScheduledJobByTime(16, 10, "US/Eastern");
+    await recapJob.callback();
+    await flushAsyncJobs();
+
+    expect(getMarketCloseRecapMock).toHaveBeenCalledWith(pollMessage, expect.objectContaining({
+      logger: expect.any(Object),
+    }), expect.objectContaining({
+      date: expect.any(Date),
+    }));
+    expect(send).toHaveBeenLastCalledWith(expect.objectContaining({
+      allowedMentions: {
+        parse: [],
+        users: ["123", "456"],
+      },
+      content: expect.stringContaining("Börsenschluss"),
+    }));
+  });
+
+  test("startNyseTimers recovers the opening poll from history after a restart", async () => {
+    const send = vi.fn().mockResolvedValue(undefined);
+    const channel = {
+      messages: {
+        fetch: vi.fn(),
+      },
+      send,
+    };
+    const client = {
+      channels: {
+        cache: {
+          get: vi.fn(() => channel),
+        },
+      },
+    };
+    const recoveredPollMessage = {
+      poll: {
+        question: {
+          text: "Opening Sentiment: Wie geht ihr in den Handel?",
+        },
+      },
+    };
+    findMarketOpenSentimentPollMessageMock.mockResolvedValueOnce(recoveredPollMessage);
+    getMarketCloseRecapMock.mockResolvedValueOnce({
+      allowedUserIds: [],
+      content: "**Börsenschluss - Kurzüberblick**\n`VIX` stieg um `0,8 Punkte`.",
+    });
+
+    startNyseTimers(client, "channel-id");
+    const recapJob = getScheduledJobByTime(16, 10, "US/Eastern");
+    await recapJob.callback();
+    await flushAsyncJobs();
+
+    expect(findMarketOpenSentimentPollMessageMock).toHaveBeenCalledWith(channel, expect.objectContaining({
+      logger: expect.any(Object),
+    }), expect.objectContaining({
+      date: expect.any(Date),
+    }));
+    expect(getMarketCloseRecapMock).toHaveBeenCalledWith(recoveredPollMessage, expect.any(Object), expect.any(Object));
+    expect(send).toHaveBeenCalledWith(expect.objectContaining({
+      content: expect.stringContaining("Börsenschluss"),
+    }));
   });
 
   test("startNyseTimers skips announcement when channel is missing", () => {

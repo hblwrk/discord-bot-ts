@@ -24,6 +24,7 @@ import {
 } from "./earnings.ts";
 import {addExpectedMovesToEarningsEvents, warmExpectedMoveCacheForEarningsEvents} from "./earnings-expected-move.ts";
 import {getLogger} from "./logging.ts";
+import {findMarketOpenSentimentPollMessage, getMarketCloseRecap} from "./market-close-recap.ts";
 import {getMnc} from "./mnc-downloader.ts";
 import {getMncSummary} from "./mnc-summary.ts";
 import {type Ticker} from "./tickers.ts";
@@ -212,8 +213,11 @@ async function endNyseSentimentPoll(sentimentPollState: NyseSentimentPollState, 
   }
 
   if ("function" === typeof pollMessage.poll?.end) {
-    await Promise.resolve(pollMessage.poll.end()).then(() => {
+    await Promise.resolve(pollMessage.poll.end()).then(message => {
       sentimentPollState.ended = true;
+      if ("object" === typeof message && null !== message) {
+        sentimentPollState.message = message;
+      }
     }).catch(error => {
       logger.log(
         "error",
@@ -224,8 +228,11 @@ async function endNyseSentimentPoll(sentimentPollState: NyseSentimentPollState, 
   }
 
   if (pollMessage.id && "function" === typeof pollMessage.channel?.messages?.endPoll) {
-    await Promise.resolve(pollMessage.channel.messages.endPoll(pollMessage.id)).then(() => {
+    await Promise.resolve(pollMessage.channel.messages.endPoll(pollMessage.id)).then(message => {
       sentimentPollState.ended = true;
+      if ("object" === typeof message && null !== message) {
+        sentimentPollState.message = message;
+      }
     }).catch(error => {
       logger.log(
         "error",
@@ -332,6 +339,44 @@ async function sendToChannel(channel: SendableChannel | null, payload: unknown, 
     );
     return undefined;
   });
+}
+
+async function runNyseMarketCloseRecap(
+  client: TimerClient,
+  channelID: string,
+  sentimentPollState: NyseSentimentPollState,
+) {
+  const channel = await fetchChannel(client, channelID, "NYSE close recap");
+  if (false === isSendableChannel(channel)) {
+    logger.log(
+      "error",
+      `Skipping NYSE close recap: channel ${channelID} not found or not send-capable.`,
+    );
+    return;
+  }
+
+  const date = getCurrentNyseDate();
+  const pollMessage = sentimentPollState.message ?? await findMarketOpenSentimentPollMessage(channel, {
+    logger,
+  }, {
+    date,
+  });
+  const recap = await getMarketCloseRecap(pollMessage, {
+    logger,
+  }, {
+    date,
+  });
+  if (undefined === recap) {
+    return;
+  }
+
+  await sendToChannel(channel, {
+    allowedMentions: {
+      parse: [],
+      users: recap.allowedUserIds,
+    },
+    content: recap.content,
+  }, "NYSE close recap");
 }
 
 async function runEarningsAnnouncement(
@@ -446,6 +491,20 @@ export function startNyseTimers(client: TimerClient, channelID: string, gainsLos
     tz: usEasternTimezone,
   });
 
+  const ruleNyseCloseRecap = createRecurrenceRule({
+    hour: 16,
+    minute: 10,
+    dayOfWeek: usEasternWeekdays,
+    tz: usEasternTimezone,
+  });
+
+  const ruleNyseCloseRecapEarly = createRecurrenceRule({
+    hour: 13,
+    minute: 10,
+    dayOfWeek: usEasternWeekdays,
+    tz: usEasternTimezone,
+  });
+
   const ruleNyseAftermarketClose = createRecurrenceRule({
     hour: 20,
     minute: 0,
@@ -539,6 +598,20 @@ export function startNyseTimers(client: TimerClient, channelID: string, gainsLos
         getNyseCloseAnnouncement(gainsLossesThreadID),
         "NYSE",
       );
+    }
+  });
+
+  Schedule.scheduleJob(ruleNyseCloseRecap, () => {
+    const thanksgivingEarlyClose = isDayAfterThanksgiving();
+    if (false === isNyseHolidayToday() &&
+        false === thanksgivingEarlyClose) {
+      void runNyseMarketCloseRecap(client, channelID, sentimentPollState);
+    }
+  });
+
+  Schedule.scheduleJob(ruleNyseCloseRecapEarly, () => {
+    if (true === isDayAfterThanksgiving()) {
+      void runNyseMarketCloseRecap(client, channelID, sentimentPollState);
     }
   });
 

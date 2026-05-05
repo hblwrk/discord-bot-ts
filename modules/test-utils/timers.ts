@@ -37,6 +37,8 @@ const addExpectedMovesToEarningsEventsMock = vi.fn();
 const warmExpectedMoveCacheForEarningsEventsMock = vi.fn();
 const getEarningsResultMock = vi.fn();
 const getEarningsMessagesMock = vi.fn();
+const findMarketOpenSentimentPollMessageMock = vi.fn();
+const getMarketCloseRecapMock = vi.fn();
 const getMncMock = vi.fn();
 const getMncSummaryMock = vi.fn();
 const loggerMock = {
@@ -94,6 +96,11 @@ vi.mock("../earnings-expected-move.ts", () => ({
 
 vi.mock("../mnc-downloader.ts", () => ({
   getMnc: (...args: unknown[]) => getMncMock(...args),
+}));
+
+vi.mock("../market-close-recap.ts", () => ({
+  findMarketOpenSentimentPollMessage: (...args: unknown[]) => findMarketOpenSentimentPollMessageMock(...args),
+  getMarketCloseRecap: (...args: unknown[]) => getMarketCloseRecapMock(...args),
 }));
 
 vi.mock("../mnc-summary.ts", () => ({
@@ -234,6 +241,8 @@ export function resetTimerMocks() {
     totalEvents: 1,
     includedEvents: 1,
   });
+  findMarketOpenSentimentPollMessageMock.mockResolvedValue(undefined);
+  getMarketCloseRecapMock.mockResolvedValue(undefined);
   getCalendarEventsMock.mockResolvedValue([]);
   getCalendarEventsResultMock.mockResolvedValue({
     events: [],
@@ -258,6 +267,7 @@ export {
   attachmentBuilderMock,
   createClientWithChannel,
   createClientWithoutChannel,
+  findMarketOpenSentimentPollMessageMock,
   getAssetByNameMock,
   getCalendarEventsMock,
   getCalendarEventsResultMock,
@@ -267,6 +277,7 @@ export {
   getEarningsResultMock,
   getHolidaysMock,
   getMncMock,
+  getMarketCloseRecapMock,
   getMncSummaryMock,
   getScheduledDateJobs,
   getScheduledJobByTime,

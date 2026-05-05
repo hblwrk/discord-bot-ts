@@ -1,0 +1,531 @@
+import moment from "moment-timezone";
+import {callGeminiJson, type GeminiDependencies} from "./gemini.ts";
+
+export type MarketCloseSentimentAnswer = "Risk-on" | "Risk-off" | "Cash" | "Chaos";
+
+export type MarketCloseRecapPayload = {
+  allowedUserIds: string[];
+  content: string;
+};
+
+export type MarketCloseRecapDependencies = GeminiDependencies;
+
+export type MarketCloseRecapOptions = {
+  date?: Date | undefined;
+  maxFetchedWinners?: number | undefined;
+  maxMentionedWinners?: number | undefined;
+};
+
+type PollAnswerFetchOptions = {
+  after?: string | undefined;
+  limit?: number | undefined;
+};
+
+type PollAnswerVoters = {
+  fetch?: (options?: PollAnswerFetchOptions) => Promise<unknown> | unknown;
+};
+
+type PollAnswerLike = {
+  id?: number | undefined;
+  text?: string | null | undefined;
+  voters?: PollAnswerVoters | undefined;
+};
+
+type PollLike = {
+  answers?: unknown;
+  question?: {
+    text?: string | null | undefined;
+  } | undefined;
+};
+
+type PollMessageLike = {
+  createdAt?: Date | undefined;
+  createdTimestamp?: number | undefined;
+  poll?: PollLike | null | undefined;
+};
+
+type GeminiMarketCloseRecap = {
+  sentimentTitle?: string | undefined;
+  summaryMarkdown: string;
+  winningPollAnswer: MarketCloseSentimentAnswer;
+};
+
+const usEasternTimezone = "US/Eastern";
+const defaultMaxFetchedWinners = 200;
+const defaultMaxMentionedWinners = 20;
+const marketOpenSentimentPollQuestion = "Opening Sentiment: Wie geht ihr in den Handel?";
+const marketOpenPollHistoryLimit = 50;
+const maxSummaryMarkdownLength = 1_100;
+const maxRecapContentLength = 1_950;
+
+const sentimentLabels = {
+  "Risk-on": "🟢 Risk-on",
+  "Risk-off": "🔴 Risk-off",
+  "Cash": "💵 Cash",
+  "Chaos": "🎢 Chaos",
+} satisfies Record<MarketCloseSentimentAnswer, string>;
+
+const marketCloseRecapSchema = {
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    summaryMarkdown: {
+      type: "string",
+      description: "A short German market-close summary in Discord-compatible Markdown.",
+    },
+    winningPollAnswer: {
+      type: "string",
+      enum: ["Risk-on", "Risk-off", "Cash", "Chaos"],
+      description: "The opening sentiment poll answer that best matched the US cash session from open to close.",
+    },
+    sentimentTitle: {
+      type: "string",
+      description: "A concise German label for the session, without mentioning any AI provider.",
+    },
+  },
+  required: ["summaryMarkdown", "winningPollAnswer", "sentimentTitle"],
+} satisfies Record<string, unknown>;
+
+export async function getMarketCloseRecap(
+  pollMessage: unknown,
+  dependencies: MarketCloseRecapDependencies,
+  options: MarketCloseRecapOptions = {},
+): Promise<MarketCloseRecapPayload | undefined> {
+  const jsonText = await callGeminiJson(
+    getMarketCloseRecapPrompt(options.date ?? new Date()),
+    marketCloseRecapSchema,
+    dependencies,
+    "market close recap",
+    undefined,
+    {
+      timeoutMs: 45_000,
+      useGoogleSearch: true,
+    },
+  ).catch(error => {
+    dependencies.logger.log(
+      "warn",
+      `Gemini market close recap failed: ${error}`,
+    );
+    return null;
+  });
+  if (null === jsonText) {
+    return undefined;
+  }
+
+  const recap = parseGeminiMarketCloseRecap(jsonText, dependencies);
+  if (undefined === recap) {
+    return undefined;
+  }
+
+  const rightVoterIds = await getRightVoterIds(pollMessage, recap.winningPollAnswer, dependencies, options);
+  const mentionedUserIds = rightVoterIds?.slice(0, options.maxMentionedWinners ?? defaultMaxMentionedWinners) ?? [];
+  const content = buildMarketCloseRecapContent(recap, rightVoterIds?.length, mentionedUserIds);
+  return {
+    allowedUserIds: mentionedUserIds,
+    content,
+  };
+}
+
+export async function findMarketOpenSentimentPollMessage(
+  channel: unknown,
+  dependencies: Pick<MarketCloseRecapDependencies, "logger">,
+  options: Pick<MarketCloseRecapOptions, "date"> = {},
+): Promise<PollMessageLike | undefined> {
+  const messages = getMessageManager(channel);
+  const fetchMessages = messages?.fetch;
+  if ("function" !== typeof fetchMessages) {
+    return undefined;
+  }
+
+  const fetchedMessages = await Promise.resolve(fetchMessages({
+    limit: marketOpenPollHistoryLimit,
+  })).catch(error => {
+    dependencies.logger.log(
+      "warn",
+      `Could not recover NYSE opening sentiment poll from message history: ${error}`,
+    );
+    return undefined;
+  });
+  const targetDate = options.date ?? new Date();
+  return getMessages(fetchedMessages)
+    .filter(message => true === isSentimentPollMessage(message))
+    .filter(message => true === isSameUsEasternDate(message, targetDate))
+    .sort((left, right) => getMessageTimestamp(right) - getMessageTimestamp(left))[0];
+}
+
+function getMessageManager(channel: unknown): {fetch?: (options?: {limit?: number | undefined}) => Promise<unknown> | unknown} | undefined {
+  if (false === isRecord(channel)) {
+    return undefined;
+  }
+
+  const messages = channel["messages"];
+  if (false === isRecord(messages)) {
+    return undefined;
+  }
+
+  const fetch = messages["fetch"];
+  if ("function" !== typeof fetch) {
+    return {};
+  }
+
+  const fetchFn = fetch as (this: unknown, options?: {limit?: number | undefined}) => Promise<unknown> | unknown;
+  return {
+    fetch: options => fetchFn.call(messages, options),
+  };
+}
+
+function getMarketCloseRecapPrompt(date: Date): string {
+  const usEasternDate = moment(date).tz(usEasternTimezone).format("YYYY-MM-DD");
+  return [
+    `Heute ist nach US-Börsenschluss am ${usEasternDate} (US/Eastern).`,
+    "Nutze Google Search, um den US-Cash-Handelstag realitätsnah einzuordnen.",
+    "Bewerte den Handelstag vom regulären US-Open bis zum regulären US-Close.",
+    "Berücksichtige `SPX` oder `SPY`, `NQ` oder `QQQ`, `RTY` oder `IWM` sowie zwingend den `VIX`.",
+    "Der `VIX` darf niemals als Prozentwert beschrieben werden. Beschreibe ihn nur als Stand, Veränderung in Punkten oder Richtung, z.B. `18,4` auf `20,1` oder `+1,7 Punkte`.",
+    "Wähle genau eine passende Antwort aus dem Opening-Sentiment-Poll:",
+    "- Risk-on: breite Stärke, fallender oder ruhiger `VIX`, Risikoappetit.",
+    "- Risk-off: breite Schwäche, steigender `VIX`, Defensive/Absicherung dominiert.",
+    "- Cash: wenig Richtung, dünne Signale, abwartender Handel.",
+    "- Chaos: starke Reversals, gemischte Indizes, hohe Intraday-Spanne, headline-getriebener oder schwer lesbarer Handel.",
+    "Return only JSON matching the schema. Do not include Markdown outside JSON strings.",
+    "Schreibe `summaryMarkdown` auf Deutsch für einen Discord-Trading-Channel.",
+    "Halte `summaryMarkdown` unter 1.000 Zeichen.",
+    "Nutze 2-4 kurze Absätze oder Bulletpoints.",
+    "Formatiere Ticker und konkrete Kennzahlen als Inline-Code, z.B. `SPX`, `QQQ`, `+0,4%`, `1,7 Punkte`.",
+    "Erwähne weder Gemini noch KI, Modell, Google Search, Quellen, Grounding oder Rechercheprozess.",
+    "Keine Disclaimer, keine Links, keine Tabellen, keine Codeblöcke.",
+  ].join("\n");
+}
+
+function parseGeminiMarketCloseRecap(
+  jsonText: string,
+  dependencies: MarketCloseRecapDependencies,
+): GeminiMarketCloseRecap | undefined {
+  const parsedJson = parseJson(jsonText);
+  if (false === isRecord(parsedJson)) {
+    dependencies.logger.log(
+      "warn",
+      "Gemini market close recap returned invalid JSON.",
+    );
+    return undefined;
+  }
+
+  const summaryMarkdown = parsedJson["summaryMarkdown"];
+  const winningPollAnswer = parsedJson["winningPollAnswer"];
+  const sentimentTitle = parsedJson["sentimentTitle"];
+  if ("string" !== typeof summaryMarkdown ||
+      false === isMarketCloseSentimentAnswer(winningPollAnswer) ||
+      "string" !== typeof sentimentTitle) {
+    dependencies.logger.log(
+      "warn",
+      "Gemini market close recap response missed required fields.",
+    );
+    return undefined;
+  }
+
+  const normalizedSummary = truncateSummary(normalizeMarkdown(summaryMarkdown));
+  const normalizedTitle = normalizeSingleLine(sentimentTitle);
+  const combinedText = `${normalizedSummary}\n${normalizedTitle}`;
+  if ("" === normalizedSummary ||
+      false === /\bVIX\b/i.test(combinedText) ||
+      true === hasForbiddenProviderMention(combinedText) ||
+      true === hasVixPercent(combinedText)) {
+    dependencies.logger.log(
+      "warn",
+      "Gemini market close recap failed output validation.",
+    );
+    return undefined;
+  }
+
+  return {
+    sentimentTitle: normalizedTitle,
+    summaryMarkdown: normalizedSummary,
+    winningPollAnswer,
+  };
+}
+
+function buildMarketCloseRecapContent(
+  recap: GeminiMarketCloseRecap,
+  totalRightVoterCount: number | undefined,
+  mentionedUserIds: string[],
+): string {
+  const sentimentLine = getSentimentLine(recap);
+  const voterSection = getVoterSection(totalRightVoterCount, mentionedUserIds);
+  return truncateRecapContent([
+    "**Börsenschluss - Kurzüberblick**",
+    recap.summaryMarkdown,
+    sentimentLine,
+    voterSection,
+  ].filter(line => "" !== line).join("\n\n"));
+}
+
+function getSentimentLine(recap: GeminiMarketCloseRecap): string {
+  const answerLabel = sentimentLabels[recap.winningPollAnswer];
+  if (undefined === recap.sentimentTitle || "" === recap.sentimentTitle) {
+    return `Das heutige Sentiment war: **${answerLabel}**`;
+  }
+
+  return `Das heutige Sentiment war: **${answerLabel}** - ${recap.sentimentTitle}`;
+}
+
+function getVoterSection(totalRightVoterCount: number | undefined, mentionedUserIds: string[]): string {
+  if (undefined === totalRightVoterCount) {
+    return "";
+  }
+
+  if (0 === totalRightVoterCount) {
+    return "Richtig gelegen hat heute niemand im Opening-Poll.";
+  }
+
+  const suffix = totalRightVoterCount > mentionedUserIds.length
+    ? `\nund \`${totalRightVoterCount - mentionedUserIds.length}\` weitere.`
+    : "";
+  return `Richtig gelegen haben:\n${mentionedUserIds.map(userId => `<@${userId}>`).join(" ")}${suffix}`;
+}
+
+async function getRightVoterIds(
+  pollMessage: unknown,
+  winningPollAnswer: MarketCloseSentimentAnswer,
+  dependencies: MarketCloseRecapDependencies,
+  options: MarketCloseRecapOptions,
+): Promise<string[] | undefined> {
+  const answer = getPollAnswerByText(pollMessage, winningPollAnswer);
+  if (undefined === answer) {
+    dependencies.logger.log(
+      "warn",
+      `Skipping market close recap voter mentions: poll answer ${winningPollAnswer} was not found.`,
+    );
+    return undefined;
+  }
+
+  const fetchVoters = answer.voters?.fetch;
+  if ("function" !== typeof fetchVoters) {
+    dependencies.logger.log(
+      "warn",
+      `Skipping market close recap voter mentions: poll answer ${winningPollAnswer} is not fetchable.`,
+    );
+    return undefined;
+  }
+
+  const maxFetchedWinners = options.maxFetchedWinners ?? defaultMaxFetchedWinners;
+  const voterIds: string[] = [];
+  let after: string | undefined;
+  while (voterIds.length < maxFetchedWinners) {
+    const limit = Math.min(100, maxFetchedWinners - voterIds.length);
+    const voters = await Promise.resolve(fetchVoters.call(answer.voters, {
+      ...(undefined === after ? {} : {after}),
+      limit,
+    })).catch(error => {
+      dependencies.logger.log(
+        "warn",
+        `Could not fetch market close recap poll voters: ${error}`,
+      );
+      return undefined;
+    });
+    if (undefined === voters) {
+      return undefined;
+    }
+
+    const pageUserIds = getUserIds(voters).filter(userId => false === voterIds.includes(userId));
+    if (0 === pageUserIds.length) {
+      break;
+    }
+
+    voterIds.push(...pageUserIds);
+    if (pageUserIds.length < limit) {
+      break;
+    }
+
+    after = pageUserIds[pageUserIds.length - 1];
+  }
+
+  return voterIds;
+}
+
+function getPollAnswerByText(
+  pollMessage: unknown,
+  answerText: MarketCloseSentimentAnswer,
+): PollAnswerLike | undefined {
+  return getPollAnswers(pollMessage).find(answer => answer.text === answerText);
+}
+
+function isSentimentPollMessage(message: PollMessageLike): boolean {
+  return message.poll?.question?.text === marketOpenSentimentPollQuestion &&
+    0 < getPollAnswers(message).length;
+}
+
+function isSameUsEasternDate(message: PollMessageLike, date: Date): boolean {
+  const timestamp = getMessageTimestamp(message);
+  if (0 === timestamp) {
+    return true;
+  }
+
+  return moment(timestamp).tz(usEasternTimezone).format("YYYY-MM-DD") ===
+    moment(date).tz(usEasternTimezone).format("YYYY-MM-DD");
+}
+
+function getMessageTimestamp(message: PollMessageLike): number {
+  if ("number" === typeof message.createdTimestamp && Number.isFinite(message.createdTimestamp)) {
+    return message.createdTimestamp;
+  }
+
+  const createdAtTime = message.createdAt?.getTime();
+  return "number" === typeof createdAtTime && Number.isFinite(createdAtTime) ? createdAtTime : 0;
+}
+
+function getMessages(value: unknown): PollMessageLike[] {
+  if (undefined === value || null === value) {
+    return [];
+  }
+
+  if (Array.isArray(value)) {
+    return value.filter(isPollMessageLike);
+  }
+
+  if (isRecord(value)) {
+    const values = value["values"];
+    if ("function" === typeof values) {
+      const valuesFn = values as (this: unknown) => Iterable<unknown>;
+      return Array.from(valuesFn.call(value)).filter(isPollMessageLike);
+    }
+
+    return Object.values(value).filter(isPollMessageLike);
+  }
+
+  return [];
+}
+
+function getPollAnswers(pollMessage: unknown): PollAnswerLike[] {
+  if (false === isPollMessageLike(pollMessage)) {
+    return [];
+  }
+
+  const answers = pollMessage.poll?.answers;
+  if (undefined === answers || null === answers) {
+    return [];
+  }
+
+  if (Array.isArray(answers)) {
+    return answers.filter(isPollAnswerLike);
+  }
+
+  if (isRecord(answers)) {
+    const values = answers["values"];
+    if ("function" === typeof values) {
+      const valuesFn = values as (this: unknown) => Iterable<unknown>;
+      return Array.from(valuesFn.call(answers)).filter(isPollAnswerLike);
+    }
+
+    return Object.values(answers).filter(isPollAnswerLike);
+  }
+
+  return [];
+}
+
+function getUserIds(value: unknown): string[] {
+  if (undefined === value || null === value) {
+    return [];
+  }
+
+  if (Array.isArray(value)) {
+    return value.flatMap(getUserIds);
+  }
+
+  if (isRecord(value)) {
+    const id = value["id"];
+    if ("string" === typeof id && "" !== id.trim()) {
+      return [id.trim()];
+    }
+
+    const values = value["values"];
+    if ("function" === typeof values) {
+      const valuesFn = values as (this: unknown) => Iterable<unknown>;
+      return Array.from(valuesFn.call(value)).flatMap(getUserIds);
+    }
+
+    const users = value["users"];
+    if (Array.isArray(users)) {
+      return users.flatMap(getUserIds);
+    }
+  }
+
+  return [];
+}
+
+function normalizeMarkdown(value: string): string {
+  return value
+    .replace(/\r\n/g, "\n")
+    .split("\n")
+    .map(line => line.trimEnd())
+    .filter(line => false === /^```/.test(line.trim()))
+    .join("\n")
+    .trim();
+}
+
+function normalizeSingleLine(value: string): string {
+  return value
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 120);
+}
+
+function truncateSummary(value: string): string {
+  if (value.length <= maxSummaryMarkdownLength) {
+    return value;
+  }
+
+  const truncatedValue = value.slice(0, maxSummaryMarkdownLength - 8);
+  const lastLineBreak = truncatedValue.lastIndexOf("\n");
+  const summary = lastLineBreak > 0
+    ? truncatedValue.slice(0, lastLineBreak)
+    : truncatedValue;
+  return `${summary.trimEnd()}\n...`;
+}
+
+function truncateRecapContent(value: string): string {
+  if (value.length <= maxRecapContentLength) {
+    return value;
+  }
+
+  return `${value.slice(0, maxRecapContentLength - 4).trimEnd()}\n...`;
+}
+
+function hasForbiddenProviderMention(value: string): boolean {
+  return /\b(Gemini|KI|Künstliche Intelligenz|Modell|Google Search|Grounding)\b/iu.test(value);
+}
+
+function hasVixPercent(value: string): boolean {
+  return /\bVIX\b[^\n.?!;:]*[+-]?\d+(?:[,.]\d+)?\s*%/iu.test(value);
+}
+
+function isMarketCloseSentimentAnswer(value: unknown): value is MarketCloseSentimentAnswer {
+  return "Risk-on" === value ||
+    "Risk-off" === value ||
+    "Cash" === value ||
+    "Chaos" === value;
+}
+
+function isPollAnswerLike(value: unknown): value is PollAnswerLike {
+  if (false === isRecord(value)) {
+    return false;
+  }
+
+  const text = value["text"];
+  return "string" === typeof text && isMarketCloseSentimentAnswer(text);
+}
+
+function isPollMessageLike(value: unknown): value is PollMessageLike {
+  return isRecord(value) && "poll" in value;
+}
+
+function parseJson(value: string): unknown | null {
+  try {
+    return JSON.parse(value) as unknown;
+  } catch {
+    return null;
+  }
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return "object" === typeof value && null !== value && false === Array.isArray(value);
+}
