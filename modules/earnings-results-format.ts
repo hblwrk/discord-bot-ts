@@ -381,17 +381,17 @@ function getDocumentHeadline(lines: string[]): string | undefined {
 }
 
 function getQuarterLabel(text: string): string | undefined {
-  const periodEndedQuarter = getQuarterLabelFromPeriodEnded(text);
-  if (undefined !== periodEndedQuarter) {
-    return periodEndedQuarter;
-  }
-
   const writtenQuarterMatch = text.match(/\b(first|second|third|fourth)\s+quarter\s+(?:of\s+)?(20\d{2})\b/i);
   if (undefined !== writtenQuarterMatch?.[1] && undefined !== writtenQuarterMatch[2]) {
     const quarter = getQuarterFromName(writtenQuarterMatch[1]);
     if (quarter) {
       return `${quarter} ${writtenQuarterMatch[2]}`;
     }
+  }
+
+  const periodEndedQuarter = getQuarterLabelFromPeriodEnded(text);
+  if (undefined !== periodEndedQuarter) {
+    return periodEndedQuarter;
   }
 
   const directQuarterMatch = text.match(/\b(Q[1-4])\s+(20\d{2})\b/i);
@@ -526,7 +526,10 @@ function extractMetricValue(
   const searchText = patternMatch ? line.slice(patternMatch.index + patternMatch[0].length) : line;
 
   if ("eps" === valueType) {
-    const value = findNumericValue(searchText, {maxAbsValue: 100});
+    const value = findNumericValue(searchText, {
+      maxAbsValue: 100,
+      parseCents: true,
+    });
     return null === value ? null : {numericValue: value, value: formatEps(value)};
   }
 
@@ -663,6 +666,7 @@ function findNumericValue(
   text: string,
   options: {
     maxAbsValue?: number;
+    parseCents?: boolean;
     requireMoneyCue?: boolean;
     skipPercentages?: boolean;
     skipTableNoteRefs?: boolean;
@@ -680,7 +684,10 @@ function findNumericValue(
       continue;
     }
 
-    const value = parseNumber(token);
+    const parsedNumber = parseNumber(token);
+    const value = true === options.parseCents && null !== parsedNumber
+      ? normalizeCentsValue(text, endIndex, token, parsedNumber)
+      : parsedNumber;
     if (null === value) {
       continue;
     }
@@ -707,6 +714,17 @@ function findNumericValue(
   }
 
   return null;
+}
+
+function normalizeCentsValue(text: string, endIndex: number, token: string, value: number): number {
+  if (/[$€£¥]/.test(token) || Math.abs(value) < 1) {
+    return value;
+  }
+
+  const afterToken = text.slice(endIndex, endIndex + 24);
+  return /^\s*(?:cents?|¢|c\b)/i.test(afterToken)
+    ? value / 100
+    : value;
 }
 
 function isCalendarDayValue(text: string, startIndex: number, endIndex: number): boolean {
