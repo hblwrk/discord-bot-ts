@@ -293,6 +293,47 @@ describe("earnings result announcements", () => {
     expect(result.announcements[0]!.message).toContain("- **Revenue:** `$85.14B` vs est. `$80.74B` (🟢 beat)");
   });
 
+  test("adds an AI summary to the earnings result announcement when available", async () => {
+    const rawSummary = "XOM reported Q1 2026 adjusted EPS of $1.16 and revenue of $85.14B, both ahead of consensus. Results were supported by broad earnings strength across the business. The company did not provide a quantified outlook.";
+    const formattedSummary = "`XOM` reported Q1 2026 adjusted EPS of `$1.16` and revenue of `$85.14B`, both ahead of consensus. Results were supported by broad earnings strength across the business. The company did not provide a quantified outlook.";
+    postWithRetryFn.mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                summary: rawSummary,
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+        postWithRetryFn,
+        readSecretFn: vi.fn((secretName: string) => {
+          if ("gemini_api_key" === secretName) {
+            return "gemini-key";
+          }
+
+          throw new Error(`missing ${secretName}`);
+        }),
+      },
+    });
+
+    const message = result.announcements[0]!.message;
+    expect(message).toContain(`📝 ${formattedSummary}`);
+    expect(message).not.toContain("📝 **Summary**");
+    expect(message.indexOf(`📝 ${formattedSummary}`)).toBeLessThan(message.indexOf("📊 **Results**"));
+    expect(postWithRetryFn).toHaveBeenCalledTimes(1);
+  });
+
   test("skips accessions that were already announced", async () => {
     const result = await getEarningsResultAnnouncements({
       dependencies: {
@@ -1167,6 +1208,7 @@ describe("earnings result announcements", () => {
     expect(getExampleEarningsResultOutput()).toContain(
       "**Apple Inc. (`AAPL`)** - Q1 2026 - [8-K](https://www.sec.gov/Archives/edgar/data/320193/000032019326000005/a8-kex991q1202612272025.htm)",
     );
+    expect(getExampleEarningsResultOutput()).toContain("📝 Apple reported Q1 2026 results");
     expect(getExampleEarningsResultOutput()).toContain("📊 **Results**");
     expect(getExampleEarningsResultOutput()).toContain("- **EPS:** `$2.84` vs est. `$2.67` (🟢 beat)");
   });

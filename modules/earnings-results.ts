@@ -35,6 +35,7 @@ import {
   type SecCompany,
   type SecCurrentFiling,
 } from "./earnings-results-sec.ts";
+import {summarizeEarningsWithAi} from "./earnings-results-summary.ts";
 import {getWithRetry, type postWithRetry} from "./http-retry.ts";
 import {getLogger} from "./logging.ts";
 import {type readSecret} from "./secrets.ts";
@@ -657,7 +658,7 @@ async function buildEarningsResultAnnouncement(
     return null;
   }
 
-  const message = getEarningsResultMessage({
+  let message = getEarningsResultMessage({
     companyName: watch.companyName,
     filing,
     filingUrl,
@@ -683,6 +684,25 @@ async function buildEarningsResultAnnouncement(
       `Skipping earnings result announcement for ${watch.event.ticker}: suspicious metrics were not verified.`,
     );
     return null;
+  }
+
+  const summary = await summarizeEarningsWithAi({
+    companyName: watch.companyName,
+    filingForm: filing.form,
+    filingUrl,
+    html: filingDetails?.html ?? "",
+    ticker: watch.event.ticker,
+  }, dependencies);
+  if (null !== summary) {
+    message = getEarningsResultMessage({
+      companyName: watch.companyName,
+      filing,
+      filingUrl,
+      metrics,
+      parsedDocument,
+      summary,
+      ticker: watch.event.ticker,
+    });
   }
 
   return {
@@ -915,6 +935,8 @@ function parseNasdaqMoney(value: unknown): number | null {
 export function getExampleEarningsResultOutput(): string {
   return [
     "**Apple Inc. (`AAPL`)** - Q1 2026 - [8-K](https://www.sec.gov/Archives/edgar/data/320193/000032019326000005/a8-kex991q1202612272025.htm)",
+    "📝 Apple reported Q1 2026 results ahead of expectations, with EPS of `$2.84` and revenue of `$143.8B` both beating consensus. Revenue strength supported net income of `$42.1B` for the quarter. The company did not provide a quantified outlook.",
+    "",
     "📊 **Results**",
     "- **EPS:** `$2.84` vs est. `$2.67` (🟢 beat)",
     `- **Revenue:** \`${formatUsdCompact(143_800_000_000)}\` vs est. \`${formatUsdCompact(138_250_000_000)}\` (🟢 beat)`,

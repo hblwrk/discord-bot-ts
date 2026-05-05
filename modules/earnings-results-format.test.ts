@@ -85,6 +85,44 @@ describe("earnings result formatting", () => {
     })).toContain("**Exxon Mobil (`XOM`)** - Q1 2026 - [8-K](https://www.sec.gov/Archives/edgar/data/34088/example/ex-991.htm)");
   });
 
+  test("renders optional earnings summaries before result metrics", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>ExampleCo reports first quarter 2026 results</h1>
+          <table>
+            <tr><td>Adjusted EPS</td><td>$1.16</td></tr>
+          </table>
+        </body>
+      </html>
+    `);
+    const metrics = getMessageMetrics(parsedDocument.metrics, null, {
+      ticker: "EXM",
+      when: "before_open",
+      date: "2026-05-01",
+      importance: 1,
+    });
+
+    expect(getEarningsResultMessage({
+      companyName: "ExampleCo",
+      filing: {
+        form: "8-K",
+        items: ["2.02", "9.01"],
+      },
+      filingUrl: "https://www.sec.gov/example",
+      metrics,
+      parsedDocument,
+      summary: "ExampleCo beat expectations. Revenue improved. Management raised guidance.",
+      ticker: "EXM",
+    })).toBe([
+      "**ExampleCo (`EXM`)** - Q1 2026 - [8-K](https://www.sec.gov/example)",
+      "📝 ExampleCo beat expectations. Revenue improved. Management raised guidance.",
+      "",
+      "📊 **Results**",
+      "- **Adj EPS:** `$1.16`",
+    ].join("\n"));
+  });
+
   test("parses and renders table-based outlook metrics", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>
