@@ -428,6 +428,60 @@ describe("earnings result formatting", () => {
     ]);
   });
 
+  test("prefers quarter metrics when a Q4 release lists full-year results first", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Logitech Announces Q4 and Full Fiscal Year 2026 Results</h1>
+          <p>For Fiscal Year 2026:</p>
+          <p>Sales were $4.84 billion, up 6 percent compared to the prior year.</p>
+          <p>GAAP earnings per share was $4.80. Non-GAAP EPS was $5.78.</p>
+          <p>For Q4 Fiscal Year 2026:</p>
+          <p>Sales were $1.09 billion, up 7 percent compared to Q4 of the prior year.</p>
+          <p>GAAP EPS was $0.98. Non-GAAP EPS was $1.13.</p>
+          <table>
+            <tr><td>(In thousands, except per share amounts) - unaudited</td></tr>
+            <tr><td>Three Months Ended</td></tr>
+            <tr><td>March 31,</td></tr>
+            <tr><td>Fiscal Years Ended</td></tr>
+            <tr><td>March 31,</td></tr>
+            <tr><td>GAAP CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS</td><td>2026</td><td>2025</td><td>2026</td><td>2025</td></tr>
+            <tr><td>Net income</td><td>$</td><td>143,463</td><td>$</td><td>144,066</td><td>$</td><td>711,187</td><td>$</td><td>631,529</td></tr>
+          </table>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.quarterLabel).toBe("Q4 2026");
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "adjusted_eps",
+        numericValue: 1.13,
+        value: "$1.13",
+      }),
+      expect.objectContaining({
+        key: "revenue",
+        numericValue: 1_090_000_000,
+        value: "$1.09B",
+      }),
+      expect.objectContaining({
+        key: "net_income",
+        numericValue: 143_463_000,
+        value: "$143.46M",
+      }),
+    ]));
+    expect(parsedDocument.metrics).not.toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "adjusted_eps",
+        value: "$5.78",
+      }),
+      expect.objectContaining({
+        key: "revenue",
+        value: "$4.84B",
+      }),
+    ]));
+  });
+
   test("skips generic production mentions without operational units", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>

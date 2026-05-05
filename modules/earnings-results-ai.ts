@@ -369,14 +369,20 @@ export function getSuspiciousEarningsReasons(
       undefined !== netIncomeMetric &&
       "number" === typeof revenueMetric.numericValue &&
       "number" === typeof netIncomeMetric.numericValue &&
-      revenueMetric.numericValue > 0 &&
-      netIncomeMetric.numericValue > 0 &&
-      revenueMetric.numericValue < netIncomeMetric.numericValue) {
-    reasons.push({
-      message: `Revenue ${revenueMetric.value} is lower than net income ${netIncomeMetric.value}.`,
-      metricKey: "revenue",
-      severity: revenueMetric.numericValue <= netIncomeMetric.numericValue * 0.5 ? "high" : "medium",
-    });
+      netIncomeMetric.numericValue > 0) {
+    if (revenueMetric.numericValue <= 0) {
+      reasons.push({
+        message: `Revenue ${revenueMetric.value} is not positive while net income ${netIncomeMetric.value} is positive.`,
+        metricKey: "revenue",
+        severity: "high",
+      });
+    } else if (revenueMetric.numericValue < netIncomeMetric.numericValue) {
+      reasons.push({
+        message: `Revenue ${revenueMetric.value} is lower than net income ${netIncomeMetric.value}.`,
+        metricKey: "revenue",
+        severity: revenueMetric.numericValue <= netIncomeMetric.numericValue * 0.5 ? "high" : "medium",
+      });
+    }
   }
 
   if (undefined !== netIncomeMetric &&

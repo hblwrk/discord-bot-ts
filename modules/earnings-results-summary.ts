@@ -1,11 +1,12 @@
 import {callAiProviderJson, type AiProviderDependencies} from "./ai-provider.ts";
-import {htmlToText} from "./earnings-results-format.ts";
+import {htmlToText, type EarningsResultMetric} from "./earnings-results-format.ts";
 
 export type EarningsAiSummaryInput = {
   companyName: string;
   filingForm: string;
   filingUrl: string;
   html: string;
+  metrics?: EarningsResultMetric[] | undefined;
   ticker: string;
 };
 
@@ -70,10 +71,11 @@ export async function summarizeEarningsWithAi(
     return null;
   }
 
-  return parseSummary(parsedJson, input.ticker, input.companyName);
+  return parseSummary(parsedJson, input);
 }
 
 function getSummaryPrompt(input: EarningsAiSummaryInput, filingText: string): string {
+  const displayedMetricsText = getDisplayedMetricsText(input.metrics ?? []);
   return [
     "Summarize this public SEC earnings release for a Discord earnings alert.",
     "Return only JSON matching the schema. Do not include markdown.",
@@ -84,13 +86,24 @@ function getSummaryPrompt(input: EarningsAiSummaryInput, filingText: string): st
     "- Sentence 3 covers outlook, guidance, or management expectations when present; otherwise state that no quantified outlook is provided.",
     "- Format ticker symbols and concrete metrics as inline code, e.g. `AAPL`, `$2.14`, `3.1%`, `180 bps`, `$42 billion`.",
     "- Do not mention the company name in the summary; the Discord alert title already identifies the company.",
+    "- If you mention any displayed result metric, use exactly the displayed value and do not mention a different value for the same metric.",
     "- Use only the provided filing text and do not mention the SEC filing, source text, or any AI provider.",
     `Company: ${input.companyName}`,
     `Ticker: ${input.ticker}`,
     `Filing: ${input.filingForm} ${input.filingUrl}`,
+    ...(0 === displayedMetricsText.length ? [] : [
+      "Displayed result metrics:",
+      displayedMetricsText,
+    ]),
     "Filing text:",
     filingText,
   ].join("\n");
+}
+
+function getDisplayedMetricsText(metrics: EarningsResultMetric[]): string {
+  return metrics
+    .map(metric => `- ${metric.label}: ${metric.value}`)
+    .join("\n");
 }
 
 function getSummaryFilingText(html: string): string {
@@ -173,7 +186,7 @@ function parseJson(value: string): unknown | null {
   }
 }
 
-function parseSummary(value: unknown, ticker: string, companyName: string): string | null {
+function parseSummary(value: unknown, input: EarningsAiSummaryInput): string | null {
   if (false === isRecord(value)) {
     return null;
   }
@@ -187,11 +200,134 @@ function parseSummary(value: unknown, ticker: string, companyName: string): stri
     .replace(/\\[nr]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
-  if ("" === normalizedSummary || normalizedSummary.length > maxSummaryLength) {
+  if ("" === normalizedSummary ||
+      normalizedSummary.length > maxSummaryLength ||
+      true === hasUnexpectedCjkCharacters(normalizedSummary)) {
     return null;
   }
 
-  return formatSummaryInlineCode(removeRedundantCompanyNameMentions(normalizedSummary, companyName), ticker);
+  if (true === hasDisplayedMetricConflict(normalizedSummary, input.metrics ?? [])) {
+    return null;
+  }
+
+  return formatSummaryInlineCode(removeRedundantCompanyNameMentions(normalizedSummary, input.companyName), input.ticker);
+}
+
+function hasDisplayedMetricConflict(summary: string, metrics: EarningsResultMetric[]): boolean {
+  return getSummarySentences(summary).some(sentence =>
+    metrics.some(metric => true === hasMetricConflict(sentence, metric)));
+}
+
+function getSummarySentences(summary: string): string[] {
+  return summary
+    .split(/(?<=[.!?])\s+/)
+    .map(sentence => sentence.trim())
+    .filter(sentence => "" !== sentence);
+}
+
+function hasMetricConflict(sentence: string, metric: EarningsResultMetric): boolean {
+  if ("number" !== typeof metric.numericValue) {
+    return false;
+  }
+
+  if (true === isForwardLookingMetricSentence(sentence)) {
+    return false;
+  }
+
+  if ("net_income" === metric.key) {
+    const metricLabelMatch = /\bnet\s+(?:income|earnings)\b/i.exec(sentence);
+    if (null === metricLabelMatch ||
+        true === /\bper\s+share\b/i.test(getMetricValueSegment(sentence, metricLabelMatch))) {
+      return false;
+    }
+
+    return hasConflictingMoneyValue(getMetricValueSegment(sentence, metricLabelMatch), metric.numericValue);
+  }
+
+  if ("revenue" === metric.key) {
+    const metricLabelMatch = /\b(?:revenue|sales)\b/i.exec(sentence);
+    if (null === metricLabelMatch) {
+      return false;
+    }
+
+    return hasConflictingMoneyValue(getMetricValueSegment(sentence, metricLabelMatch), metric.numericValue);
+  }
+
+  return false;
+}
+
+function getMetricValueSegment(sentence: string, metricLabelMatch: RegExpExecArray): string {
+  const afterMetricLabel = sentence.slice(metricLabelMatch.index + metricLabelMatch[0].length);
+  const nextMetricLabelMatch = /\b(?:adjusted\s+eps|eps|earnings\s+per\s+share|revenue|sales|net\s+(?:income|earnings)|ffo|ebitda|cash\s+flow|production|guidance|outlook)\b/i.exec(afterMetricLabel);
+  const endIndex = Math.min(nextMetricLabelMatch?.index ?? afterMetricLabel.length, 140);
+  return afterMetricLabel.slice(0, endIndex);
+}
+
+function isForwardLookingMetricSentence(sentence: string): boolean {
+  return /\b(?:guidance|guided|outlook|forecast|expects?|expectations?|target|range)\b/i.test(sentence);
+}
+
+function hasUnexpectedCjkCharacters(value: string): boolean {
+  return /\p{Script=Han}|\p{Script=Hiragana}|\p{Script=Katakana}|\p{Script=Hangul}/u.test(value);
+}
+
+function hasConflictingMoneyValue(sentence: string, expectedValue: number): boolean {
+  const moneyValues = extractMoneyValues(sentence);
+  return moneyValues.some(value => false === isCloseMetricValue(value, expectedValue));
+}
+
+function extractMoneyValues(sentence: string): number[] {
+  const values: number[] = [];
+  const matches = sentence.matchAll(/\(?-?[$€£¥]\s*\d[\d,]*(?:\.\d+)?\)?(?:\s*(?:trillion|trillions|tn|billion|billions|bn|million|millions|mm|thousand|thousands|[tbmk]))?/gi);
+  for (const match of matches) {
+    const parsedValue = parseMoneyValue(match[0]);
+    if (null !== parsedValue) {
+      values.push(parsedValue);
+    }
+  }
+
+  return values;
+}
+
+function parseMoneyValue(value: string): number | null {
+  const normalizedValue = value.trim();
+  const numberMatch = normalizedValue.match(/\(?-?[$€£¥]\s*([\d,]+(?:\.\d+)?)\)?/);
+  if (undefined === numberMatch?.[1]) {
+    return null;
+  }
+
+  const parsedNumber = Number.parseFloat(numberMatch[1].replaceAll(",", ""));
+  if (false === Number.isFinite(parsedNumber)) {
+    return null;
+  }
+
+  const sign = /^\s*\(|^\s*-/.test(normalizedValue) ? -1 : 1;
+  return sign * parsedNumber * getMoneyUnitScale(normalizedValue);
+}
+
+function getMoneyUnitScale(value: string): number {
+  if (/\b(?:trillion|trillions|tn)\b|[\d)]\s*t\b/i.test(value)) {
+    return 1_000_000_000_000;
+  }
+
+  if (/\b(?:billion|billions|bn)\b|[\d)]\s*b\b/i.test(value)) {
+    return 1_000_000_000;
+  }
+
+  if (/\b(?:million|millions|mm)\b|[\d)]\s*m\b/i.test(value)) {
+    return 1_000_000;
+  }
+
+  if (/\b(?:thousand|thousands)\b|[\d)]\s*k\b/i.test(value)) {
+    return 1_000;
+  }
+
+  return 1;
+}
+
+function isCloseMetricValue(actualValue: number, expectedValue: number): boolean {
+  const tolerance = Math.max(1, Math.abs(expectedValue) * 0.01);
+  return Math.abs(actualValue - expectedValue) <= tolerance;
 }
 
 function removeRedundantCompanyNameMentions(value: string, companyName: string): string {

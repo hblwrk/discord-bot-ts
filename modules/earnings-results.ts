@@ -148,6 +148,8 @@ const defaultInactivePollIntervalMs = 15 * 60_000;
 const defaultSecCurrentFilingsLimit = 100;
 const defaultMaxAnnouncementsPerScan = 10;
 const earningsWatchTtlMs = 15 * 60_000;
+const noMetricsRetryDelayMs = 5 * 60_000;
+const qualityGateRetryDelayMs = 5 * 60_000;
 const nasdaqEarningsSurpriseEndpoint = "https://api.nasdaq.com/api/company";
 const noMentions = {
   parse: [],
@@ -179,7 +181,8 @@ export function startEarningsResultWatcher(
   const announcementThreadID = getOptionalChannelID(options.announcementThreadID);
   const seenAccessions = new Set<string>();
   const seenResultKeys = new Set<string>();
-  const skippedNoMetricsAccessions = new Set<string>();
+  const skippedNoMetricsAccessions = new Map<string, number>();
+  const skippedQualityGateAccessions = new Map<string, number>();
   const dependencies = getDependencies(options);
   let seenAccessionsSeeded = false;
   let stopped = false;
@@ -213,12 +216,14 @@ export function startEarningsResultWatcher(
       secCurrentFilingsLimit?: number;
       seenAccessions: Set<string>;
       seenResultKeys: Set<string>;
-      skippedNoMetricsAccessions: Set<string>;
+      skippedNoMetricsAccessions: Map<string, number>;
+      skippedQualityGateAccessions: Map<string, number>;
     } = {
       dependencies,
       seenAccessions,
       seenResultKeys,
       skippedNoMetricsAccessions,
+      skippedQualityGateAccessions,
     };
     if (undefined !== options.maxAnnouncementsPerScan) {
       announcementOptions.maxAnnouncementsPerScan = options.maxAnnouncementsPerScan;
@@ -291,14 +296,16 @@ export async function getEarningsResultAnnouncements({
   secCurrentFilingsLimit = defaultSecCurrentFilingsLimit,
   seenAccessions = new Set<string>(),
   seenResultKeys = new Set<string>(),
-  skippedNoMetricsAccessions = new Set<string>(),
+  skippedNoMetricsAccessions = new Map<string, number>(),
+  skippedQualityGateAccessions = new Map<string, number>(),
 }: {
   dependencies?: EarningsResultDependencies;
   maxAnnouncementsPerScan?: number;
   secCurrentFilingsLimit?: number;
   seenAccessions?: Set<string>;
   seenResultKeys?: Set<string>;
-  skippedNoMetricsAccessions?: Set<string>;
+  skippedNoMetricsAccessions?: Map<string, number>;
+  skippedQualityGateAccessions?: Map<string, number>;
 } = {}): Promise<EarningsResultScanResult> {
   const now = dependencies.now().clone().tz(usEasternTimezone);
   const watches = await getTodaysEarningsWatches(dependencies, now);
@@ -325,8 +332,22 @@ export async function getEarningsResultAnnouncements({
       continue;
     }
 
-    if (true === skippedNoMetricsAccessions.has(filing.accessionNumber)) {
-      continue;
+    const qualityGateRetryAfterMs = skippedQualityGateAccessions.get(filing.accessionNumber);
+    if (undefined !== qualityGateRetryAfterMs) {
+      if (now.valueOf() < qualityGateRetryAfterMs) {
+        continue;
+      }
+
+      skippedQualityGateAccessions.delete(filing.accessionNumber);
+    }
+
+    const noMetricsRetryAfterMs = skippedNoMetricsAccessions.get(filing.accessionNumber);
+    if (undefined !== noMetricsRetryAfterMs) {
+      if (now.valueOf() < noMetricsRetryAfterMs) {
+        continue;
+      }
+
+      skippedNoMetricsAccessions.delete(filing.accessionNumber);
     }
 
     if (false === isFilingUpdatedToday(filing, now)) {
@@ -354,6 +375,7 @@ export async function getEarningsResultAnnouncements({
       dependencies,
       now,
       skippedNoMetricsAccessions,
+      skippedQualityGateAccessions,
     );
     if (null !== announcement) {
       announcements.push(announcement);
@@ -591,7 +613,8 @@ async function buildEarningsResultAnnouncement(
   watch: EarningsWatchEntry,
   dependencies: EarningsResultDependencies,
   now: moment.Moment,
-  skippedNoMetricsAccessions: Set<string>,
+  skippedNoMetricsAccessions: Map<string, number>,
+  skippedQualityGateAccessions: Map<string, number>,
 ): Promise<EarningsResultAnnouncement | null> {
   const [filingDetails, xbrlMetrics] = await Promise.all([
     loadSecFilingDetails(filing, dependencies).catch(error => {
@@ -650,7 +673,7 @@ async function buildEarningsResultAnnouncement(
   const filingUrl = filingDetails?.documentUrl || filing.filingUrl;
 
   if (0 === metrics.length && 0 === parsedDocument.outlook.length) {
-    skippedNoMetricsAccessions.add(filing.accessionNumber);
+    skippedNoMetricsAccessions.set(filing.accessionNumber, now.valueOf() + noMetricsRetryDelayMs);
     dependencies.logger.log(
       "warn",
       `Skipping earnings result announcement for ${watch.event.ticker}: no earnings metrics or outlook could be parsed.`,
@@ -679,6 +702,7 @@ async function buildEarningsResultAnnouncement(
     ticker: watch.event.ticker,
   }, dependencies);
   if (true === shouldSuppressAnnouncement(qualityGate, suspiciousReasons)) {
+    skippedQualityGateAccessions.set(filing.accessionNumber, now.valueOf() + qualityGateRetryDelayMs);
     dependencies.logger.log(
       "warn",
       `Skipping earnings result announcement for ${watch.event.ticker}: suspicious metrics were not verified.`,
@@ -691,6 +715,7 @@ async function buildEarningsResultAnnouncement(
     filingForm: filing.form,
     filingUrl,
     html: filingDetails?.html ?? "",
+    metrics,
     ticker: watch.event.ticker,
   }, dependencies);
   if (null !== summary) {

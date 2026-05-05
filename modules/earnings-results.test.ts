@@ -542,7 +542,7 @@ describe("earnings result announcements", () => {
     );
   });
 
-  test("skips SEC-only filings when no earnings metrics or outlook can be parsed", async () => {
+  test("backs off SEC-only filings when no earnings metrics or outlook can be parsed", async () => {
     getWithRetryFn.mockImplementation(async (url: string) => {
       if (url.includes("company_tickers.json")) {
         return {
@@ -616,7 +616,7 @@ describe("earnings result announcements", () => {
       throw new Error(`Unexpected URL ${url}`);
     });
 
-    const skippedNoMetricsAccessions = new Set<string>();
+    const skippedNoMetricsAccessions = new Map<string, number>();
     const result = await getEarningsResultAnnouncements({
       dependencies: {
         getEarningsResultFn,
@@ -628,7 +628,9 @@ describe("earnings result announcements", () => {
     });
 
     expect(result.announcements).toEqual([]);
-    expect(skippedNoMetricsAccessions.has("0000034088-26-000042")).toBe(true);
+    expect(skippedNoMetricsAccessions.get("0000034088-26-000042")).toBe(
+      moment.tz("2026-05-01 08:10", "YYYY-MM-DD HH:mm", "US/Eastern").valueOf(),
+    );
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
       "Skipping earnings result announcement for XOM: no earnings metrics or outlook could be parsed.",
@@ -656,6 +658,142 @@ describe("earnings result announcements", () => {
       expect.stringContaining("/index.json"),
       expect.anything(),
     );
+  });
+
+  test("retries SEC filings after a no-metrics backoff", async () => {
+    let indexRequests = 0;
+    getWithRetryFn.mockImplementation(async (url: string) => {
+      if (url.includes("company_tickers.json")) {
+        return {
+          data: {
+            0: {
+              cik_str: 34088,
+              ticker: "XOM",
+              title: "EXXON MOBIL CORP",
+            },
+          },
+        };
+      }
+
+      if (url.includes("type=8-K")) {
+        return {
+          data: `
+            <feed>
+              <entry>
+                <title>8-K - EXXON MOBIL CORP</title>
+                <id>urn:tag:sec.gov,2026:accession-number=0000034088-26-000042</id>
+                <updated>2026-05-01T08:01:00-04:00</updated>
+                <category term="8-K" />
+                <link href="https://www.sec.gov/Archives/edgar/data/34088/000003408826000042/0000034088-26-000042-index.htm" />
+                <summary>
+                  &lt;b&gt;CIK:&lt;/b&gt; 0000034088&lt;br/&gt;
+                  &lt;b&gt;Items:&lt;/b&gt; 2.02, 9.01
+                </summary>
+              </entry>
+            </feed>
+          `,
+        };
+      }
+
+      if (url.includes("type=6-K")) {
+        return {
+          data: "<feed></feed>",
+        };
+      }
+
+      if (url.includes("companyfacts/CIK0000034088.json")) {
+        return {
+          data: {
+            facts: {},
+          },
+        };
+      }
+
+      if (url.endsWith("/index.json")) {
+        indexRequests++;
+        return {
+          data: {
+            directory: {
+              item: 1 === indexRequests ? [{
+                name: "xom-20260331.htm",
+                type: "8-K",
+              }] : [{
+                name: "xom-ex991.htm",
+                type: "EX-99.1",
+              }],
+            },
+          },
+        };
+      }
+
+      if (url.endsWith("/xom-20260331.htm")) {
+        return {
+          data: `
+            <html>
+              <body>
+                <h1>Item 2.02 Results of Operations and Financial Condition</h1>
+                <p>A copy of the press release is furnished as Exhibit 99.1.</p>
+              </body>
+            </html>
+          `,
+        };
+      }
+
+      if (url.endsWith("/xom-ex991.htm")) {
+        return {
+          data: `
+            <html>
+              <body>
+                <h1>Exxon Mobil reports first quarter 2026 results</h1>
+                <p>Financial data in millions of dollars.</p>
+                <p>Total revenues were $100 million.</p>
+                <p>Net income was $10 million.</p>
+              </body>
+            </html>
+          `,
+        };
+      }
+
+      if (url.includes("/XOM/earnings-surprise")) {
+        return {
+          data: {
+            data: {
+              earningsSurpriseTable: {
+                rows: [],
+              },
+            },
+          },
+        };
+      }
+
+      throw new Error(`Unexpected URL ${url}`);
+    });
+
+    const skippedNoMetricsAccessions = new Map<string, number>();
+    const firstResult = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      },
+      skippedNoMetricsAccessions,
+    });
+    expect(firstResult.announcements).toEqual([]);
+
+    const secondResult = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:11", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      },
+      skippedNoMetricsAccessions,
+    });
+
+    expect(secondResult.announcements).toHaveLength(1);
+    expect(secondResult.announcements[0]?.message).toContain("**Revenue:** `$100M`");
+    expect(skippedNoMetricsAccessions.has("0000034088-26-000042")).toBe(false);
   });
 
   test("does not spend AI calls on primary 8-K shells with no parsed metrics", async () => {
@@ -1133,6 +1271,7 @@ describe("earnings result announcements", () => {
         },
       });
 
+    const skippedQualityGateAccessions = new Map<string, number>();
     const result = await getEarningsResultAnnouncements({
       dependencies: {
         getEarningsResultFn,
@@ -1152,14 +1291,115 @@ describe("earnings result announcements", () => {
           throw new Error(`missing ${secretName}`);
         }),
       },
+      skippedQualityGateAccessions,
     });
 
     expect(result.announcements).toEqual([]);
     expect(postWithRetryFn).toHaveBeenCalledTimes(2);
+    expect(skippedQualityGateAccessions.get("0001193125-26-123456")).toBe(
+      moment.tz("2026-05-01 08:10", "YYYY-MM-DD HH:mm", "US/Eastern").valueOf(),
+    );
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
       "Skipping earnings result announcement for BUD: suspicious metrics were not verified.",
     );
+
+    postWithRetryFn.mockClear();
+    logger.log.mockClear();
+
+    const secondResult = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:06", "YYYY-MM-DD HH:mm", "US/Eastern"),
+        postWithRetryFn,
+        readSecretFn: vi.fn((secretName: string) => {
+          if ("gemini_api_key" === secretName) {
+            return "gemini-key";
+          }
+
+          if ("gemini_calls_per_minute" === secretName) {
+            return "14";
+          }
+
+          throw new Error(`missing ${secretName}`);
+        }),
+      },
+      skippedQualityGateAccessions,
+    });
+
+    expect(secondResult.announcements).toEqual([]);
+    expect(postWithRetryFn).not.toHaveBeenCalled();
+    expect(logger.log).not.toHaveBeenCalledWith(
+      "warn",
+      "Skipping earnings result announcement for BUD: suspicious metrics were not verified.",
+    );
+
+    postWithRetryFn
+      .mockResolvedValueOnce({
+        data: {
+          candidates: [{
+            content: {
+              parts: [{
+                text: JSON.stringify({
+                  metrics: [{
+                    key: "revenue",
+                    label: "Revenue",
+                    value: "14.55",
+                    unit: "billion",
+                    currencyCode: "USD",
+                    sourceSnippet: "Revenue increased to 14.55 billion USD.",
+                  }],
+                  issues: [],
+                }),
+              }],
+            },
+          }],
+        },
+      })
+      .mockResolvedValueOnce({
+        data: {
+          candidates: [{
+            content: {
+              parts: [{
+                text: JSON.stringify({
+                  decision: "allow",
+                  confidence: 0.92,
+                  reason: "The filing text supports the metrics after retry.",
+                  issues: [],
+                }),
+              }],
+            },
+          }],
+        },
+      });
+
+    const retryResult = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:11", "YYYY-MM-DD HH:mm", "US/Eastern"),
+        postWithRetryFn,
+        readSecretFn: vi.fn((secretName: string) => {
+          if ("gemini_api_key" === secretName) {
+            return "gemini-key";
+          }
+
+          if ("gemini_calls_per_minute" === secretName) {
+            return "14";
+          }
+
+          throw new Error(`missing ${secretName}`);
+        }),
+      },
+      skippedQualityGateAccessions,
+    });
+
+    expect(retryResult.announcements).toHaveLength(1);
+    expect(postWithRetryFn).toHaveBeenCalledTimes(3);
+    expect(skippedQualityGateAccessions.has("0001193125-26-123456")).toBe(false);
   });
 
   test("watcher skips scans until channel history can be checked", async () => {
