@@ -787,10 +787,12 @@ function parseNasdaqMoney(value: unknown): number | null {
 
 export function getExampleEarningsResultOutput(): string {
   return [
-    "💰 **Earnings: Apple Inc. (`AAPL`) Q1 2026**",
-    `EPS: \`$2.84\` vs est. \`$2.67\` - beat`,
-    `Revenue: \`${formatUsdCompact(143_800_000_000)}\` vs est. \`${formatUsdCompact(138_250_000_000)}\` - beat`,
-    `Net income: \`${formatUsdCompact(42_097_000_000)}\``,
+    "**Apple Inc. (AAPL) - Q1 2026**",
+    "",
+    "📊 **Results**",
+    "- **EPS:** $2.84 vs est. $2.67 (🟢 beat)",
+    `- **Revenue:** ${formatUsdCompact(143_800_000_000)} vs est. ${formatUsdCompact(138_250_000_000)} (🟢 beat)`,
+    `- **Net income:** ${formatUsdCompact(42_097_000_000)}`,
     "SEC: [8-K](https://www.sec.gov/Archives/edgar/data/320193/000032019326000005/a8-kex991q1202612272025.htm) Item 2.02, 9.01",
   ].join("\n");
 }
