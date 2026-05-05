@@ -51,6 +51,12 @@ describe("AI earnings summaries", () => {
       filingForm: "8-K",
       filingUrl: "https://www.sec.gov/example",
       html,
+      metrics: [{
+        key: "revenue",
+        label: "Revenue",
+        numericValue: 10_200_000_000,
+        value: "$10.2B",
+      }],
       ticker: "EXM",
     }, {
       logger,
@@ -67,6 +73,7 @@ describe("AI earnings summaries", () => {
     const filingText = prompt.split("Filing text:\n")[1] ?? "";
     expect(prompt).toContain("Write exactly three concise plain-text sentences.");
     expect(prompt).toContain("Do not mention the company name in the summary");
+    expect(prompt).toContain("Displayed result metrics:\n- Revenue: $10.2B");
     expect(filingText.length).toBeLessThanOrEqual(20_100);
     expect(filingText).toContain("Opening excerpt:");
     expect(filingText).toContain("Example Corp reports first quarter 2026 results");
@@ -106,6 +113,113 @@ describe("AI earnings summaries", () => {
     expect(result).toBe(
       "`EXM` revenue rose `12%` to `$10.2 billion` while operating margin expanded `180 basis points` to `24.3%`. `EXM` guided adjusted EPS to `$5.80` to `$6.10`. Revenue momentum remained broad.",
     );
+  });
+
+  test("rejects summaries that conflict with displayed result metrics", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                summary: "OXY reported Q1 2026 net income of $3.2 billion and EPS of $3.13. Production improved. No quantified outlook was provided.",
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await summarizeEarningsWithAi({
+      companyName: "Occidental Petroleum",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: "<html><body><h1>Occidental reports first quarter 2026 results</h1></body></html>",
+      metrics: [{
+        key: "net_income",
+        label: "Net income",
+        numericValue: -9_000_000,
+        value: "-$9M",
+      }],
+      ticker: "OXY",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result).toBeNull();
+  });
+
+  test("allows other metrics in a sentence when the displayed metric matches", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                summary: "DOC reported net income of $193.48 million and EPS of $0.34. Revenue grew year over year. Guidance increased.",
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await summarizeEarningsWithAi({
+      companyName: "Healthpeak Properties, Inc.",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: "<html><body><h1>Healthpeak reports first quarter 2026 results</h1></body></html>",
+      metrics: [{
+        key: "net_income",
+        label: "Net income",
+        numericValue: 193_480_000,
+        value: "$193.48M",
+      }],
+      ticker: "DOC",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result).toBe(
+      "`DOC` reported net income of `$193.48 million` and EPS of `$0.34`. Revenue grew year over year. Guidance increased.",
+    );
+  });
+
+  test("rejects summaries with unexpected CJK characters", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                summary: "Revenue rose on stronger sales. Margins improved. No quantified outlook is提供.",
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await summarizeEarningsWithAi({
+      companyName: "Example Corp",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: "<html><body><h1>Example Corp reports first quarter 2026 results</h1></body></html>",
+      ticker: "EXM",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result).toBeNull();
   });
 
   test("normalizes summary whitespace", async () => {

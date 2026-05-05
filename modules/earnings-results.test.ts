@@ -1271,6 +1271,7 @@ describe("earnings result announcements", () => {
         },
       });
 
+    const skippedQualityGateAccessions = new Map<string, number>();
     const result = await getEarningsResultAnnouncements({
       dependencies: {
         getEarningsResultFn,
@@ -1290,14 +1291,115 @@ describe("earnings result announcements", () => {
           throw new Error(`missing ${secretName}`);
         }),
       },
+      skippedQualityGateAccessions,
     });
 
     expect(result.announcements).toEqual([]);
     expect(postWithRetryFn).toHaveBeenCalledTimes(2);
+    expect(skippedQualityGateAccessions.get("0001193125-26-123456")).toBe(
+      moment.tz("2026-05-01 08:10", "YYYY-MM-DD HH:mm", "US/Eastern").valueOf(),
+    );
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
       "Skipping earnings result announcement for BUD: suspicious metrics were not verified.",
     );
+
+    postWithRetryFn.mockClear();
+    logger.log.mockClear();
+
+    const secondResult = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:06", "YYYY-MM-DD HH:mm", "US/Eastern"),
+        postWithRetryFn,
+        readSecretFn: vi.fn((secretName: string) => {
+          if ("gemini_api_key" === secretName) {
+            return "gemini-key";
+          }
+
+          if ("gemini_calls_per_minute" === secretName) {
+            return "14";
+          }
+
+          throw new Error(`missing ${secretName}`);
+        }),
+      },
+      skippedQualityGateAccessions,
+    });
+
+    expect(secondResult.announcements).toEqual([]);
+    expect(postWithRetryFn).not.toHaveBeenCalled();
+    expect(logger.log).not.toHaveBeenCalledWith(
+      "warn",
+      "Skipping earnings result announcement for BUD: suspicious metrics were not verified.",
+    );
+
+    postWithRetryFn
+      .mockResolvedValueOnce({
+        data: {
+          candidates: [{
+            content: {
+              parts: [{
+                text: JSON.stringify({
+                  metrics: [{
+                    key: "revenue",
+                    label: "Revenue",
+                    value: "14.55",
+                    unit: "billion",
+                    currencyCode: "USD",
+                    sourceSnippet: "Revenue increased to 14.55 billion USD.",
+                  }],
+                  issues: [],
+                }),
+              }],
+            },
+          }],
+        },
+      })
+      .mockResolvedValueOnce({
+        data: {
+          candidates: [{
+            content: {
+              parts: [{
+                text: JSON.stringify({
+                  decision: "allow",
+                  confidence: 0.92,
+                  reason: "The filing text supports the metrics after retry.",
+                  issues: [],
+                }),
+              }],
+            },
+          }],
+        },
+      });
+
+    const retryResult = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:11", "YYYY-MM-DD HH:mm", "US/Eastern"),
+        postWithRetryFn,
+        readSecretFn: vi.fn((secretName: string) => {
+          if ("gemini_api_key" === secretName) {
+            return "gemini-key";
+          }
+
+          if ("gemini_calls_per_minute" === secretName) {
+            return "14";
+          }
+
+          throw new Error(`missing ${secretName}`);
+        }),
+      },
+      skippedQualityGateAccessions,
+    });
+
+    expect(retryResult.announcements).toHaveLength(1);
+    expect(postWithRetryFn).toHaveBeenCalledTimes(3);
+    expect(skippedQualityGateAccessions.has("0001193125-26-123456")).toBe(false);
   });
 
   test("watcher skips scans until channel history can be checked", async () => {

@@ -391,6 +391,19 @@ function getDocumentHeadline(lines: string[]): string | undefined {
 }
 
 function getQuarterLabel(text: string): string | undefined {
+  const fiscalQuarterMatch = text.match(/\b(Q[1-4])\s+(?:fiscal\s+year|FY)\s*(20\d{2}|\d{2})\b/i);
+  if (undefined !== fiscalQuarterMatch?.[1] && undefined !== fiscalQuarterMatch[2]) {
+    return `${fiscalQuarterMatch[1].toUpperCase()} ${normalizeFiscalYear(fiscalQuarterMatch[2])}`;
+  }
+
+  const writtenFiscalQuarterMatch = text.match(/\b(first|second|third|fourth)\s+quarter(?:\s+and\s+full)?\s+(?:fiscal\s+year|FY)\s*(20\d{2}|\d{2})\b/i);
+  if (undefined !== writtenFiscalQuarterMatch?.[1] && undefined !== writtenFiscalQuarterMatch[2]) {
+    const quarter = getQuarterFromName(writtenFiscalQuarterMatch[1]);
+    if (quarter) {
+      return `${quarter} ${normalizeFiscalYear(writtenFiscalQuarterMatch[2])}`;
+    }
+  }
+
   const writtenQuarterMatch = text.match(/\b(first|second|third|fourth)\s+quarter\s+(?:of\s+)?(20\d{2})\b/i);
   if (undefined !== writtenQuarterMatch?.[1] && undefined !== writtenQuarterMatch[2]) {
     const quarter = getQuarterFromName(writtenQuarterMatch[1]);
@@ -410,6 +423,10 @@ function getQuarterLabel(text: string): string | undefined {
   }
 
   return undefined;
+}
+
+function normalizeFiscalYear(value: string): string {
+  return 2 === value.length ? `20${value}` : value;
 }
 
 function getQuarterLabelFromPeriodEnded(text: string): string | undefined {
@@ -441,13 +458,14 @@ function getQuarterFromName(name: string): string | undefined {
 function extractEarningsMetrics(lines: string[]): EarningsResultMetric[] {
   const metrics: EarningsResultMetric[] = [];
   const seenKeys = new Set<string>();
+  const preferredLines = getQuarterSpecificMetricLines(lines);
 
   for (const definition of earningsMetricDefinitions) {
     if (true === seenKeys.has(definition.key)) {
       continue;
     }
 
-    const metric = extractMetric(lines, definition);
+    const metric = extractMetric(preferredLines, definition) ?? extractMetric(lines, definition);
     if (null === metric) {
       continue;
     }
@@ -457,6 +475,42 @@ function extractEarningsMetrics(lines: string[]): EarningsResultMetric[] {
   }
 
   return metrics;
+}
+
+function getQuarterSpecificMetricLines(lines: string[]): string[] {
+  const startIndex = lines.findIndex(isQuarterSpecificSectionLine);
+  if (-1 === startIndex) {
+    return [];
+  }
+
+  const selectedLines: string[] = [];
+  for (let index = startIndex; index < lines.length; index++) {
+    const line = lines[index];
+    if (undefined === line) {
+      continue;
+    }
+
+    if (index > startIndex && true === isQuarterSpecificSectionBoundary(line)) {
+      break;
+    }
+
+    selectedLines.push(line);
+    if (selectedLines.length >= 16) {
+      break;
+    }
+  }
+
+  return selectedLines;
+}
+
+function isQuarterSpecificSectionLine(line: string): boolean {
+  return /^\s*(?:for\s+)?Q[1-4]\s+(?:fiscal\s+year|FY)\s*(?:20\d{2}|\d{2})\s*:?$/i.test(line) ||
+    /^\s*(?:for\s+)?(?:the\s+)?(?:first|second|third|fourth)\s+quarter(?:\s+(?:of\s+)?(?:fiscal\s+year|FY)\s*(?:20\d{2}|\d{2}))?\s*:?$/i.test(line);
+}
+
+function isQuarterSpecificSectionBoundary(line: string): boolean {
+  return /^\s*(?:outlook|guidance|financial\s+outlook|business\s+outlook|use\s+of\s+non-gaap|forward-looking|supplemental\s+financial\s+information)\b/i.test(line) ||
+    /^\s*for\s+fiscal\s+year\s+(?:20\d{2}|\d{2})\s*:?$/i.test(line);
 }
 
 function extractMetric(
