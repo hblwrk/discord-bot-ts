@@ -125,8 +125,6 @@ The health-check server port can be overridden via the `HEALTHCHECK_PORT` enviro
   "discord_ethusd_client_ID": "",
   "discord_solusd_token": "",
   "discord_solusd_client_ID": "",
-  "discord_oneusd_token": "",
-  "discord_oneusd_client_ID": "",
   "discord_es_token": "",
   "discord_es_client_ID": "",
   "discord_nq_token": "",

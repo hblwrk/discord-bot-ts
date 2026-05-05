@@ -114,21 +114,6 @@
   decimals: 2
   lastUpdate: 0
   order: 2
-- name: oneusd
-  trigger: forexpros_ws
-  botTokenReference: discord_oneusd_token
-  botToken: ""
-  botClientIdReference: discord_oneusd_client_ID
-  botClientId: ""
-  botName: "Monero/USD"
-  id: 1176959
-  suffix: "$"
-  unit: "PCT"
-  marketHours: "crypto"
-  # XMR/USD and ONE/USD are not tastytrade cryptocurrency instruments; this bot uses Investing.com only.
-  decimals: 2
-  lastUpdate: 0
-  order: 3
 - name: cl
   trigger: forexpros_ws
   botTokenReference: discord_cl_token

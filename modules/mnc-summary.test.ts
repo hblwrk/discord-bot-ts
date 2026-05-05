@@ -41,7 +41,7 @@ describe("MNC AI summary", () => {
       readSecretFn,
     });
 
-    expect(summary).toBe("📰 **Morning News Call - TL;DR**\n- Futures firm ahead of payrolls.");
+    expect(summary).toBe("**Morning News Call - TL;DR**\n- Futures firm ahead of payrolls.");
     expect(postWithRetryFn).toHaveBeenCalledWith(
       expect.stringContaining("gemini-2.5-flash-lite:generateContent"),
       expect.objectContaining({
@@ -126,7 +126,8 @@ describe("MNC AI summary", () => {
 
     expect(summary).toBeDefined();
     expect(summary).not.toContain("```");
-    expect(summary).toContain("📰 **Morning News Call - TL;DR**");
+    expect(summary).toContain("**Morning News Call - TL;DR**");
+    expect(summary).not.toContain("📰 **Morning News Call - TL;DR**");
     expect(summary!.length).toBeLessThanOrEqual(1_930);
     expect(summary).toContain("\n...");
     expect(summary).not.toContain("\n- ...");
@@ -171,6 +172,30 @@ describe("MNC AI summary", () => {
     expect(summary).toContain("**Watchlist**");
     expect(summary).toContain("Watch Treasury supply");
     expect(summary).not.toContain("\n...");
+  });
+
+  test("removes legacy newspaper emoji from the summary heading", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                summaryMarkdown: "📰 **Morning News Call - TL;DR**\n- Futures firm ahead of payrolls.",
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
+      logger,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(summary).toBe("**Morning News Call - TL;DR**\n- Futures firm ahead of payrolls.");
   });
 
   test("hard-truncates summaries that cannot be compacted or split by line", async () => {

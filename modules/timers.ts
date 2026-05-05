@@ -683,7 +683,7 @@ export function startMncTimers(client: TimerClient, channelID: string) {
 }
 
 function getMncAnnouncementContent(date: string, summary: string | undefined): string {
-  const title = `Morning News Call (${date})`;
+  const title = `📰 Morning News Call (${date})`;
   return undefined === summary
     ? title
     : `${title}\n\n${summary}`;

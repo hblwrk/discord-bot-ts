@@ -27,8 +27,6 @@ services:
       - production_discord_btcusd_client_ID
       - production_discord_ethusd_token
       - production_discord_ethusd_client_ID
-      - production_discord_oneusd_token
-      - production_discord_oneusd_client_ID
       - production_discord_solusd_token
       - production_discord_solusd_client_ID
       - production_discord_es_token
@@ -105,10 +103,6 @@ secrets:
   production_discord_ethusd_token:
     external: true
   production_discord_ethusd_client_ID:
-    external: true
-  production_discord_oneusd_token:
-    external: true
-  production_discord_oneusd_client_ID:
     external: true
   production_discord_solusd_token:
     external: true
