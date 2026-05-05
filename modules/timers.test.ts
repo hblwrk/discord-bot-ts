@@ -313,7 +313,7 @@ describe("timers: NYSE and MNC", () => {
       name: expect.stringMatching(/^MNC-\d{4}-\d{2}-\d{2}\.pdf$/),
     }));
     expect(send).toHaveBeenCalledWith(expect.objectContaining({
-      content: expect.stringContaining("Morning News Call"),
+      content: expect.stringContaining("📰 Morning News Call"),
       files: expect.any(Array),
     }));
   });
@@ -330,7 +330,15 @@ describe("timers: NYSE and MNC", () => {
     await Promise.resolve();
 
     expect(send).toHaveBeenCalledWith(expect.objectContaining({
+      content: expect.stringContaining("📰 Morning News Call"),
+      files: expect.any(Array),
+    }));
+    expect(send).toHaveBeenCalledWith(expect.objectContaining({
       content: expect.stringContaining("**Morning News Call - TL;DR**"),
+      files: expect.any(Array),
+    }));
+    expect(send).toHaveBeenCalledWith(expect.objectContaining({
+      content: expect.not.stringContaining("📰 **Morning News Call - TL;DR**"),
       files: expect.any(Array),
     }));
   });

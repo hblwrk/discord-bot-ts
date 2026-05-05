@@ -112,11 +112,7 @@ function normalizeMarkdownSummary(value: string): string {
     .replace(/\\([$€£¥])/g, "$1")
     .trim();
   if (summary.startsWith("📰 **Morning News Call - TL;DR**")) {
-    return summary;
-  }
-
-  if (summary.startsWith("**Morning News Call - TL;DR**")) {
-    return `📰 ${summary}`;
+    return summary.slice("📰 ".length);
   }
 
   return summary;
