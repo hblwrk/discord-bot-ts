@@ -237,7 +237,7 @@ function getOutlookRangeValue(value: string, valueType: OutlookValueType): strin
       : null;
   }
 
-  const moneyRangeMatch = value.match(/(\(?\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:trillion|billion|million|t|b|m)?\)?)(?:\s*(?:to|through|-|–|and)\s*)(\(?\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:trillion|billion|million|t|b|m)?\)?)/i);
+  const moneyRangeMatch = value.match(/(\(?\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:(?:trillion|billion|million|tn|bn|mm|[tbm])\b)?\)?)(?:\s*(?:to|through|-|–|and)\s*)(\(?\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:(?:trillion|billion|million|tn|bn|mm|[tbm])\b)?\)?)/i);
   if (!moneyRangeMatch) {
     return null;
   }
@@ -254,6 +254,10 @@ function getOutlookRangeValue(value: string, valueType: OutlookValueType): strin
     return null === firstValue || null === secondValue
       ? null
       : `${formatEps(firstValue)} to ${formatEps(secondValue)}`;
+  }
+
+  if (false === hasMoneyValueCue(firstRangeValue) && false === hasMoneyValueCue(secondRangeValue)) {
+    return null;
   }
 
   const inferredUnit = getMoneyUnit(secondRangeValue) ?? getMoneyUnit(firstRangeValue);
@@ -276,7 +280,7 @@ function getSingleOutlookValue(value: string, valueType: OutlookValueType): stri
   }
 
   if ("money" === valueType) {
-    const moneyMatch = value.match(/\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:trillion|billion|million|t|b|m)/i);
+    const moneyMatch = value.match(/\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:trillion|billion|million|tn|bn|mm|[tbm])\b/i);
     const moneyValue = moneyMatch ? parseMoneyWithOptionalUnit(moneyMatch[0]) : null;
     return null === moneyValue ? null : formatUsdCompact(moneyValue);
   }
@@ -347,19 +351,23 @@ function parseMoneyWithOptionalUnit(value: string, inferredUnit?: string): numbe
     return parsedValue;
   }
 
-  if ("trillion" === unit || "t" === unit) {
+  if ("trillion" === unit || "tn" === unit || "t" === unit) {
     return parsedValue * 1_000_000_000_000;
   }
 
-  if ("billion" === unit || "b" === unit) {
+  if ("billion" === unit || "bn" === unit || "b" === unit) {
     return parsedValue * 1_000_000_000;
   }
 
   return parsedValue * 1_000_000;
 }
 
+function hasMoneyValueCue(value: string): boolean {
+  return value.includes("$") || undefined !== getMoneyUnit(value);
+}
+
 function getMoneyUnit(value: string): string | undefined {
-  return value.match(/(trillion|billion|million|[tbm])\b/i)?.[1]?.toLowerCase();
+  return value.match(/(trillion|billion|million|tn|bn|mm|[tbm])\b/i)?.[1]?.toLowerCase();
 }
 
 function formatEps(value: number): string {
