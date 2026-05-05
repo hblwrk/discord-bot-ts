@@ -26,7 +26,11 @@ type PollAnswerVoters = {
 };
 
 type PollAnswerLike = {
+  answer_id?: number | undefined;
   id?: number | undefined;
+  poll_media?: {
+    text?: string | null | undefined;
+  } | undefined;
   text?: string | null | undefined;
   voters?: PollAnswerVoters | undefined;
 };
@@ -64,6 +68,12 @@ const sentimentLabels = {
   "Cash": "💵 Cash",
   "Chaos": "🎢 Chaos",
 } satisfies Record<MarketCloseSentimentAnswer, string>;
+const sentimentAnswerIds = {
+  "Risk-on": 1,
+  "Risk-off": 2,
+  "Cash": 3,
+  "Chaos": 4,
+} satisfies Record<MarketCloseSentimentAnswer, number>;
 
 const marketCloseRecapSchema = {
   type: "object",
@@ -256,7 +266,7 @@ function buildMarketCloseRecapContent(
     recap.summaryMarkdown,
     sentimentLine,
     voterSection,
-  ].filter(line => "" !== line).join("\n\n"));
+  ].filter(line => "" !== line).join("\n"));
 }
 
 function getSentimentLine(recap: AiMarketCloseRecap): string {
@@ -346,7 +356,15 @@ function getPollAnswerByText(
   pollMessage: unknown,
   answerText: MarketCloseSentimentAnswer,
 ): PollAnswerLike | undefined {
-  return getPollAnswers(pollMessage).find(answer => answer.text === answerText);
+  const answers = getPollAnswers(pollMessage);
+  const normalizedAnswerText = normalizePollAnswerText(answerText);
+  const textMatch = answers.find(answer => normalizePollAnswerText(getPollAnswerText(answer)) === normalizedAnswerText);
+  if (undefined !== textMatch) {
+    return textMatch;
+  }
+
+  const fallbackAnswerId = sentimentAnswerIds[answerText];
+  return answers.find(answer => getPollAnswerId(answer) === fallbackAnswerId);
 }
 
 function isSentimentPollMessage(message: PollMessageLike): boolean {
@@ -510,8 +528,53 @@ function isPollAnswerLike(value: unknown): value is PollAnswerLike {
     return false;
   }
 
-  const text = value["text"];
-  return "string" === typeof text && isMarketCloseSentimentAnswer(text);
+  return undefined !== getPollAnswerText(value) || undefined !== getPollAnswerId(value);
+}
+
+function getPollAnswerText(answer: unknown): string | undefined {
+  if (false === isRecord(answer)) {
+    return undefined;
+  }
+
+  const directText = answer["text"];
+  if ("string" === typeof directText) {
+    return directText;
+  }
+
+  const pollMedia = answer["poll_media"];
+  if (false === isRecord(pollMedia)) {
+    return undefined;
+  }
+
+  const pollMediaText = pollMedia["text"];
+  return "string" === typeof pollMediaText ? pollMediaText : undefined;
+}
+
+function getPollAnswerId(answer: unknown): number | undefined {
+  if (false === isRecord(answer)) {
+    return undefined;
+  }
+
+  const id = answer["id"];
+  if ("number" === typeof id && Number.isFinite(id)) {
+    return id;
+  }
+
+  const answerId = answer["answer_id"];
+  if ("number" === typeof answerId && Number.isFinite(answerId)) {
+    return answerId;
+  }
+
+  return undefined;
+}
+
+function normalizePollAnswerText(value: string | undefined): string {
+  return value
+    ?.replace(/^[\p{Emoji_Presentation}\p{Emoji}\uFE0F\s]+/u, "")
+    .replace(/[‐‑‒–—―]/gu, "-")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase() ?? "";
 }
 
 function isPollMessageLike(value: unknown): value is PollMessageLike {

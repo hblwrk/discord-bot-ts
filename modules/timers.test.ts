@@ -233,6 +233,45 @@ describe("timers: NYSE and MNC", () => {
     }));
   });
 
+  test("startNyseTimers prefers recovered closed poll for market close recap", async () => {
+    const {client, send} = createClientWithChannel();
+    const stalePollMessage = {
+      poll: {
+        question: {
+          text: "Opening Sentiment: Wie geht ihr in den Handel?",
+        },
+      },
+    };
+    const recoveredPollMessage = {
+      poll: {
+        answers: new Map([
+          [1, {id: 1, text: "Risk-on"}],
+        ]),
+        question: {
+          text: "Opening Sentiment: Wie geht ihr in den Handel?",
+        },
+      },
+    };
+    send.mockResolvedValueOnce(stalePollMessage);
+    findMarketOpenSentimentPollMessageMock.mockResolvedValueOnce(recoveredPollMessage);
+    getMarketCloseRecapMock.mockResolvedValueOnce({
+      allowedUserIds: [],
+      content: "**Börsenschluss - Kurzüberblick**\n`VIX` fiel um `1,2 Punkte`.",
+    });
+
+    startNyseTimers(client, "channel-id");
+    const openJob = getScheduledJobByTime(9, 30, "US/Eastern");
+    openJob.callback();
+    await flushAsyncJobs();
+
+    const recapJob = getScheduledJobByTime(16, 10, "US/Eastern");
+    await recapJob.callback();
+    await flushAsyncJobs();
+
+    expect(getMarketCloseRecapMock).toHaveBeenCalledWith(recoveredPollMessage, expect.any(Object), expect.any(Object));
+    expect(getMarketCloseRecapMock).not.toHaveBeenCalledWith(stalePollMessage, expect.any(Object), expect.any(Object));
+  });
+
   test("startNyseTimers recovers the opening poll from history after a restart", async () => {
     const send = vi.fn().mockResolvedValue(undefined);
     const channel = {

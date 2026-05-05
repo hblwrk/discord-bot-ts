@@ -356,11 +356,12 @@ async function runNyseMarketCloseRecap(
   }
 
   const date = getCurrentNyseDate();
-  const pollMessage = sentimentPollState.message ?? await findMarketOpenSentimentPollMessage(channel, {
+  const recoveredPollMessage = await findMarketOpenSentimentPollMessage(channel, {
     logger,
   }, {
     date,
   });
+  const pollMessage = recoveredPollMessage ?? sentimentPollState.message;
   const recap = await getMarketCloseRecap(pollMessage, {
     logger,
   }, {

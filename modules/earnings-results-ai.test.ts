@@ -669,6 +669,29 @@ describe("AI earnings helpers", () => {
     expect(hasHighSeveritySuspicion(reasons)).toBe(true);
   });
 
+  test("identifies negative revenue when net income is positive", () => {
+    const reasons = getSuspiciousEarningsReasons([{
+      key: "revenue",
+      label: "Revenue",
+      numericValue: -3_000_000,
+      value: "-$3M",
+    }, {
+      key: "net_income",
+      label: "Net income",
+      numericValue: 13_000_000,
+      value: "$13M",
+    }], null, getEvent({
+      marketCap: 9_000_000_000,
+    }));
+
+    expect(reasons).toEqual([{
+      message: "Revenue -$3M is not positive while net income $13M is positive.",
+      metricKey: "revenue",
+      severity: "high",
+    }]);
+    expect(hasHighSeveritySuspicion(reasons)).toBe(true);
+  });
+
   test("identifies medium EPS and revenue suspicion without high severity", () => {
     const reasons = getSuspiciousEarningsReasons([{
       key: "gaap_eps",

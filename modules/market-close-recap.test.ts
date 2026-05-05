@@ -106,6 +106,8 @@ describe("market close recap", () => {
       allowedUserIds: ["123", "456"],
       content: expect.stringContaining("**Börsenschluss - Kurzüberblick**"),
     });
+    expect(recap?.content).toContain("**Börsenschluss - Kurzüberblick**\n`SPX`");
+    expect(recap?.content).not.toContain("**Börsenschluss - Kurzüberblick**\n\n");
     expect(recap?.content).toContain("Das heutige Sentiment war: **🎢 Chaos**");
     expect(recap?.content).toContain("<@123> <@456>");
     expect(recap?.content).not.toContain("Gemini");
@@ -158,6 +160,66 @@ describe("market close recap", () => {
     expect(recap?.allowedUserIds).toEqual([]);
     expect(recap?.content).toContain("Das heutige Sentiment war: **🟢 Risk-on**");
     expect(recap?.content).not.toContain("Richtig gelegen");
+    expect(recap?.content).not.toContain("Punkte`.\n\nDas heutige");
+  });
+
+  test("matches Discord poll answer text variants when fetching voters", async () => {
+    const votersFetch = vi.fn().mockResolvedValue(new Map([
+      ["123", {id: "123"}],
+    ]));
+
+    const recap = await getMarketCloseRecap({
+      poll: {
+        answers: [{
+          answer_id: 1,
+          poll_media: {
+            text: "🟢 Risk‑on",
+          },
+          voters: {
+            fetch: votersFetch,
+          },
+        }],
+      },
+    }, {
+      logger,
+      postWithRetryFn: createPostWithRecap(),
+      readSecretFn,
+    });
+
+    expect(recap?.allowedUserIds).toEqual(["123"]);
+    expect(votersFetch).toHaveBeenCalledWith({
+      limit: 100,
+    });
+  });
+
+  test("falls back to stable poll answer IDs when answer text is partial", async () => {
+    const votersFetch = vi.fn().mockResolvedValue(new Map([
+      ["456", {id: "456"}],
+    ]));
+
+    const recap = await getMarketCloseRecap({
+      poll: {
+        answers: new Map([
+          [1, {
+            id: 1,
+            text: null,
+            voters: {
+              fetch: votersFetch,
+            },
+          }],
+        ]),
+      },
+    }, {
+      logger,
+      postWithRetryFn: createPostWithRecap(),
+      readSecretFn,
+    });
+
+    expect(recap?.allowedUserIds).toEqual(["456"]);
+    expect(logger.log).not.toHaveBeenCalledWith(
+      "warn",
+      "Skipping market close recap voter mentions: poll answer Risk-on was not found.",
+    );
   });
 
   test("handles an empty sentiment title and truncates long summaries", async () => {
