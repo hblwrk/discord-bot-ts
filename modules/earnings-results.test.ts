@@ -587,7 +587,121 @@ describe("earnings result announcements", () => {
     expect(result.announcements).toEqual([]);
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
-      "Skipping earnings result announcement for XOM: no filing details could be parsed.",
+      "Skipping earnings result announcement for XOM: no earnings metrics or outlook could be parsed.",
+    );
+  });
+
+  test("does not spend Gemini calls on primary 8-K shells with no parsed metrics", async () => {
+    getWithRetryFn.mockImplementation(async (url: string) => {
+      if (url.includes("company_tickers.json")) {
+        return {
+          data: {
+            0: {
+              cik_str: 34088,
+              ticker: "XOM",
+              title: "EXXON MOBIL CORP",
+            },
+          },
+        };
+      }
+
+      if (url.includes("type=8-K")) {
+        return {
+          data: `
+            <feed>
+              <entry>
+                <title>8-K - EXXON MOBIL CORP</title>
+                <id>urn:tag:sec.gov,2026:accession-number=0000034088-26-000042</id>
+                <updated>2026-05-01T08:01:00-04:00</updated>
+                <category term="8-K" />
+                <link href="https://www.sec.gov/Archives/edgar/data/34088/000003408826000042/0000034088-26-000042-index.htm" />
+                <summary>
+                  &lt;b&gt;CIK:&lt;/b&gt; 0000034088&lt;br/&gt;
+                  &lt;b&gt;Items:&lt;/b&gt; 2.02, 9.01
+                </summary>
+              </entry>
+            </feed>
+          `,
+        };
+      }
+
+      if (url.includes("type=6-K")) {
+        return {
+          data: "<feed></feed>",
+        };
+      }
+
+      if (url.includes("companyfacts/CIK0000034088.json")) {
+        return {
+          data: {
+            facts: {},
+          },
+        };
+      }
+
+      if (url.endsWith("/index.json")) {
+        return {
+          data: {
+            directory: {
+              item: [{
+                name: "xom-20260331.htm",
+                type: "8-K",
+              }],
+            },
+          },
+        };
+      }
+
+      if (url.endsWith("/xom-20260331.htm")) {
+        return {
+          data: `
+            <html>
+              <body>
+                <h1>Item 2.02 Results of Operations and Financial Condition</h1>
+                <p>A copy of the press release is furnished as Exhibit 99.1.</p>
+              </body>
+            </html>
+          `,
+        };
+      }
+
+      if (url.includes("/XOM/earnings-surprise")) {
+        return {
+          data: {
+            data: {
+              earningsSurpriseTable: {
+                rows: [],
+              },
+            },
+          },
+        };
+      }
+
+      throw new Error(`Unexpected URL ${url}`);
+    });
+
+    const result = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+        postWithRetryFn,
+        readSecretFn: vi.fn((secretName: string) => {
+          if ("gemini_api_key" === secretName) {
+            return "gemini-key";
+          }
+
+          throw new Error(`missing ${secretName}`);
+        }),
+      },
+    });
+
+    expect(result.announcements).toEqual([]);
+    expect(postWithRetryFn).not.toHaveBeenCalled();
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "Skipping earnings result announcement for XOM: no earnings metrics or outlook could be parsed.",
     );
   });
 
