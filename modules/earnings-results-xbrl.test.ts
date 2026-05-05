@@ -62,7 +62,7 @@ describe("earnings result XBRL metrics", () => {
         key: "gaap_eps",
         label: "EPS",
         numericValue: 1,
-        value: "$1",
+        value: "$1.00",
       },
       {
         currencyCode: "USD",
@@ -132,7 +132,7 @@ describe("earnings result XBRL metrics", () => {
       expect.objectContaining({
         currencyCode: "EUR",
         key: "gaap_eps",
-        value: "-€1.3",
+        value: "-€1.30",
       }),
       expect.objectContaining({
         currencyCode: "EUR",

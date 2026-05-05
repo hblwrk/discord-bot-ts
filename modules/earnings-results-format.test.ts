@@ -82,7 +82,7 @@ describe("earnings result formatting", () => {
       metrics,
       parsedDocument,
       ticker: "XOM",
-    })).toContain("SEC: [8-K](https://www.sec.gov/Archives/edgar/data/34088/example/ex-991.htm) Item 2.02, 9.01");
+    })).toContain("**Exxon Mobil (`XOM`)** - Q1 2026 - [8-K](https://www.sec.gov/Archives/edgar/data/34088/example/ex-991.htm)");
   });
 
   test("parses and renders table-based outlook metrics", () => {
@@ -485,9 +485,9 @@ describe("earnings result formatting", () => {
 
     expect(metrics[0]).toMatchObject({
       key: "nasdaq_eps",
-      estimate: "$1",
+      estimate: "$1.00",
       outcome: "inline",
-      value: "$1",
+      value: "$1.00",
     });
     expect(metrics.find(metric => "revenue" === metric.key)).toMatchObject({
       estimate: "$100B",
@@ -568,10 +568,9 @@ describe("earnings result formatting", () => {
     });
 
     expect(message).toBe([
-      "**Example (`EX`)**",
+      "**Example (`EX`)** - [10-Q](https://www.sec.gov/example)",
       "📊 **Results**",
       "- **Production:** `1,200 boepd`",
-      "SEC: [10-Q](https://www.sec.gov/example)",
     ].join("\n"));
   });
 
@@ -622,7 +621,8 @@ describe("earnings result formatting", () => {
     expect(parseNumber("--")).toBeNull();
     expect(parseNumber({})).toBeNull();
 
-    expect(formatEps(-1.2)).toBe("-$1.2");
+    expect(formatEps(5.6)).toBe("$5.60");
+    expect(formatEps(-1.2)).toBe("-$1.20");
     expect(formatUsdCompact(-1_250_000_000_000)).toBe("-$1.25T");
     expect(formatUsdCompact(12_300_000)).toBe("$12.3M");
     expect(formatUsdCompact(750_000)).toBe("$750K");
