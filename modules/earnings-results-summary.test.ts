@@ -74,6 +74,7 @@ describe("AI earnings summaries", () => {
     const prompt = requestBody.contents?.[0]?.parts?.find(part => "string" === typeof part.text)?.text ?? "";
     const filingText = prompt.split("Filing text:\n")[1] ?? "";
     expect(prompt).toContain("Write exactly three concise plain-text sentences.");
+    expect(prompt).toContain("Return plain text only; do not include markdown, backticks, bullets, headings, or labels.");
     expect(prompt).toContain("Do not mention the company name in the summary");
     expect(prompt).toContain("Displayed result metrics:\n- Revenue: $10.2B");
     expect(filingText.length).toBeLessThanOrEqual(20_100);
@@ -256,6 +257,37 @@ describe("AI earnings summaries", () => {
       filingUrl: "https://www.sec.gov/example",
       html: "<html><body><h1>Example Corp reports first quarter 2026 results</h1></body></html>",
       ticker: "EXM",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result).toBeNull();
+  });
+
+  test("rejects summaries with markdown or correction artifacts", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                summary: "Revenue was >$411 million and net income was $165 million. Free cash flow reached a record -? no, We reiterate: record free cash flow was $144 million. `The company reiterated production and cost guidance.`",
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await summarizeEarningsWithAi({
+      companyName: "Hecla Mining Company",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: "<html><body><h1>Hecla reports first quarter 2026 results</h1></body></html>",
+      ticker: "HL",
     }, {
       logger,
       nowMs: () => 1_000,
