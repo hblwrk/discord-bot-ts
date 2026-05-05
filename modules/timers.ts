@@ -25,6 +25,7 @@ import {
 import {addExpectedMovesToEarningsEvents, warmExpectedMoveCacheForEarningsEvents} from "./earnings-expected-move.ts";
 import {getLogger} from "./logging.ts";
 import {getMnc} from "./mnc-downloader.ts";
+import {getMncSummary} from "./mnc-summary.ts";
 import {type Ticker} from "./tickers.ts";
 import {
   getAllowedRoleMentions,
@@ -598,13 +599,21 @@ export function startMncTimers(client: TimerClient, channelID: string) {
     const shortDate = moment().format("YYYY-MM-DD");
     const fileName = `MNC-${shortDate}.pdf`;
     const mncFile = new AttachmentBuilder(buffer, {name: fileName});
+    const summary = await getMncSummary(buffer, {logger});
     await sendAnnouncement(
       client,
       channelID,
-      {content: `Morning News Call (${date})`, files: [mncFile]},
+      {content: getMncAnnouncementContent(date, summary), files: [mncFile]},
       "MNC",
     );
   });
+}
+
+function getMncAnnouncementContent(date: string, summary: string | undefined): string {
+  const title = `Morning News Call (${date})`;
+  return undefined === summary
+    ? title
+    : `${title}\n\n${summary}`;
 }
 
 export function startOtherTimers(

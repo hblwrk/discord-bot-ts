@@ -13,6 +13,7 @@ describe("earnings result announcements", () => {
   };
   const getEarningsResultFn = vi.fn();
   const getWithRetryFn = vi.fn();
+  const postWithRetryFn = vi.fn();
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -144,6 +145,131 @@ describe("earnings result announcements", () => {
 
       throw new Error(`Unexpected URL ${url}`);
     });
+  });
+
+  test("posts only one result per ticker and day when multiple current filings match", async () => {
+    getWithRetryFn.mockImplementation(async (url: string) => {
+      if (url.includes("company_tickers.json")) {
+        return {
+          data: {
+            0: {
+              cik_str: 34088,
+              ticker: "XOM",
+              title: "EXXON MOBIL CORP",
+            },
+          },
+        };
+      }
+
+      if (url.includes("type=8-K")) {
+        return {
+          data: `
+            <feed>
+              <entry>
+                <title>8-K - EXXON MOBIL CORP</title>
+                <id>urn:tag:sec.gov,2026:accession-number=0000034088-26-000042</id>
+                <updated>2026-05-01T08:01:00-04:00</updated>
+                <category term="8-K" />
+                <link href="https://www.sec.gov/Archives/edgar/data/34088/000003408826000042/0000034088-26-000042-index.htm" />
+                <summary>
+                  &lt;b&gt;CIK:&lt;/b&gt; 0000034088&lt;br/&gt;
+                  &lt;b&gt;Items:&lt;/b&gt; 2.02, 9.01
+                </summary>
+              </entry>
+              <entry>
+                <title>8-K - EXXON MOBIL CORP</title>
+                <id>urn:tag:sec.gov,2026:accession-number=0000034088-26-000043</id>
+                <updated>2026-05-01T08:03:00-04:00</updated>
+                <category term="8-K" />
+                <link href="https://www.sec.gov/Archives/edgar/data/34088/000003408826000043/0000034088-26-000043-index.htm" />
+                <summary>
+                  &lt;b&gt;CIK:&lt;/b&gt; 0000034088&lt;br/&gt;
+                  &lt;b&gt;Items:&lt;/b&gt; 2.02, 9.01
+                </summary>
+              </entry>
+            </feed>
+          `,
+        };
+      }
+
+      if (url.includes("type=6-K")) {
+        return {
+          data: "<feed></feed>",
+        };
+      }
+
+      if (url.includes("000003408826000042/index.json")) {
+        return {
+          data: {
+            directory: {
+              item: [{
+                name: "xom-ex991.htm",
+                type: "EX-99.1",
+              }],
+            },
+          },
+        };
+      }
+
+      if (url.includes("000003408826000042/xom-ex991.htm")) {
+        return {
+          data: `
+            <html>
+              <body>
+                <h1>Exxon Mobil reports first quarter 2026 results</h1>
+                <p>Financial data in millions of dollars, except per share amounts.</p>
+                <table>
+                  <tr><td>Adjusted EPS</td><td>$1.16</td></tr>
+                  <tr><td>Total revenues and other income</td><td>85,140</td></tr>
+                </table>
+              </body>
+            </html>
+          `,
+        };
+      }
+
+      if (url.includes("companyfacts/CIK0000034088.json")) {
+        return {
+          data: {
+            facts: {},
+          },
+        };
+      }
+
+      if (url.includes("/XOM/earnings-surprise")) {
+        return {
+          data: {
+            data: {
+              earningsSurpriseTable: {
+                rows: [{
+                  dateReported: "5/1/2026",
+                  eps: "$1.16",
+                  consensusForecast: "$0.96",
+                  revenueEstimate: "$80.74B",
+                }],
+              },
+            },
+          },
+        };
+      }
+
+      throw new Error(`Unexpected URL ${url}`);
+    });
+
+    const result = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      },
+    });
+
+    expect(result.announcements).toHaveLength(1);
+    expect(getWithRetryFn).not.toHaveBeenCalledWith(
+      expect.stringContaining("000003408826000043/index.json"),
+      expect.anything(),
+    );
   });
 
   test("builds an earnings result announcement from a watched SEC filing", async () => {
@@ -629,6 +755,230 @@ describe("earnings result announcements", () => {
     );
 
     watcher.stop();
+  });
+
+  test("watcher seeds same-day result tickers from channel history before scanning", async () => {
+    const send = vi.fn().mockResolvedValue(undefined);
+    const timeoutHandle = {
+      unref: vi.fn(),
+    } as unknown as ReturnType<typeof setTimeout>;
+    const setTimeoutMock = vi.fn((_callback: () => void, _delayMs: number) => timeoutHandle);
+    const fetchMessages = vi.fn().mockResolvedValue(new Map([
+      ["message-id", {
+        content: "**Exxon Mobil (`XOM`)** - Q1 2026 - [8-K](https://www.sec.gov/Archives/edgar/data/34088/000003408826000041/xom-ex991.htm)",
+        createdTimestamp: moment.tz("2026-05-01 08:04", "YYYY-MM-DD HH:mm", "US/Eastern").valueOf(),
+      }],
+    ]));
+
+    const watcher = startEarningsResultWatcher({
+      channels: {
+        cache: {
+          get: vi.fn(() => ({
+            messages: {
+              fetch: fetchMessages,
+            },
+            send,
+          })),
+        },
+      },
+    }, "breaking-news-channel-id", {
+      getEarningsResultFn,
+      getWithRetryFn,
+      logger,
+      now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      pollIntervalMs: 123,
+      setTimeoutFn: setTimeoutMock as unknown as typeof setTimeout,
+    });
+
+    await vi.waitFor(() => {
+      expect(setTimeoutMock).toHaveBeenCalled();
+    });
+
+    expect(send).not.toHaveBeenCalled();
+    expect(getWithRetryFn).not.toHaveBeenCalledWith(
+      expect.stringContaining("/index.json"),
+      expect.anything(),
+    );
+
+    watcher.stop();
+  });
+
+  test("uses Gemini extraction and suppresses suspicious earnings metrics when quality gate rejects them", async () => {
+    getEarningsResultFn.mockResolvedValue({
+      status: "ok",
+      events: [{
+        ticker: "BUD",
+        when: "before_open",
+        date: "2026-05-01",
+        importance: 1,
+        companyName: "Anheuser-Busch Inbev SA",
+        marketCap: 100_000_000_000,
+        marketCapText: "$100B",
+        epsConsensus: "$0.90",
+      }],
+    });
+    getWithRetryFn.mockImplementation(async (url: string) => {
+      if (url.includes("company_tickers.json")) {
+        return {
+          data: {
+            0: {
+              cik_str: 1668717,
+              ticker: "BUD",
+              title: "ANHEUSER-BUSCH INBEV SA/NV",
+            },
+          },
+        };
+      }
+
+      if (url.includes("type=8-K")) {
+        return {
+          data: "<feed></feed>",
+        };
+      }
+
+      if (url.includes("type=6-K")) {
+        return {
+          data: `
+            <feed>
+              <entry>
+                <title>6-K - ANHEUSER-BUSCH INBEV SA/NV</title>
+                <id>urn:tag:sec.gov,2026:accession-number=0001193125-26-123456</id>
+                <updated>2026-05-01T08:01:00-04:00</updated>
+                <category term="6-K" />
+                <link href="https://www.sec.gov/Archives/edgar/data/1668717/000119312526123456/0001193125-26-123456-index.htm" />
+                <summary>&lt;b&gt;CIK:&lt;/b&gt; 0001668717</summary>
+              </entry>
+            </feed>
+          `,
+        };
+      }
+
+      if (url.endsWith("/index.json")) {
+        return {
+          data: {
+            directory: {
+              item: [{
+                name: "bud-ex991.htm",
+                type: "EX-99.1",
+              }],
+            },
+          },
+        };
+      }
+
+      if (url.endsWith("/bud-ex991.htm")) {
+        return {
+          data: `
+            <html>
+              <body>
+                <h1>Anheuser-Busch InBev reports first quarter 2026 results</h1>
+                <p>Revenue increased to 14.55 billion USD.</p>
+                <table>
+                  <tr><td>EPS</td><td>20.80</td></tr>
+                  <tr><td>Revenue</td><td>267</td></tr>
+                </table>
+              </body>
+            </html>
+          `,
+        };
+      }
+
+      if (url.includes("companyfacts/CIK0001668717.json")) {
+        return {
+          data: {
+            facts: {},
+          },
+        };
+      }
+
+      if (url.includes("/BUD/earnings-surprise")) {
+        return {
+          data: {
+            data: {
+              earningsSurpriseTable: {
+                rows: [{
+                  dateReported: "5/1/2026",
+                  consensusForecast: "$0.90",
+                  revenueEstimate: "$14.4B",
+                }],
+              },
+            },
+          },
+        };
+      }
+
+      throw new Error(`Unexpected URL ${url}`);
+    });
+    postWithRetryFn
+      .mockResolvedValueOnce({
+        data: {
+          candidates: [{
+            content: {
+              parts: [{
+                text: JSON.stringify({
+                  quarterLabel: "Q1 2026",
+                  metrics: [{
+                    key: "revenue",
+                    numericValue: 14_550_000_000,
+                    currencyCode: "USD",
+                    sourceSnippet: "Revenue increased to 14.55 billion USD.",
+                  }],
+                  issues: [],
+                }),
+              }],
+            },
+          }],
+        },
+      })
+      .mockResolvedValueOnce({
+        data: {
+          candidates: [{
+            content: {
+              parts: [{
+                text: JSON.stringify({
+                  decision: "suppress",
+                  confidence: 0.91,
+                  reason: "EPS was parsed from a table fragment and does not match the supported filing text.",
+                  issues: [{
+                    severity: "high",
+                    metricKey: "gaap_eps",
+                    message: "The EPS value is likely a parsing artifact.",
+                    sourceSnippet: "EPS | 20.80",
+                  }],
+                }),
+              }],
+            },
+          }],
+        },
+      });
+
+    const result = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+        postWithRetryFn,
+        readSecretFn: vi.fn((secretName: string) => {
+          if ("gemini_api_key" === secretName) {
+            return "gemini-key";
+          }
+
+          if ("gemini_calls_per_minute" === secretName) {
+            return "14";
+          }
+
+          throw new Error(`missing ${secretName}`);
+        }),
+      },
+    });
+
+    expect(result.announcements).toEqual([]);
+    expect(postWithRetryFn).toHaveBeenCalledTimes(2);
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "Skipping earnings result announcement for BUD: suspicious metrics were not verified.",
+    );
   });
 
   test("watcher skips scans until channel history can be checked", async () => {

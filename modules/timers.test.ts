@@ -5,6 +5,7 @@ import {
   createClientWithoutChannel,
   getHolidaysMock,
   getMncMock,
+  getMncSummaryMock,
   getScheduledJobByTime,
   isHolidayMock,
   loggerMock,
@@ -221,11 +222,31 @@ describe("timers: NYSE and MNC", () => {
     await Promise.resolve();
 
     expect(getMncMock).toHaveBeenCalledTimes(1);
+    expect(getMncSummaryMock).toHaveBeenCalledWith(Buffer.from("mnc-pdf"), expect.objectContaining({
+      logger: expect.any(Object),
+    }));
     expect(attachmentBuilderMock).toHaveBeenCalledWith(Buffer.from("mnc-pdf"), expect.objectContaining({
       name: expect.stringMatching(/^MNC-\d{4}-\d{2}-\d{2}\.pdf$/),
     }));
     expect(send).toHaveBeenCalledWith(expect.objectContaining({
       content: expect.stringContaining("Morning News Call"),
+      files: expect.any(Array),
+    }));
+  });
+
+  test("startMncTimers includes a Gemini summary when available", async () => {
+    const {client, send} = createClientWithChannel();
+    getMncSummaryMock.mockResolvedValueOnce("**Morning News Call - TL;DR**\n- Futures firm ahead of payrolls.");
+
+    startMncTimers(client, "channel-id");
+    const mncJob = getScheduledJobByTime(9, 0, "US/Eastern");
+
+    await mncJob.callback();
+    await Promise.resolve();
+    await Promise.resolve();
+
+    expect(send).toHaveBeenCalledWith(expect.objectContaining({
+      content: expect.stringContaining("**Morning News Call - TL;DR**"),
       files: expect.any(Array),
     }));
   });
@@ -239,6 +260,7 @@ describe("timers: NYSE and MNC", () => {
     await mncJob.callback();
 
     expect(attachmentBuilderMock).not.toHaveBeenCalled();
+    expect(getMncSummaryMock).not.toHaveBeenCalled();
     expect(send).not.toHaveBeenCalled();
     expect(loggerMock.log).toHaveBeenCalledWith("warn", "Skipping MNC announcement: no file downloaded.");
   });

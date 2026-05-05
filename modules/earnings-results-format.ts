@@ -14,6 +14,7 @@ export type EarningsResultMetric = {
   label: string;
   numericValue?: number | undefined;
   outcome?: EarningsResultOutcome | undefined;
+  sourceSnippet?: string | undefined;
   value: string;
 };
 

@@ -38,6 +38,7 @@ const warmExpectedMoveCacheForEarningsEventsMock = vi.fn();
 const getEarningsResultMock = vi.fn();
 const getEarningsMessagesMock = vi.fn();
 const getMncMock = vi.fn();
+const getMncSummaryMock = vi.fn();
 const loggerMock = {
   log: vi.fn(),
 };
@@ -93,6 +94,10 @@ vi.mock("../earnings-expected-move.ts", () => ({
 
 vi.mock("../mnc-downloader.ts", () => ({
   getMnc: (...args: unknown[]) => getMncMock(...args),
+}));
+
+vi.mock("../mnc-summary.ts", () => ({
+  getMncSummary: (...args: unknown[]) => getMncSummaryMock(...args),
 }));
 
 vi.mock("../logging.ts", () => ({
@@ -212,6 +217,7 @@ export function resetTimerMocks() {
 
   isHolidayMock.mockReturnValue(false);
   getMncMock.mockResolvedValue(Buffer.from("mnc-pdf"));
+  getMncSummaryMock.mockResolvedValue(undefined);
   getAssetByNameMock.mockReturnValue({
     fileContent: Buffer.from("freitag"),
     fileName: "freitag.png",
@@ -261,6 +267,7 @@ export {
   getEarningsResultMock,
   getHolidaysMock,
   getMncMock,
+  getMncSummaryMock,
   getScheduledDateJobs,
   getScheduledJobByTime,
   isHolidayMock,

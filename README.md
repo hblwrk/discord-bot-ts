@@ -96,6 +96,7 @@ echo -n "hunter7" | docker secret create production_hblwrk_channel_MNCAnnounceme
 echo -n "hunter8" | docker secret create production_hblwrk_channel_OtherAnnouncement_ID -
 echo -n "hunter9" | docker secret create production_discord_btcusd_token -
 echo -n "hunter10" | docker secret create production_discord_btcusd_client_ID -
+echo -n "hunter11" | docker secret create production_gemini_api_key -
 ...
 ```
 
@@ -148,6 +149,9 @@ The health-check server port can be overridden via the `HEALTHCHECK_PORT` enviro
   "discord_30y_client_ID": "",
   "tastytrade_client_secret": "",
   "tastytrade_refresh_token": "",
+  "gemini_api_key": "",
+  "gemini_model": "gemini-2.5-flash-lite",
+  "gemini_calls_per_minute": "14",
   "dracoon_password": "",
   "hblwrk_channel_NYSEAnnouncement_ID": "",
   "hblwrk_gainslosses_thread_ID": "",
@@ -196,7 +200,7 @@ If DRACOON downloads fail during startup, the bot keeps those assets marked as t
 
 ### Reminder assets
 
-Calendar reminders, earnings reminders, and earnings result announcements post into `hblwrk_channel_OtherAnnouncement_ID`. Earnings result announcements are sent after a matching SEC EDGAR filing appears. Result announcements include an `Outlook` block when the filing has an explicit outlook or guidance section. They ping the `alerts` special role, which is self-assignable from the roles channel via the `🛎️` bellhop bell reaction on the special roles message.
+Calendar reminders, earnings reminders, and earnings result announcements post into `hblwrk_channel_OtherAnnouncement_ID`. Earnings result announcements are sent after a matching SEC EDGAR filing appears. Result announcements include an `Outlook` block when the filing has an explicit outlook or guidance section. Gemini-assisted SEC extraction and suspicious-post checks run when `gemini_api_key` is configured; the bot keeps XBRL and HTML parsing as the primary source and validates AI metrics against source snippets before posting. MNC announcements use the same optional Gemini access to add a one-minute Discord Markdown summary above the PDF attachment. `gemini_calls_per_minute` caps local Gemini calls and defaults to `14`, below the free-tier `gemini-2.5-flash-lite` hard limit of 15 requests per minute. They ping the `alerts` special role, which is self-assignable from the roles channel via the `🛎️` bellhop bell reaction on the special roles message.
 
 Calendar reminder assets are matched against the current day and sent at `08:30 Europe/Berlin`, immediately after the general daily calendar post. If multiple matching calendar items share the same release minute, the bot bundles them into a single reminder ping:
 

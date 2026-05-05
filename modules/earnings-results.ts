@@ -1,6 +1,15 @@
 import moment from "moment-timezone";
 import {bluechipMinMarketCap, clearEarningsScheduleCache, type EarningsEvent, getEarningsResult} from "./earnings.ts";
 import {
+  checkEarningsQualityWithGemini,
+  clearEarningsAiState,
+  extractEarningsWithGemini,
+  getSuspiciousEarningsReasons,
+  hasHighSeveritySuspicion,
+  mergeAiMetrics,
+  type SuspiciousEarningsReason,
+} from "./earnings-results-ai.ts";
+import {
   formatUsdCompact,
   getEarningsResultMessage,
   getMessageMetrics,
@@ -9,6 +18,10 @@ import {
   parseNumber,
   type NasdaqSurprise,
 } from "./earnings-results-format.ts";
+import {
+  getEarningsResultKey,
+  seedSeenEarningsResultAnnouncementsFromHistory,
+} from "./earnings-results-history.ts";
 import {loadSecXbrlMetrics, mergeXbrlAndHtmlMetrics} from "./earnings-results-xbrl.ts";
 import {
   clearSecEarningsResultCaches,
@@ -19,8 +32,9 @@ import {
   type SecCompany,
   type SecCurrentFiling,
 } from "./earnings-results-sec.ts";
-import {getWithRetry} from "./http-retry.ts";
+import {getWithRetry, type postWithRetry} from "./http-retry.ts";
 import {getLogger} from "./logging.ts";
+import {type readSecret} from "./secrets.ts";
 
 type Logger = {
   log: (level: string, message: unknown) => void;
@@ -28,14 +42,6 @@ type Logger = {
 
 type SendableChannel = {
   send: (payload: unknown) => Promise<unknown> | unknown;
-};
-
-type FetchableMessageManager = {
-  fetch: (options: {limit: number}) => Promise<unknown> | unknown;
-};
-
-type FetchedMessageCollection = {
-  values: () => Iterable<unknown>;
 };
 
 type EarningsResultClient = {
@@ -57,8 +63,11 @@ type EarningsResultWatcherOptions = {
   inactivePollIntervalMs?: number;
   logger?: Logger;
   maxAnnouncementsPerScan?: number;
+  nowMs?: () => number;
   now?: () => moment.Moment;
   pollIntervalMs?: number;
+  postWithRetryFn?: typeof postWithRetry;
+  readSecretFn?: typeof readSecret;
   secCurrentFilingsLimit?: number;
   setTimeoutFn?: typeof setTimeout;
 };
@@ -66,7 +75,7 @@ type EarningsResultWatcherOptions = {
 type EarningsResultDependencies = Required<Pick<
   EarningsResultWatcherOptions,
   "getEarningsResultFn" | "getWithRetryFn" | "logger" | "now"
->>;
+>> & Pick<EarningsResultWatcherOptions, "nowMs" | "postWithRetryFn" | "readSecretFn">;
 
 type EarningsWatchEntry = {
   cik: string;
@@ -129,7 +138,6 @@ const defaultPollIntervalMs = 60_000;
 const defaultInactivePollIntervalMs = 15 * 60_000;
 const defaultSecCurrentFilingsLimit = 100;
 const defaultMaxAnnouncementsPerScan = 10;
-const defaultRecentMessageFetchLimit = 100;
 const earningsWatchTtlMs = 15 * 60_000;
 const nasdaqEarningsSurpriseEndpoint = "https://api.nasdaq.com/api/company";
 const noMentions = {
@@ -147,6 +155,7 @@ export function clearEarningsResultCaches() {
   earningsWatchCache = undefined;
   clearEarningsScheduleCache();
   clearSecEarningsResultCaches();
+  clearEarningsAiState();
 }
 
 export function startEarningsResultWatcher(
@@ -160,6 +169,7 @@ export function startEarningsResultWatcher(
   const inactivePollIntervalMs = options.inactivePollIntervalMs ?? defaultInactivePollIntervalMs;
   const announcementThreadID = getOptionalChannelID(options.announcementThreadID);
   const seenAccessions = new Set<string>();
+  const seenResultKeys = new Set<string>();
   const dependencies = getDependencies(options);
   let seenAccessionsSeeded = false;
   let stopped = false;
@@ -167,13 +177,15 @@ export function startEarningsResultWatcher(
 
   const runOnce = async (): Promise<EarningsResultScanResult> => {
     if (false === seenAccessionsSeeded) {
-      const seeded = await seedSeenAccessionsFromAnnouncementHistory(
-        client,
-        channelID,
+      const seeded = await seedSeenEarningsResultAnnouncementsFromHistory({
         announcementThreadID,
+        channelID,
+        client,
+        dateStamp: dependencies.now().clone().tz(usEasternTimezone).format(dateStampFormat),
+        logger: dependencies.logger,
         seenAccessions,
-        dependencies.logger,
-      );
+        seenResultKeys,
+      });
       if (false === seeded) {
         return {
           active: true,
@@ -190,9 +202,11 @@ export function startEarningsResultWatcher(
       maxAnnouncementsPerScan?: number;
       secCurrentFilingsLimit?: number;
       seenAccessions: Set<string>;
+      seenResultKeys: Set<string>;
     } = {
       dependencies,
       seenAccessions,
+      seenResultKeys,
     };
     if (undefined !== options.maxAnnouncementsPerScan) {
       announcementOptions.maxAnnouncementsPerScan = options.maxAnnouncementsPerScan;
@@ -213,6 +227,7 @@ export function startEarningsResultWatcher(
       );
       if (true === sent) {
         seenAccessions.add(announcement.accessionNumber);
+        seenResultKeys.add(getEarningsResultKey(announcement.ticker, nowDateStamp(dependencies)));
       }
     }
 
@@ -263,11 +278,13 @@ export async function getEarningsResultAnnouncements({
   maxAnnouncementsPerScan = defaultMaxAnnouncementsPerScan,
   secCurrentFilingsLimit = defaultSecCurrentFilingsLimit,
   seenAccessions = new Set<string>(),
+  seenResultKeys = new Set<string>(),
 }: {
   dependencies?: EarningsResultDependencies;
   maxAnnouncementsPerScan?: number;
   secCurrentFilingsLimit?: number;
   seenAccessions?: Set<string>;
+  seenResultKeys?: Set<string>;
 } = {}): Promise<EarningsResultScanResult> {
   const now = dependencies.now().clone().tz(usEasternTimezone);
   const watches = await getTodaysEarningsWatches(dependencies, now);
@@ -283,6 +300,7 @@ export async function getEarningsResultAnnouncements({
   const watchesByCik = groupWatchesByCik(activeWatches);
   const filings = await loadSecCurrentFilings(dependencies, secCurrentFilingsLimit);
   const announcements: EarningsResultAnnouncement[] = [];
+  const announcedResultKeys = new Set(seenResultKeys);
 
   for (const filing of filings) {
     if (announcements.length >= maxAnnouncementsPerScan) {
@@ -303,6 +321,11 @@ export async function getEarningsResultAnnouncements({
       continue;
     }
 
+    const resultKey = getEarningsResultKey(filingWatch.event.ticker, now.format(dateStampFormat));
+    if (true === announcedResultKeys.has(resultKey)) {
+      continue;
+    }
+
     if (false === isLikelyEarningsFiling(filing)) {
       continue;
     }
@@ -315,6 +338,7 @@ export async function getEarningsResultAnnouncements({
     );
     if (null !== announcement) {
       announcements.push(announcement);
+      announcedResultKeys.add(resultKey);
     }
   }
 
@@ -326,24 +350,29 @@ export async function getEarningsResultAnnouncements({
 }
 
 function getDependencies(options: EarningsResultWatcherOptions = {}): EarningsResultDependencies {
-  return {
+  const dependencies: EarningsResultDependencies = {
     getEarningsResultFn: options.getEarningsResultFn ?? getEarningsResult,
     getWithRetryFn: options.getWithRetryFn ?? getWithRetry,
     logger: options.logger ?? logger,
     now: options.now ?? (() => moment.tz(usEasternTimezone)),
   };
+  if (undefined !== options.nowMs) {
+    dependencies.nowMs = options.nowMs;
+  }
+  if (undefined !== options.postWithRetryFn) {
+    dependencies.postWithRetryFn = options.postWithRetryFn;
+  }
+  if (undefined !== options.readSecretFn) {
+    dependencies.readSecretFn = options.readSecretFn;
+  }
+
+  return dependencies;
 }
 
 function isSendableChannel(channel: unknown): channel is SendableChannel {
   return isObjectLike(channel) &&
     "send" in channel &&
     "function" === typeof channel.send;
-}
-
-function isFetchableMessageManager(value: unknown): value is FetchableMessageManager {
-  return isObjectLike(value) &&
-    "fetch" in value &&
-    "function" === typeof value.fetch;
 }
 
 function getOptionalChannelID(channelID: string | undefined): string | undefined {
@@ -375,132 +404,12 @@ async function fetchChannel(
   });
 }
 
-async function seedSeenAccessionsFromAnnouncementHistory(
-  client: EarningsResultClient,
-  channelID: string,
-  announcementThreadID: string | undefined,
-  seenAccessions: Set<string>,
-  loggerInstance: Logger,
-): Promise<boolean> {
-  const targetChannelID = announcementThreadID ?? channelID;
-  const seededTarget = await seedSeenAccessionsFromChannelHistory(
-    client,
-    targetChannelID,
-    seenAccessions,
-    loggerInstance,
-  );
-  if (false === seededTarget) {
-    return false;
-  }
-
-  if (undefined !== announcementThreadID && announcementThreadID !== channelID) {
-    await seedSeenAccessionsFromChannelHistory(
-      client,
-      channelID,
-      seenAccessions,
-      loggerInstance,
-      false,
-    );
-  }
-
-  return true;
-}
-
-async function seedSeenAccessionsFromChannelHistory(
-  client: EarningsResultClient,
-  channelID: string,
-  seenAccessions: Set<string>,
-  loggerInstance: Logger,
-  required = true,
-): Promise<boolean> {
-  const channel = await fetchChannel(client, channelID, loggerInstance);
-  const messages = isObjectLike(channel) && "messages" in channel
-    ? channel.messages
-    : undefined;
-  if (false === isFetchableMessageManager(messages)) {
-    loggerInstance.log(
-      "warn",
-      true === required
-        ? `Skipping earnings result scan: channel ${channelID} message history is not fetchable.`
-        : `Could not seed earnings result announcements from optional channel ${channelID}: message history is not fetchable.`,
-    );
-    return false === required;
-  }
-
-  const fetchedMessages = await Promise.resolve(messages.fetch({
-    limit: defaultRecentMessageFetchLimit,
-  })).catch(error => {
-    loggerInstance.log(
-      "warn",
-      `Could not seed earnings result announcements from channel history: ${error}`,
-    );
-    return null;
-  });
-  if (null === fetchedMessages) {
-    return false === required;
-  }
-
-  for (const message of getFetchedMessageValues(fetchedMessages)) {
-    const content = getMessageContent(message);
-    if (null === content) {
-      continue;
-    }
-
-    for (const accessionNumber of extractSecAccessionNumbers(content)) {
-      seenAccessions.add(accessionNumber);
-    }
-  }
-
-  return true;
-}
-
-function getFetchedMessageValues(fetchedMessages: unknown): unknown[] {
-  if (true === isFetchedMessageCollection(fetchedMessages)) {
-    return [...fetchedMessages.values()];
-  }
-
-  return [];
-}
-
-function isFetchedMessageCollection(value: unknown): value is FetchedMessageCollection {
-  const values = isObjectLike(value) && "values" in value
-    ? value.values
-    : undefined;
-  return "function" === typeof values;
-}
-
 function isObjectLike(value: unknown): value is object {
   return Object(value) === value;
 }
 
-function getMessageContent(message: unknown): string | null {
-  if ("object" !== typeof message || null === message || false === "content" in message) {
-    return null;
-  }
-
-  return "string" === typeof message.content ? message.content : null;
-}
-
-function extractSecAccessionNumbers(content: string): string[] {
-  const accessions = new Set<string>();
-  for (const match of content.matchAll(/\b\d{10}-\d{2}-\d{6}\b/g)) {
-    accessions.add(match[0]);
-  }
-
-  for (const match of content.matchAll(/\/Archives\/edgar\/data\/\d+\/(\d{18})\//gi)) {
-    const compactAccession = match[1];
-    if (undefined === compactAccession) {
-      continue;
-    }
-
-    accessions.add(formatCompactAccessionNumber(compactAccession));
-  }
-
-  return [...accessions];
-}
-
-function formatCompactAccessionNumber(value: string): string {
-  return `${value.slice(0, 10)}-${value.slice(10, 12)}-${value.slice(12)}`;
+function nowDateStamp(dependencies: EarningsResultDependencies): string {
+  return dependencies.now().clone().tz(usEasternTimezone).format(dateStampFormat);
 }
 
 async function sendEarningsResultAnnouncement(
@@ -680,10 +589,38 @@ async function buildEarningsResultAnnouncement(
       return [];
     }),
   ]);
-  const parsedDocument = parseEarningsDocument(filingDetails?.html ?? "");
-  const sourceMetrics = mergeXbrlAndHtmlMetrics(xbrlMetrics, parsedDocument.metrics);
+  let parsedDocument = parseEarningsDocument(filingDetails?.html ?? "");
+  let sourceMetrics = mergeXbrlAndHtmlMetrics(xbrlMetrics, parsedDocument.metrics);
   const surprise = await loadNasdaqSurprise(watch.event.ticker, dependencies, now);
+  const initialMetrics = getMessageMetrics(sourceMetrics, surprise, watch.event);
+  const initialSuspiciousReasons = [
+    ...getSuspiciousEarningsReasons(initialMetrics, surprise, watch.event),
+    ...getSuspiciousQuarterReasons(parsedDocument.quarterLabel, now),
+  ];
+  const aiExtraction = shouldRunAiExtraction(filingDetails?.html ?? "", sourceMetrics, initialSuspiciousReasons)
+    ? await extractEarningsWithGemini({
+      companyName: watch.companyName,
+      filingForm: filing.form,
+      filingUrl: filingDetails?.documentUrl || filing.filingUrl,
+      html: filingDetails?.html ?? "",
+      ticker: watch.event.ticker,
+    }, dependencies)
+    : null;
+  if (null !== aiExtraction) {
+    sourceMetrics = mergeAiMetrics(sourceMetrics, aiExtraction.metrics, initialSuspiciousReasons);
+    if (undefined === parsedDocument.quarterLabel && undefined !== aiExtraction.quarterLabel) {
+      parsedDocument = {
+        ...parsedDocument,
+        quarterLabel: aiExtraction.quarterLabel,
+      };
+    }
+  }
+
   const metrics = getMessageMetrics(sourceMetrics, surprise, watch.event);
+  const suspiciousReasons = [
+    ...getSuspiciousEarningsReasons(metrics, surprise, watch.event),
+    ...getSuspiciousQuarterReasons(parsedDocument.quarterLabel, now),
+  ];
   const filingUrl = filingDetails?.documentUrl || filing.filingUrl;
 
   if (0 === metrics.length && 0 === parsedDocument.outlook.length) {
@@ -694,21 +631,100 @@ async function buildEarningsResultAnnouncement(
     return null;
   }
 
+  const message = getEarningsResultMessage({
+    companyName: watch.companyName,
+    filing,
+    filingUrl,
+    metrics,
+    parsedDocument,
+    ticker: watch.event.ticker,
+  });
+  const qualityGate = await checkEarningsQualityWithGemini({
+    companyName: watch.companyName,
+    event: watch.event,
+    filingForm: filing.form,
+    filingUrl,
+    html: filingDetails?.html ?? "",
+    message,
+    metrics,
+    reasons: suspiciousReasons,
+    surprise,
+    ticker: watch.event.ticker,
+  }, dependencies);
+  if (true === shouldSuppressAnnouncement(qualityGate, suspiciousReasons)) {
+    dependencies.logger.log(
+      "warn",
+      `Skipping earnings result announcement for ${watch.event.ticker}: suspicious metrics were not verified.`,
+    );
+    return null;
+  }
+
   return {
     accessionNumber: filing.accessionNumber,
     cik: filing.cik,
     companyName: watch.companyName,
     filing,
     filingUrl,
-    message: getEarningsResultMessage({
-      companyName: watch.companyName,
-      filing,
-      filingUrl,
-      metrics,
-      parsedDocument,
-      ticker: watch.event.ticker,
-    }),
+    message,
     ticker: watch.event.ticker,
+  };
+}
+
+function shouldRunAiExtraction(
+  html: string,
+  sourceMetrics: unknown[],
+  suspiciousReasons: SuspiciousEarningsReason[],
+): boolean {
+  return "" !== html.trim() && (0 === sourceMetrics.length || 0 < suspiciousReasons.length);
+}
+
+function shouldSuppressAnnouncement(
+  qualityGate: {confidence: number; decision: "allow" | "suppress";} | null,
+  suspiciousReasons: SuspiciousEarningsReason[],
+): boolean {
+  if (null !== qualityGate) {
+    return "suppress" === qualityGate.decision && qualityGate.confidence >= 0.75;
+  }
+
+  return hasHighSeveritySuspicion(suspiciousReasons);
+}
+
+function getSuspiciousQuarterReasons(
+  quarterLabel: string | undefined,
+  now: moment.Moment,
+): SuspiciousEarningsReason[] {
+  const reportedQuarter = parseQuarterLabel(quarterLabel);
+  if (null === reportedQuarter) {
+    return [];
+  }
+
+  const currentQuarterStart = now.clone().startOf("quarter");
+  const previousQuarterStart = currentQuarterStart.clone().subtract(1, "quarter");
+  const reportedQuarterStart = moment.tz(
+    `${reportedQuarter.year}-${String((reportedQuarter.quarter - 1) * 3 + 1).padStart(2, "0")}-01`,
+    dateStampFormat,
+    usEasternTimezone,
+  );
+  if (false === reportedQuarterStart.isBefore(previousQuarterStart, "day")) {
+    return [];
+  }
+
+  const daysIntoCurrentQuarter = now.clone().startOf("day").diff(currentQuarterStart, "days");
+  return [{
+    message: `Filing period ${quarterLabel} is older than the previous calendar quarter for this earnings date.`,
+    severity: daysIntoCurrentQuarter >= 21 ? "high" : "medium",
+  }];
+}
+
+function parseQuarterLabel(quarterLabel: string | undefined): {quarter: number; year: number;} | null {
+  const quarterMatch = quarterLabel?.match(/^Q([1-4])\s+(20\d{2})$/i);
+  if (undefined === quarterMatch?.[1] || undefined === quarterMatch[2]) {
+    return null;
+  }
+
+  return {
+    quarter: Number.parseInt(quarterMatch[1], 10),
+    year: Number.parseInt(quarterMatch[2], 10),
   };
 }
 
