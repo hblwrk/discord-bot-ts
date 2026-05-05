@@ -148,6 +148,112 @@ describe("Gemini earnings helpers", () => {
     );
   });
 
+  test("sends Gemini a bounded SEC release excerpt instead of the whole filing", async () => {
+    const longReleaseHtml = [
+      "<html><body>",
+      "<h1>Example Corp reports first quarter 2026 results</h1>",
+      "<p>Amounts in millions of dollars, except per share amounts.</p>",
+      ...Array.from({length: 400}, (_value, index) =>
+        `<p>Revenue commentary ${index} ${"continued quarterly results discussion ".repeat(3)}</p>`,
+      ),
+      "<p>UNIQUE_TAIL_MARKER Revenue should not be included after truncation.</p>",
+      "</body></html>",
+    ].join("\n");
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                quarterLabel: null,
+                metrics: [],
+                issues: [],
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    await extractEarningsWithGemini({
+      companyName: "Example Corp",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: longReleaseHtml,
+      ticker: "EXM",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    const requestBody = postWithRetryFn.mock.calls[0]?.[1] as {contents?: {parts?: {text?: string}[]}[]};
+    const prompt = requestBody.contents?.[0]?.parts?.find(part => "string" === typeof part.text)?.text ?? "";
+    const filingText = prompt.split("Filing text:\n")[1] ?? "";
+    expect(filingText.length).toBeLessThanOrEqual(10_020);
+    expect(filingText).toContain("Example Corp reports first quarter 2026 results");
+    expect(filingText).toContain("[truncated]");
+    expect(filingText).not.toContain("UNIQUE_TAIL_MARKER");
+  });
+
+  test("bounds single-line SEC release excerpts before calling Gemini", async () => {
+    const longSingleLineHtml = `<html><body>${"Revenue discussion ".repeat(900)}</body></html>`;
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                quarterLabel: null,
+                metrics: [],
+                issues: [],
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    await extractEarningsWithGemini({
+      companyName: "Example Corp",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: longSingleLineHtml,
+      ticker: "EXM",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    const requestBody = postWithRetryFn.mock.calls[0]?.[1] as {contents?: {parts?: {text?: string}[]}[]};
+    const prompt = requestBody.contents?.[0]?.parts?.find(part => "string" === typeof part.text)?.text ?? "";
+    const filingText = prompt.split("Filing text:\n")[1] ?? "";
+    expect(filingText.length).toBeLessThanOrEqual(10_020);
+    expect(filingText).toContain("[truncated]");
+  });
+
+  test("does not call Gemini when SEC release text is empty", async () => {
+    const postWithRetryFn = vi.fn();
+
+    const result = await extractEarningsWithGemini({
+      companyName: "Example Corp",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: " \n\t ",
+      ticker: "EXM",
+    }, {
+      logger,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result).toBeNull();
+    expect(postWithRetryFn).not.toHaveBeenCalled();
+  });
+
   test("drops AI metrics when their source snippets are not present", async () => {
     const postWithRetryFn = vi.fn().mockResolvedValue({
       data: {

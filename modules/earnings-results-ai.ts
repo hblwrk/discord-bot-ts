@@ -65,7 +65,9 @@ type AiMetricDefinition = {
   valueType: "eps" | "money";
 };
 
-const maxAiFilingTextLength = 18_000;
+const maxAiFilingTextLength = 10_000;
+const aiRelevantContextBeforeLines = 2;
+const aiRelevantContextAfterLines = 4;
 
 const aiMetricDefinitions = new Map<AiMetricKey, AiMetricDefinition>([
   ["adjusted_eps", {
@@ -626,7 +628,11 @@ function getRelevantFilingText(html: string): string {
       continue;
     }
 
-    for (let index = Math.max(0, lineIndex - 2); index <= Math.min(lines.length - 1, lineIndex + 4); index++) {
+    for (
+      let index = Math.max(0, lineIndex - aiRelevantContextBeforeLines);
+      index <= Math.min(lines.length - 1, lineIndex + aiRelevantContextAfterLines);
+      index++
+    ) {
       selectedLineIndexes.add(index);
     }
   }
@@ -648,7 +654,12 @@ function truncateAiText(value: string): string {
     return value;
   }
 
-  return value.slice(0, maxAiFilingTextLength);
+  const truncatedValue = value.slice(0, maxAiFilingTextLength);
+  const lastLineBreak = truncatedValue.lastIndexOf("\n");
+  const excerpt = lastLineBreak > 0
+    ? truncatedValue.slice(0, lastLineBreak)
+    : truncatedValue;
+  return `${excerpt.trimEnd()}\n[truncated]`;
 }
 
 function getNumericEventEpsConsensus(event: EarningsEvent): number | undefined {

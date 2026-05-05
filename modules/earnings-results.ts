@@ -16,6 +16,8 @@ import {
   normalizeTickerSymbol,
   parseEarningsDocument,
   parseNumber,
+  type EarningsResultMetric,
+  type ParsedEarningsDocument,
   type NasdaqSurprise,
 } from "./earnings-results-format.ts";
 import {
@@ -118,6 +120,11 @@ type EarningsResultAnnouncement = {
   filingUrl: string;
   message: string;
   ticker: string;
+};
+
+type SecFilingDetails = {
+  documentUrl: string;
+  html: string;
 };
 
 export type EarningsResultScanResult = {
@@ -597,7 +604,13 @@ async function buildEarningsResultAnnouncement(
     ...getSuspiciousEarningsReasons(initialMetrics, surprise, watch.event),
     ...getSuspiciousQuarterReasons(parsedDocument.quarterLabel, now),
   ];
-  const aiExtraction = shouldRunAiExtraction(filingDetails?.html ?? "", sourceMetrics, initialSuspiciousReasons)
+  const aiExtraction = shouldRunAiExtraction({
+    filing,
+    filingDetails,
+    parsedDocument,
+    sourceMetrics,
+    suspiciousReasons: initialSuspiciousReasons,
+  })
     ? await extractEarningsWithGemini({
       companyName: watch.companyName,
       filingForm: filing.form,
@@ -626,7 +639,7 @@ async function buildEarningsResultAnnouncement(
   if (0 === metrics.length && 0 === parsedDocument.outlook.length) {
     dependencies.logger.log(
       "warn",
-      `Skipping earnings result announcement for ${watch.event.ticker}: no filing details could be parsed.`,
+      `Skipping earnings result announcement for ${watch.event.ticker}: no earnings metrics or outlook could be parsed.`,
     );
     return null;
   }
@@ -670,12 +683,95 @@ async function buildEarningsResultAnnouncement(
   };
 }
 
-function shouldRunAiExtraction(
-  html: string,
-  sourceMetrics: unknown[],
-  suspiciousReasons: SuspiciousEarningsReason[],
+function shouldRunAiExtraction({
+  filing,
+  filingDetails,
+  parsedDocument,
+  sourceMetrics,
+  suspiciousReasons,
+}: {
+  filing: SecCurrentFiling;
+  filingDetails: SecFilingDetails | null;
+  parsedDocument: ParsedEarningsDocument;
+  sourceMetrics: EarningsResultMetric[];
+  suspiciousReasons: SuspiciousEarningsReason[];
+}): boolean {
+  const html = filingDetails?.html ?? "";
+  if ("" === html.trim()) {
+    return false;
+  }
+
+  if (0 < sourceMetrics.length) {
+    return 0 < suspiciousReasons.length;
+  }
+
+  if (0 < parsedDocument.outlook.length) {
+    return false;
+  }
+
+  return isLikelyUsefulAiExtractionDocument(filing, filingDetails);
+}
+
+function isLikelyUsefulAiExtractionDocument(
+  filing: SecCurrentFiling,
+  filingDetails: SecFilingDetails | null,
 ): boolean {
-  return "" !== html.trim() && (0 === sourceMetrics.length || 0 < suspiciousReasons.length);
+  if (null === filingDetails) {
+    return false;
+  }
+
+  const documentName = getUrlFileName(filingDetails.documentUrl);
+  if (true === isLikelyEarningsReleaseFileName(documentName)) {
+    return true;
+  }
+
+  if ("8-K" === filing.form.toUpperCase()) {
+    return false;
+  }
+
+  return hasEarningsReleaseTextEvidence(filingDetails.html);
+}
+
+function getUrlFileName(url: string): string {
+  try {
+    const pathname = new URL(url).pathname;
+    return pathname.slice(pathname.lastIndexOf("/") + 1).toLowerCase();
+  } catch {
+    const normalizedUrl = url.toLowerCase();
+    return normalizedUrl.slice(normalizedUrl.lastIndexOf("/") + 1);
+  }
+}
+
+function isLikelyEarningsReleaseFileName(name: string): boolean {
+  return /(?:^|[^a-z0-9])ex(?:hibit)?[-_\s]?99(?:[-_.\s]?1)?(?:[^a-z0-9]|$)/i.test(name) ||
+    name.includes("ex99") ||
+    name.includes("exhibit991") ||
+    /\b(?:earnings|release|results)\b/i.test(name);
+}
+
+function hasEarningsReleaseTextEvidence(html: string): boolean {
+  const text = normalizeAiPreflightText(html);
+  if ("" === text) {
+    return false;
+  }
+
+  const hasReleaseHeadline = /\b(?:reports?|announces?|released?|issues?)\b.{0,120}\b(?:quarter|fiscal|year|annual)\b.{0,120}\b(?:results?|earnings)\b/i.test(text) ||
+    /\b(?:quarterly|annual)\s+(?:financial\s+)?results?\b/i.test(text);
+  const hasMetricCue = /\b(?:revenue|sales|net\s+income|net\s+earnings|earnings\s+per\s+share|eps|adjusted\s+ebitda)\b/i.test(text);
+  const hasQuantitativeCue = /(?:[$€£¥]\s?\(?\d|\b\d+(?:[,.]\d+)?\s?(?:million|billion|m|bn|%|cents|per\s+share)\b)/i.test(text);
+  return hasReleaseHeadline && hasMetricCue && hasQuantitativeCue;
+}
+
+function normalizeAiPreflightText(html: string): string {
+  return html
+    .replace(/<script\b[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style\b[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/\s+/g, " ")
+    .trim()
+    .slice(0, 60_000);
 }
 
 function shouldSuppressAnnouncement(
