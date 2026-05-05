@@ -439,6 +439,47 @@ describe("earnings result formatting", () => {
     ]);
   });
 
+  test("parses cents-denominated EPS as dollars per share", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Ball Reports Strong First Quarter 2026 Results</h1>
+          <p>First quarter U.S. GAAP total diluted earnings per share of 77 cents vs. 63 cents in 2025.</p>
+          <p>On a U.S. GAAP basis, net earnings were $205 million or total diluted earnings per share of 77 cents, on sales of $3.60 billion.</p>
+        </body>
+      </html>
+    `);
+    const event: EarningsEvent = {
+      ticker: "BALL",
+      when: "before_open",
+      date: "2026-05-05",
+      importance: 1,
+      epsConsensus: "$0.85",
+    };
+    const metrics = getMessageMetrics(parsedDocument.metrics, null, event);
+
+    expect(parsedDocument.quarterLabel).toBe("Q1 2026");
+    expect(metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "gaap_eps",
+        estimate: "$0.85",
+        numericValue: 0.77,
+        outcome: "miss",
+        value: "$0.77",
+      }),
+      expect.objectContaining({
+        key: "revenue",
+        numericValue: 3_600_000_000,
+        value: "$3.6B",
+      }),
+      expect.objectContaining({
+        key: "net_income",
+        numericValue: 205_000_000,
+        value: "$205M",
+      }),
+    ]));
+  });
+
   test("removes script/style blocks with spaced closing tags", () => {
     const text = htmlToText(`
       <p>Revenue $10 billion</p>
