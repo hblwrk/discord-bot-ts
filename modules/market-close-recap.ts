@@ -1,5 +1,5 @@
 import moment from "moment-timezone";
-import {callGeminiJson, type GeminiDependencies} from "./gemini.ts";
+import {callAiProviderJson, type AiProviderDependencies} from "./ai-provider.ts";
 
 export type MarketCloseSentimentAnswer = "Risk-on" | "Risk-off" | "Cash" | "Chaos";
 
@@ -8,7 +8,7 @@ export type MarketCloseRecapPayload = {
   content: string;
 };
 
-export type MarketCloseRecapDependencies = GeminiDependencies;
+export type MarketCloseRecapDependencies = AiProviderDependencies;
 
 export type MarketCloseRecapOptions = {
   date?: Date | undefined;
@@ -44,7 +44,7 @@ type PollMessageLike = {
   poll?: PollLike | null | undefined;
 };
 
-type GeminiMarketCloseRecap = {
+type AiMarketCloseRecap = {
   sentimentTitle?: string | undefined;
   summaryMarkdown: string;
   winningPollAnswer: MarketCloseSentimentAnswer;
@@ -91,7 +91,7 @@ export async function getMarketCloseRecap(
   dependencies: MarketCloseRecapDependencies,
   options: MarketCloseRecapOptions = {},
 ): Promise<MarketCloseRecapPayload | undefined> {
-  const jsonText = await callGeminiJson(
+  const jsonText = await callAiProviderJson(
     getMarketCloseRecapPrompt(options.date ?? new Date()),
     marketCloseRecapSchema,
     dependencies,
@@ -99,12 +99,12 @@ export async function getMarketCloseRecap(
     undefined,
     {
       timeoutMs: 45_000,
-      useGoogleSearch: true,
+      useWebSearch: true,
     },
   ).catch(error => {
     dependencies.logger.log(
       "warn",
-      `Gemini market close recap failed: ${error}`,
+      `AI market close recap failed: ${error}`,
     );
     return null;
   });
@@ -112,7 +112,7 @@ export async function getMarketCloseRecap(
     return undefined;
   }
 
-  const recap = parseGeminiMarketCloseRecap(jsonText, dependencies);
+  const recap = parseAiMarketCloseRecap(jsonText, dependencies);
   if (undefined === recap) {
     return undefined;
   }
@@ -178,7 +178,7 @@ function getMarketCloseRecapPrompt(date: Date): string {
   const usEasternDate = moment(date).tz(usEasternTimezone).format("YYYY-MM-DD");
   return [
     `Heute ist nach US-Börsenschluss am ${usEasternDate} (US/Eastern).`,
-    "Nutze Google Search, um den US-Cash-Handelstag realitätsnah einzuordnen.",
+    "Nutze Websuche, um den US-Cash-Handelstag realitätsnah einzuordnen.",
     "Bewerte den Handelstag vom regulären US-Open bis zum regulären US-Close.",
     "Berücksichtige `SPX` oder `SPY`, `NQ` oder `QQQ`, `RTY` oder `IWM` sowie zwingend den `VIX`.",
     "Der `VIX` darf niemals als Prozentwert beschrieben werden. Beschreibe ihn nur als Stand, Veränderung in Punkten oder Richtung, z.B. `18,4` auf `20,1` oder `+1,7 Punkte`.",
@@ -192,20 +192,20 @@ function getMarketCloseRecapPrompt(date: Date): string {
     "Halte `summaryMarkdown` unter 1.000 Zeichen.",
     "Nutze 2-4 kurze Absätze oder Bulletpoints.",
     "Formatiere Ticker und konkrete Kennzahlen als Inline-Code, z.B. `SPX`, `QQQ`, `+0,4%`, `1,7 Punkte`.",
-    "Erwähne weder Gemini noch KI, Modell, Google Search, Quellen, Grounding oder Rechercheprozess.",
+    "Erwähne weder KI-Anbieter, KI, Modell, Websuche, Quellen, Grounding noch Rechercheprozess.",
     "Keine Disclaimer, keine Links, keine Tabellen, keine Codeblöcke.",
   ].join("\n");
 }
 
-function parseGeminiMarketCloseRecap(
+function parseAiMarketCloseRecap(
   jsonText: string,
   dependencies: MarketCloseRecapDependencies,
-): GeminiMarketCloseRecap | undefined {
+): AiMarketCloseRecap | undefined {
   const parsedJson = parseJson(jsonText);
   if (false === isRecord(parsedJson)) {
     dependencies.logger.log(
       "warn",
-      "Gemini market close recap returned invalid JSON.",
+      "AI market close recap returned invalid JSON.",
     );
     return undefined;
   }
@@ -218,7 +218,7 @@ function parseGeminiMarketCloseRecap(
       "string" !== typeof sentimentTitle) {
     dependencies.logger.log(
       "warn",
-      "Gemini market close recap response missed required fields.",
+      "AI market close recap response missed required fields.",
     );
     return undefined;
   }
@@ -232,7 +232,7 @@ function parseGeminiMarketCloseRecap(
       true === hasVixPercent(combinedText)) {
     dependencies.logger.log(
       "warn",
-      "Gemini market close recap failed output validation.",
+      "AI market close recap failed output validation.",
     );
     return undefined;
   }
@@ -245,7 +245,7 @@ function parseGeminiMarketCloseRecap(
 }
 
 function buildMarketCloseRecapContent(
-  recap: GeminiMarketCloseRecap,
+  recap: AiMarketCloseRecap,
   totalRightVoterCount: number | undefined,
   mentionedUserIds: string[],
 ): string {
@@ -259,7 +259,7 @@ function buildMarketCloseRecapContent(
   ].filter(line => "" !== line).join("\n\n"));
 }
 
-function getSentimentLine(recap: GeminiMarketCloseRecap): string {
+function getSentimentLine(recap: AiMarketCloseRecap): string {
   const answerLabel = sentimentLabels[recap.winningPollAnswer];
   if (undefined === recap.sentimentTitle || "" === recap.sentimentTitle) {
     return `Das heutige Sentiment war: **${answerLabel}**`;
@@ -491,7 +491,7 @@ function truncateRecapContent(value: string): string {
 }
 
 function hasForbiddenProviderMention(value: string): boolean {
-  return /\b(Gemini|KI|Künstliche Intelligenz|Modell|Google Search|Grounding)\b/iu.test(value);
+  return /\b(Gemini|OpenAI|GPT|ChatGPT|KI|Künstliche Intelligenz|Modell|Google Search|Websuche|Grounding)\b/iu.test(value);
 }
 
 function hasVixPercent(value: string): boolean {

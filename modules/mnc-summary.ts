@@ -1,7 +1,7 @@
 import type {Buffer} from "node:buffer";
-import {callGeminiJson, type GeminiDependencies} from "./gemini.ts";
+import {callAiProviderJson, type AiProviderDependencies} from "./ai-provider.ts";
 
-export type MncSummaryDependencies = GeminiDependencies;
+export type MncSummaryDependencies = AiProviderDependencies;
 
 const maxInlinePdfBytes = 14_000_000;
 const maxDiscordSummaryLength = 1_700;
@@ -25,18 +25,19 @@ export async function getMncSummary(
   if (pdfBuffer.length > maxInlinePdfBytes) {
     dependencies.logger.log(
       "warn",
-      "Skipping MNC Gemini summary: PDF is too large for inline Gemini processing.",
+      "Skipping MNC AI summary: PDF is too large for inline provider processing.",
     );
     return undefined;
   }
 
-  const jsonText = await callGeminiJson(
+  const jsonText = await callAiProviderJson(
     getMncSummaryPrompt(),
     mncSummarySchema,
     dependencies,
     "MNC summary",
     {
       data: pdfBuffer.toString("base64"),
+      filename: "morning-news-call.pdf",
       mimeType: "application/pdf",
     },
     {
@@ -45,7 +46,7 @@ export async function getMncSummary(
   ).catch(error => {
     dependencies.logger.log(
       "warn",
-      `Gemini MNC summary failed: ${error}`,
+      `AI MNC summary failed: ${error}`,
     );
     return null;
   });
@@ -57,7 +58,7 @@ export async function getMncSummary(
   if (false === isRecord(parsedJson)) {
     dependencies.logger.log(
       "warn",
-      "Gemini MNC summary returned invalid JSON.",
+      "AI MNC summary returned invalid JSON.",
     );
     return undefined;
   }
@@ -66,7 +67,7 @@ export async function getMncSummary(
   if ("string" !== typeof summaryMarkdown) {
     dependencies.logger.log(
       "warn",
-      "Gemini MNC summary response did not contain summaryMarkdown.",
+      "AI MNC summary response did not contain summaryMarkdown.",
     );
     return undefined;
   }

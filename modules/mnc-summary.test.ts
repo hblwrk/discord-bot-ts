@@ -1,9 +1,9 @@
 import {Buffer} from "node:buffer";
 import {beforeEach, describe, expect, test, vi} from "vitest";
-import {clearGeminiState} from "./gemini.ts";
+import {clearAiProviderState} from "./ai-provider.ts";
 import {getMncSummary} from "./mnc-summary.ts";
 
-describe("MNC Gemini summary", () => {
+describe("MNC AI summary", () => {
   const logger = {
     log: vi.fn(),
   };
@@ -17,10 +17,10 @@ describe("MNC Gemini summary", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    clearGeminiState();
+    clearAiProviderState();
   });
 
-  test("summarizes the PDF with inline Gemini PDF data", async () => {
+  test("summarizes the PDF with inline provider PDF data", async () => {
     const postWithRetryFn = vi.fn().mockResolvedValue({
       data: {
         candidates: [{
@@ -65,7 +65,7 @@ describe("MNC Gemini summary", () => {
     );
   });
 
-  test("stays disabled when the Gemini API key is missing", async () => {
+  test("stays disabled when the active provider API key is missing", async () => {
     const postWithRetryFn = vi.fn();
 
     const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
@@ -93,7 +93,7 @@ describe("MNC Gemini summary", () => {
     expect(postWithRetryFn).not.toHaveBeenCalled();
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
-      "Skipping MNC Gemini summary: PDF is too large for inline Gemini processing.",
+      "Skipping MNC AI summary: PDF is too large for inline provider processing.",
     );
   });
 
@@ -130,7 +130,7 @@ describe("MNC Gemini summary", () => {
     expect(summary).toContain("\n- ...");
   });
 
-  test("returns no summary for invalid Gemini JSON", async () => {
+  test("returns no summary for invalid AI JSON", async () => {
     const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
       logger,
       postWithRetryFn: vi.fn().mockResolvedValue({
@@ -150,7 +150,7 @@ describe("MNC Gemini summary", () => {
     expect(summary).toBeUndefined();
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
-      "Gemini MNC summary returned invalid JSON.",
+      "AI MNC summary returned invalid JSON.",
     );
   });
 });

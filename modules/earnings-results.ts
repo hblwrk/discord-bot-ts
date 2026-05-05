@@ -1,9 +1,9 @@
 import moment from "moment-timezone";
 import {bluechipMinMarketCap, clearEarningsScheduleCache, type EarningsEvent, getEarningsResult} from "./earnings.ts";
 import {
-  checkEarningsQualityWithGemini,
+  checkEarningsQualityWithAi,
   clearEarningsAiState,
-  extractEarningsWithGemini,
+  extractEarningsWithAi,
   getSuspiciousEarningsReasons,
   hasHighSeveritySuspicion,
   mergeAiMetrics,
@@ -13,6 +13,7 @@ import {
   formatUsdCompact,
   getEarningsResultMessage,
   getMessageMetrics,
+  htmlToText,
   normalizeTickerSymbol,
   parseEarningsDocument,
   parseNumber,
@@ -177,6 +178,7 @@ export function startEarningsResultWatcher(
   const announcementThreadID = getOptionalChannelID(options.announcementThreadID);
   const seenAccessions = new Set<string>();
   const seenResultKeys = new Set<string>();
+  const skippedNoMetricsAccessions = new Set<string>();
   const dependencies = getDependencies(options);
   let seenAccessionsSeeded = false;
   let stopped = false;
@@ -210,10 +212,12 @@ export function startEarningsResultWatcher(
       secCurrentFilingsLimit?: number;
       seenAccessions: Set<string>;
       seenResultKeys: Set<string>;
+      skippedNoMetricsAccessions: Set<string>;
     } = {
       dependencies,
       seenAccessions,
       seenResultKeys,
+      skippedNoMetricsAccessions,
     };
     if (undefined !== options.maxAnnouncementsPerScan) {
       announcementOptions.maxAnnouncementsPerScan = options.maxAnnouncementsPerScan;
@@ -286,12 +290,14 @@ export async function getEarningsResultAnnouncements({
   secCurrentFilingsLimit = defaultSecCurrentFilingsLimit,
   seenAccessions = new Set<string>(),
   seenResultKeys = new Set<string>(),
+  skippedNoMetricsAccessions = new Set<string>(),
 }: {
   dependencies?: EarningsResultDependencies;
   maxAnnouncementsPerScan?: number;
   secCurrentFilingsLimit?: number;
   seenAccessions?: Set<string>;
   seenResultKeys?: Set<string>;
+  skippedNoMetricsAccessions?: Set<string>;
 } = {}): Promise<EarningsResultScanResult> {
   const now = dependencies.now().clone().tz(usEasternTimezone);
   const watches = await getTodaysEarningsWatches(dependencies, now);
@@ -315,6 +321,10 @@ export async function getEarningsResultAnnouncements({
     }
 
     if (true === seenAccessions.has(filing.accessionNumber)) {
+      continue;
+    }
+
+    if (true === skippedNoMetricsAccessions.has(filing.accessionNumber)) {
       continue;
     }
 
@@ -342,6 +352,7 @@ export async function getEarningsResultAnnouncements({
       filingWatch,
       dependencies,
       now,
+      skippedNoMetricsAccessions,
     );
     if (null !== announcement) {
       announcements.push(announcement);
@@ -579,6 +590,7 @@ async function buildEarningsResultAnnouncement(
   watch: EarningsWatchEntry,
   dependencies: EarningsResultDependencies,
   now: moment.Moment,
+  skippedNoMetricsAccessions: Set<string>,
 ): Promise<EarningsResultAnnouncement | null> {
   const [filingDetails, xbrlMetrics] = await Promise.all([
     loadSecFilingDetails(filing, dependencies).catch(error => {
@@ -611,7 +623,7 @@ async function buildEarningsResultAnnouncement(
     sourceMetrics,
     suspiciousReasons: initialSuspiciousReasons,
   })
-    ? await extractEarningsWithGemini({
+    ? await extractEarningsWithAi({
       companyName: watch.companyName,
       filingForm: filing.form,
       filingUrl: filingDetails?.documentUrl || filing.filingUrl,
@@ -637,6 +649,7 @@ async function buildEarningsResultAnnouncement(
   const filingUrl = filingDetails?.documentUrl || filing.filingUrl;
 
   if (0 === metrics.length && 0 === parsedDocument.outlook.length) {
+    skippedNoMetricsAccessions.add(filing.accessionNumber);
     dependencies.logger.log(
       "warn",
       `Skipping earnings result announcement for ${watch.event.ticker}: no earnings metrics or outlook could be parsed.`,
@@ -652,7 +665,7 @@ async function buildEarningsResultAnnouncement(
     parsedDocument,
     ticker: watch.event.ticker,
   });
-  const qualityGate = await checkEarningsQualityWithGemini({
+  const qualityGate = await checkEarningsQualityWithAi({
     companyName: watch.companyName,
     event: watch.event,
     filingForm: filing.form,
@@ -763,12 +776,7 @@ function hasEarningsReleaseTextEvidence(html: string): boolean {
 }
 
 function normalizeAiPreflightText(html: string): string {
-  return html
-    .replace(/<script\b[\s\S]*?<\/script>/gi, " ")
-    .replace(/<style\b[\s\S]*?<\/style>/gi, " ")
-    .replace(/<[^>]+>/g, " ")
-    .replace(/&nbsp;/gi, " ")
-    .replace(/&amp;/gi, "&")
+  return htmlToText(html)
     .replace(/\s+/g, " ")
     .trim()
     .slice(0, 60_000);

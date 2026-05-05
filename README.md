@@ -151,10 +151,15 @@ The health-check server port can be overridden via the `HEALTHCHECK_PORT` enviro
   "discord_30y_client_ID": "",
   "tastytrade_client_secret": "",
   "tastytrade_refresh_token": "",
+  "ai_provider": "gemini",
   "gemini_api_key": "",
   "gemini_model": "gemini-2.5-flash-lite",
   "gemini_calls_per_minute": "9",
   "gemini_calls_per_day": "18",
+  "openai_api_key": "",
+  "openai_model": "gpt-5.4-mini",
+  "openai_calls_per_minute": "20",
+  "openai_calls_per_day": "200",
   "dracoon_password": "",
   "hblwrk_channel_NYSEAnnouncement_ID": "",
   "hblwrk_gainslosses_thread_ID": "",
@@ -203,7 +208,7 @@ If DRACOON downloads fail during startup, the bot keeps those assets marked as t
 
 ### Reminder assets
 
-Calendar reminders, earnings reminders, and earnings result announcements post into `hblwrk_channel_OtherAnnouncement_ID`. Earnings result announcements are sent after a matching SEC EDGAR filing appears. Result announcements include an `Outlook` block when the filing has an explicit outlook or guidance section. Gemini-assisted SEC extraction and suspicious-post checks run when `gemini_api_key` is configured; the bot keeps XBRL and HTML parsing as the primary source and validates AI metrics against source snippets before posting. MNC announcements use the same optional Gemini access to add a one-minute Discord Markdown summary above the PDF attachment. NYSE close announcements use optional Gemini search grounding to add a German close recap and match the day to the opening sentiment poll; if the bot restarts during the session, it recovers the poll from recent channel history when possible. `gemini_calls_per_minute` caps local Gemini calls and defaults to `9`; `gemini_calls_per_day` defaults to `18`. Deployments with a higher Gemini quota set `production_gemini_calls_per_minute` and `production_gemini_calls_per_day` to raise those local caps. Calendar and earnings reminders ping the `alerts` special role, which is self-assignable from the roles channel via the `🛎️` bellhop bell reaction on the special roles message.
+Calendar reminders, earnings reminders, and earnings result announcements post into `hblwrk_channel_OtherAnnouncement_ID`. Earnings result announcements are sent after a matching SEC EDGAR filing appears. Result announcements include an `Outlook` block when the filing has an explicit outlook or guidance section. AI-assisted SEC extraction and suspicious-post checks run through the AI provider boundary; `ai_provider` defaults to `gemini`, which runs when `gemini_api_key` is configured. The bot keeps XBRL and HTML parsing as the primary source and validates AI metrics against source snippets before posting. MNC announcements use the same optional AI provider access to add a one-minute Discord Markdown summary above the PDF attachment. NYSE close announcements use optional provider web-search grounding to add a German close recap and match the day to the opening sentiment poll; if the bot restarts during the session, it recovers the poll from recent channel history when possible. The provider boundary also supports `ai_provider=openai` with `openai_api_key` and defaults `openai_model` to `gpt-5.4-mini`. Gemini local call caps default to `9` per minute and `18` per day through `gemini_calls_per_minute` and `gemini_calls_per_day`; OpenAI local call caps default to `20` per minute and `200` per day through `openai_calls_per_minute` and `openai_calls_per_day`. Deployments with a higher Gemini quota set `production_gemini_calls_per_minute` and `production_gemini_calls_per_day` to raise those local caps. Calendar and earnings reminders ping the `alerts` special role, which is self-assignable from the roles channel via the `🛎️` bellhop bell reaction on the special roles message.
 
 Calendar reminder assets are matched against the current day and sent at `08:30 Europe/Berlin`, immediately after the general daily calendar post. If multiple matching calendar items share the same release minute, the bot bundles them into a single reminder ping:
 

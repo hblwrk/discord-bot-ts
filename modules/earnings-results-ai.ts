@@ -6,9 +6,9 @@ import {
   type EarningsResultMetric,
   type NasdaqSurprise,
 } from "./earnings-results-format.ts";
-import {callGeminiJson, clearGeminiState, type GeminiDependencies} from "./gemini.ts";
+import {callAiProviderJson, clearAiProviderState, type AiProviderDependencies} from "./ai-provider.ts";
 
-type EarningsAiDependencies = GeminiDependencies;
+type EarningsAiDependencies = AiProviderDependencies;
 
 export type EarningsAiExtractionInput = {
   companyName: string;
@@ -183,10 +183,10 @@ const qualityGateSchema = {
 } satisfies Record<string, unknown>;
 
 export function clearEarningsAiState() {
-  clearGeminiState();
+  clearAiProviderState();
 }
 
-export async function extractEarningsWithGemini(
+export async function extractEarningsWithAi(
   input: EarningsAiExtractionInput,
   dependencies: EarningsAiDependencies,
 ): Promise<EarningsAiExtraction | null> {
@@ -196,7 +196,7 @@ export async function extractEarningsWithGemini(
   }
 
   const prompt = getExtractionPrompt(input, sourceText);
-  const jsonText = await callGeminiJson(
+  const jsonText = await callAiProviderJson(
     prompt,
     earningsExtractionSchema,
     dependencies,
@@ -205,7 +205,7 @@ export async function extractEarningsWithGemini(
     .catch(error => {
       dependencies.logger.log(
         "warn",
-        `Gemini earnings extraction failed for ${input.ticker}: ${error}`,
+        `AI earnings extraction failed for ${input.ticker}: ${error}`,
       );
       return null;
     });
@@ -217,7 +217,7 @@ export async function extractEarningsWithGemini(
   if (null === parsedJson) {
     dependencies.logger.log(
       "warn",
-      `Gemini earnings extraction returned invalid JSON for ${input.ticker}.`,
+      `AI earnings extraction returned invalid JSON for ${input.ticker}.`,
     );
     return null;
   }
@@ -225,7 +225,7 @@ export async function extractEarningsWithGemini(
   return parseAiExtraction(parsedJson, htmlToText(input.html));
 }
 
-export async function checkEarningsQualityWithGemini(
+export async function checkEarningsQualityWithAi(
   input: EarningsAiQualityGateInput,
   dependencies: EarningsAiDependencies,
 ): Promise<EarningsAiQualityGateResult | null> {
@@ -244,7 +244,7 @@ export async function checkEarningsQualityWithGemini(
   }
 
   const prompt = getQualityGatePrompt(input, sourceText);
-  const jsonText = await callGeminiJson(
+  const jsonText = await callAiProviderJson(
     prompt,
     qualityGateSchema,
     dependencies,
@@ -253,7 +253,7 @@ export async function checkEarningsQualityWithGemini(
     .catch(error => {
       dependencies.logger.log(
         "warn",
-        `Gemini earnings quality gate failed for ${input.ticker}: ${error}`,
+        `AI earnings quality gate failed for ${input.ticker}: ${error}`,
       );
       return null;
     });
@@ -265,7 +265,7 @@ export async function checkEarningsQualityWithGemini(
   if (null === parsedJson) {
     dependencies.logger.log(
       "warn",
-      `Gemini earnings quality gate returned invalid JSON for ${input.ticker}.`,
+      `AI earnings quality gate returned invalid JSON for ${input.ticker}.`,
     );
     return null;
   }

@@ -575,6 +575,7 @@ describe("earnings result announcements", () => {
       throw new Error(`Unexpected URL ${url}`);
     });
 
+    const skippedNoMetricsAccessions = new Set<string>();
     const result = await getEarningsResultAnnouncements({
       dependencies: {
         getEarningsResultFn,
@@ -582,16 +583,41 @@ describe("earnings result announcements", () => {
         logger,
         now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
       },
+      skippedNoMetricsAccessions,
     });
 
     expect(result.announcements).toEqual([]);
+    expect(skippedNoMetricsAccessions.has("0000034088-26-000042")).toBe(true);
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
       "Skipping earnings result announcement for XOM: no earnings metrics or outlook could be parsed.",
     );
+
+    getWithRetryFn.mockClear();
+    logger.log.mockClear();
+
+    const secondResult = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:06", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      },
+      skippedNoMetricsAccessions,
+    });
+
+    expect(secondResult.announcements).toEqual([]);
+    expect(logger.log).not.toHaveBeenCalledWith(
+      "warn",
+      "Skipping earnings result announcement for XOM: no earnings metrics or outlook could be parsed.",
+    );
+    expect(getWithRetryFn).not.toHaveBeenCalledWith(
+      expect.stringContaining("/index.json"),
+      expect.anything(),
+    );
   });
 
-  test("does not spend Gemini calls on primary 8-K shells with no parsed metrics", async () => {
+  test("does not spend AI calls on primary 8-K shells with no parsed metrics", async () => {
     getWithRetryFn.mockImplementation(async (url: string) => {
       if (url.includes("company_tickers.json")) {
         return {
@@ -917,7 +943,7 @@ describe("earnings result announcements", () => {
     watcher.stop();
   });
 
-  test("uses Gemini extraction and suppresses suspicious earnings metrics when quality gate rejects them", async () => {
+  test("uses AI extraction and suppresses suspicious earnings metrics when quality gate rejects them", async () => {
     getEarningsResultFn.mockResolvedValue({
       status: "ok",
       events: [{

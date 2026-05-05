@@ -318,7 +318,7 @@ describe("timers: NYSE and MNC", () => {
     }));
   });
 
-  test("startMncTimers includes a Gemini summary when available", async () => {
+  test("startMncTimers includes an AI summary when available", async () => {
     const {client, send} = createClientWithChannel();
     getMncSummaryMock.mockResolvedValueOnce("**Morning News Call - TL;DR**\n- Futures firm ahead of payrolls.");
 
