@@ -321,6 +321,75 @@ describe("earnings result formatting", () => {
     ]);
   });
 
+  test("uses split table values instead of date headers or note columns", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>GlobalFoundries reports first quarter 2026 results</h1>
+          <p>(Unaudited, in millions, except per share amounts)</p>
+          <p>Three Months Ended March 31</p>
+          <p>| 2026</p>
+          <p>| 2025</p>
+          <p>Net revenue</p>
+          <p>| $</p>
+          <p>| 1,634</p>
+          <p>| $</p>
+          <p>| 1,585</p>
+          <p>Cost of revenue</p>
+          <p>| 1,183</p>
+          <p>| 1,230</p>
+          <p>Net income</p>
+          <p>| $</p>
+          <p>| 104</p>
+          <p>| $</p>
+          <p>| 211</p>
+          <h2>Note 3. Net Revenue</h2>
+          <p>The following table presents the Company's revenue for the three month periods ended March 31, 2026 and 2025.</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "revenue",
+        numericValue: 1_634_000_000,
+        value: "$1.63B",
+      }),
+      expect.objectContaining({
+        key: "net_income",
+        numericValue: 104_000_000,
+        value: "$104M",
+      }),
+    ]));
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$31M");
+  });
+
+  test("skips table note references and prefers the period-ended quarter", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <p>BioNTech | Quarterly Report for the three months ended March 31, 2026</p>
+          <p>Q1 2027 program timing remains subject to risks.</p>
+          <table>
+            <tr><td>(in millions €, except per share data)</td><td>Note</td><td>2026</td><td>2025</td></tr>
+            <tr><td>Revenues</td><td>3</td></tr>
+            <tr><td>118.1</td><td>182.8</td></tr>
+          </table>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.quarterLabel).toBe("Q1 2026");
+    expect(parsedDocument.metrics).toEqual([
+      expect.objectContaining({
+        currencyCode: "EUR",
+        key: "revenue",
+        numericValue: 118_100_000,
+        value: "€118.1M",
+      }),
+    ]);
+  });
+
   test("skips generic production mentions without operational units", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>
@@ -499,8 +568,7 @@ describe("earnings result formatting", () => {
     });
 
     expect(message).toBe([
-      "**Example (EX)**",
-      "",
+      "**Example (`EX`)**",
       "📊 **Results**",
       "- **Production:** `1,200 boepd`",
       "SEC: [10-Q](https://www.sec.gov/example)",

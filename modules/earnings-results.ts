@@ -9,6 +9,7 @@ import {
   parseNumber,
   type NasdaqSurprise,
 } from "./earnings-results-format.ts";
+import {loadSecXbrlMetrics, mergeXbrlAndHtmlMetrics} from "./earnings-results-xbrl.ts";
 import {
   clearSecEarningsResultCaches,
   isLikelyEarningsFiling,
@@ -663,21 +664,27 @@ async function buildEarningsResultAnnouncement(
   dependencies: EarningsResultDependencies,
   now: moment.Moment,
 ): Promise<EarningsResultAnnouncement | null> {
-  const filingDetails = await loadSecFilingDetails(filing, dependencies).catch(error => {
-    dependencies.logger.log(
-      "warn",
-      `Skipping earnings result announcement for ${watch.event.ticker}: SEC filing details could not be loaded: ${error}`,
-    );
-    return null;
-  });
-  if (null === filingDetails) {
-    return null;
-  }
-
+  const [filingDetails, xbrlMetrics] = await Promise.all([
+    loadSecFilingDetails(filing, dependencies).catch(error => {
+      dependencies.logger.log(
+        "warn",
+        `Skipping earnings result announcement for ${watch.event.ticker}: SEC filing details could not be loaded: ${error}`,
+      );
+      return null;
+    }),
+    loadSecXbrlMetrics(filing, dependencies).catch(error => {
+      dependencies.logger.log(
+        "debug",
+        `SEC XBRL facts could not be loaded for ${watch.event.ticker}; falling back to HTML metrics: ${error}`,
+      );
+      return [];
+    }),
+  ]);
+  const parsedDocument = parseEarningsDocument(filingDetails?.html ?? "");
+  const sourceMetrics = mergeXbrlAndHtmlMetrics(xbrlMetrics, parsedDocument.metrics);
   const surprise = await loadNasdaqSurprise(watch.event.ticker, dependencies, now);
-  const parsedDocument = parseEarningsDocument(filingDetails.html);
-  const metrics = getMessageMetrics(parsedDocument.metrics, surprise, watch.event);
-  const filingUrl = filingDetails.documentUrl || filing.filingUrl;
+  const metrics = getMessageMetrics(sourceMetrics, surprise, watch.event);
+  const filingUrl = filingDetails?.documentUrl || filing.filingUrl;
 
   if (0 === metrics.length && 0 === parsedDocument.outlook.length) {
     dependencies.logger.log(
@@ -787,8 +794,7 @@ function parseNasdaqMoney(value: unknown): number | null {
 
 export function getExampleEarningsResultOutput(): string {
   return [
-    "**Apple Inc. (AAPL) - Q1 2026**",
-    "",
+    "**Apple Inc. (`AAPL`)** - Q1 2026",
     "📊 **Results**",
     "- **EPS:** `$2.84` vs est. `$2.67` (🟢 beat)",
     `- **Revenue:** \`${formatUsdCompact(143_800_000_000)}\` vs est. \`${formatUsdCompact(138_250_000_000)}\` (🟢 beat)`,

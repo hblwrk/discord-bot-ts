@@ -8,6 +8,7 @@ import {
 export type EarningsResultOutcome = "beat" | "inline" | "miss";
 
 export type EarningsResultMetric = {
+  currencyCode?: string | undefined;
   estimate?: string | undefined;
   key: string;
   label: string;
@@ -37,6 +38,11 @@ type SecCurrentFilingForMessage = {
 };
 
 type MetricValueType = "eps" | "money" | "number";
+
+type MoneyContext = {
+  currencyCode?: string | undefined;
+  scale: number;
+};
 
 type MetricDefinition = {
   key: string;
@@ -141,18 +147,24 @@ export function getMessageMetrics(
 
   const epsMetric = metrics.find(metric => "adjusted_eps" === metric.key) ??
     metrics.find(metric => "nasdaq_eps" === metric.key || "gaap_eps" === metric.key);
-  if (epsMetric && "number" === typeof consensusEps) {
+  if (epsMetric && "number" === typeof consensusEps && true === canCompareAgainstUsdEstimate(epsMetric)) {
     epsMetric.estimate = formatEps(consensusEps);
     epsMetric.outcome = getOutcome(epsMetric.numericValue, consensusEps);
   }
 
   const revenueMetric = metrics.find(metric => "revenue" === metric.key);
-  if (revenueMetric && "number" === typeof surprise?.consensusRevenue) {
+  if (revenueMetric &&
+      "number" === typeof surprise?.consensusRevenue &&
+      true === canCompareAgainstUsdEstimate(revenueMetric)) {
     revenueMetric.estimate = formatUsdCompact(surprise.consensusRevenue);
     revenueMetric.outcome = getOutcome(revenueMetric.numericValue, surprise.consensusRevenue);
   }
 
   return metrics.slice(0, 7);
+}
+
+function canCompareAgainstUsdEstimate(metric: EarningsResultMetric): boolean {
+  return undefined === metric.currencyCode || "USD" === metric.currencyCode;
 }
 
 function normalizeEpsMetrics(
@@ -241,15 +253,14 @@ export function getEarningsResultMessage({
   parsedDocument: ParsedEarningsDocument;
   ticker: string;
 }): string {
-  const titleParts = [`**${companyName} (${ticker.trim().toUpperCase()})`];
+  const normalizedTicker = ticker.trim().toUpperCase().replaceAll("`", "'");
+  const titleParts = [`**${companyName} (\`${normalizedTicker}\`)**`];
   if (parsedDocument.quarterLabel) {
     titleParts.push(` - ${parsedDocument.quarterLabel}`);
   }
-  titleParts.push("**");
 
   const lines = [titleParts.join("")];
   if (0 < metrics.length) {
-    lines.push("");
     lines.push("📊 **Results**");
     for (const metric of metrics) {
       lines.push(getMetricMessageLine(metric));
@@ -257,7 +268,9 @@ export function getEarningsResultMessage({
   }
 
   if (0 < parsedDocument.outlook.length) {
-    lines.push("");
+    if (1 < lines.length) {
+      lines.push("");
+    }
     lines.push("🔮 **Outlook**");
     for (const metric of parsedDocument.outlook) {
       lines.push(`- **${metric.label}:** ${formatOutlookValue(metric.value)}`);
@@ -366,34 +379,51 @@ function getDocumentHeadline(lines: string[]): string | undefined {
 }
 
 function getQuarterLabel(text: string): string | undefined {
-  const directQuarterMatch = text.match(/\b(Q[1-4])\s+(20\d{2})\b/i);
-  if (undefined !== directQuarterMatch?.[1] && undefined !== directQuarterMatch[2]) {
-    return `${directQuarterMatch[1].toUpperCase()} ${directQuarterMatch[2]}`;
+  const periodEndedQuarter = getQuarterLabelFromPeriodEnded(text);
+  if (undefined !== periodEndedQuarter) {
+    return periodEndedQuarter;
   }
 
   const writtenQuarterMatch = text.match(/\b(first|second|third|fourth)\s+quarter\s+(?:of\s+)?(20\d{2})\b/i);
   if (undefined !== writtenQuarterMatch?.[1] && undefined !== writtenQuarterMatch[2]) {
-    const quarterByName = new Map<string, string>([
-      ["first", "Q1"],
-      ["second", "Q2"],
-      ["third", "Q3"],
-      ["fourth", "Q4"],
-    ]);
-    const quarter = quarterByName.get(writtenQuarterMatch[1].toLowerCase());
+    const quarter = getQuarterFromName(writtenQuarterMatch[1]);
     if (quarter) {
       return `${quarter} ${writtenQuarterMatch[2]}`;
     }
   }
 
-  const quarterEndedMatch = text.match(/\bquarter\s+ended\s+([A-Z][a-z]+)\s+\d{1,2},\s+(20\d{2})\b/);
-  if (undefined !== quarterEndedMatch?.[1] && undefined !== quarterEndedMatch[2]) {
-    const month = moment(quarterEndedMatch[1], "MMMM", true);
-    if (true === month.isValid()) {
-      return `Q${Math.floor(month.month() / 3) + 1} ${quarterEndedMatch[2]}`;
-    }
+  const directQuarterMatch = text.match(/\b(Q[1-4])\s+(20\d{2})\b/i);
+  if (undefined !== directQuarterMatch?.[1] && undefined !== directQuarterMatch[2]) {
+    return `${directQuarterMatch[1].toUpperCase()} ${directQuarterMatch[2]}`;
   }
 
   return undefined;
+}
+
+function getQuarterLabelFromPeriodEnded(text: string): string | undefined {
+  const periodEndedMatch = text.match(
+    /\b(?:three\s+months|quarter)\s+ended\s+([A-Z][a-z]+)\s+\d{1,2},\s+(20\d{2})\b/,
+  );
+  if (undefined === periodEndedMatch?.[1] || undefined === periodEndedMatch[2]) {
+    return undefined;
+  }
+
+  const month = moment(periodEndedMatch[1], "MMMM", true);
+  if (false === month.isValid()) {
+    return undefined;
+  }
+
+  return `Q${Math.floor(month.month() / 3) + 1} ${periodEndedMatch[2]}`;
+}
+
+function getQuarterFromName(name: string): string | undefined {
+  const quarterByName = new Map<string, string>([
+    ["first", "Q1"],
+    ["second", "Q2"],
+    ["third", "Q3"],
+    ["fourth", "Q4"],
+  ]);
+  return quarterByName.get(name.toLowerCase());
 }
 
 function extractEarningsMetrics(lines: string[]): EarningsResultMetric[] {
@@ -440,13 +470,15 @@ function extractMetric(
       metricLine,
       pattern,
       definition.valueType,
-      getContextMoneyScale(lines, lineIndex),
+      getContextMoney(lines, lineIndex),
+      isNearTableNoteColumn(lines, lineIndex),
     );
     if (null === metricValue) {
       continue;
     }
 
     return {
+      currencyCode: metricValue.currencyCode,
       key: definition.key,
       label: definition.label,
       numericValue: metricValue.numericValue,
@@ -463,13 +495,17 @@ function isPerShareOnlyNetIncomeLine(line: string): boolean {
 }
 
 function getMetricLineWithContinuation(lines: string[], lineIndex: number): string {
-  const line = lines[lineIndex] ?? "";
-  const nextLine = lines[lineIndex + 1];
-  if (undefined === nextLine || false === isValueOnlyLine(nextLine)) {
-    return line;
+  const metricLines = [lines[lineIndex] ?? ""];
+  for (let index = lineIndex + 1; index < lines.length && index <= lineIndex + 6; index++) {
+    const nextLine = lines[index];
+    if (undefined === nextLine || false === isValueOnlyLine(nextLine)) {
+      break;
+    }
+
+    metricLines.push(nextLine);
   }
 
-  return `${line} ${nextLine}`;
+  return metricLines.join(" ");
 }
 
 function isValueOnlyLine(line: string): boolean {
@@ -480,8 +516,9 @@ function extractMetricValue(
   line: string,
   pattern: RegExp,
   valueType: MetricValueType,
-  contextMoneyScale: number,
-): {numericValue: number; value: string} | null {
+  contextMoney: MoneyContext,
+  skipTableNoteRefs: boolean,
+): {currencyCode?: string | undefined; numericValue: number; value: string} | null {
   pattern.lastIndex = 0;
   const patternMatch = pattern.exec(line);
   const searchText = patternMatch ? line.slice(patternMatch.index + patternMatch[0].length) : line;
@@ -493,7 +530,8 @@ function extractMetricValue(
 
   if ("money" === valueType) {
     const parsedValue = findNumericValue(searchText, {
-      requireMoneyCue: 1 === contextMoneyScale,
+      requireMoneyCue: 1 === contextMoney.scale,
+      skipTableNoteRefs,
       skipPercentages: true,
     });
     if (null === parsedValue) {
@@ -501,10 +539,12 @@ function extractMetricValue(
     }
 
     const explicitScale = getExplicitMoneyScale(searchText);
-    const amount = parsedValue * (explicitScale ?? contextMoneyScale);
+    const currencyCode = getCurrencyCodeFromText(searchText) ?? contextMoney.currencyCode;
+    const amount = parsedValue * (explicitScale ?? contextMoney.scale);
     return {
+      currencyCode,
       numericValue: amount,
-      value: formatUsdCompact(amount),
+      value: formatMoneyCompact(amount, currencyCode),
     };
   }
 
@@ -524,20 +564,39 @@ function extractMetricValue(
   };
 }
 
-function getContextMoneyScale(lines: string[], lineIndex: number): number {
-  for (let index = lineIndex; index >= 0 && index >= lineIndex - 30; index--) {
+function getContextMoney(lines: string[], lineIndex: number): MoneyContext {
+  let currencyCode: string | undefined;
+  for (let index = lineIndex; index >= 0 && index >= lineIndex - 80; index--) {
     const line = lines[index];
     if (undefined === line) {
       continue;
     }
 
+    currencyCode ??= getCurrencyCodeFromText(line);
     const scale = getMoneyScaleFromContextText(line);
     if (null !== scale) {
-      return scale;
+      return {
+        currencyCode,
+        scale,
+      };
     }
   }
 
-  return 1;
+  return {
+    currencyCode,
+    scale: 1,
+  };
+}
+
+function isNearTableNoteColumn(lines: string[], lineIndex: number): boolean {
+  for (let index = lineIndex; index >= 0 && index >= lineIndex - 5; index--) {
+    const line = lines[index];
+    if (undefined !== line && /\bnote\b/i.test(line)) {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 function getMoneyScaleFromContextText(text: string): number | null {
@@ -554,6 +613,26 @@ function getMoneyScaleFromContextText(text: string): number | null {
   }
 
   return null;
+}
+
+function getCurrencyCodeFromText(text: string): string | undefined {
+  if (text.includes("€") || /\bEUR\b/i.test(text)) {
+    return "EUR";
+  }
+
+  if (text.includes("£") || /\bGBP\b/i.test(text)) {
+    return "GBP";
+  }
+
+  if (text.includes("¥") || /\bJPY\b/i.test(text)) {
+    return "JPY";
+  }
+
+  if (text.includes("$") || /\bUSD\b/i.test(text) || /\bdollars?\b/i.test(text)) {
+    return "USD";
+  }
+
+  return undefined;
 }
 
 function getExplicitMoneyScale(text: string): number | null {
@@ -580,13 +659,22 @@ function getExplicitMoneyScale(text: string): number | null {
 
 function findNumericValue(
   text: string,
-  options: {maxAbsValue?: number; requireMoneyCue?: boolean; skipPercentages?: boolean;} = {},
+  options: {
+    maxAbsValue?: number;
+    requireMoneyCue?: boolean;
+    skipPercentages?: boolean;
+    skipTableNoteRefs?: boolean;
+  } = {},
 ): number | null {
-  const numberMatches = text.matchAll(/\(?-?\$?\s*(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?/g);
+  const numberMatches = text.matchAll(/\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?/g);
   for (const numberMatch of numberMatches) {
     const token = numberMatch[0];
     const endIndex = numberMatch.index + token.length;
     if (true === options.skipPercentages && "%" === text.slice(endIndex, endIndex + 1)) {
+      continue;
+    }
+
+    if (true === isCalendarDayValue(text, numberMatch.index, endIndex)) {
       continue;
     }
 
@@ -597,6 +685,11 @@ function findNumericValue(
 
     if (true === options.requireMoneyCue &&
         false === hasMoneyCue(text, numberMatch.index, endIndex, token)) {
+      continue;
+    }
+
+    if (true === options.skipTableNoteRefs &&
+        true === isLikelyTableNoteReference(text, numberMatch.index, endIndex, token)) {
       continue;
     }
 
@@ -614,13 +707,36 @@ function findNumericValue(
   return null;
 }
 
+function isCalendarDayValue(text: string, startIndex: number, endIndex: number): boolean {
+  const beforeToken = text.slice(Math.max(0, startIndex - 16), startIndex);
+  const afterToken = text.slice(endIndex, endIndex + 8);
+  return /\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+$/i.test(beforeToken) &&
+    /^\s*,?\s*(?:20\d{2})?\b/.test(afterToken);
+}
+
+function isLikelyTableNoteReference(text: string, startIndex: number, endIndex: number, token: string): boolean {
+  if (!/^\(?-?\d{1,2}\)?$/.test(token.trim())) {
+    return false;
+  }
+
+  if (true === hasMoneyCue(text, startIndex, endIndex, token)) {
+    return false;
+  }
+
+  const beforeToken = text.slice(Math.max(0, startIndex - 16), startIndex);
+  const afterToken = text.slice(endIndex, endIndex + 80);
+  return /\|[\s|()–-]*$/.test(beforeToken) &&
+    /^\s*(?:\||$)/.test(afterToken) &&
+    /\d/.test(afterToken);
+}
+
 function hasMoneyCue(text: string, startIndex: number, endIndex: number, token: string): boolean {
-  if (token.includes("$")) {
+  if (/[$€£¥]/.test(token)) {
     return true;
   }
 
   const beforeToken = text.slice(Math.max(0, startIndex - 8), startIndex);
-  if (/\$[\s|()–-]*$/.test(beforeToken)) {
+  if (/[$€£¥][\s|()–-]*$/.test(beforeToken)) {
     return true;
   }
 
@@ -640,7 +756,7 @@ export function parseNumber(value: unknown): number | null {
   const normalizedValue = value
     .replace(/^\((.*)\)$/, "-$1")
     .replace(/^\((.*)$/, "-$1")
-    .replaceAll("$", "")
+    .replace(/[$€£¥]/g, "")
     .replaceAll(",", "")
     .replaceAll("%", "")
     .trim()
@@ -665,25 +781,46 @@ export function formatEps(value: number): string {
 }
 
 export function formatUsdCompact(value: number): string {
+  return formatMoneyCompact(value, "USD");
+}
+
+export function formatMoneyCompact(value: number, currencyCode = "USD"): string {
+  const symbol = getCurrencySymbol(currencyCode);
   const absoluteValue = Math.abs(value);
   const sign = value < 0 ? "-" : "";
   if (absoluteValue >= 1_000_000_000_000) {
-    return `${sign}$${formatDecimal(absoluteValue / 1_000_000_000_000)}T`;
+    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000_000_000_000)}T`;
   }
 
   if (absoluteValue >= 1_000_000_000) {
-    return `${sign}$${formatDecimal(absoluteValue / 1_000_000_000)}B`;
+    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000_000_000)}B`;
   }
 
   if (absoluteValue >= 1_000_000) {
-    return `${sign}$${formatDecimal(absoluteValue / 1_000_000)}M`;
+    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000_000)}M`;
   }
 
   if (absoluteValue >= 1_000) {
-    return `${sign}$${formatDecimal(absoluteValue / 1_000)}K`;
+    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000)}K`;
   }
 
-  return `${sign}$${formatDecimal(absoluteValue)}`;
+  return `${sign}${symbol}${formatDecimal(absoluteValue)}`;
+}
+
+function getCurrencySymbol(currencyCode: string): string {
+  if ("EUR" === currencyCode) {
+    return "€";
+  }
+
+  if ("GBP" === currencyCode) {
+    return "£";
+  }
+
+  if ("JPY" === currencyCode) {
+    return "¥";
+  }
+
+  return "$";
 }
 
 function formatDecimal(value: number): string {

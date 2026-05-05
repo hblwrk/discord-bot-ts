@@ -69,6 +69,30 @@ describe("earnings result announcements", () => {
         };
       }
 
+      if (url.includes("companyfacts/CIK0000034088.json")) {
+        return {
+          data: {
+            facts: {
+              "us-gaap": {
+                RevenueFromContractWithCustomerExcludingAssessedTax: {
+                  units: {
+                    USD: [{
+                      accn: "0000034088-26-000042",
+                      end: "2026-03-31",
+                      fp: "Q1",
+                      form: "8-K",
+                      frame: "CY2026Q1",
+                      start: "2026-01-01",
+                      val: 85_140_000_000,
+                    }],
+                  },
+                },
+              },
+            },
+          },
+        };
+      }
+
       if (url.endsWith("/index.json")) {
         return {
           data: {
@@ -135,7 +159,7 @@ describe("earnings result announcements", () => {
     expect(result.active).toBe(true);
     expect(result.watchedCompanies).toBe(1);
     expect(result.announcements).toHaveLength(1);
-    expect(result.announcements[0]!.message).toContain("**Exxon Mobil (XOM) - Q1 2026**");
+    expect(result.announcements[0]!.message).toContain("**Exxon Mobil (`XOM`)** - Q1 2026");
     expect(result.announcements[0]!.message).toContain("📊 **Results**");
     expect(result.announcements[0]!.message).toContain("- **Adj EPS:** `$1.16` vs est. `$0.96` (🟢 beat)");
     expect(result.announcements[0]!.message).toContain("- **Revenue:** `$85.14B` vs est. `$80.74B` (🟢 beat)");
@@ -475,7 +499,7 @@ describe("earnings result announcements", () => {
     });
 
     expect(send).toHaveBeenCalledWith({
-      content: expect.stringContaining("**Exxon Mobil (XOM) - Q1 2026**"),
+      content: expect.stringContaining("**Exxon Mobil (`XOM`)** - Q1 2026"),
       allowedMentions: {
         parse: [],
       },
@@ -548,7 +572,7 @@ describe("earnings result announcements", () => {
       limit: 100,
     });
     expect(threadSend).toHaveBeenCalledWith({
-      content: expect.stringContaining("**Exxon Mobil (XOM) - Q1 2026**"),
+      content: expect.stringContaining("**Exxon Mobil (`XOM`)** - Q1 2026"),
       allowedMentions: {
         parse: [],
       },
@@ -649,7 +673,7 @@ describe("earnings result announcements", () => {
   });
 
   test("provides a concrete example output", () => {
-    expect(getExampleEarningsResultOutput()).toContain("**Apple Inc. (AAPL) - Q1 2026**");
+    expect(getExampleEarningsResultOutput()).toContain("**Apple Inc. (`AAPL`)** - Q1 2026");
     expect(getExampleEarningsResultOutput()).toContain("📊 **Results**");
     expect(getExampleEarningsResultOutput()).toContain("- **EPS:** `$2.84` vs est. `$2.67` (🟢 beat)");
     expect(getExampleEarningsResultOutput()).toContain("SEC: [8-K](https://www.sec.gov/Archives/edgar/data/320193/000032019326000005/a8-kex991q1202612272025.htm) Item 2.02, 9.01");
