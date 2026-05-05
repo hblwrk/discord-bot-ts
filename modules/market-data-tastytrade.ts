@@ -395,12 +395,12 @@ export function createHandledDxLinkQuoteStreamer(
 ): TastytradeQuoteStreamer {
   const createClient = dependencies.createClient ?? (() => new DXLinkWebSocketClient({
     logLevel: DXLinkLogLevel.ERROR,
-  }) as unknown as DxLinkClientLike);
+  }));
   const createFeed = dependencies.createFeed ?? ((dxLinkClient: DxLinkClientLike) => new DXLinkFeed(
     dxLinkClient as unknown as DXLinkClient,
     FeedContract.AUTO,
     {logLevel: DXLinkLogLevel.ERROR},
-  ) as unknown as DxLinkFeedLike);
+  ));
 
   return new HandledDxLinkQuoteStreamer(accountsAndCustomersService, {
     createClient,
