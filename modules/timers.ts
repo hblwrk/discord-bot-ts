@@ -340,7 +340,9 @@ async function runEarningsAnnouncement(
   config: EarningsAnnouncementConfig,
   earningsExpectationsThreadID?: string,
 ) {
-  const earningsResult = await getEarningsResult(config.days, config.date);
+  const earningsResult = await getEarningsResult(config.days, config.date, {
+    source: config.source,
+  });
   const earningsEvents = await addExpectedMovesToEarningsEvents(earningsResult.events, {
     marketCapFilter: config.filter,
     when: config.when,
@@ -375,7 +377,9 @@ async function runEarningsAnnouncement(
 }
 
 async function warmExpectedMovesForAnnouncement(config: EarningsAnnouncementConfig) {
-  const earningsResult = await getEarningsResult(config.days, config.date);
+  const earningsResult = await getEarningsResult(config.days, config.date, {
+    source: `${config.source}-expected-move-warmup`,
+  });
   if ("error" === earningsResult.status) {
     logger.log(
       "warn",
@@ -734,7 +738,9 @@ export function startOtherTimers(
       return;
     }
 
-    const earningsResult = await getEarningsResult(0, "today");
+    const earningsResult = await getEarningsResult(0, "today", {
+      source: earningsReminderSource,
+    });
     if ("error" === earningsResult.status) {
       logger.log(
         "warn",

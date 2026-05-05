@@ -45,6 +45,18 @@ type NasdaqEarningsResponse = {
   };
   message?: string | null;
 };
+type EarningsLoadOptions = {
+  source?: string;
+};
+type NasdaqEarningsCacheEntry = {
+  loadedAtMs: number;
+  response: NasdaqEarningsResponse;
+};
+type NasdaqEarningsLoadStatus = "cache-hit" | "cache-miss" | "in-flight";
+type NasdaqEarningsLoadResult = {
+  response: NasdaqEarningsResponse;
+  status: NasdaqEarningsLoadStatus;
+};
 
 const nasdaqEarningsEndpoint = "https://api.nasdaq.com/api/calendar/earnings";
 const nasdaqRequestHeaders = {
@@ -52,18 +64,28 @@ const nasdaqRequestHeaders = {
   "Accept": "application/json, text/plain, */*",
   "Referer": "https://www.nasdaq.com/",
 };
+const nasdaqEarningsCacheTtlMs = 90 * 60_000;
+const nasdaqEarningsCache = new Map<string, NasdaqEarningsCacheEntry>();
+const nasdaqEarningsInFlightRequests = new Map<string, Promise<NasdaqEarningsResponse>>();
+
+export function clearEarningsScheduleCache() {
+  nasdaqEarningsCache.clear();
+  nasdaqEarningsInFlightRequests.clear();
+}
 
 export async function getEarnings(
   days: number,
-  date: "today" | "tomorrow" | string
+  date: "today" | "tomorrow" | string,
+  options: EarningsLoadOptions = {},
 ): Promise<EarningsEvent[]> {
-  const earningsResult = await getEarningsResult(days, date);
+  const earningsResult = await getEarningsResult(days, date, options);
   return earningsResult.events;
 }
 
 export async function getEarningsResult(
   days: number,
-  date: "today" | "tomorrow" | string
+  date: "today" | "tomorrow" | string,
+  options: EarningsLoadOptions = {},
 ): Promise<EarningsLoadResult> {
   const usEasternTime = getCurrentUsEasternTime();
   const isMultiDayRangeRequest = false === (null === days || 0 === days);
@@ -79,10 +101,14 @@ export async function getEarningsResult(
       skipWeekends: isMultiDayRangeRequest,
     }
   );
+  const requestSource = getEarningsRequestSource(options);
   const settledRequests = await Promise.allSettled(
-    dateStamps.map(dateStamp => loadNasdaqEarnings(dateStamp))
+    dateStamps.map(dateStamp => loadNasdaqEarningsWithCache(dateStamp))
   );
   let successfulRequestCount = 0;
+  let cacheHitCount = 0;
+  let cacheMissCount = 0;
+  let inFlightHitCount = 0;
 
   for (const [requestIndex, settledRequest] of settledRequests.entries()) {
     const dateStamp = dateStamps[requestIndex];
@@ -91,9 +117,16 @@ export async function getEarningsResult(
     }
     if ("fulfilled" === settledRequest.status) {
       successfulRequestCount++;
+      if ("cache-hit" === settledRequest.value.status) {
+        cacheHitCount++;
+      } else if ("in-flight" === settledRequest.value.status) {
+        inFlightHitCount++;
+      } else {
+        cacheMissCount++;
+      }
       appendNasdaqEarningsEvents(
         earningsEvents,
-        settledRequest.value,
+        settledRequest.value.response,
         dateStamp
       );
       continue;
@@ -111,10 +144,30 @@ export async function getEarningsResult(
       "error",
       `Loading earnings failed: Nasdaq requests were unsuccessful for ${getDateRangeLabel(dateFromStamp, dateToStamp)}.`
     );
-  } else {
+  } else if (0 < cacheMissCount) {
     logger.log(
       "info",
-      `Loaded ${earningsEvents.length} earnings from Nasdaq for ${getDateRangeLabel(dateFromStamp, dateToStamp)}.`
+      {
+        source: requestSource,
+        cacheHits: cacheHitCount,
+        cacheMisses: cacheMissCount,
+        dateRange: getDateRangeLabel(dateFromStamp, dateToStamp),
+        inFlightHits: inFlightHitCount,
+        totalEvents: earningsEvents.length,
+        message: `Loaded ${earningsEvents.length} earnings from Nasdaq for ${getDateRangeLabel(dateFromStamp, dateToStamp)}.`,
+      }
+    );
+  } else {
+    logger.log(
+      "debug",
+      {
+        source: requestSource,
+        cacheHits: cacheHitCount,
+        dateRange: getDateRangeLabel(dateFromStamp, dateToStamp),
+        inFlightHits: inFlightHitCount,
+        totalEvents: earningsEvents.length,
+        message: `Used cached Nasdaq earnings for ${getDateRangeLabel(dateFromStamp, dateToStamp)}.`,
+      }
     );
   }
 
@@ -136,6 +189,11 @@ function getCurrentUsEasternTime(): moment.Moment {
     second: 0,
     */
   });
+}
+
+function getEarningsRequestSource(options: EarningsLoadOptions): string {
+  const normalizedSource = options.source?.trim();
+  return normalizedSource ? normalizedSource : "earnings";
 }
 
 function resolveRequestedDateRange(
@@ -268,6 +326,45 @@ async function loadNasdaqEarnings(
   }
 
   return response.data;
+}
+
+async function loadNasdaqEarningsWithCache(
+  dateStamp: string
+): Promise<NasdaqEarningsLoadResult> {
+  const loadedAtMs = Date.now();
+  const cacheEntry = nasdaqEarningsCache.get(dateStamp);
+  if (cacheEntry && loadedAtMs - cacheEntry.loadedAtMs < nasdaqEarningsCacheTtlMs) {
+    return {
+      response: cacheEntry.response,
+      status: "cache-hit",
+    };
+  }
+
+  const inFlightRequest = nasdaqEarningsInFlightRequests.get(dateStamp);
+  if (undefined !== inFlightRequest) {
+    return {
+      response: await inFlightRequest,
+      status: "in-flight",
+    };
+  }
+
+  const request = loadNasdaqEarnings(dateStamp)
+    .then(response => {
+      nasdaqEarningsCache.set(dateStamp, {
+        loadedAtMs: Date.now(),
+        response,
+      });
+      return response;
+    })
+    .finally(() => {
+      nasdaqEarningsInFlightRequests.delete(dateStamp);
+    });
+  nasdaqEarningsInFlightRequests.set(dateStamp, request);
+
+  return {
+    response: await request,
+    status: "cache-miss",
+  };
 }
 
 function getDateStampsInRange(

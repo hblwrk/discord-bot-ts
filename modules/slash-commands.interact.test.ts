@@ -903,7 +903,9 @@ describe("interactSlashCommands", () => {
 
     await handler(interaction);
 
-    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "today");
+    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "today", {
+      source: "slash-earnings",
+    });
     expect(getEarningsMessagesMock).toHaveBeenCalledWith([], "all", [], {
       maxMessageLength: 1800,
       maxMessages: 6,
