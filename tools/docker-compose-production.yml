@@ -49,6 +49,7 @@ services:
       - production_discord_10y_client_ID
       - production_discord_30y_token
       - production_discord_30y_client_ID
+      - production_gemini_api_key
       - production_dracoon_password
       - production_hblwrk_channel_NYSEAnnouncement_ID
       - production_hblwrk_channel_MNCAnnouncement_ID
@@ -146,6 +147,8 @@ secrets:
   production_discord_30y_token:
     external: true
   production_discord_30y_client_ID:
+    external: true
+  production_gemini_api_key:
     external: true
   production_dracoon_password:
     external: true
