@@ -1,5 +1,5 @@
 import moment from "moment-timezone";
-import {bluechipMinMarketCap, type EarningsEvent, getEarningsResult} from "./earnings.ts";
+import {bluechipMinMarketCap, clearEarningsScheduleCache, type EarningsEvent, getEarningsResult} from "./earnings.ts";
 import {
   formatUsdCompact,
   getEarningsResultMessage,
@@ -144,6 +144,7 @@ let earningsWatchCache: EarningsWatchCache | undefined;
 
 export function clearEarningsResultCaches() {
   earningsWatchCache = undefined;
+  clearEarningsScheduleCache();
   clearSecEarningsResultCaches();
 }
 
@@ -545,7 +546,9 @@ async function getTodaysEarningsWatches(
   }
 
   const [earningsResult, tickerToCompany] = await Promise.all([
-    dependencies.getEarningsResultFn(0, dateStamp),
+    dependencies.getEarningsResultFn(0, dateStamp, {
+      source: "earnings-results-watch",
+    }),
     loadSecTickerMap(dependencies).catch(error => {
       dependencies.logger.log(
         "warn",

@@ -337,7 +337,9 @@ describe("timers: other announcements", () => {
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
     await dailyEarningsJob.callback();
 
-    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow");
+    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow", {
+      source: "timer-earnings",
+    });
     expect(send).not.toHaveBeenCalled();
   });
 
@@ -385,7 +387,9 @@ describe("timers: other announcements", () => {
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
     await dailyEarningsJob.callback();
 
-    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow");
+    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow", {
+      source: "timer-earnings",
+    });
     expect(addExpectedMovesToEarningsEventsMock).toHaveBeenCalledWith([], {
       marketCapFilter: "bluechips",
       when: "all",
@@ -458,7 +462,9 @@ describe("timers: other announcements", () => {
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
     await dailyEarningsJob.callback();
 
-    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow");
+    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "tomorrow", {
+      source: "timer-earnings",
+    });
     expect(send).toHaveBeenNthCalledWith(1, {
       content: "earnings-1",
       allowedMentions: {
@@ -526,7 +532,9 @@ describe("timers: other announcements", () => {
     const weeklyEarningsJob = getScheduledJobByTime(23, 30, "Europe/Berlin");
     await weeklyEarningsJob.callback();
 
-    expect(getEarningsResultMock).toHaveBeenCalledWith(5, "tomorrow");
+    expect(getEarningsResultMock).toHaveBeenCalledWith(5, "tomorrow", {
+      source: "timer-earnings-weekly",
+    });
     expect(getEarningsMessagesMock).toHaveBeenCalledWith([], "all", [], {
       maxMessageLength: 1800,
       maxMessages: 8,
@@ -573,7 +581,9 @@ describe("timers: other announcements", () => {
     })]);
     await getEarningsReminderJob().callback();
 
-    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "today");
+    expect(getEarningsResultMock).toHaveBeenCalledWith(0, "today", {
+      source: "earnings-reminder",
+    });
     expect(send).toHaveBeenCalledWith({
       content: "<@&role-456> Heute Earnings: `NVDA`, `MSFT` (nach Handelsschluss)",
       allowedMentions: {

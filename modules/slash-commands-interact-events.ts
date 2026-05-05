@@ -52,7 +52,9 @@ export async function handleEarningsSlashCommand(
     return true;
   }
 
-  const earningsResult = await getEarningsResult(days, date);
+  const earningsResult = await getEarningsResult(days, date, {
+    source: "slash-earnings",
+  });
   const earningsEvents = earningsResult.events;
   const earningsStatus = earningsResult.status;
 

@@ -1,5 +1,5 @@
 import type {MockedFunction} from "vitest";
-import {type EarningsEvent, getEarnings, getEarningsMessages, getEarningsResult, getEarningsText} from "./earnings.ts";
+import {clearEarningsScheduleCache, type EarningsEvent, getEarnings, getEarningsMessages, getEarningsResult, getEarningsText} from "./earnings.ts";
 import {Ticker} from "./tickers.ts";
 import axios from "axios";
 import {beforeEach, describe, expect, test, vi} from "vitest";
@@ -68,6 +68,7 @@ function parseEarningsLine(
 
 describe("getEarnings/getEarningsResult", () => {
   beforeEach(() => {
+    clearEarningsScheduleCache();
     vi.clearAllMocks();
     vi.setSystemTime(defaultNow);
   });
@@ -329,6 +330,63 @@ describe("getEarnings/getEarningsResult", () => {
       events: [],
       status: "error",
     });
+  });
+
+  test("reuses cached Nasdaq earnings for repeated same-day requests", async () => {
+    (axios.get as MockedFunction<typeof axios.get>).mockResolvedValueOnce({
+      data: getNasdaqResponse([
+        getNasdaqRow({
+          symbol: "FC",
+          name: "Franklin Covey",
+          marketCap: "1.2B",
+          epsForecast: "0.95",
+        }),
+      ]),
+    });
+
+    const firstResult = await getEarningsResult(0, "today", {
+      source: "first-source",
+    });
+    const secondResult = await getEarningsResult(0, "today", {
+      source: "second-source",
+    });
+
+    expect(firstResult).toEqual(secondResult);
+    expect(axios.get).toHaveBeenCalledTimes(1);
+  });
+
+  test("shares an in-flight Nasdaq earnings request for the same date", async () => {
+    let resolveNasdaqRequest: ((value: unknown) => void) | undefined;
+    (axios.get as MockedFunction<typeof axios.get>).mockReturnValue(new Promise(resolve => {
+      resolveNasdaqRequest = resolve;
+    }));
+
+    const firstResultPromise = getEarningsResult(0, "today", {
+      source: "first-source",
+    });
+    const secondResultPromise = getEarningsResult(0, "today", {
+      source: "second-source",
+    });
+
+    expect(axios.get).toHaveBeenCalledTimes(1);
+    resolveNasdaqRequest?.({
+      data: getNasdaqResponse([
+        getNasdaqRow({
+          symbol: "FC",
+          name: "Franklin Covey",
+          marketCap: "1.2B",
+          epsForecast: "0.95",
+        }),
+      ]),
+    });
+
+    const [firstResult, secondResult] = await Promise.all([
+      firstResultPromise,
+      secondResultPromise,
+    ]);
+
+    expect(firstResult).toEqual(secondResult);
+    expect(axios.get).toHaveBeenCalledTimes(1);
   });
 });
 
