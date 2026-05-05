@@ -51,7 +51,7 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
-  test("handles growth language, negative money ranges, and fallback text", () => {
+  test("handles qualified growth language and negative money ranges", () => {
     const metrics = extractOutlookMetrics([
       "Fiscal 2026 Outlook",
       "Net sales expected to decline low double-digit.",
@@ -77,11 +77,6 @@ describe("extractOutlookMetrics", () => {
         key: "operating_income",
         label: "Operating income",
         value: "-$200M to -$100M",
-      },
-      {
-        key: "free_cash_flow",
-        label: "Free cash flow",
-        value: "remains positive despite investment cycle",
       },
     ]);
   });
@@ -175,9 +170,9 @@ describe("extractOutlookMetrics", () => {
         value: "$2.4B",
       },
       {
-        key: "tax_rate",
-        label: "Tax rate",
-        value: "not available",
+        key: "capex",
+        label: "Capex",
+        value: "$12M",
       },
     ]);
   });

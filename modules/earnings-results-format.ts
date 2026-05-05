@@ -241,22 +241,26 @@ export function getEarningsResultMessage({
   parsedDocument: ParsedEarningsDocument;
   ticker: string;
 }): string {
-  const titleParts = [`💰 **Earnings: ${companyName} (\`${ticker.trim().toUpperCase()}\`)`];
+  const titleParts = [`**${companyName} (${ticker.trim().toUpperCase()})`];
   if (parsedDocument.quarterLabel) {
-    titleParts.push(` ${parsedDocument.quarterLabel}`);
+    titleParts.push(` - ${parsedDocument.quarterLabel}`);
   }
   titleParts.push("**");
 
   const lines = [titleParts.join("")];
-  for (const metric of metrics) {
-    lines.push(getMetricMessageLine(metric));
+  if (0 < metrics.length) {
+    lines.push("");
+    lines.push("📊 **Results**");
+    for (const metric of metrics) {
+      lines.push(getMetricMessageLine(metric));
+    }
   }
 
   if (0 < parsedDocument.outlook.length) {
     lines.push("");
-    lines.push("Outlook:");
+    lines.push("🔮 **Outlook**");
     for (const metric of parsedDocument.outlook) {
-      lines.push(`${metric.label}: \`${metric.value}\``);
+      lines.push(`- **${metric.label}:** ${metric.value}`);
     }
   }
 
@@ -267,9 +271,21 @@ export function getEarningsResultMessage({
 }
 
 function getMetricMessageLine(metric: EarningsResultMetric): string {
-  const estimateText = metric.estimate ? ` vs est. \`${metric.estimate}\`` : "";
-  const outcomeText = metric.outcome ? ` - ${metric.outcome}` : "";
-  return `${metric.label}: \`${metric.value}\`${estimateText}${outcomeText}`;
+  const estimateText = metric.estimate ? ` vs est. ${metric.estimate}` : "";
+  const outcomeText = metric.outcome ? ` (${getOutcomeIndicator(metric.outcome)} ${metric.outcome})` : "";
+  return `- **${metric.label}:** ${metric.value}${estimateText}${outcomeText}`;
+}
+
+function getOutcomeIndicator(outcome: EarningsResultOutcome): string {
+  if ("beat" === outcome) {
+    return "🟢";
+  }
+
+  if ("miss" === outcome) {
+    return "🔴";
+  }
+
+  return "⚪";
 }
 
 function getOutcome(actual: number | undefined, estimate: number): EarningsResultOutcome | undefined {
