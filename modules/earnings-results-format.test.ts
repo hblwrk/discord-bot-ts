@@ -71,7 +71,7 @@ describe("earnings result formatting", () => {
       metrics,
       parsedDocument,
       ticker: "XOM",
-    })).toContain("- **Adj EPS:** $1.16 vs est. $0.96 (🟢 beat)");
+    })).toContain("- **Adj EPS:** `$1.16` vs est. `$0.96` (🟢 beat)");
     expect(getEarningsResultMessage({
       companyName: "Exxon Mobil",
       filing: {
@@ -142,9 +142,9 @@ describe("earnings result formatting", () => {
       ticker: "EXCO",
     })).toContain([
       "🔮 **Outlook**",
-      "- **Revenue:** $89B to $91B",
-      "- **EPS:** $1.42 to $1.48",
-      "- **Gross margin:** 46.5% to 47.5%",
+      "- **Revenue:** `$89B` to `$91B`",
+      "- **EPS:** `$1.42` to `$1.48`",
+      "- **Gross margin:** `46.5%` to `47.5%`",
     ].join("\n"));
   });
 
@@ -502,7 +502,7 @@ describe("earnings result formatting", () => {
       "**Example (EX)**",
       "",
       "📊 **Results**",
-      "- **Production:** 1,200 boepd",
+      "- **Production:** `1,200 boepd`",
       "SEC: [10-Q](https://www.sec.gov/example)",
     ].join("\n"));
   });

@@ -137,8 +137,8 @@ describe("earnings result announcements", () => {
     expect(result.announcements).toHaveLength(1);
     expect(result.announcements[0]!.message).toContain("**Exxon Mobil (XOM) - Q1 2026**");
     expect(result.announcements[0]!.message).toContain("📊 **Results**");
-    expect(result.announcements[0]!.message).toContain("- **Adj EPS:** $1.16 vs est. $0.96 (🟢 beat)");
-    expect(result.announcements[0]!.message).toContain("- **Revenue:** $85.14B vs est. $80.74B (🟢 beat)");
+    expect(result.announcements[0]!.message).toContain("- **Adj EPS:** `$1.16` vs est. `$0.96` (🟢 beat)");
+    expect(result.announcements[0]!.message).toContain("- **Revenue:** `$85.14B` vs est. `$80.74B` (🟢 beat)");
     expect(result.announcements[0]!.message).toContain("SEC: [8-K](https://www.sec.gov/Archives/edgar/data/34088/000003408826000042/xom-ex991.htm) Item 2.02, 9.01");
   });
 
@@ -651,7 +651,7 @@ describe("earnings result announcements", () => {
   test("provides a concrete example output", () => {
     expect(getExampleEarningsResultOutput()).toContain("**Apple Inc. (AAPL) - Q1 2026**");
     expect(getExampleEarningsResultOutput()).toContain("📊 **Results**");
-    expect(getExampleEarningsResultOutput()).toContain("- **EPS:** $2.84 vs est. $2.67 (🟢 beat)");
+    expect(getExampleEarningsResultOutput()).toContain("- **EPS:** `$2.84` vs est. `$2.67` (🟢 beat)");
     expect(getExampleEarningsResultOutput()).toContain("SEC: [8-K](https://www.sec.gov/Archives/edgar/data/320193/000032019326000005/a8-kex991q1202612272025.htm) Item 2.02, 9.01");
   });
 });

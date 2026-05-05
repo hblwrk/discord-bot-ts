@@ -260,7 +260,7 @@ export function getEarningsResultMessage({
     lines.push("");
     lines.push("🔮 **Outlook**");
     for (const metric of parsedDocument.outlook) {
-      lines.push(`- **${metric.label}:** ${metric.value}`);
+      lines.push(`- **${metric.label}:** ${formatOutlookValue(metric.value)}`);
     }
   }
 
@@ -271,9 +271,32 @@ export function getEarningsResultMessage({
 }
 
 function getMetricMessageLine(metric: EarningsResultMetric): string {
-  const estimateText = metric.estimate ? ` vs est. ${metric.estimate}` : "";
+  const estimateText = metric.estimate ? ` vs est. ${formatInlineCode(metric.estimate)}` : "";
   const outcomeText = metric.outcome ? ` (${getOutcomeIndicator(metric.outcome)} ${metric.outcome})` : "";
-  return `- **${metric.label}:** ${metric.value}${estimateText}${outcomeText}`;
+  return `- **${metric.label}:** ${formatInlineCode(metric.value)}${estimateText}${outcomeText}`;
+}
+
+function formatOutlookValue(value: string): string {
+  if (false === isQuantitativeText(value)) {
+    return value;
+  }
+
+  return formatQuantitativeTokens(value);
+}
+
+function isQuantitativeText(value: string): boolean {
+  return /[$€£¥]|\d/.test(value);
+}
+
+function formatQuantitativeTokens(value: string): string {
+  return value.replace(
+    /-?(?:[$€£¥]\s*)?\d[\d,]*(?:\.\d+)?(?:\s*(?:trillion|billions?|millions?|thousands?|tn|bn|mm|[tbmk]|kbd|koebd|boepd|bpd|mmboe|bcfe|mmcf|mw|gw)\b|\s*%)?/gi,
+    token => formatInlineCode(token.trim()),
+  );
+}
+
+function formatInlineCode(value: string): string {
+  return `\`${value.replaceAll("`", "'")}\``;
 }
 
 function getOutcomeIndicator(outcome: EarningsResultOutcome): string {
