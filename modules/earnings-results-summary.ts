@@ -84,7 +84,8 @@ function getSummaryPrompt(input: EarningsAiSummaryInput, filingText: string): st
     "- Sentence 1 covers the reported period and headline performance.",
     "- Sentence 2 covers the most important business drivers, segment notes, or margin/profit details.",
     "- Sentence 3 covers outlook, guidance, or management expectations when present; otherwise state that no quantified outlook is provided.",
-    "- Format ticker symbols and concrete metrics as inline code, e.g. `AAPL`, `$2.14`, `3.1%`, `180 bps`, `$42 billion`.",
+    "- Return plain text only; do not include markdown, backticks, bullets, headings, or labels.",
+    "- The Discord bot formats ticker symbols and concrete metrics after validation.",
     "- Do not mention the company name in the summary; the Discord alert title already identifies the company.",
     "- If you mention any displayed result metric, use exactly the displayed value and do not mention a different value for the same metric.",
     "- Use only the provided filing text and do not mention the SEC filing, source text, or any AI provider.",
@@ -202,6 +203,8 @@ function parseSummary(value: unknown, input: EarningsAiSummaryInput): string | n
     .trim();
   if ("" === normalizedSummary ||
       normalizedSummary.length > maxSummaryLength ||
+      true === hasUnexpectedMarkdown(normalizedSummary) ||
+      true === hasCorrectionArtifact(normalizedSummary) ||
       true === hasUnexpectedCjkCharacters(normalizedSummary)) {
     return null;
   }
@@ -271,6 +274,15 @@ function hasUnexpectedCjkCharacters(value: string): boolean {
   return /\p{Script=Han}|\p{Script=Hiragana}|\p{Script=Katakana}|\p{Script=Hangul}/u.test(value);
 }
 
+function hasUnexpectedMarkdown(value: string): boolean {
+  return /[`*_#]|\n\s*[-*]\s+/.test(value);
+}
+
+function hasCorrectionArtifact(value: string): boolean {
+  return /\b(?:no|yes),\s+(?:we|i)\s+(?:reiterate|should|will|can|need|must|mean)\b/i.test(value) ||
+    /-\?\s*(?:no|yes)?\s*,/i.test(value);
+}
+
 function hasConflictingMoneyValue(sentence: string, expectedValue: number): boolean {
   const moneyValues = extractMoneyValues(sentence);
   return moneyValues.some(value => false === isCloseMetricValue(value, expectedValue));
@@ -278,7 +290,7 @@ function hasConflictingMoneyValue(sentence: string, expectedValue: number): bool
 
 function extractMoneyValues(sentence: string): number[] {
   const values: number[] = [];
-  const matches = sentence.matchAll(/\(?-?[$€£¥]\s*\d[\d,]*(?:\.\d+)?\)?(?:\s*(?:trillion|trillions|tn|billion|billions|bn|million|millions|mm|thousand|thousands|[tbmk]))?/gi);
+  const matches = sentence.matchAll(/\(?-?(?:(?:[$€£¥]\s*)?\d[\d,]*(?:\.\d+)?(?:\s*(?:trillion|trillions|tn|billion|billions|bn|million|millions|mm|thousand|thousands|[tbmk]))|[$€£¥]\s*\d[\d,]*(?:\.\d+)?)\)?/gi);
   for (const match of matches) {
     const parsedValue = parseMoneyValue(match[0]);
     if (null !== parsedValue) {
@@ -291,7 +303,7 @@ function extractMoneyValues(sentence: string): number[] {
 
 function parseMoneyValue(value: string): number | null {
   const normalizedValue = value.trim();
-  const numberMatch = normalizedValue.match(/\(?-?[$€£¥]\s*([\d,]+(?:\.\d+)?)\)?/);
+  const numberMatch = normalizedValue.match(/\(?-?(?:[$€£¥]\s*)?([\d,]+(?:\.\d+)?)\)?/);
   if (undefined === numberMatch?.[1]) {
     return null;
   }
