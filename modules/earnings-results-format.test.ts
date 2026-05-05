@@ -85,23 +85,22 @@ describe("earnings result formatting", () => {
     })).toContain("**Exxon Mobil (`XOM`)** - Q1 2026 - [8-K](https://www.sec.gov/Archives/edgar/data/34088/example/ex-991.htm)");
   });
 
-  test("renders optional earnings summaries before result metrics", () => {
-    const parsedDocument = parseEarningsDocument(`
-      <html>
-        <body>
-          <h1>ExampleCo reports first quarter 2026 results</h1>
-          <table>
-            <tr><td>Adjusted EPS</td><td>$1.16</td></tr>
-          </table>
-        </body>
-      </html>
-    `);
-    const metrics = getMessageMetrics(parsedDocument.metrics, null, {
-      ticker: "EXM",
-      when: "before_open",
-      date: "2026-05-01",
-      importance: 1,
-    });
+  test("renders result and outlook metrics before optional earnings summaries", () => {
+    const parsedDocument = {
+      metrics: [],
+      outlook: [{
+        key: "revenue",
+        label: "Revenue",
+        value: "$89B to $91B",
+      }],
+      quarterLabel: "Q1 2026",
+    } satisfies ReturnType<typeof parseEarningsDocument>;
+    const metrics = [{
+      key: "adjusted_eps",
+      label: "Adj EPS",
+      numericValue: 1.16,
+      value: "$1.16",
+    }] satisfies ReturnType<typeof getMessageMetrics>;
 
     expect(getEarningsResultMessage({
       companyName: "ExampleCo",
@@ -116,10 +115,13 @@ describe("earnings result formatting", () => {
       ticker: "EXM",
     })).toBe([
       "**ExampleCo (`EXM`)** - Q1 2026 - [8-K](https://www.sec.gov/example)",
-      "📝 ExampleCo beat expectations. Revenue improved. Management raised guidance.",
-      "",
       "📊 **Results**",
       "- **Adj EPS:** `$1.16`",
+      "",
+      "🔮 **Outlook**",
+      "- **Revenue:** `$89B` to `$91B`",
+      "",
+      "📝 ExampleCo beat expectations. Revenue improved. Management raised guidance.",
     ].join("\n"));
   });
 

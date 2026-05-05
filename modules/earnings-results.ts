@@ -689,6 +689,15 @@ async function buildEarningsResultAnnouncement(
     parsedDocument,
     ticker: watch.event.ticker,
   });
+  if (true === hasHardMetricContradiction(suspiciousReasons)) {
+    skippedQualityGateAccessions.set(filing.accessionNumber, now.valueOf() + qualityGateRetryDelayMs);
+    dependencies.logger.log(
+      "warn",
+      `Skipping earnings result announcement for ${watch.event.ticker}: suspicious metrics were not verified.`,
+    );
+    return null;
+  }
+
   const qualityGate = await checkEarningsQualityWithAi({
     companyName: watch.companyName,
     event: watch.event,
@@ -831,11 +840,22 @@ function shouldSuppressAnnouncement(
   qualityGate: {confidence: number; decision: "allow" | "suppress";} | null,
   suspiciousReasons: SuspiciousEarningsReason[],
 ): boolean {
+  if (true === hasHardMetricContradiction(suspiciousReasons)) {
+    return true;
+  }
+
   if (null !== qualityGate) {
     return "suppress" === qualityGate.decision && qualityGate.confidence >= 0.75;
   }
 
   return hasHighSeveritySuspicion(suspiciousReasons);
+}
+
+function hasHardMetricContradiction(suspiciousReasons: SuspiciousEarningsReason[]): boolean {
+  return suspiciousReasons.some(reason =>
+    "high" === reason.severity &&
+    "revenue" === reason.metricKey &&
+    /\b(?:lower\s+than\s+net\s+income|not\s+positive\s+while\s+net\s+income)\b/i.test(reason.message));
 }
 
 function getSuspiciousQuarterReasons(

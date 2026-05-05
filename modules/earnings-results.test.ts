@@ -330,8 +330,147 @@ describe("earnings result announcements", () => {
     const message = result.announcements[0]!.message;
     expect(message).toContain(`📝 ${formattedSummary}`);
     expect(message).not.toContain("📝 **Summary**");
-    expect(message.indexOf(`📝 ${formattedSummary}`)).toBeLessThan(message.indexOf("📊 **Results**"));
+    expect(message.indexOf("📊 **Results**")).toBeLessThan(message.indexOf(`📝 ${formattedSummary}`));
     expect(postWithRetryFn).toHaveBeenCalledTimes(1);
+  });
+
+  test("suppresses hard revenue contradictions after AI extraction without a quality gate override", async () => {
+    getWithRetryFn.mockImplementation(async (url: string) => {
+      if (url.includes("company_tickers.json")) {
+        return {
+          data: {
+            0: {
+              cik_str: 34088,
+              ticker: "XOM",
+              title: "EXXON MOBIL CORP",
+            },
+          },
+        };
+      }
+
+      if (url.includes("type=8-K")) {
+        return {
+          data: `
+            <feed>
+              <entry>
+                <title>8-K - EXXON MOBIL CORP</title>
+                <id>urn:tag:sec.gov,2026:accession-number=0000034088-26-000042</id>
+                <updated>2026-05-01T08:01:00-04:00</updated>
+                <category term="8-K" />
+                <link href="https://www.sec.gov/Archives/edgar/data/34088/000003408826000042/0000034088-26-000042-index.htm" />
+                <summary>
+                  &lt;b&gt;CIK:&lt;/b&gt; 0000034088&lt;br/&gt;
+                  &lt;b&gt;Items:&lt;/b&gt; 2.02, 9.01
+                </summary>
+              </entry>
+            </feed>
+          `,
+        };
+      }
+
+      if (url.includes("type=6-K")) {
+        return {
+          data: "<feed></feed>",
+        };
+      }
+
+      if (url.includes("companyfacts/CIK0000034088.json")) {
+        return {
+          data: {
+            facts: {},
+          },
+        };
+      }
+
+      if (url.endsWith("/index.json")) {
+        return {
+          data: {
+            directory: {
+              item: [{
+                name: "xom-ex991.htm",
+                type: "EX-99.1",
+              }],
+            },
+          },
+        };
+      }
+
+      if (url.endsWith("/xom-ex991.htm")) {
+        return {
+          data: `
+            <html>
+              <body>
+                <h1>Exxon Mobil reports first quarter 2026 results</h1>
+                <p>Revenue was $3.58.</p>
+                <p>Net income was $1.46 billion.</p>
+              </body>
+            </html>
+          `,
+        };
+      }
+
+      if (url.includes("/XOM/earnings-surprise")) {
+        return {
+          data: {
+            data: {
+              earningsSurpriseTable: {
+                rows: [],
+              },
+            },
+          },
+        };
+      }
+
+      throw new Error(`Unexpected URL ${url}`);
+    });
+    postWithRetryFn.mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                quarterLabel: null,
+                metrics: [],
+                issues: ["Revenue scale could not be verified."],
+              }),
+            }],
+          },
+        }],
+      },
+    });
+    const skippedQualityGateAccessions = new Map<string, number>();
+
+    const result = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+        postWithRetryFn,
+        readSecretFn: vi.fn((secretName: string) => {
+          if ("gemini_api_key" === secretName) {
+            return "gemini-key";
+          }
+
+          if ("gemini_calls_per_minute" === secretName) {
+            return "14";
+          }
+
+          throw new Error(`missing ${secretName}`);
+        }),
+      },
+      skippedQualityGateAccessions,
+    });
+
+    expect(result.announcements).toEqual([]);
+    expect(postWithRetryFn).toHaveBeenCalledTimes(1);
+    expect(skippedQualityGateAccessions.get("0000034088-26-000042")).toBe(
+      moment.tz("2026-05-01 08:10", "YYYY-MM-DD HH:mm", "US/Eastern").valueOf(),
+    );
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "Skipping earnings result announcement for XOM: suspicious metrics were not verified.",
+    );
   });
 
   test("skips accessions that were already announced", async () => {

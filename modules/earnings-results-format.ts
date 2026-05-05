@@ -264,9 +264,6 @@ export function getEarningsResultMessage({
   titleParts.push(` - ${getFilingFormText(filing, filingUrl)}`);
 
   const lines = [titleParts.join("")];
-  if (undefined !== summary && "" !== summary.trim()) {
-    lines.push(`📝 ${summary.trim()}`);
-  }
 
   if (0 < metrics.length) {
     if (1 < lines.length) {
@@ -286,6 +283,13 @@ export function getEarningsResultMessage({
     for (const metric of parsedDocument.outlook) {
       lines.push(`- **${metric.label}:** ${formatOutlookValue(metric.value)}`);
     }
+  }
+
+  if (undefined !== summary && "" !== summary.trim()) {
+    if (1 < lines.length) {
+      lines.push("");
+    }
+    lines.push(`📝 ${summary.trim()}`);
   }
 
   return lines.join("\n");

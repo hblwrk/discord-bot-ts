@@ -278,7 +278,7 @@ function hasConflictingMoneyValue(sentence: string, expectedValue: number): bool
 
 function extractMoneyValues(sentence: string): number[] {
   const values: number[] = [];
-  const matches = sentence.matchAll(/\(?-?[$€£¥]\s*\d[\d,]*(?:\.\d+)?\)?(?:\s*(?:trillion|trillions|tn|billion|billions|bn|million|millions|mm|thousand|thousands|[tbmk]))?/gi);
+  const matches = sentence.matchAll(/\(?-?(?:(?:[$€£¥]\s*)?\d[\d,]*(?:\.\d+)?(?:\s*(?:trillion|trillions|tn|billion|billions|bn|million|millions|mm|thousand|thousands|[tbmk]))|[$€£¥]\s*\d[\d,]*(?:\.\d+)?)\)?/gi);
   for (const match of matches) {
     const parsedValue = parseMoneyValue(match[0]);
     if (null !== parsedValue) {
@@ -291,7 +291,7 @@ function extractMoneyValues(sentence: string): number[] {
 
 function parseMoneyValue(value: string): number | null {
   const normalizedValue = value.trim();
-  const numberMatch = normalizedValue.match(/\(?-?[$€£¥]\s*([\d,]+(?:\.\d+)?)\)?/);
+  const numberMatch = normalizedValue.match(/\(?-?(?:[$€£¥]\s*)?([\d,]+(?:\.\d+)?)\)?/);
   if (undefined === numberMatch?.[1]) {
     return null;
   }

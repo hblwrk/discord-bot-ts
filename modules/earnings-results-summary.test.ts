@@ -1,4 +1,5 @@
 import {beforeEach, describe, expect, test, vi} from "vitest";
+import {clearAiProviderState} from "./ai-provider.ts";
 import {summarizeEarningsWithAi} from "./earnings-results-summary.ts";
 
 describe("AI earnings summaries", () => {
@@ -15,6 +16,7 @@ describe("AI earnings summaries", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    clearAiProviderState();
   });
 
   test("summarizes a bounded opening excerpt plus later guidance context", async () => {
@@ -142,6 +144,48 @@ describe("AI earnings summaries", () => {
         value: "-$9M",
       }],
       ticker: "OXY",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result).toBeNull();
+  });
+
+  test("rejects summaries with bare money values that conflict with displayed result metrics", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                summary: "For Q1 2026, revenue rose to 1.980 billion of net income on 6.921 billion of total operating revenues. Results were driven by stronger realized oil prices. No quantified outlook is provided.",
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await summarizeEarningsWithAi({
+      companyName: "EOG Resources, Inc.",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: "<html><body><h1>EOG reports first quarter 2026 results</h1></body></html>",
+      metrics: [{
+        key: "revenue",
+        label: "Revenue",
+        numericValue: 3.58,
+        value: "$3.58",
+      }, {
+        key: "net_income",
+        label: "Net income",
+        numericValue: 1_460_000_000,
+        value: "$1.46B",
+      }],
+      ticker: "EOG",
     }, {
       logger,
       nowMs: () => 1_000,
