@@ -229,10 +229,10 @@ Example Discord output:
 @alerts Heute wichtig: `14:30` 🇺🇸 Consumer Price Index (CPI)
 @alerts Heute Earnings: `AAPL` (nach Handelsschluss)
 @alerts Heute Earnings: `NVDA`, `MSFT` (nach Handelsschluss)
-💰 **Earnings: Apple Inc. (`AAPL`) Q1 2026**
-EPS: `$2.84` vs est. `$2.67` - beat
-Revenue: `$143.8B` vs est. `$138.25B` - beat
-SEC: 8-K Item 2.02, 9.01 https://www.sec.gov/Archives/edgar/data/320193/000032019326000005/a8-kex991q1202612272025.htm
+**Apple Inc. (`AAPL`)** - Q1 2026 - [8-K](https://www.sec.gov/Archives/edgar/data/320193/000032019326000005/a8-kex991q1202612272025.htm)
+📊 **Results**
+- **EPS:** `$2.84` vs est. `$2.67` (🟢 beat)
+- **Revenue:** `$143.8B` vs est. `$138.25B` (🟢 beat)
 ```
 
 ## Market data

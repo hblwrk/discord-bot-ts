@@ -1,5 +1,6 @@
 import {type getWithRetry} from "./http-retry.ts";
 import {
+  formatEps,
   formatMoneyCompact,
   parseNumber,
   type EarningsResultMetric,
@@ -130,7 +131,9 @@ export function extractSecXbrlMetrics(
       key: definition.key,
       label: definition.label,
       numericValue: candidate.value,
-      value: formatMoneyCompact(candidate.value, candidate.currencyCode),
+      value: "eps" === definition.valueType
+        ? formatEps(candidate.value, candidate.currencyCode)
+        : formatMoneyCompact(candidate.value, candidate.currencyCode),
     });
   }
 

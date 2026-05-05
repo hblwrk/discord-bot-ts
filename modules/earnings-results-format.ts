@@ -258,6 +258,7 @@ export function getEarningsResultMessage({
   if (parsedDocument.quarterLabel) {
     titleParts.push(` - ${parsedDocument.quarterLabel}`);
   }
+  titleParts.push(` - ${getFilingFormText(filing, filingUrl)}`);
 
   const lines = [titleParts.join("")];
   if (0 < metrics.length) {
@@ -277,10 +278,11 @@ export function getEarningsResultMessage({
     }
   }
 
-  const filingItems = filing.items.length > 0 ? ` Item ${filing.items.join(", ")}` : "";
-  const filingForm = "" === filingUrl ? filing.form : `[${filing.form}](${filingUrl})`;
-  lines.push(`SEC: ${filingForm}${filingItems}`);
   return lines.join("\n");
+}
+
+function getFilingFormText(filing: SecCurrentFilingForMessage, filingUrl: string): string {
+  return "" === filingUrl ? filing.form : `[${filing.form}](${filingUrl})`;
 }
 
 function getMetricMessageLine(metric: EarningsResultMetric): string {
@@ -775,9 +777,9 @@ export function parseNumber(value: unknown): number | null {
   return Number.isFinite(parsedValue) ? parsedValue : null;
 }
 
-export function formatEps(value: number): string {
+export function formatEps(value: number, currencyCode = "USD"): string {
   const sign = value < 0 ? "-" : "";
-  return `${sign}$${Math.abs(value).toFixed(2).replace(/\.?0+$/, "")}`;
+  return `${sign}${getCurrencySymbol(currencyCode)}${Math.abs(value).toFixed(2)}`;
 }
 
 export function formatUsdCompact(value: number): string {
