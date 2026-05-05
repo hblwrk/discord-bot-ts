@@ -60,12 +60,13 @@ describe("AI earnings summaries", () => {
     });
 
     expect(result).toBe(
-      "Example Corp reported first-quarter revenue of `$10.2 billion` and adjusted EPS of `$1.42`. Segment demand remained resilient during the period. Management guided fiscal 2026 revenue to `$42 billion` to `$44 billion` and adjusted EPS to `$5.80` to `$6.10`.",
+      "Reported first-quarter revenue of `$10.2 billion` and adjusted EPS of `$1.42`. Segment demand remained resilient during the period. Management guided fiscal 2026 revenue to `$42 billion` to `$44 billion` and adjusted EPS to `$5.80` to `$6.10`.",
     );
     const requestBody = postWithRetryFn.mock.calls[0]?.[1] as {contents?: {parts?: {text?: string}[]}[]};
     const prompt = requestBody.contents?.[0]?.parts?.find(part => "string" === typeof part.text)?.text ?? "";
     const filingText = prompt.split("Filing text:\n")[1] ?? "";
     expect(prompt).toContain("Write exactly three concise plain-text sentences.");
+    expect(prompt).toContain("Do not mention the company name in the summary");
     expect(filingText.length).toBeLessThanOrEqual(20_100);
     expect(filingText).toContain("Opening excerpt:");
     expect(filingText).toContain("Example Corp reports first quarter 2026 results");
@@ -135,7 +136,69 @@ describe("AI earnings summaries", () => {
       readSecretFn,
     });
 
-    expect(result).toBe("Example Corp grew revenue. Margins improved. Guidance increased.");
+    expect(result).toBe("Grew revenue. Margins improved. Guidance increased.");
+  });
+
+  test("keeps summary content when company and ticker metadata are blank", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                summary: "Revenue rose 12%. Margins improved. Guidance increased.",
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await summarizeEarningsWithAi({
+      companyName: " ",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: "<html><body><h1>Revenue rose 12%</h1></body></html>",
+      ticker: " ",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result).toBe("Revenue rose `12%`. Margins improved. Guidance increased.");
+  });
+
+  test("strips leading company names that contain periods or suffixes", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                summary: "L.B. Foster Company reported revenue of $10 million. L.B. Foster's margins improved. Guidance increased.",
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await summarizeEarningsWithAi({
+      companyName: "L.B. Foster Company",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: "<html><body><h1>L.B. Foster Company reports results</h1></body></html>",
+      ticker: "FSTR",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result).toBe("Reported revenue of `$10 million`. Margins improved. Guidance increased.");
   });
 
   test("returns null when the provider is unavailable", async () => {

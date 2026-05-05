@@ -1,3 +1,11 @@
+import {
+  DXLinkFeed,
+  DXLinkLogLevel,
+  DXLinkWebSocketClient,
+  FeedContract,
+  FeedDataFormat,
+  type DXLinkClient,
+} from "@dxfeed/dxlink-api";
 import TastytradeClient, {MarketDataSubscriptionType} from "@tastytrade/api";
 import WS from "ws";
 import {type MarketDataAsset} from "./market-data-types.ts";
@@ -10,16 +18,27 @@ type Logger = {
 type TimerHandle = ReturnType<typeof setTimeout>;
 type TastytradeEvent = Record<string, unknown>;
 type TastytradeEventListener = (events: TastytradeEvent[]) => void;
+type TastytradeQuoteStreamerError = {
+  message: string;
+  type?: string | undefined;
+};
+type TastytradeQuoteStreamerErrorListener = (error: TastytradeQuoteStreamerError) => void;
 type TastytradeQuoteStreamer = {
+  addErrorListener?: (listener: TastytradeQuoteStreamerErrorListener) => () => void;
   addEventListener: (listener: TastytradeEventListener) => () => void;
   connect: () => Promise<void>;
   disconnect: () => void;
   subscribe: (streamerSymbols: string[], types?: MarketDataSubscriptionType[] | null) => void;
+  unsubscribe: (streamerSymbols: string[]) => void;
+};
+export type TastytradeAccountsAndCustomersService = {
+  getApiQuoteToken: () => Promise<Record<string, unknown>>;
 };
 type TastytradeInstrumentsService = {
   getCryptocurrencies: (symbols: string[]) => Promise<Record<string, unknown>[]>;
 };
 type TastytradeMarketDataClient = {
+  accountsAndCustomersService?: TastytradeAccountsAndCustomersService;
   instrumentsService?: TastytradeInstrumentsService;
   quoteStreamer: TastytradeQuoteStreamer;
 };
@@ -32,6 +51,28 @@ type CryptoStreamAsset = {
   asset: MarketDataAsset;
   configuredSymbol: string;
   streamerSymbol: string;
+};
+type DxLinkClientLike = {
+  addErrorListener: (listener: TastytradeQuoteStreamerErrorListener) => unknown;
+  close: () => void;
+  connect: (url: string) => void;
+  removeErrorListener: (listener: TastytradeQuoteStreamerErrorListener) => unknown;
+  setAuthToken: (token: string) => void;
+};
+type DxLinkFeedLike = {
+  addEventListener: (listener: TastytradeEventListener) => void;
+  addSubscriptions: (...subscriptions: {symbol: string; type: string}[]) => void;
+  close: () => void;
+  configure: (acceptConfig: {
+    acceptAggregationPeriod: number;
+    acceptDataFormat: FeedDataFormat;
+  }) => void;
+  removeEventListener: (listener: TastytradeEventListener) => void;
+  removeSubscriptions: (...subscriptions: {symbol: string; type: string}[]) => void;
+};
+export type HandledDxLinkQuoteStreamerDependencies = {
+  createClient?: () => DxLinkClientLike;
+  createFeed?: (client: DxLinkClientLike) => DxLinkFeedLike;
 };
 
 export type TastytradeCryptoStreamOptions = {
@@ -102,6 +143,7 @@ export function startTastytradeCryptoStream({
   let retryTimer: TimerHandle | undefined;
   let staleTimer: TimerHandle | undefined;
   let removeListener: (() => void) | undefined;
+  let removeQuoteStreamerErrorListener: (() => void) | undefined;
   let stopped = false;
   const previousPrices = new Map<string, number>();
 
@@ -118,6 +160,11 @@ export function startTastytradeCryptoStream({
     if (undefined !== removeListener) {
       removeListener();
       removeListener = undefined;
+    }
+
+    if (undefined !== removeQuoteStreamerErrorListener) {
+      removeQuoteStreamerErrorListener();
+      removeQuoteStreamerErrorListener = undefined;
     }
 
     if (undefined !== client) {
@@ -149,6 +196,10 @@ export function startTastytradeCryptoStream({
   };
 
   const fail = (reason: string) => {
+    if (true === stopped) {
+      return;
+    }
+
     clearTimer(initialResubscribeTimer);
     clearTimer(staleTimer);
     disconnect();
@@ -277,10 +328,17 @@ export function startTastytradeCryptoStream({
 
       disconnect();
       client = clientFactory({clientSecret, refreshToken});
+      removeQuoteStreamerErrorListener = client.quoteStreamer.addErrorListener?.(error => {
+        fail(formatQuoteStreamerError(error));
+      });
       streamAssets = await resolveCryptoStreamAssets(configuredStreamAssets, client, logger);
       assetByStreamerSymbol = getAssetByStreamerSymbol(streamAssets);
       removeListener = client.quoteStreamer.addEventListener(handleEvents);
       await client.quoteStreamer.connect();
+      if (undefined === client) {
+        return;
+      }
+
       connectedAtMs = now();
       lastValidEventAtMs = 0;
       lastValidEventAtBySymbol.clear();
@@ -316,13 +374,153 @@ function createTastytradeMarketDataClient(credentials: {
   clientSecret: string;
   refreshToken: string;
 }): TastytradeMarketDataClient {
-  return new TastytradeClient({
+  const client = new TastytradeClient({
     baseUrl: "https://api.tastyworks.com",
     accountStreamerUrl: "wss://streamer.tastyworks.com",
     clientSecret: credentials.clientSecret,
     refreshToken: credentials.refreshToken,
     oauthScopes: ["read"],
   });
+
+  return {
+    accountsAndCustomersService: client.accountsAndCustomersService,
+    instrumentsService: client.instrumentsService,
+    quoteStreamer: createHandledDxLinkQuoteStreamer(client.accountsAndCustomersService),
+  };
+}
+
+export function createHandledDxLinkQuoteStreamer(
+  accountsAndCustomersService: TastytradeAccountsAndCustomersService,
+  dependencies: HandledDxLinkQuoteStreamerDependencies = {},
+): TastytradeQuoteStreamer {
+  const createClient = dependencies.createClient ?? (() => new DXLinkWebSocketClient({
+    logLevel: DXLinkLogLevel.ERROR,
+  }) as unknown as DxLinkClientLike);
+  const createFeed = dependencies.createFeed ?? ((dxLinkClient: DxLinkClientLike) => new DXLinkFeed(
+    dxLinkClient as unknown as DXLinkClient,
+    FeedContract.AUTO,
+    {logLevel: DXLinkLogLevel.ERROR},
+  ) as unknown as DxLinkFeedLike);
+
+  return new HandledDxLinkQuoteStreamer(accountsAndCustomersService, {
+    createClient,
+    createFeed,
+  });
+}
+
+class HandledDxLinkQuoteStreamer implements TastytradeQuoteStreamer {
+  private readonly accountsAndCustomersService: TastytradeAccountsAndCustomersService;
+  private readonly dependencies: Required<HandledDxLinkQuoteStreamerDependencies>;
+  private dxLinkClient: DxLinkClientLike | null = null;
+  private dxLinkFeed: DxLinkFeedLike | null = null;
+  private readonly errorListeners = new Set<TastytradeQuoteStreamerErrorListener>();
+  private readonly eventListeners = new Set<TastytradeEventListener>();
+
+  constructor(
+    accountsAndCustomersService: TastytradeAccountsAndCustomersService,
+    dependencies: Required<HandledDxLinkQuoteStreamerDependencies>,
+  ) {
+    this.accountsAndCustomersService = accountsAndCustomersService;
+    this.dependencies = dependencies;
+  }
+
+  async connect(): Promise<void> {
+    const tokenResponse = await this.accountsAndCustomersService.getApiQuoteToken();
+    const dxLinkUrl = getStringField(tokenResponse, ["dxlink-url", "dxLinkUrl", "dxlinkUrl"]);
+    const dxLinkAuthToken = getStringField(tokenResponse, ["token"]);
+    if (null === dxLinkUrl || null === dxLinkAuthToken) {
+      throw new Error("tastytrade dxLink quote token response is missing connection details");
+    }
+
+    this.disconnect();
+    this.dxLinkClient = this.dependencies.createClient();
+    this.dxLinkClient.addErrorListener(this.handleDxLinkError);
+    this.dxLinkClient.connect(dxLinkUrl);
+    this.dxLinkClient.setAuthToken(dxLinkAuthToken);
+
+    this.dxLinkFeed = this.dependencies.createFeed(this.dxLinkClient);
+    this.dxLinkFeed.configure({
+      acceptAggregationPeriod: 10,
+      acceptDataFormat: FeedDataFormat.COMPACT,
+    });
+    for (const listener of this.eventListeners) {
+      this.dxLinkFeed.addEventListener(listener);
+    }
+  }
+
+  disconnect(): void {
+    const dxLinkFeed = this.dxLinkFeed;
+    const dxLinkClient = this.dxLinkClient;
+    this.dxLinkFeed = null;
+    this.dxLinkClient = null;
+
+    dxLinkClient?.removeErrorListener(this.handleDxLinkError);
+    dxLinkFeed?.close();
+    dxLinkClient?.close();
+  }
+
+  addEventListener(listener: TastytradeEventListener): () => void {
+    this.eventListeners.add(listener);
+    this.dxLinkFeed?.addEventListener(listener);
+
+    return () => {
+      this.removeEventListener(listener);
+    };
+  }
+
+  removeEventListener(listener: TastytradeEventListener): void {
+    this.eventListeners.delete(listener);
+    this.dxLinkFeed?.removeEventListener(listener);
+  }
+
+  addErrorListener(listener: TastytradeQuoteStreamerErrorListener): () => void {
+    this.errorListeners.add(listener);
+
+    return () => {
+      this.errorListeners.delete(listener);
+    };
+  }
+
+  subscribe(streamerSymbols: string[], types: MarketDataSubscriptionType[] | null = null): void {
+    if (null === this.dxLinkFeed) {
+      throw new Error("DxLink feed is not connected");
+    }
+
+    const subscriptionTypes = types ?? quoteSubscriptionTypes;
+    for (const streamerSymbol of streamerSymbols) {
+      for (const type of subscriptionTypes) {
+        this.dxLinkFeed.addSubscriptions({type, symbol: streamerSymbol});
+      }
+    }
+  }
+
+  unsubscribe(streamerSymbols: string[]): void {
+    if (null === this.dxLinkFeed) {
+      throw new Error("DxLink feed is not connected");
+    }
+
+    for (const streamerSymbol of streamerSymbols) {
+      for (const type of quoteSubscriptionTypes) {
+        this.dxLinkFeed.removeSubscriptions({type, symbol: streamerSymbol});
+      }
+    }
+  }
+
+  private readonly handleDxLinkError = (error: TastytradeQuoteStreamerError): void => {
+    for (const listener of this.errorListeners) {
+      listener(error);
+    }
+  };
+}
+
+function formatQuoteStreamerError(error: TastytradeQuoteStreamerError): string {
+  const message = "" === error.message.trim() ? "unknown error" : error.message.trim();
+  const type = error.type?.trim();
+  if (undefined === type || "" === type) {
+    return `dxLink: ${message}`;
+  }
+
+  return `dxLink ${type}: ${message}`;
 }
 
 function ensureWebSocketGlobal() {
