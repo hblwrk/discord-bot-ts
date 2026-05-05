@@ -1,12 +1,14 @@
 import {beforeEach, describe, expect, test, vi} from "vitest";
 import {MarketDataSubscriptionType} from "@tastytrade/api";
 import {
+  createHandledDxLinkQuoteStreamer,
   startTastytradeCryptoStream,
   type TastytradeCryptoStreamOptions,
 } from "./market-data-tastytrade.ts";
 import {type MarketDataAsset} from "./market-data-types.ts";
 
 type StreamerListener = (events: Record<string, unknown>[]) => void;
+type StreamerErrorListener = (error: {message: string; type?: string | undefined}) => void;
 
 function createCryptoAsset(overrides: Partial<MarketDataAsset> = {}): MarketDataAsset {
   return {
@@ -27,8 +29,15 @@ function createCryptoAsset(overrides: Partial<MarketDataAsset> = {}): MarketData
 
 function createStreamer() {
   let listener: StreamerListener | undefined;
+  let errorListener: StreamerErrorListener | undefined;
   return {
     streamer: {
+      addErrorListener: vi.fn((newListener: StreamerErrorListener) => {
+        errorListener = newListener;
+        return vi.fn(() => {
+          errorListener = undefined;
+        });
+      }),
       addEventListener: vi.fn((newListener: StreamerListener) => {
         listener = newListener;
         return vi.fn(() => {
@@ -38,9 +47,13 @@ function createStreamer() {
       connect: vi.fn().mockResolvedValue(undefined),
       disconnect: vi.fn(),
       subscribe: vi.fn(),
+      unsubscribe: vi.fn(),
     },
     emit: (events: Record<string, unknown>[]) => {
       listener?.(events);
+    },
+    emitError: (error: {message: string; type?: string | undefined}) => {
+      errorListener?.(error);
     },
   };
 }
@@ -243,6 +256,96 @@ describe("tastytrade crypto market data stream", () => {
     await vi.advanceTimersByTimeAsync(1);
     await flushAsyncWork();
     expect(connect).toHaveBeenCalledTimes(3);
+  });
+
+  test("handles dxLink streamer errors through fallback and retry", async () => {
+    const stream = createStreamer();
+    const options = createOptions({
+      clientFactory: vi.fn(() => ({
+        quoteStreamer: stream.streamer,
+      })),
+    });
+
+    startTastytradeCryptoStream(options);
+    await flushAsyncWork();
+
+    stream.emitError({type: "UNKNOWN", message: "Unable to connect"});
+
+    expect(options.onFallback).toHaveBeenCalledWith("dxLink UNKNOWN: Unable to connect");
+    expect(stream.streamer.disconnect).toHaveBeenCalledTimes(1);
+
+    await vi.advanceTimersByTimeAsync(30_000);
+    await flushAsyncWork();
+
+    expect(stream.streamer.connect).toHaveBeenCalledTimes(2);
+
+    stream.emitError({message: "   "});
+
+    expect(options.onFallback).toHaveBeenLastCalledWith("dxLink: unknown error");
+  });
+
+  test("creates a handled dxLink quote streamer with subscriptions and error listeners", async () => {
+    const dxLinkErrorListener = vi.fn();
+    const feedListener = vi.fn();
+    const dxLinkClient = {
+      addErrorListener: vi.fn((listener: StreamerErrorListener) => {
+        dxLinkErrorListener.mockImplementation(listener);
+      }),
+      close: vi.fn(),
+      connect: vi.fn(),
+      removeErrorListener: vi.fn(),
+      setAuthToken: vi.fn(),
+    };
+    const dxLinkFeed = {
+      addEventListener: vi.fn(),
+      addSubscriptions: vi.fn(),
+      close: vi.fn(),
+      configure: vi.fn(),
+      removeEventListener: vi.fn(),
+      removeSubscriptions: vi.fn(),
+    };
+    const quoteStreamer = createHandledDxLinkQuoteStreamer({
+      getApiQuoteToken: vi.fn().mockResolvedValue({
+        "dxlink-url": "wss://quote.example",
+        token: "quote-token",
+      }),
+    }, {
+      createClient: () => dxLinkClient,
+      createFeed: () => dxLinkFeed,
+    });
+    const quoteErrorListener = vi.fn();
+    const removeErrorListener = quoteStreamer.addErrorListener?.(quoteErrorListener);
+
+    quoteStreamer.addEventListener(feedListener);
+    await quoteStreamer.connect();
+    quoteStreamer.subscribe(["BTC/USD:CXTALP"], [MarketDataSubscriptionType.Trade]);
+    quoteStreamer.unsubscribe(["BTC/USD:CXTALP"]);
+    dxLinkErrorListener({type: "UNKNOWN", message: "Unable to connect"});
+    removeErrorListener?.();
+    quoteStreamer.disconnect();
+
+    expect(dxLinkClient.connect).toHaveBeenCalledWith("wss://quote.example");
+    expect(dxLinkClient.setAuthToken).toHaveBeenCalledWith("quote-token");
+    expect(dxLinkFeed.configure).toHaveBeenCalledWith({
+      acceptAggregationPeriod: 10,
+      acceptDataFormat: "COMPACT",
+    });
+    expect(dxLinkFeed.addEventListener).toHaveBeenCalledWith(feedListener);
+    expect(dxLinkFeed.addSubscriptions).toHaveBeenCalledWith({
+      symbol: "BTC/USD:CXTALP",
+      type: MarketDataSubscriptionType.Trade,
+    });
+    expect(dxLinkFeed.removeSubscriptions).toHaveBeenCalledWith({
+      symbol: "BTC/USD:CXTALP",
+      type: MarketDataSubscriptionType.Trade,
+    });
+    expect(quoteErrorListener).toHaveBeenCalledWith({
+      message: "Unable to connect",
+      type: "UNKNOWN",
+    });
+    expect(dxLinkClient.removeErrorListener).toHaveBeenCalledTimes(1);
+    expect(dxLinkFeed.close).toHaveBeenCalledTimes(1);
+    expect(dxLinkClient.close).toHaveBeenCalledTimes(1);
   });
 
   test("falls back when a connected stream stays stale and recovers on the next valid event", async () => {

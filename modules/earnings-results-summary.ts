@@ -70,7 +70,7 @@ export async function summarizeEarningsWithAi(
     return null;
   }
 
-  return parseSummary(parsedJson, input.ticker);
+  return parseSummary(parsedJson, input.ticker, input.companyName);
 }
 
 function getSummaryPrompt(input: EarningsAiSummaryInput, filingText: string): string {
@@ -83,6 +83,7 @@ function getSummaryPrompt(input: EarningsAiSummaryInput, filingText: string): st
     "- Sentence 2 covers the most important business drivers, segment notes, or margin/profit details.",
     "- Sentence 3 covers outlook, guidance, or management expectations when present; otherwise state that no quantified outlook is provided.",
     "- Format ticker symbols and concrete metrics as inline code, e.g. `AAPL`, `$2.14`, `3.1%`, `180 bps`, `$42 billion`.",
+    "- Do not mention the company name in the summary; the Discord alert title already identifies the company.",
     "- Use only the provided filing text and do not mention the SEC filing, source text, or any AI provider.",
     `Company: ${input.companyName}`,
     `Ticker: ${input.ticker}`,
@@ -172,7 +173,7 @@ function parseJson(value: string): unknown | null {
   }
 }
 
-function parseSummary(value: unknown, ticker: string): string | null {
+function parseSummary(value: unknown, ticker: string, companyName: string): string | null {
   if (false === isRecord(value)) {
     return null;
   }
@@ -190,7 +191,56 @@ function parseSummary(value: unknown, ticker: string): string | null {
     return null;
   }
 
-  return formatSummaryInlineCode(normalizedSummary, ticker);
+  return formatSummaryInlineCode(removeRedundantCompanyNameMentions(normalizedSummary, companyName), ticker);
+}
+
+function removeRedundantCompanyNameMentions(value: string, companyName: string): string {
+  const companyNamePatterns = getCompanyNamePatterns(companyName);
+  if (0 === companyNamePatterns.length) {
+    return value;
+  }
+
+  let result = value;
+  for (const companyNamePattern of companyNamePatterns) {
+    result = result.replace(
+      companyNamePattern,
+      (_match, sentencePrefix: string, nextCharacter: string) => `${sentencePrefix}${capitalizeFirstLetter(nextCharacter)}`,
+    );
+  }
+
+  return result;
+}
+
+function getCompanyNamePatterns(companyName: string): RegExp[] {
+  const normalizedCompanyName = companyName.replace(/\s+/g, " ").trim();
+  if ("" === normalizedCompanyName) {
+    return [];
+  }
+
+  const aliases = new Set<string>([normalizedCompanyName]);
+  const suffixlessCompanyName = normalizedCompanyName
+    .replace(/,?\s+(?:incorporated|inc\.?|corporation|corp\.?|company|co\.?|limited|ltd\.?|plc|group|holdings?)\.?$/i, "")
+    .trim();
+  if ("" !== suffixlessCompanyName) {
+    aliases.add(suffixlessCompanyName);
+  }
+
+  for (const alias of [...aliases]) {
+    aliases.add(alias.replace(/^the\s+/i, "").trim());
+  }
+
+  return [...aliases]
+    .filter(alias => "" !== alias)
+    .sort((first, second) => second.length - first.length)
+    .map(alias => new RegExp(`(^|[.!?]\\s+)${escapeRegExp(alias)}(?:\\s*\\([A-Z0-9.:-]+\\))?(?:\\s*'s)?(?:\\s+|\\s*[,;:.-]\\s*)(\\S)`, "gi"));
+}
+
+function capitalizeFirstLetter(value: string): string {
+  return value.replace(/[A-Za-z]/, letter => letter.toUpperCase());
+}
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
 function formatSummaryInlineCode(value: string, ticker: string): string {
