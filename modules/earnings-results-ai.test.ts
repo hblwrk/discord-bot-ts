@@ -1,15 +1,15 @@
 import {beforeEach, describe, expect, test, vi} from "vitest";
 import {
-  checkEarningsQualityWithGemini,
+  checkEarningsQualityWithAi,
   clearEarningsAiState,
-  extractEarningsWithGemini,
+  extractEarningsWithAi,
   getSuspiciousEarningsReasons,
   hasHighSeveritySuspicion,
   mergeAiMetrics,
 } from "./earnings-results-ai.ts";
 import type {EarningsResultMetric} from "./earnings-results-format.ts";
 
-describe("Gemini earnings helpers", () => {
+describe("AI earnings helpers", () => {
   const logger = {
     log: vi.fn(),
   };
@@ -64,7 +64,7 @@ describe("Gemini earnings helpers", () => {
       },
     });
 
-    const result = await extractEarningsWithGemini({
+    const result = await extractEarningsWithAi({
       companyName: "Example Corp",
       filingForm: "8-K",
       filingUrl: "https://www.sec.gov/example",
@@ -104,7 +104,7 @@ describe("Gemini earnings helpers", () => {
     );
   });
 
-  test("uses default model and rate limit when optional Gemini secrets are missing", async () => {
+  test("uses default provider model and rate limit when optional provider secrets are missing", async () => {
     const postWithRetryFn = vi.fn().mockResolvedValue({
       data: {
         candidates: [{
@@ -121,7 +121,7 @@ describe("Gemini earnings helpers", () => {
       },
     });
 
-    await extractEarningsWithGemini({
+    await extractEarningsWithAi({
       companyName: "Example Corp",
       filingForm: "8-K",
       filingUrl: "https://www.sec.gov/example",
@@ -148,7 +148,7 @@ describe("Gemini earnings helpers", () => {
     );
   });
 
-  test("sends Gemini a bounded SEC release excerpt instead of the whole filing", async () => {
+  test("sends the provider a bounded SEC release excerpt instead of the whole filing", async () => {
     const longReleaseHtml = [
       "<html><body>",
       "<h1>Example Corp reports first quarter 2026 results</h1>",
@@ -175,7 +175,7 @@ describe("Gemini earnings helpers", () => {
       },
     });
 
-    await extractEarningsWithGemini({
+    await extractEarningsWithAi({
       companyName: "Example Corp",
       filingForm: "8-K",
       filingUrl: "https://www.sec.gov/example",
@@ -197,7 +197,7 @@ describe("Gemini earnings helpers", () => {
     expect(filingText).not.toContain("UNIQUE_TAIL_MARKER");
   });
 
-  test("bounds single-line SEC release excerpts before calling Gemini", async () => {
+  test("bounds single-line SEC release excerpts before calling the provider", async () => {
     const longSingleLineHtml = `<html><body>${"Revenue discussion ".repeat(900)}</body></html>`;
     const postWithRetryFn = vi.fn().mockResolvedValue({
       data: {
@@ -215,7 +215,7 @@ describe("Gemini earnings helpers", () => {
       },
     });
 
-    await extractEarningsWithGemini({
+    await extractEarningsWithAi({
       companyName: "Example Corp",
       filingForm: "8-K",
       filingUrl: "https://www.sec.gov/example",
@@ -235,10 +235,10 @@ describe("Gemini earnings helpers", () => {
     expect(filingText).toContain("[truncated]");
   });
 
-  test("does not call Gemini when SEC release text is empty", async () => {
+  test("does not call the provider when SEC release text is empty", async () => {
     const postWithRetryFn = vi.fn();
 
-    const result = await extractEarningsWithGemini({
+    const result = await extractEarningsWithAi({
       companyName: "Example Corp",
       filingForm: "8-K",
       filingUrl: "https://www.sec.gov/example",
@@ -276,7 +276,7 @@ describe("Gemini earnings helpers", () => {
       },
     });
 
-    const result = await extractEarningsWithGemini({
+    const result = await extractEarningsWithAi({
       companyName: "Example Corp",
       filingForm: "8-K",
       filingUrl: "https://www.sec.gov/example",
@@ -292,7 +292,7 @@ describe("Gemini earnings helpers", () => {
     expect(result?.metrics).toEqual([]);
   });
 
-  test("caps Gemini calls with the local per-minute limiter", async () => {
+  test("caps AI calls with the local per-minute limiter", async () => {
     const postWithRetryFn = vi.fn().mockResolvedValue({
       data: {
         candidates: [{
@@ -317,13 +317,13 @@ describe("Gemini earnings helpers", () => {
       ticker: "EXM",
     };
 
-    await extractEarningsWithGemini(input, {
+    await extractEarningsWithAi(input, {
       logger,
       nowMs: () => 1_000,
       postWithRetryFn,
       readSecretFn,
     });
-    const secondResult = await extractEarningsWithGemini(input, {
+    const secondResult = await extractEarningsWithAi(input, {
       logger,
       nowMs: () => 1_000,
       postWithRetryFn,
@@ -334,11 +334,11 @@ describe("Gemini earnings helpers", () => {
     expect(postWithRetryFn).toHaveBeenCalledTimes(1);
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
-      "Skipping Gemini earnings extraction for EXM: local 1/minute rate limit is exhausted.",
+      expect.stringContaining("earnings extraction for EXM: local 1/minute rate limit is exhausted."),
     );
   });
 
-  test("releases local Gemini call capacity after one minute", async () => {
+  test("releases local AI call capacity after one minute", async () => {
     const postWithRetryFn = vi.fn().mockResolvedValue({
       data: {
         candidates: [{
@@ -362,13 +362,13 @@ describe("Gemini earnings helpers", () => {
       ticker: "EXM",
     };
 
-    await extractEarningsWithGemini(input, {
+    await extractEarningsWithAi(input, {
       logger,
       nowMs: () => 1_000,
       postWithRetryFn,
       readSecretFn,
     });
-    await extractEarningsWithGemini(input, {
+    await extractEarningsWithAi(input, {
       logger,
       nowMs: () => 62_000,
       postWithRetryFn,
@@ -378,10 +378,10 @@ describe("Gemini earnings helpers", () => {
     expect(postWithRetryFn).toHaveBeenCalledTimes(2);
   });
 
-  test("stays disabled when the Gemini API key secret is missing", async () => {
+  test("stays disabled when the active provider API key secret is missing", async () => {
     const postWithRetryFn = vi.fn();
 
-    const result = await extractEarningsWithGemini({
+    const result = await extractEarningsWithAi({
       companyName: "Example Corp",
       filingForm: "8-K",
       filingUrl: "https://www.sec.gov/example",
@@ -399,8 +399,8 @@ describe("Gemini earnings helpers", () => {
     expect(postWithRetryFn).not.toHaveBeenCalled();
   });
 
-  test("returns null when Gemini extraction output is invalid JSON", async () => {
-    const result = await extractEarningsWithGemini({
+  test("returns null when AI extraction output is invalid JSON", async () => {
+    const result = await extractEarningsWithAi({
       companyName: "Example Corp",
       filingForm: "8-K",
       filingUrl: "https://www.sec.gov/example",
@@ -425,14 +425,14 @@ describe("Gemini earnings helpers", () => {
     expect(result).toBeNull();
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
-      "Gemini earnings extraction returned invalid JSON for EXM.",
+      "AI earnings extraction returned invalid JSON for EXM.",
     );
   });
 
-  test("allows quality checks without calling Gemini when there are no suspicious reasons", async () => {
+  test("allows quality checks without calling the provider when there are no suspicious reasons", async () => {
     const postWithRetryFn = vi.fn();
 
-    const result = await checkEarningsQualityWithGemini({
+    const result = await checkEarningsQualityWithAi({
       companyName: "Example Corp",
       event: getEvent(),
       filingForm: "8-K",
@@ -459,7 +459,7 @@ describe("Gemini earnings helpers", () => {
   });
 
   test("parses quality gate suppression with validated source snippets", async () => {
-    const result = await checkEarningsQualityWithGemini({
+    const result = await checkEarningsQualityWithAi({
       companyName: "Example Corp",
       event: getEvent(),
       filingForm: "8-K",
@@ -520,7 +520,7 @@ describe("Gemini earnings helpers", () => {
   });
 
   test("rejects quality gate suppression without validated issues", async () => {
-    const result = await checkEarningsQualityWithGemini({
+    const result = await checkEarningsQualityWithAi({
       companyName: "Example Corp",
       event: getEvent(),
       filingForm: "8-K",

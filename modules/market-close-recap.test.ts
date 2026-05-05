@@ -1,5 +1,5 @@
 import {beforeEach, describe, expect, test, vi} from "vitest";
-import {clearGeminiState} from "./gemini.ts";
+import {clearAiProviderState} from "./ai-provider.ts";
 import {
   findMarketOpenSentimentPollMessage,
   getMarketCloseRecap,
@@ -54,7 +54,7 @@ describe("market close recap", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
-    clearGeminiState();
+    clearAiProviderState();
   });
 
   test("generates a German grounded close recap and mentions voters who picked the matching sentiment", async () => {
@@ -109,6 +109,7 @@ describe("market close recap", () => {
     expect(recap?.content).toContain("Das heutige Sentiment war: **🎢 Chaos**");
     expect(recap?.content).toContain("<@123> <@456>");
     expect(recap?.content).not.toContain("Gemini");
+    expect(recap?.content).not.toContain("GPT");
     expect(chaosVotersFetch).toHaveBeenCalledWith({
       limit: 100,
     });
@@ -132,7 +133,7 @@ describe("market close recap", () => {
     expect(requestBody.contents?.[0]?.parts?.[0]?.text).toContain("Der `VIX` darf niemals als Prozentwert beschrieben werden.");
   });
 
-  test("stays disabled when the Gemini API key is missing", async () => {
+  test("stays disabled when the active provider API key is missing", async () => {
     const postWithRetryFn = vi.fn();
 
     const recap = await getMarketCloseRecap(undefined, {
@@ -267,11 +268,11 @@ describe("market close recap", () => {
     expect(recap).toBeUndefined();
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
-      "Gemini market close recap failed output validation.",
+      "AI market close recap failed output validation.",
     );
   });
 
-  test("rejects invalid or incomplete Gemini responses", async () => {
+  test("rejects invalid or incomplete AI responses", async () => {
     const invalidJsonRecap = await getMarketCloseRecap(undefined, {
       logger,
       postWithRetryFn: vi.fn().mockResolvedValue({
@@ -299,11 +300,11 @@ describe("market close recap", () => {
     expect(missingFieldRecap).toBeUndefined();
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
-      "Gemini market close recap returned invalid JSON.",
+      "AI market close recap returned invalid JSON.",
     );
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
-      "Gemini market close recap response missed required fields.",
+      "AI market close recap response missed required fields.",
     );
   });
 
@@ -312,6 +313,13 @@ describe("market close recap", () => {
       logger,
       postWithRetryFn: createPostWithRecap({
         summaryMarkdown: "Gemini sagt: `SPX` war fest und der `VIX` fiel um `1 Punkt`.",
+      }),
+      readSecretFn,
+    });
+    const gptMentionRecap = await getMarketCloseRecap(undefined, {
+      logger,
+      postWithRetryFn: createPostWithRecap({
+        summaryMarkdown: "GPT sagt: `SPX` war fest und der `VIX` fiel um `1 Punkt`.",
       }),
       readSecretFn,
     });
@@ -324,10 +332,11 @@ describe("market close recap", () => {
     });
 
     expect(providerMentionRecap).toBeUndefined();
+    expect(gptMentionRecap).toBeUndefined();
     expect(missingVixRecap).toBeUndefined();
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
-      "Gemini market close recap failed output validation.",
+      "AI market close recap failed output validation.",
     );
   });
 
