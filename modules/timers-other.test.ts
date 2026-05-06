@@ -8,10 +8,12 @@ import {
   createClientWithChannel,
   getAssetByNameMock,
   getCalendarEventsMock,
+  getCalendarOfficialSummaryMock,
   getCalendarMessagesMock,
   getEarningsMessagesMock,
   getEarningsReminderJob,
   getEarningsResultMock,
+  getScheduledDateJobs,
   getScheduledJobByTime,
   isHolidayMock,
   loggerMock,
@@ -195,6 +197,117 @@ describe("timers: other announcements", () => {
 
     expect(send).toHaveBeenNthCalledWith(2, {
       content: "<@&role-123> Heute wichtig: `14:30` 🇺🇸 CPI y/y, Core CPI y/y, CPI m/m",
+      allowedMentions: {
+        parse: [],
+        roles: ["role-123"],
+      },
+    });
+  });
+
+  test("startOtherTimers posts calendar actuals after the release when they become available", async () => {
+    const {client, send} = createClientWithChannel();
+    getCalendarEventsMock
+      .mockResolvedValueOnce([
+        {
+          date: "2025-02-19",
+          time: "14:30",
+          country: "🇺🇸",
+          forecastValue: "3.2%",
+          name: "Consumer Price Index (CPI) y/y",
+          previousValue: "3.1%",
+        },
+      ])
+      .mockResolvedValueOnce([
+        {
+          actualValue: "3.4%",
+          date: "2025-02-19",
+          time: "14:30",
+          country: "🇺🇸",
+          forecastValue: "3.2%",
+          name: "Consumer Price Index (CPI) y/y",
+          previousValue: "3.1%",
+        },
+      ]);
+
+    startOtherTimers(client, "channel-id", [], [], [createCalendarReminderAsset({
+      name: "us-cpi-1h",
+      eventNameSubstrings: ["cpi"],
+      countryFlags: ["🇺🇸"],
+      roleId: "role-123",
+    })], []);
+    const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
+    await dailyCalendarJob.callback();
+
+    const followUpJobs = getScheduledDateJobs();
+    expect(followUpJobs).toHaveLength(10);
+    expect(followUpJobs.map(job => job.rule.toISOString())).toEqual([
+      "2025-02-19T13:30:05.000Z",
+      "2025-02-19T13:30:10.000Z",
+      "2025-02-19T13:30:20.000Z",
+      "2025-02-19T13:30:30.000Z",
+      "2025-02-19T13:31:00.000Z",
+      "2025-02-19T13:32:00.000Z",
+      "2025-02-19T13:33:00.000Z",
+      "2025-02-19T13:35:00.000Z",
+      "2025-02-19T13:40:00.000Z",
+      "2025-02-19T13:45:00.000Z",
+    ]);
+    await followUpJobs[0]!.callback();
+
+    expect(send).toHaveBeenNthCalledWith(2, {
+      content: "<@&role-123> Heute wichtig: `14:30` 🇺🇸 Consumer Price Index (CPI) y/y: exp. `3.2%`, prev. `3.1%`",
+      allowedMentions: {
+        parse: [],
+        roles: ["role-123"],
+      },
+    });
+    expect(send).toHaveBeenNthCalledWith(3, {
+      content: "<@&role-123> Update: `14:30` 🇺🇸 Consumer Price Index (CPI) y/y: actual `3.4%`, exp. `3.2%`, prev. `3.1%`",
+      allowedMentions: {
+        parse: [],
+        roles: ["role-123"],
+      },
+    });
+  });
+
+  test("startOtherTimers posts official AI summary after no-metric calendar releases", async () => {
+    const {client, send} = createClientWithChannel();
+    getCalendarEventsMock.mockResolvedValueOnce([
+      {
+        date: "2025-02-19",
+        time: "20:00",
+        country: "🇺🇸",
+        name: "FOMC Statement",
+      },
+    ]);
+    getCalendarOfficialSummaryMock.mockResolvedValueOnce({
+      name: "Federal Reserve",
+      summaryMarkdown: "The Fed emphasized inflation and labor-market risks.",
+      url: "https://www.federalreserve.gov/newsevents/pressreleases/monetary20250219a.htm",
+    });
+
+    startOtherTimers(client, "channel-id", [], [], [createCalendarReminderAsset({
+      name: "us-fomc-statement-1h",
+      eventNameSubstrings: ["fomc statement"],
+      countryFlags: ["🇺🇸"],
+      roleId: "role-123",
+    })], []);
+    const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
+    await dailyCalendarJob.callback();
+
+    await getScheduledDateJobs()[0]!.callback();
+
+    expect(getCalendarOfficialSummaryMock).toHaveBeenCalledWith([
+      expect.objectContaining({
+        name: "FOMC Statement",
+      }),
+    ], expect.objectContaining({
+      logger: expect.objectContaining({
+        log: expect.any(Function),
+      }),
+    }));
+    expect(send).toHaveBeenNthCalledWith(3, {
+      content: "<@&role-123> Update: `20:00` 🇺🇸 FOMC Statement\nSource: Federal Reserve\nThe Fed emphasized inflation and labor-market risks.",
       allowedMentions: {
         parse: [],
         roles: ["role-123"],

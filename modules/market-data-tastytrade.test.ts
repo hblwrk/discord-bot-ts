@@ -217,6 +217,21 @@ describe("tastytrade crypto market data stream", () => {
       6,
       6,
     );
+
+    stream.emit([{
+      change: 0.1,
+      eventSymbol: "BTC/USD",
+      eventType: "Trade",
+      percentageChange: 0.09,
+      price: 107,
+    }]);
+
+    expect(options.onMarketData).toHaveBeenLastCalledWith(
+      expect.objectContaining({botClientId: "btc-client"}),
+      107,
+      7,
+      7.000000000000001,
+    );
   });
 
   test("derives crypto percentage move from trade change", async () => {

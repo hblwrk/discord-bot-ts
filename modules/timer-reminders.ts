@@ -123,13 +123,99 @@ function getCalendarReminderEventSummary(calendarEvents: CalendarEvent[]): strin
   return uniqueEventNames.join(", ");
 }
 
+function getCalendarEventDisplayValue(value: string | undefined): string {
+  return value?.trim() ?? "";
+}
+
+function getCalendarEventMetricSegments(calendarEvent: CalendarEvent): string[] {
+  const segments: string[] = [];
+  const actualValue = getCalendarEventDisplayValue(calendarEvent.actualValue);
+  const forecastValue = getCalendarEventDisplayValue(calendarEvent.forecastValue);
+  const previousValue = getCalendarEventDisplayValue(calendarEvent.previousValue);
+
+  if ("" !== actualValue) {
+    segments.push(`actual ${getDiscordMonospaceText(actualValue)}`);
+  }
+
+  if ("" !== forecastValue) {
+    segments.push(`exp. ${getDiscordMonospaceText(forecastValue)}`);
+  }
+
+  if ("" !== previousValue) {
+    segments.push(`prev. ${getDiscordMonospaceText(previousValue)}`);
+  }
+
+  return segments;
+}
+
+function getCalendarReminderEventDetail(calendarEvent: CalendarEvent): string {
+  const metricSegments = getCalendarEventMetricSegments(calendarEvent);
+  if (0 === metricSegments.length) {
+    return calendarEvent.name;
+  }
+
+  return `${calendarEvent.name}: ${metricSegments.join(", ")}`;
+}
+
+function getCalendarReminderEventDetails(calendarEvents: CalendarEvent[]): string {
+  if (false === hasCalendarReminderClearMetrics(calendarEvents)) {
+    return getCalendarReminderEventSummary(calendarEvents);
+  }
+
+  const eventDetails: string[] = [];
+  const seenEventDetails = new Set<string>();
+
+  for (const calendarEvent of calendarEvents) {
+    const eventDetail = getCalendarReminderEventDetail(calendarEvent).trim();
+    if (!eventDetail || true === seenEventDetails.has(eventDetail)) {
+      continue;
+    }
+
+    eventDetails.push(eventDetail);
+    seenEventDetails.add(eventDetail);
+  }
+
+  return eventDetails.join("; ");
+}
+
+export function hasCalendarReminderActualValues(calendarEvents: CalendarEvent[]): boolean {
+  return calendarEvents.some(calendarEvent => "" !== getCalendarEventDisplayValue(calendarEvent.actualValue));
+}
+
+export function hasCalendarReminderClearMetrics(calendarEvents: CalendarEvent[]): boolean {
+  return calendarEvents.some(calendarEvent => 0 < getCalendarEventMetricSegments(calendarEvent).length);
+}
+
 export function getCalendarReminderMessage(roleId: string, calendarEvents: CalendarEvent[]): string {
   const primaryEvent = calendarEvents[0];
   if (undefined === primaryEvent) {
     return `${getRoleMention(roleId)} Heute wichtig:`;
   }
 
-  return `${getRoleMention(roleId)} Heute wichtig: \`${primaryEvent.time}\` ${primaryEvent.country} ${getCalendarReminderEventSummary(calendarEvents)}`;
+  return `${getRoleMention(roleId)} Heute wichtig: \`${primaryEvent.time}\` ${primaryEvent.country} ${getCalendarReminderEventDetails(calendarEvents)}`;
+}
+
+export function getCalendarReminderUpdateMessage(roleId: string, calendarEvents: CalendarEvent[]): string {
+  const primaryEvent = calendarEvents[0];
+  if (undefined === primaryEvent) {
+    return `${getRoleMention(roleId)} Update:`;
+  }
+
+  return `${getRoleMention(roleId)} Update: \`${primaryEvent.time}\` ${primaryEvent.country} ${getCalendarReminderEventDetails(calendarEvents)}`;
+}
+
+export function getCalendarReminderSummaryMessage(
+  roleId: string,
+  calendarEvents: CalendarEvent[],
+  sourceName: string,
+  summaryMarkdown: string,
+): string {
+  const primaryEvent = calendarEvents[0];
+  if (undefined === primaryEvent) {
+    return `${getRoleMention(roleId)} Update:\nSource: ${sourceName}\n${summaryMarkdown}`;
+  }
+
+  return `${getRoleMention(roleId)} Update: \`${primaryEvent.time}\` ${primaryEvent.country} ${getCalendarReminderEventSummary(calendarEvents)}\nSource: ${sourceName}\n${summaryMarkdown}`;
 }
 
 export function getMatchedCalendarReminderEventGroups(

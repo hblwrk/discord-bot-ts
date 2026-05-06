@@ -5,10 +5,14 @@ import type {EarningsEvent} from "./earnings-types.ts";
 import {
   getAllowedRoleMentions,
   getCalendarReminderMessage,
+  getCalendarReminderSummaryMessage,
+  getCalendarReminderUpdateMessage,
   getEarningsReminderMessage,
   getMatchedCalendarReminderEventGroups,
   getMatchedEarningsReminderEvents,
   getNormalizedRoleId,
+  hasCalendarReminderActualValues,
+  hasCalendarReminderClearMetrics,
 } from "./timer-reminders.ts";
 
 function createCalendarEvent(overrides: Partial<CalendarEvent> = {}): CalendarEvent {
@@ -87,6 +91,36 @@ describe("timer-reminders", () => {
       "<@&role-1> Heute wichtig: `14:30` 🇺🇸 ISM Manufacturing PMI, ISM Manufacturing PMI Final",
     );
     expect(getCalendarReminderMessage("role-1", [])).toBe("<@&role-1> Heute wichtig:");
+  });
+
+  test("formats calendar reminders with expected actual and previous values", () => {
+    const event = createCalendarEvent({
+      actualValue: "3.4%",
+      forecastValue: "3.2%",
+      previousValue: "3.1%",
+      name: "Consumer Price Index (CPI) y/y",
+    });
+
+    expect(hasCalendarReminderActualValues([event])).toBe(true);
+    expect(hasCalendarReminderClearMetrics([event])).toBe(true);
+    expect(getCalendarReminderMessage("role-1", [event])).toBe(
+      "<@&role-1> Heute wichtig: `14:30` 🇺🇸 Consumer Price Index (CPI) y/y: actual `3.4%`, exp. `3.2%`, prev. `3.1%`",
+    );
+    expect(getCalendarReminderUpdateMessage("role-1", [event])).toBe(
+      "<@&role-1> Update: `14:30` 🇺🇸 Consumer Price Index (CPI) y/y: actual `3.4%`, exp. `3.2%`, prev. `3.1%`",
+    );
+  });
+
+  test("formats calendar reminder summaries for events without clear metrics", () => {
+    const event = createCalendarEvent({
+      name: "FOMC Statement",
+    });
+
+    expect(hasCalendarReminderActualValues([event])).toBe(false);
+    expect(hasCalendarReminderClearMetrics([event])).toBe(false);
+    expect(getCalendarReminderSummaryMessage("role-1", [event], "Federal Reserve", "Policy remains data dependent.")).toBe(
+      "<@&role-1> Update: `14:30` 🇺🇸 FOMC Statement\nSource: Federal Reserve\nPolicy remains data dependent.",
+    );
   });
 
   test("matches earnings reminder tickers, removes duplicates and formats by time bucket", () => {

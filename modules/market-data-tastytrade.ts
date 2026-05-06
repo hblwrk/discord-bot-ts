@@ -754,12 +754,12 @@ function getTastytradePriceChange(
   referencePrice: number | null,
   previousPrice: number | null,
 ): number {
-  if (null !== eventPriceChange) {
-    return eventPriceChange;
-  }
-
   if (null !== referencePrice) {
     return lastNumeric - referencePrice;
+  }
+
+  if (null !== eventPriceChange) {
+    return eventPriceChange;
   }
 
   return null === previousPrice ? 0 : lastNumeric - previousPrice;
@@ -772,12 +772,12 @@ function getTastytradePercentageChange(
   referencePrice: number | null,
   previousPrice: number | null,
 ): number {
-  if (null !== eventPercentageChange) {
-    return eventPercentageChange;
-  }
-
   if (null !== referencePrice) {
     return (priceChange / referencePrice) * 100;
+  }
+
+  if (null !== eventPercentageChange) {
+    return eventPercentageChange;
   }
 
   const impliedReferencePrice = lastNumeric - priceChange;

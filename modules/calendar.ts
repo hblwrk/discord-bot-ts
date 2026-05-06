@@ -58,9 +58,16 @@ type CalendarMessageChunk = {
 };
 
 type CalendarApiEvent = {
+  ActualValue?: string | null;
   Country: number;
+  CurrencyCode?: string | null;
   EventName: string;
+  ForecastValue?: string | null;
   FullDate: string;
+  Id?: number | string | null;
+  OldPreviousValue?: string | null;
+  PreviousValue?: string | null;
+  Url?: string | null;
 };
 
 function getCalendarRangeInBerlin(startDay: string, range: number): {startDate: moment.Moment; endDate: moment.Moment} {
@@ -136,6 +143,13 @@ export async function getCalendarEventsResult(startDay: string, range: number): 
           calendarEvent.time = eventDeTime;
           calendarEvent.country = country;
           calendarEvent.name = element.EventName;
+          calendarEvent.actualValue = normalizeCalendarValue(element.ActualValue);
+          calendarEvent.forecastValue = normalizeCalendarValue(element.ForecastValue);
+          calendarEvent.previousValue = normalizeCalendarValue(element.PreviousValue);
+          calendarEvent.oldPreviousValue = normalizeCalendarValue(element.OldPreviousValue);
+          calendarEvent.currencyCode = normalizeCalendarValue(element.CurrencyCode);
+          calendarEvent.sourceEventId = normalizeCalendarValue(element.Id);
+          calendarEvent.sourceUrl = getCalendarEventSourceUrl(element.Url);
           calendarEvents.push(calendarEvent);
         }
       }
@@ -152,6 +166,31 @@ export async function getCalendarEventsResult(startDay: string, range: number): 
     events: calendarEvents,
     status,
   };
+}
+
+function normalizeCalendarValue(value: unknown): string {
+  if ("string" === typeof value || "number" === typeof value) {
+    return String(value)
+      .replace(/\u00a0/g, " ")
+      .replace(/\u200b/g, "")
+      .replace(/\s+/g, " ")
+      .trim();
+  }
+
+  return "";
+}
+
+function getCalendarEventSourceUrl(url: string | null | undefined): string {
+  const normalizedUrl = normalizeCalendarValue(url);
+  if ("" === normalizedUrl) {
+    return "";
+  }
+
+  if (/^https?:\/\//i.test(normalizedUrl)) {
+    return normalizedUrl;
+  }
+
+  return `https://www.mql5.com${normalizedUrl.startsWith("/") ? "" : "/"}${normalizedUrl}`;
 }
 
 export function getCalendarMessages(
@@ -315,10 +354,25 @@ export function getCalendarText(calendarEvents: CalendarEvent[]): string {
 }
 
 export class CalendarEvent {
+  private _actualValue = "";
   private _date = "";
   private _time = "";
   private _country = "";
+  private _currencyCode = "";
+  private _forecastValue = "";
   private _name = "";
+  private _oldPreviousValue = "";
+  private _previousValue = "";
+  private _sourceEventId = "";
+  private _sourceUrl = "";
+
+  public get actualValue() {
+    return this._actualValue;
+  }
+
+  public set actualValue(actualValue: string) {
+    this._actualValue = actualValue;
+  }
 
   public get date() {
     return this._date;
@@ -344,12 +398,60 @@ export class CalendarEvent {
     this._country = country;
   }
 
+  public get currencyCode() {
+    return this._currencyCode;
+  }
+
+  public set currencyCode(currencyCode: string) {
+    this._currencyCode = currencyCode;
+  }
+
+  public get forecastValue() {
+    return this._forecastValue;
+  }
+
+  public set forecastValue(forecastValue: string) {
+    this._forecastValue = forecastValue;
+  }
+
   public get name() {
     return this._name;
   }
 
   public set name(name: string) {
     this._name = name;
+  }
+
+  public get oldPreviousValue() {
+    return this._oldPreviousValue;
+  }
+
+  public set oldPreviousValue(oldPreviousValue: string) {
+    this._oldPreviousValue = oldPreviousValue;
+  }
+
+  public get previousValue() {
+    return this._previousValue;
+  }
+
+  public set previousValue(previousValue: string) {
+    this._previousValue = previousValue;
+  }
+
+  public get sourceEventId() {
+    return this._sourceEventId;
+  }
+
+  public set sourceEventId(sourceEventId: string) {
+    this._sourceEventId = sourceEventId;
+  }
+
+  public get sourceUrl() {
+    return this._sourceUrl;
+  }
+
+  public set sourceUrl(sourceUrl: string) {
+    this._sourceUrl = sourceUrl;
   }
 }
 
