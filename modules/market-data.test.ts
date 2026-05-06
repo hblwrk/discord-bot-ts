@@ -146,6 +146,104 @@ describe("updateMarketData", () => {
     expect(wsClient.send).toHaveBeenCalledWith(expect.stringContaining("pid-123:%%"));
   });
 
+  test("logs circular websocket error events without throwing", async () => {
+    queuedClientIds.push("client-1");
+    mockGetAssets.mockResolvedValue([
+      {
+        botToken: "token-1",
+        botName: "bot-one",
+        botClientId: "client-1",
+        id: 123,
+        decimals: 2,
+        order: 1,
+        suffix: "",
+        unit: "",
+        lastUpdate: 0,
+      },
+    ]);
+
+    await updateMarketData();
+    clientInstances[0]!.handlers.get("clientReady")();
+
+    const wsClient = websocketInstances[0]!;
+    const errorHandler = wsClient.handlers.get("error");
+    const circularEvent: Record<string, unknown> = {
+      error: new Error("socket timeout"),
+      message: "timeout",
+      type: "error",
+    };
+    circularEvent["request"] = circularEvent;
+
+    expect(() => errorHandler(circularEvent)).not.toThrow();
+    expect(mockLogger.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("message=timeout"),
+    );
+    expect(mockLogger.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("error=Error: socket timeout"),
+    );
+  });
+
+  test("logs websocket error event variants without serializing full objects", async () => {
+    queuedClientIds.push("client-1");
+    mockGetAssets.mockResolvedValue([
+      {
+        botToken: "token-1",
+        botName: "bot-one",
+        botClientId: "client-1",
+        id: 123,
+        decimals: 2,
+        order: 1,
+        suffix: "",
+        unit: "",
+        lastUpdate: 0,
+      },
+    ]);
+
+    await updateMarketData();
+    clientInstances[0]!.handlers.get("clientReady")();
+
+    const wsClient = websocketInstances[0]!;
+    const errorHandler = wsClient.handlers.get("error");
+    errorHandler("plain timeout");
+    errorHandler(1000);
+    errorHandler({
+      code: 1000,
+      reason: "timeout",
+    });
+    errorHandler({
+      error: {
+        code: 1001,
+        message: "nested timeout",
+        name: "TimeoutError",
+        reason: "stale",
+      },
+    });
+    errorHandler({});
+
+    expect(mockLogger.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("plain timeout"),
+    );
+    expect(mockLogger.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("1000"),
+    );
+    expect(mockLogger.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("code=1000, reason=timeout"),
+    );
+    expect(mockLogger.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("error=name=TimeoutError, message=nested timeout, code=1001, reason=stale"),
+    );
+    expect(mockLogger.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("[object Object]"),
+    );
+  });
+
   test("updates nickname and presence from market stream payload", async () => {
     queuedClientIds.push("client-1");
     mockGetAssets.mockResolvedValue([
