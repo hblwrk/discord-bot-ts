@@ -195,9 +195,9 @@ async function getOfficialSourceText(
 function normalizeOfficialSourceText(value: string): string {
   return decodeHtmlEntities(
     value
-      .replace(/<script\b[^>]*>[\s\S]*?<\/script>/gi, " ")
-      .replace(/<style\b[^>]*>[\s\S]*?<\/style>/gi, " ")
-      .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript>/gi, " ")
+      .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, " ")
+      .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, " ")
+      .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript\s*>/gi, " ")
       .replace(/<br\s*\/?>/gi, "\n")
       .replace(/<\/(?:p|div|h[1-6]|li|tr)>/gi, "\n")
       .replace(/<[^>]+>/g, " "),
@@ -208,20 +208,44 @@ function normalizeOfficialSourceText(value: string): string {
 }
 
 function decodeHtmlEntities(value: string): string {
-  return value
-    .replace(/&#(\d+);/g, (_match, code: string) => String.fromCodePoint(Number(code)))
-    .replace(/&#x([0-9a-f]+);/gi, (_match, code: string) => String.fromCodePoint(Number.parseInt(code, 16)))
-    .replace(/&nbsp;/g, " ")
-    .replace(/&amp;/g, "&")
-    .replace(/&quot;/g, "\"")
-    .replace(/&apos;/g, "'")
-    .replace(/&#39;/g, "'")
-    .replace(/&rsquo;/g, "'")
-    .replace(/&lsquo;/g, "'")
-    .replace(/&rdquo;/g, "\"")
-    .replace(/&ldquo;/g, "\"")
-    .replace(/&ndash;/g, "-")
-    .replace(/&mdash;/g, "-");
+  return value.replace(/&(#(\d+)|#x([0-9a-f]+)|nbsp|amp|quot|apos|rsquo|lsquo|rdquo|ldquo|ndash|mdash);/gi, (match, entity: string, decimalCode: string | undefined, hexCode: string | undefined) => {
+    if (undefined !== decimalCode) {
+      return decodeHtmlCodePoint(Number(decimalCode), match);
+    }
+
+    if (undefined !== hexCode) {
+      return decodeHtmlCodePoint(Number.parseInt(hexCode, 16), match);
+    }
+
+    switch (entity.toLowerCase()) {
+      case "nbsp":
+        return " ";
+      case "amp":
+        return "&";
+      case "quot":
+        return "\"";
+      case "apos":
+      case "rsquo":
+      case "lsquo":
+        return "'";
+      case "rdquo":
+      case "ldquo":
+        return "\"";
+      case "ndash":
+      case "mdash":
+        return "-";
+      default:
+        return match;
+    }
+  });
+}
+
+function decodeHtmlCodePoint(codePoint: number, fallback: string): string {
+  if (false === Number.isInteger(codePoint) || codePoint < 0 || codePoint > 0x10ffff) {
+    return fallback;
+  }
+
+  return String.fromCodePoint(codePoint);
 }
 
 function getCalendarOfficialSummaryPrompt(

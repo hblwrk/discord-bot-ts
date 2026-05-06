@@ -27,8 +27,15 @@ type PollAnswerVoters = {
 
 type PollAnswerLike = {
   answer_id?: number | undefined;
+  answerId?: number | undefined;
   id?: number | undefined;
+  media?: {
+    text?: string | null | undefined;
+  } | undefined;
   poll_media?: {
+    text?: string | null | undefined;
+  } | undefined;
+  pollMedia?: {
     text?: string | null | undefined;
   } | undefined;
   text?: string | null | undefined;
@@ -190,7 +197,8 @@ function getMarketCloseRecapPrompt(date: Date): string {
     `Heute ist nach US-Börsenschluss am ${usEasternDate} (US/Eastern).`,
     "Nutze Websuche, um den US-Cash-Handelstag realitätsnah einzuordnen.",
     "Bewerte den Handelstag vom regulären US-Open bis zum regulären US-Close.",
-    "Berücksichtige `SPX` oder `SPY`, `NQ` oder `QQQ`, `RTY` oder `IWM` sowie zwingend den `VIX`.",
+    "Berücksichtige ausschließlich `SPX`, `NQ`, `RTY` sowie zwingend den `VIX`.",
+    "Erwähne nicht die ETF-Pendants `SPY`, `QQQ` oder `IWM`.",
     "Der `VIX` darf niemals als Prozentwert beschrieben werden. Beschreibe ihn nur als Stand, Veränderung in Punkten oder Richtung, z.B. `18,4` auf `20,1` oder `+1,7 Punkte`.",
     "Wähle genau eine passende Antwort aus dem Opening-Sentiment-Poll:",
     "- Risk-on: breite Stärke, fallender oder ruhiger `VIX`, Risikoappetit.",
@@ -201,7 +209,8 @@ function getMarketCloseRecapPrompt(date: Date): string {
     "Schreibe `summaryMarkdown` auf Deutsch für einen Discord-Trading-Channel.",
     "Halte `summaryMarkdown` unter 1.000 Zeichen.",
     "Nutze 2-4 kurze Absätze oder Bulletpoints.",
-    "Formatiere Ticker und konkrete Kennzahlen als Inline-Code, z.B. `SPX`, `QQQ`, `+0,4%`, `1,7 Punkte`.",
+    "Nenne die Poll-Sentiment-Labels `Risk-on`, `Risk-off`, `Cash` und `Chaos` nicht in `summaryMarkdown`; das gewählte Sentiment steht nur in der separaten Sentiment-Zeile.",
+    "Formatiere Ticker und konkrete Kennzahlen als Inline-Code, z.B. `SPX`, `NQ`, `RTY`, `+0,4%`, `1,7 Punkte`.",
     "Erwähne weder KI-Anbieter, KI, Modell, Websuche, Quellen, Grounding noch Rechercheprozess.",
     "Keine Disclaimer, keine Links, keine Tabellen, keine Codeblöcke.",
   ].join("\n");
@@ -238,7 +247,9 @@ function parseAiMarketCloseRecap(
   const combinedText = `${normalizedSummary}\n${normalizedTitle}`;
   if ("" === normalizedSummary ||
       false === /\bVIX\b/i.test(combinedText) ||
+      true === hasPollSentimentLabel(normalizedSummary) ||
       true === hasForbiddenProviderMention(combinedText) ||
+      true === hasForbiddenMarketProxyMention(combinedText) ||
       true === hasVixPercent(combinedText)) {
     dependencies.logger.log(
       "warn",
@@ -512,6 +523,14 @@ function hasForbiddenProviderMention(value: string): boolean {
   return /\b(Gemini|OpenAI|GPT|ChatGPT|KI|Künstliche Intelligenz|Modell|Google Search|Websuche|Grounding)\b/iu.test(value);
 }
 
+function hasPollSentimentLabel(value: string): boolean {
+  return /\b(?:Risk-on|Risk-off|Cash|Chaos)\b/iu.test(value);
+}
+
+function hasForbiddenMarketProxyMention(value: string): boolean {
+  return /\b(?:SPY|QQQ|IWM)\b/iu.test(value);
+}
+
 function hasVixPercent(value: string): boolean {
   return /\bVIX\b[^\n.?!;:]*[+-]?\d+(?:[,.]\d+)?\s*%/iu.test(value);
 }
@@ -536,18 +555,18 @@ function getPollAnswerText(answer: unknown): string | undefined {
     return undefined;
   }
 
-  const directText = answer["text"];
-  if ("string" === typeof directText) {
-    return directText;
+  for (const textContainer of [answer, answer["poll_media"], answer["pollMedia"], answer["media"]]) {
+    if (false === isRecord(textContainer)) {
+      continue;
+    }
+
+    const text = textContainer["text"];
+    if ("string" === typeof text) {
+      return text;
+    }
   }
 
-  const pollMedia = answer["poll_media"];
-  if (false === isRecord(pollMedia)) {
-    return undefined;
-  }
-
-  const pollMediaText = pollMedia["text"];
-  return "string" === typeof pollMediaText ? pollMediaText : undefined;
+  return undefined;
 }
 
 function getPollAnswerId(answer: unknown): number | undefined {
@@ -565,12 +584,17 @@ function getPollAnswerId(answer: unknown): number | undefined {
     return answerId;
   }
 
+  const camelCaseAnswerId = answer["answerId"];
+  if ("number" === typeof camelCaseAnswerId && Number.isFinite(camelCaseAnswerId)) {
+    return camelCaseAnswerId;
+  }
+
   return undefined;
 }
 
 function normalizePollAnswerText(value: string | undefined): string {
   return value
-    ?.replace(/^[\p{Emoji_Presentation}\p{Emoji}\uFE0F\s]+/u, "")
+    ?.replace(/[\p{Emoji_Presentation}\p{Emoji}\uFE0F]/gu, "")
     .replace(/[‐‑‒–—―]/gu, "-")
     .replace(/\s+/g, " ")
     .trim()

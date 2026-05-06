@@ -47,6 +47,35 @@ describe("calendar-economic-summary", () => {
     });
   });
 
+  test("strips script-like blocks and decodes official source entities once", async () => {
+    const logger = {
+      log: vi.fn(),
+    };
+    const getWithRetryFn = vi.fn().mockResolvedValue({
+      data: [
+        "<script>remove me</script >",
+        "<style>remove styles</style >",
+        "<noscript>remove fallback</noscript >",
+        "<p>A&nbsp;&amp;&quot;&apos;&rsquo;&lsquo;&rdquo;&ldquo;&ndash;&mdash;&#65;&#x42;&#9999999999;</p>",
+      ].join(""),
+    });
+    const callAiProviderJsonFn = vi.fn().mockResolvedValue(JSON.stringify({
+      summaryMarkdown: "Decoded source summary.",
+    }));
+
+    await getCalendarOfficialSummary([createCalendarEvent()], {
+      callAiProviderJsonFn,
+      getWithRetryFn,
+      logger,
+    });
+
+    const prompt = callAiProviderJsonFn.mock.calls[0]?.[0] ?? "";
+    expect(prompt).not.toContain("remove me");
+    expect(prompt).not.toContain("remove styles");
+    expect(prompt).not.toContain("remove fallback");
+    expect(prompt).toContain("A &\"'''\"\"--AB&#9999999999;");
+  });
+
   test("uses authoritative release pages for macro events with no metric fields", async () => {
     const logger = {
       log: vi.fn(),
