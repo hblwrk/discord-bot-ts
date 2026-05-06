@@ -104,11 +104,11 @@ function createFixedSlashCommands(whatIsAssetsChoices: SlashCommandChoice[], use
         ))
     .addStringOption(option =>
       option.setName("filter")
-        .setDescription("Alle oder nur Bluechips (MCap >= $10B)?")
+        .setDescription("Alle oder nur Bluechips (MCap >= $50B)?")
         .setRequired(false)
         .addChoices(
           {name: "Alle", value: "all"},
-          {name: "Bluechips (>= $10B)", value: "bluechips"},
+          {name: "Bluechips (>= $50B)", value: "bluechips"},
         ))
     .addNumberOption(option =>
       option.setName("days")

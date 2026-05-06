@@ -20,9 +20,12 @@ import {
   EARNINGS_MAX_MESSAGES_TIMER,
   getEarningsResult,
   getEarningsMessages,
+  type EarningsEvent,
   type EarningsMessageBatch,
 } from "./earnings.ts";
 import {addExpectedMovesToEarningsEvents, warmExpectedMoveCacheForEarningsEvents} from "./earnings-expected-move.ts";
+import {loadEarningsWhispersWeeklyTickers} from "./earnings-whispers.ts";
+import {getWithRetry} from "./http-retry.ts";
 import {getLogger} from "./logging.ts";
 import {findMarketOpenSentimentPollMessage, getMarketCloseRecap} from "./market-close-recap.ts";
 import {getMnc} from "./mnc-downloader.ts";
@@ -51,6 +54,8 @@ const earningsReminderSource = "earnings-reminder";
 const calendarMessageDelayMs = 500;
 const usEasternTimezone = "US/Eastern";
 const weeklyEarningsHeadline = "📅 **Earnings der nächsten Handelswoche:**";
+const anticipatedEarningsHeadline = "🔥 **Most Anticipated Earnings (Earnings Whispers):**";
+const anticipatedWeeklyEarningsHeadline = "🔥 **Most Anticipated Earnings der nächsten Handelswoche (Earnings Whispers):**";
 const weeklyCalendarHeadline = "📅 **Wichtige Termine der nächsten Handelswoche:**";
 const europeBerlinTimezone = "Europe/Berlin";
 const usEasternWeekdays = [new Schedule.Range(1, 5)];
@@ -394,11 +399,22 @@ async function runEarningsAnnouncement(
     marketCapFilter: config.filter,
     when: config.when,
   });
-  const earningsBatch = getEarningsMessages(earningsEvents, config.when, tickers, {
+  const anticipatedTickerSymbols = await getAnticipatedEarningsTickerSymbols(earningsEvents);
+  const anticipatedEarningsEvents = getEarningsEventsByTickerSymbols(earningsEvents, anticipatedTickerSymbols);
+  const regularEarningsEvents = getEarningsEventsWithoutTickerSymbols(earningsEvents, anticipatedTickerSymbols);
+  const anticipatedEarningsBatch = 0 < anticipatedEarningsEvents.length
+    ? getEarningsMessages(anticipatedEarningsEvents, config.when, getHighlightedAnticipatedTickers(tickers, anticipatedEarningsEvents), {
+      maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
+      maxMessages: EARNINGS_MAX_MESSAGES_TIMER,
+      marketCapFilter: "all",
+    })
+    : getEmptyEarningsMessageBatch();
+  const earningsBatch = getEarningsMessages(regularEarningsEvents, config.when, tickers, {
     maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
     maxMessages: EARNINGS_MAX_MESSAGES_TIMER,
     marketCapFilter: config.filter,
   });
+  logEarningsBatch(`${config.source}-anticipated`, anticipatedEarningsBatch);
   logEarningsBatch(config.source, earningsBatch);
 
   if ("error" === earningsResult.status) {
@@ -412,15 +428,125 @@ async function runEarningsAnnouncement(
     );
   }
 
-  if (0 === earningsBatch.messages.length) {
+  if (0 === anticipatedEarningsBatch.messages.length && 0 === earningsBatch.messages.length) {
     return;
   }
 
   const channel = await getOptionalThreadTargetChannel(client, channelID, earningsExpectationsThreadID, "earnings");
+  if (0 < anticipatedEarningsBatch.messages.length) {
+    const anticipatedHeadline = config.headline
+      ? anticipatedWeeklyEarningsHeadline
+      : anticipatedEarningsHeadline;
+    await sendChunkedMessages(
+      channel,
+      prependHeadlineToFirstMessage(anticipatedEarningsBatch.messages, anticipatedHeadline, EARNINGS_MAX_MESSAGE_LENGTH),
+      "earnings",
+    );
+  }
   const messages = config.headline
     ? prependHeadlineToFirstMessage(earningsBatch.messages, config.headline, EARNINGS_MAX_MESSAGE_LENGTH)
     : earningsBatch.messages;
-  await sendChunkedMessages(channel, messages, "earnings");
+  if (0 < messages.length) {
+    await sendChunkedMessages(channel, messages, "earnings");
+  }
+}
+
+async function getAnticipatedEarningsTickerSymbols(earningsEvents: EarningsEvent[]): Promise<Set<string>> {
+  const weekReferences = getEarningsEventWeekReferences(earningsEvents);
+  const anticipatedTickerSymbols = new Set<string>();
+
+  for (const weekReference of weekReferences) {
+    const weeklyTickerSymbols = await loadEarningsWhispersWeeklyTickers({
+      getWithRetryFn: getWithRetry,
+      now: weekReference,
+    });
+    for (const tickerSymbol of weeklyTickerSymbols) {
+      anticipatedTickerSymbols.add(normalizeEarningsTickerSymbol(tickerSymbol));
+    }
+  }
+
+  return anticipatedTickerSymbols;
+}
+
+function getEarningsEventWeekReferences(earningsEvents: EarningsEvent[]): moment.Moment[] {
+  const weekReferences: moment.Moment[] = [];
+  const seenWeekStarts = new Set<string>();
+
+  for (const earningsEvent of earningsEvents) {
+    const eventDate = moment.tz(`${earningsEvent.date} 12:00`, "YYYY-MM-DD HH:mm", usEasternTimezone);
+    if (false === eventDate.isValid()) {
+      continue;
+    }
+
+    const weekStart = eventDate.clone().startOf("isoWeek").format("YYYY-MM-DD");
+    if (true === seenWeekStarts.has(weekStart)) {
+      continue;
+    }
+
+    seenWeekStarts.add(weekStart);
+    weekReferences.push(eventDate);
+  }
+
+  return weekReferences;
+}
+
+function getEarningsEventsByTickerSymbols(
+  earningsEvents: EarningsEvent[],
+  tickerSymbols: Set<string>,
+): EarningsEvent[] {
+  if (0 === tickerSymbols.size) {
+    return [];
+  }
+
+  return earningsEvents.filter(earningsEvent => tickerSymbols.has(normalizeEarningsTickerSymbol(earningsEvent.ticker)));
+}
+
+function getEarningsEventsWithoutTickerSymbols(
+  earningsEvents: EarningsEvent[],
+  tickerSymbols: Set<string>,
+): EarningsEvent[] {
+  if (0 === tickerSymbols.size) {
+    return earningsEvents;
+  }
+
+  return earningsEvents.filter(earningsEvent => false === tickerSymbols.has(normalizeEarningsTickerSymbol(earningsEvent.ticker)));
+}
+
+function getHighlightedAnticipatedTickers(
+  tickers: Ticker[],
+  anticipatedEarningsEvents: EarningsEvent[],
+): Ticker[] {
+  const highlightedTickers = [...tickers];
+  const highlightedTickerSymbols = new Set(tickers.map(ticker => normalizeEarningsTickerSymbol(ticker.symbol)));
+
+  for (const earningsEvent of anticipatedEarningsEvents) {
+    const normalizedTickerSymbol = normalizeEarningsTickerSymbol(earningsEvent.ticker);
+    if (true === highlightedTickerSymbols.has(normalizedTickerSymbol)) {
+      continue;
+    }
+
+    highlightedTickers.push({
+      exchange: "earnings-whispers",
+      name: earningsEvent.companyName ?? earningsEvent.ticker,
+      symbol: earningsEvent.ticker,
+    });
+    highlightedTickerSymbols.add(normalizedTickerSymbol);
+  }
+
+  return highlightedTickers;
+}
+
+function normalizeEarningsTickerSymbol(value: string): string {
+  return value.trim().toUpperCase().replaceAll("/", ".").replaceAll("-", ".");
+}
+
+function getEmptyEarningsMessageBatch(): EarningsMessageBatch {
+  return {
+    includedEvents: 0,
+    messages: [],
+    totalEvents: 0,
+    truncated: false,
+  };
 }
 
 async function warmExpectedMovesForAnnouncement(config: EarningsAnnouncementConfig) {

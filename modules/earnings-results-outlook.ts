@@ -14,6 +14,20 @@ type OutlookMetricDefinition = {
   valueType: OutlookValueType;
 };
 
+type OutlookMetricCandidate = {
+  metric: EarningsOutlookMetric;
+  score: number;
+};
+
+type ParsedMoneyValue = {
+  currencyCode: string;
+  value: number;
+};
+
+const moneyTokenPatternSource = String.raw`(?<![\d.])\(?\s*(?:(?:[$€£¥]\s*)|(?:(?:USD|EUR|GBP|JPY)\s+))?-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b)?\)?`;
+const moneyRangePattern = new RegExp(`(${moneyTokenPatternSource})\\s*(?:to|through|-|–|and)\\s*(${moneyTokenPatternSource})`, "gi");
+const singleMoneyPattern = new RegExp(moneyTokenPatternSource, "gi");
+
 const outlookMetricDefinitions: OutlookMetricDefinition[] = [
   {
     key: "revenue",
@@ -153,6 +167,7 @@ function extractOutlookMetric(
   lines: string[],
   definition: OutlookMetricDefinition,
 ): EarningsOutlookMetric | null {
+  let bestCandidate: OutlookMetricCandidate | null = null;
   for (const line of lines) {
     if (true === isNoisyOutlookLine(line)) {
       continue;
@@ -168,15 +183,39 @@ function extractOutlookMetric(
         continue;
       }
 
-      return {
-        key: definition.key,
-        label: definition.label,
-        value,
+      const candidate = {
+        score: getOutlookMetricCandidateScore(line),
+        metric: {
+          key: definition.key,
+          label: definition.label,
+          value,
+        },
       };
+      if (null === bestCandidate || candidate.score > bestCandidate.score) {
+        bestCandidate = candidate;
+      }
     }
   }
 
-  return null;
+  return bestCandidate?.metric ?? null;
+}
+
+function getOutlookMetricCandidateScore(line: string): number {
+  let score = 0;
+
+  if (/\b(?:expects?|expected|guidance|outlook|forecast|projected|targets?|targeting|anticipates?|anticipated|reaffirms?|reiterates?|maintains?|raises?|raised)\b/i.test(line)) {
+    score += 20;
+  }
+
+  if (/\b(?:full[-\s]+year|fiscal|fy\s?\d{2}|20\d{2}|next\s+quarter|second\s+quarter|third\s+quarter|fourth\s+quarter|q[1-4])\b/i.test(line)) {
+    score += 5;
+  }
+
+  if (/\b(?:reported|generated|was|were|amounted|totaled|for\s+the\s+(?:first|second|third|fourth)\s+quarter|for\s+q[1-4])\b/i.test(line)) {
+    score -= 10;
+  }
+
+  return score;
 }
 
 function isNoisyOutlookLine(line: string): boolean {
@@ -191,28 +230,47 @@ function extractOutlookValue(
 ): string | null {
   pattern.lastIndex = 0;
   const patternMatch = pattern.exec(line);
-  const rawValueText = getOutlookValueSegment(line, patternMatch);
-  const valueText = normalizeOutlookValueText(rawValueText);
-  if ("" === valueText) {
-    return null;
+  for (const rawValueText of getOutlookValueSegments(line, patternMatch)) {
+    const valueText = normalizeOutlookValueText(rawValueText);
+    if ("" === valueText) {
+      continue;
+    }
+
+    const value = getGrowthOutlookValue(valueText) ??
+      getOutlookRangeValue(valueText, valueType) ??
+      ("eps" === valueType ? getEpsPercentOutlookValue(valueText) : null) ??
+      ("text" === valueType ? getSingleOutlookValue(valueText, "money") : null) ??
+      getSingleOutlookValue(valueText, valueType);
+    if (null !== value) {
+      return value;
+    }
   }
 
-  return getGrowthOutlookValue(valueText) ??
-    getOutlookRangeValue(valueText, valueType) ??
-    ("eps" === valueType ? getEpsPercentOutlookValue(valueText) : null) ??
-    ("text" === valueType ? getSingleOutlookValue(valueText, "money") : null) ??
-    getSingleOutlookValue(valueText, valueType);
+  return null;
 }
 
-function getOutlookValueSegment(line: string, patternMatch: RegExpExecArray | null): string {
+function getOutlookValueSegments(line: string, patternMatch: RegExpExecArray | null): string[] {
   if (null === patternMatch) {
-    return line;
+    return [line];
   }
 
   const rawValueText = line.slice(patternMatch.index + patternMatch[0].length);
   const nextMetricMatch = /\b(?:adjusted\s+eps|diluted\s+eps|eps|earnings\s+per\s+(?:common\s+)?share|revenues?|net\s+sales|sales|gross\s+margin|operating\s+margin|operating\s+income|operating\s+expenses?|opex|tax\s+rate|capex|capital\s+expenditures?|free\s+cash\s+flow|adjusted\s+ebitda|ebitda)\b/i.exec(rawValueText);
   const endIndex = nextMetricMatch?.index ?? rawValueText.length;
-  return rawValueText.slice(0, endIndex);
+  const previousValueText = getPreviousOutlookValueSegment(line, patternMatch.index);
+  return [
+    rawValueText.slice(0, endIndex),
+    previousValueText,
+  ];
+}
+
+function getPreviousOutlookValueSegment(line: string, metricStartIndex: number): string {
+  const previousText = line.slice(0, metricStartIndex);
+  const separatorIndex = Math.max(
+    previousText.lastIndexOf(";"),
+    previousText.lastIndexOf("|"),
+  );
+  return previousText.slice(Math.max(separatorIndex + 1, previousText.length - 180));
 }
 
 function normalizeOutlookValueText(value: string): string {
@@ -257,35 +315,38 @@ function getOutlookRangeValue(value: string, valueType: OutlookValueType): strin
       : null;
   }
 
-  const moneyRangeMatch = value.match(/(\(?\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:(?:trillion|billion|million|tn|bn|mm|[tbm])\b)?\)?)(?:\s*(?:to|through|-|–|and)\s*)(\(?\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:(?:trillion|billion|million|tn|bn|mm|[tbm])\b)?\)?)/i);
-  if (!moneyRangeMatch) {
-    return null;
+  for (const moneyRangeMatch of value.matchAll(moneyRangePattern)) {
+    const firstRangeValue = moneyRangeMatch[1];
+    const secondRangeValue = moneyRangeMatch[2];
+    if (undefined === firstRangeValue || undefined === secondRangeValue) {
+      continue;
+    }
+
+    if ("eps" === valueType) {
+      const firstValue = parseNumber(firstRangeValue);
+      const secondValue = parseNumber(secondRangeValue);
+      if (null !== firstValue && null !== secondValue) {
+        return `${formatEps(firstValue)} to ${formatEps(secondValue)}`;
+      }
+      continue;
+    }
+
+    if (false === hasMoneyValueCue(firstRangeValue) && false === hasMoneyValueCue(secondRangeValue)) {
+      continue;
+    }
+
+    const inferredUnit = getMoneyUnit(secondRangeValue) ?? getMoneyUnit(firstRangeValue);
+    const inferredCurrencyCode = getCurrencyCodeFromText(secondRangeValue) ??
+      getCurrencyCodeFromText(firstRangeValue) ??
+      getCurrencyCodeFromText(value);
+    const firstMoneyValue = parseMoneyWithOptionalUnit(firstRangeValue, inferredUnit, inferredCurrencyCode);
+    const secondMoneyValue = parseMoneyWithOptionalUnit(secondRangeValue, inferredUnit, inferredCurrencyCode);
+    if (null !== firstMoneyValue && null !== secondMoneyValue) {
+      return `${formatMoneyCompact(firstMoneyValue.value, firstMoneyValue.currencyCode)} to ${formatMoneyCompact(secondMoneyValue.value, secondMoneyValue.currencyCode)}`;
+    }
   }
 
-  const firstRangeValue = moneyRangeMatch[1];
-  const secondRangeValue = moneyRangeMatch[2];
-  if (undefined === firstRangeValue || undefined === secondRangeValue) {
-    return null;
-  }
-
-  if ("eps" === valueType) {
-    const firstValue = parseNumber(firstRangeValue);
-    const secondValue = parseNumber(secondRangeValue);
-    return null === firstValue || null === secondValue
-      ? null
-      : `${formatEps(firstValue)} to ${formatEps(secondValue)}`;
-  }
-
-  if (false === hasMoneyValueCue(firstRangeValue) && false === hasMoneyValueCue(secondRangeValue)) {
-    return null;
-  }
-
-  const inferredUnit = getMoneyUnit(secondRangeValue) ?? getMoneyUnit(firstRangeValue);
-  const firstMoneyValue = parseMoneyWithOptionalUnit(firstRangeValue, inferredUnit);
-  const secondMoneyValue = parseMoneyWithOptionalUnit(secondRangeValue, inferredUnit);
-  return null === firstMoneyValue || null === secondMoneyValue
-    ? null
-    : `${formatUsdCompact(firstMoneyValue)} to ${formatUsdCompact(secondMoneyValue)}`;
+  return null;
 }
 
 function getSingleOutlookValue(value: string, valueType: OutlookValueType): string | null {
@@ -300,9 +361,18 @@ function getSingleOutlookValue(value: string, valueType: OutlookValueType): stri
   }
 
   if ("money" === valueType) {
-    const moneyMatch = value.match(/\$?\s*-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:trillion|billion|million|tn|bn|mm|[tbm])\b/i);
-    const moneyValue = moneyMatch ? parseMoneyWithOptionalUnit(moneyMatch[0]) : null;
-    return null === moneyValue ? null : formatUsdCompact(moneyValue);
+    const inferredCurrencyCode = getCurrencyCodeFromText(value);
+    for (const moneyMatch of value.matchAll(singleMoneyPattern)) {
+      const token = moneyMatch[0];
+      if (false === hasMoneyValueCue(token)) {
+        continue;
+      }
+
+      const moneyValue = parseMoneyWithOptionalUnit(token, undefined, inferredCurrencyCode);
+      if (null !== moneyValue) {
+        return formatMoneyCompact(moneyValue.value, moneyValue.currencyCode);
+      }
+    }
   }
 
   return null;
@@ -340,7 +410,7 @@ function findNumericValue(
   text: string,
   options: {maxAbsValue?: number; skipPercentages?: boolean;} = {},
 ): number | null {
-  const numberMatches = text.matchAll(/\(?-?\$?\s*(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?/g);
+  const numberMatches = text.matchAll(/\(?-?(?:[$€£¥]\s*|\b(?:USD|EUR|GBP|JPY)\s+)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?/gi);
   for (const numberMatch of numberMatches) {
     const token = numberMatch[0];
     const endIndex = numberMatch.index + token.length;
@@ -374,7 +444,8 @@ function parseNumber(value: unknown): number | null {
 
   const normalizedValue = value
     .replace(/^\((.*)\)$/, "-$1")
-    .replaceAll("$", "")
+    .replace(/[€£¥$]/g, "")
+    .replace(/\b(?:usd|eur|gbp|jpy)\b/gi, "")
     .replaceAll(",", "")
     .replaceAll("%", "")
     .trim()
@@ -388,34 +459,68 @@ function parseNumber(value: unknown): number | null {
   return Number.isFinite(parsedValue) ? parsedValue : null;
 }
 
-function parseMoneyWithOptionalUnit(value: string, inferredUnit?: string): number | null {
+function parseMoneyWithOptionalUnit(
+  value: string,
+  inferredUnit?: string,
+  inferredCurrencyCode = "USD",
+): ParsedMoneyValue | null {
   const parsedValue = parseNumber(value);
   if (null === parsedValue) {
     return null;
   }
 
   const unit = getMoneyUnit(value) ?? inferredUnit;
+  const currencyCode = getCurrencyCodeFromText(value) ?? inferredCurrencyCode;
+  let moneyValue = parsedValue;
   if (!unit) {
-    return parsedValue;
+    return {
+      currencyCode,
+      value: moneyValue,
+    };
   }
 
-  if ("trillion" === unit || "tn" === unit || "t" === unit) {
-    return parsedValue * 1_000_000_000_000;
+  if ("trillion" === unit || "trillions" === unit || "tn" === unit || "t" === unit) {
+    moneyValue = parsedValue * 1_000_000_000_000;
+  } else if ("billion" === unit || "billions" === unit || "bn" === unit || "b" === unit) {
+    moneyValue = parsedValue * 1_000_000_000;
+  } else if ("thousand" === unit || "thousands" === unit || "k" === unit) {
+    moneyValue = parsedValue * 1_000;
+  } else {
+    moneyValue = parsedValue * 1_000_000;
   }
 
-  if ("billion" === unit || "bn" === unit || "b" === unit) {
-    return parsedValue * 1_000_000_000;
-  }
-
-  return parsedValue * 1_000_000;
+  return {
+    currencyCode,
+    value: moneyValue,
+  };
 }
 
 function hasMoneyValueCue(value: string): boolean {
-  return value.includes("$") || undefined !== getMoneyUnit(value);
+  return /[$€£¥]|\b(?:USD|EUR|GBP|JPY)\b/i.test(value) || undefined !== getMoneyUnit(value);
 }
 
 function getMoneyUnit(value: string): string | undefined {
-  return value.match(/(trillion|billion|million|tn|bn|mm|[tbm])\b/i)?.[1]?.toLowerCase();
+  return value.match(/(trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b/i)?.[1]?.toLowerCase();
+}
+
+function getCurrencyCodeFromText(text: string): string | undefined {
+  if (text.includes("€") || /\bEUR\b/i.test(text)) {
+    return "EUR";
+  }
+
+  if (text.includes("£") || /\bGBP\b/i.test(text)) {
+    return "GBP";
+  }
+
+  if (text.includes("¥") || /\bJPY\b/i.test(text)) {
+    return "JPY";
+  }
+
+  if (text.includes("$") || /\bUSD\b/i.test(text)) {
+    return "USD";
+  }
+
+  return undefined;
 }
 
 function formatEps(value: number): string {
@@ -423,26 +528,43 @@ function formatEps(value: number): string {
   return `${sign}$${Math.abs(value).toFixed(2).replace(/\.?0+$/, "")}`;
 }
 
-function formatUsdCompact(value: number): string {
+function formatMoneyCompact(value: number, currencyCode: string): string {
+  const symbol = getCurrencySymbol(currencyCode);
   const absoluteValue = Math.abs(value);
   const sign = value < 0 ? "-" : "";
   if (absoluteValue >= 1_000_000_000_000) {
-    return `${sign}$${formatDecimal(absoluteValue / 1_000_000_000_000)}T`;
+    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000_000_000_000)}T`;
   }
 
   if (absoluteValue >= 1_000_000_000) {
-    return `${sign}$${formatDecimal(absoluteValue / 1_000_000_000)}B`;
+    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000_000_000)}B`;
   }
 
   if (absoluteValue >= 1_000_000) {
-    return `${sign}$${formatDecimal(absoluteValue / 1_000_000)}M`;
+    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000_000)}M`;
   }
 
   if (absoluteValue >= 1_000) {
-    return `${sign}$${formatDecimal(absoluteValue / 1_000)}K`;
+    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000)}K`;
   }
 
-  return `${sign}$${formatDecimal(absoluteValue)}`;
+  return `${sign}${symbol}${formatDecimal(absoluteValue)}`;
+}
+
+function getCurrencySymbol(currencyCode: string): string {
+  if ("EUR" === currencyCode) {
+    return "€";
+  }
+
+  if ("GBP" === currencyCode) {
+    return "£";
+  }
+
+  if ("JPY" === currencyCode) {
+    return "¥";
+  }
+
+  return "$";
 }
 
 function formatDecimal(value: number): string {

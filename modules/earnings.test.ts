@@ -640,28 +640,28 @@ describe("getEarningsMessages", () => {
   test("filters by bluechip market cap threshold when marketCapFilter is bluechips", () => {
     const batch = getEarningsMessages([
       getEarningsEvent({
-        ticker: "BLUE10",
+        ticker: "BLUE50",
         when: "before_open",
-        companyName: "Bluechip Ten",
-        marketCap: 10_000_000_000,
-        marketCapText: "$10B",
-        epsConsensus: "1.10",
+        companyName: "Bluechip Fifty",
+        marketCap: 50_000_000_000,
+        marketCapText: "$50B",
+        epsConsensus: "5.00",
       }),
       getEarningsEvent({
-        ticker: "BLUE20",
+        ticker: "BLUE75",
         when: "during_session",
-        companyName: "Bluechip Twenty",
-        marketCap: 20_000_000_000,
-        marketCapText: "$20B",
-        epsConsensus: "2.20",
+        companyName: "Bluechip Seventy Five",
+        marketCap: 75_000_000_000,
+        marketCapText: "$75B",
+        epsConsensus: "7.50",
       }),
       getEarningsEvent({
-        ticker: "SMALL9",
+        ticker: "MID49",
         when: "after_close",
-        companyName: "Small Nine",
-        marketCap: 9_000_000_000,
-        marketCapText: "$9B",
-        epsConsensus: "0.90",
+        companyName: "Mid Forty Nine",
+        marketCap: 49_000_000_000,
+        marketCapText: "$49B",
+        epsConsensus: "4.90",
       }),
       getEarningsEvent({
         ticker: "UNKNOWN",
@@ -680,12 +680,12 @@ describe("getEarningsMessages", () => {
     expect(batch.totalEvents).toBe(2);
     expect(batch.includedEvents).toBe(2);
     expect(batch.messages).toHaveLength(1);
-    expect(batch.messages[0]!).toContain("`BLUE10`");
-    expect(batch.messages[0]!).toContain("`BLUE20`");
-    expect(batch.messages[0]!).not.toContain("`SMALL9`");
+    expect(batch.messages[0]!).toContain("`BLUE50`");
+    expect(batch.messages[0]!).toContain("`BLUE75`");
+    expect(batch.messages[0]!).not.toContain("`MID49`");
     expect(batch.messages[0]!).not.toContain("`UNKNOWN`");
-    expect(batch.messages[0]!).not.toContain("Bluechip Ten");
-    expect(batch.messages[0]!).not.toContain("Bluechip Twenty");
+    expect(batch.messages[0]!).not.toContain("Bluechip Fifty");
+    expect(batch.messages[0]!).not.toContain("Bluechip Seventy Five");
   });
 
   test("falls back to all market caps for unknown marketCapFilter values", () => {
