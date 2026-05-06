@@ -195,9 +195,9 @@ async function getOfficialSourceText(
 function normalizeOfficialSourceText(value: string): string {
   return decodeHtmlEntities(
     value
-      .replace(/<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, " ")
-      .replace(/<style\b[^>]*>[\s\S]*?<\/style\s*>/gi, " ")
-      .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript\s*>/gi, " ")
+      .replace(/<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi, " ")
+      .replace(/<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/gi, " ")
+      .replace(/<noscript\b[^>]*>[\s\S]*?<\/noscript\b[^>]*>/gi, " ")
       .replace(/<br\s*\/?>/gi, "\n")
       .replace(/<\/(?:p|div|h[1-6]|li|tr)>/gi, "\n")
       .replace(/<[^>]+>/g, " "),

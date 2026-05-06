@@ -53,8 +53,8 @@ describe("calendar-economic-summary", () => {
     };
     const getWithRetryFn = vi.fn().mockResolvedValue({
       data: [
-        "<script>remove me</script >",
-        "<style>remove styles</style >",
+        "<script>remove me</script\t\n bar>",
+        "<style>remove styles</style malformed>",
         "<noscript>remove fallback</noscript >",
         "<p>A&nbsp;&amp;&quot;&apos;&rsquo;&lsquo;&rdquo;&ldquo;&ndash;&mdash;&#65;&#x42;&#9999999999;</p>",
       ].join(""),
