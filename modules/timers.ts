@@ -396,13 +396,19 @@ async function runEarningsAnnouncement(
   const earningsResult = await getEarningsResult(config.days, config.date, {
     source: config.source,
   });
-  const earningsEvents = await addExpectedMovesToEarningsEvents(earningsResult.events, {
+  const anticipatedTickerSymbols = await getAnticipatedEarningsTickerSymbols(earningsResult.events);
+  const anticipatedEarningsCandidates = getEarningsEventsByTickerSymbols(earningsResult.events, anticipatedTickerSymbols);
+  const regularEarningsCandidates = getEarningsEventsWithoutTickerSymbols(earningsResult.events, anticipatedTickerSymbols);
+  const anticipatedEarningsEvents = 0 < anticipatedEarningsCandidates.length
+    ? await addExpectedMovesToEarningsEvents(anticipatedEarningsCandidates, {
+      marketCapFilter: "all",
+      when: config.when,
+    })
+    : [];
+  const regularEarningsEvents = await addExpectedMovesToEarningsEvents(regularEarningsCandidates, {
     marketCapFilter: config.filter,
     when: config.when,
   });
-  const anticipatedTickerSymbols = await getAnticipatedEarningsTickerSymbols(earningsEvents);
-  const anticipatedEarningsEvents = getEarningsEventsByTickerSymbols(earningsEvents, anticipatedTickerSymbols);
-  const regularEarningsEvents = getEarningsEventsWithoutTickerSymbols(earningsEvents, anticipatedTickerSymbols);
   const anticipatedEarningsBatch = 0 < anticipatedEarningsEvents.length
     ? getEarningsMessages(anticipatedEarningsEvents, config.when, getHighlightedAnticipatedTickers(tickers, anticipatedEarningsEvents), {
       maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
@@ -565,7 +571,17 @@ async function warmExpectedMovesForAnnouncement(config: EarningsAnnouncementConf
     return;
   }
 
-  await warmExpectedMoveCacheForEarningsEvents(earningsResult.events, {
+  const anticipatedTickerSymbols = await getAnticipatedEarningsTickerSymbols(earningsResult.events);
+  const anticipatedEarningsEvents = getEarningsEventsByTickerSymbols(earningsResult.events, anticipatedTickerSymbols);
+  const regularEarningsEvents = getEarningsEventsWithoutTickerSymbols(earningsResult.events, anticipatedTickerSymbols);
+  if (0 < anticipatedEarningsEvents.length) {
+    await warmExpectedMoveCacheForEarningsEvents(anticipatedEarningsEvents, {
+      marketCapFilter: "all",
+      when: config.when,
+    });
+  }
+
+  await warmExpectedMoveCacheForEarningsEvents(regularEarningsEvents, {
     marketCapFilter: config.filter,
     when: config.when,
   });
