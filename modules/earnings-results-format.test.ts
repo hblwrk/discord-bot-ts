@@ -129,6 +129,7 @@ describe("earnings result formatting", () => {
       "",
       "📝 ExampleCo beat expectations. Revenue improved. Management raised guidance.",
       "",
+      "\u200B",
     ].join("\n"));
   });
 
@@ -713,6 +714,8 @@ describe("earnings result formatting", () => {
       "**Example (`EX`)** - [10-Q](https://www.sec.gov/example)",
       "📊 **Results**",
       "- **Production:** `1,200 boepd`",
+      "",
+      "\u200B",
     ].join("\n"));
   });
 

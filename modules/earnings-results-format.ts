@@ -53,6 +53,8 @@ type MetricDefinition = {
   valueType: MetricValueType;
 };
 
+const discordBlankLineSpacer = "\u200B";
+
 const earningsMetricDefinitions: MetricDefinition[] = [
   {
     key: "adjusted_eps",
@@ -290,8 +292,9 @@ export function getEarningsResultMessage({
       lines.push("");
     }
     lines.push(`📝 ${summary.trim()}`);
-    lines.push("");
   }
+
+  lines.push("", discordBlankLineSpacer);
 
   return lines.join("\n");
 }
