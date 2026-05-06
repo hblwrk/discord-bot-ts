@@ -306,6 +306,74 @@ describe("SEC earnings result source", () => {
     });
   });
 
+  test("falls back from an empty 99.1 stub to a usable shareholder letter exhibit", async () => {
+    const filing = createFiling({
+      accessionNumber: "0001973239-26-000062",
+      cik: "0001973239",
+      form: "6-K",
+      items: [],
+    });
+    getWithRetryFn.mockImplementation(async (url: string) => {
+      if (url.endsWith("/index.json")) {
+        return {
+          data: {
+            directory: {
+              item: [
+                {
+                  name: "arm-20260506.htm",
+                  type: "text.gif",
+                },
+                {
+                  name: "exhibit991fye26q431-marx26.htm",
+                  type: "text.gif",
+                },
+                {
+                  name: "exhibit992fye26q431-marx26.htm",
+                  type: "text.gif",
+                },
+              ],
+            },
+          },
+        };
+      }
+
+      if (url.endsWith("/exhibit991fye26q431-marx26.htm")) {
+        return {
+          data: "<html><body><h1>Arm Holdings plc Reports Results</h1></body></html>",
+        };
+      }
+
+      if (url.endsWith("/exhibit992fye26q431-marx26.htm")) {
+        return {
+          data: "<html><body><h1>Q4 FYE26 Financial Overview</h1><p>Total revenue increased to $1,490 million.</p></body></html>",
+        };
+      }
+
+      return {
+        data: "<html><body>Form 6-K wrapper</body></html>",
+      };
+    });
+    const dependencies = {
+      getWithRetryFn,
+      logger,
+    } as Parameters<typeof loadSecFilingDetails>[1];
+
+    const details = await loadSecFilingDetails(filing, dependencies, {
+      isUsableDocument: html => html.includes("Total revenue"),
+    });
+
+    expect(details).toEqual({
+      documentUrl: "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000062/exhibit992fye26q431-marx26.htm",
+      html: "<html><body><h1>Q4 FYE26 Financial Overview</h1><p>Total revenue increased to $1,490 million.</p></body></html>",
+    });
+    expect(getWithRetryFn).toHaveBeenCalledWith(
+      "https://www.sec.gov/Archives/edgar/data/1973239/000197323926000062/exhibit991fye26q431-marx26.htm",
+      expect.objectContaining({
+        responseType: "text",
+      }),
+    );
+  });
+
   test("selects underscore exhibit 99.1 filenames before primary 8-K HTML", async () => {
     const filing = createFiling({
       accessionNumber: "0001104659-26-052145",
