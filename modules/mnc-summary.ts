@@ -73,7 +73,13 @@ export async function getMncSummary(
   }
 
   const normalizedSummary = normalizeMarkdownSummary(summaryMarkdown);
-  return "" === normalizedSummary ? undefined : truncateMarkdownSummary(normalizedSummary);
+  if ("" === normalizedSummary) {
+    return undefined;
+  }
+
+  const truncatedSummary = truncateMarkdownSummary(normalizedSummary);
+  const finalSummary = removeMncTldrHeading(truncatedSummary).trim();
+  return "" === finalSummary ? undefined : finalSummary;
 }
 
 function getMncSummaryPrompt(): string {
@@ -82,7 +88,6 @@ function getMncSummaryPrompt(): string {
     "Return only JSON matching the schema. Do not include markdown outside the JSON string.",
     "Write summaryMarkdown as a one-minute read in concise Discord Markdown.",
     "Required shape:",
-    "**Morning News Call - TL;DR**",
     "- Exactly 2 bullets with the market setup and most important macro drivers.",
     "",
     "**Stocks in focus**",
@@ -94,6 +99,8 @@ function getMncSummaryPrompt(): string {
     "- Keep the full summary under 1,750 characters.",
     "- Use exactly 7 bullets total; each bullet should fit one Discord line.",
     "- Prioritize concrete, market-moving information from the PDF.",
+    "- Do not include a Morning News Call heading; the Discord message title already provides it.",
+    "- Write in English only.",
     "- Format ticker symbols and quantitative metrics as inline code, e.g. `AAPL`, `$2.14`, `3.1%`, `10Y`, `250K`.",
     "- In stock-specific bullets, start with Company Name `TICKER` when the PDF explicitly provides a ticker; common short company names are fine, e.g. Apple `AAPL`.",
     "- If the PDF does not explicitly provide a ticker, start with the company name without inventing a ticker.",
@@ -110,12 +117,52 @@ function normalizeMarkdownSummary(value: string): string {
     .filter(line => false === /^```/.test(line.trim()))
     .join("\n")
     .replace(/\\([$€£¥])/g, "$1")
+    .replace(/\${2,}/g, "$")
     .trim();
-  if (summary.startsWith("📰 **Morning News Call - TL;DR**")) {
-    return summary.slice("📰 ".length);
-  }
 
-  return summary;
+  return normalizeInlineCodeRanges(removeUnexpectedScriptTokens(removeMncTldrHeading(summary))).trim();
+}
+
+function removeMncTldrHeading(value: string): string {
+  return value
+    .split("\n")
+    .filter(line => false === isMncTldrHeading(line))
+    .join("\n")
+    .trim();
+}
+
+function isMncTldrHeading(line: string): boolean {
+  return /^\s*(?:📰\s*)?\*\*Morning News Call\s*-\s*TL;?DR\*\*\s*$/i.test(line);
+}
+
+function removeUnexpectedScriptTokens(value: string): string {
+  return value
+    .split("\n")
+    .map(line => line
+      .replace(/\S*[\p{Script=Arabic}\p{Script=Devanagari}\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}\p{Script=Hangul}]\S*/gu, "")
+      .replace(/\s+([,.;:])/g, "$1")
+      .replace(/[ \t]{2,}/g, " ")
+      .trimEnd())
+    .join("\n");
+}
+
+function normalizeInlineCodeRanges(value: string): string {
+  return value.replace(
+    /`([^`\n]+)`\s*([-–—])\s*`([^`\n]+)`/g,
+    (match, firstValue: string, separator: string, secondValue: string) => {
+      const firstToken = firstValue.trim();
+      const secondToken = secondValue.trim();
+      if (false === isRangeInlineCodeToken(firstToken) || false === isRangeInlineCodeToken(secondToken)) {
+        return match;
+      }
+
+      return `\`${firstToken}${separator}${secondToken}\``;
+    },
+  );
+}
+
+function isRangeInlineCodeToken(value: string): boolean {
+  return /[$€£¥]|\d/.test(value);
 }
 
 function truncateMarkdownSummary(value: string): string {
@@ -179,11 +226,12 @@ function buildCompactedSectionSummary(
   const tldrHeadingIndex = lines.findIndex(line => line.includes("Morning News Call - TL;DR"));
   const stocksHeadingIndex = lines.findIndex(line => line.trim() === "**Stocks in focus**");
   const watchlistHeadingIndex = lines.findIndex(line => line.trim() === "**Watchlist**");
-  if (-1 === tldrHeadingIndex || -1 === stocksHeadingIndex || -1 === watchlistHeadingIndex) {
+  if (-1 === stocksHeadingIndex || -1 === watchlistHeadingIndex) {
     return undefined;
   }
 
-  const tldrBullets = getBulletLines(lines.slice(tldrHeadingIndex + 1, stocksHeadingIndex)).slice(0, 2);
+  const tldrStartIndex = -1 === tldrHeadingIndex ? 0 : tldrHeadingIndex + 1;
+  const tldrBullets = getBulletLines(lines.slice(tldrStartIndex, stocksHeadingIndex)).slice(0, 2);
   const stockBullets = getBulletLines(lines.slice(stocksHeadingIndex + 1, watchlistHeadingIndex)).slice(0, stockBulletLimit);
   const watchlistBullets = getBulletLines(lines.slice(watchlistHeadingIndex + 1)).slice(0, watchlistBulletLimit);
   if (0 === tldrBullets.length || 0 === stockBullets.length || 0 === watchlistBullets.length) {
@@ -191,7 +239,6 @@ function buildCompactedSectionSummary(
   }
 
   return [
-    lines[tldrHeadingIndex],
     ...tldrBullets,
     "",
     "**Stocks in focus**",

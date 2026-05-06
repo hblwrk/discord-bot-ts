@@ -41,7 +41,7 @@ describe("MNC AI summary", () => {
       readSecretFn,
     });
 
-    expect(summary).toBe("**Morning News Call - TL;DR**\n- Futures firm ahead of payrolls.");
+    expect(summary).toBe("- Futures firm ahead of payrolls.");
     expect(postWithRetryFn).toHaveBeenCalledWith(
       expect.stringContaining("gemini-2.5-flash-lite:generateContent"),
       expect.objectContaining({
@@ -61,6 +61,20 @@ describe("MNC AI summary", () => {
           "x-goog-api-key": "gemini-key",
         }),
       }),
+      expect.any(Object),
+    );
+    expect(postWithRetryFn).toHaveBeenCalledWith(
+      expect.any(String),
+      expect.objectContaining({
+        contents: [expect.objectContaining({
+          parts: expect.arrayContaining([
+            expect.objectContaining({
+              text: expect.stringContaining("Do not include a Morning News Call heading"),
+            }),
+          ]),
+        })],
+      }),
+      expect.any(Object),
       expect.any(Object),
     );
   });
@@ -126,7 +140,7 @@ describe("MNC AI summary", () => {
 
     expect(summary).toBeDefined();
     expect(summary).not.toContain("```");
-    expect(summary).toContain("**Morning News Call - TL;DR**");
+    expect(summary).not.toContain("**Morning News Call - TL;DR**");
     expect(summary).not.toContain("📰 **Morning News Call - TL;DR**");
     expect(summary!.length).toBeLessThanOrEqual(1_930);
     expect(summary).toContain("\n...");
@@ -168,13 +182,14 @@ describe("MNC AI summary", () => {
 
     expect(summary).toBeDefined();
     expect(summary!.length).toBeLessThanOrEqual(1_930);
+    expect(summary).not.toContain("Morning News Call - TL;DR");
     expect(summary).toContain("**Stocks in focus**");
     expect(summary).toContain("**Watchlist**");
     expect(summary).toContain("Watch Treasury supply");
     expect(summary).not.toContain("\n...");
   });
 
-  test("removes legacy newspaper emoji from the summary heading", async () => {
+  test("removes generated Morning News Call headings", async () => {
     const postWithRetryFn = vi.fn().mockResolvedValue({
       data: {
         candidates: [{
@@ -195,7 +210,54 @@ describe("MNC AI summary", () => {
       readSecretFn,
     });
 
-    expect(summary).toBe("**Morning News Call - TL;DR**\n- Futures firm ahead of payrolls.");
+    expect(summary).toBe("- Futures firm ahead of payrolls.");
+  });
+
+  test("normalizes common AI Markdown rendering glitches", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                summaryMarkdown: [
+                  "**Morning News Call - TL;DR**",
+                  "- U.S. futures opened firmer while easing geopolitical तनाव and AI optimism lifted risk appetite.",
+                  "- Gold jumped more than `3%`.",
+                  "",
+                  "**Stocks in focus**",
+                  "- Walt Disney `DIS` beat Q2 EPS/revenue estimates at `$$1.57` / `$$25.2B`, with ~`12%` FY26 EPS growth.",
+                  "- Super Micro Computer `SMCI` forecast Q4 revenue of `$$11B`-`$$12.5B` and adjusted EPS of `65c`-`79c`.",
+                  "- PayPal `PYPL` reported Q1 revenue of `$$8.35B`, targeting `$$1.5B` of savings over `2`-`3` years.",
+                  "",
+                  "**Watchlist**",
+                  "- All eyes on `ADP` April payrolls (`99K` expected).",
+                ].join("\n"),
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
+      logger,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(summary).toBe([
+      "- U.S. futures opened firmer while easing geopolitical and AI optimism lifted risk appetite.",
+      "- Gold jumped more than `3%`.",
+      "",
+      "**Stocks in focus**",
+      "- Walt Disney `DIS` beat Q2 EPS/revenue estimates at `$1.57` / `$25.2B`, with ~`12%` FY26 EPS growth.",
+      "- Super Micro Computer `SMCI` forecast Q4 revenue of `$11B-$12.5B` and adjusted EPS of `65c-79c`.",
+      "- PayPal `PYPL` reported Q1 revenue of `$8.35B`, targeting `$1.5B` of savings over `2-3` years.",
+      "",
+      "**Watchlist**",
+      "- All eyes on `ADP` April payrolls (`99K` expected).",
+    ].join("\n"));
   });
 
   test("hard-truncates summaries that cannot be compacted or split by line", async () => {
