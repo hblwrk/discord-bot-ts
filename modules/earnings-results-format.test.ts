@@ -100,6 +100,11 @@ describe("earnings result formatting", () => {
       label: "Adj EPS",
       numericValue: 1.16,
       value: "$1.16",
+    }, {
+      key: "revenue",
+      label: "Revenue",
+      numericValue: 10_500_000_000,
+      value: "$10.5B",
     }] satisfies ReturnType<typeof getMessageMetrics>;
 
     expect(getEarningsResultMessage({
@@ -117,11 +122,13 @@ describe("earnings result formatting", () => {
       "**ExampleCo (`EXM`)** - Q1 2026 - [8-K](https://www.sec.gov/example)",
       "📊 **Results**",
       "- **Adj EPS:** `$1.16`",
+      "- **Revenue:** `$10.5B`",
       "",
       "🔮 **Outlook**",
       "- **Revenue:** `$89B` to `$91B`",
       "",
       "📝 ExampleCo beat expectations. Revenue improved. Management raised guidance.",
+      "",
     ].join("\n"));
   });
 

@@ -191,6 +191,25 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("keeps EPS percentage outlook as percentages instead of dollar EPS values", () => {
+    expect(extractOutlookMetrics([
+      "Guidance and Outlook",
+      "Full year adjusted EPS growth of approximately 12%.",
+      "Revenue expected to increase high single-digit.",
+    ])).toEqual([
+      {
+        key: "revenue",
+        label: "Revenue",
+        value: "high single-digit growth",
+      },
+      {
+        key: "eps",
+        label: "EPS",
+        value: "12% growth",
+      },
+    ]);
+  });
+
   test("limits outlook scanning and ignores unusable fallback values", () => {
     const lines = [
       "Business Outlook",

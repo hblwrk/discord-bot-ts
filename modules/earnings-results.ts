@@ -1022,13 +1022,36 @@ function parseNasdaqMoney(value: unknown): number | null {
 }
 
 export function getExampleEarningsResultOutput(): string {
-  return [
-    "**Apple Inc. (`AAPL`)** - Q1 2026 - [8-K](https://www.sec.gov/Archives/edgar/data/320193/000032019326000005/a8-kex991q1202612272025.htm)",
-    "📝 Apple reported Q1 2026 results ahead of expectations, with EPS of `$2.84` and revenue of `$143.8B` both beating consensus. Revenue strength supported net income of `$42.1B` for the quarter. The company did not provide a quantified outlook.",
-    "",
-    "📊 **Results**",
-    "- **EPS:** `$2.84` vs est. `$2.67` (🟢 beat)",
-    `- **Revenue:** \`${formatUsdCompact(143_800_000_000)}\` vs est. \`${formatUsdCompact(138_250_000_000)}\` (🟢 beat)`,
-    `- **Net income:** \`${formatUsdCompact(42_097_000_000)}\``,
-  ].join("\n");
+  return getEarningsResultMessage({
+    companyName: "Apple Inc.",
+    filing: {
+      form: "8-K",
+      items: ["2.02", "9.01"],
+    },
+    filingUrl: "https://www.sec.gov/Archives/edgar/data/320193/000032019326000005/a8-kex991q1202612272025.htm",
+    metrics: [{
+      key: "gaap_eps",
+      label: "EPS",
+      value: "$2.84",
+      estimate: "$2.67",
+      outcome: "beat",
+    }, {
+      key: "revenue",
+      label: "Revenue",
+      value: formatUsdCompact(143_800_000_000),
+      estimate: formatUsdCompact(138_250_000_000),
+      outcome: "beat",
+    }, {
+      key: "net_income",
+      label: "Net income",
+      value: formatUsdCompact(42_097_000_000),
+    }],
+    parsedDocument: {
+      metrics: [],
+      outlook: [],
+      quarterLabel: "Q1 2026",
+    },
+    summary: "Apple reported Q1 2026 results ahead of expectations, with EPS of `$2.84` and revenue of `$143.8B` both beating consensus. Revenue strength supported net income of `$42.1B` for the quarter. The company did not provide a quantified outlook.",
+    ticker: "AAPL",
+  });
 }
