@@ -233,6 +233,20 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("prefers guidance free cash flow ranges and preserves non-USD currency", () => {
+    expect(extractOutlookMetrics([
+      "Outlook",
+      "Free cash flow was EUR 28 million in Q1 2026.",
+      "Management reiterated full-year 2026 guidance for 3%-4.5% comparable sales growth, a 12.5%-13.0% adjusted EBITA margin, and €1.3B-€1.5B in free cash flow.",
+    ])).toEqual([
+      {
+        key: "free_cash_flow",
+        label: "Free cash flow",
+        value: "€1.3B to €1.5B",
+      },
+    ]);
+  });
+
   test("limits outlook scanning and ignores unusable fallback values", () => {
     const lines = [
       "Business Outlook",

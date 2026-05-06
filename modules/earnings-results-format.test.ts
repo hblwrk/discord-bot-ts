@@ -133,7 +133,6 @@ describe("earnings result formatting", () => {
       "- **Capex:** `$190M-$210M`",
       "",
       "📝 ExampleCo beat expectations. Revenue improved. Management raised guidance.",
-      "",
       "\u200B",
     ].join("\n"));
   });
@@ -256,6 +255,37 @@ describe("earnings result formatting", () => {
         value: "$4.2B to $4.4B",
       },
     ]);
+  });
+
+  test("renders non-USD outlook guidance instead of current-period cash flow values", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h2>Outlook</h2>
+          <p>Free cash flow was EUR 28 million in Q1 2026.</p>
+          <p>Management reiterated full-year 2026 guidance for 3%-4.5% comparable sales growth, a 12.5%-13.0% adjusted EBITA margin, and €1.3B-€1.5B in free cash flow.</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.outlook).toEqual([
+      {
+        key: "free_cash_flow",
+        label: "Free cash flow",
+        value: "€1.3B to €1.5B",
+      },
+    ]);
+    expect(getEarningsResultMessage({
+      companyName: "Koninklijke Philips N.V.",
+      filing: {
+        form: "6-K",
+        items: [],
+      },
+      filingUrl: "https://www.sec.gov/example",
+      metrics: [],
+      parsedDocument,
+      ticker: "PHG",
+    })).toContain("- **Free cash flow:** `€1.3B` to `€1.5B`");
   });
 
   test("does not emit outlook metrics without an outlook section", () => {
@@ -719,7 +749,6 @@ describe("earnings result formatting", () => {
       "**Example (`EX`)** - [10-Q](https://www.sec.gov/example)",
       "📊 **Results**",
       "- **Production:** `1,200 boepd`",
-      "",
       "\u200B",
     ].join("\n"));
   });

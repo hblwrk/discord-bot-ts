@@ -294,7 +294,7 @@ export function getEarningsResultMessage({
     lines.push(`📝 ${summary.trim()}`);
   }
 
-  lines.push("", discordBlankLineSpacer);
+  lines.push(discordBlankLineSpacer);
 
   return lines.join("\n");
 }

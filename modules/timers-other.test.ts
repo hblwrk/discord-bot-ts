@@ -15,6 +15,7 @@ import {
   getScheduledJobByTime,
   isHolidayMock,
   loggerMock,
+  loadEarningsWhispersWeeklyTickersMock,
   type MockRecurrenceRule,
   type MockRange,
   resetTimerMocks,
@@ -449,6 +450,140 @@ describe("timers: other announcements", () => {
     }));
   });
 
+  test("startOtherTimers sends most anticipated daily earnings separately and removes them from the regular post", async () => {
+    const {client, send} = createClientWithChannel();
+    const earningsEvents = [
+      {
+        ticker: "AMD",
+        when: "before_open",
+        date: "2025-02-24",
+        importance: 1,
+        companyName: "Advanced Micro Devices",
+        marketCap: 220_000_000_000,
+        epsConsensus: "0.48",
+      },
+      {
+        ticker: "UBER",
+        when: "before_open",
+        date: "2025-02-24",
+        importance: 1,
+        companyName: "Uber Technologies",
+        marketCap: 160_000_000_000,
+        epsConsensus: "0.50",
+      },
+      {
+        ticker: "AEHR",
+        when: "after_close",
+        date: "2025-02-24",
+        importance: 1,
+        companyName: "Aehr Test Systems",
+        marketCap: 10_000_000_000,
+        epsConsensus: "0.10",
+      },
+    ];
+    getEarningsResultMock.mockResolvedValue({
+      events: earningsEvents,
+      status: "ok",
+    });
+    addExpectedMovesToEarningsEventsMock.mockResolvedValue(earningsEvents);
+    loadEarningsWhispersWeeklyTickersMock.mockResolvedValue(new Set(["AMD", "AEHR"]));
+    getEarningsMessagesMock
+      .mockReturnValueOnce({
+        messages: ["anticipated-earnings"],
+        truncated: false,
+        totalEvents: 2,
+        includedEvents: 2,
+      })
+      .mockReturnValueOnce({
+        messages: ["regular-earnings"],
+        truncated: false,
+        totalEvents: 1,
+        includedEvents: 1,
+      });
+
+    startOtherTimers(client, "channel-id", [], []);
+    const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
+    await dailyEarningsJob.callback();
+
+    expect(loadEarningsWhispersWeeklyTickersMock).toHaveBeenCalledTimes(1);
+    expect(loadEarningsWhispersWeeklyTickersMock.mock.calls[0]?.[0].now.format("YYYY-MM-DD")).toBe("2025-02-24");
+    expect(getEarningsMessagesMock).toHaveBeenNthCalledWith(
+      1,
+      [earningsEvents[0], earningsEvents[2]],
+      "all",
+      expect.arrayContaining([
+        expect.objectContaining({symbol: "AMD", exchange: "earnings-whispers"}),
+        expect.objectContaining({symbol: "AEHR", exchange: "earnings-whispers"}),
+      ]),
+      {
+        maxMessageLength: 1800,
+        maxMessages: 8,
+        marketCapFilter: "all",
+      },
+    );
+    expect(getEarningsMessagesMock).toHaveBeenNthCalledWith(2, [earningsEvents[1]], "all", [], {
+      maxMessageLength: 1800,
+      maxMessages: 8,
+      marketCapFilter: "bluechips",
+    });
+    expect(send).toHaveBeenNthCalledWith(1, {
+      content: "🔥 **Most Anticipated Earnings (Earnings Whispers):**\n\nanticipated-earnings",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+    expect(send).toHaveBeenNthCalledWith(2, {
+      content: "regular-earnings",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+  });
+
+  test("startOtherTimers still sends most anticipated earnings when the regular post is empty", async () => {
+    const {client, send} = createClientWithChannel();
+    const earningsEvents = [{
+      ticker: "AMD",
+      when: "before_open",
+      date: "2025-02-24",
+      importance: 1,
+      companyName: "Advanced Micro Devices",
+      marketCap: 220_000_000_000,
+      epsConsensus: "0.48",
+    }];
+    getEarningsResultMock.mockResolvedValue({
+      events: earningsEvents,
+      status: "ok",
+    });
+    addExpectedMovesToEarningsEventsMock.mockResolvedValue(earningsEvents);
+    loadEarningsWhispersWeeklyTickersMock.mockResolvedValue(new Set(["AMD"]));
+    getEarningsMessagesMock
+      .mockReturnValueOnce({
+        messages: ["anticipated-only"],
+        truncated: false,
+        totalEvents: 1,
+        includedEvents: 1,
+      })
+      .mockReturnValueOnce({
+        messages: [],
+        truncated: false,
+        totalEvents: 0,
+        includedEvents: 0,
+      });
+
+    startOtherTimers(client, "channel-id", [], []);
+    const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
+    await dailyEarningsJob.callback();
+
+    expect(send).toHaveBeenCalledTimes(1);
+    expect(send).toHaveBeenCalledWith({
+      content: "🔥 **Most Anticipated Earnings (Earnings Whispers):**\n\nanticipated-only",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+  });
+
   test("startOtherTimers sends chunked earnings messages in order with mention restrictions", async () => {
     const {client, send} = createClientWithChannel();
     getEarningsMessagesMock.mockReturnValue({
@@ -548,6 +683,94 @@ describe("timers: other announcements", () => {
     });
     expect(send).toHaveBeenNthCalledWith(2, {
       content: "weekly-earnings-2",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+  });
+
+  test("startOtherTimers sends most anticipated weekly earnings separately and excludes them from weekly earnings", async () => {
+    const {client, send} = createClientWithChannel();
+    const earningsEvents = [
+      {
+        ticker: "MSFT",
+        when: "after_close",
+        date: "2025-02-24",
+        importance: 1,
+        companyName: "Microsoft",
+        marketCap: 3_000_000_000_000,
+        epsConsensus: "3.00",
+      },
+      {
+        ticker: "META",
+        when: "after_close",
+        date: "2025-02-25",
+        importance: 1,
+        companyName: "Meta Platforms",
+        marketCap: 1_500_000_000_000,
+        epsConsensus: "5.00",
+      },
+      {
+        ticker: "AAPL",
+        when: "after_close",
+        date: "2025-02-26",
+        importance: 1,
+        companyName: "Apple",
+        marketCap: 3_200_000_000_000,
+        epsConsensus: "1.50",
+      },
+    ];
+    getEarningsResultMock.mockResolvedValue({
+      events: earningsEvents,
+      status: "ok",
+    });
+    addExpectedMovesToEarningsEventsMock.mockResolvedValue(earningsEvents);
+    loadEarningsWhispersWeeklyTickersMock.mockResolvedValue(new Set(["MSFT", "AAPL"]));
+    getEarningsMessagesMock
+      .mockReturnValueOnce({
+        messages: ["weekly-anticipated"],
+        truncated: false,
+        totalEvents: 2,
+        includedEvents: 2,
+      })
+      .mockReturnValueOnce({
+        messages: ["weekly-regular"],
+        truncated: false,
+        totalEvents: 1,
+        includedEvents: 1,
+      });
+
+    startOtherTimers(client, "channel-id", [], []);
+    const weeklyEarningsJob = getScheduledJobByTime(23, 30, "Europe/Berlin");
+    await weeklyEarningsJob.callback();
+
+    expect(getEarningsMessagesMock).toHaveBeenNthCalledWith(
+      1,
+      [earningsEvents[0], earningsEvents[2]],
+      "all",
+      expect.arrayContaining([
+        expect.objectContaining({symbol: "MSFT", exchange: "earnings-whispers"}),
+        expect.objectContaining({symbol: "AAPL", exchange: "earnings-whispers"}),
+      ]),
+      {
+        maxMessageLength: 1800,
+        maxMessages: 8,
+        marketCapFilter: "all",
+      },
+    );
+    expect(getEarningsMessagesMock).toHaveBeenNthCalledWith(2, [earningsEvents[1]], "all", [], {
+      maxMessageLength: 1800,
+      maxMessages: 8,
+      marketCapFilter: "bluechips",
+    });
+    expect(send).toHaveBeenNthCalledWith(1, {
+      content: "🔥 **Most Anticipated Earnings der nächsten Handelswoche (Earnings Whispers):**\n\nweekly-anticipated",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+    expect(send).toHaveBeenNthCalledWith(2, {
+      content: "📅 **Earnings der nächsten Handelswoche:**\n\nweekly-regular",
       allowedMentions: {
         parse: [],
       },

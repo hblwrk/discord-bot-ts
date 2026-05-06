@@ -1,5 +1,9 @@
 import moment from "moment-timezone";
-import {bluechipMinMarketCap, clearEarningsScheduleCache, type EarningsEvent, getEarningsResult} from "./earnings.ts";
+import {clearEarningsScheduleCache, type EarningsEvent, getEarningsResult} from "./earnings.ts";
+import {
+  clearEarningsWhispersWeeklyTickerCache,
+  loadEarningsWhispersWeeklyTickers,
+} from "./earnings-whispers.ts";
 import {
   checkEarningsQualityWithAi,
   clearEarningsAiState,
@@ -64,6 +68,7 @@ type EarningsResultWatcherOptions = {
   clearTimeoutFn?: typeof clearTimeout;
   getEarningsResultFn?: typeof getEarningsResult;
   getWithRetryFn?: typeof getWithRetry;
+  getPromotedEarningsTickersFn?: ((now: moment.Moment) => Promise<Set<string>>) | undefined;
   inactivePollIntervalMs?: number;
   logger?: Logger;
   maxAnnouncementsPerScan?: number;
@@ -79,7 +84,7 @@ type EarningsResultWatcherOptions = {
 type EarningsResultDependencies = Required<Pick<
   EarningsResultWatcherOptions,
   "getEarningsResultFn" | "getWithRetryFn" | "logger" | "now"
->> & Pick<EarningsResultWatcherOptions, "nowMs" | "postWithRetryFn" | "readSecretFn">;
+>> & Pick<EarningsResultWatcherOptions, "getPromotedEarningsTickersFn" | "nowMs" | "postWithRetryFn" | "readSecretFn">;
 
 type EarningsWatchEntry = {
   cik: string;
@@ -153,6 +158,7 @@ const defaultPollIntervalMs = 60_000;
 const defaultInactivePollIntervalMs = 15 * 60_000;
 const defaultSecCurrentFilingsLimit = 100;
 const defaultMaxAnnouncementsPerScan = 10;
+const earningsResultMinMarketCap = 100_000_000_000;
 const earningsWatchTtlMs = 15 * 60_000;
 const noMetricsRetryDelayMs = 5 * 60_000;
 const noMetricsGiveUpDelayMs = 15 * 60_000;
@@ -172,6 +178,7 @@ let earningsWatchCache: EarningsWatchCache | undefined;
 export function clearEarningsResultCaches() {
   earningsWatchCache = undefined;
   clearEarningsScheduleCache();
+  clearEarningsWhispersWeeklyTickerCache();
   clearSecEarningsResultCaches();
   clearEarningsAiState();
 }
@@ -402,6 +409,12 @@ function getDependencies(options: EarningsResultWatcherOptions = {}): EarningsRe
     logger: options.logger ?? logger,
     now: options.now ?? (() => moment.tz(usEasternTimezone)),
   };
+  dependencies.getPromotedEarningsTickersFn = options.getPromotedEarningsTickersFn ??
+    (now => loadEarningsWhispersWeeklyTickers({
+      getWithRetryFn: dependencies.getWithRetryFn,
+      logger: dependencies.logger,
+      now,
+    }));
   if (undefined !== options.nowMs) {
     dependencies.nowMs = options.nowMs;
   }
@@ -501,7 +514,7 @@ async function getTodaysEarningsWatches(
     return earningsWatchCache.watches;
   }
 
-  const [earningsResult, tickerToCompany] = await Promise.all([
+  const [earningsResult, tickerToCompany, promotedTickers] = await Promise.all([
     dependencies.getEarningsResultFn(0, dateStamp, {
       source: "earnings-results-watch",
     }),
@@ -512,6 +525,16 @@ async function getTodaysEarningsWatches(
       );
       return null;
     }),
+    dependencies.getPromotedEarningsTickersFn?.(now).catch(error => {
+      dependencies.logger.log(
+        "debug",
+        {
+          source: "earnings-results-watch",
+          message: `Could not load promoted earnings tickers: ${error}`,
+        },
+      );
+      return new Set<string>();
+    }) ?? Promise.resolve(new Set<string>()),
   ]);
   if (null === tickerToCompany) {
     earningsWatchCache = {
@@ -535,7 +558,7 @@ async function getTodaysEarningsWatches(
     return [];
   }
 
-  const watches = buildEarningsWatches(earningsResult.events, tickerToCompany);
+  const watches = buildEarningsWatches(earningsResult.events, tickerToCompany, promotedTickers);
   earningsWatchCache = {
     dateStamp,
     loadedAtMs,
@@ -547,16 +570,17 @@ async function getTodaysEarningsWatches(
 function buildEarningsWatches(
   earningsEvents: EarningsEvent[],
   tickerToCompany: Map<string, SecCompany>,
+  promotedTickers: Set<string> = new Set(),
 ): EarningsWatchEntry[] {
   const seenCiks = new Set<string>();
   const watches: EarningsWatchEntry[] = [];
 
   for (const event of earningsEvents) {
-    if (false === isEarningsResultAnnouncementScope(event)) {
+    const normalizedTicker = normalizeTickerSymbol(event.ticker);
+    if (false === isEarningsResultAnnouncementScope(event, normalizedTicker, promotedTickers)) {
       continue;
     }
 
-    const normalizedTicker = normalizeTickerSymbol(event.ticker);
     const secCompany = tickerToCompany.get(normalizedTicker);
     if (!secCompany || true === seenCiks.has(secCompany.cik)) {
       continue;
@@ -574,10 +598,18 @@ function buildEarningsWatches(
   return watches;
 }
 
-function isEarningsResultAnnouncementScope(event: EarningsEvent): boolean {
+function isEarningsResultAnnouncementScope(
+  event: EarningsEvent,
+  normalizedTicker: string,
+  promotedTickers: Set<string>,
+): boolean {
+  if (true === promotedTickers.has(normalizedTicker)) {
+    return true;
+  }
+
   return "number" === typeof event.marketCap &&
     true === Number.isFinite(event.marketCap) &&
-    event.marketCap >= bluechipMinMarketCap;
+    event.marketCap >= earningsResultMinMarketCap;
 }
 
 function groupWatchesByCik(watches: EarningsWatchEntry[]): Map<string, EarningsWatchEntry[]> {

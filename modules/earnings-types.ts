@@ -46,7 +46,7 @@ export const earningsTruncationNote = "... weitere Earnings konnten wegen Discor
 export const usEasternTimezone = "US/Eastern";
 export const dateStampFormat = "YYYY-MM-DD";
 export const maxEarningsDays = 10;
-export const bluechipMinMarketCap = 10_000_000_000;
+export const bluechipMinMarketCap = 50_000_000_000;
 export const unknownValueLabel = "n/a";
 
 export const earningsWhenByNasdaqTimeToken = new Map<string, EarningsWhen>([

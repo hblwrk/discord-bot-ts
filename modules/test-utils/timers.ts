@@ -37,6 +37,7 @@ const addExpectedMovesToEarningsEventsMock = vi.fn();
 const warmExpectedMoveCacheForEarningsEventsMock = vi.fn();
 const getEarningsResultMock = vi.fn();
 const getEarningsMessagesMock = vi.fn();
+const loadEarningsWhispersWeeklyTickersMock = vi.fn();
 const findMarketOpenSentimentPollMessageMock = vi.fn();
 const getMarketCloseRecapMock = vi.fn();
 const getMncMock = vi.fn();
@@ -92,6 +93,10 @@ vi.mock("../earnings.ts", () => ({
 vi.mock("../earnings-expected-move.ts", () => ({
   addExpectedMovesToEarningsEvents: (...args: unknown[]) => addExpectedMovesToEarningsEventsMock(...args),
   warmExpectedMoveCacheForEarningsEvents: (...args: unknown[]) => warmExpectedMoveCacheForEarningsEventsMock(...args),
+}));
+
+vi.mock("../earnings-whispers.ts", () => ({
+  loadEarningsWhispersWeeklyTickers: (...args: unknown[]) => loadEarningsWhispersWeeklyTickersMock(...args),
 }));
 
 vi.mock("../mnc-downloader.ts", () => ({
@@ -241,6 +246,7 @@ export function resetTimerMocks() {
     totalEvents: 1,
     includedEvents: 1,
   });
+  loadEarningsWhispersWeeklyTickersMock.mockResolvedValue(new Set());
   findMarketOpenSentimentPollMessageMock.mockResolvedValue(undefined);
   getMarketCloseRecapMock.mockResolvedValue(undefined);
   getCalendarEventsMock.mockResolvedValue([]);
@@ -283,6 +289,7 @@ export {
   getScheduledJobByTime,
   isHolidayMock,
   loggerMock,
+  loadEarningsWhispersWeeklyTickersMock,
   MockRecurrenceRule,
   MockRange,
   scheduleJobMock,

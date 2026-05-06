@@ -299,6 +299,36 @@ describe("earnings result announcements", () => {
     expect(result.announcements[0]!.message).toContain("- **Revenue:** `$85.14B` vs est. `$80.74B` (🟢 beat)");
   });
 
+  test("includes Earnings Whispers promoted tickers below the result market-cap threshold", async () => {
+    getEarningsResultFn.mockResolvedValue({
+      status: "ok",
+      events: [{
+        ticker: "XOM",
+        when: "before_open",
+        date: "2026-05-01",
+        importance: 1,
+        companyName: "Exxon Mobil",
+        marketCap: 1_000_000_000,
+        marketCapText: "$1B",
+        epsConsensus: "$0.96",
+      }],
+    });
+
+    const result = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getPromotedEarningsTickersFn: vi.fn().mockResolvedValue(new Set(["XOM"])),
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      },
+    });
+
+    expect(result.watchedCompanies).toBe(1);
+    expect(result.announcements).toHaveLength(1);
+    expect(result.announcements[0]!.ticker).toBe("XOM");
+  });
+
   test("adds an AI summary to the earnings result announcement when available", async () => {
     const rawSummary = "XOM reported Q1 2026 adjusted EPS of $1.16 and revenue of $85.14B, both ahead of consensus. Results were supported by broad earnings strength across the business. The company did not provide a quantified outlook.";
     const formattedSummary = "`XOM` reported Q1 2026 adjusted EPS of `$1.16` and revenue of `$85.14B`, both ahead of consensus. Results were supported by broad earnings strength across the business. The company did not provide a quantified outlook.";
@@ -502,8 +532,8 @@ describe("earnings result announcements", () => {
         date: "2026-05-01",
         importance: 1,
         companyName: "Exxon Mobil",
-        marketCap: 9_999_999_999,
-        marketCapText: "$10B",
+        marketCap: 99_999_999_999,
+        marketCapText: "$100B",
         epsConsensus: "$0.96",
       }],
     });
