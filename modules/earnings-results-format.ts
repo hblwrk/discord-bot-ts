@@ -290,6 +290,7 @@ export function getEarningsResultMessage({
       lines.push("");
     }
     lines.push(`📝 ${summary.trim()}`);
+    lines.push("");
   }
 
   return lines.join("\n");

@@ -198,6 +198,7 @@ function extractOutlookValue(
 
   return getGrowthOutlookValue(valueText) ??
     getOutlookRangeValue(valueText, valueType) ??
+    ("eps" === valueType ? getEpsPercentOutlookValue(valueText) : null) ??
     ("text" === valueType ? getSingleOutlookValue(valueText, "money") : null) ??
     getSingleOutlookValue(valueText, valueType);
 }
@@ -230,6 +231,13 @@ function getGrowthDirection(value: string): "growth" | "decline" {
 }
 
 function getOutlookRangeValue(value: string, valueType: OutlookValueType): string | null {
+  if ("eps" === valueType) {
+    const percentRangeValue = getPercentRangeOutlookValue(value);
+    if (null !== percentRangeValue) {
+      return withPercentGrowthDirection(percentRangeValue, value);
+    }
+  }
+
   if ("percent" === valueType) {
     const percentRangeMatch = value.match(/(-?\d+(?:\.\d+)?)\s*%\s*(?:to|through|-|–|and)\s*(-?\d+(?:\.\d+)?)\s*%/i);
     return undefined !== percentRangeMatch?.[1] && undefined !== percentRangeMatch[2]
@@ -275,7 +283,7 @@ function getSingleOutlookValue(value: string, valueType: OutlookValueType): stri
   }
 
   if ("eps" === valueType) {
-    const epsValue = findNumericValue(value, {maxAbsValue: 100});
+    const epsValue = findNumericValue(value, {maxAbsValue: 100, skipPercentages: true});
     return null === epsValue ? null : formatEps(epsValue);
   }
 
@@ -286,6 +294,34 @@ function getSingleOutlookValue(value: string, valueType: OutlookValueType): stri
   }
 
   return null;
+}
+
+function getEpsPercentOutlookValue(value: string): string | null {
+  const percentMatch = value.match(/(-?\d+(?:\.\d+)?)\s*%/);
+  if (undefined === percentMatch?.[1]) {
+    return null;
+  }
+
+  return withPercentGrowthDirection(formatPercent(Number.parseFloat(percentMatch[1])), value);
+}
+
+function getPercentRangeOutlookValue(value: string): string | null {
+  const percentRangeMatch = value.match(/(-?\d+(?:\.\d+)?)\s*%\s*(?:to|through|-|–|and)\s*(-?\d+(?:\.\d+)?)\s*%/i);
+  return undefined !== percentRangeMatch?.[1] && undefined !== percentRangeMatch[2]
+    ? `${formatPercent(Number.parseFloat(percentRangeMatch[1]))} to ${formatPercent(Number.parseFloat(percentRangeMatch[2]))}`
+    : null;
+}
+
+function withPercentGrowthDirection(value: string, source: string): string {
+  if (/\b(?:decline|decrease|down|lower)\b/i.test(source)) {
+    return `${value} decline`;
+  }
+
+  if (/\b(?:growth|grow|increase|up|higher)\b/i.test(source)) {
+    return `${value} growth`;
+  }
+
+  return value;
 }
 
 function findNumericValue(

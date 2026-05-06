@@ -240,11 +240,13 @@ Example Discord output:
 @alerts Heute Earnings: `AAPL` (nach Handelsschluss)
 @alerts Heute Earnings: `NVDA`, `MSFT` (nach Handelsschluss)
 **Apple Inc. (`AAPL`)** - Q1 2026 - [8-K](https://www.sec.gov/Archives/edgar/data/320193/000032019326000005/a8-kex991q1202612272025.htm)
-📝 Apple reported Q1 2026 results ahead of expectations, with EPS of `$2.84` and revenue of `$143.8B` both beating consensus. Revenue strength supported net income of `$42.1B` for the quarter. The company did not provide a quantified outlook.
-
 📊 **Results**
 - **EPS:** `$2.84` vs est. `$2.67` (🟢 beat)
 - **Revenue:** `$143.8B` vs est. `$138.25B` (🟢 beat)
+- **Net income:** `$42.1B`
+
+📝 Apple reported Q1 2026 results ahead of expectations, with EPS of `$2.84` and revenue of `$143.8B` both beating consensus. Revenue strength supported net income of `$42.1B` for the quarter. The company did not provide a quantified outlook.
+
 ```
 
 ## Market data
