@@ -92,6 +92,10 @@ describe("earnings result formatting", () => {
         key: "revenue",
         label: "Revenue",
         value: "$89B to $91B",
+      }, {
+        key: "capex",
+        label: "Capex",
+        value: "$190M-$210M",
       }],
       quarterLabel: "Q1 2026",
     } satisfies ReturnType<typeof parseEarningsDocument>;
@@ -126,6 +130,7 @@ describe("earnings result formatting", () => {
       "",
       "🔮 **Outlook**",
       "- **Revenue:** `$89B` to `$91B`",
+      "- **Capex:** `$190M-$210M`",
       "",
       "📝 ExampleCo beat expectations. Revenue improved. Management raised guidance.",
       "",

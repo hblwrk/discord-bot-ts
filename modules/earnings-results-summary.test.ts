@@ -92,7 +92,7 @@ describe("AI earnings summaries", () => {
           content: {
             parts: [{
               text: JSON.stringify({
-                summary: "EXM revenue rose 12% to $10.2 billion while operating margin expanded 180 basis points to 24.3%. EXM guided adjusted EPS to $5.80 to $6.10. Revenue momentum remained broad.",
+                summary: "EXM revenue rose 12% to $10.2 billion while operating margin expanded 180 basis points to 24.3%. EXM guided net sales to $690-$710M, adjusted EPS to $3.65-$3.85, and adjusted tax rate to 21%-22%. Revenue momentum remained broad.",
               }),
             }],
           },
@@ -114,7 +114,7 @@ describe("AI earnings summaries", () => {
     });
 
     expect(result).toBe(
-      "`EXM` revenue rose `12%` to `$10.2 billion` while operating margin expanded `180 basis points` to `24.3%`. `EXM` guided adjusted EPS to `$5.80` to `$6.10`. Revenue momentum remained broad.",
+      "`EXM` revenue rose `12%` to `$10.2 billion` while operating margin expanded `180 basis points` to `24.3%`. `EXM` guided net sales to `$690-$710M`, adjusted EPS to `$3.65-$3.85`, and adjusted tax rate to `21%-22%`. Revenue momentum remained broad.",
     );
   });
 

@@ -210,6 +210,29 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("keeps same-sentence outlook values scoped to their metric labels", () => {
+    expect(extractOutlookMetrics([
+      "Fiscal 2026 Outlook",
+      "Management expects approximately 14% total revenue growth and guided to net sales of $690-$710M, adjusted EPS of $3.65-$3.85, and adjusted tax rate of 21%-22%.",
+    ])).toEqual([
+      {
+        key: "revenue",
+        label: "Revenue",
+        value: "$690M to $710M",
+      },
+      {
+        key: "eps",
+        label: "EPS",
+        value: "$3.65 to $3.85",
+      },
+      {
+        key: "tax_rate",
+        label: "Tax rate",
+        value: "21% to 22%",
+      },
+    ]);
+  });
+
   test("limits outlook scanning and ignores unusable fallback values", () => {
     const lines = [
       "Business Outlook",
