@@ -53,6 +53,7 @@ const calendarReminderAnnouncementSource = "calendar-reminder";
 const earningsReminderSource = "earnings-reminder";
 const calendarMessageDelayMs = 500;
 const usEasternTimezone = "US/Eastern";
+const dailyEarningsHeadline = "**Earnings**";
 const weeklyEarningsHeadline = "📅 **Earnings der nächsten Handelswoche**";
 const anticipatedEarningsHeadline = "🔥 **Most Anticipated Earnings**";
 const anticipatedWeeklyEarningsHeadline = "🔥 **Most Anticipated Earnings der nächsten Handelswoche**";
@@ -443,9 +444,8 @@ async function runEarningsAnnouncement(
       "earnings",
     );
   }
-  const messages = config.headline
-    ? prependHeadlineToFirstMessage(earningsBatch.messages, config.headline, EARNINGS_MAX_MESSAGE_LENGTH)
-    : earningsBatch.messages;
+  const earningsHeadline = config.headline ?? dailyEarningsHeadline;
+  const messages = prependHeadlineToFirstMessage(earningsBatch.messages, earningsHeadline, EARNINGS_MAX_MESSAGE_LENGTH);
   if (0 < messages.length) {
     await sendChunkedMessages(channel, messages, "earnings");
   }
@@ -1098,19 +1098,27 @@ function prependHeadlineToFirstMessage(
 
 function getFirstMessageWithHeadline(headline: string, firstMessage: string): string {
   const periodMatch = /^\*\*Zeitraum:\*\* ([^\n]+)\n?/.exec(firstMessage);
-  if (null === periodMatch) {
-    return `${headline}\n${firstMessage}`;
+  if (null !== periodMatch) {
+    return getFirstMessageWithMergedHeadline(headline, firstMessage, periodMatch[1] ?? "", periodMatch[0].length);
   }
 
-  const periodText = periodMatch[1] ?? "";
-  const restMessage = firstMessage.slice(periodMatch[0].length);
+  const dateHeadingMatch = /^\*\*((?:Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag), [^\n*]+)\*\*\n*/.exec(firstMessage);
+  if (null !== dateHeadingMatch) {
+    return getFirstMessageWithMergedHeadline(headline, firstMessage, dateHeadingMatch[1] ?? "", dateHeadingMatch[0].length);
+  }
+
+  return `${headline}\n${firstMessage}`;
+}
+
+function getFirstMessageWithMergedHeadline(headline: string, firstMessage: string, detailText: string, detailLength: number): string {
+  const restMessage = firstMessage.slice(detailLength);
   const normalizedHeadline = headline.replace(/:\*\*$/, "**");
-  const mergedHeadline = `${normalizedHeadline} (${periodText})`;
+  const mergedHeadline = `${normalizedHeadline} (${detailText})`;
   if ("" === restMessage.trim()) {
     return mergedHeadline;
   }
 
-  return `${mergedHeadline}\n${restMessage}`;
+  return `${mergedHeadline}\n${restMessage.trimStart()}`;
 }
 
 async function sendChunkedMessages(channel: SendableChannel | null, messages: string[], source: "calendar" | "earnings") {
