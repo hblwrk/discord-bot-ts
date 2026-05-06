@@ -359,7 +359,7 @@ describe("timers: NYSE and MNC", () => {
 
   test("startMncTimers includes an AI summary when available", async () => {
     const {client, send} = createClientWithChannel();
-    getMncSummaryMock.mockResolvedValueOnce("**Morning News Call - TL;DR**\n- Futures firm ahead of payrolls.");
+    getMncSummaryMock.mockResolvedValueOnce("- Futures firm ahead of payrolls.");
 
     startMncTimers(client, "channel-id");
     const mncJob = getScheduledJobByTime(9, 0, "US/Eastern");
@@ -373,11 +373,11 @@ describe("timers: NYSE and MNC", () => {
       files: expect.any(Array),
     }));
     expect(send).toHaveBeenCalledWith(expect.objectContaining({
-      content: expect.stringContaining("**Morning News Call - TL;DR**"),
+      content: expect.stringContaining("- Futures firm ahead of payrolls."),
       files: expect.any(Array),
     }));
     expect(send).toHaveBeenCalledWith(expect.objectContaining({
-      content: expect.not.stringContaining("📰 **Morning News Call - TL;DR**"),
+      content: expect.not.stringContaining("**Morning News Call - TL;DR**"),
       files: expect.any(Array),
     }));
   });
