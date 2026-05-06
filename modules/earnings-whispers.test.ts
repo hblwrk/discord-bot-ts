@@ -63,6 +63,13 @@ describe("Earnings Whispers weekly tickers", () => {
     }
   });
 
+  test("does not treat escaped html entities as source markup", () => {
+    expect(extractEarningsWhispersWeeklyTickers(
+      "#earnings for the week of May 4, 2026 &amp;lt;$PLTR&amp;gt; $AMD",
+      moment.tz("2026-05-06 12:00", "YYYY-MM-DD HH:mm", "US/Eastern"),
+    )).toEqual(new Set(["PLTR", "AMD"]));
+  });
+
   test("ignores adjacent weekly posts and non-weekly earnings posts", () => {
     const sourceText = `
       Earnings Whispers @eWhispers
