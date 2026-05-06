@@ -158,21 +158,22 @@ function extractOutlookMetric(
       continue;
     }
 
-    const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(line));
-    if (!pattern) {
-      continue;
-    }
+    for (const pattern of definition.patterns) {
+      if (false === pattern.test(line)) {
+        continue;
+      }
 
-    const value = extractOutlookValue(line, pattern, definition.valueType);
-    if (null === value) {
-      continue;
-    }
+      const value = extractOutlookValue(line, pattern, definition.valueType);
+      if (null === value) {
+        continue;
+      }
 
-    return {
-      key: definition.key,
-      label: definition.label,
-      value,
-    };
+      return {
+        key: definition.key,
+        label: definition.label,
+        value,
+      };
+    }
   }
 
   return null;
@@ -190,7 +191,7 @@ function extractOutlookValue(
 ): string | null {
   pattern.lastIndex = 0;
   const patternMatch = pattern.exec(line);
-  const rawValueText = patternMatch ? line.slice(patternMatch.index + patternMatch[0].length) : line;
+  const rawValueText = getOutlookValueSegment(line, patternMatch);
   const valueText = normalizeOutlookValueText(rawValueText);
   if ("" === valueText) {
     return null;
@@ -201,6 +202,17 @@ function extractOutlookValue(
     ("eps" === valueType ? getEpsPercentOutlookValue(valueText) : null) ??
     ("text" === valueType ? getSingleOutlookValue(valueText, "money") : null) ??
     getSingleOutlookValue(valueText, valueType);
+}
+
+function getOutlookValueSegment(line: string, patternMatch: RegExpExecArray | null): string {
+  if (null === patternMatch) {
+    return line;
+  }
+
+  const rawValueText = line.slice(patternMatch.index + patternMatch[0].length);
+  const nextMetricMatch = /\b(?:adjusted\s+eps|diluted\s+eps|eps|earnings\s+per\s+(?:common\s+)?share|revenues?|net\s+sales|sales|gross\s+margin|operating\s+margin|operating\s+income|operating\s+expenses?|opex|tax\s+rate|capex|capital\s+expenditures?|free\s+cash\s+flow|adjusted\s+ebitda|ebitda)\b/i.exec(rawValueText);
+  const endIndex = nextMetricMatch?.index ?? rawValueText.length;
+  return rawValueText.slice(0, endIndex);
 }
 
 function normalizeOutlookValueText(value: string): string {

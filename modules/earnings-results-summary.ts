@@ -410,10 +410,13 @@ function formatTickerInlineCode(value: string, ticker: string): string {
 
 function formatMetricInlineCode(value: string): string {
   return value.replace(
-    /-?(?:(?:[$€£¥]\s*)\d[\d,]*(?:\.\d+)?(?:\s*(?:trillion|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b)?|\d[\d,]*(?:\.\d+)?(?:\s*(?:trillion|billions?|millions?|thousands?|tn|bn|mm|bps?|basis points?|points?|[tbmk])\b|\s*%))/gi,
+    summaryMetricTokenPattern,
     token => `\`${token.trim()}\``,
   );
 }
+
+const summaryMetricValuePattern = String.raw`-?(?:(?:[$€£¥]\s*)\d[\d,]*(?:\.\d+)?(?:\s*(?:trillion|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b)?|\d[\d,]*(?:\.\d+)?(?:\s*(?:trillion|billions?|millions?|thousands?|tn|bn|mm|bps?|basis points?|points?|[tbmk])\b|\s*%))`;
+const summaryMetricTokenPattern = new RegExp(`${summaryMetricValuePattern}(?:\\s*(?:-|–|—)\\s*${summaryMetricValuePattern})?`, "gi");
 
 function mapTextOutsideInlineCode(value: string, mapper: (text: string) => string): string {
   return value

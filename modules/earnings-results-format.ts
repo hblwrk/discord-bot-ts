@@ -323,10 +323,13 @@ function isQuantitativeText(value: string): boolean {
 
 function formatQuantitativeTokens(value: string): string {
   return value.replace(
-    /-?(?:[$€£¥]\s*)?\d[\d,]*(?:\.\d+)?(?:\s*(?:trillion|billions?|millions?|thousands?|tn|bn|mm|[tbmk]|kbd|koebd|boepd|bpd|mmboe|bcfe|mmcf|mw|gw)\b|\s*%)?/gi,
+    quantitativeTokenPattern,
     token => formatInlineCode(token.trim()),
   );
 }
+
+const quantitativeValuePattern = String.raw`-?(?:[$€£¥]\s*)?\d[\d,]*(?:\.\d+)?(?:\s*(?:trillion|billions?|millions?|thousands?|tn|bn|mm|[tbmk]|kbd|koebd|boepd|bpd|mmboe|bcfe|mmcf|mw|gw)\b|\s*%)?`;
+const quantitativeTokenPattern = new RegExp(`${quantitativeValuePattern}(?:\\s*(?:-|–|—)\\s*${quantitativeValuePattern})?`, "gi");
 
 function formatInlineCode(value: string): string {
   return `\`${value.replaceAll("`", "'")}\``;
