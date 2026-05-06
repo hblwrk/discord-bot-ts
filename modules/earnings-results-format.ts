@@ -61,6 +61,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
     label: "Adj EPS",
     patterns: [
       /\badjusted\s+(?:diluted\s+)?(?:earnings\s+per\s+(?:common\s+)?share|eps)\b/i,
+      /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?eps\b/i,
       /\bnon-gaap\s+(?:diluted\s+)?(?:earnings\s+per\s+share|eps)\b/i,
     ],
     valueType: "eps",
@@ -402,7 +403,7 @@ function getDocumentHeadline(lines: string[]): string | undefined {
 }
 
 function getQuarterLabel(text: string): string | undefined {
-  const fiscalQuarterMatch = text.match(/\b(Q[1-4])\s+(?:fiscal\s+year|FY)\s*(20\d{2}|\d{2})\b/i);
+  const fiscalQuarterMatch = text.match(/\b(Q[1-4])\s+(?:fiscal\s+year|FY|FYE)\s*(20\d{2}|\d{2})\b/i);
   if (undefined !== fiscalQuarterMatch?.[1] && undefined !== fiscalQuarterMatch[2]) {
     return `${fiscalQuarterMatch[1].toUpperCase()} ${normalizeFiscalYear(fiscalQuarterMatch[2])}`;
   }
@@ -515,12 +516,17 @@ function getQuarterSpecificMetricLines(lines: string[]): string[] {
 }
 
 function isQuarterSpecificSectionLine(line: string): boolean {
-  return /^\s*(?:for\s+)?Q[1-4]\s+(?:fiscal\s+year|FY)\s*(?:20\d{2}|\d{2})\s*:?$/i.test(line) ||
+  if (/\b(?:guidance|outlook|forecast)\b/i.test(line)) {
+    return false;
+  }
+
+  return /^\s*(?:for\s+)?Q[1-4]\s+(?:fiscal\s+year|FY|FYE)\s*(?:20\d{2}|\d{2})(?:\s+(?:financial\s+overview|results?|earnings))?\s*:?$/i.test(line) ||
     /^\s*(?:for\s+)?(?:the\s+)?(?:first|second|third|fourth)\s+quarter(?:\s+(?:of\s+)?(?:fiscal\s+year|FY)\s*(?:20\d{2}|\d{2}))?\s*:?$/i.test(line);
 }
 
 function isQuarterSpecificSectionBoundary(line: string): boolean {
   return /^\s*(?:outlook|guidance|financial\s+outlook|business\s+outlook|use\s+of\s+non-gaap|forward-looking|supplemental\s+financial\s+information)\b/i.test(line) ||
+    /^\s*(?:fiscal\s+year|FY|FYE)\s*(?:20\d{2}|\d{2})\b/i.test(line) ||
     /^\s*for\s+fiscal\s+year\s+(?:20\d{2}|\d{2})\s*:?$/i.test(line);
 }
 

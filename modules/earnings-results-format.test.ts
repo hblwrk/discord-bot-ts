@@ -85,6 +85,46 @@ describe("earnings result formatting", () => {
     })).toContain("**Exxon Mobil (`XOM`)** - Q1 2026 - [8-K](https://www.sec.gov/Archives/edgar/data/34088/example/ex-991.htm)");
   });
 
+  test("prefers ARM-style Q4 FYE section metrics over full-year figures", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <p>Arm delivered record-breaking results this quarter and in fiscal 2026.</p>
+          <p>For the full year, revenue reached a record $4.92 billion. Non-GAAP EPS was also a record at $1.77.</p>
+          <h2>Q4 FYE26 Financial Overview</h2>
+          <p>Total revenue increased 20% year-over-year to $1,490 million.</p>
+          <p>GAAP net income was $313 million.</p>
+          <p>Non-GAAP fully diluted EPS was $0.60 compared with $0.55 in the same period a year ago.</p>
+          <h2>Fiscal year 2026 financial overview</h2>
+          <p>Total revenue increased 23% year-over-year to a record $4,920 million.</p>
+          <p>Non-GAAP fully diluted EPS was $1.77 compared with $1.63 in the same period a year ago.</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.quarterLabel).toBe("Q4 2026");
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "adjusted_eps",
+        value: "$0.60",
+      }),
+      expect.objectContaining({
+        key: "revenue",
+        value: "$1.49B",
+      }),
+      expect.objectContaining({
+        key: "net_income",
+        value: "$313M",
+      }),
+    ]));
+    expect(parsedDocument.metrics).not.toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "revenue",
+        value: "$4.92B",
+      }),
+    ]));
+  });
+
   test("renders result and outlook metrics before optional earnings summaries", () => {
     const parsedDocument = {
       metrics: [],

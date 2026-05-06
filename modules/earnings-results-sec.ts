@@ -51,6 +51,10 @@ type SecArchiveIndexResponse = {
   };
 };
 
+type SecFilingDetailsOptions = {
+  isUsableDocument?: (html: string, documentUrl: string) => boolean;
+};
+
 type SecTickerMapCache = {
   loadedAtMs: number;
   tickerToCompany: Map<string, SecCompany>;
@@ -200,6 +204,7 @@ export function isLikelyEarningsFiling(filing: SecCurrentFiling): boolean {
 export async function loadSecFilingDetails(
   filing: SecCurrentFiling,
   dependencies: SecRequestDependencies,
+  options: SecFilingDetailsOptions = {},
 ): Promise<{documentUrl: string; html: string;}> {
   const archiveBaseUrl = getSecArchiveBaseUrl(filing);
   const indexUrl = `${archiveBaseUrl}/index.json`;
@@ -210,25 +215,31 @@ export async function loadSecFilingDetails(
     },
   );
   const documents = normalizeSecArchiveDocuments(indexResponse.data?.directory?.item);
-  const selectedDocument = selectEarningsReleaseDocument(documents);
-  if (!selectedDocument?.name) {
+  const rankedDocuments = getRankedEarningsReleaseDocuments(documents);
+  if (0 === rankedDocuments.length) {
     return {
       documentUrl: filing.filingUrl,
       html: "",
     };
   }
 
-  const documentUrl = `${archiveBaseUrl}/${selectedDocument.name}`;
-  const documentResponse = await dependencies.getWithRetryFn<string>(
-    documentUrl,
-    {
-      headers: secRequestHeaders,
-      responseType: "text",
-    },
-  );
-  return {
-    documentUrl,
-    html: String(documentResponse.data),
+  let fallbackDetails: {documentUrl: string; html: string;} | undefined;
+  for (const selectedDocument of rankedDocuments) {
+    if (!selectedDocument.name) {
+      continue;
+    }
+
+    const details = await loadSecArchiveHtmlDocument(archiveBaseUrl, selectedDocument.name, dependencies);
+    fallbackDetails ??= details;
+    if (undefined === options.isUsableDocument ||
+        true === options.isUsableDocument(details.html, details.documentUrl)) {
+      return details;
+    }
+  }
+
+  return fallbackDetails ?? {
+    documentUrl: filing.filingUrl,
+    html: "",
   };
 }
 
@@ -260,8 +271,8 @@ function normalizeSecArchiveDocuments(value: SecArchiveDocument[] | SecArchiveDo
   return [];
 }
 
-function selectEarningsReleaseDocument(documents: SecArchiveDocument[]): SecArchiveDocument | undefined {
-  const rankedDocuments = documents
+function getRankedEarningsReleaseDocuments(documents: SecArchiveDocument[]): SecArchiveDocument[] {
+  return documents
     .filter(isPotentialSecFilingDocument)
     .map((document, index) => ({
       document,
@@ -274,9 +285,27 @@ function selectEarningsReleaseDocument(documents: SecArchiveDocument[]): SecArch
       }
 
       return first.index - second.index;
-    });
+    })
+    .map(rankedDocument => rankedDocument.document);
+}
 
-  return rankedDocuments[0]?.document;
+async function loadSecArchiveHtmlDocument(
+  archiveBaseUrl: string,
+  documentName: string,
+  dependencies: SecRequestDependencies,
+): Promise<{documentUrl: string; html: string;}> {
+  const documentUrl = `${archiveBaseUrl}/${documentName}`;
+  const documentResponse = await dependencies.getWithRetryFn<string>(
+    documentUrl,
+    {
+      headers: secRequestHeaders,
+      responseType: "text",
+    },
+  );
+  return {
+    documentUrl,
+    html: String(documentResponse.data),
+  };
 }
 
 function isPotentialSecFilingDocument(document: SecArchiveDocument): boolean {

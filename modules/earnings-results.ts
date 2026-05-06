@@ -654,7 +654,9 @@ async function buildEarningsResultAnnouncement(
   skippedQualityGateAccessions: Map<string, number>,
 ): Promise<EarningsResultAnnouncement | null> {
   const [filingDetails, xbrlMetrics] = await Promise.all([
-    loadSecFilingDetails(filing, dependencies).catch(error => {
+    loadSecFilingDetails(filing, dependencies, {
+      isUsableDocument: html => hasParsedEarningsDocumentContent(parseEarningsDocument(html)),
+    }).catch(error => {
       dependencies.logger.log(
         "warn",
         `Skipping earnings result announcement for ${watch.event.ticker}: SEC filing details could not be loaded: ${error}`,
@@ -783,6 +785,10 @@ async function buildEarningsResultAnnouncement(
     message,
     ticker: watch.event.ticker,
   };
+}
+
+function hasParsedEarningsDocumentContent(parsedDocument: ParsedEarningsDocument): boolean {
+  return 0 < parsedDocument.metrics.length || 0 < parsedDocument.outlook.length;
 }
 
 function updateNoMetricsSkipState(

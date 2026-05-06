@@ -33,6 +33,7 @@ const getAssetByNameMock = vi.fn();
 const getCalendarEventsMock = vi.fn();
 const getCalendarEventsResultMock = vi.fn();
 const getCalendarMessagesMock = vi.fn();
+const getCalendarOfficialSummaryMock = vi.fn();
 const addExpectedMovesToEarningsEventsMock = vi.fn();
 const warmExpectedMoveCacheForEarningsEventsMock = vi.fn();
 const getEarningsResultMock = vi.fn();
@@ -81,6 +82,10 @@ vi.mock("../calendar.ts", () => ({
   getCalendarEvents: (...args: unknown[]) => getCalendarEventsMock(...args),
   getCalendarEventsResult: (...args: unknown[]) => getCalendarEventsResultMock(...args),
   getCalendarMessages: (...args: unknown[]) => getCalendarMessagesMock(...args),
+}));
+
+vi.mock("../calendar-economic-summary.ts", () => ({
+  getCalendarOfficialSummary: (...args: unknown[]) => getCalendarOfficialSummaryMock(...args),
 }));
 
 vi.mock("../earnings.ts", () => ({
@@ -254,6 +259,7 @@ export function resetTimerMocks() {
     events: [],
     status: "ok",
   });
+  getCalendarOfficialSummaryMock.mockResolvedValue(undefined);
   getCalendarMessagesMock.mockReturnValue({
     messages: ["calendar-text"],
     truncated: false,
@@ -278,6 +284,7 @@ export {
   getCalendarEventsMock,
   getCalendarEventsResultMock,
   getCalendarMessagesMock,
+  getCalendarOfficialSummaryMock,
   getEarningsMessagesMock,
   getEarningsReminderJob,
   getEarningsResultMock,

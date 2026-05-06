@@ -83,9 +83,16 @@ describe("getCalendarMessages", () => {
     mockPostWithRetry.mockResolvedValueOnce({
       data: [
         {
+          ActualValue: "178\u00a0K",
           Country: 840,
+          CurrencyCode: "USD",
           EventName: "US Payrolls",
+          ForecastValue: "140\u00a0K",
           FullDate: "2026-05-04T12:30:00Z",
+          Id: 123,
+          OldPreviousValue: "135\u00a0K",
+          PreviousValue: "138\u00a0K",
+          Url: "/en/economic-calendar/united-states/nonfarm-payrolls",
         },
         {
           Country: 999,
@@ -116,6 +123,15 @@ describe("getCalendarMessages", () => {
       "14:30 🇺🇸 US Payrolls",
       "10:00 🇪🇺 Eurozone CPI",
     ]);
+    expect(result.events[0]).toEqual(expect.objectContaining({
+      actualValue: "178 K",
+      currencyCode: "USD",
+      forecastValue: "140 K",
+      oldPreviousValue: "135 K",
+      previousValue: "138 K",
+      sourceEventId: "123",
+      sourceUrl: "https://www.mql5.com/en/economic-calendar/united-states/nonfarm-payrolls",
+    }));
   });
 
   test("handles empty, short and failed calendar loader responses", async () => {

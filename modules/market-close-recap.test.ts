@@ -192,6 +192,57 @@ describe("market close recap", () => {
     });
   });
 
+  test("matches hydrated Discord poll answer media and camelCase answer ids", async () => {
+    const mediaVotersFetch = vi.fn().mockResolvedValue(new Map([
+      ["789", {id: "789"}],
+    ]));
+
+    const mediaRecap = await getMarketCloseRecap({
+      poll: {
+        answers: [{
+          answerId: 1,
+          pollMedia: {
+            text: "🟢 Risk-on",
+          },
+          voters: {
+            fetch: mediaVotersFetch,
+          },
+        }],
+      },
+    }, {
+      logger,
+      postWithRetryFn: createPostWithRecap(),
+      readSecretFn,
+    });
+
+    const idVotersFetch = vi.fn().mockResolvedValue(new Map([
+      ["987", {id: "987"}],
+    ]));
+    const idRecap = await getMarketCloseRecap({
+      poll: {
+        answers: [{
+          answerId: 1,
+          emoji: {name: "🟢"},
+          text: null,
+          voters: {
+            fetch: idVotersFetch,
+          },
+        }],
+      },
+    }, {
+      logger,
+      postWithRetryFn: createPostWithRecap(),
+      readSecretFn,
+    });
+
+    expect(mediaRecap?.allowedUserIds).toEqual(["789"]);
+    expect(idRecap?.allowedUserIds).toEqual(["987"]);
+    expect(logger.log).not.toHaveBeenCalledWith(
+      "warn",
+      "Skipping market close recap voter mentions: poll answer Risk-on was not found.",
+    );
+  });
+
   test("falls back to stable poll answer IDs when answer text is partial", async () => {
     const votersFetch = vi.fn().mockResolvedValue(new Map([
       ["456", {id: "456"}],
@@ -370,7 +421,7 @@ describe("market close recap", () => {
     );
   });
 
-  test("rejects output that mentions the provider or omits VIX", async () => {
+  test("rejects output that mentions provider, ETF proxies, sentiment labels or omits VIX", async () => {
     const providerMentionRecap = await getMarketCloseRecap(undefined, {
       logger,
       postWithRetryFn: createPostWithRecap({
@@ -385,16 +436,32 @@ describe("market close recap", () => {
       }),
       readSecretFn,
     });
+    const forbiddenEtfRecap = await getMarketCloseRecap(undefined, {
+      logger,
+      postWithRetryFn: createPostWithRecap({
+        summaryMarkdown: "`SPX` und `QQQ` waren fest, der `VIX` fiel um `1 Punkt`.",
+      }),
+      readSecretFn,
+    });
+    const sentimentInSummaryRecap = await getMarketCloseRecap(undefined, {
+      logger,
+      postWithRetryFn: createPostWithRecap({
+        summaryMarkdown: "Risk-on dominierte den Handel, der `VIX` fiel um `1 Punkt`.",
+      }),
+      readSecretFn,
+    });
     const missingVixRecap = await getMarketCloseRecap(undefined, {
       logger,
       postWithRetryFn: createPostWithRecap({
-        summaryMarkdown: "`SPX` war fest und `QQQ` erholte sich.",
+        summaryMarkdown: "`SPX` und `NQ` erholten sich.",
       }),
       readSecretFn,
     });
 
     expect(providerMentionRecap).toBeUndefined();
     expect(gptMentionRecap).toBeUndefined();
+    expect(forbiddenEtfRecap).toBeUndefined();
+    expect(sentimentInSummaryRecap).toBeUndefined();
     expect(missingVixRecap).toBeUndefined();
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
