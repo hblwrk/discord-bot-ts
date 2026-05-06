@@ -527,7 +527,7 @@ describe("timers: other announcements", () => {
       marketCapFilter: "bluechips",
     });
     expect(send).toHaveBeenNthCalledWith(1, {
-      content: "🔥 **Most Anticipated Earnings (Earnings Whispers):**\n\nanticipated-earnings",
+      content: "🔥 **Most Anticipated Earnings**\nanticipated-earnings",
       allowedMentions: {
         parse: [],
       },
@@ -577,7 +577,7 @@ describe("timers: other announcements", () => {
 
     expect(send).toHaveBeenCalledTimes(1);
     expect(send).toHaveBeenCalledWith({
-      content: "🔥 **Most Anticipated Earnings (Earnings Whispers):**\n\nanticipated-only",
+      content: "🔥 **Most Anticipated Earnings**\nanticipated-only",
       allowedMentions: {
         parse: [],
       },
@@ -657,7 +657,10 @@ describe("timers: other announcements", () => {
   test("startOtherTimers sends weekly earnings with dedicated headline on Friday evening", async () => {
     const {client, send} = createClientWithChannel();
     getEarningsMessagesMock.mockReturnValue({
-      messages: ["weekly-earnings-1", "weekly-earnings-2"],
+      messages: [
+        "**Zeitraum:** Mittwoch, 6. Mai 2026 bis Donnerstag, 7. Mai 2026\n**Mittwoch, 6. Mai 2026**\nweekly-earnings-1",
+        "weekly-earnings-2",
+      ],
       truncated: false,
       totalEvents: 10,
       includedEvents: 10,
@@ -676,7 +679,7 @@ describe("timers: other announcements", () => {
       marketCapFilter: "bluechips",
     });
     expect(send).toHaveBeenNthCalledWith(1, {
-      content: "📅 **Earnings der nächsten Handelswoche:**\n\nweekly-earnings-1",
+      content: "📅 **Earnings der nächsten Handelswoche** (Mittwoch, 6. Mai 2026 bis Donnerstag, 7. Mai 2026)\n**Mittwoch, 6. Mai 2026**\nweekly-earnings-1",
       allowedMentions: {
         parse: [],
       },
@@ -764,13 +767,13 @@ describe("timers: other announcements", () => {
       marketCapFilter: "bluechips",
     });
     expect(send).toHaveBeenNthCalledWith(1, {
-      content: "🔥 **Most Anticipated Earnings der nächsten Handelswoche (Earnings Whispers):**\n\nweekly-anticipated",
+      content: "🔥 **Most Anticipated Earnings der nächsten Handelswoche**\nweekly-anticipated",
       allowedMentions: {
         parse: [],
       },
     });
     expect(send).toHaveBeenNthCalledWith(2, {
-      content: "📅 **Earnings der nächsten Handelswoche:**\n\nweekly-regular",
+      content: "📅 **Earnings der nächsten Handelswoche**\nweekly-regular",
       allowedMentions: {
         parse: [],
       },
