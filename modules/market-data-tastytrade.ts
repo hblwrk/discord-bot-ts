@@ -66,6 +66,7 @@ type DxLinkFeedLike = {
   configure: (acceptConfig: {
     acceptAggregationPeriod: number;
     acceptDataFormat: FeedDataFormat;
+    acceptEventFields?: Record<string, string[]>;
   }) => void;
   removeEventListener: (listener: TastytradeEventListener) => void;
   removeSubscriptions: (...subscriptions: {symbol: string; type: string}[]) => void;
@@ -104,6 +105,11 @@ const quoteSubscriptionTypes = [
   MarketDataSubscriptionType.Quote,
   MarketDataSubscriptionType.Summary,
 ];
+const tastytradeCryptoEventFields = {
+  [MarketDataSubscriptionType.Trade]: ["eventSymbol", "price", "change"],
+  [MarketDataSubscriptionType.Quote]: ["eventSymbol", "bidPrice", "askPrice"],
+  [MarketDataSubscriptionType.Summary]: ["eventSymbol", "dayClosePrice", "prevDayClosePrice"],
+} satisfies Record<string, string[]>;
 
 const webSocketGlobal = globalThis as typeof globalThis & {
   WebSocket?: unknown;
@@ -146,6 +152,7 @@ export function startTastytradeCryptoStream({
   let removeQuoteStreamerErrorListener: (() => void) | undefined;
   let stopped = false;
   const previousPrices = new Map<string, number>();
+  const referencePrices = new Map<string, number>();
 
   const clearTimer = (timer: TimerHandle | undefined) => {
     if (undefined !== timer) {
@@ -249,17 +256,29 @@ export function startTastytradeCryptoStream({
         continue;
       }
 
-      const previousPrice = previousPrices.get(getAssetKey(streamEvent.asset)) ?? null;
-      const priceChange = streamEvent.priceChange ?? (
-        null === previousPrice ? 0 : streamEvent.lastNumeric - previousPrice
+      const assetKey = getAssetKey(streamEvent.asset);
+      const previousPrice = previousPrices.get(assetKey) ?? null;
+      const eventReferencePrice = normalizeReferencePrice(streamEvent.referencePrice);
+      const referencePrice = eventReferencePrice ?? referencePrices.get(assetKey) ?? null;
+      if (null !== eventReferencePrice) {
+        referencePrices.set(assetKey, eventReferencePrice);
+      }
+
+      const priceChange = getTastytradePriceChange(
+        streamEvent.lastNumeric,
+        streamEvent.priceChange,
+        referencePrice,
+        previousPrice,
       );
-      const percentageChange = streamEvent.percentageChange ?? (
-        null === previousPrice || 0 === previousPrice
-          ? 0
-          : ((streamEvent.lastNumeric - previousPrice) / previousPrice) * 100
+      const percentageChange = getTastytradePercentageChange(
+        streamEvent.lastNumeric,
+        priceChange,
+        streamEvent.percentageChange,
+        referencePrice,
+        previousPrice,
       );
 
-      previousPrices.set(getAssetKey(streamEvent.asset), streamEvent.lastNumeric);
+      previousPrices.set(assetKey, streamEvent.lastNumeric);
       const eventTimeMs = now();
       lastValidEventAtMs = eventTimeMs;
       clearTimer(initialResubscribeTimer);
@@ -442,6 +461,7 @@ class HandledDxLinkQuoteStreamer implements TastytradeQuoteStreamer {
     this.dxLinkFeed.configure({
       acceptAggregationPeriod: 10,
       acceptDataFormat: FeedDataFormat.COMPACT,
+      acceptEventFields: tastytradeCryptoEventFields,
     });
     for (const listener of this.eventListeners) {
       this.dxLinkFeed.addEventListener(listener);
@@ -617,6 +637,7 @@ function parseTastytradeCryptoEvent(
   lastNumeric: number;
   percentageChange: number | null;
   priceChange: number | null;
+  referencePrice: number | null;
   streamerSymbol: string;
 } | null {
   const eventSymbol = getStringField(event, ["eventSymbol", "event-symbol", "symbol"]);
@@ -658,6 +679,12 @@ function parseTastytradeCryptoEvent(
       "dayChange",
       "day-change",
       "change",
+    ]),
+    referencePrice: getNumericField(event, [
+      "prevDayClosePrice",
+      "prev-day-close-price",
+      "previousDayClosePrice",
+      "previous-day-close-price",
     ]),
     streamerSymbol: eventSymbol,
   };
@@ -715,4 +742,52 @@ function parseNumericValue(value: unknown): number | null {
   }
 
   return null;
+}
+
+function normalizeReferencePrice(referencePrice: number | null): number | null {
+  return null !== referencePrice && 0 < referencePrice ? referencePrice : null;
+}
+
+function getTastytradePriceChange(
+  lastNumeric: number,
+  eventPriceChange: number | null,
+  referencePrice: number | null,
+  previousPrice: number | null,
+): number {
+  if (null !== eventPriceChange) {
+    return eventPriceChange;
+  }
+
+  if (null !== referencePrice) {
+    return lastNumeric - referencePrice;
+  }
+
+  return null === previousPrice ? 0 : lastNumeric - previousPrice;
+}
+
+function getTastytradePercentageChange(
+  lastNumeric: number,
+  priceChange: number,
+  eventPercentageChange: number | null,
+  referencePrice: number | null,
+  previousPrice: number | null,
+): number {
+  if (null !== eventPercentageChange) {
+    return eventPercentageChange;
+  }
+
+  if (null !== referencePrice) {
+    return (priceChange / referencePrice) * 100;
+  }
+
+  const impliedReferencePrice = lastNumeric - priceChange;
+  if (0 < impliedReferencePrice) {
+    return (priceChange / impliedReferencePrice) * 100;
+  }
+
+  if (null !== previousPrice && 0 !== previousPrice) {
+    return ((lastNumeric - previousPrice) / previousPrice) * 100;
+  }
+
+  return 0;
 }

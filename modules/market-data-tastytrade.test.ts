@@ -179,6 +179,72 @@ describe("tastytrade crypto market data stream", () => {
     );
   });
 
+  test("derives crypto move from summary previous close", async () => {
+    const stream = createStreamer();
+    const options = createOptions({
+      clientFactory: vi.fn(() => ({
+        quoteStreamer: stream.streamer,
+      })),
+    });
+
+    startTastytradeCryptoStream(options);
+    await flushAsyncWork();
+
+    stream.emit([{
+      eventSymbol: "BTC/USD",
+      eventType: "Summary",
+      dayClosePrice: 105,
+      prevDayClosePrice: 100,
+    }]);
+
+    expect(options.onMarketData).toHaveBeenLastCalledWith(
+      expect.objectContaining({botClientId: "btc-client"}),
+      105,
+      5,
+      5,
+    );
+
+    stream.emit([{
+      eventSymbol: "BTC/USD",
+      eventType: "Quote",
+      bidPrice: 105.9,
+      askPrice: 106.1,
+    }]);
+
+    expect(options.onMarketData).toHaveBeenLastCalledWith(
+      expect.objectContaining({botClientId: "btc-client"}),
+      106,
+      6,
+      6,
+    );
+  });
+
+  test("derives crypto percentage move from trade change", async () => {
+    const stream = createStreamer();
+    const options = createOptions({
+      clientFactory: vi.fn(() => ({
+        quoteStreamer: stream.streamer,
+      })),
+    });
+
+    startTastytradeCryptoStream(options);
+    await flushAsyncWork();
+
+    stream.emit([{
+      eventSymbol: "BTC/USD",
+      eventType: "Trade",
+      price: 103,
+      change: 3,
+    }]);
+
+    expect(options.onMarketData).toHaveBeenLastCalledWith(
+      expect.objectContaining({botClientId: "btc-client"}),
+      103,
+      3,
+      3,
+    );
+  });
+
   test("resubscribes once when no initial quote arrives", async () => {
     const stream = createStreamer();
     const options = createOptions({
@@ -329,6 +395,11 @@ describe("tastytrade crypto market data stream", () => {
     expect(dxLinkFeed.configure).toHaveBeenCalledWith({
       acceptAggregationPeriod: 10,
       acceptDataFormat: "COMPACT",
+      acceptEventFields: {
+        Quote: ["eventSymbol", "bidPrice", "askPrice"],
+        Summary: ["eventSymbol", "dayClosePrice", "prevDayClosePrice"],
+        Trade: ["eventSymbol", "price", "change"],
+      },
     });
     expect(dxLinkFeed.addEventListener).toHaveBeenCalledWith(feedListener);
     expect(dxLinkFeed.addSubscriptions).toHaveBeenCalledWith({
