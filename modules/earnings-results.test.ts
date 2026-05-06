@@ -7,6 +7,12 @@ import {
   startEarningsResultWatcher,
 } from "./earnings-results.ts";
 
+type NoMetricsSkipStateForTest = {
+  gaveUp: boolean;
+  giveUpAfterMs: number;
+  retryAfterMs: number;
+};
+
 describe("earnings result announcements", () => {
   const logger = {
     log: vi.fn(),
@@ -755,7 +761,7 @@ describe("earnings result announcements", () => {
       throw new Error(`Unexpected URL ${url}`);
     });
 
-    const skippedNoMetricsAccessions = new Map<string, number>();
+    const skippedNoMetricsAccessions = new Map<string, NoMetricsSkipStateForTest>();
     const result = await getEarningsResultAnnouncements({
       dependencies: {
         getEarningsResultFn,
@@ -767,12 +773,14 @@ describe("earnings result announcements", () => {
     });
 
     expect(result.announcements).toEqual([]);
-    expect(skippedNoMetricsAccessions.get("0000034088-26-000042")).toBe(
-      moment.tz("2026-05-01 08:10", "YYYY-MM-DD HH:mm", "US/Eastern").valueOf(),
-    );
+    expect(skippedNoMetricsAccessions.get("0000034088-26-000042")).toEqual({
+      gaveUp: false,
+      giveUpAfterMs: moment.tz("2026-05-01 08:20", "YYYY-MM-DD HH:mm", "US/Eastern").valueOf(),
+      retryAfterMs: moment.tz("2026-05-01 08:10", "YYYY-MM-DD HH:mm", "US/Eastern").valueOf(),
+    });
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
-      "Skipping earnings result announcement for XOM: no earnings metrics or outlook could be parsed.",
+      "Skipping earnings result announcement for XOM: no earnings metrics or outlook could be parsed; will retry for up to 15 minutes.",
     );
 
     getWithRetryFn.mockClear();
@@ -791,7 +799,78 @@ describe("earnings result announcements", () => {
     expect(secondResult.announcements).toEqual([]);
     expect(logger.log).not.toHaveBeenCalledWith(
       "warn",
-      "Skipping earnings result announcement for XOM: no earnings metrics or outlook could be parsed.",
+      expect.stringContaining("no earnings metrics or outlook could be parsed"),
+    );
+    expect(getWithRetryFn).not.toHaveBeenCalledWith(
+      expect.stringContaining("/index.json"),
+      expect.anything(),
+    );
+
+    getWithRetryFn.mockClear();
+    logger.log.mockClear();
+
+    const retryResult = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:11", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      },
+      skippedNoMetricsAccessions,
+    });
+
+    expect(retryResult.announcements).toEqual([]);
+    expect(logger.log).not.toHaveBeenCalledWith(
+      "warn",
+      expect.stringContaining("no earnings metrics or outlook could be parsed"),
+    );
+    expect(skippedNoMetricsAccessions.get("0000034088-26-000042")).toEqual({
+      gaveUp: false,
+      giveUpAfterMs: moment.tz("2026-05-01 08:20", "YYYY-MM-DD HH:mm", "US/Eastern").valueOf(),
+      retryAfterMs: moment.tz("2026-05-01 08:16", "YYYY-MM-DD HH:mm", "US/Eastern").valueOf(),
+    });
+
+    getWithRetryFn.mockClear();
+    logger.log.mockClear();
+
+    const gaveUpResult = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:21", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      },
+      skippedNoMetricsAccessions,
+    });
+
+    expect(gaveUpResult.announcements).toEqual([]);
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "Giving up earnings result announcement for XOM: no earnings metrics or outlook could be parsed after 15 minutes.",
+    );
+    expect(skippedNoMetricsAccessions.get("0000034088-26-000042")).toMatchObject({
+      gaveUp: true,
+      giveUpAfterMs: moment.tz("2026-05-01 08:20", "YYYY-MM-DD HH:mm", "US/Eastern").valueOf(),
+      retryAfterMs: Number.POSITIVE_INFINITY,
+    });
+
+    getWithRetryFn.mockClear();
+    logger.log.mockClear();
+
+    const afterGaveUpResult = await getEarningsResultAnnouncements({
+      dependencies: {
+        getEarningsResultFn,
+        getWithRetryFn,
+        logger,
+        now: () => moment.tz("2026-05-01 08:22", "YYYY-MM-DD HH:mm", "US/Eastern"),
+      },
+      skippedNoMetricsAccessions,
+    });
+
+    expect(afterGaveUpResult.announcements).toEqual([]);
+    expect(logger.log).not.toHaveBeenCalledWith(
+      "warn",
+      expect.stringContaining("no earnings metrics or outlook could be parsed"),
     );
     expect(getWithRetryFn).not.toHaveBeenCalledWith(
       expect.stringContaining("/index.json"),
@@ -908,7 +987,7 @@ describe("earnings result announcements", () => {
       throw new Error(`Unexpected URL ${url}`);
     });
 
-    const skippedNoMetricsAccessions = new Map<string, number>();
+    const skippedNoMetricsAccessions = new Map<string, NoMetricsSkipStateForTest>();
     const firstResult = await getEarningsResultAnnouncements({
       dependencies: {
         getEarningsResultFn,
@@ -1045,7 +1124,7 @@ describe("earnings result announcements", () => {
     expect(postWithRetryFn).not.toHaveBeenCalled();
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
-      "Skipping earnings result announcement for XOM: no earnings metrics or outlook could be parsed.",
+      "Skipping earnings result announcement for XOM: no earnings metrics or outlook could be parsed; will retry for up to 15 minutes.",
     );
   });
 
