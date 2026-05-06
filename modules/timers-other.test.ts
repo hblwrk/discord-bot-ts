@@ -497,7 +497,7 @@ describe("timers: other announcements", () => {
       events: earningsEvents,
       status: "ok",
     });
-    addExpectedMovesToEarningsEventsMock.mockResolvedValue(earningsEvents);
+    addExpectedMovesToEarningsEventsMock.mockImplementation(async events => events);
     loadEarningsWhispersWeeklyTickersMock.mockResolvedValue(new Set(["AMD", "AEHR"]));
     getEarningsMessagesMock
       .mockReturnValueOnce({
@@ -519,6 +519,14 @@ describe("timers: other announcements", () => {
 
     expect(loadEarningsWhispersWeeklyTickersMock).toHaveBeenCalledTimes(1);
     expect(loadEarningsWhispersWeeklyTickersMock.mock.calls[0]?.[0].now.format("YYYY-MM-DD")).toBe("2025-02-24");
+    expect(addExpectedMovesToEarningsEventsMock).toHaveBeenNthCalledWith(1, [earningsEvents[0], earningsEvents[2]], {
+      marketCapFilter: "all",
+      when: "all",
+    });
+    expect(addExpectedMovesToEarningsEventsMock).toHaveBeenNthCalledWith(2, [earningsEvents[1]], {
+      marketCapFilter: "bluechips",
+      when: "all",
+    });
     expect(getEarningsMessagesMock).toHaveBeenNthCalledWith(
       1,
       [earningsEvents[0], earningsEvents[2]],
@@ -567,7 +575,7 @@ describe("timers: other announcements", () => {
       events: earningsEvents,
       status: "ok",
     });
-    addExpectedMovesToEarningsEventsMock.mockResolvedValue(earningsEvents);
+    addExpectedMovesToEarningsEventsMock.mockImplementation(async events => events);
     loadEarningsWhispersWeeklyTickersMock.mockResolvedValue(new Set(["AMD"]));
     getEarningsMessagesMock
       .mockReturnValueOnce({
@@ -587,6 +595,14 @@ describe("timers: other announcements", () => {
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
     await dailyEarningsJob.callback();
 
+    expect(addExpectedMovesToEarningsEventsMock).toHaveBeenNthCalledWith(1, [earningsEvents[0]], {
+      marketCapFilter: "all",
+      when: "all",
+    });
+    expect(addExpectedMovesToEarningsEventsMock).toHaveBeenNthCalledWith(2, [], {
+      marketCapFilter: "bluechips",
+      when: "all",
+    });
     expect(send).toHaveBeenCalledTimes(1);
     expect(send).toHaveBeenCalledWith({
       content: "🔥 **Most Anticipated Earnings** (Montag, 24. Februar 2025)\nanticipated-only",
@@ -745,7 +761,7 @@ describe("timers: other announcements", () => {
       events: earningsEvents,
       status: "ok",
     });
-    addExpectedMovesToEarningsEventsMock.mockResolvedValue(earningsEvents);
+    addExpectedMovesToEarningsEventsMock.mockImplementation(async events => events);
     loadEarningsWhispersWeeklyTickersMock.mockResolvedValue(new Set(["MSFT", "AAPL"]));
     getEarningsMessagesMock
       .mockReturnValueOnce({
@@ -765,6 +781,14 @@ describe("timers: other announcements", () => {
     const weeklyEarningsJob = getScheduledJobByTime(23, 30, "Europe/Berlin");
     await weeklyEarningsJob.callback();
 
+    expect(addExpectedMovesToEarningsEventsMock).toHaveBeenNthCalledWith(1, [earningsEvents[0], earningsEvents[2]], {
+      marketCapFilter: "all",
+      when: "all",
+    });
+    expect(addExpectedMovesToEarningsEventsMock).toHaveBeenNthCalledWith(2, [earningsEvents[1]], {
+      marketCapFilter: "bluechips",
+      when: "all",
+    });
     expect(getEarningsMessagesMock).toHaveBeenNthCalledWith(
       1,
       [earningsEvents[0], earningsEvents[2]],
