@@ -43,7 +43,10 @@ type ReconnectingWebSocketInstance = {
   addEventListener: (type: "open" | "close" | "error" | "message", listener: (event: {
     code?: number;
     data?: unknown;
+    error?: unknown;
+    message?: string;
     reason?: string;
+    type?: string;
   }) => void) => void;
   readyState: number;
   reconnect: () => void;
@@ -352,7 +355,7 @@ function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAsse
   wsClient.addEventListener("error", event => {
     logger.log(
       "error",
-      `Error at websocket connection ${wsClient.url}: ${JSON.stringify(event)}`,
+      `Error at websocket connection ${wsClient.url}: ${formatWebSocketErrorEvent(event)}`,
     );
   });
 
@@ -737,6 +740,68 @@ function getInitialMarketDataPresence(marketDataAsset: MarketDataAsset): string 
   return "crypto" === marketDataAsset.marketHours
     ? marketOpenPresence
     : marketClosedPresence;
+}
+
+function formatWebSocketErrorEvent(event: unknown): string {
+  if (false === isRecord(event)) {
+    return formatWebSocketErrorValue(event);
+  }
+
+  const parts: string[] = [];
+  appendStringField(parts, "type", event["type"]);
+  appendStringField(parts, "message", event["message"]);
+  appendNumberField(parts, "code", event["code"]);
+  appendStringField(parts, "reason", event["reason"]);
+
+  if (undefined !== event["error"]) {
+    parts.push(`error=${formatWebSocketErrorValue(event["error"])}`);
+  }
+
+  return 0 < parts.length ? parts.join(", ") : formatWebSocketErrorValue(event);
+}
+
+function appendStringField(parts: string[], label: string, value: unknown) {
+  if ("string" === typeof value && "" !== value.trim()) {
+    parts.push(`${label}=${value.trim()}`);
+  }
+}
+
+function appendNumberField(parts: string[], label: string, value: unknown) {
+  if ("number" === typeof value && Number.isFinite(value)) {
+    parts.push(`${label}=${value}`);
+  }
+}
+
+function formatWebSocketErrorValue(value: unknown): string {
+  if (value instanceof Error) {
+    return `${value.name}: ${value.message}`;
+  }
+
+  if ("string" === typeof value) {
+    return value;
+  }
+
+  if ("number" === typeof value || "boolean" === typeof value || null === value) {
+    return String(value);
+  }
+
+  if (true === isRecord(value)) {
+    const parts: string[] = [];
+    appendStringField(parts, "name", value["name"]);
+    appendStringField(parts, "message", value["message"]);
+    appendNumberField(parts, "code", value["code"]);
+    appendStringField(parts, "reason", value["reason"]);
+
+    if (0 < parts.length) {
+      return parts.join(", ");
+    }
+  }
+
+  return Object.prototype.toString.call(value);
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return null !== value && "object" === typeof value;
 }
 
 function logAppliedMarketDataUpdate(logData: AppliedMarketDataUpdateLog) {
