@@ -53,9 +53,9 @@ const calendarReminderAnnouncementSource = "calendar-reminder";
 const earningsReminderSource = "earnings-reminder";
 const calendarMessageDelayMs = 500;
 const usEasternTimezone = "US/Eastern";
-const weeklyEarningsHeadline = "📅 **Earnings der nächsten Handelswoche:**";
-const anticipatedEarningsHeadline = "🔥 **Most Anticipated Earnings (Earnings Whispers):**";
-const anticipatedWeeklyEarningsHeadline = "🔥 **Most Anticipated Earnings der nächsten Handelswoche (Earnings Whispers):**";
+const weeklyEarningsHeadline = "📅 **Earnings der nächsten Handelswoche**";
+const anticipatedEarningsHeadline = "🔥 **Most Anticipated Earnings**";
+const anticipatedWeeklyEarningsHeadline = "🔥 **Most Anticipated Earnings der nächsten Handelswoche**";
 const weeklyCalendarHeadline = "📅 **Wichtige Termine der nächsten Handelswoche:**";
 const europeBerlinTimezone = "Europe/Berlin";
 const usEasternWeekdays = [new Schedule.Range(1, 5)];
@@ -810,10 +810,10 @@ export function startMncTimers(client: TimerClient, channelID: string) {
 }
 
 function getMncAnnouncementContent(date: string, summary: string | undefined): string {
-  const title = `📰 Morning News Call (${date})`;
+  const title = `📰 **Morning News Call** (${date})`;
   return undefined === summary
     ? title
-    : `${title}\n\n${summary}`;
+    : `${title}\n${summary}`;
 }
 
 export function startOtherTimers(
@@ -1088,12 +1088,29 @@ function prependHeadlineToFirstMessage(
     return [headline];
   }
 
-  const firstMessageWithHeadline = `${headline}\n\n${firstMessage}`;
+  const firstMessageWithHeadline = getFirstMessageWithHeadline(headline, firstMessage);
   if (firstMessageWithHeadline.length <= maxMessageLength) {
     return [firstMessageWithHeadline, ...messages.slice(1)];
   }
 
   return [headline, ...messages];
+}
+
+function getFirstMessageWithHeadline(headline: string, firstMessage: string): string {
+  const periodMatch = /^\*\*Zeitraum:\*\* ([^\n]+)\n?/.exec(firstMessage);
+  if (null === periodMatch) {
+    return `${headline}\n${firstMessage}`;
+  }
+
+  const periodText = periodMatch[1] ?? "";
+  const restMessage = firstMessage.slice(periodMatch[0].length);
+  const normalizedHeadline = headline.replace(/:\*\*$/, "**");
+  const mergedHeadline = `${normalizedHeadline} (${periodText})`;
+  if ("" === restMessage.trim()) {
+    return mergedHeadline;
+  }
+
+  return `${mergedHeadline}\n${restMessage}`;
 }
 
 async function sendChunkedMessages(channel: SendableChannel | null, messages: string[], source: "calendar" | "earnings") {

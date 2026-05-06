@@ -65,10 +65,10 @@ function getEarningsSectionHeading(
   continuationLabel: string
 ): string {
   if (false === continuation) {
-    return `**${label}:**`;
+    return `**${label}**`;
   }
 
-  return `**${label} ${continuationLabel}:**`;
+  return `**${label} ${continuationLabel}**`;
 }
 
 function getEarningsSectionText(
@@ -321,5 +321,5 @@ function getEarningsWhenLabel(earningsWhen: EarningsWhen): string {
 }
 
 function getEarningsWhenSubheading(earningsWhen: EarningsWhen): string {
-  return `**${getEarningsWhenLabel(earningsWhen)}:**`;
+  return `**${getEarningsWhenLabel(earningsWhen)}**`;
 }

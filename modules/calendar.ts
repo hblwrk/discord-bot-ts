@@ -177,24 +177,27 @@ export function getCalendarMessages(
 
   const dayBlocks = getCalendarDayBlocks(calendarEvents);
   const chunks: CalendarMessageChunk[] = [];
-  let currentChunk = getEmptyCalendarMessageChunk(0, title);
+  let currentChunk = getEmptyCalendarMessageChunk();
+  let pendingTitle = title.trim();
   let contentTruncated = false;
 
   for (const dayBlock of dayBlocks) {
-    const fullDayBlockText = getDayBlockText(dayBlock, false, continuationLabel);
+    const fullDayBlockText = getDayBlockText(dayBlock, false, continuationLabel, pendingTitle);
 
     if (true === canAppendToChunk(currentChunk, fullDayBlockText, maxMessageLength)) {
       appendToChunk(currentChunk, fullDayBlockText, dayBlock.lines.length, dayBlock.date);
+      pendingTitle = "";
       continue;
     }
 
     if (0 < currentChunk.eventCount) {
       chunks.push(cloneChunk(currentChunk));
-      currentChunk = getEmptyCalendarMessageChunk(chunks.length, title);
+      currentChunk = getEmptyCalendarMessageChunk();
     }
 
     if (true === canAppendToChunk(currentChunk, fullDayBlockText, maxMessageLength)) {
       appendToChunk(currentChunk, fullDayBlockText, dayBlock.lines.length, dayBlock.date);
+      pendingTitle = "";
       continue;
     }
 
@@ -202,7 +205,7 @@ export function getCalendarMessages(
     let lineIndex = 0;
     let continuation = false;
     while (lineIndex < dayBlock.lines.length) {
-      const header = getDayHeader(dayBlock.friendlyDate, continuationLabel, continuation);
+      const header = getDayHeader(dayBlock.friendlyDate, continuationLabel, continuation, pendingTitle);
       const lines: string[] = [];
 
       while (lineIndex < dayBlock.lines.length) {
@@ -226,7 +229,7 @@ export function getCalendarMessages(
         const availableLineLength = maxMessageLength - getAppendedChunkText(currentChunk, headerText).length - 1;
         if (availableLineLength <= 0 && 0 < currentChunk.eventCount) {
           chunks.push(cloneChunk(currentChunk));
-          currentChunk = getEmptyCalendarMessageChunk(chunks.length, title);
+          currentChunk = getEmptyCalendarMessageChunk();
           continue;
         }
 
@@ -245,10 +248,11 @@ export function getCalendarMessages(
 
       const partText = getDayText(header, lines);
       appendToChunk(currentChunk, partText, lines.length, dayBlock.date);
+      pendingTitle = "";
 
       if (lineIndex < dayBlock.lines.length) {
         chunks.push(cloneChunk(currentChunk));
-        currentChunk = getEmptyCalendarMessageChunk(chunks.length, title);
+        currentChunk = getEmptyCalendarMessageChunk();
         continuation = true;
       }
     }
@@ -385,23 +389,38 @@ function getDayText(dayHeader: string, lines: string[]): string {
   return `\n${dayHeader}\n${lines.join("\n")}\n`;
 }
 
-function getDayHeader(friendlyDate: string, continuationLabel: string, continuation: boolean): string {
+function getDayHeader(friendlyDate: string, continuationLabel: string, continuation: boolean, title = ""): string {
   if (false === continuation) {
+    if ("" !== title) {
+      return getTitledDayHeader(title, friendlyDate);
+    }
+
     return `**${friendlyDate}**`;
   }
 
   return `**${friendlyDate} ${continuationLabel}**`;
 }
 
-function getDayBlockText(dayBlock: CalendarDayBlock, continuation: boolean, continuationLabel: string): string {
-  const dayHeader = getDayHeader(dayBlock.friendlyDate, continuationLabel, continuation);
+function getDayBlockText(dayBlock: CalendarDayBlock, continuation: boolean, continuationLabel: string, title = ""): string {
+  const dayHeader = getDayHeader(dayBlock.friendlyDate, continuationLabel, continuation, title);
   return getDayText(dayHeader, dayBlock.lines);
 }
 
-function getEmptyCalendarMessageChunk(messageIndex: number, title: string): CalendarMessageChunk {
-  const prefix = 0 === messageIndex && 0 < title.length ? `${title}\n` : "";
+function getTitledDayHeader(title: string, friendlyDate: string): string {
+  const trimmedTitle = title.trim();
+  const boldTitleMatch = /^(.*\*\*)([^*]*):?\*\*$/.exec(trimmedTitle);
+  if (null !== boldTitleMatch) {
+    const boldPrefix = boldTitleMatch[1] ?? "";
+    const boldTitle = boldTitleMatch[2] ?? "";
+    return `${boldPrefix}${boldTitle.trim().replace(/:+$/, "")}** (${friendlyDate})`;
+  }
+
+  return `**${trimmedTitle.replace(/:+$/, "")}** (${friendlyDate})`;
+}
+
+function getEmptyCalendarMessageChunk(): CalendarMessageChunk {
   return {
-    content: prefix,
+    content: "",
     eventCount: 0,
     dayKeys: new Set<string>(),
   };
@@ -409,7 +428,7 @@ function getEmptyCalendarMessageChunk(messageIndex: number, title: string): Cale
 
 function getAppendedChunkText(chunk: CalendarMessageChunk, text: string): string {
   if ("" === chunk.content) {
-    return text;
+    return text.trimStart();
   }
 
   if (chunk.content.endsWith("\n")) {

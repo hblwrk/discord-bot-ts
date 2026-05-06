@@ -73,8 +73,8 @@ describe("getCalendarMessages", () => {
     expect(batch.truncated).toBe(false);
     expect(batch.totalEvents).toBe(2);
     expect(batch.includedEvents).toBe(2);
-    expect(batch.messages[0]!).toContain("Wichtige Termine:");
-    expect(batch.messages[0]!).toContain("Wichtige Termine:\n\n**Montag, 3. März 2025**");
+    expect(batch.messages[0]!).toContain("**Wichtige Termine** (Montag, 3. März 2025)");
+    expect(batch.messages[0]!).not.toContain("Wichtige Termine:\n\n**Montag, 3. März 2025**");
     expect(batch.messages[0]!).toContain("Event A");
     expect(batch.messages[0]!).toContain("Event B");
   });
@@ -155,8 +155,8 @@ describe("getCalendarMessages", () => {
       keepDayTogether: true,
     });
 
-    expect(batch.messages[0]!).toContain("📅 **Wichtige Termine der nächsten Handelswoche:**");
-    expect(batch.messages[0]!).not.toContain("Wichtige Termine:\n");
+    expect(batch.messages[0]!).toContain("📅 **Wichtige Termine der nächsten Handelswoche** (Montag, 3. März 2025)");
+    expect(batch.messages[0]!).not.toContain("Wichtige Termine der nächsten Handelswoche:**\n");
   });
 
   test("chunks by day boundaries across multiple days", () => {

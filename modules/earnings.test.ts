@@ -413,7 +413,7 @@ describe("getEarningsText", () => {
     ], "all", []);
 
     expect(text).not.toContain("Earnings am");
-    expect(text).toContain("**Mittwoch, 3. Januar 2024:**");
+    expect(text).toContain("**Mittwoch, 3. Januar 2024**");
   });
 
   test("returns grouped ticker-first one-line output", () => {
@@ -448,11 +448,11 @@ describe("getEarningsText", () => {
     const text = getEarningsText(earningEvents, "all", [getTicker("BIG")]);
 
     expect(text).toContain("**Zeitraum:** Mittwoch, 3. Januar 2024 bis Donnerstag, 4. Januar 2024");
-    expect(text).toContain("**Mittwoch, 3. Januar 2024:**");
-    expect(text).toContain("**Donnerstag, 4. Januar 2024:**");
-    expect(text).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt:**");
-    expect(text).toContain("**Nach Handelsschluss:**");
-    expect(text).toContain("**Vor Handelsbeginn:**");
+    expect(text).toContain("**Mittwoch, 3. Januar 2024**");
+    expect(text).toContain("**Donnerstag, 4. Januar 2024**");
+    expect(text).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt**");
+    expect(text).toContain("**Nach Handelsschluss**");
+    expect(text).toContain("**Vor Handelsbeginn**");
 
     const lines = text.split("\n").filter(line => line.includes(" MCap: "));
     const parsedLines = lines.map(parseEarningsLine);
@@ -511,9 +511,9 @@ describe("getEarningsMessages", () => {
     expect(batch.truncated).toBe(false);
     expect(batch.totalEvents).toBe(3);
     expect(batch.includedEvents).toBe(3);
-    expect(batch.messages[0]!).toContain("**Vor Handelsbeginn:**");
-    expect(batch.messages[0]!).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt:**");
-    expect(batch.messages[0]!).toContain("**Nach Handelsschluss:**");
+    expect(batch.messages[0]!).toContain("**Vor Handelsbeginn**");
+    expect(batch.messages[0]!).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt**");
+    expect(batch.messages[0]!).toContain("**Nach Handelsschluss**");
     expect(batch.messages[0]!).not.toContain("Earnings am");
 
     const lines = batch.messages[0]!.split("\n").filter(line => line.includes(" MCap: "));
@@ -619,8 +619,8 @@ describe("getEarningsMessages", () => {
     expect(parsedLines[1]!.ticker.trim()).toBe("DURING");
     expect(parsedLines[2]!.ticker.trim()).toBe("AFTER");
     const text = batch.messages[0]!;
-    expect(text.indexOf("**Vor Handelsbeginn:**")).toBeLessThan(text.indexOf("**Während der Handelszeiten oder unbekannter Zeitpunkt:**"));
-    expect(text.indexOf("**Während der Handelszeiten oder unbekannter Zeitpunkt:**")).toBeLessThan(text.indexOf("**Nach Handelsschluss:**"));
+    expect(text.indexOf("**Vor Handelsbeginn**")).toBeLessThan(text.indexOf("**Während der Handelszeiten oder unbekannter Zeitpunkt**"));
+    expect(text.indexOf("**Während der Handelszeiten oder unbekannter Zeitpunkt**")).toBeLessThan(text.indexOf("**Nach Handelsschluss**"));
   });
 
   test("filters by when and keeps ticker-first format", () => {
@@ -634,7 +634,7 @@ describe("getEarningsMessages", () => {
     expect(lines).toHaveLength(1);
     const parsedLine = parseEarningsLine(lines[0]!);
     expect(parsedLine.ticker.trim()).toBe("SMALL");
-    expect(batch.messages[0]!).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt:**");
+    expect(batch.messages[0]!).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt**");
   });
 
   test("filters by bluechip market cap threshold when marketCapFilter is bluechips", () => {
@@ -749,8 +749,8 @@ describe("getEarningsMessages", () => {
     expect(batch.totalEvents).toBe(4);
     expect(batch.includedEvents).toBeLessThan(4);
     expect(batch.messages).toHaveLength(2);
-    expect(combinedText).toContain("**Mittwoch, 3. Januar 2024:**");
-    expect(combinedText).toContain("**Donnerstag, 4. Januar 2024:**");
+    expect(combinedText).toContain("**Mittwoch, 3. Januar 2024**");
+    expect(combinedText).toContain("**Donnerstag, 4. Januar 2024**");
     expect(combinedText).toContain("`D1TOP`");
     expect(combinedText).toContain("`D2TOP`");
     expect(combinedText).not.toContain("`D1LOW`");
