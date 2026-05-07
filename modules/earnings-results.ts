@@ -135,6 +135,12 @@ type NoMetricsSkipState = {
   retryAfterMs: number;
 };
 
+type QualityGateSkipState = {
+  attempts: number;
+  gaveUp: boolean;
+  retryAfterMs: number;
+};
+
 type SecFilingDetails = {
   documentUrl: string;
   html: string;
@@ -162,6 +168,7 @@ const earningsResultMinMarketCap = 100_000_000_000;
 const earningsWatchTtlMs = 15 * 60_000;
 const noMetricsRetryDelayMs = 5 * 60_000;
 const noMetricsGiveUpDelayMs = 15 * 60_000;
+const qualityGateMaxAttempts = 2;
 const qualityGateRetryDelayMs = 5 * 60_000;
 const nasdaqEarningsSurpriseEndpoint = "https://api.nasdaq.com/api/company";
 const noMentions = {
@@ -196,7 +203,7 @@ export function startEarningsResultWatcher(
   const seenAccessions = new Set<string>();
   const seenResultKeys = new Set<string>();
   const skippedNoMetricsAccessions = new Map<string, NoMetricsSkipState>();
-  const skippedQualityGateAccessions = new Map<string, number>();
+  const skippedQualityGateAccessions = new Map<string, QualityGateSkipState>();
   const dependencies = getDependencies(options);
   let seenAccessionsSeeded = false;
   let stopped = false;
@@ -231,7 +238,7 @@ export function startEarningsResultWatcher(
       seenAccessions: Set<string>;
       seenResultKeys: Set<string>;
       skippedNoMetricsAccessions: Map<string, NoMetricsSkipState>;
-      skippedQualityGateAccessions: Map<string, number>;
+      skippedQualityGateAccessions: Map<string, QualityGateSkipState>;
     } = {
       dependencies,
       seenAccessions,
@@ -311,7 +318,7 @@ export async function getEarningsResultAnnouncements({
   seenAccessions = new Set<string>(),
   seenResultKeys = new Set<string>(),
   skippedNoMetricsAccessions = new Map<string, NoMetricsSkipState>(),
-  skippedQualityGateAccessions = new Map<string, number>(),
+  skippedQualityGateAccessions = new Map<string, QualityGateSkipState>(),
 }: {
   dependencies?: EarningsResultDependencies;
   maxAnnouncementsPerScan?: number;
@@ -319,7 +326,7 @@ export async function getEarningsResultAnnouncements({
   seenAccessions?: Set<string>;
   seenResultKeys?: Set<string>;
   skippedNoMetricsAccessions?: Map<string, NoMetricsSkipState>;
-  skippedQualityGateAccessions?: Map<string, number>;
+  skippedQualityGateAccessions?: Map<string, QualityGateSkipState>;
 } = {}): Promise<EarningsResultScanResult> {
   const now = dependencies.now().clone().tz(usEasternTimezone);
   const watches = await getTodaysEarningsWatches(dependencies, now);
@@ -346,13 +353,11 @@ export async function getEarningsResultAnnouncements({
       continue;
     }
 
-    const qualityGateRetryAfterMs = skippedQualityGateAccessions.get(filing.accessionNumber);
-    if (undefined !== qualityGateRetryAfterMs) {
-      if (now.valueOf() < qualityGateRetryAfterMs) {
+    const qualityGateSkipState = skippedQualityGateAccessions.get(filing.accessionNumber);
+    if (undefined !== qualityGateSkipState) {
+      if (true === qualityGateSkipState.gaveUp || now.valueOf() < qualityGateSkipState.retryAfterMs) {
         continue;
       }
-
-      skippedQualityGateAccessions.delete(filing.accessionNumber);
     }
 
     const noMetricsSkipState = skippedNoMetricsAccessions.get(filing.accessionNumber);
@@ -651,7 +656,7 @@ async function buildEarningsResultAnnouncement(
   dependencies: EarningsResultDependencies,
   now: moment.Moment,
   skippedNoMetricsAccessions: Map<string, NoMetricsSkipState>,
-  skippedQualityGateAccessions: Map<string, number>,
+  skippedQualityGateAccessions: Map<string, QualityGateSkipState>,
 ): Promise<EarningsResultAnnouncement | null> {
   const [filingDetails, xbrlMetrics] = await Promise.all([
     loadSecFilingDetails(filing, dependencies, {
@@ -727,11 +732,7 @@ async function buildEarningsResultAnnouncement(
     ticker: watch.event.ticker,
   });
   if (true === hasHardMetricContradiction(suspiciousReasons)) {
-    skippedQualityGateAccessions.set(filing.accessionNumber, now.valueOf() + qualityGateRetryDelayMs);
-    dependencies.logger.log(
-      "warn",
-      `Skipping earnings result announcement for ${watch.event.ticker}: suspicious metrics were not verified.`,
-    );
+    updateQualityGateSkipState(filing, watch, dependencies, now, skippedQualityGateAccessions);
     return null;
   }
 
@@ -748,13 +749,11 @@ async function buildEarningsResultAnnouncement(
     ticker: watch.event.ticker,
   }, dependencies);
   if (true === shouldSuppressAnnouncement(qualityGate, suspiciousReasons)) {
-    skippedQualityGateAccessions.set(filing.accessionNumber, now.valueOf() + qualityGateRetryDelayMs);
-    dependencies.logger.log(
-      "warn",
-      `Skipping earnings result announcement for ${watch.event.ticker}: suspicious metrics were not verified.`,
-    );
+    updateQualityGateSkipState(filing, watch, dependencies, now, skippedQualityGateAccessions);
     return null;
   }
+
+  skippedQualityGateAccessions.delete(filing.accessionNumber);
 
   const summary = await summarizeEarningsWithAi({
     companyName: watch.companyName,
@@ -789,6 +788,29 @@ async function buildEarningsResultAnnouncement(
 
 function hasParsedEarningsDocumentContent(parsedDocument: ParsedEarningsDocument): boolean {
   return 0 < parsedDocument.metrics.length || 0 < parsedDocument.outlook.length;
+}
+
+function updateQualityGateSkipState(
+  filing: SecCurrentFiling,
+  watch: EarningsWatchEntry,
+  dependencies: EarningsResultDependencies,
+  now: moment.Moment,
+  skippedQualityGateAccessions: Map<string, QualityGateSkipState>,
+) {
+  const existingState = skippedQualityGateAccessions.get(filing.accessionNumber);
+  const attempts = (existingState?.attempts ?? 0) + 1;
+  const gaveUp = attempts >= qualityGateMaxAttempts;
+  skippedQualityGateAccessions.set(filing.accessionNumber, {
+    attempts,
+    gaveUp,
+    retryAfterMs: gaveUp ? Number.POSITIVE_INFINITY : now.valueOf() + qualityGateRetryDelayMs,
+  });
+  dependencies.logger.log(
+    "warn",
+    true === gaveUp
+      ? `Giving up earnings result announcement for ${watch.event.ticker}: suspicious metrics were not verified after ${attempts} attempts.`
+      : `Skipping earnings result announcement for ${watch.event.ticker}: suspicious metrics were not verified.`,
+  );
 }
 
 function updateNoMetricsSkipState(

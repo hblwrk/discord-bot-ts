@@ -410,6 +410,8 @@ function getExtractionPrompt(input: EarningsAiExtractionInput, sourceText: strin
     "Rules:",
     "- Extract only values for the reported quarter, not year-to-date totals, prior-year periods, dates, footnotes, page numbers, share counts, percentages, or outlook.",
     "- Revenue and net income numericValue must be full currency units after applying table scale such as thousands, millions, or billions.",
+    "- Omit revenue when the filing excerpt does not explicitly report revenue, revenues, net sales, or third-party revenue.",
+    "- Do not use Adjusted EBITDA, sales volumes, production, cash flow, or a zero placeholder as revenue.",
     "- EPS numericValue must be currency units per share. Convert cents to dollars, e.g. 77 cents becomes 0.77.",
     "- Include adjusted EPS only when explicitly non-GAAP/adjusted. Include GAAP EPS only when explicitly GAAP/diluted/basic EPS.",
     "- Every metric must include a short exact sourceSnippet from the filing text that proves the metric and scale.",
@@ -459,13 +461,13 @@ function parseAiExtraction(value: unknown, sourceText: string): EarningsAiExtrac
     return null;
   }
 
-  const metrics = getArray(value["metrics"]).flatMap(metricValue => {
-    const metric = parseAiMetric(metricValue, sourceText);
-    return null === metric ? [] : [metric];
-  });
   const issues = getArray(value["issues"]).flatMap(issue =>
     "string" === typeof issue && "" !== issue.trim() ? [issue.trim()] : [],
   );
+  const metrics = getArray(value["metrics"]).flatMap(metricValue => {
+    const metric = parseAiMetric(metricValue, sourceText);
+    return null === metric || true === isContradictedByExtractionIssues(metric, issues) ? [] : [metric];
+  });
   const quarterLabel = parseQuarterLabel(value["quarterLabel"]);
   const result: EarningsAiExtraction = {
     issues,
@@ -506,6 +508,10 @@ function parseAiMetric(value: unknown, sourceText: string): EarningsResultMetric
     return null;
   }
 
+  if ("revenue" === key && (0 === numericValue || false === isRevenueEvidenceSnippet(sourceSnippet))) {
+    return null;
+  }
+
   if ("money" === definition.valueType && Math.abs(numericValue) > 20_000_000_000_000) {
     return null;
   }
@@ -520,6 +526,25 @@ function parseAiMetric(value: unknown, sourceText: string): EarningsResultMetric
       ? formatEps(numericValue, currencyCode)
       : formatMoneyCompact(numericValue, currencyCode),
   };
+}
+
+function isRevenueEvidenceSnippet(sourceSnippet: string): boolean {
+  if (/\b(?:adjusted\s+ebitda|sales\s+volumes?|production|cash\s+flow)\b/i.test(sourceSnippet)) {
+    return false;
+  }
+
+  return /\b(?:revenues?|net\s+sales|third-party\s+revenue|total\s+revenue)\b/i.test(sourceSnippet);
+}
+
+function isContradictedByExtractionIssues(metric: EarningsResultMetric, issues: string[]): boolean {
+  if ("revenue" !== metric.key) {
+    return false;
+  }
+
+  return issues.some(issue =>
+    /\b(?:no|not|without|missing|unable|could\s+not|does\s+not)\b.{0,120}\b(?:revenues?|sales)\b/i.test(issue) ||
+    /\b(?:revenues?|sales)\b.{0,120}\b(?:no|not|missing|unable|could\s+not|incorrect|not\s+directly|not\s+explicitly)\b/i.test(issue),
+  );
 }
 
 function parseQualityGate(value: unknown, sourceText: string): EarningsAiQualityGateResult | null {

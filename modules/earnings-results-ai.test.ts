@@ -292,6 +292,63 @@ describe("AI earnings helpers", () => {
     expect(result?.metrics).toEqual([]);
   });
 
+  test("drops AI revenue metrics contradicted by evidence or extraction issues", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                quarterLabel: "Q1 2026",
+                metrics: [{
+                  key: "revenue",
+                  numericValue: 17_741_000_000,
+                  currencyCode: "USD",
+                  sourceSnippet: "17,741 | 12,799 | 15,250 | Adjusted EBITDA",
+                }, {
+                  key: "revenue",
+                  numericValue: 0,
+                  currencyCode: "USD",
+                  sourceSnippet: "No explicit consolidated revenue figure was provided in the supplied filing text.",
+                }, {
+                  key: "net_income",
+                  numericValue: 5_694_000_000,
+                  currencyCode: "USD",
+                  sourceSnippet: "5,694 | 4,134 | 4,780 | Income attributable to Shell plc shareholders",
+                }],
+                issues: [
+                  "No explicit consolidated revenue figure was provided in the supplied filing text; the available summary shows income, adjusted earnings, EBITDA, cash flow, and EPS, but not revenue.",
+                ],
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await extractEarningsWithAi({
+      companyName: "Shell",
+      filingForm: "6-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: `
+        <p>17,741 | 12,799 | 15,250 | Adjusted EBITDA</p>
+        <p>No explicit consolidated revenue figure was provided in the supplied filing text.</p>
+        <p>5,694 | 4,134 | 4,780 | Income attributable to Shell plc shareholders</p>
+      `,
+      ticker: "SHEL",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result?.metrics).toEqual([expect.objectContaining({
+      key: "net_income",
+      value: "$5.69B",
+    })]);
+  });
+
   test("caps AI calls with the local per-minute limiter", async () => {
     const postWithRetryFn = vi.fn().mockResolvedValue({
       data: {
