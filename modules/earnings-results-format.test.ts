@@ -125,6 +125,45 @@ describe("earnings result formatting", () => {
     ]));
   });
 
+  test("parses Shell-style revenue rows without treating sales volumes as revenue", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>1 st QUARTER 2026 UNAUDITED RESULTS</h1>
+          <p>$ million</p>
+          <p>527 | | (98) | | (247) | | Income/(loss) for the period | | | |</p>
+          <p>72 | 72 | 76 | External power sales (terawatt hours)</p>
+          <p>197 | 160 | 184 | Sales of pipeline gas to end-use customers (terawatt hours)</p>
+          <p>69,691 | | 64,093 | | 69,234 | | Revenue 1</p>
+          <p>1.01 | 0.72 | 0.79 | Basic earnings per share ($)</p>
+          <p>1.22 | 0.57 | 0.92 | Adjusted Earnings per share ($)</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.quarterLabel).toBe("Q1 2026");
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "revenue",
+        value: "$69.69B",
+      }),
+      expect.objectContaining({
+        key: "adjusted_eps",
+        value: "$1.22",
+      }),
+      expect.objectContaining({
+        key: "gaap_eps",
+        value: "$1.01",
+      }),
+    ]));
+    expect(parsedDocument.metrics).not.toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "revenue",
+        value: "$527M",
+      }),
+    ]));
+  });
+
   test("renders result and outlook metrics before optional earnings summaries", () => {
     const parsedDocument = {
       metrics: [],

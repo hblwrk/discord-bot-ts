@@ -13,6 +13,12 @@ type NoMetricsSkipStateForTest = {
   retryAfterMs: number;
 };
 
+type QualityGateSkipStateForTest = {
+  attempts: number;
+  gaveUp: boolean;
+  retryAfterMs: number;
+};
+
 describe("earnings result announcements", () => {
   const logger = {
     log: vi.fn(),
@@ -370,7 +376,7 @@ describe("earnings result announcements", () => {
     expect(postWithRetryFn).toHaveBeenCalledTimes(1);
   });
 
-  test("suppresses hard revenue contradictions after AI extraction without a quality gate override", async () => {
+  test("suppresses hard revenue contradictions and stops retrying after repeated AI checks", async () => {
     getWithRetryFn.mockImplementation(async (url: string) => {
       if (url.includes("company_tickers.json")) {
         return {
@@ -474,38 +480,76 @@ describe("earnings result announcements", () => {
         }],
       },
     });
-    const skippedQualityGateAccessions = new Map<string, number>();
+    const skippedQualityGateAccessions = new Map<string, QualityGateSkipStateForTest>();
+    const getDependenciesForTime = (time: string) => ({
+      getEarningsResultFn,
+      getWithRetryFn,
+      logger,
+      now: () => moment.tz(time, "YYYY-MM-DD HH:mm", "US/Eastern"),
+      postWithRetryFn,
+      readSecretFn: vi.fn((secretName: string) => {
+        if ("gemini_api_key" === secretName) {
+          return "gemini-key";
+        }
+
+        if ("gemini_calls_per_minute" === secretName) {
+          return "14";
+        }
+
+        throw new Error(`missing ${secretName}`);
+      }),
+    });
 
     const result = await getEarningsResultAnnouncements({
-      dependencies: {
-        getEarningsResultFn,
-        getWithRetryFn,
-        logger,
-        now: () => moment.tz("2026-05-01 08:05", "YYYY-MM-DD HH:mm", "US/Eastern"),
-        postWithRetryFn,
-        readSecretFn: vi.fn((secretName: string) => {
-          if ("gemini_api_key" === secretName) {
-            return "gemini-key";
-          }
-
-          if ("gemini_calls_per_minute" === secretName) {
-            return "14";
-          }
-
-          throw new Error(`missing ${secretName}`);
-        }),
-      },
+      dependencies: getDependenciesForTime("2026-05-01 08:05"),
       skippedQualityGateAccessions,
     });
 
     expect(result.announcements).toEqual([]);
     expect(postWithRetryFn).toHaveBeenCalledTimes(1);
-    expect(skippedQualityGateAccessions.get("0000034088-26-000042")).toBe(
-      moment.tz("2026-05-01 08:10", "YYYY-MM-DD HH:mm", "US/Eastern").valueOf(),
-    );
+    expect(skippedQualityGateAccessions.get("0000034088-26-000042")).toEqual({
+      attempts: 1,
+      gaveUp: false,
+      retryAfterMs: moment.tz("2026-05-01 08:10", "YYYY-MM-DD HH:mm", "US/Eastern").valueOf(),
+    });
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
       "Skipping earnings result announcement for XOM: suspicious metrics were not verified.",
+    );
+
+    postWithRetryFn.mockClear();
+    logger.log.mockClear();
+
+    const retryResult = await getEarningsResultAnnouncements({
+      dependencies: getDependenciesForTime("2026-05-01 08:11"),
+      skippedQualityGateAccessions,
+    });
+
+    expect(retryResult.announcements).toEqual([]);
+    expect(postWithRetryFn).toHaveBeenCalledTimes(1);
+    expect(skippedQualityGateAccessions.get("0000034088-26-000042")).toEqual({
+      attempts: 2,
+      gaveUp: true,
+      retryAfterMs: Number.POSITIVE_INFINITY,
+    });
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "Giving up earnings result announcement for XOM: suspicious metrics were not verified after 2 attempts.",
+    );
+
+    postWithRetryFn.mockClear();
+    logger.log.mockClear();
+
+    const gaveUpResult = await getEarningsResultAnnouncements({
+      dependencies: getDependenciesForTime("2026-05-01 08:16"),
+      skippedQualityGateAccessions,
+    });
+
+    expect(gaveUpResult.announcements).toEqual([]);
+    expect(postWithRetryFn).not.toHaveBeenCalled();
+    expect(logger.log).not.toHaveBeenCalledWith(
+      "warn",
+      expect.stringContaining("suspicious metrics were not verified"),
     );
   });
 
@@ -1519,7 +1563,7 @@ describe("earnings result announcements", () => {
         },
       });
 
-    const skippedQualityGateAccessions = new Map<string, number>();
+    const skippedQualityGateAccessions = new Map<string, QualityGateSkipStateForTest>();
     const result = await getEarningsResultAnnouncements({
       dependencies: {
         getEarningsResultFn,
@@ -1544,9 +1588,11 @@ describe("earnings result announcements", () => {
 
     expect(result.announcements).toEqual([]);
     expect(postWithRetryFn).toHaveBeenCalledTimes(2);
-    expect(skippedQualityGateAccessions.get("0001193125-26-123456")).toBe(
-      moment.tz("2026-05-01 08:10", "YYYY-MM-DD HH:mm", "US/Eastern").valueOf(),
-    );
+    expect(skippedQualityGateAccessions.get("0001193125-26-123456")).toEqual({
+      attempts: 1,
+      gaveUp: false,
+      retryAfterMs: moment.tz("2026-05-01 08:10", "YYYY-MM-DD HH:mm", "US/Eastern").valueOf(),
+    });
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
       "Skipping earnings result announcement for BUD: suspicious metrics were not verified.",

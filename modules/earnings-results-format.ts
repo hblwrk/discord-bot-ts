@@ -87,7 +87,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
       /\brevenues?\b/i,
       /\bsales\b/i,
     ],
-    skipPattern: /\bcost\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b/i,
+    skipPattern: /\bcost\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon)\s+sales\b|\bsales\s+of\s+pipeline\s+gas\b/i,
     valueType: "money",
   },
   {
@@ -408,6 +408,11 @@ function getQuarterLabel(text: string): string | undefined {
     return `${fiscalQuarterMatch[1].toUpperCase()} ${normalizeFiscalYear(fiscalQuarterMatch[2])}`;
   }
 
+  const ordinalQuarterMatch = text.match(/\b([1-4])\s*(?:st|nd|rd|th)\s+quarter\s+(20\d{2})\b/i);
+  if (undefined !== ordinalQuarterMatch?.[1] && undefined !== ordinalQuarterMatch[2]) {
+    return `Q${ordinalQuarterMatch[1]} ${ordinalQuarterMatch[2]}`;
+  }
+
   const writtenFiscalQuarterMatch = text.match(/\b(first|second|third|fourth)\s+quarter(?:\s+and\s+full)?\s+(?:fiscal\s+year|FY)\s*(20\d{2}|\d{2})\b/i);
   if (undefined !== writtenFiscalQuarterMatch?.[1] && undefined !== writtenFiscalQuarterMatch[2]) {
     const quarter = getQuarterFromName(writtenFiscalQuarterMatch[1]);
@@ -605,9 +610,13 @@ function extractMetricValue(
   pattern.lastIndex = 0;
   const patternMatch = pattern.exec(line);
   const searchText = patternMatch ? line.slice(patternMatch.index + patternMatch[0].length) : line;
+  const fallbackSearchText = patternMatch ? line.slice(0, patternMatch.index) : "";
 
   if ("eps" === valueType) {
     const value = findNumericValue(searchText, {
+      maxAbsValue: 100,
+      parseCents: true,
+    }) ?? findNumericValue(fallbackSearchText, {
       maxAbsValue: 100,
       parseCents: true,
     });
@@ -615,17 +624,26 @@ function extractMetricValue(
   }
 
   if ("money" === valueType) {
-    const parsedValue = findNumericValue(searchText, {
+    const searchValue = findNumericValue(searchText, {
       requireMoneyCue: 1 === contextMoney.scale,
       skipTableNoteRefs,
       skipPercentages: true,
     });
+    const fallbackValue = findNumericValue(fallbackSearchText, {
+      requireMoneyCue: 1 === contextMoney.scale,
+      skipTableNoteRefs,
+      skipPercentages: true,
+    });
+    const useFallbackValue = null !== fallbackValue &&
+      (null === searchValue || true === isMetricLabelSuffixTableNote(searchText));
+    const parsedValue = true === useFallbackValue ? fallbackValue : searchValue ?? fallbackValue;
     if (null === parsedValue) {
       return null;
     }
 
-    const explicitScale = getExplicitMoneyScale(searchText);
-    const currencyCode = getCurrencyCodeFromText(searchText) ?? contextMoney.currencyCode;
+    const metricText = true === useFallbackValue ? fallbackSearchText : searchText;
+    const explicitScale = getExplicitMoneyScale(metricText);
+    const currencyCode = getCurrencyCodeFromText(metricText) ?? contextMoney.currencyCode;
     const amount = parsedValue * (explicitScale ?? contextMoney.scale);
     return {
       currencyCode,
@@ -634,7 +652,8 @@ function extractMetricValue(
     };
   }
 
-  const value = findNumericValue(searchText, {skipPercentages: true});
+  const value = findNumericValue(searchText, {skipPercentages: true}) ??
+    findNumericValue(fallbackSearchText, {skipPercentages: true});
   if (null === value) {
     return null;
   }
@@ -674,6 +693,10 @@ function getContextMoney(lines: string[], lineIndex: number): MoneyContext {
   };
 }
 
+function isMetricLabelSuffixTableNote(text: string): boolean {
+  return /^\s*\d{1,2}\s*$/.test(text);
+}
+
 function isNearTableNoteColumn(lines: string[], lineIndex: number): boolean {
   for (let index = lineIndex; index >= 0 && index >= lineIndex - 5; index--) {
     const line = lines[index];
@@ -686,15 +709,15 @@ function isNearTableNoteColumn(lines: string[], lineIndex: number): boolean {
 }
 
 function getMoneyScaleFromContextText(text: string): number | null {
-  if (/\b(?:\$|amounts?|dollars?)?\s*(?:in\s+)?thousands(?:\s+of\s+dollars)?\b/i.test(text)) {
+  if (/\b(?:\$|amounts?|dollars?)?\s*(?:in\s+)?thousands?(?:\s+of\s+dollars)?\b/i.test(text)) {
     return 1_000;
   }
 
-  if (/\b(?:\$|amounts?|dollars?)?\s*(?:in\s+)?millions(?:\s+of\s+dollars)?\b/i.test(text)) {
+  if (/\b(?:\$|amounts?|dollars?)?\s*(?:in\s+)?millions?(?:\s+of\s+dollars)?\b/i.test(text)) {
     return 1_000_000;
   }
 
-  if (/\b(?:\$|amounts?|dollars?)?\s*(?:in\s+)?billions(?:\s+of\s+dollars)?\b/i.test(text)) {
+  if (/\b(?:\$|amounts?|dollars?)?\s*(?:in\s+)?billions?(?:\s+of\s+dollars)?\b/i.test(text)) {
     return 1_000_000_000;
   }
 
