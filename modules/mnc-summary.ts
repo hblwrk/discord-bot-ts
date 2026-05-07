@@ -102,6 +102,8 @@ function getMncSummaryPrompt(): string {
     "- Do not include a Morning News Call heading; the Discord message title already provides it.",
     "- Write in English only.",
     "- Format ticker symbols and quantitative metrics as inline code, e.g. `AAPL`, `$2.14`, `3.1%`, `10Y`, `250K`.",
+    "- For metric ranges, write the range inside one inline-code token, e.g. `$1.26B-$1.36B`; do not turn range separators or table dashes into negative signs.",
+    "- Use a negative sign only when the PDF explicitly reports a negative value, loss, charge, deficit, decline, or outflow.",
     "- In stock-specific bullets, start with Company Name `TICKER` when the PDF explicitly provides a ticker; common short company names are fine, e.g. Apple `AAPL`.",
     "- If the PDF does not explicitly provide a ticker, start with the company name without inventing a ticker.",
     "- Do not infer or invent tickers, prices, percentages, or attributions.",
@@ -120,7 +122,9 @@ function normalizeMarkdownSummary(value: string): string {
     .replace(/\${2,}/g, "$")
     .trim();
 
-  return normalizeInlineCodeRanges(removeUnexpectedScriptTokens(removeMncTldrHeading(summary))).trim();
+  return normalizeInlineCodeMetricSigns(
+    normalizeInlineCodeRanges(removeUnexpectedScriptTokens(removeMncTldrHeading(summary))),
+  ).trim();
 }
 
 function removeMncTldrHeading(value: string): string {
@@ -163,6 +167,38 @@ function normalizeInlineCodeRanges(value: string): string {
 
 function isRangeInlineCodeToken(value: string): boolean {
   return /[$€£¥]|\d/.test(value);
+}
+
+function normalizeInlineCodeMetricSigns(value: string): string {
+  return value
+    .split("\n")
+    .map(line => normalizeInlineCodeMetricSignsInLine(line))
+    .join("\n");
+}
+
+function normalizeInlineCodeMetricSignsInLine(line: string): string {
+  const withoutSpacedTableDashes = line.replace(
+    /`[-−]\s+([$€£¥]\s*\d[^`\n]*)`/g,
+    (_match, metricText: string) => `\`${metricText.trim()}\``,
+  );
+
+  if (false === isLikelyPositiveGuidanceRangeLine(withoutSpacedTableDashes)) {
+    return withoutSpacedTableDashes;
+  }
+
+  return withoutSpacedTableDashes.replace(
+    /`-([$€£¥]\s*\d[\d,.]*(?:\.\d+)?(?:\s*(?:tn|bn|mm|[tbmk]|trillions?|billions?|millions?|thousands?)\b)?)([-–—])([$€£¥]\s*\d[\d,.]*(?:\.\d+)?(?:\s*(?:tn|bn|mm|[tbmk]|trillions?|billions?|millions?|thousands?)\b)?)`/gi,
+    (_match, firstValue: string, separator: string, secondValue: string) =>
+      `\`${firstValue.trim()}${separator}${secondValue.trim()}\``,
+  );
+}
+
+function isLikelyPositiveGuidanceRangeLine(line: string): boolean {
+  if (/\b(?:loss|negative|deficit|charge|impairment|outflow|cash\s+burn)\b/i.test(line)) {
+    return false;
+  }
+
+  return /\b(?:guidance|guided|forecast|outlook|expects?|raised|revenue|sales|eps|earnings\s+per\s+share)\b/i.test(line);
 }
 
 function truncateMarkdownSummary(value: string): string {
