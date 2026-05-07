@@ -380,6 +380,7 @@ async function runNyseMarketCloseRecap(
   });
   const pollMessage = recoveredPollMessage ?? sentimentPollState.message;
   const recap = await getMarketCloseRecap(pollMessage, {
+    getWithRetryFn: getWithRetry,
     logger,
   }, {
     date,
