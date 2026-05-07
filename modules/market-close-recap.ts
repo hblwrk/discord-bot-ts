@@ -1,5 +1,12 @@
 import moment from "moment-timezone";
 import {callAiProviderJson, type AiProviderDependencies} from "./ai-provider.ts";
+import {type getWithRetry} from "./http-retry.ts";
+import {
+  formatMarketCloseTickerFactsForPrompt,
+  getTickerFactValidationIssue,
+  loadMarketCloseTickerFacts,
+  type MarketCloseTickerFact,
+} from "./market-close-ticker-facts.ts";
 
 export type MarketCloseSentimentAnswer = "Risk-on" | "Risk-off" | "Cash" | "Chaos";
 
@@ -8,12 +15,15 @@ export type MarketCloseRecapPayload = {
   content: string;
 };
 
-export type MarketCloseRecapDependencies = AiProviderDependencies;
+export type MarketCloseRecapDependencies = AiProviderDependencies & {
+  getWithRetryFn?: typeof getWithRetry | undefined;
+};
 
 export type MarketCloseRecapOptions = {
   date?: Date | undefined;
   maxFetchedWinners?: number | undefined;
   maxMentionedWinners?: number | undefined;
+  tickerFacts?: MarketCloseTickerFact[] | null | undefined;
 };
 
 type PollAnswerFetchOptions = {
@@ -108,8 +118,10 @@ export async function getMarketCloseRecap(
   dependencies: MarketCloseRecapDependencies,
   options: MarketCloseRecapOptions = {},
 ): Promise<MarketCloseRecapPayload | undefined> {
+  const date = options.date ?? new Date();
+  const tickerFacts = await getTickerFacts(date, dependencies, options);
   const jsonText = await callAiProviderJson(
-    getMarketCloseRecapPrompt(options.date ?? new Date()),
+    getMarketCloseRecapPrompt(date, tickerFacts),
     marketCloseRecapSchema,
     dependencies,
     "market close recap",
@@ -129,7 +141,7 @@ export async function getMarketCloseRecap(
     return undefined;
   }
 
-  const recap = parseAiMarketCloseRecap(jsonText, dependencies);
+  const recap = parseAiMarketCloseRecap(jsonText, dependencies, tickerFacts);
   if (undefined === recap) {
     return undefined;
   }
@@ -191,12 +203,36 @@ function getMessageManager(channel: unknown): {fetch?: (options?: {limit?: numbe
   };
 }
 
-function getMarketCloseRecapPrompt(date: Date): string {
+async function getTickerFacts(
+  date: Date,
+  dependencies: MarketCloseRecapDependencies,
+  options: MarketCloseRecapOptions,
+): Promise<MarketCloseTickerFact[]> {
+  if (Array.isArray(options.tickerFacts)) {
+    return options.tickerFacts;
+  }
+
+  if (null === options.tickerFacts || undefined === dependencies.getWithRetryFn) {
+    return [];
+  }
+
+  return loadMarketCloseTickerFacts(date, {
+    getWithRetryFn: dependencies.getWithRetryFn,
+    logger: dependencies.logger,
+  });
+}
+
+function getMarketCloseRecapPrompt(date: Date, tickerFacts: MarketCloseTickerFact[]): string {
   const usEasternDate = moment(date).tz(usEasternTimezone).format("YYYY-MM-DD");
+  const tickerFactsPrompt = formatMarketCloseTickerFactsForPrompt(tickerFacts);
   return [
     `Heute ist nach US-Börsenschluss am ${usEasternDate} (US/Eastern).`,
     "Nutze Websuche, um den US-Cash-Handelstag realitätsnah einzuordnen.",
+    "Priorisiere bei schnellen Markt-Wrapups offizielle Börsen-/Indexanbieter und etablierte Finanznachrichten wie Reuters, Bloomberg, CNBC, MarketWatch, WSJ, Nasdaq, NYSE, Cboe und S&P Dow Jones Indices.",
+    "Ignoriere Blogs, Social Posts, SEO-Seiten und fachfremde Nachrichtenportale, wenn sie den Ticker-Daten oder autoritativen Finanzquellen widersprechen.",
+    tickerFactsPrompt,
     "Bewerte den Handelstag vom regulären US-Open bis zum regulären US-Close.",
+    "Für die Poll-Sentiment-Auswahl ist Open-to-close maßgeblich; Close-to-close darf nur als Tagesveränderung genannt werden.",
     "Berücksichtige ausschließlich `SPX`, `NQ`, `RTY` sowie zwingend den `VIX`.",
     "Erwähne nicht die ETF-Pendants `SPY`, `QQQ` oder `IWM`.",
     "Der `VIX` darf niemals als Prozentwert beschrieben werden. Beschreibe ihn nur als Stand, Veränderung in Punkten oder Richtung, z.B. `18,4` auf `20,1` oder `+1,7 Punkte`.",
@@ -213,12 +249,13 @@ function getMarketCloseRecapPrompt(date: Date): string {
     "Formatiere Ticker und konkrete Kennzahlen als Inline-Code, z.B. `SPX`, `NQ`, `RTY`, `+0,4%`, `1,7 Punkte`.",
     "Erwähne weder KI-Anbieter, KI, Modell, Websuche, Quellen, Grounding noch Rechercheprozess.",
     "Keine Disclaimer, keine Links, keine Tabellen, keine Codeblöcke.",
-  ].join("\n");
+  ].filter(line => "" !== line).join("\n");
 }
 
 function parseAiMarketCloseRecap(
   jsonText: string,
   dependencies: MarketCloseRecapDependencies,
+  tickerFacts: MarketCloseTickerFact[],
 ): AiMarketCloseRecap | undefined {
   const parsedJson = parseJson(jsonText);
   if (false === isRecord(parsedJson)) {
@@ -254,6 +291,15 @@ function parseAiMarketCloseRecap(
     dependencies.logger.log(
       "warn",
       "AI market close recap failed output validation.",
+    );
+    return undefined;
+  }
+
+  const tickerValidationIssue = getTickerFactValidationIssue(combinedText, winningPollAnswer, tickerFacts);
+  if (undefined !== tickerValidationIssue) {
+    dependencies.logger.log(
+      "warn",
+      `AI market close recap contradicted ticker facts: ${tickerValidationIssue}.`,
     );
     return undefined;
   }
