@@ -508,6 +508,10 @@ function parseAiMetric(value: unknown, sourceText: string): EarningsResultMetric
     return null;
   }
 
+  if ("eps" === definition.valueType && false === isEpsEvidenceSnippet(key, sourceSnippet)) {
+    return null;
+  }
+
   if ("revenue" === key && (0 === numericValue || false === isRevenueEvidenceSnippet(sourceSnippet))) {
     return null;
   }
@@ -526,6 +530,18 @@ function parseAiMetric(value: unknown, sourceText: string): EarningsResultMetric
       ? formatEps(numericValue, currencyCode)
       : formatMoneyCompact(numericValue, currencyCode),
   };
+}
+
+function isEpsEvidenceSnippet(key: AiMetricKey, sourceSnippet: string): boolean {
+  if (/\b(?:no|not|without|missing|unable|could\s+not|does\s+not)\b.{0,80}\b(?:eps|earnings\s+per\s+share|per\s+share)\b/i.test(sourceSnippet)) {
+    return false;
+  }
+
+  if (false === /\b(?:eps|earnings\s+per\s+share|per\s+share)\b/i.test(sourceSnippet)) {
+    return false;
+  }
+
+  return "adjusted_eps" !== key || /\b(?:adjusted|non-gaap)\b/i.test(sourceSnippet);
 }
 
 function isRevenueEvidenceSnippet(sourceSnippet: string): boolean {
