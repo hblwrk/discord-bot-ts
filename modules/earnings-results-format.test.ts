@@ -164,6 +164,45 @@ describe("earnings result formatting", () => {
     ]));
   });
 
+  test("parses compact Airbnb money suffixes and diluted EPS table rows", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Q1 2026 Shareholder Letter</h1>
+          <p>Q1 2026 Key Financial Measures Revenue $2.7B 18% Y/Y Net Income $160M 6% Net income margin</p>
+          <p>Condensed Consolidated Statements of Operations Unaudited (in millions, except per share amounts) Three Months Ended March 31 2025 2026</p>
+          <p>from operations 38 86 Interest income 173 155 Other income (expense), net (38) 40 Income before income taxes 173 281 Provision for income taxes 19 121 Net income $154 $160 Net income per share attributable to Class A and Class B common stockholders:</p>
+          <p>Basic $0.25 $0.27 Diluted $0.24 $0.26 Weighted-average shares used in computing net income per share attributable to Class A and Class B common stockholders: Basic 621 598 Diluted 632 608</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "revenue",
+        value: "$2.7B",
+      }),
+      expect.objectContaining({
+        key: "net_income",
+        value: "$160M",
+      }),
+      expect.objectContaining({
+        key: "gaap_eps",
+        value: "$0.26",
+      }),
+    ]));
+    expect(parsedDocument.metrics).not.toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "gaap_eps",
+        value: "$38.00",
+      }),
+      expect.objectContaining({
+        key: "net_income",
+        value: "$160",
+      }),
+    ]));
+  });
+
   test("renders result and outlook metrics before optional earnings summaries", () => {
     const parsedDocument = {
       metrics: [],

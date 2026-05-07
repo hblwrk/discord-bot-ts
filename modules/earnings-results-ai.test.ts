@@ -301,6 +301,11 @@ describe("AI earnings helpers", () => {
               text: JSON.stringify({
                 quarterLabel: "Q1 2026",
                 metrics: [{
+                  key: "adjusted_eps",
+                  numericValue: 0,
+                  currencyCode: "USD",
+                  sourceSnippet: "17,741 | 12,799 | 15,250 | Adjusted EBITDA",
+                }, {
                   key: "revenue",
                   numericValue: 17_741_000_000,
                   currencyCode: "USD",

@@ -586,7 +586,9 @@ function getMetricLineWithContinuation(lines: string[], lineIndex: number): stri
   const metricLines = [lines[lineIndex] ?? ""];
   for (let index = lineIndex + 1; index < lines.length && index <= lineIndex + 6; index++) {
     const nextLine = lines[index];
-    if (undefined === nextLine || false === isValueOnlyLine(nextLine)) {
+    if (undefined === nextLine ||
+        (false === isValueOnlyLine(nextLine) &&
+        false === isPerShareMetricDetailLine(metricLines[0] ?? "", nextLine))) {
       break;
     }
 
@@ -598,6 +600,11 @@ function getMetricLineWithContinuation(lines: string[], lineIndex: number): stri
 
 function isValueOnlyLine(line: string): boolean {
   return /^[\s|$€£¥(),.\-\d%—–]+$/.test(line);
+}
+
+function isPerShareMetricDetailLine(baseLine: string, line: string): boolean {
+  return /\bper\s+(?:common\s+)?share\b/i.test(baseLine) &&
+    /^\s*(?:basic|diluted)\b/i.test(line);
 }
 
 function extractMetricValue(
@@ -613,13 +620,14 @@ function extractMetricValue(
   const fallbackSearchText = patternMatch ? line.slice(0, patternMatch.index) : "";
 
   if ("eps" === valueType) {
-    const value = findNumericValue(searchText, {
+    const perShareTableValue = findPerShareTableValue(searchText);
+    const value = perShareTableValue ?? findNumericValue(searchText, {
       maxAbsValue: 100,
       parseCents: true,
-    }) ?? findNumericValue(fallbackSearchText, {
+    }) ?? (true === isMetricValuePrefix(fallbackSearchText) ? findNumericValue(fallbackSearchText, {
       maxAbsValue: 100,
       parseCents: true,
-    });
+    }) : null);
     return null === value ? null : {numericValue: value, value: formatEps(value)};
   }
 
@@ -629,11 +637,11 @@ function extractMetricValue(
       skipTableNoteRefs,
       skipPercentages: true,
     });
-    const fallbackValue = findNumericValue(fallbackSearchText, {
+    const fallbackValue = true === isMetricValuePrefix(fallbackSearchText) ? findNumericValue(fallbackSearchText, {
       requireMoneyCue: 1 === contextMoney.scale,
       skipTableNoteRefs,
       skipPercentages: true,
-    });
+    }) : null;
     const useFallbackValue = null !== fallbackValue &&
       (null === searchValue || true === isMetricLabelSuffixTableNote(searchText));
     const parsedValue = true === useFallbackValue ? fallbackValue : searchValue ?? fallbackValue;
@@ -653,7 +661,7 @@ function extractMetricValue(
   }
 
   const value = findNumericValue(searchText, {skipPercentages: true}) ??
-    findNumericValue(fallbackSearchText, {skipPercentages: true});
+    (true === isMetricValuePrefix(fallbackSearchText) ? findNumericValue(fallbackSearchText, {skipPercentages: true}) : null);
   if (null === value) {
     return null;
   }
@@ -667,6 +675,25 @@ function extractMetricValue(
     numericValue: value,
     value: formatPlainNumber(value, trailingUnit),
   };
+}
+
+function findPerShareTableValue(text: string): number | null {
+  return getLastPerShareSegmentValue(text, "Diluted") ?? getLastPerShareSegmentValue(text, "Basic");
+}
+
+function getLastPerShareSegmentValue(text: string, label: "Basic" | "Diluted"): number | null {
+  const segmentMatch = new RegExp(`\\b${label}\\b([\\s\\S]*?)(?:\\b(?:Basic|Diluted|Weighted-average)\\b|$)`, "i")
+    .exec(text);
+  const segment = segmentMatch?.[1];
+  if (undefined === segment) {
+    return null;
+  }
+
+  const values = findNumericValues(segment, {
+    maxAbsValue: 100,
+    parseCents: true,
+  });
+  return values[values.length - 1] ?? null;
 }
 
 function getContextMoney(lines: string[], lineIndex: number): MoneyContext {
@@ -695,6 +722,11 @@ function getContextMoney(lines: string[], lineIndex: number): MoneyContext {
 
 function isMetricLabelSuffixTableNote(text: string): boolean {
   return /^\s*\d{1,2}\s*$/.test(text);
+}
+
+function isMetricValuePrefix(text: string): boolean {
+  const valuePrefix = text.replace(/\b(?:basic|diluted)\s*$/i, "");
+  return "" !== valuePrefix.trim() && false === /[A-Za-z]/.test(valuePrefix);
 }
 
 function isNearTableNoteColumn(lines: string[], lineIndex: number): boolean {
@@ -745,6 +777,11 @@ function getCurrencyCodeFromText(text: string): string | undefined {
 }
 
 function getExplicitMoneyScale(text: string): number | null {
+  const compactScale = getCompactMoneySuffixScale(text);
+  if (null !== compactScale) {
+    return compactScale;
+  }
+
   const unitMatch = text.match(/\b(trillion|trillions|tn|billion|billions|bn|million|millions|mm|thousand|thousands)\b/i);
   const unit = unitMatch?.[1]?.toLowerCase();
   if (!unit) {
@@ -766,16 +803,50 @@ function getExplicitMoneyScale(text: string): number | null {
   return 1_000_000;
 }
 
+function getCompactMoneySuffixScale(text: string): number | null {
+  const suffixMatch = text.match(
+    /(?:[$€£¥]\s*)?\(?-?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?\s*([KMBT])\b/i,
+  );
+  const suffix = suffixMatch?.[1]?.toUpperCase();
+  if (undefined === suffix) {
+    return null;
+  }
+
+  if ("T" === suffix) {
+    return 1_000_000_000_000;
+  }
+
+  if ("B" === suffix) {
+    return 1_000_000_000;
+  }
+
+  if ("M" === suffix) {
+    return 1_000_000;
+  }
+
+  return 1_000;
+}
+
+type NumericValueOptions = {
+  maxAbsValue?: number;
+  parseCents?: boolean;
+  requireMoneyCue?: boolean;
+  skipPercentages?: boolean;
+  skipTableNoteRefs?: boolean;
+};
+
 function findNumericValue(
   text: string,
-  options: {
-    maxAbsValue?: number;
-    parseCents?: boolean;
-    requireMoneyCue?: boolean;
-    skipPercentages?: boolean;
-    skipTableNoteRefs?: boolean;
-  } = {},
+  options: NumericValueOptions = {},
 ): number | null {
+  return findNumericValues(text, options)[0] ?? null;
+}
+
+function findNumericValues(
+  text: string,
+  options: NumericValueOptions = {},
+): number[] {
+  const values: number[] = [];
   const numberMatches = text.matchAll(/\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?/g);
   for (const numberMatch of numberMatches) {
     const token = numberMatch[0];
@@ -814,10 +885,10 @@ function findNumericValue(
       continue;
     }
 
-    return value;
+    values.push(value);
   }
 
-  return null;
+  return values;
 }
 
 function normalizeCentsValue(text: string, endIndex: number, token: string, value: number): number {
