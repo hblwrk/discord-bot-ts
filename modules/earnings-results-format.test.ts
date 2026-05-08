@@ -164,6 +164,53 @@ describe("earnings result formatting", () => {
     ]));
   });
 
+  test("does not treat Enbridge table-note markers as revenue", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Enbridge Reports Strong First Quarter Results, Reaffirms 2026 Financial Guidance, and Grows Secured Backlog to $40 Billion</h1>
+          <p>(All financial figures are unaudited and in Canadian dollars unless otherwise noted.)</p>
+          <p>First quarter 2026 GAAP earnings attributable to common shareholders of $1.7 billion or $0.77 per common share.</p>
+          <p>Adjusted earnings* of $2.1 billion or $0.98 per common share*.</p>
+          <p>Basic earnings per share ($)</p>
+          <p>0.77</p>
+          <p>FINANCIAL OUTLOOK</p>
+          <p>The Company reaffirms its 2026 financial guidance for adjusted EBITDA between $20.2 billion and $20.8 billion and DCF per share between $5.70 and $6.10.</p>
+          <p>FINANCING UPDATE</p>
+          <p>Proceeds from these offerings were used to pay down existing indebtedness, finance capital expenditures, and for general corporate purposes.</p>
+          <p>($ millions, except per share amounts)</p>
+          <p>Other receipts of cash not recognized in revenue 2</p>
+          <p>2 Consists of cash received, net of revenue recognized, for contracts under make-up rights and similar deferred revenue arrangements.</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.quarterLabel).toBe("Q1 2026");
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "gaap_eps",
+        value: "$0.77",
+      }),
+    ]));
+    expect(parsedDocument.metrics).not.toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "revenue",
+      }),
+    ]));
+    expect(parsedDocument.outlook).toEqual([
+      {
+        key: "adjusted_ebitda",
+        label: "Adj EBITDA",
+        value: "$20.2B to $20.8B",
+      },
+      {
+        key: "dcf_per_share",
+        label: "DCF/share",
+        value: "$5.7 to $6.1",
+      },
+    ]);
+  });
+
   test("parses compact Airbnb money suffixes and diluted EPS table rows", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>

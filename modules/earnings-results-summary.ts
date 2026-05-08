@@ -88,6 +88,8 @@ function getSummaryPrompt(input: EarningsAiSummaryInput, filingText: string): st
     "- The Discord bot formats ticker symbols and concrete metrics after validation.",
     "- Do not mention the company name in the summary; the Discord alert title already identifies the company.",
     "- If you mention any displayed result metric, use exactly the displayed value and do not mention a different value for the same metric.",
+    "- Do not mention revenue unless the filing text explicitly reports revenue, revenues, net sales, or third-party revenue as a result metric.",
+    "- Never infer revenue from adjusted earnings, EBITDA, cash flow, deferred revenue, table-note markers, or project spending.",
     "- Use only the provided filing text and do not mention the SEC filing, source text, or any AI provider.",
     `Company: ${input.companyName}`,
     `Ticker: ${input.ticker}`,
