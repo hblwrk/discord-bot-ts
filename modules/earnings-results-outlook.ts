@@ -42,6 +42,18 @@ const outlookMetricDefinitions: OutlookMetricDefinition[] = [
     valueType: "eps",
   },
   {
+    key: "adjusted_ebitda",
+    label: "Adj EBITDA",
+    patterns: [/\badjusted\s+ebitda\b/i],
+    valueType: "money",
+  },
+  {
+    key: "dcf_per_share",
+    label: "DCF/share",
+    patterns: [/\bdcf\s+per\s+share\b/i, /\bdistributable\s+cash\s+flow\s+per\s+share\b/i],
+    valueType: "eps",
+  },
+  {
     key: "gross_margin",
     label: "Gross margin",
     patterns: [/\bgross\s+margin\b/i],
@@ -150,6 +162,10 @@ function isOutlookHeading(line: string): boolean {
 }
 
 function isOutlookSectionEnd(line: string): boolean {
+  if (true === isNextSectionHeading(line)) {
+    return true;
+  }
+
   if (line.length <= 140 &&
       /\b(?:forward-looking\s+statements?|safe\s+harbor|legal\s+notice\s+regarding\s+forward-looking)\b/i.test(line)) {
     return true;
@@ -161,6 +177,19 @@ function isOutlookSectionEnd(line: string): boolean {
 
   return line.length <= 90 &&
     /^(?:results|balance\s+sheets?|cash\s+flows?|appendix|contacts?|media|webcast)$/i.test(line);
+}
+
+function isNextSectionHeading(line: string): boolean {
+  const normalizedLine = line
+    .replace(/^[\s•–—-]+/, "")
+    .replace(/[\s|–—-]+$/, "")
+    .trim();
+  if (normalizedLine.length > 90 || /\b(?:outlook|guidance)\b/i.test(normalizedLine)) {
+    return false;
+  }
+
+  return /^[A-Z][A-Z0-9&/().,:' -]+$/.test(normalizedLine) &&
+    /[A-Z]{3,}/.test(normalizedLine);
 }
 
 function extractOutlookMetric(
@@ -220,7 +249,8 @@ function getOutlookMetricCandidateScore(line: string): number {
 
 function isNoisyOutlookLine(line: string): boolean {
   const pipeCount = line.match(/\|/g)?.length ?? 0;
-  return pipeCount >= 4;
+  return pipeCount >= 4 ||
+    /\bpost[-\s]?20\d{2}\b.*\bcompound\s+annual\s+growth\s+rate\b/i.test(line);
 }
 
 function extractOutlookValue(
@@ -255,7 +285,7 @@ function getOutlookValueSegments(line: string, patternMatch: RegExpExecArray | n
   }
 
   const rawValueText = line.slice(patternMatch.index + patternMatch[0].length);
-  const nextMetricMatch = /\b(?:adjusted\s+eps|diluted\s+eps|eps|earnings\s+per\s+(?:common\s+)?share|revenues?|net\s+sales|sales|gross\s+margin|operating\s+margin|operating\s+income|operating\s+expenses?|opex|tax\s+rate|capex|capital\s+expenditures?|free\s+cash\s+flow|adjusted\s+ebitda|ebitda)\b/i.exec(rawValueText);
+  const nextMetricMatch = /\b(?:adjusted\s+eps|diluted\s+eps|eps|earnings\s+per\s+(?:common\s+)?share|revenues?|net\s+sales|sales|gross\s+margin|operating\s+margin|operating\s+income|operating\s+expenses?|opex|tax\s+rate|capex|capital\s+expenditures?|free\s+cash\s+flow|dcf\s+per\s+share|distributable\s+cash\s+flow\s+per\s+share|adjusted\s+ebitda|ebitda)\b/i.exec(rawValueText);
   const endIndex = nextMetricMatch?.index ?? rawValueText.length;
   const previousValueText = getPreviousOutlookValueSegment(line, patternMatch.index);
   return [

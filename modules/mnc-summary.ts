@@ -122,8 +122,12 @@ function normalizeMarkdownSummary(value: string): string {
     .replace(/\${2,}/g, "$")
     .trim();
 
-  return normalizeInlineCodeMetricSigns(
-    normalizeInlineCodeRanges(removeUnexpectedScriptTokens(removeMncTldrHeading(summary))),
+  return normalizeInlineCodeWhitespace(
+    normalizeInlineCodeMetricSigns(
+      normalizeInlineCodeRanges(
+        normalizeInlineCodeWhitespace(removeUnexpectedScriptTokens(removeMncTldrHeading(summary))),
+      ),
+    ),
   ).trim();
 }
 
@@ -167,6 +171,24 @@ function normalizeInlineCodeRanges(value: string): string {
 
 function isRangeInlineCodeToken(value: string): boolean {
   return /[$€£¥]|\d/.test(value);
+}
+
+function normalizeInlineCodeWhitespace(value: string): string {
+  return value.replace(
+    /`([^`\n]*)`/g,
+    (_match, token: string) => `\`${normalizeInlineCodeTokenWhitespace(token)}\``,
+  );
+}
+
+function normalizeInlineCodeTokenWhitespace(value: string): string {
+  const trimmedValue = value.trim();
+  if (false === /[$€£¥]|\d/.test(trimmedValue)) {
+    return trimmedValue;
+  }
+
+  return trimmedValue
+    .replace(/([$€£¥])\s+(?=[\d(])/g, "$1")
+    .replace(/(\d(?:[\d,.]*))\s+((?:tn|bn|mm|[tbmk])\b)/gi, "$1$2");
 }
 
 function normalizeInlineCodeMetricSigns(value: string): string {

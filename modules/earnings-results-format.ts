@@ -87,7 +87,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
       /\brevenues?\b/i,
       /\bsales\b/i,
     ],
-    skipPattern: /\bcost\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon)\s+sales\b|\bsales\s+of\s+pipeline\s+gas\b/i,
+    skipPattern: /\bcost\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon)\s+sales\b|\bsales\s+of\s+pipeline\s+gas\b/i,
     valueType: "money",
   },
   {
@@ -632,7 +632,8 @@ function extractMetricValue(
   }
 
   if ("money" === valueType) {
-    const searchValue = findNumericValue(searchText, {
+    const hasMetricLabelSuffixTableNote = isMetricLabelSuffixTableNote(searchText);
+    const searchValue = true === hasMetricLabelSuffixTableNote ? null : findNumericValue(searchText, {
       requireMoneyCue: 1 === contextMoney.scale,
       skipTableNoteRefs,
       skipPercentages: true,
@@ -643,7 +644,7 @@ function extractMetricValue(
       skipPercentages: true,
     }) : null;
     const useFallbackValue = null !== fallbackValue &&
-      (null === searchValue || true === isMetricLabelSuffixTableNote(searchText));
+      (null === searchValue || true === hasMetricLabelSuffixTableNote);
     const parsedValue = true === useFallbackValue ? fallbackValue : searchValue ?? fallbackValue;
     if (null === parsedValue) {
       return null;

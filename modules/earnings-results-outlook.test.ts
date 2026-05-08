@@ -142,6 +142,34 @@ describe("extractOutlookMetrics", () => {
         label: "EPS",
         value: "$4.05 to $4.25",
       },
+      {
+        key: "adjusted_ebitda",
+        label: "Adj EBITDA",
+        value: "$480M to $500M",
+      },
+    ]);
+  });
+
+  test("extracts Enbridge-style guidance without reading into financing updates", () => {
+    expect(extractOutlookMetrics([
+      "FINANCIAL OUTLOOK",
+      "The Company reaffirms its 2026 financial guidance for adjusted EBITDA between $20.2 billion and $20.8 billion and DCF per share between $5.70 and $6.10.",
+      "The Company also reaffirms its post-2026 adjusted EBITDA, DCF per share, and EPS near-term average compound annual growth rate of approximately 5%.",
+      "FINANCING UPDATE",
+      "Proceeds from these offerings were used to pay down existing indebtedness, finance capital expenditures, and for general corporate purposes.",
+      "SECURED GROWTH PROJECT EXECUTION UPDATE",
+      "Enbridge's share of the capital expenditures is expected to be US$0.1 billion and the project is expected to enter service in late 2028.",
+    ])).toEqual([
+      {
+        key: "adjusted_ebitda",
+        label: "Adj EBITDA",
+        value: "$20.2B to $20.8B",
+      },
+      {
+        key: "dcf_per_share",
+        label: "DCF/share",
+        value: "$5.7 to $6.1",
+      },
     ]);
   });
 
