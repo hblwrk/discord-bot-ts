@@ -43,6 +43,7 @@ export type CalendarMessageOptions = {
   keepDayTogether?: boolean;
   continuationLabel?: string;
   title?: string;
+  titlePlacement?: "merged" | "standalone";
 };
 
 type CalendarDayBlock = {
@@ -201,6 +202,7 @@ export function getCalendarMessages(
   const maxMessages = options.maxMessages ?? Number.POSITIVE_INFINITY;
   const continuationLabel = options.continuationLabel ?? CALENDAR_CONTINUATION_LABEL;
   const title = options.title ?? calendarTitle;
+  const titlePlacement = options.titlePlacement ?? "merged";
   const keepDayTogether = false !== options.keepDayTogether;
 
   if (0 === calendarEvents.length) {
@@ -221,7 +223,7 @@ export function getCalendarMessages(
   let contentTruncated = false;
 
   for (const dayBlock of dayBlocks) {
-    const fullDayBlockText = getDayBlockText(dayBlock, false, continuationLabel, pendingTitle);
+    const fullDayBlockText = getDayBlockText(dayBlock, false, continuationLabel, pendingTitle, titlePlacement);
 
     if (true === canAppendToChunk(currentChunk, fullDayBlockText, maxMessageLength)) {
       appendToChunk(currentChunk, fullDayBlockText, dayBlock.lines.length, dayBlock.date);
@@ -244,7 +246,7 @@ export function getCalendarMessages(
     let lineIndex = 0;
     let continuation = false;
     while (lineIndex < dayBlock.lines.length) {
-      const header = getDayHeader(dayBlock.friendlyDate, continuationLabel, continuation, pendingTitle);
+      const header = getDayHeader(dayBlock.friendlyDate, continuationLabel, continuation, pendingTitle, titlePlacement);
       const lines: string[] = [];
 
       while (lineIndex < dayBlock.lines.length) {
@@ -491,9 +493,19 @@ function getDayText(dayHeader: string, lines: string[]): string {
   return `\n${dayHeader}\n${lines.join("\n")}\n`;
 }
 
-function getDayHeader(friendlyDate: string, continuationLabel: string, continuation: boolean, title = ""): string {
+function getDayHeader(
+  friendlyDate: string,
+  continuationLabel: string,
+  continuation: boolean,
+  title = "",
+  titlePlacement: CalendarMessageOptions["titlePlacement"] = "merged",
+): string {
   if (false === continuation) {
     if ("" !== title) {
+      if ("standalone" === titlePlacement) {
+        return `${title.trim()}\n**${friendlyDate}**`;
+      }
+
       return getTitledDayHeader(title, friendlyDate);
     }
 
@@ -503,8 +515,14 @@ function getDayHeader(friendlyDate: string, continuationLabel: string, continuat
   return `**${friendlyDate} ${continuationLabel}**`;
 }
 
-function getDayBlockText(dayBlock: CalendarDayBlock, continuation: boolean, continuationLabel: string, title = ""): string {
-  const dayHeader = getDayHeader(dayBlock.friendlyDate, continuationLabel, continuation, title);
+function getDayBlockText(
+  dayBlock: CalendarDayBlock,
+  continuation: boolean,
+  continuationLabel: string,
+  title = "",
+  titlePlacement: CalendarMessageOptions["titlePlacement"] = "merged",
+): string {
+  const dayHeader = getDayHeader(dayBlock.friendlyDate, continuationLabel, continuation, title, titlePlacement);
   return getDayText(dayHeader, dayBlock.lines);
 }
 

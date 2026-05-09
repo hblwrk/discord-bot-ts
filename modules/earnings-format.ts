@@ -65,10 +65,12 @@ export function getEarningsMessages(
   const highlightedTickerSymbols = new Set(
     tickers.map(ticker => ticker.symbol)
   );
+  const mostAnticipatedTickerSymbols = options.mostAnticipatedTickerSymbols ?? new Set<string>();
 
   const filteredAndSortedEvents = [...earningsEvents]
     .filter(event => selectedWhen.has(event.when))
-    .filter(event => isIncludedByMarketCapFilter(event, selectedMarketCapFilter))
+    .filter(event => true === mostAnticipatedTickerSymbols.has(event.ticker)
+      || isIncludedByMarketCapFilter(event, selectedMarketCapFilter))
     .sort(compareEarningsEventsForDisplay);
 
   const totalEvents = filteredAndSortedEvents.length;
@@ -84,6 +86,7 @@ export function getEarningsMessages(
   const initialBatch = buildEarningsMessageBatch(
     filteredAndSortedEvents,
     highlightedTickerSymbols,
+    mostAnticipatedTickerSymbols,
     {
       maxMessageLength,
       maxMessages,
@@ -98,6 +101,7 @@ export function getEarningsMessages(
   const marketCapBalancedEvents = getMarketCapBalancedEventsForMultiDayFit(
     filteredAndSortedEvents,
     highlightedTickerSymbols,
+    mostAnticipatedTickerSymbols,
     {
       maxMessageLength,
       maxMessages,
@@ -111,6 +115,7 @@ export function getEarningsMessages(
   const balancedBatch = buildEarningsMessageBatch(
     marketCapBalancedEvents,
     highlightedTickerSymbols,
+    mostAnticipatedTickerSymbols,
     {
       maxMessageLength,
       maxMessages,
@@ -123,6 +128,7 @@ export function getEarningsMessages(
 function buildEarningsMessageBatch(
   filteredAndSortedEvents: EarningsEvent[],
   highlightedTickerSymbols: Set<string>,
+  mostAnticipatedTickerSymbols: ReadonlySet<string>,
   options: {
     maxMessageLength: number;
     maxMessages: number;
@@ -154,7 +160,7 @@ function buildEarningsMessageBatch(
       section.rows,
       false
     );
-    if (true === canAppendToEarningsChunk(currentChunk, fullSection, highlightedTickerSymbols, maxMessageLength, title, continuationLabel)) {
+    if (true === canAppendToEarningsChunk(currentChunk, fullSection, highlightedTickerSymbols, mostAnticipatedTickerSymbols, maxMessageLength, title, continuationLabel)) {
       appendToEarningsChunk(currentChunk, fullSection);
       continue;
     }
@@ -164,7 +170,7 @@ function buildEarningsMessageBatch(
       currentChunk = getEmptyEarningsMessageChunk(chunks.length);
     }
 
-    if (true === canAppendToEarningsChunk(currentChunk, fullSection, highlightedTickerSymbols, maxMessageLength, title, continuationLabel)) {
+    if (true === canAppendToEarningsChunk(currentChunk, fullSection, highlightedTickerSymbols, mostAnticipatedTickerSymbols, maxMessageLength, title, continuationLabel)) {
       appendToEarningsChunk(currentChunk, fullSection);
       continue;
     }
@@ -186,7 +192,7 @@ function buildEarningsMessageBatch(
           continuation
         );
 
-        if (canAppendToEarningsChunk(currentChunk, candidateSection, highlightedTickerSymbols, maxMessageLength, title, continuationLabel)) {
+        if (canAppendToEarningsChunk(currentChunk, candidateSection, highlightedTickerSymbols, mostAnticipatedTickerSymbols, maxMessageLength, title, continuationLabel)) {
           sectionRows.push(nextRow);
           rowIndex++;
         } else {
@@ -212,6 +218,7 @@ function buildEarningsMessageBatch(
           continuation,
           currentChunk,
           highlightedTickerSymbols,
+          mostAnticipatedTickerSymbols,
           maxMessageLength,
           title,
           continuationLabel
@@ -253,6 +260,7 @@ function buildEarningsMessageBatch(
     chunk,
     title,
     highlightedTickerSymbols,
+    mostAnticipatedTickerSymbols,
     continuationLabel
   ).trimEnd());
   const includedEvents = visibleChunks.reduce(
@@ -281,6 +289,7 @@ function buildEarningsMessageBatch(
 function getMarketCapBalancedEventsForMultiDayFit(
   filteredAndSortedEvents: EarningsEvent[],
   highlightedTickerSymbols: Set<string>,
+  mostAnticipatedTickerSymbols: ReadonlySet<string>,
   options: {
     maxMessageLength: number;
     maxMessages: number;
@@ -304,6 +313,7 @@ function getMarketCapBalancedEventsForMultiDayFit(
     const candidateBatch = buildEarningsMessageBatch(
       selectedEvents,
       highlightedTickerSymbols,
+      mostAnticipatedTickerSymbols,
       options
     );
     if (candidateBatch.includedEvents === selectedEvents.length) {

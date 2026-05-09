@@ -24,6 +24,7 @@ import {
   getEarningsMessages,
   type EarningsEvent,
   type EarningsMessageBatch,
+  type EarningsMessageOptions,
 } from "./earnings.ts";
 import {addExpectedMovesToEarningsEvents, warmExpectedMoveCacheForEarningsEvents} from "./earnings-expected-move.ts";
 import {loadEarningsWhispersWeeklyTickers} from "./earnings-whispers.ts";
@@ -61,9 +62,7 @@ const calendarMessageDelayMs = 500;
 const calendarReminderFollowUpDelaySeconds = [5, 10, 20, 30, 60, 120, 180, 300, 600, 900];
 const usEasternTimezone = "US/Eastern";
 const dailyEarningsHeadline = "**Earnings**";
-const weeklyEarningsHeadline = "📅 **Earnings der nächsten Handelswoche**";
-const anticipatedEarningsHeadline = "🔥 **Most Anticipated Earnings**";
-const anticipatedWeeklyEarningsHeadline = "🔥 **Most Anticipated Earnings der nächsten Handelswoche**";
+const weeklyEarningsHeadline = "💸 **Earnings der nächsten Handelswoche**";
 const weeklyCalendarHeadline = "📅 **Wichtige Termine der nächsten Handelswoche:**";
 const europeBerlinTimezone = "Europe/Berlin";
 const usEasternWeekdays = [new Schedule.Range(1, 5)];
@@ -111,6 +110,7 @@ type EarningsAnnouncementConfig = {
   errorMessage: string;
   filter: "all" | "bluechips" | string;
   headline?: string;
+  headlinePlacement?: "merged" | "standalone";
   source: string;
   when: "all" | "before_open" | "during_session" | "after_close" | string;
 };
@@ -132,6 +132,23 @@ function createRecurrenceRule(config: RecurrenceRuleConfig): Schedule.Recurrence
   recurrenceRule.dayOfWeek = config.dayOfWeek;
   recurrenceRule.tz = config.tz;
   return recurrenceRule;
+}
+
+function getNextBerlinTradingWeekMonday(): moment.Moment {
+  return moment()
+    .tz(europeBerlinTimezone)
+    .startOf("isoWeek")
+    .add(1, "week");
+}
+
+function getWeeklyHeadlineWithDateRange(headline: string, weekMonday: moment.Moment): string {
+  const weekFriday = weekMonday.clone().add(4, "days");
+  const dateRange = `${getGermanDate(weekMonday)} - ${getGermanDate(weekFriday)}`;
+  return getHeadlineWithDateRange(headline, dateRange);
+}
+
+function getGermanDate(date: moment.Moment): string {
+  return date.clone().locale("de").format("D. MMMM YYYY");
 }
 
 function getCurrentNyseDate(): Date {
@@ -417,23 +434,24 @@ async function runEarningsAnnouncement(
       when: config.when,
     })
     : [];
+  const mostAnticipatedTickerSymbols = new Set(anticipatedEarningsEvents.map(event => event.ticker));
   const regularEarningsEvents = await addExpectedMovesToEarningsEvents(regularEarningsCandidates, {
     marketCapFilter: config.filter,
     when: config.when,
   });
-  const anticipatedEarningsBatch = 0 < anticipatedEarningsEvents.length
-    ? getEarningsMessages(anticipatedEarningsEvents, config.when, getHighlightedAnticipatedTickers(tickers, anticipatedEarningsEvents), {
-      maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
-      maxMessages: EARNINGS_MAX_MESSAGES_TIMER,
-      marketCapFilter: "all",
-    })
-    : getEmptyEarningsMessageBatch();
-  const earningsBatch = getEarningsMessages(regularEarningsEvents, config.when, tickers, {
+  const earningsEvents = [
+    ...anticipatedEarningsEvents,
+    ...regularEarningsEvents,
+  ];
+  const earningsMessageOptions: EarningsMessageOptions = {
     maxMessageLength: EARNINGS_MAX_MESSAGE_LENGTH,
     maxMessages: EARNINGS_MAX_MESSAGES_TIMER,
     marketCapFilter: config.filter,
-  });
-  logEarningsBatch(`${config.source}-anticipated`, anticipatedEarningsBatch);
+  };
+  if (0 < mostAnticipatedTickerSymbols.size) {
+    earningsMessageOptions.mostAnticipatedTickerSymbols = mostAnticipatedTickerSymbols;
+  }
+  const earningsBatch = getEarningsMessages(earningsEvents, config.when, tickers, earningsMessageOptions);
   logEarningsBatch(config.source, earningsBatch);
 
   if ("error" === earningsResult.status) {
@@ -447,23 +465,15 @@ async function runEarningsAnnouncement(
     );
   }
 
-  if (0 === anticipatedEarningsBatch.messages.length && 0 === earningsBatch.messages.length) {
+  if (0 === earningsBatch.messages.length) {
     return;
   }
 
   const channel = await getOptionalThreadTargetChannel(client, channelID, earningsExpectationsThreadID, "earnings");
-  if (0 < anticipatedEarningsBatch.messages.length) {
-    const anticipatedHeadline = config.headline
-      ? anticipatedWeeklyEarningsHeadline
-      : anticipatedEarningsHeadline;
-    await sendChunkedMessages(
-      channel,
-      prependHeadlineToFirstMessage(anticipatedEarningsBatch.messages, anticipatedHeadline, EARNINGS_MAX_MESSAGE_LENGTH),
-      "earnings",
-    );
-  }
   const earningsHeadline = config.headline ?? dailyEarningsHeadline;
-  const messages = prependHeadlineToFirstMessage(earningsBatch.messages, earningsHeadline, EARNINGS_MAX_MESSAGE_LENGTH);
+  const messages = prependHeadlineToFirstMessage(earningsBatch.messages, earningsHeadline, EARNINGS_MAX_MESSAGE_LENGTH, {
+    placement: config.headlinePlacement,
+  });
   if (0 < messages.length) {
     await sendChunkedMessages(channel, messages, "earnings");
   }
@@ -530,41 +540,8 @@ function getEarningsEventsWithoutTickerSymbols(
   return earningsEvents.filter(earningsEvent => false === tickerSymbols.has(normalizeEarningsTickerSymbol(earningsEvent.ticker)));
 }
 
-function getHighlightedAnticipatedTickers(
-  tickers: Ticker[],
-  anticipatedEarningsEvents: EarningsEvent[],
-): Ticker[] {
-  const highlightedTickers = [...tickers];
-  const highlightedTickerSymbols = new Set(tickers.map(ticker => normalizeEarningsTickerSymbol(ticker.symbol)));
-
-  for (const earningsEvent of anticipatedEarningsEvents) {
-    const normalizedTickerSymbol = normalizeEarningsTickerSymbol(earningsEvent.ticker);
-    if (true === highlightedTickerSymbols.has(normalizedTickerSymbol)) {
-      continue;
-    }
-
-    highlightedTickers.push({
-      exchange: "earnings-whispers",
-      name: earningsEvent.companyName ?? earningsEvent.ticker,
-      symbol: earningsEvent.ticker,
-    });
-    highlightedTickerSymbols.add(normalizedTickerSymbol);
-  }
-
-  return highlightedTickers;
-}
-
 function normalizeEarningsTickerSymbol(value: string): string {
   return value.trim().toUpperCase().replaceAll("/", ".").replaceAll("-", ".");
-}
-
-function getEmptyEarningsMessageBatch(): EarningsMessageBatch {
-  return {
-    includedEvents: 0,
-    messages: [],
-    totalEvents: 0,
-    truncated: false,
-  };
 }
 
 async function warmExpectedMovesForAnnouncement(config: EarningsAnnouncementConfig) {
@@ -945,19 +922,20 @@ export function startOtherTimers(
       days: 5,
       errorMessage: "Wöchentliche Earnings konnten nicht geladen werden.",
       filter: "bluechips",
-      headline: weeklyEarningsHeadline,
       source: "timer-earnings-weekly",
       when: "all",
     });
   });
 
   Schedule.scheduleJob(ruleEarningsWeekly, async () => {
+    const nextWeekMonday = getNextBerlinTradingWeekMonday();
     await runEarningsAnnouncement(client, channelID, tickers, {
       date: "tomorrow",
       days: 5,
       errorMessage: "Wöchentliche Earnings konnten nicht geladen werden.",
       filter: "bluechips",
-      headline: weeklyEarningsHeadline,
+      headline: getWeeklyHeadlineWithDateRange(weeklyEarningsHeadline, nextWeekMonday),
+      headlinePlacement: "standalone",
       source: "timer-earnings-weekly",
       when: "all",
     }, earningsExpectationsThreadID);
@@ -1063,10 +1041,7 @@ export function startOtherTimers(
   });
 
   Schedule.scheduleJob(ruleEventsWeekly, async () => {
-    const nextWeekMonday = moment()
-      .tz(europeBerlinTimezone)
-      .startOf("isoWeek")
-      .add(1, "week");
+    const nextWeekMonday = getNextBerlinTradingWeekMonday();
     const nextWeekThursday = nextWeekMonday.clone().add(3, "days");
 
     const calendarEvents1: CalendarEvent[] = await getCalendarEvents(nextWeekMonday.format("YYYY-MM-DD"), 2);
@@ -1226,6 +1201,7 @@ function prependHeadlineToFirstMessage(
   messages: string[],
   headline: string,
   maxMessageLength: number,
+  options: {placement?: "merged" | "standalone" | undefined} = {},
 ): string[] {
   if (0 === messages.length) {
     return messages;
@@ -1236,15 +1212,97 @@ function prependHeadlineToFirstMessage(
     return [headline];
   }
 
-  const firstMessageWithHeadline = getFirstMessageWithHeadline(headline, firstMessage);
+  const firstMessageWithHeadline = "standalone" === options.placement
+    ? getFirstMessageWithStandaloneHeadline(headline, firstMessage)
+    : getFirstMessageWithMergedHeadlinePlacement(headline, firstMessage);
   if (firstMessageWithHeadline.length <= maxMessageLength) {
     return [firstMessageWithHeadline, ...messages.slice(1)];
+  }
+
+  if ("standalone" === options.placement) {
+    const standaloneHeadline = getStandaloneHeadlineForFirstMessage(headline, firstMessage);
+    const firstMessageWithoutPeriod = getFirstMessageWithoutPeriodLine(firstMessage);
+    if ("" === firstMessageWithoutPeriod.trim()) {
+      return [standaloneHeadline, ...messages.slice(1)];
+    }
+
+    return [standaloneHeadline, firstMessageWithoutPeriod, ...messages.slice(1)];
   }
 
   return [headline, ...messages];
 }
 
-function getFirstMessageWithHeadline(headline: string, firstMessage: string): string {
+function getFirstMessageWithStandaloneHeadline(headline: string, firstMessage: string): string {
+  const headlineWithPeriod = getStandaloneHeadlineForFirstMessage(headline, firstMessage);
+  const restMessage = getFirstMessageWithoutPeriodLine(firstMessage);
+  if ("" === restMessage.trim()) {
+    return headlineWithPeriod;
+  }
+
+  return `${headlineWithPeriod}\n${restMessage.trimStart()}`;
+}
+
+function getStandaloneHeadlineForFirstMessage(headline: string, firstMessage: string): string {
+  const periodDateRange = getFirstMessagePeriodDateRange(firstMessage);
+  if (undefined === periodDateRange) {
+    return headline;
+  }
+
+  return getHeadlineWithDateRange(headline, periodDateRange);
+}
+
+function getFirstMessageWithoutPeriodLine(firstMessage: string): string {
+  const periodMatch = getFirstMessagePeriodLineMatch(firstMessage);
+  if (null !== periodMatch) {
+    return firstMessage.slice(periodMatch[0].length);
+  }
+
+  return firstMessage;
+}
+
+function getFirstMessagePeriodDateRange(firstMessage: string): string | undefined {
+  const periodMatch = getFirstMessagePeriodLineMatch(firstMessage);
+  if (null === periodMatch) {
+    return undefined;
+  }
+
+  const startDate = getCompactGermanDateFromFriendlyDate(periodMatch[1] ?? "");
+  const endDate = getCompactGermanDateFromFriendlyDate(periodMatch[2] ?? "");
+  if ("" === startDate || "" === endDate) {
+    return undefined;
+  }
+
+  return `${startDate} - ${endDate}`;
+}
+
+function getFirstMessagePeriodLineMatch(firstMessage: string): RegExpExecArray | null {
+  return /^\*\*Zeitraum:\*\* ([^\n]+?) bis ([^\n]+)\n?/.exec(firstMessage);
+}
+
+function getCompactGermanDateFromFriendlyDate(friendlyDate: string): string {
+  const normalizedFriendlyDate = friendlyDate.trim();
+  const weekdayMatch = /^(?:Montag|Dienstag|Mittwoch|Donnerstag|Freitag|Samstag|Sonntag),\s+(.+)$/.exec(normalizedFriendlyDate);
+  return weekdayMatch?.[1] ?? normalizedFriendlyDate;
+}
+
+function getHeadlineWithDateRange(headline: string, dateRange: string): string {
+  const headlineWithoutDateRange = getHeadlineWithoutDateRange(headline);
+  if (headlineWithoutDateRange.endsWith("**")) {
+    return `${headlineWithoutDateRange.slice(0, -2)} (${dateRange})**`;
+  }
+
+  return `${headlineWithoutDateRange} (${dateRange})`;
+}
+
+function getHeadlineWithoutDateRange(headline: string): string {
+  if (headline.endsWith("**")) {
+    return headline.replace(/ \([^()\n]+\)\*\*$/, "**");
+  }
+
+  return headline.replace(/ \([^()\n]+\)$/, "");
+}
+
+function getFirstMessageWithMergedHeadlinePlacement(headline: string, firstMessage: string): string {
   const periodMatch = /^\*\*Zeitraum:\*\* ([^\n]+)\n?/.exec(firstMessage);
   if (null !== periodMatch) {
     return getFirstMessageWithMergedHeadline(headline, firstMessage, periodMatch[1] ?? "", periodMatch[0].length);

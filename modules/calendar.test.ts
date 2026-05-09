@@ -175,6 +175,28 @@ describe("getCalendarMessages", () => {
     expect(batch.messages[0]!).not.toContain("Wichtige Termine der nächsten Handelswoche:**\n");
   });
 
+  test("can keep a custom title separate from the first day heading", () => {
+    const calendarEvents: CalendarEvent[] = [
+      createCalendarEvent("2026-05-11", "16:00", "Existing Home Sales"),
+      createCalendarEvent("2026-05-12", "01:30", "Household Spending m/m", "🇯🇵"),
+    ];
+
+    const batch = getCalendarMessages(calendarEvents, {
+      title: "📅 **Wichtige Termine der nächsten Handelswoche (11. Mai 2026 - 15. Mai 2026)**",
+      titlePlacement: "standalone",
+      maxMessageLength: 1800,
+      maxMessages: 6,
+      keepDayTogether: true,
+    });
+
+    expect(batch.messages[0]!).toContain(
+      "📅 **Wichtige Termine der nächsten Handelswoche (11. Mai 2026 - 15. Mai 2026)**\n**Montag, 11. Mai 2026**\n`16:00` 🇺🇸 Existing Home Sales",
+    );
+    expect(batch.messages[0]!).not.toContain(")**\n\n**Montag");
+    expect(batch.messages[0]!).toContain("**Dienstag, 12. Mai 2026**\n`01:30` 🇯🇵 Household Spending m/m");
+    expect(batch.messages[0]!).not.toContain("**Wichtige Termine der nächsten Handelswoche (11. Mai 2026 - 15. Mai 2026)** (Montag");
+  });
+
   test("chunks by day boundaries across multiple days", () => {
     const dayOneEvents: CalendarEvent[] = [
       createCalendarEvent("2025-03-03", "09:00", "Day1-Event1"),
