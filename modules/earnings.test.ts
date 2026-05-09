@@ -53,16 +53,17 @@ function getEarningsEvent(overrides: Partial<EarningsEvent> = {}): EarningsEvent
 
 function parseEarningsLine(
   line: string
-): {ticker: string; marketCap: string; eps: string} {
-  const match = line.match(/^(?:(?:\*\*)?`([^`]+)`(?:\*\*)?|\*\*([^*]+)\*\*)( *) 💰 MCap: `([^`]+)`( *)(?: 📈 Last: `\$[^`]+`)? 🔮 EPS: `([^`]+)`(?: .*)?$/);
+): {prefix: string; ticker: string; marketCap: string; eps: string} {
+  const match = line.match(/^((?:☕|🌞|🌙) (?:🔥|🏢) )(?:(?:\*\*)?`([^`]+)`(?:\*\*)?|\*\*([^*]+)\*\*)( *) 💰 MCap: `([^`]+)`( *)(?: 📈 Last: `\$[^`]+`)? 🔮 EPS: `([^`]+)`(?: .*)?$/u);
   if (null === match) {
     throw new Error(`Unexpected earnings line format: ${line}`);
   }
 
   return {
-    ticker: `${match[1] ?? match[2]}${match[3]}`,
-    marketCap: `${match[4]}${match[5]}`,
-    eps: match[6]!,
+    prefix: match[1]!.trimEnd(),
+    ticker: `${match[2] ?? match[3]}${match[4]}`,
+    marketCap: `${match[5]}${match[6]}`,
+    eps: match[7]!,
   };
 }
 
@@ -416,7 +417,7 @@ describe("getEarningsText", () => {
     expect(text).toContain("**Mittwoch, 3. Januar 2024**");
   });
 
-  test("returns grouped ticker-first one-line output", () => {
+  test("returns grouped emoji-prefixed one-line output", () => {
     const earningEvents: EarningsEvent[] = [
       getEarningsEvent({
         ticker: "SMALL",
@@ -450,22 +451,24 @@ describe("getEarningsText", () => {
     expect(text).toContain("**Zeitraum:** Mittwoch, 3. Januar 2024 bis Donnerstag, 4. Januar 2024");
     expect(text).toContain("**Mittwoch, 3. Januar 2024**");
     expect(text).toContain("**Donnerstag, 4. Januar 2024**");
-    expect(text).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt**");
-    expect(text).toContain("**Nach Handelsschluss**");
-    expect(text).toContain("**Vor Handelsbeginn**");
+    expect(text).not.toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt**");
+    expect(text).not.toContain("**Nach Handelsschluss**");
+    expect(text).not.toContain("**Vor Handelsbeginn**");
 
     const lines = text.split("\n").filter(line => line.includes(" MCap: "));
     const parsedLines = lines.map(parseEarningsLine);
-    expect(lines[0]!.startsWith("**BIG**")).toBe(true);
+    expect(lines[0]!.startsWith("🌞 🏢 **`BIG`**")).toBe(true);
     expect(lines[0]!).not.toContain("`BIG ");
     expect(lines[0]!).not.toContain("$1B ");
     expect(parsedLines[0]!).toEqual(expect.objectContaining({
+      prefix: "🌞 🏢",
       ticker: "BIG  ",
       marketCap: expect.stringMatching(/^\$1B +$/),
       eps: "1.20",
     }));
     expect(parsedLines[1]!.ticker.trim()).toBe("SMALL");
     expect(parsedLines[2]!.ticker.trim()).toBe("NEXT");
+    expect(parsedLines.map(entry => entry.prefix)).toEqual(["🌞 🏢", "🌙 🏢", "☕ 🏢"]);
     expect(new Set(parsedLines.map(entry => entry.ticker.length)).size).toBe(1);
     expect(new Set(parsedLines.map(entry => entry.marketCap.length)).size).toBe(1);
     expect(parsedLines.map(entry => entry.eps)).toEqual(["1.20", "0.50", "0.75"]);
@@ -501,7 +504,7 @@ describe("getEarningsMessages", () => {
     }),
   ];
 
-  test("returns one message with one line per earning and ticker first", () => {
+  test("returns one message with one emoji-prefixed line per earning", () => {
     const batch = getEarningsMessages(earningEvents, "all", [getTicker("BIG")], {
       maxMessageLength: 1800,
       maxMessages: 6,
@@ -511,23 +514,41 @@ describe("getEarningsMessages", () => {
     expect(batch.truncated).toBe(false);
     expect(batch.totalEvents).toBe(3);
     expect(batch.includedEvents).toBe(3);
-    expect(batch.messages[0]!).toContain("**Vor Handelsbeginn**");
-    expect(batch.messages[0]!).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt**");
-    expect(batch.messages[0]!).toContain("**Nach Handelsschluss**");
+    expect(batch.messages[0]!).not.toContain("**Vor Handelsbeginn**");
+    expect(batch.messages[0]!).not.toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt**");
+    expect(batch.messages[0]!).not.toContain("**Nach Handelsschluss**");
     expect(batch.messages[0]!).not.toContain("Earnings am");
 
     const lines = batch.messages[0]!.split("\n").filter(line => line.includes(" MCap: "));
     const parsedLines = lines.map(parseEarningsLine);
-    expect(lines[0]!.startsWith("**BIG**")).toBe(true);
+    expect(lines[0]!.startsWith("☕ 🏢 **`BIG`**")).toBe(true);
     expect(lines[0]!).not.toContain("`BIG ");
     expect(lines[0]!).not.toContain("$1.5B ");
     expect(parsedLines[0]!.ticker.trim()).toBe("BIG");
     expect(parsedLines[1]!.ticker.trim()).toBe("SMALL");
     expect(parsedLines[2]!.ticker.trim()).toBe("MID");
+    expect(parsedLines.map(entry => entry.prefix)).toEqual(["☕ 🏢", "🌞 🏢", "🌙 🏢"]);
     expect(parsedLines[0]!.eps.trim()).toBe("2.20");
     expect(new Set(parsedLines.map(entry => entry.ticker.length)).size).toBe(1);
     expect(new Set(parsedLines.map(entry => entry.marketCap.length)).size).toBe(1);
     expect(parsedLines.map(entry => entry.eps)).toEqual(["2.20", "0.10", "0.80"]);
+  });
+
+  test("adds fire to most anticipated earnings without marking other highlighted tickers", () => {
+    const batch = getEarningsMessages(earningEvents, "all", [getTicker("BIG")], {
+      maxMessageLength: 1800,
+      maxMessages: 6,
+      mostAnticipatedTickerSymbols: new Set(["MID"]),
+    });
+
+    const lines = batch.messages[0]!.split("\n").filter(line => line.includes(" MCap: "));
+    const parsedLines = lines.map(parseEarningsLine);
+    expect(parsedLines[0]!.ticker.trim()).toBe("BIG");
+    expect(parsedLines[0]!.prefix).toBe("☕ 🏢");
+    expect(parsedLines[2]!.ticker.trim()).toBe("MID");
+    expect(parsedLines[2]!.prefix).toBe("🌙 🔥");
+    expect(lines[2]!).toContain("`MID`");
+    expect(lines[2]!).not.toContain("**MID**");
   });
 
   test("includes expected move details when earnings events are enriched", () => {
@@ -568,7 +589,7 @@ describe("getEarningsMessages", () => {
         epsConsensus: "0.10",
       }),
     ], "all", [], {
-      maxMessageLength: 150,
+      maxMessageLength: 130,
       maxMessages: 3,
     });
 
@@ -618,12 +639,10 @@ describe("getEarningsMessages", () => {
     expect(parsedLines[0]!.ticker.trim()).toBe("BEFORE");
     expect(parsedLines[1]!.ticker.trim()).toBe("DURING");
     expect(parsedLines[2]!.ticker.trim()).toBe("AFTER");
-    const text = batch.messages[0]!;
-    expect(text.indexOf("**Vor Handelsbeginn**")).toBeLessThan(text.indexOf("**Während der Handelszeiten oder unbekannter Zeitpunkt**"));
-    expect(text.indexOf("**Während der Handelszeiten oder unbekannter Zeitpunkt**")).toBeLessThan(text.indexOf("**Nach Handelsschluss**"));
+    expect(parsedLines.map(entry => entry.prefix)).toEqual(["☕ 🏢", "🌞 🏢", "🌙 🏢"]);
   });
 
-  test("filters by when and keeps ticker-first format", () => {
+  test("filters by when and keeps emoji-prefixed format", () => {
     const batch = getEarningsMessages(earningEvents, "during_session", [], {
       maxMessageLength: 1800,
       maxMessages: 6,
@@ -634,7 +653,8 @@ describe("getEarningsMessages", () => {
     expect(lines).toHaveLength(1);
     const parsedLine = parseEarningsLine(lines[0]!);
     expect(parsedLine.ticker.trim()).toBe("SMALL");
-    expect(batch.messages[0]!).toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt**");
+    expect(parsedLine.prefix).toBe("🌞 🏢");
+    expect(batch.messages[0]!).not.toContain("**Während der Handelszeiten oder unbekannter Zeitpunkt**");
   });
 
   test("filters by bluechip market cap threshold when marketCapFilter is bluechips", () => {
@@ -686,6 +706,46 @@ describe("getEarningsMessages", () => {
     expect(batch.messages[0]!).not.toContain("`UNKNOWN`");
     expect(batch.messages[0]!).not.toContain("Bluechip Fifty");
     expect(batch.messages[0]!).not.toContain("Bluechip Seventy Five");
+  });
+
+  test("keeps most anticipated tickers when bluechip market cap filtering is enabled", () => {
+    const batch = getEarningsMessages([
+      getEarningsEvent({
+        ticker: "BLUE50",
+        when: "before_open",
+        companyName: "Bluechip Fifty",
+        marketCap: 50_000_000_000,
+        marketCapText: "$50B",
+        epsConsensus: "5.00",
+      }),
+      getEarningsEvent({
+        ticker: "MID49",
+        when: "after_close",
+        companyName: "Mid Forty Nine",
+        marketCap: 49_000_000_000,
+        marketCapText: "$49B",
+        epsConsensus: "4.90",
+      }),
+      getEarningsEvent({
+        ticker: "SMALL",
+        when: "during_session",
+        companyName: "Small Cap",
+        marketCap: 1_000_000_000,
+        marketCapText: "$1B",
+        epsConsensus: "1.00",
+      }),
+    ], "all", [], {
+      maxMessageLength: 1800,
+      maxMessages: 6,
+      marketCapFilter: "bluechips",
+      mostAnticipatedTickerSymbols: new Set(["MID49"]),
+    });
+
+    expect(batch.totalEvents).toBe(2);
+    expect(batch.includedEvents).toBe(2);
+    expect(batch.messages[0]!).toContain("`BLUE50`");
+    expect(batch.messages[0]!).toContain("🌙 🔥 `MID49`");
+    expect(batch.messages[0]!).not.toContain("`SMALL`");
   });
 
   test("falls back to all market caps for unknown marketCapFilter values", () => {

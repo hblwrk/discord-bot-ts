@@ -1,5 +1,4 @@
 import {
-  earningsWhenLabelByWhen,
   type EarningsEvent,
   type EarningsWhen,
   unknownValueLabel,
@@ -21,6 +20,12 @@ type EarningsLineWidths = {
   ticker: number;
   marketCap: number;
 };
+
+const earningsWhenEmojiByWhen = new Map<EarningsWhen, string>([
+  ["before_open", "☕"],
+  ["during_session", "🌞"],
+  ["after_close", "🌙"],
+]);
 
 export type EarningsMessageChunk = {
   eventCount: number;
@@ -77,25 +82,16 @@ function getEarningsSectionText(
   continuation: boolean,
   continuationLabel: string,
   highlightedTickerSymbols: Set<string>,
+  mostAnticipatedTickerSymbols: ReadonlySet<string>,
   lineWidths: EarningsLineWidths
 ): string {
   const heading = getEarningsSectionHeading(label, continuation, continuationLabel);
-  const sectionLines: string[] = [];
-  let previousWhen: EarningsWhen | null = null;
-
-  for (const row of rows) {
-    if (row.when !== previousWhen) {
-      sectionLines.push("");
-      sectionLines.push(getEarningsWhenSubheading(row.when));
-      previousWhen = row.when;
-    }
-
-    sectionLines.push(row.lineOverride ?? getEarningsEventLine(
-      row.event,
-      highlightedTickerSymbols,
-      lineWidths
-    ));
-  }
+  const sectionLines = rows.map(row => row.lineOverride ?? getEarningsEventLine(
+    row.event,
+    highlightedTickerSymbols,
+    mostAnticipatedTickerSymbols,
+    lineWidths
+  ));
 
   return `${heading}\n${sectionLines.join("\n")}\n\n`;
 }
@@ -124,6 +120,7 @@ export function canAppendToEarningsChunk(
   chunk: EarningsMessageChunk,
   section: EarningsMessageChunkSection,
   highlightedTickerSymbols: Set<string>,
+  mostAnticipatedTickerSymbols: ReadonlySet<string>,
   maxMessageLength: number,
   title: string,
   continuationLabel: string
@@ -134,6 +131,7 @@ export function canAppendToEarningsChunk(
     candidateChunk,
     title,
     highlightedTickerSymbols,
+    mostAnticipatedTickerSymbols,
     continuationLabel
   ).length <= maxMessageLength;
 }
@@ -168,6 +166,7 @@ export function getEarningsChunkText(
   chunk: EarningsMessageChunk,
   title: string,
   highlightedTickerSymbols: Set<string>,
+  mostAnticipatedTickerSymbols: ReadonlySet<string>,
   continuationLabel: string
 ): string {
   const prefix = (0 === chunk.messageIndex && 0 < title.length) ? `${title}\n` : "";
@@ -178,6 +177,7 @@ export function getEarningsChunkText(
     section.continuation,
     continuationLabel,
     highlightedTickerSymbols,
+    mostAnticipatedTickerSymbols,
     lineWidths
   )).join("");
 
@@ -190,6 +190,7 @@ export function getTruncatedEarningsSectionRow(
   continuation: boolean,
   chunk: EarningsMessageChunk,
   highlightedTickerSymbols: Set<string>,
+  mostAnticipatedTickerSymbols: ReadonlySet<string>,
   maxMessageLength: number,
   title: string,
   continuationLabel: string
@@ -197,6 +198,7 @@ export function getTruncatedEarningsSectionRow(
   const fullLine = getEarningsEventLine(
     row.event,
     highlightedTickerSymbols,
+    mostAnticipatedTickerSymbols,
     getEarningsLineWidths([row])
   );
   let bestLine = "";
@@ -216,7 +218,15 @@ export function getTruncatedEarningsSectionRow(
       continuation
     );
 
-    if (true === canAppendToEarningsChunk(chunk, candidateSection, highlightedTickerSymbols, maxMessageLength, title, continuationLabel)) {
+    if (true === canAppendToEarningsChunk(
+      chunk,
+      candidateSection,
+      highlightedTickerSymbols,
+      mostAnticipatedTickerSymbols,
+      maxMessageLength,
+      title,
+      continuationLabel
+    )) {
       bestLine = candidateLine;
       low = midpoint + 1;
     } else {
@@ -245,8 +255,10 @@ function truncateEarningsLine(line: string, maxLength: number): string {
 function getEarningsEventLine(
   earningsEvent: EarningsEvent,
   highlightedTickerSymbols: Set<string>,
+  mostAnticipatedTickerSymbols: ReadonlySet<string>,
   lineWidths: EarningsLineWidths
 ): string {
+  const prefix = getEarningsEventLinePrefix(earningsEvent, mostAnticipatedTickerSymbols);
   const ticker = getFormattedTicker(
     earningsEvent.ticker,
     highlightedTickerSymbols,
@@ -261,7 +273,19 @@ function getEarningsEventLine(
   const expectedMoveText = getFormattedExpectedMoveText(earningsEvent);
   const underlyingPriceText = getFormattedExpectedMoveUnderlyingPriceText(earningsEvent);
 
-  return `${ticker} 💰 MCap: \`${marketCapText}\`${marketCapPadding}${underlyingPriceText} 🔮 EPS: \`${epsConsensus}\`${expectedMoveText}`;
+  return `${prefix}${ticker} 💰 MCap: \`${marketCapText}\`${marketCapPadding}${underlyingPriceText} 🔮 EPS: \`${epsConsensus}\`${expectedMoveText}`;
+}
+
+function getEarningsEventLinePrefix(
+  earningsEvent: EarningsEvent,
+  mostAnticipatedTickerSymbols: ReadonlySet<string>
+): string {
+  const whenEmoji = earningsWhenEmojiByWhen.get(earningsEvent.when) ?? "🌞";
+  const anticipatedEmoji = true === mostAnticipatedTickerSymbols.has(earningsEvent.ticker)
+    ? "🔥"
+    : "🏢";
+
+  return `${whenEmoji} ${anticipatedEmoji} `;
 }
 
 function getFormattedMarketCapText(
@@ -305,21 +329,8 @@ function getFormattedTicker(
 ): string {
   const tickerPadding = getEarningsColumnPadding(ticker, width);
   if (true === highlightedTickerSymbols.has(ticker)) {
-    return `**${ticker}**${tickerPadding}`;
+    return `**\`${ticker}\`**${tickerPadding}`;
   }
 
   return `\`${ticker}\`${tickerPadding}`;
-}
-
-function getEarningsWhenLabel(earningsWhen: EarningsWhen): string {
-  const label = earningsWhenLabelByWhen.get(earningsWhen);
-  if (undefined !== label) {
-    return label;
-  }
-
-  return "Während der Handelszeiten oder unbekannter Zeitpunkt";
-}
-
-function getEarningsWhenSubheading(earningsWhen: EarningsWhen): string {
-  return `**${getEarningsWhenLabel(earningsWhen)}**`;
 }

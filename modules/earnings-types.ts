@@ -40,6 +40,7 @@ export type EarningsMessageOptions = {
   maxMessages?: number;
   continuationLabel?: string;
   marketCapFilter?: "all" | "bluechips" | string;
+  mostAnticipatedTickerSymbols?: ReadonlySet<string>;
 };
 
 export const earningsTruncationNote = "... weitere Earnings konnten wegen Discord-Limits nicht angezeigt werden.";
