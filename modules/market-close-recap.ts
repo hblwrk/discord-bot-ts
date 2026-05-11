@@ -3,6 +3,7 @@ import {callAiProviderJson, type AiProviderDependencies} from "./ai-provider.ts"
 import {type getWithRetry} from "./http-retry.ts";
 import {
   formatMarketCloseTickerFactsForPrompt,
+  hasRequiredMarketCloseTickerFacts,
   getTickerFactValidationIssue,
   loadMarketCloseTickerFacts,
   type MarketCloseTickerFact,
@@ -23,6 +24,7 @@ export type MarketCloseRecapOptions = {
   date?: Date | undefined;
   maxFetchedWinners?: number | undefined;
   maxMentionedWinners?: number | undefined;
+  requireTickerFacts?: boolean | undefined;
   tickerFacts?: MarketCloseTickerFact[] | null | undefined;
 };
 
@@ -120,6 +122,14 @@ export async function getMarketCloseRecap(
 ): Promise<MarketCloseRecapPayload | undefined> {
   const date = options.date ?? new Date();
   const tickerFacts = await getTickerFacts(date, dependencies, options);
+  if (true === options.requireTickerFacts && false === hasRequiredMarketCloseTickerFacts(tickerFacts)) {
+    dependencies.logger.log(
+      "warn",
+      "Skipping market close recap: required market-data bot facts are unavailable.",
+    );
+    return undefined;
+  }
+
   const jsonText = await callAiProviderJson(
     getMarketCloseRecapPrompt(date, tickerFacts),
     marketCloseRecapSchema,
@@ -227,14 +237,14 @@ function getMarketCloseRecapPrompt(date: Date, tickerFacts: MarketCloseTickerFac
   const tickerFactsPrompt = formatMarketCloseTickerFactsForPrompt(tickerFacts);
   return [
     `Heute ist nach US-Börsenschluss am ${usEasternDate} (US/Eastern).`,
-    "Nutze Websuche, um den US-Cash-Handelstag realitätsnah einzuordnen.",
+    "Nutze Websuche, um den US-Handelstag realitätsnah einzuordnen.",
     "Priorisiere bei schnellen Markt-Wrapups offizielle Börsen-/Indexanbieter und etablierte Finanznachrichten wie Reuters, Bloomberg, CNBC, MarketWatch, WSJ, Nasdaq, NYSE, Cboe und S&P Dow Jones Indices.",
     "Ignoriere Blogs, Social Posts, SEO-Seiten und fachfremde Nachrichtenportale, wenn sie den Ticker-Daten oder autoritativen Finanzquellen widersprechen.",
     tickerFactsPrompt,
-    "Bewerte den Handelstag vom regulären US-Open bis zum regulären US-Close.",
-    "Für die Poll-Sentiment-Auswahl ist Open-to-close maßgeblich; Close-to-close darf nur als Tagesveränderung genannt werden.",
-    "Berücksichtige ausschließlich `SPX`, `NQ`, `RTY` sowie zwingend den `VIX`.",
-    "Erwähne nicht die ETF-Pendants `SPY`, `QQQ` oder `IWM`.",
+    "Bewerte den Handelstag fuer die konfigurierten Market-Data-Bot-Instrumente; bei Bot-Snapshots ist die Bot-Veraenderung massgeblich.",
+    "Für die Poll-Sentiment-Auswahl ist die Veraenderung aus den Ticker-Fakten maßgeblich; Close-to-close oder Bot-Veraenderung darf als Tagesveränderung genannt werden.",
+    "Berücksichtige ausschließlich `ES`, `NQ`, `RTY` sowie zwingend den `VIX`.",
+    "Erwähne nicht die Cash-/ETF-Pendants `SPX`, `SPY`, `NDX`, `RUT`, `QQQ` oder `IWM`.",
     "Der `VIX` darf niemals als Prozentwert beschrieben werden. Beschreibe ihn nur als Stand, Veränderung in Punkten oder Richtung, z.B. `18,4` auf `20,1` oder `+1,7 Punkte`.",
     "Wähle genau eine passende Antwort aus dem Opening-Sentiment-Poll:",
     "- Risk-on: breite Stärke, fallender oder ruhiger `VIX`, Risikoappetit.",
@@ -246,7 +256,7 @@ function getMarketCloseRecapPrompt(date: Date, tickerFacts: MarketCloseTickerFac
     "Halte `summaryMarkdown` unter 1.000 Zeichen.",
     "Nutze 2-4 kurze Absätze oder Bulletpoints.",
     "Nenne die Poll-Sentiment-Labels `Risk-on`, `Risk-off`, `Cash` und `Chaos` nicht in `summaryMarkdown`; das gewählte Sentiment steht nur in der separaten Sentiment-Zeile.",
-    "Formatiere Ticker und konkrete Kennzahlen als Inline-Code, z.B. `SPX`, `NQ`, `RTY`, `+0,4%`, `1,7 Punkte`.",
+    "Formatiere Ticker und konkrete Kennzahlen als Inline-Code, z.B. `ES`, `NQ`, `RTY`, `+0,4%`, `1,7 Punkte`.",
     "Erwähne weder KI-Anbieter, KI, Modell, Websuche, Quellen, Grounding noch Rechercheprozess.",
     "Keine Disclaimer, keine Links, keine Tabellen, keine Codeblöcke.",
   ].filter(line => "" !== line).join("\n");
@@ -574,7 +584,7 @@ function hasPollSentimentLabel(value: string): boolean {
 }
 
 function hasForbiddenMarketProxyMention(value: string): boolean {
-  return /\b(?:SPY|QQQ|IWM)\b/iu.test(value);
+  return /\b(?:SPX|SPY|NDX|RUT|QQQ|IWM)\b/iu.test(value);
 }
 
 function hasVixPercent(value: string): boolean {

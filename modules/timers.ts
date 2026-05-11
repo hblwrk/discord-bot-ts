@@ -401,6 +401,7 @@ async function runNyseMarketCloseRecap(
     logger,
   }, {
     date,
+    requireTickerFacts: true,
   });
   if (undefined === recap) {
     return;

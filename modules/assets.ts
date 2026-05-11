@@ -33,6 +33,11 @@ function normalizeMarketHoursProfile(marketHours: string): MarketHoursProfile | 
   return undefined;
 }
 
+function loadAssetObjects(type: string): unknown[] {
+  const yamlObjects = yaml.load(fs.readFileSync(`${directory}/${type}${fileExtension}`, "utf-8"));
+  return Array.isArray(yamlObjects) ? yamlObjects : [];
+}
+
 class BaseAsset {
   private _downloadFailed = false;
   private _name = "";
@@ -580,8 +585,7 @@ export function getAssets(type: string): Promise<Asset[]>;
 export async function getAssets(type: string): Promise<Asset[]> {
   try {
     const newAssets: Asset[] = [];
-    const yamlObjects = yaml.load(fs.readFileSync(`${directory}/${type}${fileExtension}`, "utf-8"));
-    const jsonObjects = Array.isArray(yamlObjects) ? yamlObjects : [];
+    const jsonObjects = loadAssetObjects(type);
     for (const jsonObject of jsonObjects) {
       switch (type) {
         case "image": {
@@ -670,6 +674,20 @@ export async function getAssets(type: string): Promise<Asset[]> {
     logger.log(
       "error",
       `Error creating assets: ${error}`,
+    );
+
+    return [];
+  }
+}
+
+export function getMarketDataAssetConfigs(): MarketDataAsset[] {
+  try {
+    return loadAssetObjects("marketdata")
+      .map(jsonObject => plainToInstance(MarketDataAsset, jsonObject));
+  } catch (error: unknown) {
+    logger.log(
+      "error",
+      `Error creating market data asset configs: ${error}`,
     );
 
     return [];
