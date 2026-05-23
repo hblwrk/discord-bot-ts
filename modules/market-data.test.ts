@@ -1,4 +1,5 @@
 import {beforeEach, describe, expect, test, vi} from "vitest";
+import {clearMarketDataSnapshots, getMarketDataSnapshots} from "./market-data-snapshots.ts";
 import {
   advanceFakeTime,
   buildPresencePayload,
@@ -26,6 +27,7 @@ describe("updateMarketData", () => {
     clientInstances.length = 0;
     websocketInstances.length = 0;
     queuedClientIds.length = 0;
+    clearMarketDataSnapshots();
     mockReadSecret.mockReturnValue("guild-id");
   });
 
@@ -481,6 +483,47 @@ describe("updateMarketData", () => {
     expect(clientInstances[0]!.client.user.setPresence).toHaveBeenLastCalledWith(
       buildPresencePayload("+54.20 (0.22%)", "online"),
     );
+  });
+
+  test("records market-close snapshots from the configured futures stream", async () => {
+    queuedClientIds.push("client-1");
+    mockGetAssets.mockResolvedValue([
+      {
+        botToken: "token-1",
+        botName: "S&P500",
+        botClientId: "client-1",
+        id: 1175153,
+        name: "es",
+        decimals: 2,
+        order: 0,
+        suffix: "",
+        unit: "PCT",
+        lastUpdate: 0,
+      },
+    ]);
+
+    await updateMarketData();
+    clientInstances[0]!.handlers.get("clientReady")();
+
+    const wsClient = websocketInstances[0]!;
+    const messageHandler = wsClient.handlers.get("message");
+    messageHandler({
+      data: `a${JSON.stringify([{
+        message: "pid-1175153::{\"pid\":\"1175153\",\"last_numeric\":6852.3,\"pc\":\"+9.1\",\"pcp\":\"+0.13%\"}",
+      }])}`,
+    });
+    await flushAsyncWork();
+
+    expect(getMarketDataSnapshots()).toEqual([
+      expect.objectContaining({
+        lastNumeric: 6852.3,
+        marketDataPid: 1175153,
+        marketDataSource: "investing",
+        percentageChange: 0.13,
+        priceChange: 9.1,
+        symbol: "ES",
+      }),
+    ]);
   });
 
   test("updates nickname and presence when websocket payload is wrapped as a JSON string", async () => {

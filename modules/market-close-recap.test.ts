@@ -4,6 +4,7 @@ import {
   findMarketOpenSentimentPollMessage,
   getMarketCloseRecap,
 } from "./market-close-recap.ts";
+import {clearMarketDataSnapshots, recordMarketDataSnapshot} from "./market-data-snapshots.ts";
 import {type MarketCloseTickerFact} from "./market-close-ticker-facts.ts";
 
 describe("market close recap", () => {
@@ -19,7 +20,7 @@ describe("market close recap", () => {
   });
   const validRecapJson = {
     sentimentTitle: "ruhiger Risikoappetit",
-    summaryMarkdown: "`SPX` schloss über dem Open. Der `VIX` fiel um `1,1 Punkte`.",
+    summaryMarkdown: "`ES` schloss über dem Open. Der `VIX` fiel um `1,1 Punkte`.",
     winningPollAnswer: "Risk-on",
   };
   const riskOnTickerFacts = [{
@@ -33,8 +34,8 @@ describe("market close recap", () => {
     openToCloseChange: 35,
     openToCloseChangePercent: 0.67,
     previousClose: 5200,
-    sourceSymbol: "^GSPC",
-    symbol: "SPX",
+    sourceSymbol: "marketdata:es#1175153",
+    symbol: "ES",
   }, {
     close: 18750,
     closeChange: 90,
@@ -46,7 +47,7 @@ describe("market close recap", () => {
     openToCloseChange: 140,
     openToCloseChangePercent: 0.75,
     previousClose: 18660,
-    sourceSymbol: "^NDX",
+    sourceSymbol: "marketdata:nq#1175151",
     symbol: "NQ",
   }, {
     close: 2095,
@@ -59,7 +60,7 @@ describe("market close recap", () => {
     openToCloseChange: 15,
     openToCloseChangePercent: 0.72,
     previousClose: 2080,
-    sourceSymbol: "^RUT",
+    sourceSymbol: "marketdata:rty#1174944",
     symbol: "RTY",
   }, {
     close: 17.1,
@@ -72,7 +73,7 @@ describe("market close recap", () => {
     openToCloseChange: -0.3,
     openToCloseChangePercent: -1.72,
     previousClose: 17.5,
-    sourceSymbol: "^VIX",
+    sourceSymbol: "marketdata:vix#8884",
     symbol: "VIX",
   }] satisfies MarketCloseTickerFact[];
   const weakTickerFacts = [{
@@ -86,8 +87,8 @@ describe("market close recap", () => {
     openToCloseChange: -90,
     openToCloseChangePercent: -1.73,
     previousClose: 5190,
-    sourceSymbol: "^GSPC",
-    symbol: "SPX",
+    sourceSymbol: "marketdata:es#1175153",
+    symbol: "ES",
   }, {
     close: 18280,
     closeChange: -180,
@@ -99,7 +100,7 @@ describe("market close recap", () => {
     openToCloseChange: -290,
     openToCloseChangePercent: -1.56,
     previousClose: 18460,
-    sourceSymbol: "^NDX",
+    sourceSymbol: "marketdata:nq#1175151",
     symbol: "NQ",
   }, {
     close: 2035,
@@ -112,7 +113,7 @@ describe("market close recap", () => {
     openToCloseChange: -35,
     openToCloseChangePercent: -1.69,
     previousClose: 2075,
-    sourceSymbol: "^RUT",
+    sourceSymbol: "marketdata:rty#1174944",
     symbol: "RTY",
   }, {
     close: 17.39,
@@ -125,7 +126,7 @@ describe("market close recap", () => {
     openToCloseChange: 0.01,
     openToCloseChangePercent: 0.06,
     previousClose: 17.38,
-    sourceSymbol: "^VIX",
+    sourceSymbol: "marketdata:vix#8884",
     symbol: "VIX",
   }] satisfies MarketCloseTickerFact[];
 
@@ -146,7 +147,7 @@ describe("market close recap", () => {
     });
   }
 
-  function createYahooChartResponse(
+  function createInvestingHistoryResponse(
     previousTimestamp: number,
     targetTimestamp: number,
     previousClose: number,
@@ -157,19 +158,12 @@ describe("market close recap", () => {
   ) {
     return {
       data: {
-        chart: {
-          result: [{
-            indicators: {
-              quote: [{
-                close: [previousClose, close],
-                high: [previousClose, high],
-                low: [previousClose, low],
-                open: [previousClose, open],
-              }],
-            },
-            timestamp: [previousTimestamp, targetTimestamp],
-          }],
-        },
+        c: [previousClose, close],
+        h: [previousClose, high],
+        l: [previousClose, low],
+        o: [previousClose, open],
+        s: "ok",
+        t: [previousTimestamp, targetTimestamp],
       },
     };
   }
@@ -189,6 +183,7 @@ describe("market close recap", () => {
 
   beforeEach(() => {
     vi.clearAllMocks();
+    clearMarketDataSnapshots();
     clearAiProviderState();
   });
 
@@ -218,7 +213,7 @@ describe("market close recap", () => {
               text: JSON.stringify({
                 sentimentTitle: "wildes Hin und Her mit bullischem Finish",
                 summaryMarkdown: [
-                  "`SPX` und `RTY` schlossen über dem Open, während `NQ` nur knapp behauptet war.",
+                  "`ES` und `RTY` schlossen über dem Open, während `NQ` nur knapp behauptet war.",
                   "Der `VIX` fiel von `19,2` auf `17,8` und damit um `1,4 Punkte`.",
                 ].join("\n"),
                 winningPollAnswer: "Chaos",
@@ -241,7 +236,7 @@ describe("market close recap", () => {
       allowedUserIds: ["123", "456"],
       content: expect.stringContaining("**Börsenschluss - Kurzüberblick**"),
     });
-    expect(recap?.content).toContain("**Börsenschluss - Kurzüberblick**\n`SPX`");
+    expect(recap?.content).toContain("**Börsenschluss - Kurzüberblick**\n`ES`");
     expect(recap?.content).not.toContain("**Börsenschluss - Kurzüberblick**\n\n");
     expect(recap?.content).toContain("Das heutige Sentiment war: **🎢 Chaos**");
     expect(recap?.content).toContain("<@123> <@456>");
@@ -286,10 +281,81 @@ describe("market close recap", () => {
     expect(recap?.content).toContain("Das heutige Sentiment war: **🟢 Risk-on**");
     const requestBody = postWithRetryFn.mock.calls[0]?.[1] as {contents?: {parts?: {text?: string}[]}[]};
     const prompt = requestBody.contents?.[0]?.parts?.[0]?.text ?? "";
-    expect(prompt).toContain("Verifizierte Ticker-Daten aus Daily-Bars fuer den Zieltag:");
-    expect(prompt).toContain("`SPX` (^GSPC); Open `5.190,00`; High `5.230,00`; Low `5.175,00`; Close `5.225,00`");
-    expect(prompt).toContain("Diese Ticker-Daten haben Vorrang vor News-Texten");
+    expect(prompt).toContain("Verifizierte Markt-Daten fuer den Zieltag aus denselben Market-Data-Bot-Symbolen:");
+    expect(prompt).toContain("`ES` (marketdata:es#1175153, Investing Daily-Bar); Open `5.190,00`; High `5.230,00`; Low `5.175,00`; Close `5.225,00`");
+    expect(prompt).toContain("Diese Bot-/Investing-Daten haben Vorrang vor News-Texten");
     expect(prompt).toContain("Behaupte keine Schlusskurs-Rekorde");
+  });
+
+  test("grounds the close recap prompt with the same market-data bot snapshots before external history", async () => {
+    const snapshotTime = new Date("2026-05-07T20:09:00Z");
+    recordMarketDataSnapshot({
+      botClientId: "client-es",
+      botName: "S&P500",
+      botToken: "token",
+      decimals: 2,
+      id: 1175153,
+      lastUpdate: 0,
+      name: "es",
+      order: 0,
+      suffix: "",
+      unit: "PCT",
+    }, 5225, 25, 0.48, "investing", snapshotTime);
+    recordMarketDataSnapshot({
+      botClientId: "client-nq",
+      botName: "Nasdaq 100",
+      botToken: "token",
+      decimals: 2,
+      id: 1175151,
+      lastUpdate: 0,
+      name: "nq",
+      order: 1,
+      suffix: "",
+      unit: "PCT",
+    }, 18750, 90, 0.48, "investing", snapshotTime);
+    recordMarketDataSnapshot({
+      botClientId: "client-rty",
+      botName: "Russel 2000",
+      botToken: "token",
+      decimals: 2,
+      id: 1174944,
+      lastUpdate: 0,
+      name: "rty",
+      order: 2,
+      suffix: "",
+      unit: "PCT",
+    }, 2095, 15, 0.72, "investing", snapshotTime);
+    recordMarketDataSnapshot({
+      botClientId: "client-vix",
+      botName: "S&P500 VIX",
+      botToken: "token",
+      decimals: 2,
+      id: 8884,
+      lastUpdate: 0,
+      name: "vix",
+      order: 3,
+      suffix: "",
+      unit: "PTS",
+    }, 17.1, -0.4, -2.29, "investing", snapshotTime);
+    const getWithRetryFn = vi.fn();
+    const postWithRetryFn = createPostWithRecap();
+
+    await getMarketCloseRecap(undefined, {
+      getWithRetryFn,
+      logger,
+      postWithRetryFn,
+      readSecretFn,
+    }, {
+      date: new Date("2026-05-07T20:10:00Z"),
+      requireTickerFacts: true,
+    });
+
+    expect(getWithRetryFn).not.toHaveBeenCalled();
+    const requestBody = postWithRetryFn.mock.calls[0]?.[1] as {contents?: {parts?: {text?: string}[]}[]};
+    const prompt = requestBody.contents?.[0]?.parts?.[0]?.text ?? "";
+    expect(prompt).toContain("`ES` (marketdata:es#1175153, investing; Aktualisiert `20:09:00`); Stand `5.225,00`; Referenz `5.200,00`; Bot-Veraenderung `+0,48%`");
+    expect(prompt).toContain("`VIX` (marketdata:vix#8884, investing; Aktualisiert `20:09:00`); Stand `17,10`; Referenz `17,50`; Bot-Veraenderung `-0,40 Punkte`");
+    expect(prompt).toContain("Erwähne nicht die Cash-/ETF-Pendants `SPX`, `SPY`, `NDX`, `RUT`, `QQQ` oder `IWM`.");
   });
 
   test("loads daily ticker bars before asking the AI provider", async () => {
@@ -297,10 +363,10 @@ describe("market close recap", () => {
     const previousTimestamp = Date.parse("2026-05-06T13:30:00Z") / 1000;
     const targetTimestamp = Date.parse("2026-05-07T13:30:00Z") / 1000;
     const getWithRetryFn = vi.fn()
-      .mockResolvedValueOnce(createYahooChartResponse(previousTimestamp, targetTimestamp, 5200, 5190, 5230, 5175, 5225))
-      .mockResolvedValueOnce(createYahooChartResponse(previousTimestamp, targetTimestamp, 18660, 18610, 18780, 18550, 18750))
-      .mockResolvedValueOnce(createYahooChartResponse(previousTimestamp, targetTimestamp, 2080, 2080, 2100, 2070, 2095))
-      .mockResolvedValueOnce(createYahooChartResponse(previousTimestamp, targetTimestamp, 17.5, 17.4, 17.7, 16.9, 17.1));
+      .mockResolvedValueOnce(createInvestingHistoryResponse(previousTimestamp, targetTimestamp, 5200, 5190, 5230, 5175, 5225))
+      .mockResolvedValueOnce(createInvestingHistoryResponse(previousTimestamp, targetTimestamp, 18660, 18610, 18780, 18550, 18750))
+      .mockResolvedValueOnce(createInvestingHistoryResponse(previousTimestamp, targetTimestamp, 2080, 2080, 2100, 2070, 2095))
+      .mockResolvedValueOnce(createInvestingHistoryResponse(previousTimestamp, targetTimestamp, 17.5, 17.4, 17.7, 16.9, 17.1));
 
     await getMarketCloseRecap(undefined, {
       getWithRetryFn,
@@ -313,8 +379,12 @@ describe("market close recap", () => {
 
     expect(getWithRetryFn).toHaveBeenCalledTimes(4);
     expect(getWithRetryFn).toHaveBeenCalledWith(
-      expect.stringContaining("/%5EGSPC?"),
-      undefined,
+      expect.stringContaining("symbol=1175153"),
+      expect.objectContaining({
+        headers: expect.objectContaining({
+          Referer: "https://tvc-invdn-com.investing.com/",
+        }),
+      }),
       expect.objectContaining({
         maxAttempts: 2,
         timeoutMs: 8_000,
@@ -330,7 +400,7 @@ describe("market close recap", () => {
       postWithRetryFn: createPostWithRecap({
         sentimentTitle: "breiter Risikoappetit bis zum Schluss",
         summaryMarkdown: [
-          "`SPX` und `NQ` zogen bis zum regulären Close auf neue Hochs, `RTY` lief mit.",
+          "`ES` und `NQ` zogen bis zum regulären Close auf neue Hochs, `RTY` lief mit.",
           "Der `VIX` stand praktisch seitwärts bei `17,39` und änderte sich um `+0,01 Punkte`.",
         ].join("\n"),
         winningPollAnswer: "Risk-on",
@@ -581,7 +651,7 @@ describe("market close recap", () => {
   test("rejects recaps that quote VIX in percent", async () => {
     const postWithRetryFn = createPostWithRecap({
       sentimentTitle: "risk-off",
-      summaryMarkdown: "`SPX` fiel vom Open. Der `VIX` stieg um `8%`.",
+      summaryMarkdown: "`ES` fiel vom Open. Der `VIX` stieg um `8%`.",
       winningPollAnswer: "Risk-off",
     });
 
@@ -638,21 +708,21 @@ describe("market close recap", () => {
     const providerMentionRecap = await getMarketCloseRecap(undefined, {
       logger,
       postWithRetryFn: createPostWithRecap({
-        summaryMarkdown: "Gemini sagt: `SPX` war fest und der `VIX` fiel um `1 Punkt`.",
+        summaryMarkdown: "Gemini sagt: `ES` war fest und der `VIX` fiel um `1 Punkt`.",
       }),
       readSecretFn,
     });
     const gptMentionRecap = await getMarketCloseRecap(undefined, {
       logger,
       postWithRetryFn: createPostWithRecap({
-        summaryMarkdown: "GPT sagt: `SPX` war fest und der `VIX` fiel um `1 Punkt`.",
+        summaryMarkdown: "GPT sagt: `ES` war fest und der `VIX` fiel um `1 Punkt`.",
       }),
       readSecretFn,
     });
     const forbiddenEtfRecap = await getMarketCloseRecap(undefined, {
       logger,
       postWithRetryFn: createPostWithRecap({
-        summaryMarkdown: "`SPX` und `QQQ` waren fest, der `VIX` fiel um `1 Punkt`.",
+        summaryMarkdown: "`ES` und `SPX` waren fest, der `VIX` fiel um `1 Punkt`.",
       }),
       readSecretFn,
     });
@@ -666,7 +736,7 @@ describe("market close recap", () => {
     const missingVixRecap = await getMarketCloseRecap(undefined, {
       logger,
       postWithRetryFn: createPostWithRecap({
-        summaryMarkdown: "`SPX` und `NQ` erholten sich.",
+        summaryMarkdown: "`ES` und `NQ` erholten sich.",
       }),
       readSecretFn,
     });

@@ -26,6 +26,7 @@ import {
   type MarketDataAsset,
   type PendingClientStatusUpdate,
 } from "./market-data-types.ts";
+import {recordMarketDataSnapshot} from "./market-data-snapshots.ts";
 import {startTastytradeCryptoStream} from "./market-data-tastytrade.ts";
 
 const logger = getLogger();
@@ -232,6 +233,7 @@ function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAsse
       } else if ("tastytrade" === activeSourceByAssetKey.get(assetKey)) {
         return;
       }
+      recordMarketDataSnapshot(marketDataAsset, lastNumeric, priceChange, percentageChange, source);
 
       // Always show configured decimals
       const lastPrice = lastNumeric.toFixed(marketDataAsset.decimals);
