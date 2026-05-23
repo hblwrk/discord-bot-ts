@@ -542,6 +542,13 @@ export type Asset = CalendarReminderAsset
   | MarketDataAsset
   | PaywallAsset
   | RoleAsset;
+export type AssetPromptReference = {
+  name: string;
+  response?: string | undefined;
+  title: string;
+  triggers: string[];
+  type: "image" | "text";
+};
 
 async function populateDracoonAsset(type: string, asset: ImageAsset | UserQuoteAsset): Promise<void> {
   if (false === Object.hasOwn(asset, "_location") || "dracoon" !== asset.location) {
@@ -703,8 +710,52 @@ export function getMarketDataAssetConfigs(): MarketDataAsset[] {
   }
 }
 
+export function getAssetPromptReferences(types: ("image" | "text")[] = ["image", "text"]): AssetPromptReference[] {
+  const references: AssetPromptReference[] = [];
+  for (const type of types) {
+    try {
+      references.push(...loadAssetObjects(type)
+        .filter(isRecord)
+        .map(jsonObject => getAssetPromptReference(type, jsonObject)));
+    } catch (error: unknown) {
+      logger.log(
+        "warn",
+        `Error loading ${type} asset prompt references: ${error}`,
+      );
+    }
+  }
+
+  return references;
+}
+
+function getAssetPromptReference(type: "image" | "text", jsonObject: Record<string, unknown>): AssetPromptReference {
+  return {
+    name: getOptionalString(jsonObject["name"]) ?? getOptionalString(jsonObject["fileName"]) ?? "unknown",
+    response: "text" === type ? getOptionalString(jsonObject["response"]) : getOptionalString(jsonObject["text"]),
+    title: getOptionalString(jsonObject["title"]) ?? "",
+    triggers: getStringArray(jsonObject["trigger"]),
+    type,
+  };
+}
+
+function getStringArray(value: unknown): string[] {
+  if (Array.isArray(value)) {
+    return value.filter((item): item is string => "string" === typeof item);
+  }
+
+  return "string" === typeof value ? [value] : [];
+}
+
+function getOptionalString(value: unknown): string | undefined {
+  return "string" === typeof value && "" !== value.trim() ? value.trim() : undefined;
+}
+
 function getAssetLogName(asset: {botName?: string; name?: string}): string {
   return asset.name || asset.botName || "unknown";
+}
+
+function isRecord(value: unknown): value is Record<string, unknown> {
+  return "object" === typeof value && null !== value && false === Array.isArray(value);
 }
 
 export function getAssetByName<T extends {name: string}>(name: string, assets: T[]): T | undefined {

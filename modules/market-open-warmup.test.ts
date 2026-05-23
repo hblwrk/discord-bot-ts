@@ -33,6 +33,30 @@ describe("market open warmup", () => {
       callAiProviderJsonFn,
       logger,
     }, {
+      assetPromptReferences: [{
+        name: "stoploss",
+        title: "Stop loss...",
+        triggers: ["stoploss"],
+        type: "image",
+      }, {
+        name: "eingepreist",
+        response: "Alles, was du dir vorstellen kannst, ist bereits eingepreist.",
+        title: "Eingepreist",
+        triggers: ["eingepreist"],
+        type: "text",
+      }, {
+        name: "mittagsessen",
+        response: "Heute gibt es Suppe.",
+        title: "Nicht Trading",
+        triggers: ["suppe"],
+        type: "text",
+      }, {
+        name: "margin-long",
+        response: "Margin ".repeat(30),
+        title: "Margin mit sehr langem Text",
+        triggers: ["margin"],
+        type: "text",
+      }],
       referenceTime: new Date("2026-05-07T08:05:00Z"),
     });
 
@@ -53,8 +77,35 @@ describe("market open warmup", () => {
     );
     const prompt = callAiProviderJsonFn.mock.calls[0]?.[0] ?? "";
     expect(prompt).toContain("`ES`: `+0,48%` bei `5.225,00`");
+    expect(prompt).toContain("Marktampel: `Gelb`");
+    expect(prompt).toContain("Community-Tropen aus vorhandenen Bot-Texten und Meme-Assets");
+    expect(prompt).toContain("image-Asset stoploss - Stop loss...");
+    expect(prompt).toContain("text-Asset eingepreist - Eingepreist");
+    expect(prompt).toContain("text-Asset margin-long - Margin mit sehr langem Text");
+    expect(prompt).toContain("Text-Trope: Margin Margin");
+    expect(prompt).toContain("...");
+    expect(prompt).not.toContain("Heute gibt es Suppe");
     expect(prompt).toContain("Keine Anlageberatung");
+    expect(prompt).toContain("Nutze hoechstens einen Community-Trope");
     expect(prompt).toContain("Return only JSON");
+  });
+
+  test("loads image and text asset style references by default", async () => {
+    const callAiProviderJsonFn = vi.fn().mockResolvedValue(JSON.stringify({
+      content: "`04:00 US/Eastern` ist offen. Marktampel `Gelb`, Casino offen, bitte erst denken und dann klicken.",
+    }));
+
+    await getPremarketWarmupMessage({
+      callAiProviderJsonFn,
+      logger,
+    }, {
+      referenceTime: new Date("2026-05-07T08:05:00Z"),
+    });
+
+    const prompt = callAiProviderJsonFn.mock.calls[0]?.[0] ?? "";
+    expect(prompt).toContain("Community-Tropen aus vorhandenen Bot-Texten und Meme-Assets");
+    expect(prompt).toContain("image-Asset");
+    expect(prompt).toContain("text-Asset");
   });
 
   test("falls back to a deterministic warmup when AI is unavailable", async () => {
@@ -64,10 +115,128 @@ describe("market open warmup", () => {
       callAiProviderJsonFn,
       logger,
     }, {
+      assetPromptReferences: [],
       referenceTime: new Date("2026-05-07T08:05:00Z"),
     });
 
-    expect(message).toBe("**Pre-Market Warmup**\nDer US-Aktien-Premarket ist seit `04:00 US/Eastern` offen. Spreads sind wach, das Ego hoffentlich noch im Bett. Erst Plan, dann Mausklick.");
+    expect(message).toBe("**Pre-Market Warmup**\nDer US-Aktien-Premarket ist seit `04:00 US/Eastern` offen. Die Marktampel steht auf `Gelb`. Casino ist offen, Spreads sind wach, das Ego hoffentlich noch im Bett. Erst Plan, dann Mausklick.");
+  });
+
+  test("falls back with the fact-derived Marktampel", async () => {
+    recordMarketDataSnapshot({
+      botClientId: "client-es",
+      botName: "S&P500",
+      botToken: "token",
+      decimals: 2,
+      id: 1175153,
+      lastUpdate: 0,
+      name: "es",
+      order: 0,
+      suffix: "",
+      unit: "PCT",
+    }, 5225, 25, 0.48, "investing", new Date("2026-05-07T08:04:00Z"));
+    recordMarketDataSnapshot({
+      botClientId: "client-nq",
+      botName: "Nasdaq",
+      botToken: "token",
+      decimals: 2,
+      id: 1175151,
+      lastUpdate: 0,
+      name: "nq",
+      order: 1,
+      suffix: "",
+      unit: "PCT",
+    }, 18750, 90, 0.48, "investing", new Date("2026-05-07T08:04:00Z"));
+    const callAiProviderJsonFn = vi.fn().mockResolvedValue(null);
+
+    const message = await getPremarketWarmupMessage({
+      callAiProviderJsonFn,
+      logger,
+    }, {
+      assetPromptReferences: [],
+      referenceTime: new Date("2026-05-07T08:05:00Z"),
+    });
+
+    expect(message).toContain("Die Marktampel steht auf `Gruen`.");
+    expect(message).toContain("Casino ist offen");
+  });
+
+  test("falls back with a red Marktampel when futures and VIX are stressed", async () => {
+    recordMarketDataSnapshot({
+      botClientId: "client-es",
+      botName: "S&P500",
+      botToken: "token",
+      decimals: 2,
+      id: 1175153,
+      lastUpdate: 0,
+      name: "es",
+      order: 0,
+      suffix: "",
+      unit: "PCT",
+    }, 5225, -28, -0.54, "investing", new Date("2026-05-07T08:04:00Z"));
+    recordMarketDataSnapshot({
+      botClientId: "client-nq",
+      botName: "Nasdaq",
+      botToken: "token",
+      decimals: 2,
+      id: 1175151,
+      lastUpdate: 0,
+      name: "nq",
+      order: 1,
+      suffix: "",
+      unit: "PCT",
+    }, 18750, -120, -0.64, "investing", new Date("2026-05-07T08:04:00Z"));
+    recordMarketDataSnapshot({
+      botClientId: "client-vix",
+      botName: "VIX",
+      botToken: "token",
+      decimals: 2,
+      id: 44336,
+      lastUpdate: 0,
+      name: "vix",
+      order: 3,
+      suffix: "",
+      unit: "POINTS",
+    }, 18.4, 0.5, 2.79, "investing", new Date("2026-05-07T08:04:00Z"));
+    const callAiProviderJsonFn = vi.fn().mockResolvedValue(null);
+
+    const message = await getPremarketWarmupMessage({
+      callAiProviderJsonFn,
+      logger,
+    }, {
+      assetPromptReferences: [],
+      referenceTime: new Date("2026-05-07T08:05:00Z"),
+    });
+
+    expect(message).toContain("`ES -0,54%`");
+    expect(message).toContain("Die Marktampel steht auf `Rot`.");
+  });
+
+  test("formats VIX snapshot facts for the warmup fallback", async () => {
+    recordMarketDataSnapshot({
+      botClientId: "client-vix",
+      botName: "VIX",
+      botToken: "token",
+      decimals: 2,
+      id: 44336,
+      lastUpdate: 0,
+      name: "vix",
+      order: 3,
+      suffix: "",
+      unit: "POINTS",
+    }, 16.2, -0.5, -2.99, "investing", new Date("2026-05-07T08:04:00Z"));
+    const callAiProviderJsonFn = vi.fn().mockResolvedValue(null);
+
+    const message = await getPremarketWarmupMessage({
+      callAiProviderJsonFn,
+      logger,
+    }, {
+      assetPromptReferences: [],
+      referenceTime: new Date("2026-05-07T08:05:00Z"),
+    });
+
+    expect(message).toContain("`VIX -0,50 Punkte` steht bei `16,20`.");
+    expect(message).toContain("Die Marktampel steht auf `Gelb`.");
   });
 
   test("rejects AI output that is not grounded in the supplied facts", async () => {
@@ -79,6 +248,7 @@ describe("market open warmup", () => {
       callAiProviderJsonFn,
       logger,
     }, {
+      assetPromptReferences: [],
       referenceTime: new Date("2026-05-07T08:05:00Z"),
     });
 
@@ -98,6 +268,7 @@ describe("market open warmup", () => {
       callAiProviderJsonFn,
       logger,
     }, {
+      assetPromptReferences: [],
       referenceTime: new Date("2026-05-07T08:05:00Z"),
     });
 
@@ -105,6 +276,26 @@ describe("market open warmup", () => {
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
       "AI premarket warmup rejected: content looked like trading advice.",
+    );
+  });
+
+  test("rejects AI output that leaks asset implementation details", async () => {
+    const callAiProviderJsonFn = vi.fn().mockResolvedValue(JSON.stringify({
+      content: "`04:00 US/Eastern` und die Asset-Liste sagt Casino.",
+    }));
+
+    const message = await getPremarketWarmupMessage({
+      callAiProviderJsonFn,
+      logger,
+    }, {
+      assetPromptReferences: [],
+      referenceTime: new Date("2026-05-07T08:05:00Z"),
+    });
+
+    expect(message).not.toContain("Asset-Liste");
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "AI premarket warmup rejected: content mentioned implementation details.",
     );
   });
 });

@@ -35,7 +35,15 @@ vi.mock("./logging.ts", () => ({
   }),
 }));
 
-import {EmojiAsset, getAssetByName, getAssets, getGenericAssets, getMarketDataAssetConfigs, MarketDataAsset} from "./assets.ts";
+import {
+  EmojiAsset,
+  getAssetByName,
+  getAssetPromptReferences,
+  getAssets,
+  getGenericAssets,
+  getMarketDataAssetConfigs,
+  MarketDataAsset,
+} from "./assets.ts";
 
 describe("getAssets", () => {
   beforeEach(() => {
@@ -288,6 +296,114 @@ describe("getAssets", () => {
     expect(assets[0]?.name).toBe("es");
     expect(assets[0]?.botName).toBe("S&P500");
     expect(readSecretMock).not.toHaveBeenCalled();
+  });
+
+  test("loads lightweight prompt references from image and text asset configs", () => {
+    const yamlObjectsByType: Record<string, unknown[]> = {
+      image: [{
+        fileName: "stoploss.png",
+        name: "stoploss",
+        title: "Stop loss...",
+        trigger: ["stoploss"],
+      }],
+      text: [{
+        name: "eingepreist",
+        response: "Alles ist eingepreist.",
+        title: "Eingepreist",
+        trigger: "eingepreist",
+      }],
+    };
+    readFileSyncMock.mockImplementation(path => String(path));
+    yamlLoadMock.mockImplementation(filePath => {
+      const match = /assets\/(.+)\.yaml/.exec(String(filePath));
+      const type = match?.[1] ?? "";
+      return yamlObjectsByType[type] ?? [];
+    });
+
+    const references = getAssetPromptReferences();
+
+    expect(references).toEqual([{
+      name: "stoploss",
+      response: undefined,
+      title: "Stop loss...",
+      triggers: ["stoploss"],
+      type: "image",
+    }, {
+      name: "eingepreist",
+      response: "Alles ist eingepreist.",
+      title: "Eingepreist",
+      triggers: ["eingepreist"],
+      type: "text",
+    }]);
+  });
+
+  test("normalizes loose prompt reference config without resolving Dracoon content", () => {
+    const yamlObjectsByType: Record<string, unknown[]> = {
+      image: [
+        null,
+        {
+          fileName: "margin.png",
+          text: "Margin meme caption",
+          title: " ",
+          trigger: ["margin", 123],
+        },
+      ],
+      text: [{
+        response: " ",
+        title: " ",
+        trigger: false,
+      }],
+    };
+    readFileSyncMock.mockImplementation(path => String(path));
+    yamlLoadMock.mockImplementation(filePath => {
+      const match = /assets\/(.+)\.yaml/.exec(String(filePath));
+      const type = match?.[1] ?? "";
+      return yamlObjectsByType[type] ?? [];
+    });
+
+    const references = getAssetPromptReferences();
+
+    expect(references).toEqual([{
+      name: "margin.png",
+      response: "Margin meme caption",
+      title: "",
+      triggers: ["margin"],
+      type: "image",
+    }, {
+      name: "unknown",
+      response: undefined,
+      title: "",
+      triggers: [],
+      type: "text",
+    }]);
+    expect(getFromDracoonMock).not.toHaveBeenCalled();
+  });
+
+  test("skips unavailable prompt reference files independently", () => {
+    readFileSyncMock.mockImplementation(path => {
+      if (String(path).includes("image.yaml")) {
+        throw new Error("missing image refs");
+      }
+
+      return String(path);
+    });
+    yamlLoadMock.mockReturnValue([{
+      name: "eingepreist",
+      response: "Alles ist eingepreist.",
+      title: "Eingepreist",
+      trigger: ["eingepreist"],
+    }]);
+
+    const references = getAssetPromptReferences();
+
+    expect(references).toEqual([expect.objectContaining({
+      name: "eingepreist",
+      type: "text",
+    })]);
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.stringContaining("Error loading image asset prompt references"),
+    );
   });
 
   test("returns empty market-data configs when config loading fails", () => {
