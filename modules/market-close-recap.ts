@@ -24,6 +24,7 @@ export type MarketCloseRecapOptions = {
   date?: Date | undefined;
   maxFetchedWinners?: number | undefined;
   maxMentionedWinners?: number | undefined;
+  referenceTime?: Date | undefined;
   requireTickerFacts?: boolean | undefined;
   tickerFacts?: MarketCloseTickerFact[] | null | undefined;
 };
@@ -229,6 +230,8 @@ async function getTickerFacts(
   return loadMarketCloseTickerFacts(date, {
     getWithRetryFn: dependencies.getWithRetryFn,
     logger: dependencies.logger,
+  }, {
+    referenceTime: options.referenceTime,
   });
 }
 

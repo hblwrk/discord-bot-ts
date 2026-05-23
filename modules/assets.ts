@@ -629,8 +629,17 @@ export async function getAssets(type: string): Promise<Asset[]> {
 
         case "marketdata": {
           const newAsset = plainToInstance(MarketDataAsset, jsonObject);
-          newAsset.botToken = readSecret(newAsset.botTokenReference);
-          newAsset.botClientId = readSecret(newAsset.botClientIdReference);
+          try {
+            newAsset.botToken = readSecret(newAsset.botTokenReference);
+            newAsset.botClientId = readSecret(newAsset.botClientIdReference);
+          } catch (error: unknown) {
+            logger.log(
+              "warn",
+              `Skipping market data asset "${getAssetLogName(newAsset)}": ${error}`,
+            );
+            break;
+          }
+
           newAssets.push(newAsset);
           break;
         }
@@ -692,6 +701,10 @@ export function getMarketDataAssetConfigs(): MarketDataAsset[] {
 
     return [];
   }
+}
+
+function getAssetLogName(asset: {botName?: string; name?: string}): string {
+  return asset.name || asset.botName || "unknown";
 }
 
 export function getAssetByName<T extends {name: string}>(name: string, assets: T[]): T | undefined {

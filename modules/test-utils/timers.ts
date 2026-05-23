@@ -41,6 +41,7 @@ const getEarningsMessagesMock = vi.fn();
 const loadEarningsWhispersWeeklyTickersMock = vi.fn();
 const findMarketOpenSentimentPollMessageMock = vi.fn();
 const getMarketCloseRecapMock = vi.fn();
+const getPremarketWarmupMessageMock = vi.fn();
 const getMncMock = vi.fn();
 const getMncSummaryMock = vi.fn();
 const loggerMock = {
@@ -111,6 +112,10 @@ vi.mock("../mnc-downloader.ts", () => ({
 vi.mock("../market-close-recap.ts", () => ({
   findMarketOpenSentimentPollMessage: (...args: unknown[]) => findMarketOpenSentimentPollMessageMock(...args),
   getMarketCloseRecap: (...args: unknown[]) => getMarketCloseRecapMock(...args),
+}));
+
+vi.mock("../market-open-warmup.ts", () => ({
+  getPremarketWarmupMessage: (...args: unknown[]) => getPremarketWarmupMessageMock(...args),
 }));
 
 vi.mock("../mnc-summary.ts", () => ({
@@ -254,6 +259,7 @@ export function resetTimerMocks() {
   loadEarningsWhispersWeeklyTickersMock.mockResolvedValue(new Set());
   findMarketOpenSentimentPollMessageMock.mockResolvedValue(undefined);
   getMarketCloseRecapMock.mockResolvedValue(undefined);
+  getPremarketWarmupMessageMock.mockResolvedValue("**Pre-Market Warmup**\n`ES +0,42%` und alle tun wieder normal.");
   getCalendarEventsMock.mockResolvedValue([]);
   getCalendarEventsResultMock.mockResolvedValue({
     events: [],
@@ -292,6 +298,7 @@ export {
   getMncMock,
   getMarketCloseRecapMock,
   getMncSummaryMock,
+  getPremarketWarmupMessageMock,
   getScheduledDateJobs,
   getScheduledJobByTime,
   isHolidayMock,

@@ -168,6 +168,35 @@ describe("market close recap", () => {
     };
   }
 
+  function createYahooHistoryResponse(
+    previousTimestamp: number,
+    targetTimestamp: number,
+    previousClose: number,
+    open: number,
+    high: number,
+    low: number,
+    close: number,
+  ) {
+    return {
+      data: {
+        chart: {
+          error: null,
+          result: [{
+            indicators: {
+              quote: [{
+                close: [previousClose, close],
+                high: [previousClose, high],
+                low: [previousClose, low],
+                open: [previousClose, open],
+              }],
+            },
+            timestamp: [previousTimestamp, targetTimestamp],
+          }],
+        },
+      },
+    };
+  }
+
   function createPollMessage(answerText: string, fetch: ReturnType<typeof vi.fn>) {
     return {
       poll: {
@@ -346,7 +375,8 @@ describe("market close recap", () => {
       postWithRetryFn,
       readSecretFn,
     }, {
-      date: new Date("2026-05-07T20:10:00Z"),
+      date: new Date("2026-05-07T04:00:00Z"),
+      referenceTime: new Date("2026-05-07T20:10:00Z"),
       requireTickerFacts: true,
     });
 
@@ -392,6 +422,38 @@ describe("market close recap", () => {
     );
     const requestBody = postWithRetryFn.mock.calls[0]?.[1] as {contents?: {parts?: {text?: string}[]}[]};
     expect(requestBody.contents?.[0]?.parts?.[0]?.text).toContain("Close-to-close `+0,48%`");
+  });
+
+  test("falls back to Yahoo daily ticker bars when Investing.com blocks history requests", async () => {
+    const postWithRetryFn = createPostWithRecap();
+    const previousTimestamp = Date.parse("2026-05-06T13:30:00Z") / 1000;
+    const targetTimestamp = Date.parse("2026-05-07T13:30:00Z") / 1000;
+    const getWithRetryFn = vi.fn()
+      .mockRejectedValueOnce(new Error("investing 403"))
+      .mockRejectedValueOnce(new Error("investing 403"))
+      .mockRejectedValueOnce(new Error("investing 403"))
+      .mockRejectedValueOnce(new Error("investing 403"))
+      .mockResolvedValueOnce(createYahooHistoryResponse(previousTimestamp, targetTimestamp, 5200, 5190, 5230, 5175, 5225))
+      .mockResolvedValueOnce(createYahooHistoryResponse(previousTimestamp, targetTimestamp, 18660, 18610, 18780, 18550, 18750))
+      .mockResolvedValueOnce(createYahooHistoryResponse(previousTimestamp, targetTimestamp, 2080, 2080, 2100, 2070, 2095))
+      .mockResolvedValueOnce(createYahooHistoryResponse(previousTimestamp, targetTimestamp, 17.5, 17.4, 17.7, 16.9, 17.1));
+
+    const recap = await getMarketCloseRecap(undefined, {
+      getWithRetryFn,
+      logger,
+      postWithRetryFn,
+      readSecretFn,
+    }, {
+      date: new Date("2026-05-07T20:15:00Z"),
+      requireTickerFacts: true,
+    });
+
+    expect(recap?.content).toContain("Börsenschluss");
+    expect(getWithRetryFn).toHaveBeenCalledTimes(8);
+    const requestBody = postWithRetryFn.mock.calls[0]?.[1] as {contents?: {parts?: {text?: string}[]}[]};
+    const prompt = requestBody.contents?.[0]?.parts?.[0]?.text ?? "";
+    expect(prompt).toContain("`ES` (yahoo:ES=F, Yahoo Daily-Bar)");
+    expect(prompt).toContain("`VIX` (yahoo:^VIX, Yahoo Daily-Bar)");
   });
 
   test("rejects stale bullish close-high claims that contradict ticker facts", async () => {

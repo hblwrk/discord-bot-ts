@@ -212,6 +212,41 @@ describe("getAssets", () => {
     expect(paywallAsset?.subdomainWildcard).toBe(true);
   });
 
+  test("skips market-data assets with missing secrets without dropping valid assets", async () => {
+    yamlLoadMock.mockReturnValue([{
+      botTokenReference: "es_token_ref",
+      botClientIdReference: "es_client_ref",
+      botName: "S&P500",
+      name: "es",
+    }, {
+      botTokenReference: "cl_token_ref",
+      botClientIdReference: "cl_client_ref",
+      botName: "CL/USD",
+      name: "cl",
+    }]);
+    readSecretMock.mockImplementation(secretName => {
+      if ("es_token_ref" === secretName) {
+        return "es-token";
+      }
+
+      if ("es_client_ref" === secretName) {
+        return "es-client-id";
+      }
+
+      throw new Error(`missing ${secretName}`);
+    });
+
+    const assets = await getAssets("marketdata");
+
+    expect(assets).toHaveLength(1);
+    expect(assets[0]?.name).toBe("es");
+    expect(assets[0]?.botToken).toBe("es-token");
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.stringContaining("Skipping market data asset \"cl\""),
+    );
+  });
+
   test("loads whatis assets through the DRACOON image path", async () => {
     yamlLoadMock.mockReturnValue([
       {

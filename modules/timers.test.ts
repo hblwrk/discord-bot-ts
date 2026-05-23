@@ -8,6 +8,7 @@ import {
   getMarketCloseRecapMock,
   getMncMock,
   getMncSummaryMock,
+  getPremarketWarmupMessageMock,
   getScheduledJobByTime,
   isHolidayMock,
   loggerMock,
@@ -34,7 +35,7 @@ describe("timers: NYSE and MNC", () => {
     startNyseTimers(client, "channel-id");
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
 
-    expect(scheduleJobMock).toHaveBeenCalledTimes(10);
+    expect(scheduleJobMock).toHaveBeenCalledTimes(11);
     expect(premarketJob.rule).toEqual(expect.objectContaining({
       hour: 4,
       minute: 0,
@@ -46,6 +47,38 @@ describe("timers: NYSE and MNC", () => {
 
     expect(send).toHaveBeenCalledWith(expect.stringContaining("Der Pre-market hat geöffnet"));
     expect(isHolidayMock).toHaveBeenCalledTimes(1);
+  });
+
+  test("startNyseTimers sends separate AI pre-market warmup after pre-market open", async () => {
+    const {client, send} = createClientWithChannel();
+
+    startNyseTimers(client, "channel-id");
+    const warmupJob = getScheduledJobByTime(4, 5, "US/Eastern");
+    await warmupJob.callback();
+    await flushAsyncJobs();
+
+    expect(getPremarketWarmupMessageMock).toHaveBeenCalledWith(expect.objectContaining({
+      logger: expect.any(Object),
+    }));
+    expect(send).toHaveBeenCalledWith({
+      allowedMentions: {
+        parse: [],
+      },
+      content: "**Pre-Market Warmup**\n`ES +0,42%` und alle tun wieder normal.",
+    });
+  });
+
+  test("startNyseTimers skips AI pre-market warmup on market holidays", async () => {
+    const {client, send} = createClientWithChannel();
+    isHolidayMock.mockReturnValue(true);
+
+    startNyseTimers(client, "channel-id");
+    const warmupJob = getScheduledJobByTime(4, 5, "US/Eastern");
+    await warmupJob.callback();
+    await flushAsyncJobs();
+
+    expect(getPremarketWarmupMessageMock).not.toHaveBeenCalled();
+    expect(send).not.toHaveBeenCalled();
   });
 
   test("startNyseTimers sends native opening sentiment poll and ends it two hours before regular close", async () => {

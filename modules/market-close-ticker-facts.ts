@@ -11,7 +11,7 @@ import {
 import {type MarketDataSource} from "./market-data-types.ts";
 
 export type MarketCloseTickerSymbol = MarketDataBotSymbol;
-export type MarketCloseTickerFactSource = "investing-daily-bar" | "market-data-bot";
+export type MarketCloseTickerFactSource = "investing-daily-bar" | "market-data-bot" | "yahoo-daily-bar";
 
 export type MarketCloseTickerFact = {
   close: number;
@@ -40,6 +40,9 @@ type MarketCloseTickerFactsDependencies = {
   getWithRetryFn?: typeof getWithRetry | undefined;
   logger: Logger;
 };
+type MarketCloseTickerFactsOptions = {
+  referenceTime?: Date | undefined;
+};
 
 type InvestingHistoryResponse = {
   c?: unknown;
@@ -57,22 +60,40 @@ type InvestingDailyBar = {
   low: number;
   open: number;
 };
+type YahooChartResponse = {
+  chart?: {
+    error?: unknown;
+    result?: unknown;
+  };
+};
+type YahooDailyBar = InvestingDailyBar;
 
 const usEasternTimezone = "US/Eastern";
 const investingTvcBaseUrl = "https://tvc6.investing.com";
+const yahooChartBaseUrl = "https://query1.finance.yahoo.com/v8/finance/chart";
 const marketDataSnapshotMaxAgeMs = 30 * 60_000;
 const requiredMarketCloseTickerSymbols = ["ES", "NQ", "RTY", "VIX"] satisfies MarketCloseTickerSymbol[];
+const yahooTickers = {
+  ES: "ES=F",
+  NQ: "NQ=F",
+  RTY: "RTY=F",
+  VIX: "^VIX",
+} satisfies Record<MarketCloseTickerSymbol, string>;
 const investingRequestHeaders = {
   "Content-Type": "application/json",
   Referer: "https://tvc-invdn-com.investing.com/",
   "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.5112.102 Safari/537.36",
 };
+const yahooRequestHeaders = {
+  "User-Agent": investingRequestHeaders["User-Agent"],
+};
 
 export async function loadMarketCloseTickerFacts(
   date: Date,
   dependencies: MarketCloseTickerFactsDependencies,
+  options: MarketCloseTickerFactsOptions = {},
 ): Promise<MarketCloseTickerFact[]> {
-  const snapshotFacts = loadMarketDataSnapshotFacts(date);
+  const snapshotFacts = loadMarketDataSnapshotFacts(date, options.referenceTime ?? date);
   if (true === hasRequiredMarketCloseTickerFacts(snapshotFacts)) {
     return snapshotFacts;
   }
@@ -90,7 +111,7 @@ export async function loadMarketCloseTickerFacts(
     return undefined !== symbol && false === factsBySymbol.has(symbol);
   });
   const historicalFacts = await Promise.all(
-    missingTickerAssets.map(asset => loadInvestingTickerFact(date, asset, dependencies)),
+    missingTickerAssets.map(asset => loadHistoricalTickerFact(date, asset, dependencies)),
   );
   for (const historicalFact of historicalFacts) {
     if (undefined !== historicalFact) {
@@ -146,11 +167,11 @@ export function getTickerFactValidationIssue(
   return undefined;
 }
 
-function loadMarketDataSnapshotFacts(date: Date): MarketCloseTickerFact[] {
+function loadMarketDataSnapshotFacts(date: Date, referenceTime: Date): MarketCloseTickerFact[] {
   const targetDate = moment(date).tz(usEasternTimezone).format("YYYY-MM-DD");
   return getMarketDataSnapshots({
     maxAgeMs: marketDataSnapshotMaxAgeMs,
-    referenceTime: date,
+    referenceTime,
   }).map(snapshot => getTickerFactFromSnapshot(snapshot, targetDate));
 }
 
@@ -266,6 +287,87 @@ async function loadInvestingTickerFact(
   };
 }
 
+async function loadHistoricalTickerFact(
+  date: Date,
+  asset: ConfiguredMarketDataAsset,
+  dependencies: MarketCloseTickerFactsDependencies,
+): Promise<MarketCloseTickerFact | undefined> {
+  const investingFact = await loadInvestingTickerFact(date, asset, dependencies);
+  return investingFact ?? await loadYahooTickerFact(date, asset, dependencies);
+}
+
+async function loadYahooTickerFact(
+  date: Date,
+  asset: ConfiguredMarketDataAsset,
+  dependencies: MarketCloseTickerFactsDependencies,
+): Promise<MarketCloseTickerFact | undefined> {
+  const symbol = getMarketDataBotSymbol(asset);
+  if (undefined === symbol || undefined === dependencies.getWithRetryFn) {
+    return undefined;
+  }
+
+  const sourceSymbol = yahooTickers[symbol];
+  const targetDate = moment(date).tz(usEasternTimezone).format("YYYY-MM-DD");
+  const requestStart = moment.tz(`${targetDate} 00:00`, "YYYY-MM-DD HH:mm", usEasternTimezone).subtract(10, "days");
+  const requestEnd = moment.tz(`${targetDate} 00:00`, "YYYY-MM-DD HH:mm", usEasternTimezone).add(2, "days");
+  const url = `${yahooChartBaseUrl}/${encodeURIComponent(sourceSymbol)}` +
+    `?period1=${requestStart.unix()}` +
+    `&period2=${requestEnd.unix()}` +
+    "&interval=1d" +
+    "&includePrePost=false";
+
+  const response = await dependencies.getWithRetryFn<YahooChartResponse>(url, {
+    headers: yahooRequestHeaders,
+  }, {
+    maxAttempts: 2,
+    timeoutMs: 8_000,
+  }).catch(error => {
+    dependencies.logger.log(
+      "warn",
+      `Could not load market close ticker facts for ${symbol} from Yahoo symbol ${sourceSymbol}: ${error}`,
+    );
+    return undefined;
+  });
+  if (undefined === response) {
+    return undefined;
+  }
+
+  const bars = parseYahooDailyBars(response.data);
+  const targetIndex = bars.findIndex(bar => bar.date === targetDate);
+  if (targetIndex <= 0) {
+    dependencies.logger.log(
+      "warn",
+      `Yahoo market close ticker facts for ${symbol} did not include ${targetDate} with a prior close.`,
+    );
+    return undefined;
+  }
+
+  const targetBar = bars[targetIndex];
+  const previousBar = bars[targetIndex - 1];
+  if (undefined === targetBar || undefined === previousBar) {
+    return undefined;
+  }
+
+  const closeChange = targetBar.close - previousBar.close;
+  const openToCloseChange = targetBar.close - targetBar.open;
+  return {
+    close: targetBar.close,
+    closeChange,
+    closeChangePercent: getPercentChange(closeChange, previousBar.close),
+    dataSource: "yahoo-daily-bar",
+    date: targetBar.date,
+    high: targetBar.high,
+    low: targetBar.low,
+    marketDataPid: asset.id,
+    open: targetBar.open,
+    openToCloseChange,
+    openToCloseChangePercent: getPercentChange(openToCloseChange, targetBar.open),
+    previousClose: previousBar.close,
+    sourceSymbol: `yahoo:${sourceSymbol}`,
+    symbol,
+  };
+}
+
 function parseInvestingDailyBars(data: InvestingHistoryResponse): InvestingDailyBar[] {
   if (false === isRecord(data) || "ok" !== data.s) {
     return [];
@@ -303,6 +405,49 @@ function parseInvestingDailyBars(data: InvestingHistoryResponse): InvestingDaily
   return bars;
 }
 
+function parseYahooDailyBars(data: YahooChartResponse): YahooDailyBar[] {
+  const result = getFirstYahooResult(data);
+  if (undefined === result) {
+    return [];
+  }
+
+  const timestamps = getNumberArray(result["timestamp"]);
+  const quote = getFirstYahooQuote(result);
+  if (undefined === quote) {
+    return [];
+  }
+
+  const opens = getNumberArray(quote["open"]);
+  const highs = getNumberArray(quote["high"]);
+  const lows = getNumberArray(quote["low"]);
+  const closes = getNumberArray(quote["close"]);
+  const bars: YahooDailyBar[] = [];
+  for (let index = 0; index < timestamps.length; index++) {
+    const timestamp = timestamps[index];
+    const open = opens[index];
+    const high = highs[index];
+    const low = lows[index];
+    const close = closes[index];
+    if (undefined === timestamp ||
+        undefined === open ||
+        undefined === high ||
+        undefined === low ||
+        undefined === close) {
+      continue;
+    }
+
+    bars.push({
+      close,
+      date: moment.unix(timestamp).tz(usEasternTimezone).format("YYYY-MM-DD"),
+      high,
+      low,
+      open,
+    });
+  }
+
+  return bars;
+}
+
 function formatTickerFactForPrompt(fact: MarketCloseTickerFact): string {
   if ("market-data-bot" === fact.dataSource) {
     const updatedAt = undefined === fact.updatedAt ? "" : `; Aktualisiert \`${formatTimestamp(fact.updatedAt)}\``;
@@ -314,8 +459,9 @@ function formatTickerFactForPrompt(fact: MarketCloseTickerFact): string {
     ].join("; ");
   }
 
+  const dailyBarSource = "yahoo-daily-bar" === fact.dataSource ? "Yahoo Daily-Bar" : "Investing Daily-Bar";
   const dailyFields = [
-    `- \`${fact.symbol}\` (${fact.sourceSymbol}, Investing Daily-Bar)`,
+    `- \`${fact.symbol}\` (${fact.sourceSymbol}, ${dailyBarSource})`,
     undefined === fact.open ? undefined : `Open \`${formatValue(fact.open)}\``,
     undefined === fact.high ? undefined : `High \`${formatValue(fact.high)}\``,
     undefined === fact.low ? undefined : `Low \`${formatValue(fact.low)}\``,
@@ -408,6 +554,34 @@ function getNumberArray(value: unknown): (number | undefined)[] {
   }
 
   return value.map(item => "number" === typeof item && Number.isFinite(item) ? item : undefined);
+}
+
+function getFirstYahooResult(data: YahooChartResponse): Record<string, unknown> | undefined {
+  const chart = data.chart;
+  if (false === isRecord(chart) || (undefined !== chart["error"] && null !== chart["error"])) {
+    return undefined;
+  }
+
+  const results = chart["result"];
+  if (false === Array.isArray(results)) {
+    return undefined;
+  }
+
+  return results.find(isRecord);
+}
+
+function getFirstYahooQuote(result: Record<string, unknown>): Record<string, unknown> | undefined {
+  const indicators = result["indicators"];
+  if (false === isRecord(indicators)) {
+    return undefined;
+  }
+
+  const quotes = indicators["quote"];
+  if (false === Array.isArray(quotes)) {
+    return undefined;
+  }
+
+  return quotes.find(isRecord);
 }
 
 function formatValue(value: number): string {

@@ -31,6 +31,7 @@ import {loadEarningsWhispersWeeklyTickers} from "./earnings-whispers.ts";
 import {getWithRetry} from "./http-retry.ts";
 import {getLogger} from "./logging.ts";
 import {findMarketOpenSentimentPollMessage, getMarketCloseRecap} from "./market-close-recap.ts";
+import {getPremarketWarmupMessage} from "./market-open-warmup.ts";
 import {getMnc} from "./mnc-downloader.ts";
 import {getMncSummary} from "./mnc-summary.ts";
 import {type Ticker} from "./tickers.ts";
@@ -151,8 +152,8 @@ function getGermanDate(date: moment.Moment): string {
   return date.clone().locale("de").format("D. MMMM YYYY");
 }
 
-function getCurrentNyseDate(): Date {
-  return moment.tz(usEasternTimezone).startOf("day").toDate();
+function getCurrentNyseDate(referenceTime = new Date()): Date {
+  return moment(referenceTime).tz(usEasternTimezone).startOf("day").toDate();
 }
 
 function getThreadMention(threadID: string | undefined): string {
@@ -375,6 +376,16 @@ async function sendToChannel(channel: SendableChannel | null, payload: unknown, 
   });
 }
 
+async function runNysePremarketWarmup(client: TimerClient, channelID: string) {
+  const content = await getPremarketWarmupMessage({
+    logger,
+  });
+  await sendAnnouncement(client, channelID, {
+    allowedMentions: noMentions,
+    content,
+  }, "NYSE premarket warmup");
+}
+
 async function runNyseMarketCloseRecap(
   client: TimerClient,
   channelID: string,
@@ -389,7 +400,8 @@ async function runNyseMarketCloseRecap(
     return;
   }
 
-  const date = getCurrentNyseDate();
+  const referenceTime = new Date();
+  const date = getCurrentNyseDate(referenceTime);
   const recoveredPollMessage = await findMarketOpenSentimentPollMessage(channel, {
     logger,
   }, {
@@ -401,6 +413,7 @@ async function runNyseMarketCloseRecap(
     logger,
   }, {
     date,
+    referenceTime,
     requireTickerFacts: true,
   });
   if (undefined === recap) {
@@ -589,6 +602,13 @@ export function startNyseTimers(client: TimerClient, channelID: string, gainsLos
     tz: usEasternTimezone,
   });
 
+  const ruleNysePremarketWarmup = createRecurrenceRule({
+    hour: 4,
+    minute: 5,
+    dayOfWeek: usEasternWeekdays,
+    tz: usEasternTimezone,
+  });
+
   const ruleNyseOpen = createRecurrenceRule({
     hour: 9,
     minute: 30,
@@ -682,6 +702,12 @@ export function startNyseTimers(client: TimerClient, channelID: string, gainsLos
         "😴🏦💰 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet, das Spiel beginnt! 💰🏦😴",
         "NYSE",
       );
+    }
+  });
+
+  Schedule.scheduleJob(ruleNysePremarketWarmup, () => {
+    if (false === isNyseHolidayToday()) {
+      void runNysePremarketWarmup(client, channelID);
     }
   });
 
