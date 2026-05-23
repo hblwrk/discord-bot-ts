@@ -35,7 +35,7 @@ vi.mock("./logging.ts", () => ({
   }),
 }));
 
-import {EmojiAsset, getAssetByName, getAssets, getGenericAssets, MarketDataAsset} from "./assets.ts";
+import {EmojiAsset, getAssetByName, getAssets, getGenericAssets, getMarketDataAssetConfigs, MarketDataAsset} from "./assets.ts";
 
 describe("getAssets", () => {
   beforeEach(() => {
@@ -244,6 +244,63 @@ describe("getAssets", () => {
     expect(loggerMock.log).toHaveBeenCalledWith(
       "warn",
       expect.stringContaining("Skipping market data asset \"cl\""),
+    );
+  });
+
+  test("logs stable fallback names when skipping market-data assets with missing secrets", async () => {
+    yamlLoadMock.mockReturnValue([{
+      botTokenReference: "cl_token_ref",
+      botClientIdReference: "cl_client_ref",
+      botName: "CL/USD",
+    }, {
+      botTokenReference: "missing_token_ref",
+      botClientIdReference: "missing_client_ref",
+    }]);
+    readSecretMock.mockImplementation(secretName => {
+      throw new Error(`missing ${secretName}`);
+    });
+
+    const assets = await getAssets("marketdata");
+
+    expect(assets).toEqual([]);
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.stringContaining("Skipping market data asset \"CL/USD\""),
+    );
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "warn",
+      expect.stringContaining("Skipping market data asset \"unknown\""),
+    );
+  });
+
+  test("loads market-data configs without resolving bot secrets", () => {
+    yamlLoadMock.mockReturnValue([{
+      botTokenReference: "es_token_ref",
+      botClientIdReference: "es_client_ref",
+      botName: "S&P500",
+      id: 1175153,
+      name: "es",
+    }]);
+
+    const assets = getMarketDataAssetConfigs();
+
+    expect(assets).toHaveLength(1);
+    expect(assets[0]?.name).toBe("es");
+    expect(assets[0]?.botName).toBe("S&P500");
+    expect(readSecretMock).not.toHaveBeenCalled();
+  });
+
+  test("returns empty market-data configs when config loading fails", () => {
+    yamlLoadMock.mockImplementation(() => {
+      throw new Error("yaml failure");
+    });
+
+    const assets = getMarketDataAssetConfigs();
+
+    expect(assets).toEqual([]);
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("Error creating market data asset configs"),
     );
   });
 

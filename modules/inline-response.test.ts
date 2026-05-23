@@ -54,6 +54,84 @@ describe("addInlineResponses", () => {
     expect(message.react).not.toHaveBeenCalled();
   });
 
+  test("sends an 8ball response in-channel when the bot is mentioned", async () => {
+    const randomSpy = vi.spyOn(Math, "random").mockReturnValue(0);
+    const {client, getHandler} = createEventClient();
+    Object.assign(client, {
+      user: {
+        id: "bot-id",
+      },
+    });
+    const asset = createEmojiAsset("party", ["\ud83d\ude00"]);
+
+    addInlineResponses(client, [asset], ["party"]);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("<@bot-id> party?");
+
+    await handler(message);
+
+    expect(message.channel.send).toHaveBeenCalledWith({
+      allowedMentions: {
+        parse: [],
+      },
+      content: ":8ball: Ziemlich sicher.",
+    });
+    expect(message.react).not.toHaveBeenCalled();
+    randomSpy.mockRestore();
+  });
+
+  test("detects bot mentions through the Discord mentions collection", async () => {
+    const randomSpy = vi.spyOn(Math, "random").mockReturnValue(0.5);
+    const {client, getHandler} = createEventClient();
+    Object.assign(client, {
+      user: {
+        id: "bot-id",
+      },
+    });
+
+    addInlineResponses(client, [], []);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("hey bot");
+    Object.assign(message, {
+      mentions: {
+        users: {
+          has: vi.fn((userId: string) => "bot-id" === userId),
+        },
+      },
+    });
+
+    await handler(message);
+
+    expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({
+      content: ":8ball: Antwort unklar.",
+    }));
+    randomSpy.mockRestore();
+  });
+
+  test("handles mention response send failures without crashing", async () => {
+    const {client, getHandler} = createEventClient();
+    Object.assign(client, {
+      user: {
+        id: "bot-id",
+      },
+    });
+
+    addInlineResponses(client, [], []);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("<@!bot-id>");
+    message.channel.send.mockRejectedValue(new Error("send failed"));
+
+    await handler(message);
+
+    expect(loggerMock.log).toHaveBeenCalledWith(
+      "error",
+      expect.stringContaining("Error sending mention response"),
+    );
+  });
+
   test("reacts with unicode emoji on trigger match", async () => {
     const {client, getHandler} = createEventClient();
     const asset = createEmojiAsset("party", ["\ud83d\ude00"]);

@@ -2,6 +2,7 @@ import {type ChatInputCommandInteraction, EmbedBuilder} from "discord.js";
 import validator from "validator";
 import type {GenericAsset, ImageAsset, PaywallAsset} from "./assets.ts";
 import {cryptodice} from "./crypto-dice.ts";
+import {getRandomEightBallResponse} from "./eight-ball.ts";
 import {lmgtfy} from "./lmgtfy.ts";
 import {getLogger} from "./logging.ts";
 import {handleCalendarSlashCommand, handleEarningsSlashCommand} from "./slash-commands-interact-events.ts";
@@ -44,32 +45,9 @@ export function interactSlashCommands(
     }
 
     if ("8ball" === commandName) {
-      const options: string[] = [
-        ":8ball: Ziemlich sicher.",
-        ":8ball: Es ist entschieden.",
-        ":8ball: Ohne Zweifel.",
-        ":8ball: Ja, absolut.",
-        ":8ball: Du kannst darauf zählen.",
-        ":8ball: Sehr wahrscheinlich.",
-        ":8ball: Sieht gut aus.",
-        ":8ball: Ja.",
-        ":8ball: Die Zeichen stehen auf Ja.",
-        ":8ball: Antwort unklar.",
-        ":8ball: Frag mich später noch mal.",
-        ":8ball: Sag ich dir besser noch nicht.",
-        ":8ball: Kann ich noch nicht sagen.",
-        ":8ball: Konzentriere dich und frage erneut.",
-        ":8ball: Zähl nicht darauf.",
-        ":8ball: Meine Antwort ist nein.",
-        ":8ball: Meine Quellen sagen nein.",
-        ":8ball: Sieht nicht so gut aus.",
-        ":8ball: Sehr unwahrscheinlich.",
-      ];
-
-      const randomElement = options[Math.floor(Math.random() * options.length)];
       const embed = new EmbedBuilder();
       embed.addFields(
-        {name: chatInputInteraction.options.getString("frage", true), value: randomElement ?? "Antwort unklar."},
+        {name: chatInputInteraction.options.getString("frage", true), value: getRandomEightBallResponse()},
       );
       await chatInputInteraction.reply({embeds: [embed]}).catch((error: unknown) => {
         logger.log(

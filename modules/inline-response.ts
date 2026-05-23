@@ -1,4 +1,5 @@
 import {EmojiAsset} from "./assets.ts";
+import {getRandomEightBallResponse} from "./eight-ball.ts";
 import {getLogger} from "./logging.ts";
 
 const logger = getLogger();
@@ -14,6 +15,9 @@ type InlineResponseMessage = {
   author?: {
     bot?: boolean;
   };
+  channel: {
+    send: (payload: unknown) => Promise<unknown> | unknown;
+  };
   content: string;
   guild: {
     emojis: {
@@ -22,11 +26,19 @@ type InlineResponseMessage = {
       };
     };
   };
+  mentions?: {
+    users?: {
+      has?: (userId: string) => boolean;
+    };
+  };
   react: (emoji: unknown) => Promise<unknown>;
   webhookId?: string | null;
 };
 
 type InlineResponseClient = {
+  user?: {
+    id?: string | null;
+  } | null;
   on: (eventName: "messageCreate", handler: (message: InlineResponseMessage) => void | Promise<void>) => void;
 };
 
@@ -62,10 +74,42 @@ function isEmojiResponse(response: unknown): response is string[] {
   return Array.isArray(response) && response.every(value => "string" === typeof value);
 }
 
+function isBotMentioned(client: InlineResponseClient, message: InlineResponseMessage): boolean {
+  const botUserId = client.user?.id?.trim();
+  if (!botUserId) {
+    return false;
+  }
+
+  if (true === message.mentions?.users?.has?.(botUserId)) {
+    return true;
+  }
+
+  return new RegExp(`<@!?${escapeRegexValue(botUserId)}>`, "u").test(message.content);
+}
+
+async function sendMentionResponse(message: InlineResponseMessage) {
+  await Promise.resolve(message.channel.send({
+    allowedMentions: {
+      parse: [],
+    },
+    content: getRandomEightBallResponse(),
+  })).catch((error: unknown) => {
+    logger.log(
+      "error",
+      `Error sending mention response: ${error}`,
+    );
+  });
+}
+
 export function addInlineResponses(client: InlineResponseClient, assets: InlineResponseAsset[], assetCommands: string[]) {
   // Message response to a message including with a trigger word
-  client.on("messageCreate", message => {
+  client.on("messageCreate", async message => {
     if (true === message.author?.bot || Boolean(message.webhookId)) {
+      return;
+    }
+
+    if (true === isBotMentioned(client, message)) {
+      await sendMentionResponse(message);
       return;
     }
 
