@@ -209,7 +209,7 @@ function getPremarketWarmupStyleTropes(
   );
   return [
     "- Marktampel: als Running Gag fuer Gruen/Gelb/Rot nutzen; niemals als Trade-Signal.",
-    "- Casino-/Hebelwerk-Vokabular: Mausklick, FOMO, OMU, Stop-loss, Margin, Gratisgeld, Stonks; nur als Humor.",
+    "- Casino-/Hebelwerk-Vokabular: FOMO, OMU, Stop-loss, Margin, Gratisgeld, Stonks; nur als Humor, nicht als mechanische Wortkette.",
     ...selectedConfiguredTropes,
   ].slice(0, maxStyleTropes);
 }
@@ -292,6 +292,12 @@ function getPremarketWarmupPrompt(
     "",
     "Aufgabe:",
     "Schreibe genau eine Discord-Nachricht auf Deutsch.",
+    "",
+    "Stilqualitaet:",
+    "- Schreibe wie ein natuerlicher kurzer Kommentar, nicht wie Telegramm-Stakkato. Fakten duerfen kompakt sein, aber die Saetze brauchen normale Verben und Anschluesse.",
+    "- Variiere Aufbau und Pointe. Die erste Zeile darf Stimmung setzen, die zweite darf Ticker buendeln; das ist keine feste Vorlage.",
+    "- Baue hoechstens einen Meme-Begriff sauber in einen Satz ein. Kein Schlagwort-Stapel mit Pluszeichen oder Listenwitz.",
+    "- Lieber eine kleine Pointe am Satzende als mehrere gepresste Witze in einem Satz.",
     "",
     "Regeln:",
     `- Maximal ${maxContentLength} Zeichen.`,
@@ -388,7 +394,25 @@ function getWarmupValidationIssue(
     return "content looked like trading advice";
   }
 
+  return getWarmupStyleQualityIssue(content);
+}
+
+function getWarmupStyleQualityIssue(content: string): string | undefined {
+  const normalizedContent = normalizeStyleValidationText(content);
+  const memeKeyword = "(?:fomo|0dte|margin|gratisgeld|stonks|yolo|omu|stop[- ]?loss)";
+  const memeStackRegex = new RegExp(`\\b${memeKeyword}\\b\\s*\\+\\s*\\b${memeKeyword}\\b`, "u");
+  if (memeStackRegex.test(normalizedContent)) {
+    return "content stacked meme keywords mechanically";
+  }
+
   return undefined;
+}
+
+function normalizeStyleValidationText(content: string): string {
+  return content
+    .normalize("NFD")
+    .replace(/\p{Mark}/gu, "")
+    .toLowerCase();
 }
 
 function referencesAnyFact(content: string, facts: PremarketWarmupFact[]): boolean {
@@ -408,7 +432,7 @@ function getFallbackWarmupMessage(facts: PremarketWarmupFact[]): string {
   const marketAmpelText = marketAmpelFact?.fallbackText ?? "Die Marktampel steht auf `Gelb`.";
   return [
     "**Pre-Market Warmup**",
-    `${factText} ${marketAmpelText} Casino ist offen, Spreads sind wach, das Ego hoffentlich noch im Bett. Erst Plan, dann Mausklick.`,
+    `${factText} ${marketAmpelText} Casino ist offen, Spreads sind wach, das Ego hoffentlich noch im Bett. Erst Plan, dann klicken.`,
   ].join("\n");
 }
 

@@ -85,6 +85,9 @@ describe("market open warmup", () => {
     expect(prompt).toContain("Text-Trope: Margin Margin");
     expect(prompt).toContain("...");
     expect(prompt).not.toContain("Heute gibt es Suppe");
+    expect(prompt).toContain("Stilqualitaet");
+    expect(prompt).toContain("Variiere Aufbau und Pointe");
+    expect(prompt).toContain("Kein Schlagwort-Stapel");
     expect(prompt).toContain("Keine Anlageberatung");
     expect(prompt).toContain("Nutze hoechstens einen Community-Trope");
     expect(prompt).toContain("Return only JSON");
@@ -119,7 +122,7 @@ describe("market open warmup", () => {
       referenceTime: new Date("2026-05-07T08:05:00Z"),
     });
 
-    expect(message).toBe("**Pre-Market Warmup**\nDer US-Aktien-Premarket ist seit `04:00 US/Eastern` offen. Die Marktampel steht auf `Gelb`. Casino ist offen, Spreads sind wach, das Ego hoffentlich noch im Bett. Erst Plan, dann Mausklick.");
+    expect(message).toBe("**Pre-Market Warmup**\nDer US-Aktien-Premarket ist seit `04:00 US/Eastern` offen. Die Marktampel steht auf `Gelb`. Casino ist offen, Spreads sind wach, das Ego hoffentlich noch im Bett. Erst Plan, dann klicken.");
   });
 
   test("falls back with the fact-derived Marktampel", async () => {
@@ -296,6 +299,26 @@ describe("market open warmup", () => {
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
       "AI premarket warmup rejected: content mentioned implementation details.",
+    );
+  });
+
+  test("rejects AI output that stacks meme keywords mechanically", async () => {
+    const callAiProviderJsonFn = vi.fn().mockResolvedValue(JSON.stringify({
+      content: "`04:00 US/Eastern` ist offen. FOMO + 0DTE klingt wieder nach Risikomanagement.",
+    }));
+
+    const message = await getPremarketWarmupMessage({
+      callAiProviderJsonFn,
+      logger,
+    }, {
+      assetPromptReferences: [],
+      referenceTime: new Date("2026-05-07T08:05:00Z"),
+    });
+
+    expect(message).not.toContain("FOMO + 0DTE");
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "AI premarket warmup rejected: content stacked meme keywords mechanically.",
     );
   });
 });
