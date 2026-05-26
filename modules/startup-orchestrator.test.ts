@@ -160,6 +160,7 @@ describe("startBot", () => {
     );
     expect(mocks.addInlineResponses).toHaveBeenCalledTimes(1);
     expect(mocks.addTriggerResponses).toHaveBeenCalledTimes(1);
+    expect(mocks.addTwitterLinkRewrites).toHaveBeenCalledTimes(1);
     expect(mocks.interactSlashCommands).toHaveBeenCalledTimes(1);
   });
 
