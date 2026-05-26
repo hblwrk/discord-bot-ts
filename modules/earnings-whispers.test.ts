@@ -43,6 +43,16 @@ describe("Earnings Whispers weekly tickers", () => {
       sourceText: "[#earnings](https://x.com/hashtag/earnings?src=hashtag_click) for the week of May 4, 2026 [https://earningswhispers.com/calendar](https://t.co/My2Eq16qS8) [$PLTR](https://x.com/search?q=%24PLTR&src=cashtag_click) [$AMD](https://x.com/search?q=%24AMD&src=cashtag_click) [$SHOP](https://x.com/search?q=%24SHOP&src=cashtag_click)",
       tickers: ["PLTR", "AMD", "SHOP"],
     },
+    {
+      now: "2026-05-20 08:05",
+      sourceText: "The most anticipated earnings releases for the week of May 18, 2026, are Nvidia #NVDA, e.l.f. Beauty #ELF, Analog Devices #ADI, NIO #NIO, Intuit #INTU, Baidu #BIDU, Deckers Brands #DECK, Home Depot #HD, Webull #BULL, and Walmart #WMT.https://www.earningswhispers.com/calendar#mostanticipated #earningsseason #nvidia #earningswhisper #earningscalendar",
+      tickers: ["NVDA", "ELF", "ADI", "NIO", "INTU", "BIDU", "DECK", "HD", "BULL", "WMT"],
+    },
+    {
+      now: "2026-05-26 08:05",
+      sourceText: "[![Image 2: The most anticipated earnings releases for the week of May 25, 2026, are Marvell Technology #MRVL, Salesforce #CRM, Snowflake #SNOW, Dell Technologies #DELL, UiPath #PATH, Zscaler #ZS, MongoDB #MDB, Costco Wholesale #COST, Best Buy #BBY, and Sociedad Química y Minera de Chile S.A. #SQM.](https://pbs.twimg.com/media/HI7YxY6XkAA8v9u?format=jpg&name=small)](https://x.com/eWhispers/status/2057821740516991172/photo/1)",
+      tickers: ["MRVL", "CRM", "SNOW", "DELL", "PATH", "ZS", "MDB", "COST", "BBY", "SQM"],
+    },
   ])("extracts real weekly X post shapes from the past four months", ({now, sourceText, tickers}) => {
     expect(extractEarningsWhispersWeeklyTickers(
       sourceText,
@@ -141,5 +151,23 @@ describe("Earnings Whispers weekly tickers", () => {
       expect.any(Object),
     );
     expect(getWithRetryFn).toHaveBeenCalledTimes(2);
+  });
+
+  test("loads weekly tickers from most anticipated profile text when no status post is found", async () => {
+    clearEarningsWhispersWeeklyTickerCache();
+    const getWithRetryFn = vi.fn().mockResolvedValue({
+      data: "The most anticipated earnings releases for the week of May 18, 2026, are Nvidia #NVDA, e.l.f. Beauty #ELF, Analog Devices #ADI, NIO #NIO, Intuit #INTU, Baidu #BIDU, Deckers Brands #DECK, Home Depot #HD, Webull #BULL, and Walmart #WMT.https://www.earningswhispers.com/calendar#mostanticipated #earningsseason",
+    });
+    const logger = {
+      log: vi.fn(),
+    };
+
+    await expect(loadEarningsWhispersWeeklyTickers({
+      getWithRetryFn,
+      logger,
+      now: moment.tz("2026-05-20 12:00", "YYYY-MM-DD HH:mm", "US/Eastern"),
+    })).resolves.toEqual(new Set(["NVDA", "ELF", "ADI", "NIO", "INTU", "BIDU", "DECK", "HD", "BULL", "WMT"]));
+
+    expect(getWithRetryFn).toHaveBeenCalledTimes(1);
   });
 });
