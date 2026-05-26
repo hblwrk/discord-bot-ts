@@ -28,7 +28,9 @@ const earningsWhispersXRequestHeaders = {
   "Accept": "text/markdown,text/plain,text/html;q=0.9,*/*;q=0.8",
 };
 const weeklyEarningsPattern = /#earnings\s+for\s+the\s+week\s+of\s+([A-Z][a-z]+\.?\s+\d{1,2},\s+20\d{2})([\s\S]*?)(?=\s+(?:Earnings\s+Whispers\s+@eWhispers|#earnings\s+for\s+the\s+week\s+of|The\s+most\s+anticipated\s+earnings\s+releases\s+for\s+the\s+week\s+of|Earnings\s+volatility\s+for\s+the\s+week\s+of)|$)/gi;
+const mostAnticipatedEarningsPattern = /The\s+most\s+anticipated\s+earnings\s+releases?\s+for\s+the\s+week\s+of\s+([A-Z][a-z]+\.?\s+\d{1,2},\s+20\d{2}),?\s+(?:are|is)\s+([\s\S]*?)(?=(?:https?:\/\/(?:www\.)?earningswhispers\.com\/calendar|#mostanticipated\b|#earningsseason\b|\]\(https?:\/\/|Earnings\s+Whispers\s+@eWhispers|#earnings\s+for\s+the\s+week\s+of|The\s+most\s+anticipated\s+earnings\s+releases?\s+for\s+the\s+week\s+of|Earnings\s+volatility\s+for\s+the\s+week\s+of)|$)/gi;
 const cashtagPattern = /\$([A-Z][A-Z0-9]{0,5}(?:[./-][A-Z])?)(?![A-Z0-9])/g;
+const tickerHashtagPattern = /#([A-Z][A-Z0-9]{0,5}(?:[./-][A-Z])?)(?![A-Z0-9])/g;
 let earningsWhispersWeeklyTickerCache: EarningsWhispersWeeklyTickerCacheEntry | undefined;
 
 export function clearEarningsWhispersWeeklyTickerCache() {
@@ -178,7 +180,39 @@ export function extractEarningsWhispersWeeklyTickers(
   const expectedWeekStartDateStamp = getUsEasternWeekStart(weekStart).format(dateStampFormat);
   const tickers = new Set<string>();
 
-  for (const weeklyMatch of normalizedSourceText.matchAll(weeklyEarningsPattern)) {
+  addMatchingWeeklyTickers({
+    expectedWeekStartDateStamp,
+    pattern: weeklyEarningsPattern,
+    sourceText: normalizedSourceText,
+    tickerPattern: cashtagPattern,
+    tickers,
+  });
+  addMatchingWeeklyTickers({
+    expectedWeekStartDateStamp,
+    pattern: mostAnticipatedEarningsPattern,
+    sourceText: normalizedSourceText,
+    tickerPattern: tickerHashtagPattern,
+    tickers,
+  });
+
+  return tickers;
+}
+
+function addMatchingWeeklyTickers({
+  expectedWeekStartDateStamp,
+  pattern,
+  sourceText,
+  tickerPattern,
+  tickers,
+}: {
+  expectedWeekStartDateStamp: string;
+  pattern: RegExp;
+  sourceText: string;
+  tickerPattern: RegExp;
+  tickers: Set<string>;
+}) {
+  pattern.lastIndex = 0;
+  for (const weeklyMatch of sourceText.matchAll(pattern)) {
     const weekLabel = weeklyMatch[1];
     const tickerText = weeklyMatch[2];
     if (undefined === weekLabel || undefined === tickerText) {
@@ -191,15 +225,14 @@ export function extractEarningsWhispersWeeklyTickers(
       continue;
     }
 
-    for (const tickerMatch of tickerText.matchAll(cashtagPattern)) {
+    tickerPattern.lastIndex = 0;
+    for (const tickerMatch of tickerText.matchAll(tickerPattern)) {
       const ticker = tickerMatch[1];
       if (undefined !== ticker) {
         tickers.add(normalizeEarningsWhispersTicker(ticker));
       }
     }
   }
-
-  return tickers;
 }
 
 function getUsEasternWeekStart(date: moment.Moment): moment.Moment {
