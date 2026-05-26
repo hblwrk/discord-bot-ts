@@ -22,6 +22,7 @@ import {type StartupStateSnapshot} from "./startup-state.ts";
 import {type getTickers, type Ticker} from "./tickers.ts";
 import {type startMncTimers, type startNyseTimers, type startOtherTimers} from "./timers.ts";
 import {type addTriggerResponses} from "./trigger-response.ts";
+import {type addTwitterLinkRewrites} from "./twitter-link-rewrite.ts";
 
 export type Logger = {
   level?: string;
@@ -42,6 +43,7 @@ export type StartupDependencies = {
   interactSlashCommands: typeof interactSlashCommands;
   addInlineResponses: typeof addInlineResponses;
   addTriggerResponses: typeof addTriggerResponses;
+  addTwitterLinkRewrites: typeof addTwitterLinkRewrites;
   getGenericAssets: typeof getGenericAssets;
   getAssets: typeof getAssets;
   getTickers: typeof getTickers;

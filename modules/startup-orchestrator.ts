@@ -14,6 +14,7 @@ import {createStartupState} from "./startup-state.ts";
 import {getTickers} from "./tickers.ts";
 import {startMncTimers, startNyseTimers, startOtherTimers} from "./timers.ts";
 import {addTriggerResponses} from "./trigger-response.ts";
+import {addTwitterLinkRewrites} from "./twitter-link-rewrite.ts";
 import {runStartupPreflight} from "./startup-preflight.ts";
 import {
   type SharedStartupData,
@@ -65,6 +66,7 @@ function createDependencies(options: StartupOptions): StartupDependencies {
     interactSlashCommands: options.interactSlashCommands ?? interactSlashCommands,
     addInlineResponses: options.addInlineResponses ?? addInlineResponses,
     addTriggerResponses: options.addTriggerResponses ?? addTriggerResponses,
+    addTwitterLinkRewrites: options.addTwitterLinkRewrites ?? addTwitterLinkRewrites,
     getGenericAssets: options.getGenericAssets ?? getGenericAssets,
     getAssets: options.getAssets ?? getAssets,
     getTickers: options.getTickers ?? getTickers,
@@ -239,6 +241,7 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
     });
     dependencies.addInlineResponses(client, sharedData.assets, sharedData.assetCommands);
     dependencies.addTriggerResponses(client, sharedData.assets, sharedData.assetCommandsWithPrefix, sharedData.whatIsAssets, sharedData.paywallAssets);
+    dependencies.addTwitterLinkRewrites(client);
     dependencies.interactSlashCommands(client, sharedData.assets, sharedData.assetCommands, sharedData.whatIsAssets, sharedData.tickers, sharedData.paywallAssets);
     startupState.markHandlersAttached();
 
