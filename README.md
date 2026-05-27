@@ -190,6 +190,7 @@ The health-check server port can be overridden via the `HEALTHCHECK_PORT` enviro
   "hblwrk_role_special_steuerkanzlei_ID": "",
   "hblwrk_role_special_business-karriere_ID": "",
   "hblwrk_role_special_content-creator-squad_ID": "",
+  "hblwrk_role_special_nsfw_ID": "",
   "hblwrk_role_special_alerts_ID": "",
   "hblwrk_role_special_nftping_ID": "",
   "hblwrk_role_special_stageping_ID": "",

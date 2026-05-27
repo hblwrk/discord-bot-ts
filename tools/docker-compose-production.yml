@@ -81,6 +81,7 @@ services:
       - production_hblwrk_role_special_steuerkanzlei_ID
       - production_hblwrk_role_special_business-karriere_ID
       - production_hblwrk_role_special_content-creator-squad_ID
+      - production_hblwrk_role_special_nsfw_ID
       - production_hblwrk_role_special_cryptoping_ID
       - production_hblwrk_role_special_nftping_ID
       - production_hblwrk_role_special_stageping_ID
@@ -211,6 +212,8 @@ secrets:
   production_hblwrk_role_special_business-karriere_ID:
     external: true
   production_hblwrk_role_special_content-creator-squad_ID:
+    external: true
+  production_hblwrk_role_special_nsfw_ID:
     external: true
   production_hblwrk_role_special_cryptoping_ID:
     external: true
