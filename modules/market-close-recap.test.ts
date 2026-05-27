@@ -130,8 +130,8 @@ describe("market close recap", () => {
     symbol: "VIX",
   }] satisfies MarketCloseTickerFact[];
 
-  function createPostWithRecap(overrides: Record<string, unknown> = {}) {
-    return vi.fn().mockResolvedValue({
+  function createRecapResponse(overrides: Record<string, unknown> = {}) {
+    return {
       data: {
         candidates: [{
           content: {
@@ -144,7 +144,11 @@ describe("market close recap", () => {
           },
         }],
       },
-    });
+    };
+  }
+
+  function createPostWithRecap(overrides: Record<string, unknown> = {}) {
+    return vi.fn().mockResolvedValue(createRecapResponse(overrides));
   }
 
   function createInvestingHistoryResponse(
@@ -314,6 +318,42 @@ describe("market close recap", () => {
     expect(prompt).toContain("`ES` (marketdata:es#1175153, Investing Daily-Bar); Open `5.190,00`; High `5.230,00`; Low `5.175,00`; Close `5.225,00`");
     expect(prompt).toContain("Diese Bot-/Investing-Daten haben Vorrang vor News-Texten");
     expect(prompt).toContain("Behaupte keine Schlusskurs-Rekorde");
+  });
+
+  test("retries the close recap with validation feedback", async () => {
+    const postWithRetryFn = vi.fn()
+      .mockResolvedValueOnce(createRecapResponse({
+        sentimentTitle: "risk-off",
+        summaryMarkdown: "`ES` fiel vom Open. Der `VIX` stieg um `8%`.",
+        winningPollAnswer: "Risk-off",
+      }))
+      .mockResolvedValueOnce(createRecapResponse({
+        sentimentTitle: "risk-off",
+        summaryMarkdown: "`ES` fiel weiter. Der `VIX` wurde mit `+6%` beschrieben.",
+        winningPollAnswer: "Risk-off",
+      }))
+      .mockResolvedValueOnce(createRecapResponse({
+        sentimentTitle: "Defensive dominierte",
+        summaryMarkdown: "`ES` fiel vom Open. Der `VIX` stieg um `1,4 Punkte`.",
+        winningPollAnswer: "Risk-off",
+      }));
+
+    const recap = await getMarketCloseRecap(undefined, {
+      logger,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(recap?.content).toContain("Das heutige Sentiment war: **🔴 Risk-off**");
+    expect(postWithRetryFn).toHaveBeenCalledTimes(3);
+    const retryRequestBody = postWithRetryFn.mock.calls[2]?.[1] as {contents?: {parts?: {text?: string}[]}[]};
+    const retryPrompt = retryRequestBody.contents?.[0]?.parts?.[0]?.text ?? "";
+    expect(retryPrompt).toContain("Previous response failed local validation.");
+    expect(retryPrompt).toContain("Describe VIX only as a level, point change, or direction; never as a percent.");
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      expect.stringContaining("Retrying with validation feedback"),
+    );
   });
 
   test("grounds the close recap prompt with the same market-data bot snapshots before external history", async () => {
