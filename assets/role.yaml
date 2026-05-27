@@ -125,6 +125,12 @@
   id:
   idReference: "hblwrk_role_special_content-creator-squad_ID"
   emoji: "🎙️"
+- name: nsfw
+  trigger:
+  triggerReference: "hblwrk_role_assignment_special_message_ID"
+  id:
+  idReference: "hblwrk_role_special_nsfw_ID"
+  emoji: "❤️"
 - name: alerts
   trigger:
   triggerReference: "hblwrk_role_assignment_special_message_ID"
