@@ -74,9 +74,23 @@ type AiMarketCloseRecap = {
   winningPollAnswer: MarketCloseSentimentAnswer;
 };
 
+type AiMarketCloseRecapFailure = {
+  logMessage: string;
+  retryInstructions: string;
+};
+
+type AiMarketCloseRecapParseResult = {
+  failure?: undefined;
+  recap: AiMarketCloseRecap;
+} | {
+  failure: AiMarketCloseRecapFailure;
+  recap?: undefined;
+};
+
 const usEasternTimezone = "US/Eastern";
 const defaultMaxFetchedWinners = 200;
 const defaultMaxMentionedWinners = 20;
+const marketCloseRecapAiMaxAttempts = 3;
 const marketOpenSentimentPollQuestion = "Opening Sentiment: Wie geht ihr in den Handel?";
 const marketOpenPollHistoryLimit = 50;
 const maxSummaryMarkdownLength = 1_100;
@@ -131,28 +145,7 @@ export async function getMarketCloseRecap(
     return undefined;
   }
 
-  const jsonText = await callAiProviderJson(
-    getMarketCloseRecapPrompt(date, tickerFacts),
-    marketCloseRecapSchema,
-    dependencies,
-    "market close recap",
-    undefined,
-    {
-      timeoutMs: 45_000,
-      useWebSearch: true,
-    },
-  ).catch(error => {
-    dependencies.logger.log(
-      "warn",
-      `AI market close recap failed: ${error}`,
-    );
-    return null;
-  });
-  if (null === jsonText) {
-    return undefined;
-  }
-
-  const recap = parseAiMarketCloseRecap(jsonText, dependencies, tickerFacts);
+  const recap = await getAiMarketCloseRecap(date, tickerFacts, dependencies);
   if (undefined === recap) {
     return undefined;
   }
@@ -265,18 +258,79 @@ function getMarketCloseRecapPrompt(date: Date, tickerFacts: MarketCloseTickerFac
   ].filter(line => "" !== line).join("\n");
 }
 
+async function getAiMarketCloseRecap(
+  date: Date,
+  tickerFacts: MarketCloseTickerFact[],
+  dependencies: MarketCloseRecapDependencies,
+): Promise<AiMarketCloseRecap | undefined> {
+  const basePrompt = getMarketCloseRecapPrompt(date, tickerFacts);
+  let retryInstructions: string | undefined;
+  for (let attempt = 1; attempt <= marketCloseRecapAiMaxAttempts; attempt += 1) {
+    const jsonText = await callAiProviderJson(
+      getMarketCloseRecapAttemptPrompt(basePrompt, retryInstructions),
+      marketCloseRecapSchema,
+      dependencies,
+      "market close recap",
+      undefined,
+      {
+        timeoutMs: 45_000,
+        useWebSearch: true,
+      },
+    ).catch(error => {
+      dependencies.logger.log(
+        "warn",
+        `AI market close recap failed: ${error}`,
+      );
+      return null;
+    });
+    if (null === jsonText) {
+      return undefined;
+    }
+
+    const parseResult = parseAiMarketCloseRecap(jsonText, tickerFacts);
+    if (undefined !== parseResult.recap) {
+      return parseResult.recap;
+    }
+
+    if (attempt < marketCloseRecapAiMaxAttempts) {
+      retryInstructions = parseResult.failure.retryInstructions;
+      dependencies.logger.log(
+        "warn",
+        `${parseResult.failure.logMessage} Retrying with validation feedback: ${retryInstructions}`,
+      );
+      continue;
+    }
+
+    dependencies.logger.log("warn", parseResult.failure.logMessage);
+  }
+
+  return undefined;
+}
+
+function getMarketCloseRecapAttemptPrompt(basePrompt: string, retryInstructions: string | undefined): string {
+  if (undefined === retryInstructions) {
+    return basePrompt;
+  }
+
+  return [
+    basePrompt,
+    "",
+    "Previous response failed local validation. Correct this before returning JSON:",
+    retryInstructions,
+    "Return a fresh JSON object only. Keep every original rule in force.",
+  ].join("\n");
+}
+
 function parseAiMarketCloseRecap(
   jsonText: string,
-  dependencies: MarketCloseRecapDependencies,
   tickerFacts: MarketCloseTickerFact[],
-): AiMarketCloseRecap | undefined {
+): AiMarketCloseRecapParseResult {
   const parsedJson = parseJson(jsonText);
   if (false === isRecord(parsedJson)) {
-    dependencies.logger.log(
-      "warn",
+    return invalidAiMarketCloseRecap(
       "AI market close recap returned invalid JSON.",
+      "Return valid JSON only; do not include prose, Markdown fences, comments, or trailing text.",
     );
-    return undefined;
   }
 
   const summaryMarkdown = parsedJson["summaryMarkdown"];
@@ -285,43 +339,79 @@ function parseAiMarketCloseRecap(
   if ("string" !== typeof summaryMarkdown ||
       false === isMarketCloseSentimentAnswer(winningPollAnswer) ||
       "string" !== typeof sentimentTitle) {
-    dependencies.logger.log(
-      "warn",
+    return invalidAiMarketCloseRecap(
       "AI market close recap response missed required fields.",
+      "Return summaryMarkdown as a string, sentimentTitle as a string, and winningPollAnswer as one of Risk-on, Risk-off, Cash, or Chaos.",
     );
-    return undefined;
   }
 
   const normalizedSummary = truncateSummary(normalizeMarkdown(summaryMarkdown));
   const normalizedTitle = normalizeSingleLine(sentimentTitle);
   const combinedText = `${normalizedSummary}\n${normalizedTitle}`;
-  if ("" === normalizedSummary ||
-      false === /\bVIX\b/i.test(combinedText) ||
-      true === hasPollSentimentLabel(normalizedSummary) ||
-      true === hasForbiddenProviderMention(combinedText) ||
-      true === hasForbiddenMarketProxyMention(combinedText) ||
-      true === hasVixPercent(combinedText)) {
-    dependencies.logger.log(
-      "warn",
+  const validationIssues = getMarketCloseRecapValidationIssues(normalizedSummary, combinedText);
+  if (0 < validationIssues.length) {
+    return invalidAiMarketCloseRecap(
       "AI market close recap failed output validation.",
+      validationIssues.join(" "),
     );
-    return undefined;
   }
 
   const tickerValidationIssue = getTickerFactValidationIssue(combinedText, winningPollAnswer, tickerFacts);
   if (undefined !== tickerValidationIssue) {
-    dependencies.logger.log(
-      "warn",
+    return invalidAiMarketCloseRecap(
       `AI market close recap contradicted ticker facts: ${tickerValidationIssue}.`,
+      `Align the summary and winningPollAnswer with the verified ticker facts: ${tickerValidationIssue}.`,
     );
-    return undefined;
   }
 
   return {
-    sentimentTitle: normalizedTitle,
-    summaryMarkdown: normalizedSummary,
-    winningPollAnswer,
+    recap: {
+      sentimentTitle: normalizedTitle,
+      summaryMarkdown: normalizedSummary,
+      winningPollAnswer,
+    },
   };
+}
+
+function invalidAiMarketCloseRecap(
+  logMessage: string,
+  retryInstructions: string,
+): AiMarketCloseRecapParseResult {
+  return {
+    failure: {
+      logMessage,
+      retryInstructions,
+    },
+  };
+}
+
+function getMarketCloseRecapValidationIssues(normalizedSummary: string, combinedText: string): string[] {
+  const issues: string[] = [];
+  if ("" === normalizedSummary) {
+    issues.push("summaryMarkdown must not be empty after trimming.");
+  }
+
+  if (false === /\bVIX\b/i.test(combinedText)) {
+    issues.push("Mention VIX explicitly in summaryMarkdown or sentimentTitle.");
+  }
+
+  if (true === hasPollSentimentLabel(normalizedSummary)) {
+    issues.push("Remove poll labels Risk-on, Risk-off, Cash, and Chaos from summaryMarkdown.");
+  }
+
+  if (true === hasForbiddenProviderMention(combinedText)) {
+    issues.push("Remove AI provider, model, search, source, and research-process references.");
+  }
+
+  if (true === hasForbiddenMarketProxyMention(combinedText)) {
+    issues.push("Remove SPX, SPY, NDX, RUT, QQQ, and IWM; use only ES, NQ, RTY, and VIX.");
+  }
+
+  if (true === hasVixPercent(combinedText)) {
+    issues.push("Describe VIX only as a level, point change, or direction; never as a percent.");
+  }
+
+  return issues;
 }
 
 function buildMarketCloseRecapContent(
