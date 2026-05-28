@@ -81,7 +81,7 @@ describe("addInlineResponses", () => {
     randomSpy.mockRestore();
   });
 
-  test("detects bot mentions through the Discord mentions collection", async () => {
+  test("detects bot mentions through the Discord parsed mentions collection", async () => {
     const randomSpy = vi.spyOn(Math, "random").mockReturnValue(0.5);
     const {client, getHandler} = createEventClient();
     Object.assign(client, {
@@ -96,7 +96,7 @@ describe("addInlineResponses", () => {
     const message = createMessage("hey bot");
     Object.assign(message, {
       mentions: {
-        users: {
+        parsedUsers: {
           has: vi.fn((userId: string) => "bot-id" === userId),
         },
       },
@@ -108,6 +108,36 @@ describe("addInlineResponses", () => {
       content: ":8ball: Antwort unklar.",
     }));
     randomSpy.mockRestore();
+  });
+
+  test("does not send an 8ball response for reply-only bot mentions", async () => {
+    const {client, getHandler} = createEventClient();
+    Object.assign(client, {
+      user: {
+        id: "bot-id",
+      },
+    });
+
+    addInlineResponses(client, [], []);
+
+    const handler = getHandler("messageCreate");
+    const message = createMessage("replying without mentioning the bot");
+    Object.assign(message, {
+      mentions: {
+        has: vi.fn((userId: string, options?: {ignoreRepliedUser?: boolean}) =>
+          "bot-id" === userId && true !== options?.ignoreRepliedUser),
+        repliedUser: {
+          id: "bot-id",
+        },
+        users: {
+          has: vi.fn((userId: string) => "bot-id" === userId),
+        },
+      },
+    });
+
+    await handler(message);
+
+    expect(message.channel.send).not.toHaveBeenCalled();
   });
 
   test("handles mention response send failures without crashing", async () => {

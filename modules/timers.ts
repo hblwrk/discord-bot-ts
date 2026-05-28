@@ -856,6 +856,7 @@ export function startOtherTimers(
   calendarReminderAssets: CalendarReminderAsset[] = [],
   earningsReminderAssets: EarningsReminderAsset[] = [],
   earningsExpectationsThreadID?: string,
+  tradingCalendarThreadID?: string,
 ) {
   const ruleFriday = createRecurrenceRule({
     hour: 8,
@@ -1035,21 +1036,23 @@ export function startOtherTimers(
     });
     logCalendarBatch("timer-daily", calendarBatch);
 
+    const matchedReminderGroups = getMatchedCalendarReminderEventGroups(calendarReminderAssets, calendarEvents);
+    const hasCalendarAnnouncements = 0 < calendarBatch.messages.length || 0 < matchedReminderGroups.length;
+    const calendarChannel = true === hasCalendarAnnouncements
+      ? await getOptionalThreadTargetChannel(client, channelID, tradingCalendarThreadID, "calendar")
+      : null;
     if (0 < calendarBatch.messages.length) {
-      const channel = getSendableChannel(client, channelID, "calendar");
-      await sendChunkedMessages(channel, calendarBatch.messages, "calendar");
+      await sendChunkedMessages(calendarChannel, calendarBatch.messages, "calendar");
     }
 
-    const matchedReminderGroups = getMatchedCalendarReminderEventGroups(calendarReminderAssets, calendarEvents);
     for (const matchedReminderGroup of matchedReminderGroups) {
       const roleId = getNormalizedRoleId(matchedReminderGroup.asset.roleId);
       if (!roleId) {
         continue;
       }
 
-      await sendAnnouncement(
-        client,
-        channelID,
+      await sendToChannel(
+        calendarChannel,
         {
           content: getCalendarReminderMessage(roleId, matchedReminderGroup.events),
           allowedMentions: getAllowedRoleMentions(roleId),
@@ -1057,7 +1060,7 @@ export function startOtherTimers(
         calendarReminderAnnouncementSource,
       );
     }
-    scheduleCalendarReminderFollowUpJobs(client, channelID, matchedReminderGroups);
+    scheduleCalendarReminderFollowUpJobs(client, channelID, matchedReminderGroups, tradingCalendarThreadID);
   });
 
   const ruleEventsWeekly = createRecurrenceRule({
@@ -1084,7 +1087,7 @@ export function startOtherTimers(
     logCalendarBatch("timer-weekly", calendarBatch);
 
     if (0 < calendarBatch.messages.length) {
-      const channel = getSendableChannel(client, channelID, "calendar");
+      const channel = await getOptionalThreadTargetChannel(client, channelID, tradingCalendarThreadID, "calendar");
       await sendChunkedMessages(channel, calendarBatch.messages, "calendar");
     }
   });
@@ -1109,6 +1112,7 @@ function scheduleCalendarReminderFollowUpJobs(
   client: TimerClient,
   channelID: string,
   matchedReminderGroups: CalendarReminderGroup[],
+  tradingCalendarThreadID: string | undefined,
 ) {
   const sentFollowUpKeys = new Set<string>();
 
@@ -1139,7 +1143,7 @@ function scheduleCalendarReminderFollowUpJobs(
           return;
         }
 
-        const sent = await sendCalendarReminderFollowUp(client, channelID, matchedReminderGroup);
+        const sent = await sendCalendarReminderFollowUp(client, channelID, matchedReminderGroup, tradingCalendarThreadID);
         if (true === sent) {
           sentFollowUpKeys.add(followUpKey);
         }
@@ -1167,6 +1171,7 @@ async function sendCalendarReminderFollowUp(
   client: TimerClient,
   channelID: string,
   matchedReminderGroup: CalendarReminderGroup,
+  tradingCalendarThreadID: string | undefined,
 ): Promise<boolean> {
   const roleId = getNormalizedRoleId(matchedReminderGroup.asset.roleId);
   const primaryEvent = matchedReminderGroup.events[0];
@@ -1179,9 +1184,8 @@ async function sendCalendarReminderFollowUp(
   const calendarEvents = refreshedReminderGroup?.events ?? matchedReminderGroup.events;
 
   if (true === hasCalendarReminderActualValues(calendarEvents)) {
-    await sendAnnouncement(
-      client,
-      channelID,
+    await sendToChannel(
+      await getOptionalThreadTargetChannel(client, channelID, tradingCalendarThreadID, calendarReminderAnnouncementSource),
       {
         content: getCalendarReminderUpdateMessage(roleId, calendarEvents),
         allowedMentions: getAllowedRoleMentions(roleId),
@@ -1194,9 +1198,8 @@ async function sendCalendarReminderFollowUp(
   if (false === hasCalendarReminderClearMetrics(calendarEvents)) {
     const officialSummary = await getCalendarOfficialSummary(calendarEvents, {logger});
     if (undefined !== officialSummary) {
-      await sendAnnouncement(
-        client,
-        channelID,
+      await sendToChannel(
+        await getOptionalThreadTargetChannel(client, channelID, tradingCalendarThreadID, calendarReminderAnnouncementSource),
         {
           content: getCalendarReminderSummaryMessage(
             roleId,

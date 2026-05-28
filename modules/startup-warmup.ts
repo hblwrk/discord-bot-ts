@@ -71,6 +71,7 @@ export async function warmRemoteData({
   startupState,
   channelOtherId,
   earningsExpectationsThreadId,
+  tradingCalendarThreadId,
   environment,
 }: {
   client: Client;
@@ -79,6 +80,7 @@ export async function warmRemoteData({
   startupState: ReturnType<typeof createStartupState>;
   channelOtherId: string;
   earningsExpectationsThreadId?: string | undefined;
+  tradingCalendarThreadId?: string | undefined;
   environment: string;
 }) {
   const logger = dependencies.logger;
@@ -125,6 +127,7 @@ export async function warmRemoteData({
       sharedData.calendarReminderAssets,
       sharedData.earningsReminderAssets,
       earningsExpectationsThreadId,
+      tradingCalendarThreadId,
     );
     otherTimersStarted = true;
     logger.log(

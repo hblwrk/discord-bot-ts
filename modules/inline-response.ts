@@ -27,6 +27,12 @@ type InlineResponseMessage = {
     };
   };
   mentions?: {
+    has?: (userId: string, options?: {
+      ignoreRepliedUser?: boolean;
+    }) => boolean;
+    parsedUsers?: {
+      has?: (userId: string) => boolean;
+    };
     users?: {
       has?: (userId: string) => boolean;
     };
@@ -80,7 +86,13 @@ function isBotMentioned(client: InlineResponseClient, message: InlineResponseMes
     return false;
   }
 
-  if (true === message.mentions?.users?.has?.(botUserId)) {
+  if (true === message.mentions?.has?.(botUserId, {
+    ignoreRepliedUser: true,
+  })) {
+    return true;
+  }
+
+  if (true === message.mentions?.parsedUsers?.has?.(botUserId)) {
     return true;
   }
 
