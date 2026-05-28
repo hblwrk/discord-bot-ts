@@ -162,6 +162,7 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
   const channelOtherId = dependencies.readSecret("hblwrk_channel_OtherAnnouncement_ID").trim();
   const earningsExpectationsThreadId = readOptionalSecretValue(dependencies.readSecret, "hblwrk_earnings_expectations_thread_ID");
   const earningsResultsThreadId = readOptionalSecretValue(dependencies.readSecret, "hblwrk_earnings_results_thread_ID");
+  const tradingCalendarThreadId = readOptionalSecretValue(dependencies.readSecret, "hblwrk_trading_calendar_thread_ID");
   const channelClownboardId = dependencies.readSecret("hblwrk_channel_clownboard_ID").trim();
   const roleAssignmentChannelId = dependencies.readSecret("hblwrk_role_assignment_channel_ID").trim();
   const roleAssignmentBrokerMessageId = dependencies.readSecret("hblwrk_role_assignment_broker_message_ID").trim();
@@ -277,6 +278,7 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
     startupState,
     channelOtherId,
     earningsExpectationsThreadId,
+    tradingCalendarThreadId,
     environment,
   });
 

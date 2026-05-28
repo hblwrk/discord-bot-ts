@@ -216,10 +216,11 @@ describe("startBot", () => {
       calendarReminderAssets,
       earningsReminderAssets,
       undefined,
+      undefined,
     );
   });
 
-  test("passes optional earnings thread targets when configured", async () => {
+  test("passes optional announcement thread targets when configured", async () => {
     const readSecret = vi.fn((secretName: string) => {
       const defaults: Record<string, string> = {
         environment: "staging",
@@ -230,6 +231,7 @@ describe("startBot", () => {
         hblwrk_channel_OtherAnnouncement_ID: "other",
         hblwrk_earnings_expectations_thread_ID: "earnings-expectations-thread",
         hblwrk_earnings_results_thread_ID: "earnings-results-thread",
+        hblwrk_trading_calendar_thread_ID: "trading-calendar-thread",
         hblwrk_channel_clownboard_ID: "clownboard",
         discord_client_ID: "bot-client-id",
         discord_guild_ID: "guild-id",
@@ -264,6 +266,7 @@ describe("startBot", () => {
       [],
       [],
       "earnings-expectations-thread",
+      "trading-calendar-thread",
     );
   });
 

@@ -58,6 +58,30 @@ function createEarningsReminderAsset(options: EarningsReminderOptions): Earnings
   return asset;
 }
 
+function createClientWithOptionalThread(threadID: string) {
+  const parentSend = vi.fn().mockResolvedValue(undefined);
+  const threadSend = vi.fn().mockResolvedValue(undefined);
+  const channel = {
+    send: parentSend,
+  };
+  const thread = {
+    send: threadSend,
+  };
+  const client = {
+    channels: {
+      cache: {
+        get: vi.fn((channelID: string) => threadID === channelID ? thread : channel),
+      },
+    },
+  };
+
+  return {
+    client,
+    parentSend,
+    threadSend,
+  };
+}
+
 describe("timers: other announcements", () => {
   beforeEach(resetTimerMocks);
   afterEach(restoreTimerMocks);
@@ -155,6 +179,64 @@ describe("timers: other announcements", () => {
     });
     expect(send).toHaveBeenNthCalledWith(2, {
       content: "<@&role-123> Heute wichtig: `14:30` 🇺🇸 Consumer Price Index (CPI)",
+      allowedMentions: {
+        parse: [],
+        roles: ["role-123"],
+      },
+    });
+  });
+
+  test("startOtherTimers sends calendar alerts to the optional trading calendar thread", async () => {
+    const {client, parentSend, threadSend} = createClientWithOptionalThread("trading-calendar-thread");
+    getCalendarEventsMock
+      .mockResolvedValueOnce([
+        {
+          date: "2025-02-19",
+          time: "14:30",
+          country: "🇺🇸",
+          forecastValue: "3.2%",
+          name: "Consumer Price Index (CPI) y/y",
+          previousValue: "3.1%",
+        },
+      ])
+      .mockResolvedValueOnce([
+        {
+          actualValue: "3.4%",
+          date: "2025-02-19",
+          time: "14:30",
+          country: "🇺🇸",
+          forecastValue: "3.2%",
+          name: "Consumer Price Index (CPI) y/y",
+          previousValue: "3.1%",
+        },
+      ]);
+
+    startOtherTimers(client, "channel-id", [], [], [createCalendarReminderAsset({
+      name: "us-cpi-1h",
+      eventNameSubstrings: ["cpi"],
+      countryFlags: ["🇺🇸"],
+      roleId: "role-123",
+    })], [], undefined, "trading-calendar-thread");
+    const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
+    await dailyCalendarJob.callback();
+    await getScheduledDateJobs()[0]!.callback();
+
+    expect(parentSend).not.toHaveBeenCalled();
+    expect(threadSend).toHaveBeenNthCalledWith(1, {
+      content: "calendar-text",
+      allowedMentions: {
+        parse: [],
+      },
+    });
+    expect(threadSend).toHaveBeenNthCalledWith(2, {
+      content: "<@&role-123> Heute wichtig: `14:30` 🇺🇸 Consumer Price Index (CPI) y/y: exp. `3.2%`, prev. `3.1%`",
+      allowedMentions: {
+        parse: [],
+        roles: ["role-123"],
+      },
+    });
+    expect(threadSend).toHaveBeenNthCalledWith(3, {
+      content: "<@&role-123> Update: `14:30` 🇺🇸 Consumer Price Index (CPI) y/y: actual `3.4%`, exp. `3.2%`, prev. `3.1%`",
       allowedMentions: {
         parse: [],
         roles: ["role-123"],
@@ -1194,6 +1276,35 @@ describe("timers: other announcements", () => {
         parse: [],
       },
     }));
+  });
+
+  test("startOtherTimers sends weekly calendar chunks to the optional trading calendar thread", async () => {
+    const {client, parentSend, threadSend} = createClientWithOptionalThread("trading-calendar-thread");
+    getCalendarEventsMock
+      .mockResolvedValueOnce([
+        {date: "2025-02-24", time: "10:00", country: "🇺🇸", name: "Event A"},
+      ])
+      .mockResolvedValueOnce([]);
+    getCalendarMessagesMock.mockReturnValueOnce({
+      messages: ["week-1"],
+      truncated: false,
+      totalEvents: 1,
+      includedEvents: 1,
+      totalDays: 1,
+      includedDays: 1,
+    });
+
+    startOtherTimers(client, "channel-id", [], [], [], [], undefined, "trading-calendar-thread");
+    const weeklyCalendarJob = getScheduledJobByTime(23, 45, "Europe/Berlin");
+    await weeklyCalendarJob.callback();
+
+    expect(parentSend).not.toHaveBeenCalled();
+    expect(threadSend).toHaveBeenCalledWith({
+      content: "week-1",
+      allowedMentions: {
+        parse: [],
+      },
+    });
   });
 
   test("startOtherTimers logs warning when calendar output is truncated and sends bounded output", async () => {
