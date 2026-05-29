@@ -262,6 +262,34 @@ describe("market open warmup", () => {
     );
   });
 
+  test("retries rejected AI output with validation feedback", async () => {
+    const callAiProviderJsonFn = vi.fn()
+      .mockResolvedValueOnce(JSON.stringify({
+        content: "Guten Morgen, der Markt macht heute bestimmt irgendwas. Bitte alle maximal dramatisch bleiben.",
+      }))
+      .mockResolvedValueOnce(JSON.stringify({
+        content: "`04:00 US/Eastern` ist offen. Marktampel `Gelb`; erst Plan, dann Klickfinger.",
+      }));
+
+    const message = await getPremarketWarmupMessage({
+      callAiProviderJsonFn,
+      logger,
+    }, {
+      assetPromptReferences: [],
+      referenceTime: new Date("2026-05-07T08:05:00Z"),
+    });
+
+    expect(message).toBe("`04:00 US/Eastern` ist offen. Marktampel `Gelb`; erst Plan, dann Klickfinger.");
+    expect(callAiProviderJsonFn).toHaveBeenCalledTimes(2);
+    const retryPrompt = callAiProviderJsonFn.mock.calls[1]?.[0] ?? "";
+    expect(retryPrompt).toContain("Previous response failed local validation.");
+    expect(retryPrompt).toContain("Fix this validation issue: content did not reference a supplied fact.");
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      expect.stringContaining("AI premarket warmup rejected: content did not reference a supplied fact. Retrying with validation feedback:"),
+    );
+  });
+
   test("rejects AI output that looks like trading advice", async () => {
     const callAiProviderJsonFn = vi.fn().mockResolvedValue(JSON.stringify({
       content: "`04:00 US/Eastern` ist offen, also geht long und betet.",

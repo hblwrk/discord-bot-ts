@@ -22,11 +22,25 @@ type PremarketWarmupFact = {
   type: "market-ampel" | "session" | "snapshot";
 };
 
+type PremarketWarmupParseFailure = {
+  logMessage: string;
+  retryInstructions: string;
+};
+
+type PremarketWarmupParseResult = {
+  content: string;
+  failure?: undefined;
+} | {
+  content?: undefined;
+  failure: PremarketWarmupParseFailure;
+};
+
 const usEasternTimezone = "US/Eastern";
 const europeBerlinTimezone = "Europe/Berlin";
 const defaultMaxContentLength = 700;
 const defaultMaxSnapshotAgeMs = 45 * 60_000;
 const defaultMaxStyleTropes = 10;
+const premarketWarmupAiMaxAttempts = 3;
 const assetTropeKeywordRegex = /\b(?:alarm|ampel|apr|apy|bärenmarkt|bear|betrug|boden|bull|cash|coinflip|crash|dinero|drawdown|eingepreist|free ?money|gratisgeld|hebel|jpow|kaboom|kurs|leverage|margin|markt|mindset|nachtraden|omu|ponzi|risk|risiko|rugpull|stop ?loss|stonks|witching|yolo)\b/iu;
 const premarketWarmupSchema = {
   type: "object",
@@ -54,28 +68,51 @@ export async function getPremarketWarmupMessage(
     options.maxStyleTropes ?? defaultMaxStyleTropes,
   );
   const callAiProviderJsonFn = dependencies.callAiProviderJsonFn ?? callAiProviderJson;
-  const jsonText = await callAiProviderJsonFn(
-    getPremarketWarmupPrompt(facts, styleTropes, maxContentLength),
-    premarketWarmupSchema,
-    dependencies,
-    "premarket warmup",
-    undefined,
-    {
-      timeoutMs: 30_000,
-    },
-  ).catch(error => {
+  const basePrompt = getPremarketWarmupPrompt(facts, styleTropes, maxContentLength);
+  let retryInstructions: string | undefined;
+  for (let attempt = 1; attempt <= premarketWarmupAiMaxAttempts; attempt += 1) {
+    const jsonText = await callAiProviderJsonFn(
+      getPremarketWarmupAttemptPrompt(basePrompt, retryInstructions),
+      premarketWarmupSchema,
+      dependencies,
+      "premarket warmup",
+      undefined,
+      {
+        timeoutMs: 30_000,
+      },
+    ).catch(error => {
+      dependencies.logger.log(
+        "warn",
+        `AI premarket warmup failed: ${error}`,
+      );
+      return null;
+    });
+
+    if (null === jsonText) {
+      return fallback;
+    }
+
+    const parseResult = parseValidatedWarmupContent(jsonText, facts, maxContentLength);
+    if (undefined !== parseResult.content) {
+      return parseResult.content;
+    }
+
+    if (attempt < premarketWarmupAiMaxAttempts) {
+      retryInstructions = parseResult.failure.retryInstructions;
+      dependencies.logger.log(
+        "warn",
+        `${parseResult.failure.logMessage} Retrying with validation feedback: ${retryInstructions}`,
+      );
+      continue;
+    }
+
     dependencies.logger.log(
       "warn",
-      `AI premarket warmup failed: ${error}`,
+      parseResult.failure.logMessage,
     );
-    return null;
-  });
-
-  if (null === jsonText) {
-    return fallback;
   }
 
-  return getValidatedWarmupContent(jsonText, facts, dependencies, maxContentLength) ?? fallback;
+  return fallback;
 }
 
 function getPremarketWarmupFacts(referenceTime: Date, maxSnapshotAgeMs: number): PremarketWarmupFact[] {
@@ -320,41 +357,73 @@ function getPremarketWarmupPrompt(
   ].join("\n");
 }
 
-function getValidatedWarmupContent(
+function getPremarketWarmupAttemptPrompt(basePrompt: string, retryInstructions: string | undefined): string {
+  if (undefined === retryInstructions) {
+    return basePrompt;
+  }
+
+  return [
+    basePrompt,
+    "",
+    "Previous response failed local validation. Correct this before returning JSON:",
+    retryInstructions,
+    "Return a fresh JSON object only. Keep every original rule in force.",
+  ].join("\n");
+}
+
+function parseValidatedWarmupContent(
   jsonText: string,
   facts: PremarketWarmupFact[],
-  dependencies: PremarketWarmupDependencies,
   maxContentLength: number,
-): string | undefined {
+): PremarketWarmupParseResult {
   const parsedJson = parseJson(jsonText);
   if (false === isRecord(parsedJson)) {
-    dependencies.logger.log(
-      "warn",
+    return invalidPremarketWarmup(
       "AI premarket warmup returned invalid JSON.",
+      "Return valid JSON only; do not include prose, Markdown fences, comments, or trailing text.",
     );
-    return undefined;
   }
 
   const content = parsedJson["content"];
   if ("string" !== typeof content) {
-    dependencies.logger.log(
-      "warn",
+    return invalidPremarketWarmup(
       "AI premarket warmup response did not contain content.",
+      "Return JSON with a string content field and no other fields.",
     );
-    return undefined;
   }
 
   const normalizedContent = normalizeContent(content);
   const validationIssue = getWarmupValidationIssue(normalizedContent, facts, maxContentLength);
   if (undefined !== validationIssue) {
-    dependencies.logger.log(
-      "warn",
+    return invalidPremarketWarmup(
       `AI premarket warmup rejected: ${validationIssue}.`,
+      getWarmupRetryInstructions(validationIssue),
     );
-    return undefined;
   }
 
-  return normalizedContent;
+  return {
+    content: normalizedContent,
+  };
+}
+
+function invalidPremarketWarmup(
+  logMessage: string,
+  retryInstructions: string,
+): PremarketWarmupParseResult {
+  return {
+    failure: {
+      logMessage,
+      retryInstructions,
+    },
+  };
+}
+
+function getWarmupRetryInstructions(validationIssue: string): string {
+  return [
+    `Fix this validation issue: ${validationIssue}.`,
+    "Return one compliant German Discord message in content.",
+    "Use at least one supplied fact and avoid trading advice, links, mentions, implementation details, and AI or research references.",
+  ].join(" ");
 }
 
 function getWarmupValidationIssue(
