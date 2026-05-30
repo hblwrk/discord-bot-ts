@@ -182,7 +182,7 @@ describe("getCalendarMessages", () => {
     ];
 
     const batch = getCalendarMessages(calendarEvents, {
-      title: "📅 **Wichtige Termine der nächsten Handelswoche (11. Mai 2026 - 15. Mai 2026)**",
+      title: "📅 **Wichtige Termine der nächsten Handelswoche** (11. Mai 2026 - 15. Mai 2026)",
       titlePlacement: "standalone",
       maxMessageLength: 1800,
       maxMessages: 6,
@@ -190,11 +190,11 @@ describe("getCalendarMessages", () => {
     });
 
     expect(batch.messages[0]!).toContain(
-      "📅 **Wichtige Termine der nächsten Handelswoche (11. Mai 2026 - 15. Mai 2026)**\n**Montag, 11. Mai 2026**\n`16:00` 🇺🇸 Existing Home Sales",
+      "📅 **Wichtige Termine der nächsten Handelswoche** (11. Mai 2026 - 15. Mai 2026)\n**Montag, 11. Mai 2026**\n`16:00` 🇺🇸 Existing Home Sales",
     );
     expect(batch.messages[0]!).not.toContain(")**\n\n**Montag");
     expect(batch.messages[0]!).toContain("**Dienstag, 12. Mai 2026**\n`01:30` 🇯🇵 Household Spending m/m");
-    expect(batch.messages[0]!).not.toContain("**Wichtige Termine der nächsten Handelswoche (11. Mai 2026 - 15. Mai 2026)** (Montag");
+    expect(batch.messages[0]!).not.toContain("**Wichtige Termine der nächsten Handelswoche** (11. Mai 2026 - 15. Mai 2026) (Montag");
   });
 
   test("chunks by day boundaries across multiple days", () => {

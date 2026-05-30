@@ -929,7 +929,7 @@ describe("timers: other announcements", () => {
       marketCapFilter: "bluechips",
     });
     expect(send).toHaveBeenNthCalledWith(1, {
-      content: "💸 **Earnings der nächsten Handelswoche (24. Februar 2025 - 27. Februar 2025)**\n**Montag, 24. Februar 2025**\nweekly-earnings-1",
+      content: "💸 **Earnings der nächsten Handelswoche** (24. Februar 2025 - 27. Februar 2025)\n**Montag, 24. Februar 2025**\nweekly-earnings-1",
       allowedMentions: {
         parse: [],
       },
@@ -1014,7 +1014,7 @@ describe("timers: other announcements", () => {
     );
     expect(send).toHaveBeenCalledTimes(1);
     expect(send).toHaveBeenCalledWith({
-      content: "💸 **Earnings der nächsten Handelswoche (24. Februar 2025 - 28. Februar 2025)**\n**Montag, 24. Februar 2025**\nweekly-folded",
+      content: "💸 **Earnings der nächsten Handelswoche** (24. Februar 2025 - 28. Februar 2025)\n**Montag, 24. Februar 2025**\nweekly-folded",
       allowedMentions: {
         parse: [],
       },
@@ -1262,7 +1262,8 @@ describe("timers: other announcements", () => {
       maxMessageLength: 1800,
       maxMessages: 8,
       keepDayTogether: true,
-      title: "📅 **Wichtige Termine der nächsten Handelswoche:**",
+      title: "📅 **Wichtige Termine der nächsten Handelswoche** (24. Februar 2025 - 26. Februar 2025)",
+      titlePlacement: "standalone",
     }));
     expect(send).toHaveBeenNthCalledWith(1, expect.objectContaining({
       content: "week-1",
