@@ -53,11 +53,13 @@ export async function loadEarningsWhispersWeeklyTickers({
 
   try {
     const tickers = await loadUncachedEarningsWhispersWeeklyTickers(getWithRetryFn, weekStart);
-    earningsWhispersWeeklyTickerCache = {
-      loadedAtMs,
-      tickers,
-      weekStartDateStamp,
-    };
+    if (0 < tickers.size) {
+      earningsWhispersWeeklyTickerCache = {
+        loadedAtMs,
+        tickers,
+        weekStartDateStamp,
+      };
+    }
     loggerInstance.log(
       "debug",
       {

@@ -170,4 +170,28 @@ describe("Earnings Whispers weekly tickers", () => {
 
     expect(getWithRetryFn).toHaveBeenCalledTimes(1);
   });
+
+  test("does not cache empty weekly ticker responses", async () => {
+    clearEarningsWhispersWeeklyTickerCache();
+    const getWithRetryFn = vi.fn()
+      .mockResolvedValueOnce({
+        data: "Earnings Whispers @eWhispers no matching weekly post yet.",
+      })
+      .mockResolvedValueOnce({
+        data: "The most anticipated earnings releases for the week of June 1, 2026, are Broadcom #AVGO, CrowdStrike #CRWD, Palo Alto Networks #PANW, and Hewlett Packard Enterprise #HPE.https://www.earningswhispers.com/calendar#mostanticipated #earningsseason",
+      });
+    const logger = {
+      log: vi.fn(),
+    };
+    const options = {
+      getWithRetryFn,
+      logger,
+      now: moment.tz("2026-06-01 12:00", "YYYY-MM-DD HH:mm", "US/Eastern"),
+    };
+
+    await expect(loadEarningsWhispersWeeklyTickers(options)).resolves.toEqual(new Set());
+    await expect(loadEarningsWhispersWeeklyTickers(options)).resolves.toEqual(new Set(["AVGO", "CRWD", "PANW", "HPE"]));
+
+    expect(getWithRetryFn).toHaveBeenCalledTimes(2);
+  });
 });
