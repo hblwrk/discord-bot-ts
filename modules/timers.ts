@@ -64,7 +64,7 @@ const calendarReminderFollowUpDelaySeconds = [5, 10, 20, 30, 60, 120, 180, 300, 
 const usEasternTimezone = "US/Eastern";
 const dailyEarningsHeadline = "**Earnings**";
 const weeklyEarningsHeadline = "💸 **Earnings der nächsten Handelswoche**";
-const weeklyCalendarHeadline = "📅 **Wichtige Termine der nächsten Handelswoche:**";
+const weeklyCalendarHeadline = "📅 **Wichtige Termine der nächsten Handelswoche**";
 const europeBerlinTimezone = "Europe/Berlin";
 const usEasternWeekdays = [new Schedule.Range(1, 5)];
 const gainsAndLossesThreadName = "Heutige Gains&Losses";
@@ -146,6 +146,29 @@ function getWeeklyHeadlineWithDateRange(headline: string, weekMonday: moment.Mom
   const weekFriday = weekMonday.clone().add(4, "days");
   const dateRange = `${getGermanDate(weekMonday)} - ${getGermanDate(weekFriday)}`;
   return getHeadlineWithDateRange(headline, dateRange);
+}
+
+function getWeeklyCalendarHeadlineWithDateRange(headline: string, calendarEvents: CalendarEvent[]): string {
+  const dateRange = getCalendarEventsDateRange(calendarEvents);
+  if (undefined === dateRange) {
+    return headline;
+  }
+
+  return getHeadlineWithDateRange(headline, dateRange);
+}
+
+function getCalendarEventsDateRange(calendarEvents: CalendarEvent[]): string | undefined {
+  const eventDates = calendarEvents
+    .map(calendarEvent => moment.tz(calendarEvent.date, "YYYY-MM-DD", true, europeBerlinTimezone))
+    .filter(eventDate => eventDate.isValid())
+    .sort((first, second) => first.valueOf() - second.valueOf());
+  const firstEventDate = eventDates[0];
+  const lastEventDate = eventDates[eventDates.length - 1];
+  if (undefined === firstEventDate || undefined === lastEventDate) {
+    return undefined;
+  }
+
+  return `${getGermanDate(firstEventDate)} - ${getGermanDate(lastEventDate)}`;
 }
 
 function getGermanDate(date: moment.Moment): string {
@@ -1082,7 +1105,8 @@ export function startOtherTimers(
       maxMessageLength: CALENDAR_MAX_MESSAGE_LENGTH,
       maxMessages: CALENDAR_MAX_MESSAGES_TIMER,
       keepDayTogether: true,
-      title: weeklyCalendarHeadline,
+      title: getWeeklyCalendarHeadlineWithDateRange(weeklyCalendarHeadline, calendarEvents),
+      titlePlacement: "standalone",
     });
     logCalendarBatch("timer-weekly", calendarBatch);
 
@@ -1317,19 +1341,18 @@ function getCompactGermanDateFromFriendlyDate(friendlyDate: string): string {
 
 function getHeadlineWithDateRange(headline: string, dateRange: string): string {
   const headlineWithoutDateRange = getHeadlineWithoutDateRange(headline);
-  if (headlineWithoutDateRange.endsWith("**")) {
-    return `${headlineWithoutDateRange.slice(0, -2)} (${dateRange})**`;
-  }
-
   return `${headlineWithoutDateRange} (${dateRange})`;
 }
 
 function getHeadlineWithoutDateRange(headline: string): string {
-  if (headline.endsWith("**")) {
-    return headline.replace(/ \([^()\n]+\)\*\*$/, "**");
+  const headlineWithoutTrailingDateRange = headline.replace(/ \([^()\n]+\)$/, "");
+  if (headlineWithoutTrailingDateRange.endsWith("**")) {
+    return headlineWithoutTrailingDateRange
+      .replace(/ \([^()\n]+\)\*\*$/, "**")
+      .replace(/:\*\*$/, "**");
   }
 
-  return headline.replace(/ \([^()\n]+\)$/, "");
+  return headlineWithoutTrailingDateRange.replace(/:$/, "");
 }
 
 function getFirstMessageWithMergedHeadlinePlacement(headline: string, firstMessage: string): string {
