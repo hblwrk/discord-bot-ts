@@ -5,6 +5,8 @@ export type MncSummaryDependencies = AiProviderDependencies;
 
 const maxInlinePdfBytes = 14_000_000;
 const maxDiscordSummaryLength = 1_930;
+const maxMncSummaryAttempts = 2;
+const minMncSummaryBullets = 5;
 
 const mncSummarySchema = {
   type: "object",
@@ -30,6 +32,33 @@ export async function getMncSummary(
     return undefined;
   }
 
+  for (let attempt = 1; attempt <= maxMncSummaryAttempts; attempt++) {
+    const normalizedSummary = await requestNormalizedMncSummary(pdfBuffer, dependencies);
+    if (undefined === normalizedSummary) {
+      continue;
+    }
+
+    if (false === isStructurallyValidMncSummary(normalizedSummary)) {
+      dependencies.logger.log(
+        "warn",
+        `Discarding malformed AI MNC summary (attempt ${attempt}/${maxMncSummaryAttempts}): missing a required section heading or too few bullets.`,
+      );
+      continue;
+    }
+
+    const finalSummary = finalizeNormalizedSummary(normalizedSummary);
+    if ("" !== finalSummary) {
+      return finalSummary;
+    }
+  }
+
+  return undefined;
+}
+
+async function requestNormalizedMncSummary(
+  pdfBuffer: Buffer,
+  dependencies: MncSummaryDependencies,
+): Promise<string | undefined> {
   const jsonText = await callAiProviderJson(
     getMncSummaryPrompt(),
     mncSummarySchema,
@@ -73,13 +102,26 @@ export async function getMncSummary(
   }
 
   const normalizedSummary = normalizeMarkdownSummary(summaryMarkdown);
-  if ("" === normalizedSummary) {
-    return undefined;
+  return "" === normalizedSummary ? undefined : normalizedSummary;
+}
+
+export function formatMncSummary(summaryMarkdown: string): string {
+  return finalizeNormalizedSummary(normalizeMarkdownSummary(summaryMarkdown));
+}
+
+function finalizeNormalizedSummary(normalizedSummary: string): string {
+  return removeMncTldrHeading(truncateMarkdownSummary(normalizedSummary)).trim();
+}
+
+export function isStructurallyValidMncSummary(summary: string): boolean {
+  const lines = summary.split("\n");
+  const hasStocksHeading = lines.some(line => "**Stocks in focus**" === line.trim());
+  const hasWatchlistHeading = lines.some(line => "**Watchlist**" === line.trim());
+  if (false === hasStocksHeading || false === hasWatchlistHeading) {
+    return false;
   }
 
-  const truncatedSummary = truncateMarkdownSummary(normalizedSummary);
-  const finalSummary = removeMncTldrHeading(truncatedSummary).trim();
-  return "" === finalSummary ? undefined : finalSummary;
+  return getBulletLines(lines).length >= minMncSummaryBullets;
 }
 
 function getMncSummaryPrompt(): string {
