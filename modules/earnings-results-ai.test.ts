@@ -806,6 +806,67 @@ describe("AI earnings helpers", () => {
     }]);
     expect(hasHighSeveritySuspicion(reasons)).toBe(false);
   });
+
+  test("flags a negative EPS reported alongside a positive net income", () => {
+    const reasons = getSuspiciousEarningsReasons([{
+      key: "gaap_eps",
+      label: "EPS",
+      numericValue: -7,
+      value: "-$7.00",
+    }, {
+      key: "net_income",
+      label: "Net income",
+      numericValue: 624_000_000,
+      value: "$624M",
+    }], null, getEvent({
+      epsConsensus: "$0.44",
+    }));
+
+    expect(reasons).toEqual([{
+      message: "EPS -$7.00 is negative while net income $624M is positive.",
+      metricKey: "gaap_eps",
+      severity: "high",
+    }]);
+    expect(hasHighSeveritySuspicion(reasons)).toBe(true);
+  });
+
+  test("flags a positive EPS reported alongside a negative net income", () => {
+    const reasons = getSuspiciousEarningsReasons([{
+      key: "adjusted_eps",
+      label: "Adj EPS",
+      numericValue: 2.1,
+      value: "$2.10",
+    }, {
+      key: "net_income",
+      label: "Net income",
+      numericValue: -310_000_000,
+      value: "-$310M",
+    }], null, getEvent());
+
+    expect(reasons).toEqual([{
+      message: "Adj EPS $2.10 is positive while net income -$310M is negative.",
+      metricKey: "adjusted_eps",
+      severity: "high",
+    }]);
+    expect(hasHighSeveritySuspicion(reasons)).toBe(true);
+  });
+
+  test("does not flag a negative EPS that agrees with a negative net income", () => {
+    const reasons = getSuspiciousEarningsReasons([{
+      key: "gaap_eps",
+      label: "EPS",
+      numericValue: -0.5,
+      value: "-$0.50",
+    }, {
+      key: "net_income",
+      label: "Net income",
+      numericValue: -120_000_000,
+      value: "-$120M",
+    }], null, getEvent());
+
+    expect(reasons).toEqual([]);
+    expect(hasHighSeveritySuspicion(reasons)).toBe(false);
+  });
 });
 
 function getEvent(overrides: Partial<ReturnType<typeof getEventBase>> = {}) {
