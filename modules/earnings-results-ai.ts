@@ -396,11 +396,57 @@ export function getSuspiciousEarningsReasons(
     });
   }
 
+  reasons.push(...getEpsNetIncomeSignContradictions(metrics, netIncomeMetric));
+
   return reasons;
 }
 
 export function hasHighSeveritySuspicion(reasons: SuspiciousEarningsReason[]): boolean {
   return reasons.some(reason => "high" === reason.severity);
+}
+
+const epsMetricKeys = new Set(["adjusted_eps", "gaap_eps", "nasdaq_eps"]);
+
+// A positive net income cannot produce a negative EPS, and vice versa. When an
+// EPS metric's sign contradicts net income, the value is almost certainly a
+// parsing artifact (wrong period, footnote fragment, or sign flip), so flag it
+// as high severity. That routes the post through the AI quality gate, which
+// re-checks the value against the filing text before anything is published.
+function getEpsNetIncomeSignContradictions(
+  metrics: EarningsResultMetric[],
+  netIncomeMetric: EarningsResultMetric | undefined,
+): SuspiciousEarningsReason[] {
+  if (undefined === netIncomeMetric ||
+      "number" !== typeof netIncomeMetric.numericValue ||
+      false === Number.isFinite(netIncomeMetric.numericValue) ||
+      0 === netIncomeMetric.numericValue) {
+    return [];
+  }
+
+  const netIncomePositive = netIncomeMetric.numericValue > 0;
+  const reasons: SuspiciousEarningsReason[] = [];
+  for (const metric of metrics) {
+    if (false === epsMetricKeys.has(metric.key) ||
+        "number" !== typeof metric.numericValue ||
+        false === Number.isFinite(metric.numericValue) ||
+        0 === metric.numericValue) {
+      continue;
+    }
+
+    if ((metric.numericValue > 0) === netIncomePositive) {
+      continue;
+    }
+
+    reasons.push({
+      message: netIncomePositive
+        ? `${metric.label} ${metric.value} is negative while net income ${netIncomeMetric.value} is positive.`
+        : `${metric.label} ${metric.value} is positive while net income ${netIncomeMetric.value} is negative.`,
+      metricKey: metric.key,
+      severity: "high",
+    });
+  }
+
+  return reasons;
 }
 
 function getExtractionPrompt(input: EarningsAiExtractionInput, sourceText: string): string {
