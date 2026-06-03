@@ -30,6 +30,8 @@ export function runHealthCheck(
   logger: HealthcheckLogger = getLogger(),
 ) {
   const app = express();
+  // Don't advertise the framework; trims an information-disclosure header.
+  app.disable("x-powered-by");
   const router = express.Router();
 
   router.use((_request, response, next) => {
