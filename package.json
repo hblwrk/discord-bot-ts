@@ -34,7 +34,7 @@
     "validator": "^13.15.35",
     "winston": "^3.19.0",
     "winston-transport": "^4.9.0",
-    "ws": "^8.20.1"
+    "ws": "^8.21.0"
   },
   "author": "",
   "license": "MIT",
@@ -46,17 +46,17 @@
     "@eslint/js": "^10.0.1",
     "@types/express": "^5.0.6",
     "@types/js-yaml": "^4.0.9",
-    "@types/node": "^24.12.2",
+    "@types/node": "^24.12.4",
     "@types/node-schedule": "^2.1.8",
     "@types/validator": "^13.15.10",
-    "@vitest/coverage-v8": "^4.1.5",
+    "@vitest/coverage-v8": "^4.1.7",
     "@vitest/eslint-plugin": "^1.6.17",
     "eslint": "^10.4.0",
     "eslint-plugin-n": "^18.0.1",
     "globals": "^17.6.0",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.59.4",
-    "vitest": "^4.1.6"
+    "typescript-eslint": "^8.60.0",
+    "vitest": "^4.1.7"
   },
   "engines": {
     "node": ">=24.3.0 <25.0.0"
