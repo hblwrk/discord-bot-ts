@@ -4,6 +4,7 @@ import {runHealthCheck} from "./health-check.ts";
 import {afterAll, beforeEach, describe, expect, test, vi} from "vitest";
 
 const {
+  mockAppDisable,
   mockCreateServer,
   mockExpress,
   mockListen,
@@ -12,6 +13,7 @@ const {
   mockRouteHandlers,
 } = vi.hoisted(() => {
   const mockRouteHandlers = new Map<string, (...args: unknown[]) => unknown>();
+  const mockAppDisable = vi.fn();
   const mockAppUse = vi.fn();
   const mockRouterUse = vi.fn();
   const mockRouterGet = vi.fn((path: string, handler: (...args: unknown[]) => unknown) => {
@@ -24,6 +26,7 @@ const {
     listen: mockListen,
   }));
   const mockExpress = vi.fn(() => ({
+    disable: mockAppDisable,
     use: mockAppUse,
   }));
   (mockExpress as Mock & {Router: Mock}).Router = vi.fn(() => ({
@@ -35,6 +38,7 @@ const {
   };
 
   return {
+    mockAppDisable,
     mockCreateServer,
     mockExpress,
     mockListen,
@@ -133,6 +137,7 @@ describe("runHealthCheck", () => {
     runHealthCheck(() => createState(), mockLogger);
 
     expect(mockCreateServer).toHaveBeenCalledTimes(1);
+    expect(mockAppDisable).toHaveBeenCalledWith("x-powered-by");
     expect(mockOn).toHaveBeenCalledWith("error", expect.any(Function));
     expect(mockListen).toHaveBeenCalledWith(11312, "127.0.0.1");
 
