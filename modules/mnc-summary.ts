@@ -7,6 +7,18 @@ const maxInlinePdfBytes = 14_000_000;
 const maxDiscordSummaryLength = 1_930;
 const maxMncSummaryAttempts = 2;
 const minMncSummaryBullets = 5;
+const mncSummaryDiscardPreviewLength = 200;
+
+// The model is asked for "**Stocks in focus**" / "**Watchlist**" but routinely
+// varies the casing, adds a trailing colon, a leading 📰, or a Markdown "#"
+// heading marker. Match those benign variants so a usable summary is not
+// discarded, while still requiring the section to be a heading on its own line.
+const stocksInFocusHeadingPattern = /^\s*(?:#{1,3}\s*)?(?:📰\s*)?(?:\*\*|__)?\s*stocks in focus\s*:?\s*(?:\*\*|__)?\s*$/i;
+const watchlistHeadingPattern = /^\s*(?:#{1,3}\s*)?(?:📰\s*)?(?:\*\*|__)?\s*watchlist\s*:?\s*(?:\*\*|__)?\s*$/i;
+// Accept "-", "*", "•", or "–" bullet markers; "**bold**" lines are not bullets
+// because the marker must be followed by whitespace.
+const bulletLinePattern = /^[-*•–]\s+\S/;
+const bulletLineCanonicalPattern = /^(\s*)[-*•–]\s+(.*)$/;
 
 const mncSummarySchema = {
   type: "object",
@@ -38,10 +50,18 @@ export async function getMncSummary(
       continue;
     }
 
-    if (false === isStructurallyValidMncSummary(normalizedSummary)) {
+    const structure = describeMncSummaryStructure(normalizedSummary);
+    if (false === isMncSummaryStructureValid(structure)) {
       dependencies.logger.log(
         "warn",
-        `Discarding malformed AI MNC summary (attempt ${attempt}/${maxMncSummaryAttempts}): missing a required section heading or too few bullets.`,
+        {
+          message: `Discarding malformed AI MNC summary (attempt ${attempt}/${maxMncSummaryAttempts}): missing a required section heading or too few bullets.`,
+          has_stocks_heading: structure.hasStocksHeading,
+          has_watchlist_heading: structure.hasWatchlistHeading,
+          bullet_count: structure.bulletCount,
+          min_bullets: minMncSummaryBullets,
+          summary_preview: normalizedSummary.slice(0, mncSummaryDiscardPreviewLength),
+        },
       );
       continue;
     }
@@ -113,15 +133,29 @@ function finalizeNormalizedSummary(normalizedSummary: string): string {
   return removeMncTldrHeading(truncateMarkdownSummary(normalizedSummary)).trim();
 }
 
-export function isStructurallyValidMncSummary(summary: string): boolean {
-  const lines = summary.split("\n");
-  const hasStocksHeading = lines.some(line => "**Stocks in focus**" === line.trim());
-  const hasWatchlistHeading = lines.some(line => "**Watchlist**" === line.trim());
-  if (false === hasStocksHeading || false === hasWatchlistHeading) {
-    return false;
-  }
+export type MncSummaryStructure = {
+  hasStocksHeading: boolean;
+  hasWatchlistHeading: boolean;
+  bulletCount: number;
+};
 
-  return getBulletLines(lines).length >= minMncSummaryBullets;
+export function describeMncSummaryStructure(summary: string): MncSummaryStructure {
+  const lines = summary.split("\n");
+  return {
+    hasStocksHeading: lines.some(line => stocksInFocusHeadingPattern.test(line)),
+    hasWatchlistHeading: lines.some(line => watchlistHeadingPattern.test(line)),
+    bulletCount: getBulletLines(lines).length,
+  };
+}
+
+function isMncSummaryStructureValid(structure: MncSummaryStructure): boolean {
+  return true === structure.hasStocksHeading
+    && true === structure.hasWatchlistHeading
+    && structure.bulletCount >= minMncSummaryBullets;
+}
+
+export function isStructurallyValidMncSummary(summary: string): boolean {
+  return isMncSummaryStructureValid(describeMncSummaryStructure(summary));
 }
 
 function getMncSummaryPrompt(): string {
@@ -167,10 +201,39 @@ function normalizeMarkdownSummary(value: string): string {
   return normalizeInlineCodeWhitespace(
     normalizeInlineCodeMetricSigns(
       normalizeInlineCodeRanges(
-        normalizeInlineCodeWhitespace(removeUnexpectedScriptTokens(removeMncTldrHeading(summary))),
+        normalizeInlineCodeWhitespace(
+          canonicalizeSummaryStructure(removeUnexpectedScriptTokens(removeMncTldrHeading(summary))),
+        ),
       ),
     ),
   ).trim();
+}
+
+// Rewrite tolerated heading and bullet variants to the canonical "**Stocks in
+// focus**" / "**Watchlist**" / "- " forms so the posted message, the structural
+// gate, and the section compaction all see one consistent shape.
+function canonicalizeSummaryStructure(value: string): string {
+  return value
+    .split("\n")
+    .map(canonicalizeSummaryLine)
+    .join("\n");
+}
+
+function canonicalizeSummaryLine(line: string): string {
+  if (stocksInFocusHeadingPattern.test(line)) {
+    return "**Stocks in focus**";
+  }
+
+  if (watchlistHeadingPattern.test(line)) {
+    return "**Watchlist**";
+  }
+
+  const bulletMatch = line.match(bulletLineCanonicalPattern);
+  if (null !== bulletMatch) {
+    return `- ${bulletMatch[2]}`;
+  }
+
+  return line;
 }
 
 function removeMncTldrHeading(value: string): string {
@@ -352,7 +415,7 @@ function buildCompactedSectionSummary(
 function getBulletLines(lines: string[]): string[] {
   return lines
     .map(line => line.trim())
-    .filter(line => line.startsWith("- "));
+    .filter(line => bulletLinePattern.test(line));
 }
 
 function parseJson(value: string): unknown | null {
