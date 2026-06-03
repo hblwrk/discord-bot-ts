@@ -133,7 +133,9 @@ describe("MNC AI summary", () => {
     expect(postWithRetryFn).toHaveBeenCalledTimes(2);
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
-      expect.stringContaining("Discarding malformed AI MNC summary"),
+      expect.objectContaining({
+        message: expect.stringContaining("Discarding malformed AI MNC summary"),
+      }),
     );
   });
 
@@ -150,7 +152,9 @@ describe("MNC AI summary", () => {
     expect(postWithRetryFn).toHaveBeenCalledTimes(2);
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
-      expect.stringContaining("Discarding malformed AI MNC summary"),
+      expect.objectContaining({
+        message: expect.stringContaining("Discarding malformed AI MNC summary"),
+      }),
     );
   });
 
@@ -176,6 +180,63 @@ describe("MNC AI summary", () => {
 
     expect(summary).toBeUndefined();
     expect(postWithRetryFn).toHaveBeenCalledTimes(2);
+  });
+
+  test("accepts a summary whose headings and bullets only vary in formatting", async () => {
+    // Reproduces the 2026-06-03 incident: the model produced a complete summary
+    // but used title-case "Stocks in Focus:", a "## Watchlist" heading, and
+    // "*"/"•" bullet markers, which the strict gate discarded on both attempts.
+    const variantSummaryMarkdown = [
+      "📰 **Morning News Call - TL;DR**",
+      "* Futures firm ahead of payrolls.",
+      "* Yields ease as risk appetite improves.",
+      "",
+      "**Stocks in Focus:**",
+      "* Apple `AAPL` rose on upgrades.",
+      "* Tesla `TSLA` slipped premarket.",
+      "* Nvidia `NVDA` led chip gains.",
+      "",
+      "## Watchlist",
+      "• Watch the jobs report this morning.",
+    ].join("\n");
+    const postWithRetryFn = vi.fn().mockResolvedValue(geminiResponse(variantSummaryMarkdown));
+
+    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
+      logger,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(summary).toBe(validSummaryExpected);
+    expect(postWithRetryFn).toHaveBeenCalledTimes(1);
+    expect(logger.log).not.toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        message: expect.stringContaining("Discarding malformed AI MNC summary"),
+      }),
+    );
+  });
+
+  test("logs structural diagnostics when discarding a malformed summary", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue(geminiResponse(malformedSummaryMarkdown));
+
+    await getMncSummary(Buffer.from("pdf-bytes"), {
+      logger,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        message: expect.stringContaining("Discarding malformed AI MNC summary"),
+        has_stocks_heading: false,
+        has_watchlist_heading: false,
+        bullet_count: 2,
+        min_bullets: 5,
+        summary_preview: expect.stringContaining("Futures firm ahead of payrolls."),
+      }),
+    );
   });
 
   test("stays disabled when the active provider API key is missing", async () => {
@@ -322,6 +383,21 @@ describe("MNC summary structural validation", () => {
     expect(isStructurallyValidMncSummary(validBody)).toBe(true);
   });
 
+  test("accepts heading and bullet formatting variants", () => {
+    const body = [
+      "* Futures firm ahead of payrolls.",
+      "* Yields ease as risk appetite improves.",
+      "",
+      "**Stocks in Focus:**",
+      "* Apple `AAPL` rose on upgrades.",
+      "* Tesla `TSLA` slipped premarket.",
+      "",
+      "## Watchlist",
+      "• Watch the jobs report this morning.",
+    ].join("\n");
+    expect(isStructurallyValidMncSummary(body)).toBe(true);
+  });
+
   test("rejects a summary missing the stocks heading", () => {
     const body = validBody.replace("**Stocks in focus**\n", "");
     expect(isStructurallyValidMncSummary(body)).toBe(false);
@@ -392,6 +468,24 @@ describe("MNC summary formatting", () => {
   test("removes generated Morning News Call headings", () => {
     expect(formatMncSummary("📰 **Morning News Call - TL;DR**\n- Futures firm ahead of payrolls."))
       .toBe("- Futures firm ahead of payrolls.");
+  });
+
+  test("canonicalizes heading and bullet variants to the expected shape", () => {
+    const summary = formatMncSummary([
+      "**Morning News Call - TL;DR**",
+      "* Futures firm ahead of payrolls.",
+      "* Yields ease as risk appetite improves.",
+      "",
+      "**Stocks in Focus:**",
+      "* Apple `AAPL` rose on upgrades.",
+      "* Tesla `TSLA` slipped premarket.",
+      "* Nvidia `NVDA` led chip gains.",
+      "",
+      "## Watchlist",
+      "• Watch the jobs report this morning.",
+    ].join("\n"));
+
+    expect(summary).toBe(validSummaryExpected);
   });
 
   test("normalizes common AI Markdown rendering glitches", () => {
