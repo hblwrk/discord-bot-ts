@@ -7,7 +7,9 @@ const maxInlinePdfBytes = 14_000_000;
 const maxDiscordSummaryLength = 1_930;
 const maxMncSummaryAttempts = 2;
 const minMncSummaryBullets = 5;
-const mncSummaryDiscardPreviewLength = 200;
+// Long enough that a discarded summary's preview reaches the stocks/watchlist
+// region, not just the intro bullet, so a structural rejection can be diagnosed.
+const mncSummaryDiscardPreviewLength = 700;
 
 // The model is asked for "**Stocks in focus**" / "**Watchlist**" but routinely
 // varies the casing, adds a trailing colon, a leading 📰, or a Markdown "#"
@@ -15,6 +17,15 @@ const mncSummaryDiscardPreviewLength = 200;
 // discarded, while still requiring the section to be a heading on its own line.
 const stocksInFocusHeadingPattern = /^\s*(?:#{1,3}\s*)?(?:📰\s*)?(?:\*\*|__)?\s*stocks in focus\s*:?\s*(?:\*\*|__)?\s*$/i;
 const watchlistHeadingPattern = /^\s*(?:#{1,3}\s*)?(?:📰\s*)?(?:\*\*|__)?\s*watchlist\s*:?\s*(?:\*\*|__)?\s*$/i;
+// The model also welds the section name onto the first bullet of the section as
+// a bold lead-in label instead of writing a standalone heading, e.g.
+// "- **Stocks in focus:** Apple `AAPL` ...". Promote that lead-in to a real
+// heading so the structural gate and section compaction recognise the section.
+// A bold (or "#") wrapper is required so prose that merely mentions the phrase
+// mid-bullet is not mistaken for a heading. Capture group 1 is the trailing
+// content, which becomes the section's first bullet (empty for a bare label).
+const stocksInFocusLeadInPattern = /^\s*(?:[-*•–]\s+)?(?:#{1,3}\s+)?(?:📰\s*)?(?:\*\*|__)\s*stocks in focus\s*:?\s*(?:\*\*|__)\s*:?\s*(.*)$/i;
+const watchlistLeadInPattern = /^\s*(?:[-*•–]\s+)?(?:#{1,3}\s+)?(?:📰\s*)?(?:\*\*|__)\s*watchlist\s*:?\s*(?:\*\*|__)\s*:?\s*(.*)$/i;
 // Accept "-", "*", "•", or "–" bullet markers; "**bold**" lines are not bullets
 // because the marker must be followed by whitespace.
 const bulletLinePattern = /^[-*•–]\s+\S/;
@@ -142,10 +153,21 @@ export type MncSummaryStructure = {
 export function describeMncSummaryStructure(summary: string): MncSummaryStructure {
   const lines = summary.split("\n");
   return {
-    hasStocksHeading: lines.some(line => stocksInFocusHeadingPattern.test(line)),
-    hasWatchlistHeading: lines.some(line => watchlistHeadingPattern.test(line)),
+    hasStocksHeading: lines.some(line => isStocksInFocusHeadingLine(line)),
+    hasWatchlistHeading: lines.some(line => isWatchlistHeadingLine(line)),
     bulletCount: getBulletLines(lines).length,
   };
+}
+
+// Recognise a section whether it is a standalone heading or a bold lead-in label
+// on a bullet, so the structural gate agrees with canonicalizeSummaryStructure
+// regardless of whether the summary has been normalized yet.
+function isStocksInFocusHeadingLine(line: string): boolean {
+  return stocksInFocusHeadingPattern.test(line) || stocksInFocusLeadInPattern.test(line);
+}
+
+function isWatchlistHeadingLine(line: string): boolean {
+  return watchlistHeadingPattern.test(line) || watchlistLeadInPattern.test(line);
 }
 
 function isMncSummaryStructureValid(structure: MncSummaryStructure): boolean {
@@ -215,25 +237,44 @@ function normalizeMarkdownSummary(value: string): string {
 function canonicalizeSummaryStructure(value: string): string {
   return value
     .split("\n")
-    .map(canonicalizeSummaryLine)
+    .flatMap(canonicalizeSummaryLine)
     .join("\n");
 }
 
-function canonicalizeSummaryLine(line: string): string {
+function canonicalizeSummaryLine(line: string): string[] {
   if (stocksInFocusHeadingPattern.test(line)) {
-    return "**Stocks in focus**";
+    return ["**Stocks in focus**"];
   }
 
   if (watchlistHeadingPattern.test(line)) {
-    return "**Watchlist**";
+    return ["**Watchlist**"];
+  }
+
+  const stocksLeadIn = line.match(stocksInFocusLeadInPattern);
+  if (null !== stocksLeadIn) {
+    return buildSectionHeadingLines("**Stocks in focus**", stocksLeadIn[1] ?? "");
+  }
+
+  const watchlistLeadIn = line.match(watchlistLeadInPattern);
+  if (null !== watchlistLeadIn) {
+    return buildSectionHeadingLines("**Watchlist**", watchlistLeadIn[1] ?? "");
   }
 
   const bulletMatch = line.match(bulletLineCanonicalPattern);
   if (null !== bulletMatch) {
-    return `- ${bulletMatch[2]}`;
+    return [`- ${bulletMatch[2]}`];
   }
 
-  return line;
+  return [line];
+}
+
+function buildSectionHeadingLines(heading: string, trailingContent: string): string[] {
+  const remainder = trailingContent.trim();
+  if ("" === remainder) {
+    return [heading];
+  }
+
+  return [heading, `- ${remainder}`];
 }
 
 function removeMncTldrHeading(value: string): string {

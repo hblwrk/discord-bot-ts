@@ -36,6 +36,11 @@ Coding guidance for this repo. Extracts the rules a contributor (human or agent)
 - Separate workflows run CodeQL, njsscan, and Semgrep. Treat their findings as blocking.
 - Don't loosen any of: `coverageThreshold`, `npm audit --audit-level=high`, Trivy severity filters, Checkov framework scope, image signing, or the staging readiness gate. If one is genuinely the wrong fit, raise it explicitly rather than editing it through.
 
+## Commit signing
+
+- Commits and tags in this repo are **SSH-signed, not GPG-signed**. The repo-local git config sets `gpg.format=ssh`, `commit.gpgsign=true`, and `tag.gpgsign=true`. Don't switch `gpg.format` to `openpgp`/GPG, and don't disable signing to make a commit go through — if signing fails, fix the key setup instead.
+- No PII in commits. The author/committer identity must be a GitHub handle plus that account's `…@users.noreply.github.com` privacy email — never a real name or a real-domain email. The SSH signature embeds only the public key bytes, not the key file's comment, so no name leaks through signing; keep it that way (don't switch to a key whose material or required metadata carries a name).
+
 ## Codex sandbox
 
 - Codex sessions for this repo commonly require `require_escalated` for commands that write git metadata or access GitHub credentials. Use escalation proactively for `git add`, `git commit`, `git switch -c`, `git push`, and GitHub CLI commands such as `gh auth status`, `gh repo view`, and `gh pr create`, because sandboxed runs cannot reliably create `.git/*.lock` files or access keyring-backed GitHub tokens.
