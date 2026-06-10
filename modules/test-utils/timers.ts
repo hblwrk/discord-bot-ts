@@ -48,11 +48,38 @@ const loggerMock = {
   log: vi.fn(),
 };
 
-vi.mock("discord.js", () => ({
-  AttachmentBuilder: function MockAttachmentBuilder(...args: [Buffer, {name: string}]) {
-    return attachmentBuilderMock(...args);
-  },
-}));
+vi.mock("discord.js", () => {
+  class MockEmbedBuilder {
+    public data: {color?: number; title?: string; description?: string; footer?: {text: string}} = {};
+
+    public setColor(color: string | number) {
+      this.data.color = "string" === typeof color ? Number.parseInt(color.replace("#", ""), 16) : color;
+      return this;
+    }
+
+    public setTitle(title: string) {
+      this.data.title = title;
+      return this;
+    }
+
+    public setDescription(description: string) {
+      this.data.description = description;
+      return this;
+    }
+
+    public setFooter(footer: {text: string}) {
+      this.data.footer = footer;
+      return this;
+    }
+  }
+
+  return {
+    AttachmentBuilder: function MockAttachmentBuilder(...args: [Buffer, {name: string}]) {
+      return attachmentBuilderMock(...args);
+    },
+    EmbedBuilder: MockEmbedBuilder,
+  };
+});
 
 vi.mock("node-schedule", () => ({
   __esModule: true,

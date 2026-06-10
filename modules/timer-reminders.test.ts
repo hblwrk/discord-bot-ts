@@ -3,10 +3,10 @@ import {CalendarReminderAsset, EarningsReminderAsset} from "./assets.ts";
 import {CalendarEvent} from "./calendar.ts";
 import type {EarningsEvent} from "./earnings-types.ts";
 import {
+  buildCalendarReminderEmbed,
+  compareCalendarMetric,
   getAllowedRoleMentions,
-  getCalendarReminderMessage,
-  getCalendarReminderSummaryMessage,
-  getCalendarReminderUpdateMessage,
+  getCalendarReminderContent,
   getEarningsReminderMessage,
   getMatchedCalendarReminderEventGroups,
   getMatchedEarningsReminderEvents,
@@ -87,13 +87,30 @@ describe("timer-reminders", () => {
     expect(groups).toHaveLength(2);
     const usGroup = groups.find(group => "🇺🇸" === group.events[0]?.country);
     expect(usGroup?.events).toHaveLength(2);
-    expect(getCalendarReminderMessage("role-1", usGroup?.events ?? [])).toBe(
-      "<@&role-1> Heute wichtig: `14:30` 🇺🇸 ISM Manufacturing PMI, ISM Manufacturing PMI Final",
-    );
-    expect(getCalendarReminderMessage("role-1", [])).toBe("<@&role-1> Heute wichtig:");
+
+    const reminderEmbed = buildCalendarReminderEmbed("reminder", usGroup?.events ?? []);
+    expect(getCalendarReminderContent("role-1", "reminder")).toBe("<@&role-1> Heute wichtig");
+    expect(reminderEmbed.data.title).toBe("🇺🇸 ISM Manufacturing PMI");
+    expect(reminderEmbed.data.description).toBe("**ISM Manufacturing PMI**\n**ISM Manufacturing PMI Final**");
+    expect(reminderEmbed.data.footer?.text).toBe("🕒 14:30");
+    expect(reminderEmbed.data.color).toBe(0x0099ff);
+
+    const emptyEmbed = buildCalendarReminderEmbed("reminder", []);
+    expect(emptyEmbed.data.title).toBe("Wirtschaftsdaten");
+    expect(emptyEmbed.data.description).toBeUndefined();
+    expect(emptyEmbed.data.footer).toBeUndefined();
   });
 
-  test("formats calendar reminders with expected actual and previous values", () => {
+  test("compares actual versus forecast with neutral direction arrows", () => {
+    expect(compareCalendarMetric("4.2%", "4.0%")).toBe("▲");
+    expect(compareCalendarMetric("3.0%", "3.2%")).toBe("▼");
+    expect(compareCalendarMetric("0.5%", "0.5%")).toBe("=");
+    expect(compareCalendarMetric("333,979", "333,233")).toBe("▲");
+    expect(compareCalendarMetric("n/a", "1.0")).toBe("");
+    expect(compareCalendarMetric("1.0", "")).toBe("");
+  });
+
+  test("renders the update embed with actual, forecast and previous values", () => {
     const event = createCalendarEvent({
       actualValue: "3.4%",
       forecastValue: "3.2%",
@@ -103,24 +120,49 @@ describe("timer-reminders", () => {
 
     expect(hasCalendarReminderActualValues([event])).toBe(true);
     expect(hasCalendarReminderClearMetrics([event])).toBe(true);
-    expect(getCalendarReminderMessage("role-1", [event])).toBe(
-      "<@&role-1> Heute wichtig: `14:30` 🇺🇸 Consumer Price Index (CPI) y/y: actual `3.4%`, exp. `3.2%`, prev. `3.1%`",
+
+    const updateEmbed = buildCalendarReminderEmbed("update", [event]);
+    expect(getCalendarReminderContent("role-1", "update")).toBe("<@&role-1> Update");
+    expect(updateEmbed.data.title).toBe("🇺🇸 Consumer Price Index (CPI) y/y");
+    expect(updateEmbed.data.description).toBe("**Consumer Price Index (CPI) y/y** — `3.4%` ▲ exp. `3.2%` · prev. `3.1%`");
+    expect(updateEmbed.data.footer?.text).toBe("🕒 14:30");
+  });
+
+  test("renders forecast-only and actual-only embed lines", () => {
+    const forecastOnly = createCalendarEvent({
+      forecastValue: "3.2%",
+      previousValue: "3.1%",
+      name: "Consumer Price Index (CPI) y/y",
+    });
+    expect(buildCalendarReminderEmbed("reminder", [forecastOnly]).data.description).toBe(
+      "**Consumer Price Index (CPI) y/y** — exp. `3.2%` · prev. `3.1%`",
     );
-    expect(getCalendarReminderUpdateMessage("role-1", [event])).toBe(
-      "<@&role-1> Update: `14:30` 🇺🇸 Consumer Price Index (CPI) y/y: actual `3.4%`, exp. `3.2%`, prev. `3.1%`",
+
+    const actualOnly = createCalendarEvent({
+      actualValue: "3.4%",
+      name: "Consumer Price Index (CPI) y/y",
+    });
+    expect(buildCalendarReminderEmbed("update", [actualOnly]).data.description).toBe(
+      "**Consumer Price Index (CPI) y/y** — actual `3.4%`",
     );
   });
 
-  test("formats calendar reminder summaries for events without clear metrics", () => {
+  test("renders the summary embed for events without clear metrics", () => {
     const event = createCalendarEvent({
       name: "FOMC Statement",
     });
 
     expect(hasCalendarReminderActualValues([event])).toBe(false);
     expect(hasCalendarReminderClearMetrics([event])).toBe(false);
-    expect(getCalendarReminderSummaryMessage("role-1", [event], "Federal Reserve", "Policy remains data dependent.")).toBe(
-      "<@&role-1> Update: `14:30` 🇺🇸 FOMC Statement\nSource: Federal Reserve\nPolicy remains data dependent.",
-    );
+
+    const summaryEmbed = buildCalendarReminderEmbed("summary", [event], {
+      sourceName: "Federal Reserve",
+      summaryMarkdown: "Policy remains data dependent.",
+    });
+    expect(getCalendarReminderContent("role-1", "summary")).toBe("<@&role-1> Update");
+    expect(summaryEmbed.data.title).toBe("🇺🇸 FOMC Statement");
+    expect(summaryEmbed.data.description).toBe("**FOMC Statement**\n\nPolicy remains data dependent.");
+    expect(summaryEmbed.data.footer?.text).toBe("🕒 14:30 · Quelle: Federal Reserve");
   });
 
   test("matches earnings reminder tickers, removes duplicates and formats by time bucket", () => {

@@ -217,6 +217,7 @@ describe("startBot", () => {
       earningsReminderAssets,
       undefined,
       undefined,
+      "nyse",
     );
   });
 
@@ -267,6 +268,7 @@ describe("startBot", () => {
       [],
       "earnings-expectations-thread",
       "trading-calendar-thread",
+      "nyse",
     );
   });
 

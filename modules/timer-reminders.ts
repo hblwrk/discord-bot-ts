@@ -1,9 +1,25 @@
+import {EmbedBuilder} from "discord.js";
 import {
   type CalendarReminderAsset,
   type EarningsReminderAsset,
 } from "./assets.ts";
 import {type CalendarEvent} from "./calendar.ts";
 import {type EarningsEvent} from "./earnings.ts";
+
+export type CalendarReminderKind = "reminder" | "update" | "summary";
+
+// Neutral embed accent — macro data has no inherent good/bad direction
+// (a hotter CPI print is not "good"), so do not colour by beat/miss.
+const calendarReminderEmbedColor = "#0099ff";
+const calendarReminderEmbedFallbackTitle = "Wirtschaftsdaten";
+const calendarReminderEmbedTitleMaxLength = 256;
+const calendarReminderEmbedDescriptionMaxLength = 4096;
+
+const calendarReminderContentLabel: Record<CalendarReminderKind, string> = {
+  reminder: "Heute wichtig",
+  update: "Update",
+  summary: "Update",
+};
 
 const earningsReminderWhenSortRank = new Map<string, number>([
   ["before_open", 0],
@@ -148,34 +164,91 @@ function getCalendarEventMetricSegments(calendarEvent: CalendarEvent): string[] 
   return segments;
 }
 
-function getCalendarReminderEventDetail(calendarEvent: CalendarEvent): string {
-  const metricSegments = getCalendarEventMetricSegments(calendarEvent);
-  if (0 === metricSegments.length) {
-    return calendarEvent.name;
+function parseCalendarMetricNumber(value: string): number | undefined {
+  const normalizedValue = value.replace(/[%,\s]/g, "");
+  if ("" === normalizedValue) {
+    return undefined;
   }
 
-  return `${calendarEvent.name}: ${metricSegments.join(", ")}`;
+  const parsedValue = Number.parseFloat(normalizedValue);
+  return Number.isFinite(parsedValue) ? parsedValue : undefined;
 }
 
-function getCalendarReminderEventDetails(calendarEvents: CalendarEvent[]): string {
-  if (false === hasCalendarReminderClearMetrics(calendarEvents)) {
-    return getCalendarReminderEventSummary(calendarEvents);
+// Direction of the actual print versus the forecast — neutral, no value judgement.
+export function compareCalendarMetric(actual: string, forecast: string): "▲" | "▼" | "=" | "" {
+  const actualNumber = parseCalendarMetricNumber(actual);
+  const forecastNumber = parseCalendarMetricNumber(forecast);
+  if (undefined === actualNumber || undefined === forecastNumber) {
+    return "";
   }
 
-  const eventDetails: string[] = [];
-  const seenEventDetails = new Set<string>();
+  if (actualNumber > forecastNumber) {
+    return "▲";
+  }
+
+  if (actualNumber < forecastNumber) {
+    return "▼";
+  }
+
+  return "=";
+}
+
+function getCalendarReminderEmbedLine(calendarEvent: CalendarEvent): string {
+  const eventName = getCalendarEventDisplayValue(calendarEvent.name);
+  const actualValue = getCalendarEventDisplayValue(calendarEvent.actualValue);
+  const forecastValue = getCalendarEventDisplayValue(calendarEvent.forecastValue);
+  const previousValue = getCalendarEventDisplayValue(calendarEvent.previousValue);
+
+  const segments: string[] = [];
+  if ("" !== actualValue && "" !== forecastValue) {
+    const arrow = compareCalendarMetric(actualValue, forecastValue);
+    const comparator = "" !== arrow ? `${arrow} ` : "";
+    segments.push(`${getDiscordMonospaceText(actualValue)} ${comparator}exp. ${getDiscordMonospaceText(forecastValue)}`);
+  } else if ("" !== actualValue) {
+    segments.push(`actual ${getDiscordMonospaceText(actualValue)}`);
+  } else if ("" !== forecastValue) {
+    segments.push(`exp. ${getDiscordMonospaceText(forecastValue)}`);
+  }
+
+  if ("" !== previousValue) {
+    segments.push(`prev. ${getDiscordMonospaceText(previousValue)}`);
+  }
+
+  if (0 === segments.length) {
+    return `**${eventName}**`;
+  }
+
+  return `**${eventName}** — ${segments.join(" · ")}`;
+}
+
+function getCalendarReminderEmbedLines(calendarEvents: CalendarEvent[]): string[] {
+  const lines: string[] = [];
+  const seenLines = new Set<string>();
 
   for (const calendarEvent of calendarEvents) {
-    const eventDetail = getCalendarReminderEventDetail(calendarEvent).trim();
-    if (!eventDetail || true === seenEventDetails.has(eventDetail)) {
+    if ("" === getCalendarEventDisplayValue(calendarEvent.name) &&
+        0 === getCalendarEventMetricSegments(calendarEvent).length) {
       continue;
     }
 
-    eventDetails.push(eventDetail);
-    seenEventDetails.add(eventDetail);
+    const line = getCalendarReminderEmbedLine(calendarEvent).trim();
+    if (true === seenLines.has(line)) {
+      continue;
+    }
+
+    lines.push(line);
+    seenLines.add(line);
   }
 
-  return eventDetails.join("; ");
+  return lines;
+}
+
+function truncateForEmbed(value: string, maxLength: number): string {
+  if (value.length <= maxLength) {
+    return value;
+  }
+
+  return `${value.slice(0, maxLength - 1)}…`;
 }
 
 export function hasCalendarReminderActualValues(calendarEvents: CalendarEvent[]): boolean {
@@ -186,36 +259,53 @@ export function hasCalendarReminderClearMetrics(calendarEvents: CalendarEvent[])
   return calendarEvents.some(calendarEvent => 0 < getCalendarEventMetricSegments(calendarEvent).length);
 }
 
-export function getCalendarReminderMessage(roleId: string, calendarEvents: CalendarEvent[]): string {
-  const primaryEvent = calendarEvents[0];
-  if (undefined === primaryEvent) {
-    return `${getRoleMention(roleId)} Heute wichtig:`;
-  }
-
-  return `${getRoleMention(roleId)} Heute wichtig: \`${primaryEvent.time}\` ${primaryEvent.country} ${getCalendarReminderEventDetails(calendarEvents)}`;
+// Short message text that carries the role ping; the detail lives in the embed.
+// Keeping the ping in `content` (not the embed) is what triggers the notification.
+export function getCalendarReminderContent(roleId: string, kind: CalendarReminderKind): string {
+  return `${getRoleMention(roleId)} ${calendarReminderContentLabel[kind]}`;
 }
 
-export function getCalendarReminderUpdateMessage(roleId: string, calendarEvents: CalendarEvent[]): string {
-  const primaryEvent = calendarEvents[0];
-  if (undefined === primaryEvent) {
-    return `${getRoleMention(roleId)} Update:`;
-  }
-
-  return `${getRoleMention(roleId)} Update: \`${primaryEvent.time}\` ${primaryEvent.country} ${getCalendarReminderEventDetails(calendarEvents)}`;
-}
-
-export function getCalendarReminderSummaryMessage(
-  roleId: string,
+export function buildCalendarReminderEmbed(
+  kind: CalendarReminderKind,
   calendarEvents: CalendarEvent[],
-  sourceName: string,
-  summaryMarkdown: string,
-): string {
+  options: {sourceName?: string; summaryMarkdown?: string} = {},
+): EmbedBuilder {
   const primaryEvent = calendarEvents[0];
-  if (undefined === primaryEvent) {
-    return `${getRoleMention(roleId)} Update:\nSource: ${sourceName}\n${summaryMarkdown}`;
+  const embed = new EmbedBuilder().setColor(calendarReminderEmbedColor);
+
+  const flag = getCalendarEventDisplayValue(primaryEvent?.country);
+  const eventName = getCalendarEventDisplayValue(primaryEvent?.name);
+  const title = [flag, eventName].filter(part => "" !== part).join(" ");
+  embed.setTitle(truncateForEmbed("" !== title ? title : calendarReminderEmbedFallbackTitle, calendarReminderEmbedTitleMaxLength));
+
+  const summaryMarkdown = options.summaryMarkdown?.trim() ?? "";
+  if ("summary" === kind && "" !== summaryMarkdown) {
+    const eventNames = getCalendarReminderEventSummary(calendarEvents);
+    const descriptionParts = ["" !== eventNames ? `**${eventNames}**` : "", summaryMarkdown].filter(part => "" !== part);
+    embed.setDescription(truncateForEmbed(descriptionParts.join("\n\n"), calendarReminderEmbedDescriptionMaxLength));
+  } else {
+    const lines = getCalendarReminderEmbedLines(calendarEvents);
+    if (0 < lines.length) {
+      embed.setDescription(truncateForEmbed(lines.join("\n"), calendarReminderEmbedDescriptionMaxLength));
+    }
   }
 
-  return `${getRoleMention(roleId)} Update: \`${primaryEvent.time}\` ${primaryEvent.country} ${getCalendarReminderEventSummary(calendarEvents)}\nSource: ${sourceName}\n${summaryMarkdown}`;
+  const footerParts: string[] = [];
+  const time = getCalendarEventDisplayValue(primaryEvent?.time);
+  if ("" !== time) {
+    footerParts.push(`🕒 ${time}`);
+  }
+
+  const sourceName = options.sourceName?.trim() ?? "";
+  if ("summary" === kind && "" !== sourceName) {
+    footerParts.push(`Quelle: ${sourceName}`);
+  }
+
+  if (0 < footerParts.length) {
+    embed.setFooter({text: footerParts.join(" · ")});
+  }
+
+  return embed;
 }
 
 export function getMatchedCalendarReminderEventGroups(
