@@ -225,6 +225,8 @@ function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAsse
     priceChange: number,
     percentageChange: number,
     source: MarketDataSource,
+    intradayHigh?: number,
+    intradayLow?: number,
   ) => {
     try {
       const assetKey = getMarketDataAssetKey(marketDataAsset);
@@ -233,7 +235,7 @@ function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAsse
       } else if ("tastytrade" === activeSourceByAssetKey.get(assetKey)) {
         return;
       }
-      recordMarketDataSnapshot(marketDataAsset, lastNumeric, priceChange, percentageChange, source);
+      recordMarketDataSnapshot(marketDataAsset, lastNumeric, priceChange, percentageChange, source, undefined, intradayHigh, intradayLow);
 
       // Always show configured decimals
       const lastPrice = lastNumeric.toFixed(marketDataAsset.decimals);
@@ -408,6 +410,8 @@ function initInvestingCom(clientsById: Map<string, Client<true>>, marketDataAsse
         streamEvent.priceChange,
         streamEvent.percentageChange,
         "investing",
+        streamEvent.high,
+        streamEvent.low,
       );
     } catch (error) {
       logger.log(

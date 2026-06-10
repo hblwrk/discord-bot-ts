@@ -5,7 +5,9 @@ export type MarketDataBotSymbol = "ES" | "NQ" | "RTY" | "VIX";
 export type MarketDataSnapshot = {
   assetName: string;
   botName: string;
+  high?: number | undefined;
   lastNumeric: number;
+  low?: number | undefined;
   marketDataPid: number;
   marketDataSource: MarketDataSource;
   percentageChange: number;
@@ -30,16 +32,27 @@ export function recordMarketDataSnapshot(
   percentageChange: number,
   marketDataSource: MarketDataSource,
   updatedAt = new Date(),
+  intradayHigh?: number,
+  intradayLow?: number,
 ) {
   const symbol = getMarketDataBotSymbol(marketDataAsset);
   if (undefined === symbol) {
     return;
   }
 
+  // The data feed reports a session high/low that resets daily, so trust the
+  // incoming values when present. Partial ticks may omit them; keep the prior
+  // session extremes in that case instead of dropping the intraday range.
+  const previousSnapshot = marketDataSnapshotsBySymbol.get(symbol);
+  const high = Number.isFinite(intradayHigh) ? intradayHigh : previousSnapshot?.high;
+  const low = Number.isFinite(intradayLow) ? intradayLow : previousSnapshot?.low;
+
   marketDataSnapshotsBySymbol.set(symbol, {
     assetName: marketDataAsset.name ?? "",
     botName: marketDataAsset.botName,
+    high,
     lastNumeric,
+    low,
     marketDataPid: marketDataAsset.id,
     marketDataSource,
     percentageChange,
