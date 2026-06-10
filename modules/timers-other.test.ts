@@ -82,6 +82,43 @@ function createClientWithOptionalThread(threadID: string) {
   };
 }
 
+function createClientWithThreadAndMainChannel(threadID: string, mainChannelID: string) {
+  const parentSend = vi.fn().mockResolvedValue(undefined);
+  const threadSend = vi.fn().mockResolvedValue(undefined);
+  const mainSend = vi.fn().mockResolvedValue(undefined);
+  const client = {
+    channels: {
+      cache: {
+        get: vi.fn((channelID: string) => {
+          if (threadID === channelID) {
+            return {send: threadSend};
+          }
+
+          if (mainChannelID === channelID) {
+            return {send: mainSend};
+          }
+
+          return {send: parentSend};
+        }),
+      },
+    },
+  };
+
+  return {
+    client,
+    parentSend,
+    threadSend,
+    mainSend,
+  };
+}
+
+type ReminderEmbed = {data: {title?: string; description?: string; footer?: {text?: string}}};
+type ReminderPayload = {content: string; allowedMentions: unknown; embeds: ReminderEmbed[]};
+
+function getReminderPayload(sendMock: {mock: {calls: unknown[][]}}, callIndex: number): ReminderPayload {
+  return sendMock.mock.calls[callIndex]?.[0] as ReminderPayload;
+}
+
 describe("timers: other announcements", () => {
   beforeEach(resetTimerMocks);
   afterEach(restoreTimerMocks);
@@ -177,17 +214,16 @@ describe("timers: other announcements", () => {
         parse: [],
       },
     });
-    expect(send).toHaveBeenNthCalledWith(2, {
-      content: "<@&role-123> Heute wichtig: `14:30` 🇺🇸 Consumer Price Index (CPI)",
-      allowedMentions: {
-        parse: [],
-        roles: ["role-123"],
-      },
-    });
+    const reminder = getReminderPayload(send, 1);
+    expect(reminder.content).toBe("<@&role-123> Heute wichtig");
+    expect(reminder.allowedMentions).toEqual({parse: [], roles: ["role-123"]});
+    expect(reminder.embeds[0]!.data.title).toBe("🇺🇸 Consumer Price Index (CPI)");
+    expect(reminder.embeds[0]!.data.description).toBe("**Consumer Price Index (CPI)**");
+    expect(reminder.embeds[0]!.data.footer?.text).toBe("🕒 14:30");
   });
 
-  test("startOtherTimers sends calendar alerts to the optional trading calendar thread", async () => {
-    const {client, parentSend, threadSend} = createClientWithOptionalThread("trading-calendar-thread");
+  test("startOtherTimers keeps the agenda in the trading calendar thread but posts macro alerts to the main channel", async () => {
+    const {client, parentSend, threadSend, mainSend} = createClientWithThreadAndMainChannel("trading-calendar-thread", "main-channel-id");
     getCalendarEventsMock
       .mockResolvedValueOnce([
         {
@@ -216,32 +252,33 @@ describe("timers: other announcements", () => {
       eventNameSubstrings: ["cpi"],
       countryFlags: ["🇺🇸"],
       roleId: "role-123",
-    })], [], undefined, "trading-calendar-thread");
+    })], [], undefined, "trading-calendar-thread", "main-channel-id");
     const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
     await dailyCalendarJob.callback();
     await getScheduledDateJobs()[0]!.callback();
 
+    // Neither the OtherAnnouncement channel ("channel-id") nor any fallback is used directly.
     expect(parentSend).not.toHaveBeenCalled();
-    expect(threadSend).toHaveBeenNthCalledWith(1, {
+    // Agenda batch stays in the trading-calendar thread.
+    expect(threadSend).toHaveBeenCalledTimes(1);
+    expect(threadSend).toHaveBeenCalledWith({
       content: "calendar-text",
       allowedMentions: {
         parse: [],
       },
     });
-    expect(threadSend).toHaveBeenNthCalledWith(2, {
-      content: "<@&role-123> Heute wichtig: `14:30` 🇺🇸 Consumer Price Index (CPI) y/y: exp. `3.2%`, prev. `3.1%`",
-      allowedMentions: {
-        parse: [],
-        roles: ["role-123"],
-      },
-    });
-    expect(threadSend).toHaveBeenNthCalledWith(3, {
-      content: "<@&role-123> Update: `14:30` 🇺🇸 Consumer Price Index (CPI) y/y: actual `3.4%`, exp. `3.2%`, prev. `3.1%`",
-      allowedMentions: {
-        parse: [],
-        roles: ["role-123"],
-      },
-    });
+    // Role-pinged macro alerts (morning reminder + post-release update) go to the main channel.
+    expect(mainSend).toHaveBeenCalledTimes(2);
+    const morningReminder = getReminderPayload(mainSend, 0);
+    expect(morningReminder.content).toBe("<@&role-123> Heute wichtig");
+    expect(morningReminder.allowedMentions).toEqual({parse: [], roles: ["role-123"]});
+    expect(morningReminder.embeds[0]!.data.title).toBe("🇺🇸 Consumer Price Index (CPI) y/y");
+    expect(morningReminder.embeds[0]!.data.description).toBe("**Consumer Price Index (CPI) y/y** — exp. `3.2%` · prev. `3.1%`");
+    const releaseUpdate = getReminderPayload(mainSend, 1);
+    expect(releaseUpdate.content).toBe("<@&role-123> Update");
+    expect(releaseUpdate.embeds[0]!.data.title).toBe("🇺🇸 Consumer Price Index (CPI) y/y");
+    expect(releaseUpdate.embeds[0]!.data.description).toBe("**Consumer Price Index (CPI) y/y** — `3.4%` ▲ exp. `3.2%` · prev. `3.1%`");
+    expect(releaseUpdate.embeds[0]!.data.footer?.text).toBe("🕒 14:30");
   });
 
   test("startOtherTimers bundles same-minute calendar reminder matches into one reminder", async () => {
@@ -277,13 +314,12 @@ describe("timers: other announcements", () => {
     const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
     await dailyCalendarJob.callback();
 
-    expect(send).toHaveBeenNthCalledWith(2, {
-      content: "<@&role-123> Heute wichtig: `14:30` 🇺🇸 CPI y/y, Core CPI y/y, CPI m/m",
-      allowedMentions: {
-        parse: [],
-        roles: ["role-123"],
-      },
-    });
+    const bundledReminder = getReminderPayload(send, 1);
+    expect(bundledReminder.content).toBe("<@&role-123> Heute wichtig");
+    expect(bundledReminder.allowedMentions).toEqual({parse: [], roles: ["role-123"]});
+    expect(bundledReminder.embeds[0]!.data.title).toBe("🇺🇸 CPI y/y");
+    expect(bundledReminder.embeds[0]!.data.description).toBe("**CPI y/y**\n**Core CPI y/y**\n**CPI m/m**");
+    expect(bundledReminder.embeds[0]!.data.footer?.text).toBe("🕒 14:30");
   });
 
   test("startOtherTimers posts calendar actuals after the release when they become available", async () => {
@@ -336,20 +372,13 @@ describe("timers: other announcements", () => {
     ]);
     await followUpJobs[0]!.callback();
 
-    expect(send).toHaveBeenNthCalledWith(2, {
-      content: "<@&role-123> Heute wichtig: `14:30` 🇺🇸 Consumer Price Index (CPI) y/y: exp. `3.2%`, prev. `3.1%`",
-      allowedMentions: {
-        parse: [],
-        roles: ["role-123"],
-      },
-    });
-    expect(send).toHaveBeenNthCalledWith(3, {
-      content: "<@&role-123> Update: `14:30` 🇺🇸 Consumer Price Index (CPI) y/y: actual `3.4%`, exp. `3.2%`, prev. `3.1%`",
-      allowedMentions: {
-        parse: [],
-        roles: ["role-123"],
-      },
-    });
+    const morningReminder = getReminderPayload(send, 1);
+    expect(morningReminder.content).toBe("<@&role-123> Heute wichtig");
+    expect(morningReminder.allowedMentions).toEqual({parse: [], roles: ["role-123"]});
+    expect(morningReminder.embeds[0]!.data.description).toBe("**Consumer Price Index (CPI) y/y** — exp. `3.2%` · prev. `3.1%`");
+    const releaseUpdate = getReminderPayload(send, 2);
+    expect(releaseUpdate.content).toBe("<@&role-123> Update");
+    expect(releaseUpdate.embeds[0]!.data.description).toBe("**Consumer Price Index (CPI) y/y** — `3.4%` ▲ exp. `3.2%` · prev. `3.1%`");
   });
 
   test("startOtherTimers posts official AI summary after no-metric calendar releases", async () => {
@@ -388,13 +417,12 @@ describe("timers: other announcements", () => {
         log: expect.any(Function),
       }),
     }));
-    expect(send).toHaveBeenNthCalledWith(3, {
-      content: "<@&role-123> Update: `20:00` 🇺🇸 FOMC Statement\nSource: Federal Reserve\nThe Fed emphasized inflation and labor-market risks.",
-      allowedMentions: {
-        parse: [],
-        roles: ["role-123"],
-      },
-    });
+    const summaryUpdate = getReminderPayload(send, 2);
+    expect(summaryUpdate.content).toBe("<@&role-123> Update");
+    expect(summaryUpdate.allowedMentions).toEqual({parse: [], roles: ["role-123"]});
+    expect(summaryUpdate.embeds[0]!.data.title).toBe("🇺🇸 FOMC Statement");
+    expect(summaryUpdate.embeds[0]!.data.description).toBe("**FOMC Statement**\n\nThe Fed emphasized inflation and labor-market risks.");
+    expect(summaryUpdate.embeds[0]!.data.footer?.text).toBe("🕒 20:00 · Quelle: Federal Reserve");
   });
 
   test("startOtherTimers skips calendar reminder assets with wrong country or invalid config", async () => {
@@ -477,20 +505,16 @@ describe("timers: other announcements", () => {
     const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
     await dailyCalendarJob.callback();
 
-    expect(send).toHaveBeenNthCalledWith(2, {
-      content: "<@&role-123> Heute wichtig: `14:30` 🇺🇸 GDP q/q",
-      allowedMentions: {
-        parse: [],
-        roles: ["role-123"],
-      },
-    });
-    expect(send).toHaveBeenNthCalledWith(3, {
-      content: "<@&role-123> Heute wichtig: `20:00` 🇺🇸 FOMC Statement",
-      allowedMentions: {
-        parse: [],
-        roles: ["role-123"],
-      },
-    });
+    const gdpReminder = getReminderPayload(send, 1);
+    expect(gdpReminder.content).toBe("<@&role-123> Heute wichtig");
+    expect(gdpReminder.embeds[0]!.data.title).toBe("🇺🇸 GDP q/q");
+    expect(gdpReminder.embeds[0]!.data.description).toBe("**GDP q/q**");
+    expect(gdpReminder.embeds[0]!.data.footer?.text).toBe("🕒 14:30");
+    const fomcReminder = getReminderPayload(send, 2);
+    expect(fomcReminder.content).toBe("<@&role-123> Heute wichtig");
+    expect(fomcReminder.embeds[0]!.data.title).toBe("🇺🇸 FOMC Statement");
+    expect(fomcReminder.embeds[0]!.data.description).toBe("**FOMC Statement**");
+    expect(fomcReminder.embeds[0]!.data.footer?.text).toBe("🕒 20:00");
   });
 
   test("startOtherTimers skips Friday announcement when asset is unavailable", async () => {

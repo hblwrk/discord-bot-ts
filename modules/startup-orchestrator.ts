@@ -276,6 +276,7 @@ export async function startBot(options: StartupOptions = {}): Promise<StartupRun
     sharedData,
     dependencies,
     startupState,
+    channelNyseId,
     channelOtherId,
     earningsExpectationsThreadId,
     tradingCalendarThreadId,
