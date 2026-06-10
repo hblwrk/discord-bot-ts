@@ -30,12 +30,23 @@ export function parseStreamEvent(rawMessage: string): MarketStreamEvent | null {
   const percentageChange = parseNumericValue(rawEventData["pcp"]);
 
   if ([pid, lastNumeric, priceChange, percentageChange].every(Number.isFinite)) {
-    return {
+    const streamEvent: MarketStreamEvent = {
       pid,
       lastNumeric,
       priceChange,
       percentageChange,
     };
+    const high = parseNumericValue(rawEventData["high"]);
+    if (Number.isFinite(high)) {
+      streamEvent.high = high;
+    }
+
+    const low = parseNumericValue(rawEventData["low"]);
+    if (Number.isFinite(low)) {
+      streamEvent.low = low;
+    }
+
+    return streamEvent;
   }
 
   return null;

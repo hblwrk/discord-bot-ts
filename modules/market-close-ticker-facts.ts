@@ -133,11 +133,17 @@ export function formatMarketCloseTickerFactsForPrompt(facts: MarketCloseTickerFa
     return "";
   }
 
+  const snapshotRangeAvailable = facts.some(fact =>
+    "market-data-bot" === fact.dataSource && (undefined !== fact.high || undefined !== fact.low));
+  const snapshotCaveat = true === snapshotRangeAvailable
+    ? "Bei Market-Data-Bot-Snapshots sind Stand und Bot-Veraenderung bindend; das mitgelieferte Intraday-Hoch/-Tief ist die Session-Spanne und darf fuer Spanne und Sentiment genutzt werden, aber behaupte daraus keine Cash-Index-Schlusskurse und keinen Open-Stand."
+    : "Bei Market-Data-Bot-Snapshots sind Stand und Bot-Veraenderung bindend; behaupte daraus keine Cash-Index-Schlusskurse, keine Tageshochs und keine Open/High/Low-Spannen.";
+
   return [
     "Verifizierte Markt-Daten fuer den Zieltag aus denselben Market-Data-Bot-Symbolen:",
     ...facts.map(formatTickerFactForPrompt),
     "Diese Bot-/Investing-Daten haben Vorrang vor News-Texten: Nutze Websuche nur fuer Ursachen/Einordnung, nicht fuer Richtung, Stand, Veraenderung oder Sentiment.",
-    "Bei Market-Data-Bot-Snapshots sind Stand und Bot-Veraenderung bindend; behaupte daraus keine Cash-Index-Schlusskurse, keine Tageshochs und keine Open/High/Low-Spannen.",
+    snapshotCaveat,
     "Behaupte keine Schlusskurs-Rekorde, neuen Hochs zum Close oder breite Staerke, wenn diese Fakten das nicht stuetzen.",
   ].join("\n");
 }
@@ -183,6 +189,8 @@ function getTickerFactFromSnapshot(snapshot: MarketDataSnapshot, targetDate: str
     closeChangePercent: snapshot.percentageChange,
     dataSource: "market-data-bot",
     date: targetDate,
+    high: snapshot.high,
+    low: snapshot.low,
     marketDataPid: snapshot.marketDataPid,
     marketDataSource: snapshot.marketDataSource,
     previousClose,
@@ -456,7 +464,9 @@ function formatTickerFactForPrompt(fact: MarketCloseTickerFact): string {
       `Stand \`${formatValue(fact.close)}\``,
       `Referenz \`${formatValue(fact.previousClose)}\``,
       `Bot-Veraenderung \`${formatSignedChange(fact)}\``,
-    ].join("; ");
+      undefined === fact.high ? undefined : `Intraday-Hoch \`${formatValue(fact.high)}\``,
+      undefined === fact.low ? undefined : `Intraday-Tief \`${formatValue(fact.low)}\``,
+    ].filter(isDefined).join("; ");
   }
 
   const dailyBarSource = "yahoo-daily-bar" === fact.dataSource ? "Yahoo Daily-Bar" : "Investing Daily-Bar";
@@ -515,7 +525,42 @@ function hasUnsupportedSentimentAnswer(winningPollAnswer: string, facts: MarketC
     return true;
   }
 
+  // Conservative guards so a clearly directional/active day cannot be labelled
+  // Cash, and a dead-flat day cannot be labelled Chaos. These reject only
+  // blatant mismatches; ambiguous days stay valid.
+  const strongMoveCount = equityFacts.filter(fact => Math.abs(getPrimaryChangePercent(fact)) >= 0.75).length;
+  const wideRangeCount = equityFacts.filter(fact => {
+    const rangePercent = getRangePercent(fact);
+    return undefined !== rangePercent && rangePercent >= 1.5;
+  }).length;
+  const bigVixMove = undefined !== vixFact && Math.abs(getPrimaryChange(vixFact)) >= 1.5;
+  if ("Cash" === winningPollAnswer &&
+      (strongMoveCount >= 2 || wideRangeCount >= 2 || true === bigVixMove)) {
+    return true;
+  }
+
+  const allMovesTiny = equityFacts.every(fact => Math.abs(getPrimaryChangePercent(fact)) < 0.2);
+  const noWideRange = equityFacts.every(fact => {
+    const rangePercent = getRangePercent(fact);
+    return undefined === rangePercent || rangePercent < 0.75;
+  });
+  const vixCalm = undefined === vixFact || Math.abs(getPrimaryChange(vixFact)) < 1;
+  if ("Chaos" === winningPollAnswer &&
+      true === allMovesTiny &&
+      true === noWideRange &&
+      true === vixCalm) {
+    return true;
+  }
+
   return false;
+}
+
+function getRangePercent(fact: MarketCloseTickerFact): number | undefined {
+  if (undefined === fact.high || undefined === fact.low || 0 === fact.previousClose) {
+    return undefined;
+  }
+
+  return ((fact.high - fact.low) / fact.previousClose) * 100;
 }
 
 function getReferencedEquityFacts(value: string, facts: MarketCloseTickerFact[]): MarketCloseTickerFact[] {

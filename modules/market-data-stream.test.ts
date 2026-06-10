@@ -56,6 +56,38 @@ describe("market-data-stream", () => {
     })} tail`)?.pid).toBe(321);
   });
 
+  test("captures the intraday session high and low when present", () => {
+    expect(parseStreamEvent(JSON.stringify({
+      pid: 123,
+      last_numeric: "1,234.50",
+      pc: "+5.5",
+      pcp: "1.25%",
+      high: "1,240.00",
+      low: "1,228.75",
+    }))).toEqual({
+      pid: 123,
+      lastNumeric: 1234.5,
+      priceChange: 5.5,
+      percentageChange: 1.25,
+      high: 1240,
+      low: 1228.75,
+    });
+
+    expect(parseStreamEvent(JSON.stringify({
+      pid: 1,
+      last_numeric: 10,
+      pc: 0,
+      pcp: 0,
+      high: "n/a",
+      low: "",
+    }))).toEqual({
+      pid: 1,
+      lastNumeric: 10,
+      priceChange: 0,
+      percentageChange: 0,
+    });
+  });
+
   test("rejects malformed or incomplete market stream payloads", () => {
     expect(parseStreamEvent("")).toBeNull();
     expect(parseStreamEvent("a[not-json")).toBeNull();

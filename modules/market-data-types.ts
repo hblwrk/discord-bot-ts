@@ -22,6 +22,8 @@ export type MarketStreamEvent = {
   lastNumeric: number;
   priceChange: number;
   percentageChange: number;
+  high?: number | undefined;
+  low?: number | undefined;
 };
 
 export type ClientStatusState = {

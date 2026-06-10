@@ -428,6 +428,52 @@ describe("market close recap", () => {
     expect(prompt).toContain("Erwähne nicht die Cash-/ETF-Pendants `SPX`, `SPY`, `NDX`, `RUT`, `QQQ` oder `IWM`.");
   });
 
+  test("passes the recorded intraday session high and low into the prompt", async () => {
+    const snapshotTime = new Date("2026-05-07T20:09:00Z");
+    const esAsset = {
+      botClientId: "client-es",
+      botName: "S&P500",
+      botToken: "token",
+      decimals: 2,
+      id: 1175153,
+      lastUpdate: 0,
+      name: "es",
+      order: 0,
+      suffix: "",
+      unit: "PCT",
+    };
+    recordMarketDataSnapshot(esAsset, 5225, 25, 0.48, "investing", snapshotTime, 5240, 5180);
+    recordMarketDataSnapshot(
+      {...esAsset, botClientId: "client-nq", botName: "Nasdaq 100", id: 1175151, name: "nq", order: 1},
+      18750, 90, 0.48, "investing", snapshotTime, 18810, 18540,
+    );
+    recordMarketDataSnapshot(
+      {...esAsset, botClientId: "client-rty", botName: "Russel 2000", id: 1174944, name: "rty", order: 2},
+      2095, 15, 0.72, "investing", snapshotTime, 2102, 2068,
+    );
+    recordMarketDataSnapshot(
+      {...esAsset, botClientId: "client-vix", botName: "S&P500 VIX", id: 8884, name: "vix", order: 3, unit: "PTS"},
+      17.1, -0.4, -2.29, "investing", snapshotTime, 17.8, 16.9,
+    );
+    const postWithRetryFn = createPostWithRecap();
+
+    await getMarketCloseRecap(undefined, {
+      getWithRetryFn: vi.fn(),
+      logger,
+      postWithRetryFn,
+      readSecretFn,
+    }, {
+      date: new Date("2026-05-07T04:00:00Z"),
+      referenceTime: new Date("2026-05-07T20:10:00Z"),
+      requireTickerFacts: true,
+    });
+
+    const requestBody = postWithRetryFn.mock.calls[0]?.[1] as {contents?: {parts?: {text?: string}[]}[]};
+    const prompt = requestBody.contents?.[0]?.parts?.[0]?.text ?? "";
+    expect(prompt).toContain("Bot-Veraenderung `+0,48%`; Intraday-Hoch `5.240,00`; Intraday-Tief `5.180,00`");
+    expect(prompt).toContain("ist die Session-Spanne und darf fuer Spanne und Sentiment genutzt werden");
+  });
+
   test("loads daily ticker bars before asking the AI provider", async () => {
     const postWithRetryFn = createPostWithRecap();
     const previousTimestamp = Date.parse("2026-05-06T13:30:00Z") / 1000;
