@@ -111,6 +111,10 @@ jobs:
 
     if: github.ref == 'refs/heads/main'
     steps:
+      - name: Check out repository
+        # Needed so Trivy can read .trivyignore.yaml from the workspace.
+        uses: actions/checkout@v6
+
       - name: Log in to the Container registry
         uses: docker/login-action@v4
         with:
@@ -124,6 +128,7 @@ jobs:
           # Pin to a known-good version after the 2026-03-01 upstream release-asset incident.
           version: v0.69.2
           image-ref: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}@${{ needs.build.outputs.digest }}
+          trivyignores: .trivyignore.yaml
           format: table
           vuln-type: os,library
           severity: HIGH,CRITICAL

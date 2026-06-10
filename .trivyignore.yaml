@@ -1,0 +1,16 @@
+# Temporary, scoped Trivy exception — DELETE once the distroless base is rebuilt.
+#
+# CVE-2026-45447 is a HIGH OpenSSL (libssl3t64) PKCS#7 / S/MIME signed-data
+# parsing issue carried by the runtime base image
+# gcr.io/distroless/nodejs24:nonroot (Debian 13.5) — not by our code or any npm
+# dependency (every node-pkg target scanned 0). Debian fixed it in
+# libssl3t64 3.5.6-1~deb13u2; the distroless image has not yet been rebuilt to
+# pick it up, which blocks image_scan -> sign -> redeploy on main.
+#
+# expired_at re-arms the scan automatically: once it passes, Trivy flags the CVE
+# again and the deploy blocks until this is resolved. Remove this entry as soon
+# as the distroless base ships the patched libssl.
+vulnerabilities:
+  - id: CVE-2026-45447
+    statement: "Base-image OpenSSL CVE; awaiting distroless nodejs24 rebuild with libssl3t64 3.5.6-1~deb13u2."
+    expired_at: 2026-07-10
