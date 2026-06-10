@@ -55,7 +55,7 @@
     "eslint-plugin-n": "^18.0.1",
     "globals": "^17.6.0",
     "typescript": "^6.0.3",
-    "typescript-eslint": "^8.60.0",
+    "typescript-eslint": "^8.60.1",
     "vitest": "^4.1.8"
   },
   "engines": {
