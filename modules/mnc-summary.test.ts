@@ -217,6 +217,50 @@ describe("MNC AI summary", () => {
     );
   });
 
+  test("accepts a summary whose section names are bold lead-in labels on bullets", async () => {
+    // Reproduces the 2026-06-10 incident: the model produced a complete 7-bullet
+    // summary but welded the section names onto the first bullet of each section
+    // ("- **Stocks in focus:** ...") instead of writing standalone headings, so
+    // the strict gate logged has_stocks_heading/has_watchlist_heading=false and
+    // discarded both deterministic (temperature 0) attempts.
+    const leadInSummaryMarkdown = [
+      "📰 **Morning News Call - TL;DR**",
+      "- **Market setup:** U.S. futures fell as tech extended losses ahead of May CPI.",
+      "- **Macro drivers:** Headline CPI seen at `4.2%`, core at `2.9%`, keeping the Fed on hold.",
+      "- **Stocks in focus:** Apple `AAPL` rose on upgrades.",
+      "- Tesla `TSLA` slipped premarket.",
+      "- Nvidia `NVDA` led chip gains.",
+      "- Boeing `BA` climbed on a delivery beat.",
+      "- **Watchlist:** Watch the May CPI release this morning.",
+    ].join("\n");
+    const postWithRetryFn = vi.fn().mockResolvedValue(geminiResponse(leadInSummaryMarkdown));
+
+    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
+      logger,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(summary).toBe([
+      "- **Market setup:** U.S. futures fell as tech extended losses ahead of May CPI.",
+      "- **Macro drivers:** Headline CPI seen at `4.2%`, core at `2.9%`, keeping the Fed on hold.",
+      "**Stocks in focus**",
+      "- Apple `AAPL` rose on upgrades.",
+      "- Tesla `TSLA` slipped premarket.",
+      "- Nvidia `NVDA` led chip gains.",
+      "- Boeing `BA` climbed on a delivery beat.",
+      "**Watchlist**",
+      "- Watch the May CPI release this morning.",
+    ].join("\n"));
+    expect(postWithRetryFn).toHaveBeenCalledTimes(1);
+    expect(logger.log).not.toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        message: expect.stringContaining("Discarding malformed AI MNC summary"),
+      }),
+    );
+  });
+
   test("logs structural diagnostics when discarding a malformed summary", async () => {
     const postWithRetryFn = vi.fn().mockResolvedValue(geminiResponse(malformedSummaryMarkdown));
 
@@ -398,6 +442,17 @@ describe("MNC summary structural validation", () => {
     expect(isStructurallyValidMncSummary(body)).toBe(true);
   });
 
+  test("accepts section names emitted as bold lead-in labels on bullets", () => {
+    const body = [
+      "- **Market setup:** Futures firm ahead of payrolls.",
+      "- **Macro drivers:** Yields ease as risk appetite improves.",
+      "- **Stocks in focus:** Apple `AAPL` rose on upgrades.",
+      "- Tesla `TSLA` slipped premarket.",
+      "- **Watchlist:** Watch the jobs report this morning.",
+    ].join("\n");
+    expect(isStructurallyValidMncSummary(body)).toBe(true);
+  });
+
   test("rejects a summary missing the stocks heading", () => {
     const body = validBody.replace("**Stocks in focus**\n", "");
     expect(isStructurallyValidMncSummary(body)).toBe(false);
@@ -486,6 +541,30 @@ describe("MNC summary formatting", () => {
     ].join("\n"));
 
     expect(summary).toBe(validSummaryExpected);
+  });
+
+  test("promotes a bare bold section-label bullet to a standalone heading", () => {
+    const summary = formatMncSummary([
+      "- Futures firm ahead of payrolls.",
+      "- Yields ease as risk appetite improves.",
+      "- **Stocks in focus:**",
+      "- Apple `AAPL` rose on upgrades.",
+      "- Tesla `TSLA` slipped premarket.",
+      "- Nvidia `NVDA` led chip gains.",
+      "- **Watchlist:**",
+      "- Watch the jobs report this morning.",
+    ].join("\n"));
+
+    expect(summary).toBe([
+      "- Futures firm ahead of payrolls.",
+      "- Yields ease as risk appetite improves.",
+      "**Stocks in focus**",
+      "- Apple `AAPL` rose on upgrades.",
+      "- Tesla `TSLA` slipped premarket.",
+      "- Nvidia `NVDA` led chip gains.",
+      "**Watchlist**",
+      "- Watch the jobs report this morning.",
+    ].join("\n"));
   });
 
   test("normalizes common AI Markdown rendering glitches", () => {
