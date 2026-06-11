@@ -3,44 +3,47 @@ import {callAiProviderJson, type AiProviderDependencies} from "./ai-provider.ts"
 
 export type MncSummaryDependencies = AiProviderDependencies;
 
+export type MncSummaryFields = {
+  marketSetup: string[];
+  stocksInFocus: string[];
+  watchlist: string[];
+};
+
 const maxInlinePdfBytes = 14_000_000;
 const maxDiscordSummaryLength = 1_930;
 const maxMncSummaryAttempts = 2;
-const minMncSummaryBullets = 5;
-// Long enough that a discarded summary's preview reaches the stocks/watchlist
-// region, not just the intro bullet, so a structural rejection can be diagnosed.
-const mncSummaryDiscardPreviewLength = 700;
+const stocksInFocusHeading = "**Stocks in focus**";
+const watchlistHeading = "**Watchlist**";
+// Strip a leading "-", "*", "•", or "–" bullet marker the model sometimes adds;
+// the marker must be followed by whitespace so values like "-$3.5B" are kept.
+const leadingBulletMarkerPattern = /^\s*[-*•–]\s+/;
 
-// The model is asked for "**Stocks in focus**" / "**Watchlist**" but routinely
-// varies the casing, adds a trailing colon, a leading 📰, or a Markdown "#"
-// heading marker. Match those benign variants so a usable summary is not
-// discarded, while still requiring the section to be a heading on its own line.
-const stocksInFocusHeadingPattern = /^\s*(?:#{1,3}\s*)?(?:📰\s*)?(?:\*\*|__)?\s*stocks in focus\s*:?\s*(?:\*\*|__)?\s*$/i;
-const watchlistHeadingPattern = /^\s*(?:#{1,3}\s*)?(?:📰\s*)?(?:\*\*|__)?\s*watchlist\s*:?\s*(?:\*\*|__)?\s*$/i;
-// The model also welds the section name onto the first bullet of the section as
-// a bold lead-in label instead of writing a standalone heading, e.g.
-// "- **Stocks in focus:** Apple `AAPL` ...". Promote that lead-in to a real
-// heading so the structural gate and section compaction recognise the section.
-// A bold (or "#") wrapper is required so prose that merely mentions the phrase
-// mid-bullet is not mistaken for a heading. Capture group 1 is the trailing
-// content, which becomes the section's first bullet (empty for a bare label).
-const stocksInFocusLeadInPattern = /^\s*(?:[-*•–]\s+)?(?:#{1,3}\s+)?(?:📰\s*)?(?:\*\*|__)\s*stocks in focus\s*:?\s*(?:\*\*|__)\s*:?\s*(.*)$/i;
-const watchlistLeadInPattern = /^\s*(?:[-*•–]\s+)?(?:#{1,3}\s+)?(?:📰\s*)?(?:\*\*|__)\s*watchlist\s*:?\s*(?:\*\*|__)\s*:?\s*(.*)$/i;
-// Accept "-", "*", "•", or "–" bullet markers; "**bold**" lines are not bullets
-// because the marker must be followed by whitespace.
-const bulletLinePattern = /^[-*•–]\s+\S/;
-const bulletLineCanonicalPattern = /^(\s*)[-*•–]\s+(.*)$/;
-
+// The model returns one bullet per array entry per section and the bot renders
+// the Markdown itself, so the posted message always has the expected headings
+// and bullets. This removes the class of failures where a complete free-form
+// summary was discarded only because its headings or bullet markers did not
+// match the shape the gate expected.
 const mncSummarySchema = {
   type: "object",
   additionalProperties: false,
   properties: {
-    summaryMarkdown: {
-      type: "string",
-      description: "A concise one-minute Morning News Call summary formatted in Discord-compatible Markdown.",
+    marketSetup: {
+      type: "array",
+      description: "2 short bullets on the market setup and the most important macro drivers.",
+      items: {type: "string"},
+    },
+    stocksInFocus: {
+      type: "array",
+      description: "4 short bullets of company/ticker-specific news, earnings, guidance, analyst calls, or deal headlines.",
+      items: {type: "string"},
+    },
+    watchlist: {
+      type: "array",
+      description: "1 short bullet for events, data releases, sectors, or risks traders should monitor.",
+      items: {type: "string"},
     },
   },
-  required: ["summaryMarkdown"],
+  required: ["marketSetup", "stocksInFocus", "watchlist"],
 } satisfies Record<string, unknown>;
 
 export async function getMncSummary(
@@ -56,40 +59,37 @@ export async function getMncSummary(
   }
 
   for (let attempt = 1; attempt <= maxMncSummaryAttempts; attempt++) {
-    const normalizedSummary = await requestNormalizedMncSummary(pdfBuffer, dependencies);
-    if (undefined === normalizedSummary) {
+    const fields = await requestMncSummaryFields(pdfBuffer, dependencies);
+    if (undefined === fields) {
       continue;
     }
 
-    const structure = describeMncSummaryStructure(normalizedSummary);
-    if (false === isMncSummaryStructureValid(structure)) {
+    if (false === isMncSummaryFieldsValid(fields)) {
       dependencies.logger.log(
         "warn",
         {
-          message: `Discarding malformed AI MNC summary (attempt ${attempt}/${maxMncSummaryAttempts}): missing a required section heading or too few bullets.`,
-          has_stocks_heading: structure.hasStocksHeading,
-          has_watchlist_heading: structure.hasWatchlistHeading,
-          bullet_count: structure.bulletCount,
-          min_bullets: minMncSummaryBullets,
-          summary_preview: normalizedSummary.slice(0, mncSummaryDiscardPreviewLength),
+          message: `Discarding AI MNC summary (attempt ${attempt}/${maxMncSummaryAttempts}): a required section is empty.`,
+          market_setup_count: fields.marketSetup.length,
+          stocks_in_focus_count: fields.stocksInFocus.length,
+          watchlist_count: fields.watchlist.length,
         },
       );
       continue;
     }
 
-    const finalSummary = finalizeNormalizedSummary(normalizedSummary);
-    if ("" !== finalSummary) {
-      return finalSummary;
+    const summary = renderMncSummary(fields);
+    if ("" !== summary) {
+      return summary;
     }
   }
 
   return undefined;
 }
 
-async function requestNormalizedMncSummary(
+async function requestMncSummaryFields(
   pdfBuffer: Buffer,
   dependencies: MncSummaryDependencies,
-): Promise<string | undefined> {
+): Promise<MncSummaryFields | undefined> {
   const jsonText = await callAiProviderJson(
     getMncSummaryPrompt(),
     mncSummarySchema,
@@ -123,93 +123,105 @@ async function requestNormalizedMncSummary(
     return undefined;
   }
 
-  const summaryMarkdown = parsedJson["summaryMarkdown"];
-  if ("string" !== typeof summaryMarkdown) {
-    dependencies.logger.log(
-      "warn",
-      "AI MNC summary response did not contain summaryMarkdown.",
-    );
-    return undefined;
-  }
-
-  const normalizedSummary = normalizeMarkdownSummary(summaryMarkdown);
-  return "" === normalizedSummary ? undefined : normalizedSummary;
-}
-
-export function formatMncSummary(summaryMarkdown: string): string {
-  return finalizeNormalizedSummary(normalizeMarkdownSummary(summaryMarkdown));
-}
-
-function finalizeNormalizedSummary(normalizedSummary: string): string {
-  return removeMncTldrHeading(truncateMarkdownSummary(normalizedSummary)).trim();
-}
-
-export type MncSummaryStructure = {
-  hasStocksHeading: boolean;
-  hasWatchlistHeading: boolean;
-  bulletCount: number;
-};
-
-export function describeMncSummaryStructure(summary: string): MncSummaryStructure {
-  const lines = summary.split("\n");
   return {
-    hasStocksHeading: lines.some(line => isStocksInFocusHeadingLine(line)),
-    hasWatchlistHeading: lines.some(line => isWatchlistHeadingLine(line)),
-    bulletCount: getBulletLines(lines).length,
+    marketSetup: cleanBulletArray(parsedJson["marketSetup"]),
+    stocksInFocus: cleanBulletArray(parsedJson["stocksInFocus"]),
+    watchlist: cleanBulletArray(parsedJson["watchlist"]),
   };
 }
 
-// Recognise a section whether it is a standalone heading or a bold lead-in label
-// on a bullet, so the structural gate agrees with canonicalizeSummaryStructure
-// regardless of whether the summary has been normalized yet.
-function isStocksInFocusHeadingLine(line: string): boolean {
-  return stocksInFocusHeadingPattern.test(line) || stocksInFocusLeadInPattern.test(line);
+// Assemble the structured fields into the posted Discord Markdown, then apply
+// the inline-code/metric clean-ups and the Discord length budget. Exported so
+// the rendering and normalization are covered without a provider round-trip.
+export function renderMncSummary(fields: MncSummaryFields): string {
+  let renderedSummary = "";
+  for (const candidate of getCompactionCandidates(fields)) {
+    renderedSummary = assembleSummary(candidate);
+    if (renderedSummary.length <= maxDiscordSummaryLength) {
+      return renderedSummary.trim();
+    }
+  }
+
+  return hardTruncateSummary(renderedSummary).trim();
 }
 
-function isWatchlistHeadingLine(line: string): boolean {
-  return watchlistHeadingPattern.test(line) || watchlistLeadInPattern.test(line);
+function assembleSummary(fields: MncSummaryFields): string {
+  const lines = [
+    ...fields.marketSetup.map(toBulletLine),
+    "",
+    stocksInFocusHeading,
+    ...fields.stocksInFocus.map(toBulletLine),
+    "",
+    watchlistHeading,
+    ...fields.watchlist.map(toBulletLine),
+  ];
+
+  return normalizeRenderedSummary(lines.join("\n"));
 }
 
-function isMncSummaryStructureValid(structure: MncSummaryStructure): boolean {
-  return true === structure.hasStocksHeading
-    && true === structure.hasWatchlistHeading
-    && structure.bulletCount >= minMncSummaryBullets;
+// Full summary first, then progressively fewer stock and watchlist bullets, so
+// an over-budget summary keeps every section instead of being cut mid-list.
+function* getCompactionCandidates(fields: MncSummaryFields): Generator<MncSummaryFields> {
+  yield fields;
+  for (const stockLimit of [4, 3]) {
+    for (const watchlistLimit of [2, 1]) {
+      yield {
+        marketSetup: fields.marketSetup.slice(0, 2),
+        stocksInFocus: fields.stocksInFocus.slice(0, stockLimit),
+        watchlist: fields.watchlist.slice(0, watchlistLimit),
+      };
+    }
+  }
 }
 
-export function isStructurallyValidMncSummary(summary: string): boolean {
-  return isMncSummaryStructureValid(describeMncSummaryStructure(summary));
+function isMncSummaryFieldsValid(fields: MncSummaryFields): boolean {
+  return fields.marketSetup.length >= 1
+    && fields.stocksInFocus.length >= 1
+    && fields.watchlist.length >= 1;
+}
+
+function toBulletLine(text: string): string {
+  return `- ${text}`;
+}
+
+function cleanBulletArray(value: unknown): string[] {
+  if (false === Array.isArray(value)) {
+    return [];
+  }
+
+  return value
+    .filter((item): item is string => "string" === typeof item)
+    .map(item => item
+      .replace(leadingBulletMarkerPattern, "")
+      .replace(/\s*\n\s*/g, " ")
+      .trim())
+    .filter(item => "" !== item);
 }
 
 function getMncSummaryPrompt(): string {
   return [
     "Summarize this Refinitiv Morning News Call PDF for a Discord trading channel.",
-    "Return only JSON matching the schema. Do not include markdown outside the JSON string.",
-    "Write summaryMarkdown as a one-minute read in concise Discord Markdown.",
-    "Required shape:",
-    "- Exactly 2 bullets with the market setup and most important macro drivers.",
-    "",
-    "**Stocks in focus**",
-    "- Exactly 4 bullets with company/ticker-specific news, earnings, guidance, analyst calls, or deal headlines.",
-    "",
-    "**Watchlist**",
-    "- Exactly 1 bullet for events, data releases, sectors, or risks traders should monitor.",
+    "Return only JSON matching the schema: three string arrays, one entry per bullet.",
+    "Do not put Markdown headings or bullet markers inside the strings; the bot adds those.",
+    "Populate the arrays:",
+    "- marketSetup: exactly 2 bullets with the market setup and most important macro drivers.",
+    "- stocksInFocus: exactly 4 bullets with company/ticker-specific news, earnings, guidance, analyst calls, or deal headlines.",
+    "- watchlist: exactly 1 bullet for events, data releases, sectors, or risks traders should monitor.",
     "Rules:",
-    "- Keep the full summary under 1,750 characters.",
-    "- Use exactly 7 bullets total; each bullet should fit one Discord line.",
+    "- Each bullet is one concise Discord line; keep the whole summary under 1,750 characters.",
     "- Prioritize concrete, market-moving information from the PDF.",
-    "- Do not include a Morning News Call heading; the Discord message title already provides it.",
     "- Write in English only.",
     "- Format ticker symbols and quantitative metrics as inline code, e.g. `AAPL`, `$2.14`, `3.1%`, `10Y`, `250K`.",
     "- For metric ranges, write the range inside one inline-code token, e.g. `$1.26B-$1.36B`; do not turn range separators or table dashes into negative signs.",
     "- Use a negative sign only when the PDF explicitly reports a negative value, loss, charge, deficit, decline, or outflow.",
-    "- In stock-specific bullets, start with Company Name `TICKER` when the PDF explicitly provides a ticker; common short company names are fine, e.g. Apple `AAPL`.",
+    "- In stocksInFocus bullets, start with Company Name `TICKER` when the PDF explicitly provides a ticker; common short company names are fine, e.g. Apple `AAPL`.",
     "- If the PDF does not explicitly provide a ticker, start with the company name without inventing a ticker.",
     "- Do not infer or invent tickers, prices, percentages, or attributions.",
     "- Do not use code blocks, tables, links, emojis, or disclaimers.",
   ].join("\n");
 }
 
-function normalizeMarkdownSummary(value: string): string {
+function normalizeRenderedSummary(value: string): string {
   const summary = value
     .replace(/\r\n/g, "\n")
     .split("\n")
@@ -224,69 +236,11 @@ function normalizeMarkdownSummary(value: string): string {
     normalizeInlineCodeMetricSigns(
       normalizeInlineCodeRanges(
         normalizeInlineCodeWhitespace(
-          canonicalizeSummaryStructure(removeUnexpectedScriptTokens(removeMncTldrHeading(summary))),
+          removeUnexpectedScriptTokens(summary),
         ),
       ),
     ),
   ).trim();
-}
-
-// Rewrite tolerated heading and bullet variants to the canonical "**Stocks in
-// focus**" / "**Watchlist**" / "- " forms so the posted message, the structural
-// gate, and the section compaction all see one consistent shape.
-function canonicalizeSummaryStructure(value: string): string {
-  return value
-    .split("\n")
-    .flatMap(canonicalizeSummaryLine)
-    .join("\n");
-}
-
-function canonicalizeSummaryLine(line: string): string[] {
-  if (stocksInFocusHeadingPattern.test(line)) {
-    return ["**Stocks in focus**"];
-  }
-
-  if (watchlistHeadingPattern.test(line)) {
-    return ["**Watchlist**"];
-  }
-
-  const stocksLeadIn = line.match(stocksInFocusLeadInPattern);
-  if (null !== stocksLeadIn) {
-    return buildSectionHeadingLines("**Stocks in focus**", stocksLeadIn[1] ?? "");
-  }
-
-  const watchlistLeadIn = line.match(watchlistLeadInPattern);
-  if (null !== watchlistLeadIn) {
-    return buildSectionHeadingLines("**Watchlist**", watchlistLeadIn[1] ?? "");
-  }
-
-  const bulletMatch = line.match(bulletLineCanonicalPattern);
-  if (null !== bulletMatch) {
-    return [`- ${bulletMatch[2]}`];
-  }
-
-  return [line];
-}
-
-function buildSectionHeadingLines(heading: string, trailingContent: string): string[] {
-  const remainder = trailingContent.trim();
-  if ("" === remainder) {
-    return [heading];
-  }
-
-  return [heading, `- ${remainder}`];
-}
-
-function removeMncTldrHeading(value: string): string {
-  return value
-    .split("\n")
-    .filter(line => false === isMncTldrHeading(line))
-    .join("\n")
-    .trim();
-}
-
-function isMncTldrHeading(line: string): boolean {
-  return /^\s*(?:📰\s*)?\*\*Morning News Call\s*-\s*TL;?DR\*\*\s*$/i.test(line);
 }
 
 function removeUnexpectedScriptTokens(value: string): string {
@@ -369,22 +323,12 @@ function isLikelyPositiveGuidanceRangeLine(line: string): boolean {
   return /\b(?:guidance|guided|forecast|outlook|expects?|raised|revenue|sales|eps|earnings\s+per\s+share)\b/i.test(line);
 }
 
-function truncateMarkdownSummary(value: string): string {
-  if (value.length <= maxDiscordSummaryLength) {
-    return value;
-  }
-
-  const compactedSummary = getCompactedSectionSummary(value);
-  if (undefined !== compactedSummary && compactedSummary.length <= maxDiscordSummaryLength) {
-    return compactedSummary;
-  }
-
+function hardTruncateSummary(value: string): string {
   const suffix = "\n...";
   const maxBodyLength = maxDiscordSummaryLength - suffix.length;
   const lines: string[] = [];
   for (const line of value.split("\n")) {
-    const candidate = [...lines, line].join("\n");
-    if (candidate.length > maxBodyLength) {
+    if ([...lines, line].join("\n").length > maxBodyLength) {
       break;
     }
 
@@ -395,9 +339,9 @@ function truncateMarkdownSummary(value: string): string {
     lines.pop();
   }
 
-  const summary = lines.join("\n").trimEnd();
-  if ("" !== summary) {
-    return `${summary}${suffix}`;
+  const body = lines.join("\n").trimEnd();
+  if ("" !== body) {
+    return `${body}${suffix}`;
   }
 
   return `${value.slice(0, maxBodyLength).trimEnd()}${suffix}`;
@@ -406,57 +350,6 @@ function truncateMarkdownSummary(value: string): string {
 function isDanglingSummaryLine(line: string): boolean {
   const normalizedLine = line.trim();
   return "" === normalizedLine || /^\*\*[^*]+\*\*$/.test(normalizedLine);
-}
-
-function getCompactedSectionSummary(value: string): string | undefined {
-  const lines = value.split("\n");
-  for (const stockBulletLimit of [4, 3]) {
-    for (const watchlistBulletLimit of [2, 1]) {
-      const compactedSummary = buildCompactedSectionSummary(lines, stockBulletLimit, watchlistBulletLimit);
-      if (undefined !== compactedSummary && compactedSummary.length <= maxDiscordSummaryLength) {
-        return compactedSummary;
-      }
-    }
-  }
-
-  return buildCompactedSectionSummary(lines, 3, 1);
-}
-
-function buildCompactedSectionSummary(
-  lines: string[],
-  stockBulletLimit: number,
-  watchlistBulletLimit: number,
-): string | undefined {
-  const tldrHeadingIndex = lines.findIndex(line => line.includes("Morning News Call - TL;DR"));
-  const stocksHeadingIndex = lines.findIndex(line => line.trim() === "**Stocks in focus**");
-  const watchlistHeadingIndex = lines.findIndex(line => line.trim() === "**Watchlist**");
-  if (-1 === stocksHeadingIndex || -1 === watchlistHeadingIndex) {
-    return undefined;
-  }
-
-  const tldrStartIndex = -1 === tldrHeadingIndex ? 0 : tldrHeadingIndex + 1;
-  const tldrBullets = getBulletLines(lines.slice(tldrStartIndex, stocksHeadingIndex)).slice(0, 2);
-  const stockBullets = getBulletLines(lines.slice(stocksHeadingIndex + 1, watchlistHeadingIndex)).slice(0, stockBulletLimit);
-  const watchlistBullets = getBulletLines(lines.slice(watchlistHeadingIndex + 1)).slice(0, watchlistBulletLimit);
-  if (0 === tldrBullets.length || 0 === stockBullets.length || 0 === watchlistBullets.length) {
-    return undefined;
-  }
-
-  return [
-    ...tldrBullets,
-    "",
-    "**Stocks in focus**",
-    ...stockBullets,
-    "",
-    "**Watchlist**",
-    ...watchlistBullets,
-  ].join("\n").trim();
-}
-
-function getBulletLines(lines: string[]): string[] {
-  return lines
-    .map(line => line.trim())
-    .filter(line => bulletLinePattern.test(line));
 }
 
 function parseJson(value: string): unknown | null {

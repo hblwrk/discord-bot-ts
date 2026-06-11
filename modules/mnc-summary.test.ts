@@ -1,21 +1,23 @@
 import {Buffer} from "node:buffer";
 import {beforeEach, describe, expect, test, vi} from "vitest";
 import {clearAiProviderState} from "./ai-provider.ts";
-import {formatMncSummary, getMncSummary, isStructurallyValidMncSummary} from "./mnc-summary.ts";
+import {getMncSummary, renderMncSummary, type MncSummaryFields} from "./mnc-summary.ts";
 
-const validSummaryMarkdown = [
-  "**Morning News Call - TL;DR**",
-  "- Futures firm ahead of payrolls.",
-  "- Yields ease as risk appetite improves.",
-  "",
-  "**Stocks in focus**",
-  "- Apple `AAPL` rose on upgrades.",
-  "- Tesla `TSLA` slipped premarket.",
-  "- Nvidia `NVDA` led chip gains.",
-  "",
-  "**Watchlist**",
-  "- Watch the jobs report this morning.",
-].join("\n");
+const validFields: MncSummaryFields = {
+  marketSetup: [
+    "Futures firm ahead of payrolls.",
+    "Yields ease as risk appetite improves.",
+  ],
+  stocksInFocus: [
+    "Apple `AAPL` rose on upgrades.",
+    "Tesla `TSLA` slipped premarket.",
+    "Nvidia `NVDA` led chip gains.",
+    "Boeing `BA` climbed on a delivery beat.",
+  ],
+  watchlist: [
+    "Watch the jobs report this morning.",
+  ],
+};
 
 const validSummaryExpected = [
   "- Futures firm ahead of payrolls.",
@@ -25,26 +27,19 @@ const validSummaryExpected = [
   "- Apple `AAPL` rose on upgrades.",
   "- Tesla `TSLA` slipped premarket.",
   "- Nvidia `NVDA` led chip gains.",
+  "- Boeing `BA` climbed on a delivery beat.",
   "",
   "**Watchlist**",
   "- Watch the jobs report this morning.",
 ].join("\n");
 
-// Reproduces the production incident: the model lost the deal value, leaked a
-// self-correction into the answer, and never produced the section headings.
-const malformedSummaryMarkdown = [
-  "**Morning News Call - TL;DR**",
-  "- Futures firm ahead of payrolls.",
-  "- Berkshire Hathaway: agreed to buy Taylor Morrison Home for -? Wait",
-].join("\n");
-
-function geminiResponse(summaryMarkdown: string) {
+function geminiResponse(fields: unknown) {
   return {
     data: {
       candidates: [{
         content: {
           parts: [{
-            text: JSON.stringify({summaryMarkdown}),
+            text: JSON.stringify(fields),
           }],
         },
       }],
@@ -69,8 +64,8 @@ describe("MNC AI summary", () => {
     clearAiProviderState();
   });
 
-  test("summarizes the PDF with inline provider PDF data", async () => {
-    const postWithRetryFn = vi.fn().mockResolvedValue(geminiResponse(validSummaryMarkdown));
+  test("renders the structured summary and sends the PDF inline with the structured schema", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue(geminiResponse(validFields));
 
     const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
       logger,
@@ -93,6 +88,11 @@ describe("MNC AI summary", () => {
             text: expect.stringContaining("start with Company Name `TICKER`"),
           }],
         }],
+        generationConfig: expect.objectContaining({
+          responseJsonSchema: expect.objectContaining({
+            required: ["marketSetup", "stocksInFocus", "watchlist"],
+          }),
+        }),
       }),
       expect.objectContaining({
         headers: expect.objectContaining({
@@ -107,7 +107,7 @@ describe("MNC AI summary", () => {
         contents: [expect.objectContaining({
           parts: expect.arrayContaining([
             expect.objectContaining({
-              text: expect.stringContaining("Do not include a Morning News Call heading"),
+              text: expect.stringContaining("three string arrays"),
             }),
           ]),
         })],
@@ -117,123 +117,12 @@ describe("MNC AI summary", () => {
     );
   });
 
-  test("retries once and posts a valid summary after a malformed first attempt", async () => {
-    const postWithRetryFn = vi.fn()
-      .mockResolvedValueOnce(geminiResponse(malformedSummaryMarkdown))
-      .mockResolvedValue(geminiResponse(validSummaryMarkdown));
-
-    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
-      logger,
-      postWithRetryFn,
-      readSecretFn,
-    });
-
-    expect(summary).toBe(validSummaryExpected);
-    expect(summary).not.toContain("Wait");
-    expect(postWithRetryFn).toHaveBeenCalledTimes(2);
-    expect(logger.log).toHaveBeenCalledWith(
-      "warn",
-      expect.objectContaining({
-        message: expect.stringContaining("Discarding malformed AI MNC summary"),
-      }),
-    );
-  });
-
-  test("discards the summary when every attempt is malformed", async () => {
-    const postWithRetryFn = vi.fn().mockResolvedValue(geminiResponse(malformedSummaryMarkdown));
-
-    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
-      logger,
-      postWithRetryFn,
-      readSecretFn,
-    });
-
-    expect(summary).toBeUndefined();
-    expect(postWithRetryFn).toHaveBeenCalledTimes(2);
-    expect(logger.log).toHaveBeenCalledWith(
-      "warn",
-      expect.objectContaining({
-        message: expect.stringContaining("Discarding malformed AI MNC summary"),
-      }),
-    );
-  });
-
-  test("rejects summaries with too few bullets even when both headings are present", async () => {
-    const thinSummaryMarkdown = [
-      "**Morning News Call - TL;DR**",
-      "- Futures firm ahead of payrolls.",
-      "",
-      "**Stocks in focus**",
-      "- Apple `AAPL` rose on upgrades.",
-      "- Tesla `TSLA` slipped premarket.",
-      "",
-      "**Watchlist**",
-      "- Watch the jobs report this morning.",
-    ].join("\n");
-    const postWithRetryFn = vi.fn().mockResolvedValue(geminiResponse(thinSummaryMarkdown));
-
-    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
-      logger,
-      postWithRetryFn,
-      readSecretFn,
-    });
-
-    expect(summary).toBeUndefined();
-    expect(postWithRetryFn).toHaveBeenCalledTimes(2);
-  });
-
-  test("accepts a summary whose headings and bullets only vary in formatting", async () => {
-    // Reproduces the 2026-06-03 incident: the model produced a complete summary
-    // but used title-case "Stocks in Focus:", a "## Watchlist" heading, and
-    // "*"/"•" bullet markers, which the strict gate discarded on both attempts.
-    const variantSummaryMarkdown = [
-      "📰 **Morning News Call - TL;DR**",
-      "* Futures firm ahead of payrolls.",
-      "* Yields ease as risk appetite improves.",
-      "",
-      "**Stocks in Focus:**",
-      "* Apple `AAPL` rose on upgrades.",
-      "* Tesla `TSLA` slipped premarket.",
-      "* Nvidia `NVDA` led chip gains.",
-      "",
-      "## Watchlist",
-      "• Watch the jobs report this morning.",
-    ].join("\n");
-    const postWithRetryFn = vi.fn().mockResolvedValue(geminiResponse(variantSummaryMarkdown));
-
-    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
-      logger,
-      postWithRetryFn,
-      readSecretFn,
-    });
-
-    expect(summary).toBe(validSummaryExpected);
-    expect(postWithRetryFn).toHaveBeenCalledTimes(1);
-    expect(logger.log).not.toHaveBeenCalledWith(
-      "warn",
-      expect.objectContaining({
-        message: expect.stringContaining("Discarding malformed AI MNC summary"),
-      }),
-    );
-  });
-
-  test("accepts a summary whose section names are bold lead-in labels on bullets", async () => {
-    // Reproduces the 2026-06-10 incident: the model produced a complete 7-bullet
-    // summary but welded the section names onto the first bullet of each section
-    // ("- **Stocks in focus:** ...") instead of writing standalone headings, so
-    // the strict gate logged has_stocks_heading/has_watchlist_heading=false and
-    // discarded both deterministic (temperature 0) attempts.
-    const leadInSummaryMarkdown = [
-      "📰 **Morning News Call - TL;DR**",
-      "- **Market setup:** U.S. futures fell as tech extended losses ahead of May CPI.",
-      "- **Macro drivers:** Headline CPI seen at `4.2%`, core at `2.9%`, keeping the Fed on hold.",
-      "- **Stocks in focus:** Apple `AAPL` rose on upgrades.",
-      "- Tesla `TSLA` slipped premarket.",
-      "- Nvidia `NVDA` led chip gains.",
-      "- Boeing `BA` climbed on a delivery beat.",
-      "- **Watchlist:** Watch the May CPI release this morning.",
-    ].join("\n");
-    const postWithRetryFn = vi.fn().mockResolvedValue(geminiResponse(leadInSummaryMarkdown));
+  test("strips stray bullet markers and collapses multi-line entries, dropping non-strings", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue(geminiResponse({
+      marketSetup: ["- Futures firm ahead of payrolls.", "* Yields ease\nas risk appetite improves."],
+      stocksInFocus: ["• Apple `AAPL` rose on upgrades.", "Tesla `TSLA` slipped premarket.", 42, ""],
+      watchlist: ["Watch the jobs report this morning."],
+    }));
 
     const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
       logger,
@@ -242,43 +131,66 @@ describe("MNC AI summary", () => {
     });
 
     expect(summary).toBe([
-      "- **Market setup:** U.S. futures fell as tech extended losses ahead of May CPI.",
-      "- **Macro drivers:** Headline CPI seen at `4.2%`, core at `2.9%`, keeping the Fed on hold.",
+      "- Futures firm ahead of payrolls.",
+      "- Yields ease as risk appetite improves.",
+      "",
       "**Stocks in focus**",
       "- Apple `AAPL` rose on upgrades.",
       "- Tesla `TSLA` slipped premarket.",
-      "- Nvidia `NVDA` led chip gains.",
-      "- Boeing `BA` climbed on a delivery beat.",
+      "",
       "**Watchlist**",
-      "- Watch the May CPI release this morning.",
+      "- Watch the jobs report this morning.",
     ].join("\n"));
-    expect(postWithRetryFn).toHaveBeenCalledTimes(1);
-    expect(logger.log).not.toHaveBeenCalledWith(
-      "warn",
-      expect.objectContaining({
-        message: expect.stringContaining("Discarding malformed AI MNC summary"),
-      }),
-    );
   });
 
-  test("logs structural diagnostics when discarding a malformed summary", async () => {
-    const postWithRetryFn = vi.fn().mockResolvedValue(geminiResponse(malformedSummaryMarkdown));
+  test("retries once and posts after a first attempt with an empty section", async () => {
+    const postWithRetryFn = vi.fn()
+      .mockResolvedValueOnce(geminiResponse({
+        marketSetup: ["Futures firm ahead of payrolls."],
+        stocksInFocus: [],
+        watchlist: ["Watch the jobs report this morning."],
+      }))
+      .mockResolvedValue(geminiResponse(validFields));
 
-    await getMncSummary(Buffer.from("pdf-bytes"), {
+    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
       logger,
       postWithRetryFn,
       readSecretFn,
     });
 
+    expect(summary).toBe(validSummaryExpected);
+    expect(postWithRetryFn).toHaveBeenCalledTimes(2);
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
       expect.objectContaining({
-        message: expect.stringContaining("Discarding malformed AI MNC summary"),
-        has_stocks_heading: false,
-        has_watchlist_heading: false,
-        bullet_count: 2,
-        min_bullets: 5,
-        summary_preview: expect.stringContaining("Futures firm ahead of payrolls."),
+        message: expect.stringContaining("a required section is empty"),
+        stocks_in_focus_count: 0,
+      }),
+    );
+  });
+
+  test("discards and logs section counts when a section stays empty on every attempt", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue(geminiResponse({
+      marketSetup: ["Futures firm ahead of payrolls."],
+      stocksInFocus: ["Apple `AAPL` rose on upgrades."],
+      watchlist: [],
+    }));
+
+    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
+      logger,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(summary).toBeUndefined();
+    expect(postWithRetryFn).toHaveBeenCalledTimes(2);
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        message: expect.stringContaining("a required section is empty"),
+        market_setup_count: 1,
+        stocks_in_focus_count: 1,
+        watchlist_count: 0,
       }),
     );
   });
@@ -339,66 +251,10 @@ describe("MNC AI summary", () => {
     );
   });
 
-  test("returns no summary for missing summaryMarkdown", async () => {
-    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
-      logger,
-      postWithRetryFn: vi.fn().mockResolvedValue({
-        data: {
-          candidates: [{
-            content: {
-              parts: [{
-                text: JSON.stringify({}),
-              }],
-            },
-          }],
-        },
-      }),
-      readSecretFn,
-    });
-
-    expect(summary).toBeUndefined();
-    expect(logger.log).toHaveBeenCalledWith(
-      "warn",
-      "AI MNC summary response did not contain summaryMarkdown.",
-    );
-  });
-
-  test("returns no summary for empty normalized summaries", async () => {
-    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
-      logger,
-      postWithRetryFn: vi.fn().mockResolvedValue({
-        data: {
-          candidates: [{
-            content: {
-              parts: [{
-                text: JSON.stringify({
-                  summaryMarkdown: "```markdown\n```",
-                }),
-              }],
-            },
-          }],
-        },
-      }),
-      readSecretFn,
-    });
-
-    expect(summary).toBeUndefined();
-  });
-
   test("returns no summary for AI JSON arrays", async () => {
     const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
       logger,
-      postWithRetryFn: vi.fn().mockResolvedValue({
-        data: {
-          candidates: [{
-            content: {
-              parts: [{
-                text: "[]",
-              }],
-            },
-          }],
-        },
-      }),
+      postWithRetryFn: vi.fn().mockResolvedValue(geminiResponse([])),
       readSecretFn,
     });
 
@@ -408,184 +264,47 @@ describe("MNC AI summary", () => {
       "AI MNC summary returned invalid JSON.",
     );
   });
-});
 
-describe("MNC summary structural validation", () => {
-  const validBody = [
-    "- Futures firm ahead of payrolls.",
-    "- Yields ease as risk appetite improves.",
-    "",
-    "**Stocks in focus**",
-    "- Apple `AAPL` rose on upgrades.",
-    "- Tesla `TSLA` slipped premarket.",
-    "",
-    "**Watchlist**",
-    "- Watch the jobs report this morning.",
-  ].join("\n");
+  test("discards an object that contains none of the expected sections", async () => {
+    const summary = await getMncSummary(Buffer.from("pdf-bytes"), {
+      logger,
+      postWithRetryFn: vi.fn().mockResolvedValue(geminiResponse({summaryMarkdown: "- a\n- b"})),
+      readSecretFn,
+    });
 
-  test("accepts a summary with both section headings and enough bullets", () => {
-    expect(isStructurallyValidMncSummary(validBody)).toBe(true);
-  });
-
-  test("accepts heading and bullet formatting variants", () => {
-    const body = [
-      "* Futures firm ahead of payrolls.",
-      "* Yields ease as risk appetite improves.",
-      "",
-      "**Stocks in Focus:**",
-      "* Apple `AAPL` rose on upgrades.",
-      "* Tesla `TSLA` slipped premarket.",
-      "",
-      "## Watchlist",
-      "• Watch the jobs report this morning.",
-    ].join("\n");
-    expect(isStructurallyValidMncSummary(body)).toBe(true);
-  });
-
-  test("accepts section names emitted as bold lead-in labels on bullets", () => {
-    const body = [
-      "- **Market setup:** Futures firm ahead of payrolls.",
-      "- **Macro drivers:** Yields ease as risk appetite improves.",
-      "- **Stocks in focus:** Apple `AAPL` rose on upgrades.",
-      "- Tesla `TSLA` slipped premarket.",
-      "- **Watchlist:** Watch the jobs report this morning.",
-    ].join("\n");
-    expect(isStructurallyValidMncSummary(body)).toBe(true);
-  });
-
-  test("rejects a summary missing the stocks heading", () => {
-    const body = validBody.replace("**Stocks in focus**\n", "");
-    expect(isStructurallyValidMncSummary(body)).toBe(false);
-  });
-
-  test("rejects a summary missing the watchlist heading", () => {
-    const body = validBody.replace("**Watchlist**\n", "");
-    expect(isStructurallyValidMncSummary(body)).toBe(false);
-  });
-
-  test("rejects a summary with too few bullets", () => {
-    const body = [
-      "- Futures firm ahead of payrolls.",
-      "",
-      "**Stocks in focus**",
-      "- Apple `AAPL` rose on upgrades.",
-      "",
-      "**Watchlist**",
-      "- Watch the jobs report this morning.",
-    ].join("\n");
-    expect(isStructurallyValidMncSummary(body)).toBe(false);
+    expect(summary).toBeUndefined();
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      expect.objectContaining({
+        market_setup_count: 0,
+        stocks_in_focus_count: 0,
+        watchlist_count: 0,
+      }),
+    );
   });
 });
 
-describe("MNC summary formatting", () => {
-  test("normalizes markdown fences and truncates long summaries", () => {
-    const longSummary = [
-      "```markdown",
-      "**Morning News Call - TL;DR**",
-      ...Array.from({length: 40}, (_value, index) => `- Market item ${index} with enough text to make the generated summary too long for Discord posting.`),
-      "```",
-    ].join("\n");
-
-    const summary = formatMncSummary(longSummary);
-
-    expect(summary).not.toContain("```");
-    expect(summary).not.toContain("**Morning News Call - TL;DR**");
-    expect(summary).not.toContain("📰 **Morning News Call - TL;DR**");
-    expect(summary.length).toBeLessThanOrEqual(1_930);
-    expect(summary).toContain("\n...");
-    expect(summary).not.toContain("\n- ...");
-  });
-
-  test("compacts sectioned summaries before falling back to a hard truncation", () => {
-    const longSectionedSummary = [
-      "📰 **Morning News Call - TL;DR**",
-      "- Futures are firmer while yields drift lower, with traders waiting for jobs data, services activity, and Fed speakers to reset rate expectations.",
-      "- Oil is softer, gold is bid, and the dollar is steady as risk appetite improves without removing the main macro and geopolitical overhangs.",
-      "",
-      "**Stocks in focus**",
-      ...Array.from({length: 7}, (_value, index) => `- Company ${index} \`CMP${index}\` moved premarket after management updated guidance, highlighted margin drivers, and flagged demand trends that could matter for today's sector rotation.`),
-      "",
-      "**Watchlist**",
-      "- Watch Treasury supply, afternoon Fed remarks, and the market reaction to services data for signs that rate-sensitive groups can keep leading.",
-      "- Also monitor energy headlines, breadth in megacap technology, and closing auction flows after a busy earnings calendar.",
-    ].join("\n");
-
-    const summary = formatMncSummary(longSectionedSummary);
-
-    expect(summary.length).toBeLessThanOrEqual(1_930);
-    expect(summary).not.toContain("Morning News Call - TL;DR");
-    expect(summary).toContain("**Stocks in focus**");
-    expect(summary).toContain("**Watchlist**");
-    expect(summary).toContain("Watch Treasury supply");
-    expect(summary).not.toContain("\n...");
-  });
-
-  test("removes generated Morning News Call headings", () => {
-    expect(formatMncSummary("📰 **Morning News Call - TL;DR**\n- Futures firm ahead of payrolls."))
-      .toBe("- Futures firm ahead of payrolls.");
-  });
-
-  test("canonicalizes heading and bullet variants to the expected shape", () => {
-    const summary = formatMncSummary([
-      "**Morning News Call - TL;DR**",
-      "* Futures firm ahead of payrolls.",
-      "* Yields ease as risk appetite improves.",
-      "",
-      "**Stocks in Focus:**",
-      "* Apple `AAPL` rose on upgrades.",
-      "* Tesla `TSLA` slipped premarket.",
-      "* Nvidia `NVDA` led chip gains.",
-      "",
-      "## Watchlist",
-      "• Watch the jobs report this morning.",
-    ].join("\n"));
-
-    expect(summary).toBe(validSummaryExpected);
-  });
-
-  test("promotes a bare bold section-label bullet to a standalone heading", () => {
-    const summary = formatMncSummary([
-      "- Futures firm ahead of payrolls.",
-      "- Yields ease as risk appetite improves.",
-      "- **Stocks in focus:**",
-      "- Apple `AAPL` rose on upgrades.",
-      "- Tesla `TSLA` slipped premarket.",
-      "- Nvidia `NVDA` led chip gains.",
-      "- **Watchlist:**",
-      "- Watch the jobs report this morning.",
-    ].join("\n"));
-
-    expect(summary).toBe([
-      "- Futures firm ahead of payrolls.",
-      "- Yields ease as risk appetite improves.",
-      "**Stocks in focus**",
-      "- Apple `AAPL` rose on upgrades.",
-      "- Tesla `TSLA` slipped premarket.",
-      "- Nvidia `NVDA` led chip gains.",
-      "**Watchlist**",
-      "- Watch the jobs report this morning.",
-    ].join("\n"));
+describe("MNC summary rendering", () => {
+  test("renders the canonical headings and bullets from structured fields", () => {
+    expect(renderMncSummary(validFields)).toBe(validSummaryExpected);
   });
 
   test("normalizes common AI Markdown rendering glitches", () => {
-    const summary = formatMncSummary([
-      "**Morning News Call - TL;DR**",
-      "- U.S. futures opened firmer while easing geopolitical तनाव and AI optimism lifted risk appetite.",
-      "- Gold jumped more than `3%`.",
-      "",
-      "**Stocks in focus**",
-      "- Walt Disney `DIS` beat Q2 EPS/revenue estimates at `$$1.57` / `$$25.2B`, with ~`12%` FY26 EPS growth.",
-      "- Super Micro Computer `SMCI` forecast Q4 revenue of `$$11B`-`$$12.5B` and adjusted EPS of `65c`-`79c`.",
-      "- PayPal `PYPL` reported Q1 revenue of `$$8.35B`, targeting `$$1.5B` of savings over `2`-`3` years.",
-      "- Arm `ARM` guided Q1 revenue to `- $1.26B` vs `- $1.25B` est.",
-      "- Fortinet `FTNT` raised FY guidance to `-$7.71B`-`$7.87B` revenue and `-$3.10`-`$3.16` EPS.",
-      "- Block `XYZ`: raised full-year gross profit guidance to ` $12.33B` from `$ 12.20B`.",
-      "- CoreWeave `CRWV`: lifted 2026 capex to ` $31B-$35B`; Nvidia `NVDA` is investing up to ` $2.1B`.",
-      "- Cheniere `LNG` swung to a `-$3.5B` Q1 loss after a `-$4.8B` derivative hit.",
-      "",
-      "**Watchlist**",
-      "- All eyes on `ADP` April payrolls (`99K` expected).",
-    ].join("\n"));
+    const summary = renderMncSummary({
+      marketSetup: [
+        "U.S. futures opened firmer while easing geopolitical तनाव and AI optimism lifted risk appetite.",
+        "Gold jumped more than `3%`.",
+      ],
+      stocksInFocus: [
+        "Walt Disney `DIS` beat Q2 EPS/revenue estimates at `$$1.57` / `$$25.2B`, with ~`12%` FY26 EPS growth.",
+        "Super Micro Computer `SMCI` forecast Q4 revenue of `$$11B`-`$$12.5B` and adjusted EPS of `65c`-`79c`.",
+        "PayPal `PYPL` reported Q1 revenue of `$$8.35B`, targeting `$$1.5B` of savings over `2`-`3` years.",
+        "Arm `ARM` guided Q1 revenue to `- $1.26B` vs `- $1.25B` est.",
+      ],
+      watchlist: [
+        "All eyes on `ADP` April payrolls (`99K` expected).",
+      ],
+    });
 
     expect(summary).toBe([
       "- U.S. futures opened firmer while easing geopolitical and AI optimism lifted risk appetite.",
@@ -596,34 +315,70 @@ describe("MNC summary formatting", () => {
       "- Super Micro Computer `SMCI` forecast Q4 revenue of `$11B-$12.5B` and adjusted EPS of `65c-79c`.",
       "- PayPal `PYPL` reported Q1 revenue of `$8.35B`, targeting `$1.5B` of savings over `2-3` years.",
       "- Arm `ARM` guided Q1 revenue to `$1.26B` vs `$1.25B` est.",
-      "- Fortinet `FTNT` raised FY guidance to `$7.71B-$7.87B` revenue and `$3.10-$3.16` EPS.",
-      "- Block `XYZ`: raised full-year gross profit guidance to `$12.33B` from `$12.20B`.",
-      "- CoreWeave `CRWV`: lifted 2026 capex to `$31B-$35B`; Nvidia `NVDA` is investing up to `$2.1B`.",
-      "- Cheniere `LNG` swung to a `-$3.5B` Q1 loss after a `-$4.8B` derivative hit.",
       "",
       "**Watchlist**",
       "- All eyes on `ADP` April payrolls (`99K` expected).",
     ].join("\n"));
   });
 
-  test("hard-truncates summaries that cannot be compacted or split by line", () => {
-    const summary = formatMncSummary("One very long generated line without section breaks. ".repeat(80));
+  test("leaves non-metric inline-code pairs untouched", () => {
+    const summary = renderMncSummary({
+      marketSetup: ["Rotation from `tech`-`energy` continues."],
+      stocksInFocus: ["Apple `AAPL` rose on upgrades."],
+      watchlist: ["Watch the jobs report this morning."],
+    });
+
+    expect(summary).toContain("`tech`-`energy`");
+  });
+
+  test("keeps explicit negative metrics on loss bullets", () => {
+    const summary = renderMncSummary({
+      marketSetup: ["Risk-off tone as yields climb."],
+      stocksInFocus: ["Cheniere `LNG` swung to a `-$3.5B` Q1 loss after a `-$4.8B` derivative hit."],
+      watchlist: ["Watch energy headlines."],
+    });
+
+    expect(summary).toContain("`-$3.5B`");
+    expect(summary).toContain("`-$4.8B`");
+  });
+
+  test("drops trailing stock/watchlist bullets to fit, keeping every section", () => {
+    const longBullet = (prefix: string) => `${prefix} ${"with enough text to push the rendered summary past the Discord budget when every bullet is present. ".repeat(2)}`;
+    const summary = renderMncSummary({
+      marketSetup: [longBullet("Market is firmer"), longBullet("Yields drift lower")],
+      stocksInFocus: Array.from({length: 7}, (_value, index) => longBullet(`Company ${index} moved premarket`)),
+      watchlist: [longBullet("Watch Treasury supply"), longBullet("Also monitor energy headlines")],
+    });
+
+    expect(summary.length).toBeLessThanOrEqual(1_930);
+    expect(summary).toContain("**Stocks in focus**");
+    expect(summary).toContain("**Watchlist**");
+    expect(summary).not.toContain("\n...");
+  });
+
+  test("hard-truncates after a heading boundary when compaction cannot help", () => {
+    const hugeStock = (label: string) => `${label} ${"with a great deal of detail that on its own already overflows the entire Discord message budget several times over. ".repeat(15)}`;
+    const summary = renderMncSummary({
+      marketSetup: ["Market is cautious ahead of CPI.", "Yields tick higher into the print."],
+      stocksInFocus: Array.from({length: 4}, (_value, index) => hugeStock(`Company ${index}`)),
+      watchlist: ["Watch the CPI release."],
+    });
 
     expect(summary.length).toBeLessThanOrEqual(1_930);
     expect(summary).toMatch(/\n\.\.\.$/);
+    // Accumulation stops at the section heading, which is popped as dangling.
+    expect(summary).not.toMatch(/\*\*Stocks in focus\*\*$/);
+    expect(summary).toContain("- Market is cautious ahead of CPI.");
   });
 
-  test("falls back to line truncation for malformed section summaries", () => {
-    const malformedSectionSummary = [
-      "📰 **Morning News Call - TL;DR**",
-      "**Stocks in focus**",
-      "**Watchlist**",
-      "A watchlist paragraph without a bullet. ".repeat(90),
-    ].join("\n");
-
-    const summary = formatMncSummary(malformedSectionSummary);
+  test("hard-truncates a single oversized bullet with no usable line break", () => {
+    const summary = renderMncSummary({
+      marketSetup: ["A long uninterrupted market-setup sentence without section breaks. ".repeat(40)],
+      stocksInFocus: ["Apple `AAPL` rose on upgrades."],
+      watchlist: ["Watch the jobs report this morning."],
+    });
 
     expect(summary.length).toBeLessThanOrEqual(1_930);
-    expect(summary).toContain("\n...");
+    expect(summary).toMatch(/\n\.\.\.$/);
   });
 });
