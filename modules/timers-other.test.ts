@@ -381,6 +381,62 @@ describe("timers: other announcements", () => {
     expect(releaseUpdate.embeds[0]!.data.description).toBe("**Consumer Price Index (CPI) y/y** — `3.4%` ▲ exp. `3.2%` · prev. `3.1%`");
   });
 
+  test("startOtherTimers posts only one update when two follow-up jobs overlap", async () => {
+    const {client, send} = createClientWithChannel();
+    const releasedEvents = [
+      {
+        actualValue: "3.4%",
+        date: "2025-02-19",
+        time: "14:30",
+        country: "🇺🇸",
+        forecastValue: "3.2%",
+        name: "Consumer Price Index (CPI) y/y",
+        previousValue: "3.1%",
+      },
+    ];
+    let resolveFollowUpFetch: (events: unknown[]) => void = () => undefined;
+    const pendingFollowUpFetch = new Promise<unknown[]>(resolve => {
+      resolveFollowUpFetch = resolve;
+    });
+    getCalendarEventsMock
+      .mockResolvedValueOnce([
+        {
+          date: "2025-02-19",
+          time: "14:30",
+          country: "🇺🇸",
+          forecastValue: "3.2%",
+          name: "Consumer Price Index (CPI) y/y",
+          previousValue: "3.1%",
+        },
+      ])
+      .mockReturnValueOnce(pendingFollowUpFetch)
+      .mockResolvedValue(releasedEvents);
+
+    startOtherTimers(client, "channel-id", [], [], [createCalendarReminderAsset({
+      name: "us-cpi-1h",
+      eventNameSubstrings: ["cpi"],
+      countryFlags: ["🇺🇸"],
+      roleId: "role-123",
+    })], []);
+    const dailyCalendarJob = getScheduledJobByTime(8, 30, "Europe/Berlin");
+    await dailyCalendarJob.callback();
+
+    const followUpJobs = getScheduledDateJobs();
+    // Start the first follow-up but leave its actuals fetch in flight (not awaited).
+    const firstFollowUp = followUpJobs[0]!.callback();
+    // A second follow-up fires while the first is mid-flight; it must skip, not duplicate.
+    await followUpJobs[1]!.callback();
+    // Let the first follow-up complete and post the single update.
+    resolveFollowUpFetch(releasedEvents);
+    await firstFollowUp;
+
+    // 1 agenda + 1 morning reminder + exactly 1 release update (no duplicate).
+    expect(send).toHaveBeenCalledTimes(3);
+    const releaseUpdate = getReminderPayload(send, 2);
+    expect(releaseUpdate.content).toBe("<@&role-123> Update");
+    expect(releaseUpdate.embeds[0]!.data.description).toBe("**Consumer Price Index (CPI) y/y** — `3.4%` ▲ exp. `3.2%` · prev. `3.1%`");
+  });
+
   test("startOtherTimers posts official AI summary after no-metric calendar releases", async () => {
     const {client, send} = createClientWithChannel();
     getCalendarEventsMock.mockResolvedValueOnce([
