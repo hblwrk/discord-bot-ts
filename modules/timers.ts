@@ -1143,6 +1143,11 @@ function scheduleCalendarReminderFollowUpJobs(
   matchedReminderGroups: CalendarReminderGroup[],
 ) {
   const sentFollowUpKeys = new Set<string>();
+  // Follow-up jobs fire at staggered delays; once actuals are out, two jobs can
+  // overlap because sendCalendarReminderFollowUp awaits a network fetch. Claim the
+  // key synchronously (before any await) so an overlapping job skips instead of
+  // posting a duplicate. Released on failure so a later job can still retry.
+  const inFlightFollowUpKeys = new Set<string>();
 
   for (const matchedReminderGroup of matchedReminderGroups) {
     if (false === shouldScheduleCalendarReminderFollowUp(matchedReminderGroup)) {
@@ -1167,13 +1172,18 @@ function scheduleCalendarReminderFollowUpJobs(
       }
 
       Schedule.scheduleJob(scheduledDateTime.toDate(), async () => {
-        if (true === sentFollowUpKeys.has(followUpKey)) {
+        if (true === sentFollowUpKeys.has(followUpKey) || true === inFlightFollowUpKeys.has(followUpKey)) {
           return;
         }
 
-        const sent = await sendCalendarReminderFollowUp(client, macroAlertChannelID, matchedReminderGroup);
-        if (true === sent) {
-          sentFollowUpKeys.add(followUpKey);
+        inFlightFollowUpKeys.add(followUpKey);
+        try {
+          const sent = await sendCalendarReminderFollowUp(client, macroAlertChannelID, matchedReminderGroup);
+          if (true === sent) {
+            sentFollowUpKeys.add(followUpKey);
+          }
+        } finally {
+          inFlightFollowUpKeys.delete(followUpKey);
         }
       });
     }
