@@ -18,14 +18,21 @@ type TwitterTestMessage = {
     bot?: boolean;
   };
   content: string;
+  embeds: unknown[];
+  id: string;
   reply: ReturnType<typeof vi.fn>;
   suppressEmbeds: ReturnType<typeof vi.fn>;
   webhookId?: string | null;
 };
 
+let nextMessageId = 0;
+
 function createTwitterMessage(content: string): TwitterTestMessage {
+  nextMessageId += 1;
   return {
     content,
+    embeds: [],
+    id: `message-${nextMessageId}`,
     reply: vi.fn().mockResolvedValue(undefined),
     suppressEmbeds: vi.fn().mockResolvedValue(undefined),
   };
@@ -73,16 +80,16 @@ describe("addTwitterLinkRewrites", () => {
     vi.clearAllMocks();
   });
 
-  test("suppresses the original embed and replies with the clean link", async () => {
+  test("replies immediately but defers suppression until the X card appears", async () => {
     const {client, getHandler} = createEventClient();
     addTwitterLinkRewrites(client);
 
-    const handler = getHandler("messageCreate");
+    const createHandler = getHandler("messageCreate");
+    const updateHandler = getHandler("messageUpdate");
     const message = createTwitterMessage("watch https://x.com/example/status/123?s=20");
 
-    await handler(message);
+    await createHandler(message);
 
-    expect(message.suppressEmbeds).toHaveBeenCalledWith(true);
     expect(message.reply).toHaveBeenCalledWith({
       allowedMentions: {
         parse: [],
@@ -90,6 +97,83 @@ describe("addTwitterLinkRewrites", () => {
       },
       content: "https://fxtwitter.com/example/status/123",
     });
+    expect(message.suppressEmbeds).not.toHaveBeenCalled();
+
+    message.embeds = [{type: "rich"}];
+    await updateHandler(undefined, message);
+
+    expect(message.suppressEmbeds).toHaveBeenCalledWith(true);
+  });
+
+  test("suppresses immediately when the card is already attached at create time", async () => {
+    const {client, getHandler} = createEventClient();
+    addTwitterLinkRewrites(client);
+
+    const handler = getHandler("messageCreate");
+    const message = createTwitterMessage("https://x.com/example/status/123");
+    message.embeds = [{type: "rich"}];
+
+    await handler(message);
+
+    expect(message.suppressEmbeds).toHaveBeenCalledWith(true);
+    expect(message.reply).toHaveBeenCalledWith(expect.objectContaining({
+      content: "https://fxtwitter.com/example/status/123",
+    }));
+  });
+
+  test("keeps waiting when a messageUpdate arrives without the embed", async () => {
+    const {client, getHandler} = createEventClient();
+    addTwitterLinkRewrites(client);
+
+    const createHandler = getHandler("messageCreate");
+    const updateHandler = getHandler("messageUpdate");
+    const message = createTwitterMessage("https://x.com/example/status/123");
+
+    await createHandler(message);
+    await updateHandler(undefined, message);
+
+    expect(message.suppressEmbeds).not.toHaveBeenCalled();
+
+    message.embeds = [{type: "rich"}];
+    await updateHandler(undefined, message);
+    await updateHandler(undefined, message);
+
+    expect(message.suppressEmbeds).toHaveBeenCalledTimes(1);
+  });
+
+  test("ignores messageUpdate for messages it is not tracking", async () => {
+    const {client, getHandler} = createEventClient();
+    addTwitterLinkRewrites(client);
+
+    const updateHandler = getHandler("messageUpdate");
+    const message = createTwitterMessage("https://x.com/example/status/123");
+    message.embeds = [{type: "rich"}];
+
+    await updateHandler(undefined, message);
+
+    expect(message.suppressEmbeds).not.toHaveBeenCalled();
+  });
+
+  test("stops waiting once the embed timeout elapses", async () => {
+    vi.useFakeTimers();
+    try {
+      const {client, getHandler} = createEventClient();
+      addTwitterLinkRewrites(client);
+
+      const createHandler = getHandler("messageCreate");
+      const updateHandler = getHandler("messageUpdate");
+      const message = createTwitterMessage("https://x.com/example/status/123");
+
+      await createHandler(message);
+      vi.advanceTimersByTime(15_000);
+
+      message.embeds = [{type: "rich"}];
+      await updateHandler(undefined, message);
+
+      expect(message.suppressEmbeds).not.toHaveBeenCalled();
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   test("ignores bot-authored and webhook messages", async () => {
@@ -130,6 +214,7 @@ describe("addTwitterLinkRewrites", () => {
 
     const handler = getHandler("messageCreate");
     const message = createTwitterMessage("https://x.com/example/status/123");
+    message.embeds = [{type: "rich"}];
     message.suppressEmbeds.mockRejectedValue(new Error("missing permission"));
 
     await handler(message);
