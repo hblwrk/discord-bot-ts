@@ -2,6 +2,7 @@ import {getLogger} from "./logging.ts";
 
 const logger = getLogger();
 const discordMaxMessageLength = 2_000;
+const embedSuppressionWaitMs = 15_000;
 const trailingUrlPunctuation = ".,!?;:)]}";
 const twitterUrlRegex = /https?:\/\/[^\s<>"']+/giu;
 const twitterHosts = new Set([
@@ -17,6 +18,8 @@ type TwitterLinkRewriteMessage = {
     bot?: boolean;
   };
   content: string;
+  embeds?: readonly unknown[];
+  id: string;
   reply: (payload: {
     allowedMentions: {
       parse: string[];
@@ -28,8 +31,20 @@ type TwitterLinkRewriteMessage = {
   webhookId?: string | null;
 };
 
+// Discord generates link embeds asynchronously and delivers them via
+// messageUpdate, so the suppression path only needs the message identity,
+// its embeds, and the suppress call — not the full create-time shape.
+type TwitterLinkSuppressibleMessage = {
+  embeds?: readonly unknown[] | null;
+  id: string;
+  suppressEmbeds: (suppress?: boolean) => Promise<unknown>;
+};
+
 type TwitterLinkRewriteClient = {
-  on: (eventName: "messageCreate", handler: (message: TwitterLinkRewriteMessage) => Promise<void>) => unknown;
+  on: {
+    (eventName: "messageCreate", handler: (message: TwitterLinkRewriteMessage) => Promise<void>): unknown;
+    (eventName: "messageUpdate", handler: (oldMessage: unknown, newMessage: TwitterLinkSuppressibleMessage) => Promise<void>): unknown;
+  };
 };
 
 function trimTrailingUrlPunctuation(value: string): string {
@@ -84,7 +99,11 @@ function getMessageContentWithinDiscordLimit(links: string[]): string {
   return acceptedLinks.join("\n");
 }
 
-async function suppressOriginalEmbeds(message: TwitterLinkRewriteMessage) {
+function messageHasEmbeds(message: {embeds?: readonly unknown[] | null}): boolean {
+  return Array.isArray(message.embeds) && 0 < message.embeds.length;
+}
+
+async function suppressOriginalEmbeds(message: TwitterLinkSuppressibleMessage) {
   try {
     await message.suppressEmbeds(true);
   } catch (error: unknown) {
@@ -128,6 +147,32 @@ export function getFixedTwitterLinks(content: string): string[] {
 }
 
 export function addTwitterLinkRewrites(client: TwitterLinkRewriteClient) {
+  // Discord attaches the X/Twitter card after the message is created, arriving
+  // as a separate messageUpdate. Suppressing at messageCreate races that update
+  // and the card slips through, so we wait for the embed to appear before
+  // suppressing. Track the message ids whose embeds are still pending, with a
+  // timeout that drops ids whose card never materialises.
+  const pendingEmbedSuppressions = new Map<string, ReturnType<typeof setTimeout>>();
+
+  function stopTrackingMessage(messageId: string): void {
+    const pendingTimeout = pendingEmbedSuppressions.get(messageId);
+    if (undefined === pendingTimeout) {
+      return;
+    }
+
+    clearTimeout(pendingTimeout);
+    pendingEmbedSuppressions.delete(messageId);
+  }
+
+  function trackMessageForEmbedSuppression(messageId: string): void {
+    stopTrackingMessage(messageId);
+    const pendingTimeout = setTimeout(() => {
+      pendingEmbedSuppressions.delete(messageId);
+    }, embedSuppressionWaitMs);
+    pendingTimeout.unref();
+    pendingEmbedSuppressions.set(messageId, pendingTimeout);
+  }
+
   client.on("messageCreate", async message => {
     if (true === message.author?.bot || Boolean(message.webhookId)) {
       return;
@@ -143,7 +188,25 @@ export function addTwitterLinkRewrites(client: TwitterLinkRewriteClient) {
       return;
     }
 
-    await suppressOriginalEmbeds(message);
+    if (messageHasEmbeds(message)) {
+      await suppressOriginalEmbeds(message);
+    } else {
+      trackMessageForEmbedSuppression(message.id);
+    }
+
     await replyWithFixedLinks(message, content);
+  });
+
+  client.on("messageUpdate", async (_oldMessage, newMessage) => {
+    if (false === pendingEmbedSuppressions.has(newMessage.id)) {
+      return;
+    }
+
+    if (false === messageHasEmbeds(newMessage)) {
+      return;
+    }
+
+    stopTrackingMessage(newMessage.id);
+    await suppressOriginalEmbeds(newMessage);
   });
 }
