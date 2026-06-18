@@ -97,7 +97,10 @@ const earningsMetricDefinitions: MetricDefinition[] = [
       /\bnet\s+income(?!\s+per\s+(?:common\s+)?share)(?:\s+attributable[^|,]*)?\b/i,
       /\bnet\s+earnings(?!\s+per\s+(?:common\s+)?share)\b/i,
     ],
-    skipPattern: /\beps\b/i,
+    // Skip income-statement subtotals and the noncontrolling-interest component so
+    // the headline "net income/earnings attributable to <company>" row wins rather
+    // than "net earnings before income tax" or "net earnings including NCI".
+    skipPattern: /\beps\b|\bbefore\s+(?:income\s+)?tax(?:es)?\b|\b(?:including|attributable\s+to)\s+noncontrolling\b/i,
     valueType: "money",
   },
   {
@@ -134,7 +137,10 @@ export function getMessageMetrics(
   event: EarningsEvent,
 ): EarningsResultMetric[] {
   const consensusEps = surprise?.consensusEps ?? parseNumber(event.epsConsensus) ?? undefined;
-  const metrics = normalizeEpsMetrics([...secMetrics], surprise, consensusEps);
+  const metrics = dropImplausibleMoneyMetrics(
+    normalizeEpsMetrics([...secMetrics], surprise, consensusEps),
+    surprise,
+  );
   const hasAdjustedEps = metrics.some(metric => "adjusted_eps" === metric.key);
   const hasGaapEps = metrics.some(metric => "gaap_eps" === metric.key);
 
@@ -165,6 +171,40 @@ export function getMessageMetrics(
   }
 
   return metrics.slice(0, 7);
+}
+
+// Plausibility guard: a company that reports per-share earnings has enough shares
+// outstanding that its aggregate revenue and net income are at least in the millions.
+// A sub-$1M revenue/net-income figure alongside a real EPS is therefore a scale or
+// parse error (e.g. a dropped "(in millions)" header rendering "$903" for $903M), so
+// omit it rather than post a wrong number.
+function dropImplausibleMoneyMetrics(
+  metrics: EarningsResultMetric[],
+  surprise: NasdaqSurprise | null,
+): EarningsResultMetric[] {
+  const hasPlausibleEps =
+    ("number" === typeof surprise?.actualEps && 0.01 <= Math.abs(surprise.actualEps)) ||
+    metrics.some(metric => isEpsMetricKey(metric.key) &&
+      "number" === typeof metric.numericValue &&
+      Number.isFinite(metric.numericValue) &&
+      0.01 <= Math.abs(metric.numericValue));
+  if (false === hasPlausibleEps) {
+    return metrics;
+  }
+
+  return metrics.filter(metric => {
+    if (false === ("revenue" === metric.key || "net_income" === metric.key)) {
+      return true;
+    }
+
+    return false === ("number" === typeof metric.numericValue &&
+      Number.isFinite(metric.numericValue) &&
+      Math.abs(metric.numericValue) < 1_000_000);
+  });
+}
+
+function isEpsMetricKey(key: string): boolean {
+  return "adjusted_eps" === key || "gaap_eps" === key || "nasdaq_eps" === key;
 }
 
 function canCompareAgainstUsdEstimate(metric: EarningsResultMetric): boolean {
@@ -634,11 +674,13 @@ function extractMetricValue(
   if ("money" === valueType) {
     const hasMetricLabelSuffixTableNote = isMetricLabelSuffixTableNote(searchText);
     const searchValue = true === hasMetricLabelSuffixTableNote ? null : findNumericValue(searchText, {
+      minUncuedAbsValue: 10,
       requireMoneyCue: 1 === contextMoney.scale,
       skipTableNoteRefs,
       skipPercentages: true,
     });
     const fallbackValue = true === isMetricValuePrefix(fallbackSearchText) ? findNumericValue(fallbackSearchText, {
+      minUncuedAbsValue: 10,
       requireMoneyCue: 1 === contextMoney.scale,
       skipTableNoteRefs,
       skipPercentages: true,
@@ -699,7 +741,14 @@ function getLastPerShareSegmentValue(text: string, label: "Basic" | "Diluted"): 
 
 function getContextMoney(lines: string[], lineIndex: number): MoneyContext {
   let currencyCode: string | undefined;
-  for (let index = lineIndex; index >= 0 && index >= lineIndex - 80; index--) {
+  // Scan upward for the nearest "in millions / $ in thousands / ..." declaration
+  // governing this row. Income statements interleave many empty separator rows
+  // ("| |") between the unit header and the figures, so the lookback budget is
+  // spent on content (letter-bearing) lines only — otherwise a header a few real
+  // rows up but 100+ separator rows away is missed and the scale wrongly defaults
+  // to 1 (rendering e.g. "$903" instead of "$903M").
+  let contentLinesScanned = 0;
+  for (let index = lineIndex; index >= 0 && contentLinesScanned <= 80; index--) {
     const line = lines[index];
     if (undefined === line) {
       continue;
@@ -712,6 +761,10 @@ function getContextMoney(lines: string[], lineIndex: number): MoneyContext {
         currencyCode,
         scale,
       };
+    }
+
+    if (/[A-Za-z]/.test(line)) {
+      contentLinesScanned++;
     }
   }
 
@@ -742,15 +795,24 @@ function isNearTableNoteColumn(lines: string[], lineIndex: number): boolean {
 }
 
 function getMoneyScaleFromContextText(text: string): number | null {
-  if (/\b(?:\$|amounts?|dollars?)?\s*(?:in\s+)?thousands?(?:\s+of\s+dollars)?\b/i.test(text)) {
+  // Match a column/table-scale declaration ("(in millions)", "$ in thousands",
+  // "($ millions)", "millions of dollars") but NOT an inline prose magnitude such
+  // as "Operating Profit of $1,407 million" — there a digit immediately precedes
+  // the unit, and that figure belongs to one line, not the whole table. Treating
+  // inline magnitudes as a table scale mis-scales unrelated rows.
+  const declarationMatch =
+    /(?:\bin\s+|[$€£¥]\s*)(thousand|million|billion)s?\b/i.exec(text) ??
+    /\b(thousand|million|billion)s?\s+of\s+dollars\b/i.exec(text);
+  const unit = declarationMatch?.[1]?.toLowerCase();
+  if ("thousand" === unit) {
     return 1_000;
   }
 
-  if (/\b(?:\$|amounts?|dollars?)?\s*(?:in\s+)?millions?(?:\s+of\s+dollars)?\b/i.test(text)) {
+  if ("million" === unit) {
     return 1_000_000;
   }
 
-  if (/\b(?:\$|amounts?|dollars?)?\s*(?:in\s+)?billions?(?:\s+of\s+dollars)?\b/i.test(text)) {
+  if ("billion" === unit) {
     return 1_000_000_000;
   }
 
@@ -830,6 +892,7 @@ function getCompactMoneySuffixScale(text: string): number | null {
 
 type NumericValueOptions = {
   maxAbsValue?: number;
+  minUncuedAbsValue?: number;
   parseCents?: boolean;
   requireMoneyCue?: boolean;
   skipPercentages?: boolean;
@@ -869,6 +932,15 @@ function findNumericValues(
     }
 
     if (true === options.requireMoneyCue &&
+        false === hasMoneyCue(text, numberMatch.index, endIndex, token)) {
+      continue;
+    }
+
+    // A tiny number with no money cue ($, explicit unit) next to a metric label is
+    // a footnote/superscript reference ("eCommerce sales grew +19% 2", "Sales (1)"),
+    // not a financial figure. Real revenue/income figures are either $-cued or large.
+    if ("number" === typeof options.minUncuedAbsValue &&
+        Math.abs(value) < options.minUncuedAbsValue &&
         false === hasMoneyCue(text, numberMatch.index, endIndex, token)) {
       continue;
     }

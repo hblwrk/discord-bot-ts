@@ -978,4 +978,75 @@ describe("earnings result formatting", () => {
     expect(normalizeCik("abc")).toBeNull();
     expect(normalizeCik(null)).toBeNull();
   });
+
+  test("parses Kroger-style highlight bullets and a distant income-statement scale header", () => {
+    // Reproduces a real Kroger 8-K mis-parse: the revenue extractor latched onto a
+    // marketing bullet ("eCommerce sales grew +19% 2", footnote "2" x a stray scale)
+    // rendering "$2M", and net income kept the figure but lost its "(in millions)"
+    // scale (130 separator rows below the header) rendering "$903" instead of "$903M".
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>The Kroger Co. Reports First Quarter 2026 Results</h1>
+          <p>First Quarter</p>
+          <p>Highlights</p>
+          <p>Identical Sales without fuel increased 1.0% 1</p>
+          <p>Operating Profit of $1,407 million; EPS of $1.46</p>
+          <p>Adjusted FIFO Operating Profit of $1,544 million and Adjusted EPS of $1.58</p>
+          <p>Adjusted eCommerce sales grew +19% 2 ; Kroger Precision Marketing profit grew over 20%</p>
+          <p>ID Sales (1) (Table 4) | 1.0% | 3.2%</p>
+          <p>THE KROGER CO.</p>
+          <p>CONSOLIDATED STATEMENTS OF OPERATIONS</p>
+          <p>(in millions, except per share amounts)</p>
+          <table>
+            <tr><td>SALES</td><td>$</td><td>46,121</td><td>$</td><td>45,118</td></tr>
+            <tr><td>MERCHANDISE COSTS</td><td>36,058</td><td>35,200</td></tr>
+            <tr><td>OPERATING PROFIT</td><td>1,407</td><td>1,322</td></tr>
+            <tr><td>NET EARNINGS BEFORE INCOME TAX EXPENSE</td><td>1,177</td><td>1,090</td></tr>
+            ${"<tr><td></td><td></td></tr>".repeat(90)}
+            <tr><td>NET EARNINGS INCLUDING NONCONTROLLING INTERESTS</td><td>904</td><td>868</td></tr>
+            <tr><td>NET INCOME ATTRIBUTABLE TO NONCONTROLLING INTERESTS</td><td>1</td><td>2</td></tr>
+            <tr><td>NET EARNINGS ATTRIBUTABLE TO THE KROGER CO.</td><td>$</td><td>903</td><td>$</td><td>866</td></tr>
+          </table>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.quarterLabel).toBe("Q1 2026");
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "adjusted_eps", value: "$1.58"}),
+      expect.objectContaining({key: "gaap_eps", value: "$1.46"}),
+      expect.objectContaining({key: "revenue", numericValue: 46_121_000_000, value: "$46.12B"}),
+      expect.objectContaining({key: "net_income", numericValue: 903_000_000, value: "$903M"}),
+    ]));
+    // None of the mis-parses: marketing-bullet revenue, pre-tax/NCI net income, or
+    // the unscaled bare-dollar net income.
+    const valuesByKey = new Map(parsedDocument.metrics.map(metric => [metric.key, metric.value]));
+    expect(valuesByKey.get("revenue")).not.toBe("$2M");
+    expect(valuesByKey.get("revenue")).not.toBe("-$1M");
+    expect(valuesByKey.get("net_income")).not.toBe("$903");
+    expect(valuesByKey.get("net_income")).not.toBe("$1.18B");
+  });
+
+  test("drops sub-million revenue/net income that lost their scale when a real EPS is present", () => {
+    const event: EarningsEvent = {
+      ticker: "KR",
+      when: "before_open",
+      date: "2026-06-18",
+      importance: 1,
+    };
+
+    const guarded = getMessageMetrics([
+      {key: "gaap_eps", label: "EPS", numericValue: 1.46, value: "$1.46"},
+      {key: "net_income", label: "Net income", numericValue: 903, value: "$903"},
+    ], {actualEps: 1.46}, event);
+    expect(guarded.some(metric => "net_income" === metric.key)).toBe(false);
+    expect(guarded.some(metric => "gaap_eps" === metric.key)).toBe(true);
+
+    // The guard stays out of the way when there is no EPS signal to anchor scale.
+    const unguarded = getMessageMetrics([
+      {key: "net_income", label: "Net income", numericValue: 903, value: "$903"},
+    ], null, event);
+    expect(unguarded.some(metric => "net_income" === metric.key)).toBe(true);
+  });
 });
