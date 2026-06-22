@@ -22,7 +22,7 @@
   "dependencies": {
     "@dxfeed/dxlink-api": "^0.9.0",
     "@tastytrade/api": "^7.0.2",
-    "axios": "^1.17.0",
+    "axios": "^1.18.0",
     "class-transformer": "^0.5.1",
     "discord.js": "^14.26.4",
     "express": "^5.2.1",
