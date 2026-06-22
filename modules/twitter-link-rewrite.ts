@@ -4,6 +4,7 @@ const logger = getLogger();
 const discordMaxMessageLength = 2_000;
 const embedSuppressionWaitMs = 15_000;
 const trailingUrlPunctuation = ".,!?;:)]}";
+const linkWrapperPunctuation = "<>\"'.,!?;:()[]{}";
 const twitterUrlRegex = /https?:\/\/[^\s<>"']+/giu;
 const twitterHosts = new Set([
   "mobile.twitter.com",
@@ -16,10 +17,24 @@ const twitterHosts = new Set([
 type TwitterLinkRewriteMessage = {
   author?: {
     bot?: boolean;
+    globalName?: string | null;
+    username?: string;
+  };
+  channel: {
+    send: (payload: {
+      allowedMentions: {
+        parse: string[];
+      };
+      content: string;
+    }) => Promise<unknown> | unknown;
   };
   content: string;
+  delete: () => Promise<unknown>;
   embeds?: readonly unknown[];
   id: string;
+  member?: {
+    displayName?: string;
+  } | null;
   reply: (payload: {
     allowedMentions: {
       parse: string[];
@@ -82,13 +97,13 @@ function getFixedTwitterUrl(value: string): string | undefined {
   return `https://fxtwitter.com${parsedUrl.pathname}`;
 }
 
-function getMessageContentWithinDiscordLimit(links: string[]): string {
+function getMessageContentWithinDiscordLimit(links: string[], maxLength: number = discordMaxMessageLength): string {
   const acceptedLinks: string[] = [];
   let messageLength = 0;
 
   for (const link of links) {
     const nextLength = messageLength + (0 === acceptedLinks.length ? 0 : 1) + link.length;
-    if (nextLength > discordMaxMessageLength) {
+    if (nextLength > maxLength) {
       break;
     }
 
@@ -97,6 +112,41 @@ function getMessageContentWithinDiscordLimit(links: string[]): string {
   }
 
   return acceptedLinks.join("\n");
+}
+
+// A message "only contains the link" when removing every fixable Twitter/X URL
+// leaves nothing but whitespace and the brackets/punctuation that commonly wrap
+// a pasted URL. Those messages are deleted and reposted by the bot rather than
+// replied to, so the channel shows a single clean fxtwitter card.
+function messageIsOnlyFixableLinks(content: string): boolean {
+  let foundFixableLink = false;
+  const remainder = content.replace(twitterUrlRegex, match => {
+    if (undefined === getFixedTwitterUrl(trimTrailingUrlPunctuation(match))) {
+      return match;
+    }
+
+    foundFixableLink = true;
+    return "";
+  });
+
+  if (false === foundFixableLink) {
+    return false;
+  }
+
+  for (const character of remainder) {
+    if (false === /\s/u.test(character) && false === linkWrapperPunctuation.includes(character)) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function resolvePosterName(message: TwitterLinkRewriteMessage): string {
+  return message.member?.displayName
+    ?? message.author?.globalName
+    ?? message.author?.username
+    ?? "someone";
 }
 
 function messageHasEmbeds(message: {embeds?: readonly unknown[] | null}): boolean {
@@ -129,6 +179,44 @@ async function replyWithFixedLinks(message: TwitterLinkRewriteMessage, content: 
       `Error sending fixed Twitter/X link: ${error}`,
     );
   }
+}
+
+// Delete a link-only message and repost the fixed link in the bot's name,
+// crediting the original poster ("From <name>: <link>"). Returns true when the
+// original was removed so the caller skips the reply-and-suppress path; returns
+// false (e.g. the bot lacks delete permission) to fall back to that path.
+async function replaceLinkOnlyMessage(message: TwitterLinkRewriteMessage, fixedLinks: string[]): Promise<boolean> {
+  const prefix = `From ${resolvePosterName(message)}: `;
+  const content = getMessageContentWithinDiscordLimit(fixedLinks, discordMaxMessageLength - prefix.length);
+  if ("" === content) {
+    return false;
+  }
+
+  try {
+    await message.delete();
+  } catch (error: unknown) {
+    logger.log(
+      "error",
+      `Error deleting original Twitter/X message: ${error}`,
+    );
+    return false;
+  }
+
+  try {
+    await message.channel.send({
+      allowedMentions: {
+        parse: [],
+      },
+      content: `${prefix}${content}`,
+    });
+  } catch (error: unknown) {
+    logger.log(
+      "error",
+      `Error posting replacement Twitter/X message: ${error}`,
+    );
+  }
+
+  return true;
 }
 
 export function getFixedTwitterLinks(content: string): string[] {
@@ -181,6 +269,13 @@ export function addTwitterLinkRewrites(client: TwitterLinkRewriteClient) {
     const fixedLinks = getFixedTwitterLinks(message.content);
     if (0 === fixedLinks.length) {
       return;
+    }
+
+    if (messageIsOnlyFixableLinks(message.content)) {
+      const replaced = await replaceLinkOnlyMessage(message, fixedLinks);
+      if (replaced) {
+        return;
+      }
     }
 
     const content = getMessageContentWithinDiscordLimit(fixedLinks);
