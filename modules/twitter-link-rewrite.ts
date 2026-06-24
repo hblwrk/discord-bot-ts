@@ -17,8 +17,7 @@ const twitterHosts = new Set([
 type TwitterLinkRewriteMessage = {
   author?: {
     bot?: boolean;
-    globalName?: string | null;
-    username?: string;
+    id?: string;
   };
   channel: {
     send: (payload: {
@@ -32,9 +31,6 @@ type TwitterLinkRewriteMessage = {
   delete: () => Promise<unknown>;
   embeds?: readonly unknown[];
   id: string;
-  member?: {
-    displayName?: string;
-  } | null;
   reply: (payload: {
     allowedMentions: {
       parse: string[];
@@ -142,11 +138,17 @@ function messageIsOnlyFixableLinks(content: string): boolean {
   return true;
 }
 
-function resolvePosterName(message: TwitterLinkRewriteMessage): string {
-  return message.member?.displayName
-    ?? message.author?.globalName
-    ?? message.author?.username
-    ?? "someone";
+// Credit the poster with a Discord mention (<@id>) rather than their plaintext
+// name. The replacement is posted in the bot's name, so a user-controlled name
+// string could be used to impersonate someone else ("From <victim>: <link>").
+// A mention is resolved by Discord to the real account captured at post time —
+// it cannot be spoofed and stays clickable. With allowedMentions.parse empty it
+// renders without pinging. Fall back to a neutral label if no author id exists.
+function resolvePosterCredit(message: TwitterLinkRewriteMessage): string {
+  const authorId = message.author?.id;
+  return undefined === authorId || "" === authorId
+    ? "someone"
+    : `<@${authorId}>`;
 }
 
 function messageHasEmbeds(message: {embeds?: readonly unknown[] | null}): boolean {
@@ -182,11 +184,11 @@ async function replyWithFixedLinks(message: TwitterLinkRewriteMessage, content: 
 }
 
 // Delete a link-only message and repost the fixed link in the bot's name,
-// crediting the original poster ("From <name>: <link>"). Returns true when the
-// original was removed so the caller skips the reply-and-suppress path; returns
-// false (e.g. the bot lacks delete permission) to fall back to that path.
+// crediting the original poster by mention ("From <@id>: <link>"). Returns true
+// when the original was removed so the caller skips the reply-and-suppress path;
+// returns false (e.g. the bot lacks delete permission) to fall back to that path.
 async function replaceLinkOnlyMessage(message: TwitterLinkRewriteMessage, fixedLinks: string[]): Promise<boolean> {
-  const prefix = `From ${resolvePosterName(message)}: `;
+  const prefix = `From ${resolvePosterCredit(message)}: `;
   const content = getMessageContentWithinDiscordLimit(fixedLinks, discordMaxMessageLength - prefix.length);
   if ("" === content) {
     return false;

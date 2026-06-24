@@ -16,8 +16,7 @@ vi.mock("./logging.ts", () => ({
 type TwitterTestMessage = {
   author?: {
     bot?: boolean;
-    globalName?: string | null;
-    username?: string;
+    id?: string;
   };
   channel: {
     send: ReturnType<typeof vi.fn>;
@@ -26,9 +25,6 @@ type TwitterTestMessage = {
   delete: ReturnType<typeof vi.fn>;
   embeds: unknown[];
   id: string;
-  member?: {
-    displayName?: string;
-  } | null;
   reply: ReturnType<typeof vi.fn>;
   suppressEmbeds: ReturnType<typeof vi.fn>;
   webhookId?: string | null;
@@ -39,6 +35,7 @@ let nextMessageId = 0;
 function createTwitterMessage(content: string): TwitterTestMessage {
   nextMessageId += 1;
   return {
+    author: {id: `author-${nextMessageId}`},
     channel: {
       send: vi.fn().mockResolvedValue(undefined),
     },
@@ -258,13 +255,13 @@ describe("addTwitterLinkRewrites", () => {
     );
   });
 
-  test("deletes a link-only message and reposts it crediting the poster", async () => {
+  test("deletes a link-only message and reposts it crediting the poster by mention", async () => {
     const {client, getHandler} = createEventClient();
     addTwitterLinkRewrites(client);
 
     const handler = getHandler("messageCreate");
     const message = createTwitterMessage("https://x.com/example/status/123");
-    message.member = {displayName: "Xeophon"};
+    message.author = {id: "111222333"};
 
     await handler(message);
 
@@ -273,7 +270,7 @@ describe("addTwitterLinkRewrites", () => {
       allowedMentions: {
         parse: [],
       },
-      content: "From Xeophon: https://fxtwitter.com/example/status/123",
+      content: "From <@111222333>: https://fxtwitter.com/example/status/123",
     });
     expect(message.reply).not.toHaveBeenCalled();
     expect(message.suppressEmbeds).not.toHaveBeenCalled();
@@ -285,13 +282,13 @@ describe("addTwitterLinkRewrites", () => {
 
     const handler = getHandler("messageCreate");
     const message = createTwitterMessage("<https://x.com/example/status/123>!");
-    message.member = {displayName: "Xeophon"};
+    message.author = {id: "111222333"};
 
     await handler(message);
 
     expect(message.delete).toHaveBeenCalledTimes(1);
     expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({
-      content: "From Xeophon: https://fxtwitter.com/example/status/123",
+      content: "From <@111222333>: https://fxtwitter.com/example/status/123",
     }));
   });
 
@@ -303,12 +300,12 @@ describe("addTwitterLinkRewrites", () => {
     const message = createTwitterMessage(
       "https://x.com/example/status/123 https://twitter.com/example/status/456",
     );
-    message.member = {displayName: "Xeophon"};
+    message.author = {id: "111222333"};
 
     await handler(message);
 
     expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({
-      content: "From Xeophon: https://fxtwitter.com/example/status/123\nhttps://fxtwitter.com/example/status/456",
+      content: "From <@111222333>: https://fxtwitter.com/example/status/123\nhttps://fxtwitter.com/example/status/456",
     }));
   });
 
@@ -328,28 +325,22 @@ describe("addTwitterLinkRewrites", () => {
     }));
   });
 
-  test("credits the global name, then the username, then a fallback", async () => {
+  test("credits the poster by mention, falling back to a neutral label without an author id", async () => {
     const {client, getHandler} = createEventClient();
     addTwitterLinkRewrites(client);
 
     const handler = getHandler("messageCreate");
 
-    const globalNameMessage = createTwitterMessage("https://x.com/example/status/123");
-    globalNameMessage.author = {globalName: "GlobalName"};
-    await handler(globalNameMessage);
-
-    const usernameMessage = createTwitterMessage("https://x.com/example/status/456");
-    usernameMessage.author = {globalName: null, username: "username"};
-    await handler(usernameMessage);
+    const mentionMessage = createTwitterMessage("https://x.com/example/status/123");
+    mentionMessage.author = {id: "987654321"};
+    await handler(mentionMessage);
 
     const anonymousMessage = createTwitterMessage("https://x.com/example/status/789");
+    anonymousMessage.author = {};
     await handler(anonymousMessage);
 
-    expect(globalNameMessage.channel.send).toHaveBeenCalledWith(expect.objectContaining({
-      content: "From GlobalName: https://fxtwitter.com/example/status/123",
-    }));
-    expect(usernameMessage.channel.send).toHaveBeenCalledWith(expect.objectContaining({
-      content: "From username: https://fxtwitter.com/example/status/456",
+    expect(mentionMessage.channel.send).toHaveBeenCalledWith(expect.objectContaining({
+      content: "From <@987654321>: https://fxtwitter.com/example/status/123",
     }));
     expect(anonymousMessage.channel.send).toHaveBeenCalledWith(expect.objectContaining({
       content: "From someone: https://fxtwitter.com/example/status/789",
@@ -394,13 +385,13 @@ describe("addTwitterLinkRewrites", () => {
     );
   });
 
-  test("falls back to replying when the credited name leaves no room for the link", async () => {
+  test("falls back to replying when the credit prefix leaves no room for the link", async () => {
     const {client, getHandler} = createEventClient();
     addTwitterLinkRewrites(client);
 
     const handler = getHandler("messageCreate");
     const message = createTwitterMessage("https://x.com/example/status/123");
-    message.member = {displayName: "x".repeat(2_000)};
+    message.author = {id: "1".repeat(2_000)};
 
     await handler(message);
 
