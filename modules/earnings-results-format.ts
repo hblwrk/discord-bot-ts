@@ -661,41 +661,38 @@ function extractMetricValue(
 
   if ("eps" === valueType) {
     const perShareTableValue = findPerShareTableValue(searchText);
-    const value = perShareTableValue ?? findNumericValue(searchText, {
-      maxAbsValue: 100,
-      parseCents: true,
-    }) ?? (true === isMetricValuePrefix(fallbackSearchText) ? findNumericValue(fallbackSearchText, {
-      maxAbsValue: 100,
-      parseCents: true,
-    }) : null);
+    const value = perShareTableValue ?? findEpsValue(searchText) ??
+      (true === isMetricValuePrefix(fallbackSearchText) ? findEpsValue(fallbackSearchText) : null);
     return null === value ? null : {numericValue: value, value: formatEps(value)};
   }
 
   if ("money" === valueType) {
     const hasMetricLabelSuffixTableNote = isMetricLabelSuffixTableNote(searchText);
-    const searchValue = true === hasMetricLabelSuffixTableNote ? null : findNumericValue(searchText, {
+    const searchValueMatch = true === hasMetricLabelSuffixTableNote ? null : findNumericValueMatch(searchText, {
       minUncuedAbsValue: 10,
       requireMoneyCue: 1 === contextMoney.scale,
       skipTableNoteRefs,
       skipPercentages: true,
     });
-    const fallbackValue = true === isMetricValuePrefix(fallbackSearchText) ? findNumericValue(fallbackSearchText, {
+    const fallbackValueMatch = true === isMetricValuePrefix(fallbackSearchText) ? findNumericValueMatch(fallbackSearchText, {
       minUncuedAbsValue: 10,
       requireMoneyCue: 1 === contextMoney.scale,
       skipTableNoteRefs,
       skipPercentages: true,
     }) : null;
-    const useFallbackValue = null !== fallbackValue &&
-      (null === searchValue || true === hasMetricLabelSuffixTableNote);
-    const parsedValue = true === useFallbackValue ? fallbackValue : searchValue ?? fallbackValue;
-    if (null === parsedValue) {
+    const useFallbackValue = null !== fallbackValueMatch &&
+      (null === searchValueMatch || true === hasMetricLabelSuffixTableNote);
+    const parsedValueMatch = true === useFallbackValue
+      ? fallbackValueMatch
+      : searchValueMatch ?? fallbackValueMatch;
+    if (null === parsedValueMatch) {
       return null;
     }
 
     const metricText = true === useFallbackValue ? fallbackSearchText : searchText;
-    const explicitScale = getExplicitMoneyScale(metricText);
+    const explicitScale = getExplicitMoneyScale(metricText, parsedValueMatch.endIndex);
     const currencyCode = getCurrencyCodeFromText(metricText) ?? contextMoney.currencyCode;
-    const amount = parsedValue * (explicitScale ?? contextMoney.scale);
+    const amount = parsedValueMatch.value * (explicitScale ?? contextMoney.scale);
     return {
       currencyCode,
       numericValue: amount,
@@ -718,6 +715,24 @@ function extractMetricValue(
     numericValue: value,
     value: formatPlainNumber(value, trailingUnit),
   };
+}
+
+function findEpsValue(text: string): number | null {
+  const options = {
+    maxAbsValue: 100,
+    parseCents: true,
+  };
+  const currencyValue = findNumericValue(text, {
+    ...options,
+    requireMoneyCue: true,
+  });
+  if (null !== currencyValue) {
+    return currencyValue;
+  }
+
+  return true === isMetricLabelSuffixTableNote(text)
+    ? null
+    : findNumericValue(text, options);
 }
 
 function findPerShareTableValue(text: string): number | null {
@@ -775,7 +790,7 @@ function getContextMoney(lines: string[], lineIndex: number): MoneyContext {
 }
 
 function isMetricLabelSuffixTableNote(text: string): boolean {
-  return /^\s*\d{1,2}\s*$/.test(text);
+  return /^\s*\(?\d{1,2}\)?\s*$/.test(text);
 }
 
 function isMetricValuePrefix(text: string): boolean {
@@ -839,55 +854,27 @@ function getCurrencyCodeFromText(text: string): string | undefined {
   return undefined;
 }
 
-function getExplicitMoneyScale(text: string): number | null {
-  const compactScale = getCompactMoneySuffixScale(text);
-  if (null !== compactScale) {
-    return compactScale;
-  }
-
-  const unitMatch = text.match(/\b(trillion|trillions|tn|billion|billions|bn|million|millions|mm|thousand|thousands)\b/i);
+function getExplicitMoneyScale(text: string, valueEndIndex: number): number | null {
+  const afterValue = text.slice(valueEndIndex, valueEndIndex + 24);
+  const unitMatch = afterValue.match(/^\s*(trillion|trillions|tn|billion|billions|bn|million|millions|mm|thousand|thousands|[kmbt])\b/i);
   const unit = unitMatch?.[1]?.toLowerCase();
   if (!unit) {
     return null;
   }
 
-  if ("trillion" === unit || "trillions" === unit || "tn" === unit) {
+  if ("trillion" === unit || "trillions" === unit || "tn" === unit || "t" === unit) {
     return 1_000_000_000_000;
   }
 
-  if ("billion" === unit || "billions" === unit || "bn" === unit) {
+  if ("billion" === unit || "billions" === unit || "bn" === unit || "b" === unit) {
     return 1_000_000_000;
   }
 
-  if ("thousand" === unit || "thousands" === unit) {
+  if ("thousand" === unit || "thousands" === unit || "k" === unit) {
     return 1_000;
   }
 
   return 1_000_000;
-}
-
-function getCompactMoneySuffixScale(text: string): number | null {
-  const suffixMatch = text.match(
-    /(?:[$€£¥]\s*)?\(?-?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?\s*([KMBT])\b/i,
-  );
-  const suffix = suffixMatch?.[1]?.toUpperCase();
-  if (undefined === suffix) {
-    return null;
-  }
-
-  if ("T" === suffix) {
-    return 1_000_000_000_000;
-  }
-
-  if ("B" === suffix) {
-    return 1_000_000_000;
-  }
-
-  if ("M" === suffix) {
-    return 1_000_000;
-  }
-
-  return 1_000;
 }
 
 type NumericValueOptions = {
@@ -899,18 +886,37 @@ type NumericValueOptions = {
   skipTableNoteRefs?: boolean;
 };
 
+type NumericValueMatch = {
+  endIndex: number;
+  value: number;
+};
+
 function findNumericValue(
   text: string,
   options: NumericValueOptions = {},
 ): number | null {
-  return findNumericValues(text, options)[0] ?? null;
+  return findNumericValueMatch(text, options)?.value ?? null;
+}
+
+function findNumericValueMatch(
+  text: string,
+  options: NumericValueOptions = {},
+): NumericValueMatch | null {
+  return findNumericValueMatches(text, options)[0] ?? null;
 }
 
 function findNumericValues(
   text: string,
   options: NumericValueOptions = {},
 ): number[] {
-  const values: number[] = [];
+  return findNumericValueMatches(text, options).map(match => match.value);
+}
+
+function findNumericValueMatches(
+  text: string,
+  options: NumericValueOptions = {},
+): NumericValueMatch[] {
+  const values: NumericValueMatch[] = [];
   const numberMatches = text.matchAll(/\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?/g);
   for (const numberMatch of numberMatches) {
     const token = numberMatch[0];
@@ -958,7 +964,10 @@ function findNumericValues(
       continue;
     }
 
-    values.push(value);
+    values.push({
+      endIndex,
+      value,
+    });
   }
 
   return values;

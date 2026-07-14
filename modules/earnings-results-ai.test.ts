@@ -807,6 +807,23 @@ describe("AI earnings helpers", () => {
     expect(hasHighSeveritySuspicion(reasons)).toBe(false);
   });
 
+  test("identifies EPS that is implausibly low relative to consensus", () => {
+    const reasons = getSuspiciousEarningsReasons([{
+      key: "gaap_eps",
+      label: "EPS",
+      numericValue: 1,
+      value: "$1.00",
+    }], null, getEvent({
+      epsConsensus: "$14.47",
+    }));
+
+    expect(reasons).toEqual([{
+      message: "EPS $1.00 is unusually far from consensus $14.47.",
+      metricKey: "gaap_eps",
+      severity: "medium",
+    }]);
+  });
+
   test("flags a negative EPS reported alongside a positive net income", () => {
     const reasons = getSuspiciousEarningsReasons([{
       key: "gaap_eps",
