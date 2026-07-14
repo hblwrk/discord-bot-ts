@@ -85,6 +85,28 @@ describe("earnings result formatting", () => {
     })).toContain("**Exxon Mobil (`XOM`)** - Q1 2026 - [8-K](https://www.sec.gov/Archives/edgar/data/34088/example/ex-991.htm)");
   });
 
+  test("ignores an EPS footnote marker and prefers the reported currency value", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Goldman Sachs Reports Second Quarter 2026 Earnings Results</h1>
+          <p>EPS 1</p>
+          <p>2Q26</p>
+          <p>$20.98</p>
+          <p>Diluted earnings per common share (EPS) 1 was $20.98 for the second quarter of 2026.</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "gaap_eps",
+        numericValue: 20.98,
+        value: "$20.98",
+      }),
+    ]));
+  });
+
   test("prefers ARM-style Q4 FYE section metrics over full-year figures", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>
@@ -121,6 +143,30 @@ describe("earnings result formatting", () => {
       expect.objectContaining({
         key: "revenue",
         value: "$4.92B",
+      }),
+    ]));
+  });
+
+  test("uses table scale instead of an unrelated later unit on a flattened filing page", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <p>
+            Bank of America Financial Highlights ($ in billions, except per share data)
+            2Q26 1Q26 2Q25
+            Total revenue, net of interest expense $31.6 $30.3 $27.4
+            Net income 9.1 8.6 7.2
+            Our $3.5 trillion balance sheet remained a source of strength.
+          </p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "revenue",
+        numericValue: 31_600_000_000,
+        value: "$31.6B",
       }),
     ]));
   });

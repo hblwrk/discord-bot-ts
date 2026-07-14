@@ -315,13 +315,15 @@ export function getSuspiciousEarningsReasons(
       true === Number.isFinite(consensusEps)) {
     const absoluteConsensus = Math.abs(consensusEps);
     const absoluteEps = Math.abs(epsMetric.numericValue);
-    if (absoluteEps >= 20 && absoluteConsensus < 5) {
+    if ((absoluteEps >= 20 && absoluteConsensus < 5) ||
+        (absoluteConsensus >= 20 && absoluteEps < 5)) {
       reasons.push({
         message: `${epsMetric.label} ${epsMetric.value} is extremely far from consensus ${formatEps(consensusEps)}.`,
         metricKey: epsMetric.key,
         severity: "high",
       });
-    } else if (absoluteEps >= 10 && absoluteConsensus < 5) {
+    } else if ((absoluteEps >= 10 && absoluteConsensus < 5) ||
+        (absoluteConsensus >= 10 && absoluteEps < 5)) {
       reasons.push({
         message: `${epsMetric.label} ${epsMetric.value} is unusually far from consensus ${formatEps(consensusEps)}.`,
         metricKey: epsMetric.key,
