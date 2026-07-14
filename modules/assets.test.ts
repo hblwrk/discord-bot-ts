@@ -16,9 +16,7 @@ vi.mock("node:fs", () => ({
 
 vi.mock("js-yaml", () => ({
   __esModule: true,
-  default: {
-    load: (...args: unknown[]) => yamlLoadMock(...args),
-  },
+  load: (...args: unknown[]) => yamlLoadMock(...args),
 }));
 
 vi.mock("./dracoon-downloader.ts", () => ({

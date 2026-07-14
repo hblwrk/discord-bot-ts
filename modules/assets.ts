@@ -1,5 +1,5 @@
 import {plainToInstance} from "class-transformer";
-import yaml from "js-yaml";
+import {load as loadYaml} from "js-yaml";
 import fs from "node:fs";
 import {getFromDracoon} from "./dracoon-downloader.ts";
 import {getLogger} from "./logging.ts";
@@ -34,7 +34,7 @@ function normalizeMarketHoursProfile(marketHours: string): MarketHoursProfile | 
 }
 
 function loadAssetObjects(type: string): unknown[] {
-  const yamlObjects = yaml.load(fs.readFileSync(`${directory}/${type}${fileExtension}`, "utf-8"));
+  const yamlObjects = loadYaml(fs.readFileSync(`${directory}/${type}${fileExtension}`, "utf-8"));
   return Array.isArray(yamlObjects) ? yamlObjects : [];
 }
 
