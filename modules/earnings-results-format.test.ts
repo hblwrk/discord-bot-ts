@@ -171,6 +171,93 @@ describe("earnings result formatting", () => {
     ]));
   });
 
+  test("uses the quarter column and bare parenthetical scale in month-and-quarter releases", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Progressive reports June results</h1>
+          <p>The company reported the following results for the month and quarter ended June 30, 2026:</p>
+          <table>
+            <tr><th></th><th>June</th><th>Quarter</th></tr>
+            <tr><td>(millions, except per share amounts and ratios; unaudited)</td><td>2026</td><td>2025</td><td>Change</td><td>2026</td><td>2025</td><td>Change</td></tr>
+            <tr><td>Net premiums earned</td><td>$</td><td>7,100</td><td>$</td><td>6,954</td><td>2</td><td>%</td><td>$</td><td>21,573</td><td>$</td><td>20,310</td><td>6</td><td>%</td></tr>
+            <tr><td>Net income</td><td>$</td><td>779</td><td>$</td><td>1,124</td><td>(31)</td><td>%</td><td>$</td><td>3,311</td><td>$</td><td>3,175</td><td>4</td><td>%</td></tr>
+          </table>
+          <h2>Comprehensive income statement</h2>
+          <p>For the month ended June 30, 2026</p>
+          <p>(millions)</p>
+          <table>
+            <tr><td>Fees and other revenues</td><td>104</td></tr>
+            <tr><td>Total revenues</td><td>7,568</td></tr>
+            <tr><td>Net income</td><td>779</td></tr>
+          </table>
+          <h2>Comprehensive income statements</h2>
+          <p>For the year-to-date periods ended June 30, 2026</p>
+          <p>(millions)</p>
+          <table>
+            <tr><td>Total revenues</td><td>45,797</td></tr>
+            <tr><td>Net income</td><td>6,129</td></tr>
+          </table>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.quarterLabel).toBe("Q2 2026");
+    expect(parsedDocument.metrics).toEqual([
+      expect.objectContaining({
+        key: "net_income",
+        numericValue: 3_311_000_000,
+        value: "$3.31B",
+      }),
+    ]);
+  });
+
+  test("skips EPS percentages and period-ending dates in GE-style result tables", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>GE Aerospace announces second quarter 2026 results</h1>
+          <p>Total revenue (GAAP) of $13.3B, +21%; adjusted revenue of $12.6B, +24%.</p>
+          <p>Continuing EPS (GAAP) of $2.30, +23%; adjusted EPS of $2.02, +22%.</p>
+          <p>Revenue and EPS were both up more than 20% with engine deliveries up 31%.</p>
+          <table>
+            <tr><th>Three months ended June 30</th><th>2026</th><th>2025</th></tr>
+            <tr><td>Continuing EPS</td><td>2.30</td><td>1.87</td></tr>
+            <tr><td>Adjusted EPS</td><td>2.02</td><td>1.66</td></tr>
+          </table>
+          <table>
+            <tr><td>(In millions)</td></tr>
+            <tr><th>ADJUSTED NET INCOME (LOSS) (NON-GAAP)</th><th>Three months ended June 30</th><th>Six months ended June 30</th></tr>
+            <tr><td>(In millions, diluted, per-share amounts in dollars)</td><td>2026</td><td>2025</td><td>2026</td><td>2025</td></tr>
+            <tr><td>Income</td><td>EPS</td><td>Income</td><td>EPS</td><td>Income</td><td>EPS</td><td>Income</td><td>EPS</td></tr>
+            <tr><td>Net income (loss) from continuing operations (GAAP)</td><td>$</td><td>2,405</td><td>$</td><td>2.30</td><td>$</td><td>2,007</td><td>$</td><td>1.87</td><td>$</td><td>4,335</td><td>$</td><td>4.13</td></tr>
+          </table>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.quarterLabel).toBe("Q2 2026");
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "adjusted_eps",
+        numericValue: 2.02,
+        value: "$2.02",
+      }),
+      expect.objectContaining({
+        key: "gaap_eps",
+        numericValue: 2.3,
+        value: "$2.30",
+      }),
+      expect.objectContaining({
+        key: "net_income",
+        numericValue: 2_405_000_000,
+        value: "$2.4B",
+      }),
+    ]));
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$20.00");
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$30M");
+  });
+
   test("parses Shell-style revenue rows without treating sales volumes as revenue", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>
