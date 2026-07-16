@@ -229,6 +229,7 @@ function normalizeEpsMetrics(
 
   if ("number" === typeof actualEps &&
       undefined !== primaryEpsMetric &&
+      true === canCompareAgainstUsdEstimate(primaryEpsMetric) &&
       true === isImplausibleSecEps(primaryEpsMetric.numericValue, actualEps, consensusEps)) {
     primaryEpsMetric.numericValue = actualEps;
     primaryEpsMetric.value = formatEps(actualEps);
@@ -467,6 +468,11 @@ function getQuarterLabel(text: string): string | undefined {
     }
   }
 
+  const namedPeriodEndedQuarter = getNamedQuarterLabelFromPeriodEnded(text);
+  if (undefined !== namedPeriodEndedQuarter) {
+    return namedPeriodEndedQuarter;
+  }
+
   const writtenQuarterMatch = text.match(/\b(first|second|third|fourth)\s+quarter\s+(?:of\s+)?(20\d{2})\b/i);
   if (undefined !== writtenQuarterMatch?.[1] && undefined !== writtenQuarterMatch[2]) {
     const quarter = getQuarterFromName(writtenQuarterMatch[1]);
@@ -486,6 +492,18 @@ function getQuarterLabel(text: string): string | undefined {
   }
 
   return undefined;
+}
+
+function getNamedQuarterLabelFromPeriodEnded(text: string): string | undefined {
+  const namedPeriodEndedMatch = text.match(
+    /\b(first|second|third|fourth)\s+quarter\s+ended\s+[A-Z][a-z]+\s+\d{1,2},\s+(20\d{2})\b/i,
+  );
+  if (undefined === namedPeriodEndedMatch?.[1] || undefined === namedPeriodEndedMatch[2]) {
+    return undefined;
+  }
+
+  const quarter = getQuarterFromName(namedPeriodEndedMatch[1]);
+  return quarter ? `${quarter} ${namedPeriodEndedMatch[2]}` : undefined;
 }
 
 function normalizeFiscalYear(value: string): string {
@@ -699,9 +717,24 @@ function extractMetricValue(
 
   if ("eps" === valueType) {
     const perShareTableValue = findPerShareTableValue(preferredSearchText);
-    const value = perShareTableValue ?? findEpsValue(preferredSearchText) ??
-      (true === isMetricValuePrefix(fallbackSearchText) ? findEpsValue(fallbackSearchText) : null);
-    return null === value ? null : {numericValue: value, value: formatEps(value)};
+    const preferredValue = findEpsValue(preferredSearchText);
+    const fallbackValue = true === isMetricValuePrefix(fallbackSearchText)
+      ? findEpsValue(fallbackSearchText)
+      : null;
+    const value = perShareTableValue ?? preferredValue ?? fallbackValue;
+    if (null === value) {
+      return null;
+    }
+
+    const metricText = null === perShareTableValue && null === preferredValue
+      ? fallbackSearchText
+      : preferredSearchText;
+    const currencyCode = getCurrencyCodeFromText(metricText) ?? contextMoney.currencyCode;
+    return {
+      currencyCode,
+      numericValue: value,
+      value: formatEps(value, currencyCode),
+    };
   }
 
   if ("money" === valueType) {
@@ -892,6 +925,10 @@ function getMoneyScaleFromContextText(text: string): number | null {
 }
 
 function getCurrencyCodeFromText(text: string): string | undefined {
+  if (/NT\s*\$|\b(?:TWD|NTD)\b|\bNew Taiwan dollars?\b/i.test(text)) {
+    return "TWD";
+  }
+
   if (text.includes("€") || /\bEUR\b/i.test(text)) {
     return "EUR";
   }
@@ -1096,6 +1133,7 @@ export function parseNumber(value: unknown): number | null {
   const normalizedValue = value
     .replace(/^\((.*)\)$/, "-$1")
     .replace(/^\((.*)$/, "-$1")
+    .replace(/NT\s*\$/gi, "")
     .replace(/[$€£¥]/g, "")
     .replaceAll(",", "")
     .replaceAll("%", "")
@@ -1148,6 +1186,10 @@ export function formatMoneyCompact(value: number, currencyCode = "USD"): string 
 }
 
 function getCurrencySymbol(currencyCode: string): string {
+  if ("TWD" === currencyCode) {
+    return "NT$";
+  }
+
   if ("EUR" === currencyCode) {
     return "€";
   }
