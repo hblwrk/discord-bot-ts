@@ -771,6 +771,67 @@ describe("earnings result formatting", () => {
     ]);
   });
 
+  test("preserves Taiwan dollars and the named current quarter", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>TSMC Reports Second Quarter EPS of NT$27.25</h1>
+          <p>TSMC announced consolidated revenue of NT$1,270.38 billion, net income of NT$706.56 billion, and diluted earnings per share of NT$27.25 (US$4.31 per ADR unit) for the second quarter ended June 30, 2026.</p>
+          <p>Compared to first quarter 2026, second quarter results represented an increase in revenue and net income.</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.quarterLabel).toBe("Q2 2026");
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        currencyCode: "TWD",
+        key: "gaap_eps",
+        numericValue: 27.25,
+        value: "NT$27.25",
+      }),
+      expect.objectContaining({
+        currencyCode: "TWD",
+        key: "revenue",
+        numericValue: 1_270_380_000_000,
+        value: "NT$1.27T",
+      }),
+      expect.objectContaining({
+        currencyCode: "TWD",
+        key: "net_income",
+        numericValue: 706_560_000_000,
+        value: "NT$706.56B",
+      }),
+    ]));
+
+    const messageMetrics = getMessageMetrics(parsedDocument.metrics, {
+      actualEps: 4.31,
+      consensusEps: 4.10,
+      consensusRevenue: 40_000_000_000,
+    }, {
+      ticker: "TSM",
+      when: "before_open",
+      date: "2026-07-16",
+      importance: 1,
+      epsConsensus: "$4.10",
+    });
+    expect(messageMetrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        currencyCode: "TWD",
+        key: "gaap_eps",
+        numericValue: 27.25,
+        value: "NT$27.25",
+      }),
+      expect.objectContaining({
+        currencyCode: "TWD",
+        key: "revenue",
+        value: "NT$1.27T",
+      }),
+    ]));
+    expect(messageMetrics.find(metric => "gaap_eps" === metric.key)?.estimate).toBeUndefined();
+    expect(messageMetrics.find(metric => "revenue" === metric.key)?.estimate).toBeUndefined();
+  });
+
   test("prefers quarter metrics when a Q4 release lists full-year results first", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>
@@ -1095,11 +1156,13 @@ describe("earnings result formatting", () => {
     expect(parseNumber(Number.NaN)).toBeNull();
     expect(parseNumber("(1,234.5)")).toBe(-1234.5);
     expect(parseNumber("24c")).toBe(0.24);
+    expect(parseNumber("NT$27.25")).toBe(27.25);
     expect(parseNumber("--")).toBeNull();
     expect(parseNumber({})).toBeNull();
 
     expect(formatEps(5.6)).toBe("$5.60");
     expect(formatEps(-1.2)).toBe("-$1.20");
+    expect(formatEps(27.25, "TWD")).toBe("NT$27.25");
     expect(formatUsdCompact(-1_250_000_000_000)).toBe("-$1.25T");
     expect(formatUsdCompact(12_300_000)).toBe("$12.3M");
     expect(formatUsdCompact(750_000)).toBe("$750K");
