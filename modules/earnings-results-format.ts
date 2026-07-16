@@ -53,6 +53,11 @@ type MetricDefinition = {
   valueType: MetricValueType;
 };
 
+type MetricLineSelection = {
+  exclusive: boolean;
+  lines: string[];
+};
+
 const discordBlankLineSpacer = "\u200B";
 
 const earningsMetricDefinitions: MetricDefinition[] = [
@@ -123,11 +128,12 @@ const earningsMetricDefinitions: MetricDefinition[] = [
 export function parseEarningsDocument(html: string): ParsedEarningsDocument {
   const text = htmlToText(html);
   const lines = getMeaningfulLines(text);
+  const quarterLabel = getQuarterLabel(text);
   return {
     headline: getDocumentHeadline(lines),
-    metrics: extractEarningsMetrics(lines),
+    metrics: extractEarningsMetrics(lines, quarterLabel),
     outlook: extractOutlookMetrics(lines),
-    quarterLabel: getQuarterLabel(text),
+    quarterLabel,
   };
 }
 
@@ -512,17 +518,23 @@ function getQuarterFromName(name: string): string | undefined {
   return quarterByName.get(name.toLowerCase());
 }
 
-function extractEarningsMetrics(lines: string[]): EarningsResultMetric[] {
+function extractEarningsMetrics(
+  lines: string[],
+  quarterLabel: string | undefined,
+): EarningsResultMetric[] {
   const metrics: EarningsResultMetric[] = [];
   const seenKeys = new Set<string>();
-  const preferredLines = getQuarterSpecificMetricLines(lines);
+  const preferredSelection = getQuarterSpecificMetricLines(lines);
 
   for (const definition of earningsMetricDefinitions) {
     if (true === seenKeys.has(definition.key)) {
       continue;
     }
 
-    const metric = extractMetric(preferredLines, definition) ?? extractMetric(lines, definition);
+    const preferredMetric = extractMetric(preferredSelection.lines, definition, quarterLabel);
+    const metric = preferredMetric ?? (true === preferredSelection.exclusive
+      ? null
+      : extractMetric(lines, definition, quarterLabel));
     if (null === metric) {
       continue;
     }
@@ -534,12 +546,17 @@ function extractEarningsMetrics(lines: string[]): EarningsResultMetric[] {
   return metrics;
 }
 
-function getQuarterSpecificMetricLines(lines: string[]): string[] {
-  const startIndex = lines.findIndex(isQuarterSpecificSectionLine);
+function getQuarterSpecificMetricLines(lines: string[]): MetricLineSelection {
+  const startIndex = lines.findIndex(line =>
+    isQuarterSpecificSectionLine(line) || isMixedMonthQuarterResultsLine(line));
   if (-1 === startIndex) {
-    return [];
+    return {
+      exclusive: false,
+      lines: [],
+    };
   }
 
+  const exclusive = isMixedMonthQuarterResultsLine(lines[startIndex] ?? "");
   const selectedLines: string[] = [];
   for (let index = startIndex; index < lines.length; index++) {
     const line = lines[index];
@@ -547,7 +564,9 @@ function getQuarterSpecificMetricLines(lines: string[]): string[] {
       continue;
     }
 
-    if (index > startIndex && true === isQuarterSpecificSectionBoundary(line)) {
+    if (index > startIndex &&
+        (true === isQuarterSpecificSectionBoundary(line) ||
+        (true === exclusive && true === isMixedMonthQuarterSectionBoundary(line)))) {
       break;
     }
 
@@ -557,7 +576,20 @@ function getQuarterSpecificMetricLines(lines: string[]): string[] {
     }
   }
 
-  return selectedLines;
+  return {
+    exclusive,
+    lines: selectedLines,
+  };
+}
+
+function isMixedMonthQuarterResultsLine(line: string): boolean {
+  return /\bmonth\s+and\s+quarter\s+ended\b/i.test(line) ||
+    /\bquarter\s+and\s+month\s+ended\b/i.test(line);
+}
+
+function isMixedMonthQuarterSectionBoundary(line: string): boolean {
+  return /^\s*(?:the\s+)?(?:comprehensive|consolidated)\s+(?:comprehensive\s+)?(?:income\s+)?statements?\b/i.test(line) ||
+    /^\s*for\s+the\s+(?:month|year-to-date)\b/i.test(line);
 }
 
 function isQuarterSpecificSectionLine(line: string): boolean {
@@ -578,6 +610,7 @@ function isQuarterSpecificSectionBoundary(line: string): boolean {
 function extractMetric(
   lines: string[],
   definition: MetricDefinition,
+  quarterLabel: string | undefined,
 ): EarningsResultMetric | null {
   for (const [lineIndex, line] of lines.entries()) {
     if (definition.skipPattern?.test(line)) {
@@ -600,6 +633,7 @@ function extractMetric(
       definition.valueType,
       getContextMoney(lines, lineIndex),
       isNearTableNoteColumn(lines, lineIndex),
+      undefined !== quarterLabel && hasMixedMonthQuarterColumns(lines, lineIndex),
     );
     if (null === metricValue) {
       continue;
@@ -653,22 +687,26 @@ function extractMetricValue(
   valueType: MetricValueType,
   contextMoney: MoneyContext,
   skipTableNoteRefs: boolean,
+  preferQuarterColumn: boolean,
 ): {currencyCode?: string | undefined; numericValue: number; value: string} | null {
   pattern.lastIndex = 0;
   const patternMatch = pattern.exec(line);
   const searchText = patternMatch ? line.slice(patternMatch.index + patternMatch[0].length) : line;
+  const preferredSearchText = true === preferQuarterColumn
+    ? getQuarterColumnSearchText(searchText)
+    : searchText;
   const fallbackSearchText = patternMatch ? line.slice(0, patternMatch.index) : "";
 
   if ("eps" === valueType) {
-    const perShareTableValue = findPerShareTableValue(searchText);
-    const value = perShareTableValue ?? findEpsValue(searchText) ??
+    const perShareTableValue = findPerShareTableValue(preferredSearchText);
+    const value = perShareTableValue ?? findEpsValue(preferredSearchText) ??
       (true === isMetricValuePrefix(fallbackSearchText) ? findEpsValue(fallbackSearchText) : null);
     return null === value ? null : {numericValue: value, value: formatEps(value)};
   }
 
   if ("money" === valueType) {
-    const hasMetricLabelSuffixTableNote = isMetricLabelSuffixTableNote(searchText);
-    const searchValueMatch = true === hasMetricLabelSuffixTableNote ? null : findNumericValueMatch(searchText, {
+    const hasMetricLabelSuffixTableNote = isMetricLabelSuffixTableNote(preferredSearchText);
+    const searchValueMatch = true === hasMetricLabelSuffixTableNote ? null : findNumericValueMatch(preferredSearchText, {
       minUncuedAbsValue: 10,
       requireMoneyCue: 1 === contextMoney.scale,
       skipTableNoteRefs,
@@ -689,7 +727,7 @@ function extractMetricValue(
       return null;
     }
 
-    const metricText = true === useFallbackValue ? fallbackSearchText : searchText;
+    const metricText = true === useFallbackValue ? fallbackSearchText : preferredSearchText;
     const explicitScale = getExplicitMoneyScale(metricText, parsedValueMatch.endIndex);
     const currencyCode = getCurrencyCodeFromText(metricText) ?? contextMoney.currencyCode;
     const amount = parsedValueMatch.value * (explicitScale ?? contextMoney.scale);
@@ -700,13 +738,13 @@ function extractMetricValue(
     };
   }
 
-  const value = findNumericValue(searchText, {skipPercentages: true}) ??
+  const value = findNumericValue(preferredSearchText, {skipPercentages: true}) ??
     (true === isMetricValuePrefix(fallbackSearchText) ? findNumericValue(fallbackSearchText, {skipPercentages: true}) : null);
   if (null === value) {
     return null;
   }
 
-  const trailingUnit = getTrailingUnit(searchText);
+  const trailingUnit = getTrailingUnit(preferredSearchText);
   if (null === trailingUnit) {
     return null;
   }
@@ -717,10 +755,28 @@ function extractMetricValue(
   };
 }
 
+function hasMixedMonthQuarterColumns(lines: string[], lineIndex: number): boolean {
+  const context = lines
+    .slice(Math.max(0, lineIndex - 8), lineIndex + 1)
+    .join(" ");
+  const hasMonth = /\b(?:month|january|february|march|april|may|june|july|august|september|october|november|december)\b/i.test(context);
+  return hasMonth && /\bquarter\b/i.test(context) && /\bchange\b/i.test(context);
+}
+
+function getQuarterColumnSearchText(text: string): string {
+  const groupBoundary = /\|\s*(?:%|NM|N\/A|N\.M\.)\s*\|/i.exec(text);
+  if (undefined === groupBoundary?.index) {
+    return text;
+  }
+
+  return text.slice(groupBoundary.index + groupBoundary[0].length);
+}
+
 function findEpsValue(text: string): number | null {
   const options = {
     maxAbsValue: 100,
     parseCents: true,
+    skipPercentages: true,
   };
   const currencyValue = findNumericValue(text, {
     ...options,
@@ -817,7 +873,8 @@ function getMoneyScaleFromContextText(text: string): number | null {
   // inline magnitudes as a table scale mis-scales unrelated rows.
   const declarationMatch =
     /(?:\bin\s+|[$€£¥]\s*)(thousand|million|billion)s?\b/i.exec(text) ??
-    /\b(thousand|million|billion)s?\s+of\s+dollars\b/i.exec(text);
+    /\b(thousand|million|billion)s?\s+of\s+dollars\b/i.exec(text) ??
+    /\(\s*(thousand|million|billion)s?\b/i.exec(text);
   const unit = declarationMatch?.[1]?.toLowerCase();
   if ("thousand" === unit) {
     return 1_000;
@@ -987,8 +1044,14 @@ function normalizeCentsValue(text: string, endIndex: number, token: string, valu
 function isCalendarDayValue(text: string, startIndex: number, endIndex: number): boolean {
   const beforeToken = text.slice(Math.max(0, startIndex - 16), startIndex);
   const afterToken = text.slice(endIndex, endIndex + 8);
-  return /\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+$/i.test(beforeToken) &&
-    /^\s*,?\s*(?:20\d{2})?\b/.test(afterToken);
+  const hasMonthBefore = /\b(?:Jan(?:uary)?|Feb(?:ruary)?|Mar(?:ch)?|Apr(?:il)?|May|Jun(?:e)?|Jul(?:y)?|Aug(?:ust)?|Sep(?:t(?:ember)?)?|Oct(?:ober)?|Nov(?:ember)?|Dec(?:ember)?)\s+$/i.test(beforeToken);
+  if (false === hasMonthBefore) {
+    return false;
+  }
+
+  return /^\s*(?:,\s*)?20\d{2}\b/.test(afterToken) ||
+    /^\s*\|/.test(afterToken) ||
+    /^\s*$/.test(afterToken);
 }
 
 function isLikelyTableNoteReference(text: string, startIndex: number, endIndex: number, token: string): boolean {
