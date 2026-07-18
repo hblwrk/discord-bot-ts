@@ -1,5 +1,5 @@
 import type {MockedFunction} from "vitest";
-import {clearEarningsScheduleCache, type EarningsEvent, getEarnings, getEarningsMessages, getEarningsResult, getEarningsText} from "./earnings.ts";
+import {clearEarningsScheduleCache, EARNINGS_MAX_MARKDOWN_SPANS, type EarningsEvent, getEarnings, getEarningsMessages, getEarningsResult, getEarningsText} from "./earnings.ts";
 import {Ticker} from "./tickers.ts";
 import axios from "axios";
 import {beforeEach, describe, expect, test, vi} from "vitest";
@@ -65,6 +65,15 @@ function parseEarningsLine(
     marketCap: `${match[5]}${match[6]}`,
     eps: match[7]!,
   };
+}
+
+function getMarkdownSpanCount(content: string): number {
+  return (content.match(/\*\*|`/g)?.length ?? 0) / 2;
+}
+
+function expectBalancedMarkdown(content: string) {
+  expect((content.match(/`/g)?.length ?? 0) % 2).toBe(0);
+  expect((content.match(/\*\*/g)?.length ?? 0) % 2).toBe(0);
 }
 
 describe("getEarnings/getEarningsResult", () => {
@@ -845,6 +854,35 @@ describe("getEarningsMessages", () => {
     }
   });
 
+  test("splits dense output before Discord falls back to raw Markdown", () => {
+    const manyFormattedEvents: EarningsEvent[] = [];
+    const highlightedTickers: Ticker[] = [];
+    for (let index = 0; index < 24; index++) {
+      const ticker = `F${index}`;
+      manyFormattedEvents.push(getEarningsEvent({
+        ticker,
+        marketCap: 1_000_000_000 - index,
+        expectedMove: 1.25,
+        expectedMoveActualDte: 7,
+        expectedMoveUnderlyingPrice: 25,
+      }));
+      highlightedTickers.push(getTicker(ticker));
+    }
+
+    const batch = getEarningsMessages(manyFormattedEvents, "all", highlightedTickers, {
+      maxMessageLength: 1800,
+      maxMessages: 10,
+    });
+
+    expect(batch.messages.length).toBeGreaterThan(1);
+    expect(batch.truncated).toBe(false);
+    expect(batch.includedEvents).toBe(24);
+    for (const message of batch.messages) {
+      expect(getMarkdownSpanCount(message)).toBeLessThanOrEqual(EARNINGS_MAX_MARKDOWN_SPANS);
+      expectBalancedMarkdown(message);
+    }
+  });
+
   test("adds truncation note when maxMessages is reached", () => {
     const manyEvents: EarningsEvent[] = [];
     for (let index = 0; index < 40; index++) {
@@ -869,5 +907,6 @@ describe("getEarningsMessages", () => {
     expect(batch.messages).toHaveLength(2);
     expect(batch.includedEvents).toBeLessThan(batch.totalEvents);
     expect(batch.messages[1]!).toContain("... weitere Earnings konnten wegen Discord-Limits nicht angezeigt werden.");
+    expectBalancedMarkdown(batch.messages[1]!);
   });
 });
