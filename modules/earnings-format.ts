@@ -3,6 +3,7 @@ import {type Ticker} from "./tickers.ts";
 import {
   bluechipMinMarketCap,
   EARNINGS_CONTINUATION_LABEL,
+  EARNINGS_MAX_MARKDOWN_SPANS,
   EARNINGS_MAX_MESSAGE_LENGTH,
   earningsTruncationNote,
   earningsWhenSortRankByWhen,
@@ -12,6 +13,7 @@ import {
   type EarningsWhen,
 } from "./earnings-types.ts";
 import {
+  appendToMarkdownWithinLimit,
   appendToEarningsChunk,
   canAppendToEarningsChunk,
   cloneEarningsChunk,
@@ -43,6 +45,7 @@ export function getEarningsText(
   const earningsBatch = getEarningsMessages(earningsEvents, when, tickers, {
     maxMessageLength: Number.MAX_SAFE_INTEGER,
     maxMessages: 1,
+    maxMarkdownSpans: Number.POSITIVE_INFINITY,
   });
   if (0 === earningsBatch.messages.length) {
     return "none";
@@ -59,6 +62,7 @@ export function getEarningsMessages(
 ): EarningsMessageBatch {
   const maxMessageLength = options.maxMessageLength ?? EARNINGS_MAX_MESSAGE_LENGTH;
   const maxMessages = options.maxMessages ?? Number.POSITIVE_INFINITY;
+  const maxMarkdownSpans = options.maxMarkdownSpans ?? EARNINGS_MAX_MARKDOWN_SPANS;
   const continuationLabel = options.continuationLabel ?? EARNINGS_CONTINUATION_LABEL;
   const selectedWhen = getSelectedEarningsWhen(when);
   const selectedMarketCapFilter = getSelectedEarningsMarketCapFilter(options.marketCapFilter);
@@ -90,6 +94,7 @@ export function getEarningsMessages(
     {
       maxMessageLength,
       maxMessages,
+      maxMarkdownSpans,
       continuationLabel,
     }
   );
@@ -105,6 +110,7 @@ export function getEarningsMessages(
     {
       maxMessageLength,
       maxMessages,
+      maxMarkdownSpans,
       continuationLabel,
     }
   );
@@ -119,6 +125,7 @@ export function getEarningsMessages(
     {
       maxMessageLength,
       maxMessages,
+      maxMarkdownSpans,
       continuationLabel,
     }
   );
@@ -132,10 +139,11 @@ function buildEarningsMessageBatch(
   options: {
     maxMessageLength: number;
     maxMessages: number;
+    maxMarkdownSpans: number;
     continuationLabel: string;
   }
 ): EarningsMessageBatch {
-  const {maxMessageLength, maxMessages, continuationLabel} = options;
+  const {maxMessageLength, maxMessages, maxMarkdownSpans, continuationLabel} = options;
   const sections = getEarningsSections(
     filteredAndSortedEvents
   );
@@ -160,7 +168,7 @@ function buildEarningsMessageBatch(
       section.rows,
       false
     );
-    if (true === canAppendToEarningsChunk(currentChunk, fullSection, highlightedTickerSymbols, mostAnticipatedTickerSymbols, maxMessageLength, title, continuationLabel)) {
+    if (true === canAppendToEarningsChunk(currentChunk, fullSection, highlightedTickerSymbols, mostAnticipatedTickerSymbols, maxMessageLength, maxMarkdownSpans, title, continuationLabel)) {
       appendToEarningsChunk(currentChunk, fullSection);
       continue;
     }
@@ -170,7 +178,7 @@ function buildEarningsMessageBatch(
       currentChunk = getEmptyEarningsMessageChunk(chunks.length);
     }
 
-    if (true === canAppendToEarningsChunk(currentChunk, fullSection, highlightedTickerSymbols, mostAnticipatedTickerSymbols, maxMessageLength, title, continuationLabel)) {
+    if (true === canAppendToEarningsChunk(currentChunk, fullSection, highlightedTickerSymbols, mostAnticipatedTickerSymbols, maxMessageLength, maxMarkdownSpans, title, continuationLabel)) {
       appendToEarningsChunk(currentChunk, fullSection);
       continue;
     }
@@ -192,7 +200,7 @@ function buildEarningsMessageBatch(
           continuation
         );
 
-        if (canAppendToEarningsChunk(currentChunk, candidateSection, highlightedTickerSymbols, mostAnticipatedTickerSymbols, maxMessageLength, title, continuationLabel)) {
+        if (canAppendToEarningsChunk(currentChunk, candidateSection, highlightedTickerSymbols, mostAnticipatedTickerSymbols, maxMessageLength, maxMarkdownSpans, title, continuationLabel)) {
           sectionRows.push(nextRow);
           rowIndex++;
         } else {
@@ -220,6 +228,7 @@ function buildEarningsMessageBatch(
           highlightedTickerSymbols,
           mostAnticipatedTickerSymbols,
           maxMessageLength,
+          maxMarkdownSpans,
           title,
           continuationLabel
         );
@@ -293,6 +302,7 @@ function getMarketCapBalancedEventsForMultiDayFit(
   options: {
     maxMessageLength: number;
     maxMessages: number;
+    maxMarkdownSpans: number;
     continuationLabel: string;
   }
 ): EarningsEvent[] | null {
@@ -521,17 +531,7 @@ function appendEarningsTruncationNote(
   maxMessageLength: number
 ): string {
   const suffix = `\n${earningsTruncationNote}`;
-  if (content.length + suffix.length <= maxMessageLength) {
-    return `${content}${suffix}`;
-  }
-
-  const messageLengthWithoutSuffix = maxMessageLength - suffix.length;
-  if (messageLengthWithoutSuffix <= 0) {
-    return earningsTruncationNote.slice(0, maxMessageLength);
-  }
-
-  const trimmedContent = content.slice(0, messageLengthWithoutSuffix).trimEnd();
-  return `${trimmedContent}${suffix}`;
+  return appendToMarkdownWithinLimit(content, suffix, maxMessageLength);
 }
 
 export function compareEarningsEventsForDisplay(first: EarningsEvent, second: EarningsEvent): number {

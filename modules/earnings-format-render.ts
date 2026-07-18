@@ -122,18 +122,99 @@ export function canAppendToEarningsChunk(
   highlightedTickerSymbols: Set<string>,
   mostAnticipatedTickerSymbols: ReadonlySet<string>,
   maxMessageLength: number,
+  maxMarkdownSpans: number,
   title: string,
   continuationLabel: string
 ): boolean {
   const candidateChunk = cloneEarningsChunk(chunk);
   appendToEarningsChunk(candidateChunk, section);
-  return getEarningsChunkText(
+  const candidateText = getEarningsChunkText(
     candidateChunk,
     title,
     highlightedTickerSymbols,
     mostAnticipatedTickerSymbols,
     continuationLabel
-  ).length <= maxMessageLength;
+  );
+  return candidateText.length <= maxMessageLength
+    && getMarkdownSpanCount(candidateText) <= maxMarkdownSpans;
+}
+
+export function getMarkdownSpanCount(content: string): number {
+  const markdownMarkers = content.match(/\*\*|`/g);
+  return (markdownMarkers?.length ?? 0) / 2;
+}
+
+export function appendToMarkdownWithinLimit(
+  content: string,
+  suffix: string,
+  maxLength: number
+): string {
+  if (content.length + suffix.length <= maxLength) {
+    return `${content}${suffix}`;
+  }
+
+  if (maxLength <= suffix.length) {
+    return suffix.trimStart().slice(0, maxLength);
+  }
+
+  const availableContentLength = maxLength - suffix.length;
+  let prefixLength = Math.min(content.length, availableContentLength);
+  while (0 < prefixLength) {
+    const prefix = getSafeMarkdownPrefix(content, prefixLength);
+    const closingMarkers = getOpenMarkdownMarkers(prefix)
+      .reverse()
+      .join("");
+    if (prefix.length + closingMarkers.length <= availableContentLength) {
+      return `${prefix}${closingMarkers}${suffix}`;
+    }
+
+    prefixLength--;
+  }
+
+  return suffix.trimStart().slice(0, maxLength);
+}
+
+function getSafeMarkdownPrefix(content: string, maxLength: number): string {
+  let prefix = content.slice(0, maxLength).trimEnd();
+  if (prefix.endsWith("*") && "*" === content[prefix.length]) {
+    prefix = prefix.slice(0, -1);
+  }
+
+  const finalCodeUnit = prefix.charCodeAt(prefix.length - 1);
+  if (0xD800 <= finalCodeUnit && finalCodeUnit <= 0xDBFF) {
+    prefix = prefix.slice(0, -1);
+  }
+
+  return prefix;
+}
+
+function getOpenMarkdownMarkers(content: string): string[] {
+  const openMarkers: string[] = [];
+  for (let index = 0; index < content.length; index++) {
+    if ("`" === content[index]) {
+      if ("`" === openMarkers.at(-1)) {
+        openMarkers.pop();
+      } else {
+        openMarkers.push("`");
+      }
+      continue;
+    }
+
+    if ("`" === openMarkers.at(-1)) {
+      continue;
+    }
+
+    if ("*" === content[index] && "*" === content[index + 1]) {
+      if ("**" === openMarkers.at(-1)) {
+        openMarkers.pop();
+      } else {
+        openMarkers.push("**");
+      }
+      index++;
+    }
+  }
+
+  return openMarkers;
 }
 
 export function appendToEarningsChunk(
@@ -192,6 +273,7 @@ export function getTruncatedEarningsSectionRow(
   highlightedTickerSymbols: Set<string>,
   mostAnticipatedTickerSymbols: ReadonlySet<string>,
   maxMessageLength: number,
+  maxMarkdownSpans: number,
   title: string,
   continuationLabel: string
 ): EarningsSectionRow {
@@ -224,6 +306,7 @@ export function getTruncatedEarningsSectionRow(
       highlightedTickerSymbols,
       mostAnticipatedTickerSymbols,
       maxMessageLength,
+      maxMarkdownSpans,
       title,
       continuationLabel
     )) {
@@ -245,11 +328,7 @@ function truncateEarningsLine(line: string, maxLength: number): string {
     return line;
   }
 
-  if (maxLength <= 3) {
-    return line.slice(0, maxLength);
-  }
-
-  return `${line.slice(0, maxLength - 3)}...`;
+  return appendToMarkdownWithinLimit(line, "...", maxLength);
 }
 
 function getEarningsEventLine(

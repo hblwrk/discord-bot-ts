@@ -26,6 +26,7 @@ export type EarningsLoadResult = {
 export const EARNINGS_MAX_MESSAGE_LENGTH = 1800;
 export const EARNINGS_MAX_MESSAGES_TIMER = 8;
 export const EARNINGS_MAX_MESSAGES_SLASH = 6;
+export const EARNINGS_MAX_MARKDOWN_SPANS = 40;
 export const EARNINGS_CONTINUATION_LABEL = "(Fortsetzung)";
 
 export type EarningsMessageBatch = {
@@ -38,6 +39,7 @@ export type EarningsMessageBatch = {
 export type EarningsMessageOptions = {
   maxMessageLength?: number;
   maxMessages?: number;
+  maxMarkdownSpans?: number;
   continuationLabel?: string;
   marketCapFilter?: "all" | "bluechips" | string;
   mostAnticipatedTickerSymbols?: ReadonlySet<string>;
