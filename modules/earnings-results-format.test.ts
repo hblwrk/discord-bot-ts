@@ -107,6 +107,44 @@ describe("earnings result formatting", () => {
     ]));
   });
 
+  test("parses mixed GAAP and footnoted adjusted EPS from an IBKR-style headline", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Interactive Brokers Group announces 2Q2026 results</h1>
+          <p>GAAP DILUTED EPS OF $0.69, ADJUSTED<sup>1</sup> EPS OF $0.69</p>
+          <p>Results for the quarter ended June 30, 2026.</p>
+          <p>Reported and adjusted diluted earnings per share were both $0.69 for the current quarter. For the year-ago quarter, reported and adjusted diluted earnings per share were both $0.51.</p>
+          <p>Earnings per share:</p>
+          <p>Basic</p>
+          <p>0.70</p>
+          <p>0.51</p>
+          <p>1.30</p>
+          <p>1.00</p>
+          <p>Diluted</p>
+          <p>0.69</p>
+          <p>0.51</p>
+          <p>1.29</p>
+          <p>0.99</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.quarterLabel).toBe("Q2 2026");
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "adjusted_eps",
+        numericValue: 0.69,
+        value: "$0.69",
+      }),
+      expect.objectContaining({
+        key: "gaap_eps",
+        numericValue: 0.69,
+        value: "$0.69",
+      }),
+    ]));
+  });
+
   test("prefers ARM-style Q4 FYE section metrics over full-year figures", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>
