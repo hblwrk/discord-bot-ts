@@ -65,7 +65,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
     key: "adjusted_eps",
     label: "Adj EPS",
     patterns: [
-      /\badjusted\s+(?:diluted\s+)?(?:earnings\s+per\s+(?:common\s+)?share|eps)\b/i,
+      /\badjusted\s+(?:\d{1,2}\s+)?(?:diluted\s+)?(?:earnings\s+per\s+(?:common\s+)?share|eps)\b/i,
       /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?eps\b/i,
       /\bnon-gaap\s+(?:diluted\s+)?(?:earnings\s+per\s+share|eps)\b/i,
     ],
@@ -631,7 +631,9 @@ function extractMetric(
   quarterLabel: string | undefined,
 ): EarningsResultMetric | null {
   for (const [lineIndex, line] of lines.entries()) {
-    if (definition.skipPattern?.test(line)) {
+    const hasExplicitGaapEps = "gaap_eps" === definition.key &&
+      /\bgaap\s+(?:diluted\s+)?eps\b/i.test(line);
+    if (definition.skipPattern?.test(line) && false === hasExplicitGaapEps) {
       continue;
     }
 
