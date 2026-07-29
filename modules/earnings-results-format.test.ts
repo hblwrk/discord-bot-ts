@@ -973,6 +973,45 @@ describe("earnings result formatting", () => {
     ]);
   });
 
+  test("does not scan into a later sentence for a net earnings value", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>General Dynamics Reports Second-Quarter 2026 Financial Results</h1>
+          <p>Revenue $14.1 billion, up 8.1% versus prior year</p>
+          <p>Diluted EPS $4.24, up 13.4% versus prior year</p>
+          <p>Net cash provided by operating activities in the quarter totaled $1.9 billion, or 162% of net earnings. During the quarter, the company paid $429 million in dividends, invested $234 million in capital expenditures, and reduced total debt by $498 million.</p>
+          <div>CONSOLIDATED STATEMENT OF EARNINGS - (UNAUDITED)</div>
+          <div>DOLLARS IN MILLIONS, EXCEPT PER SHARE AMOUNTS</div>
+          <table>
+            <tr><td>Three Months Ended</td></tr>
+            <tr><td>Revenue</td><td>$</td><td>14,094</td><td>$</td><td>13,037</td></tr>
+            <tr><td>Net earnings</td><td>$</td><td>1,160</td><td>$</td><td>1,014</td></tr>
+            <tr><td>Earnings per share—diluted</td><td>$</td><td>4.24</td><td>$</td><td>3.74</td></tr>
+          </table>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "gaap_eps",
+        numericValue: 4.24,
+        value: "$4.24",
+      }),
+      expect.objectContaining({
+        key: "revenue",
+        numericValue: 14_100_000_000,
+        value: "$14.1B",
+      }),
+      expect.objectContaining({
+        key: "net_income",
+        numericValue: 1_160_000_000,
+        value: "$1.16B",
+      }),
+    ]));
+  });
+
   test("parses cents-denominated EPS as dollars per share", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>
