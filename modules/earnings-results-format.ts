@@ -740,8 +740,9 @@ function extractMetricValue(
   }
 
   if ("money" === valueType) {
-    const hasMetricLabelSuffixTableNote = isMetricLabelSuffixTableNote(preferredSearchText);
-    const searchValueMatch = true === hasMetricLabelSuffixTableNote ? null : findNumericValueMatch(preferredSearchText, {
+    const sentenceSearchText = getMetricValueSentenceText(preferredSearchText);
+    const hasMetricLabelSuffixTableNote = isMetricLabelSuffixTableNote(sentenceSearchText);
+    const searchValueMatch = true === hasMetricLabelSuffixTableNote ? null : findNumericValueMatch(sentenceSearchText, {
       minUncuedAbsValue: 10,
       requireMoneyCue: 1 === contextMoney.scale,
       skipTableNoteRefs,
@@ -762,7 +763,7 @@ function extractMetricValue(
       return null;
     }
 
-    const metricText = true === useFallbackValue ? fallbackSearchText : preferredSearchText;
+    const metricText = true === useFallbackValue ? fallbackSearchText : sentenceSearchText;
     const explicitScale = getExplicitMoneyScale(metricText, parsedValueMatch.endIndex);
     const currencyCode = getCurrencyCodeFromText(metricText) ?? contextMoney.currencyCode;
     const amount = parsedValueMatch.value * (explicitScale ?? contextMoney.scale);
@@ -788,6 +789,20 @@ function extractMetricValue(
     numericValue: value,
     value: formatPlainNumber(value, trailingUnit),
   };
+}
+
+// A metric value must be in the same sentence as its label. Otherwise prose such
+// as "162% of net earnings. During the quarter, the company paid $429 million in
+// dividends" can mislabel the next sentence's first dollar amount as net income.
+// Table rows remain intact because their label/value cells are separated by pipes,
+// not sentence-ending punctuation followed by a new sentence.
+function getMetricValueSentenceText(text: string): string {
+  const boundaryMatch = /[.!?]\s+(?=[A-Z\d$€£¥])/u.exec(text);
+  if (undefined === boundaryMatch?.index) {
+    return text;
+  }
+
+  return text.slice(0, boundaryMatch.index + 1);
 }
 
 function hasMixedMonthQuarterColumns(lines: string[], lineIndex: number): boolean {
