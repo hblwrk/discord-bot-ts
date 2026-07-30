@@ -2,6 +2,7 @@
 export type EarningsOutlookMetric = {
   key: string;
   label: string;
+  periodLabel?: string | undefined;
   value: string;
 };
 
@@ -22,6 +23,11 @@ type OutlookMetricCandidate = {
 type ParsedMoneyValue = {
   currencyCode: string;
   value: number;
+};
+
+type OutlookSection = {
+  lines: string[];
+  mixedPeriods: boolean;
 };
 
 const moneyTokenPatternSource = String.raw`(?<![\d.])\(?\s*(?:(?:[$€£¥]\s*)|(?:(?:USD|EUR|GBP|JPY)\s+))?-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b)?\)?`;
@@ -98,15 +104,15 @@ const outlookMetricDefinitions: OutlookMetricDefinition[] = [
 ];
 
 export function extractOutlookMetrics(lines: string[]): EarningsOutlookMetric[] {
-  const sectionLines = getOutlookSectionLines(lines);
-  if (0 === sectionLines.length) {
+  const section = getOutlookSection(lines);
+  if (0 === section.lines.length) {
     return [];
   }
 
   const metrics: EarningsOutlookMetric[] = [];
   const seenKeys = new Set<string>();
   for (const definition of outlookMetricDefinitions) {
-    const metric = extractOutlookMetric(sectionLines, definition);
+    const metric = extractOutlookMetric(section.lines, definition, section.mixedPeriods);
     if (null === metric || true === seenKeys.has(metric.key)) {
       continue;
     }
@@ -118,13 +124,15 @@ export function extractOutlookMetrics(lines: string[]): EarningsOutlookMetric[] 
   return metrics.slice(0, 6);
 }
 
-function getOutlookSectionLines(lines: string[]): string[] {
+function getOutlookSection(lines: string[]): OutlookSection {
   const sectionLines: string[] = [];
   let collecting = false;
+  let mixedPeriods = false;
 
   for (const line of lines) {
     if (true === isOutlookHeading(line)) {
       collecting = true;
+      mixedPeriods = isMixedPeriodOutlookHeading(line);
       continue;
     }
 
@@ -142,7 +150,18 @@ function getOutlookSectionLines(lines: string[]): string[] {
     }
   }
 
-  return sectionLines;
+  return {
+    lines: sectionLines,
+    mixedPeriods: mixedPeriods || hasMixedOutlookPeriods(sectionLines),
+  };
+}
+
+function hasMixedOutlookPeriods(lines: string[]): boolean {
+  const sectionText = lines.join(" ");
+  const hasQuarter = /\b(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b/i.test(sectionText) ||
+    /\bq[1-4]\b/i.test(sectionText);
+  const hasFullYear = /\b(?:full[\s–—-]+year|fiscal\s+year|fy)\b/i.test(sectionText);
+  return hasQuarter && hasFullYear;
 }
 
 function isOutlookHeading(line: string): boolean {
@@ -158,7 +177,13 @@ function isOutlookHeading(line: string): boolean {
     .trim();
 
   return /^(?:business\s+|financial\s+)?(?:outlook|guidance)\b/i.test(normalizedLine) ||
-    /^(?:fiscal\s+)?(?:20\d{2}|fy\s?\d{2}|q[1-4]\s+20\d{2}|quarter)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine);
+    /^(?:(?:fiscal\s+)?(?:20\d{2}|fy\s?\d{2}|q[1-4]\s+20\d{2}|quarter)|(?:first|second|third|fourth)[\s–—-]+quarter)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine);
+}
+
+function isMixedPeriodOutlookHeading(line: string): boolean {
+  return (/\bq[1-4]\b/i.test(line) ||
+    /\b(?:first|second|third|fourth)[\s–—-]+quarter\b/i.test(line)) &&
+    /\bfull[\s–—-]+year\b/i.test(line);
 }
 
 function isOutlookSectionEnd(line: string): boolean {
@@ -195,6 +220,7 @@ function isNextSectionHeading(line: string): boolean {
 function extractOutlookMetric(
   lines: string[],
   definition: OutlookMetricDefinition,
+  includePeriodLabel: boolean,
 ): EarningsOutlookMetric | null {
   let bestCandidate: OutlookMetricCandidate | null = null;
   for (const line of lines) {
@@ -212,13 +238,20 @@ function extractOutlookMetric(
         continue;
       }
 
+      const periodLabel = true === includePeriodLabel
+        ? getOutlookPeriodLabel(line)
+        : undefined;
+      const metric: EarningsOutlookMetric = {
+        key: definition.key,
+        label: definition.label,
+        value,
+      };
+      if (undefined !== periodLabel) {
+        metric.periodLabel = periodLabel;
+      }
       const candidate = {
         score: getOutlookMetricCandidateScore(line),
-        metric: {
-          key: definition.key,
-          label: definition.label,
-          value,
-        },
+        metric,
       };
       if (null === bestCandidate || candidate.score > bestCandidate.score) {
         bestCandidate = candidate;
@@ -227,6 +260,31 @@ function extractOutlookMetric(
   }
 
   return bestCandidate?.metric ?? null;
+}
+
+function getOutlookPeriodLabel(line: string): string | undefined {
+  const directQuarterMatch = /\bq([1-4])(?:\s+20\d{2})?\b/i.exec(line);
+  if (undefined !== directQuarterMatch?.[1]) {
+    return `Q${directQuarterMatch[1]}`;
+  }
+
+  const writtenQuarterMatch = /\b(first|second|third|fourth)[\s–—-]+quarter\b/i.exec(line);
+  if (undefined !== writtenQuarterMatch?.[1]) {
+    const quarterByName = new Map([
+      ["first", "Q1"],
+      ["second", "Q2"],
+      ["third", "Q3"],
+      ["fourth", "Q4"],
+    ]);
+    return quarterByName.get(writtenQuarterMatch[1].toLowerCase());
+  }
+
+  const fullYearMatch = /\b(?:full[\s–—-]+year|fiscal\s+year|fy)\s*(?:of\s+)?(20\d{2}|\d{2})\b/i.exec(line);
+  if (undefined !== fullYearMatch?.[1]) {
+    return `FY${2 === fullYearMatch[1].length ? `20${fullYearMatch[1]}` : fullYearMatch[1]}`;
+  }
+
+  return undefined;
 }
 
 function getOutlookMetricCandidateScore(line: string): number {
@@ -598,7 +656,7 @@ function getCurrencySymbol(currencyCode: string): string {
 }
 
 function formatDecimal(value: number): string {
-  return value.toFixed(2).replace(/\.?0+$/, "");
+  return value.toFixed(3).replace(/\.?0+$/, "");
 }
 
 function formatPercent(value: number): string {

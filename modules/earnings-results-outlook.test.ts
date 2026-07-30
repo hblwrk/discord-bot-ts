@@ -270,7 +270,36 @@ describe("extractOutlookMetrics", () => {
       {
         key: "free_cash_flow",
         label: "Free cash flow",
+        periodLabel: "FY2026",
         value: "€1.3B to €1.5B",
+      },
+    ]);
+  });
+
+  test("labels mixed quarter and full-year guidance and preserves three-decimal billions", () => {
+    expect(extractOutlookMetrics([
+      "2026 Guidance Summary",
+      "For the third quarter of 2026, revenues are expected to range between $2.525 and $2.575 billion.",
+      "For the third quarter of 2026, adjusted EBITDA is expected to range between $1.275 and $1.315 billion.",
+      "For the full year of 2026, total capital expenditures are expected to range between $5.000 and $6.000 billion.",
+    ])).toEqual([
+      {
+        key: "revenue",
+        label: "Revenue",
+        periodLabel: "Q3",
+        value: "$2.525B to $2.575B",
+      },
+      {
+        key: "adjusted_ebitda",
+        label: "Adj EBITDA",
+        periodLabel: "Q3",
+        value: "$1.275B to $1.315B",
+      },
+      {
+        key: "capex",
+        label: "Capex",
+        periodLabel: "FY2026",
+        value: "$5B to $6B",
       },
     ]);
   });

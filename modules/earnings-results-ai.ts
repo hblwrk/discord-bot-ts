@@ -57,7 +57,7 @@ type EarningsAiQualityIssue = {
   sourceSnippet: string;
 };
 
-type AiMetricKey = "adjusted_eps" | "gaap_eps" | "revenue" | "net_income";
+type AiMetricKey = "affo_per_share" | "adjusted_eps" | "gaap_eps" | "revenue" | "net_income";
 
 type AiMetricDefinition = {
   key: AiMetricKey;
@@ -70,6 +70,11 @@ const aiRelevantContextBeforeLines = 2;
 const aiRelevantContextAfterLines = 4;
 
 const aiMetricDefinitions = new Map<AiMetricKey, AiMetricDefinition>([
+  ["affo_per_share", {
+    key: "affo_per_share",
+    label: "AFFO/share",
+    valueType: "eps",
+  }],
   ["adjusted_eps", {
     key: "adjusted_eps",
     label: "Adj EPS",
@@ -102,14 +107,14 @@ const earningsExtractionSchema = {
     },
     metrics: {
       type: "array",
-      maxItems: 4,
+      maxItems: 5,
       items: {
         type: "object",
         additionalProperties: false,
         properties: {
           key: {
             type: "string",
-            enum: ["adjusted_eps", "gaap_eps", "revenue", "net_income"],
+            enum: ["affo_per_share", "adjusted_eps", "gaap_eps", "revenue", "net_income"],
           },
           numericValue: {
             type: "number",
@@ -165,7 +170,7 @@ const qualityGateSchema = {
           },
           metricKey: {
             type: ["string", "null"],
-            enum: ["adjusted_eps", "gaap_eps", "revenue", "net_income", "nasdaq_eps", null],
+            enum: ["affo_per_share", "adjusted_eps", "gaap_eps", "revenue", "net_income", "nasdaq_eps", null],
           },
           message: {
             type: "string",
@@ -306,7 +311,8 @@ export function getSuspiciousEarningsReasons(
 ): SuspiciousEarningsReason[] {
   const reasons: SuspiciousEarningsReason[] = [];
   const consensusEps = surprise?.consensusEps ?? getNumericEventEpsConsensus(event);
-  const epsMetric = metrics.find(metric => "adjusted_eps" === metric.key) ??
+  const epsMetric = metrics.find(metric => "affo_per_share" === metric.key) ??
+    metrics.find(metric => "adjusted_eps" === metric.key) ??
     metrics.find(metric => "gaap_eps" === metric.key || "nasdaq_eps" === metric.key);
   if (undefined !== epsMetric &&
       "number" === typeof epsMetric.numericValue &&
@@ -407,7 +413,7 @@ export function hasHighSeveritySuspicion(reasons: SuspiciousEarningsReason[]): b
   return reasons.some(reason => "high" === reason.severity);
 }
 
-const epsMetricKeys = new Set(["adjusted_eps", "gaap_eps", "nasdaq_eps"]);
+const epsMetricKeys = new Set(["affo_per_share", "adjusted_eps", "gaap_eps", "nasdaq_eps"]);
 
 // A positive net income cannot produce a negative EPS, and vice versa. When an
 // EPS metric's sign contradicts net income, the value is almost certainly a
@@ -461,6 +467,7 @@ function getExtractionPrompt(input: EarningsAiExtractionInput, sourceText: strin
     "- Omit revenue when the filing excerpt does not explicitly report revenue, revenues, net sales, or third-party revenue.",
     "- Do not use Adjusted EBITDA, sales volumes, production, cash flow, or a zero placeholder as revenue.",
     "- EPS numericValue must be currency units per share. Convert cents to dollars, e.g. 77 cents becomes 0.77.",
+    "- Include AFFO per share only when the filing explicitly labels the value as AFFO per share.",
     "- Include adjusted EPS only when explicitly non-GAAP/adjusted. Include GAAP EPS only when explicitly GAAP/diluted/basic EPS.",
     "- Every metric must include a short exact sourceSnippet from the filing text that proves the metric and scale.",
     `Company: ${input.companyName}`,
@@ -587,6 +594,10 @@ function isEpsEvidenceSnippet(key: AiMetricKey, sourceSnippet: string): boolean 
 
   if (false === /\b(?:eps|earnings\s+per\s+share|per\s+share)\b/i.test(sourceSnippet)) {
     return false;
+  }
+
+  if ("affo_per_share" === key) {
+    return /\baffo\b/i.test(sourceSnippet) && /\bper\s+(?:common\s+)?share\b/i.test(sourceSnippet);
   }
 
   return "adjusted_eps" !== key || /\b(?:adjusted|non-gaap)\b/i.test(sourceSnippet);
@@ -790,6 +801,7 @@ function getNumericEventEpsConsensus(event: EarningsEvent): number | undefined {
 
 function sortEarningsMetrics(metrics: EarningsResultMetric[]): EarningsResultMetric[] {
   const preferredOrder = [
+    "affo_per_share",
     "adjusted_eps",
     "gaap_eps",
     "nasdaq_eps",

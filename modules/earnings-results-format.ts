@@ -62,6 +62,15 @@ const discordBlankLineSpacer = "\u200B";
 
 const earningsMetricDefinitions: MetricDefinition[] = [
   {
+    key: "affo_per_share",
+    label: "AFFO/share",
+    patterns: [
+      /\baffo\s+(?:and\s+affo\s+)?per\s+(?:common\s+)?share\b/i,
+      /\badjusted\s+funds?\s+from\s+operations?\s+per\s+(?:common\s+)?share\b/i,
+    ],
+    valueType: "eps",
+  },
+  {
     key: "adjusted_eps",
     label: "Adj EPS",
     patterns: [
@@ -99,7 +108,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
     key: "net_income",
     label: "Net income",
     patterns: [
-      /\bnet\s+income(?!\s+per\s+(?:common\s+)?share)(?:\s+attributable[^|,]*)?\b/i,
+      /\bnet\s+income(?!\s+per\s+(?:common\s+)?share)\b/i,
       /\bnet\s+earnings(?!\s+per\s+(?:common\s+)?share)\b/i,
     ],
     // Skip income-statement subtotals and the noncontrolling-interest component so
@@ -147,10 +156,12 @@ export function getMessageMetrics(
     normalizeEpsMetrics([...secMetrics], surprise, consensusEps),
     surprise,
   );
+  const hasAffoPerShare = metrics.some(metric => "affo_per_share" === metric.key);
   const hasAdjustedEps = metrics.some(metric => "adjusted_eps" === metric.key);
   const hasGaapEps = metrics.some(metric => "gaap_eps" === metric.key);
 
   if ("number" === typeof surprise?.actualEps &&
+      false === hasAffoPerShare &&
       false === hasAdjustedEps &&
       false === hasGaapEps) {
     metrics.unshift({
@@ -161,7 +172,8 @@ export function getMessageMetrics(
     });
   }
 
-  const epsMetric = metrics.find(metric => "adjusted_eps" === metric.key) ??
+  const epsMetric = metrics.find(metric => "affo_per_share" === metric.key) ??
+    metrics.find(metric => "adjusted_eps" === metric.key) ??
     metrics.find(metric => "nasdaq_eps" === metric.key || "gaap_eps" === metric.key);
   if (epsMetric && "number" === typeof consensusEps && true === canCompareAgainstUsdEstimate(epsMetric)) {
     epsMetric.estimate = formatEps(consensusEps);
@@ -210,7 +222,10 @@ function dropImplausibleMoneyMetrics(
 }
 
 function isEpsMetricKey(key: string): boolean {
-  return "adjusted_eps" === key || "gaap_eps" === key || "nasdaq_eps" === key;
+  return "affo_per_share" === key ||
+    "adjusted_eps" === key ||
+    "gaap_eps" === key ||
+    "nasdaq_eps" === key;
 }
 
 function canCompareAgainstUsdEstimate(metric: EarningsResultMetric): boolean {
@@ -223,9 +238,10 @@ function normalizeEpsMetrics(
   consensusEps: number | undefined,
 ): EarningsResultMetric[] {
   const actualEps = surprise?.actualEps;
+  const affoPerShareMetric = metrics.find(metric => "affo_per_share" === metric.key);
   const adjustedEpsMetric = metrics.find(metric => "adjusted_eps" === metric.key);
   const gaapEpsMetric = metrics.find(metric => "gaap_eps" === metric.key);
-  const primaryEpsMetric = adjustedEpsMetric ?? gaapEpsMetric;
+  const primaryEpsMetric = affoPerShareMetric ?? adjustedEpsMetric ?? gaapEpsMetric;
 
   if ("number" === typeof actualEps &&
       undefined !== primaryEpsMetric &&
@@ -331,7 +347,10 @@ export function getEarningsResultMessage({
     }
     lines.push("🔮 **Outlook**");
     for (const metric of parsedDocument.outlook) {
-      lines.push(`- **${metric.label}:** ${formatOutlookValue(metric.value)}`);
+      const metricLabel = metric.periodLabel
+        ? `${metric.periodLabel} ${metric.label}`
+        : metric.label;
+      lines.push(`- **${metricLabel}:** ${formatOutlookValue(metric.value)}`);
     }
   }
 
@@ -460,7 +479,7 @@ function getQuarterLabel(text: string): string | undefined {
     return `Q${ordinalQuarterMatch[1]} ${ordinalQuarterMatch[2]}`;
   }
 
-  const writtenFiscalQuarterMatch = text.match(/\b(first|second|third|fourth)\s+quarter(?:\s+and\s+full)?\s+(?:fiscal\s+year|FY)\s*(20\d{2}|\d{2})\b/i);
+  const writtenFiscalQuarterMatch = text.match(/\b(first|second|third|fourth)[\s–—-]+quarter(?:\s+and\s+full)?\s+(?:fiscal\s+year|FY)\s*(20\d{2}|\d{2})\b/i);
   if (undefined !== writtenFiscalQuarterMatch?.[1] && undefined !== writtenFiscalQuarterMatch[2]) {
     const quarter = getQuarterFromName(writtenFiscalQuarterMatch[1]);
     if (quarter) {
@@ -473,7 +492,7 @@ function getQuarterLabel(text: string): string | undefined {
     return namedPeriodEndedQuarter;
   }
 
-  const writtenQuarterMatch = text.match(/\b(first|second|third|fourth)\s+quarter\s+(?:of\s+)?(20\d{2})\b/i);
+  const writtenQuarterMatch = text.match(/\b(first|second|third|fourth)[\s–—-]+quarter\s+(?:of\s+)?(20\d{2})\b/i);
   if (undefined !== writtenQuarterMatch?.[1] && undefined !== writtenQuarterMatch[2]) {
     const quarter = getQuarterFromName(writtenQuarterMatch[1]);
     if (quarter) {
@@ -496,7 +515,7 @@ function getQuarterLabel(text: string): string | undefined {
 
 function getNamedQuarterLabelFromPeriodEnded(text: string): string | undefined {
   const namedPeriodEndedMatch = text.match(
-    /\b(first|second|third|fourth)\s+quarter\s+ended\s+[A-Z][a-z]+\s+\d{1,2},\s+(20\d{2})\b/i,
+    /\b(first|second|third|fourth)[\s–—-]+quarter\s+ended\s+[A-Z][a-z]+\s+\d{1,2},\s+(20\d{2})\b/i,
   );
   if (undefined === namedPeriodEndedMatch?.[1] || undefined === namedPeriodEndedMatch[2]) {
     return undefined;
@@ -615,8 +634,8 @@ function isQuarterSpecificSectionLine(line: string): boolean {
     return false;
   }
 
-  return /^\s*(?:for\s+)?Q[1-4]\s+(?:fiscal\s+year|FY|FYE)\s*(?:20\d{2}|\d{2})(?:\s+(?:financial\s+overview|results?|earnings))?\s*:?$/i.test(line) ||
-    /^\s*(?:for\s+)?(?:the\s+)?(?:first|second|third|fourth)\s+quarter(?:\s+(?:of\s+)?(?:fiscal\s+year|FY)\s*(?:20\d{2}|\d{2}))?\s*:?$/i.test(line);
+  return /^\s*(?:for\s+)?Q[1-4]\s+(?:(?:fiscal\s+year|FY|FYE)\s*)?(?:20\d{2}|\d{2})(?:\s+(?:financial\s+overview|results?(?:\s+summary)?|earnings))?\s*:?$/i.test(line) ||
+    /^\s*(?:for\s+)?(?:the\s+)?(?:first|second|third|fourth)[\s–—-]+quarter(?:\s+(?:of\s+)?(?:(?:fiscal\s+year|FY)\s*)?(?:20\d{2}|\d{2}))?(?:\s+(?:financial\s+overview|results?(?:\s+summary)?|earnings))?\s*:?$/i.test(line);
 }
 
 function isQuarterSpecificSectionBoundary(line: string): boolean {
@@ -641,7 +660,7 @@ function extractMetric(
       continue;
     }
 
-    const metricLine = getMetricLineWithContinuation(lines, lineIndex);
+    const metricLine = getMetricLineWithContinuation(lines, lineIndex, definition);
     const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(metricLine));
     if (!pattern) {
       continue;
@@ -672,24 +691,83 @@ function extractMetric(
 }
 
 function isPerShareOnlyNetIncomeLine(line: string): boolean {
+  const hasCombinedAggregateLabel =
+    /\bnet\s+income\b.*\band\b.*\bnet\s+income\s+per\s+(?:common\s+|diluted\s+)?share\b/i.test(line);
   return /\bper\s+(?:common\s+|diluted\s+)?share\b/i.test(line) &&
+    false === hasCombinedAggregateLabel &&
     false === /\b(?:trillion|billion|million|thousand)s?\b/i.test(line);
 }
 
-function getMetricLineWithContinuation(lines: string[], lineIndex: number): string {
-  const metricLines = [lines[lineIndex] ?? ""];
+function getMetricLineWithContinuation(
+  lines: string[],
+  lineIndex: number,
+  definition: MetricDefinition,
+): string {
+  const baseLine = lines[lineIndex] ?? "";
+  const metricLines = [baseLine];
+  const isSummaryHeading = isSummaryMetricHeading(baseLine, definition);
   for (let index = lineIndex + 1; index < lines.length && index <= lineIndex + 6; index++) {
     const nextLine = lines[index];
-    if (undefined === nextLine ||
-        (false === isValueOnlyLine(nextLine) &&
-        false === isPerShareMetricDetailLine(metricLines[0] ?? "", nextLine))) {
+    if (undefined === nextLine) {
       break;
     }
 
-    metricLines.push(nextLine);
+    if (true === isValueOnlyLine(nextLine) ||
+        true === isPerShareMetricDetailLine(baseLine, nextLine)) {
+      metricLines.push(nextLine);
+      continue;
+    }
+
+    if (false === isSummaryHeading || true === isSummaryMetricHeadingLine(nextLine)) {
+      break;
+    }
+
+    if ("money" === definition.valueType && true === isNarrativeMoneyDetailLine(nextLine)) {
+      metricLines.push(nextLine);
+      break;
+    }
+
+    if ("eps" === definition.valueType) {
+      if (true === isNarrativePerShareDetailLine(nextLine)) {
+        metricLines.push(nextLine);
+        break;
+      }
+
+      if (true === isNarrativeMoneyDetailLine(nextLine)) {
+        continue;
+      }
+    }
+
+    break;
   }
 
   return metricLines.join(" ");
+}
+
+function isSummaryMetricHeading(line: string, definition: MetricDefinition): boolean {
+  return line.length <= 180 &&
+    false === /[$€£¥]|\b\d+(?:[.,]\d+)?\b/.test(line) &&
+    definition.patterns.some(pattern => pattern.test(line));
+}
+
+function isSummaryMetricHeadingLine(line: string): boolean {
+  if (line.length > 180 || /[$€£¥]|\b\d+(?:[.,]\d+)?\b/.test(line)) {
+    return false;
+  }
+
+  return earningsMetricDefinitions.some(definition =>
+    definition.patterns.some(pattern => pattern.test(line))) ||
+    /\b(?:adjusted\s+ebitda|operating\s+income)\b/i.test(line);
+}
+
+function isNarrativeMoneyDetailLine(line: string): boolean {
+  return /^\s*(?:[•◦▪–—-]\s*)?(?:\(?\s*)?(?:[$€£¥]\s*)?-?\d/i.test(line) &&
+    /[$€£¥]|\b(?:trillion|billion|million|thousand)s?\b|\b(?:tn|bn|mm|[tbmk])\b/i.test(line);
+}
+
+function isNarrativePerShareDetailLine(line: string): boolean {
+  return /^\s*(?:[•◦▪–—-]\s*)?(?:\(?\s*)?(?:[$€£¥]\s*)?-?\d/i.test(line) &&
+    /\b(?:per\s+(?:common\s+)?share|eps|cents?)\b/i.test(line);
 }
 
 function isValueOnlyLine(line: string): boolean {
@@ -767,10 +845,15 @@ function extractMetricValue(
     const explicitScale = getExplicitMoneyScale(metricText, parsedValueMatch.endIndex);
     const currencyCode = getCurrencyCodeFromText(metricText) ?? contextMoney.currencyCode;
     const amount = parsedValueMatch.value * (explicitScale ?? contextMoney.scale);
+    const maximumFractionDigits = getMoneyDisplayPrecision(
+      metricText,
+      parsedValueMatch.endIndex,
+      explicitScale,
+    );
     return {
       currencyCode,
       numericValue: amount,
-      value: formatMoneyCompact(amount, currencyCode),
+      value: formatMoneyCompact(amount, currencyCode, maximumFractionDigits),
     };
   }
 
@@ -988,6 +1071,20 @@ function getExplicitMoneyScale(text: string, valueEndIndex: number): number | nu
   return 1_000_000;
 }
 
+function getMoneyDisplayPrecision(
+  text: string,
+  valueEndIndex: number,
+  explicitScale: number | null,
+): number {
+  if (null === explicitScale) {
+    return 2;
+  }
+
+  const valuePrefix = text.slice(0, valueEndIndex);
+  const fractionDigits = /\.(\d+)\s*\)?$/.exec(valuePrefix)?.[1]?.length ?? 0;
+  return Math.min(3, Math.max(2, fractionDigits));
+}
+
 type NumericValueOptions = {
   maxAbsValue?: number;
   minUncuedAbsValue?: number;
@@ -1179,27 +1276,31 @@ export function formatUsdCompact(value: number): string {
   return formatMoneyCompact(value, "USD");
 }
 
-export function formatMoneyCompact(value: number, currencyCode = "USD"): string {
+export function formatMoneyCompact(
+  value: number,
+  currencyCode = "USD",
+  maximumFractionDigits = 2,
+): string {
   const symbol = getCurrencySymbol(currencyCode);
   const absoluteValue = Math.abs(value);
   const sign = value < 0 ? "-" : "";
   if (absoluteValue >= 1_000_000_000_000) {
-    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000_000_000_000)}T`;
+    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000_000_000_000, maximumFractionDigits)}T`;
   }
 
   if (absoluteValue >= 1_000_000_000) {
-    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000_000_000)}B`;
+    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000_000_000, maximumFractionDigits)}B`;
   }
 
   if (absoluteValue >= 1_000_000) {
-    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000_000)}M`;
+    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000_000, maximumFractionDigits)}M`;
   }
 
   if (absoluteValue >= 1_000) {
-    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000)}K`;
+    return `${sign}${symbol}${formatDecimal(absoluteValue / 1_000, maximumFractionDigits)}K`;
   }
 
-  return `${sign}${symbol}${formatDecimal(absoluteValue)}`;
+  return `${sign}${symbol}${formatDecimal(absoluteValue, maximumFractionDigits)}`;
 }
 
 function getCurrencySymbol(currencyCode: string): string {
@@ -1222,8 +1323,8 @@ function getCurrencySymbol(currencyCode: string): string {
   return "$";
 }
 
-function formatDecimal(value: number): string {
-  return value.toFixed(2).replace(/\.?0+$/, "");
+function formatDecimal(value: number, maximumFractionDigits = 2): string {
+  return value.toFixed(maximumFractionDigits).replace(/\.?0+$/, "");
 }
 
 function formatPlainNumber(value: number, unit: string | null): string {
