@@ -104,6 +104,56 @@ describe("AI earnings helpers", () => {
     );
   });
 
+  test("extracts AFFO per share only from explicit AFFO evidence", async () => {
+    const affoHtml = `
+      <h1>Example REIT reports second quarter 2026 results</h1>
+      <p>AFFO and AFFO per Share</p>
+      <p>AFFO was $1.168 billion and AFFO per share was $11.78.</p>
+    `;
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                quarterLabel: "Q2 2026",
+                metrics: [{
+                  key: "affo_per_share",
+                  numericValue: 11.78,
+                  currencyCode: "USD",
+                  sourceSnippet: "AFFO was $1.168 billion and AFFO per share was $11.78.",
+                }],
+                issues: [],
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await extractEarningsWithAi({
+      companyName: "Example REIT",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: affoHtml,
+      ticker: "REIT",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result?.metrics).toEqual([{
+      currencyCode: "USD",
+      key: "affo_per_share",
+      label: "AFFO/share",
+      numericValue: 11.78,
+      sourceSnippet: "AFFO was $1.168 billion and AFFO per share was $11.78.",
+      value: "$11.78",
+    }]);
+  });
+
   test("uses default provider model and rate limit when optional provider secrets are missing", async () => {
     const postWithRetryFn = vi.fn().mockResolvedValue({
       data: {
@@ -805,6 +855,26 @@ describe("AI earnings helpers", () => {
       severity: "medium",
     }]);
     expect(hasHighSeveritySuspicion(reasons)).toBe(false);
+  });
+
+  test("compares REIT consensus against AFFO per share instead of GAAP EPS", () => {
+    const reasons = getSuspiciousEarningsReasons([{
+      key: "affo_per_share",
+      label: "AFFO/share",
+      numericValue: 11.78,
+      value: "$11.78",
+    }, {
+      key: "gaap_eps",
+      label: "EPS",
+      numericValue: 4.83,
+      value: "$4.83",
+    }], {
+      consensusEps: 10.14,
+    }, getEvent({
+      epsConsensus: "$10.14",
+    }));
+
+    expect(reasons).toEqual([]);
   });
 
   test("identifies EPS that is implausibly low relative to consensus", () => {

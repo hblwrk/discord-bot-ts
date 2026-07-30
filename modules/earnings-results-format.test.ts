@@ -608,6 +608,7 @@ describe("earnings result formatting", () => {
       {
         key: "free_cash_flow",
         label: "Free cash flow",
+        periodLabel: "FY2026",
         value: "€1.3B to €1.5B",
       },
     ]);
@@ -621,7 +622,7 @@ describe("earnings result formatting", () => {
       metrics: [],
       parsedDocument,
       ticker: "PHG",
-    })).toContain("- **Free cash flow:** `€1.3B` to `€1.5B`");
+    })).toContain("- **FY2026 Free cash flow:** `€1.3B` to `€1.5B`");
   });
 
   test("does not emit outlook metrics without an outlook section", () => {
@@ -1010,6 +1011,118 @@ describe("earnings result formatting", () => {
         value: "$1.16B",
       }),
     ]));
+  });
+
+  test("keeps Equinix second-quarter results separate from mixed-period guidance", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Equinix Reports Second-Quarter Results, Raises 2026 Guidance and Long-Term Outlook</h1>
+          <h2>Second-Quarter 2026 Results Summary</h2>
+          <p>• Revenues</p>
+          <p>◦ $2.625 billion, a 4% increase over the previous quarter</p>
+          <p>• Operating Income</p>
+          <p>◦ $665 million, a 16% increase over the previous quarter</p>
+          <p>• Net Income Attributable to Common Stockholders and Net Income per Share Attributable to Common Stockholders</p>
+          <p>◦ $479 million, a 156% increase over the previous quarter</p>
+          <p>◦ $4.83 per share, a 154% increase over the previous quarter</p>
+          <p>• Adjusted EBITDA</p>
+          <p>◦ $1.396 billion, a 4% increase over the previous quarter</p>
+          <p>• AFFO and AFFO per Share</p>
+          <p>◦ $1.168 billion, a 7% increase over the previous quarter</p>
+          <p>◦ $11.78 per share, a 7% increase over the previous quarter</p>
+          <h2>2026 Guidance Summary</h2>
+          <p>For the third quarter of 2026, revenues are expected to range between $2.525 and $2.575 billion.</p>
+          <p>For the third quarter of 2026, adjusted EBITDA is expected to range between $1.275 and $1.315 billion.</p>
+          <p>For the full year of 2026, total capital expenditures are expected to range between $5.000 and $6.000 billion.</p>
+        </body>
+      </html>
+    `);
+    const event: EarningsEvent = {
+      ticker: "EQIX",
+      when: "after_close",
+      date: "2026-07-29",
+      importance: 1,
+      epsConsensus: "$10.14",
+    };
+    const metrics = getMessageMetrics(parsedDocument.metrics, {
+      consensusEps: 10.14,
+      consensusRevenue: 2_580_000_000,
+    }, event);
+
+    expect(parsedDocument.quarterLabel).toBe("Q2 2026");
+    expect(metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "affo_per_share",
+        estimate: "$10.14",
+        numericValue: 11.78,
+        outcome: "beat",
+        value: "$11.78",
+      }),
+      expect.objectContaining({
+        key: "gaap_eps",
+        numericValue: 4.83,
+        value: "$4.83",
+      }),
+      expect.objectContaining({
+        key: "revenue",
+        estimate: "$2.58B",
+        numericValue: 2_625_000_000,
+        outcome: "beat",
+        value: "$2.625B",
+      }),
+      expect.objectContaining({
+        key: "net_income",
+        numericValue: 479_000_000,
+        value: "$479M",
+      }),
+    ]));
+    expect(metrics.find(metric => "gaap_eps" === metric.key)).not.toHaveProperty("estimate");
+    expect(metrics.find(metric => "gaap_eps" === metric.key)).not.toHaveProperty("outcome");
+    expect(parsedDocument.outlook).toEqual([
+      {
+        key: "revenue",
+        label: "Revenue",
+        periodLabel: "Q3",
+        value: "$2.525B to $2.575B",
+      },
+      {
+        key: "adjusted_ebitda",
+        label: "Adj EBITDA",
+        periodLabel: "Q3",
+        value: "$1.275B to $1.315B",
+      },
+      {
+        key: "capex",
+        label: "Capex",
+        periodLabel: "FY2026",
+        value: "$5B to $6B",
+      },
+    ]);
+
+    expect(getEarningsResultMessage({
+      companyName: "Equinix, Inc.",
+      filing: {
+        form: "8-K",
+        items: ["2.02", "9.01"],
+      },
+      filingUrl: "https://www.sec.gov/Archives/edgar/data/1101239/000110123926000145/a991eqix-q226xpr.htm",
+      metrics,
+      parsedDocument,
+      ticker: "EQIX",
+    })).toContain([
+      "**Equinix, Inc. (`EQIX`)** - Q2 2026 - [8-K](https://www.sec.gov/Archives/edgar/data/1101239/000110123926000145/a991eqix-q226xpr.htm)",
+      "📊 **Results**",
+      "- **AFFO/share:** `$11.78` vs est. `$10.14` (🟢 beat)",
+      "- **EPS:** `$4.83`",
+      "- **Revenue:** `$2.625B` vs est. `$2.58B` (🟢 beat)",
+      "- **Net income:** `$479M`",
+      "",
+      "🔮 **Outlook**",
+      "- **Q3 Revenue:** `$2.525B` to `$2.575B`",
+      "- **Q3 Adj EBITDA:** `$1.275B` to `$1.315B`",
+      "- **FY2026 Capex:** `$5B` to `$6B`",
+    ].join("\n"));
   });
 
   test("parses cents-denominated EPS as dollars per share", () => {

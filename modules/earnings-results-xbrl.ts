@@ -160,6 +160,7 @@ export function mergeXbrlAndHtmlMetrics(
   }
 
   const preferredOrder = [
+    "affo_per_share",
     "adjusted_eps",
     "gaap_eps",
     "nasdaq_eps",

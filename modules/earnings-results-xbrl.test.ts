@@ -1,5 +1,9 @@
 import {describe, expect, test} from "vitest";
-import {extractSecXbrlMetrics, type SecCompanyFactsResponse} from "./earnings-results-xbrl.ts";
+import {
+  extractSecXbrlMetrics,
+  mergeXbrlAndHtmlMetrics,
+  type SecCompanyFactsResponse,
+} from "./earnings-results-xbrl.ts";
 
 describe("earnings result XBRL metrics", () => {
   test("extracts quarterly facts for the matching accession", () => {
@@ -144,6 +148,29 @@ describe("earnings result XBRL metrics", () => {
         key: "net_income",
         value: "-€415M",
       }),
+    ]);
+  });
+
+  test("keeps HTML-only AFFO per share ahead of XBRL GAAP EPS", () => {
+    expect(mergeXbrlAndHtmlMetrics([{
+      key: "gaap_eps",
+      label: "EPS",
+      numericValue: 4.83,
+      value: "$4.83",
+    }], [{
+      key: "affo_per_share",
+      label: "AFFO/share",
+      numericValue: 11.78,
+      value: "$11.78",
+    }, {
+      key: "revenue",
+      label: "Revenue",
+      numericValue: 2_625_000_000,
+      value: "$2.625B",
+    }]).map(metric => metric.key)).toEqual([
+      "affo_per_share",
+      "gaap_eps",
+      "revenue",
     ]);
   });
 });
