@@ -87,6 +87,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
       /\b(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\b/i,
       /\bdiluted\s+eps\b/i,
       /\bgaap\s+(?:diluted\s+)?eps\b/i,
+      /(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?(?:\s*(?:cents?|¢))?)\s+per\s+(?:fully\s+)?(?:common\s+)?diluted\s+share\b/i,
       /\beps\b/i,
     ],
     skipPattern: /\badjusted\b|\bnon-gaap\b|\bguidance\b|\boutlook\b|\bforecast\b|\bexcept\s+(?:eps|per\s+share(?:\s+amounts?)?)\b/i,
@@ -101,7 +102,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
       /\brevenues?\b/i,
       /\bsales\b/i,
     ],
-    skipPattern: /\bcost\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon)\s+sales\b|\bsales\s+of\s+pipeline\s+gas\b/i,
+    skipPattern: /\bcost\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon)\s+sales\b|\bsales\s+of\s+pipeline\s+gas\b/i,
     valueType: "money",
   },
   {
@@ -790,7 +791,9 @@ function extractMetricValue(
 ): {currencyCode?: string | undefined; numericValue: number; value: string} | null {
   pattern.lastIndex = 0;
   const patternMatch = pattern.exec(line);
-  const searchText = patternMatch ? line.slice(patternMatch.index + patternMatch[0].length) : line;
+  const capturedMetricValue = patternMatch?.groups?.["metricValue"];
+  const searchText = capturedMetricValue ??
+    (patternMatch ? line.slice(patternMatch.index + patternMatch[0].length) : line);
   const preferredSearchText = true === preferQuarterColumn
     ? getQuarterColumnSearchText(searchText)
     : searchText;
