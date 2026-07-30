@@ -1125,6 +1125,88 @@ describe("earnings result formatting", () => {
     ].join("\n"));
   });
 
+  test("parses Trane continuing EPS and comma-separated table scale without reading Q2 as EPS", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Trane Technologies Reports Strong Second Quarter Results; Raises Full-Year Revenue and EPS Guidance</h1>
+          <h2>Second-Quarter 2026 Results</h2>
+          <p>Financial Comparisons - Second-Quarter Continuing Operations</p>
+          <table>
+            <tr><td>$, millions except EPS</td><td>Q2 2026</td><td>Q2 2025</td><td>Y-O-Y Change</td><td>Organic Y-O-Y Change</td></tr>
+            <tr><td>Bookings</td><td>$7,818</td><td>$5,626</td><td>39%</td><td>37%</td></tr>
+            <tr><td>Net Revenues</td><td>$6,354</td><td>$5,746</td><td>11%</td><td>9%</td></tr>
+            <tr><td>GAAP Operating Income</td><td>$1,224</td><td>$1,164</td><td>5%</td></tr>
+            <tr><td>Adjusted Operating Income</td><td>$1,253</td><td>$1,166</td><td>7%</td></tr>
+            <tr><td>GAAP Continuing EPS</td><td>$4.20</td><td>$3.87</td><td>9%</td></tr>
+            <tr><td>Adjusted Continuing EPS</td><td>$4.31</td><td>$3.88</td><td>11%</td></tr>
+          </table>
+          <h2>Company Raises Full-Year 2026 Guidance</h2>
+          <p>The Company expects full-year 2026 reported revenue growth of approximately 11.5 percent and organic revenue growth of approximately 9 percent versus full-year 2025.</p>
+          <p>The Company expects GAAP continuing EPS for full-year 2026 of approximately $15.00 to $15.10, including $0.20 for non-GAAP adjustments. The Company expects adjusted continuing EPS for full-year 2026 of $15.20 to $15.30.</p>
+          <p>($ in millions)</p>
+          <table>
+            <tr><td>Net earnings</td><td>935.3</td><td>878.9</td></tr>
+          </table>
+        </body>
+      </html>
+    `);
+    const event: EarningsEvent = {
+      ticker: "TT",
+      when: "before_open",
+      date: "2026-07-30",
+      importance: 1,
+      epsConsensus: "$4.27",
+    };
+    const metrics = getMessageMetrics(parsedDocument.metrics, {
+      consensusEps: 4.27,
+    }, event);
+
+    expect(parsedDocument.quarterLabel).toBe("Q2 2026");
+    expect(metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "adjusted_eps",
+        estimate: "$4.27",
+        numericValue: 4.31,
+        outcome: "beat",
+        value: "$4.31",
+      }),
+      expect.objectContaining({
+        key: "gaap_eps",
+        numericValue: 4.2,
+        value: "$4.20",
+      }),
+      expect.objectContaining({
+        key: "revenue",
+        numericValue: 6_354_000_000,
+        value: "$6.35B",
+      }),
+      expect.objectContaining({
+        key: "net_income",
+        numericValue: 935_300_000,
+        value: "$935.3M",
+      }),
+    ]));
+    expect(metrics.find(metric => "gaap_eps" === metric.key)).not.toHaveProperty("estimate");
+    expect(parsedDocument.outlook).toEqual([
+      {
+        key: "revenue",
+        label: "Revenue",
+        value: "11.5% growth",
+      },
+      {
+        key: "adjusted_eps",
+        label: "Adj EPS",
+        value: "$15.2 to $15.3",
+      },
+      {
+        key: "eps",
+        label: "EPS",
+        value: "$15 to $15.1",
+      },
+    ]);
+  });
+
   test("parses cents-denominated EPS as dollars per share", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>

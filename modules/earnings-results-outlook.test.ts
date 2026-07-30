@@ -304,6 +304,30 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("extracts Trane-style full-year growth and continuing EPS guidance", () => {
+    expect(extractOutlookMetrics([
+      "Company Raises Full-Year 2026 Guidance",
+      "The Company expects full-year 2026 reported revenue growth of approximately 11.5 percent and organic revenue growth of approximately 9 percent versus full-year 2025.",
+      "The Company expects GAAP continuing EPS for full-year 2026 of approximately $15.00 to $15.10, including $0.20 for non-GAAP adjustments. The Company expects adjusted continuing EPS for full-year 2026 of $15.20 to $15.30.",
+    ])).toEqual([
+      {
+        key: "revenue",
+        label: "Revenue",
+        value: "11.5% growth",
+      },
+      {
+        key: "adjusted_eps",
+        label: "Adj EPS",
+        value: "$15.2 to $15.3",
+      },
+      {
+        key: "eps",
+        label: "EPS",
+        value: "$15 to $15.1",
+      },
+    ]);
+  });
+
   test("limits outlook scanning and ignores unusable fallback values", () => {
     const lines = [
       "Business Outlook",

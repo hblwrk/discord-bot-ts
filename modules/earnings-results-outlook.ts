@@ -42,9 +42,22 @@ const outlookMetricDefinitions: OutlookMetricDefinition[] = [
     valueType: "text",
   },
   {
+    key: "adjusted_eps",
+    label: "Adj EPS",
+    patterns: [
+      /\badjusted\s+continuing(?:\s+operations?)?\s+(?:diluted\s+)?eps\b/i,
+      /\badjusted\s+continuing(?:\s+operations?)?\s+earnings\s+per\s+(?:common\s+)?share\b/i,
+    ],
+    valueType: "eps",
+  },
+  {
     key: "eps",
     label: "EPS",
-    patterns: [/\b(?:diluted\s+)?eps\b/i, /\bearnings\s+per\s+(?:common\s+)?share\b/i],
+    patterns: [
+      /\bgaap\s+(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?eps\b/i,
+      /\b(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?eps\b/i,
+      /\bearnings\s+per\s+(?:common\s+)?share\b/i,
+    ],
     valueType: "eps",
   },
   {
@@ -177,6 +190,7 @@ function isOutlookHeading(line: string): boolean {
     .trim();
 
   return /^(?:business\s+|financial\s+)?(?:outlook|guidance)\b/i.test(normalizedLine) ||
+    /^(?:the\s+)?company\s+(?:raises?|updates?|reaffirms?|provides?|issues?)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine) ||
     /^(?:(?:fiscal\s+)?(?:20\d{2}|fy\s?\d{2}|q[1-4]\s+20\d{2}|quarter)|(?:first|second|third|fourth)[\s–—-]+quarter)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine);
 }
 
@@ -196,7 +210,12 @@ function isOutlookSectionEnd(line: string): boolean {
     return true;
   }
 
-  if (/\b(?:conference\s+call|about\s+|press\s+contact|investor\s+relations|condensed\s+consolidated|financial\s+statements?|non-gaap|reconciliation)\b/i.test(line)) {
+  if (/\b(?:conference\s+call|about\s+|press\s+contact|investor\s+relations|condensed\s+consolidated|financial\s+statements?)\b/i.test(line)) {
+    return true;
+  }
+
+  if (line.length <= 140 &&
+      /^\s*(?:use\s+of\s+)?(?:non-gaap|reconciliation)\b/i.test(line)) {
     return true;
   }
 
@@ -328,6 +347,7 @@ function extractOutlookValue(
       getOutlookRangeValue(valueText, valueType) ??
       ("eps" === valueType ? getEpsPercentOutlookValue(valueText) : null) ??
       ("text" === valueType ? getSingleOutlookValue(valueText, "money") : null) ??
+      ("text" === valueType ? getNumericGrowthOutlookValue(valueText) : null) ??
       getSingleOutlookValue(valueText, valueType);
     if (null !== value) {
       return value;
@@ -343,7 +363,7 @@ function getOutlookValueSegments(line: string, patternMatch: RegExpExecArray | n
   }
 
   const rawValueText = line.slice(patternMatch.index + patternMatch[0].length);
-  const nextMetricMatch = /\b(?:adjusted\s+eps|diluted\s+eps|eps|earnings\s+per\s+(?:common\s+)?share|revenues?|net\s+sales|sales|gross\s+margin|operating\s+margin|operating\s+income|operating\s+expenses?|opex|tax\s+rate|capex|capital\s+expenditures?|free\s+cash\s+flow|dcf\s+per\s+share|distributable\s+cash\s+flow\s+per\s+share|adjusted\s+ebitda|ebitda)\b/i.exec(rawValueText);
+  const nextMetricMatch = /\b(?:adjusted\s+(?:continuing\s+)?eps|gaap\s+(?:continuing\s+)?eps|diluted\s+eps|eps|earnings\s+per\s+(?:common\s+)?share|revenues?|net\s+sales|sales|gross\s+margin|operating\s+margin|operating\s+income|operating\s+expenses?|opex|tax\s+rate|capex|capital\s+expenditures?|free\s+cash\s+flow|dcf\s+per\s+share|distributable\s+cash\s+flow\s+per\s+share|adjusted\s+ebitda|ebitda)\b/i.exec(rawValueText);
   const endIndex = nextMetricMatch?.index ?? rawValueText.length;
   const previousValueText = getPreviousOutlookValueSegment(line, patternMatch.index);
   return [
@@ -386,6 +406,15 @@ function getGrowthOutlookValue(value: string): string | null {
 
 function getGrowthDirection(value: string): "growth" | "decline" {
   return /\bdecline|decrease|down\b/i.test(value) ? "decline" : "growth";
+}
+
+function getNumericGrowthOutlookValue(value: string): string | null {
+  const percentMatch = /(-?\d+(?:\.\d+)?)\s*(?:%|percent)\b/i.exec(value);
+  if (undefined === percentMatch?.[1]) {
+    return null;
+  }
+
+  return `${formatPercent(Number.parseFloat(percentMatch[1]))} ${getGrowthDirection(value)}`;
 }
 
 function getOutlookRangeValue(value: string, valueType: OutlookValueType): string | null {
