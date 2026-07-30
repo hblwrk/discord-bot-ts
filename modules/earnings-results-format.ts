@@ -74,7 +74,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
     key: "adjusted_eps",
     label: "Adj EPS",
     patterns: [
-      /\badjusted\s+(?:\d{1,2}\s+)?(?:diluted\s+)?(?:earnings\s+per\s+(?:common\s+)?share|eps)\b/i,
+      /\badjusted\s+(?:\d{1,2}\s+)?(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?(?:earnings\s+per\s+(?:common\s+)?share|eps)\b/i,
       /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?eps\b/i,
       /\bnon-gaap\s+(?:diluted\s+)?(?:earnings\s+per\s+share|eps)\b/i,
     ],
@@ -89,7 +89,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
       /\bgaap\s+(?:diluted\s+)?eps\b/i,
       /\beps\b/i,
     ],
-    skipPattern: /\badjusted\b|\bnon-gaap\b|\bguidance\b|\boutlook\b|\bforecast\b/i,
+    skipPattern: /\badjusted\b|\bnon-gaap\b|\bguidance\b|\boutlook\b|\bforecast\b|\bexcept\s+(?:eps|per\s+share(?:\s+amounts?)?)\b/i,
     valueType: "eps",
   },
   {
@@ -640,6 +640,7 @@ function isQuarterSpecificSectionLine(line: string): boolean {
 
 function isQuarterSpecificSectionBoundary(line: string): boolean {
   return /^\s*(?:outlook|guidance|financial\s+outlook|business\s+outlook|use\s+of\s+non-gaap|forward-looking|supplemental\s+financial\s+information)\b/i.test(line) ||
+    /^\s*(?:the\s+)?company\s+(?:raises?|updates?|reaffirms?|provides?|issues?)\b.*\b(?:guidance|outlook)\b/i.test(line) ||
     /^\s*(?:fiscal\s+year|FY|FYE)\s*(?:20\d{2}|\d{2})\b/i.test(line) ||
     /^\s*for\s+fiscal\s+year\s+(?:20\d{2}|\d{2})\s*:?$/i.test(line);
 }
@@ -1005,7 +1006,7 @@ function getMoneyScaleFromContextText(text: string): number | null {
   // the unit, and that figure belongs to one line, not the whole table. Treating
   // inline magnitudes as a table scale mis-scales unrelated rows.
   const declarationMatch =
-    /(?:\bin\s+|[$€£¥]\s*)(thousand|million|billion)s?\b/i.exec(text) ??
+    /(?:\bin\s+|[$€£¥]\s*,?\s*)(thousand|million|billion)s?\b/i.exec(text) ??
     /\b(thousand|million|billion)s?\s+of\s+dollars\b/i.exec(text) ??
     /\(\s*(thousand|million|billion)s?\b/i.exec(text);
   const unit = declarationMatch?.[1]?.toLowerCase();
