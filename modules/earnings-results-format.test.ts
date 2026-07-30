@@ -1207,6 +1207,69 @@ describe("earnings result formatting", () => {
     ]);
   });
 
+  test("uses Amazon quarterly EPS and consolidated sales instead of YTD and run-rate values", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>AMAZON.COM ANNOUNCES SECOND QUARTER RESULTS</h1>
+          <h2>Second Quarter 2026</h2>
+          <p>AWS net sales increased 37% year-over-year to a $169 billion annualized revenue run rate.</p>
+          <p>Net sales increased 20% to $200.6 billion in the second quarter, compared with $167.7 billion in second quarter 2025.</p>
+          <p>Net income increased to $62.6 billion in the second quarter, or $5.75 per diluted share, compared with $18.2 billion, or $1.68 per diluted share, in second quarter 2025.</p>
+          <h2>Financial Guidance</h2>
+          <p>Net sales are expected to be between $197.0 billion and $202.0 billion.</p>
+          <p>Operating income is expected to be between $22.5 billion and $26.5 billion.</p>
+          <h2>Consolidated Statements of Operations</h2>
+          <p>(in millions, except per-share data; unaudited)</p>
+          <table>
+            <tr><th></th><th>Three Months Ended June 30,</th><th></th><th>Six Months Ended June 30,</th></tr>
+            <tr><th></th><th>2025</th><th>2026</th><th>2025</th><th>2026</th></tr>
+            <tr><td>Total net sales</td><td>167,702</td><td>200,606</td><td>323,369</td><td>382,125</td></tr>
+            <tr><td>Net income</td><td>$18,164</td><td>$62,647</td><td>$35,291</td><td>$92,902</td></tr>
+            <tr><td>Net income per share:</td></tr>
+            <tr><td>Basic</td><td>$1.71</td><td>$5.82</td><td>$3.32</td><td>$8.64</td></tr>
+            <tr><td>Diluted</td><td>$1.68</td><td>$5.75</td><td>$3.27</td><td>$8.53</td></tr>
+          </table>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.quarterLabel).toBe("Q2 2026");
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "gaap_eps",
+        numericValue: 5.75,
+        value: "$5.75",
+      }),
+      expect.objectContaining({
+        key: "revenue",
+        numericValue: 200_600_000_000,
+        value: "$200.6B",
+      }),
+      expect.objectContaining({
+        key: "net_income",
+        numericValue: 62_600_000_000,
+        value: "$62.6B",
+      }),
+    ]));
+    expect(parsedDocument.metrics).not.toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "gaap_eps", value: "$8.53"}),
+      expect.objectContaining({key: "revenue", value: "$169B"}),
+    ]));
+    expect(parsedDocument.outlook).toEqual([
+      {
+        key: "revenue",
+        label: "Revenue",
+        value: "$197B to $202B",
+      },
+      {
+        key: "operating_income",
+        label: "Operating income",
+        value: "$22.5B to $26.5B",
+      },
+    ]);
+  });
+
   test("parses cents-denominated EPS as dollars per share", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>
