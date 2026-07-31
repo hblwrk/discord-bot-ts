@@ -32,7 +32,7 @@ type OutlookSection = {
   mixedPeriods: boolean;
 };
 
-const moneyTokenPatternSource = String.raw`(?<![\d.])\(?\s*(?:(?:[$€£¥]\s*)|(?:(?:USD|EUR|GBP|JPY)\s+))?-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b)?\)?`;
+const moneyTokenPatternSource = String.raw`(?<![\d.])\(?\s*(?:(?:C\s*\$|[$€£¥])\s*|(?:(?:USD|CAD|EUR|GBP|JPY)\s+))?-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b)?\)?`;
 const moneyRangePattern = new RegExp(`(${moneyTokenPatternSource})\\s*(?:to|through|-|–|and)\\s*(${moneyTokenPatternSource})`, "gi");
 const singleMoneyPattern = new RegExp(moneyTokenPatternSource, "gi");
 
@@ -118,7 +118,10 @@ const outlookMetricDefinitions: OutlookMetricDefinition[] = [
   },
 ];
 
-export function extractOutlookMetrics(lines: string[]): EarningsOutlookMetric[] {
+export function extractOutlookMetrics(
+  lines: string[],
+  documentCurrencyCode = "USD",
+): EarningsOutlookMetric[] {
   const section = getOutlookSection(lines);
   if (0 === section.lines.length) {
     return [];
@@ -132,6 +135,7 @@ export function extractOutlookMetrics(lines: string[]): EarningsOutlookMetric[] 
       definition,
       section.mixedPeriods,
       section.heading,
+      documentCurrencyCode,
     );
     if (null === metric || true === seenKeys.has(metric.key)) {
       continue;
@@ -251,6 +255,7 @@ function extractOutlookMetric(
   definition: OutlookMetricDefinition,
   includePeriodLabel: boolean,
   sectionHeading: string | undefined,
+  documentCurrencyCode: string,
 ): EarningsOutlookMetric | null {
   let bestCandidate: OutlookMetricCandidate | null = null;
   for (const line of lines) {
@@ -263,7 +268,12 @@ function extractOutlookMetric(
         continue;
       }
 
-      const value = extractOutlookValue(line, pattern, definition.valueType);
+      const value = extractOutlookValue(
+        line,
+        pattern,
+        definition.valueType,
+        documentCurrencyCode,
+      );
       if (null === value) {
         continue;
       }
@@ -355,6 +365,7 @@ function extractOutlookValue(
   line: string,
   pattern: RegExp,
   valueType: OutlookValueType,
+  documentCurrencyCode: string,
 ): string | null {
   pattern.lastIndex = 0;
   const patternMatch = pattern.exec(line);
@@ -365,11 +376,11 @@ function extractOutlookValue(
     }
 
     const value = getGrowthOutlookValue(valueText) ??
-      getOutlookRangeValue(valueText, valueType) ??
+      getOutlookRangeValue(valueText, valueType, documentCurrencyCode) ??
       ("eps" === valueType ? getEpsPercentOutlookValue(valueText) : null) ??
-      ("text" === valueType ? getSingleOutlookValue(valueText, "money") : null) ??
+      ("text" === valueType ? getSingleOutlookValue(valueText, "money", documentCurrencyCode) : null) ??
       ("text" === valueType ? getNumericGrowthOutlookValue(valueText) : null) ??
-      getSingleOutlookValue(valueText, valueType);
+      getSingleOutlookValue(valueText, valueType, documentCurrencyCode);
     if (null !== value) {
       return value;
     }
@@ -438,7 +449,11 @@ function getNumericGrowthOutlookValue(value: string): string | null {
   return `${formatPercent(Number.parseFloat(percentMatch[1]))} ${getGrowthDirection(value)}`;
 }
 
-function getOutlookRangeValue(value: string, valueType: OutlookValueType): string | null {
+function getOutlookRangeValue(
+  value: string,
+  valueType: OutlookValueType,
+  documentCurrencyCode: string,
+): string | null {
   if ("eps" === valueType) {
     const percentRangeValue = getPercentRangeOutlookValue(value);
     if (null !== percentRangeValue) {
@@ -464,7 +479,7 @@ function getOutlookRangeValue(value: string, valueType: OutlookValueType): strin
       const firstValue = parseNumber(firstRangeValue);
       const secondValue = parseNumber(secondRangeValue);
       if (null !== firstValue && null !== secondValue) {
-        return `${formatEps(firstValue)} to ${formatEps(secondValue)}`;
+        return `${formatEps(firstValue, documentCurrencyCode)} to ${formatEps(secondValue, documentCurrencyCode)}`;
       }
       continue;
     }
@@ -474,9 +489,10 @@ function getOutlookRangeValue(value: string, valueType: OutlookValueType): strin
     }
 
     const inferredUnit = getMoneyUnit(secondRangeValue) ?? getMoneyUnit(firstRangeValue);
-    const inferredCurrencyCode = getCurrencyCodeFromText(secondRangeValue) ??
-      getCurrencyCodeFromText(firstRangeValue) ??
-      getCurrencyCodeFromText(value);
+    const inferredCurrencyCode = getCurrencyCodeFromText(secondRangeValue, documentCurrencyCode) ??
+      getCurrencyCodeFromText(firstRangeValue, documentCurrencyCode) ??
+      getCurrencyCodeFromText(value, documentCurrencyCode) ??
+      documentCurrencyCode;
     const firstMoneyValue = parseMoneyWithOptionalUnit(firstRangeValue, inferredUnit, inferredCurrencyCode);
     const secondMoneyValue = parseMoneyWithOptionalUnit(secondRangeValue, inferredUnit, inferredCurrencyCode);
     if (null !== firstMoneyValue && null !== secondMoneyValue) {
@@ -487,7 +503,11 @@ function getOutlookRangeValue(value: string, valueType: OutlookValueType): strin
   return null;
 }
 
-function getSingleOutlookValue(value: string, valueType: OutlookValueType): string | null {
+function getSingleOutlookValue(
+  value: string,
+  valueType: OutlookValueType,
+  documentCurrencyCode: string,
+): string | null {
   if ("percent" === valueType) {
     const percentMatch = value.match(/-?\d+(?:\.\d+)?\s*%/);
     return percentMatch ? percentMatch[0].replace(/\s+/g, "") : null;
@@ -495,11 +515,11 @@ function getSingleOutlookValue(value: string, valueType: OutlookValueType): stri
 
   if ("eps" === valueType) {
     const epsValue = findNumericValue(value, {maxAbsValue: 100, skipPercentages: true});
-    return null === epsValue ? null : formatEps(epsValue);
+    return null === epsValue ? null : formatEps(epsValue, documentCurrencyCode);
   }
 
   if ("money" === valueType) {
-    const inferredCurrencyCode = getCurrencyCodeFromText(value);
+    const inferredCurrencyCode = getCurrencyCodeFromText(value, documentCurrencyCode) ?? documentCurrencyCode;
     for (const moneyMatch of value.matchAll(singleMoneyPattern)) {
       const token = moneyMatch[0];
       if (false === hasMoneyValueCue(token)) {
@@ -582,8 +602,9 @@ function parseNumber(value: unknown): number | null {
 
   const normalizedValue = value
     .replace(/^\((.*)\)$/, "-$1")
+    .replace(/C\s*\$/g, "")
     .replace(/[€£¥$]/g, "")
-    .replace(/\b(?:usd|eur|gbp|jpy)\b/gi, "")
+    .replace(/\b(?:usd|cad|eur|gbp|jpy)\b/gi, "")
     .replaceAll(",", "")
     .replaceAll("%", "")
     .trim()
@@ -608,7 +629,7 @@ function parseMoneyWithOptionalUnit(
   }
 
   const unit = getMoneyUnit(value) ?? inferredUnit;
-  const currencyCode = getCurrencyCodeFromText(value) ?? inferredCurrencyCode;
+  const currencyCode = getCurrencyCodeFromText(value, inferredCurrencyCode) ?? inferredCurrencyCode;
   let moneyValue = parsedValue;
   if (!unit) {
     return {
@@ -634,14 +655,21 @@ function parseMoneyWithOptionalUnit(
 }
 
 function hasMoneyValueCue(value: string): boolean {
-  return /[$€£¥]|\b(?:USD|EUR|GBP|JPY)\b/i.test(value) || undefined !== getMoneyUnit(value);
+  return /[$€£¥]|\b(?:USD|CAD|EUR|GBP|JPY)\b/i.test(value) || undefined !== getMoneyUnit(value);
 }
 
 function getMoneyUnit(value: string): string | undefined {
   return value.match(/(trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b/i)?.[1]?.toLowerCase();
 }
 
-function getCurrencyCodeFromText(text: string): string | undefined {
+function getCurrencyCodeFromText(
+  text: string,
+  dollarCurrencyCode = "USD",
+): string | undefined {
+  if (/(?:^|[^A-Za-z])C\s*\$/.test(text) || /\bCAD\b|\bCanadian dollars?\b/i.test(text)) {
+    return "CAD";
+  }
+
   if (text.includes("€") || /\bEUR\b/i.test(text)) {
     return "EUR";
   }
@@ -654,16 +682,20 @@ function getCurrencyCodeFromText(text: string): string | undefined {
     return "JPY";
   }
 
-  if (text.includes("$") || /\bUSD\b/i.test(text)) {
+  if (/US\s*\$|\bUSD\b|\bU\.S\. dollars?\b/i.test(text)) {
     return "USD";
+  }
+
+  if (text.includes("$")) {
+    return dollarCurrencyCode;
   }
 
   return undefined;
 }
 
-function formatEps(value: number): string {
+function formatEps(value: number, currencyCode: string): string {
   const sign = value < 0 ? "-" : "";
-  return `${sign}$${Math.abs(value).toFixed(2).replace(/\.?0+$/, "")}`;
+  return `${sign}${getCurrencySymbol(currencyCode)}${Math.abs(value).toFixed(2).replace(/\.?0+$/, "")}`;
 }
 
 function formatMoneyCompact(value: number, currencyCode: string): string {
@@ -690,6 +722,10 @@ function formatMoneyCompact(value: number, currencyCode: string): string {
 }
 
 function getCurrencySymbol(currencyCode: string): string {
+  if ("CAD" === currencyCode) {
+    return "C$";
+  }
+
   if ("EUR" === currencyCode) {
     return "€";
   }

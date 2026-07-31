@@ -1,6 +1,12 @@
 import moment from "moment-timezone";
 import {type EarningsEvent} from "./earnings.ts";
 import {
+  getMetricCandidateScore,
+  getPositionedQuarterValues,
+  hasGaapNarrativeBeforeAdjustment,
+  isEmbeddedAlphaNumericValue,
+} from "./earnings-results-format-selection.ts";
+import {
   extractOutlookMetrics,
   type EarningsOutlookMetric,
 } from "./earnings-results-outlook.ts";
@@ -74,6 +80,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
     key: "adjusted_eps",
     label: "Adj EPS",
     patterns: [
+      /\badjusted\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
       /\badjusted\s+(?:\d{1,2}\s+)?(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?(?:earnings\s+per\s+(?:common\s+)?share|eps)\b/i,
       /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?eps\b/i,
       /\bnon-gaap\s+(?:diluted\s+)?(?:earnings\s+per\s+share|eps)\b/i,
@@ -87,6 +94,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
       /\b(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\b/i,
       /\bdiluted\s+eps\b/i,
       /\bgaap\s+(?:diluted\s+)?eps\b/i,
+      /\b(?:reported\s+)?(?:net\s+)?earnings?\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
       /(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?(?:\s*(?:cents?|¢))?)\s+per\s+(?:fully\s+)?(?:common\s+)?diluted\s+share\b/i,
       /\beps\b/i,
     ],
@@ -102,7 +110,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
       /\brevenues?\b/i,
       /\bsales\b/i,
     ],
-    skipPattern: /\bcost\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon)\s+sales\b|\bsales\s+of\s+pipeline\s+gas\b/i,
+    skipPattern: /\bcost\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b/i,
     valueType: "money",
   },
   {
@@ -132,6 +140,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
     patterns: [
       /\bproduction\b/i,
     ],
+    skipPattern: /\b(?:capacity|startup|on\s+plan|guidance|outlook|forecast)\b/i,
     valueType: "number",
   },
 ];
@@ -139,12 +148,22 @@ export function parseEarningsDocument(html: string): ParsedEarningsDocument {
   const text = htmlToText(html);
   const lines = getMeaningfulLines(text);
   const quarterLabel = getQuarterLabel(text);
+  const documentCurrencyCode = getDocumentCurrencyCode(lines);
   return {
     headline: getDocumentHeadline(lines),
-    metrics: extractEarningsMetrics(lines, quarterLabel),
-    outlook: extractOutlookMetrics(lines),
+    metrics: extractEarningsMetrics(lines, quarterLabel, documentCurrencyCode),
+    outlook: extractOutlookMetrics(lines, documentCurrencyCode),
     quarterLabel,
   };
+}
+
+function getDocumentCurrencyCode(lines: string[]): string | undefined {
+  const currencyDeclaration = lines
+    .slice(0, 60)
+    .find(line => /\b(?:Canadian|New Taiwan|U\.S\.)\s+dollars?\b|\b(?:CAD|TWD|NTD|USD|EUR|GBP|JPY)\b|NT\s*\$/i.test(line));
+  return undefined === currencyDeclaration
+    ? undefined
+    : getCurrencyCodeFromText(currencyDeclaration);
 }
 
 export function getMessageMetrics(
@@ -535,6 +554,7 @@ function getQuarterFromName(name: string): string | undefined {
 function extractEarningsMetrics(
   lines: string[],
   quarterLabel: string | undefined,
+  documentCurrencyCode: string | undefined,
 ): EarningsResultMetric[] {
   const metrics: EarningsResultMetric[] = [];
   const seenKeys = new Set<string>();
@@ -545,10 +565,15 @@ function extractEarningsMetrics(
       continue;
     }
 
-    const preferredMetric = extractMetric(preferredSelection.lines, definition, quarterLabel);
+    const preferredMetric = extractMetric(
+      preferredSelection.lines,
+      definition,
+      quarterLabel,
+      documentCurrencyCode,
+    );
     const metric = preferredMetric ?? (true === preferredSelection.exclusive
       ? null
-      : extractMetric(lines, definition, quarterLabel));
+      : extractMetric(lines, definition, quarterLabel, documentCurrencyCode));
     if (null === metric) {
       continue;
     }
@@ -626,11 +651,17 @@ function extractMetric(
   lines: string[],
   definition: MetricDefinition,
   quarterLabel: string | undefined,
+  documentCurrencyCode: string | undefined,
 ): EarningsResultMetric | null {
+  let bestCandidate: {metric: EarningsResultMetric; score: number} | null = null;
   for (const [lineIndex, line] of lines.entries()) {
     const hasExplicitGaapEps = "gaap_eps" === definition.key &&
       /\bgaap\s+(?:diluted\s+)?eps\b/i.test(line);
-    if (definition.skipPattern?.test(line) && false === hasExplicitGaapEps) {
+    const hasReportedGaapEps = "gaap_eps" === definition.key &&
+      true === hasGaapNarrativeBeforeAdjustment(line, definition.patterns);
+    if (definition.skipPattern?.test(line) &&
+        false === hasExplicitGaapEps &&
+        false === hasReportedGaapEps) {
       continue;
     }
 
@@ -638,7 +669,12 @@ function extractMetric(
       continue;
     }
 
-    const metricLine = getMetricLineWithContinuation(lines, lineIndex, definition);
+    const hasMetricLabel = definition.patterns.some(pattern => pattern.test(line));
+    if (false === hasMetricLabel) {
+      continue;
+    }
+
+    const metricLine = getMetricLineWithContinuation(lines, lineIndex, definition, quarterLabel);
     const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(metricLine));
     if (!pattern) {
       continue;
@@ -648,7 +684,7 @@ function extractMetric(
       metricLine,
       pattern,
       definition.valueType,
-      getContextMoney(lines, lineIndex),
+      getContextMoney(lines, lineIndex, documentCurrencyCode),
       isNearTableNoteColumn(lines, lineIndex),
       undefined !== quarterLabel && hasMixedMonthQuarterColumns(lines, lineIndex),
     );
@@ -669,10 +705,20 @@ function extractMetric(
       value: metricLine,
       writable: false,
     });
-    return metric;
+    const score = getMetricCandidateScore({
+      lines,
+      lineIndex,
+      metricLine,
+      pattern,
+      quarterLabel,
+      valueType: definition.valueType,
+    });
+    if (null === bestCandidate || score > bestCandidate.score) {
+      bestCandidate = {metric, score};
+    }
   }
 
-  return null;
+  return bestCandidate?.metric ?? null;
 }
 
 function isPerShareOnlyNetIncomeLine(line: string): boolean {
@@ -687,8 +733,18 @@ function getMetricLineWithContinuation(
   lines: string[],
   lineIndex: number,
   definition: MetricDefinition,
+  quarterLabel: string | undefined,
 ): string {
   const baseLine = lines[lineIndex] ?? "";
+  const positionedQuarterValues = getPositionedQuarterValues(
+    lines,
+    lineIndex,
+    quarterLabel,
+  );
+  if (0 < positionedQuarterValues.length) {
+    return [baseLine, ...positionedQuarterValues].join(" ");
+  }
+
   const metricLines = [baseLine];
   const isSummaryHeading = isSummaryMetricHeading(baseLine, definition);
   for (let index = lineIndex + 1; index < lines.length && index <= lineIndex + 6; index++) {
@@ -796,7 +852,7 @@ function extractMetricValue(
     const metricText = null === perShareTableValue && null === preferredValue
       ? fallbackSearchText
       : preferredSearchText;
-    const currencyCode = getCurrencyCodeFromText(metricText) ?? contextMoney.currencyCode;
+    const currencyCode = getCurrencyCodeFromText(metricText, contextMoney.currencyCode) ?? contextMoney.currencyCode;
     return {
       currencyCode,
       numericValue: value,
@@ -830,7 +886,7 @@ function extractMetricValue(
 
     const metricText = true === useFallbackValue ? fallbackSearchText : sentenceSearchText;
     const explicitScale = getExplicitMoneyScale(metricText, parsedValueMatch.endIndex);
-    const currencyCode = getCurrencyCodeFromText(metricText) ?? contextMoney.currencyCode;
+    const currencyCode = getCurrencyCodeFromText(metricText, contextMoney.currencyCode) ?? contextMoney.currencyCode;
     const amount = parsedValueMatch.value * (explicitScale ?? contextMoney.scale);
     const maximumFractionDigits = getMoneyDisplayPrecision(
       metricText,
@@ -912,6 +968,11 @@ function findEpsValue(text: string): number | null {
 }
 
 function findPerShareTableValue(text: string): number | null {
+  const hasTableSegments = /\bBasic\b/i.test(text) || 2 <= (text.match(/\|/g)?.length ?? 0);
+  if (false === hasTableSegments) {
+    return null;
+  }
+
   return getLastPerShareSegmentValue(text, "Diluted") ?? getLastPerShareSegmentValue(text, "Basic");
 }
 
@@ -930,8 +991,12 @@ function getLastPerShareSegmentValue(text: string, label: "Basic" | "Diluted"): 
   return values[values.length - 1] ?? null;
 }
 
-function getContextMoney(lines: string[], lineIndex: number): MoneyContext {
-  let currencyCode: string | undefined;
+function getContextMoney(
+  lines: string[],
+  lineIndex: number,
+  documentCurrencyCode: string | undefined,
+): MoneyContext {
+  let currencyCode = documentCurrencyCode;
   // Scan upward for the nearest "in millions / $ in thousands / ..." declaration
   // governing this row. Income statements interleave many empty separator rows
   // ("| |") between the unit header and the figures, so the lookback budget is
@@ -945,7 +1010,7 @@ function getContextMoney(lines: string[], lineIndex: number): MoneyContext {
       continue;
     }
 
-    currencyCode ??= getCurrencyCodeFromText(line);
+    currencyCode = getCurrencyCodeFromText(line, currencyCode) ?? currencyCode;
     const scale = getMoneyScaleFromContextText(line);
     if (null !== scale) {
       return {
@@ -1011,9 +1076,16 @@ function getMoneyScaleFromContextText(text: string): number | null {
   return null;
 }
 
-function getCurrencyCodeFromText(text: string): string | undefined {
+function getCurrencyCodeFromText(
+  text: string,
+  dollarCurrencyCode = "USD",
+): string | undefined {
   if (/NT\s*\$|\b(?:TWD|NTD)\b|\bNew Taiwan dollars?\b/i.test(text)) {
     return "TWD";
+  }
+
+  if (/(?:^|[^A-Za-z])C\s*\$/.test(text) || /\bCAD\b|\bCanadian dollars?\b/i.test(text)) {
+    return "CAD";
   }
 
   if (text.includes("€") || /\bEUR\b/i.test(text)) {
@@ -1028,8 +1100,12 @@ function getCurrencyCodeFromText(text: string): string | undefined {
     return "JPY";
   }
 
-  if (text.includes("$") || /\bUSD\b/i.test(text) || /\bdollars?\b/i.test(text)) {
+  if (/US\s*\$|\bUSD\b|\bU\.S\. dollars?\b/i.test(text)) {
     return "USD";
+  }
+
+  if (text.includes("$")) {
+    return dollarCurrencyCode;
   }
 
   return undefined;
@@ -1116,6 +1192,10 @@ function findNumericValueMatches(
   for (const numberMatch of numberMatches) {
     const token = numberMatch[0];
     const endIndex = numberMatch.index + token.length;
+    if (true === isEmbeddedAlphaNumericValue(text, numberMatch.index, endIndex)) {
+      continue;
+    }
+
     if (true === options.skipPercentages && "%" === text.slice(endIndex, endIndex + 1)) {
       continue;
     }
@@ -1235,6 +1315,7 @@ export function parseNumber(value: unknown): number | null {
     .replace(/^\((.*)\)$/, "-$1")
     .replace(/^\((.*)$/, "-$1")
     .replace(/NT\s*\$/gi, "")
+    .replace(/C\s*\$/gi, "")
     .replace(/[$€£¥]/g, "")
     .replaceAll(",", "")
     .replaceAll("%", "")
@@ -1293,6 +1374,10 @@ export function formatMoneyCompact(
 function getCurrencySymbol(currencyCode: string): string {
   if ("TWD" === currencyCode) {
     return "NT$";
+  }
+
+  if ("CAD" === currencyCode) {
+    return "C$";
   }
 
   if ("EUR" === currencyCode) {
