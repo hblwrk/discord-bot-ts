@@ -150,39 +150,23 @@ export function parseEarningsDocument(html: string): ParsedEarningsDocument {
 export function getMessageMetrics(
   secMetrics: EarningsResultMetric[],
   surprise: NasdaqSurprise | null,
-  event: EarningsEvent,
+  _event: EarningsEvent,
 ): EarningsResultMetric[] {
-  const consensusEps = surprise?.consensusEps ?? parseNumber(event.epsConsensus) ?? undefined;
   const metrics = dropImplausibleMoneyMetrics(
-    normalizeEpsMetrics([...secMetrics], surprise, consensusEps),
+    normalizeEpsMetrics([...secMetrics]),
     surprise,
   );
-  const hasAffoPerShare = metrics.some(metric => "affo_per_share" === metric.key);
-  const hasAdjustedEps = metrics.some(metric => "adjusted_eps" === metric.key);
-  const hasGaapEps = metrics.some(metric => "gaap_eps" === metric.key);
-
-  if ("number" === typeof surprise?.actualEps &&
-      false === hasAffoPerShare &&
-      false === hasAdjustedEps &&
-      false === hasGaapEps) {
-    metrics.unshift({
-      key: "nasdaq_eps",
-      label: "EPS",
-      numericValue: surprise.actualEps,
-      value: formatEps(surprise.actualEps),
-    });
-  }
-
-  const epsMetric = metrics.find(metric => "affo_per_share" === metric.key) ??
-    metrics.find(metric => "adjusted_eps" === metric.key) ??
-    metrics.find(metric => "nasdaq_eps" === metric.key || "gaap_eps" === metric.key);
-  if (epsMetric && "number" === typeof consensusEps && true === canCompareAgainstUsdEstimate(epsMetric)) {
-    epsMetric.estimate = formatEps(consensusEps);
-    epsMetric.outcome = getOutcome(epsMetric.numericValue, consensusEps);
+  const epsMetric = getProviderMatchedEpsMetric(metrics, surprise);
+  if (epsMetric &&
+      "number" === typeof surprise?.consensusEps &&
+      true === canCompareAgainstUsdEstimate(epsMetric)) {
+    epsMetric.estimate = formatEps(surprise.consensusEps);
+    epsMetric.outcome = getOutcome(epsMetric.numericValue, surprise.consensusEps);
   }
 
   const revenueMetric = metrics.find(metric => "revenue" === metric.key);
   if (revenueMetric &&
+      true === isProviderMatchedMetric(revenueMetric.numericValue, surprise?.actualRevenue, "money") &&
       "number" === typeof surprise?.consensusRevenue &&
       true === canCompareAgainstUsdEstimate(revenueMetric)) {
     revenueMetric.estimate = formatUsdCompact(surprise.consensusRevenue);
@@ -235,22 +219,9 @@ function canCompareAgainstUsdEstimate(metric: EarningsResultMetric): boolean {
 
 function normalizeEpsMetrics(
   metrics: EarningsResultMetric[],
-  surprise: NasdaqSurprise | null,
-  consensusEps: number | undefined,
 ): EarningsResultMetric[] {
-  const actualEps = surprise?.actualEps;
-  const affoPerShareMetric = metrics.find(metric => "affo_per_share" === metric.key);
   const adjustedEpsMetric = metrics.find(metric => "adjusted_eps" === metric.key);
   const gaapEpsMetric = metrics.find(metric => "gaap_eps" === metric.key);
-  const primaryEpsMetric = affoPerShareMetric ?? adjustedEpsMetric ?? gaapEpsMetric;
-
-  if ("number" === typeof actualEps &&
-      undefined !== primaryEpsMetric &&
-      true === canCompareAgainstUsdEstimate(primaryEpsMetric) &&
-      true === isImplausibleSecEps(primaryEpsMetric.numericValue, actualEps, consensusEps)) {
-    primaryEpsMetric.numericValue = actualEps;
-    primaryEpsMetric.value = formatEps(actualEps);
-  }
 
   if (adjustedEpsMetric &&
       gaapEpsMetric &&
@@ -261,31 +232,36 @@ function normalizeEpsMetrics(
   return metrics;
 }
 
-function isImplausibleSecEps(
-  secValue: number | undefined,
-  actualEps: number,
-  consensusEps: number | undefined,
+function getProviderMatchedEpsMetric(
+  metrics: EarningsResultMetric[],
+  surprise: NasdaqSurprise | null,
+): EarningsResultMetric | undefined {
+  return metrics
+    .filter(metric => true === isEpsMetricKey(metric.key))
+    .find(metric => true === isProviderMatchedMetric(
+      metric.numericValue,
+      surprise?.actualEps,
+      "eps",
+    ));
+}
+
+function isProviderMatchedMetric(
+  filingValue: number | undefined,
+  providerValue: number | undefined,
+  valueType: "eps" | "money",
 ): boolean {
-  if ("number" !== typeof secValue || false === Number.isFinite(secValue)) {
+  if ("number" !== typeof filingValue ||
+      "number" !== typeof providerValue ||
+      false === Number.isFinite(filingValue) ||
+      false === Number.isFinite(providerValue)) {
     return false;
   }
 
-  const referenceEps = consensusEps ?? actualEps;
-  const closeEnoughTolerance = Math.max(0.25, Math.abs(actualEps) * 0.25);
-  if (Math.abs(secValue - actualEps) <= closeEnoughTolerance) {
-    return false;
-  }
-
-  if (Math.abs(secValue) >= 10 && Math.abs(referenceEps) < 5) {
-    return true;
-  }
-
-  if (Math.sign(secValue) !== Math.sign(actualEps) &&
-      Math.abs(secValue - actualEps) > 0.5) {
-    return true;
-  }
-
-  return Math.abs(secValue - actualEps) > Math.max(1, Math.abs(referenceEps) * 2);
+  const largestValue = Math.max(Math.abs(filingValue), Math.abs(providerValue));
+  const tolerance = "eps" === valueType
+    ? Math.max(0.02, largestValue * 0.005)
+    : Math.max(1_000_000, largestValue * 0.005);
+  return Math.abs(filingValue - providerValue) <= tolerance;
 }
 
 function isImplausibleSecondaryGaapEps(
@@ -680,13 +656,20 @@ function extractMetric(
       continue;
     }
 
-    return {
+    const metric: EarningsResultMetric = {
       currencyCode: metricValue.currencyCode,
       key: definition.key,
       label: definition.label,
       numericValue: metricValue.numericValue,
       value: metricValue.value,
     };
+    Object.defineProperty(metric, "sourceSnippet", {
+      configurable: false,
+      enumerable: false,
+      value: metricLine,
+      writable: false,
+    });
+    return metric;
   }
 
   return null;

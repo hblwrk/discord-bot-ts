@@ -5,6 +5,10 @@ import {
   parseNumber,
   type EarningsResultMetric,
 } from "./earnings-results-format.ts";
+import {
+  type EarningsMetricCandidate,
+  getMetricBasis,
+} from "./earnings-results-reconcile.ts";
 import {type SecCurrentFiling} from "./earnings-results-sec.ts";
 
 type Logger = {
@@ -46,6 +50,7 @@ type XbrlMetricDefinition = {
 };
 
 type XbrlFactCandidate = {
+  concept: string;
   currencyCode: string;
   durationDays: number | null;
   fact: SecCompanyFact;
@@ -101,32 +106,32 @@ const xbrlMetricDefinitions: XbrlMetricDefinition[] = [
   },
 ];
 
-export async function loadSecXbrlMetrics(
+export async function loadSecXbrlCandidates(
   filing: SecCurrentFiling,
   dependencies: SecRequestDependencies,
-): Promise<EarningsResultMetric[]> {
+): Promise<EarningsMetricCandidate[]> {
   const response = await dependencies.getWithRetryFn<SecCompanyFactsResponse>(
     `${secCompanyFactsEndpoint}/CIK${filing.cik}.json`,
     {
       headers: secRequestHeaders,
     },
   );
-  return extractSecXbrlMetrics(response.data, filing.accessionNumber);
+  return extractSecXbrlCandidates(response.data, filing.accessionNumber);
 }
 
-export function extractSecXbrlMetrics(
+export function extractSecXbrlCandidates(
   companyFacts: SecCompanyFactsResponse,
   accessionNumber: string,
-): EarningsResultMetric[] {
-  const metrics: EarningsResultMetric[] = [];
+): EarningsMetricCandidate[] {
+  const candidates: EarningsMetricCandidate[] = [];
 
-  for (const definition of xbrlMetricDefinitions) {
+  for (const [definitionIndex, definition] of xbrlMetricDefinitions.entries()) {
     const candidate = getBestFactCandidate(companyFacts, accessionNumber, definition);
     if (null === candidate) {
       continue;
     }
 
-    metrics.push({
+    const metric: EarningsResultMetric = {
       currencyCode: candidate.currencyCode,
       key: definition.key,
       label: definition.label,
@@ -134,48 +139,41 @@ export function extractSecXbrlMetrics(
       value: "eps" === definition.valueType
         ? formatEps(candidate.value, candidate.currencyCode)
         : formatMoneyCompact(candidate.value, candidate.currencyCode),
+    };
+    candidates.push({
+      basis: getMetricBasis(definition.key),
+      concept: candidate.concept,
+      id: `xbrl:${definition.key}:${definitionIndex}`,
+      metric,
+      period: {
+        durationDays: candidate.durationDays ?? undefined,
+        end: candidate.fact.end,
+        fiscalPeriod: candidate.fact.fp,
+        fiscalYear: undefined === candidate.fact.fy ? undefined : String(candidate.fact.fy),
+        frame: candidate.fact.frame,
+        label: getFactPeriodLabel(candidate.fact),
+        start: candidate.fact.start,
+      },
+      source: "xbrl",
     });
   }
 
-  return metrics;
+  return candidates;
 }
 
-export function mergeXbrlAndHtmlMetrics(
-  xbrlMetrics: EarningsResultMetric[],
-  htmlMetrics: EarningsResultMetric[],
-): EarningsResultMetric[] {
-  if (0 === xbrlMetrics.length) {
-    return htmlMetrics;
+function getFactPeriodLabel(fact: SecCompanyFact): string | undefined {
+  const fiscalPeriod = fact.fp?.trim().toUpperCase();
+  if (false === /^Q[1-4]$/.test(fiscalPeriod ?? "")) {
+    return undefined;
   }
 
-  const metricsByKey = new Map<string, EarningsResultMetric>();
-  for (const metric of xbrlMetrics) {
-    metricsByKey.set(metric.key, metric);
+  const fiscalYear = String(fact.fy ?? "").trim();
+  if (/^\d{4}$/.test(fiscalYear)) {
+    return `${fiscalPeriod} ${fiscalYear}`;
   }
 
-  for (const metric of htmlMetrics) {
-    if (false === metricsByKey.has(metric.key)) {
-      metricsByKey.set(metric.key, metric);
-    }
-  }
-
-  const preferredOrder = [
-    "affo_per_share",
-    "adjusted_eps",
-    "gaap_eps",
-    "nasdaq_eps",
-    "revenue",
-    "net_income",
-    "refinery_throughput",
-    "production",
-  ];
-  return [
-    ...preferredOrder.flatMap(key => {
-      const metric = metricsByKey.get(key);
-      return undefined === metric ? [] : [metric];
-    }),
-    ...[...metricsByKey.values()].filter(metric => false === preferredOrder.includes(metric.key)),
-  ];
+  const endYear = fact.end?.match(/^(\d{4})-/)?.[1];
+  return undefined === endYear ? undefined : `${fiscalPeriod} ${endYear}`;
 }
 
 function getBestFactCandidate(
@@ -204,11 +202,12 @@ function getBestFactCandidate(
         }
 
         const durationDays = getDurationDays(fact);
-        if (null !== durationDays && durationDays > 140) {
+        if (null === durationDays || durationDays < 60 || durationDays > 122) {
           continue;
         }
 
         candidates.push({
+          concept: `${concept.namespace}:${concept.name}`,
           currencyCode,
           durationDays,
           fact,

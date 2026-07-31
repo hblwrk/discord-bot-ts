@@ -1,7 +1,6 @@
 import {describe, expect, test} from "vitest";
 import {
-  extractSecXbrlMetrics,
-  mergeXbrlAndHtmlMetrics,
+  extractSecXbrlCandidates,
   type SecCompanyFactsResponse,
 } from "./earnings-results-xbrl.ts";
 
@@ -60,7 +59,8 @@ describe("earnings result XBRL metrics", () => {
       },
     };
 
-    expect(extractSecXbrlMetrics(companyFacts, "0000034088-26-000042")).toEqual([
+    const candidates = extractSecXbrlCandidates(companyFacts, "0000034088-26-000042");
+    expect(candidates.map(candidate => candidate.metric)).toEqual([
       {
         currencyCode: "USD",
         key: "gaap_eps",
@@ -83,6 +83,22 @@ describe("earnings result XBRL metrics", () => {
         value: "$8.1B",
       },
     ]);
+    expect(candidates.find(candidate => "revenue" === candidate.metric.key)).toEqual(
+      expect.objectContaining({
+        basis: "gaap",
+        concept: "us-gaap:RevenueFromContractWithCustomerExcludingAssessedTax",
+        period: {
+          durationDays: 90,
+          end: "2026-03-31",
+          fiscalPeriod: "Q1",
+          fiscalYear: undefined,
+          frame: "CY2026Q1",
+          label: "Q1 2026",
+          start: "2026-01-01",
+        },
+        source: "xbrl",
+      }),
+    );
   });
 
   test("supports IFRS currency facts", () => {
@@ -132,7 +148,8 @@ describe("earnings result XBRL metrics", () => {
       },
     };
 
-    expect(extractSecXbrlMetrics(companyFacts, "0001776985-26-000031")).toEqual([
+    expect(extractSecXbrlCandidates(companyFacts, "0001776985-26-000031")
+      .map(candidate => candidate.metric)).toEqual([
       expect.objectContaining({
         currencyCode: "EUR",
         key: "gaap_eps",
@@ -151,26 +168,25 @@ describe("earnings result XBRL metrics", () => {
     ]);
   });
 
-  test("keeps HTML-only AFFO per share ahead of XBRL GAAP EPS", () => {
-    expect(mergeXbrlAndHtmlMetrics([{
-      key: "gaap_eps",
-      label: "EPS",
-      numericValue: 4.83,
-      value: "$4.83",
-    }], [{
-      key: "affo_per_share",
-      label: "AFFO/share",
-      numericValue: 11.78,
-      value: "$11.78",
-    }, {
-      key: "revenue",
-      label: "Revenue",
-      numericValue: 2_625_000_000,
-      value: "$2.625B",
-    }]).map(metric => metric.key)).toEqual([
-      "affo_per_share",
-      "gaap_eps",
-      "revenue",
-    ]);
+  test("rejects accession facts without a quarterly duration", () => {
+    const companyFacts: SecCompanyFactsResponse = {
+      facts: {
+        "us-gaap": {
+          Revenues: {
+            units: {
+              USD: [{
+                accn: "0000034088-26-000042",
+                end: "2026-03-31",
+                fp: "Q1",
+                form: "8-K",
+                val: 85_140_000_000,
+              }],
+            },
+          },
+        },
+      },
+    };
+
+    expect(extractSecXbrlCandidates(companyFacts, "0000034088-26-000042")).toEqual([]);
   });
 });

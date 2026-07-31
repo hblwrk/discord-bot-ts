@@ -147,6 +147,7 @@ describe("earnings result announcements", () => {
                   eps: "$1.16",
                   consensusForecast: "$0.96",
                   percentageSurprise: "20.83",
+                  revenueActual: "$85.14B",
                   revenueEstimate: "$80.74B",
                 }],
               },
@@ -336,8 +337,8 @@ describe("earnings result announcements", () => {
   });
 
   test("adds an AI summary to the earnings result announcement when available", async () => {
-    const rawSummary = "XOM reported Q1 2026 adjusted EPS of $1.16 and revenue of $85.14B, both ahead of consensus. Results were supported by broad earnings strength across the business. The company did not provide a quantified outlook.";
-    const formattedSummary = "`XOM` reported Q1 2026 adjusted EPS of `$1.16` and revenue of `$85.14B`, both ahead of consensus. Results were supported by broad earnings strength across the business. The company did not provide a quantified outlook.";
+    const rawSummary = "XOM reported first-quarter adjusted EPS of $1.16 and revenue of $85.14B. Diluted earnings per share was $1.00. The company did not provide a quantified outlook.";
+    const formattedSummary = "`XOM` reported first-quarter adjusted EPS of `$1.16` and revenue of `$85.14B`. Diluted earnings per share was `$1.00`. The company did not provide a quantified outlook.";
     postWithRetryFn.mockResolvedValue({
       data: {
         candidates: [{
@@ -345,6 +346,11 @@ describe("earnings result announcements", () => {
             parts: [{
               text: JSON.stringify({
                 summary: rawSummary,
+                sourceSnippets: [
+                  "Adjusted EPS | $1.16 | Diluted earnings per share | $1.00 | Total revenues and other income | 85,140 |",
+                  "Diluted earnings per share | $1.00",
+                  "Exxon Mobil reports first quarter 2026 results",
+                ],
               }),
             }],
           },
@@ -376,7 +382,7 @@ describe("earnings result announcements", () => {
     expect(postWithRetryFn).toHaveBeenCalledTimes(1);
   });
 
-  test("suppresses hard revenue contradictions and stops retrying after repeated AI checks", async () => {
+  test("suppresses unverified revenue anomalies and stops after repeated AI checks", async () => {
     getWithRetryFn.mockImplementation(async (url: string) => {
       if (url.includes("company_tickers.json")) {
         return {
@@ -1414,7 +1420,7 @@ describe("earnings result announcements", () => {
     watcher.stop();
   });
 
-  test("uses AI extraction and suppresses suspicious earnings metrics when quality gate rejects them", async () => {
+  test("suppresses suspicious earnings metrics when the quality gate rejects them", async () => {
     getEarningsResultFn.mockResolvedValue({
       status: "ok",
       events: [{
@@ -1520,28 +1526,7 @@ describe("earnings result announcements", () => {
 
       throw new Error(`Unexpected URL ${url}`);
     });
-    postWithRetryFn
-      .mockResolvedValueOnce({
-        data: {
-          candidates: [{
-            content: {
-              parts: [{
-                text: JSON.stringify({
-                  quarterLabel: "Q1 2026",
-                  metrics: [{
-                    key: "revenue",
-                    numericValue: 14_550_000_000,
-                    currencyCode: "USD",
-                    sourceSnippet: "Revenue increased to 14.55 billion USD.",
-                  }],
-                  issues: [],
-                }),
-              }],
-            },
-          }],
-        },
-      })
-      .mockResolvedValueOnce({
+    postWithRetryFn.mockResolvedValueOnce({
         data: {
           candidates: [{
             content: {
@@ -1587,7 +1572,7 @@ describe("earnings result announcements", () => {
     });
 
     expect(result.announcements).toEqual([]);
-    expect(postWithRetryFn).toHaveBeenCalledTimes(2);
+    expect(postWithRetryFn).toHaveBeenCalledTimes(1);
     expect(skippedQualityGateAccessions.get("0001193125-26-123456")).toEqual({
       attempts: 1,
       gaveUp: false,
@@ -1637,31 +1622,15 @@ describe("earnings result announcements", () => {
             content: {
               parts: [{
                 text: JSON.stringify({
-                  metrics: [{
-                    key: "revenue",
-                    label: "Revenue",
-                    value: "14.55",
-                    unit: "billion",
-                    currencyCode: "USD",
-                    sourceSnippet: "Revenue increased to 14.55 billion USD.",
-                  }],
-                  issues: [],
-                }),
-              }],
-            },
-          }],
-        },
-      })
-      .mockResolvedValueOnce({
-        data: {
-          candidates: [{
-            content: {
-              parts: [{
-                text: JSON.stringify({
                   decision: "allow",
                   confidence: 0.92,
                   reason: "The filing text supports the metrics after retry.",
-                  issues: [],
+                  issues: [{
+                    severity: "low",
+                    metricKey: "gaap_eps",
+                    message: "The filing explicitly reports the EPS value.",
+                    sourceSnippet: "EPS | 20.80 | Revenue | 267 |",
+                  }],
                 }),
               }],
             },
@@ -1692,7 +1661,7 @@ describe("earnings result announcements", () => {
     });
 
     expect(retryResult.announcements).toHaveLength(1);
-    expect(postWithRetryFn).toHaveBeenCalledTimes(3);
+    expect(postWithRetryFn).toHaveBeenCalledTimes(2);
     expect(skippedQualityGateAccessions.has("0001193125-26-123456")).toBe(false);
   });
 

@@ -282,6 +282,7 @@ describe("extractOutlookMetrics", () => {
       "For the third quarter of 2026, revenues are expected to range between $2.525 and $2.575 billion.",
       "For the third quarter of 2026, adjusted EBITDA is expected to range between $1.275 and $1.315 billion.",
       "For the full year of 2026, total capital expenditures are expected to range between $5.000 and $6.000 billion.",
+      "Operating margin is expected to be approximately 35%.",
     ])).toEqual([
       {
         key: "revenue",

@@ -37,6 +37,8 @@ describe("earnings result formatting", () => {
       epsConsensus: "$0.96",
     };
     const metrics = getMessageMetrics(parsedDocument.metrics, {
+      actualEps: 1.16,
+      actualRevenue: 85_140_000_000,
       consensusEps: 0.96,
       consensusRevenue: 80_740_000_000,
     }, event);
@@ -1046,6 +1048,8 @@ describe("earnings result formatting", () => {
       epsConsensus: "$10.14",
     };
     const metrics = getMessageMetrics(parsedDocument.metrics, {
+      actualEps: 11.78,
+      actualRevenue: 2_625_000_000,
       consensusEps: 10.14,
       consensusRevenue: 2_580_000_000,
     }, event);
@@ -1159,6 +1163,7 @@ describe("earnings result formatting", () => {
       epsConsensus: "$4.27",
     };
     const metrics = getMessageMetrics(parsedDocument.metrics, {
+      actualEps: 4.31,
       consensusEps: 4.27,
     }, event);
 
@@ -1293,9 +1298,7 @@ describe("earnings result formatting", () => {
     expect(metrics).toEqual(expect.arrayContaining([
       expect.objectContaining({
         key: "gaap_eps",
-        estimate: "$0.85",
         numericValue: 0.77,
-        outcome: "miss",
         value: "$0.77",
       }),
       expect.objectContaining({
@@ -1333,7 +1336,7 @@ describe("earnings result formatting", () => {
     );
   });
 
-  test("uses Nasdaq actual EPS when SEC metrics do not contain EPS", () => {
+  test("does not publish provider-only actuals or unmatched consensus comparisons", () => {
     const event: EarningsEvent = {
       ticker: "ABC",
       when: "after_close",
@@ -1352,22 +1355,15 @@ describe("earnings result formatting", () => {
     ], {
       actualEps: 1,
       consensusEps: 1,
+      actualRevenue: 100_500_000_000,
       consensusRevenue: 100_000_000_000,
     }, event);
 
-    expect(metrics[0]).toMatchObject({
-      key: "nasdaq_eps",
-      estimate: "$1.00",
-      outcome: "inline",
-      value: "$1.00",
-    });
-    expect(metrics.find(metric => "revenue" === metric.key)).toMatchObject({
-      estimate: "$100B",
-      outcome: "miss",
-    });
+    expect(metrics.some(metric => "nasdaq_eps" === metric.key)).toBe(false);
+    expect(metrics.find(metric => "revenue" === metric.key)).not.toHaveProperty("estimate");
   });
 
-  test("uses Nasdaq EPS when parsed SEC EPS is implausible and drops bogus secondary GAAP EPS", () => {
+  test("does not overwrite filing EPS with an unmatched provider actual", () => {
     const event: EarningsEvent = {
       ticker: "RBA",
       when: "after_close",
@@ -1403,20 +1399,18 @@ describe("earnings result formatting", () => {
     expect(metrics).toEqual(expect.arrayContaining([
       expect.objectContaining({
         key: "adjusted_eps",
-        estimate: "$0.89",
-        outcome: "beat",
-        value: "$1.13",
+        value: "$13",
+      }),
+      expect.objectContaining({
+        key: "gaap_eps",
+        value: "$20",
       }),
       expect.objectContaining({
         key: "revenue",
         value: "$1.2B",
       }),
     ]));
-    expect(metrics).not.toEqual(expect.arrayContaining([
-      expect.objectContaining({
-        key: "gaap_eps",
-      }),
-    ]));
+    expect(metrics.find(metric => "adjusted_eps" === metric.key)).not.toHaveProperty("estimate");
   });
 
   test("formats message without quarter, filing items, estimate or outlook", () => {
