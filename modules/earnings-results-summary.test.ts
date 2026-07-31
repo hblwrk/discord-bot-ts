@@ -40,11 +40,19 @@ describe("AI earnings summaries", () => {
           content: {
             parts: [{
               text: JSON.stringify({
-                summary: "Example Corp reported first-quarter revenue of $10.2 billion and adjusted EPS of $1.42. Segment demand remained resilient during the period. Management guided fiscal 2026 revenue to $42 billion to $44 billion and adjusted EPS to $5.80 to $6.10.",
-                sourceSnippets: [
-                  "Revenue increased 12% to $10.2 billion and adjusted EPS was $1.42.",
-                  "segment demand remained resilient",
-                  "Example Corp expects fiscal 2026 revenue of $42 billion to $44 billion. Management expects adjusted EPS of $5.80 to $6.10.",
+                sentences: [
+                  {
+                    text: "Example Corp reported first-quarter revenue of $10.2 billion and adjusted EPS of $1.42.",
+                    sourceSnippet: "Revenue increased 12% to $10.2 billion and adjusted EPS was $1.42.",
+                  },
+                  {
+                    text: "Segment demand remained resilient during the period.",
+                    sourceSnippet: "segment demand remained resilient",
+                  },
+                  {
+                    text: "Management guided fiscal 2026 revenue to $42 billion to $44 billion and adjusted EPS to $5.80 to $6.10.",
+                    sourceSnippet: "Example Corp expects fiscal 2026 revenue of $42 billion to $44 billion. Management expects adjusted EPS of $5.80 to $6.10.",
+                  },
                 ],
               }),
             }],
@@ -75,14 +83,32 @@ describe("AI earnings summaries", () => {
     expect(result).toBe(
       "Reported first-quarter revenue of `$10.2 billion` and adjusted EPS of `$1.42`. Segment demand remained resilient during the period. Management guided fiscal 2026 revenue to `$42 billion` to `$44 billion` and adjusted EPS to `$5.80` to `$6.10`.",
     );
-    const requestBody = postWithRetryFn.mock.calls[0]?.[1] as {contents?: {parts?: {text?: string}[]}[]};
+    const requestBody = postWithRetryFn.mock.calls[0]?.[1] as {
+      contents?: {parts?: {text?: string}[]}[];
+      generationConfig?: {
+        responseJsonSchema?: {
+          properties?: {
+            sentences?: {
+              maxItems?: number;
+              minItems?: number;
+            };
+          };
+        };
+      };
+    };
     const prompt = requestBody.contents?.[0]?.parts?.find(part => "string" === typeof part.text)?.text ?? "";
     const filingText = prompt.split("Filing text:\n")[1] ?? "";
-    expect(prompt).toContain("Write exactly three concise plain-text sentences.");
-    expect(prompt).toContain("Return exactly three sourceSnippets in sentence order");
+    expect(prompt).toContain("Return exactly three sentence objects in order");
+    expect(prompt).toContain("Never claim that guidance or outlook is absent");
     expect(prompt).toContain("Return plain text only; do not include markdown, backticks, bullets, headings, or labels.");
     expect(prompt).toContain("Do not mention the company name in the summary");
     expect(prompt).toContain("Displayed result metrics:\n- Revenue: $10.2B");
+    expect(requestBody.generationConfig?.responseJsonSchema?.properties?.sentences).toEqual(
+      expect.objectContaining({
+        maxItems: 3,
+        minItems: 3,
+      }),
+    );
     expect(filingText.length).toBeLessThanOrEqual(20_100);
     expect(filingText).toContain("Opening excerpt:");
     expect(filingText).toContain("Example Corp reports first quarter 2026 results");
@@ -136,6 +162,151 @@ describe("AI earnings summaries", () => {
     );
   });
 
+  test("keeps grounded sentences when an unsupported no-outlook claim is returned", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                sentences: [{
+                  text: "Revenue rose 12% to $10.2 billion.",
+                  sourceSnippet: "Revenue rose 12% to $10.2 billion.",
+                }, {
+                  text: "Operating margin expanded 180 basis points.",
+                  sourceSnippet: "Operating margin expanded 180 basis points.",
+                }, {
+                  text: "No quantified outlook was provided.",
+                  sourceSnippet: "Example Corp reports first quarter 2026 results.",
+                }],
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await summarizeEarningsWithAi({
+      companyName: "Example Corp",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: `
+        <h1>Example Corp reports first quarter 2026 results.</h1>
+        <p>Revenue rose 12% to $10.2 billion.</p>
+        <p>Operating margin expanded 180 basis points.</p>
+      `,
+      ticker: "EXM",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result).toBe(
+      "Revenue rose `12%` to `$10.2 billion`. Operating margin expanded `180 basis points`.",
+    );
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "AI earnings summary failed validation for EXM (sentence 3 was not grounded or safely formatted); using a grounded partial summary.",
+    );
+    expect(postWithRetryFn).toHaveBeenCalledTimes(1);
+  });
+
+  test("uses exact material filing snippets when the generated prose is unsupported", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                sentences: [{
+                  text: "The top line was strong.",
+                  sourceSnippet: "Revenue rose 12% to $10.2 billion",
+                }, {
+                  text: "Profitability changed.",
+                  sourceSnippet: "Operating margin expanded 180 basis points.",
+                }, {
+                  text: "The release was issued.",
+                  sourceSnippet: "Example Corp reports first quarter 2026 results.",
+                }],
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await summarizeEarningsWithAi({
+      companyName: "Example Corp",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: `
+        <h1>Example Corp reports first quarter 2026 results.</h1>
+        <p>Revenue rose 12% to $10.2 billion</p>
+        <p>Operating margin expanded 180 basis points.</p>
+      `,
+      ticker: "EXM",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result).toBe(
+      "Revenue rose `12%` to `$10.2 billion`. Operating margin expanded `180 basis points`.",
+    );
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "AI earnings summary failed validation for EXM (sentence 1 was not grounded or safely formatted); using a grounded partial summary.",
+    );
+  });
+
+  test("keeps two grounded sentence objects when the provider returns too few", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                sentences: [{
+                  text: "U.S. sales increased 8%.",
+                  sourceSnippet: "U.S. sales increased 8%.",
+                }, {
+                  text: "Commercial demand remained resilient.",
+                  sourceSnippet: "Commercial demand remained resilient.",
+                }],
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await summarizeEarningsWithAi({
+      companyName: "Example Corp",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: `
+        <p>U.S. sales increased 8%.</p>
+        <p>Commercial demand remained resilient.</p>
+      `,
+      ticker: "EXM",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result).toBe("U.S. sales increased `8%`. Commercial demand remained resilient.");
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "AI earnings summary failed validation for EXM (expected 3 sentence objects, received 2); using a grounded partial summary.",
+    );
+  });
+
   test("rejects summaries whose evidence is missing or does not support their numbers", async () => {
     const postWithRetryFn = vi.fn().mockResolvedValue({
       data: {
@@ -174,6 +345,10 @@ describe("AI earnings summaries", () => {
     });
 
     expect(result).toBeNull();
+    expect(logger.log).toHaveBeenCalledWith(
+      "warn",
+      "AI earnings summary failed validation for EXM (sentence 1 was not grounded or safely formatted).",
+    );
   });
 
   test("rejects summaries that conflict with displayed result metrics", async () => {
