@@ -41,6 +41,11 @@ describe("AI earnings summaries", () => {
             parts: [{
               text: JSON.stringify({
                 summary: "Example Corp reported first-quarter revenue of $10.2 billion and adjusted EPS of $1.42. Segment demand remained resilient during the period. Management guided fiscal 2026 revenue to $42 billion to $44 billion and adjusted EPS to $5.80 to $6.10.",
+                sourceSnippets: [
+                  "Revenue increased 12% to $10.2 billion and adjusted EPS was $1.42.",
+                  "segment demand remained resilient",
+                  "Example Corp expects fiscal 2026 revenue of $42 billion to $44 billion. Management expects adjusted EPS of $5.80 to $6.10.",
+                ],
               }),
             }],
           },
@@ -74,6 +79,7 @@ describe("AI earnings summaries", () => {
     const prompt = requestBody.contents?.[0]?.parts?.find(part => "string" === typeof part.text)?.text ?? "";
     const filingText = prompt.split("Filing text:\n")[1] ?? "";
     expect(prompt).toContain("Write exactly three concise plain-text sentences.");
+    expect(prompt).toContain("Return exactly three sourceSnippets in sentence order");
     expect(prompt).toContain("Return plain text only; do not include markdown, backticks, bullets, headings, or labels.");
     expect(prompt).toContain("Do not mention the company name in the summary");
     expect(prompt).toContain("Displayed result metrics:\n- Revenue: $10.2B");
@@ -93,6 +99,11 @@ describe("AI earnings summaries", () => {
             parts: [{
               text: JSON.stringify({
                 summary: "EXM revenue rose 12% to $10.2 billion while operating margin expanded 180 basis points to 24.3%. EXM guided net sales to $690-$710M, adjusted EPS to $3.65-$3.85, and adjusted tax rate to 21%-22%. Revenue momentum remained broad.",
+                sourceSnippets: [
+                  "Revenue rose 12% to $10.2 billion while operating margin expanded 180 basis points to 24.3%.",
+                  "Guidance calls for net sales of $690-$710M, adjusted EPS of $3.65-$3.85, and an adjusted tax rate of 21%-22%.",
+                  "Revenue momentum remained broad.",
+                ],
               }),
             }],
           },
@@ -104,7 +115,14 @@ describe("AI earnings summaries", () => {
       companyName: "Example Corp",
       filingForm: "8-K",
       filingUrl: "https://www.sec.gov/example",
-      html: "<html><body><h1>Example Corp reports first quarter 2026 results</h1></body></html>",
+      html: `
+        <html><body>
+          <h1>Example Corp reports first quarter 2026 results</h1>
+          <p>Revenue rose 12% to $10.2 billion while operating margin expanded 180 basis points to 24.3%.</p>
+          <p>Guidance calls for net sales of $690-$710M, adjusted EPS of $3.65-$3.85, and an adjusted tax rate of 21%-22%.</p>
+          <p>Revenue momentum remained broad.</p>
+        </body></html>
+      `,
       ticker: "EXM",
     }, {
       logger,
@@ -116,6 +134,46 @@ describe("AI earnings summaries", () => {
     expect(result).toBe(
       "`EXM` revenue rose `12%` to `$10.2 billion` while operating margin expanded `180 basis points` to `24.3%`. `EXM` guided net sales to `$690-$710M`, adjusted EPS to `$3.65-$3.85`, and adjusted tax rate to `21%-22%`. Revenue momentum remained broad.",
     );
+  });
+
+  test("rejects summaries whose evidence is missing or does not support their numbers", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                summary: "Revenue reached $10.2 billion. Margins improved. Guidance increased.",
+                sourceSnippets: [
+                  "Revenue reached $9.8 billion.",
+                  "Margins improved.",
+                  "This guidance snippet was invented.",
+                ],
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await summarizeEarningsWithAi({
+      companyName: "Example Corp",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: `
+        <p>Revenue reached $9.8 billion.</p>
+        <p>Margins improved.</p>
+        <p>Guidance increased.</p>
+      `,
+      ticker: "EXM",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result).toBeNull();
   });
 
   test("rejects summaries that conflict with displayed result metrics", async () => {
@@ -205,6 +263,11 @@ describe("AI earnings summaries", () => {
             parts: [{
               text: JSON.stringify({
                 summary: "DOC reported net income of $193.48 million and EPS of $0.34. Revenue grew year over year. Guidance increased.",
+                sourceSnippets: [
+                  "Net income was $193.48 million and EPS was $0.34.",
+                  "Revenue grew year over year.",
+                  "Guidance increased.",
+                ],
               }),
             }],
           },
@@ -216,7 +279,14 @@ describe("AI earnings summaries", () => {
       companyName: "Healthpeak Properties, Inc.",
       filingForm: "8-K",
       filingUrl: "https://www.sec.gov/example",
-      html: "<html><body><h1>Healthpeak reports first quarter 2026 results</h1></body></html>",
+      html: `
+        <html><body>
+          <h1>Healthpeak reports first quarter 2026 results</h1>
+          <p>Net income was $193.48 million and EPS was $0.34.</p>
+          <p>Revenue grew year over year.</p>
+          <p>Guidance increased.</p>
+        </body></html>
+      `,
       metrics: [{
         key: "net_income",
         label: "Net income",
@@ -306,6 +376,11 @@ describe("AI earnings summaries", () => {
             parts: [{
               text: JSON.stringify({
                 summary: "  Example Corp grew revenue.\\n\\nMargins improved.   Guidance increased.  ",
+                sourceSnippets: [
+                  "Example Corp grew revenue.",
+                  "Margins improved.",
+                  "Guidance increased.",
+                ],
               }),
             }],
           },
@@ -317,7 +392,14 @@ describe("AI earnings summaries", () => {
       companyName: "Example Corp",
       filingForm: "8-K",
       filingUrl: "https://www.sec.gov/example",
-      html: "<html><body><h1>Example Corp reports first quarter 2026 results</h1></body></html>",
+      html: `
+        <html><body>
+          <h1>Example Corp reports first quarter 2026 results</h1>
+          <p>Example Corp grew revenue.</p>
+          <p>Margins improved.</p>
+          <p>Guidance increased.</p>
+        </body></html>
+      `,
       ticker: "EXM",
     }, {
       logger,
@@ -337,6 +419,11 @@ describe("AI earnings summaries", () => {
             parts: [{
               text: JSON.stringify({
                 summary: "Revenue rose 12%. Margins improved. Guidance increased.",
+                sourceSnippets: [
+                  "Revenue rose 12%.",
+                  "Margins improved.",
+                  "Guidance increased.",
+                ],
               }),
             }],
           },
@@ -348,7 +435,13 @@ describe("AI earnings summaries", () => {
       companyName: " ",
       filingForm: "8-K",
       filingUrl: "https://www.sec.gov/example",
-      html: "<html><body><h1>Revenue rose 12%</h1></body></html>",
+      html: `
+        <html><body>
+          <h1>Revenue rose 12%.</h1>
+          <p>Margins improved.</p>
+          <p>Guidance increased.</p>
+        </body></html>
+      `,
       ticker: " ",
     }, {
       logger,
@@ -368,6 +461,11 @@ describe("AI earnings summaries", () => {
             parts: [{
               text: JSON.stringify({
                 summary: "L.B. Foster Company reported revenue of $10 million. L.B. Foster's margins improved. Guidance increased.",
+                sourceSnippets: [
+                  "L.B. Foster Company reported revenue of $10 million.",
+                  "L.B. Foster's margins improved.",
+                  "Guidance increased.",
+                ],
               }),
             }],
           },
@@ -379,7 +477,14 @@ describe("AI earnings summaries", () => {
       companyName: "L.B. Foster Company",
       filingForm: "8-K",
       filingUrl: "https://www.sec.gov/example",
-      html: "<html><body><h1>L.B. Foster Company reports results</h1></body></html>",
+      html: `
+        <html><body>
+          <h1>L.B. Foster Company reports results</h1>
+          <p>L.B. Foster Company reported revenue of $10 million.</p>
+          <p>L.B. Foster's margins improved.</p>
+          <p>Guidance increased.</p>
+        </body></html>
+      `,
       ticker: "FSTR",
     }, {
       logger,

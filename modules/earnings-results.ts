@@ -7,29 +7,30 @@ import {
 import {
   checkEarningsQualityWithAi,
   clearEarningsAiState,
-  extractEarningsWithAi,
   getSuspiciousEarningsReasons,
-  hasHighSeveritySuspicion,
-  mergeAiMetrics,
+  type EarningsAiQualityGateResult,
   type SuspiciousEarningsReason,
 } from "./earnings-results-ai.ts";
+import {adjudicateEarningsCandidatesWithAi} from "./earnings-results-adjudicate.ts";
 import {
   formatUsdCompact,
   getEarningsResultMessage,
   getMessageMetrics,
-  htmlToText,
   normalizeTickerSymbol,
   parseEarningsDocument,
   parseNumber,
-  type EarningsResultMetric,
   type ParsedEarningsDocument,
   type NasdaqSurprise,
 } from "./earnings-results-format.ts";
 import {
+  createHtmlMetricCandidates,
+  reconcileEarningsMetricCandidates,
+} from "./earnings-results-reconcile.ts";
+import {
   getEarningsResultKey,
   seedSeenEarningsResultAnnouncementsFromHistory,
 } from "./earnings-results-history.ts";
-import {loadSecXbrlMetrics, mergeXbrlAndHtmlMetrics} from "./earnings-results-xbrl.ts";
+import {loadSecXbrlCandidates} from "./earnings-results-xbrl.ts";
 import {
   clearSecEarningsResultCaches,
   isLikelyEarningsFiling,
@@ -139,11 +140,6 @@ type QualityGateSkipState = {
   attempts: number;
   gaveUp: boolean;
   retryAfterMs: number;
-};
-
-type SecFilingDetails = {
-  documentUrl: string;
-  html: string;
 };
 
 export type EarningsResultScanResult = {
@@ -658,7 +654,7 @@ async function buildEarningsResultAnnouncement(
   skippedNoMetricsAccessions: Map<string, NoMetricsSkipState>,
   skippedQualityGateAccessions: Map<string, QualityGateSkipState>,
 ): Promise<EarningsResultAnnouncement | null> {
-  const [filingDetails, xbrlMetrics] = await Promise.all([
+  const [filingDetails, xbrlCandidates] = await Promise.all([
     loadSecFilingDetails(filing, dependencies, {
       isUsableDocument: html => hasParsedEarningsDocumentContent(parseEarningsDocument(html)),
     }).catch(error => {
@@ -668,7 +664,7 @@ async function buildEarningsResultAnnouncement(
       );
       return null;
     }),
-    loadSecXbrlMetrics(filing, dependencies).catch(error => {
+    loadSecXbrlCandidates(filing, dependencies).catch(error => {
       dependencies.logger.log(
         "debug",
         `SEC XBRL facts could not be loaded for ${watch.event.ticker}; falling back to HTML metrics: ${error}`,
@@ -676,39 +672,36 @@ async function buildEarningsResultAnnouncement(
       return [];
     }),
   ]);
-  let parsedDocument = parseEarningsDocument(filingDetails?.html ?? "");
-  let sourceMetrics = mergeXbrlAndHtmlMetrics(xbrlMetrics, parsedDocument.metrics);
-  const surprise = await loadNasdaqSurprise(watch.event.ticker, dependencies, now);
-  const initialMetrics = getMessageMetrics(sourceMetrics, surprise, watch.event);
-  const initialSuspiciousReasons = [
-    ...getSuspiciousEarningsReasons(initialMetrics, surprise, watch.event),
-    ...getSuspiciousQuarterReasons(parsedDocument.quarterLabel, now),
+  const parsedDocument = parseEarningsDocument(filingDetails?.html ?? "");
+  const metricCandidates = [
+    ...xbrlCandidates,
+    ...createHtmlMetricCandidates(parsedDocument.metrics, parsedDocument.quarterLabel),
   ];
-  const aiExtraction = shouldRunAiExtraction({
-    filing,
-    filingDetails,
-    parsedDocument,
-    sourceMetrics,
-    suspiciousReasons: initialSuspiciousReasons,
-  })
-    ? await extractEarningsWithAi({
+  let metricResolution = reconcileEarningsMetricCandidates(metricCandidates);
+  if (0 < metricResolution.conflicts.length && null !== filingDetails) {
+    const aiSelections = await adjudicateEarningsCandidatesWithAi({
+      candidates: metricCandidates,
       companyName: watch.companyName,
+      conflicts: metricResolution.conflicts,
       filingForm: filing.form,
-      filingUrl: filingDetails?.documentUrl || filing.filingUrl,
-      html: filingDetails?.html ?? "",
+      filingUrl: filingDetails.documentUrl || filing.filingUrl,
+      html: filingDetails.html,
       ticker: watch.event.ticker,
-    }, dependencies)
-    : null;
-  if (null !== aiExtraction) {
-    sourceMetrics = mergeAiMetrics(sourceMetrics, aiExtraction.metrics, initialSuspiciousReasons);
-    if (undefined === parsedDocument.quarterLabel && undefined !== aiExtraction.quarterLabel) {
-      parsedDocument = {
-        ...parsedDocument,
-        quarterLabel: aiExtraction.quarterLabel,
-      };
-    }
+    }, dependencies);
+    metricResolution = reconcileEarningsMetricCandidates(metricCandidates, aiSelections);
+  }
+  if (0 < metricResolution.conflicts.length) {
+    const conflictDetails = metricResolution.conflicts
+      .map(conflict => `${conflict.key} (${conflict.reason})`)
+      .join(", ");
+    dependencies.logger.log(
+      "warn",
+      `Omitting unverified earnings metrics for ${watch.event.ticker}: ${conflictDetails}.`,
+    );
   }
 
+  const sourceMetrics = metricResolution.metrics;
+  const surprise = await loadNasdaqSurprise(watch.event.ticker, dependencies, now);
   const metrics = getMessageMetrics(sourceMetrics, surprise, watch.event);
   const suspiciousReasons = [
     ...getSuspiciousEarningsReasons(metrics, surprise, watch.event),
@@ -731,11 +724,6 @@ async function buildEarningsResultAnnouncement(
     parsedDocument,
     ticker: watch.event.ticker,
   });
-  if (true === hasHardMetricContradiction(suspiciousReasons)) {
-    updateQualityGateSkipState(filing, watch, dependencies, now, skippedQualityGateAccessions);
-    return null;
-  }
-
   const qualityGate = await checkEarningsQualityWithAi({
     companyName: watch.companyName,
     event: watch.event,
@@ -787,7 +775,8 @@ async function buildEarningsResultAnnouncement(
 }
 
 function hasParsedEarningsDocumentContent(parsedDocument: ParsedEarningsDocument): boolean {
-  return 0 < parsedDocument.metrics.length || 0 < parsedDocument.outlook.length;
+  return undefined !== parsedDocument.quarterLabel &&
+    (0 < parsedDocument.metrics.length || 0 < parsedDocument.outlook.length);
 }
 
 function updateQualityGateSkipState(
@@ -854,112 +843,18 @@ function updateNoMetricsSkipState(
   });
 }
 
-function shouldRunAiExtraction({
-  filing,
-  filingDetails,
-  parsedDocument,
-  sourceMetrics,
-  suspiciousReasons,
-}: {
-  filing: SecCurrentFiling;
-  filingDetails: SecFilingDetails | null;
-  parsedDocument: ParsedEarningsDocument;
-  sourceMetrics: EarningsResultMetric[];
-  suspiciousReasons: SuspiciousEarningsReason[];
-}): boolean {
-  const html = filingDetails?.html ?? "";
-  if ("" === html.trim()) {
-    return false;
-  }
-
-  if (0 < sourceMetrics.length) {
-    return 0 < suspiciousReasons.length;
-  }
-
-  if (0 < parsedDocument.outlook.length) {
-    return false;
-  }
-
-  return isLikelyUsefulAiExtractionDocument(filing, filingDetails);
-}
-
-function isLikelyUsefulAiExtractionDocument(
-  filing: SecCurrentFiling,
-  filingDetails: SecFilingDetails | null,
-): boolean {
-  if (null === filingDetails) {
-    return false;
-  }
-
-  const documentName = getUrlFileName(filingDetails.documentUrl);
-  if (true === isLikelyEarningsReleaseFileName(documentName)) {
-    return true;
-  }
-
-  if ("8-K" === filing.form.toUpperCase()) {
-    return false;
-  }
-
-  return hasEarningsReleaseTextEvidence(filingDetails.html);
-}
-
-function getUrlFileName(url: string): string {
-  try {
-    const pathname = new URL(url).pathname;
-    return pathname.slice(pathname.lastIndexOf("/") + 1).toLowerCase();
-  } catch {
-    const normalizedUrl = url.toLowerCase();
-    return normalizedUrl.slice(normalizedUrl.lastIndexOf("/") + 1);
-  }
-}
-
-function isLikelyEarningsReleaseFileName(name: string): boolean {
-  return /(?:^|[^a-z0-9])ex(?:hibit)?[-_\s]?99(?:[-_.\s]?1)?(?:[^a-z0-9]|$)/i.test(name) ||
-    name.includes("ex99") ||
-    name.includes("exhibit991") ||
-    /\b(?:earnings|release|results)\b/i.test(name);
-}
-
-function hasEarningsReleaseTextEvidence(html: string): boolean {
-  const text = normalizeAiPreflightText(html);
-  if ("" === text) {
-    return false;
-  }
-
-  const hasReleaseHeadline = /\b(?:reports?|announces?|released?|issues?)\b.{0,120}\b(?:quarter|fiscal|year|annual)\b.{0,120}\b(?:results?|earnings)\b/i.test(text) ||
-    /\b(?:quarterly|annual)\s+(?:financial\s+)?results?\b/i.test(text);
-  const hasMetricCue = /\b(?:revenue|sales|net\s+income|net\s+earnings|earnings\s+per\s+share|eps|adjusted\s+ebitda)\b/i.test(text);
-  const hasQuantitativeCue = /(?:[$€£¥]\s?\(?\d|\b\d+(?:[,.]\d+)?\s?(?:million|billion|m|bn|%|cents|per\s+share)\b)/i.test(text);
-  return hasReleaseHeadline && hasMetricCue && hasQuantitativeCue;
-}
-
-function normalizeAiPreflightText(html: string): string {
-  return htmlToText(html)
-    .replace(/\s+/g, " ")
-    .trim()
-    .slice(0, 60_000);
-}
-
 function shouldSuppressAnnouncement(
-  qualityGate: {confidence: number; decision: "allow" | "suppress";} | null,
+  qualityGate: EarningsAiQualityGateResult | null,
   suspiciousReasons: SuspiciousEarningsReason[],
 ): boolean {
-  if (true === hasHardMetricContradiction(suspiciousReasons)) {
-    return true;
+  if (0 === suspiciousReasons.length) {
+    return false;
   }
 
-  if (null !== qualityGate) {
-    return "suppress" === qualityGate.decision && qualityGate.confidence >= 0.75;
-  }
-
-  return hasHighSeveritySuspicion(suspiciousReasons);
-}
-
-function hasHardMetricContradiction(suspiciousReasons: SuspiciousEarningsReason[]): boolean {
-  return suspiciousReasons.some(reason =>
-    "high" === reason.severity &&
-    "revenue" === reason.metricKey &&
-    /\b(?:lower\s+than\s+net\s+income|not\s+positive\s+while\s+net\s+income)\b/i.test(reason.message));
+  return null === qualityGate ||
+    "allow" !== qualityGate.decision ||
+    qualityGate.confidence < 0.75 ||
+    0 === qualityGate.issues.length;
 }
 
 function getSuspiciousQuarterReasons(

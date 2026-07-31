@@ -6,23 +6,10 @@ import {
   type EarningsResultMetric,
   type NasdaqSurprise,
 } from "./earnings-results-format.ts";
+import {getRelevantEarningsFilingText} from "./earnings-results-ai-text.ts";
 import {callAiProviderJson, clearAiProviderState, type AiProviderDependencies} from "./ai-provider.ts";
 
 type EarningsAiDependencies = AiProviderDependencies;
-
-export type EarningsAiExtractionInput = {
-  companyName: string;
-  filingForm: string;
-  filingUrl: string;
-  html: string;
-  ticker: string;
-};
-
-export type EarningsAiExtraction = {
-  issues: string[];
-  metrics: EarningsResultMetric[];
-  quarterLabel?: string | undefined;
-};
 
 export type SuspiciousEarningsReason = {
   message: string;
@@ -56,91 +43,6 @@ type EarningsAiQualityIssue = {
   severity: "high" | "medium" | "low";
   sourceSnippet: string;
 };
-
-type AiMetricKey = "affo_per_share" | "adjusted_eps" | "gaap_eps" | "revenue" | "net_income";
-
-type AiMetricDefinition = {
-  key: AiMetricKey;
-  label: string;
-  valueType: "eps" | "money";
-};
-
-const maxAiFilingTextLength = 10_000;
-const aiRelevantContextBeforeLines = 2;
-const aiRelevantContextAfterLines = 4;
-
-const aiMetricDefinitions = new Map<AiMetricKey, AiMetricDefinition>([
-  ["affo_per_share", {
-    key: "affo_per_share",
-    label: "AFFO/share",
-    valueType: "eps",
-  }],
-  ["adjusted_eps", {
-    key: "adjusted_eps",
-    label: "Adj EPS",
-    valueType: "eps",
-  }],
-  ["gaap_eps", {
-    key: "gaap_eps",
-    label: "EPS",
-    valueType: "eps",
-  }],
-  ["revenue", {
-    key: "revenue",
-    label: "Revenue",
-    valueType: "money",
-  }],
-  ["net_income", {
-    key: "net_income",
-    label: "Net income",
-    valueType: "money",
-  }],
-]);
-
-const earningsExtractionSchema = {
-  type: "object",
-  additionalProperties: false,
-  properties: {
-    quarterLabel: {
-      type: ["string", "null"],
-      description: "Reported quarter as Q1 2026, Q2 2026, Q3 2026, or Q4 2026 when explicit in the filing.",
-    },
-    metrics: {
-      type: "array",
-      maxItems: 5,
-      items: {
-        type: "object",
-        additionalProperties: false,
-        properties: {
-          key: {
-            type: "string",
-            enum: ["affo_per_share", "adjusted_eps", "gaap_eps", "revenue", "net_income"],
-          },
-          numericValue: {
-            type: "number",
-            description: "EPS in currency units per share. Revenue and net income in full currency units after applying table scale.",
-          },
-          currencyCode: {
-            type: "string",
-            description: "ISO currency code. Use USD when the filing says dollars or uses $.",
-          },
-          sourceSnippet: {
-            type: "string",
-            description: "Short exact snippet from the provided filing text proving the value and scale.",
-          },
-        },
-        required: ["key", "numericValue", "currencyCode", "sourceSnippet"],
-      },
-    },
-    issues: {
-      type: "array",
-      items: {
-        type: "string",
-      },
-    },
-  },
-  required: ["quarterLabel", "metrics", "issues"],
-} satisfies Record<string, unknown>;
 
 const qualityGateSchema = {
   type: "object",
@@ -191,45 +93,6 @@ export function clearEarningsAiState() {
   clearAiProviderState();
 }
 
-export async function extractEarningsWithAi(
-  input: EarningsAiExtractionInput,
-  dependencies: EarningsAiDependencies,
-): Promise<EarningsAiExtraction | null> {
-  const sourceText = getRelevantFilingText(input.html);
-  if ("" === sourceText) {
-    return null;
-  }
-
-  const prompt = getExtractionPrompt(input, sourceText);
-  const jsonText = await callAiProviderJson(
-    prompt,
-    earningsExtractionSchema,
-    dependencies,
-    `earnings extraction for ${input.ticker}`,
-  )
-    .catch(error => {
-      dependencies.logger.log(
-        "warn",
-        `AI earnings extraction failed for ${input.ticker}: ${error}`,
-      );
-      return null;
-    });
-  if (null === jsonText) {
-    return null;
-  }
-
-  const parsedJson = parseJson(jsonText);
-  if (null === parsedJson) {
-    dependencies.logger.log(
-      "warn",
-      `AI earnings extraction returned invalid JSON for ${input.ticker}.`,
-    );
-    return null;
-  }
-
-  return parseAiExtraction(parsedJson, htmlToText(input.html));
-}
-
 export async function checkEarningsQualityWithAi(
   input: EarningsAiQualityGateInput,
   dependencies: EarningsAiDependencies,
@@ -243,7 +106,7 @@ export async function checkEarningsQualityWithAi(
     };
   }
 
-  const sourceText = getRelevantFilingText(input.html);
+  const sourceText = getRelevantEarningsFilingText(input.html);
   if ("" === sourceText) {
     return null;
   }
@@ -275,33 +138,10 @@ export async function checkEarningsQualityWithAi(
     return null;
   }
 
-  return parseQualityGate(parsedJson, htmlToText(input.html));
-}
-
-export function mergeAiMetrics(
-  deterministicMetrics: EarningsResultMetric[],
-  aiMetrics: EarningsResultMetric[],
-  suspiciousReasons: SuspiciousEarningsReason[],
-): EarningsResultMetric[] {
-  if (0 === aiMetrics.length) {
-    return deterministicMetrics;
-  }
-
-  const suspiciousMetricKeys = new Set(suspiciousReasons.flatMap(reason =>
-    undefined === reason.metricKey ? [] : [reason.metricKey],
-  ));
-  const metricsByKey = new Map<string, EarningsResultMetric>();
-  for (const metric of deterministicMetrics) {
-    metricsByKey.set(metric.key, metric);
-  }
-
-  for (const metric of aiMetrics) {
-    if (false === metricsByKey.has(metric.key) || true === suspiciousMetricKeys.has(metric.key)) {
-      metricsByKey.set(metric.key, metric);
-    }
-  }
-
-  return sortEarningsMetrics([...metricsByKey.values()]);
+  const qualityGate = parseQualityGate(parsedJson, htmlToText(input.html));
+  return null !== qualityGate && 0 < qualityGate.issues.length
+    ? qualityGate
+    : null;
 }
 
 export function getSuspiciousEarningsReasons(
@@ -388,7 +228,7 @@ export function getSuspiciousEarningsReasons(
       reasons.push({
         message: `Revenue ${revenueMetric.value} is lower than net income ${netIncomeMetric.value}.`,
         metricKey: "revenue",
-        severity: revenueMetric.numericValue <= netIncomeMetric.numericValue * 0.5 ? "high" : "medium",
+        severity: "medium",
       });
     }
   }
@@ -415,11 +255,9 @@ export function hasHighSeveritySuspicion(reasons: SuspiciousEarningsReason[]): b
 
 const epsMetricKeys = new Set(["affo_per_share", "adjusted_eps", "gaap_eps", "nasdaq_eps"]);
 
-// A positive net income cannot produce a negative EPS, and vice versa. When an
-// EPS metric's sign contradicts net income, the value is almost certainly a
-// parsing artifact (wrong period, footnote fragment, or sign flip), so flag it
-// as high severity. That routes the post through the AI quality gate, which
-// re-checks the value against the filing text before anything is published.
+// Consolidated net income and the EPS numerator can legitimately differ because
+// of preferred dividends, noncontrolling interests, or income attribution. A
+// sign mismatch is therefore an anomaly to review, not a hard contradiction.
 function getEpsNetIncomeSignContradictions(
   metrics: EarningsResultMetric[],
   netIncomeMetric: EarningsResultMetric | undefined,
@@ -450,32 +288,11 @@ function getEpsNetIncomeSignContradictions(
         ? `${metric.label} ${metric.value} is negative while net income ${netIncomeMetric.value} is positive.`
         : `${metric.label} ${metric.value} is positive while net income ${netIncomeMetric.value} is negative.`,
       metricKey: metric.key,
-      severity: "high",
+      severity: "medium",
     });
   }
 
   return reasons;
-}
-
-function getExtractionPrompt(input: EarningsAiExtractionInput, sourceText: string): string {
-  return [
-    "Extract the main quarterly earnings metrics from this public SEC earnings release.",
-    "Return only JSON matching the schema. Do not include markdown.",
-    "Rules:",
-    "- Extract only values for the reported quarter, not year-to-date totals, prior-year periods, dates, footnotes, page numbers, share counts, percentages, or outlook.",
-    "- Revenue and net income numericValue must be full currency units after applying table scale such as thousands, millions, or billions.",
-    "- Omit revenue when the filing excerpt does not explicitly report revenue, revenues, net sales, or third-party revenue.",
-    "- Do not use Adjusted EBITDA, sales volumes, production, cash flow, or a zero placeholder as revenue.",
-    "- EPS numericValue must be currency units per share. Convert cents to dollars, e.g. 77 cents becomes 0.77.",
-    "- Include AFFO per share only when the filing explicitly labels the value as AFFO per share.",
-    "- Include adjusted EPS only when explicitly non-GAAP/adjusted. Include GAAP EPS only when explicitly GAAP/diluted/basic EPS.",
-    "- Every metric must include a short exact sourceSnippet from the filing text that proves the metric and scale.",
-    `Company: ${input.companyName}`,
-    `Ticker: ${input.ticker}`,
-    `Filing: ${input.filingForm} ${input.filingUrl}`,
-    "Filing text:",
-    sourceText,
-  ].join("\n");
 }
 
 function getQualityGatePrompt(input: EarningsAiQualityGateInput, sourceText: string): string {
@@ -488,7 +305,7 @@ function getQualityGatePrompt(input: EarningsAiQualityGateInput, sourceText: str
     "Return only JSON matching the schema. Do not include markdown.",
     "Suppress only when a main metric is likely a parsing bug, such as a footnote/date fragment, a cents value treated as dollars, a table scale mistake, or a value copied from the wrong period.",
     "Allow when the post is plausible or the filing text supports the values.",
-    "Every issue must include a short exact sourceSnippet from the filing text.",
+    "Return at least one issue explaining the decision. Every issue must include a short exact sourceSnippet from the filing text.",
     `Company: ${input.companyName}`,
     `Ticker: ${input.ticker}`,
     `Filing: ${input.filingForm} ${input.filingUrl}`,
@@ -509,117 +326,6 @@ function parseJson(value: string): unknown | null {
   } catch {
     return null;
   }
-}
-
-function parseAiExtraction(value: unknown, sourceText: string): EarningsAiExtraction | null {
-  if (false === isRecord(value)) {
-    return null;
-  }
-
-  const issues = getArray(value["issues"]).flatMap(issue =>
-    "string" === typeof issue && "" !== issue.trim() ? [issue.trim()] : [],
-  );
-  const metrics = getArray(value["metrics"]).flatMap(metricValue => {
-    const metric = parseAiMetric(metricValue, sourceText);
-    return null === metric || true === isContradictedByExtractionIssues(metric, issues) ? [] : [metric];
-  });
-  const quarterLabel = parseQuarterLabel(value["quarterLabel"]);
-  const result: EarningsAiExtraction = {
-    issues,
-    metrics: sortEarningsMetrics(dedupeMetrics(metrics)),
-  };
-  if (undefined !== quarterLabel) {
-    result.quarterLabel = quarterLabel;
-  }
-
-  return result;
-}
-
-function parseAiMetric(value: unknown, sourceText: string): EarningsResultMetric | null {
-  if (false === isRecord(value)) {
-    return null;
-  }
-
-  const key = parseMetricKey(value["key"]);
-  const numericValue = value["numericValue"];
-  const currencyCode = normalizeCurrencyCode(value["currencyCode"]);
-  const sourceSnippet = "string" === typeof value["sourceSnippet"]
-    ? value["sourceSnippet"].trim()
-    : "";
-  if (null === key ||
-      "number" !== typeof numericValue ||
-      false === Number.isFinite(numericValue) ||
-      undefined === currencyCode ||
-      false === hasSourceSnippet(sourceText, sourceSnippet)) {
-    return null;
-  }
-
-  const definition = aiMetricDefinitions.get(key);
-  if (undefined === definition) {
-    return null;
-  }
-
-  if ("eps" === definition.valueType && Math.abs(numericValue) > 100) {
-    return null;
-  }
-
-  if ("eps" === definition.valueType && false === isEpsEvidenceSnippet(key, sourceSnippet)) {
-    return null;
-  }
-
-  if ("revenue" === key && (0 === numericValue || false === isRevenueEvidenceSnippet(sourceSnippet))) {
-    return null;
-  }
-
-  if ("money" === definition.valueType && Math.abs(numericValue) > 20_000_000_000_000) {
-    return null;
-  }
-
-  return {
-    currencyCode,
-    key: definition.key,
-    label: definition.label,
-    numericValue,
-    sourceSnippet,
-    value: "eps" === definition.valueType
-      ? formatEps(numericValue, currencyCode)
-      : formatMoneyCompact(numericValue, currencyCode),
-  };
-}
-
-function isEpsEvidenceSnippet(key: AiMetricKey, sourceSnippet: string): boolean {
-  if (/\b(?:no|not|without|missing|unable|could\s+not|does\s+not)\b.{0,80}\b(?:eps|earnings\s+per\s+share|per\s+share)\b/i.test(sourceSnippet)) {
-    return false;
-  }
-
-  if (false === /\b(?:eps|earnings\s+per\s+share|per\s+share)\b/i.test(sourceSnippet)) {
-    return false;
-  }
-
-  if ("affo_per_share" === key) {
-    return /\baffo\b/i.test(sourceSnippet) && /\bper\s+(?:common\s+)?share\b/i.test(sourceSnippet);
-  }
-
-  return "adjusted_eps" !== key || /\b(?:adjusted|non-gaap)\b/i.test(sourceSnippet);
-}
-
-function isRevenueEvidenceSnippet(sourceSnippet: string): boolean {
-  if (/\b(?:adjusted\s+ebitda|sales\s+volumes?|production|cash\s+flow)\b/i.test(sourceSnippet)) {
-    return false;
-  }
-
-  return /\b(?:revenues?|net\s+sales|third-party\s+revenue|total\s+revenue)\b/i.test(sourceSnippet);
-}
-
-function isContradictedByExtractionIssues(metric: EarningsResultMetric, issues: string[]): boolean {
-  if ("revenue" !== metric.key) {
-    return false;
-  }
-
-  return issues.some(issue =>
-    /\b(?:no|not|without|missing|unable|could\s+not|does\s+not)\b.{0,120}\b(?:revenues?|sales)\b/i.test(issue) ||
-    /\b(?:revenues?|sales)\b.{0,120}\b(?:no|not|missing|unable|could\s+not|incorrect|not\s+directly|not\s+explicitly)\b/i.test(issue),
-  );
 }
 
 function parseQualityGate(value: unknown, sourceText: string): EarningsAiQualityGateResult | null {
@@ -685,36 +391,6 @@ function parseQualityIssue(value: unknown, sourceText: string): EarningsAiQualit
   return issue;
 }
 
-function parseMetricKey(value: unknown): AiMetricKey | null {
-  if ("string" !== typeof value) {
-    return null;
-  }
-
-  return aiMetricDefinitions.has(value as AiMetricKey)
-    ? value as AiMetricKey
-    : null;
-}
-
-function parseQuarterLabel(value: unknown): string | undefined {
-  if ("string" !== typeof value) {
-    return undefined;
-  }
-
-  const normalizedValue = value.trim().toUpperCase();
-  return /^Q[1-4]\s+20\d{2}$/.test(normalizedValue)
-    ? normalizedValue.replace(/\s+/, " ")
-    : undefined;
-}
-
-function normalizeCurrencyCode(value: unknown): string | undefined {
-  if ("string" !== typeof value) {
-    return undefined;
-  }
-
-  const normalizedValue = value.trim().toUpperCase();
-  return /^[A-Z]{3}$/.test(normalizedValue) ? normalizedValue : undefined;
-}
-
 function hasSourceSnippet(sourceText: string, sourceSnippet: string): boolean {
   const normalizedSnippet = normalizeEvidenceText(sourceSnippet);
   if (normalizedSnippet.length < 12) {
@@ -732,56 +408,6 @@ function normalizeEvidenceText(value: string): string {
     .toLowerCase();
 }
 
-function getRelevantFilingText(html: string): string {
-  const text = htmlToText(html);
-  const lines = text
-    .split("\n")
-    .map(line => line.replace(/\s*\|\s*/g, " | ").replace(/\s+/g, " ").trim())
-    .filter(line => line.length >= 3);
-  if (0 === lines.length) {
-    return "";
-  }
-
-  const selectedLineIndexes = new Set<number>();
-  for (const [lineIndex, line] of lines.entries()) {
-    if (false === isAiRelevantLine(line)) {
-      continue;
-    }
-
-    for (
-      let index = Math.max(0, lineIndex - aiRelevantContextBeforeLines);
-      index <= Math.min(lines.length - 1, lineIndex + aiRelevantContextAfterLines);
-      index++
-    ) {
-      selectedLineIndexes.add(index);
-    }
-  }
-
-  const selectedLines = [...selectedLineIndexes]
-    .sort((first, second) => first - second)
-    .map(lineIndex => lines[lineIndex])
-    .filter((line): line is string => undefined !== line);
-  const selectedText = selectedLines.join("\n").trim();
-  return truncateAiText("" === selectedText ? lines.join("\n") : selectedText);
-}
-
-function isAiRelevantLine(line: string): boolean {
-  return /\b(?:earnings|results?|revenue|sales|net\s+income|net\s+earnings|eps|per\s+share|guidance|outlook|forecast|quarter|fiscal)\b/i.test(line);
-}
-
-function truncateAiText(value: string): string {
-  if (value.length <= maxAiFilingTextLength) {
-    return value;
-  }
-
-  const truncatedValue = value.slice(0, maxAiFilingTextLength);
-  const lastLineBreak = truncatedValue.lastIndexOf("\n");
-  const excerpt = lastLineBreak > 0
-    ? truncatedValue.slice(0, lastLineBreak)
-    : truncatedValue;
-  return `${excerpt.trimEnd()}\n[truncated]`;
-}
-
 function getNumericEventEpsConsensus(event: EarningsEvent): number | undefined {
   if ("number" === typeof event.epsConsensus) {
     return Number.isFinite(event.epsConsensus) ? event.epsConsensus : undefined;
@@ -797,41 +423,6 @@ function getNumericEventEpsConsensus(event: EarningsEvent): number | undefined {
     .trim();
   const parsedValue = Number.parseFloat(normalizedValue);
   return Number.isFinite(parsedValue) ? parsedValue : undefined;
-}
-
-function sortEarningsMetrics(metrics: EarningsResultMetric[]): EarningsResultMetric[] {
-  const preferredOrder = [
-    "affo_per_share",
-    "adjusted_eps",
-    "gaap_eps",
-    "nasdaq_eps",
-    "revenue",
-    "net_income",
-    "refinery_throughput",
-    "production",
-  ];
-  return [...metrics].sort((first, second) => {
-    const firstIndex = preferredOrder.indexOf(first.key);
-    const secondIndex = preferredOrder.indexOf(second.key);
-    const firstRank = -1 === firstIndex ? Number.MAX_SAFE_INTEGER : firstIndex;
-    const secondRank = -1 === secondIndex ? Number.MAX_SAFE_INTEGER : secondIndex;
-    if (firstRank !== secondRank) {
-      return firstRank - secondRank;
-    }
-
-    return first.label.localeCompare(second.label);
-  });
-}
-
-function dedupeMetrics(metrics: EarningsResultMetric[]): EarningsResultMetric[] {
-  const dedupedMetrics = new Map<string, EarningsResultMetric>();
-  for (const metric of metrics) {
-    if (false === dedupedMetrics.has(metric.key)) {
-      dedupedMetrics.set(metric.key, metric);
-    }
-  }
-
-  return [...dedupedMetrics.values()];
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

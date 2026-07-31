@@ -27,8 +27,18 @@ const earningsSummarySchema = {
       maxLength: maxSummaryLength,
       description: "Exactly three concise plain-text sentences summarizing the earnings release.",
     },
+    sourceSnippets: {
+      type: "array",
+      minItems: 3,
+      maxItems: 3,
+      items: {
+        type: "string",
+        minLength: 3,
+        description: "An exact snippet from the supplied filing text supporting the corresponding sentence.",
+      },
+    },
   },
-  required: ["summary"],
+  required: ["summary", "sourceSnippets"],
 } satisfies Record<string, unknown>;
 
 export async function summarizeEarningsWithAi(
@@ -71,7 +81,7 @@ export async function summarizeEarningsWithAi(
     return null;
   }
 
-  return parseSummary(parsedJson, input);
+  return parseSummary(parsedJson, input, filingText);
 }
 
 function getSummaryPrompt(input: EarningsAiSummaryInput, filingText: string): string {
@@ -81,6 +91,8 @@ function getSummaryPrompt(input: EarningsAiSummaryInput, filingText: string): st
     "Return only JSON matching the schema. Do not include markdown.",
     "Rules:",
     "- Write exactly three concise plain-text sentences.",
+    "- Return exactly three sourceSnippets in sentence order, each copied exactly from the provided filing text.",
+    "- Every number in a sentence must also appear in that sentence's sourceSnippet.",
     "- Sentence 1 covers the reported period and headline performance.",
     "- Sentence 2 covers the most important business drivers, segment notes, or margin/profit details.",
     "- Sentence 3 covers outlook, guidance, or management expectations when present; otherwise state that no quantified outlook is provided.",
@@ -189,13 +201,16 @@ function parseJson(value: string): unknown | null {
   }
 }
 
-function parseSummary(value: unknown, input: EarningsAiSummaryInput): string | null {
+function parseSummary(value: unknown, input: EarningsAiSummaryInput, filingText: string): string | null {
   if (false === isRecord(value)) {
     return null;
   }
 
   const summary = value["summary"];
-  if ("string" !== typeof summary) {
+  const sourceSnippets = value["sourceSnippets"];
+  if ("string" !== typeof summary ||
+      false === Array.isArray(sourceSnippets) ||
+      false === sourceSnippets.every(snippet => "string" === typeof snippet)) {
     return null;
   }
 
@@ -211,11 +226,89 @@ function parseSummary(value: unknown, input: EarningsAiSummaryInput): string | n
     return null;
   }
 
+  const sentences = getSummarySentences(normalizedSummary);
+  if (3 !== sentences.length ||
+      3 !== sourceSnippets.length ||
+      false === sourceSnippets.every((snippet, index) =>
+        true === isSupportedSummarySentence(
+          sentences[index] ?? "",
+          snippet,
+          filingText,
+          input.metrics ?? [],
+        ))) {
+    return null;
+  }
+
   if (true === hasDisplayedMetricConflict(normalizedSummary, input.metrics ?? [])) {
     return null;
   }
 
   return formatSummaryInlineCode(removeRedundantCompanyNameMentions(normalizedSummary, input.companyName), input.ticker);
+}
+
+function isSupportedSummarySentence(
+  sentence: string,
+  sourceSnippet: string,
+  filingText: string,
+  metrics: EarningsResultMetric[],
+): boolean {
+  const normalizedSnippet = normalizeEvidenceText(sourceSnippet);
+  if (normalizedSnippet.length < 3 ||
+      false === normalizeEvidenceText(filingText).includes(normalizedSnippet)) {
+    return false;
+  }
+
+  if (true === isNoOutlookSentence(sentence) && false === /\b(?:guidance|outlook|forecast|expects?)\b/i.test(filingText)) {
+    return true;
+  }
+
+  const sentenceNumbers = getEvidenceNumbers(sentence);
+  const snippetNumbers = new Set(getEvidenceNumbers(normalizedSnippet));
+  const displayedMetricNumbers = new Set(metrics.flatMap(metric => getEvidenceNumbers(metric.value)));
+  if (false === sentenceNumbers.every(number =>
+    snippetNumbers.has(number) || displayedMetricNumbers.has(number))) {
+    return false;
+  }
+
+  const sentenceWords = new Set(getEvidenceWords(sentence));
+  return getEvidenceWords(normalizedSnippet).some(word => sentenceWords.has(word));
+}
+
+function normalizeEvidenceText(value: string): string {
+  return value
+    .replace(/\s*\|\s*/g, " | ")
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLocaleLowerCase("en-US");
+}
+
+function getEvidenceNumbers(value: string): string[] {
+  return [...value.matchAll(/-?\d[\d,]*(?:\.\d+)?%?/g)]
+    .map(match => (match[0] ?? "").replaceAll(",", ""));
+}
+
+function getEvidenceWords(value: string): string[] {
+  return [...value.toLocaleLowerCase("en-US").matchAll(/[a-z]{4,}/g)]
+    .map(match => match[0] ?? "")
+    .filter(word => false === summaryEvidenceStopWords.has(word));
+}
+
+const summaryEvidenceStopWords = new Set([
+  "also",
+  "company",
+  "during",
+  "first",
+  "fiscal",
+  "reported",
+  "results",
+  "second",
+  "third",
+  "while",
+]);
+
+function isNoOutlookSentence(value: string): boolean {
+  return /\bno\s+(?:quantified\s+)?(?:guidance|outlook|forecast)\b/i.test(value) ||
+    /\bdid\s+not\s+provide\s+(?:a\s+)?quantified\s+(?:guidance|outlook|forecast)\b/i.test(value);
 }
 
 function hasDisplayedMetricConflict(summary: string, metrics: EarningsResultMetric[]): boolean {
@@ -225,7 +318,7 @@ function hasDisplayedMetricConflict(summary: string, metrics: EarningsResultMetr
 
 function getSummarySentences(summary: string): string[] {
   return summary
-    .split(/(?<=[.!?])\s+/)
+    .split(/(?<!\b[A-Z]\.)(?<=[.!?])\s+/)
     .map(sentence => sentence.trim())
     .filter(sentence => "" !== sentence);
 }

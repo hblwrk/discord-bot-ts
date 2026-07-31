@@ -3,6 +3,7 @@ export type EarningsOutlookMetric = {
   key: string;
   label: string;
   periodLabel?: string | undefined;
+  sourceSnippet?: string | undefined;
   value: string;
 };
 
@@ -26,6 +27,7 @@ type ParsedMoneyValue = {
 };
 
 type OutlookSection = {
+  heading?: string | undefined;
   lines: string[];
   mixedPeriods: boolean;
 };
@@ -125,7 +127,12 @@ export function extractOutlookMetrics(lines: string[]): EarningsOutlookMetric[] 
   const metrics: EarningsOutlookMetric[] = [];
   const seenKeys = new Set<string>();
   for (const definition of outlookMetricDefinitions) {
-    const metric = extractOutlookMetric(section.lines, definition, section.mixedPeriods);
+    const metric = extractOutlookMetric(
+      section.lines,
+      definition,
+      section.mixedPeriods,
+      section.heading,
+    );
     if (null === metric || true === seenKeys.has(metric.key)) {
       continue;
     }
@@ -140,11 +147,13 @@ export function extractOutlookMetrics(lines: string[]): EarningsOutlookMetric[] 
 function getOutlookSection(lines: string[]): OutlookSection {
   const sectionLines: string[] = [];
   let collecting = false;
+  let heading: string | undefined;
   let mixedPeriods = false;
 
   for (const line of lines) {
     if (true === isOutlookHeading(line)) {
       collecting = true;
+      heading = line;
       mixedPeriods = isMixedPeriodOutlookHeading(line);
       continue;
     }
@@ -164,6 +173,7 @@ function getOutlookSection(lines: string[]): OutlookSection {
   }
 
   return {
+    heading,
     lines: sectionLines,
     mixedPeriods: mixedPeriods || hasMixedOutlookPeriods(sectionLines),
   };
@@ -240,6 +250,7 @@ function extractOutlookMetric(
   lines: string[],
   definition: OutlookMetricDefinition,
   includePeriodLabel: boolean,
+  sectionHeading: string | undefined,
 ): EarningsOutlookMetric | null {
   let bestCandidate: OutlookMetricCandidate | null = null;
   for (const line of lines) {
@@ -260,11 +271,21 @@ function extractOutlookMetric(
       const periodLabel = true === includePeriodLabel
         ? getOutlookPeriodLabel(line)
         : undefined;
+      if (true === includePeriodLabel && undefined === periodLabel) {
+        continue;
+      }
+
       const metric: EarningsOutlookMetric = {
         key: definition.key,
         label: definition.label,
         value,
       };
+      Object.defineProperty(metric, "sourceSnippet", {
+        configurable: false,
+        enumerable: false,
+        value: undefined === sectionHeading ? line : `${sectionHeading} ${line}`,
+        writable: false,
+      });
       if (undefined !== periodLabel) {
         metric.periodLabel = periodLabel;
       }
