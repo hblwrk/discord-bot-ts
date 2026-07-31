@@ -148,12 +148,22 @@ export function parseEarningsDocument(html: string): ParsedEarningsDocument {
   const text = htmlToText(html);
   const lines = getMeaningfulLines(text);
   const quarterLabel = getQuarterLabel(text);
+  const documentCurrencyCode = getDocumentCurrencyCode(lines);
   return {
     headline: getDocumentHeadline(lines),
-    metrics: extractEarningsMetrics(lines, quarterLabel),
-    outlook: extractOutlookMetrics(lines),
+    metrics: extractEarningsMetrics(lines, quarterLabel, documentCurrencyCode),
+    outlook: extractOutlookMetrics(lines, documentCurrencyCode),
     quarterLabel,
   };
+}
+
+function getDocumentCurrencyCode(lines: string[]): string | undefined {
+  const currencyDeclaration = lines
+    .slice(0, 60)
+    .find(line => /\b(?:Canadian|New Taiwan|U\.S\.)\s+dollars?\b|\b(?:CAD|TWD|NTD|USD|EUR|GBP|JPY)\b|NT\s*\$/i.test(line));
+  return undefined === currencyDeclaration
+    ? undefined
+    : getCurrencyCodeFromText(currencyDeclaration);
 }
 
 export function getMessageMetrics(
@@ -544,6 +554,7 @@ function getQuarterFromName(name: string): string | undefined {
 function extractEarningsMetrics(
   lines: string[],
   quarterLabel: string | undefined,
+  documentCurrencyCode: string | undefined,
 ): EarningsResultMetric[] {
   const metrics: EarningsResultMetric[] = [];
   const seenKeys = new Set<string>();
@@ -554,10 +565,15 @@ function extractEarningsMetrics(
       continue;
     }
 
-    const preferredMetric = extractMetric(preferredSelection.lines, definition, quarterLabel);
+    const preferredMetric = extractMetric(
+      preferredSelection.lines,
+      definition,
+      quarterLabel,
+      documentCurrencyCode,
+    );
     const metric = preferredMetric ?? (true === preferredSelection.exclusive
       ? null
-      : extractMetric(lines, definition, quarterLabel));
+      : extractMetric(lines, definition, quarterLabel, documentCurrencyCode));
     if (null === metric) {
       continue;
     }
@@ -635,6 +651,7 @@ function extractMetric(
   lines: string[],
   definition: MetricDefinition,
   quarterLabel: string | undefined,
+  documentCurrencyCode: string | undefined,
 ): EarningsResultMetric | null {
   let bestCandidate: {metric: EarningsResultMetric; score: number} | null = null;
   for (const [lineIndex, line] of lines.entries()) {
@@ -667,7 +684,7 @@ function extractMetric(
       metricLine,
       pattern,
       definition.valueType,
-      getContextMoney(lines, lineIndex),
+      getContextMoney(lines, lineIndex, documentCurrencyCode),
       isNearTableNoteColumn(lines, lineIndex),
       undefined !== quarterLabel && hasMixedMonthQuarterColumns(lines, lineIndex),
     );
@@ -835,7 +852,7 @@ function extractMetricValue(
     const metricText = null === perShareTableValue && null === preferredValue
       ? fallbackSearchText
       : preferredSearchText;
-    const currencyCode = getCurrencyCodeFromText(metricText) ?? contextMoney.currencyCode;
+    const currencyCode = getCurrencyCodeFromText(metricText, contextMoney.currencyCode) ?? contextMoney.currencyCode;
     return {
       currencyCode,
       numericValue: value,
@@ -869,7 +886,7 @@ function extractMetricValue(
 
     const metricText = true === useFallbackValue ? fallbackSearchText : sentenceSearchText;
     const explicitScale = getExplicitMoneyScale(metricText, parsedValueMatch.endIndex);
-    const currencyCode = getCurrencyCodeFromText(metricText) ?? contextMoney.currencyCode;
+    const currencyCode = getCurrencyCodeFromText(metricText, contextMoney.currencyCode) ?? contextMoney.currencyCode;
     const amount = parsedValueMatch.value * (explicitScale ?? contextMoney.scale);
     const maximumFractionDigits = getMoneyDisplayPrecision(
       metricText,
@@ -974,8 +991,12 @@ function getLastPerShareSegmentValue(text: string, label: "Basic" | "Diluted"): 
   return values[values.length - 1] ?? null;
 }
 
-function getContextMoney(lines: string[], lineIndex: number): MoneyContext {
-  let currencyCode: string | undefined;
+function getContextMoney(
+  lines: string[],
+  lineIndex: number,
+  documentCurrencyCode: string | undefined,
+): MoneyContext {
+  let currencyCode = documentCurrencyCode;
   // Scan upward for the nearest "in millions / $ in thousands / ..." declaration
   // governing this row. Income statements interleave many empty separator rows
   // ("| |") between the unit header and the figures, so the lookback budget is
@@ -989,7 +1010,7 @@ function getContextMoney(lines: string[], lineIndex: number): MoneyContext {
       continue;
     }
 
-    currencyCode ??= getCurrencyCodeFromText(line);
+    currencyCode = getCurrencyCodeFromText(line, currencyCode) ?? currencyCode;
     const scale = getMoneyScaleFromContextText(line);
     if (null !== scale) {
       return {
@@ -1055,9 +1076,16 @@ function getMoneyScaleFromContextText(text: string): number | null {
   return null;
 }
 
-function getCurrencyCodeFromText(text: string): string | undefined {
+function getCurrencyCodeFromText(
+  text: string,
+  dollarCurrencyCode = "USD",
+): string | undefined {
   if (/NT\s*\$|\b(?:TWD|NTD)\b|\bNew Taiwan dollars?\b/i.test(text)) {
     return "TWD";
+  }
+
+  if (/(?:^|[^A-Za-z])C\s*\$/.test(text) || /\bCAD\b|\bCanadian dollars?\b/i.test(text)) {
+    return "CAD";
   }
 
   if (text.includes("€") || /\bEUR\b/i.test(text)) {
@@ -1072,8 +1100,12 @@ function getCurrencyCodeFromText(text: string): string | undefined {
     return "JPY";
   }
 
-  if (text.includes("$") || /\bUSD\b/i.test(text) || /\bdollars?\b/i.test(text)) {
+  if (/US\s*\$|\bUSD\b|\bU\.S\. dollars?\b/i.test(text)) {
     return "USD";
+  }
+
+  if (text.includes("$")) {
+    return dollarCurrencyCode;
   }
 
   return undefined;
@@ -1283,6 +1315,7 @@ export function parseNumber(value: unknown): number | null {
     .replace(/^\((.*)\)$/, "-$1")
     .replace(/^\((.*)$/, "-$1")
     .replace(/NT\s*\$/gi, "")
+    .replace(/C\s*\$/gi, "")
     .replace(/[$€£¥]/g, "")
     .replaceAll(",", "")
     .replaceAll("%", "")
@@ -1341,6 +1374,10 @@ export function formatMoneyCompact(
 function getCurrencySymbol(currencyCode: string): string {
   if ("TWD" === currencyCode) {
     return "NT$";
+  }
+
+  if ("CAD" === currencyCode) {
+    return "C$";
   }
 
   if ("EUR" === currencyCode) {

@@ -361,8 +361,9 @@ describe("earnings result formatting", () => {
     expect(parsedDocument.quarterLabel).toBe("Q1 2026");
     expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
       expect.objectContaining({
+        currencyCode: "CAD",
         key: "gaap_eps",
-        value: "$0.77",
+        value: "C$0.77",
       }),
     ]));
     expect(parsedDocument.metrics).not.toEqual(expect.arrayContaining([
@@ -374,12 +375,12 @@ describe("earnings result formatting", () => {
       {
         key: "adjusted_ebitda",
         label: "Adj EBITDA",
-        value: "$20.2B to $20.8B",
+        value: "C$20.2B to C$20.8B",
       },
       {
         key: "dcf_per_share",
         label: "DCF/share",
-        value: "$5.7 to $6.1",
+        value: "C$5.7 to C$6.1",
       },
     ]);
   });

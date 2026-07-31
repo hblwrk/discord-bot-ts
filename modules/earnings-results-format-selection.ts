@@ -40,6 +40,11 @@ export function getMetricCandidateScore({
     score -= 60;
   }
 
+  if (/\b(?:increase|decrease|improvement|decline|change)(?:d)?\s+(?:by|of)\b/i.test(metricLine) ||
+      /\b(?:rose|fell|grew|up|down)\s+by\b/i.test(metricLine)) {
+    score -= 140;
+  }
+
   const pipeCount = metricLine.match(/\|/g)?.length ?? 0;
   score -= Math.min(30, pipeCount * 2);
   if (("eps" === valueType || "money" === valueType) && /[$€£¥]/.test(metricLine)) {

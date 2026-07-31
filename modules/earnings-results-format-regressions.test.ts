@@ -64,4 +64,46 @@ describe("earnings result filing regressions", () => {
     expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("4 Kbd");
     expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("250 Kbd");
   });
+
+  test("uses Enbridge reported Canadian-dollar EPS levels instead of prior-year values or changes", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Enbridge Reports Strong Second Quarter Results and Reaffirms 2026 Guidance</h1>
+          <p>All financial figures are unaudited and in Canadian dollars unless otherwise noted.</p>
+          <p>Second quarter GAAP earnings attributable to common shareholders of $1.4 billion or $0.64 per common share, compared with GAAP earnings attributable to common shareholders of $2.2 billion or $1.00 per common share in 2025.</p>
+          <p>Adjusted earnings of $1.4 billion or $0.63 per common share, compared with $1.4 billion or $0.65 per common share in 2025.</p>
+          <p>GAAP earnings attributable to common shareholders for the second quarter of 2026 decreased by $0.8 billion, or $0.36 per share, compared with the same period in 2025.</p>
+          <p>Adjusted earnings in the second quarter of 2026 decreased by $36 million, or $0.02 per share, compared with the same period in 2025.</p>
+          <h2>Financial Outlook</h2>
+          <p>The Company reaffirms its 2026 financial guidance for adjusted EBITDA between $20.2 billion and $20.8 billion and DCF per share between $5.70 and $6.10.</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.quarterLabel).toBe("Q2 2026");
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        currencyCode: "CAD",
+        key: "adjusted_eps",
+        numericValue: 0.63,
+        value: "C$0.63",
+      }),
+      expect.objectContaining({
+        currencyCode: "CAD",
+        key: "gaap_eps",
+        numericValue: 0.64,
+        value: "C$0.64",
+      }),
+    ]));
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toEqual(expect.arrayContaining([
+      "C$0.02",
+      "C$0.36",
+      "C$1.00",
+    ]));
+    expect(parsedDocument.outlook).toEqual([
+      {key: "adjusted_ebitda", label: "Adj EBITDA", value: "C$20.2B to C$20.8B"},
+      {key: "dcf_per_share", label: "DCF/share", value: "C$5.7 to C$6.1"},
+    ]);
+  });
 });
