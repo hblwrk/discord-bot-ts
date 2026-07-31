@@ -1,6 +1,12 @@
 import moment from "moment-timezone";
 import {type EarningsEvent} from "./earnings.ts";
 import {
+  getMetricCandidateScore,
+  getPositionedQuarterValues,
+  hasGaapNarrativeBeforeAdjustment,
+  isEmbeddedAlphaNumericValue,
+} from "./earnings-results-format-selection.ts";
+import {
   extractOutlookMetrics,
   type EarningsOutlookMetric,
 } from "./earnings-results-outlook.ts";
@@ -74,6 +80,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
     key: "adjusted_eps",
     label: "Adj EPS",
     patterns: [
+      /\badjusted\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
       /\badjusted\s+(?:\d{1,2}\s+)?(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?(?:earnings\s+per\s+(?:common\s+)?share|eps)\b/i,
       /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?eps\b/i,
       /\bnon-gaap\s+(?:diluted\s+)?(?:earnings\s+per\s+share|eps)\b/i,
@@ -87,6 +94,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
       /\b(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\b/i,
       /\bdiluted\s+eps\b/i,
       /\bgaap\s+(?:diluted\s+)?eps\b/i,
+      /\b(?:reported\s+)?(?:net\s+)?earnings?\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
       /(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?(?:\s*(?:cents?|¢))?)\s+per\s+(?:fully\s+)?(?:common\s+)?diluted\s+share\b/i,
       /\beps\b/i,
     ],
@@ -102,7 +110,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
       /\brevenues?\b/i,
       /\bsales\b/i,
     ],
-    skipPattern: /\bcost\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon)\s+sales\b|\bsales\s+of\s+pipeline\s+gas\b/i,
+    skipPattern: /\bcost\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b/i,
     valueType: "money",
   },
   {
@@ -132,6 +140,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
     patterns: [
       /\bproduction\b/i,
     ],
+    skipPattern: /\b(?:capacity|startup|on\s+plan|guidance|outlook|forecast)\b/i,
     valueType: "number",
   },
 ];
@@ -627,10 +636,15 @@ function extractMetric(
   definition: MetricDefinition,
   quarterLabel: string | undefined,
 ): EarningsResultMetric | null {
+  let bestCandidate: {metric: EarningsResultMetric; score: number} | null = null;
   for (const [lineIndex, line] of lines.entries()) {
     const hasExplicitGaapEps = "gaap_eps" === definition.key &&
       /\bgaap\s+(?:diluted\s+)?eps\b/i.test(line);
-    if (definition.skipPattern?.test(line) && false === hasExplicitGaapEps) {
+    const hasReportedGaapEps = "gaap_eps" === definition.key &&
+      true === hasGaapNarrativeBeforeAdjustment(line, definition.patterns);
+    if (definition.skipPattern?.test(line) &&
+        false === hasExplicitGaapEps &&
+        false === hasReportedGaapEps) {
       continue;
     }
 
@@ -638,7 +652,12 @@ function extractMetric(
       continue;
     }
 
-    const metricLine = getMetricLineWithContinuation(lines, lineIndex, definition);
+    const hasMetricLabel = definition.patterns.some(pattern => pattern.test(line));
+    if (false === hasMetricLabel) {
+      continue;
+    }
+
+    const metricLine = getMetricLineWithContinuation(lines, lineIndex, definition, quarterLabel);
     const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(metricLine));
     if (!pattern) {
       continue;
@@ -669,10 +688,20 @@ function extractMetric(
       value: metricLine,
       writable: false,
     });
-    return metric;
+    const score = getMetricCandidateScore({
+      lines,
+      lineIndex,
+      metricLine,
+      pattern,
+      quarterLabel,
+      valueType: definition.valueType,
+    });
+    if (null === bestCandidate || score > bestCandidate.score) {
+      bestCandidate = {metric, score};
+    }
   }
 
-  return null;
+  return bestCandidate?.metric ?? null;
 }
 
 function isPerShareOnlyNetIncomeLine(line: string): boolean {
@@ -687,8 +716,18 @@ function getMetricLineWithContinuation(
   lines: string[],
   lineIndex: number,
   definition: MetricDefinition,
+  quarterLabel: string | undefined,
 ): string {
   const baseLine = lines[lineIndex] ?? "";
+  const positionedQuarterValues = getPositionedQuarterValues(
+    lines,
+    lineIndex,
+    quarterLabel,
+  );
+  if (0 < positionedQuarterValues.length) {
+    return [baseLine, ...positionedQuarterValues].join(" ");
+  }
+
   const metricLines = [baseLine];
   const isSummaryHeading = isSummaryMetricHeading(baseLine, definition);
   for (let index = lineIndex + 1; index < lines.length && index <= lineIndex + 6; index++) {
@@ -912,6 +951,11 @@ function findEpsValue(text: string): number | null {
 }
 
 function findPerShareTableValue(text: string): number | null {
+  const hasTableSegments = /\bBasic\b/i.test(text) || 2 <= (text.match(/\|/g)?.length ?? 0);
+  if (false === hasTableSegments) {
+    return null;
+  }
+
   return getLastPerShareSegmentValue(text, "Diluted") ?? getLastPerShareSegmentValue(text, "Basic");
 }
 
@@ -1116,6 +1160,10 @@ function findNumericValueMatches(
   for (const numberMatch of numberMatches) {
     const token = numberMatch[0];
     const endIndex = numberMatch.index + token.length;
+    if (true === isEmbeddedAlphaNumericValue(text, numberMatch.index, endIndex)) {
+      continue;
+    }
+
     if (true === options.skipPercentages && "%" === text.slice(endIndex, endIndex + 1)) {
       continue;
     }
