@@ -17,28 +17,48 @@ const maxSummaryGuidanceTextLength = 8_000;
 const summaryGuidanceContextBeforeLines = 2;
 const summaryGuidanceContextAfterLines = 8;
 const maxSummaryLength = 700;
+const maxSummarySentenceLength = 350;
+const maxSummarySourceSnippetLength = 300;
+
+type EarningsSummaryItem = {
+  sourceSnippet: string;
+  text: string;
+};
+
+type SummaryValidationResult = {
+  reason: string;
+  summary: null;
+} | {
+  reason: null;
+  summary: string;
+};
 
 const earningsSummarySchema = {
   type: "object",
   additionalProperties: false,
   properties: {
-    summary: {
-      type: "string",
-      maxLength: maxSummaryLength,
-      description: "Exactly three concise plain-text sentences summarizing the earnings release.",
-    },
-    sourceSnippets: {
+    sentences: {
       type: "array",
       minItems: 3,
       maxItems: 3,
       items: {
-        type: "string",
-        minLength: 3,
-        description: "An exact snippet from the supplied filing text supporting the corresponding sentence.",
+        type: "object",
+        additionalProperties: false,
+        properties: {
+          text: {
+            type: "string",
+            description: "One concise plain-text summary sentence.",
+          },
+          sourceSnippet: {
+            type: "string",
+            description: "An exact snippet from the supplied filing text supporting this sentence.",
+          },
+        },
+        required: ["text", "sourceSnippet"],
       },
     },
   },
-  required: ["summary", "sourceSnippets"],
+  required: ["sentences"],
 } satisfies Record<string, unknown>;
 
 export async function summarizeEarningsWithAi(
@@ -81,7 +101,25 @@ export async function summarizeEarningsWithAi(
     return null;
   }
 
-  return parseSummary(parsedJson, input, filingText);
+  const validationResult = parseSummary(parsedJson, input, filingText);
+  if (null !== validationResult.summary) {
+    return validationResult.summary;
+  }
+
+  const recoveredSummary = getGroundedPartialSummary(parsedJson, input, filingText);
+  if (null !== recoveredSummary) {
+    dependencies.logger.log(
+      "warn",
+      `AI earnings summary failed validation for ${input.ticker} (${validationResult.reason}); using a grounded partial summary.`,
+    );
+    return recoveredSummary;
+  }
+
+  dependencies.logger.log(
+    "warn",
+    `AI earnings summary failed validation for ${input.ticker} (${validationResult.reason}).`,
+  );
+  return null;
 }
 
 function getSummaryPrompt(input: EarningsAiSummaryInput, filingText: string): string {
@@ -90,12 +128,12 @@ function getSummaryPrompt(input: EarningsAiSummaryInput, filingText: string): st
     "Summarize this public SEC earnings release for a Discord earnings alert.",
     "Return only JSON matching the schema. Do not include markdown.",
     "Rules:",
-    "- Write exactly three concise plain-text sentences.",
-    "- Return exactly three sourceSnippets in sentence order, each copied exactly from the provided filing text.",
-    "- Every number in a sentence must also appear in that sentence's sourceSnippet.",
+    "- Return exactly three sentence objects in order, each with concise plain-text text and one sourceSnippet copied exactly from the provided filing text.",
+    "- Every number in a sentence's text must also appear in that sentence's sourceSnippet.",
     "- Sentence 1 covers the reported period and headline performance.",
     "- Sentence 2 covers the most important business drivers, segment notes, or margin/profit details.",
-    "- Sentence 3 covers outlook, guidance, or management expectations when present; otherwise state that no quantified outlook is provided.",
+    "- Sentence 3 covers outlook, guidance, or management expectations when present; otherwise cover another material filing-supported business detail.",
+    "- Never claim that guidance or outlook is absent; an omission cannot be supported by a source snippet.",
     "- Return plain text only; do not include markdown, backticks, bullets, headings, or labels.",
     "- The Discord bot formats ticker symbols and concrete metrics after validation.",
     "- Do not mention the company name in the summary; the Discord alert title already identifies the company.",
@@ -201,11 +239,76 @@ function parseJson(value: string): unknown | null {
   }
 }
 
-function parseSummary(value: unknown, input: EarningsAiSummaryInput, filingText: string): string | null {
+function parseSummary(
+  value: unknown,
+  input: EarningsAiSummaryInput,
+  filingText: string,
+): SummaryValidationResult {
+  const items = getSummaryItems(value);
+  if (null === items) {
+    return getSummaryValidationFailure("invalid response shape");
+  }
+
+  if (3 !== items.length) {
+    return getSummaryValidationFailure(`expected 3 sentence objects, received ${items.length}`);
+  }
+
+  const normalizedSentences: string[] = [];
+  for (const [index, item] of items.entries()) {
+    const normalizedSentence = getValidatedSummarySentence(item, input, filingText);
+    if (null === normalizedSentence) {
+      return getSummaryValidationFailure(`sentence ${index + 1} was not grounded or safely formatted`);
+    }
+
+    normalizedSentences.push(normalizedSentence);
+  }
+
+  const normalizedSummary = normalizedSentences.join(" ");
+  if (normalizedSummary.length > maxSummaryLength) {
+    return getSummaryValidationFailure("summary exceeded the maximum length");
+  }
+
+  return {
+    reason: null,
+    summary: formatValidatedSummary(normalizedSummary, input),
+  };
+}
+
+function getSummaryValidationFailure(reason: string): SummaryValidationResult {
+  return {
+    reason,
+    summary: null,
+  };
+}
+
+function getSummaryItems(value: unknown): EarningsSummaryItem[] | null {
   if (false === isRecord(value)) {
     return null;
   }
 
+  const sentences = value["sentences"];
+  if (true === Array.isArray(sentences)) {
+    const items = sentences.map(getSummaryItem);
+    return items.every((item): item is EarningsSummaryItem => null !== item) ? items : null;
+  }
+
+  return getLegacySummaryItems(value);
+}
+
+function getSummaryItem(value: unknown): EarningsSummaryItem | null {
+  if (false === isRecord(value) ||
+      "string" !== typeof value["text"] ||
+      "string" !== typeof value["sourceSnippet"]) {
+    return null;
+  }
+
+  return {
+    sourceSnippet: value["sourceSnippet"],
+    text: value["text"],
+  };
+}
+
+function getLegacySummaryItems(value: Record<string, unknown>): EarningsSummaryItem[] | null {
   const summary = value["summary"];
   const sourceSnippets = value["sourceSnippets"];
   if ("string" !== typeof summary ||
@@ -214,36 +317,122 @@ function parseSummary(value: unknown, input: EarningsAiSummaryInput, filingText:
     return null;
   }
 
-  const normalizedSummary = summary
+  const sentences = getSummarySentences(normalizeSummaryText(summary));
+  if (sentences.length !== sourceSnippets.length) {
+    return null;
+  }
+
+  return sentences.map((text, index) => ({
+    sourceSnippet: sourceSnippets[index] ?? "",
+    text,
+  }));
+}
+
+function getValidatedSummarySentence(
+  item: EarningsSummaryItem,
+  input: EarningsAiSummaryInput,
+  filingText: string,
+): string | null {
+  const normalizedSentence = normalizeSummaryText(item.text);
+  if ("" === normalizedSentence ||
+      normalizedSentence.length > maxSummarySentenceLength ||
+      true === hasUnexpectedMarkdown(normalizedSentence) ||
+      true === hasCorrectionArtifact(normalizedSentence) ||
+      true === hasUnexpectedCjkCharacters(normalizedSentence) ||
+      false === isSupportedSummarySentence(
+        normalizedSentence,
+        item.sourceSnippet,
+        filingText,
+        input.metrics ?? [],
+      ) ||
+      true === hasDisplayedMetricConflict(normalizedSentence, input.metrics ?? [])) {
+    return null;
+  }
+
+  return normalizedSentence;
+}
+
+function normalizeSummaryText(value: string): string {
+  return value
     .replace(/\\[nr]/g, " ")
     .replace(/\s+/g, " ")
     .trim();
-  if ("" === normalizedSummary ||
-      normalizedSummary.length > maxSummaryLength ||
-      true === hasUnexpectedMarkdown(normalizedSummary) ||
-      true === hasCorrectionArtifact(normalizedSummary) ||
-      true === hasUnexpectedCjkCharacters(normalizedSummary)) {
+}
+
+function getGroundedPartialSummary(
+  value: unknown,
+  input: EarningsAiSummaryInput,
+  filingText: string,
+): string | null {
+  const items = getSummaryItems(value);
+  if (null === items) {
     return null;
   }
 
-  const sentences = getSummarySentences(normalizedSummary);
-  if (3 !== sentences.length ||
-      3 !== sourceSnippets.length ||
-      false === sourceSnippets.every((snippet, index) =>
-        true === isSupportedSummarySentence(
-          sentences[index] ?? "",
-          snippet,
-          filingText,
-          input.metrics ?? [],
-        ))) {
+  const groundedSentences = items
+    .map(item => getValidatedSummarySentence(item, input, filingText))
+    .filter((sentence): sentence is string => null !== sentence)
+    .filter((sentence, index, allSentences) => allSentences.indexOf(sentence) === index);
+  const partialSummary = getBoundedPartialSummary(groundedSentences);
+  if (null !== partialSummary) {
+    return formatValidatedSummary(partialSummary, input);
+  }
+
+  const sourceSnippets = items
+    .map(item => getValidatedSourceSnippet(item.sourceSnippet, input, filingText))
+    .filter((snippet): snippet is string => null !== snippet)
+    .filter((snippet, index, allSnippets) => false === allSnippets.some((otherSnippet, otherIndex) =>
+      otherIndex < index && (
+        normalizeEvidenceText(otherSnippet).includes(normalizeEvidenceText(snippet)) ||
+        normalizeEvidenceText(snippet).includes(normalizeEvidenceText(otherSnippet))
+      )));
+  const extractiveSummary = getBoundedPartialSummary(sourceSnippets);
+  return null === extractiveSummary ? null : formatValidatedSummary(extractiveSummary, input);
+}
+
+function getValidatedSourceSnippet(
+  sourceSnippet: string,
+  input: EarningsAiSummaryInput,
+  filingText: string,
+): string | null {
+  const normalizedSnippet = normalizeSummaryText(sourceSnippet);
+  if (normalizedSnippet.length < 3 ||
+      normalizedSnippet.length > maxSummarySourceSnippetLength ||
+      false === summaryMaterialEvidencePattern.test(normalizedSnippet) ||
+      false === normalizeEvidenceText(filingText).includes(normalizeEvidenceText(normalizedSnippet)) ||
+      true === hasUnexpectedMarkdown(normalizedSnippet) ||
+      true === hasCorrectionArtifact(normalizedSnippet) ||
+      true === hasUnexpectedCjkCharacters(normalizedSnippet) ||
+      true === hasDisplayedMetricConflict(normalizedSnippet, input.metrics ?? [])) {
     return null;
   }
 
-  if (true === hasDisplayedMetricConflict(normalizedSummary, input.metrics ?? [])) {
+  return /[.!?]$/.test(normalizedSnippet) ? normalizedSnippet : `${normalizedSnippet}.`;
+}
+
+const summaryMaterialEvidencePattern = /\b(?:bookings?|cash\s+flow|demand|earnings?|eps|expects?|growth|guidance|income|loss|margin|orders?|outlook|production|profit|revenue|sales|segments?|volume)\b/i;
+
+function getBoundedPartialSummary(parts: string[]): string | null {
+  if (parts.length < 2) {
     return null;
   }
 
-  return formatSummaryInlineCode(removeRedundantCompanyNameMentions(normalizedSummary, input.companyName), input.ticker);
+  const selectedParts: string[] = [];
+  for (const part of parts) {
+    const candidateSummary = [...selectedParts, part].join(" ");
+    if (candidateSummary.length <= maxSummaryLength) {
+      selectedParts.push(part);
+    }
+  }
+
+  return selectedParts.length < 2 ? null : selectedParts.join(" ");
+}
+
+function formatValidatedSummary(summary: string, input: EarningsAiSummaryInput): string {
+  return formatSummaryInlineCode(
+    removeRedundantCompanyNameMentions(summary, input.companyName),
+    input.ticker,
+  );
 }
 
 function isSupportedSummarySentence(
@@ -256,10 +445,6 @@ function isSupportedSummarySentence(
   if (normalizedSnippet.length < 3 ||
       false === normalizeEvidenceText(filingText).includes(normalizedSnippet)) {
     return false;
-  }
-
-  if (true === isNoOutlookSentence(sentence) && false === /\b(?:guidance|outlook|forecast|expects?)\b/i.test(filingText)) {
-    return true;
   }
 
   const sentenceNumbers = getEvidenceNumbers(sentence);
@@ -305,11 +490,6 @@ const summaryEvidenceStopWords = new Set([
   "third",
   "while",
 ]);
-
-function isNoOutlookSentence(value: string): boolean {
-  return /\bno\s+(?:quantified\s+)?(?:guidance|outlook|forecast)\b/i.test(value) ||
-    /\bdid\s+not\s+provide\s+(?:a\s+)?quantified\s+(?:guidance|outlook|forecast)\b/i.test(value);
-}
 
 function hasDisplayedMetricConflict(summary: string, metrics: EarningsResultMetric[]): boolean {
   return getSummarySentences(summary).some(sentence =>

@@ -131,6 +131,7 @@ describe("earnings result announcements", () => {
                   <tr><td>Diluted earnings per share</td><td>$1.00</td></tr>
                   <tr><td>Total revenues and other income</td><td>85,140</td></tr>
                 </table>
+                <p>Upstream production increased during the quarter.</p>
               </body>
             </html>
           `,
@@ -337,20 +338,23 @@ describe("earnings result announcements", () => {
   });
 
   test("adds an AI summary to the earnings result announcement when available", async () => {
-    const rawSummary = "XOM reported first-quarter adjusted EPS of $1.16 and revenue of $85.14B. Diluted earnings per share was $1.00. The company did not provide a quantified outlook.";
-    const formattedSummary = "`XOM` reported first-quarter adjusted EPS of `$1.16` and revenue of `$85.14B`. Diluted earnings per share was `$1.00`. The company did not provide a quantified outlook.";
+    const formattedSummary = "`XOM` reported first-quarter adjusted EPS of `$1.16` and revenue of `$85.14B`. Diluted earnings per share was `$1.00`. Upstream production increased during the quarter.";
     postWithRetryFn.mockResolvedValue({
       data: {
         candidates: [{
           content: {
             parts: [{
               text: JSON.stringify({
-                summary: rawSummary,
-                sourceSnippets: [
-                  "Adjusted EPS | $1.16 | Diluted earnings per share | $1.00 | Total revenues and other income | 85,140 |",
-                  "Diluted earnings per share | $1.00",
-                  "Exxon Mobil reports first quarter 2026 results",
-                ],
+                sentences: [{
+                  text: "XOM reported first-quarter adjusted EPS of $1.16 and revenue of $85.14B.",
+                  sourceSnippet: "Adjusted EPS | $1.16 | Diluted earnings per share | $1.00 | Total revenues and other income | 85,140 |",
+                }, {
+                  text: "Diluted earnings per share was $1.00.",
+                  sourceSnippet: "Diluted earnings per share | $1.00",
+                }, {
+                  text: "Upstream production increased during the quarter.",
+                  sourceSnippet: "Upstream production increased during the quarter.",
+                }],
               }),
             }],
           },
