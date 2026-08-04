@@ -106,4 +106,222 @@ describe("earnings result filing regressions", () => {
       {key: "dcf_per_share", label: "DCF/share", value: "C$5.7 to C$6.1"},
     ]);
   });
+
+  test("reads Vertex-style per-share rows from the quarter column, not the trailing prior-year YTD one", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Vertex Reports Second Quarter 2026 Financial Results</h1>
+          <p>Consolidated Statements of Income</p>
+          <p>(unaudited, in millions, except per share amounts)</p>
+          <p>Three Months Ended June 30, | Six Months Ended June 30,</p>
+          <p>2026 | 2025 | 2026 | 2025</p>
+          <p>Total revenues | 3,333.9 | 2,964.7 | 6,320.8 | 5,734.9</p>
+          <p>Net income | $ | 1,099.8 | $ | 1,032.9 | $ | 2,131.2 | $ | 1,679.2</p>
+          <p>Net income per common share:</p>
+          <p>Basic | $ | 4.34 | $ | 4.02 | $ | 8.39 | $ | 6.54</p>
+          <p>Diluted | $ | 4.31 | $ | 3.99 | $ | 8.33 | $ | 6.48</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.quarterLabel).toBe("Q2 2026");
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "gaap_eps", numericValue: 4.31, value: "$4.31"}),
+      expect.objectContaining({key: "revenue", numericValue: 3_333_900_000}),
+    ]));
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$6.48");
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$4.34");
+  });
+
+  test("keeps Clorox fourth-quarter figures separate from the full-year summary", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Clorox Reports Q4 and Fiscal Year 2026 Results</h1>
+          <h2>Fourth-Quarter Fiscal Year 2026 Summary</h2>
+          <p>Net sales decreased 2% to $1.95 billion. The GOJO acquisition added about 10 points.</p>
+          <p>Diluted net earnings per share (diluted EPS) decreased 50% to $1.34 from $2.68 in the year-ago quarter.</p>
+          <h2>Fiscal Year 2026 Summary</h2>
+          <p>Net sales decreased 5% to $6.72 billion, reflecting lapping of shipments in the fourth quarter.</p>
+          <p>Diluted EPS decreased 26% to $4.81 from $6.52 in the year-ago period.</p>
+          <p>Condensed Consolidated Statements of Earnings</p>
+          <p>(in millions, except per share amounts)</p>
+          <p>Three months ended | Twelve months ended</p>
+          <p>6/30/2026 | 6/30/2025 | 6/30/2026 | 6/30/2025</p>
+          <p>Net sales | $ | 1,948 | $ | 1,988 | $ | 6,720 | $ | 7,104</p>
+          <p>Net earnings attributable to Clorox | $ | 163 | $ | 332 | $ | 587 | $ | 810</p>
+          <p>Diluted net earnings per share | $ | 1.34 | $ | 2.68 | $ | 4.81 | $ | 6.52</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "gaap_eps", numericValue: 1.34, value: "$1.34"}),
+      expect.objectContaining({key: "revenue", numericValue: 1_950_000_000, value: "$1.95B"}),
+      expect.objectContaining({key: "net_income", numericValue: 163_000_000}),
+    ]));
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$4.81");
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$6.72B");
+  });
+
+  test("keeps Merck guidance, prior-year comparatives and per-share charges out of reported metrics", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Merck Announces Second-Quarter 2026 Financial Results</h1>
+          <p>- | Total Worldwide Sales Were $16.6 Billion (5% Growth; 4% Growth ex-FX)</p>
+          <p>- | Now Expects Non-GAAP EPS To Be Between $2.66 and $2.76</p>
+          <p>$ in millions, except per share amounts</p>
+          <p>Second Quarter</p>
+          <p>2026 | 2025 | Change</p>
+          <p>Sales</p>
+          <p>$ | 16,607</p>
+          <p>$ | 15,806</p>
+          <p>GAAP net (loss) income</p>
+          <p>(1,335 | )</p>
+          <p>4,427</p>
+          <p>GAAP EPS</p>
+          <p>(0.54 | )</p>
+          <p>1.76</p>
+          <p>GAAP loss per share was $0.54 in the second quarter of 2026 compared with earnings per share of $1.76 for the second quarter of 2025.</p>
+          <p>Both the GAAP and non-GAAP loss per share were due to a charge for the acquisition of Terns of $2.31 per share.</p>
+          <p>Increase to net loss / decrease to net income | | $ | 1,005 | | | $ | 939</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "gaap_eps", numericValue: -0.54, value: "-$0.54"}),
+      expect.objectContaining({key: "revenue", numericValue: 16_607_000_000}),
+      expect.objectContaining({key: "net_income", numericValue: -1_335_000_000}),
+    ]));
+    const values = parsedDocument.metrics.map(metric => metric.value);
+    expect(values).not.toContain("$1.76");
+    expect(values).not.toContain("$2.66");
+    expect(values).not.toContain("$2.31B");
+    expect(values).not.toContain("$1B");
+  });
+
+  test("keeps McDonald's Systemwide sales out of revenue and reads the diluted EPS column", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>McDonald's Corporation Reports Second Quarter 2026 Results</h1>
+          <p>Global Systemwide sales increased 5% (4% in constant currencies) to $37 billion for the quarter</p>
+          <p>Dollars in millions, except per share data</p>
+          <p>Quarters Ended June 30,</p>
+          <p>2026 | 2025 | Inc/ (Dec)</p>
+          <p>Revenues | $ | 7,099 | | $ | 6,843 | | 4 | | % | | 2 | | %</p>
+          <p>Net income | 2,362 | | 2,253 | | 5 | | 4</p>
+          <p>Earnings per share-diluted | $ | 3.32 | | $ | 3.14 | | 6 | | % | | 5 | | %</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "gaap_eps", numericValue: 3.32, value: "$3.32"}),
+      expect.objectContaining({key: "revenue", numericValue: 7_099_000_000}),
+      expect.objectContaining({key: "net_income", numericValue: 2_362_000_000}),
+    ]));
+    const values = parsedDocument.metrics.map(metric => metric.value);
+    expect(values).not.toContain("$37B");
+    expect(values).not.toContain("$3.00");
+  });
+
+  test("reads Pfizer summary-table EPS rows instead of non-GAAP definition footnotes", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Pfizer Reports Second-Quarter 2026 Results</h1>
+          <p>($ in millions, except per share amounts)</p>
+          <p>Second-Quarter | Six Months</p>
+          <p>2026 | 2025 | % Change | 2026 | 2025 | % Change</p>
+          <p>Revenues | $ 15,034 | $ 14,653 | 3% | $ 29,484 | $ 28,367 | 4%</p>
+          <p>Reported<sup>(4)</sup> Diluted EPS/(LPS)</p>
+          <p>(0.04) | 0.51 | * | 0.43 | 1.03 | (59%)</p>
+          <p>Adjusted<sup>(3)</sup> Diluted EPS</p>
+          <p>0.77 | 0.78 | -% | 1.52 | 1.69 | (10%)</p>
+          <p>(3) Adjusted income and Adjusted diluted earnings per share (EPS) are defined as U.S. GAAP net income/(loss) attributable to Pfizer Inc. common shareholders and U.S. GAAP diluted EPS/(LPS) attributable to Pfizer Inc. common shareholders before the impact of amortization of intangible assets and certain significant items and should not be viewed as substitutes for diluted EPS/(LPS)(4).</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "gaap_eps", numericValue: -0.04, value: "-$0.04"}),
+      expect.objectContaining({key: "adjusted_eps", numericValue: 0.77, value: "$0.77"}),
+    ]));
+    const values = parsedDocument.metrics.map(metric => metric.value);
+    expect(values).not.toContain("-$4.00");
+    expect(values).not.toContain("-$3.00");
+  });
+
+  test("reports BP group revenue in its dollar reporting currency and EPS per ADS", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <p>bp-20260630 2026 Q2 BP PLC iso4217:USD iso4217:USD xbrli:shares iso4217:EUR iso4217:USD utr:bbl iso4217:USD</p>
+          <h1>Group results second quarter and first half 2026</h1>
+          <p>Second | Second | First | First</p>
+          <p>quarter | quarter | half | half</p>
+          <p>$ million | 2026 | 2025 | 2026 | 2025</p>
+          <p>Sales and other operating revenues | 69,105 | 46,627 | 121,360 | 93,532</p>
+          <p>Profit (loss) per ordinary share (cents) | 24.77 | 10.41 | 49.60 | 14.73</p>
+          <p>Profit (loss) per ADS (dollars) | 1.49 | 0.62 | 2.98 | 0.88</p>
+          <p>Earnings per share (Note 7)</p>
+          <p>In the second quarter 2026, BP Capital Markets p.l.c. exercised its option to redeem &#8364;2.5 billion of hybrid bonds.</p>
+          <p>Customers &amp; products</p>
+          <p>Sales and other operating revenues for the second quarter and half year were $57.2 billion and $100.1 billion respectively.</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        currencyCode: "USD",
+        key: "revenue",
+        numericValue: 69_105_000_000,
+      }),
+      expect.objectContaining({currencyCode: "USD", key: "gaap_eps", value: "$1.49"}),
+    ]));
+    const values = parsedDocument.metrics.map(metric => metric.value);
+    expect(values).not.toContain("€69.11B");
+    expect(values).not.toContain("$57.2B");
+    expect(values).not.toContain("$7.00");
+    expect(values).not.toContain("$24.77");
+  });
+
+  test("keeps Palantir US-segment revenue and Spotify operating income out of total revenue", () => {
+    const palantirDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Palantir Reports Q2 2026 Results</h1>
+          <p>U.S. revenue grew 115% year-over-year and 23% quarter-over-quarter to $1.573 billion</p>
+          <p>U.S. commercial revenue grew 149% year-over-year to $764 million</p>
+          <p>Revenue grew 93% year-over-year and 19% quarter-over-quarter to $1.935 billion</p>
+        </body>
+      </html>
+    `);
+
+    expect(palantirDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "revenue", numericValue: 1_935_000_000}),
+    ]));
+    expect(palantirDocument.metrics.map(metric => metric.value)).not.toContain("$1.573B");
+
+    const spotifyDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Spotify Technology S.A. Announces Financial Results for Second Quarter 2026</h1>
+          <p>(&#8364;M) Total Revenue 4,193 4,533 4,777 Gross Profit 1,320 1,495 1,596</p>
+          <p>than offset music costs and Other Costs of Revenue Operating Income was &#8364;655 million in Q2 and reflected the above</p>
+          <p>Revenue of &#8364;4,777 million grew 14% Y/Y in Q2</p>
+        </body>
+      </html>
+    `);
+
+    expect(spotifyDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({currencyCode: "EUR", key: "revenue", numericValue: 4_777_000_000}),
+    ]));
+    expect(spotifyDocument.metrics.map(metric => metric.value)).not.toContain("€655M");
+  });
 });
