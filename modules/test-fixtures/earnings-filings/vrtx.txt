@@ -1,0 +1,442 @@
+EX-99.1
+2
+ex-991_q22026.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Vertex Reports Second Quarter 2026 Financial Results
+— Total revenue of $3.33 billion, a 12% increase compared to second quarter 2025 —
+— Raising full-year revenue guidance to $13.1 billion to $13.2 billion —
+— Continued progress across research and development pipeline; povetacicept PDUFA date November 30th —
+— Entered into agreement to acquire Crinetics Pharmaceuticals, with closing anticipated in the third quarter of 2026 —
+BOSTON -- Vertex Pharmaceuticals Incorporated (Nasdaq: VRTX) today reported consolidated financial results for the second quarter ended June 30, 2026, and updated its full year 2026 revenue guidance.
+“Vertex delivered excellent second quarter results, expanding our leadership in cystic fibrosis; delivering strong revenue growth in sickle cell disease, beta thalassemia, and acute pain; and with the pending acquisition of Crinetics, adding rare endocrine diseases as our fifth pillar, further diversifying our portfolio,” said Reshma Kewalramani, M.D., Chief Executive Officer and President of Vertex. “With this breadth of commercial and clinical opportunities, we look forward to bringing more medicines to more patients around the globe and in so doing, creating long-term value.”
+
+Second Quarter 2026 Results
+Total revenue increased 12% to $3.33 billion compared to the second quarter of 2025, primarily driven by the continued performance of cystic fibrosis (CF) therapies and growth from diversification into additional disease areas. In the U.S., total revenue increased 11% to $2.06 billion due to continued strong CF patient demand, including from new initiations of ALYFTREK; higher realized net prices in CF versus the prior year; and contributions from CASGEVY and JOURNAVX. Outside the U.S., total revenue increased 14% to $1.28 billion due to strong CF performance across multiple geographies, including ALYFTREK uptake; increased CASGEVY infusions; and a favorable impact from foreign exchange.
+Combined GAAP and non-GAAP R&D, Acquired IPR&D and SG&A expenses were $1.6 billion and $1.4 billion, respectively, in the second quarter of 2026, compared to $1.4 billion and $1.2 billion, respectively, for the second quarter of 2025. These increases were primarily due to commercial investment to support the launch of JOURNAVX in acute pain and the build-out of the renal franchise, led by povetacicept in IgAN.
+GAAP and non-GAAP effective tax rates were 21.0% and 21.1%, respectively, compared to 19.5% and 19.4%, respectively, for the second quarter of 2025.
+1
+
+
+
+
+
+GAAP and non-GAAP net income were $1.1 billion and $1.2 billion, respectively, compared to $1.0 billion and $1.2 billion, respectively, for the second quarter of 2025, as a result of increased product revenue, partially offset by increased operating expenses.
+
+Cash, cash equivalents, and total marketable securities as of June 30, 2026, were $13.6 billion, compared to $12.3 billion as of December 31, 2025. The increase was primarily due to cash flows from operating activities, partially offset by repurchases of Vertex’s common stock pursuant to its share repurchase program.
+
+Full Year 2026 Financial Guidance
+Vertex today raised its full year 2026 total revenue guidance to $13.1 billion to $13.2 billion from $12.95 billion to $13.1 billion previously. Embedded in this guidance are expectations for continued growth in CF, including the continued global uptake of ALYFTREK and TRIKAFTA, as well as $500 million or more in revenue from non-CF products, namely CASGEVY and JOURNAVX. Total revenue guidance continues to reflect a year-over-year benefit of approximately 150 basis points in growth from foreign exchange rates, net of Vertex’s foreign exchange hedging program. Vertex reiterated its full year 2026 guidance for combined GAAP and non-GAAP R&D, AIPR&D, and SG&A expenses of $6.3 billion to $6.45 billion and $5.65 billion to $5.75 billion, respectively. This guidance also continues to include an immaterial cost impact from tariffs in 2026 based on currently known tariff rates and regulations.
+Vertex’s financial guidance for 2026 does not reflect the impact of the pending acquisition of Crinetics Pharmaceuticals. Vertex continues to anticipate completion of the acquisition in the third quarter of 2026, subject to customary closing conditions, and will provide updated guidance for 2026 following transaction close.
+Vertex’s financial guidance is summarized below:
+| | | | | | | | | | | |
+| Current FY 2026 | | Previous FY 2026 |
+| | | |
+Total revenue | $13.1 to $13.2 billion | | $12.95 to $13.1 billion |
+Non-CF product revenue | Unchanged | | $0.5 billion or greater |
+| | | |
+Combined GAAP R&D, AIPR&D and SG&A expenses * | Unchanged | | $6.3 to $6.45 billion |
+Combined non-GAAP R&D, AIPR&D and SG&A expenses* | Unchanged | | $5.65 to $5.75 billion |
+Non-GAAP effective tax rate | Unchanged | | 19.5% to 20.5% |
+|
+*The difference between the combined GAAP R&D, AIPR&D and SG&A expenses and the combined non-GAAP R&D, AIPR&D and SG&A expenses guidance relates primarily to $650 million to $700 million of stock-based compensation expense.
+|
+**Combined GAAP and non-GAAP R&D, AIPR&D and SG&A expenses guidance includes approximately $100 million of AIPR&D expenses. |
+
+2
+
+
+
+
+
+
+Key Business Highlights
+Marketed Products
+Cystic Fibrosis (CF) Portfolio
+Vertex has worked for more than 20 years to discover and develop medicines to treat the underlying cause of CF. Vertex CFTR modulators can treat approximately 95 percent of all people living with CF in core markets, including patients as young as one month old. Our CF medicines are accessible in more than 60 countries across six continents. Recent highlights include:
+• Vertex presented new data on ALYFTREK at the European Cystic Fibrosis Conference demonstrating the potentially transformative impact of treating cystic fibrosis with ALYFTREK in children 2 to 5 years of age. The Phase 3 data set shows that 65% of children in the study, including those with F/F and F/MF genotypes, reached carrier sweat chloride levels of 30 mmol/L, with a mean reduction in sweat chloride of 9.6 mmol/L from a baseline on TRIKAFTA. ALYFTREK was generally safe and well tolerated. Vertex recently initiated global regulatory submissions for this age group.
+• In the second quarter of 2026, Vertex secured reimbursement for ALYFTREK in four additional countries, including Spain, bringing the total number of countries where ALYFTREK is reimbursed to 25. Vertex also signed a letter of intent with the Pan-Canadian Pharmaceutical Alliance for reimbursement of ALYFTREK for eligible patients 6 years and older in Canada.
+• Vertex has submitted numerous abstracts for presentation at the North American Cystic Fibrosis Conference in October, including data on reductions in sweat chloride with CFTR modulators, reduced need for pancreatic enzyme replacement therapy with ALYFTREK, and evidence of the positive impact of ALYFTREK on quality of life, treatment burden, treatment experience and overall health collected through patient-reported outcomes.
+CASGEVY for the treatment of severe sickle cell disease (SCD) and transfusion-dependent beta thalassemia (TDT)
+CASGEVY is a non-viral, ex vivo, CRISPR/Cas9 gene-edited cell therapy for eligible patients with SCD or TDT that has been shown to reduce or eliminate vaso-occlusive crises (VOCs) for patients with SCD and transfusion requirements for patients with TDT. CASGEVY is approved in 39 countries across North America, Europe, and the Middle East. Recent highlights include:
+3
+
+
+
+
+
+• Vertex recorded second quarter 2026 CASGEVY revenue of $76 million, representing 78% quarter-over-quarter sequential growth and 151% growth compared to the second quarter of 2025.
+• The U.S. FDA recently approved CASGEVY in children 2 years of age and older with SCD or TDT, making it the first genetic therapy indicated for children as young as 2 years for both SCD and TDT. With this approval, achieved in just 53 days post filing, approximately 5,500 patients with SCD or TDT may be eligible for treatment with CASGEVY for the first time. Vertex has also completed regulatory submissions in KSA and the U.K. for the treatment of children 5 to 11 years of age.
+• In May, Vertex secured reimbursement for CASGEVY for eligible patients 12 years and older with SCD or TDT in Germany. Vertex remains committed to working with government and reimbursement authorities globally to ensure sustainable access for eligible patients.
+JOURNAVX (suzetrigine) for the treatment of moderate-to-severe acute pain
+JOURNAVX is a first-in-class, oral, selective, non-opioid Na V 1.8 pain signal inhibitor, approved in the U.S. for the treatment of adults with moderate-to-severe acute pain. Recent highlights include:
+• Vertex recorded second quarter 2026 JOURNAVX revenue of $50 million, representing 71% quarter-over-quarter sequential growth and more than quadrupling compared to $12 million in the second quarter of 2025.
+• In the second quarter and first six months of 2026, approximately 535,000 and approximately 900,000 prescriptions, respectively, have been filled for JOURNAVX across the hospital and retail settings.
+• Vertex has reached agreements with two additional major pharmacy benefit managers (PBMs) for Medicare Part D coverage of JOURNAVX. As a result, seniors covered by three of the four major Medicare Part D PBMs now have reimbursed access. Twenty-three states provide coverage for JOURNAVX via Medicaid . In total, approximately 260 million individuals in the U.S. now have reimbursed access to JOURNAVX across a wide range of commercial and government payers.
+• During the second quarter, Health Canada accepted Vertex’s new drug submission for suzetrigine for the treatment of moderate-to-severe acute pain, and review is underway.
+• Real world evidence in support of JOURNAVX (suzetrigine) continues to build, including the recent publication of “Suzetrigine as Part of Multimodal Therapy Enables Opioid-Free Recovery After Aesthetic or Reconstructive Procedures,” in the journal Plastic and Reconstructive Surgery .
+4
+
+
+
+
+
+Select R&D Pipeline Programs
+Cystic Fibrosis
+• Consistent with its commitment to serial innovation and bringing as many patients as possible to carrier levels of CFTR function, Vertex is evaluating VX-828, the first of the next-generation 3.0 CFTR corrector class, in a proof-of-concept study in people with CF. Vertex completed dosing in this study and is on track to share results in the second half of 2026.
+• Vertex is enrolling and dosing first-in-human studies in healthy volunteers with VX-581 and VX-272, additional next-generation 3.0 CFTR correctors. Vertex expects to study all three correctors in early-stage trials in people with CF and advance the best asset into further development.
+Sickle Cell Disease and Transfusion-Dependent Beta Thalassemia
+• Vertex continues to make progress on advancing preclinical assets for gentler conditioning for CASGEVY toward clinical trials. Gentler conditioning could broaden the eligible patient population for CASGEVY.
+Acute and Peripheral Neuropathic Pain (PNP)
+• Vertex is on track to complete enrollment in both Phase 3 studies of suzetrigine in diabetic peripheral neuropathy (DPN), a form of peripheral neuropathic pain (PNP), by the end of 2026.
+• Vertex is on track to complete enrollment in a Phase 2 study of VX-993 in people with DPN by the end of 2026.
+• Vertex continues to advance toward clinical trials preclinical assets that inhibit Na V 1.7 for use alone or in combination with a Na V 1.8 inhibitor in acute and neuropathic pain.
+IgA Nephropathy (IgAN) and Other B Cell-Mediated Diseases
+Vertex is developing povetacicept for multiple diseases. Povetacicept is a dual inhibitor of the BAFF and APRIL cytokines, which play key roles in the pathogenesis of multiple B cell-mediated autoimmune diseases. Povetacicept has pipeline-in-a-product potential and represents a potentially best-in-class approach to control B cell activity in IgAN, primary membranous nephropathy (pMN), and generalized myasthenia gravis (gMG).
+• The U.S. FDA accepted the BLA submission for accelerated approval of povetacicept for adults with IgAN and assigned a PDUFA target action date of November 30, 2026. The submission is
+5
+
+
+
+
+
+supported by positive data from a pre-specified Week 36 interim analysis of the ongoing Phase 3 RAINIER trial of povetacicept in IgAN. If approved, povetacicept will become the first commercialized therapy in Vertex’s emerging nephrology pillar.
+• Vertex has completed its regulatory submission for accelerated approval of povetacicept in adults with IgAN in the Kingdom of Saudi Arabia, and the Saudi Food and Drug Authority has granted povetacicept Breakthrough Designation.
+• Vertex completed the Phase 2B portion of the Phase 2/3 OLYMPUS pivotal study of povetacicept in people with pMN and confirmed the dose selection of 80 mg subcutaneously every four weeks for the Phase 3 portion, which is underway. The FDA has granted Fast Track and Orphan Drug designations for povetacicept in pMN, and the EMA has granted Priority Medicines (PRIME) designation.
+• Vertex continues to enroll and dose the placebo-controlled, Phase 2 dose-ranging proof-of-concept study evaluating povetacicept for the treatment of gMG. Vertex is on track to complete enrollment in this study by the end of 2026.
+APOL1-Mediated Kidney Disease (AMKD)
+Vertex has discovered and advanced multiple oral, small molecule inhibitors of APOL1 function, pioneering a new class of medicines that targets the underlying cause of this genetic kidney disease.
+• The AMPLITUDE study is on track to complete full enrollment in the second half of 2026.
+• Vertex is on track to share data from the interim analysis of the AMPLITUDE study in early 2027. Vertex will conduct the pre-planned interim analysis for potential U.S. accelerated approval after the interim analysis cohort reaches 48 weeks of treatment.
+• Vertex has completed enrollment and dosing in the AMPLIFIED Phase 2 study of inaxaplin and is on track to share data this fall. AMPLIFIED is a study of inaxaplin in people with AMKD with moderate proteinuria, and people with AMKD and Type 2 diabetes — populations not being studied in the AMPLITUDE trial.
+Type 1 Diabetes (T1D)
+Vertex is evaluating stem cell-derived, fully differentiated islet cell therapies for patients suffering from T1D, with the goal of developing a potential one-time functional cure for this disease.
+• The Phase 1/2/3 study of zimislecel in people with T1D continues to enroll and dose patients.
+6
+
+
+
+
+
+• The IND application for VX-017 has been cleared by the FDA, and Vertex plans to initiate a Phase 1/2 trial to evaluate the safety and efficacy of VX-017 in people with T1D in the near term. VX-017 is a stem cell-derived, fully differentiated islet cell therapy designed to treat all eligible patients with T1D, regardless of blood type.
+• Following recent positive regulatory interactions, the company expects to provide updated timelines for the zimislecel and VX-017 programs later this year .
+Autosomal Dominant Polycystic Kidney Disease (ADPKD)
+Vertex is developing small molecule correctors that restore function to polycystin 1 (PC1) protein variants, with the goal of addressing the underlying cause of ADPKD.
+• Vertex has completed enrollment in AGLOW, a Phase 2 study of VX-407 in patients with a subset of variants in the PKD1 gene, which encodes the PC1 protein, estimated to be up to approximately 30,000 (or up to approximately 10%) of the overall patient population living with ADPKD.
+• AGLOW is a 26-patient, single-arm, 52-week, Phase 2 proof-of-concept study that will evaluate the effect of VX-407 on height-adjusted total kidney volume (htTKV).
+Myotonic Dystrophy Type 1 (DM1)
+Vertex is evaluating multiple approaches that target the underlying cause of DM1. Vertex’s lead approach, VX-670, is an oligonucleotide linked to a cyclic peptide, which holds the potential to promote effective delivery into cells and address the causal biology of DM1.
+• Vertex recently completed enrollment and continues to dose people with DM1 in the multiple ascending dose portion of the GALILEO global Phase 1/2 clinical trial of VX-670. The study is assessing both safety and preliminary efficacy, as measured by the change from baseline in the splicing index on muscle biopsy as well as other endpoints, including those that evaluate muscle function and strength, such as video hand opening time (vHOT) and quantitative muscle testing (QMT) score . Vertex is on track to complete dosing in the trial and share results in the second half of 2026.
+Additional Earlier Stage R&D Programs
+Consistent with its overall strategy, Vertex takes a serial innovation approach to all of its programs, with additional assets or approaches across its portfolio.
+7
+
+
+
+
+
+Investments in External Innovation
+In July, Vertex and Crinetics Pharmaceuticals entered into a definitive agreement under which Vertex will acquire Crinetics for $85.00 per share in cash, for a total equity value of approximately $10.0 billion, or approximately $8.8 billion net of estimated cash acquired. The transaction is expected to close in the third quarter of 2026.
+
+Conference Call and Webcast
+The company will host a conference call and webcast at 4:30 p.m. ET. To access the call, please dial (833) 630-2124 (U.S.) or +1(412) 317-0651 (International) and reference the “Vertex Pharmaceuticals Second Quarter 2026 Earnings Call.”
+The conference call will be webcast live and a link to the webcast can be accessed through Vertex's website at www.vrtx.com in the "Investors" section. To ensure a timely connection, it is recommended that participants register at least 15 minutes prior to the scheduled webcast. An archived webcast will be available on the company's website.
+8
+
+
+
+
+
+
+Non-GAAP Financial Measures
+In this press release, Vertex's financial results and financial guidance are provided in accordance with accounting principles generally accepted in the United States (GAAP) and using certain non-GAAP financial measures. In particular, non-GAAP financial results and guidance exclude from Vertex's pre-tax income (i) stock-based compensation expense, (ii) intangible asset amortization expense, (iii) gains or losses related to the fair value of the company's strategic investments, (iv) increases or decreases in the fair value of contingent consideration, (v) an intangible asset impairment charge, and (vi) other adjustments. The company's non-GAAP financial results also exclude from its provision for income taxes the estimated tax impact related to its non-GAAP adjustments to pre-tax income described above and certain discrete items. These results should not be viewed as a substitute for the company’s GAAP results and are provided as a complement to results provided in accordance with GAAP. Management believes these non-GAAP financial measures help indicate underlying trends in the company's business, are important in comparing current results with prior period results and provide additional information regarding the company's financial position that the company believes is helpful to an understanding of its ongoing business. Management also uses these non-GAAP financial measures to establish budgets and operational goals that are communicated internally and externally, to manage the company's business and to evaluate its performance. The company’s calculation of non-GAAP financial measures likely differs from the calculations used by other companies. A reconciliation of the GAAP financial results to non-GAAP financial results is included in the attached financial information.
+The company provides guidance regarding combined R&D, AIPR&D and SG&A expenses and effective tax rate on a non-GAAP basis. Unless otherwise noted, the guidance regarding combined R&D, AIPR&D and SG&A expenses does not include estimates associated with any potential future business development transactions, including collaborations, asset acquisitions and/or licensing of third-party intellectual property rights. The guidance does not reflect the impact of the pending acquisition of Crinetics Pharmaceuticals. The company does not provide guidance regarding its GAAP effective tax rate because it is unable to forecast with reasonable certainty the impact of excess tax benefits related to stock-based compensation and the possibility of certain discrete items, which could be material.
+9
+
+
+
+
+
+
+Vertex Pharmaceuticals Incorporated
+Consolidated Statements of Income
+(unaudited, in millions, except per share amounts)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Revenues: | | | | | | | |
+Product revenues, net | $ | 3,333.9 | | | $ | 2,944.0 | | | $ | 6,320.8 | | | $ | 5,704.2 | |
+Other revenues
+| — | | | 20.7 | | | — | | | 30.7 | |
+Total revenues | 3,333.9 | | | 2,964.7 | | | 6,320.8 | | | 5,734.9 | |
+Costs and expenses: | | | | | | | |
+Cost of sales | 489.2 | | | 407.5 | | | 882.0 | | | 770.5 | |
+Research and development expenses | 993.8 | | | 978.4 | | | 1,955.4 | | | 1,958.1 | |
+Acquired in-process research and development expenses | 21.4 | | | 2.2 | | | 21.9 | | | 22.0 | |
+Selling, general and administrative expenses | 582.2 | | | 424.6 | | | 1,075.9 | | | 821.0 | |
+Intangible asset impairment charge | — | | | — | | | — | | | 379.0 | |
+Change in fair value of contingent consideration | 0.4 | | | 0.9 | | | 0.6 | | | 3.1 | |
+Total costs and expenses | 2,087.0 | | | 1,813.6 | | | 3,935.8 | | | 3,953.7 | |
+Income from operations
+| 1,246.9 | | | 1,151.1 | | | 2,385.0 | | | 1,781.2 | |
+Interest income, net | 120.6 | | | 118.7 | | | 235.4 | | | 236.6 | |
+Other income (expense), net
+| 24.3 | | | 13.2 | | | 24.3 | | | (4.4) | |
+Income before provision for income taxes
+| 1,391.8 | | | 1,283.0 | | | 2,644.7 | | | 2,013.4 | |
+Provision for income taxes
+| 292.0 | | | 250.1 | | | 513.5 | | | 334.2 | |
+Net income
+| $ | 1,099.8 | | | $ | 1,032.9 | | | $ | 2,131.2 | | | $ | 1,679.2 | |
+| | | | | | | |
+Net income per common share:
+| | | | | | | |
+Basic | $ | 4.34 | | | $ | 4.02 | | | $ | 8.39 | | | $ | 6.54 | |
+Diluted | $ | 4.31 | | | $ | 3.99 | | | $ | 8.33 | | | $ | 6.48 | |
+Shares used in per share calculations: | | | | | | | |
+Basic | 253.7 | | | 256.7 | | | 253.9 | | | 256.8 | |
+Diluted | 255.2 | | | 258.9 | | | 255.7 | | | 259.2 | |
+
+
+
+
+
+10
+
+
+
+
+
+
+Vertex Pharmaceuticals Incorporated
+Total Revenues
+(unaudited, in millions)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+TRIKAFTA/KAFTRIO | $ | 2,497.2 | | | $ | 2,551.1 | | | $ | 4,851.9 | | | $ | 5,086.6 | |
+ALYFTREK | 573.6 | | | 156.8 | | | 998.0 | | | 210.7 | |
+Other CF product revenues (1)
+| 137.1 | | | 193.7 | | | 273.0 | | | 349.0 | |
+Total CF product revenues, net | 3,207.9 | | | 2,901.6 | | | 6,122.9 | | | 5,646.3 | |
+CASGEVY | 76.4 | | | 30.4 | | | 119.3 | | | 44.6 | |
+JOURNAVX | 49.6 | | | 12.0 | | | 78.6 | | | 13.3 | |
+Product revenues, net | 3,333.9 | | | 2,944.0 | | | 6,320.8 | | | 5,704.2 | |
+Other revenues
+| — | | | 20.7 | | | — | | | 30.7 | |
+Total revenues | $ | 3,333.9 | | | $ | 2,964.7 | | | $ | 6,320.8 | | | $ | 5,734.9 | |
+| | | | | | | |
+1: Includes KALYDECO, ORKAMBI, and SYMDEKO/SYMKEVI
+|
+
+11
+
+
+
+
+
+
+Vertex Pharmaceuticals Incorporated
+Reconciliation of GAAP to Non-GAAP Financial Information
+(unaudited, in millions, except percentages)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+GAAP cost of sales
+| $ | 489.2 | | | $ | 407.5 | | | $ | 882.0 | | | $ | 770.5 | |
+Stock-based compensation expense | (3.8) | | | (2.5) | | | (7.0) | | | (5.1) | |
+Intangible asset amortization expense | (5.1) | | | (5.1) | | | (10.1) | | | (10.1) | |
+Non-GAAP cost of sales
+| $ | 480.3 | | | $ | 399.9 | | | $ | 864.9 | | | $ | 755.3 | |
+| | | | | | | |
+GAAP research and development expenses | $ | 993.8 | | | $ | 978.4 | | | $ | 1,955.4 | | | $ | 1,958.1 | |
+Stock-based compensation expense | (104.4) | | | (99.6) | | | (206.1) | | | (199.7) | |
+Intangible asset amortization expense | (0.7) | | | (0.7) | | | (1.3) | | | (1.3) | |
+| | | | | | | |
+Non-GAAP research and development expenses | $ | 888.7 | | | $ | 878.1 | | | $ | 1,748.0 | | | $ | 1,757.1 | |
+| | | | | | | |
+Acquired in-process research and development expenses | $ | 21.4 | | | $ | 2.2 | | | $ | 21.9 | | | $ | 22.0 | |
+| | | | | | | |
+GAAP selling, general and administrative expenses | $ | 582.2 | | | $ | 424.6 | | | $ | 1,075.9 | | | $ | 821.0 | |
+Stock-based compensation expense | (62.0) | | | (65.2) | | | (123.5) | | | (128.6) | |
+| | | | | | | |
+Non-GAAP selling, general and administrative expenses | $ | 520.2 | | | $ | 359.4 | | | $ | 952.4 | | | $ | 692.4 | |
+| | | | | | | |
+Combined non-GAAP R&D, AIPR&D and SG&A expenses | $ | 1,430.3 | | | $ | 1,239.7 | | | $ | 2,722.3 | | | $ | 2,471.5 | |
+| | | | | | | |
+GAAP other income (expense), net
+| $ | 24.3 | | | $ | 13.2 | | | $ | 24.3 | | | $ | (4.4) | |
+(Increase) decrease in fair value of strategic investments
+| (37.2) | | | (5.4) | | | (35.2) | | | 9.6 | |
+Non-GAAP other (expense) income, net
+| $ | (12.9) | | | $ | 7.8 | | | $ | (10.9) | | | $ | 5.2 | |
+| | | | | | | |
+GAAP provision for income taxes
+| $ | 292.0 | | | $ | 250.1 | | | $ | 513.5 | | | $ | 334.2 | |
+Tax adjustments (2)
+| 31.7 | | | 32.1 | | | 90.3 | | | 192.2 | |
+Non-GAAP provision for income taxes
+| $ | 323.7 | | | $ | 282.2 | | | $ | 603.8 | | | $ | 526.4 | |
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | | |
+GAAP effective tax rate | 21.0 | % | | 19.5 | % | | 19.4 | % | | 16.6 | % |
+Non-GAAP effective tax rate | 21.1 | % | | 19.4 | % | | 20.4 | % | | 19.1 | % |
+
+12
+
+
+
+
+
+
+Vertex Pharmaceuticals Incorporated
+Reconciliation of GAAP to Non-GAAP Financial Information (continued)
+(unaudited, in millions, except per share amounts)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+GAAP operating income
+| $ | 1,246.9 | | | $ | 1,151.1 | | | $ | 2,385.0 | | | $ | 1,781.2 | |
+Stock-based compensation expense | 170.2 | | | 167.3 | | | 336.6 | | | 333.4 | |
+Intangible asset impairment charge | — | | | — | | | — | | | 379.0 | |
+Intangible asset amortization expense | 5.8 | | | 5.8 | | | 11.4 | | | 11.4 | |
+Increase in fair value of contingent consideration
+| 0.4 | | | 0.9 | | | 0.6 | | | 3.1 | |
+| | | | | | | |
+Non-GAAP operating income
+| $ | 1,423.3 | | | $ | 1,325.1 | | | $ | 2,733.6 | | | $ | 2,508.1 | |
+| | | | | | | |
+GAAP net income
+| $ | 1,099.8 | | | $ | 1,032.9 | | | $ | 2,131.2 | | | $ | 1,679.2 | |
+| | | | | | | |
+Stock-based compensation expense | 170.2 | | | 167.3 | | | 336.6 | | | 333.4 | |
+Intangible asset impairment charge | — | | | — | | | — | | | 379.0 | |
+Intangible asset amortization expense | 5.8 | | | 5.8 | | | 11.4 | | | 11.4 | |
+(Increase) decrease in fair value of strategic investments
+| (37.2) | | | (5.4) | | | (35.2) | | | 9.6 | |
+Increase in fair value of contingent consideration
+| 0.4 | | | 0.9 | | | 0.6 | | | 3.1 | |
+| | | | | | | |
+Total non-GAAP adjustments to pre-tax income
+| 139.2 | | | 168.6 | | | 313.4 | | | 736.5 | |
+Tax adjustments (2)
+| (31.7) | | | (32.1) | | | (90.3) | | | (192.2) | |
+Non-GAAP net income
+| $ | 1,207.3 | | | $ | 1,169.4 | | | $ | 2,354.3 | | | $ | 2,223.5 | |
+| | | | | | | |
+Net income per diluted common share:
+| | | | | | | |
+GAAP | $ | 4.31 | | | $ | 3.99 | | | $ | 8.33 | | | $ | 6.48 | |
+Non-GAAP | $ | 4.73 | | | $ | 4.52 | | | $ | 9.21 | | | $ | 8.58 | |
+Shares used in diluted per share calculations: | | | | | | | |
+GAAP and Non-GAAP | 255.2 | | | 258.9 | | | 255.7 | | | 259.2 | |
+| | | | | | | |
+| | | | | | | |
+
+
+
+
+2: In the three and six months ended June 30, 2026 and 2025, “Tax adjustments” included the estimated income taxes related to non-GAAP adjustments to the company's pre-tax income and excess tax benefits related to stock-based compensation.
+
+
+13
+
+
+
+
+
+
+Vertex Pharmaceuticals Incorporated
+Condensed Consolidated Balance Sheets
+(unaudited, in millions)
+
+
+| | | | | | | | | | | |
+| June 30, 2026 | | December 31, 2025 |
+Assets | | | |
+Cash, cash equivalents and marketable securities | $ | 7,852.4 | | | $ | 6,608.1 | |
+Accounts receivable, net | 2,134.3 | | | 2,052.8 | |
+Inventories | 1,765.1 | | | 1,686.8 | |
+Prepaid expenses and other current assets | 791.9 | | | 853.3 | |
+Total current assets | 12,543.7 | | | 11,201.0 | |
+Property and equipment, net | 1,665.0 | | | 1,520.3 | |
+Goodwill and other intangible assets, net | 1,500.8 | | | 1,512.2 | |
+Deferred tax assets | 3,010.9 | | | 2,897.9 | |
+Operating lease assets | 1,662.9 | | | 1,562.7 | |
+Long-term marketable securities | 5,789.1 | | | 5,712.3 | |
+Other long-term assets | 1,250.9 | | | 1,236.6 | |
+Total assets | $ | 27,423.3 | | | $ | 25,643.0 | |
+| | | |
+Liabilities and Shareholders' Equity | | | |
+Accounts payable and accrued expenses | $ | 3,608.5 | | | $ | 3,432.9 | |
+Other current liabilities | 329.4 | | | 428.3 | |
+Total current liabilities | 3,937.9 | | | 3,861.2 | |
+Long-term operating lease liabilities | 1,977.6 | | | 1,846.5 | |
+Other long-term liabilities | 1,259.9 | | | 1,269.5 | |
+Shareholders' equity | 20,247.9 | | | 18,665.8 | |
+Total liabilities and shareholders' equity | $ | 27,423.3 | | | $ | 25,643.0 | |
+| | | |
+Common shares outstanding | 253.3 | | | 254.0 | |
+
+
+
+14
+
+
+
+
+
+
+About Vertex
+Vertex is a global biotechnology company that invests in scientific innovation to create transformative medicines for people with serious diseases and conditions. The company has approved therapies for cystic fibrosis, sickle cell disease, transfusion-dependent beta thalassemia and acute pain, and it continues to advance clinical and research programs in these areas. Vertex also has a robust clinical pipeline of investigational therapies across a range of modalities in other serious diseases where it has deep insight into causal human biology, including IgA nephropathy, neuropathic pain, APOL1-mediated kidney disease, primary membranous nephropathy, autosomal dominant polycystic kidney disease, type 1 diabetes, generalized myasthenia gravis, and myotonic dystrophy type 1. Vertex was founded in 1989 and has its global headquarters in Boston, with international headquarters in London. Additionally, the company has research and development sites and commercial offices in North America, Europe, Australia, Latin America, and the Middle East. Vertex is consistently recognized as one of the industry's top places to work, including 16 consecutive years on Science magazine's Top Employers list and one of Fortune’s 100 Best Companies to Work For. For company updates and to learn more about Vertex’s history of innovation, visit at www.vrtx.com or follow us on LinkedIn, Facebook, Instagram, YouTube and X.
+Special Note Regarding Forward-Looking Statements
+This press release contains forward-looking statements that are subject to risks, uncertainties and other factors. All statements other than statements of historical fact are statements that could be deemed forward-looking statements, including all statements regarding the intent, belief, or current expectation of Vertex and members of the Vertex senior management team. Forward-looking statements are not purely historical and may be accompanied by words such as “anticipates,” “may,” “forecasts,” “expects,” “intends,” “plans,” “potentially,” “believes,” “seeks,” “estimates,” and other words and terms of similar meaning. Such statements include, without limitation, Dr. Kewalramani's statements in this press release, the information provided regarding future financial performance and operations, the section captioned “Full Year 2026 Financial Guidance” and statements regarding (i) expectations for $500 million or more in non-CF product revenue and an immaterial cost impact from tariffs in 2026, (ii) expectations for continued growth in CF, including the continued global uptake of ALYFTREK and TRIKAFTA, beliefs regarding the clinical benefits of ALYFTREK, including for younger age groups, plans to share VX-828 data in the second half of 2026, plans for the advancement of studies evaluating each VX-581 and VX-272, and expectations to study all three next generation correctors in early-stage trials and advance the best asset into further development, (iii) beliefs regarding the anticipated benefits of CASGEVY, eligible patient population, and commitment to global sustainable access, and expectations for advancement of preclinical assets for gentler conditioning for CASGEVY, which could broaden the eligible patient population, (iv) expectations regarding JOURNAVX, including with respect to prescription and revenue growth in the U.S., expanded access and patient and physician adoption, beliefs with respect to continued supportive real world evidence, expectations to complete enrollment in both Phase 3 studies of suzetrigine in DPN by the end of 2026, expectations to complete enrollment in the Phase 2 study of VX-993 in DPN by the end of 2026, and plans for advancement of additional preclinical assets that inhibit Na V 1.7, (v) expectations with respect to povetacicept, including beliefs about its potential benefits and therapeutic scope, its potential to be a best-in-class approach to control B cell activity in IgAN, pMN and gMG, and its potential to be a pipeline-in-a-product, expectations regarding povetacicept in IgAN, expectations for povetacicept in pMN, and expectations for povetacicept in gMG, including to complete enrollment in the Phase 2 gMG study by the end of 2026, (vi) expectations regarding the AMPLITUDE study of inaxaplin in AMKD, including expectations to complete full enrollment in the second half of 2026, and regarding the interim analysis for AMPLITUDE and plans to share data in early 2027, and expectations regarding sharing data from the AMPLIFIED Phase 2 study in the fall, (vii) expectations regarding the T1D program, including plans for the study evaluating zimislecel, as well as the study evaluating VX-017,
+15
+
+
+
+
+
+including plans to initiate a Phase 1/2 trial in the near term, and expectations to provide updated timelines for the T1D programs later this year, (viii) expectations regarding the ADPKD program and the Phase 2 study evaluating VX-407, (ix) beliefs regarding the potential benefits and clinical status of VX-670 for the treatment in people with DM1 and expectations to complete dosing in the trial and share results in the second half of 2026, (x) the company’s beliefs with respect to additional assets or approaches across its portfolio, and (xi) beliefs with respect to the potential acquisition of Crinetics Pharmaceuticals, including expectations to complete the transaction in the third quarter of 2026, and expectations to provide updated guidance for 2026 following the completion of the transaction. While Vertex believes the forward-looking statements contained in this press release are accurate, these forward-looking statements represent the company's beliefs only as of the date of this press release and there are a number of risks and uncertainties that could cause actual events or results to differ materially from those expressed or implied by such forward-looking statements. Those risks and uncertainties include, among other things, that the company's expectations regarding its 2026 full year revenues, expenses, and effective tax rates and that impact from tariffs in 2026 may be incorrect (including because one or more of the company's assumptions underlying its expectations may not be realized), that we may be unable to further successfully commercialize ALYFTREK, JOURNAVX, and CASGEVY, that we may be unable to complete the pending acquisition of Crinetics on the expected timeline, or at all, that external factors may have different or more significant impacts on the company's business or operations than the company currently expects, that data from preclinical testing or clinical trials, especially if based on a limited number of patients, may not be indicative of final results or available on anticipated timelines, that patient enrollment in the company’s trials may be delayed, that the company may not realize the anticipated benefits from collaborations with third parties, that data from the company's development programs may not support registration or further development of its potential medicines in a timely manner, or at all, due to safety, efficacy or other reasons, that regulatory submissions or approvals may not occur on the anticipated timeline, or at all, that interactions with regulators may cause delays in the company’s pipeline programs, and that anticipated commercial launches may be delayed, if they occur at all. Forward-looking statements in this press release should be evaluated together with the many risks and uncertainties that affect Vertex’s business, particularly those risks listed under the heading “Risk Factors” and the other cautionary factors discussed in Vertex’s periodic reports filed with the SEC, including Vertex’s annual report on Form 10-K, quarterly reports on Form 10-Q and current reports on Form 8-K, all of which are filed with the Securities and Exchange Commission (SEC) and available through the company's website at www.vrtx.com and on the SEC’s website at www.sec.gov. You should not place undue reliance on these statements, or the scientific data presented. Vertex disclaims any obligation to update the information contained in this press release as new information becomes available.
+
+(VRTX-E)
+
+
+Vertex Pharmaceuticals Incorporated
+Investors:
+InvestorInfo@vrtx.com
+or
+617-961-7163
+
+
+Media:
+mediainfo@vrtx.com
+or
+International: +44 20 3204 5275
+or
+U.S.: 617-341-6992
+16
+
+
+
+
+
+
+
+17

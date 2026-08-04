@@ -1,0 +1,508 @@
+EX-99.1
+2
+a2026-08x04ex991.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+
+
+Wayfair Announces Second Quarter 2026 Results,
+Reports Strongest Free Cash Flow Since 2020
+Q2 Net Revenue of $3.5 billion with 21.7 million Active Customers
+
+
+BOSTON, MA — August 4, 2026 — Wayfair Inc. (“Wayfair,” “we,” or “our”) (NYSE: W), the destination for all things home, today reported financial results for its second quarter ended June 30, 2026.
+Second Quarter 2026 Financial Highlights
+• Total net revenue of $3.5 billion, increased $246 million, up 7.5% year over year
+• U.S. net revenue of $3.1 billion, increased $251 million, up 8.7% year over year
+• International net revenue of $394 million, decreased $5 million, down 1.3% year over year. International Net Revenue Constant Currency Growth was (2.0)%
+• Gross profit was $1,054 million, or 30.0% of total net revenue. Non-GAAP Contribution Profit was $539 million, or 15.3% of net revenue
+• Net loss was $1 million and Non-GAAP Adjusted EBITDA was $242 million
+• Diluted loss per share was $0.01 and Non-GAAP Adjusted Diluted Earnings Per Share was $0.95
+• Net cash provided by operating activities was $360 million and Non-GAAP Free Cash Flow was $301 million
+• Cash, cash equivalents and short-term investments totaled $1.1 billion and total liquidity was $1.6 billion, including availability under our revolving credit facility
+
+“Q2 marked another strong quarter of share capture and top line momentum, with 7.5% net revenue growth fueled by momentum in orders, which were up by 6% for the period. We saw the best sequential growth we’ve seen in a Q2 since the second quarter of 2020. In fact, revenue growth in the US was the best we’ve seen in the entire post-COVID period, with nearly 9% year-over-year revenue growth, continuing the high single digit share spread we’ve held since last fall,” said Niraj Shah, CEO, co-founder and co-chairman, Wayfair.
+
+
+“We saw noteworthy outperformance from our specialty retail brands, which grew by nearly 20% in the second quarter, and Perigold, which grew by more than 35%. We are excited to see ramping growth in the Wayfair business and complementing that with outsized growth from our specialty and luxury brands, all building to why we expect to see even further acceleration as our numerous initiatives play out.”
+
+
+
+Other Second Quarter Highlights
+• Active customers totaled 21.7 million as of June 30, 2026, an increase of 3.3% year over year
+• LTM net revenue per active customer was $596 as of June 30, 2026, an increase of 4.2% year over year
+• Orders per customer, measured as LTM orders delivered divided by active customers, was 1.89 for the second quarter of 2026, compared to 1.86 for the second quarter of 2025
+• Orders delivered in the second quarter of 2026 were 10.6 million, an increase of 6.0% year over year
+• Repeat customers placed 80.2% of total orders delivered in the second quarter of 2026, compared to 80.7% in the second quarter of 2025
+• Repeat customers placed 8.5 million orders in the second quarter of 2026, an increase of 4.9% year over year
+• Average order value was $332 in the second quarter of 2026, compared to $328 in the second quarter of 2025
+• 64.1% of total orders delivered were placed via a mobile device in the second quarter of 2026, compared to 62.9% in the second quarter of 2025
+1
+
+
+
+
+
+Key Financial Statement and Operating Metrics | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | | | | |
+| | (in millions, except LTM net revenue per active customer, average order value and per share data) |
+Key Financial Statement Metrics: | | | | | | | | |
+Net revenue | | $ | 3,519 | | | $ | 3,273 | | | $ | 6,450 | | | $ | 6,003 | |
+Gross profit | | $ | 1,054 | | | $ | 984 | | | $ | 1,934 | | | $ | 1,821 | |
+Income (loss) from operations | | $ | 104 | | | $ | 17 | | | $ | 93 | | | $ | (105) | |
+Net (loss) income | | $ | (1) | | | $ | 15 | | | $ | (106) | | | $ | (98) | |
+(Loss) earnings per share | | | | | | | | |
+Basic | | $ | (0.01) | | | $ | 0.11 | | | $ | (0.81) | | | $ | (0.77) | |
+Diluted | | $ | (0.01) | | | $ | 0.11 | | | $ | (0.81) | | | $ | (0.77) | |
+Net cash provided by operating activities | | $ | 360 | | | $ | 273 | | | $ | 308 | | | $ | 177 | |
+Key Operating Metrics: | | | | | | | | |
+Active customers (1)
+| | 21.7 | | | 21.0 | | | 21.7 | | | 21.0 | |
+LTM net revenue per active customer (2)
+| | $ | 596 | | | $ | 572 | | | $ | 596 | | | $ | 572 | |
+Orders delivered (3)
+| | 10.6 | | | 10.0 | | | 20.0 | | | 19.1 | |
+Average order value (4)
+| | $ | 332 | | | $ | 328 | | | $ | 322 | | | $ | 315 | |
+Non-GAAP Financial Measures:
+| | | | | | | | |
+Adjusted Gross Profit | | $ | 1,056 | | | $ | 986 | | | $ | 1,937 | | | $ | 1,825 | |
+Contribution Profit | | $ | 539 | | | $ | 497 | | | $ | 979 | | | $ | 888 | |
+Adjusted EBITDA | | $ | 242 | | | $ | 205 | | | $ | 393 | | | $ | 311 | |
+Free Cash Flow | | $ | 301 | | | $ | 230 | | | $ | 195 | | | $ | 91 | |
+Adjusted Diluted Earnings per Share | | $ | 0.95 | | | $ | 0.87 | | | $ | 1.22 | | | $ | 1.02 | |
+
+(1) The number of active customers represents the total number of individual customers who have purchased at least once directly from our sites during the preceding twelve-month period. The change in active customers in a reported period captures both the inflow of new customers as well as the outflow of existing customers who have not made a purchase in the last twelve months. We view the number of active customers as a key indicator of our growth.
+(2) Last twelve months (“LTM”) net revenue per active customer represents our total net revenue in the last twelve months divided by our total number of active customers for the same preceding twelve-month period. We view LTM net revenue per active customer as a key indicator of our customers’ purchasing patterns, including their initial and repeat purchase behavior.
+(3) Orders delivered represent the total orders delivered in any period, inclusive of orders that may eventually be returned. As we ship a large volume of packages through multiple carriers, actual delivery dates may not always be available; in those cases, we estimate delivery dates using historical data. We recognize net revenue when an order is delivered, and therefore orders delivered, together with average order value, is an indicator of the net revenue we expect to recognize in a given period. We view orders delivered as a key indicator of our growth.
+(4) We define average order value as total net revenue in a given period divided by the orders delivered in that period. We view average order value as a key indicator of the mix of products on our sites, the mix of offers and promotions and the purchasing behavior of our customers.
+2
+
+
+
+
+
+Webcast and Conference Call
+Wayfair will host a conference call and webcast to discuss its second quarter 2026 financial results today at 8 a.m. (ET). Investors and participants should register for the call in advance by visiting https://events.q4inc.com/analyst/622572405?pwd=UaY8U308. After registering, instructions will be shared on how to join the call. The call will also be available via live webcast at https://events.q4inc.com/attendee/622572405. An archive of the webcast conference call will be available shortly after the call ends on Wayfair’s Investor website at investor.wayfair.com. Important information may be disseminated initially or exclusively via the Investor website; investors should consult the site to access this information.
+About Wayfair
+Wayfair is the destination for all things home, and we make it easy to create a home that is just right for you. Whether you're looking for that perfect piece or redesigning your entire space, Wayfair offers quality finds for every style and budget, and a seamless experience from inspiration to installation.
+The Wayfair family of brands includes:
+• Wayfair: Every style. Every home.
+• AllModern: Modern made simple.
+• Birch Lane: Classic style for joyful living.
+• Joss & Main: The ultimate style edit for home.
+• Perigold: The destination for luxury home.
+• Wayfair Professional: A one-stop Pro shop.
+
+
+Media Relations Contact:
+Tara Lambropoulos
+PR@wayfair.com
+Investor Relations Contact:
+Ryan Barney
+IR@wayfair.com
+3
+
+
+
+
+
+Forward-Looking Statements
+This press release contains forward-looking statements within the meaning of federal and state securities laws. All statements other than statements of historical fact contained in this press release are forward-looking statements, including statements regarding our investment plans and anticipated returns on those investments; our plans for growth, including customer and revenue growth and growth rates; our future results of operations and financial position ; available liquidity and access to financing sources; performance across our brands and segments; anticipated cost-cutting and liability and dilution management exercises and the expected results of such exercises; our business strategy; anticipated benefits of our strategic initiatives; plans and objectives of management for future operations, including regarding our physical retail stores and omni-channel strategy; investment in our logistics network; consumer activity and behaviors; developments in our technology and systems, including our use of artificial intelligence and machine learning technologies and the anticipated results of those developments; and the impact of macroeconomic events, including interest rates, tariffs and inflation, and our response to such events. In some cases, you can identify forward-looking statements by terms such as “aim,” “may,” “will,” “should,” “expects,” “plans,” “anticipates,” “continues,” “could,” “intends,” “goals,” “target,” “projects,” “contemplates,” “believes,” “estimates,” “predicts” or “potential” or the negative of these terms or other similar expressions.
+Forward-looking statements are based on current expectations of future events. We cannot guarantee that any forward-looking statement will be accurate, although we believe that we have been reasonable in our expectations and assumptions. Investors should realize that if underlying assumptions prove inaccurate or that known or unknown risks or uncertainties materialize, actual results could vary materially from our expectations and projections. Investors are therefore cautioned not to place undue reliance on any forward-looking statements. We believe that these risks and uncertainties include, but are not limited to, adverse macroeconomic conditions, including economic instability, changes in laws and regulations and other governmental actions or policies, including those related to taxes and new or increased tariffs, and the uncertainty surrounding potential changes in such laws and regulations or other potential governmental actions or policies; export controls, sustained higher interest rates and inflation, slower growth or the potential for recession, disruptions in the global supply chain and other conditions affecting the retail environment for products we sell, geopolitical disturbances and conflicts, or threats of such actions and related uncertainty, which could exacerbate other risks such as shipment disruptions or fuel shortages, and other matters that influence consumer spending and preferences, as well as our ability to plan for and respond to the impact of these conditions; risks relating to our liability and dilution management exercises; our ability to manage the impacts of our restructurings and workforce reductions; our ability to acquire and retain customers in a cost-effective manner; our ability to increase our net revenue; our ability to curate, market, grow and maintain strong brands; our ability to grow our customer base; and our ability to expand our business and compete successfully, including risks relating to achieving the anticipated benefits of strategic initiatives and investments in our technology and systems, including generative AI. A further list and description of risks, uncertainties and other factors that could cause or contribute to differences in our future results include the cautionary statements herein and in our most recent Annual Report on Form 10-K and in our other filings and reports with the Securities and Exchange Commission. We qualify all of our forward-looking statements by these cautionary statements.
+These forward-looking statements speak only as of the date of this press release and, except as required by applicable law, we undertake no obligation to publicly update or revise any forward-looking statements contained herein, whether as a result of any new information, future events or otherwise.
+4
+
+
+
+
+
+
+WAYFAIR INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(Unaudited)
+| | | | | | | | | | | | | | |
+| | June 30, | | December 31, |
+| | 2026 | | 2025 |
+| | | | |
+| | (in millions, except share and per share data) |
+Assets: | | | | |
+Current assets | | | | |
+Cash and cash equivalents | | $ | 1,065 | | | $ | 1,476 | |
+Short-term investments | | 78 | | | 66 | |
+Accounts receivable, net | | 184 | | | 132 | |
+Inventories | | 84 | | | 71 | |
+Prepaid expenses and other current assets | | 274 | | | 256 | |
+Total current assets | | 1,685 | | | 2,001 | |
+Operating lease right-of-use assets | | 722 | | | 862 | |
+Property and equipment, net | | 512 | | | 516 | |
+Other non-current assets | | 59 | | | 61 | |
+Total assets | | $ | 2,978 | | | $ | 3,440 | |
+Liabilities and Stockholders' Deficit: | | | | |
+Current liabilities | | | | |
+Accounts payable | | $ | 1,317 | | | $ | 1,202 | |
+Other current liabilities | | 951 | | | 927 | |
+Total current liabilities | | 2,268 | | | 2,129 | |
+Long-term debt | | 2,797 | | | 3,233 | |
+Operating lease liabilities, net of current | | 680 | | | 835 | |
+Other non-current liabilities | | 21 | | | 25 | |
+Total liabilities | | 5,766 | | | 6,222 | |
+Commitments and contingencies (Note 5) | | | | |
+Stockholders' deficit: | | | | |
+Convertible preferred stock, $0.001 par value per share: 10,000,000 shares authorized and none issued at June 30, 2026 and December 31, 2025. | | — | | | — | |
+Class A common stock, par value $0.001 per share, 500,000,000 shares authorized, 115,500,539 and 108,365,428 shares issued and outstanding at June 30, 2026 and December 31, 2025, respectively. | | — | | | — | |
+Class B common stock, par value $0.001 per share, 164,000,000 shares authorized, 20,977,914 and 21,978,295 shares issued and outstanding at June 30, 2026 and December 31, 2025, respectively. | | — | | | — | |
+Additional paid-in capital | | 2,166 | | | 2,073 | |
+Accumulated deficit | | (4,929) | | | (4,823) | |
+Accumulated other comprehensive loss | | (25) | | | (32) | |
+Total stockholders' deficit | | (2,788) | | | (2,782) | |
+Total liabilities and stockholders' deficit | | $ | 2,978 | | | $ | 3,440 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5
+
+
+
+
+
+
+WAYFAIR INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, | | |
+| | 2026 | | 2025 | | 2026 | | 2025 | | |
+| | | | | | | | | | |
+| | (in millions, except per share data) | | |
+Net revenue (1)
+| | $ | 3,519 | | | $ | 3,273 | | | $ | 6,450 | | | $ | 6,003 | | | |
+Cost of goods sold (2)
+| | 2,465 | | | 2,289 | | | 4,516 | | | 4,182 | | | |
+Gross profit | | 1,054 | | | 984 | | | 1,934 | | | 1,821 | | | |
+Operating expenses: | | | | | | | | | | |
+Customer service and merchant fees (2)
+| | 128 | | | 121 | | | 242 | | | 228 | | | |
+Advertising | | 392 | | | 372 | | | 721 | | | 716 | | | |
+Selling, operations, technology, general and administrative (2)
+| | 428 | | | 465 | | | 852 | | | 894 | | | |
+Impairment and other related net charges | | 2 | | | — | | | 2 | | | 23 | | | |
+Restructuring and other charges, net
+| | — | | | 9 | | | 24 | | | 65 | | | |
+Total operating expenses | | 950 | | | 967 | | | 1,841 | | | 1,926 | | | |
+Income (loss) from operations | | 104 | | | 17 | | | 93 | | | (105) | | | |
+Interest expense, net | | (39) | | | (29) | | | (78) | | | (52) | | | |
+Other (expense) income, net | | (4) | | | 23 | | | (15) | | | 33 | | | |
+(Loss) gain on debt extinguishment | | (59) | | | 6 | | | (102) | | | 31 | | | |
+Income (loss) before income taxes | | 2 | | | 17 | | | (102) | | | (93) | | | |
+Provision for income taxes, net | | 3 | | | 2 | | | 4 | | | 5 | | | |
+Net (loss) income | | $ | (1) | | | $ | 15 | | | $ | (106) | | | $ | (98) | | | |
+(Loss) earnings per share | | | | | | | | | | |
+Basic | | $ | (0.01) | | | $ | 0.11 | | | $ | (0.81) | | | $ | (0.77) | | | |
+Diluted | | $ | (0.01) | | | $ | 0.11 | | | $ | (0.81) | | | $ | (0.77) | | | |
+Weighted-average number of shares of common stock outstanding used in computing per share amounts: | | | | | | | | | | |
+Basic | | 132 | | | 128 | | | 131 | | | 127 | | | |
+Diluted | | 132 | | | 129 | | | 131 | | | 127 | | | |
+
+(1) The following tables present net revenue attributable to our reportable segments for the periods indicated: | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | | | | |
+| | (in millions) |
+U.S. net revenue | | $ | 3,125 | | | $ | 2,874 | | | $ | 5,737 | | | $ | 5,303 | |
+International net revenue | | 394 | | | 399 | | | 713 | | | 700 | |
+Net revenue | | $ | 3,519 | | | $ | 3,273 | | | $ | 6,450 | | | $ | 6,003 | |
+
+6
+
+
+
+
+
+(2) Includes equity-based compensation and related taxes as follows: | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | | | | |
+| | (in millions) |
+Cost of goods sold | | $ | 2 | | | $ | 2 | | | $ | 3 | | | $ | 4 | |
+Customer service and merchant fees | | 3 | | | 4 | | | 5 | | | 7 | |
+Selling, operations, technology, general and administrative | | 67 | | | 95 | | | 135 | | | 158 | |
+Total equity-based compensation and related taxes | | $ | 72 | | | $ | 101 | | | $ | 143 | | | $ | 169 | |
+
+7
+
+
+
+
+
+
+WAYFAIR INC.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(Unaudited)
+| | | | | | | | | | | | | | | | |
+| | Six Months Ended June 30, | | |
+| | 2026 | | 2025 | | |
+| | | | | | |
+| | (in millions) | | |
+Cash flows from operating activities: | | | | | | |
+Net loss | | $ | (106) | | | $ | (98) | | | |
+Adjustments to reconcile net loss to net cash provided by operating activities: | | | | | | |
+Depreciation and amortization | | 131 | | | 159 | | | |
+Equity-based compensation expense | | 136 | | | 164 | | | |
+Amortization of debt discount and issuance costs | | 4 | | | 5 | | | |
+| | | | | | |
+Impairment and other related net charges | | 2 | | | 23 | | | |
+Loss (gain) on debt extinguishment | | 102 | | | (31) | | | |
+Other non-cash adjustments | | (15) | | | 32 | | | |
+Changes in operating assets and liabilities: | | | | | | |
+Accounts receivable, net | | (52) | | | 49 | | | |
+Inventories | | (12) | | | (11) | | | |
+Prepaid expenses and other assets | | (21) | | | 21 | | | |
+Accounts payable and other liabilities | | 139 | | | (136) | | | |
+Net cash provided by operating activities | | 308 | | | 177 | | | |
+| | | | | | |
+Cash flows for investing activities: | | | | | | |
+Purchase of short- and long-term investments | | (43) | | | (55) | | | |
+Sale and maturities of short- and long-term investments | | 31 | | | 58 | | | |
+Purchase of property and equipment | | (51) | | | (18) | | | |
+Site and software development costs | | (62) | | | (68) | | | |
+| | | | | | |
+Net cash used in investing activities | | (125) | | | (83) | | | |
+| | | | | | |
+Cash flows for financing activities: | | | | | | |
+| | | | | | |
+Proceeds from issuance of debt, net of issuance costs | | 395 | | | 691 | | | |
+| | | | | | |
+| | | | | | |
+Payments to extinguish debt | | (245) | | | (742) | | | |
+Settlement of long-term debt | | (701) | | | — | | | |
+Payments of taxes related to net share settlement of equity awards | | (48) | | | (9) | | | |
+| | | | | | |
+Net cash used in financing activities | | (599) | | | (60) | | | |
+Effect of exchange rate changes on cash and cash equivalents | | 5 | | | (28) | | | |
+Net (decrease) increase in cash, cash equivalents and restricted cash | | (411) | | | 6 | | | |
+| | | | | | |
+Cash, cash equivalents and restricted cash | | | | | | |
+Beginning of period
+| | $ | 1,476 | | | $ | 1,320 | | | |
+End of period
+| | $ | 1,065 | | | $ | 1,326 | | | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+8
+
+
+
+
+
+
+
+
+Non-GAAP Financial Measures
+To supplement our unaudited condensed consolidated financial statements presented in accordance with generally accepted accounting principles (“GAAP”), this earnings release and the accompanying tables and the related earnings conference call contain certain non-GAAP financial measures, including Adjusted Gross Profit, Adjusted Gross Margin, Contribution Profit, Contribution Margin, Adjusted EBITDA, Adjusted EBITDA Margin, Free Cash Flow, Adjusted Diluted Earnings or Loss per Share and Net Revenue Constant Currency Growth. We use these non-GAAP financial measures internally in analyzing our financial results and believe they are useful to investors, as a supplement to GAAP measures, in evaluating our core operational performance. We have provided a reconciliation of these non-GAAP financial measures to the most directly comparable GAAP financial measure in this earnings release.
+We calculate Adjusted Gross Profit as gross profit plus equity-based compensation and related taxes included in cost of goods sold. Gross margin is defined as gross profit as a percentage of net revenue for the same period. Adjusted Gross Margin is calculated as Adjusted Gross Profit as a percentage of revenue for the same period. We disclose Adjusted Gross Profit and Adjusted Gross Margin because they are important indicators of our business performance, as they provide visibility into our underlying gross profitability by excluding the impact of non-cash equity-based compensation expense and related taxes. Accordingly, we believe these metrics provide useful information to investors and others in understanding and evaluating our operating results in the same manner as our management and the board of directors.
+We calculate Contribution Profit as Adjusted Gross Profit less customer service and merchant fees and less advertising expense, plus equity-based compensation and related taxes included in customer service and merchant fees. Contribution Margin is calculated as Contribution Profit as a percentage of revenue for the same period. We believe that these adjustments to gross profitability provide a more meaningful understanding of the economic impact of orders fulfilled through our platform, as they incorporate the direct expenses associated with generating and servicing customer demand and isolate key cost drivers. Accordingly, we believe that Contribution Profit and Contribution Margin offer useful information to investors and others in understanding and evaluating our operating results in the same manner as our management and the board of directors.
+We calculate Adjusted EBITDA as net income or loss before depreciation and amortization, equity-based compensation and related taxes, interest income or expense, net, other income or expense, net, provision or benefit for income taxes, net, non-recurring items and other items not indicative of our core operating performance. Adjusted EBITDA Margin is calculated by dividing Adjusted EBITDA by Net Revenue. We disclose Adjusted EBITDA because it is a key measure used by our management and board of directors to evaluate our operating performance, generate future operating plans and make strategic decisions regarding the allocation of capital. In particular, management uses Adjusted EBITDA as a measure of profitability, and our references in this earnings release and the related earnings conference call to profitability (other than references to GAAP gross profit) are references to Adjusted EBITDA. We believe the exclusion of certain expenses in calculating Adjusted EBITDA facilitates operating performance comparisons on a period-to-period basis as these costs may vary independent of business performance. For instance, we exclude the impact of equity-based compensation and related taxes as we do not consider this item to be indicative of our core operating performance. Investors should, however, understand that equity-based compensation and related taxes will be a significant recurring expense in our business and an important part of the compensation provided to our employees. Accordingly, we believe that Adjusted EBITDA provides useful information to investors and others in understanding and evaluating our operating results in the same manner as our management and board of directors.
+We calculate Free Cash Flow as net cash provided by or used in operating activities less net cash used to purchase property and equipment and site and software development costs (collectively, “Capital Expenditures”). We disclose Free Cash Flow because it is an important indicator of our business performance as it measures the amount of cash we generate. Accordingly, we believe that Free Cash Flow provides useful information to investors and others in understanding and evaluating our operating results in the same manner as our management.
+We calculate Adjusted Diluted Earnings or Loss per Share as net income or loss plus equity-based compensation and related taxes, provision or benefit for income taxes, net, non-recurring items, other items not indicative of our core operating performance, and, if dilutive, interest expense associated with convertible debt instruments under the if-converted method divided by the weighted-average number of shares of common stock used in the computation of diluted earnings or loss per share. Accordingly, we believe that these adjustments to our adjusted diluted net income or loss before calculating per share amounts for all periods presented provide a more meaningful comparison between our operating results from period to period.
+We calculate Net Revenue Constant Currency Growth by translating the current period local currency net revenue by the currency exchange rates used to translate the financial statements in the comparable prior-year period. We disclose Net Revenue Constant Currency Growth because it is an important indicator of our operating results. Accordingly, we believe that Net Revenue Constant Currency Growth provides useful information to investors and others in understanding and evaluating trends in our operating results in the same manner as our management.
+9
+
+
+
+
+
+We calculate forward-looking non-GAAP financial measures based on internal forecasts that omit certain amounts that would be included in forward-looking GAAP financial measures. We do not attempt to provide a reconciliation of forward-looking non-GAAP financial measures to forward looking GAAP financial measures because forecasting the timing or amount of items that have not yet occurred and are out of our control is inherently uncertain and unavailable without unreasonable efforts. Further, we believe that such reconciliations would imply a degree of precision and certainty that could be confusing to investors. Such items could have a substantial impact on GAAP measures of financial performance.
+The non-GAAP financial measures have limitations as analytical tools. We do not, nor do we suggest that investors should consider such non-GAAP financial measures in isolation from, or as a substitute for, financial information prepared in accordance with GAAP. Investors should also note that the non-GAAP financial measures we use may not be the same non-GAAP financial measures and may not be calculated in the same manner as that of other companies, including other companies in our industry.
+The following table reflects the reconciliation of gross profit to Adjusted Gross Profit and Adjusted Gross Profit Margin for each of the periods indicated:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | Three Months Ended June 30, | | Six Months Ended June 30, | | | |
+| | | 2026 | | 2025 | | 2026 | | 2025 | | | | | |
+| | | | | | | | | | | | | | |
+| | | (in millions, except percentages) |
+Reconciliation of Adjusted Gross Profit: | | | | | | | | | | | | | |
+| | | | | | | | | | | | | |
+| | | | | | | | | | | | | |
+Gross profit | | $ | 1,054 | | | $ | 984 | | | $ | 1,934 | | | $ | 1,821 | | | | | | |
+Gross margin | | 30.0 | % | | 30.1 | % | | 30.0 | % | | 30.3 | % | | | | | |
+Add: Equity-based compensation and related taxes included in cost of goods sold
+| | 2 | | | 2 | | | 3 | | | 4 | | | | | | |
+Adjusted Gross Profit | | $ | 1,056 | | | $ | 986 | | | $ | 1,937 | | | $ | 1,825 | | | | | | |
+| Adjusted Gross Margin | | 30.0 | % | | 30.1 | % | | 30.0 | % | | 30.4 | % | | | | | |
+
+
+
+The following table reflects the reconciliation of Adjusted Gross Profit to Contribution Profit and Contribution Profit Margin for each of the periods indicated:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | Three Months Ended June 30, | | Six Months Ended June 30, | | |
+| | | 2026 | | 2025 | | 2026 | | 2025 | | | | |
+| | | | | | | | | | | | | |
+| | | (in millions, except percentages) |
+Reconciliation of Contribution Profit: | | | | | | | | | | | | |
+Net revenue | | $ | 3,519 | | | $ | 3,273 | | | $ | 6,450 | | | $ | 6,003 | | | | | |
+Less: Cost of goods sold | | 2,465 | | | 2,289 | | | 4,516 | | | 4,182 | | | | | |
+Gross profit | | 1,054 | | | 984 | | | 1,934 | | | 1,821 | | | | | |
+Gross margin | | 30.0 | % | | 30.1 | % | | 30.0 | % | | 30.3 | % | | | | |
+Add: Equity-based compensation and related taxes included in cost of goods sold
+| | 2 | | | 2 | | | 3 | | | 4 | | | | | |
+Adjusted Gross Profit | | 1,056 | | | 986 | | | 1,937 | | | 1,825 | | | | | |
+| Adjusted Gross Margin | | 30.0 | % | | 30.1 | % | | 30.0 | % | | 30.4 | % | | | | |
+Less: Customer service and merchant fees | | 128 | | | 121 | | | 242 | | | 228 | | | | | |
+Less: Advertising | | 392 | | | 372 | | | 721 | | | 716 | | | | | |
+Add: Equity-based compensation and related taxes included in customer service and merchant fees
+| | 3 | | | 4 | | | 5 | | | 7 | | | | | |
+Contribution Profit | | $ | 539 | | | $ | 497 | | | $ | 979 | | | $ | 888 | | | | | |
+| Contribution Margin | | 15.3 | % | | 15.2 | % | | 15.2 | % | | 14.8 | % | | | | |
+
+
+
+
+
+
+
+10
+
+
+
+
+
+
+
+The following table reflects the reconciliation of net (loss) income to Adjusted EBITDA and Adjusted EBITDA margin for each of the periods indicated:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | | 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | | | | | |
+| | | (in millions, except percentages) |
+Reconciliation of Adjusted EBITDA: | | | | | | | | |
+Net (loss) income | | $ | (1) | | | $ | 15 | | | $ | (106) | | | $ | (98) | |
+Depreciation and amortization | | 64 | | | 78 | | | 131 | | | 159 | |
+Equity-based compensation and related taxes | | 72 | | | 101 | | | 143 | | | 169 | |
+Interest expense, net | | 39 | | | 29 | | | 78 | | | 52 | |
+Other expense (income), net | | 4 | | | (23) | | | 15 | | | (33) | |
+Provision for income taxes, net | | 3 | | | 2 | | | 4 | | | 5 | |
+Other:
+| | | | | | | | |
+Impairment and other related net charges (1)
+| | 2 | | | — | | | 2 | | | 23 | |
+Restructuring and other charges, net (2)
+| | — | | | 9 | | | 24 | | | 65 | |
+Loss (gain) on debt extinguishment (3)
+| | 59 | | | (6) | | | 102 | | | (31) | |
+Adjusted EBITDA | | $ | 242 | | | $ | 205 | | | $ | 393 | | | $ | 311 | |
+| | | | | | | | | |
+Net revenue | | $ | 3,519 | | | $ | 3,273 | | | $ | 6,450 | | | $ | 6,003 | |
+Net (loss) income margin | | — | % | | 0.5 | % | | (1.6) | % | | (1.6) | % |
+Adjusted EBITDA Margin | | 6.9 | % | | 6.3 | % | | 6.1 | % | | 5.2 | % |
+| | | | | | | | | |
+(1)
+| During the three and six months ended June 30, 2026, we recorded $2 million impairment associated with our decision to exit a customer service center in the U.S. During the six months ended June 30, 2025, we recorded net charges of $23 million, inclusive of $20 million associated with the Germany Restructuring and weakened macroeconomic conditions in connection with our Germany operations and, $3 million related to changes in sublease market conditions for a technology center in the U.S.
+|
+(2)
+| During the six months ended June 30, 2026, we incurred $24 million of charges related to a loss on termination of an operating lease for a logistics facility. During the three and six months ended June 30, 2025, we incurred $9 million and $65 million, respectively, of charges consisting primarily of one-time employee severance, benefits, relocation and transition costs. This is inclusive of $46 million related to the Germany Restructuring and $19 million related to the March 2025 workforce reduction. We do not expect to incur any further material charges related to this workforce reduction. |
+(3)
+| During the three and six months ended June 30, 2026, we recorded a $59 million and $102 million, respectively, loss on debt extinguishment upon repurchase of $145 million in aggregate principal amount of the 2028 Notes. During the three and six months ended June 30, 2025, we recorded a $6 million and $31 million, respectively, gain on debt extinguishment upon repurchase of $80 million in aggregate principal amount of the 2025 Notes and $696 million in aggregate principal amount of the 2026 Notes.
+|
+
+The following table presents Adjusted EBITDA attributable to our segments, and the reconciliation of net income or loss to Adjusted EBITDA is presented in the preceding table: | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | | | | |
+| | (in millions) |
+Segment Adjusted EBITDA: | | | | | | | | |
+US | | $ | 261 | | | $ | 224 | | | $ | 422 | | | $ | 319 | |
+International | | (19) | | | (19) | | | (29) | | | (8) | |
+Adjusted EBITDA | | $ | 242 | | | $ | 205 | | | $ | 393 | | | $ | 311 | |
+
+11
+
+
+
+
+
+The following table presents a reconciliation of net cash provided by or used in operating activities to Free Cash Flow for each of the periods indicated: | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | | | | |
+| | (in millions) |
+Net cash provided by operating activities | | $ | 360 | | | $ | 273 | | | $ | 308 | | | $ | 177 | |
+Purchase of property and equipment | | (26) | | | (13) | | | (51) | | | (18) | |
+Site and software development costs | | (33) | | | (30) | | | (62) | | | (68) | |
+Free Cash Flow | | $ | 301 | | | $ | 230 | | | $ | 195 | | | $ | 91 | |
+
+A reconciliation of the numerator and denominator for diluted earnings or loss per share, the most directly comparable GAAP financial measure, to the numerator and denominator for Adjusted Diluted Earnings or Loss per Share, in order to calculate Adjusted Diluted Earnings or Loss per Share is as follows: | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | | | | |
+| | (in millions, except per share data) |
+Numerator: | | | | | | | | |
+Numerator for basic and diluted (loss) earnings per share - net (loss) income
+| | $ | (1) | | | $ | 15 | | | $ | (106) | | | $ | (98) | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+Adjustments to net (loss) income
+| | | | | | | | |
+Interest expense associated with convertible debt instruments | | 4 | | | 13 | | | 11 | | | 27 | |
+Equity-based compensation and related taxes | | 72 | | | 101 | | | 143 | | | 169 | |
+Provision for income taxes, net | | 3 | | | 2 | | | 4 | | | 5 | |
+Other: | | | | | | | | |
+Impairment and other related net charges | | 2 | | | — | | | 2 | | | 23 | |
+Restructuring and other charges, net
+| | — | | | 9 | | | 24 | | | 65 | |
+Loss (gain) on debt extinguishment | | 59 | | | (6) | | | 102 | | | (31) | |
+Numerator for Adjusted Diluted Earnings per Share - Adjusted net (loss) income
+| | $ | 139 | | | $ | 134 | | | $ | 180 | | | $ | 160 | |
+| | | | | | | | |
+Denominator: | | | | | | | | |
+Denominator for basic (loss) earnings per share - weighted-average number of shares of common stock outstanding | | 132 | | | 128 | | | 131 | | | 127 | |
+Effect of dilutive securities: | | | | | | | | |
+Restricted stock units | | — | | | 1 | | | — | | | — | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+Denominator for diluted (loss) earnings per share - weighted-average number of shares of common stock outstanding after the effect of dilutive securities | | 132 | | | 129 | | | 131 | | | 127 | |
+Adjustments to effect of dilutive securities: | | | | | | | | |
+Restricted stock units | | 1 | | | — | | | — | | | — | |
+| | | | | | | | |
+Convertible debt instruments | | 14 | | | 27 | | | 16 | | | 30 | |
+Denominator for Adjusted Diluted Earnings per Share - Adjusted weighted-average number of shares of common stock outstanding after the effect of dilutive securities | | 147 | | | 156 | | | 147 | | | 157 | |
+Diluted (loss) earnings per share | | $ | (0.01) | | | $ | 0.11 | | | $ | (0.81) | | | $ | (0.77) | |
+Adjusted Diluted Earnings per Share | | $ | 0.95 | | | $ | 0.87 | | | $ | 1.22 | | | $ | 1.02 | |
+
+12

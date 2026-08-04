@@ -1,0 +1,325 @@
+EX-99.1
+2
+ex991q226-earningsrelease.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+Arista Networks, Inc. Reports Second Quarter 2026 Financial Results
+
+
+• Delivered 40% growth in non-GAAP EPS year-over-year as the company achieved its first $3+ billion revenue quarter.
+• Recognized on the 2026 Fortune 500 list of the largest United States corporations by revenue and named a Leader in the 2026 Gartner® Magic Quadrant™ for Enterprise Wired and Wireless LAN.
+• Introduced 1.6 Tbps AI fabric platforms, including liquid-cooled options optimized for scale-up, scale-out, and scale-across networks.
+SANTA CLARA, Calif. - August 4, 2026 -- Arista Networks, Inc. (NYSE: ANET), an industry leader in data-driven, client-to-cloud networking for large AI, data center, campus, and routing environments, today announced financial results for its second quarter ended June 30, 2026.
+“As we deliver our first $3 billion quarter in Q2 2026, it is clear that our Arista 2.0 platform strategy is compelling,” stated Jayshree Ullal, Chairperson and CEO of Arista Networks. “Customers see networking as the central nervous system for infrastructure from the client to campus to data and AI centers.”
+Second Quarter Financial Highlights
+• Revenue of $3.036 billion, an increase of 12.1% compared to the first quarter of 2026, and an increase of 37.7% from the second quarter of 2025.
+• GAAP and non-GAAP operating margin of 45.4% and 49.9%, respectively, compared to GAAP and non-GAAP operating margin of 44.7% and 48.8% in the second quarter of 2025.
+• GAAP and non-GAAP diluted earnings per share of $0.95 and $1.02, respectively, compared to GAAP and non-GAAP diluted earnings per share of $0.70 and $0.73 in the second quarter of 2025.
+A reconciliation of the company’s non-GAAP financial measures to their most directly comparable GAAP measures has been provided in the financial statement tables included in this press release.
+Commenting on the company's financial results, Chantelle Breithaupt, Arista’s CFO, said, “Our second quarter 2026 reflects strong, broad-based growth, with revenue up 37.7% and EPS up 39.7%. This performance underscores the strength of our market position and the continued dedication of our global team."
+Company Highlights
+• Defending the Keys to the Kingdom: Resilient Infrastructure vs. AI-Capable Adversaries – Join Arista, Anthropic and Palo Alto Networks for a webinar to discuss the future of security in an AI world. Register here: https://events.arista.com/webinar-defending-the-keys-to-the-kingdom.
+• Arista Networks was named a Leader in the 2026 Gartner® Magic Quadrant™ for Enterprise Wired and Wireless LAN – The recognition reflects Arista's continued momentum in the enterprise campus, built on its unified, single-EOS architecture spanning the data center to the campus edge.
+• Arista introduced the 7060XE7 Series, a next-generation 1.6-terabit portfolio for AI fabrics – The new Etherlink™ platforms deliver up to 100 Tbps of system bandwidth and support Linear Pluggable Optics, cutting interconnect power consumption by approximately 60% compared to traditional pluggable optics.
+• Arista detailed new innovations for scale-up, scale-out, and scale-across AI fabrics – The company outlined techniques including multi-planar leaf-spine designs, the open Multipath Reliable Connection
+
+
+1
+
+
+
+
+
+(MRC) protocol, and segment routing over IPv6 (SRv6), aimed at maximizing AI cluster utilization and resilience.
+Financial Outlook
+For the third quarter of 2026, we expect:
+• Revenue of approximately $3.3 billion;
+• Non-GAAP operating margin of 48 - 49%; and
+• Non-GAAP diluted net income per share between $1.06 and $1.08.
+Guidance for non-GAAP financial measures excludes certain items, including stock-based compensation expense, intangible asset amortization, tax benefits on stock-based awards, the income tax effect on non-GAAP exclusions, and potential non-recurring charges or benefits. A reconciliation of non-GAAP guidance measures to corresponding GAAP measures is not available on a forward-looking basis without unreasonable effort because these exclusions can be uncertain or difficult to predict, including stock-based compensation expense and tax benefits on stock-based awards, which is impacted by the timing of employee stock transactions, and the future fair market value of the company’s common stock. The actual amount of these exclusions will have a significant impact on the company's GAAP gross margin, operating margin, and net income per share.
+Prepared Materials and Conference Call Information
+Arista's executives will discuss the second quarter 2026 financial results on a conference call today at 1:30 PM Pacific Time. To listen to the call via telephone, dial (888) 330-2502 in the United States or +1 (240) 789-2713 from international locations. The Conference ID is 5655862.
+The financial results conference call will also be available via live webcast on Arista's investor relations website at https://investors.arista.com/ . Shortly after the conference call concludes, a replay of the audio webcast will be available on Arista’s investor relations website.
+
+
+
+
+
+
+
+
+
+2
+
+
+
+
+
+
+ARISTA NETWORKS, INC.
+Condensed Consolidated Income Statements
+(Unaudited, in millions, except per share amounts)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+Revenue: | | | | | | | | |
+Product | | $ | 2,605.2 | | | $ | 1,877.0 | | | $ | 4,916.5 | | | $ | 3,569.5 | |
+Service | | 430.5 | | | 327.8 | | | 828.2 | | | 640.1 | |
+Total revenue | | 3,035.7 | | | 2,204.8 | | | 5,744.7 | | | 4,209.6 | |
+Cost of revenue:
+| | | | | | | | |
+Product | | 1,047.5 | | | 707.3 | | | 2,009.4 | | | 1,380.0 | |
+Service | | 77.9 | | | 58.9 | | | 148.2 | | | 114.9 | |
+Total cost of revenue | | 1,125.4 | | | 766.2 | | | 2,157.6 | | | 1,494.9 | |
+Gross profit | | 1,910.3 | | | 1,438.6 | | | 3,587.1 | | | 2,714.7 | |
+Operating expenses: | | | | | | | | |
+Research and development | | 348.2 | | | 296.5 | | | 691.9 | | | 562.9 | |
+Sales and marketing | | 150.3 | | | 126.5 | | | 291.9 | | | 243.1 | |
+General and administrative | | 33.8 | | | 29.4 | | | 67.5 | | | 63.7 | |
+| | | | | | | | |
+Total operating expenses | | 532.3 | | | 452.4 | | | 1,051.3 | | | 869.7 | |
+Income from operations | | 1,378.0 | | | 986.2 | | | 2,535.8 | | | 1,845.0 | |
+Other income (expense), net | | 126.3 | | | 94.0 | | | 239.9 | | | 190.2 | |
+Income before income taxes | | 1,504.3 | | | 1,080.2 | | | 2,775.7 | | | 2,035.2 | |
+Provision for income taxes | | 291.4 | | | 191.4 | | | 539.9 | | | 332.6 | |
+Net income | | $ | 1,212.9 | | | $ | 888.8 | | | $ | 2,235.8 | | | $ | 1,702.6 | |
+Net income per share: | | | | | | | | |
+Basic | | $ | 0.96 | | | $ | 0.71 | | | $ | 1.78 | | | $ | 1.35 | |
+Diluted | | $ | 0.95 | | | $ | 0.70 | | | $ | 1.75 | | | $ | 1.34 | |
+Weighted-average shares used in computing net income per share: | | | | | | | | |
+Basic | | 1,260.1 | | | 1,256.3 | | | 1,258.9 | | | 1,258.2 | |
+Diluted | | 1,276.0 | | | 1,271.2 | | | 1,274.9 | | | 1,275.2 | |
+
+
+
+
+
+3
+
+
+
+
+
+
+ARISTA NETWORKS, INC.
+Reconciliation of Selected GAAP to Non-GAAP Financial Measures
+(Unaudited, in millions, except percentages and per share amounts)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+GAAP gross profit | | $ | 1,910.3 | | | $ | 1,438.6 | | | $ | 3,587.1 | | | $ | 2,714.7 | |
+GAAP gross margin | | 62.9 | % | | 65.2 | % | | 62.4 | % | | 64.5 | % |
+Stock-based compensation expense | | 7.4 | | | 5.8 | | | 14.4 | | | 11.3 | |
+Intangible asset amortization | | 7.0 | | | 2.6 | | | 14.0 | | | 5.8 | |
+Non-GAAP gross profit | | $ | 1,924.7 | | | $ | 1,447.0 | | | $ | 3,615.5 | | | $ | 2,731.8 | |
+Non-GAAP gross margin | | 63.4 | % | | 65.6 | % | | 62.9 | % | | 64.9 | % |
+| | | | | | | | |
+GAAP income from operations | | $ | 1,378.0 | | | $ | 986.2 | | | $ | 2,535.8 | | | $ | 1,845.0 | |
+GAAP operating margin | | 45.4 | % | | 44.7 | % | | 44.1 | % | | 43.8 | % |
+Stock-based compensation expense | | 120.4 | | | 85.2 | | | 241.3 | | | 178.2 | |
+| | | | | | | | |
+| | | | | | | | |
+Intangible asset amortization | | 15.3 | | | 5.0 | | | 30.6 | | | 10.6 | |
+| | | | | | | | |
+Non-GAAP income from operations | | $ | 1,513.7 | | | $ | 1,076.4 | | | $ | 2,807.7 | | | $ | 2,033.8 | |
+Non-GAAP operating margin | | 49.9 | % | | 48.8 | % | | 48.9 | % | | 48.3 | % |
+| | | | | | | | |
+GAAP net income | | $ | 1,212.9 | | | $ | 888.8 | | | $ | 2,235.8 | | | $ | 1,702.6 | |
+Stock-based compensation expense | | 120.4 | | | 85.2 | | | 241.3 | | | 178.2 | |
+| | | | | | | | |
+Intangible asset amortization | | 15.3 | | | 5.0 | | | 30.6 | | | 10.6 | |
+| | | | | | | | |
+(Gains)/losses on strategic investments | | (6.0) | | | (5.4) | | | (8.8) | | | (10.9) | |
+| | | | | | | | |
+Tax benefits on stock-based awards (1)
+| | (30.9) | | | (32.1) | | | (65.3) | | | (80.1) | |
+Income tax effect on non-GAAP exclusions (1)
+| | (10.0) | | | (7.3) | | | (23.7) | | | (20.3) | |
+Non-GAAP net income (1)
+| | $ | 1,301.7 | | | $ | 934.2 | | | $ | 2,409.9 | | | $ | 1,780.1 | |
+| | | | | | | | |
+GAAP diluted net income per share | | $ | 0.95 | | | $ | 0.70 | | | $ | 1.75 | | | $ | 1.34 | |
+Non-GAAP adjustments to net income per share (1)
+| | 0.07 | | | 0.03 | | | 0.14 | | | 0.06 | |
+Non-GAAP diluted net income per share (1)
+| | $ | 1.02 | | | $ | 0.73 | | | $ | 1.89 | | | $ | 1.40 | |
+Weighted-average shares used in computing diluted net income per share | | 1,276.0 | | | 1,271.2 | | | 1,274.9 | | | 1,275.2 | |
+Summary of Stock-Based Compensation Expense: | | | | | | | | |
+Cost of revenue | | $ | 7.4 | | | $ | 5.8 | | | $ | 14.4 | | | $ | 11.3 | |
+Research and development | | 70.1 | | | 53.2 | | | 142.3 | | | 110.2 | |
+Sales and marketing | | 32.2 | | | 18.8 | | | 62.0 | | | 38.7 | |
+General and administrative | | 10.7 | | | 7.4 | | | 22.6 | | | 18.0 | |
+Total | | $ | 120.4 | | | $ | 85.2 | | | $ | 241.3 | | | $ | 178.2 | |
+
+
+
+(1) Prior period amounts have been updated to conform to the current period presentation to reflect the change in methodology for calculating non-GAAP income taxes associated with stock-based awards. The retrospective application of this change resulted in an increase to non-GAAP net income of $10.7 million and $30.4 million for the three and six months ended June 30, 2025, respectively. The impact of this change on non-GAAP diluted net income per share was an increase of nil and $0.03 for the three and six months ended June 30, 2025, respectively. Please refer to the discussions under "Non-GAAP Financial Measures" for further information with respect to this change.
+
+
+4
+
+
+
+
+
+
+ARISTA NETWORKS, INC.
+Condensed Consolidated Balance Sheets
+(Unaudited, in millions)
+| | | | | | | | | | | | | | |
+| | June 30, 2026 | | December 31, 2025 |
+ASSETS | | | | |
+CURRENT ASSETS: | | | | |
+Cash and cash equivalents | | $ | 2,290.2 | | | $ | 1,963.9 | |
+Marketable securities | | 11,053.1 | | | 8,779.1 | |
+Accounts receivable | | 2,266.2 | | | 1,886.9 | |
+Inventories | | 2,535.3 | | | 2,247.1 | |
+Prepaid expenses and other current assets | | 2,018.6 | | | 1,510.0 | |
+Total current assets | | 20,163.4 | | | 16,387.0 | |
+Property and equipment, net | | 312.5 | | | 203.1 | |
+| | | | |
+Goodwill | | 416.1 | | | 416.1 | |
+| | | | |
+| | | | |
+Deferred tax assets | | 2,001.6 | | | 1,773.6 | |
+Other assets | | 826.5 | | | 668.8 | |
+TOTAL ASSETS | | $ | 23,720.1 | | | $ | 19,448.6 | |
+LIABILITIES AND STOCKHOLDERS’ EQUITY | | | | |
+CURRENT LIABILITIES: | | | | |
+Accounts payable | | $ | 692.7 | | | $ | 651.7 | |
+Accrued liabilities | | 486.6 | | | 475.4 | |
+Deferred revenue | | 5,100.7 | | | 4,002.6 | |
+| | | | |
+Other current liabilities | | 538.4 | | | 246.8 | |
+Total current liabilities | | 6,818.4 | | | 5,376.5 | |
+| | | | |
+Deferred revenue, non-current | | 1,765.2 | | | 1,369.8 | |
+| | | | |
+Other long-term liabilities | | 338.8 | | | 331.8 | |
+TOTAL LIABILITIES | | 8,922.4 | | | 7,078.1 | |
+STOCKHOLDERS’ EQUITY: | | | | |
+Common stock | | 0.1 | | | 0.1 | |
+Additional paid-in capital | | 3,155.3 | | | 2,911.8 | |
+Retained earnings | | 11,682.8 | | | 9,446.6 | |
+Accumulated other comprehensive income (loss) | | (40.5) | | | 12.0 | |
+TOTAL STOCKHOLDERS’ EQUITY | | 14,797.7 | | | 12,370.5 | |
+TOTAL LIABILITIES AND STOCKHOLDERS’ EQUITY | | $ | 23,720.1 | | | $ | 19,448.6 | |
+| | | | |
+| | | | |
+| | | | |
+
+
+
+
+
+5
+
+
+
+
+
+
+ARISTA NETWORKS, INC.
+Condensed Consolidated Statements of Cash Flows
+(Unaudited, in millions)
+| | | | | | | | | | | | | | |
+| | Six Months Ended June 30, |
+| | 2026 | | 2025 |
+CASH FLOWS FROM OPERATING ACTIVITIES: | | | | |
+Net income | | $ | 2,235.8 | | | $ | 1,702.6 | |
+Adjustments to reconcile net income to net cash provided by operating activities: | | | | |
+Depreciation, amortization and other | | 46.7 | | | 26.6 | |
+Stock-based compensation | | 241.3 | | | 178.2 | |
+Deferred income taxes | | (213.1) | | | (337.9) | |
+Other | | (10.6) | | | (21.0) | |
+Changes in operating assets and liabilities: | | | | |
+Accounts receivable, net | | (379.3) | | | (483.1) | |
+Inventories | | (288.2) | | | (224.5) | |
+Other assets | | (619.7) | | | (403.2) | |
+Accounts payable | | 40.9 | | | 160.0 | |
+| | | | |
+Deferred revenue | | 1,493.5 | | | 1,141.4 | |
+Income taxes, net | | 198.4 | | | 152.4 | |
+Other liabilities | | 30.8 | | | (49.7) | |
+Net cash provided by operating activities | | 2,776.5 | | | 1,841.8 | |
+CASH FLOWS FROM INVESTING ACTIVITIES: | | | | |
+Proceeds from maturities of marketable securities | | 1,508.6 | | | 1,651.2 | |
+Proceeds from sale of marketable securities | | 494.4 | | | 15.9 | |
+Purchases of marketable securities | | (4,328.9) | | | (2,705.7) | |
+Purchases of property and equipment | | (84.2) | | | (52.4) | |
+Cash paid for business combinations, net of cash acquired | | — | | | (300.0) | |
+| | | | |
+Other | | (35.0) | | | — | |
+Net cash used in investing activities | | (2,445.1) | | | (1,391.0) | |
+CASH FLOWS FROM FINANCING ACTIVITIES: | | | | |
+| | | | |
+Proceeds from issuance of common stock under equity plans | | 33.4 | | | 31.3 | |
+Tax withholding paid on behalf of employees for net share settlement | | (31.2) | | | (39.3) | |
+Repurchases of common stock | | — | | | (983.0) | |
+Other | | (3.7) | | | — | |
+Net cash used in financing activities | | (1.5) | | | (991.0) | |
+Effect of exchange rate changes | | (3.6) | | | 3.3 | |
+NET INCREASE (DECREASE) IN CASH, CASH EQUIVALENTS AND RESTRICTED CASH | | 326.3 | | | (536.9) | |
+CASH, CASH EQUIVALENTS AND RESTRICTED CASH —Beginning of period | | 1,965.3 | | | 2,763.8 | |
+CASH, CASH EQUIVALENTS AND RESTRICTED CASH —End of period | | $ | 2,291.6 | | | $ | 2,226.9 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6
+
+
+
+
+
+Forward-Looking Statements
+This press release contains “forward-looking statements” regarding our future performance, including but not limited to quotations from management, and statements in the section entitled “Financial Outlook,” such as estimates regarding revenue, non-GAAP operating margin and non-GAAP diluted net income per share for the third quarter of 2026 . Forward-looking statements are subject to known and unknown risks, uncertainties, assumptions and other factors that could cause actual results, performance or achievements to differ materially from those anticipated in or implied by the forward-looking statements including but not limited to risks associated with: escalated or escalating U.S. tariffs and countermeasures and retaliatory actions taken by other countries; some of the key components in our products come from sole or limited sources of supply, which increases the risk of supply shortages, extended lead times or supply changes; key component supply constraints and inventory management; our reliance upon a predominant merchant silicon vendor; enhanced import/export restrictions, as well as countermeasures taken by affected countries; large purchases by a limited number of customers who represent a substantial portion of our revenue; adverse economic conditions , continuing uncertain economic conditions or reduced information technology and network infrastructure spending ; volatility in our revenue and revenue growth rates; variability in our gross margins ; variations in our results of operations ; the rapid evolution of the networking market; failure to successfully carry out new products and service offerings and expand into adjacent markets; intense competition and industry consolidation; expansion of our international sales and operations; investments in or acquisitions of other businesses, products or technologies; industry cyclicality; fluctuations in currency exchange rates; failure to raise additional capital on terms satisfactory to us; our inability to attract new large customers or sell additional products and services to our existing customers; inability to grow sales of switching and routing platforms which generate most of our product revenue; inability to increase market awareness or acceptance of our new products and services; decreases in the sales prices of our products and services; long and unpredictable sales cycles; inability to offer high quality support and services offerings; declines in maintenance renewals and support contracts by customers; product quality problems, defects, errors or vulnerabilities in our products; failure to anticipate technological shifts; our dependence on third-party manufacturers to build our products; assertions by third parties of intellectual property ri ghts infringement, misappropriation or other violations; failure or inability to protect or assert our intellectual property rights; cybersecurity incidents and breaches of our cybersecurity systems, or other security or privacy breaches or incidents; failure to detect cybersecurity incidents; failure to comply with government law and regulations; issues in the development and use of artificial intelligence, combined with an uncertain regulatory environment; future decisions to reduce or discontinue repurchasing our common stock pursuant to our stock repurchase programs; and other future events. Additional risks and uncertainties that could affect us can be found in our most recent filings with the Securities and Exchange Commission, including, but not limited to, our annual report on Form 10-K and quarterly reports on Form 10-Q. You can locate these reports through our website at https://investors.arista.com/ and on the SEC’s website at https://www.sec.gov/. All forward-looking statements in this press release are based on information available to the company as of the date hereof, and we disclaim any obligation to publicly update or revise any forward-looking statement to reflect events that occur or circumstances that exist after the date on which they were made.
+Non-GAAP Financial Measures
+This press release and accompanying table contain certain non-GAAP financial measures, including non-GAAP gross profit, non-GAAP gross margin, non-GAAP income from operations, non-GAAP operating margin, non-GAAP net income, and non-GAAP diluted net income per share. These non-GAAP financial measures exclude stock-based compensation expense, intangible asset amortization, gains/losses on strategic investments, and the income tax effect of these non-GAAP exclusions, including the recognition of direct excess tax benefits associated with stock-based awards. Effective the fourth quarter of fiscal year 2025, the company updated its methodology for calculating the income tax effect of non-GAAP adjustments. Previously, the company’s calculation excluded all tax benefits associated with stock-based awards, consisting of both direct excess tax benefits and other discrete indirect effects. Under the updated methodology, the company continues to exclude direct excess tax benefits but
+
+
+7
+
+
+
+
+
+no longer excludes the discrete indirect effects of such awards. Management believes this change better aligns with industry practice and provides a more meaningful view of the company’s effective tax rate. All prior period non-GAAP results presented in this release have been recast to conform to the current period presentation.
+The company uses these non-GAAP financial measures internally in analyzing its financial results and believes that these non-GAAP financial measures are useful to investors as an additional tool to evaluate ongoing operating results and trends. In addition, these measures are the primary indicators management uses as a basis for its planning and forecasting for future periods.
+Non-GAAP financial measures are not meant to be considered in isolation or as a substitute for the comparable GAAP financial measures. Non-GAAP financial measures are subject to limitations and should be read only in conjunction with the company's consolidated financial statements prepared in accordance with GAAP. Non-GAAP financial measures do not have any standardized meaning and are, therefore, unlikely to be comparable to similarly titled measures presented by other companies. A description of these non-GAAP financial measures and a reconciliation of the company’s non-GAAP financial measures to their most directly comparable GAAP measures have been provided in the financial statement tables included in this press release, and investors are encouraged to review the reconciliation.
+About Arista Networks
+Arista Networks is an industry leader in data-driven, client-to-cloud networking for large AI, data center, campus, and routing environments. Its award-winning platforms deliver availability, agility, automation, analytics, and security through an advanced network operating stack. For more information, visit www.arista.com.
+ARISTA, CloudVision, and Etherlink are among the registered and unregistered trademarks of Arista Networks, Inc. in jurisdictions around the world. Other company names or product names may be trademarks of their respective owners. Additional information and resources can be found at www.arista.com.
+| | | | | |
+Investor Contacts: | |
+| |
+Arista Networks, Inc. |
+| |
+Investor Advocacy |
+Rudolph Araujo | |
+Rod Hall | |
++1 (408) 547-8080 | |
+ir@arista.com |
+
+
+
+8

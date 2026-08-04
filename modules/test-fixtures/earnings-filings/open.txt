@@ -1,0 +1,687 @@
+EX-99.1
+2
+q22026formxex991earningsre.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+Q2 2026 Open House: Everything is Up. More Contracts. More Revenue. More Margin. Except Costs. Those are Down.
+Revenue up 23% QoQ. Contribution Profit up 59% QoQ. Contribution Margin up 140bps both QoQ and YoY. Homes purchased up 77% QoQ and 149% YoY. Inventory Health Improved 1% QoQ and 27% YoY. Combined Marketing and Operations per acquisition contract lowest in Company history 1 . Opendoor to be ANI positive on a twelve-month go-forward basis at the end of 2026.
+SAN FRANCISCO, California - August 4, 2026 - Opendoor Technologies Inc. (Nasdaq: OPEN), a leading e-commerce platform for residential real estate transactions, today reported quarterly financial results for its quarter ended June 30, 2026.
+In May, Opendoor set guideposts for Q2 around acquisition contracts, revenue, margin and adjusted EBITDA. Q2 delivered on all four.
+“For three quarters, I’ve been saying Opendoor will be ANI positive on a twelve-month go-forward basis at the end of this year. You no longer have to take my word for it. Run Q2 forward. At current contract volumes and unit economics, and with our existing cost base, we will generate positive Adjusted Net Income as those acquisition cohorts flow through to resale. We are now on a clear path to sustained ANI profitability. That outcome does not require an improved growth engine, margin expansion, or a housing-market recovery. In fact, at this volume, our operating model supports Adjusted Net Income profitability even if contribution margins decline and even if you adjust down for seasonality.”
+“We built the model to reach profitability without relying on market tailwinds. Against one of the most challenging housing markets in decades - with constrained demand and delistings at record levels - Opendoor delivered exactly what we said we would. We grew acquisitions, expanded contribution margins, and reduced our exposure to housing-market risk. We achieved this through faster inventory turns and by scaling Cash Now, More Later - our capital-light offering that generates attractive returns while placing substantially less capital at risk per home.”
+“When the product gets better, you don’t need to buy growth with heavy marketing or excess risk. We generated over 6,900 acquisition contracts in Q2 2026 on $5 million of marketing spend. The last time we generated more than 6,000 acquisition contracts, in Q2 2022, we spent $81 million. The alternative to buying growth is earning it by shipping great products.”
+“We are also seeing early signs that our mortgage product is doing exactly what we built it to do: letting buyers purchase an Opendoor home through a single integrated transaction with an Opendoor mortgage as the default choice. As of today, we expect over half of our scheduled resale closes in Colorado, the first market we launched, to be financed with Opendoor Home Loans. In Texas, which launched just six weeks ago, it is already nearly 1 in 5 of our scheduled resale closes. And that is before the addition of FHA, VA, or adjustable-rate products, which we're shipping now. These percentages will fluctuate, and each state we launch will have its own dynamics. But Texas shows where a market can be just six weeks in, and Colorado shows where one can get to with some seasoning. Neither is a ceiling.”
+
+1 Company history refers to the period beginning in Q1 2018, the earliest period for which this metric is available on a consistent basis.
+
+
+
+
+
+
+
+
+
+We are executing against three management objectives critical to reaching profitability. The table below shows our progress against each objective this quarter.
+| | | | | | | | |
+Management Objective
+| How You Can Hold Us Accountable
+| How We’re Executing
+|
+(1) Scale Acquisitions | - Acquisition contract dashboard on accountable.opendoor.com.
+
+
+
+
+| - Homes purchased increased 77% from the prior quarter.
+
+
+- We generated 6,908 acquisition contracts in 2Q26 on $5 million of marketing spend. The last time we topped 6,000 contracts, 2Q22, marketing spend was $81 million.
+|
+(2) Improve Unit Economics and Resale Velocity
+| - % of Homes on the market for greater than 120 Days (Reported quarterly).
+
+
+- Product, feature & partnership launches tracked on accountable.opendoor.com
+| - % of homes on the market over 120 Days declined from 10% to 9% quarter-over-quarter, compared to 27% for the overall market.
+
+
+- As of today, we expect over half of all our scheduled resale closes in Colorado to be financed with Opendoor Home Loans.
+
+
+|
+(3) Build Operating Leverage 2 | - Fixed operating expenses hold relatively steady as we rescale volumes (Reported quarterly). | - Operations expense per acquisition close was $3.0 thousand in 2Q26, down from $5.0 thousand in 1Q26 and $8.4 thousand in 2Q25. 3
+|
+- Fixed operating expenses held steady at $35 million in 2Q26 compared to $33 million in 1Q26, up only $2 million quarter-over-quarter.
+
+
+|
+- Trailing 12-month operations expense as a % of trailing 12-month revenue holds relatively steady or decreases over time. (Reported quarterly.) | - Trailing 12-month operations expense as a % of revenue increased to 1.6% in 2Q26 compared to 1.3% in 1Q26. Trailing 12-month operations expense decreased modestly to $51 million in 2Q26 from $52 million in 1Q26.
+
+
+|
+
+
+2 See Segment Information table.
+3 Calculated using unrounded amounts. Amounts presented elsewhere are rounded to millions and may not recalculate.
+
+
+
+
+
+
+
+
+
+
+Second Quarter 2026 Key Highlights
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended
+| | | | | | |
+(In millions, except percentages and non-dollar amounts)
+| | June 30,
+2026 | | | | | | | | June 30,
+2025 | | Change | | | | | | |
+Revenue | | $ | 883 | | | | | | | | | $ | 1,567 | | | $ | (684) | | | | | | | |
+Gross profit
+| | $ | 86 | | | | | | | | | $ | 128 | | | $ | (42) | | | | | | | |
+Gross Margin | | 9.7 | % | | | | | | | | 8.2 | % | | | | | | | | |
+Net loss
+| | $ | (162) | | | | | | | | | $ | (29) | | | $ | (133) | | | | | | | |
+| | | | | | | | | | | | | | | | | | |
+Homes sold | | 2,339 | | | | | | | | | 4,299 | | | (1,960) | | | | | | | |
+Homes purchased | | 4,378 | | | | | | | | | 1,757 | | | 2,621 | | | | | | | |
+Homes in inventory (at period end) | | 5,459 | | | | | | | | | 4,538 | | | 921 | | | | | | | |
+Inventory (at period end) | | $ | 1,845 | | | | | | | | | $ | 1,530 | | | $ | 315 | | | | | | | |
+Homes under contract to purchase (at period end)
+| | 2,310 | | | | | | | | | 393 | | | | | | | | | |
+| | | | | | | | | | | | | | | | | | |
+Non-GAAP Financial Highlights (1)
+| | | | | | | | | | | | | | | | | | |
+Contribution Profit
+| | $ | 51 | | | | | | | | | $ | 69 | | | $ | (18) | | | | | | | |
+Contribution Margin | | 5.8 | % | | | | | | | | 4.4 | % | | | | | | | | |
+Adjusted EBITDA | | $ | (4) | | | | | | | | | $ | 23 | | | $ | (27) | | | | | | | |
+Adjusted EBITDA Margin | | (0.5) | % | | | | | | | | 1.5 | % | | | | | | | | |
+Adjusted Net Loss | | $ | (30) | | | | | | | | | $ | (9) | | | $ | (21) | | | | | | | |
+
+(1) See “— Use of Non-GAAP Financial Measures ” for further details and a reconciliation of such non-GAAP measures to their nearest comparable GAAP measures.
+
+Guide Posts
+We're focused on making the right long-term decisions to rebuild Opendoor rather than managing short-term guidance. We're making meaningful progress and remain focused on execution. With that context, we want to provide you with the following guideposts:
+• We are driving to Adjusted Net Income positive by the end of 2026, measured on a twelve-month go-forward basis.
+• Q3 2026 Outlook:
+◦ Acquisitions: You can track our acquisition contracts on accountable.opendoor.com 4 .
+◦ Revenue: We expect revenue to increase at least 20% year-over-year.
+◦ Contribution Profit 5 : We expect Contribution Profit dollars to more than double year over year. We expect Contribution Margin to be around 4% to 4.5%. While Q3 is historically a seasonally weaker margin quarter - with historical Q2-to-Q3 contribution margin drops
+
+4 The estimates and information presented at accountable.opendoor.com rely on assumptions and are subject to limitations; accordingly, no guarantee is made as to their accuracy. Acquisition contract volume represents contracts under which Opendoor has agreed to acquire a property, including through its Cash Now, More Later program, and does not reflect contracts that are subsequently cancelled.
+5 Opendoor has not provided a quantitative reconciliation of forecasted Contribution Profit to forecasted Gross Profit, forecasted Contribution Margin to forecasted GAAP gross margin, nor a reconciliation of forecasted Adjusted EBITDA to forecasted GAAP net income (loss) within this press release because the Company is unable, without making unreasonable efforts, to calculate certain reconciling items with confidence. These items include, but are not limited to, inventory valuation adjustment and equity securities fair value adjustment. These items, which could materially affect the computation of forward-looking GAAP gross profit (loss), GAAP gross margin, and net income (loss), are inherently uncertain and depend on various factors, some of which are outside of the Company’s control. For more information regarding the non-GAAP financial measures discussed in this press release, please see “Use of Non-GAAP Financial Measures” following the financial tables below.
+
+
+
+
+
+
+
+
+
+averaging nearly 500 basis points, excluding 2023 - this year’s expected sequential decline is significantly narrower, reflecting the structural health of our underlying cohorts.
+◦ Adjusted EBITDA 5 : We continue to expect to be Adjusted EBITDA profitable on a twelve-month go-forward basis as of Q2 2026.
+◦ Stock-Based Compensation : We expect Q3 SBC of approximately $110 million.
+You can continue to follow our progress on home acquisition contracts and product and feature launches every single week at accountable.opendoor.com.
+
+Conference Call and Webcast Details
+Opendoor will host a webcast to discuss its financial results on August 4, 2026, at 2:00 p.m. Pacific Time. A live webcast of the call can be accessed from Opendoor’s Investor Relations website at https://investor.opendoor.com. An archived version of the webcast will be available from the same website after the call.
+About Opendoor
+Opendoor’s mission is to tilt the world in favor of homeowners, by making homeownership simpler, faster, and fairer for everyone. Since 2014, the Company has provided people across the U.S. with a simpler, more certain way to sell and buy a home. Opendoor currently operates in markets nationwide. For more information, please visit www.opendoor.com.
+Opendoor investors and others should note that we have used, and intend to continue to use, our website (including accountable.opendoor.com and investor.opendoor.com), press releases, Securities and Exchange Commission (“SEC”) filings, blogs, community hub and social media accounts, as well as the X (formerly known as Twitter) accounts of its Chief Executive Officer, @Nejatian, and @Opendoor, as means of disclosing material non-public information and for complying with its disclosure obligations under Regulation FD. Opendoor encourages investors and others to review the information Opendoor makes public in the foregoing locations as such information could be deemed to be material information. Please note that this list may be updated from time to time. Investors should subscribe to these social media accounts and Opendoor’s investor alerts, in addition to following its press releases, SEC filings, public conference calls and webcasts.
+Forward Looking Statements
+This press release contains certain forward-looking statements within the meaning of Section 27A the Private Securities Litigation Reform Act of 1995, as amended. All statements contained in this press release that do not relate to matters of historical fact should be considered forward-looking, including statements regarding our fiscal 2026 and third quarter of 2026 financial outlook; whether we are able to operate a level consistent with positive adjusted EBITDA or positive Adjusted Net Income going forward; scaling acquisitions, improving unit economics and resale velocity, and building operating leverage; transitioning to direct-to-consumer relationships and expanding our product suite; our future product offerings, including mortgage products and our ability to leverage AI to drive operational efficiency; the future health and status of our financial condition; and our business strategy and plans, including plans to continue to invest in and enhance our products. These forward-looking statements generally are identified by the words “anticipate”, “believe”, “contemplate”, “continue”, “could”, “estimate”, “expect”, “forecast”, “future”, “guidance”, “intend”, “may”, “might”, “opportunity”, “outlook”, “plan”, “possible”, “potential”, “predict”, “project”, “should”, “strategy”, “strive”, “target”, “vision”, “will”, or “would”, any negative of these words or other similar terms or expressions. The absence of these words does not mean that a
+
+
+
+
+
+
+
+
+
+statement is not forward-looking. Forward-looking statements are predictions, projections and other statements about future events that are based on current expectations and assumptions and, as a result, are subject to risks and uncertainties that can cause actual results to differ materially from those in such forward-looking statements. The factors that could cause or contribute to actual future events to differ materially from the forward-looking statements in this press release include but are not limited to: our ability to implement our strategy; the current and future health and stability of the economy, financial conditions and residential housing market, including any extended downturns or slowdowns; changes in general economic and financial conditions (including federal monetary policy, the imposition of tariffs and price or exchange controls, interest rates, inflation, actual or anticipated recession, home price fluctuations, and housing inventory), as well as the probability of such changes occurring, that impact demand for our products and services, lower our profitability or reduce our access to future financings; actual or anticipated fluctuations in our financial condition and results of operations; changes in projected operational and financial results; our real estate assets and increased competition in the U.S. residential real estate industry; our ability to operate and grow our core business products, including the ability to obtain sufficient financing and resell purchased homes; investment of resources to pursue strategies and develop new products and services that may not prove effective or that are not attractive to customers and/or partners or that do not allow us to compete successfully; our ability to acquire and resell homes profitably; our ability to grow market share; our ability to leverage AI to drive operational efficiency; our ability to manage our growth effectively; our ability to expeditiously sell and appropriately price our inventory; our ability to access sources of capital, including debt financing to finance our real estate inventories and other sources of capital to finance operations and growth; our ability to maintain liquidity and to raise the funds necessary for any cash settlement upon conversion of our outstanding convertible notes or upon repurchasing our outstanding convertible notes; development and performance of our mortgage products; any dilutive effect on our common stock upon any settlement of our outstanding convertible notes through the conversion of notes into shares of our common stock; our ability to maintain and enhance our products and brand, and to attract customers; our ability to manage, develop and refine our digital platform, including our automated pricing and valuation technology; our ability to realize expected benefits from our restructuring and cost reduction efforts; our ability to comply with multiple listing service rules and requirements to access and use listing data, and to maintain or establish relationships with listings and data providers; our ability to obtain or maintain licenses and permits to support our current and future business operations; acquisitions, strategic partnerships, joint ventures, capital-raising activities or other corporate transactions or commitments by us or our competitors; actual or anticipated changes in technology, products, markets or services by us or our competitors; our ability to protect our brand and intellectual property; our success in retaining or recruiting, or changes required in, our officers, key employees and/or directors; the impact of the regulatory environment and potential regulatory instability within our industry and complexities with compliance related to such environment; any future impact of pandemics, epidemics, or other public health crises on our ability to operate, demand for our products and services, or general economic conditions; our ability to maintain our listing on the Nasdaq Global Select Market; changes in laws or government regulation affecting our business; the impact of pending or future litigation or regulatory actions; and the volatility in the price of our common stock and warrants. The foregoing list of factors is not exhaustive. You should carefully consider the foregoing factors and the other risks and uncertainties described under the caption “Risk Factors” in our most recent Annual Report on Form 10-K filed with the Securities and Exchange Commission (the “SEC”) on February 19, 2026, as updated by our periodic reports and other filings with the SEC. These filings identify and address other important risks and uncertainties that could cause actual events and results to differ materially from those contained in the forward-looking statements. Forward-looking statements speak only as of the date they are made. Readers are cautioned not to put undue reliance on forward-looking statements, and, except as required by law, we assume no obligation and do not intend to
+
+
+
+
+
+
+
+
+
+update or revise these forward-looking statements, whether as a result of new information, future events, or otherwise. We do not give any assurance that we will achieve our expectations.
+Contact Information
+
+
+Investors:
+investors@opendoor.com
+
+
+Media:
+Contact Kaz on X @Nejatian
+
+
+
+
+
+
+
+
+
+
+OPENDOOR TECHNOLOGIES INC.
+FINANCIAL HIGHLIGHTS AND OPERATING METRICS
+(In millions, except percentages, homes sold, homes purchased, and homes in inventory)
+(Unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended
+| | | | | | |
+(In millions, except percentages and non-dollar amounts)
+| | June 30,
+2026 | | March 31,
+2026 | | December 31,
+2025 | | September 30,
+2025 | | June 30,
+2025 | | | | | | | | |
+Revenue | | $ | 883 | | | $ | 720 | | | $ | 736 | | | $ | 915 | | | $ | 1,567 | | | | | | | | | |
+Gross profit
+| | $ | 86 | | | $ | 72 | | | $ | 57 | | | $ | 66 | | | $ | 128 | | | | | | | | | |
+Gross Margin | | 9.7 | % | | 10.0 | % | | 7.7 | % | | 7.2 | % | | 8.2 | % | | | | | | | | |
+Net loss
+| | $ | (162) | | | $ | (173) | | | $ | (1,096) | | | $ | (90) | | | $ | (29) | | | | | | | | | |
+| | | | | | | | | | | | | | | | | | |
+Homes sold | | 2,339 | | | 1,921 | | | 1,978 | | | 2,568 | | | 4,299 | | | | | | | | | |
+Homes purchased | | 4,378 | | | 2,474 | | | 1,706 | | | 1,169 | | | 1,757 | | | | | | | | | |
+Homes in inventory (at period end) | | 5,459 | | | 3,420 | | | 2,867 | | | 3,139 | | | 4,538 | | | | | | | | | |
+Inventory (at period end) | | $ | 1,845 | | | $ | 1,139 | | | $ | 925 | | | $ | 1,053 | | | $ | 1,530 | | | | | | | | | |
+Percentage of homes “on the market” for greater than 120 days (at period end)
+| | 9 | % | | 10 | % | | 33 | % | | 51 | % | | 36 | % | | | | | | | | |
+Non-GAAP Financial Highlights (1)
+| | | | | | | | | | | | | | | | | | |
+Contribution Profit
+| | $ | 51 | | | $ | 32 | | | $ | 7 | | | $ | 20 | | | $ | 69 | | | | | | | | | |
+Contribution Margin | | 5.8 | % | | 4.4 | % | | 1.0 | % | | 2.2 | % | | 4.4 | % | | | | | | | | |
+Adjusted EBITDA | | $ | (4) | | | $ | (31) | | | $ | (43) | | | $ | (33) | | | $ | 23 | | | | | | | | | |
+Adjusted EBITDA Margin | | (0.5) | % | | (4.3) | % | | (5.8) | % | | (3.6) | % | | 1.5 | % | | | | | | | | |
+Adjusted Net Loss | | $ | (30) | | | $ | (49) | | | $ | (62) | | | $ | (61) | | | $ | (9) | | | | | | | | | |
+
+(1) See “— Use of Non-GAAP Financial Measures ” for further details and a reconciliation of such non-GAAP measures to their nearest comparable GAAP measures.
+
+
+
+
+
+
+
+
+
+
+OPENDOOR TECHNOLOGIES INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(In millions, except share amounts which are presented in thousands, and per share amounts)
+(Unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended
+June 30, |
+| June 30, 2026 | | March 31, 2026 | | December 31, 2025 | | September 30, 2025 | | June 30, 2025 | | 2026 | | 2025 |
+REVENUE | $ | 883 | | | $ | 720 | | | $ | 736 | | | $ | 915 | | | $ | 1,567 | | | $ | 1,603 | | | $ | 2,720 | |
+COST OF REVENUE | 797 | | | 648 | | | 679 | | | 849 | | | 1,439 | | | 1,445 | | | 2,493 | |
+GROSS PROFIT | 86 | | | 72 | | | 57 | | | 66 | | | 128 | | | 158 | | | 227 | |
+OPERATING EXPENSES: | | | | | | | | | | | | | |
+Sales, marketing and operations | 65 | | | 70 | | | 60 | | | 66 | | | 86 | | | 135 | | | 184 | |
+General and administrative | 135 | | | 137 | | | 129 | | | 48 | | | 28 | | | 272 | | | 61 | |
+Technology and development | 27 | | | 24 | | | 18 | | | 19 | | | 21 | | | 51 | | | 42 | |
+| | | | | | | | | | | | | |
+Restructuring | 3 | | | — | | | — | | | 1 | | | 6 | | | 3 | | | 9 | |
+Total operating expenses | 230 | | | 231 | | | 207 | | | 134 | | | 141 | | | 461 | | | 296 | |
+LOSS FROM OPERATIONS | (144) | | | (159) | | | (150) | | | (68) | | | (13) | | | (303) | | | (69) | |
+| | | | | | | | | | | | | |
+(LOSS) GAIN ON EXTINGUISHMENT OF DEBT | — | | | (1) | | | (933) | | | (1) | | | 10 | | | (1) | | | 10 | |
+INTEREST EXPENSE | (29) | | | (23) | | | (28) | | | (34) | | | (36) | | | (52) | | | (69) | |
+OTHER INCOME – Net | 11 | | | 10 | | | 14 | | | 14 | | | 10 | | | 21 | | | 14 | |
+LOSS BEFORE INCOME TAXES
+| (162) | | | (173) | | | (1,097) | | | (89) | | | (29) | | | (335) | | | (114) | |
+INCOME TAX EXPENSE | — | | | — | | | 1 | | | (1) | | | — | | | — | | | — | |
+NET LOSS
+| $ | (162) | | | $ | (173) | | | $ | (1,096) | | | $ | (90) | | | $ | (29) | | | $ | (335) | | | $ | (114) | |
+| | | | | | | | | | | | | |
+| | | | | | | | | | | | | |
+Net loss per share attributable to common shareholders:
+| | | | | | | | | | | | | |
+Basic | $ | (0.17) | | | $ | (0.18) | | | $ | (1.26) | | | $ | (0.12) | | | $ | (0.04) | | | $ | (0.35) | | | $ | (0.16) | |
+Diluted | $ | (0.17) | | | $ | (0.18) | | | $ | (1.26) | | | $ | (0.12) | | | $ | (0.04) | | | $ | (0.35) | | | $ | (0.16) | |
+Weighted-average shares outstanding: | | | | | | | | | | | | | |
+Basic | 965,780 | | | 959,332 | | | 869,822 | | | 741,939 | | | 729,484 | | | 962,574 | | | 726,529 | |
+Diluted | 965,780 | | | 959,332 | | | 869,822 | | | 741,939 | | | 729,484 | | | 962,574 | | | 726,529 | |
+
+
+
+
+
+
+
+
+
+
+
+OPENDOOR TECHNOLOGIES INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(In millions, except s hare data)
+(Unaudited)
+| | | | | | | | | | | | | | |
+| | June 30,
+2026 | | December 31,
+2025 |
+ASSETS | | | | |
+CURRENT ASSETS: | | | | |
+Cash and cash equivalents | | $ | 896 | | | $ | 962 | |
+Restricted cash | | 66 | | | 339 | |
+| | | | |
+Escrow receivable | | 13 | | | 4 | |
+| | | | |
+Real estate inventory, net | | 1,845 | | | 925 | |
+Other current assets | | 30 | | | 69 | |
+Total current assets | | 2,850 | | | 2,299 | |
+PROPERTY AND EQUIPMENT – Net | | 24 | | | 27 | |
+RIGHT OF USE ASSETS | | 10 | | | 8 | |
+GOODWILL | | 3 | | | 3 | |
+| | | | |
+OTHER ASSETS | | 74 | | | 70 | |
+TOTAL ASSETS | | $ | 2,961 | | | $ | 2,407 | |
+LIABILITIES AND SHAREHOLDERS’ EQUITY | | | |
+CURRENT LIABILITIES: | | | |
+Accounts payable and other accrued liabilities | | $ | 78 | | | $ | 80 | |
+Non-recourse asset-backed debt – current portion | | 691 | | | 52 | |
+| | | | |
+| | | | |
+| | | | |
+Convertible senior notes – current portion
+| | 194 | | | 193 | |
+Interest payable | | 3 | | | 1 | |
+Lease liabilities – current portion | | 2 | | | 1 | |
+Total current liabilities | | 968 | | | 327 | |
+NON-RECOURSE ASSET-BACKED DEBT – Net of current portion | | 1,071 | | | 1,068 | |
+| | | | |
+| | | | |
+LEASE LIABILITIES – Net of current portion | | 6 | | | 6 | |
+OTHER LIABILITIES | | 2 | | | 1 | |
+Total liabilities | | 2,047 | | | 1,402 | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+SHAREHOLDERS’ EQUITY: | | | | |
+Common stock, $0.0001 par value; 3,000,000,000 shares authorized; 968,626,958 and 957,245,487 shares issued, respectively; 968,626,958 and 957,245,487 shares outstanding, respectively
+| | — | | | — | |
+Additional paid-in capital | | 6,283 | | | 6,038 | |
+Accumulated deficit | | (5,368) | | | (5,033) | |
+Accumulated other comprehensive loss | | (1) | | | — | |
+Total shareholders’ equity | | 914 | | | 1,005 | |
+TOTAL LIABILITIES AND SHAREHOLDERS’ EQUITY | | $ | 2,961 | | | $ | 2,407 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+OPENDOOR TECHNOLOGIES INC.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(In millions)
+(Unaudited)
+| | | | | | | | | | | |
+| Six Months Ended
+June 30, |
+| 2026 | | 2025 |
+CASH FLOWS FROM OPERATING ACTIVITIES: | | | |
+Net loss | $ | (335) | | | $ | (114) | |
+Adjustments to reconcile net loss to cash, cash equivalents, and restricted cash (used in) provided by operating activities: | | | |
+Depreciation and amortization  | 16 | | | 22 | |
+Amortization of right of use asset | 1 | | | 1 | |
+| | | |
+Stock-based compensation | 239 | | | 27 | |
+| | | |
+| | | |
+Inventory valuation adjustment | 23 | | | 34 | |
+| | | |
+| | | |
+Change in fair value of equity securities | — | | | 3 | |
+| | | |
+| | | |
+| | | |
+Loss (gain) on early extinguishment of debt | 1 | | | (10) | |
+| | | |
+Other | 5 | | | 4 | |
+Origination of mortgage loans held for sale | (5) | | | — | |
+Proceeds from sale and principal collections of mortgage loans held for sale | 5 | | | — | |
+Changes in operating assets and liabilities: | | | |
+Escrow receivable | (9) | | | (4) | |
+Real estate inventory | (932) | | | 593 | |
+Other assets | 37 | | | (11) | |
+Accounts payable and other accrued liabilities | (11) | | | (2) | |
+Interest payable | 2 | | | 2 | |
+Lease liabilities | (1) | | | (1) | |
+Net cash (used in) provided by operating activities | (964) | | | 544 | |
+CASH FLOWS FROM INVESTING ACTIVITIES: | | | |
+Purchase of property and equipment | (9) | | | (6) | |
+| | | |
+| | | |
+Proceeds from sales, maturities, redemptions and paydowns of marketable securities | — | | | 6 | |
+Purchase of non-marketable equity securities | (5) | | | — | |
+| | | |
+| | | |
+| | | |
+| | | |
+Net cash (used in) provided by investing activities | (14) | | | — | |
+CASH FLOWS FROM FINANCING ACTIVITIES: | | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+Proceeds from issuance of convertible senior notes, net of discount | — | | | 75 | |
+| | | |
+| | | |
+| | | |
+| | | |
+Proceeds from issuance of common stock for ESPP | 1 | | | 1 | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+Proceeds from non-recourse asset-backed debt | 781 | | | 671 | |
+Principal payments on non-recourse asset-backed debt | (143) | | | (853) | |
+| | | |
+| | | |
+Payment of loan origination fees and debt issuance costs | — | | | (16) | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+Net cash provided by (used in) financing activities | 639 | | | (122) | |
+NET (DECREASE) INCREASE IN CASH, CASH EQUIVALENTS, AND RESTRICTED CASH | (339) | | | 422 | |
+CASH, CASH EQUIVALENTS, AND RESTRICTED CASH – Beginning of period | 1,301 | | | 763 | |
+CASH, CASH EQUIVALENTS, AND RESTRICTED CASH – End of period | $ | 962 | | | $ | 1,185 | |
+SUPPLEMENTAL DISCLOSURE OF CASH FLOW INFORMATION – Cash paid during the period for interest | $ | 46 | | | $ | 62 | |
+DISCLOSURES OF NONCASH INVESTING AND FINANCING ACTIVITIES: | | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+Stock-based compensation expense capitalized for internally developed software | $ | 5 | | | $ | 2 | |
+Principal value of 2026 Notes extinguished in Debt Exchange
+| $ | — | | | $ | (246) | |
+Principal value of 2030 Notes issued in Debt Exchange
+| $ | — | | | $ | 246 | |
+| | | |
+| | | |
+RECONCILIATION TO CONDENSED CONSOLIDATED BALANCE SHEETS: | | | |
+Cash and cash equivalents | $ | 896 | | | $ | 789 | |
+Restricted cash | 66 | | | 396 | |
+Cash, cash equivalents, and restricted cash | $ | 962 | | | $ | 1,185 | |
+
+
+
+
+
+
+
+
+
+
+
+Use of Non-GAAP Financial Measures
+To provide investors with additional information regarding the Company’s financial results, this press release includes references to certain non-GAAP financial measures that are used by management. The Company believes these non-GAAP financial measures including Adjusted Gross Profit, Contribution Profit, Adjusted Net Loss, Adjusted EBITDA, and any such non-GAAP financial measures expressed as a Margin, are useful to investors as supplemental operational measurements to evaluate the Company’s financial performance.
+The non-GAAP financial measures should not be considered in isolation or as a substitute for the Company’s reported GAAP results because they may include or exclude certain items as compared to similar GAAP-based measures, and such measures may not be comparable to similarly-titled measures reported by other companies. Management uses these non-GAAP financial measures for financial and operational decision-making and as a means to evaluate period-to-period comparisons. Management believes that these non-GAAP financial measures provide meaningful supplemental information regarding the Company’s performance by excluding certain items that may not be indicative of the Company’s recurring operating results.
+Adjusted Gross Profit and Contribution Profit
+To provide investors with additional information regarding our margins and return on inventory acquired, we have included Adjusted Gross Profit and Contribution Profit, which are non-GAAP financial measures. We believe that Adjusted Gross Profit and Contribution Profit are useful financial measures for investors as they are supplemental measures used by management in evaluating unit level economics and our operating performance. Each of these measures is intended to present the economics related to homes sold during a given period. We do so by including revenue generated from homes sold (and adjacent services) in the period and only the expenses that are directly attributable to such home sales, even if such expenses were recognized in prior periods, and excluding expenses related to homes that remain in inventory as of the end of the period. Contribution Profit provides investors a measure to assess Opendoor’s ability to generate returns on homes sold during a reporting period after considering home purchase costs, renovation and repair costs, holding costs and selling costs.
+Adjusted Gross Profit and Contribution Profit are supplemental measures of our operating performance and have limitations as analytical tools. For example, these measures include costs that were recorded in prior periods under GAAP and exclude, in connection with homes held in inventory at the end of the period, costs required to be recorded under GAAP in the same period. Accordingly, these measures should not be considered in isolation or as a substitute for analysis of our results as reported under GAAP. We include a reconciliation of these measures to the most directly comparable GAAP financial measure, which is gross profit.
+Adjusted Gross Profit / Margin
+We calculate Adjusted Gross Profit as gross profit under GAAP adjusted for (1) inventory valuation adjustment in the current period, and (2) inventory valuation adjustment in prior periods. Inventory valuation adjustment in the current period is calculated by adding back the inventory valuation adjustments recorded during the period on homes that remain in inventory at period end. Inventory valuation adjustment in prior periods is calculated by subtracting the inventory valuation adjustments recorded in prior periods on homes sold in the current period. Adjusted Gross Margin is Adjusted Gross Profit as a percentage of revenue.
+We view this metric as an important measure of business performance as it captures gross margin performance isolated to homes sold in a given period and provides comparability across reporting periods. Adjusted Gross Profit helps management assess home pricing, service fees and renovation performance for a specific resale cohort.
+Contribution Profit / Margin
+We calculate Contribution Profit as Adjusted Gross Profit, minus certain costs incurred on homes sold during the current period including: (1) holding costs incurred in the current period, (2) holding costs incurred in prior periods, and (3) direct selling costs. Contribution Margin is Contribution Profit as a percentage of revenue. Contribution Profit per Home Sold is calculated by dividing Contribution Profit by the number of homes sold in the period.
+We view these metrics as an important measure of business performance as it captures the unit level performance isolated to homes sold in a given period and provides comparability across reporting periods. Contribution Profit helps management assess the revenues and certain costs directly attributable to a specific resale cohort.
+
+
+
+
+
+
+
+
+
+OPENDOOR TECHNOLOGIES INC.
+RECONCILIATION OF GAAP TO NON-GAAP MEASURES
+(In millions, except percentages, and homes sold)
+(Unaudited)
+
+
+The following table presents a reconciliation of our Adjusted Gross Profit and Contribution Profit to our gross profit, which is the most directly comparable GAAP measure, for the periods indicated:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended | | Six Months Ended
+June 30, |
+(in millions, except percentages and homes sold, or as noted) | | June 30, 2026 | | March 31, 2026 | | December 31, 2025 | | September 30, 2025 | | June 30, 2025 | | 2026 | | 2025 |
+Revenue (GAAP) | | $ | 883 | | | $ | 720 | | | $ | 736 | | | $ | 915 | | | $ | 1,567 | | | $ | 1,603 | | | $ | 2,720 | |
+Gross profit (GAAP)
+| | $ | 86 | | | $ | 72 | | | $ | 57 | | | $ | 66 | | | $ | 128 | | | $ | 158 | | | $ | 227 | |
+Gross Margin | | 9.7 | % | | 10.0 | % | | 7.7 | % | | 7.2 | % | | 8.2 | % | | 9.9 | % | | 8.3 | % |
+Adjustments: | | | | | | | | | | | | | | |
+Inventory valuation adjustment – Current Period (1)(2)
+| | 14 | | | 9 | | | 9 | | | 15 | | | 21 | | | 18 | | | 27 | |
+Inventory valuation adjustment – Prior Periods (1)(3)
+| | (9) | | | (14) | | | (21) | | | (17) | | | (14) | | | (18) | | | (19) | |
+| | | | | | | | | | | | | | |
+Adjusted Gross Profit
+| | $ | 91 | | | $ | 67 | | | $ | 45 | | | $ | 64 | | | $ | 135 | | | $ | 158 | | | $ | 235 | |
+Adjusted Gross Margin | | 10.3 | % | | 9.3 | % | | 6.1 | % | | 7.0 | % | | 8.6 | % | | 9.9 | % | | 8.6 | % |
+Adjustments: | | | | | | | | | | | | | | |
+Direct selling costs (4)
+| | (29) | | | (23) | | | (23) | | | (28) | | | (43) | | | (52) | | | (72) | |
+Holding costs on sales – Current Period (5)(6)
+| | (3) | | | (3) | | | (4) | | | (4) | | | (6) | | | (11) | | | (20) | |
+Holding costs on sales – Prior Periods (5)(7)
+| | (8) | | | (9) | | | (11) | | | (12) | | | (17) | | | (12) | | | (20) | |
+Contribution Profit
+| | $ | 51 | | | $ | 32 | | | $ | 7 | | | $ | 20 | | | $ | 69 | | | $ | 83 | | | $ | 123 | |
+Homes sold in period | | 2,339 | | | 1,921 | | | 1,978 | | | 2,568 | | | 4,299 | | | 4,260 | | | 7,245 | |
+Contribution Profit per Home Sold (in thousands)
+| | $ | 22 | | | $ | 17 | | | $ | 4 | | | $ | 8 | | | $ | 16 | | | $ | 19 | | | $ | 17 | |
+Contribution Margin | | 5.8 | % | | 4.4 | % | | 1.0 | % | | 2.2 | % | | 4.4 | % | | 5.2 | % | | 4.5 | % |
+
+________________
+(1) Inventory valuation adjustment includes adjustments to record real estate inventory at the lower of its carrying amount or its net realizable value.
+(2) Inventory valuation adjustment — Current Period is the inventory valuation adjustments recorded during the period presented associated with homes that remain in inventory at period end.
+(3) Inventory valuation adjustment — Prior Periods is the inventory valuation adjustments recorded in prior periods associated with homes that sold in the period presented.
+(4) Represents selling costs incurred related to homes sold in the relevant period. This primarily includes broker commissions, external title and escrow-related fees and transfer taxes. Selling costs are included in Sales, marketing and operations on the condensed consolidated statements of operations.
+(5) Holding costs primarily include property taxes, insurance, utilities, homeowners association dues and maintenance costs. Holding costs are included in Sales, marketing, and operations on the condensed consolidated statements of operations.
+(6) Represents holding costs incurred in the period presented on homes sold in the period presented.
+(7) Represents holding costs incurred in prior periods on homes sold in the period presented.
+
+
+
+
+
+
+
+
+
+Adjusted Net Loss and Adjusted EBITDA
+We also present Adjusted Net Loss and Adjusted EBITDA, which are non-GAAP financial measures that management uses to assess our underlying financial performance. These measures are also commonly used by investors and analysts to compare the underlying performance of companies in our industry. We believe these measures provide investors with meaningful period over period comparisons of our underlying performance, adjusted for certain charges that are non-cash, not directly related to our revenue-generating operations, not aligned to related revenue, or not reflective of ongoing operating results that vary in frequency and amount.
+Adjusted Net Loss and Adjusted EBITDA are supplemental measures of our operating performance and have important limitations. For example, these measures exclude the impact of certain costs required to be recorded under GAAP. These measures also include inventory valuation adjustments that were recorded in prior periods under GAAP and exclude, in connection with homes held in inventory at the end of the period, inventory valuation adjustments required to be recorded under GAAP in the same period. These measures could differ substantially from similarly titled measures presented by other companies in our industry or companies in other industries. Accordingly, these measures should not be considered in isolation or as a substitute for analysis of our results as reported under GAAP. We include a reconciliation of these measures to the most directly comparable GAAP financial measure, which is net loss.
+Adjusted Net Loss
+We calculate Adjusted Net Loss as GAAP net loss adjusted to exclude non-cash expenses of stock-based compensation, equity securities fair value adjustment and the amortization of stock-based compensation capitalized to internally developed software (“IDSW”). It excludes expenses that are not directly related to our revenue-generating operations such as restructuring and CEO make-whole provision. It also excludes loss (gain) on extinguishment of debt as these expenses or gains were incurred as a result of decisions made by management to terminate or partially extinguish portions of our outstanding credit facilities or convertible senior notes early; these expenses or gains are not reflective of ongoing operating results and vary in frequency and amount. Adjusted Net Loss also aligns the timing of inventory valuation adjustments recorded under GAAP to the period in which the related revenue is recorded in order to improve the comparability of this measure to our non-GAAP financial measures of unit economics, as described above. Our calculation of Adjusted Net Loss does not currently include the tax effects of the non-GAAP adjustments because our taxes and such tax effects have not been material to date.
+Adjusted EBITDA / Margin
+We calculated Adjusted EBITDA as Adjusted Net Loss adjusted for depreciation and amortization, property financing and other interest expense, interest income, and income tax expense. Adjusted EBITDA is a supplemental performance measure that our management uses to assess our operating performance and the operating leverage in our business. Adjusted EBITDA Margin is Adjusted EBITDA as a percentage of revenue.
+
+
+
+
+
+
+
+
+
+The following table presents a reconciliation of our Adjusted Net Loss and Adjusted EBITDA to our net loss, which is the most directly comparable GAAP measure, for the periods indicated:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended
+| | Six Months Ended
+June 30, |
+(in millions, except percentages) | | June 30, 2026 | | March 31, 2026 | | December 31, 2025 | | September 30, 2025 | | June 30, 2025 | | 2026 | | 2025 |
+Revenue (GAAP) | | $ | 883 | | | $ | 720 | | | $ | 736 | | | $ | 915 | | | $ | 1,567 | | | $ | 1,603 | | | $ | 2,720 | |
+Net loss (GAAP) | | $ | (162) | | | $ | (173) | | | $ | (1,096) | | | $ | (90) | | | $ | (29) | | | $ | (335) | | | $ | (114) | |
+Adjustments: | | | | | | | | | | | | | | |
+Stock-based compensation | | 19 | | | 15 | | | 16 | | | 13 | | | 13 | | | 34 | | | 27 | |
+Stock-based compensation for market condition RSUs | | 100 | | | 105 | | | 89 | | | 14 | | | — | | | 205 | | | — | |
+Equity securities fair value adjustment (1)
+| | — | | | — | | | — | | | — | | | — | | | — | | | 3 | |
+| | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | |
+Amortization of stock-based compensation capitalized to IDSW
+| | 3 | | | 3 | | | 3 | | | 4 | | | 4 | | | 6 | | | 7 | |
+Inventory valuation adjustment – Current Period (2)(3)
+| | 14 | | | 9 | | | 9 | | | 15 | | | 21 | | | 18 | | | 27 | |
+Inventory valuation adjustment — Prior Periods (2)(4)
+| | (9) | | | (14) | | | (21) | | | (17) | | | (14) | | | (18) | | | (19) | |
+Restructuring (5)
+| | 3 | | | — | | | — | | | 1 | | | 6 | | | 3 | | | 9 | |
+CEO make-whole provision (6)
+| | 4 | | | 5 | | | 5 | | | — | | | — | | | 9 | | | — | |
+| | | | | | | | | | | | | | |
+Loss (gain) on extinguishment of debt
+| | — | | | 1 | | | 933 | | | 1 | | | (10) | | | 1 | | | (10) | |
+| | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | |
+Other (7)
+| | (2) | | | — | | | — | | | (2) | | | — | | | (2) | | | (2) | |
+Adjusted Net Loss
+| | $ | (30) | | | $ | (49) | | | $ | (62) | | | $ | (61) | | | $ | (9) | | | $ | (79) | | | $ | (72) | |
+Adjustments: | | | | | | | | | | | | | | |
+Depreciation and amortization, excluding amortization of intangibles | | 5 | | | 5 | | | 5 | | | 5 | | | 5 | | | 10 | | | 10 | |
+Property financing (8)
+| | 24 | | | 19 | | | 21 | | | 23 | | | 29 | | | 43 | | | 58 | |
+Other interest expense (9)
+| | 5 | | | 4 | | | 7 | | | 11 | | | 7 | | | 9 | | | 11 | |
+Interest income (10)
+| | (8) | | | (10) | | | (13) | | | (12) | | | (9) | | | (18) | | | (14) | |
+Income tax expense | | — | | | — | | | (1) | | | 1 | | | — | | | — | | | — | |
+Adjusted EBITDA | | $ | (4) | | | $ | (31) | | | $ | (43) | | | $ | (33) | | | $ | 23 | | | $ | (35) | | | $ | (7) | |
+Adjusted EBITDA Margin | | (0.5) | % | | (4.3) | % | | (5.8) | % | | (3.6) | % | | 1.5 | % | | (2.2) | % | | (0.3) | % |
+
+________________
+(1) Represents the gains and losses on certain financial instruments, which are marked to fair value at the end of each period.
+(2) Inventory valuation adjustment includes adjustments to record real estate inventory at the lower of its carrying amount or its net realizable value.
+(3) Inventory valuation adjustment — Current Period is the inventory valuation adjustments recorded during the period presented associated with homes that remain in inventory at period end.
+(4) Inventory valuation adjustment — Prior Periods is the inventory valuation adjustments recorded in prior periods associated with homes that sold in the period presented.
+(5) Restructuring expense consists primarily of severance and other termination benefits for employees whose roles have been eliminated, consulting fees, and expenses related to the termination of certain leases incurred during the restructuring process.
+(6) In connection with the appointment of the Company's new Chief Executive Officer in September 2025, the Company granted two make-whole awards related to compensation forfeited from his former employer. The awards consist of (i) a $15 million cash award and (ii) a restricted stock unit award with a grant date value of $15 million. Both awards vest nine months after his start date, contingent upon his continued service as Chief Executive Officer through the vesting date, and are expensed over the requisite service period. The CEO make-whole provision adjustment reflects only the expense
+
+
+
+
+
+
+
+
+
+associated with the cash make-whole award. The expense associated with the restricted stock unit make-whole award is included in the stock-based compensation line item presented separately in the reconciliation above.
+(7) Primarily includes related party services income.
+(8) Includes interest expense on our non-recourse asset-backed debt facilities.
+(9) Includes (i) amortization of debt issuance costs, loan origination fees, commitment fees, unused fees, and other interest-related costs on our asset-backed debt facilities, and (ii) amortization of debt issuance costs and debt discounts and interest expense related to our convertible senior notes.
+(10) Consists mainly of interest earned on cash, cash equivalents and restricted cash.
+
+
+
+
+
+
+
+
+
+
+OPENDOOR TECHNOLOGIES INC.
+SEGMENT INFORMATION
+(In millions)
+(Unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended |
+(in millions) | | June 30,
+2026 | | March 31,
+2026 | | December 31,
+2025 | | September 30,
+2025 | | June 30,
+2025 |
+Revenue | | $ | 883 | | | $ | 720 | | | $ | 736 | | | $ | 915 | | | $ | 1,567 | |
+Less: | | | | | | | | | | |
+Cost of revenue | | (797) | | | (648) | | | (679) | | | (849) | | | (1,439) | |
+Direct selling costs (1)
+| | (29) | | | (23) | | | (23) | | | (28) | | | (43) | |
+Holding costs (2)
+| | (11) | | | (12) | | | (15) | | | (16) | | | (23) | |
+Advertising and other marketing expense (3)
+| | (5) | | | (19) | | | (9) | | | (7) | | | (7) | |
+Operations (4)
+| | (14) | | | (12) | | | (13) | | | (12) | | | (15) | |
+Fixed operating expense (5)
+| | (35) | | | (33) | | | (35) | | | (37) | | | (31) | |
+CEO make-whole provision (6)
+| | (4) | | | (5) | | | (5) | | | — | | | — | |
+Stock-based compensation | | (19) | | | (15) | | | (16) | | | (13) | | | (13) | |
+Stock-based compensation for market condition RSUs | | (100) | | | (105) | | | (89) | | | (14) | | | — | |
+Interest expense | | (29) | | | (23) | | | (28) | | | (34) | | | (36) | |
+Interest income | | 8 | | | 10 | | | 13 | | | 12 | | | 9 | |
+Other (7)
+| | (10) | | | (8) | | | (933) | | | (7) | | | 2 | |
+Net loss | | $ | (162) | | | $ | (173) | | | $ | (1,096) | | | $ | (90) | | | $ | (29) | |
+
+________________
+(1) Represents selling costs incurred related to homes sold in the relevant period. This primarily includes broker commissions, external title and escrow-related fees and transfer taxes and are included in Sales, marketing and operations.
+(2) Represents holding costs incurred both in the period presented and in prior periods on homes sold in the period presented (“Resale Cohort Holding Costs”). Holding costs include mainly property taxes, insurance, utilities, homeowners association dues, cleaning and maintenance costs. Holding costs are included in Sales, marketing and operations in the period in which they are incurred (“GAAP Holding Costs”).
+(3) Advertising expenses are included in Sales, marketing and operations. Other marketing expenses include non-advertising marketing expenses such as acquisition leads and referrals and public relations services and are included in Sales, marketing and operations.
+(4) Represents operating expenses that are generally related to the volume of homes transacted during the period and tend to be variable in nature. Primarily includes workforce expenses in support of sales, and real estate inventory operations.
+(5) Represents operating expenses that are not directly correlated with home transaction volumes. These expenses generally include costs related to salaries and benefits for our leadership, finance, technology, human resources, legal, marketing and administrative personnel, as well as third-party professional services fees, rent expense and third-party software.
+(6) In connection with the appointment of the Company's new Chief Executive Officer in September 2025, the Company granted two make-whole awards related to compensation forfeited from his former employer. The awards consist of (i) a $15 million cash award and (ii) a restricted stock unit award with a grant date value of $15 million. Both awards vest nine months after his start date, contingent upon his continued service as Chief Executive Officer through the vesting date, and are expensed over the requisite service period. The CEO make-whole provision adjustment reflects only the expense associated with the cash make-whole award. The expense associated with the restricted stock unit make-whole award is included in the stock-based compensation line item presented separately in the reconciliation above.
+(7) Other segment income (expenses) are primarily made up of depreciation and amortization, gain on deconsolidation, net, restructuring, and amortization of stock-based compensation capitalized to internally developed software. This also includes the elimination of holding costs incurred in prior periods on homes sold in the periods presented, and includes holding costs incurred in the current period on homes remaining in inventory at period end.

@@ -1,0 +1,818 @@
+EX-99.1
+2
+exhibit991earningspressrel.htm
+EXHIBIT 99.1
+
+
+
+
+Document
+
+
+
+
+GILEAD SCIENCES ANNOUNCES SECOND QUARTER 2026 FINANCIAL RESULTS
+Product Sales Excluding Veklury Increased 10% Year-Over-Year to $7.6 billion
+Biktarvy Sales Increased 7% Year-Over-Year to $3.8 billion
+Diluted Loss Per Share was $(8.45) and Non-GAAP Diluted Loss Per Share was $(6.75) Reflecting $(9.08) Per Share Acquired IPR&D and Tax Expenses Associated with Recent Acquisitions
+Foster City, CA, August 4, 2026 - Gilead Sciences, Inc. (Nasdaq: GILD) announced today its results of operations for the second quarter 2026.
+“Gilead delivered a very strong second quarter, with 10% year-over-year revenue growth in our base business driven by our HIV portfolio, Trodelvy and Livdelzi. HIV sales grew 12%, reflecting continued strength in treatment and the rapid expansion of our PrEP business, supporting an increase in our base business revenue expectations for 2026,” said Daniel O’Day, Gilead’s Chairman and Chief Executive Officer. “We also made significant clinical progress with three FDA approvals and three positive Phase 3 updates. We look forward to delivering on our many opportunities in the second half of the year including another two potential launches in oncology and HIV.”
+Second Quarter 2026 Financial Results
+• Total second quarter 2026 revenues increased 10% to $7.8 billion compared to the same period in 2025, primarily driven by:
+◦ Higher sales of HIV products, Trodelvy® (sacituzumab govitecan-hziy) and Livdelzi® (seladelpar), partially offset by lower sales of Veklury® (remdesivir) as well as Cell Therapy and chronic hepatitis C virus (“HCV”) products; and
+◦ Higher royalty, contract and other revenues related to a previous sale of intellectual property.
+• Diluted (loss) earnings per share (“EPS”) was $(8.45) in the second quarter 2026 compared to $1.56 in the same period in 2025. The decrease was primarily driven by the $(9.08) per share impact of acquired in-process research and development (“IPR&D”) expenses associated with our acquisitions of Arcellx, Inc. (“Arcellx”), Tubulis GmbH (“Tubulis”) and Ouro Medicines, LLC (“Ouro Medicines”), net of the impact of our collaboration with Lakefront Biotherapeutics NV (“Lakefront”) and the related taxes , as well as an IPR&D impairment related to assets previously acquired from Immunomedics, Inc. (“Immunomedics”) and higher operating expenses. The decrease was partially offset by higher revenues, lower income tax expense, and higher net gains from equity securities.
+• Non-GAAP diluted (loss) EPS was $(6.75) in the second quarter 2026 compared to $2.01 in the same period in 2025. The decrease was primarily driven by the $(9.08) per share impact of acquired IPR&D and tax expenses discussed above, as well as higher non-GAAP selling, general and administrative (“SG&A”) expenses and non-GAAP income tax expense, partially offset by higher revenues.
+• As of June 30, 2026, Gilead had $3.2 billion of cash, cash equivalents and marketable debt securities compared to $10.6 billion as of December 31, 2025. The decrease was primarily driven by year-to-date cash outflows of $11.3 billion related to acquisitions, $2.8 billion of debt repayments, $2.1 billion of dividend payments and $774 million of common stock repurchases, partially offset by $4.1 billion of net proceeds from debt financing and $6.1 billion of operating cash flow.
+• During the second quarter 2026, Gilead generated $3.6 billion in operating cash flow.
+• During the second quarter 2026, Gilead paid dividends of $1.0 billion and repurchased $355 million of common stock.
+
+
+
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 2
+|
+
+
+Second Quarter 2026 Product Sales
+Total second quarter 2026 product sales increased 8% to $7.6 billion compared to the same period in 2025. Total second quarter 2026 product sales excluding Veklury increased 10% to $7.6 billion compared to the same period in 2025, primarily due to higher sales of HIV products, Trodelvy and Livdelzi, partially offset by lower sales of Cell Therapy and HCV products.
+HIV product sales increased 12% to $5.7 billion in the second quarter 2026 compared to the same period in 2025, primarily driven by higher average realized price and demand.
+• Biktarvy® (bictegravir 50mg/emtricitabine (“FTC”) 200mg/tenofovir alafenamide (“TAF”) 25mg) sales increased 7% to $3.8 billion in the second quarter 2026 compared to the same period in 2025, primarily driven by higher average realized price, favorable inventory dynamics and higher demand.
+• Descovy® (FTC 200mg/TAF 25mg) sales increased 48% to $967 million in the second quarter 2026 compared to the same period in 2025, primarily driven by higher average realized price and demand.
+The Liver Disease portfolio sales increased 10% to $877 million in the second quarter 2026 compared to the same period in 2025, primarily reflecting higher demand for Livdelzi, as well as chronic hepatitis B virus (“HBV”) products and Hepcludex® (bulevirtide-gmod), partially offset by lower sales for HCV products.
+Veklury sales decreased 81% to $23 million in the second quarter 2026 compared to the same period in 2025, primarily driven by lower rates of COVID-19-related hospitalizations.
+Cell Therapy product sales decreased 14% to $417 million in the second quarter 2026 compared to the same period in 2025, reflecting ongoing competitive headwinds.
+• Yescarta® (axicabtagene ciloleucel) sales decreased 12% to $346 million in the second quarter 2026 compared to the same period in 2025, primarily driven by in- and out-of-class competition.
+• Tecartus® (brexucabtagene autoleucel) sales decreased 24% to $70 million in the second quarter 2026 compared to the same period in 2025, primarily driven by in-class competition.
+Trodelvy® (sacituzumab govitecan-hziy) sales increased 26% to $457 million in the second quarter 2026 compared to the same period in 2025, primarily driven by higher demand.
+Second Quarter 2026 Product Gross Margin, Operating Expenses and Effective Tax Rate
+• Product gross margin remained relatively flat at 79.3% in the second quarter 2026 compared to 78.7% in the same period in 2025. Non-GAAP product gross margin also remained flat at 86.9% in the second quarter 2026 compared to the same period in 2025.
+• Research and development (“R&D”) expenses were $1.8 billion in the second quarter 2026 compared to $1.5 billion in the same period in 2025, primarily due to integration costs and other acquisition-related expenses, partially offset by lower oncology clinical study activity. Non-GAAP R&D expenses were $1.4 billion in the second quarter 2026 compared to $1.5 billion in the same period in 2025, primarily driven by lower oncology clinical study activity.
+• Acquired IPR&D expenses were $11.2 billion in the second quarter 2026, primarily related to $7.0 billion for the Arcellx acquisition, $3.1 billion for the Tubulis acquisition and $1.0 billion for the Ouro Medicines acquisition, net of the impact of the Lakefront collaboration.
+• SG&A expenses were $1.9 billion in the second quarter 2026 compared to $1.4 billion in the same period in 2025, primarily driven by integration costs related to the acquisitions and higher HIV promotional activities. Non-GAAP SG&A expenses were $1.5 billion in the second quarter 2026 compared to $1.4 billion in the same period in 2025, primarily due to higher HIV promotional activities.
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 3
+|
+
+
+• The effective tax rate (“ETR”) was (2.4)% in the second quarter 2026 compared to 19.3% in the same period in 2025. The non-GAAP ETR was (11.4)% in the second quarter 2026 compared to 18.8% in the same period in 2025. These changes primarily reflect the non-deductible acquired IPR&D expenses related to our acquisitions of Arcellx, Tubulis, and Ouro Medicines.
+Guidance and Outlook
+For the full year 2026, Gilead now expects:
+| | | | | | | | | | | | | | | | | | | | |
+(in millions, except per share amounts) | | August 4, 2026 Guidance | | |
+| Low End | | High End | | Comparison to May 7, 2026 Guidance |
+Product sales | | $ | 30,100 | | | $ | 30,400 | | | Previously $30,000 to $30,400
+|
+Product sales excluding Veklury | | $ | 29,800 | | | $ | 30,100 | | | Previously $29,400 to $29,800
+|
+Veklury | | ~ $300
+| | Previously ~ $600
+|
+Diluted loss per share | | $ | (3.75) | | | $ | (3.40) | | | Previously $(3.25) to $(2.85)
+|
+Non-GAAP diluted loss per share | | $ | (0.65) | | | $ | (0.30) | | | Previously $(1.05) to $(0.65)
+|
+
+Our full year 2026 GAAP and non-GAAP diluted loss per share guidance includes the impact of approximately $9.08 due to acquired IPR&D charges of $11.1 billion related to the Arcellx, Tubulis and Ouro Medicines transactions, net of the impact of the Lakefront collaboration and related taxes.
+Additional information and a reconciliation between GAAP and non-GAAP financial information for the 2026 guidance is provided in the accompanying tables. The financial guidance is subject to a number of risks and uncertainties. See the Forward-Looking Statements section below.
+Key Updates Since Our Last Quarterly Release
+Virology
+• Announced U.S. Food and Drug Administration (“FDA”) accepted a supplemental New Drug Application submission for Yeztugo® (lenacapavir) 300-mg tablets as a potential once-weekly oral formulation for HIV pre-exposure prophylaxis (“PrEP”), with a Prescription Drug User Fee Act target action date of February 2, 2027.
+• Announced positive Phase 3 results from the ISLEND-1 and ISLEND-2 trials, in partnership with Merck, evaluating an investigational long-acting oral treatment regimen of islatravir 2 mg and lenacapavir 300 mg in adults with HIV who are virologically suppressed and switched from Biktarvy (ISLEND-1) or standard of care antiretroviral regimens (ISLEND-2) to the once-weekly combination.
+• Received FDA accelerated approval for Hepcludex for the treatment of chronic hepatitis delta virus (“HDV”) infection in adults without cirrhosis or with compensated cirrhosis, which is now the first and only FDA-approved treatment for HDV in the U.S.
+• Announced a donation of 2,000 vials of remdesivir to the Republic of Uganda to support response efforts to the current outbreak of Ebola Bundibugyo virus disease (“BVD”). Remdesivir is not approved for the treatment of Ebola virus disease, including BVD, anywhere globally, and the safety and efficacy of this use is not known.
+Oncology
+• Received FDA approval of Trodelvy for the first-line (“1L”) treatment of adult patients with unresectable locally advanced or metastatic triple-negative breast cancer (“mTNBC”) as either a single agent for patients who are not candidates for PD-1/PD-L1 inhibitor-based therapy or in combination with Keytruda® (pembrolizumab) or Keytruda Qlex™ (pembrolizumab and berahyaluronidase alfa-pmph) for patients whose tumors express PD-L1 (CPS ≥10).
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 4
+|
+
+
+• Announced European Commission marketing authorization for Trodelvy as a monotherapy for the treatment of adult patients with unresectable locally advanced or mTNBC who have not received prior systemic therapy for metastatic disease and are not candidates for PD-1/PD-L1 inhibitor therapy.
+• Received a positive opinion from the European Medicines Agency’s Committee for Medicinal Products for Human Use for Trodelvy in combination with Keytruda® (pembrolizumab) for the treatment of adult patients with unresectable locally advanced or mTNBC who have not received prior systemic therapy for metastatic disease and whose tumors express PD-L1 (CPS≥10).
+• Announced the discontinuation of the Phase 3 EVOKE-03 study, in partnership with Merck, evaluating Trodelvy in combination with Keytruda® for the investigational treatment of 1L metastatic non-small cell lung cancer with high PD-L1 expression (TPS ≥50%). The decision was based on the recommendation of the external Data Monitoring Committee, following review of data from a pre-specified final analysis of progression-free survival and interim analysis of overall survival.
+• Presented new analyses at the 2026 American Society of Clinical Oncology meeting from the Phase 3 ASCENT-03 and ASCENT-04 studies evaluating Trodelvy with or without Keytruda® in 1L mTNBC, as well as new data on investigational anitocabtagene-autoleucel (“anito-cel”) clinical trial manufacturing experience in patients with newly diagnosed or relapsed/refractory multiple myeloma.
+• Presented updated Phase 1 results for KITE-753, an investigational bicistronic autologous CD19/CD20 CAR T-cell therapy for relapsed or refractory B-cell lymphoma at the 2026 European Hematology Association meeting.
+• Completed the acquisition of Tubulis for $3.15 billion in upfront consideration. This acquisition brings Gilead next-generation antibody-drug conjugate (“ADC”) assets, including GS-8824, a NaPi2b-directed topoisomerase-I inhibitor ADC, and a platform to develop novel ADCs.
+Inflammation
+• Completed the acquisition of Ouro Medicines for $1.675 billion in upfront consideration, which brings Gilead gamgertamig, an investigational clinical stage BCMAxCD3 T cell engager for autoimmune diseases. The acquisition was completed in collaboration with Lakefront, which equally shared the upfront payment and will equally share contingent milestone payments, subject to customary adjustments.
+• Announced positive results from the Phase 3 IDEAL study, supporting the potential of Livdelzi to help people living with primary biliary cholangitis (“PBC”) with elevated alkaline phosphatase (“ALP”) levels (between 1.0 and 1.67xULN) whose disease remains inadequately controlled despite treatment with ursodeoxycholic acid (“UDCA”), or who are intolerant to UDCA.
+• Presented data from the open-label Phase 3 ASSURE study at the 2026 European Association for the Study of the Liver Congress evaluating the long-term safety and tolerability profile of Livdelzi in people living with PBC with elevated ALP levels (between 1.0 and 1.67xULN) whose disease remains inadequately controlled despite treatment with UDCA, or who are intolerant to UDCA.
+Corporate
+• Issued $3.0 billion aggregate principal amount of senior unsecured notes and borrowed $1.1 billion aggregate principal amount under a one-year term loan facility.
+• Announced a renewed 5-year collaboration with the World Health Organization to commit funding, strategic support and AmBisome donations toward eliminating visceral leishmaniasis.
+• The Board declared a quarterly dividend of $0.82 per share of common stock for the third quarter of 2026. The dividend is payable on September 29, 2026, to stockholders of record at the close of business on September 15, 2026. Future dividends will be subject to Board approval.
+Certain amounts and percentages in this press release may not sum or recalculate due to rounding.
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 5
+|
+
+
+Conference Call
+At 1:30 p.m. Pacific Time today, Gilead will host a conference call to discuss Gilead’s results. A live webcast will be available on http://investors.gilead.com and will be archived on www.gilead.com for one year.
+Non-GAAP Financial Information
+The information presented in this document has been prepared in accordance with U.S. generally accepted accounting principles (“GAAP”), unless otherwise noted as non-GAAP. Management believes non-GAAP information is useful for investors, when considered in conjunction with Gilead’s GAAP financial information, because management uses such information internally for its operating, budgeting and financial planning purposes. Non-GAAP information is not prepared under a comprehensive set of accounting rules and should only be used to supplement an understanding of Gilead’s operating results as reported under GAAP. Non-GAAP financial information generally excludes acquisition-related expenses including amortization of acquired intangible assets, restructuring charges and other items that are considered unusual or not representative of underlying trends of Gilead’s business, fair value adjustments of equity securities, the related tax charges or benefits associated with such exclusions and other discrete tax charges or benefits not representative of underlying trends such as changes in tax laws, transfers of intangible assets between certain legal entities, and effects of legal entity restructurings. Although Gilead consistently excludes the amortization of acquired intangible assets from the non-GAAP financial information, management believes that it is important for investors to understand that such intangible assets were recorded as part of acquisitions and contribute to ongoing revenue generation. Non-GAAP measures may be defined and calculated differently by other companies in the same industry. Reconciliations of the non-GAAP financial measures to the most directly comparable GAAP financial measures are provided in the accompanying tables.
+About Gilead Sciences
+Gilead Sciences, Inc. is a biopharmaceutical company that has pursued and achieved breakthroughs in medicine for more than three decades, with the goal of creating a healthier world for all people. The company is committed to advancing innovative medicines to prevent and treat life-threatening diseases, including HIV, viral hepatitis, COVID-19, cancer and inflammation. Gilead operates in more than 35 countries worldwide, with headquarters in Foster City, California.
+Forward-Looking Statements
+Statements included in this press release that are not historical in nature are forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995. Gilead cautions readers that forward-looking statements are subject to certain risks and uncertainties that could cause actual results to differ materially. These risks and uncertainties include those relating to: Gilead’s ability to achieve its full year 2026 financial guidance, including as a result of the uncertainty of the amount and timing of Veklury revenues, the impact from Medicare Part D pricing reform in the Inflation Reduction Act, the expiration of subsidies related to the Affordable Care Act, our most-favored-nation pricing agreement with the U.S. government, changes in U.S. regulatory or legislative policies, and changes in U.S. trade policies, including tariffs; Gilead’s ability to make progress on any of its long-term ambitions or priorities laid out in its corporate strategy; Gilead’s ability to accelerate or sustain revenues for its virology, oncology, inflammation and other programs; Gilead’s ability to realize the potential benefits of acquisitions, collaborations or licensing arrangements, including the arrangements with Arcellx, Immunomedics, Lakefront, Merck, Ouro Medicines, The World Health Organization and Tubulis; the risk that Gilead’s U.S. manufacturing and R&D investment may not achieve their intended benefits; patent protection and estimated loss of exclusivity for our products and product candidates; Gilead’s ability to initiate, progress or complete clinical trials within currently anticipated timeframes or at all, the possibility of unfavorable results from ongoing and additional clinical trials, including those involving Livdelzi, Trodelvy, anito-cel, KITE-753 and lenacapavir (such as ASCENT-03, ASCENT-04, ASSURE, IDEAL, ISLEND-1 and ISLEND-2), and the risk that safety and efficacy data from clinical trials may not warrant further development of Gilead’s product candidates or the product candidates of Gilead’s strategic partners; Gilead’s ability to resolve the issues cited by the FDA in pending clinical holds to the satisfaction of the FDA and the risk that FDA may not remove such clinical holds, in whole or in part, in a timely manner or at
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 6
+|
+
+
+all; Gilead’s ability to submit new drug applications for new product candidates or expanded indications in the currently anticipated timelines; Gilead’s ability to receive or maintain regulatory approvals in a timely manner or at all, and the risk that any such approvals, if granted, may be subject to significant limitations on use and may be subject to withdrawal or other adverse actions by the applicable regulatory authority, including those involving Hepcludex, Trodelvy and once-weekly oral Yeztugo; Gilead’s ability to successfully commercialize its products; the risk of potential disruptions to the manufacturing and supply chain of Gilead’s products; pricing and reimbursement pressures from government agencies and other third parties, including required rebates and other discounts; a larger than anticipated shift in payer mix to more highly discounted payer segments; market share and price erosion caused by the introduction of generic versions of Gilead products; the risk that physicians and patients may not see advantages of Gilead’s products over other therapies, including Hepcludex and Trodelvy; Gilead’s ability to effectively manage the access strategy relating to lenacapavir for HIV PrEP, subject to necessary regulatory approvals; and other risks identified from time to time in Gilead’s reports filed with the SEC, including annual reports on Form 10-K, quarterly reports on Form 10-Q and current reports on Form 8-K. In addition, Gilead makes estimates and judgments that affect the reported amounts of assets, liabilities, revenues and expenses and related disclosures. Gilead bases its estimates on historical experience and on various other market specific and other relevant assumptions that it believes to be reasonable under the circumstances, the results of which form the basis for making judgments about the carrying values of assets and liabilities that are not readily apparent from other sources. There may be other factors of which Gilead is not currently aware that may affect matters discussed in the forward-looking statements and may also cause actual results to differ significantly from these estimates. Further, results for the quarter ended June 30, 2026 are not necessarily indicative of operating results for any future periods. Gilead directs readers to its press releases, annual reports on Form 10-K, quarterly reports on Form 10-Q and other subsequent disclosure documents filed with the SEC. Gilead claims the protection of the Safe Harbor contained in the Private Securities Litigation Reform Act of 1995 for forward-looking statements.
+The reader is cautioned that forward-looking statements are not guarantees of future performance and is cautioned not to place undue reliance on these forward-looking statements. All forward-looking statements are based on information currently available to Gilead and Gilead assumes no obligation to update or supplement any such forward-looking statements other than as required by law. Any forward-looking statements speak only as of the date hereof or as of the dates indicated in the statements.
+Additional information is available on our Investor Relations website, https://investors.gilead.com. Among other things, an estimate of Acquired IPR&D expenses is expected to be made available on the Quarterly Results page within the first ten (10) days after the end of each quarter.
+# # #
+G ilead owns or has rights to various trademarks, copyrights and trade names used in its business, including the following: GILEAD®, GILEAD SCIENCES®, KITE®, AMBISOME®, ATRIPLA®, BIKTARVY®, CAYSTON®, COMPLERA®, DESCOVY®, DESCOVY FOR PREP®, EMTRIVA®, EPCLUSA®, EVIPLERA®, GENVOYA®, HARVONI®, HEPCLUDEX®, JYSELECA®, LIVDELZI®/LYVDELZI®, LETAIRIS®, ODEFSEY®, SOVALDI®, STRIBILD®, SUNLENCA®, TECARTUS®, TRODELVY®, TRUVADA®, TRUVADA FOR PREP®, TYBOST®, VEKLURY®, VEMLIDY®, VIREAD®, VOSEVI®, YESCARTA®, YEZTUGO®/YEYTUO® and ZYDELIG®. Other trademarks and trade names are the property of their respective owners.
+For more information on Gilead Sciences, Inc., please visit www.gilead.com or call the Gilead Public Affairs Department at 1-800-GILEAD-5 (1-800-445-3235).
+| | | | | | | | | | | | | | | | | |
+CONTACTS: | Investors: | Jacquie Ross, CFA | investor_relations@gilead.com | |
+| | Media: | Ashleigh Koss | public_affairs@gilead.com | |
+
+
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 7
+|
+
+
+GILEAD SCIENCES, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended | | Six Months Ended |
+| | June 30, | | June 30, |
+(in millions, except per share amounts) | | 2026 | | 2025 | | 2026 | | 2025 |
+Revenues: | | | | | | | | |
+Product sales | | $ | 7,627 | | | $ | 7,054 | | | $ | 14,574 | | | $ | 13,668 | |
+Royalty, contract and other revenues | | 176 | | | 27 | | | 189 | | | 81 | |
+Total revenues | | 7,803 | | | 7,082 | | | 14,763 | | | 13,749 | |
+Costs and expenses: | | | | | | | | |
+Cost of goods sold | | 1,579 | | | 1,501 | | | 3,023 | | | 3,041 | |
+Research and development expenses | | 1,764 | | | 1,491 | | | 3,136 | | | 2,870 | |
+Acquired in-process research and development expenses | | 11,183 | | | 61 | | | 11,290 | | | 315 | |
+In-process research and development impairments | | 1,750 | | | 190 | | | 1,750 | | | 190 | |
+Selling, general and administrative expenses | | 1,921 | | | 1,365 | | | 3,372 | | | 2,623 | |
+Total costs and expenses | | 18,197 | | | 4,608 | | | 22,571 | | | 9,038 | |
+Operating (loss) income | | (10,394) | | | 2,474 | | | (7,808) | | | 4,711 | |
+Interest expense | | 247 | | | 254 | | | 487 | | | 513 | |
+Other (income) expense, net | | (387) | | | (208) | | | (621) | | | 120 | |
+(Loss) income before income taxes | | (10,254) | | | 2,429 | | | (7,674) | | | 4,077 | |
+Income tax expense | | 242 | | | 468 | | | 801 | | | 802 | |
+Net (loss) income | | $ | (10,496) | | | $ | 1,960 | | | $ | (8,475) | | | $ | 3,275 | |
+| | | | | | | | |
+Basic (loss) earnings per share | | $ | (8.45) | | | $ | 1.57 | | | $ | (6.82) | | | $ | 2.63 | |
+Diluted (loss) earnings per share | | $ | (8.45) | | | $ | 1.56 | | | $ | (6.82) | | | $ | 2.61 | |
+| | | | | | | | |
+Shares used in basic (loss) earnings per share calculation | | 1,243 | | | 1,245 | | | 1,243 | | | 1,246 | |
+Shares used in diluted (loss) earnings per share calculation | | 1,243 | | | 1,255 | | | 1,243 | | | 1,257 | |
+| | | | | | | | |
+Supplemental Information: | | | | | | | | |
+Cash dividends declared per share | | $ | 0.82 | | | $ | 0.79 | | | $ | 1.64 | | | $ | 1.58 | |
+Product gross margin | | 79.3 | % | | 78.7 | % | | 79.3 | % | | 77.7 | % |
+Research and development expenses as a % of revenues | | 22.6 | % | | 21.1 | % | | 21.2 | % | | 20.9 | % |
+Selling, general and administrative expenses as a % of revenues | | 24.6 | % | | 19.3 | % | | 22.8 | % | | 19.1 | % |
+Operating margin | | (133.2) | % | | 34.9 | % | | (52.9) | % | | 34.3 | % |
+Effective tax rate | | (2.4) | % | | 19.3 | % | | (10.4) | % | | 19.7 | % |
+
+
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 8
+|
+
+
+GILEAD SCIENCES, INC.
+TOTAL REVENUE SUMMARY
+(unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended | | | | Six Months Ended | | |
+| | June 30, | | | | June 30, | | |
+(in millions, except percentages) | | 2026 | | 2025 | | Change | | 2026 | | 2025 | | Change |
+Product sales: | | | | | | | | | | | | |
+HIV | | $ | 5,693 | | | $ | 5,088 | | | 12% | | $ | 10,723 | | | $ | 9,675 | | | 11% |
+Liver Disease
+| | 877 | | | 795 | | | 10% | | 1,644 | | | 1,553 | | | 6% |
+Oncology | | 873 | | | 849 | | | 3% | | 1,683 | | | 1,606 | | | 5% |
+Other | | 161 | | | 202 | | | (20)% | | 357 | | | 410 | | | (13)% |
+Total product sales excluding Veklury | | 7,604 | | | 6,934 | | | 10% | | 14,406 | | | 13,245 | | | 9% |
+Veklury | | 23 | | | 121 | | | (81)% | | 167 | | | 423 | | | (60)% |
+Total product sales | | 7,627 | | | 7,054 | | | 8% | | 14,574 | | | 13,668 | | | 7% |
+Royalty, contract and other revenues | | 176 | | | 27 | | | NM | | 189 | | | 81 | | | NM |
+Total revenues | | $ | 7,803 | | | $ | 7,082 | | | 10% | | $ | 14,763 | | | $ | 13,749 | | | 7% |
+
+________________________________
+NM - Not Meaningful
+
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 9
+|
+
+
+GILEAD SCIENCES, INC.
+NON-GAAP FINANCIAL INFORMATION (1)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended | | | | Six Months Ended | | |
+| | June 30, | | | | June 30, | | |
+(in millions, except percentages) | | 2026 | | 2025 | | Change | | 2026 | | 2025 | | Change |
+Non-GAAP: | | | | | | | | | | | | |
+Cost of goods sold | | $ | 999 | | | $ | 922 | | | 8% | | $ | 1,868 | | | $ | 1,883 | | | (1)% |
+Research and development expenses | | $ | 1,429 | | | $ | 1,450 | | | (1)% | | $ | 2,783 | | | $ | 2,789 | | | —% |
+Acquired IPR&D expenses | | $ | 11,183 | | | $ | 61 | | | NM | | $ | 11,290 | | | $ | 315 | | | NM |
+Selling, general and administrative expenses | | $ | 1,521 | | | $ | 1,358 | | | 12% | | $ | 2,884 | | | $ | 2,580 | | | 12% |
+Other (income) expense, net | | $ | (44) | | | $ | (66) | | | (33)% | | $ | (137) | | | $ | (164) | | | (17)% |
+Diluted (loss) earnings per share | | $ | (6.75) | | | $ | 2.01 | | | NM | | $ | (4.70) | | | $ | 3.82 | | | NM |
+Shares used in non-GAAP diluted (loss) earnings per share calculation | | 1,243 | | | 1,255 | | | (1)% | | 1,243 | | | 1,257 | | | (1)% |
+| | | | | | | | | | | | |
+Product gross margin | | 86.9 | % | | 86.9 | % | | -3 bps | | 87.2 | % | | 86.2 | % | | 96 bps |
+Research and development expenses as a % of revenues | | 18.3 | % | | 20.5 | % | | -217 bps | | 18.9 | % | | 20.3 | % | | -143 bps |
+Selling, general and administrative expenses as a % of revenues | | 19.5 | % | | 19.2 | % | | 32 bps | | 19.5 | % | | 18.8 | % | | 77 bps |
+Operating margin | | (93.9) | % | | 46.5 | % | | NM | | (27.5) | % | | 45.0 | % | | NM |
+Effective tax rate | | (11.4) | % | | 18.8 | % | | NM | | (32.4) | % | | 17.6 | % | | NM |
+
+________________________________
+NM - Not Meaningful
+(1) Refer to Non-GAAP Financial Information section above for further disclosures on non-GAAP financial measures. A reconciliation between GAAP and non-GAAP financial information is provided in the tables below.
+
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 10
+|
+
+
+GILEAD SCIENCES, INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL INFORMATION
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended | | Six Months Ended |
+| | June 30, | | June 30, |
+(in millions, except percentages and per share amounts) | | 2026 | | 2025 | | 2026 | | 2025 |
+Cost of goods sold reconciliation: | | | | | | | | |
+GAAP cost of goods sold | | $ | 1,579 | | | $ | 1,501 | | | $ | 3,023 | | | $ | 3,041 | |
+Acquisition-related – amortization (1)
+| | (579) | | | (579) | | | (1,155) | | | (1,158) | |
+Restructuring | | — | | | — | | | (1) | | | — | |
+Non-GAAP cost of goods sold | | $ | 999 | | | $ | 922 | | | $ | 1,868 | | | $ | 1,883 | |
+| | | | | | | | |
+Product gross margin reconciliation: | | | | | | | | |
+GAAP product gross margin | | 79.3 | % | | 78.7 | % | | 79.3 | % | | 77.7 | % |
+Acquisition-related – amortization (1)
+| | 7.6 | % | | 8.2 | % | | 7.9 | % | | 8.5 | % |
+Restructuring | | — | % | | — | % | | — | % | | — | % |
+Non-GAAP product gross margin | | 86.9 | % | | 86.9 | % | | 87.2 | % | | 86.2 | % |
+| | | | | | | | |
+Research and development expenses reconciliation: | | | | | | | | |
+GAAP research and development expenses | | $ | 1,764 | | | $ | 1,491 | | | $ | 3,136 | | | $ | 2,870 | |
+Acquisition-related – other costs (2)
+| | (333) | | | (35) | | | (336) | | | (37) | |
+Restructuring | | (2) | | | (6) | | | (17) | | | (44) | |
+Non-GAAP research and development expenses | | $ | 1,429 | | | $ | 1,450 | | | $ | 2,783 | | | $ | 2,789 | |
+| | | | | | | | |
+IPR&D impairment reconciliation: | | | | | | | | |
+GAAP IPR&D impairment | | $ | 1,750 | | | $ | 190 | | | $ | 1,750 | | | $ | 190 | |
+IPR&D impairment | | (1,750) | | | (190) | | | (1,750) | | | (190) | |
+Non-GAAP IPR&D impairment | | $ | — | | | $ | — | | | $ | — | | | $ | — | |
+| | | | | | | | |
+Selling, general and administrative expenses reconciliation: | | | | | | | | |
+GAAP selling, general and administrative expenses | | $ | 1,921 | | | $ | 1,365 | | | $ | 3,372 | | | $ | 2,623 | |
+Acquisition-related – other costs (2)
+| | (385) | | | — | | | (385) | | | — | |
+Restructuring | | (15) | | | (7) | | | (40) | | | (43) | |
+Other (3)
+| | — | | | — | | | (63) | | | — | |
+Non-GAAP selling, general and administrative expenses | | $ | 1,521 | | | $ | 1,358 | | | $ | 2,884 | | | $ | 2,580 | |
+| | | | | | | | |
+Operating (loss) income reconciliation: | | | | | | | | |
+GAAP operating (loss) income | | $ | (10,394) | | | $ | 2,474 | | | $ | (7,808) | | | $ | 4,711 | |
+Acquisition-related – amortization (1)
+| | 579 | | | 579 | | | 1,155 | | | 1,158 | |
+Acquisition-related – other costs (2)
+| | 718 | | | 35 | | | 721 | | | 37 | |
+Restructuring | | 17 | | | 13 | | | 57 | | | 88 | |
+IPR&D impairment | | 1,750 | | | 190 | | | 1,750 | | | 190 | |
+Other (3)
+| | — | | | — | | | 63 | | | — | |
+Non-GAAP operating (loss) income | | $ | (7,329) | | | $ | 3,290 | | | $ | (4,062) | | | $ | 6,183 | |
+| | | | | | | | |
+Operating margin reconciliation: | | | | | | | | |
+GAAP operating margin | | (133.2) | % | | 34.9 | % | | (52.9) | % | | 34.3 | % |
+Acquisition-related – amortization (1)
+| | 7.4 | % | | 8.2 | % | | 7.8 | % | | 8.4 | % |
+Acquisition-related – other costs (2)
+| | 9.2 | % | | 0.5 | % | | 4.9 | % | | 0.3 | % |
+Restructuring | | 0.2 | % | | 0.2 | % | | 0.4 | % | | 0.6 | % |
+IPR&D impairment | | 22.4 | % | | 2.7 | % | | 11.9 | % | | 1.4 | % |
+Other (3)
+| | — | % | | — | % | | 0.4 | % | | — | % |
+Non-GAAP operating margin | | (93.9) | % | | 46.5 | % | | (27.5) | % | | 45.0 | % |
+| | | | | | | | |
+Other (income) expense, net reconciliation: | | | | | | | | |
+GAAP other (income) expense, net | | $ | (387) | | | $ | (208) | | | $ | (621) | | | $ | 120 | |
+Gain (loss) from equity securities, net | | 343 | | | 142 | | | 485 | | | (284) | |
+Non-GAAP other (income) expense, net | | $ | (44) | | | $ | (66) | | | $ | (137) | | | $ | (164) | |
+| | | | | | | | |
+
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 11
+|
+
+
+GILEAD SCIENCES, INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL INFORMATION - (Continued)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended | | Six Months Ended |
+| | June 30, | | June 30, |
+(in millions, except percentages and per share amounts) | | 2026 | | 2025 | | 2026 | | 2025 |
+(Loss) income before income taxes reconciliation: | | | | | | | | |
+GAAP (loss) income before income taxes | | $ | (10,254) | | | $ | 2,429 | | | $ | (7,674) | | | $ | 4,077 | |
+Acquisition-related – amortization (1)
+| | 579 | | | 579 | | | 1,155 | | | 1,158 | |
+Acquisition-related – other costs (2)
+| | 718 | | | 35 | | | 721 | | | 37 | |
+Restructuring | | 17 | | | 13 | | | 57 | | | 88 | |
+IPR&D impairment | | 1,750 | | | 190 | | | 1,750 | | | 190 | |
+(Gain) loss from equity securities, net | | (343) | | | (142) | | | (485) | | | 284 | |
+Other (3)
+| | — | | | — | | | 63 | | | — | |
+Non-GAAP (loss) income before income taxes | | $ | (7,531) | | | $ | 3,103 | | | $ | (4,412) | | | $ | 5,834 | |
+| | | | | | | | |
+Income tax expense reconciliation: | | | | | | | | |
+GAAP income tax expense | | $ | 242 | | | $ | 468 | | | $ | 801 | | | $ | 802 | |
+Income tax effect of non-GAAP adjustments: | | | | | | | | |
+Acquisition-related – amortization (1)
+| | 119 | | | 120 | | | 236 | | | 241 | |
+Acquisition-related – other costs (2)
+| | 79 | | | — | | | 79 | | | — | |
+Restructuring | | 3 | | | 2 | | | 9 | | | 15 | |
+IPR&D impairment | | 415 | | | 51 | | | 415 | | | 51 | |
+(Gain) loss from equity securities, net | | (42) | | | (11) | | | (108) | | | 10 | |
+Discrete and related tax charges (4)
+| | 44 | | | (48) | | | (2) | | | (90) | |
+Non-GAAP income tax expense | | $ | 860 | | | $ | 583 | | | $ | 1,430 | | | $ | 1,029 | |
+| | | | | | | | |
+Effective tax rate reconciliation: | | | | | | | | |
+GAAP effective tax rate | | (2.4) | % | | 19.3 | % | | (10.4) | % | | 19.7 | % |
+Income tax effect of above non-GAAP adjustments and discrete and related tax adjustments (4)
+| | (9.1) | % | | (0.5) | % | | (22.0) | % | | (2.0) | % |
+Non-GAAP effective tax rate | | (11.4) | % | | 18.8 | % | | (32.4) | % | | 17.6 | % |
+| | | | | | | | |
+Net (loss) income reconciliation: | | | | | | | | |
+GAAP net (loss) income | | $ | (10,496) | | | $ | 1,960 | | | $ | (8,475) | | | $ | 3,275 | |
+Acquisition-related – amortization (1)
+| | 461 | | | 459 | | | 919 | | | 917 | |
+Acquisition-related – other costs (2)
+| | 640 | | | 35 | | | 642 | | | 37 | |
+Restructuring | | 14 | | | 11 | | | 48 | | | 72 | |
+IPR&D impairment | | 1,335 | | | 139 | | | 1,335 | | | 139 | |
+(Gain) loss from equity securities, net | | (301) | | | (131) | | | (377) | | | 275 | |
+Discrete and related tax charges (4)
+| | (44) | | | 48 | | | 2 | | | 90 | |
+Other (3)
+| | — | | | — | | | 63 | | | — | |
+Non-GAAP net (loss) income | | $ | (8,391) | | | $ | 2,521 | | | $ | (5,842) | | | $ | 4,806 | |
+| | | | | | | | |
+Diluted (loss) earnings per share reconciliation: | | | | | | | | |
+GAAP diluted (loss) earnings per share | | $ | (8.45) | | | $ | 1.56 | | | $ | (6.82) | | | $ | 2.61 | |
+Acquisition-related – amortization (1)
+| | 0.37 | | | 0.37 | | | 0.74 | | | 0.73 | |
+Acquisition-related – other costs (2)
+| | 0.51 | | | 0.03 | | | 0.52 | | | 0.03 | |
+Restructuring | | 0.01 | | | 0.01 | | | 0.04 | | | 0.06 | |
+IPR&D impairment | | 1.07 | | | 0.11 | | | 1.07 | | | 0.11 | |
+(Gain) loss from equity securities, net | | (0.24) | | | (0.10) | | | (0.30) | | | 0.22 | |
+Discrete and related tax charges (4)
+| | (0.04) | | | 0.04 | | | — | | | 0.07 | |
+Other (3)
+| | — | | | — | | | 0.05 | | | — | |
+Non-GAAP diluted (loss) earnings per share | | $ | (6.75) | | | $ | 2.01 | | | $ | (4.70) | | | $ | 3.82 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 12
+|
+
+
+GILEAD SCIENCES, INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL INFORMATION - (Continued)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended | | Six Months Ended |
+| | June 30, | | June 30, |
+(in millions, except percentages and per share amounts) | | 2026 | | 2025 | | 2026 | | 2025 |
+Non-GAAP adjustment summary: | | | | | | | | |
+Cost of goods sold adjustments | | $ | 579 | | | $ | 579 | | | $ | 1,156 | | | $ | 1,158 | |
+Research and development expenses adjustments | | 335 | | | 41 | | | 352 | | | 81 | |
+IPR&D impairment adjustments | | 1,750 | | | 190 | | | 1,750 | | | 190 | |
+Selling, general and administrative expenses adjustments | | 400 | | | 7 | | | 488 | | | 43 | |
+Total non-GAAP adjustments to costs and expenses
+| | 3,065 | | | 817 | | | 3,746 | | | 1,472 | |
+Other (income) expense, net, adjustments | | (343) | | | (142) | | | (485) | | | 284 | |
+Total non-GAAP adjustments before income taxes | | 2,722 | | | 675 | | | 3,262 | | | 1,757 | |
+Income tax effect of non-GAAP adjustments above | | (574) | | | (162) | | | (631) | | | (316) | |
+Discrete and related tax charges (4)
+| | (44) | | | 48 | | | 2 | | | 90 | |
+Total non-GAAP adjustments to net income | | $ | 2,105 | | | $ | 560 | | | $ | 2,633 | | | $ | 1,530 | |
+
+________________________________
+(1) Relates to amortization of acquired intangibles.
+(2) Adjustments include integration expenses and contingent consideration fair value adjustments associated with Gilead’s recent acquisitions.
+(3) Adjustments include donations of equity securities to the Gilead Foundation, a California nonprofit organization, during the first quarter of 2026.
+(4) Represents discrete and related deferred tax charges or benefits primarily associated with acquisition-related adjustments and transfers of intangible assets from a foreign subsidiary to Ireland and the United States.
+
+
+
+
+
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 13
+|
+
+
+GILEAD SCIENCES, INC.
+RECONCILIATION OF GAAP TO NON-GAAP 2026 FULL-YEAR GUIDANCE (1)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | |
+(in millions, except percentages and per share amounts) | | Provided February 10, 2026 | | Updated May 7, 2026 | | Updated August 4, 2026 | | |
+Projected product gross margin GAAP to non-GAAP reconciliation: | | | | | | | | |
+GAAP projected product gross margin | | ~ 79.0% | | ~ 79.0% | | ~ 79.0% | | |
+Acquisition-related expenses | | ~ 8.0% | | ~ 8.0% | | ~ 8.0% | | |
+Non-GAAP projected product gross margin | | ~ 87.0% | | ~ 87.0% | | ~ 87.0% | | |
+| | | | | | | | |
+Projected operating income (loss) GAAP to non-GAAP reconciliation: | | | | | | | | |
+GAAP projected operating income (loss) | | $11,400 - $11,900 | | $(1,000) - $(500) | | $(2,250) - $(1,850) | | |
+Acquisition-related, IPR&D impairment, restructuring and other expenses | | ~ 2,400 | | ~ 3,400 | | ~ 5,150 | | |
+Non-GAAP projected operating income | | $13,800 - $14,300 | | $2,400 - $2,900 | | $2,900 - $3,300 | | |
+| | | | | | | | |
+Projected effective tax rate GAAP to non-GAAP reconciliation: (2)
+| | | | | | | | |
+GAAP projected effective tax rate | | ~ 21% | | ~ (150%) - (220%) | | ~ (80%) - (90%) | | |
+Income tax effect of above non-GAAP adjustments and fair value adjustments of equity securities, and discrete and related tax adjustments | | (~ 1%) | | NM | | NM | | |
+Non-GAAP projected effective tax rate | | ~ 20% | | ~ 190% - 140% | | ~ 140% - 115% | | |
+| | | | | | | | |
+Projected diluted earnings (loss) per share GAAP to non-GAAP reconciliation: | | | | | | | | |
+GAAP projected diluted earnings (loss) per share | | $6.75 - $7.15 | | $(3.25) - $(2.85) | | $(3.75) - $(3.40) | | |
+Acquisition-related, IPR&D impairment, restructuring and other expenses, fair value adjustments of equity securities and discrete and related tax adjustments | | ~ 1.70 | | ~ 2.20 | | ~ 3.10 | | |
+Non-GAAP projected diluted earnings (loss) per share | | $8.45 - $8.85 | | $(1.05) - $(0.65) | | $(0.65) - $(0.30) | | |
+
+________________________________
+NM - Not Meaningful
+(1) Our full-year guidance excludes the potential impact of any (i) acquisitions or business development transactions that have not been executed, (ii) future fair value adjustments of equity securities and (iii) discrete tax charges or benefits associated with changes in tax related laws and guidelines that have not been enacted, as Gilead is unable to project such amounts. The non-GAAP full-year guidance includes non-GAAP adjustments to actual current period results as well as adjustments for the known future impact associated with events that have already occurred, such as future amortization of our intangible assets and the future impact of discrete and related deferred tax charges or benefits primarily associated with transfers of intangible assets from a foreign subsidiary to Ireland and the United States.
+(2) The GAAP and non-GAAP projected effective tax rates for the August 4, 2026 update include the impact of Acquired IPR&D expenses related to the acquisitions of Arcellx, Tubulis and Ouro Medicines, which are not deductible for tax purposes. Without these Acquired IPR&D expenses, the GAAP and non-GAAP projected effective tax rate for FY26 would be ~21% and ~20%, respectively.
+
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 14
+|
+
+
+GILEAD SCIENCES, INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(unaudited)
+| | | | | | | | | | | | | | |
+| | June 30, | | December 31, |
+(in millions) | | 2026 | | 2025 |
+Assets | | | | |
+Cash, cash equivalents and marketable debt securities | | $ | 3,179 | | | $ | 10,605 | |
+Accounts receivable, net | | 5,055 | | | 4,913 | |
+Inventories (1)
+| | 4,298 | | | 4,368 | |
+Property, plant and equipment, net | | 5,833 | | | 5,606 | |
+Intangible assets, net | | 14,032 | | | 16,978 | |
+Goodwill | | 8,314 | | | 8,314 | |
+Other assets | | 8,652 | | | 8,239 | |
+Total assets | | $ | 49,362 | | | $ | 59,023 | |
+Liabilities and Stockholders’ Equity | | | | |
+Current liabilities | | $ | 11,020 | | | $ | 11,813 | |
+Long-term liabilities | | 26,598 | | | 24,592 | |
+Stockholders’ equity (2)
+| | 11,744 | | | 22,618 | |
+Total liabilities and stockholders’ equity | | $ | 49,362 | | | $ | 59,023 | |
+
+________________________________
+(1) Includes current and long-term inventories, which are disclosed separately in the notes to our financial statements in Form 10-K and Form 10-Q.
+(2) As of June 30, 2026 and December 31, 2025, there were 1,241 shares of common stock issued and outstanding.
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 15
+|
+
+
+GILEAD SCIENCES, INC.
+SELECTED CASH FLOW INFORMATION
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended | | Six Months Ended |
+| | June 30, | | June 30, |
+(in millions) | | 2026 | | 2025 | | 2026 | | 2025 |
+Net cash provided by operating activities | | $ | 3,573 | | | $ | 827 | | | $ | 6,117 | | | $ | 2,584 | |
+Net cash used in investing activities | | (10,347) | | | (2,116) | | | (8,577) | | | (2,531) | |
+Net cash provided by (used in) financing activities | | 2,344 | | | (1,566) | | | (1,895) | | | (4,993) | |
+Effect of exchange rate changes on cash and cash equivalents | | (19) | | | 73 | | | (30) | | | 92 | |
+Net change in cash and cash equivalents | | (4,450) | | | (2,782) | | | (4,385) | | | (4,848) | |
+Cash and cash equivalents at beginning of period | | 7,628 | | | 7,926 | | | 7,564 | | | 9,991 | |
+Cash and cash equivalents at end of period | | $ | 3,179 | | | $ | 5,144 | | | $ | 3,179 | | | $ | 5,144 | |
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended | | Six Months Ended |
+| | June 30, | | June 30, |
+(in millions) | | 2026 | | 2025 | | 2026 | | 2025 |
+Net cash provided by operating activities | | $ | 3,573 | | | $ | 827 | | | $ | 6,117 | | | $ | 2,584 | |
+Purchases of property, plant and equipment | | (140) | | | (107) | | | (257) | | | (211) | |
+Free cash flow (1)
+| | $ | 3,432 | | | $ | 720 | | | $ | 5,859 | | | $ | 2,373 | |
+
+________________________________
+(1) Free cash flow is a non-GAAP liquidity measure. Please refer to our disclosures in the Non-GAAP Financial Information section above.
+
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 16
+|
+
+
+GILEAD SCIENCES, INC.
+PRODUCT SALES SUMMARY
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | Three Months Ended | | Six Months Ended |
+| | | | June 30, | | June 30, |
+(in millions) | | | | 2026 | | 2025 | | 2026 | | 2025 |
+HIV | | | | | | | | | | |
+Biktarvy | | U.S. | | $ | 2,981 | | | $ | 2,799 | | | $ | 5,553 | | | $ | 5,272 | |
+| | Europe | | 468 | | | 429 | | | 905 | | | 804 | |
+| | Rest of World | | 323 | | | 302 | | | 675 | | | 603 | |
+| | | | 3,772 | | | 3,530 | | | 7,133 | | | 6,679 | |
+| | | | | | | | | | |
+Descovy | | U.S. | | 921 | | | 601 | | | 1,682 | | | 1,139 | |
+| | Europe | | 23 | | | 24 | | | 46 | | | 45 | |
+| | Rest of World | | 23 | | | 28 | | | 46 | | | 55 | |
+| | | | 967 | | | 653 | | | 1,774 | | | 1,239 | |
+| | | | | | | | | | |
+Genvoya | | U.S. | | 236 | | | 322 | | | 451 | | | 627 | |
+| | Europe | | 37 | | | 40 | | | 70 | | | 79 | |
+| | Rest of World | | 16 | | | 16 | | | 32 | | | 35 | |
+| | | | 289 | | | 377 | | | 553 | | | 741 | |
+| | | | | | | | | | |
+Odefsey | | U.S. | | 171 | | | 221 | | | 324 | | | 436 | |
+| | Europe | | 58 | | | 66 | | | 117 | | | 123 | |
+| | Rest of World | | 10 | | | 11 | | | 19 | | | 20 | |
+| | | | 239 | | | 298 | | | 461 | | | 579 | |
+| | | | | | | | | | |
+Symtuza - Revenue share (1)
+| | U.S. | | 105 | | | 88 | | | 211 | | | 170 | |
+| | Europe | | 30 | | | 33 | | | 59 | | | 62 | |
+| | Rest of World | | 3 | | | 3 | | | 5 | | | 6 | |
+| | | | 138 | | | 124 | | | 275 | | | 238 | |
+| | | | | | | | | | |
+Yeztugo | | U.S. | | 223 | | | 15 | | | 382 | | | 15 | |
+| | Europe | | — | | | — | | | — | | | — | |
+| | Rest of World | | 9 | | | — | | | 16 | | | — | |
+| | | | 232 | | | 15 | | | 397 | | | 15 | |
+| | | | | | | | | | |
+Other HIV (2)
+| | U.S. | | 23 | | | 50 | | | 59 | | | 101 | |
+| | Europe | | 24 | | | 33 | | | 51 | | | 63 | |
+| | Rest of World | | 10 | | | 9 | | | 19 | | | 19 | |
+| | | | 56 | | | 92 | | | 129 | | | 183 | |
+| | | | | | | | | | |
+Total HIV | | U.S. | | 4,659 | | | 4,096 | | | 8,663 | | | 7,760 | |
+| | Europe | | 640 | | | 624 | | | 1,248 | | | 1,177 | |
+| | Rest of World | | 393 | | | 368 | | | 812 | | | 738 | |
+| | | | 5,693 | | | 5,088 | | | 10,723 | | | 9,675 | |
+| | | | | | | | | | |
+
+
+
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 17
+|
+
+
+GILEAD SCIENCES, INC.
+PRODUCT SALES SUMMARY - (Continued)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | Three Months Ended | | Six Months Ended |
+| | | | June 30, | | June 30, |
+(in millions) | | | | 2026 | | 2025 | | 2026 | | 2025 |
+Liver Disease | | | | | | | | | | |
+Livdelzi | | U.S. | | 147 | | | 74 | | | 261 | | | 114 | |
+| | Europe | | 20 | | | 4 | | | 39 | | | 4 | |
+| | Rest of World | | — | | | — | | | — | | | — | |
+| | | | 167 | | | 78 | | | 300 | | | 118 | |
+| | | | | | | | | | |
+Sofosbuvir / Velpatasvir (3)
+| | U.S. | | 142 | | | 184 | | | 283 | | | 351 | |
+| | Europe | | 81 | | | 81 | | | 141 | | | 161 | |
+| | Rest of World | | 80 | | | 76 | | | 162 | | | 175 | |
+| | | | 303 | | | 342 | | | 586 | | | 687 | |
+| | | | | | | | | | |
+Vemlidy | | U.S. | | 124 | | | 122 | | | 215 | | | 222 | |
+| | Europe | | 13 | | | 13 | | | 27 | | | 24 | |
+| | Rest of World | | 152 | | | 117 | | | 284 | | | 257 | |
+| | | | 289 | | | 252 | | | 526 | | | 504 | |
+| | | | | | | | | | |
+Other Liver Disease (4)
+| | U.S. | | 20 | | | 33 | | | 35 | | | 61 | |
+| | Europe | | 79 | | | 72 | | | 157 | | | 148 | |
+| | Rest of World | | 19 | | | 19 | | | 40 | | | 35 | |
+| | | | 118 | | | 123 | | | 232 | | | 244 | |
+| | | | | | | | | | |
+Total Liver Disease | | U.S. | | 433 | | | 413 | | | 795 | | | 748 | |
+| | Europe | | 193 | | | 170 | | | 363 | | | 338 | |
+| | Rest of World | | 251 | | | 211 | | | 486 | | | 467 | |
+| | | | 877 | | | 795 | | | 1,644 | | | 1,553 | |
+| | | | | | | | | | |
+Veklury | | | | | | | | | | |
+Veklury | | U.S. | | 14 | | | 51 | | | 126 | | | 250 | |
+| | Europe | | 2 | | | 19 | | | 17 | | | 41 | |
+| | Rest of World | | 7 | | | 50 | | | 25 | | | 132 | |
+| | | | 23 | | | 121 | | | 167 | | | 423 | |
+| | | | | | | | | | |
+Oncology | | | | | | | | | | |
+Cell Therapy | | | | | | | | | | |
+Tecartus | | U.S. | | 29 | | | 41 | | | 59 | | | 82 | |
+| | Europe | | 34 | | | 41 | | | 71 | | | 72 | |
+| | Rest of World | | 8 | | | 9 | | | 16 | | | 17 | |
+| | | | 70 | | | 92 | | | 146 | | | 171 | |
+| | | | | | | | | | |
+Yescarta | | U.S. | | 132 | | | 162 | | | 252 | | | 321 | |
+| | Europe | | 139 | | | 154 | | | 285 | | | 304 | |
+| | Rest of World | | 75 | | | 77 | | | 142 | | | 154 | |
+| | | | 346 | | | 393 | | | 679 | | | 779 | |
+| | | | | | | | | | |
+Total Cell Therapy | | U.S. | | 161 | | | 203 | | | 311 | | | 403 | |
+| | Europe | | 173 | | | 196 | | | 356 | | | 376 | |
+| | Rest of World | | 83 | | | 86 | | | 157 | | | 171 | |
+| | | | 417 | | | 485 | | | 824 | | | 949 | |
+Trodelvy | | | | | | | | | | |
+Trodelvy | | U.S. | | 307 | | | 224 | | | 560 | | | 405 | |
+| | Europe | | 92 | | | 96 | | | 187 | | | 171 | |
+| | Rest of World | | 57 | | | 44 | | | 112 | | | 81 | |
+| | | | 457 | | | 364 | | | 859 | | | 657 | |
+| | | | | | | | | | |
+Total Oncology | | U.S. | | 468 | | | 427 | | | 871 | | | 808 | |
+| | Europe | | 265 | | | 291 | | | 543 | | | 547 | |
+| | Rest of World | | 140 | | | 131 | | | 269 | | | 252 | |
+| | | | 873 | | | 849 | | | 1,683 | | | 1,606 | |
+
+
+
+
+
+| | | | | | | | |
+August 4, 2026
+| | 18
+|
+
+
+GILEAD SCIENCES, INC.
+PRODUCT SALES SUMMARY - (Continued)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | Three Months Ended | | Six Months Ended |
+| | | | June 30, | | June 30, |
+(in millions) | | | | 2026 | | 2025 | | 2026 | | 2025 |
+Other | | | | | | | | | | |
+AmBisome | | U.S. | | 4 | | | 7 | | | 11 | | | 13 | |
+| | Europe | | 47 | | | 65 | | | 106 | | | 132 | |
+| | Rest of World | | 59 | | | 56 | | | 131 | | | 123 | |
+| | | | 110 | | | 129 | | | 248 | | | 268 | |
+| | | | | | | | | | |
+Other (5)
+| | U.S. | | 22 | | | 44 | | | 61 | | | 91 | |
+| | Europe | | 8 | | | 8 | | | 16 | | | 16 | |
+| | Rest of World | | 21 | | | 21 | | | 32 | | | 35 | |
+| | | | 51 | | | 73 | | | 109 | | | 143 | |
+| | | | | | | | | | |
+Total Other | | U.S. | | 26 | | | 52 | | | 72 | | | 104 | |
+| | Europe | | 55 | | | 73 | | | 122 | | | 149 | |
+| | Rest of World | | 80 | | | 77 | | | 163 | | | 158 | |
+| | | | 161 | | | 202 | | | 357 | | | 410 | |
+| | | | | | | | | | |
+Total product sales | | U.S. | | 5,601 | | | 5,038 | | | 10,527 | | | 9,669 | |
+| | Europe | | 1,155 | | | 1,178 | | | 2,292 | | | 2,251 | |
+| | Rest of World | | 872 | | | 838 | | | 1,755 | | | 1,747 | |
+| | | | $ | 7,627 | | | $ | 7,054 | | | $ | 14,574 | | | $ | 13,668 | |
+| | | | | | | | | | |
+
+________________________________
+(1) Represents Gilead’s revenue from cobicistat (“C”), FTC and TAF in Symtuza (darunavir/C/FTC/TAF), a fixed dose combination product commercialized by Janssen Sciences Ireland Unlimited Company.
+(2) Includes Atripla, Complera/Eviplera, Emtriva, Stribild, Sunlenca, Truvada and Tybost.
+(3) Includes Epclusa and the authorized generic version of Epclusa sold by Gilead’s separate subsidiary, Asegua Therapeutics LLC (“Asegua”).
+(4) Includes ledipasvir/sofosbuvir (Harvoni and the authorized generic version of Harvoni sold by Asegua), Hepcludex, Sovaldi, Viread and Vosevi.
+(5) Includes Cayston, Jyseleca, Letairis and Zydelig.

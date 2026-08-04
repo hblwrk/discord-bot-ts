@@ -1,0 +1,889 @@
+EX-99.1
+2
+ef20078867_ex99-1.htm
+EXHIBIT 99.1
+
+
+
+
+
+
+
+
+
+Exhibit 99.1
+
+
+
+
+
+
+
+
+
+
+
+
+
+Q2 2026 Update August 4th, 2026
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Table of Contents Key Highlights Financial Summary MAUs &
+Subscribers Product & Platform Outlook Financial Statements Executive Summary p.03 p.04 p.06 p.13 p.16 p.19 p.22
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Executive Summary USER & FINANCIAL SUMMARY Q2 2025 Q1 2026 Q2
+2026 Y/Y Q/Q USERS (M) Total Monthly Active Users ("MAUs") 696 761 777 12% 2% Premium Subscribers 276 293 300 9% 2% Ad-Supported MAUs 433 483 494 14% 2% FINANCIALS
+(€M) Premium** 3,753 4,148 4,331 15% 4% Ad-Supported** 440 385 446 1% 16% Total Revenue 4,193 4,533 4,777 14% 5% Gross Profit 1,320 1,495 1,596 21% 7% Gross Margin 31.5% 33.0% 33.4% -- -- Operating
+Income 406 715 655 61% -8% Operating Margin 9.7% 15.8% 13.7% -- -- Net Cash Flows From Operating Activities 709 836 816 15% -2% Free Cash Flow* 700 824 797 14% -3% * Constant Currency adjusted measures and Free Cash Flow
+are non-IFRS measures. See "Use of Non-IFRS Measures" and "Reconciliation of IFRS to Non-IFRS Results" for additional information. ** Effective January 1, 2026, certain revenue-generating activities previously reported within the Ad-Supported
+segment were transferred to the Premium segment to reflect changes in the financial information presented to the Group’s new Co-Chief Executive Officers, who serve as the joint chief operating decision makers. Prior period amounts have been
+reclassified to conform to current period presentation. *** Last Twelve Months (LTM) represents annual performance covering the preceding 12 months relative to the last day of the quarter. Our business performed well in Q2, led by strength in
+Subscribers and profitability. Similar to last quarter, MAUs grew 12% Y/Y, with net additions of 16 million slightly below guidance for 17 million. Subscribers outperformed to reach 300 million during the quarter, reflecting 7 million net
+additions vs. guidance for 6 million. Revenue was in-line with guidance and grew at an accelerated 15% Y/Y on a constant currency* basis. Gross Margin of 33.4% exceeded guidance and expanded 193 bps Y/Y, while Operating Income of €655 million
+outperformed guidance due to Gross Margin strength and lower Social Charges. Social Charges were €9 million below forecast due to share price movement during the quarter. Free Cash Flow* reached €797 million in Q2, bringing LTM*** Free Cash
+Flow to €3.3 billion. Overall, we view the business as well positioned to deliver improved growth and margins in 2026 as we reinvest to support our long-term potential.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* Constant Currency adjusted measures and Free Cash Flow are non-IFRS measures.
+See "Use of Non-IFRS Measures" and "Reconciliation of IFRS to Non-IFRS Results" for additional information. Reaching 300 million Subscriber milestone alongside healthy MAU growth Launched Reserved in the U.S., offering an artist's most
+dedicated fans exclusive early access to concert tickets Introduced Personal Podcasts, enabling users to generate personalized AI-powered audio episodes, with a set number of monthly credits included in Premium and the option to purchase
+more Announced new Audiobooks+ add-on tiers launching soon, followed by Family and Student plans later this year Launched four new DJ languages: French, German, Italian and Brazilian Portuguese Key Highlights Accelerating revenue
+growth with expanding profitability Total Revenue of €4.8 billion accelerated to 14% Y/Y or 15% Y/Y on a constant currency* basis Gross Margin finished at an all-time record high of 33.4% (up 193 bps Y/Y) Operating Income finished at €655
+million (13.7% margin) Free Cash Flow* finished at €797 million Powering the next generation of music, podcast and audiobook engagement Premium Subscribers grew 9% Y/Y to 300 million, reflecting 7 million net adds and Y/Y and Q/Q growth
+across all regions MAUs grew 12% Y/Y to 777 million, reflecting 16 million net additions and Y/Y and Q/Q growth across all regions
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Results Q2 2026 Actuals Guidance Total Revenue (€B) In-Line €4.8 €4.8 Gross
+Margin Above 33.4% 33.1% Operating Income (€M)* Above €655 €630 Key Highlights: Actuals vs. Guidance Users Results Q2 2026 Actuals Guidance Monthly Active Users (M) Below 777 778 Premium Subscribers
+(M) Above 300 299 Financials * Includes €1 million of Social Charges which were €9 million below forecast / guidance driven by share price movement during the quarter. As a reminder, we do not incorporate share price movements into our
+forecast since they are beyond our control.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FINANCIAL SUMMARY
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+USER, FINANCIAL & LIQUIDITY SUMMARY Q2 2025 Q3 2025 Q4 2025 Q1 2026 Q2
+2026 Y/Y Y/Y FXN* USERS (M) Total Monthly Active Users ("MAUs") 696 713 751 761 777 12% -- Premium Subscribers 276 281 290 293 300 9% -- Ad-Supported MAUs 433 446 476 483 494 14% -- FINANCIALS
+(€M) Premium* 3,753 3,835 4,020 4,148 4,331 15% 16% 3% 15% Ad-Supported* 440 437 511 385 446 1% Total Revenue 4,193 4,272 4,531 4,533 4,777 14% Gross Profit 1,320 1,351 1,499 1,495 1,596 21% 21% Gross
+Margin 31.5% 31.6% 33.1% 33.0% 33.4% -- -- Total Operating Expenses 914 769 798 780 941 3% 4% Operating Income 406 582 701 715 655 61% 59% Operating Margin 9.7% 13.6% 15.5% 15.8% 13.7% -- -- FREE CASH FLOW &
+LIQUIDITY (€M, unless otherwise denoted) Net Cash Flows From Operating Activities 709 829 856 836 816 15% -- Free Cash Flow** 700 806 834 824 797 14% -- Cash & Cash Equivalents, Restricted Cash & Short Term Investments
+(€B) 8.4 9.1 9.5 8.8 9.4 -- -- Financial Summary * Effective January 1, 2026, certain revenue-generating activities previously reported within the Ad-Supported segment were transferred to the Premium segment to reflect changes in the
+financial information presented to the Group’s new Co-Chief Executive Officers, who serve as the joint chief operating decision makers. Prior period amounts have been reclassified to conform to current period presentation. ** Free Cash Flow
+and Constant Currency adjusted measures (FXN) are non-IFRS measures. See “Use of Non-IFRS Measures” and “Reconciliation of IFRS to Non-IFRS Results” for additional information.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Revenue Profitability Free Cash Flow & Liquidity Gross Margin was 33.4% in
+Q2, up 193 bps Y/Y reflecting: Premium gains driven by Revenue growth outpacing music costs net of marketplace programs, audiobooks costs and video podcast costs; and Ad-Supported gains driven by favorable podcast and tax impacts, which more
+than offset music costs and Other Costs of Revenue Operating Income was €655 million in Q2 and reflected the above, along with: Growth in Operating Expenses driven by temporary investments in marketing and cloud/AI spend (excluding Social
+Charges) Operating Expenses included €1 million in Social Charges on share-based compensation At the end of Q2, our workforce consisted of 7,302 full-time employees globally Revenue of €4,777 million grew 14% Y/Y in Q2 (or 15% Y/Y constant
+currency*), reflecting: Premium Revenue growth of 15% Y/Y (or 16% Y/Y constant currency*), driven by subscriber and ARPU gains; and Ad-Supported Revenue growth of 1% Y/Y (or 3% Y/Y constant currency*) Unfavorable currency movements slowed
+Total Revenue Y/Y growth by ~70 bps vs. guidance of ~80 bps Free Cash Flow* was €797 million in Q2. Our liquidity and balance sheet remained strong, with €9.4 billion in cash and cash equivalents, restricted cash and short term
+investments. Financial Summary * Constant Currency adjusted measures and Free Cash Flow are non-IFRS measures. See "Use of Non-IFRS Measures" and "Reconciliation of IFRS to Non-IFRS Results" for additional information. ** Effective January
+1, 2026, certain revenue-generating activities previously reported within the Ad-Supported segment were transferred to the Premium segment to reflect changes in the financial information presented to the Group’s new Co-Chief Executive Officers,
+who serve as the joint chief operating decision makers. Prior period amounts have been reclassified to conform to current period presentation.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Advertising business transformation continues Ad-Supported Revenue* grew 1% Y/Y
+(or 3% Y/Y constant currency**). On a constant currency basis, music advertising performance was driven by growth in impressions sold, partially offset by softness in pricing. Podcasting growth was led by sponsorship gains within our Owned
+& Licensed portfolio. Automated sales channels remained the largest contributors to overall advertising growth. Revenue Premium growth driven by Subscriber and ARPU gains Premium Revenue* grew 15% Y/Y to €4,331 million (or 16% Y/Y
+constant currency**), reflecting 9% Y/Y Subscriber growth and Premium Average Revenue per User (ARPU) of €4.89, up 7% Y/Y (or 7.4% Y/Y constant currency**). Excluding the impact of FX, ARPU growth was driven by price increase benefits,
+partially offset by product/market mix. * Effective January 1, 2026, certain revenue-generating activities previously reported within the Ad-Supported segment were transferred to the Premium segment to reflect changes in the financial
+information presented to the Group’s new Co-Chief Executive Officers, who serve as the joint chief operating decision makers. Prior period amounts since 2023 have been reclassified to conform to current period presentation. Comparative amounts
+for 2022 have not been recast. ** Constant Currency (FXN) adjusted measures are non-IFRS measures. See "Use of Non-IFRS Measures" and "Reconciliation of IFRS to Non-IFRS Results" for additional information. *** Auction-Based Revenue includes
+biddable sales within the Spotify Ad Exchange and Spotify Ads Manager.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Premium Gross Margin* was 34.9% in Q2, up 174 bps Y/Y. The Y/Y trend was driven by
+Revenue growth outpacing music costs net of marketplace programs, audiobooks costs and video podcast costs. Gross Margin Y/Y improvement driven by Premium and Ad-Supported gains Gross Margin finished at 33.4% in Q2, up 193 bps Y/Y. The Y/Y
+trend was driven by improvement in both the Premium and Ad-Supported segments. Ad-Supported Gross Margin* was 19.1% in Q2, up 179 bps Y/Y. The Y/Y trend was driven by favorable podcast and tax impacts, which more than offset music costs and
+Other Costs of Revenue. * Effective January 1, 2026, certain revenue-generating activities previously reported within the Ad-Supported segment were transferred to the Premium segment to reflect changes in the financial information presented to
+the Group’s new Co-Chief Executive Officers, who serve as the joint chief operating decision makers. Prior period amounts since 2023 have been reclassified to conform to current period presentation. Comparative amounts for 2022 have not been
+recast.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Operating Expenses increased 3% Y/Y in Q2. Absent the effects of Y/Y movements in
+currency and Social Charges, the 19% Y/Y increase in Operating Expenses was primarily driven by an increase in marketing alongside cloud and AI spend in support of growth initiatives. As a reminder, Social Charges are payroll taxes associated
+with employee salaries and benefits in select countries where we operate. Since a portion of these taxes is tied to the intrinsic value of share-based compensation awards, movements in our stock price can lead to fluctuations in the taxes we
+accrue. Share price movements this quarter resulted in Social Charges on share-based compensation coming in €9 million below forecast at €1 million in current period Operating Expenses. Prior year period Operating Expenses included €115
+million in Social Charges. Operating Expenses Y/Y trend led by marketing and cloud spend * Last Twelve Months (LTM) represents annual performance covering the preceding 12 months relative to the last day of the quarter.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Free Cash Flow Record Q2 performance aids balance sheet strength Free Cash Flow*
+was €797 million in Q2, a record high Q2 as a result of higher Net Income adjusted for non-cash items, partially offset by movements in net working capital. Capital expenditures increased €11 million Y/Y to €21 million. In Q2, trailing 12
+month Free Cash Flow expanded to €3.3 billion. On a cumulative basis, we have generated €8.8 billion of Free Cash Flow since the beginning of 2016, supporting our strong balance sheet and €9.4 billion in cash and cash equivalents, restricted
+cash and short term investments balance. We have repurchased $662 million in shares year-to-date through August 3rd, representing a 30% increase over 2025 levels. In aggregate, we have bought back nearly 2.2 million shares since we resumed
+repurchase activity in 2025, or approximately 1% of shares outstanding. * Free Cash Flow is a non-IFRS measure. See "Use of Non-IFRS Measures" and "Reconciliation of IFRS to Non-IFRS Results" for additional information. Cume represents
+cumulative performance since the beginning of 2016. ** Last Twelve Months (LTM) represents annual performance covering the preceding 12 months relative to the last day of the quarter.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+MAUS & SUBSCRIBERS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Growth was driven by Q/Q gains in Rest of World, Europe, North America and Latin
+America Monthly Active Users (MAUs) Total MAUs grew 12% Y/Y to 777 million, up from 761 million last quarter and 1 million below our guidance. Quarterly performance reflected: Y/Y and Q/Q growth across all
+regions 433M 551M 626M 696M 777M
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Our Premium Subscribers grew 9% Y/Y to 300 million, up from 293 million last
+quarter and 1 million above our guidance. Quarterly performance reflected: Y/Y and Q/Q growth across all regions Growth was driven by Q/Q gains in Europe, Rest of World, Latin America and North America Strong global promotional campaign
+intake Premium Subscribers 188M 220M 246M 276M 300M
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+PRODUCT & PLATFORM
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Powering the next generation of music fandom, listening and discovery Reserved
+launched in the U.S., giving artists' most dedicated fans early access to concert tickets. Since launching with Live Nation, nearly 100,000 tickets have been reserved through Spotify across multiple tours. Expanded DJ to four new languages -
+French, German, Italian and Brazilian Portuguese. Since its 2023 launch, DJ has delivered a more personalized listening experience to nearly 100 million Premium users, combining tailored music recommendations with AI-generated commentary to
+drive discovery and deeper artist engagement. Unveiled a special in-app experience to celebrate Spotify's 20th anniversary, giving users a nostalgic look back at their listening journey - including their first day on Spotify, first streamed
+song, top artist, a playlist of their all-time top songs and more. In its first six days, nearly 100 million users engaged with the experience, helping drive Spotify's biggest single day of subscriber intake ever.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Deepening podcast and audiobook engagement through new formats and
+tiers Introduced Personal Podcasts, a tool that allows listeners to generate and schedule AI-powered audio episodes tailored to their interests and listening habits. We also introduced Studio by Spotify Labs, a standalone desktop app that uses
+your web browser and connected apps to create personalized audio experiences. Announced the expansion of Audiobooks+ with new add-on tiers launching soon, giving our most engaged listeners greater flexibility through higher-hour plans. Also
+this summer, Prompted Playlist will expand to audiobooks, making audiobook discovery even more personalized. Later this year, Audiobooks+ Family and Student plans will extend the experience to the entire household. Launched Narrated Articles,
+bringing hundreds of narrated long-form magazine stories from publishers including Rolling Stone, The Atlantic, Vogue, Variety, Billboard and Wired to markets where audiobooks are available. Articles are included within Premium users' monthly
+audiobooks allowance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+OUTLOOK
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Outlook for Q3’26 The following forward-looking statements reflect Spotify’s
+expectations for Q3 2026 as of August 4, 2026 and are subject to substantial uncertainty. Total MAUs 788 million Implies the addition of approximately 11 million net new MAUs in the quarter Total Premium Subscribers 305 million Implies
+the addition of approximately 5 million net new subscribers in the quarter Total Revenue €5.0 billion Assumes ~200 bps tailwind to growth Y/Y (vs. ~70 bps headwind in Q1) due to foreign exchange rate movements; based on currency rates as of
+Q2 close (e.g. USD:Euro of 0.8756 as of June 30, 2026) Gross Margin 32.9% Primarily driven by Y/Y favorability within the Premium and Ad-Supported segments Operating Income €670 million Incorporates €9 million in Social Charges based on a
+Q2 close share price of $459.13
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Webcast Information We will host a live question and answer session starting at
+8:00 a.m. ET today on investors.spotify.com. Alex Norström and Gustav Söderström, our Co-Chief Executive Officers, and Christian Luiga, our Chief Financial Officer will be on hand to answer questions. Questions can be submitted by going to
+slido.com and using the code #SpotifyEarningsQ226. Participants also may join using the listen-only conference line by registering through the following site: https://app.webinar.net/24zaxYZl1G3. We use investors.spotify.com and
+newsroom.spotify.com websites as well as other social media listed in the “Resources – Social Media” tab of our Investors website to disclose material company information. Use of Non-IFRS Measures To supplement our financial information
+presented in accordance with IFRS, we use the following non-IFRS financial measures: Revenue excluding foreign exchange effect, Premium revenue excluding foreign exchange effect, Ad-Supported revenue excluding foreign exchange effect, gross
+profit excluding foreign exchange effect, Operating Income excluding foreign exchange effect, Operating expense excluding foreign exchange effect, and Free Cash Flow. Management believes that Revenue excluding foreign exchange effect, Premium
+revenue excluding foreign exchange effect, Ad-Supported revenue excluding foreign exchange effect, gross profit excluding foreign exchange effect, and Operating expense excluding foreign exchange effect, are useful to investors because they
+present measures that facilitate comparison to our historical performance. However, these should be considered in addition to, not as a substitute for or superior to, Revenue, Premium revenue, Ad-Supported revenue, Gross Profit, Operating
+Income, Operating expense, or other financial measures prepared in accordance with IFRS. Management believes that Free Cash Flow is useful to investors because it presents a measure that approximates the amount of cash generated that is
+available to repay debt obligations, to make investments, and for certain other activities that exclude certain infrequently occurring and/or non-cash items. However, Free Cash Flow should be considered in addition to, not as a substitute for
+or superior to, net cash flows (used in)/from operating activities or other financial measures prepared in accordance with IFRS. For more information on these non-IFRS financial measures, please see “Reconciliation of IFRS to Non-IFRS Results”
+section below. Forward Looking Statements This shareholder update contains estimates and forward-looking statements. All statements other than statements of historical fact are forward-looking statements. The words “may,” “might,” “will,”
+“could,” “would,” “should,” “expect,” “plan,” “anticipate,” “intend,” “seek,” “believe,” “estimate,” “predict,” “potential,” “continue,” “contemplate,” “possible,” and similar words are intended to identify estimates and forward-looking
+statements. Our estimates and forward-looking statements are mainly based on our current expectations and estimates of future events and trends, which affect or may affect our businesses and operations. Although we believe that these estimates
+and forward-looking statements are based upon reasonable assumptions, they are subject to numerous risks and uncertainties and are made in light of information currently available to us. Many important factors may adversely affect our results
+as indicated in forward-looking statements. These factors include, but are not limited to: our ability to attract prospective users, retain existing users, and monetize our products and services; competition for users, their time, and
+advertisers; risks associated with our international operations and our ability to manage our growth and the scope and complexity of our business; risks associated with our new products or services and our emphasis on long-term user engagement
+over short-term results; our ability to provide personalized content that our users enjoy; our ability to sustain our revenue growth rate; our ability to convince advertisers of the benefits of our advertising offerings; our ability to
+forecast, optimize, or sell advertising inventory amid evolving industry trends in digital advertising; our ability to successfully monetize and generate revenues from podcasts, audiobooks, and other non-music content; potential disputes or
+liabilities associated with content made available on our premium service and ad-supported service (collectively, the “Service”); risks relating to acquisitions, investments, and divestitures; our dependence upon third-party licenses for most
+of the content we stream; our lack of control over third-party content providers who are concentrated and can unilaterally affect our access to content; our ability to comply with complex license agreements; our ability to accurately estimate
+royalty payments under our license agreements and relevant statutes; the limitations on our operating flexibility due to financial commitments required under certain of our license agreements; our ability to identify the compositions embodied
+in sound recordings and audiovisual works and ownership thereof in order to obtain licenses or comply with existing license agreements; assertions by third parties of infringement or other violations by us of their intellectual property rights;
+our ability to protect our intellectual property; the dependence of streaming on operating systems, online platforms, hardware, networks, regulations, and standards that we do not control; our ability to maintain the integrity of our technology
+infrastructure and systems or the security of confidential information; undetected errors, misconfigurations, bugs, or vulnerabilities in our products and services; interruptions, delays, or discontinuations in service arising from our systems
+or systems of third parties; changes in laws or regulations affecting us; risks relating to privacy and data security, content moderation, use of artificial intelligence, and third parties’ intentional misuse of our products and services; our
+ability to maintain, protect, and enhance our brand; our ability to meet evolving stakeholder expectations relating to environmental, social, and governance matters; payment acceptance-related risks; our dependence on key personnel and ability
+to attract, retain, and motivate highly skilled employees; our ability to access additional capital to support strategic objectives; risks relating to currency exchange rate fluctuations and foreign exchange controls; the impact of economic,
+social, or political conditions, including slower growth or recession, inflation, changes in interest rates, changes in trade and tax policies, geopolitical conflicts, and related market uncertainty; our ability to accurately estimate user
+metrics and other estimates; our ability to manage and remediate attempts to manipulate streams and attempts to gain or provide unauthorized access to certain features of our Service; risks related to our indebtedness, including risks related
+to our Exchangeable Notes; fluctuation of our operating results and fair market value of ordinary shares; tax-related risks; the concentration of voting power among our founders, which limits shareholders’ ability to influence our governance
+and business; and risks related to our status as a foreign private issuer and a Luxembourg company. A detailed discussion of these and other risks and uncertainties that could cause actual results and events to differ materially from our
+estimates and forward-looking statements is included in our filings with the U.S. Securities and Exchange Commission (“SEC”), including our Annual Report on Form 20-F filed with the SEC on February 10, 2026, as updated by subsequent reports
+filed with the SEC. We undertake no obligation to update forward-looking statements to reflect events or circumstances occurring after the date of this shareholder update. Rounding Certain monetary amounts, percentages, and other figures
+included in this update have been subject to rounding adjustments. The sum of individual metrics may not always equal total amounts indicated due to rounding.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FINANCIAL STATEMENTS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Trending Charts MAUs, Ad-Supported Users, Premium Subscribers & Revenue By
+Segment * Last Twelve Months (LTM) represents annual performance covering the preceding 12 months relative to the last day of the quarter. ** Effective January 1, 2026, certain revenue-generating activities previously reported within the
+Ad-Supported segment were transferred to the Premium segment to reflect changes in the financial information presented to the Group’s new Co-Chief Executive Officers, who serve as the joint chief operating decision makers. Prior period amounts
+since 2023 have been reclassified to conform to current period presentation. Comparative amounts for 2022 have not been recast.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Trending Charts Gross Profit by Segment, Gross Margin by Segment & Free Cash
+Flow* * Free Cash Flow is a non-IFRS measure. See "Use of Non-IFRS Measures" and "Reconciliation of IFRS to Non-IFRS Results" for additional information. Last Twelve Months (LTM) represents annual performance covering the preceding 12 months
+relative to the last day of the quarter. ** Effective January 1, 2026, certain revenue-generating activities previously reported within the Ad-Supported segment were transferred to the Premium segment to reflect changes in the financial
+information presented to the Group’s new Co-Chief Executive Officers, who serve as the joint chief operating decision makers. Prior period amounts since 2023 have been reclassified to conform to current period presentation. Comparative amounts
+for 2022 have not been recast.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Interim condensed consolidated statement of operations (Unaudited) (in €
+millions, except share and per share data) Three months ended June 30, 2026 March 31, 2026 June 30, 2025 Revenue 4,777 4,533 4,193 Cost of revenue 3,181 3,038 2,873 Gross profit 1,596 1,495 1,320 Research and
+development 403 331 415 Sales and marketing 390 342 364 General and administrative 148 107 135 941 780 914 Operating income 655 715 406 Finance income 86 248 89 Finance costs (21) (26) (447) Finance income/(costs) -
+net 65 222 (358) Income before tax 720 937 48 Income tax expense 175 216 134 Net income/(loss) attributable to owners of the parent 545 721 (86) Earnings/(loss) per share attributable to owners of the
+parent Basic 2.65 3.50 (0.42) Diluted 2.61 3.45 (0.42) Weighted-average ordinary shares outstanding Basic 205,788,241 205,716,853 205,426,999 Diluted 208,858,469 209,280,449 205,426,999
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+June 30, 2026 December 31, 2025 Assets Non-current assets Lease right-of-use
+assets 225 234 Property and equipment 193 188 Goodwill 1,110 1,083 Intangible assets 36 41 Long term investments 1,118 2,181 Restricted cash and other non-current assets 56 61 Finance lease receivables 71 69 Deferred tax
+assets 563 662 3,372 4,519 Current assets Trade and other receivables 780 802 Income tax receivable 92 116 Short term investments 3,450 4,209 Cash and cash equivalents 5,938 5,258 Other current
+assets 116 111 10,376 10,496 Total assets 13,748 15,015 Equity and liabilities Equity Share capital — — Other paid in capital 6,624 6,496 Treasury shares (1,248) (701) Other reserves 2,588 3,366 Retained
+earnings/(accumulated deficit) 421 (832) Equity attributable to owners of the parent 8,385 8,329 Non-current liabilities Lease liabilities 404 433 Accrued expenses and other liabilities 2 2 Provisions 13 3 Deferred tax
+liabilities 30 163 449 601 Current liabilities Trade and other payables 1,325 1,194 Income tax payable 171 72 Deferred revenue 778 711 Accrued expenses and other liabilities 2,573 2,589 Exchangeable
+Notes — 1,458 Provisions 45 51 Derivative liabilities 22 10 4,914 6,085 Total liabilities 5,363 6,686 Total equity and liabilities 13,748 15,015 Interim condensed consolidated statement of financial position (Unaudited) (in €
+millions)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+June 30, 2026 March 31, 2026 June 30, 2025 Operating activities Net
+income/(loss) 545 721 (86) Adjustments to reconcile net income/(loss) to net cash flows Depreciation of property and equipment and lease right-of-use assets 24 20 20 Amortization of intangible assets 5 6 6 Impairment charge on real
+estate assets — 4 1 Share-based compensation expense 86 56 73 Finance income (86) (248) (89) Finance costs 21 26 447 Income tax expense 175 216 134 Other 1 (2) 8 Changes in working capital: (Increase)/decrease in trade
+receivables and other assets (80) 91 (19) Increase/(decrease) in trade and other liabilities 150 (94) 201 Increase in deferred revenue 25 35 12 (Decrease)/increase in provisions (6) (3) 8 Interest paid (7) (8) (6) Interest
+received 48 52 57 Income tax paid (85) (36) (58) Net cash flows from operating activities 816 836 709 Investing activities Payment of deferred consideration pertaining to business combinations — — (2) Purchases of property and
+equipment (20) (5) (10) Purchases of short term investments (7,301) (6,740) (4,643) Sales and maturities of short term investments 7,351 7,484 4,228 Change in restricted cash 2 1 1 Dividends
+received 29 — 22 Other 1 (8) — Net cash flows from/(used in) investing activities 62 732 (404) Financing activities Proceeds from exercise of stock options 64 64 92 Repurchases of ordinary shares (232) (306) — Payments of
+lease liabilities (16) (20) (22) Repayment of Exchangeable Notes — (1,304) — Payments for employee taxes withheld from restricted stock unit releases (34) (45) (59) Net cash flows (used in)/from financing
+activities (218) (1,611) 11 Net increase/(decrease) in cash and cash equivalents 660 (43) 316 Cash and cash equivalents at beginning of the period 5,255 5,258 5,019 Net foreign exchange gains/(losses) on cash and cash
+equivalents 23 40 (174) Cash and cash equivalents at period end 5,938 5,255 5,161 (Unaudited) (in € millions) Three months ended Interim condensed consolidated statement of cash flows
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Diluted earnings/(loss) per share Net income/(loss) attributable to owners of the
+parent 545 721 (86) Net earnings/(loss) used in the computation of diluted earnings/(loss) per share 545 721 (86) Shares used in computation: Weighted-average ordinary shares outstanding 205,788,241 205,716,853 205,426,999 Stock
+options 2,396,155 2,772,641 — Restricted stock units 674,073 787,102 — Other contingently issuable shares — 3,853 — Diluted weighted-average ordinary shares 208,858,469 209,280,449 205,426,999 Diluted earnings/(loss) per share
+attributable to owners of the parent 2.61 3.45 (0.42) June 30, 2026 March 31, 2026 June 30, 2025 Basic earnings/(loss) per share Net income/(loss) attributable to owners of the parent 545 721 (86) Shares used in
+computation: Weighted-average ordinary shares outstanding 205,788,241 205,716,853 205,426,999 Basic earnings/(loss) per share attributable to owners of the parent 2.65 3.50 (0.42) (Unaudited) (in € millions, except share and per
+share data) Three months ended Calculation of basic and diluted earnings/(loss) per share
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Three months ended June 30, 2026 June 30, 2025 IFRS
+Revenue 4,777 4,193 Foreign exchange effect on 2026 revenue using 2025 rates 30 Revenue excluding foreign exchange effect 4,807 IFRS Revenue year-over-year change % 14 % Revenue excluding foreign exchange effect year-over-year change
+% 15 % IFRS Premium revenue 4,331 3,753 Foreign exchange effect on 2026 Premium revenue using 2025 rates 22 Premium revenue excluding foreign exchange effect 4,353 IFRS Premium revenue year-over-year change % 15 % Premium revenue
+excluding foreign exchange effect year-over-year change % 16 % IFRS Ad-Supported revenue 446 440 Foreign exchange effect on 2026 Ad-Supported revenue using 2025 rates 8 Ad-Supported revenue excluding foreign exchange effect 454 IFRS
+Ad-Supported revenue year-over-year change % 1 % Ad-Supported revenue excluding foreign exchange effect year-over-year change % 3 % Revenue on a constant currency basis (Unaudited) (in € millions, except percentages) Reconciliation of
+IFRS to non-IFRS results Gross profit on a constant currency basis (Unaudited) (in € millions, except percentages) Three months ended June 30, 2026 June 30, 2025 IFRS Revenue 4,777 4,193 IFRS Cost of revenue 3,181 2,873 IFRS Gross
+profit 1,596 1,320 Foreign exchange effect on 2026 gross profit using 2025 rates 6 Gross profit excluding foreign exchange effect 1,602 IFRS Gross profit year-over-year change % 21 % Gross profit excluding foreign exchange effect
+year-over-year change % 21 %
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Operating expense on a constant currency basis (Unaudited) (in € millions,
+except percentages) Three months ended June 30, 2026 June 30, 2025 IFRS Operating expense 941 914 Foreign exchange effect on 2026 operating expense using 2025 rates 14 Operating expense excluding foreign exchange effect 955 IFRS
+Operating expense year-over-year change % 3 % Operating expense excluding foreign exchange effect year-over-year change % 4 % Three months ended June 30, 2026 June 30, 2025 IFRS Research and development expense 403 415 Foreign
+exchange effect on 2026 expense using 2025 rates 6 Research and development expense excluding foreign exchange effect 409 IFRS Research and development expense year-over-year change % (3)% Research and development expense excluding
+foreign exchange effect year-over-year change % (1)% Three months ended June 30, 2026 June 30, 2025 IFRS Sales and marketing expense 390 364 Foreign exchange effect on 2026 expense using 2025 rates 6 Sales and marketing expense
+excluding foreign exchange effect 396 IFRS Sales and marketing expense year-over-year change % 7 % Sales and marketing expense excluding foreign exchange effect year-over-year change % 9 % Three months ended June 30, 2026 June 30,
+2025 IFRS General and administrative expense 148 135 Foreign exchange effect on 2026 expense using 2025 rates 2 General and administrative expense excluding foreign exchange effect 150 IFRS General and administrative expense
+year-over-year change % 10 % General and administrative expense excluding foreign exchange effect year-over-year change % 11 % Reconciliation of IFRS to non-IFRS results
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Reconciliation of IFRS to non-IFRS results Operating income on a constant
+currency basis (Unaudited) (in € millions, except percentages) Three months ended June 30, 2026 June 30, 2025 IFRS Operating income 655 406 Foreign exchange effect on 2026 operating income using 2025 rates (8) Operating income
+excluding foreign exchange effect 647 IFRS Operating income year-over-year change % 61 % Operating income excluding foreign exchange effect year-over-year change % 59 %
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Free Cash Flow (Unaudited) (in € millions) Three months ended December March
+31, June 30, September December March 31, June 30, September December March 31, June 30, September December March 31, June 30, 31, 2022 2023 2023 30, 2023 31, 2023 2024 2024 30, 2024 31, 2024 2025 2025 30, 2025 31,
+2025 2026 2026 Net cash flows from/(used in) operating activities (70) 59 13 211 397 211 492 715 883 539 709 829 856 836 816 Capital
+expenditures (5) (2) (2) (1) (1) (5) (2) (4) (6) (6) (10) (23) (22) (13) (21) Change in restricted cash 2 — (2) 6 — 1 — — — 1 1 — — 1 2 Free Cash
+Flow (73) 57 9 216 396 207 490 711 877 534 700 806 834 824 797 Last twelve months ended September December March 31, June 30, September December March 31, June 30, September December March 31, June 30, 30, 2023 31,
+2023 2024 2024 30, 2024 31, 2024 2025 2025 30, 2025 31, 2025 2026 2026 Net cash flows from operating activities 213 680 832 1,311 1,815 2,301 2,629 2,846 2,960 2,933 3,230 3,337 Capital
+expenditures (10) (6) (9) (9) (12) (17) (18) (26) (45) (61) (68) (79) Change in restricted cash 6 4 5 7 1 1 1 2 2 2 2 3 Free Cash Flow 209 678 828 1,309 1,804 2,285 2,612 2,822 2,917 2,874 3,164 3,261 Free
+Cash Flow (Unaudited) (in € millions) Reconciliation of IFRS to non-IFRS results Twelve months ended December 31, December 31, December 31, December 31, December 31, December 31, December 31, December 31, December 31, December
+31, 2016 2017 2018 2019 2020 2021 2022 2023 2024 2025 Net cash flows from operating activities 101 179 344 573 259 361 46 680 2,301 2,933 Capital
+expenditures (27) (36) (125) (135) (78) (85) (25) (6) (17) (61) Change in restricted cash (1) (34) (10) 2 2 1 — 4 1 2 Free Cash Flow 73 109 209 440 183 277 21 678 2,285 2,874 Free Cash Flow (Unaudited) (in €
+millions)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+APPENDIX
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Social Charges Sensitivity Meaningful movements in our stock price can lead to
+Social Charge variance Our guidance incorporates the impact of Social Charges on share-based compensation, the vast majority of which appear in Operating Expenses. The amount of Social Charges we accrue for and ultimately pay can be volatile,
+as they are tied to the value of our share price. Since we do not forecast stock price changes in our guidance, meaningful movements in our stock price over the course of a quarter can lead to meaningful changes in Social Charges. As an
+example, at the Q2 close, our stock price was $459.13. In Q2, a 10% increase or decrease in our stock price compared to the quarter-end price would have an approximate +/- €21M impact on Social Charges.
