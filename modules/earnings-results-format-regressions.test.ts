@@ -324,4 +324,119 @@ describe("earnings result filing regressions", () => {
     ]));
     expect(spotifyDocument.metrics.map(metric => metric.value)).not.toContain("€655M");
   });
+
+  test("reads a SpaceX-style segment breakdown from its total row and signs the loss captions", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>SpaceX Reports Second Quarter 2026 Results</h1>
+          <p>Second Quarter Financial Highlights $, in millions Three Months Ended Six Months Ended June 30, 2026 March 31, 2026 June 30, 2025 June 30, 2026 June 30, 2025 Revenue Space $962 $619 $746 $1,581 $1,611 Connectivity 4,291 3,257 2,588 7,548 5,062 AI 2,561 818 737 3,379 1,465 Total $7,814 $4,694 $4,071 $12,508 $8,138</p>
+          <!-- One unbroken statement line with dotted leaders, as this filer renders it. -->
+          <p>Consolidated Financial Statements Space Exploration Technologies Corp. Consolidated Statements of Operations (in millions, except per share data) (unaudited) Three Months Ended June 30, Six Months Ended June 30, 2026 2025 2026 2025 Revenue ............ $ 7,814 $ 4,071 $ 12,508 $ 8,138 Costs and expenses Cost of revenue ............ 3,495 2,282 5,883 4,244 Research and development ............ 3,548 1,958 7,062 3,515 Selling, general, and administrative ............ 912 606 1,658 1,099 Total costs and expenses ............ 7,957 5,041 14,594 9,081 Loss from operations ............ (143) (970) (2,086) (943) Interest expense ............ (629) (411) (1,293) (858) Interest income ............ 340 98 553 215 Loss before income taxes ............ (518) (870) (4,788) (1,384) Provision for income taxes ............ 23 138 29 152 Net loss ............ $ (541) $ (1,008) $ (4,817) $ (1,536) Net loss per share of common stock attributable to common shareholders Basic and Diluted ............ $ (0.09) $ (0.34) $ (1.12) $ (0.53) Weighted average shares used in computing net loss per share Basic and Diluted ............ 5,864 2,929 4,879 2,902</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "revenue", numericValue: 7_814_000_000}),
+      expect.objectContaining({key: "net_income", numericValue: -541_000_000}),
+      expect.objectContaining({key: "gaap_eps", numericValue: -0.09, value: "-$0.09"}),
+    ]));
+    const values = parsedDocument.metrics.map(metric => metric.value);
+    expect(values).not.toContain("$962M");
+    expect(values).not.toContain("$541M");
+  });
+
+  test("keeps Zeta full-year EPS guidance and a trailing-quarters column out of reported metrics", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Zeta Global Reports Second Quarter 2026 Results</h1>
+          <p>Achieved positive GAAP net income of $8 million, and GAAP earnings per share of $0.03. Generated $92 million of adjusted EBITDA and expanded adjusted EBITDA margin by 170 bps Y/Y to 20.7%.</p>
+          <p>Increasing full year 2026 GAAP EPS guidance to a range of $0.09 to $0.11, up $0.07 from prior guidance of $0.02 to $0.04.</p>
+          <p>(in thousands)</p>
+          <p>Three months ended June 30,</p>
+          <p>Six months ended June 30,</p>
+          <p>2026</p><p>2025</p><p>2026</p><p>2025</p>
+          <p>Revenues</p>
+          <p>$ 442,766</p><p>$ 308,442</p><p>$ 839,070</p><p>$ 572,861</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "gaap_eps", numericValue: 0.03, value: "$0.03"}),
+      expect.objectContaining({key: "revenue", numericValue: 442_766_000}),
+    ]));
+    const values = parsedDocument.metrics.map(metric => metric.value);
+    expect(values).not.toContain("$0.09");
+    expect(values).not.toContain("$337M");
+  });
+
+  test("reads Arista and Gilead non-GAAP per-share labels without taking a revenue milestone", () => {
+    const aristaDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Arista Networks, Inc. Reports Second Quarter 2026 Financial Results</h1>
+          <p>Delivered 40% growth in non-GAAP EPS year-over-year as the company achieved its first $3+ billion revenue quarter.</p>
+          <p>(In millions, except per share amounts)</p>
+          <p>Three Months Ended June 30, | Six Months Ended June 30,</p>
+          <p>2026 | 2025 | 2026 | 2025</p>
+          <p>GAAP diluted net income per share | $ | 0.95 | $ | 0.70 | $ | 1.75 | $ | 1.34</p>
+          <p>Non-GAAP diluted net income per share(1)</p>
+          <p>$ | 1.02 | $ | 0.73 | $ | 1.89 | $ | 1.40</p>
+        </body>
+      </html>
+    `);
+
+    expect(aristaDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "adjusted_eps", numericValue: 1.02, value: "$1.02"}),
+      expect.objectContaining({key: "gaap_eps", numericValue: 0.95, value: "$0.95"}),
+    ]));
+    expect(aristaDocument.metrics.map(metric => metric.value)).not.toContain("$3.00");
+
+    // A loss caption states its magnitude, so the sign comes from the caption rather than
+    // the cell — but a bracketed cell must not be negated twice.
+    const gileadDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Gilead Sciences Announces Second Quarter 2026 Financial Results</h1>
+          <p>Diluted Loss Per Share was $(8.45) and Non-GAAP Diluted Loss Per Share was $(6.75)</p>
+          <p>Merck-style magnitude wording: Non-GAAP Loss per Share Was $0.13</p>
+        </body>
+      </html>
+    `);
+
+    expect(gileadDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "adjusted_eps", numericValue: -6.75, value: "-$6.75"}),
+    ]));
+    expect(gileadDocument.metrics.map(metric => metric.value)).not.toContain("$6.75");
+    expect(gileadDocument.metrics.map(metric => metric.value)).not.toContain("$0.13");
+  });
+
+  test("keeps a dollar amount preceded by a word ending in 'nt' out of New Taiwan dollars", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>Opendoor Technologies Inc Reports Second Quarter 2026 Results</h1>
+          <p>Since 2022, we spent $400 million building our resale platform.</p>
+          <p>(in millions, except per share amounts)</p>
+          <p>Three Months Ended June 30,</p>
+          <p>2026 | 2025</p>
+          <p>Revenue | $ | 883 | $ | 1,567</p>
+          <p>Net loss | $ | (162) | $ | (29)</p>
+          <p>Net loss per share attributable to common shareholders:</p>
+          <p>Basic | $ | (0.17) | $ | (0.04)</p>
+          <p>Diluted | $ | (0.17) | $ | (0.04)</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({currencyCode: "USD", key: "revenue", value: "$883M"}),
+      expect.objectContaining({key: "net_income", numericValue: -162_000_000}),
+      expect.objectContaining({key: "gaap_eps", numericValue: -0.17, value: "-$0.17"}),
+    ]));
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("NT$883M");
+  });
 });

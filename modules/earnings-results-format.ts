@@ -253,11 +253,18 @@ function extractMetric(
       continue;
     }
 
+    // An explicitly GAAP-labelled line overrides the "adjusted" skip, but must never
+    // override a forward-looking one: "Increasing full year GAAP EPS guidance to a range
+    // of $0.09 to $0.11" would otherwise post the low end of an annual outlook as the
+    // reported quarter.
+    const isForwardLooking = isForwardLookingLine(line);
     const hasExplicitGaapEps = "gaap_eps" === definition.key &&
+      false === isForwardLooking &&
       /\bgaap\s+(?:diluted\s+)?eps\b/i.test(line);
     const hasReportedGaapEps = "gaap_eps" === definition.key &&
+      false === isForwardLooking &&
       true === hasGaapNarrativeBeforeAdjustment(line, definition.patterns);
-    if (definition.skipPattern?.test(line) &&
+    if (true === isSkippedMetricLine(line, definition) &&
         false === hasExplicitGaapEps &&
         false === hasReportedGaapEps) {
       continue;
@@ -320,6 +327,47 @@ function extractMetric(
   return bestCandidate?.metric ?? null;
 }
 
+// Disqualifiers are matched against the whole line, which is right for a statement row or
+// a sentence. Some filers emit an entire statement as one unbroken line, though, and there
+// a single "Cost of revenue" caption would discard every figure in the statement. For those
+// each occurrence of the label is judged on the qualifier directly ahead of it instead.
+const collapsedStatementLineLength = 600;
+const labelQualifierWindow = 60;
+
+function isSkippedMetricLine(line: string, definition: MetricDefinition): boolean {
+  const skipPattern = definition.skipPattern;
+  if (undefined === skipPattern) {
+    return false;
+  }
+
+  if (line.length <= collapsedStatementLineLength) {
+    return skipPattern.test(line);
+  }
+
+  // Testing the whole prefix would let an unrelated earlier row disqualify a later one —
+  // "Loss before income taxes" sitting above the "Net loss" row it is meant to leave alone.
+  for (const pattern of definition.patterns) {
+    const scanPattern = new RegExp(pattern.source, pattern.flags.replace("g", "") + "g");
+    for (const patternMatch of line.matchAll(scanPattern)) {
+      const windowText = line.slice(
+        Math.max(0, patternMatch.index - labelQualifierWindow),
+        patternMatch.index + patternMatch[0].length,
+      );
+      if (false === skipPattern.test(windowText)) {
+        return false;
+      }
+    }
+  }
+
+  return true;
+}
+
+function isForwardLookingLine(line: string): boolean {
+  return /\b(?:guidance|outlook|forecast)\b/i.test(line) ||
+    /\b(?:expects?|expecting|anticipates?)\b/i.test(line) ||
+    /\bto\s+be\s+(?:between|in\s+(?:a\s+)?range)\b/i.test(line);
+}
+
 function extractMetricValue(
   line: string,
   pattern: RegExp,
@@ -343,6 +391,15 @@ function extractMetricValue(
     ? getQuarterColumnSearchText(searchText)
     : searchText;
   const fallbackSearchText = patternMatch ? line.slice(0, patternMatch.index) : "";
+  // A row captioned as a loss states its magnitude, with the sign carried by the caption
+  // ("Net loss of $541 million", "Non-GAAP Loss per Share Was $0.13"). A bracketed cell is
+  // already negative, so only an unsigned value is flipped. Combined captions such as
+  // "(Loss) earnings per share" keep the sign of the cell instead.
+  const isLossCaption = undefined !== patternMatch?.[0] &&
+    /\bloss\b/i.test(patternMatch[0]) &&
+    false === /\b(?:income|earnings|profit)\b/i.test(patternMatch[0]);
+  const signedValue = (value: number): number =>
+    true === isLossCaption && value > 0 ? -value : value;
 
   if ("eps" === valueType) {
     const perShareTableValue = findPerShareTableValue(preferredSearchText, currentPeriodColumnIndex);
@@ -350,11 +407,12 @@ function extractMetricValue(
     const fallbackValue = true === isMetricValuePrefix(fallbackSearchText)
       ? findEpsValue(fallbackSearchText, columnIndex)
       : null;
-    const value = perShareTableValue ?? preferredValue ?? fallbackValue;
-    if (null === value) {
+    const matchedValue = perShareTableValue ?? preferredValue ?? fallbackValue;
+    if (null === matchedValue) {
       return null;
     }
 
+    const value = signedValue(matchedValue);
     const metricText = null === perShareTableValue && null === preferredValue
       ? fallbackSearchText
       : preferredSearchText;
@@ -367,7 +425,8 @@ function extractMetricValue(
   }
 
   if ("money" === valueType) {
-    const sentenceSearchText = getMetricValueSentenceText(preferredSearchText);
+    const labelSearchText = getMetricValueSentenceText(preferredSearchText);
+    const sentenceSearchText = getBreakdownTotalText(labelSearchText) ?? labelSearchText;
     const hasMetricLabelSuffixTableNote = isMetricLabelSuffixTableNote(sentenceSearchText);
     const searchValueMatch = true === hasMetricLabelSuffixTableNote ? null : findColumnValueMatch(sentenceSearchText, {
       minUncuedAbsValue: 10,
@@ -393,7 +452,7 @@ function extractMetricValue(
     const metricText = true === useFallbackValue ? fallbackSearchText : sentenceSearchText;
     const explicitScale = getExplicitMoneyScale(metricText, parsedValueMatch.endIndex);
     const currencyCode = getCurrencyCodeFromText(metricText, contextMoney.currencyCode) ?? contextMoney.currencyCode;
-    const amount = parsedValueMatch.value * (explicitScale ?? contextMoney.scale);
+    const amount = signedValue(parsedValueMatch.value) * (explicitScale ?? contextMoney.scale);
     const maximumFractionDigits = getMoneyDisplayPrecision(
       metricText,
       parsedValueMatch.endIndex,
@@ -428,6 +487,22 @@ function extractMetricValue(
 // dividends" can mislabel the next sentence's first dollar amount as net income.
 // Table rows remain intact because their label/value cells are separated by pipes,
 // not sentence-ending punctuation followed by a new sentence.
+// A group caption whose first value cell belongs to a named sub-row is a breakdown
+// ("Revenue | Space $962 ... Connectivity 4,291 ... Total $7,814"). The caption's own
+// figure is the Total row; the leading cell is the first segment's.
+function getBreakdownTotalText(text: string): string | null {
+  const firstValueMatch = /\(?-?(?:[$€£¥]\s*)?\d/.exec(text);
+  if (null === firstValueMatch ||
+      false === /[A-Za-z]{2,}/.test(text.slice(0, firstValueMatch.index))) {
+    return null;
+  }
+
+  const totalMatch = /\bTotal\b/.exec(text);
+  return null === totalMatch
+    ? null
+    : text.slice(totalMatch.index + totalMatch[0].length);
+}
+
 function getMetricValueSentenceText(text: string): string {
   const boundaryMatch = /[.!?]\s+(?=[A-Z\d$€£¥])/u.exec(text);
   if (undefined === boundaryMatch?.index) {

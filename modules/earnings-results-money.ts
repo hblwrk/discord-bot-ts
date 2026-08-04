@@ -203,7 +203,9 @@ function findPlausibleEpsValue(
   options: NumericValueOptions,
   columnIndex: number,
 ): number | null {
-  const values = findNumericValues(text, options);
+  const values = findNumericValueMatches(text, options)
+    .filter(valueMatch => false === isMoneyScaledValue(text, valueMatch.endIndex))
+    .map(valueMatch => valueMatch.value);
   const columnValue = values[columnIndex];
   if ("number" === typeof columnValue && false === Number.isInteger(columnValue)) {
     return columnValue;
@@ -212,6 +214,14 @@ function findPlausibleEpsValue(
   return values.find(value => false === Number.isInteger(value)) ??
     values.find(value => Math.abs(value) < 20) ??
     null;
+}
+
+// Per-share amounts are never denominated in millions or billions, so a scale word after
+// the value marks an aggregate: "its first $3+ billion revenue quarter" sitting on a line
+// about non-GAAP EPS is a revenue milestone, not $3.00 of earnings per share.
+function isMoneyScaledValue(text: string, valueEndIndex: number): boolean {
+  return /^\s*\+?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm)\b/i
+    .test(text.slice(valueEndIndex, valueEndIndex + 20));
 }
 
 export function findPerShareTableValue(text: string, columnIndex: number): number | null {
@@ -280,7 +290,10 @@ export function getCurrencyCodeFromText(
   text: string,
   dollarCurrencyCode = "USD",
 ): string | undefined {
-  if (/NT\s*\$|\b(?:TWD|NTD)\b|\bNew Taiwan dollars?\b/i.test(text)) {
+  // "NT$" only denotes New Taiwan dollars as a standalone symbol. Without the leading
+  // boundary it also matches inside ordinary words — "we spe(nt $)883 million" turned a
+  // US filer's revenue into NT$883M.
+  if (/(?:^|[^A-Za-z])NT\s*\$/.test(text) || /\b(?:TWD|NTD)\b|\bNew Taiwan dollars?\b/i.test(text)) {
     return "TWD";
   }
 

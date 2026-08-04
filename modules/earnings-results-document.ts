@@ -40,7 +40,14 @@ export function decodeHtmlEntities(value: string): string {
 export function getMeaningfulLines(text: string): string[] {
   return text
     .split("\n")
-    .map(line => stripReferenceMarkers(line).replace(/\s*\|\s*/g, " | ").replace(/\s+/g, " ").trim())
+    .map(line => stripReferenceMarkers(line)
+      // Dotted leaders align a caption with its value cell ("Revenue ....... $ 7,814").
+      // Left in place, the final dot reads as a sentence boundary and the row is cut off
+      // before any of its figures.
+      .replace(/\.{2,}|…+/g, " ")
+      .replace(/\s*\|\s*/g, " | ")
+      .replace(/\s+/g, " ")
+      .trim())
     .filter(line => line.length >= 3);
 }
 
@@ -51,7 +58,9 @@ export function getDocumentHeadline(lines: string[]): string | undefined {
 export function getDocumentCurrencyCode(lines: string[]): string | undefined {
   const headerLines = lines.slice(0, 60);
   const currencyDeclaration = headerLines
-    .find(line => /\b(?:Canadian|New Taiwan|U\.S\.)\s+dollars?\b|\b(?:CAD|TWD|NTD|USD|EUR|GBP|JPY)\b|NT\s*\$/i.test(line));
+    .find(line => /\b(?:Canadian|New Taiwan|U\.S\.)\s+dollars?\b/i.test(line) ||
+      /\b(?:CAD|TWD|NTD|USD|EUR|GBP|JPY)\b/.test(line) ||
+      /(?:^|[^A-Za-z])NT\s*\$/.test(line));
   if (undefined !== currencyDeclaration) {
     return getDominantCurrencyCode(currencyDeclaration) ??
       getCurrencyCodeFromText(currencyDeclaration);
