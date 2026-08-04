@@ -439,4 +439,47 @@ describe("earnings result filing regressions", () => {
     ]));
     expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("NT$883M");
   });
+
+  test("prefers the diluted per-share row over the basic row printed above it", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>ExampleCo Reports Second Quarter 2026 Results</h1>
+          <p>(in millions, except per share amounts)</p>
+          <p>Three Months Ended June 30,</p>
+          <!-- Captions that do not start with basic/diluted stay separate candidates, so
+               the choice between them rests on scoring rather than row continuation. -->
+          <p>Earnings per share attributable to common stockholders, basic | $ | 0.44</p>
+          <p>Earnings per share attributable to common stockholders, diluted | $ | 0.41</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "gaap_eps", numericValue: 0.41, value: "$0.41"}),
+    ]));
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$0.44");
+  });
+
+  test("prefers a per-share row over an EPS reconciliation that restates the numerator", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>ExampleCo Announces Financial Results for Second Quarter 2026</h1>
+          <p>(in € millions, except share and per share data)</p>
+          <p>Three months ended June 30, 2026</p>
+          <p>Diluted earnings per share Net income attributable to owners of the parent 545 721 (86) Shares used in computation 208,858,469</p>
+          <p>Earnings per share attributable to owners of the parent Basic 2.65 3.50 (0.42) Diluted 2.61 3.45 (0.42)</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({currencyCode: "EUR", key: "gaap_eps", numericValue: 2.61}),
+    ]));
+    const values = parsedDocument.metrics.map(metric => metric.value);
+    expect(values).not.toContain("-€86.00");
+    expect(values).not.toContain("€2.65");
+  });
+
 });
