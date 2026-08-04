@@ -1,11 +1,25 @@
 type MetricValueType = "eps" | "money" | "number";
 
+// The "adjusted" skip exists so an adjusted figure is never posted as the GAAP one. When
+// the GAAP statement is complete before the word appears — "GAAP earnings per share of
+// $0.03. Generated $92 million of adjusted EBITDA" — the line still reports GAAP EPS, and
+// discarding it loses the only place the figure is stated.
 export function hasGaapNarrativeBeforeAdjustment(line: string, patterns: RegExp[]): boolean {
   const adjustedIndex = line.search(/\badjusted\b/i);
-  const gaapText = -1 === adjustedIndex ? line : line.slice(0, adjustedIndex);
+  if (-1 === adjustedIndex) {
+    return false;
+  }
+
+  const gaapText = line.slice(0, adjustedIndex);
   return patterns.some(pattern => {
     pattern.lastIndex = 0;
-    return undefined !== pattern.exec(gaapText)?.groups?.["metricValue"];
+    const patternMatch = pattern.exec(gaapText);
+    if (null === patternMatch) {
+      return false;
+    }
+
+    return undefined !== patternMatch.groups?.["metricValue"] ||
+      /[$€£¥]\s*\(?-?\d+\.\d{2}\b/.test(gaapText.slice(patternMatch.index));
   });
 }
 
@@ -36,7 +50,11 @@ export function getMetricCandidateScore({
     score += Math.floor(getCurrentQuarterTextScore(nearbyContext, quarterLabel) / 2);
   }
 
-  if (/\b(?:YTD|year[-\s]to[-\s]date|six\s+months|nine\s+months|full\s+year|annual)\b/i.test(metricLine)) {
+  // A combined statement names both periods in one header ("Three Months Ended | Six Months
+  // Ended"); its quarter columns come first and are chosen by column index, so it must not
+  // be treated as a year-to-date line.
+  if (/\b(?:YTD|year[-\s]to[-\s]date|six\s+months|nine\s+months|full\s+year|annual)\b/i.test(metricLine) &&
+      "quarter" !== getPeriodEndedScope(metricLine)) {
     score -= 60;
   }
 
@@ -260,11 +278,41 @@ function getPeriodScope(
 
     const scope = getLineScope(line);
     if (undefined !== scope) {
-      return scope;
+      // A combined header may be split one cell per line ("Three Months Ended June 30,"
+      // then "Six Months Ended June 30,"), leaving the year-to-date cell nearest the row.
+      // The quarter group is still printed first, so the block as a whole is quarter-scoped.
+      return "annual" === scope && true === hasQuarterScopeInHeaderBlock(lines, index)
+        ? "quarter"
+        : scope;
     }
   }
 
   return undefined;
+}
+
+// Only the header block directly above counts. A line carrying figures ends the block, so a
+// quarter heading further up a narrative section cannot rescue a full-year one below it.
+function hasQuarterScopeInHeaderBlock(lines: string[], scopeLineIndex: number): boolean {
+  for (let index = scopeLineIndex - 1; index >= 0 && index >= scopeLineIndex - 3; index--) {
+    const line = lines[index];
+    if (undefined === line ||
+        line.length > periodScopeLineLimit ||
+        true === hasFigureCell(line)) {
+      return false;
+    }
+
+    if ("quarter" === getLineScope(line)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function hasFigureCell(line: string): boolean {
+  return /[$€£¥]/.test(line) ||
+    /\d[\d,]*\.\d/.test(line) ||
+    /\b\d{1,3}(?:,\d{3})+\b/.test(line);
 }
 
 function getPeriodEndedScope(line: string): PeriodScope {

@@ -47,6 +47,9 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /\badjusted\s+(?:\d{1,2}\s+)?(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?(?:earnings\s+per\s+(?:common\s+)?share|eps)\b/i,
       /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?eps\b/i,
       /\bnon-gaap\s+(?:diluted\s+)?(?:earnings\s+per\s+share|eps)\b/i,
+      // "Non-GAAP diluted net income per share" / "Non-GAAP Diluted Loss Per Share" are
+      // the reconciliation-table labels for the same measure.
+      /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?(?:earnings|net\s+income|net\s+loss|loss|\(loss\))\s+per\s+(?:common\s+)?share\b/i,
       /\badjusted\s+profit\s+per\s+(?:common\s+)?share\b/i,
     ],
     // Guidance restates the same non-GAAP measure as a forward range, so without this
@@ -61,6 +64,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /\b(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\b/i,
       /\b(?:earnings|profit|net\s+income)(?:\s*\/)?\s*\(loss(?:es)?\)\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,
       /\bprofit\s+(?:\(loss\)\s+)?per\s+(?:common\s+|ordinary\s+)?(?:share|ADS)\b/i,
+      /\bnet\s+loss\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,
       /\bdiluted\s+eps\b/i,
       /\bgaap\s+(?:diluted\s+)?eps\b/i,
       /\b(?:reported\s+)?(?:net\s+)?earnings?\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
@@ -90,6 +94,9 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /\bnet\s+earnings(?!\s+per\s+(?:common\s+)?share)\b/i,
       /\bnet\s+\(loss(?:es)?\)\s+income\b/i,
       /\bnet\s+income\s*\/\s*\(loss(?:es)?\)(?!\s+per\s+(?:common\s+)?share)/i,
+      // Singular only: "net losses of a customer portfolio" is risk-factor prose, not the
+      // income-statement row a loss-making filer labels "Net loss".
+      /\bnet\s+loss(?!\s*(?:es\b|\s+per\s+(?:common\s+)?share))\b/i,
     ],
     // Skip income-statement subtotals, the noncontrolling-interest component and
     // reconciliation adjustment rows so the headline "net income/earnings attributable
