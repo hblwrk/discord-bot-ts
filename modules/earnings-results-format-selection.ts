@@ -111,13 +111,6 @@ export function getMetricCandidateScore({
     } else if (/\(\s*cents(?:\s+per\s+share)?\s*\)/i.test(metricLine)) {
       score -= 60;
     }
-
-    // An EPS reconciliation restates the aggregate numerator first ("Diluted earnings
-    // per share | Net income attributable to ... | 545"), so the leading values on such
-    // a line are whole-currency amounts rather than per-share ones.
-    if (/\bper\s+(?:common\s+|ordinary\s+)?share\b[\s\S]{0,80}?\bnet\s+(?:income|loss|earnings)\b/i.test(metricLine)) {
-      score -= 120;
-    }
   }
 
   if ("eps" === valueType && /\bper\s+(?:common\s+)?(?:diluted\s+)?share\b/i.test(metricLine)) {

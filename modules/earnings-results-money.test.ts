@@ -1,6 +1,12 @@
 import {describe, expect, test} from "vitest";
 import {getMessageMetrics, parseEarningsDocument} from "./earnings-results-format.ts";
-import {formatEps, formatUsdCompact, parseNumber} from "./earnings-results-money.ts";
+import {
+  findEpsValue,
+  findNumericValue,
+  formatEps,
+  formatUsdCompact,
+  parseNumber,
+} from "./earnings-results-money.ts";
 import {type EarningsEvent} from "./earnings.ts";
 
 describe("earnings result money parsing", () => {
@@ -488,5 +494,45 @@ describe("earnings result money parsing", () => {
     expect(valuesByKey.get("revenue")).not.toBe("-$1M");
     expect(valuesByKey.get("net_income")).not.toBe("$903");
     expect(valuesByKey.get("net_income")).not.toBe("$1.18B");
+  });
+
+  // These guards are load-bearing but easy to lose, because a realistic filing usually
+  // offers a second candidate that happens to be right. Pinned directly so a regression
+  // fails here rather than surfacing as a wrong posted figure.
+  describe("per-share value plausibility", () => {
+    test("rejects a value denominated in a money scale", () => {
+      // A revenue milestone sharing a line with a non-GAAP EPS label is not $3.00 of EPS.
+      expect(findEpsValue(" as the company achieved its first $3+ billion revenue quarter.", 0))
+        .toBeNull();
+      expect(findEpsValue(" of $1.6 billion", 0)).toBeNull();
+    });
+
+    test("rejects a large whole number in a per-share position", () => {
+      // Without this an aggregate on the line is published as EPS: AMD reported -$30.00.
+      expect(findEpsValue(" of 30 and 2,760", 0)).toBeNull();
+      expect(findEpsValue(" | Net income | 545 | 721 | (86)", 0)).toBeNull();
+    });
+
+    test("keeps a fractional or small per-share value", () => {
+      expect(findEpsValue(" was $1.66.", 0)).toBe(1.66);
+      expect(findEpsValue(" $ | (0.04) | 0.51", 0)).toBe(-0.04);
+      expect(findEpsValue(" of 5", 0)).toBe(5);
+    });
+  });
+
+  describe("calendar-year exclusion", () => {
+    const scanOptions = {minUncuedAbsValue: 10, skipPercentages: true};
+
+    test("keeps a figure that merely falls in the calendar-year range", () => {
+      // "$ | 1,948" is a $1.95B quarter. Discarding it as a year shifts the row to a
+      // later column and reports the full year instead.
+      expect(findNumericValue(" | $ | 1,948 | $ | 1,988", scanOptions)).toBe(1948);
+      expect(findNumericValue(" | $ | 2,026", scanOptions)).toBe(2026);
+      expect(findNumericValue(" | 1,950.5", scanOptions)).toBe(1950.5);
+    });
+
+    test("still skips a bare year in a column header", () => {
+      expect(findNumericValue(" 2026 | 2025", scanOptions)).toBeNull();
+    });
   });
 });
