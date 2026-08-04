@@ -19,9 +19,19 @@ Coding guidance for this repo. Extracts the rules a contributor (human or agent)
 
 ## Tests, types, and coverage
 
-- `npm run test:coverage` and `npm run typecheck` must both pass. CI runs them on every PR.
-- `vitest.config.ts` enforces global thresholds (78/78/77/66 stmt/lines/funcs/branches) and stricter per-module thresholds for several modules in `modules/` (90–100% in some). Don't lower a threshold to make a change pass — write the test, or split the module.
+- The CI `test` job runs four gates in this order: `npm audit --audit-level=high`, `npm run lint`, `npm run test:coverage`, `npm run typecheck`. Run all four locally — a green test run still fails CI on a lint error, and the audit gate fails on advisories that have nothing to do with your change.
+- `vitest.config.ts` enforces global thresholds (85/85/84/80 stmt/lines/funcs/branches) and stricter per-module thresholds for several modules in `modules/` (90–100% in some). Don't lower a threshold to make a change pass — write the test, or split the module.
 - Tests use `*.test.ts` next to the source file; `modules/test-utils/` is excluded from coverage.
+- A green suite does not mean a fix is pinned. Hand-written fixtures are simplified documents that usually offer a second path to the right answer, so deleting the guard you just added often changes nothing and the suite stays green. For parsing and value-selection work, check by mutation: neutralise the guard (`return false`, or drop the score term), run the suite, restore. If nothing fails, the test asserts an outcome rather than the rule. A rule expressed as a bonus/penalty pair needs both halves removed to show up.
+- Prefer omitting a metric over publishing a wrong one. A figure that cannot be selected confidently should be left out — a missing line reads as incomplete, a wrong one reads as authoritative.
+
+## Real-document fixtures
+
+`modules/test-fixtures/earnings-filings/` holds audited SEC earnings exhibits, asserted by `earnings-results-corpus.test.ts`. They exist because the earnings parser selects between competing candidates in one document — a prior-year column, a segment breakdown, a guidance range — and only a whole filing exercises that choice.
+
+- Treat the corpus as append-only. Don't delete a fixture, trim it down, or reduce it to the lines that currently matter: the distractors are the test. A minimised fixture stops catching the case it was added for.
+- Fix a mis-parse against a real filing, then add that filing. Fetch with `curl -A "hblwrk discord-bot-ts admin@hblwrk.de"` — sec.gov answers 403 to a default or absent User-Agent, so it needs the declaring one from `earnings-results-sec.ts`. Store the `htmlToText` output rather than the HTML, and confirm the stored text parses identically to the original before relying on it.
+- Verify each expected figure against the source document by hand, and keep them in the test's table where a reviewer can read them. Never update an expectation to match new output without checking the filing again — that converts a regression into a recorded fact.
 
 ## Configuration & secrets
 
@@ -32,7 +42,8 @@ Coding guidance for this repo. Extracts the rules a contributor (human or agent)
 ## CI/CD invariants
 
 - `main` is the released branch. All work goes via feature branches and PRs.
-- The CI pipeline runs: tests + typecheck → Dockerfile validator + Checkov + Sysdig CIS benchmark → image build/push to `ghcr.io` → Trivy scan (HIGH/CRITICAL, fixed only) → cosign sign → webhook redeploy by image digest. Staging must report `/api/v1/ready` before production rolls.
+- The CI pipeline runs: audit + lint + tests + typecheck → Dockerfile validator + Checkov + Sysdig CIS benchmark → image build/push to `ghcr.io` → Trivy scan (HIGH/CRITICAL, fixed only) → cosign sign → webhook redeploy by image digest. Staging must report `/api/v1/ready` before production rolls.
+- A new advisory can fail `npm audit` on `main`, which blocks the required `test` check on every open PR including Dependabot's. Fix it in its own lockfile-only PR and merge that first, rather than folding it into unrelated work or weakening the gate.
 - Separate workflows run CodeQL, njsscan, and Semgrep. Treat their findings as blocking.
 - Don't loosen any of: `coverageThreshold`, `npm audit --audit-level=high`, Trivy severity filters, Checkov framework scope, image signing, or the staging readiness gate. If one is genuinely the wrong fit, raise it explicitly rather than editing it through.
 
