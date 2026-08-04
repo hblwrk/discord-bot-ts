@@ -1,10 +1,13 @@
 import moment from "moment-timezone";
 import {type EarningsEvent} from "./earnings.ts";
 import {
+  getCurrentPeriodColumnIndex,
   getMetricCandidateScore,
   getPositionedQuarterValues,
   hasGaapNarrativeBeforeAdjustment,
+  isDefinitionalLine,
   isEmbeddedAlphaNumericValue,
+  stripReferenceMarkers,
 } from "./earnings-results-format-selection.ts";
 import {
   extractOutlookMetrics,
@@ -84,7 +87,11 @@ const earningsMetricDefinitions: MetricDefinition[] = [
       /\badjusted\s+(?:\d{1,2}\s+)?(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?(?:earnings\s+per\s+(?:common\s+)?share|eps)\b/i,
       /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?eps\b/i,
       /\bnon-gaap\s+(?:diluted\s+)?(?:earnings\s+per\s+share|eps)\b/i,
+      /\badjusted\s+profit\s+per\s+(?:common\s+)?share\b/i,
     ],
+    // Guidance restates the same non-GAAP measure as a forward range, so without this
+    // the low end of a full-year outlook is posted as the reported quarter.
+    skipPattern: /\bguidance\b|\boutlook\b|\bforecast\b|\bexpects?\s+(?:non-gaap\s+)?(?:eps|adjusted)\b|\bto\s+be\s+(?:between|in\s+(?:a\s+)?range)\b/i,
     valueType: "eps",
   },
   {
@@ -92,6 +99,8 @@ const earningsMetricDefinitions: MetricDefinition[] = [
     label: "EPS",
     patterns: [
       /\b(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\b/i,
+      /\b(?:earnings|profit|net\s+income)(?:\s*\/)?\s*\(loss(?:es)?\)\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,
+      /\bprofit\s+(?:\(loss\)\s+)?per\s+(?:common\s+|ordinary\s+)?(?:share|ADS)\b/i,
       /\bdiluted\s+eps\b/i,
       /\bgaap\s+(?:diluted\s+)?eps\b/i,
       /\b(?:reported\s+)?(?:net\s+)?earnings?\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
@@ -110,7 +119,7 @@ const earningsMetricDefinitions: MetricDefinition[] = [
       /\brevenues?\b/i,
       /\bsales\b/i,
     ],
-    skipPattern: /\bcost\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b/i,
+    skipPattern: /\bcosts?\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsystemwide\s+sales\b|\b(?:U\.S\.|U\.K\.|US|international|domestic|non-US|segment)\s+(?:commercial\s+|government\s+)?revenues?\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b/i,
     valueType: "money",
   },
   {
@@ -119,11 +128,14 @@ const earningsMetricDefinitions: MetricDefinition[] = [
     patterns: [
       /\bnet\s+income(?!\s+per\s+(?:common\s+)?share)\b/i,
       /\bnet\s+earnings(?!\s+per\s+(?:common\s+)?share)\b/i,
+      /\bnet\s+\(loss(?:es)?\)\s+income\b/i,
+      /\bnet\s+income\s*\/\s*\(loss(?:es)?\)(?!\s+per\s+(?:common\s+)?share)/i,
     ],
-    // Skip income-statement subtotals and the noncontrolling-interest component so
-    // the headline "net income/earnings attributable to <company>" row wins rather
-    // than "net earnings before income tax" or "net earnings including NCI".
-    skipPattern: /\beps\b|\bbefore\s+(?:income\s+)?tax(?:es)?\b|\b(?:including|attributable\s+to)\s+noncontrolling\b/i,
+    // Skip income-statement subtotals, the noncontrolling-interest component and
+    // reconciliation adjustment rows so the headline "net income/earnings attributable
+    // to <company>" row wins rather than "net earnings before income tax", "net
+    // earnings including NCI" or "increase to net loss / decrease to net income".
+    skipPattern: /\beps\b|\bbefore\s+(?:income\s+)?tax(?:es)?\b|\b(?:including|attributable\s+to)\s+noncontrolling\b|\b(?:increase|decrease)\s+to\s+net\b/i,
     valueType: "money",
   },
   {
@@ -158,12 +170,50 @@ export function parseEarningsDocument(html: string): ParsedEarningsDocument {
 }
 
 function getDocumentCurrencyCode(lines: string[]): string | undefined {
-  const currencyDeclaration = lines
-    .slice(0, 60)
+  const headerLines = lines.slice(0, 60);
+  const currencyDeclaration = headerLines
     .find(line => /\b(?:Canadian|New Taiwan|U\.S\.)\s+dollars?\b|\b(?:CAD|TWD|NTD|USD|EUR|GBP|JPY)\b|NT\s*\$/i.test(line));
-  return undefined === currencyDeclaration
+  if (undefined !== currencyDeclaration) {
+    return getDominantCurrencyCode(currencyDeclaration) ??
+      getCurrencyCodeFromText(currencyDeclaration);
+  }
+
+  // A non-dollar reporting currency is often declared only as a column scale ("(€M)",
+  // "(in € millions)"). It still governs statement rows that carry no symbol of their
+  // own, which would otherwise be rendered as dollars.
+  const scaleSymbolDeclaration = headerLines.find(line =>
+    /\(\s*[€£¥]\s*(?:M|B|K|millions?|billions?|thousands?)\b/i.test(line) ||
+    /\bin\s+[€£¥]\s*(?:millions?|billions?|thousands?)\b/i.test(line));
+  return undefined === scaleSymbolDeclaration
     ? undefined
-    : getCurrencyCodeFromText(currencyDeclaration);
+    : getCurrencyCodeFromText(scaleSymbolDeclaration);
+}
+
+// An inline-XBRL context header lists every unit the filing references
+// ("iso4217:USD ... iso4217:EUR ... iso4217:USD"), so the reporting currency is the one
+// named most often rather than whichever is checked first.
+function getDominantCurrencyCode(text: string): string | undefined {
+  const declaredCodes = [...text.matchAll(/\biso4217:([A-Z]{3})\b/g)]
+    .map(codeMatch => codeMatch[1] ?? "");
+  if (2 > declaredCodes.length) {
+    return undefined;
+  }
+
+  const countByCode = new Map<string, number>();
+  for (const code of declaredCodes) {
+    countByCode.set(code, (countByCode.get(code) ?? 0) + 1);
+  }
+
+  let dominantCode: string | undefined;
+  let dominantCount = 0;
+  for (const [code, count] of countByCode) {
+    if (count > dominantCount) {
+      dominantCode = code;
+      dominantCount = count;
+    }
+  }
+
+  return dominantCode;
 }
 
 export function getMessageMetrics(
@@ -456,7 +506,7 @@ export function decodeHtmlEntities(value: string): string {
 function getMeaningfulLines(text: string): string[] {
   return text
     .split("\n")
-    .map(line => line.replace(/\s*\|\s*/g, " | ").replace(/\s+/g, " ").trim())
+    .map(line => stripReferenceMarkers(line).replace(/\s*\|\s*/g, " | ").replace(/\s+/g, " ").trim())
     .filter(line => line.length >= 3);
 }
 
@@ -617,8 +667,22 @@ function getQuarterSpecificMetricLines(lines: string[]): MetricLineSelection {
 
   return {
     exclusive,
-    lines: selectedLines,
+    lines: [...getGoverningScaleDeclarations(lines, startIndex), ...selectedLines],
   };
+}
+
+// The unit declaration governing a section's figures ("$ in millions") usually sits above
+// the section heading. Selecting the section alone hides it, and every money value in the
+// window is then read at face value — a $16.6B quarter rendered as $16.61K.
+function getGoverningScaleDeclarations(lines: string[], startIndex: number): string[] {
+  for (let index = startIndex - 1; index >= 0 && index >= startIndex - 40; index--) {
+    const line = lines[index];
+    if (undefined !== line && null !== getMoneyScaleFromContextText(line)) {
+      return [line];
+    }
+  }
+
+  return [];
 }
 
 function isMixedMonthQuarterResultsLine(line: string): boolean {
@@ -655,6 +719,10 @@ function extractMetric(
 ): EarningsResultMetric | null {
   let bestCandidate: {metric: EarningsResultMetric; score: number} | null = null;
   for (const [lineIndex, line] of lines.entries()) {
+    if (true === isDefinitionalLine(line)) {
+      continue;
+    }
+
     const hasExplicitGaapEps = "gaap_eps" === definition.key &&
       /\bgaap\s+(?:diluted\s+)?eps\b/i.test(line);
     const hasReportedGaapEps = "gaap_eps" === definition.key &&
@@ -687,6 +755,7 @@ function extractMetric(
       getContextMoney(lines, lineIndex, documentCurrencyCode),
       isNearTableNoteColumn(lines, lineIndex),
       undefined !== quarterLabel && hasMixedMonthQuarterColumns(lines, lineIndex),
+      getCurrentPeriodColumnIndex(lines, lineIndex, quarterLabel),
     );
     if (null === metricValue) {
       continue;
@@ -747,7 +816,11 @@ function getMetricLineWithContinuation(
 
   const metricLines = [baseLine];
   const isSummaryHeading = isSummaryMetricHeading(baseLine, definition);
-  for (let index = lineIndex + 1; index < lines.length && index <= lineIndex + 6; index++) {
+  // A per-share block spans a basic and a diluted row of several period columns, each
+  // rendered as its own line; stopping too early truncates the diluted row and leaves
+  // only the basic figure to read.
+  const continuationLimit = "eps" === definition.valueType ? 12 : 6;
+  for (let index = lineIndex + 1; index < lines.length && index <= lineIndex + continuationLimit; index++) {
     const nextLine = lines[index];
     if (undefined === nextLine) {
       break;
@@ -811,13 +884,22 @@ function isNarrativePerShareDetailLine(line: string): boolean {
     /\b(?:per\s+(?:common\s+)?share|eps|cents?)\b/i.test(line);
 }
 
+// Summary tables mark not-meaningful comparisons with "*", "--" or a bare "%", so those
+// cells must not end the run of value cells belonging to the label above.
 function isValueOnlyLine(line: string): boolean {
-  return /^[\s|$€£¥(),.\-\d%—–]+$/.test(line);
+  return /^[\s|$€£¥(),.\-*\d%—–]+$/.test(line);
 }
 
 function isPerShareMetricDetailLine(baseLine: string, line: string): boolean {
-  return /\bper\s+(?:common\s+)?share\b/i.test(baseLine) &&
-    /^\s*(?:basic|diluted)\b/i.test(line);
+  if (false === /\bper\s+(?:common\s+|ordinary\s+)?share\b/i.test(baseLine)) {
+    return false;
+  }
+
+  // A label wrapped across table cells leaves its tail word ahead of the value columns
+  // ("... per share attributable to owners of the" / "parent Basic 2.65 ... Diluted 2.61"),
+  // so the per-share row is only reachable by joining the orphaned continuation.
+  return /^\s*(?:basic|diluted)\b/i.test(line) ||
+    /^\s*[A-Za-z]{1,12}\s+(?:basic|diluted)\b/i.test(line);
 }
 
 function extractMetricValue(
@@ -827,7 +909,13 @@ function extractMetricValue(
   contextMoney: MoneyContext,
   skipTableNoteRefs: boolean,
   preferQuarterColumn: boolean,
+  currentPeriodColumnIndex: number,
 ): {currencyCode?: string | undefined; numericValue: number; value: string} | null {
+  // Narrative prose states the reported figure first, whatever the surrounding table
+  // layout is, so only rows with explicit value cells are read by column. A basic or
+  // diluted per-share segment is a column run by construction and is always read by
+  // column, which is what makes prior-year-first statements resolve correctly.
+  const columnIndex = 2 <= (line.match(/\|/g)?.length ?? 0) ? currentPeriodColumnIndex : 0;
   pattern.lastIndex = 0;
   const patternMatch = pattern.exec(line);
   const capturedMetricValue = patternMatch?.groups?.["metricValue"];
@@ -839,10 +927,10 @@ function extractMetricValue(
   const fallbackSearchText = patternMatch ? line.slice(0, patternMatch.index) : "";
 
   if ("eps" === valueType) {
-    const perShareTableValue = findPerShareTableValue(preferredSearchText);
-    const preferredValue = findEpsValue(preferredSearchText);
+    const perShareTableValue = findPerShareTableValue(preferredSearchText, currentPeriodColumnIndex);
+    const preferredValue = findEpsValue(preferredSearchText, columnIndex);
     const fallbackValue = true === isMetricValuePrefix(fallbackSearchText)
-      ? findEpsValue(fallbackSearchText)
+      ? findEpsValue(fallbackSearchText, columnIndex)
       : null;
     const value = perShareTableValue ?? preferredValue ?? fallbackValue;
     if (null === value) {
@@ -863,12 +951,12 @@ function extractMetricValue(
   if ("money" === valueType) {
     const sentenceSearchText = getMetricValueSentenceText(preferredSearchText);
     const hasMetricLabelSuffixTableNote = isMetricLabelSuffixTableNote(sentenceSearchText);
-    const searchValueMatch = true === hasMetricLabelSuffixTableNote ? null : findNumericValueMatch(sentenceSearchText, {
+    const searchValueMatch = true === hasMetricLabelSuffixTableNote ? null : findColumnValueMatch(sentenceSearchText, {
       minUncuedAbsValue: 10,
       requireMoneyCue: 1 === contextMoney.scale,
       skipTableNoteRefs,
       skipPercentages: true,
-    });
+    }, columnIndex);
     const fallbackValueMatch = true === isMetricValuePrefix(fallbackSearchText) ? findNumericValueMatch(fallbackSearchText, {
       minUncuedAbsValue: 10,
       requireMoneyCue: 1 === contextMoney.scale,
@@ -948,35 +1036,62 @@ function getQuarterColumnSearchText(text: string): string {
   return text.slice(groupBoundary.index + groupBoundary[0].length);
 }
 
-function findEpsValue(text: string): number | null {
+function findEpsValue(text: string, columnIndex: number): number | null {
   const options = {
     maxAbsValue: 100,
     parseCents: true,
     skipPercentages: true,
   };
-  const currencyValue = findNumericValue(text, {
+  const currencyValue = findPlausibleEpsValue(text, {
     ...options,
     requireMoneyCue: true,
-  });
+  }, columnIndex);
   if (null !== currencyValue) {
     return currencyValue;
   }
 
   return true === isMetricLabelSuffixTableNote(text)
     ? null
-    : findNumericValue(text, options);
+    : findPlausibleEpsValue(text, options, columnIndex);
 }
 
-function findPerShareTableValue(text: string): number | null {
+// Filings quote per-share amounts to the cent, so a fractional value in a per-share
+// position is the figure. A large whole number there is an aggregate numerator from a
+// reconciliation row ("... per share | Net income | 545 | 721 | (86)") or a leftover
+// marker, and publishing it would misstate EPS by orders of magnitude.
+function findPlausibleEpsValue(
+  text: string,
+  options: NumericValueOptions,
+  columnIndex: number,
+): number | null {
+  const values = findNumericValues(text, options);
+  const columnValue = values[columnIndex];
+  if ("number" === typeof columnValue && false === Number.isInteger(columnValue)) {
+    return columnValue;
+  }
+
+  return values.find(value => false === Number.isInteger(value)) ??
+    values.find(value => Math.abs(value) < 20) ??
+    null;
+}
+
+function findPerShareTableValue(text: string, columnIndex: number): number | null {
   const hasTableSegments = /\bBasic\b/i.test(text) || 2 <= (text.match(/\|/g)?.length ?? 0);
   if (false === hasTableSegments) {
     return null;
   }
 
-  return getLastPerShareSegmentValue(text, "Diluted") ?? getLastPerShareSegmentValue(text, "Basic");
+  return getPerShareSegmentValue(text, "Diluted", columnIndex) ??
+    getPerShareSegmentValue(text, "Basic", columnIndex);
 }
 
-function getLastPerShareSegmentValue(text: string, label: "Basic" | "Diluted"): number | null {
+// Read the reported period's cell out of the per-share row. Remaining cells are the
+// prior-year quarter, the year-to-date pair and sometimes percentage changes.
+function getPerShareSegmentValue(
+  text: string,
+  label: "Basic" | "Diluted",
+  columnIndex: number,
+): number | null {
   const segmentMatch = new RegExp(`\\b${label}\\b([\\s\\S]*?)(?:\\b(?:Basic|Diluted|Weighted-average)\\b|$)`, "i")
     .exec(text);
   const segment = segmentMatch?.[1];
@@ -987,8 +1102,9 @@ function getLastPerShareSegmentValue(text: string, label: "Basic" | "Diluted"): 
   const values = findNumericValues(segment, {
     maxAbsValue: 100,
     parseCents: true,
+    skipPercentages: true,
   });
-  return values[values.length - 1] ?? null;
+  return values[columnIndex] ?? values[0] ?? null;
 }
 
 function getContextMoney(
@@ -996,7 +1112,7 @@ function getContextMoney(
   lineIndex: number,
   documentCurrencyCode: string | undefined,
 ): MoneyContext {
-  let currencyCode = documentCurrencyCode;
+  const currencyCode = documentCurrencyCode;
   // Scan upward for the nearest "in millions / $ in thousands / ..." declaration
   // governing this row. Income statements interleave many empty separator rows
   // ("| |") between the unit header and the figures, so the lookback budget is
@@ -1010,11 +1126,14 @@ function getContextMoney(
       continue;
     }
 
-    currencyCode = getCurrencyCodeFromText(line, currencyCode) ?? currencyCode;
     const scale = getMoneyScaleFromContextText(line);
     if (null !== scale) {
+      // Take the currency from the unit declaration that governs this table ("$ million",
+      // "in € millions"). Reading it from any line scanned on the way up lets an incidental
+      // prose mention — a euro-denominated bond redemption in a dollar-reporting filer —
+      // relabel every figure below it.
       return {
-        currencyCode,
+        currencyCode: getCurrencyCodeFromText(line, currencyCode) ?? currencyCode,
         scale,
       };
     }
@@ -1176,6 +1295,15 @@ function findNumericValueMatch(
   return findNumericValueMatches(text, options)[0] ?? null;
 }
 
+function findColumnValueMatch(
+  text: string,
+  options: NumericValueOptions,
+  columnIndex: number,
+): NumericValueMatch | null {
+  const matches = findNumericValueMatches(text, options);
+  return matches[columnIndex] ?? matches[0] ?? null;
+}
+
 function findNumericValues(
   text: string,
   options: NumericValueOptions = {},
@@ -1231,7 +1359,14 @@ function findNumericValueMatches(
       continue;
     }
 
-    if (value >= 1900 && value <= 2100) {
+    // Skip bare calendar years in column headers ("2026 | 2025"). A grouped or
+    // decimal token, or one carrying a money cue, is a figure that merely happens to
+    // fall in that range — dropping it silently shifts the row to a later column
+    // (e.g. "$ | 1,948" for a $1.95B quarter yielding the full-year column instead).
+    if (value >= 1900 && value <= 2100 &&
+        false === token.includes(",") &&
+        false === token.includes(".") &&
+        false === hasMoneyCue(text, numberMatch.index, endIndex, token)) {
       continue;
     }
 
