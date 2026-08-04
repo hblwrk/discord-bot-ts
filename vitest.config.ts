@@ -108,6 +108,30 @@ export default defineConfig({
           functions: 84,
           branches: 59,
         },
+        "modules/earnings-results-document.ts": {
+          statements: 90,
+          lines: 90,
+          functions: 93,
+          branches: 84,
+        },
+        "modules/earnings-results-message.ts": {
+          statements: 82,
+          lines: 82,
+          functions: 100,
+          branches: 71,
+        },
+        "modules/earnings-results-metrics.ts": {
+          statements: 97,
+          lines: 97,
+          functions: 100,
+          branches: 93,
+        },
+        "modules/earnings-results-money.ts": {
+          statements: 91,
+          lines: 91,
+          functions: 100,
+          branches: 89,
+        },
         "modules/earnings-results-outlook.ts": {
           statements: 78,
           lines: 77,
