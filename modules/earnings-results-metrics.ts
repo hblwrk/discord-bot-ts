@@ -1,4 +1,5 @@
 import {getPositionedQuarterValues} from "./earnings-results-format-selection.ts";
+import {getMoneyScaleFromContextText} from "./earnings-results-money.ts";
 
 export type EarningsResultOutcome = "beat" | "inline" | "miss";
 
@@ -46,7 +47,11 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /\badjusted\s+(?:\d{1,2}\s+)?(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?(?:earnings\s+per\s+(?:common\s+)?share|eps)\b/i,
       /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?eps\b/i,
       /\bnon-gaap\s+(?:diluted\s+)?(?:earnings\s+per\s+share|eps)\b/i,
+      /\badjusted\s+profit\s+per\s+(?:common\s+)?share\b/i,
     ],
+    // Guidance restates the same non-GAAP measure as a forward range, so without this
+    // the low end of a full-year outlook is posted as the reported quarter.
+    skipPattern: /\bguidance\b|\boutlook\b|\bforecast\b|\bexpects?\s+(?:non-gaap\s+)?(?:eps|adjusted)\b|\bto\s+be\s+(?:between|in\s+(?:a\s+)?range)\b/i,
     valueType: "eps",
   },
   {
@@ -54,6 +59,8 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     label: "EPS",
     patterns: [
       /\b(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\b/i,
+      /\b(?:earnings|profit|net\s+income)(?:\s*\/)?\s*\(loss(?:es)?\)\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,
+      /\bprofit\s+(?:\(loss\)\s+)?per\s+(?:common\s+|ordinary\s+)?(?:share|ADS)\b/i,
       /\bdiluted\s+eps\b/i,
       /\bgaap\s+(?:diluted\s+)?eps\b/i,
       /\b(?:reported\s+)?(?:net\s+)?earnings?\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
@@ -72,7 +79,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /\brevenues?\b/i,
       /\bsales\b/i,
     ],
-    skipPattern: /\bcost\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b/i,
+    skipPattern: /\bcosts?\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsystemwide\s+sales\b|\b(?:U\.S\.|U\.K\.|US|international|domestic|non-US|segment)\s+(?:commercial\s+|government\s+)?revenues?\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b/i,
     valueType: "money",
   },
   {
@@ -81,11 +88,14 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     patterns: [
       /\bnet\s+income(?!\s+per\s+(?:common\s+)?share)\b/i,
       /\bnet\s+earnings(?!\s+per\s+(?:common\s+)?share)\b/i,
+      /\bnet\s+\(loss(?:es)?\)\s+income\b/i,
+      /\bnet\s+income\s*\/\s*\(loss(?:es)?\)(?!\s+per\s+(?:common\s+)?share)/i,
     ],
-    // Skip income-statement subtotals and the noncontrolling-interest component so
-    // the headline "net income/earnings attributable to <company>" row wins rather
-    // than "net earnings before income tax" or "net earnings including NCI".
-    skipPattern: /\beps\b|\bbefore\s+(?:income\s+)?tax(?:es)?\b|\b(?:including|attributable\s+to)\s+noncontrolling\b/i,
+    // Skip income-statement subtotals, the noncontrolling-interest component and
+    // reconciliation adjustment rows so the headline "net income/earnings attributable
+    // to <company>" row wins rather than "net earnings before income tax", "net
+    // earnings including NCI" or "increase to net loss / decrease to net income".
+    skipPattern: /\beps\b|\bbefore\s+(?:income\s+)?tax(?:es)?\b|\b(?:including|attributable\s+to)\s+noncontrolling\b|\b(?:increase|decrease)\s+to\s+net\b/i,
     valueType: "money",
   },
   {
@@ -139,8 +149,22 @@ export function getQuarterSpecificMetricLines(lines: string[]): MetricLineSelect
 
   return {
     exclusive,
-    lines: selectedLines,
+    lines: [...getGoverningScaleDeclarations(lines, startIndex), ...selectedLines],
   };
+}
+
+// The unit declaration governing a section's figures ("$ in millions") usually sits above
+// the section heading. Selecting the section alone hides it, and every money value in the
+// window is then read at face value — a $16.6B quarter rendered as $16.61K.
+function getGoverningScaleDeclarations(lines: string[], startIndex: number): string[] {
+  for (let index = startIndex - 1; index >= 0 && index >= startIndex - 40; index--) {
+    const line = lines[index];
+    if (undefined !== line && null !== getMoneyScaleFromContextText(line)) {
+      return [line];
+    }
+  }
+
+  return [];
 }
 
 function isMixedMonthQuarterResultsLine(line: string): boolean {
@@ -195,7 +219,11 @@ export function getMetricLineWithContinuation(
 
   const metricLines = [baseLine];
   const isSummaryHeading = isSummaryMetricHeading(baseLine, definition);
-  for (let index = lineIndex + 1; index < lines.length && index <= lineIndex + 6; index++) {
+  // A per-share block spans a basic and a diluted row of several period columns, each
+  // rendered as its own line; stopping too early truncates the diluted row and leaves
+  // only the basic figure to read.
+  const continuationLimit = "eps" === definition.valueType ? 12 : 6;
+  for (let index = lineIndex + 1; index < lines.length && index <= lineIndex + continuationLimit; index++) {
     const nextLine = lines[index];
     if (undefined === nextLine) {
       break;
@@ -259,13 +287,22 @@ function isNarrativePerShareDetailLine(line: string): boolean {
     /\b(?:per\s+(?:common\s+)?share|eps|cents?)\b/i.test(line);
 }
 
+// Summary tables mark not-meaningful comparisons with "*", "--" or a bare "%", so those
+// cells must not end the run of value cells belonging to the label above.
 function isValueOnlyLine(line: string): boolean {
-  return /^[\s|$€£¥(),.\-\d%—–]+$/.test(line);
+  return /^[\s|$€£¥(),.\-*\d%—–]+$/.test(line);
 }
 
 function isPerShareMetricDetailLine(baseLine: string, line: string): boolean {
-  return /\bper\s+(?:common\s+)?share\b/i.test(baseLine) &&
-    /^\s*(?:basic|diluted)\b/i.test(line);
+  if (false === /\bper\s+(?:common\s+|ordinary\s+)?share\b/i.test(baseLine)) {
+    return false;
+  }
+
+  // A label wrapped across table cells leaves its tail word ahead of the value columns
+  // ("... per share attributable to owners of the" / "parent Basic 2.65 ... Diluted 2.61"),
+  // so the per-share row is only reachable by joining the orphaned continuation.
+  return /^\s*(?:basic|diluted)\b/i.test(line) ||
+    /^\s*[A-Za-z]{1,12}\s+(?:basic|diluted)\b/i.test(line);
 }
 
 export function hasMixedMonthQuarterColumns(lines: string[], lineIndex: number): boolean {

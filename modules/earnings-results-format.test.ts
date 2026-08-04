@@ -265,10 +265,12 @@ describe("earnings result formatting", () => {
     `);
 
     expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      // The statement row supplies the reported quarter at full precision; the prior-year
+      // comparison column ($97,792) must not be selected.
       expect.objectContaining({
         key: "revenue",
-        numericValue: 121_100_000,
-        value: "$121.1M",
+        numericValue: 121_144_000,
+        value: "$121.14M",
       }),
       expect.objectContaining({
         key: "net_income",

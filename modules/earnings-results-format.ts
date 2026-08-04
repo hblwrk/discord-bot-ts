@@ -1,7 +1,9 @@
 import {type EarningsEvent} from "./earnings.ts";
 import {
+  getCurrentPeriodColumnIndex,
   getMetricCandidateScore,
   hasGaapNarrativeBeforeAdjustment,
+  isDefinitionalLine,
 } from "./earnings-results-format-selection.ts";
 import {extractOutlookMetrics} from "./earnings-results-outlook.ts";
 import {
@@ -25,6 +27,7 @@ import {
 } from "./earnings-results-metrics.ts";
 import {getOutcome} from "./earnings-results-message.ts";
 import {
+  findColumnValueMatch,
   findEpsValue,
   findNumericValue,
   findNumericValueMatch,
@@ -246,6 +249,10 @@ function extractMetric(
 ): EarningsResultMetric | null {
   let bestCandidate: {metric: EarningsResultMetric; score: number} | null = null;
   for (const [lineIndex, line] of lines.entries()) {
+    if (true === isDefinitionalLine(line)) {
+      continue;
+    }
+
     const hasExplicitGaapEps = "gaap_eps" === definition.key &&
       /\bgaap\s+(?:diluted\s+)?eps\b/i.test(line);
     const hasReportedGaapEps = "gaap_eps" === definition.key &&
@@ -278,6 +285,7 @@ function extractMetric(
       getContextMoney(lines, lineIndex, documentCurrencyCode),
       isNearTableNoteColumn(lines, lineIndex),
       undefined !== quarterLabel && hasMixedMonthQuarterColumns(lines, lineIndex),
+      getCurrentPeriodColumnIndex(lines, lineIndex, quarterLabel),
     );
     if (null === metricValue) {
       continue;
@@ -319,7 +327,13 @@ function extractMetricValue(
   contextMoney: MoneyContext,
   skipTableNoteRefs: boolean,
   preferQuarterColumn: boolean,
+  currentPeriodColumnIndex: number,
 ): {currencyCode?: string | undefined; numericValue: number; value: string} | null {
+  // Narrative prose states the reported figure first, whatever the surrounding table
+  // layout is, so only rows with explicit value cells are read by column. A basic or
+  // diluted per-share segment is a column run by construction and is always read by
+  // column, which is what makes prior-year-first statements resolve correctly.
+  const columnIndex = 2 <= (line.match(/\|/g)?.length ?? 0) ? currentPeriodColumnIndex : 0;
   pattern.lastIndex = 0;
   const patternMatch = pattern.exec(line);
   const capturedMetricValue = patternMatch?.groups?.["metricValue"];
@@ -331,10 +345,10 @@ function extractMetricValue(
   const fallbackSearchText = patternMatch ? line.slice(0, patternMatch.index) : "";
 
   if ("eps" === valueType) {
-    const perShareTableValue = findPerShareTableValue(preferredSearchText);
-    const preferredValue = findEpsValue(preferredSearchText);
+    const perShareTableValue = findPerShareTableValue(preferredSearchText, currentPeriodColumnIndex);
+    const preferredValue = findEpsValue(preferredSearchText, columnIndex);
     const fallbackValue = true === isMetricValuePrefix(fallbackSearchText)
-      ? findEpsValue(fallbackSearchText)
+      ? findEpsValue(fallbackSearchText, columnIndex)
       : null;
     const value = perShareTableValue ?? preferredValue ?? fallbackValue;
     if (null === value) {
@@ -355,12 +369,12 @@ function extractMetricValue(
   if ("money" === valueType) {
     const sentenceSearchText = getMetricValueSentenceText(preferredSearchText);
     const hasMetricLabelSuffixTableNote = isMetricLabelSuffixTableNote(sentenceSearchText);
-    const searchValueMatch = true === hasMetricLabelSuffixTableNote ? null : findNumericValueMatch(sentenceSearchText, {
+    const searchValueMatch = true === hasMetricLabelSuffixTableNote ? null : findColumnValueMatch(sentenceSearchText, {
       minUncuedAbsValue: 10,
       requireMoneyCue: 1 === contextMoney.scale,
       skipTableNoteRefs,
       skipPercentages: true,
-    });
+    }, columnIndex);
     const fallbackValueMatch = true === isMetricValuePrefix(fallbackSearchText) ? findNumericValueMatch(fallbackSearchText, {
       minUncuedAbsValue: 10,
       requireMoneyCue: 1 === contextMoney.scale,
@@ -437,7 +451,7 @@ function getContextMoney(
   lineIndex: number,
   documentCurrencyCode: string | undefined,
 ): MoneyContext {
-  let currencyCode = documentCurrencyCode;
+  const currencyCode = documentCurrencyCode;
   // Scan upward for the nearest "in millions / $ in thousands / ..." declaration
   // governing this row. Income statements interleave many empty separator rows
   // ("| |") between the unit header and the figures, so the lookback budget is
@@ -451,11 +465,14 @@ function getContextMoney(
       continue;
     }
 
-    currencyCode = getCurrencyCodeFromText(line, currencyCode) ?? currencyCode;
     const scale = getMoneyScaleFromContextText(line);
     if (null !== scale) {
+      // Take the currency from the unit declaration that governs this table ("$ million",
+      // "in € millions"). Reading it from any line scanned on the way up lets an incidental
+      // prose mention — a euro-denominated bond redemption in a dollar-reporting filer —
+      // relabel every figure below it.
       return {
-        currencyCode,
+        currencyCode: getCurrencyCodeFromText(line, currencyCode) ?? currencyCode,
         scale,
       };
     }

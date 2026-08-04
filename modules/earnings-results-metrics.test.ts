@@ -297,15 +297,17 @@ describe("earnings result metric selection", () => {
         numericValue: 5.75,
         value: "$5.75",
       }),
+      // Taken from the consolidated statement rather than the rounded narrative, so the
+      // quarter column of a prior-year-first table ("2025 | 2026") must be selected.
       expect.objectContaining({
         key: "revenue",
-        numericValue: 200_600_000_000,
-        value: "$200.6B",
+        numericValue: 200_606_000_000,
+        value: "$200.61B",
       }),
       expect.objectContaining({
         key: "net_income",
-        numericValue: 62_600_000_000,
-        value: "$62.6B",
+        numericValue: 62_647_000_000,
+        value: "$62.65B",
       }),
     ]));
     expect(parsedDocument.metrics).not.toEqual(expect.arrayContaining([

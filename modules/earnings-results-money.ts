@@ -33,6 +33,15 @@ export function findNumericValueMatch(
   return findNumericValueMatches(text, options)[0] ?? null;
 }
 
+export function findColumnValueMatch(
+  text: string,
+  options: NumericValueOptions,
+  columnIndex: number,
+): NumericValueMatch | null {
+  const matches = findNumericValueMatches(text, options);
+  return matches[columnIndex] ?? matches[0] ?? null;
+}
+
 function findNumericValues(
   text: string,
   options: NumericValueOptions = {},
@@ -88,7 +97,14 @@ function findNumericValueMatches(
       continue;
     }
 
-    if (value >= 1900 && value <= 2100) {
+    // Skip bare calendar years in column headers ("2026 | 2025"). A grouped or
+    // decimal token, or one carrying a money cue, is a figure that merely happens to
+    // fall in that range — dropping it silently shifts the row to a later column
+    // (e.g. "$ | 1,948" for a $1.95B quarter yielding the full-year column instead).
+    if (value >= 1900 && value <= 2100 &&
+        false === token.includes(",") &&
+        false === token.includes(".") &&
+        false === hasMoneyCue(text, numberMatch.index, endIndex, token)) {
       continue;
     }
 
@@ -159,35 +175,62 @@ function hasMoneyCue(text: string, startIndex: number, endIndex: number, token: 
   return /^\s*(?:trillion|trillions|tn|billion|billions|bn|million|millions|mm|thousand|thousands)\b/i.test(afterToken);
 }
 
-export function findEpsValue(text: string): number | null {
+export function findEpsValue(text: string, columnIndex: number): number | null {
   const options = {
     maxAbsValue: 100,
     parseCents: true,
     skipPercentages: true,
   };
-  const currencyValue = findNumericValue(text, {
+  const currencyValue = findPlausibleEpsValue(text, {
     ...options,
     requireMoneyCue: true,
-  });
+  }, columnIndex);
   if (null !== currencyValue) {
     return currencyValue;
   }
 
   return true === isMetricLabelSuffixTableNote(text)
     ? null
-    : findNumericValue(text, options);
+    : findPlausibleEpsValue(text, options, columnIndex);
 }
 
-export function findPerShareTableValue(text: string): number | null {
+// Filings quote per-share amounts to the cent, so a fractional value in a per-share
+// position is the figure. A large whole number there is an aggregate numerator from a
+// reconciliation row ("... per share | Net income | 545 | 721 | (86)") or a leftover
+// marker, and publishing it would misstate EPS by orders of magnitude.
+function findPlausibleEpsValue(
+  text: string,
+  options: NumericValueOptions,
+  columnIndex: number,
+): number | null {
+  const values = findNumericValues(text, options);
+  const columnValue = values[columnIndex];
+  if ("number" === typeof columnValue && false === Number.isInteger(columnValue)) {
+    return columnValue;
+  }
+
+  return values.find(value => false === Number.isInteger(value)) ??
+    values.find(value => Math.abs(value) < 20) ??
+    null;
+}
+
+export function findPerShareTableValue(text: string, columnIndex: number): number | null {
   const hasTableSegments = /\bBasic\b/i.test(text) || 2 <= (text.match(/\|/g)?.length ?? 0);
   if (false === hasTableSegments) {
     return null;
   }
 
-  return getLastPerShareSegmentValue(text, "Diluted") ?? getLastPerShareSegmentValue(text, "Basic");
+  return getPerShareSegmentValue(text, "Diluted", columnIndex) ??
+    getPerShareSegmentValue(text, "Basic", columnIndex);
 }
 
-function getLastPerShareSegmentValue(text: string, label: "Basic" | "Diluted"): number | null {
+// Read the reported period's cell out of the per-share row. Remaining cells are the
+// prior-year quarter, the year-to-date pair and sometimes percentage changes.
+function getPerShareSegmentValue(
+  text: string,
+  label: "Basic" | "Diluted",
+  columnIndex: number,
+): number | null {
   const segmentMatch = new RegExp(`\\b${label}\\b([\\s\\S]*?)(?:\\b(?:Basic|Diluted|Weighted-average)\\b|$)`, "i")
     .exec(text);
   const segment = segmentMatch?.[1];
@@ -198,8 +241,9 @@ function getLastPerShareSegmentValue(text: string, label: "Basic" | "Diluted"): 
   const values = findNumericValues(segment, {
     maxAbsValue: 100,
     parseCents: true,
+    skipPercentages: true,
   });
-  return values[values.length - 1] ?? null;
+  return values[columnIndex] ?? values[0] ?? null;
 }
 
 export function isMetricLabelSuffixTableNote(text: string): boolean {

@@ -1,4 +1,5 @@
 import moment from "moment-timezone";
+import {stripReferenceMarkers} from "./earnings-results-format-selection.ts";
 import {getCurrencyCodeFromText} from "./earnings-results-money.ts";
 import {type EarningsResultMetric} from "./earnings-results-metrics.ts";
 import {type EarningsOutlookMetric} from "./earnings-results-outlook.ts";
@@ -39,7 +40,7 @@ export function decodeHtmlEntities(value: string): string {
 export function getMeaningfulLines(text: string): string[] {
   return text
     .split("\n")
-    .map(line => line.replace(/\s*\|\s*/g, " | ").replace(/\s+/g, " ").trim())
+    .map(line => stripReferenceMarkers(line).replace(/\s*\|\s*/g, " | ").replace(/\s+/g, " ").trim())
     .filter(line => line.length >= 3);
 }
 
@@ -48,12 +49,50 @@ export function getDocumentHeadline(lines: string[]): string | undefined {
 }
 
 export function getDocumentCurrencyCode(lines: string[]): string | undefined {
-  const currencyDeclaration = lines
-    .slice(0, 60)
+  const headerLines = lines.slice(0, 60);
+  const currencyDeclaration = headerLines
     .find(line => /\b(?:Canadian|New Taiwan|U\.S\.)\s+dollars?\b|\b(?:CAD|TWD|NTD|USD|EUR|GBP|JPY)\b|NT\s*\$/i.test(line));
-  return undefined === currencyDeclaration
+  if (undefined !== currencyDeclaration) {
+    return getDominantCurrencyCode(currencyDeclaration) ??
+      getCurrencyCodeFromText(currencyDeclaration);
+  }
+
+  // A non-dollar reporting currency is often declared only as a column scale ("(€M)",
+  // "(in € millions)"). It still governs statement rows that carry no symbol of their
+  // own, which would otherwise be rendered as dollars.
+  const scaleSymbolDeclaration = headerLines.find(line =>
+    /\(\s*[€£¥]\s*(?:M|B|K|millions?|billions?|thousands?)\b/i.test(line) ||
+    /\bin\s+[€£¥]\s*(?:millions?|billions?|thousands?)\b/i.test(line));
+  return undefined === scaleSymbolDeclaration
     ? undefined
-    : getCurrencyCodeFromText(currencyDeclaration);
+    : getCurrencyCodeFromText(scaleSymbolDeclaration);
+}
+
+// An inline-XBRL context header lists every unit the filing references
+// ("iso4217:USD ... iso4217:EUR ... iso4217:USD"), so the reporting currency is the one
+// named most often rather than whichever is checked first.
+function getDominantCurrencyCode(text: string): string | undefined {
+  const declaredCodes = [...text.matchAll(/\biso4217:([A-Z]{3})\b/g)]
+    .map(codeMatch => codeMatch[1] ?? "");
+  if (2 > declaredCodes.length) {
+    return undefined;
+  }
+
+  const countByCode = new Map<string, number>();
+  for (const code of declaredCodes) {
+    countByCode.set(code, (countByCode.get(code) ?? 0) + 1);
+  }
+
+  let dominantCode: string | undefined;
+  let dominantCount = 0;
+  for (const [code, count] of countByCode) {
+    if (count > dominantCount) {
+      dominantCode = code;
+      dominantCount = count;
+    }
+  }
+
+  return dominantCode;
 }
 
 export function getQuarterLabel(text: string): string | undefined {

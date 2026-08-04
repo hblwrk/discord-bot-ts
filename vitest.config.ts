@@ -109,10 +109,10 @@ export default defineConfig({
           branches: 59,
         },
         "modules/earnings-results-document.ts": {
-          statements: 90,
-          lines: 90,
-          functions: 93,
-          branches: 84,
+          statements: 97,
+          lines: 97,
+          functions: 94,
+          branches: 91,
         },
         "modules/earnings-results-message.ts": {
           statements: 82,
@@ -124,7 +124,7 @@ export default defineConfig({
           statements: 97,
           lines: 97,
           functions: 100,
-          branches: 93,
+          branches: 95,
         },
         "modules/earnings-results-money.ts": {
           statements: 91,
