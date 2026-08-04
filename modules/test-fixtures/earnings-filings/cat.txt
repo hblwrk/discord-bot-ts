@@ -1,0 +1,1494 @@
+EX-99.1
+2
+ex991toformcat2q2026earnin.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+Caterpillar Inc.
+2Q 2026 Earnings Release
+
+
+
+
+
+
+FOR IMMEDIATE RELEASE
+| | | | | | | | | | | | | | |
+| | | | |
+
+Caterpillar Reports Second-Quarter 2026 Results
+| | | | | | | | | | | |
+| | Second Quarter |
+($ in billions except profit per share) | | 2026 | 2025 |
+Sales and Revenues | | $20.5 | $16.6 |
+Profit Per Share | | $7.77 | $4.62 |
+Adjusted Profit Per Share | | $8.17 | $4.72 |
+| | | |
+Please see a reconciliation of GAAP to non-GAAP financial measures in the appendix on pages 12 and 13.
+|
+| | | | | |
+● | Second-quarter 2026 sales and revenues increased 24% to $20.5 billion |
+● | Second-quarter 2026 profit per share of $7.77; adjusted profit per share of $8.17 |
+● | Deployed $2.2 billion of cash for share repurchases and dividends in the second quarter |
+| |
+
+IRVING, Texas, Aug. 4, 2026 – Caterpillar Inc. (NYSE: CAT) announced second-quarter 2026 results.
+“This is the first time in company history that we have generated over $20 billion in sales and revenues in a single quarter,” said Caterpillar Chairman and CEO Joe Creed. “This milestone underscores both the essential work our customers do every day and the dedication of Caterpillar employees worldwide to solving our customers’ toughest challenges. Strong order rates and a growing backlog reflect broadening momentum across all three of our primary segments.”
+Sales and revenues for the second quarter of 2026 were $20.5 billion, a 24% increase compared with $16.6 billion in the second quarter of 2025. The increase was primarily due to higher sales volume of $3.1 billion and favorable price realization of $595 million.
+Operating profit margin was 20.9% for the second quarter of 2026, compared with 17.3% for the second quarter of 2025. Adjusted operating profit margin was 21.9% for the second quarter of 2026, compared with 17.6% for the second quarter of 2025. Second-quarter 2026 profit per share was $7.77, compared with second-quarter 2025 profit per share of $4.62. Adjusted profit per share in the second quarter of 2026 was $8.17, compared with second-quarter 2025 adjusted profit per share of $4.72. For the second quarter of 2026 and 2025, adjusted operating profit margin and adjusted profit per share excluded restructuring costs.
+For the second quarter of 2026, enterprise operating cash flow was $4.4 billion, and the company ended the second quarter with $6.7 billion of enterprise cash. In the quarter, the company deployed $1.5 billion of cash for repurchases of Caterpillar common stock and $0.7 billion of cash for dividends.
+(more)
+
+
+
+
+
+
+
+2
+
+
+
+CONSOLIDATED RESULTS
+Consolidated Sales and Revenues
+
+The chart above graphically illustrates reasons for the change in consolidated sales and revenues between the second quarter of 2025 (at left) and the second quarter of 2026 (at right). Caterpillar management utilizes these charts internally to visually communicate with the company’s board of directors and employees.
+Total sales and revenues for the second quarter of 2026 were $20.543 billion, an increase of $3.974 billion, or 24%, compared with $16.569 billion in the second quarter of 2025. The increase was primarily due to higher sales volume of $3.1 billion and favorable price realization of $595 million. Higher sales volume was mainly driven by higher sales of equipment to end users.
+Sales were higher across the three primary segments.
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Sales and Revenues by Segment |
+(Millions of dollars) | Second Quarter 2025 | | Sales
+Volume | | Price
+Realization | | Currency | | Inter-Segment / Other | | Second Quarter 2026 | | $
+Change | | %
+Change |
+| | | | | | | | | | | | | | | |
+Power & Energy | $ | 7,037 | | | $ | 736 | | | $ | 212 | | | $ | 53 | | | $ | 200 | | | $ | 8,238 | | | $ | 1,201 | | | 17% |
+Construction Industries | 6,190 | | | 1,755 | | | 309 | | | 74 | | | 18 | | | 8,346 | | | 2,156 | | | 35% |
+Resource Industries | 3,886 | | | 639 | | | 75 | | | 65 | | | (17) | | | 4,648 | | | 762 | | | 20% |
+All Other Segment | 85 | | | 1 | | | 1 | | | — | | | (3) | | | 84 | | | (1) | | | (1%) |
+Corporate Items and Eliminations | (1,524) | | | (18) | | | (2) | | | 7 | | | (198) | | | (1,735) | | | (211) | | | |
+Machinery, Power & Energy | 15,674 | | | 3,113 | | | 595 | | | 199 | | | — | | | 19,581 | | | 3,907 | | | 25% |
+| | | | | | | | | | | | | | | |
+Financial Products Segment | 1,042 | | | — | | | — | | | — | | | 103 | | | 1,145 | | | 103 | | | 10% |
+Corporate Items and Eliminations | (147) | | | — | | | — | | | — | | | (36) | | | (183) | | | (36) | | | |
+Financial Products Revenues | 895 | | | — | | | — | | | — | | | 67 | | | 962 | | | 67 | | | 7% |
+| | | | | | | | | | | | | | | |
+Consolidated Sales and Revenues | $ | 16,569 | | | $ | 3,113 | | | $ | 595 | | | $ | 199 | | | $ | 67 | | | $ | 20,543 | | | $ | 3,974 | | | 24% |
+| | | | | | | | | | | | | | | |
+
+(more)
+
+
+
+
+
+
+3
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Sales and Revenues by Geographic Region |
+| North America | | Latin America | | EAME | | Asia/Pacific | | External Sales and Revenues | | Inter-Segment | | Total Sales and Revenues |
+(Millions of dollars) | $ | | % Chg | | $ | | % Chg | | $ | | % Chg | | $ | | % Chg | | $ | | % Chg | | $ | | % Chg | | $ | | % Chg |
+Second Quarter 2026 | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Power & Energy | $ | 4,182 | | | 30% | | $ | 373 | | | (16%) | | $ | 1,348 | | | 3% | | $ | 892 | | | 9% | | $ | 6,795 | | | 17% | | $ | 1,443 | | | 16% | | $ | 8,238 | | | 17% |
+Construction Industries | 5,065 | | | 50% | | 676 | | | 25% | | 1,456 | | | 23% | | 1,064 | | | 3% | | 8,261 | | | 35% | | 85 | | | 27% | | 8,346 | | | 35% |
+Resource Industries | 2,230 | | | 34% | | 671 | | | 13% | | 713 | | | 22% | | 954 | | | 1% | | 4,568 | | | 21% | | 80 | | | (18%) | | 4,648 | | | 20% |
+All Other Segment | 9 | | | 50% | | 1 | | | —% | | 2 | | | 100% | | 3 | | | (50%) | | 15 | | | 15% | | 69 | | | (4%) | | 84 | | | (1%) |
+Corporate Items and Eliminations | (51) | | | | | 1 | | | | | (1) | | | | | (7) | | | | | (58) | | | | | (1,677) | | | | | (1,735) | | | |
+Machinery, Power & Energy | 11,435 | | | 39% | | 1,722 | | | 10% | | 3,518 | | | 15% | | 2,906 | | | 4% | | 19,581 | | | 25% | | — | | | —% | | 19,581 | | | 25% |
+| | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Financial Products Segment | 765 | | | 9% | | 122 | | | 16% | | 137 | | | 9% | | 121 | | | 12% | | 1,145 | | | 10% | | — | | | —% | | 1,145 | | | 10% |
+Corporate Items and Eliminations | (106) | | | | | (23) | | | | | (30) | | | | | (24) | | | | | (183) | | | | | — | | | | | (183) | | | |
+Financial Products Revenues | 659 | | | 7% | | 99 | | | 16% | | 107 | | | (1%) | | 97 | | | 11% | | 962 | | | 7% | | — | | | —% | | 962 | | | 7% |
+| | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Consolidated Sales and Revenues | $ | 12,094 | | | 37% | | $ | 1,821 | | | 10% | | $ | 3,625 | | | 14% | | $ | 3,003 | | | 4% | | $ | 20,543 | | | 24% | | $ | — | | | —% | | $ | 20,543 | | | 24% |
+| | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Second Quarter 2025 | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Power & Energy | $ | 3,225 | | | | | $ | 442 | | | | | $ | 1,306 | | | | | $ | 821 | | | | | $ | 5,794 | | | | | $ | 1,243 | | | | | $ | 7,037 | | | |
+Construction Industries | 3,369 | | | | | 540 | | | | | 1,185 | | | | | 1,029 | | | | | 6,123 | | | | | 67 | | | | | 6,190 | | | |
+Resource Industries | 1,668 | | | | | 592 | | | | | 584 | | | | | 945 | | | | | 3,789 | | | | | 97 | | | | | 3,886 | | | |
+All Other Segment | 6 | | | | | — | | | | | 1 | | | | | 6 | | | | | 13 | | | | | 72 | | | | | 85 | | | |
+Corporate Items and Eliminations | (32) | | | | | (3) | | | | | (4) | | | | | (6) | | | | | (45) | | | | | (1,479) | | | | | (1,524) | | | |
+Machinery, Power & Energy | 8,236 | | | | | 1,571 | | | | | 3,072 | | | | | 2,795 | | | | | 15,674 | | | | | — | | | | | 15,674 | | | |
+| | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Financial Products Segment | 703 | | | | | 105 | | | | | 126 | | | | | 108 | | | | | 1,042 | | | | | — | | | | | 1,042 | | | |
+Corporate Items and Eliminations | (88) | | | | | (20) | | | | | (18) | | | | | (21) | | | | | (147) | | | | | — | | | | | (147) | | | |
+Financial Products Revenues | 615 | | | | | 85 | | | | | 108 | | | | | 87 | | | | | 895 | | | | | — | | | | | 895 | | | |
+| | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Consolidated Sales and Revenues | $ | 8,851 | | | | | $ | 1,656 | | | | | $ | 3,180 | | | | | $ | 2,882 | | | | | $ | 16,569 | | | | | $ | — | | | | | $ | 16,569 | | | |
+| | | | | | | | | | | | | | | | | | | | | | | | | | | |
+
+
+
+(more)
+
+
+
+
+
+
+
+4
+
+
+
+Consolidated Operating Profit
+
+The chart above graphically illustrates reasons for the change in consolidated operating profit between the second quarter of 2025 (at left) and the second quarter of 2026 (at right). Caterpillar management utilizes these charts internally to visually communicate with the company’s board of directors and employe es. The bar titled Other includes consolidating adjustments and Machinery, Power & Energy’s other operating (income) expenses.
+Operating profit for the second quarter of 2026 was $4.295 billion, an increase of $1.435 billion, or 50%, compared with $2.860 billion in the second quarter of 2025. The increase was primarily due to the profit impact of higher sales volume.
+Operating profit in the second quarter of 2026 included $392 million of expected International Emergency Economic Power Act (IEEPA) tariff recoveries.
+| | | | | | | | | | | | | | | | | | | | | | | |
+Profit (Loss) by Segment |
+(Millions of dollars) | Second Quarter 2026 | | Second Quarter 2025 | | $
+Change | | %
+Change
+|
+Power & Energy | $ | 2,027 | | | $ | 1,554 | | | $ | 473 | | | 30 | % |
+Construction Industries | 1,947 | | | 1,244 | | | 703 | | | 57 | % |
+Resource Industries | 693 | | | 563 | | | 130 | | | 23 | % |
+All Other Segment | — | | | — | | | — | | | — | % |
+Corporate Items and Eliminations | (453) | | | (566) | | | 113 | | | |
+Machinery, Power & Energy | 4,214 | | | 2,795 | | | 1,419 | | | 51 | % |
+| | | | | | | |
+Financial Products Segment | 328 | | | 248 | | | 80 | | | 32 | % |
+Corporate Items and Eliminations | (65) | | | (36) | | | (29) | | | |
+Financial Products | 263 | | | 212 | | | 51 | | | 24 | % |
+| | | | | | | |
+Consolidating Adjustments | (182) | | | (147) | | | (35) | | | |
+| | | | | | | |
+Consolidated Operating Profit | $ | 4,295 | | | $ | 2,860 | | | $ | 1,435 | | | 50 | % |
+| | | | | | | |
+
+
+
+
+
+
+
+
+
+
+(more)
+
+
+
+
+
+
+5
+
+
+
+Other Profit/Loss and Tax Items
+• Other income (expense) in the second quarter of 2026 was income of $398 million, compared with income of $84 million in the second quarter of 2025. The change was primarily driven by favorable impacts from foreign currency, total return swap contracts and investment and interest income.
+• The effective tax rate for the second quarter of 2026 was 23.1% compared to 23.0% for the second quarter of 2025. Excluding the discrete items discussed below, the global estimated annual effective tax rate was 23.0% for the second quarters of 2026 and 2025.
+A discrete tax benefit of $26 million was recorded in the second quarter of 2026, compared with a $1 million benefit in the second quarter of 2025, for the settlement of stock-based compensation awards with associated tax deductions in excess of cumulative U.S. GAAP compensation expense.
+In addition, the global estimated annual effective tax rate in the second quarter of 2026 excluded the impact of second quarter losses of $139 million for the divestiture of certain non-U.S. entities with no related tax benefit.
+Please see a reconciliation of GAAP to non-GAAP financial measures in the appendix on pages 12 and 13.
+(more)
+
+
+
+
+
+
+
+6
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+POWER & ENERGY |
+(Millions of dollars) | | | | | | | | | | | | | | | | |
+Segment Sales | | | | | | | | | | | | | | |
+| | Second Quarter 2025 | | Sales Volume | | Price Realization | | Currency | | Inter-Segment | | Second Quarter 2026 | | $
+Change | | %
+Change |
+Total Sales | | $ | 7,037 | | | $ | 736 | | | $ | 212 | | | $ | 53 | | | $ | 200 | | | $ | 8,238 | | | $ | 1,201 | | | 17 | % |
+| | | | | | | | | | | | | | | | |
+Sales by Application | | | | | | | | |
+| | Second Quarter 2026 | | Second Quarter 2025 | | $
+Change | | %
+Change | | | | | | | | |
+Power Generation | | $ | 3,098 | | | $ | 2,407 | | | $ | 691 | | | 29 | % | | | | | | | | |
+Oil and Gas | | 2,044 | | | 1,867 | | | 177 | | | 9 | % | | | | | | | | |
+Industrial | | 1,653 | | | 1,520 | | | 133 | | | 9 | % | | | | | | | | |
+| | | | | | | | | | | | | | | | |
+External Sales | | 6,795 | | | 5,794 | | | 1,001 | | | 17 | % | | | | | | | | |
+Inter-segment | | 1,443 | | | 1,243 | | | 200 | | | 16 | % | | | | | | | | |
+Total Sales | | $ | 8,238 | | | $ | 7,037 | | | $ | 1,201 | | | 17 | % | | | | | | | | |
+| | | | | | | | | | | | | | | | |
+Segment Profit | | | | | | | | |
+| | Second Quarter 2026 | | Second Quarter 2025 | |
+Change
+| | %
+Change | | | | | | | | |
+Segment Profit | | $ | 2,027 | | | $ | 1,554 | | | $ | 473 | | | 30 | % | | | | | | | | |
+Segment Profit Margin | | 24.6 | % | | 22.1 | % | | 2.5 | pts | | | | | | | | | | |
+| | | | | | | | | | | | | | | | |
+
+Power & Energy’s total sales were $8.238 billion in the second quarter of 2026, an increase of $1.201 billion, or 17%, compared with $7.037 billion in the second quarter of 2025. The increase was primarily due to higher sales volume of $736 million, favorable price realization of $212 million and higher inter-segment sales of $200 million.
+• Power Generation – Sales increased in large reciprocating engines and in turbines and turbine-related services, primarily in data center applications.
+• Oil and Gas – Sales increased in reciprocating engines used in gas compression applications and in reciprocating engine aftermarket parts, partially offset by lower sales of reciprocating engines used in well servicing applications. Sales also increased in turbines and turbine-related services.
+• Industrial – Sales increased primarily in North America and EAME.
+Power & Energy’s segment profit was $2.027 billion in the second quarter of 2026, an increase of $473 million, or 30%, compared with $1.554 billion in the second quarter of 2025. The increase was mainly due to the profit impact of higher sales volume of $457 million and favorable price realization of $212 million, partially offset by unfavorable manufacturing costs of $149 million. Unfavorable manufacturing costs largely reflected increased period manufacturing costs.
+
+
+(more)
+
+
+
+
+
+
+
+7
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+CONSTRUCTION INDUSTRIES | | | | |
+(Millions of dollars) | | | | | | | | | | | | | | | | | | | | |
+Segment Sales | | | | | | | | | | | | | | | | | | |
+| | Second Quarter 2025 | | Sales Volume | | Price Realization | | Currency | | Inter-Segment | | Second Quarter 2026 | | $
+Change | | %
+Change | | | | |
+Total Sales | | $ | 6,190 | | | $ | 1,755 | | | $ | 309 | | | $ | 74 | | | $ | 18 | | | $ | 8,346 | | | $ | 2,156 | | | 35 | % | | | | |
+| | | | | | | | | | | | | | | | | | | | |
+Sales by Geographic Region | | | | | | | | | | | | |
+| | Second Quarter 2026 | | Second Quarter 2025 | | $
+Change | | %
+Change | | | | | | | | | | | | |
+North America | | $ | 5,065 | | | $ | 3,369 | | | $ | 1,696 | | | 50 | % | | | | | | | | | | | | |
+Latin America | | 676 | | | 540 | | | 136 | | | 25 | % | | | | | | | | | | | | |
+EAME | | 1,456 | | | 1,185 | | | 271 | | | 23 | % | | | | | | | | | | | | |
+Asia/Pacific | | 1,064 | | | 1,029 | | | 35 | | | 3 | % | | | | | | | | | | | | |
+External Sales | | 8,261 | | | 6,123 | | | 2,138 | | | 35 | % | | | | | | | | | | | | |
+Inter-segment | | 85 | | | 67 | | | 18 | | | 27 | % | | | | | | | | | | | | |
+Total Sales | | $ | 8,346 | | | $ | 6,190 | | | $ | 2,156 | | | 35 | % | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | | | | |
+Segment Profit | | | | | | | | | | | | |
+| | Second Quarter 2026 | | Second Quarter 2025 | |
+Change
+| | %
+Change | | | | | | | | | | | | |
+Segment Profit | | $ | 1,947 | | | $ | 1,244 | | | $ | 703 | | | 57 | % | | | | | | | | | | | | |
+Segment Profit Margin | | 23.3 | % | | 20.1 | % | | 3.2 | pts | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | | | | |
+
+Construction Industries’ total sales were $8.346 billion in the second quarter of 2026, an increase of $2.156 billion, or 35%, compared with $6.190 billion in the second quarter of 2025. The increase in sales was mainly due to higher sales volume of $1.8 billion and favorable price realization of $309 million. Higher sales volume was primarily driven by higher sales of equipment to end users.
+• In North America, sales increased primarily due to higher sales volume and favorable price realization. Higher sales volume was mainly driven by higher sales of equipment to end users and by the impact from changes in dealer inventories.
+• Sales increased in Latin America mainly due to higher sales volume and favorable currency impacts primarily related to the Brazilian real. Higher sales volume was mainly driven by higher sales of equipment to end users.
+• In EAME, sales increased primarily due to higher sales volume and favorable currency impacts mainly related to the euro. Higher sales volume was primarily driven by higher sales of equipment to end users.
+• Sales increased in Asia/Pacific mainly due to higher sales volume. Higher sales volume was primarily driven by higher sales of equipment to end users.
+Construction Industries’ segment profit was $1.947 billion in the second quarter of 2026, an increase of $703 million, or 57%, compared with $1.244 billion in the second quarter of 2025. The increase was primarily due to the profit impact of higher sales volume.
+(more)
+
+
+
+
+
+
+
+8
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+RESOURCE INDUSTRIES |
+(Millions of dollars) | | | | | | | | | | | | | | | | |
+Segment Sales | | | | | | | | | | | | | | |
+| | Second Quarter 2025 | | Sales Volume | | Price Realization | | Currency | | Inter-Segment | | Second Quarter 2026 | | $
+Change | | %
+Change |
+Total Sales | | $ | 3,886 | | | $ | 639 | | | $ | 75 | | | $ | 65 | | | $ | (17) | | | $ | 4,648 | | | $ | 762 | | | 20 | % |
+| | | | | | | | | | | | | | | | |
+Sales by Industry | | | | | | | | |
+| | Second Quarter 2026 | | Second Quarter 2025 | | $
+Change | | %
+Change | | | | | | | | |
+Mining, HC and Q&A* | | $ | 3,685 | | | $ | 3,024 | | | $ | 661 | | | 22 | % | | | | | | | | |
+Rail | | 883 | | | 765 | | | 118 | | | 15 | % | | | | | | | | |
+External Sales | | 4,568 | | | 3,789 | | | 779 | | | 21 | % | | | | | | | | |
+Inter-segment | | 80 | | | 97 | | | (17) | | | (18 | %) | | | | | | | | |
+Total Sales | | $ | 4,648 | | | $ | 3,886 | | | $ | 762 | | | 20 | % | | | | | | | | |
+* Heavy Construction and Quarry & Aggregates (HC and Q&A)
+| | | | | | | | |
+Segment Profit | | | | | | | | |
+| | Second Quarter 2026 | | Second Quarter 2025 | |
+Change
+| | %
+Change | | | | | | | | |
+Segment Profit | | $ | 693 | | | $ | 563 | | | $ | 130 | | | 23 | % | | | | | | | | |
+Segment Profit Margin | | 14.9 | % | | 14.5 | % | | 0.4 | pts | | | | | | | | | | |
+| | | | | | | | | | | | | | | | |
+
+Resource Industries’ total sales were $4.648 billion in the second quarter of 2026, an increase of $762 million, or 20%, compared with $3.886 billion in the second quarter of 2025. The increase was primarily due to higher sales volume. Higher sales volume was primarily driven by higher sales of equipment to end users.
+• Mining, Heavy Construction and Quarry & Aggregates – Sales increased primarily due to higher sales of equipment to end users.
+• Rail – Sales increased due to higher international locomotive deliveries. Sales also increased in rail services.
+Resource Industries’ segment profit was $693 million in the second quarter of 2026, an increase of $130 million, or 23%, compared with $563 million in the second quarter of 2025. The increase was mainly due to the profit impact of higher sales volume of $269 million, partially offset by unfavorable manufacturing costs of $158 million. Unfavorable manufacturing costs primarily reflected increased period manufacturing costs.
+
+
+(more)
+
+
+
+
+
+
+
+9
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+FINANCIAL PRODUCTS SEGMENT |
+(Millions of dollars) | | | | | | | | | | | | | | | | |
+Revenues by Geographic Region | | | | | | | | |
+| | Second Quarter 2026 | | Second Quarter 2025 | | $
+Change | | %
+Change | | | | | | | | |
+North America | | $ | 765 | | | $ | 703 | | | $ | 62 | | | 9 | % | | | | | | | | |
+Latin America | | 122 | | | 105 | | | 17 | | | 16 | % | | | | | | | | |
+EAME | | 137 | | | 126 | | | 11 | | | 9 | % | | | | | | | | |
+Asia/Pacific | | 121 | | | 108 | | | 13 | | | 12 | % | | | | | | | | |
+Total Revenues | | $ | 1,145 | | | $ | 1,042 | | | $ | 103 | | | 10 | % | | | | | | | | |
+| | | | | | | | | | | | | | | | |
+Segment Profit | | | | | | | | |
+| | Second Quarter 2026 | | Second Quarter 2025 | |
+Change
+| | %
+Change | | | | | | | | |
+Segment Profit | | $ | 328 | | | $ | 248 | | | $ | 80 | | | 32 | % | | | | | | | | |
+| | | | | | | | | | | | | | | | |
+
+Financial Products’ segment revenues were $1.145 billion in the second quarter of 2026, an increase of $103 million, or 10%, compared with $1.042 billion in the second quarter of 2025. The increase was primarily due to a favorable impact from higher average earning assets across all regions.
+Financial Products’ segment profit was $328 million in the second quarter of 2026, an increase of $80 million, or 32%, compared with $248 million in the second quarter of 2025. The increase was mainly due to favorable impacts from higher average earning assets of $44 million, equity securities at Insurance Services of $22 million and higher margins at Insurance Services of $21 million, partially offset by higher provision for credit losses at Cat Financial of $22 million.
+At the end of the second quarter of 2026, past dues at Cat Financial were 1.31%, compared with 1.62% at the end of the second quarter of 2025. Write-offs, net of recoveries, were $20 million for the second quarter of 2026 compared with $18 million for the second quarter of 2025. As of June 30, 2026, Cat Financial's allowance for credit losses totaled $294 million, or 0.84% of finance receivables, compared with $283 million, or 0.86% of finance receivables at March 31, 2026. The allowance for credit losses at year-end 2025 was $284 million, or 0.86% of finance receivables.
+
+
+
+Corporate Items and Eliminations
+Expense for corporate items and eliminations was $518 million in the second quarter of 2026, a decrease of $84 million from the second quarter of 2025. This decrease was due to timing differences, which included the majority of the expected IEEPA tariff recoveries recorded in the second quarter of 2026, and favorable impacts of segment reporting methodology differences. This was partially offset by higher corporate costs, higher restructuring costs and an unfavorable change in fair value adjustments related to deferred compensation plans.
+In the second quarter of 2026, restructuring costs increased primarily due to the divestiture of certain non-U.S. entities.
+(more)
+
+
+
+
+
+
+
+10
+
+
+
+Notes
+i. Glossary of terms is included on the Caterpillar website at https://investors.caterpillar.com/overview/default.aspx .
+ii. Sales of equipment to end users is demonstrated by the company’s Rolling 3 Month Retail Sales Statistics filed in a Form 8-K on Tuesday, Aug. 4, 2026.
+iii. Information on non-GAAP financial measures is included in the appendix on pages 12 and 13.
+iv. Some amounts within this report are rounded to the millions or billions and may not add.
+v. Caterpillar will conduct a teleconference and live webcast, with a slide presentation, beginning at 7:30 a.m. Central Time on Tuesday, Aug. 4, 2026, to discuss its 2026 second-quarter results. The accompanying slides will be available before the webcast on the Caterpillar website at https://investors.caterpillar.com/events-presentations/default.aspx .
+About Caterpillar
+For more than a century, Caterpillar has built a better, more sustainable world. With 2025 sales and revenues of $67.6 billion, Caterpillar Inc. is shaping the future as the world’s leading manufacturer of construction and mining equipment, off-highway diesel and natural gas engines, industrial gas turbines and diesel-electric locomotives. Backed by one of the largest independent global dealer networks and financing services through Cat Financial, the company’s primary business segments: Power & Energy, Construction Industries and Resource Industries are solving customers’ toughest challenges through commercial excellence and advanced technology, driven by a highly skilled, dedicated global team. Learn more at caterpillar.com .
+Caterpillar’s latest financial results are also available online:
+https://investors.caterpillar.com/overview/default.aspx
+https://investors.caterpillar.com/financials/quarterly-results/default.aspx (live broadcast/replays of quarterly conference call)
+Caterpillar investor relations contact: Alex Kapper, +1 773-250-2227 or Kapper_Alex@cat.com
+
+
+Caterpillar media contact: Tiffany Heikkila, +1 832-573-0958 or Tiffany.Heikkila@cat.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(more)
+
+
+
+
+
+
+11
+
+
+
+Forward-Looking Statements
+Certain statements in this press release relate to future events and expectations and are forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995. Words such as “believe,” “estimate,” “will be,” “will,” “would,” “expect,” “anticipate,” “plan,” “forecast,” “target,” “guide,” “project,” “intend,” “could,” “should” or other similar words or expressions often identify forward-looking statements. All statements other than statements of historical fact are forward-looking statements, including, without limitation, statements regarding our outlook, projections, forecasts or trend descriptions. These statements do not guarantee future performance and speak only as of the date they are made, and we do not undertake to update our forward-looking statements.
+Caterpillar’s actual results may differ materially from those described or implied in our forward-looking statements based on a number of factors, including, but not limited to: (i) global and regional economic conditions and economic conditions in the industries we serve; (ii) commodity price changes, material price increases, fluctuations in demand for our products or significant shortages of material; (iii) government monetary or fiscal policies; (iv) political and economic risks, commercial instability and events beyond our control in the countries in which we operate; (v) international trade policies and their impact on demand for our products and our competitive position, including the imposition of new tariffs or changes in existing tariff rates; (vi) our ability to develop, produce and market quality products that meet our customers’ needs; (vii) the impact of the highly competitive environment in which we operate on our sales and pricing; (viii) information technology security threats and computer crime; (ix) inventory management decisions and sourcing practices of our dealers and our OEM customers; (x) a failure to realize, or a delay in realizing, all of the anticipated benefits of our acquisitions, joint ventures or divestitures; (xi) union disputes or other employee relations issues; (xii) adverse effects of unexpected events; (xiii) disruptions or volatility in global financial markets limiting our sources of liquidity or the liquidity of our customers, dealers and suppliers; (xiv) failure to maintain our credit ratings and potential resulting increases to our cost of borrowing and adverse effects on our cost of funds, liquidity, competitive position and access to capital markets; (xv) our Financial Products segment’s risks associated with the financial services industry; (xvi) changes in interest rates or market liquidity conditions; (xvii) an increase in delinquencies, repossessions or net losses of Cat Financial’s customers; (xviii) currency fluctuations; (xix) our or Cat Financial’s compliance with financial and other restrictive covenants in debt agreements; (xx) increased pension plan funding obligations; (xxi) alleged or actual violations of trade or anti-corruption laws and regulations; (xxii) additional tax expense or exposure, including the impact of U.S. tax reform; (xxiii) significant legal proceedings, claims, lawsuits or government investigations; (xxiv) new regulations or changes in financial services regulations; (xxv) compliance with environmental laws and regulations; (xxvi) catastrophic events, including global pandemics such as the COVID-19 pandemic; and (xxvii) other factors described in more detail in Caterpillar’s Forms 10-Q, 10-K and other filings with the Securities and Exchange Commission.
+(more)
+
+
+
+
+
+
+
+12
+
+
+
+APPENDIX
+NON-GAAP FINANCIAL MEASURES
+The following definitions are provided for the non-GAAP financial measures. These non-GAAP financial measures have no standardized meaning prescribed by U.S. GAAP and therefore are unlikely to be comparable to the calculation of similar measures for other companies. Management does not intend these items to be considered in isolation or as a substitute for the related GAAP measures.
+The company believes it is important to separately quantify the profit impact of two significant items in order for the company’s results to be meaningful to readers. These items consist of (i) restructuring costs related to the divestiture of certain non-U.S. entities in 2026 and (ii) other restructuring costs. The company does not consider this item indicative of earnings from ongoing business activities and believes the non-GAAP measure provides investors with useful perspective on underlying business results and trends and aids with assessing the company’s period-over-period results. The company intends to discuss adjusted profit per share for the fourth quarter and full-year 2026, excluding mark-to-market gains or losses for remeasurement of pension and other postemployment benefit plans.
+Reconciliations of adjusted results to the most directly comparable GAAP measure are as follows:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+(Dollars in millions except per share data) | | Operating Profit | | Operating Profit Margin | | Profit Before Taxes | | Provision (Benefit) for Income Taxes | | | | Profit | | Profit per Share |
+| | | | | | | | | | | | | | |
+Three Months Ended June 30, 2026 - U.S. GAAP
+| | $ | 4,295 | | | 20.9 | % | | $ | 4,558 | | | $ | 1,055 | | | | | $ | 3,593 | | | $ | 7.77 | |
+Restructuring costs - divestiture of certain non-U.S. entities
+| | 139 | | 0.7 | % | | 139 | | — | | | | | 139 | | 0.30 | |
+Other restructuring costs | | 63 | | | 0.3 | % | | 63 | | | 15 | | | | | 48 | | | 0.10 | |
+| | | | | | | | | | | | | | |
+Three Months Ended June 30, 2026 - Adjusted
+| | $ | 4,497 | | | 21.9 | % | | $ | 4,760 | | | $ | 1,070 | | | | | $ | 3,780 | | | $ | 8.17 | |
+| | | | | | | | | | | | | | |
+Three Months Ended June 30, 2025 - U.S. GAAP
+| | $ | 2,860 | | | 17.3 | % | | $ | 2,818 | | | $ | 646 | | | | | $ | 2,179 | | | $ | 4.62 | |
+| | | | | | | | | | | | | | |
+Other restructuring costs | | 56 | | | 0.3 | % | | 56 | | | 12 | | | | | 47 | | | 0.10 |
+| | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | |
+Three Months Ended June 30, 2025 - Adjusted
+| | $ | 2,916 | | | 17.6 | % | | $ | 2,874 | | | $ | 658 | | | | | $ | 2,226 | | | $ | 4.72 | |
+| | | | | | | | | | | | | | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(more)
+
+
+
+
+
+
+13
+
+
+
+The company believes it is important to separately disclose the annual effective tax rate, excluding discrete items for the results to be meaningful to readers. The annual effective tax rate is discussed using non-GAAP financial measures that exclude the effects of amounts associated with discrete items recorded fully in the quarter they occur. For the three months ended June 30, 2026 and 2025, these items consist of (i) restructuring costs related to the divestiture of certain non-U.S. entities in 2026 and (ii) the settlement of stock-based compensation awards with associated tax deductions in excess of cumulative U.S. GAAP compensation expense. The company believes the non-GAAP measures will provide investors with useful perspective on underlying business results and trends and aids with assessing the company's period-over-period results.
+A reconciliation of the effective tax rate to annual effective tax rate, excluding discrete items is below:
+| | | | | | | | | | | | | | | | | | | | | |
+(Dollars in millions) | | Profit Before Taxes | | Provision (Benefit) for Income Taxes | | | Effective Tax Rate |
+| | | | | | | |
+Three Months Ended June 30, 2026 - U.S. GAAP
+| | $ | 4,558 | | | 1,055 | | | | 23.1 | % |
+Restructuring costs - divestiture of certain non-U.S. entities | | 139 | | | — | | | | |
+| | | | | | | |
+| | | | | | | |
+Excess stock-based compensation | | — | | | 26 | | | | |
+Annual effective tax rate, excluding discrete items | | $ | 4,697 | | | $ | 1,081 | | | | 23.0 | % |
+| | | | | | | |
+| | | | | | | |
+Excess stock-based compensation | | — | | | (26) | | | | |
+Other restructuring costs | | 63 | | | 15 | | | | |
+| | | | | | | |
+Three Months Ended June 30, 2026 - Adjusted
+| | $ | 4,760 | | | $ | 1,070 | | | | |
+| | | | | | | |
+
+| | | | | | | | | | | | | | | | | | | | | |
+Three Months Ended June 30, 2025 - U.S. GAAP
+| | $ | 2,818 | | | $ | 646 | | | | 23.0 | % |
+| | | | | | | |
+| | | | | | | |
+Excess stock-based compensation | | — | | | 1 | | | | |
+Annual effective tax rate, excluding discrete items | | $ | 2,818 | | | $ | 647 | | | | 23.0 | % |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Excess stock-based compensation | | — | | | (1) | | | | |
+Other restructuring costs | | 56 | | | 12 | | | | |
+| | | | | | | |
+Three Months Ended June 30, 2025 - Adjusted
+| | $ | 2,874 | | | $ | 658 | | | | |
+| | | | | | | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(more)
+
+
+
+
+
+
+14
+
+
+
+
+
+
+
+Supplemental Consolidating Data
+The company is providing supplemental consolidating data for the purpose of additional analysis. The data has been grouped as follows:
+Consolidated – Caterpillar Inc. and its subsidiaries.
+Machinery, Power & Energy (MP&E) – The company defines MP&E as it is presented in the supplemental data as Caterpillar Inc. and its subsidiaries, excluding Financial Products. MP&E’s information relates to the design, manufacturing and marketing of its products.
+Financial Products – The company defines Financial Products as it is presented in the supplemental data as its finance and insurance subsidiaries, primarily Caterpillar Financial Services Corporation (Cat Financial) and Caterpillar Insurance Holdings Inc. (Insurance Services). Financial Products’ information relates to the financing to customers and dealers for the purchase and lease of Caterpillar and other equipment.
+Consolidating Adjustments – Eliminations of transactions between MP&E and Financial Products.
+The nature of the MP&E and Financial Products businesses is different, especially with regard to the financial position and cash flow items. Caterpillar management utilizes this presentation internally to highlight these differences. The company believes this presentation will assist readers in understanding its business.
+Pa ges 15 to 25 reconcile MP&E and Financial Products to Caterpillar Inc. consolidated financial information.
+(more)
+
+
+
+
+
+
+
+15
+
+
+
+Caterpillar Inc.
+Condensed Consolidated Statement of Results of Operations
+(Unaudited)
+(Dollars in millions except per share data)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Sales and revenues: | | | | | | | |
+Sales of Machinery, Power & Energy | $ | 19,581 | | | $ | 15,674 | | | $ | 36,054 | | | $ | 29,052 | |
+Revenues of Financial Products | 962 | | | 895 | | | 1,904 | | | 1,766 | |
+Total sales and revenues | 20,543 | | | 16,569 | | | 37,958 | | | 30,818 | |
+| | | | | | | |
+Operating costs: | | | | | | | |
+Cost of goods sold | 12,781 | | | 10,807 | | | 24,087 | | | 19,772 | |
+Selling, general and administrative expenses | 2,018 | | | 1,694 | | | 3,834 | | | 3,287 | |
+Research and development expenses | 616 | | | 551 | | | 1,153 | | | 1,031 | |
+Interest expense of Financial Products | 362 | | | 336 | | | 707 | | | 662 | |
+Other operating (income) expenses | 471 | | | 321 | | | 797 | | | 627 | |
+Total operating costs | 16,248 | | | 13,709 | | | 30,578 | | | 25,379 | |
+| | | | | | | |
+Operating profit | 4,295 | | | 2,860 | | | 7,380 | | | 5,439 | |
+| | | | | | | |
+Interest expense excluding Financial Products | 135 | | | 126 | | | 269 | | | 242 | |
+Other income (expense) | 398 | | | 84 | | | 658 | | | 191 | |
+| | | | | | | |
+Consolidated profit before taxes | 4,558 | | | 2,818 | | | 7,769 | | | 5,388 | |
+| | | | | | | |
+Provision (benefit) for income taxes | 1,055 | | | 646 | | | 1,725 | | | 1,220 | |
+Profit of consolidated companies | 3,503 | | | 2,172 | | | 6,044 | | | 4,168 | |
+| | | | | | | |
+Equity in profit (loss) of unconsolidated affiliated companies | 90 | | | 7 | | | 97 | | | 14 | |
+| | | | | | | |
+Profit of consolidated and affiliated companies | 3,593 | | | 2,179 | | | 6,141 | | | 4,182 | |
+| | | | | | | |
+Less: Profit (loss) attributable to noncontrolling interests | — | | | — | | | (1) | | | — | |
+| | | | | | | |
+Profit 1
+| $ | 3,593 | | | $ | 2,179 | | | $ | 6,142 | | | $ | 4,182 | |
+| | | | | | | |
+| | | | | | | |
+Profit per common share | $ | 7.80 | | | $ | 4.64 | | | $ | 13.29 | | | $ | 8.85 | |
+Profit per common share — diluted 2
+| $ | 7.77 | | | $ | 4.62 | | | $ | 13.23 | | | $ | 8.82 | |
+| | | | | | | |
+Weighted-average common shares outstanding (millions) | | | | | | | |
+– Basic | 460.4 | | | 469.7 | | | 462.0 | | | 472.4 | |
+– Diluted 2
+| 462.5 | | | 471.5 | | | 464.3 | | | 474.5 | |
+| | | | | | | |
+
+| | | | | |
+1 | Profit attributable to common shareholders. |
+2 | Diluted by assumed exercise of stock-based compensation awards using the treasury stock method. |
+
+(more)
+
+
+
+
+
+
+
+16
+
+
+
+Caterpillar Inc .
+Condensed Consolidated Statement of Financial Position
+(Unaudited)
+(Millions of dollars)
+| | | | | | | | | | | |
+| June 30,
+2026 | | December 31,
+2025 |
+Assets | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 6,713 | | | $ | 9,980 | |
+Receivables – trade and other | 13,188 | | | 10,920 | |
+Receivables – finance | 10,844 | | | 10,649 | |
+Prepaid expenses and other current assets | 3,078 | | | 2,801 | |
+Inventories | 20,627 | | | 18,135 | |
+Total current assets | 54,450 | | | 52,485 | |
+| | | |
+Property, plant and equipment – net | 15,628 | | | 15,140 | |
+Long-term receivables – trade and other | 3,086 | | | 2,142 | |
+Long-term receivables – finance | 14,364 | | | 14,272 | |
+Noncurrent deferred and refundable income taxes | 2,286 | | | 2,882 | |
+Intangible assets | 420 | | | 241 | |
+Goodwill | 5,859 | | | 5,321 | |
+Other assets | 6,516 | | | 6,102 | |
+Total assets | $ | 102,609 | | | $ | 98,585 | |
+| | | |
+Liabilities | | | |
+Current liabilities: | | | |
+Short-term borrowings: | | | |
+| | | |
+-- Financial Products | $ | 5,046 | | | $ | 5,514 | |
+Accounts payable | 10,313 | | | 8,968 | |
+Accrued expenses | 5,825 | | | 5,587 | |
+Accrued wages, salaries and employee benefits | 2,148 | | | 2,554 | |
+Customer advances | 4,777 | | | 3,314 | |
+Dividends payable | 749 | | | 703 | |
+Other current liabilities | 2,871 | | | 2,798 | |
+Long-term debt due within one year: | | | |
+-- Machinery, Power & Energy | 35 | | | 35 | |
+-- Financial Products | 8,026 | | | 7,085 | |
+Total current liabilities | 39,790 | | | 36,558 | |
+| | | |
+Long-term debt due after one year: | | | |
+-- Machinery, Power & Energy | 10,655 | | | 10,678 | |
+-- Financial Products | 21,384 | | | 20,018 | |
+Liability for postemployment benefits | 3,744 | | | 3,838 | |
+Other liabilities | 7,642 | | | 6,175 | |
+Total liabilities | 83,215 | | | 77,267 | |
+| | | |
+Shareholders’ equity | | | |
+Common stock | 5,654 | | | 7,181 | |
+Treasury stock | (54,533) | | | (49,539) | |
+Profit employed in the business | 70,141 | | | 65,448 | |
+Accumulated other comprehensive income (loss) | (1,867) | | | (1,772) | |
+Noncontrolling interests | (1) | | | — | |
+Total shareholders’ equity | 19,394 | | | 21,318 | |
+Total liabilities and shareholders’ equity | $ | 102,609 | | | $ | 98,585 | |
+
+
+
+(more)
+
+
+
+
+
+
+
+17
+
+
+
+Caterpillar Inc.
+Condensed Consolidated Statement of Cash Flow
+(Unaudited)
+(Millions of dollars)
+| | | | | | | | | | | |
+| Six Months Ended June 30, |
+| 2026 | | 2025 |
+Cash flow from operating activities: | | | |
+Profit of consolidated and affiliated companies | $ | 6,141 | | | $ | 4,182 | |
+Adjustments to reconcile profit to net cash provided by operating activities: | | | |
+Depreciation and amortization | 1,211 | | | 1,094 | |
+| | | |
+Provision (benefit) for deferred income taxes | 644 | | | (110) | |
+(Gain) loss on divestiture | 139 | | | — | |
+| | | |
+| | | |
+Other | (22) | | | 398 | |
+Changes in assets and liabilities, net of acquisitions and divestitures: | | | |
+Receivables – trade and other | (3,182) | | | (319) | |
+Inventories | (2,553) | | | (1,639) | |
+Accounts payable | 1,528 | | | 973 | |
+Accrued expenses | 189 | | | (12) | |
+Accrued wages, salaries and employee benefits | (408) | | | (805) | |
+Customer advances | 2,576 | | | 1,276 | |
+Other assets – net | (93) | | | (90) | |
+Other liabilities – net | 71 | | | (537) | |
+Net cash provided by (used for) operating activities | 6,241 | | | 4,411 | |
+Cash flow from investing activities: | | | |
+Capital expenditures – excluding equipment leased to others | (1,315) | | | (1,265) | |
+Expenditures for equipment leased to others | (847) | | | (608) | |
+Proceeds from disposals of leased assets and property, plant and equipment | 436 | | | 365 | |
+Additions to finance receivables | (8,639) | | | (7,064) | |
+Collections of finance receivables | 8,060 | | | 6,399 | |
+Proceeds from sale of finance receivables | 33 | | | 18 | |
+Investments and acquisitions (net of cash acquired) | (802) | | | (21) | |
+Proceeds from sale of businesses and investments (net of cash sold) | (92) | | | 12 | |
+Proceeds from maturities and sale of securities | 734 | | | 1,328 | |
+Investments in securities | (1,155) | | | (618) | |
+Other – net | 148 | | | (53) | |
+Net cash provided by (used for) investing activities | (3,439) | | | (1,507) | |
+Cash flow from financing activities: | | | |
+Dividends paid | (1,399) | | | (1,336) | |
+Common stock issued, and other stock compensation transactions, net | (121) | | | (59) | |
+Payments to purchase common stock | (6,522) | | | (4,488) | |
+| | | |
+Excise tax paid on purchases of common stock | (49) | | | (73) | |
+Proceeds from debt issued (original maturities greater than three months) | 7,363 | | | 5,707 | |
+Payments on debt (original maturities greater than three months) | (4,763) | | | (4,168) | |
+Short-term borrowings – net (original maturities three months or less) | (542) | | | 72 | |
+| | | |
+Net cash provided by (used for) financing activities | (6,033) | | | (4,345) | |
+Effect of exchange rate changes on cash | (35) | | | (7) | |
+Increase (decrease) in cash, cash equivalents and restricted cash | (3,266) | | | (1,448) | |
+Cash, cash equivalents and restricted cash at beginning of period | 9,986 | | | 6,896 | |
+Cash, cash equivalents and restricted cash at end of period | $ | 6,720 | | | $ | 5,448 | |
+
+| | |
+Cash equivalents primarily represent short-term, highly liquid investments with original maturities of generally three months or less.
+|
+
+
+
+(more)
+
+
+
+
+
+
+
+18
+
+
+
+Caterpillar Inc.
+Supplemental Data for Results of Operations
+For the Three Months Ended June 30, 2026
+(Unaudited)
+(Millions of dollars)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | Supplemental Consolidating Data | |
+| Consolidated | | Machinery, Power & Energy | | Financial
+Products | | Consolidating
+Adjustments | |
+Sales and revenues: | | | | | | | | |
+Sales of Machinery, Power & Energy | $ | 19,581 | | | $ | 19,581 | | | $ | — | | | $ | — | | |
+Revenues of Financial Products | 962 | | | — | | | 1,188 | | | (226) | | 1 |
+Total sales and revenues | 20,543 | | | 19,581 | | | 1,188 | | | (226) | | |
+| | | | | | | | |
+Operating costs: | | | | | | | | |
+Cost of goods sold | 12,781 | | | 12,783 | | | — | | | (2) | | 2 |
+Selling, general and administrative expenses | 2,018 | | | 1,800 | | | 223 | | | (5) | | 2 |
+Research and development expenses | 616 | | | 616 | | | — | | | — | | |
+Interest expense of Financial Products | 362 | | | — | | | 374 | | | (12) | | 2 |
+Other operating (income) expenses | 471 | | | 168 | | | 328 | | | (25) | | 2 |
+Total operating costs | 16,248 | | | 15,367 | | | 925 | | | (44) | | |
+| | | | | | | | |
+Operating profit | 4,295 | | | 4,214 | | | 263 | | | (182) | | |
+| | | | | | | | |
+Interest expense excluding Financial Products | 135 | | | 141 | | | — | | | (6) | | 3 |
+Other income (expense) | 398 | | | 163 | | | 59 | | | 176 | | 4 |
+| | | | | | | | |
+Consolidated profit before taxes | 4,558 | | | 4,236 | | | 322 | | | — | | |
+| | | | | | | | |
+Provision (benefit) for income taxes | 1,055 | | | 963 | | | 92 | | | — | | |
+Profit of consolidated companies | 3,503 | | | 3,273 | | | 230 | | | — | | |
+| | | | | | | | |
+Equity in profit (loss) of unconsolidated affiliated companies | 90 | | | 90 | | | — | | | — | | |
+| | | | | | | | |
+| | | | | | | | |
+Profit of consolidated and affiliated companies | 3,593 | | | 3,363 | | | 230 | | | — | | |
+| | | | | | | | |
+Less: Profit (loss) attributable to noncontrolling interests | — | | | — | | | — | | | — | | |
+| | | | | | | | |
+Profit 5
+| $ | 3,593 | | | $ | 3,363 | | | $ | 230 | | | $ | — | | |
+
+| | | | | |
+1 | Elimination of Financial Products’ revenues earned from MP&E. |
+2 | Elimination of net expenses recorded between MP&E and Financial Products. |
+3 | Elimination of interest expense recorded between Financial Products and MP&E. |
+4 | Elimination of discount recorded by MP&E on receivables sold to Financial Products and of interest earned between MP&E and Financial Products as well as dividends paid by Financial Products to MP&E. |
+| |
+| |
+5 | Profit attributable to common shareholders. |
+
+
+
+
+
+
+
+
+
+
+
+(more)
+
+
+
+
+
+
+
+19
+
+
+
+Caterpillar Inc.
+Supplemental Data for Results of Operations
+For the Three Months Ended June 30, 2025
+(Unaudited)
+(Millions of dollars)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | Supplemental Consolidating Data | |
+| Consolidated | | Machinery, Power & Energy | | Financial
+Products | | Consolidating
+Adjustments | |
+Sales and revenues: | | | | | | | | |
+Sales of Machinery, Power & Energy | $ | 15,674 | | | $ | 15,674 | | | $ | — | | | $ | — | | |
+Revenues of Financial Products | 895 | | | — | | | 1,081 | | | (186) | | 1 |
+Total sales and revenues | 16,569 | | | 15,674 | | | 1,081 | | | (186) | | |
+| | | | | | | | |
+Operating costs: | | | | | | | | |
+Cost of goods sold | 10,807 | | | 10,809 | | | — | | | (2) | | 2 |
+Selling, general and administrative expenses | 1,694 | | | 1,497 | | | 209 | | | (12) | | 2 |
+Research and development expenses | 551 | | | 551 | | | — | | | — | | |
+Interest expense of Financial Products | 336 | | | — | | | 342 | | | (6) | | |
+Other operating (income) expenses | 321 | | | 22 | | | 318 | | | (19) | | 2 |
+Total operating costs | 13,709 | | | 12,879 | | | 869 | | | (39) | | |
+| | | | | | | | |
+Operating profit | 2,860 | | | 2,795 | | | 212 | | | (147) | | |
+| | | | | | | | |
+Interest expense excluding Financial Products | 126 | | | 130 | | | — | | | (4) | | |
+Other income (expense) | 84 | | | (101) | | | 42 | | | 143 | | 3 |
+| | | | | | | | |
+Consolidated profit before taxes | 2,818 | | | 2,564 | | | 254 | | | — | | |
+| | | | | | | | |
+Provision (benefit) for income taxes | 646 | | | 585 | | | 61 | | | — | | |
+Profit of consolidated companies | 2,172 | | | 1,979 | | | 193 | | | — | | |
+| | | | | | | | |
+Equity in profit (loss) of unconsolidated affiliated companies | 7 | | | 7 | | | — | | | — | | |
+| | | | | | | | |
+| | | | | | | | |
+Profit of consolidated and affiliated companies | 2,179 | | | 1,986 | | | 193 | | | — | | |
+| | | | | | | | |
+Less: Profit (loss) attributable to noncontrolling interests | — | | | (1) | | | 1 | | | — | | |
+| | | | | | | | |
+Profit 4
+| $ | 2,179 | | | $ | 1,987 | | | $ | 192 | | | $ | — | | |
+
+| | | | | |
+1 | Elimination of Financial Products’ revenues earned from MP&E. |
+2 | Elimination of net expenses recorded by MP&E paid to Financial Products. |
+| |
+3 | Elimination of discount recorded by MP&E on receivables sold to Financial Products and of interest earned between MP&E and Financial Products as well as dividends paid by Financial Products to MP&E. |
+| |
+| |
+4 | Profit attributable to common shareholders. |
+| |
+
+(more)
+
+
+
+
+
+
+
+20
+
+
+
+Caterpillar Inc.
+Supplemental Data for Results of Operations
+For the Six Months Ended June 30, 2026
+(Unaudited)
+(Millions of dollars)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | Supplemental Consolidating Data | |
+| Consolidated | | Machinery, Power & Energy | | Financial
+Products | | Consolidating
+Adjustments | |
+Sales and revenues: | | | | | | | | |
+Sales of Machinery, Power & Energy | $ | 36,054 | | | $ | 36,054 | | | $ | — | | | $ | — | | |
+Revenues of Financial Products | 1,904 | | | — | | | 2,331 | | | (427) | | 1 |
+Total sales and revenues | 37,958 | | | 36,054 | | | 2,331 | | | (427) | | |
+| | | | | | | | |
+Operating costs: | | | | | | | | |
+Cost of goods sold | 24,087 | | | 24,091 | | | — | | | (4) | | 2 |
+Selling, general and administrative expenses | 3,834 | | | 3,409 | | | 445 | | | (20) | | 2 |
+Research and development expenses | 1,153 | | | 1,153 | | | — | | | — | | |
+Interest expense of Financial Products | 707 | | | — | | | 730 | | | (23) | | 2 |
+Other operating (income) expenses | 797 | | | 188 | | | 656 | | | (47) | | 2 |
+Total operating costs | 30,578 | | | 28,841 | | | 1,831 | | | (94) | | |
+| | | | | | | | |
+Operating profit | 7,380 | | | 7,213 | | | 500 | | | (333) | | |
+| | | | | | | | |
+Interest expense excluding Financial Products | 269 | | | 281 | | | — | | | (12) | | 3 |
+Other income (expense) | 658 | | | 262 | | | 75 | | | 321 | | 4 |
+| | | | | | | | |
+Consolidated profit before taxes | 7,769 | | | 7,194 | | | 575 | | | — | | |
+| | | | | | | | |
+Provision (benefit) for income taxes | 1,725 | | | 1,570 | | | 155 | | | — | | |
+Profit of consolidated companies | 6,044 | | | 5,624 | | | 420 | | | — | | |
+| | | | | | | | |
+Equity in profit (loss) of unconsolidated affiliated companies | 97 | | | 97 | | | — | | | — | | |
+| | | | | | | | |
+| | | | | | | | |
+Profit of consolidated and affiliated companies | 6,141 | | | 5,721 | | | 420 | | | — | | |
+| | | | | | | | |
+Less: Profit (loss) attributable to noncontrolling interests | (1) | | | (1) | | | — | | | — | | |
+| | | | | | | | |
+Profit 5
+| $ | 6,142 | | | $ | 5,722 | | | $ | 420 | | | $ | — | | |
+
+| | | | | |
+1 | Elimination of Financial Products’ revenues earned from MP&E. |
+2 | Elimination of net expenses recorded between MP&E and Financial Products. |
+3 | Elimination of interest expense recorded between Financial Products and MP&E. |
+4 | Elimination of discount recorded by MP&E on receivables sold to Financial Products and of interest earned between MP&E and Financial Products as well as dividends paid by Financial Products to MP&E. |
+| |
+| |
+5 | Profit attributable to common shareholders. |
+| |
+
+
+
+
+
+
+
+(more)
+
+
+
+
+
+
+
+21
+
+
+
+Caterpillar Inc.
+Supplemental Data for Results of Operations
+For the Six Months Ended June 30, 2025
+(Unaudited)
+(Millions of dollars)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | Supplemental Consolidating Data | |
+| Consolidated | | Machinery, Power & Energy | | Financial
+Products | | Consolidating
+Adjustments | |
+Sales and revenues: | | | | | | | | |
+Sales of Machinery, Power & Energy | $ | 29,052 | | | $ | 29,052 | | | $ | — | | | $ | — | | |
+Revenues of Financial Products | 1,766 | | | — | | | 2,129 | | | (363) | | 1 |
+Total sales and revenues | 30,818 | | | 29,052 | | | 2,129 | | | (363) | | |
+| | | | | | | | |
+Operating costs: | | | | | | | | |
+Cost of goods sold | 19,772 | | | 19,776 | | | — | | | (4) | | 2 |
+Selling, general and administrative expenses | 3,287 | | | 2,905 | | | 405 | | | (23) | | 2 |
+Research and development expenses | 1,031 | | | 1,031 | | | — | | | — | | |
+Interest expense of Financial Products | 662 | | | — | | | 668 | | | (6) | | |
+Other operating (income) expenses | 627 | | | 30 | | | 643 | | | (46) | | 2 |
+Total operating costs | 25,379 | | | 23,742 | | | 1,716 | | | (79) | | |
+| | | | | | | | |
+Operating profit | 5,439 | | | 5,310 | | | 413 | | | (284) | | |
+| | | | | | | | |
+Interest expense excluding Financial Products | 242 | | | 249 | | | — | | | (7) | | |
+Other income (expense) | 191 | | | (146) | | | 60 | | | 277 | | 3 |
+| | | | | | | | |
+Consolidated profit before taxes | 5,388 | | | 4,915 | | | 473 | | | — | | |
+| | | | | | | | |
+Provision (benefit) for income taxes | 1,220 | | | 1,105 | | | 115 | | | — | | |
+Profit of consolidated companies | 4,168 | | | 3,810 | | | 358 | | | — | | |
+| | | | | | | | |
+Equity in profit (loss) of unconsolidated affiliated companies | 14 | | | 14 | | | — | | | — | | |
+| | | | | | | | |
+| | | | | | | | |
+Profit of consolidated and affiliated companies | 4,182 | | | 3,824 | | | 358 | | | — | | |
+| | | | | | | | |
+Less: Profit (loss) attributable to noncontrolling interests | — | | | (1) | | | 1 | | | — | | |
+| | | | | | | | |
+Profit 4
+| $ | 4,182 | | | $ | 3,825 | | | $ | 357 | | | $ | — | | |
+
+| | | | | |
+1 | Elimination of Financial Products’ revenues earned from MP&E. |
+2 | Elimination of net expenses recorded between MP&E and Financial Products. |
+3 | Elimination of discount recorded by MP&E on receivables sold to Financial Products and of interest earned between MP&E and Financial Products as well as dividends paid by Financial Products to MP&E. |
+| |
+| |
+4 | Profit attributable to common shareholders. |
+| |
+
+(more)
+
+
+
+
+
+
+
+22
+
+
+
+Caterpillar Inc.
+Supplemental Data for Financial Position
+At June 30, 2026
+(Unaudited)
+(Millions of dollars)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | Supplemental Consolidating Data | |
+| Consolidated | | Machinery, Power & Energy | | Financial
+Products | | Consolidating
+Adjustments | |
+Assets | | | | | | | | |
+Current assets: | | | | | | | | |
+Cash and cash equivalents | $ | 6,713 | | | $ | 5,945 | | | $ | 768 | | | $ | — | | |
+Receivables – trade and other | 13,188 | | | 4,630 | | | 686 | | | 7,872 | | 1,2
+|
+Receivables – finance | 10,844 | | | — | | | 18,938 | | | (8,094) | | 2 |
+| | | | | | | | |
+Prepaid expenses and other current assets | 3,078 | | | 2,683 | | | 423 | | | (28) | | 3 |
+Inventories | 20,627 | | | 20,627 | | | — | | | — | | |
+Total current assets | 54,450 | | | 33,885 | | | 20,815 | | | (250) | | |
+| | | | | | | | |
+Property, plant and equipment – net | 15,628 | | | 11,314 | | | 4,268 | | | 46 | | 4 |
+Long-term receivables – trade and other | 3,086 | | | 2,721 | | | 101 | | | 264 | | 1,2
+|
+Long-term receivables – finance | 14,364 | | | — | | | 15,912 | | | (1,548) | | 2 |
+| | | | | | | | |
+| | | | | | | | |
+Noncurrent deferred and refundable income taxes | 2,286 | | | 2,596 | | | 124 | | | (434) | | 5 |
+Intangible assets | 420 | | | 420 | | | — | | | — | | |
+Goodwill | 5,859 | | | 5,859 | | | — | | | — | | |
+Other assets | 6,516 | | | 4,826 | | | 2,783 | | | (1,093) | | 6 |
+Total assets | $ | 102,609 | | | $ | 61,621 | | | $ | 44,003 | | | $ | (3,015) | | |
+| | | | | | | | |
+Liabilities | | | | | | | | |
+Current liabilities: | | | | | | | | |
+Short-term borrowings | $ | 5,046 | | | $ | — | | | $ | 5,046 | | | $ | — | | |
+| | | | | | | | |
+Accounts payable | 10,313 | | | 10,275 | | | 251 | | | (213) | | 7 |
+Accrued expenses | 5,825 | | | 5,069 | | | 756 | | | — | | |
+Accrued wages, salaries and employee benefits | 2,148 | | | 2,098 | | | 50 | | | — | | |
+Customer advances | 4,777 | | | 4,774 | | | 3 | | | — | | |
+Dividends payable | 749 | | | 749 | | | — | | | — | | |
+Other current liabilities | 2,871 | | | 2,212 | | | 709 | | | (50) | | 5,8,9
+|
+Long-term debt due within one year | 8,061 | | | 35 | | | 8,026 | | | — | | |
+Total current liabilities | 39,790 | | | 25,212 | | | 14,841 | | | (263) | | |
+| | | | | | | | |
+Long-term debt due after one year | 32,039 | | | 10,948 | | | 22,384 | | | (1,293) | | 9 |
+Liability for postemployment benefits | 3,744 | | | 3,743 | | | 1 | | | — | | |
+Other liabilities | 7,642 | | | 6,607 | | | 1,552 | | | (517) | | 5 |
+Total liabilities | 83,215 | | | 46,510 | | | 38,778 | | | (2,073) | | |
+| | | | | | | | |
+Shareholders’ equity | | | | | | | | |
+Common stock | 5,654 | | | 5,654 | | | 905 | | | (905) | | 10 |
+Treasury stock | (54,533) | | | (54,533) | | | — | | | — | | |
+Profit employed in the business | 70,141 | | | 64,890 | | | 5,219 | | | 32 | | 10 |
+Accumulated other comprehensive income (loss) | (1,867) | | | (901) | | | (966) | | | — | | |
+Noncontrolling interests | (1) | | | 1 | | | 67 | | | (69) | | 10 |
+Total shareholders’ equity | 19,394 | | | 15,111 | | | 5,225 | | | (942) | | |
+Total liabilities and shareholders’ equity | $ | 102,609 | | | $ | 61,621 | | | $ | 44,003 | | | $ | (3,015) | | |
+
+| | | | | |
+1 | Elimination of receivables between MP&E and Financial Products. |
+2 | Reclassification of MP&E’s trade receivables purchased by Financial Products and Financial Products’ wholesale inventory receivables. |
+3 | Elimination of MP&E's insurance premiums that are prepaid to Financial Products. |
+4 | Reclassification of Financial Products’ other assets to property, plant and equipment. |
+5 | Reclassification reflecting required netting of deferred tax assets/liabilities by taxing jurisdiction.
+|
+6 | Elimination of other intercompany assets and liabilities between MP&E and Financial Products. |
+7 | Elimination of payables between MP&E and Financial Products. |
+8 | Elimination of prepaid insurance in Financial Products’ other liabilities. |
+9 | Elimination of debt between MP&E and Financial Products.
+|
+10 | Eliminations associated with MP&E’s investments in Financial Products’ subsidiaries. |
+| |
+
+(more)
+
+
+
+
+
+
+
+23
+
+
+
+Caterpillar Inc.
+Supplemental Data for Financial Position
+At December 31, 2025
+(Unaudited)
+(Millions of dollars)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | Supplemental Consolidating Data | |
+| Consolidated | | Machinery, Power & Energy | | Financial
+Products | | Consolidating
+Adjustments | |
+Assets | | | | | | | | |
+Current assets: | | | | | | | | |
+Cash and cash equivalents | $ | 9,980 | | | $ | 9,333 | | | $ | 647 | | | $ | — | | |
+Receivables – trade and other | 10,920 | | | 3,883 | | | 657 | | | 6,380 | | 1,2
+|
+Receivables – finance | 10,649 | | | — | | | 17,325 | | | (6,676) | | 2 |
+| | | | | | | | |
+Prepaid expenses and other current assets | 2,801 | | | 2,448 | | | 441 | | | (88) | | 3 |
+Inventories | 18,135 | | | 18,135 | | | — | | | — | | |
+Total current assets | 52,485 | | | 33,799 | | | 19,070 | | | (384) | | |
+| | | | | | | | |
+Property, plant and equipment – net | 15,140 | | | 10,985 | | | 4,106 | | | 49 | | 4 |
+Long-term receivables – trade and other | 2,142 | | | 1,982 | | | 163 | | | (3) | | 1,2
+|
+Long-term receivables – finance | 14,272 | | | — | | | 15,538 | | | (1,266) | | 2 |
+| | | | | | | | |
+| | | | | | | | |
+Noncurrent deferred and refundable income taxes | 2,882 | | | 3,208 | | | 133 | | | (459) | | 5 |
+Intangible assets | 241 | | | 241 | | | — | | | — | | |
+Goodwill | 5,321 | | | 5,321 | | | — | | | — | | |
+Other assets | 6,102 | | | 4,525 | | | 2,651 | | | (1,074) | | 6 |
+Total assets | $ | 98,585 | | | $ | 60,061 | | | $ | 41,661 | | | $ | (3,137) | | |
+| | | | | | | | |
+Liabilities | | | | | | | | |
+Current liabilities: | | | | | | | | |
+Short-term borrowings | $ | 5,514 | | | $ | — | | | $ | 5,514 | | | $ | — | | |
+| | | | | | | | |
+Accounts payable | 8,968 | | | 8,988 | | | 268 | | | (288) | | 7 |
+Accrued expenses | 5,587 | | | 4,877 | | | 710 | | | — | | |
+Accrued wages, salaries and employee benefits | 2,554 | | | 2,494 | | | 60 | | | — | | |
+Customer advances | 3,314 | | | 3,311 | | | 3 | | | — | | |
+Dividends payable | 703 | | | 703 | | | — | | | — | | |
+Other current liabilities | 2,798 | | | 2,259 | | | 645 | | | (106) | | 5,8
+|
+Long-term debt due within one year | 7,120 | | | 35 | | | 7,085 | | | — | | |
+Total current liabilities | 36,558 | | | 22,667 | | | 14,285 | | | (394) | | |
+| | | | | | | | |
+Long-term debt due after one year | 30,696 | | | 10,955 | | | 21,018 | | | (1,277) | | 9 |
+Liability for postemployment benefits | 3,838 | | | 3,837 | | | 1 | | | — | | |
+Other liabilities | 6,175 | | | 5,162 | | | 1,516 | | | (503) | | 5 |
+Total liabilities | 77,267 | | | 42,621 | | | 36,820 | | | (2,174) | | |
+| | | | | | | | |
+Shareholders’ equity | | | | | | | | |
+Common stock | 7,181 | | | 7,181 | | | 905 | | | (905) | | 10 |
+Treasury stock | (49,539) | | | (49,539) | | | — | | | — | | |
+Profit employed in the business | 65,448 | | | 60,639 | | | 4,799 | | | 10 | | 10 |
+Accumulated other comprehensive income (loss) | (1,772) | | | (843) | | | (929) | | | — | | |
+Noncontrolling interests | — | | | 2 | | | 66 | | | (68) | | 10 |
+Total shareholders’ equity | 21,318 | | | 17,440 | | | 4,841 | | | (963) | | |
+Total liabilities and shareholders’ equity | $ | 98,585 | | | $ | 60,061 | | | $ | 41,661 | | | $ | (3,137) | | |
+
+| | | | | |
+1 | Elimination of receivables between MP&E and Financial Products. |
+2 | Reclassification of MP&E’s trade receivables purchased by Financial Products and Financial Products’ wholesale inventory receivables. |
+3 | Elimination of MP&E’s insurance premiums that are prepaid to Financial Products. |
+4 | Reclassification of Financial Products’ other assets to property, plant and equipment. |
+5 | Reclassification reflecting required netting of deferred tax assets/liabilities by taxing jurisdiction.
+|
+6 | Elimination of other intercompany assets and liabilities between MP&E and Financial Products. |
+7 | Elimination of payables between MP&E and Financial Products. |
+8 | Elimination of prepaid insurance in Financial Products’ other liabilities.
+|
+9 | Elimination of debt between MP&E and Financial Products. |
+10 | Eliminations associated with MP&E’s investments in Financial Products’ subsidiaries. |
+| |
+
+(more)
+
+
+
+
+
+
+
+24
+
+
+
+Caterpillar Inc.
+Supplemental Data for Cash Flow
+For the Six Months Ended June 30, 2026
+(Unaudited)
+(Millions of dollars)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | Supplemental Consolidating Data | |
+| Consolidated | | Machinery, Power & Energy | | Financial
+Products | | Consolidating
+Adjustments | |
+Cash flow from operating activities: | | | | | | | | |
+Profit of consolidated and affiliated companies | $ | 6,141 | | | $ | 5,721 | | | $ | 420 | | | $ | — | | |
+Adjustments to reconcile profit to net cash provided by operating activities: | | | | | | | | |
+Depreciation and amortization | 1,211 | | | 812 | | | 399 | | | — | | |
+| | | | | | | | |
+| | | | | | | | |
+Provision (benefit) for deferred income taxes | 644 | | | 666 | | | (22) | | | — | | |
+| | | | | | | | |
+(Gain) loss on divestiture | 139 | | | 139 | | | — | | | — | | |
+Other | (22) | | | (74) | | | (271) | | | 323 | | 1 |
+| | | | | | | | |
+Changes in assets and liabilities, net of acquisitions and divestitures: | | | | | | | | |
+Receivables – trade and other | (3,182) | | | (1,356) | | | (27) | | | (1,799) | | 1,2
+|
+Inventories | (2,553) | | | (2,552) | | | — | | | (1) | | 1 |
+Accounts payable | 1,528 | | | 1,518 | | | (65) | | | 75 | | 1 |
+Accrued expenses | 189 | | | 183 | | | 6 | | | — | | |
+Accrued wages, salaries and employee benefits | (408) | | | (399) | | | (9) | | | — | | |
+Customer advances | 2,576 | | | 2,576 | | | — | | | — | | |
+Other assets – net | (93) | | | (111) | | | 35 | | | (17) | | 1 |
+Other liabilities – net | 71 | | | (112) | | | 148 | | | 35 | | 1 |
+Net cash provided by (used for) operating activities | 6,241 | | | 7,011 | | | 614 | | | (1,384) | | |
+Cash flow from investing activities: | | | | | | | | |
+Capital expenditures – excluding equipment leased to others | (1,315) | | | (1,302) | | | (16) | | | 3 | | 1 |
+Expenditures for equipment leased to others | (847) | | | (11) | | | (840) | | | 4 | | 1 |
+Proceeds from disposals of leased assets and property, plant and equipment | 436 | | | 35 | | | 407 | | | (6) | | 1 |
+Additions to finance receivables | (8,639) | | | — | | | (10,312) | | | 1,673 | | 2 |
+Collections of finance receivables | 8,060 | | | — | | | 9,188 | | | (1,128) | | 2 |
+Net intercompany purchased receivables | — | | | — | | | (838) | | | 838 | | 2 |
+Proceeds from sale of finance receivables | 33 | | | — | | | 33 | | | — | | |
+| | | | | | | | |
+Collections of intercompany receivables (original maturities greater than three months) | — | | | — | | | 48 | | | (48) | | 3 |
+| | | | | | | | |
+Investments and acquisitions (net of cash acquired) | (802) | | | (802) | | | — | | | — | | |
+Proceeds from sale of businesses and investments (net of cash sold) | (92) | | | (92) | | | — | | | — | | |
+Proceeds from maturities and sale of securities | 734 | | | 395 | | | 339 | | | — | | |
+Investments in securities | (1,155) | | | (648) | | | (507) | | | — | | |
+Other – net | 148 | | | 230 | | | (82) | | | — | | |
+Net cash provided by (used for) investing activities | (3,439) | | | (2,195) | | | (2,580) | | | 1,336 | | |
+Cash flow from financing activities: | | | | | | | | |
+Dividends paid | (1,399) | | | (1,399) | | | — | | | — | | |
+Common stock issued, and other stock compensation transactions, net | (121) | | | (121) | | | — | | | — | | |
+Payments to purchase common stock | (6,522) | | | (6,522) | | | — | | | — | | |
+| | | | | | | | |
+Excise tax paid on purchases of common stock | (49) | | | (49) | | | — | | | — | | |
+| | | | | | | | |
+Payments on intercompany borrowings (original maturities greater than three months) | — | | | (48) | | | — | | | 48 | | 3 |
+| | | | | | | | |
+Proceeds from debt issued (original maturities greater than three months) | 7,363 | | | — | | | 7,363 | | | — | | |
+Payments on debt (original maturities greater than three months) | (4,763) | | | (19) | | | (4,744) | | | — | | |
+Short-term borrowings – net (original maturities three months or less) | (542) | | | — | | | (542) | | | — | | |
+| | | | | | | | |
+Net cash provided by (used for) financing activities | (6,033) | | | (8,158) | | | 2,077 | | | 48 | | |
+Effect of exchange rate changes on cash | (35) | | | (44) | | | 9 | | | — | | |
+Increase (decrease) in cash, cash equivalents and restricted cash | (3,266) | | | (3,386) | | | 120 | | | — | | |
+Cash, cash equivalents and restricted cash at beginning of period | 9,986 | | | 9,336 | | | 650 | | | — | | |
+Cash, cash equivalents and restricted cash at end of period | $ | 6,720 | | | $ | 5,950 | | | $ | 770 | | | $ | — | | |
+
+| | | | | | |
+1 | Elimination of non-cash adjustments and changes in assets and liabilities related to consolidated reporting. | |
+2 | Reclassification of Financial Products’ cash flow activity from investing to operating for receivables that arose from the sale of inventory. | |
+3 | Elimination of proceeds and payments to/from MP&E and Financial Products. | |
+| | |
+| | |
+
+(more)
+
+
+
+
+
+
+25
+
+
+
+Caterpillar Inc.
+Supplemental Data for Cash Flow
+For the Six Months Ended June 30, 2025
+(Unaudited)
+(Millions of dollars)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | Supplemental Consolidating Data | |
+| Consolidated | | Machinery, Power & Energy | | Financial
+Products | | Consolidating
+Adjustments | |
+Cash flow from operating activities: | | | | | | | | |
+Profit of consolidated and affiliated companies | $ | 4,182 | | | $ | 3,824 | | | $ | 358 | | | $ | — | | |
+Adjustments to reconcile profit to net cash provided by operating activities: | | | | | | | | |
+Depreciation and amortization | 1,094 | | | 716 | | | 378 | | | — | | |
+| | | | | | | | |
+| | | | | | | | |
+Provision (benefit) for deferred income taxes | (110) | | | (88) | | | (22) | | | — | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+Other | 398 | | | 357 | | | (286) | | | 327 | | 1 |
+| | | | | | | | |
+Changes in assets and liabilities, net of acquisitions and divestitures: | | | | | | | | |
+Receivables – trade and other | (319) | | | 90 | | | 5 | | | (414) | | 1,2
+|
+Inventories | (1,639) | | | (1,639) | | | — | | | — | | |
+Accounts payable | 973 | | | 930 | | | 6 | | | 37 | | 1 |
+Accrued expenses | (12) | | | (64) | | | 52 | | | — | | |
+Accrued wages, salaries and employee benefits | (805) | | | (786) | | | (19) | | | — | | |
+Customer advances | 1,276 | | | 1,276 | | | — | | | — | | |
+Other assets – net | (90) | | | (133) | | | (3) | | | 46 | | 1 |
+Other liabilities – net | (537) | | | (621) | | | 128 | | | (44) | | 1 |
+Net cash provided by (used for) operating activities | 4,411 | | | 3,862 | | | 597 | | | (48) | | |
+Cash flow from investing activities: | | | | | | | | |
+Capital expenditures – excluding equipment leased to others | (1,265) | | | (1,273) | | | (22) | | | 30 | | 1 |
+Expenditures for equipment leased to others | (608) | | | (14) | | | (597) | | | 3 | | 1 |
+Proceeds from disposals of leased assets and property, plant and equipment | 365 | | | 36 | | | 362 | | | (33) | | 1 |
+Additions to finance receivables | (7,064) | | | — | | | (8,084) | | | 1,020 | | 2 |
+Collections of finance receivables | 6,399 | | | — | | | 7,278 | | | (879) | | 2 |
+Net intercompany purchased receivables | — | | | — | | | 93 | | | (93) | | 2 |
+Proceeds from sale of finance receivables | 18 | | | — | | | 18 | | | — | | |
+Additions to intercompany receivables (original maturities greater than three months) | — | | | (1,000) | | | — | | | 1,000 | | 3 |
+Collections of intercompany receivables (original maturities greater than three months) | — | | | — | | | 35 | | | (35) | | 3 |
+| | | | | | | | |
+Investments and acquisitions (net of cash acquired) | (21) | | | (21) | | | — | | | — | | |
+Proceeds from sale of businesses and investments (net of cash sold) | 12 | | | 12 | | | — | | | — | | |
+Proceeds from maturities and sale of securities | 1,328 | | | 1,026 | | | 302 | | | — | | |
+Investments in securities | (618) | | | (278) | | | (340) | | | — | | |
+Other – net | (53) | | | (18) | | | (35) | | | — | | |
+Net cash provided by (used for) investing activities | (1,507) | | | (1,530) | | | (990) | | | 1,013 | | |
+Cash flow from financing activities: | | | | | | | | |
+Dividends paid | (1,336) | | | (1,336) | | | — | | | — | | |
+| | | | | | | | |
+| | | | | | | | |
+Common stock issued, and other stock compensation transactions, net | (59) | | | (59) | | | — | | | — | | |
+Payments to purchase common stock | (4,488) | | | (4,488) | | | — | | | — | | |
+Excise tax paid on purchases of common stock | (73) | | | (73) | | | — | | | — | | |
+| | | | | | | | |
+Proceeds from intercompany borrowings (original maturities greater than three months) | — | | | — | | | 1,000 | | | (1,000) | | 3 |
+Payments on intercompany borrowings (original maturities greater than three months) | — | | | (35) | | | — | | | 35 | | 3 |
+| | | | | | | | |
+Proceeds from debt issued (original maturities greater than three months) | 5,707 | | | 1,976 | | | 3,731 | | | — | | |
+Payments on debt (original maturities greater than three months) | (4,168) | | | (35) | | | (4,133) | | | — | | |
+Short-term borrowings – net (original maturities three months or less) | 72 | | | — | | | 72 | | | — | | |
+| | | | | | | | |
+Net cash provided by (used for) financing activities | (4,345) | | | (4,050) | | | 670 | | | (965) | | |
+Effect of exchange rate changes on cash | (7) | | | (21) | | | 14 | | | — | | |
+Increase (decrease) in cash, cash equivalents and restricted cash | (1,448) | | | (1,739) | | | 291 | | | — | | |
+Cash, cash equivalents and restricted cash at beginning of period | 6,896 | | | 6,170 | | | 726 | | | — | | |
+Cash, cash equivalents and restricted cash at end of period | $ | 5,448 | | | $ | 4,431 | | | $ | 1,017 | | | $ | — | | |
+
+| | | | | |
+1 | Elimination of non-cash adjustments and changes in assets and liabilities related to consolidated reporting. |
+2 | Reclassification of Financial Products’ cash flow activity from investing to operating for receivables that arose from the sale of inventory. |
+3 | Elimination of proceeds and payments to/from MP&E and Financial Products. |
+| |
+| |
+| |
+| |
+| |
+
+#

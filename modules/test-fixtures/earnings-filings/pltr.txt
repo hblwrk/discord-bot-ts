@@ -1,0 +1,347 @@
+EX-99.1
+2
+a2026q2ex991pressrelease.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+
+
+
+Exhibit 99.1
+
+Palantir Reports Q2 2026 U.S. Comm Revenue Growth of 149% Y/Y and Revenue Growth of 93% Y/Y; Raises FY 2026 Revenue Guidance to 82% Y/Y Growth and U.S. Comm Revenue Guidance to 134% Y/Y, Crushing Consensus Expectations
+
+8/3/2026
+MIAMI — (BUSINESS WIRE) — Palantir Technologies Inc. (NASDAQ:PLTR) today announced financial results for the second quarter ended June 30, 2026.
+
+“Demand for AI sovereignty has now been unleashed. And Palantir is the only company that has demonstrated it can transform tokens into actual economic value. Our customers trust us to provide them with maximal control over their operations, data, and decisions. Their competitive advantage should never become the training data for future models. This quarter was otherworldly: our U.S. commercial revenue grew 149% year-over-year, our overall revenue grew 93% year-over-year, and our Rule of 40 score climbed to 155%. The sovereign AI revolution makes us very optimistic about the future,” said Alex Karp, Co-Founder and Chief Executive Officer of Palantir Technologies.
+
+Q2 2026 Highlights
+• U.S. revenue grew 115% year-over-year and 23% quarter-over-quarter to $1.573 billion
+◦ U.S. commercial revenue grew 149% year-over-year and 28% quarter-over-quarter to $764 million
+◦ U.S. government revenue grew 90% year-over-year and 18% quarter-over-quarter to $809 million
+• Revenue grew 93% year-over-year and 19% quarter-over-quarter to $1.935 billion
+• Closed 220 deals of at least $1 million, 98 deals of at least $5 million, and 73 deals of at least $10 million
+• Closed total contract value (“TCV”) of $3.373 billion, up 49% year-over-year
+◦ Closed a record-setting $2.132 billion of U.S. commercial TCV, up 153% year-over-year
+• U.S. commercial remaining deal value (“RDV”) of $6.238 billion, up 124% year-over-year and 27% quarter-over-quarter
+• GAAP income from operations of $912 million, representing a 47% margin
+• Adjusted income from operations of $1.194 billion, representing a 62% margin
+• Rule of 40 score of 155%
+• GAAP net income of $1.062 billion, representing a 55% margin
+• Cash from operations of $1.216 billion, representing a 63% margin
+• Adjusted free cash flow of $1.220 billion, representing a 63% margin
+• GAAP earnings per share (“EPS”) of $0.41
+• Adjusted EPS of $0.41
+• Cash, cash equivalents, and short-term U.S. Treasury securities of $9.2 billion
+
+
+
+
+
+
+
+
+Q2 2026 Financial Summary
+| | | | | | | | | | | |
+(Unaudited)
+(Amounts in thousands, except percentages and per share amounts)
+| Second Quarter |
+Amount |
+Revenue | $ | 1,935,464 | |
+Year-over-year growth | 93 | % |
+| | | |
+| Amount | | Margin |
+Income from Operations | $ | 912,004 | | | 47 | % |
+Adjusted Income from Operations | $ | 1,194,472 | | | 62 | % |
+Cash from Operations | $ | 1,216,167 | | | 63 | % |
+Adjusted Free Cash Flow | $ | 1,220,359 | | | 63 | % |
+Net Income Attributable to Common Stockholders | $ | 1,061,890 | | | 55 | % |
+Adjusted Net Income Attributable to Common Stockholders | $ | 1,047,001 | | | |
+Adjusted EBITDA | $ | 1,202,692 | | | 62 | % |
+GAAP EPS, Diluted | $ | 0.41 | | | |
+Adjusted EPS, Diluted | $ | 0.41 | | | |
+
+
+Outlook
+For Q3 2026, we expect:
+• Revenue of between $2.160 – $2.164 billion.
+• Adjusted income from operations of between $1.292 – $1.296 billion.
+For full year 2026:
+• We are raising our revenue guidance to between $8.150 – $8.158 billion.
+• We are raising our U.S. commercial revenue guidance to in excess of $3.424 billion, representing a growth rate of at least 134%.
+• We are raising our adjusted income from operations guidance to between $4.889 – $4.897 billion.
+• We are raising our adjusted free cash flow guidance to between $4.5 – $4.7 billion.
+• And we continue to expect GAAP operating income and net income in each quarter of this year.
+
+CEO Letter
+Palantir CEO Alex Karp’s quarterly letter is available through Palantir’s website at https://www.palantir.com/newsroom/letters.
+
+Earnings Webcast
+A live public webcast will be held at 5:00 PM ET today to discuss the results for our second quarter ended June 30, 2026 and financial outlook. The webcast can be accessed by registering online at https://palantir.events/palantirearnings-q22026. A replay of the webcast will be available at https://investors.palantir.com following the event.
+An investor presentation, including supplemental financial information and reconciliations of certain non-GAAP measures to their nearest comparable GAAP measures, will be available through Palantir’s Investor Relations website at https://investors.palantir.com.
+
+Forward-Looking Statements
+This press release and statements on our earnings webcast contain “forward-looking statements” within the meaning of the “safe harbor” provisions of the Private Securities Litigation Reform Act of 1995, including, but not limited to, statements regarding our financial outlook, product development and related timing, distribution, and pricing, expected benefits of and applications for our software platforms, business strategy, and plans (including strategy and plans relating to our Artificial Intelligence Platform (“AIP”), sales and marketing efforts, sales force, partnerships, and customers), investments in our business, market trends and market size, opportunities (including growth opportunities), our expectations regarding our existing and potential investments in, and commercial contracts with, various entities, and our expectations regarding macroeconomic
+
+
+
+
+
+
+
+events. These forward-looking statements are made as of the date they were first issued and were based on current expectations, estimates, forecasts, and projections as well as the beliefs and assumptions of management. Words such as “guidance,” “expect,” “anticipate,” “should,” “believe,” “hope,” “target,” “project,” “plan,” “goals,” “estimate,” “potential,” “predict,” “may,” “will,” “might,” “could,” “intend,” “shall,” and variations of these terms or the negative of these terms and similar expressions are intended to identify these forward-looking statements. Forward-looking statements are subject to a number of risks and uncertainties, many of which involve factors or circumstances that are beyond our control. Our actual results could differ materially from those stated or implied in forward-looking statements due to a number of factors, including but not limited to risks detailed in our filings with the Securities and Exchange Commission (the “SEC”), including in our Annual Report on Form 10-K for the fiscal year ended December 31, 2025 and other filings and reports that we may file from time to time with the SEC, including our Quarterly Report on Form 10-Q for the quarter ended June 30, 2026. In particular, the following factors, among others, could cause our results to differ materially from those expressed or implied by such forward-looking statements: our ability to successfully execute our business and growth strategy; the sufficiency of our available funds to meet our liquidity needs; the demand for our platforms, product offerings, and services in general; our ability to increase our number of new customers and revenue generated from customers; our ability to realize some or all of the total contract value of customer contracts as revenue, including any contractual options available to customers or contractual periods that are subject to termination for convenience provisions; our long and unpredictable sales cycle; our ability to successfully execute our channel sales and other strategic initiatives with third parties; our ability to retain and expand our customer base; the fluctuation of our results of operations and our key business measures on a quarterly basis in future periods; the seasonality of our business; the implementation process for our platforms, which may be complex and lengthy; our ability to successfully develop and deploy new technologies to address the needs of our existing or prospective customers; our ability to make our platforms and product offerings easier to install, consume, and use; our ability to maintain and enhance our brand and reputation; our ability to maintain and enhance our culture as our business grows and as we pursue our business and financial goals; news or social media coverage about us or our leadership, including but not limited to coverage that presents, or relies on, inaccurate, misleading, incomplete, or otherwise damaging information; the impact of recent, ongoing, or future global macroeconomic and geopolitical events, fluctuating interest rates, monetary policy changes, foreign currency fluctuations, or the potential or actual imposition of tariffs or other impacts on trade relations on the business and operations of our company or of our existing or prospective customers and partners; issues raised by the use of artificial intelligence in our platforms; and any breach or access to our or customer or third-party data.
+The forward-looking statements included in this press release represent our views as of the date of this press release. We anticipate that subsequent events and developments will cause our views to change. We undertake no intention or obligation to update or revise any forward-looking statements, whether as a result of new information, future events or otherwise. These forward-looking statements should not be relied upon as representing our views as of any date subsequent to the date of this press release. Past performance is not necessarily indicative of future results.
+Additional Definitions
+For the purpose of this press release, our earnings webcast, and our CEO’s letter:
+• Total contract value (“TCV”) is the total potential lifetime value of contracts entered into with, or awarded by, our customers at the time of contract execution, annual contract value (“ACV”) is defined as the total value of contracts closed in the period divided by the dollar-weighted average contract duration of those same contracts, and remaining deal value (“RDV”) is the total remaining value of contracts as of the end of the reporting period. Except as noted below, TCV, ACV, and RDV each presume the exercise of all contract options available to our customers and no termination of contracts. However, the majority of our contracts are subject to termination provisions, including for convenience, and there can be no guarantee that contracts are not terminated or that contract options will be exercised. Further, RDV may exclude all or some portion of the value of certain commercial contracts as a result of our ongoing assessments of customers’ financial condition, including the consideration of such customers’ ability and intention to pay, and whether such contracts continue to meet the criteria for revenue recognition, among other factors.
+• Remaining performance obligations (“RPO”) reflect the total values of contracts that have been entered into with, or awarded by, our customers, and represent non-cancelable contracted revenue that has not yet been recognized, which includes deferred revenue and, in certain instances, amounts that will be invoiced. We have elected the practical expedient, as permitted under Accounting Standards Codification 606— Revenue from Contracts with Customers , to not disclose remaining performance obligations for contracts with original terms of twelve months or less.
+• The term “strategic commercial contracts” is as defined in our Quarterly Report on Form 10-Q for the fiscal quarter ended March 31, 2026.
+• “Dollar-weighted duration basis” is the total value of contracts closed in the applicable period, divided by the dollar-weighted average contract duration of those same contracts.
+
+
+
+
+
+
+
+• The term “Rule of 40” refers to the sum of our revenue growth rate year-over-year and our adjusted operating margin for each of the periods presented.
+
+Non-GAAP Financial Measures
+This press release and the accompanying tables, as well as our earnings webcast, and our CEO’s letter, contain the non-GAAP financial measures adjusted income from operations, which excludes stock-based compensation and related employer payroll taxes; adjusted operating margin; adjusted free cash flow; adjusted free cash flow margin; adjusted earnings before interest, taxes, depreciation, and amortization (“adjusted EBITDA”); adjusted EBITDA margin; adjusted net income attributable to common stockholders; and adjusted EPS, diluted.
+We believe these non-GAAP financial measures and other metrics described in this press release help us evaluate our business, identify trends affecting Palantir’s business, formulate business plans and financial projections, and make strategic decisions. We exclude stock-based compensation, which is a non-cash expense, from these non-GAAP financial measures because we believe that excluding this item provides meaningful supplemental information regarding operational performance and provides useful information to investors and others in understanding and evaluating our operating results in the same manner as our management team. We exclude employer payroll taxes related to stock-based compensation as it is difficult to predict and outside of Palantir’s control.
+Our definitions may differ from the definitions used by other companies and therefore comparability may be limited. In addition, other companies may not publish these or similar metrics. Further, these metrics have certain limitations as they do not include the impact of certain expenses that are reflected in our consolidated statements of operations. For example, adjusted free cash flow does not reflect our future contractual commitments or the total increase or decrease in our cash balances for a given period. Thus, our non-GAAP financial measures should be considered in addition to, not as a substitute for, or in isolation from, measures prepared in accordance with GAAP.
+We compensate for these limitations by providing a reconciliation of each of these non-GAAP measures to the most comparable GAAP measure. We encourage investors and others to review our business, results of operations, and financial information in their entirety, not to rely on any single financial measure, and to view these non-GAAP measures in conjunction with the most directly comparable GAAP financial measure.
+A reconciliation table of the most comparable GAAP financial measure to each non-GAAP financial measure used in this press release is included at the end of this release. A reconciliation of non-GAAP guidance measures to corresponding GAAP measures is not available on a forward-looking basis without unreasonable effort due to the uncertainty regarding, and the potential variability of, reconciling items that may be incurred in the future, such as stock-based compensation and related employer payroll taxes, the effect of which may be significant.
+
+Available Information
+Palantir uses its Investor Relations website at https://investors.palantir.com as a means of disclosing material non-public information and for complying with its disclosure obligations under Regulation FD. Accordingly, investors should monitor Palantir’s Investor Relations website, in addition to following our press releases, SEC filings, public conference calls, and webcasts.
+
+About Palantir Technologies Inc.
+Foundational software of tomorrow. Delivered today. Additional information is available at https://www.palantir.com.
+Contacts
+Investor Relations
+investors@palantir.com
+Media
+media@palantir.com
+
+
+
+
+
+Palantir Technologies Inc.
+Condensed Consolidated Statements of Operations
+(in thousands, except per share amounts)
+(unaudited)
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Revenue | $ | 1,935,464 | | | $ | 1,003,697 | | | $ | 3,568,047 | | | $ | 1,887,552 | |
+Cost of revenue (1)
+| 296,870 | | | 192,934 | | | 512,668 | | | 365,904 | |
+Gross profit | 1,638,594 | | | 810,763 | | | 3,055,379 | | | 1,521,648 | |
+Operating expenses: | | | | | | | |
+Sales and marketing (1)
+| 339,500 | | | 243,788 | | | 658,720 | | | 480,097 | |
+Research and development (1)
+| 192,513 | | | 135,043 | | | 353,494 | | | 269,932 | |
+General and administrative (1)
+| 194,577 | | | 162,615 | | | 377,163 | | | 326,254 | |
+Total operating expenses | 726,590 | | | 541,446 | | | 1,389,377 | | | 1,076,283 | |
+Income from operations | 912,004 | | | 269,317 | | | 1,666,002 | | | 445,365 | |
+Interest income | 77,505 | | | 56,255 | | | 143,899 | | | 106,696 | |
+Other income (expense), net | 91,836 | | | 6,596 | | | 160,045 | | | 3,423 | |
+Income before provision for income taxes | 1,081,345 | | | 332,168 | | | 1,969,946 | | | 555,484 | |
+Provision for income taxes | 15,383 | | | 3,596 | | | 27,582 | | | 9,195 | |
+Net income | 1,065,962 | | | 328,572 | | | 1,942,364 | | | 546,289 | |
+Less: Net income attributable to noncontrolling interests | 4,072 | | | 1,845 | | | 9,947 | | | 5,531 | |
+Net income attributable to common stockholders | $ | 1,061,890 | | | $ | 326,727 | | | $ | 1,932,417 | | | $ | 540,758 | |
+Earnings per share attributable to common stockholders, basic | $ | 0.44 | | | $ | 0.14 | | | $ | 0.81 | | | $ | 0.23 | |
+Earnings per share attributable to common stockholders, diluted | $ | 0.41 | | | $ | 0.13 | | | $ | 0.75 | | | $ | 0.21 | |
+Weighted-average shares of common stock outstanding used in computing earnings per share attributable to common stockholders, basic | 2,399,820 | | | 2,365,196 | | | 2,396,861 | | | 2,356,983 | |
+Weighted-average shares of common stock outstanding used in computing earnings per share attributable to common stockholders, diluted | 2,568,694 | | | 2,562,912 | | | 2,569,826 | | | 2,557,911 | |
+
+—————
+(1) Includes stock-based compensation expense as follows (in thousands):
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Cost of revenue | $ | 30,889 | | | $ | 14,973 | | | $ | 48,795 | | | $ | 29,989 | |
+Sales and marketing | 106,067 | | | 56,040 | | | 182,963 | | | 108,553 | |
+Research and development | 58,193 | | | 32,068 | | | 94,738 | | | 63,902 | |
+General and administrative | 70,060 | | | 56,890 | | | 140,305 | | | 112,866 | |
+Total stock-based compensation
+| $ | 265,209 | | | $ | 159,971 | | | $ | 466,801 | | | $ | 315,310 | |
+
+
+
+
+
+
+
+
+Palantir Technologies Inc.
+Condensed Consolidated Balance Sheets
+(in thousands)
+(unaudited)
+
+| | | | | | | | | | | |
+| As of June 30, | | As of December 31, |
+| 2026 | | 2025 |
+Assets | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 2,030,047 | | | $ | 1,423,796 | |
+Marketable securities | 7,379,052 | | | 5,753,247 | |
+Accounts receivable, net | 1,485,249 | | | 1,042,065 | |
+Prepaid expenses and other current assets | 205,165 | | | 139,066 | |
+Total current assets | 11,099,513 | | | 8,358,174 | |
+Property and equipment, net | 61,403 | | | 51,960 | |
+Operating lease right-of-use assets | 230,268 | | | 200,105 | |
+Other assets | 287,380 | | | 290,153 | |
+Total assets | $ | 11,678,564 | | | $ | 8,900,392 | |
+Liabilities and Equity | | | |
+Current liabilities: | | | |
+Accounts payable, accrued liabilities, and other | $ | 504,070 | | | $ | 409,552 | |
+Deferred revenue | 579,437 | | | 408,963 | |
+Customer deposits | 452,075 | | | 357,066 | |
+Total current liabilities | 1,535,582 | | | 1,175,581 | |
+Deferred revenue, noncurrent | 33,722 | | | 46,216 | |
+Customer deposits, noncurrent | 537 | | | 18 | |
+Operating lease liabilities, noncurrent | 211,400 | | | 183,474 | |
+Other noncurrent liabilities | 12,439 | | | 7,092 | |
+Total liabilities | 1,793,680 | | | 1,412,381 | |
+| | | |
+Palantir's stockholders’ equity: | | | |
+Common stock | 2,403 | | | 2,391 | |
+Additional paid-in capital | 11,408,867 | | | 10,933,325 | |
+Accumulated other comprehensive income (loss), net | (7,103) | | | 13,942 | |
+Accumulated deficit | (1,629,973) | | | (3,562,390) | |
+Total Palantir's stockholders’ equity | 9,774,194 | | | 7,387,268 | |
+Noncontrolling interests | 110,690 | | | 100,743 | |
+Total equity | 9,884,884 | | | 7,488,011 | |
+Total liabilities and equity | $ | 11,678,564 | | | $ | 8,900,392 | |
+
+
+
+
+
+
+
+
+
+
+Palantir Technologies Inc.
+Condensed Consolidated Statements of Cash Flows
+(in thousands)
+(unaudited)
+
+| | | | | | | | | | | |
+| Six Months Ended June 30, |
+| 2026 | | 2025 |
+Operating activities | | | |
+Net income | $ | 1,942,364 | | | $ | 546,289 | |
+Adjustments to reconcile net income to net cash provided by operating activities: | | | |
+Depreciation and amortization | 14,985 | | | 13,152 | |
+Stock-based compensation | 466,801 | | | 315,310 | |
+Unrealized and realized (gain) loss from marketable securities, net | (62,242) | | | (452) | |
+Other operating activities | (85,582) | | | 2,092 | |
+Changes in operating assets and liabilities: | | | |
+Accounts receivable, net | (433,801) | | | (163,501) | |
+Prepaid expenses and other assets | (53,906) | | | (7,307) | |
+Accounts payable and accrued liabilities | 88,097 | | | 48,202 | |
+Contract liabilities | 256,528 | | | 120,666 | |
+Other liabilities | (17,912) | | | (24,937) | |
+Net cash provided by operating activities | 2,115,332 | | | 849,514 | |
+Investing activities | | | |
+Purchases of property and equipment | (21,955) | | | (13,818) | |
+Purchases of marketable securities | (3,505,299) | | | (2,576,231) | |
+Proceeds from sales and redemption of marketable securities | 2,017,589 | | | 652,762 | |
+Other investing activities | — | | | (70,000) | |
+Net cash used in investing activities | (1,509,665) | | | (2,007,287) | |
+Financing activities | | | |
+Proceeds from the exercise of common stock options | 9,757 | | | 95,201 | |
+Other financing activities | (1,379) | | | (117,648) | |
+Net cash provided by (used in) financing activities | 8,378 | | | (22,447) | |
+Effect of foreign exchange on cash, cash equivalents, and restricted cash | (2,112) | | | 11,518 | |
+Net increase (decrease) in cash, cash equivalents, and restricted cash | 611,933 | | | (1,168,702) | |
+Cash, cash equivalents, and restricted cash - beginning of period | 1,451,425 | | | 2,119,936 | |
+Cash, cash equivalents, and restricted cash - end of period | $ | 2,063,358 | | | $ | 951,234 | |
+
+
+
+
+
+
+Palantir Technologies Inc.
+Reconciliation of GAAP to Non-GAAP Financial Measures
+(unaudited)
+
+Non-GAAP Reconciliations
+Adjusted Income from Operations and Adjusted Operating Margin (in thousands, except percentages)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Income from operations | $ | 912,004 | | | $ | 269,317 | | | $ | 1,666,002 | | | $ | 445,365 | |
+Add: stock-based compensation | 265,209 | | | 159,971 | | | 466,801 | | | 315,310 | |
+Add: employer payroll taxes related to stock-based compensation | 17,259 | | | 35,097 | | | 45,214 | | | 94,420 | |
+Adjusted income from operations | $ | 1,194,472 | | | $ | 464,385 | | | $ | 2,178,017 | | | $ | 855,095 | |
+Adjusted operating margin | 62 | % | | 46 | % | | 61 | % | | 45 | % |
+
+Adjusted Free Cash Flow and Adjusted Free Cash Flow Margin (in thousands, except percentages)
+| | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | |
+| 2026 | | 2025 | | | | |
+Net cash provided by operating activities | $ | 1,216,167 | | | $ | 539,251 | | | | | |
+Add: cash paid for employer payroll taxes related to stock-based compensation | 18,746 | | | 37,152 | | | | | |
+Less: purchases of property and equipment | (14,554) | | | (7,634) | | | | | |
+Adjusted free cash flow | $ | 1,220,359 | | | $ | 568,769 | | | | | |
+Adjusted free cash flow margin | 63 | % | | 57 | % | | | | |
+
+Adjusted EBITDA and Adjusted EBITDA Margin (in thousands, except percentages)
+| | | | | | | | | | | |
+| Three Months Ended June 30, | | |
+| 2026 | | | | | | |
+Net income attributable to common stockholders | $ | 1,061,890 | | | | | | | |
+Add: net income attributable to noncontrolling interests | 4,072 | | | | | | | |
+Less: interest income | (77,505) | | | | | | | |
+Add: other (income) expense, net | (91,836) | | | | | | | |
+Add: provision for income taxes | 15,383 | | | | | | | |
+Add: depreciation and amortization | 8,220 | | | | | | | |
+Add: stock-based compensation | 265,209 | | | | | | | |
+Add: employer payroll taxes related to stock-based compensation | 17,259 | | | | | | | |
+Adjusted EBITDA | $ | 1,202,692 | | | | | | | |
+Adjusted EBITDA margin | 62 | % | | | | | | |
+
+
+
+
+
+Palantir Technologies Inc.
+Reconciliation of GAAP to Non-GAAP Financial Measures
+(unaudited)
+
+Adjusted Net Income Attributable to Common Stockholders and Adjusted Earnings Per Share, Diluted (in thousands, except per share amounts)
+| | | | | | | | | | | |
+| Three Months Ended June 30, | | |
+| 2026 | | | | | | |
+Net income attributable to common stockholders | $ | 1,061,890 | | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Add: stock-based compensation | 265,209 | | | | | | | |
+Add: employer payroll taxes related to stock-based compensation | 17,259 | | | | | | | |
+Less: income tax effects and adjustments (1)
+| (297,357) | | | | | | | |
+Adjusted net income attributable to common stockholders | $ | 1,047,001 | | | | | | | |
+| | | | | | | |
+Weighted-average shares used in computing adjusted earnings per share, diluted | 2,568,694 | | | | | | | |
+Adjusted earnings per share, diluted | $ | 0.41 | | | | | | | |
+
+————
+(1) Income tax effect is based on an estimated long-term annual effective tax rate of 23.0% for the period presented.

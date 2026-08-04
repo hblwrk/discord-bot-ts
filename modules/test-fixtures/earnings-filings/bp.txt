@@ -1,0 +1,2007 @@
+bp-20260630 False 2026-06-30 2026 Q2 BP PLC 0000313807 12/31 iso4217:USD iso4217:USD xbrli:shares iso4217:EUR iso4217:USD utr:bbl iso4217:USD utr:MMBTU xbrli:pure xbrli:shares bp:day iso4217:GBP xbrli:shares 0000313807 2026-01-01 2026-06-30 0000313807 2026-04-01 2026-06-30 0000313807 2025-04-01 2025-06-30 0000313807 2025-01-01 2025-06-30 0000313807 ifrs-full:OrdinarySharesMember 2026-04-01 2026-06-30 0000313807 ifrs-full:OrdinarySharesMember 2025-04-01 2025-06-30 0000313807 ifrs-full:OrdinarySharesMember 2026-01-01 2026-06-30 0000313807 ifrs-full:OrdinarySharesMember 2025-01-01 2025-06-30 0000313807 bp:ADSMember 2026-04-01 2026-06-30 0000313807 bp:ADSMember 2025-04-01 2025-06-30 0000313807 bp:ADSMember 2026-01-01 2026-06-30 0000313807 bp:ADSMember 2025-01-01 2025-06-30 0000313807 ifrs-full:EquityAttributableToOwnersOfParentMember 2025-12-31 0000313807 bp:NonControllingInterestsHybridBondsMember 2025-12-31 0000313807 bp:NonControllingInterestsOtherInterestMember 2025-12-31 0000313807 2025-12-31 0000313807 ifrs-full:EquityAttributableToOwnersOfParentMember 2026-01-01 2026-06-30 0000313807 bp:NonControllingInterestsHybridBondsMember 2026-01-01 2026-06-30 0000313807 bp:NonControllingInterestsOtherInterestMember 2026-01-01 2026-06-30 0000313807 ifrs-full:EquityAttributableToOwnersOfParentMember 2026-06-30 0000313807 bp:NonControllingInterestsHybridBondsMember 2026-06-30 0000313807 bp:NonControllingInterestsOtherInterestMember 2026-06-30 0000313807 2026-06-30 0000313807 ifrs-full:EquityAttributableToOwnersOfParentMember 2024-12-31 0000313807 bp:NonControllingInterestsHybridBondsMember 2024-12-31 0000313807 bp:NonControllingInterestsOtherInterestMember 2024-12-31 0000313807 2024-12-31 0000313807 ifrs-full:EquityAttributableToOwnersOfParentMember 2025-01-01 2025-06-30 0000313807 bp:NonControllingInterestsHybridBondsMember 2025-01-01 2025-06-30 0000313807 bp:NonControllingInterestsOtherInterestMember 2025-01-01 2025-06-30 0000313807 ifrs-full:EquityAttributableToOwnersOfParentMember 2025-06-30 0000313807 bp:NonControllingInterestsHybridBondsMember 2025-06-30 0000313807 bp:NonControllingInterestsOtherInterestMember 2025-06-30 0000313807 2025-06-30 0000313807 2026-03-31 0000313807 2025-03-31 0000313807 ifrs-full:IncreaseDecreaseDueToChangesInAccountingPolicyRequiredByIFRSsCumulativeEffectAtDateOfInitialApplicationMember 2026-06-30 0000313807 bp:LaterThanOneYearAndNotLaterThanSixYearsMember 2026-01-01 2026-06-30 0000313807 bp:LaterThanOneYearAndNotLaterThanSixYearsMember 2025-01-01 2025-12-31 0000313807 ifrs-full:NotLaterThanOneYearMember 2026-01-01 2026-06-30 0000313807 ifrs-full:NotLaterThanOneYearMember 2025-01-01 2025-12-31 0000313807 bp:LightsourceBpMember bp:GasLowCarbonEnergyMember 2026-06-30 0000313807 bp:GelsenkirchenMember bp:CustomersProductsMember 2026-06-30 0000313807 bp:CastrolMember bp:StonepeakMember 2026-01-01 2026-06-30 0000313807 bp:CustomersProductsMember bp:CastrolMember 2026-01-01 2026-06-30 0000313807 bp:CastrolMember ifrs-full:EstimatesOfPresentValueOfFutureCashFlowsMember bp:CustomersProductsMember 2026-01-01 2026-06-30 0000313807 bp:CastrolMember bp:CustomersProductsMember 2026-06-30 0000313807 bp:GasLowCarbonEnergyMember ifrs-full:OperatingSegmentsMember 2026-04-01 2026-06-30 0000313807 bp:GasLowCarbonEnergyMember ifrs-full:OperatingSegmentsMember 2026-01-01 2026-06-30 0000313807 bp:GasLowCarbonEnergyMember ifrs-full:OperatingSegmentsMember 2025-04-01 2025-06-30 0000313807 bp:GasLowCarbonEnergyMember ifrs-full:OperatingSegmentsMember 2025-01-01 2025-06-30 0000313807 bp:OilProductionOperationsMember ifrs-full:OperatingSegmentsMember 2026-04-01 2026-06-30 0000313807 bp:OilProductionOperationsMember ifrs-full:OperatingSegmentsMember 2026-01-01 2026-06-30 0000313807 bp:OilProductionOperationsMember ifrs-full:OperatingSegmentsMember 2025-04-01 2025-06-30 0000313807 bp:OilProductionOperationsMember ifrs-full:OperatingSegmentsMember 2025-01-01 2025-06-30 0000313807 bp:CustomersProductsMember ifrs-full:OperatingSegmentsMember 2026-04-01 2026-06-30 0000313807 bp:CustomersProductsMember ifrs-full:OperatingSegmentsMember 2026-01-01 2026-06-30 0000313807 bp:CustomersProductsMember ifrs-full:OperatingSegmentsMember 2025-04-01 2025-06-30 0000313807 bp:CustomersProductsMember ifrs-full:OperatingSegmentsMember 2025-01-01 2025-06-30 0000313807 bp:OtherBusinessAndCorporateNonSegmentMember bp:OtherBusinessAndCorporateNonSegmentMember 2026-04-01 2026-06-30 0000313807 bp:OtherBusinessAndCorporateNonSegmentMember bp:OtherBusinessAndCorporateNonSegmentMember 2025-04-01 2025-06-30 0000313807 bp:OtherBusinessAndCorporateNonSegmentMember bp:OtherBusinessAndCorporateNonSegmentMember 2026-01-01 2026-06-30 0000313807 bp:OtherBusinessAndCorporateNonSegmentMember bp:OtherBusinessAndCorporateNonSegmentMember 2025-01-01 2025-06-30 0000313807 ifrs-full:EliminationOfIntersegmentAmountsMember 2026-04-01 2026-06-30 0000313807 ifrs-full:EliminationOfIntersegmentAmountsMember 2025-04-01 2025-06-30 0000313807 ifrs-full:EliminationOfIntersegmentAmountsMember 2026-01-01 2026-06-30 0000313807 ifrs-full:EliminationOfIntersegmentAmountsMember 2025-01-01 2025-06-30 0000313807 bp:GasLowCarbonEnergyMember 2026-04-01 2026-06-30 0000313807 bp:GasLowCarbonEnergyMember 2025-04-01 2025-06-30 0000313807 bp:GasLowCarbonEnergyMember 2026-01-01 2026-06-30 0000313807 bp:GasLowCarbonEnergyMember 2025-01-01 2025-06-30 0000313807 bp:OilProductionOperationsMember 2026-04-01 2026-06-30 0000313807 bp:OilProductionOperationsMember 2025-04-01 2025-06-30 0000313807 bp:OilProductionOperationsMember 2026-01-01 2026-06-30 0000313807 bp:OilProductionOperationsMember 2025-01-01 2025-06-30 0000313807 bp:CustomersProductsMember 2026-04-01 2026-06-30 0000313807 bp:CustomersProductsMember 2025-04-01 2025-06-30 0000313807 bp:CustomersProductsMember 2026-01-01 2026-06-30 0000313807 bp:CustomersProductsMember 2025-01-01 2025-06-30 0000313807 country:US 2026-04-01 2026-06-30 0000313807 country:US 2025-04-01 2025-06-30 0000313807 country:US 2026-01-01 2026-06-30 0000313807 country:US 2025-01-01 2025-06-30 0000313807 bp:NonUSMember 2026-04-01 2026-06-30 0000313807 bp:NonUSMember 2025-04-01 2025-06-30 0000313807 bp:NonUSMember 2026-01-01 2026-06-30 0000313807 bp:NonUSMember 2025-01-01 2025-06-30 0000313807 bp:OtherBusinessAndCorporateNonSegmentMember 2026-04-01 2026-06-30 0000313807 bp:OtherBusinessAndCorporateNonSegmentMember 2025-04-01 2025-06-30 0000313807 bp:OtherBusinessAndCorporateNonSegmentMember 2026-01-01 2026-06-30 0000313807 bp:OtherBusinessAndCorporateNonSegmentMember 2025-01-01 2025-06-30 0000313807 srt:ReportableGeographicalComponentsMember country:US 2026-04-01 2026-06-30 0000313807 srt:ReportableGeographicalComponentsMember country:US 2025-04-01 2025-06-30 0000313807 srt:ReportableGeographicalComponentsMember country:US 2026-01-01 2026-06-30 0000313807 srt:ReportableGeographicalComponentsMember country:US 2025-01-01 2025-06-30 0000313807 srt:ReportableGeographicalComponentsMember bp:NonUSMember 2026-04-01 2026-06-30 0000313807 srt:ReportableGeographicalComponentsMember bp:NonUSMember 2025-04-01 2025-06-30 0000313807 srt:ReportableGeographicalComponentsMember bp:NonUSMember 2026-01-01 2026-06-30 0000313807 srt:ReportableGeographicalComponentsMember bp:NonUSMember 2025-01-01 2025-06-30 0000313807 srt:ReportableGeographicalComponentsMember 2026-04-01 2026-06-30 0000313807 srt:ReportableGeographicalComponentsMember 2025-04-01 2025-06-30 0000313807 srt:ReportableGeographicalComponentsMember 2026-01-01 2026-06-30 0000313807 srt:ReportableGeographicalComponentsMember 2025-01-01 2025-06-30 0000313807 srt:GeographyEliminationsMember 2026-04-01 2026-06-30 0000313807 srt:GeographyEliminationsMember 2025-04-01 2025-06-30 0000313807 srt:GeographyEliminationsMember 2026-01-01 2026-06-30 0000313807 srt:GeographyEliminationsMember 2025-01-01 2025-06-30 0000313807 srt:CrudeOilMember 2026-04-01 2026-06-30 0000313807 srt:CrudeOilMember 2025-04-01 2025-06-30 0000313807 srt:CrudeOilMember 2026-01-01 2026-06-30 0000313807 srt:CrudeOilMember 2025-01-01 2025-06-30 0000313807 bp:OilProductsMember 2026-04-01 2026-06-30 0000313807 bp:OilProductsMember 2025-04-01 2025-06-30 0000313807 bp:OilProductsMember 2026-01-01 2026-06-30 0000313807 bp:OilProductsMember 2025-01-01 2025-06-30 0000313807 bp:NaturalGasLNGAndNGLsMember 2026-04-01 2026-06-30 0000313807 bp:NaturalGasLNGAndNGLsMember 2025-04-01 2025-06-30 0000313807 bp:NaturalGasLNGAndNGLsMember 2026-01-01 2026-06-30 0000313807 bp:NaturalGasLNGAndNGLsMember 2025-01-01 2025-06-30 0000313807 bp:NonOilProductsAndOtherRevenuesFromContractsWithCustomersMember 2026-04-01 2026-06-30 0000313807 bp:NonOilProductsAndOtherRevenuesFromContractsWithCustomersMember 2025-04-01 2025-06-30 0000313807 bp:NonOilProductsAndOtherRevenuesFromContractsWithCustomersMember 2026-01-01 2026-06-30 0000313807 bp:NonOilProductsAndOtherRevenuesFromContractsWithCustomersMember 2025-01-01 2025-06-30 0000313807 ifrs-full:OrdinarySharesMember 2026-06-30 0000313807 ifrs-full:OrdinarySharesMember 2025-06-30 0000313807 bp:ADSMember 2026-06-30 0000313807 bp:ADSMember 2025-06-30 0000313807 ifrs-full:OrdinarySharesMember 2025-12-31 0000313807 ifrs-full:OrdinarySharesMember 2026-09-18 2026-09-18 0000313807 2026-09-02 2026-09-04 0000313807 bp:ADSMember 2026-09-18 2026-09-18 0000313807 bp:BorrowingsMember 2026-06-30 0000313807 bp:BorrowingsMember 2025-06-30 0000313807 bp:BorrowingsMember 2025-12-31 0000313807 bp:DebtHedgesMember ifrs-full:DerivativesMember 2026-06-30 0000313807 bp:DebtHedgesMember ifrs-full:DerivativesMember 2025-06-30 0000313807 bp:DebtHedgesMember ifrs-full:DerivativesMember 2025-12-31
+
+
+
+
+
+
+
+
+
+
+UNITED STATES
+SECURITIES AND EXCHANGE COMMISSION
+
+
+Washington, D.C. 20549
+
+
+
+
+Form 6-K
+
+
+Report of Foreign Private Issuer
+
+
+Pursuant to Rule 13a-16 or 15d-16 of
+the Securities Exchange Act of 1934
+
+
+for the month of August 2026
+Commission File Number 1-06262
+
+
+BP p.l.c.
+(Translation of registrant’s name into English)
+
+
+1 ST JAMES’S SQUARE, LONDON, SW1Y 4PD, ENGLAND
+(Address of principal executive offices)
+
+
+Indicate by check mark whether the registrant files or will file annual reports under cover of Form 20-F or Form 40-F:
+
+
+Form 20-F x Form 40-F ¨
+|
+
+
+
+
+
+
+THIS REPORT ON FORM 6-K SHALL BE DEEMED TO BE INCORPORATED BY REFERENCE IN THE PROSPECTUS INCLUDED IN THE REGISTRATION STATEMENT ON FORM F-3 (FILE NOS. 333-277842, 333-277842-01 AND 333-277842-02) OF BP p.l.c., BP CAPITAL MARKETS p.l.c. AND BP CAPITAL MARKETS AMERICA INC.; THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-67206) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-79399) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-102583) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-103923) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-103924) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-119934) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-123482) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-123483) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-131583) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-131584) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-132619) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-146868) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-146870) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-146873) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-149778) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-173136) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-177423) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-179406) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-186462) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-186463) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-199015) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-200794) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-200795) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-200796) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-207188) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-207189) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-210316) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-210318) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-253287), THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-254578) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-270440) OF BP p.l.c., THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-273587) OF BP p.l.c. AND THE REGISTRATION STATEMENT ON FORM S-8 (FILE NO. 333-280100) OF BP p.l.c. AND TO BE A PART THEREOF FROM THE DATE ON WHICH THIS REPORT IS FURNISHED, TO THE EXTENT NOT SUPERSEDED BY DOCUMENTS OR REPORTS SUBSEQUENTLY FILED OR FURNISHED.
+
+
+1
+
+
+
+Table of contents
+
+BP p.l.c. and subsidiaries
+Form 6-K for the period ended 30 June 2026 (a)
+
+Page |
+1. | Management’s Discussion and Analysis of Financial Condition and Results of Operations for the period January- June 2026 (b)
+| 3 - 15 , 27 - 33 , 35 - 40
+|
+
+2. | Consolidated Financial Statements including Notes to Consolidated Financial Statements for the period January- June 2026
+| 16 - 26
+|
+
+3. | Principal risks and uncertainties
+| 34
+|
+
+4. | Legal proceedings
+| 35
+|
+
+
+
+5. | Cautionary statement
+| 41
+|
+
+
+
+6. | Capitalization and Indebtedness
+| 42
+|
+
+
+
+
+
+
+
+7. | Signatures
+| 43
+|
+
+(a) In this Form 6-K, references to the half year 2026 and half year 2025 refer to the six-month periods ended 30 June 2026 and 30 June 2025 respectively. References to the second quarter 2026 and second quarter 2025 refer to the three-month periods ended 30 June 2026 and 30 June 2025 respectively.
+(b) This discussion should be read in conjunction with the consolidated financial statements and related notes provided elsewhere in this Form 6-K and with the information, including the consolidated financial statements and related notes, in bp’s Annual Report on Form 20-F for the year ended 31 December 2025.
+
+
+2
+
+
+
+Table of contents
+
+
+Group results second quarter and first half 2026
+|
+
+Stronger earnings; setting priorities to accelerate delivery |
+
+
+
+Financial summary
+| Second | First | Second | First | First |
+quarter | quarter | quarter | half | half |
+$ million | 2026 | 2026 | 2025 | 2026 | 2025 |
+
+
+
+Profit for the period attributable to bp shareholders | 3,911 | 3,842 | 1,629 | 7,753 | 2,316 |
+Inventory holding (gains) losses*, before tax | 870 | (4,159) | 554 | (3,289) | 395 |
+Taxation charge (credit) on inventory holding gains and losses | (153) | 979 | (147) | 826 | (106) |
+Replacement cost (RC) profit* | 4,628 | 662 | 2,036 | 5,290 | 2,605 |
+Net adverse impact of adjusting items*, before tax | 568 | 2,016 | 717 | 2,584 | 1,129 |
+Taxation charge (credit) on adjusting items | 536 | 520 | (400) | 1,056 | — |
+Underlying RC profit* | 5,732 | 3,198 | 2,353 | 8,930 | 3,734 |
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+Sales and other operating revenues | 69,105 | 46,627 | 121,360 | 93,532 |
+Operating cash flow | 10,858 | 6,271 | 13,718 | 9,105 |
+Capital expenditure | (3,086) | (3,361) | (6,376) | (6,984) |
+Divestment and other proceeds (a)
+| 609 | 1,356 | 857 | 1,684 |
+
+Finance debt | 58,337 | 60,346 | 58,337 | 60,346 |
+Net debt* (b)
+| 22,251 | 26,043 | 22,251 | 26,043 |
+
+
+
+
+
+Announced dividend per ordinary share (cents per share) | 8.660 | 8.320 | 16.980 | 16.320 |
+Profit (loss) per ordinary share (cents) | 24.77 | 10.41 | 49.60 | 14.73 |
+Profit (loss) per ADS (dollars) | 1.49 | 0.62 | 2.98 | 0.88 |
+
+
+Underlying RC profit per ordinary share* (cents) | 36.92 | 15.03 | 57.62 | 23.76 |
+Underlying RC profit per ADS* (dollars) | 2.22 | 0.90 | 3.46 | 1.43 |
+
+Financial results
+• Profit for the second quarter and first quarter 2026 attributable to bp shareholders was $3.9 billion and $3.8 billion respectively.
+
+
+Meg O’Neill, Chief executive officer
+“ This is my first full quarter at bp, and it has been marked by one of the most disrupted periods in the global energy market. Through that, bp’s team has stepped up, working tirelessly to keep energy flowing for our customers.
+Financially, we delivered a strong quarter, with an underlying replacement cost profit of $5.7 billion ($2.5 billion higher than last quarter) and an operating cash flow of $10.9 billion.
+We made good progress strengthening bp’s balance sheet. We also took steps to simplify and strengthen bp. In recent weeks, we sold our Gelsenkirchen refinery, agreed to sell our retail business in Austria and announced our intention to sell our North Sea business in the UK. Today, we announced our intention to sell Archaea, our biogas business in the US.
+But there are areas where our performance fell short. Operationally, our plants didn’t run as well as they did last quarter – upstream plant reliability was 92.4%, compared to 95.7%, and production was down and our refineries processed less crude. This was due, in part, to planned maintenance and the conflict in the Middle East, but this is a reminder that we have more to do to deliver consistent operational performance.
+Where we must improve
+Since I joined bp, I have spent time with bp’s teams on the frontline and met investors, business partners, governments and other key stakeholders. In four months, I’ve seen enough to know this company can be extraordinary – from our high-quality assets to our integrated model, deep capabilities, strong partnerships and exceptional people.
+However, we are not making the most of our potential. Our performance over the past few years has not met our own expectations, let alone those of our shareholders. We have not delivered consistently; we have written off too much value; and our costs and liabilities are not resilient enough in a low price environment.
+My job is to help make bp the best we can be. We need to take a clear look at ourselves: assessing what needs to change, stopping what holds us back and building strength where it matters. We have to get fit to grow. To do so, I am laying out five priorities to deliver a step change in performance and grow shareholder value.
+
+
+3
+
+
+Table of contents
+
+
+
+Priorities to deliver a step change in performance
+1. Strengthening the balance sheet. This quarter we reduced the total of net debt, hybrids, leases and Gulf of America settlement liabilities by more than 11% compared to last quarter. That is still not enough – we need to do more. Financial resilience gives us greater flexibility to invest to grow through the cycle and reward our shareholders.
+2. Simplifying the portfolio based on value, not sentiment nor history. We have to focus on the assets with the strongest potential to deliver competitive returns and long-term value – just as we have done with our decisions on the North Sea and Archaea.
+3. Investing with greater discipline to ensure every dollar of capital competes. Our decision to sell Bay du Nord and free up the capital shows that discipline in action. We must keep challenging ourselves, using our balanced investment criteria to make decisions rooted in profitability, cash generation and market realities. I am very clear on this, we need to compete in the weight class we are in.
+4. Driving operational excellence . We need to run our assets safely, reliably and with greater cost efficiency. We have made progress on reducing structural costs, but we have not improved enough where it matters most: the bottom line. We need to move faster, and we have both the opportunity and the technology to do this. Operational excellence is also about working safely with people, communities and the environment; it helps us work to deliver energy that is secure, affordable and lower-carbon, where it makes business sense – and it is how we will make bp more competitive.
+5. Hardwiring high-performance and accountability into bp. We must make better, faster decisions, reduce complexity and sharpen accountability. Last month, we moved to an Upstream and Downstream organization, supported by our world-class trading business. This integrated model is a competitive advantage and an important first step. (c)
+
+
+Looking ahead
+We will be transparent about how we progress – and judge ourselves by our results. I want the organization focused on execution: deliver what we said, faster and with greater intensity. In three words: focus, perform, grow.
+We know what we need to do, we are taking urgent action and I am confident that this is how we will grow long-term value for shareholders."
+
+
+
+
+
+
+(a) Divestment proceeds are disposal proceeds as per the condensed group cash flow statement.
+(b) See Note 9 for more information.
+(c) Reportable segments for external financial reporting will remain unchanged until 31 December 2026 as the financial reporting aspects of the new segment model will take time to implement.
+
+
+
+
+RC profit (loss), underlying RC profit, net debt, underlying RC profit per ordinary share and underlying RC profit per ADS are non-IFRS measures. Inventory holding (gains) losses and adjusting items are non-IFRS adjustments.
+
+
+Definitions are provided in the Glossary on page 35 . Non-IFRS measures are marked with an asterisk.
+
+
+
+The commentary above contains forward-looking statements and should be read in conjunction with the cautionary statement on page 41 .
+|
+
+4
+
+
+
+Table of contents
+
+2Q 2026 financial results summary (a)
+• Profit for the quarter attributable to bp shareholders was $3.9 billion, compared with $3.8 billion for the first quarter 2026 and $1.6 billion for the second quarter 2025. The result for the second quarter 2026 is adjusted for inventory holding losses* of $0.9 billion (pre-tax) and a net adverse impact of adjusting items* of $0.6 billion (pre-tax) to derive the underlying RC profit. Adjusting items include favourable pre-tax fair value accounting effects* of $1.0 billion and pre-tax net impairments of $0.9 billion (see page 28 for more information on adjusting items).
+• Underlying RC profit* for the quarter was $5.7 billion, compared with $3.2 billion for the previous quarter and $2.4 billion for the second quarter 2025. Compared with the first quarter 2026, the underlying result mainly reflects higher liquids and gas realizations including the impact of price lags, stronger realized refining margins and stronger customers result, partly offset by higher exploration write-offs.
+• Operating cash flow for the quarter was $10.9 billion, compared with $6.3 billion for the same period in 2025.
+• Finance debt was $58.3 billion at the end of the second quarter compared with $58.0 billion at the end of the fourth quarter 2025.
+• Net debt* was $22.3 billion at the end of the second quarter compared with $22.2 billion at the end of the fourth quarter 2025.
+Segment results
+• Gas & low carbon energy: The RC profit before interest and tax for the second quarter 2026 was $1.6 billion, compared with $1.1 billion for the previous quarter. After adjusting RC profit before interest and tax for a net adverse impact of adjusting items of $0.6 billion, the underlying RC profit before interest and tax* for the second quarter was $2.1 billion, compared with $1.3 billion in the first quarter 2026. This primarily reflects higher realizations including the impact of price lags and the changes in non-Henry Hub natural gas marker prices. The gas marketing and trading result was broadly flat compared with the first quarter 2026.
+• Oil production & operations: The RC profit before interest and tax for the second quarter 2026 was $3.4 billion, compared with $1.7 billion for the previous quarter. After adjusting RC profit before interest and tax for a net adverse impact of adjusting items of $0.2 billion, the underlying RC profit before interest and tax for the second quarter was $3.6 billion, compared with $2.0 billion for the first quarter 2026. This reflects higher liquid realizations including the impact of price lags, production mix benefit, and higher income from equity-accounted entities partially offset by higher exploration write-offs mainly due to sale of Bay du Nord in Canada and lower production due to seasonal maintenance in the Gulf of America.
+• Customers & products: The RC profit before interest and tax for the second quarter 2026 was $5.1 billion, compared with $2.5 billion for the previous quarter. After adjusting RC profit before interest and tax for a net favourable impact of adjusting items of $0.1 billion, the underlying RC profit before interest and tax (underlying result) for the second quarter was $5.0 billion, compared with $3.2 billion in the first quarter 2026. The customers second quarter underlying result was higher by $0.8 billion, reflecting seasonally higher volumes, higher fuels margins, a stronger Castrol performance and a slightly higher midstream contribution, partly offset by lower contribution from bioenergy. The products second quarter underlying result was higher by $1.0 billion. In refining, the result reflects significantly stronger realized refining margins, partly offset by higher planned turnaround and maintenance activity, as well as the impacts of the third-party event at Whiting in April. The oil trading result was slightly higher compared with the first quarter.
+
+
+(a) This report discusses certain material changes in bp’s results of operations with respect to the quarter ended 30 June 2026 as compared to the quarter ended 31 March 2026. Financial information for the quarter ended 31 March 2026 can be in found in our Current Report on Form 6-K filed with the SEC on 28 April 2026.
+
+
+
+
+
+
+5
+
+
+
+Table of contents
+
+Financial results
+In addition to the highlights on page 5 :
+• Profit attributable to bp shareholders in the second quarter and half year was $3.9 billion and $7.8 billion respectively, compared with $1.6 billion and $2.3 billion in the same periods of 2025.
+– After adjusting profit attributable to bp shareholders for inventory holding losses or gains* and net impact of adjusting items*, underlying replacement cost (RC) profit* for the second quarter and half year was $5.7 billion and $8.9 billion respectively, compared with $2.4 billion and $3.7 billion for the same periods of 2025. The underlying RC profit for the second quarter and half year compared with the same periods in 2025 mainly reflects a significant higher realized refining margins and higher liquid realizations. The oil trading contribution for the second quarter and first half was significantly higher compared with the same periods in 2025. See pages 9 , 11 and 13 for more information.
+– Adjusting items in the second quarter and half year had a net adverse pre-tax impact of $0.6 billion and $2.6 billion respectively, compared with a net adverse pre-tax impact of $0.7 billion and $1.1 billion in the same periods of 2025.
+– Adjusting items for the second quarter and half year include a favourable pre-tax impact of fair value accounting effects* of $1.0 billion and an adverse pre-tax impact of $0.1 billion respectively, compared with a favourable pre-tax impact of $0.6 billion and $1.5 billion in the same periods of 2025. In both the gas & low carbon energy and customers & products segments fair value accounting effects represent the difference in treatment between, management’s internal performance measure and IFRS. In other businesses & corporate, there was a favourable impact of the fair value accounting effects relating to the hybrid bonds in the second quarter and an adverse impact in the half year, compared with a favourable impact in the same periods of 2025. These movements are driven by foreign exchange and interest rates.
+• The effective tax rate (ETR) on the profit before taxation for the second quarter and half year was 45% and 44% respectively, compared with 33% and 52% for the same periods in 2025. Excluding inventory holding gains or losses and adjusting items, the underlying ETR* for the second quarter and half year was 34% and 33% respectively, compared with 36% and 43% for the same periods in 2025. The lower underlying ETR for the second quarter and half year reflects changes in the geographical mix of profits. Underlying ETR is a non-IFRS measure.
+• Operating cash flow for the second quarter and half year was $10.9 billion and $13.7 billion respectively, compared with $6.3 billion and $9.1 billion for the same periods in 2025.
+• Capital expenditure in the second quarter and half year was $3.1 billion and $6.4 billion respectively, compared with $3.4 billion and $7.0 billion in the same periods of 2025.
+• Total divestment and other proceeds for the second quarter and half year were $0.6 billion and $0.9 billion respectively, compared with $1.4 billion and $1.7 billion for the same periods in 2025. Other proceeds for the second quarter and half year 2025 were $1.0 billion from the sale of a non-controlling interest in the subsidiary that holds our 12% share in the Trans-Anatolian natural gas pipeline (TANAP).
+• Finance debt was $58.3 billion at the end of the second quarter compared with $58.0 billion at the end of the fourth quarter 2025. At the end of the second quarter, net debt* was $22.3 billion, compared with $22.2 billion at the end of the fourth quarter 2025.
+
+
+
+
+
+
+6
+
+
+Table of contents
+
+Analysis of RC profit (loss) before interest and tax and reconciliation to profit (loss) for the period
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+RC profit (loss) before interest and tax |
+gas & low carbon energy | 1,564 | 1,047 | 2,618 | 2,405 |
+oil production & operations
+| 3,397 | 1,916 | 5,052 | 4,704 |
+customers & products | 5,100 | 972 | 7,552 | 1,075 |
+
+other businesses & corporate | (250) | 645 | (1,105) | 623 |
+Consolidation adjustment – UPII* | — | 30 | 21 | 43 |
+9,811 | 4,610 | 14,138 | 8,850 |
+Finance costs and net finance expense relating to pensions and other post-employment benefits | (1,120) | (1,173) | (2,241) | (2,442) |
+Taxation on a RC basis | (3,644) | (1,101) | (5,818) | (3,208) |
+Non-controlling interests | (419) | (300) | (789) | (595) |
+RC profit attributable to bp shareholders* | 4,628 | 2,036 | 5,290 | 2,605 |
+Inventory holding gains (losses)* | (870) | (554) | 3,289 | (395) |
+Taxation (charge) credit on inventory holding gains and losses | 153 | 147 | (826) | 106 |
+Profit for the period attributable to bp shareholders | 3,911 | 1,629 | 7,753 | 2,316 |
+
+Analysis of underlying RC profit (loss) before interest and tax
+
+
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+Underlying RC profit (loss) before interest and tax |
+gas & low carbon energy | 2,122 | 1,462 | 3,458 | 2,459 |
+oil production & operations
+| 3,581 | 2,262 | 5,562 | 5,157 |
+customers & products | 4,954 | 1,533 | 8,157 | 2,210 |
+
+other businesses & corporate | (345) | (38) | (617) | (155) |
+Consolidation adjustment – UPII | — | 30 | 21 | 43 |
+10,312 | 5,249 | 16,581 | 9,714 |
+Finance costs on an underlying RC basis (a) and net finance expense relating to pensions and other post-employment benefits
+| (1,053) | (1,095) | (2,100) | (2,177) |
+Taxation on an underlying RC basis | (3,108) | (1,501) | (4,762) | (3,208) |
+Non-controlling interests | (419) | (300) | (789) | (595) |
+Underlying RC profit attributable to bp shareholders* | 5,732 | 2,353 | 8,930 | 3,734 |
+
+(a) A non-IFRS measure. Finance costs on an underlying RC basis is defined as finance costs as stated in the group income statement excluding finance costs classified as adjusting items* (see footnote (c) on page 28 ).
+Reconciliations of underlying RC profit attributable to bp shareholders to the nearest equivalent IFRS measure are provided on page 3 for the group and on pages 9 - 15 for the segments.
+Operating Metrics
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+2026 | 2025 | 2026 | 2025 |
+Tier 1 and tier 2 process safety events | 18 | 5 | 25 | 15 |
+upstream production (a) (mboe/d)
+| 2,201 | 2,300 | 2,269 | 2,270 |
+upstream unit production costs (b) ($/boe)
+| 6.62 | 6.81 | 6.50 | 6.58 |
+bp-operated upstream plant reliability | 92.4% | 96.8% | 94.1% | 96.1% |
+Refinery throughputs (mb/d) | 1,467 | 1,288 | 1,497 | 1,391 |
+bp-operated refining availability (a)
+| 94.7% | 96.4% | 95.5% | 96.3% |
+
+
+
+
+
+
+
+(a) See Operational updates on pages 9 , 11 and 13 . Because of rounding, upstream production may not agree exactly with the sum of gas & low carbon energy and oil production & operations.
+(b) The decrease in the first half 2026, compared with the first half 2025 mainly reflects portfolio mix.
+7
+
+
+
+Table of contents
+
+Outlook & Guidance
+3Q 2026 guidance
+• Looking ahead, bp expects third quarter 2026 reported upstream production to be 2,100 to 2,250mboe/d, compared with the second quarter 2026, 2,201mboe/d. This includes the impact of continued disruption in the Middle East, bp’s reduced equity interest in Latin America and an estimated impact of around 40mboe/d for potential seasonal weather events in the Gulf of America. The heightened volatility in the oil and gas prices could also impact PSA contracts.
+• In its customers business, compared to the second quarter, bp expects a significantly lower result, with broadly flat volumes and a lower midstream result, as well as lower earnings in Castrol due to the lagged impact of higher base oil costs. Both fuels margins and midstream performance are expected to remain sensitive to conditions and developments in the Middle East.
+• In products, bp expects throughput of 1,300 to 1,360mb/d, reflecting the completion of the Gelsenkirchen divestment and a lower level of planned turnaround activity. Refining margins are expected to remain elevated and sensitive to the cost of supply and market conditions.
+• bp expects income taxes paid in the third quarter to be around $1 billion higher than the second quarter 2026 mainly due to timing effects, including the timing of instalment payments, which are typically higher in the third quarter each year.
+• bp intends to repay $1.0 billion of perpetual subordinated hybrid securities issued by a group subsidiary.
+
+
+2026 guidance
+• bp now expects reported upstream production to be 2,180 to 2,270mboe/d, compared with the 2025, 2,312mboe/d. This includes the impact of disruption in the Middle East, the divestment of the Culzean gas field in the UK North Sea and bp's reduced equity interest in Latin America in addition to an estimated impact of around 15mboe/d for potential seasonal weather events in the Gulf of America. Underlying upstream production is expected to be broadly flat compared with 2025 with production from oil production & operations to be broadly flat and production from gas & low carbon energy to be lower.
+• In its customers business, bp expects to make continued progress growing cash flows, supported by lower underlying operating expenditure* driven by structural cost reductions*. These benefits will be partly offset by the earnings impact of completed and announced divestments. Reported earnings will benefit from lower depreciation as a result of the assets held for sale accounting treatment of Castrol following the planned divestment. Fuel margins are expected to remain sensitive to conditions and developments in the Middle East and any resulting policy responses.
+• In products, bp expects throughput of 1,360 to 1,410mb/d, reflecting the completion of the Gelsenkirchen divestment and a significantly lower level of planned turnaround activity. Refining margins are expected to remain sensitive to the cost of supply and market conditions.
+• bp continues to expect other businesses & corporate underlying annual charge to be around $1.0 billion for 2026. The charge may vary quarter to quarter.
+• bp now expects the depreciation, depletion and amortization to be $17.0-17.5 billion.
+• bp now expects the underlying ETR* for 2026 to be 35-40%, which reflects the underlying ETR for the first half of 33%. It is sensitive to a range of factors, including the volatility of the price environment and its impact on the geographical mix of the group’s profits and losses.
+• bp now expects capital expenditure to be $13.5-14.0 billion reflecting decision to delay asset farm downs and capture better value.
+• bp now expects divestment and other proceeds to be $8-9 billion in 2026, including approximately $6 billion from the announced Castrol transaction.
+• bp continues to expect Gulf of America settlement payments for the year to be around $1.6 billion pre-tax including $0.4 billion pre-tax paid during the first quarter and $1.1 billion pre-tax paid during the second quarter.
+
+
+
+
+Updated refining rule of thumb
+bp has updated the bp refining indicator margin (RIM) and associated refining rule of thumb (RoT) to reflect the sale of 100% of the Gelsenkirchen refinery (GSK). The bp RIM RoT reflects the sensitivity of the group’s forward looking underlying replacement cost profit before tax to changes in bp’s RIM at normal operating conditions and will not fully explain all quarter-on-quarter movements in Products earnings.
+The bp RIM reflects a broad set of crudes and products and is representative of bp’s refining portfolio and realized refining margin per barrel.
+
+Refining RoT for +/- $1/bbl change | Impact on underlying RC profit before interest and tax |
+bp RIM (post GSK divestment - new) | $450m |
+bp RIM (prior to GSK divestment - retired) | $550m |
+
+
+
+As a consequence of this change, the refining price assumptions applicable to bp's CMU Cash Flow and ROACE Targets* have been updated. The updated price assumptions are: at $70/bbl Brent, $4/mmBtu Henry Hub and $10.8/bbl refining indicator margin, all 2024 real. There is no change to the CMU Cash flow and ROACE targets or to the prices used for impairment testing as a consequence of this update. Price assumptions are not intended to reflect management’s forecasts for future prices.
+
+
+
+
+
+The commentary above contains forward-looking statements and should be read in conjunction with the cautionary statement on page 41 .
+|
+
+8
+
+
+
+Table of contents
+
+gas & low carbon energy
+Financial results
+• Sales and other operating revenues for the second quarter and half year were $11.7 billion and $21.1 billion respectively, compared with $9.2 billion and $20.0 billion for the corresponding periods in 2025. For the second quarter and half year, revenues were higher mainly due to increased gas trading and marketing sales, higher realizations and higher volumes.
+• The replacement cost (RC) profit before interest and tax for the second quarter and half year was $1,564 million and $2,618 million respectively, compared with $1,047 million and $2,405 million for the same periods in 2025. The second quarter and half year are adjusted by an adverse impact of net adjusting items* of $558 million and $840 million respectively, compared with an adverse impact of net adjusting items of $415 million and $54 million for the same periods in 2025. Adjusting items include the impacts of fair value accounting effects*, relative to management's internal measure of performance, which are a favourable impact of $205 million and an adverse impact of $68 million for the second quarter and half year in 2026, and a favourable impact of $18 million and $686 million for the same periods in 2025. See page 28 for more information on adjusting items.
+• After adjusting RC profit before interest and tax for adjusting items, the underlying RC profit before interest and tax* for the second quarter and half year was $2,122 million and $3,458 million respectively, compared with $1,462 million and $2,459 million for the same periods in 2025.
+• The underlying RC profit before interest and tax for the second quarter compared with the same period in 2025, reflects higher realizations and a lower depreciation charge partly offset by a slightly lower gas marketing and trading result. For the half year compared with the same period in 2025, it reflects higher realizations, a lower depreciation charge and a slightly higher gas marketing and trading result.
+Operational update
+• Reported production for the quarter was 765mboe/d, 2.1% lower than the same period in 2025. Underlying production was 2.2% lower mainly due to base decline partly offset by ramp up of major projects.
+• Reported production for the half year was 782mboe/d, 1.1% higher than the same period in 2025. Underlying production was 1.6% higher mainly due to ramp up of major projects partly offset by base decline.
+Strategic progress
+• bp continues to progress development of the Cocuina-Manakin gas field, on the maritime border between Venezuela and Trinidad and Tobago. In April 2026, bp also signed a memorandum of understanding with the Venezuelan Government regarding joint opportunities in the offshore Loran gas field and certain exploration areas
+• In May bp signed three production-sharing contracts in Indonesia, bringing bp’s total participation in oil and gas blocks in the country to 11. This includes the Bintuni and Drawa exploration blocks and also participation in the INPEX-operated Barong block in East Java.
+• In May bp confirmed a gas discovery in the East Nile Delta region in Egypt. The discovery follows the drilling of the Nidoco N-2 exploration well, operated by Eni in partnership with bp and the Egyptian General Petroleum Corporation (EGPC).
+• In May bp signed a 10-year deal with Oil and Natural Gas Corporation (ONGC) where bp has been selected as the technical services provider for the western offshore fields in the Mumbai Offshore Basin in India.
+• In May bp signed a new long-term deal to supply the Korea Gas Corporation (KOGAS) with 0.7 million tonnes per annum of LNG for 10 years from 2028.
+• In June bp entered into an agreement to sell a 5% interest in the Browse project in Western Australia to GS Energy, with bp retaining 39.33% working interest.
+• In June bp, together with ADNOC and partners, has signed a concession agreement to develop the Bab Gas Cap project in Abu Dhabi. With this agreement, bp holds a 10% interest in the Bab Gas Cap concession, which is expected to produce up to 1.5 billion cubic feet per day of gas.
+• bp today announced that it is launching a process to market Archaea Energy for a potential sale.
+• These events build on the progress announced in our first-quarter results, which comprised the following:
+bp and South Valley Egyptian Petroleum Holding Company signed a memorandum of understanding for the award of Block (6) in the Red Sea; bp announced a significant gas and condensate discovery offshore Egypt following the successful drilling of the Denise W-1 exploration well in the Temsah Concession, located in the Eastern Mediterranean. The Denise W-1 well follows a binding head of agreement signed in July 2025 with EGPC and EGAS for a 20-year renewal of the Temsah Concession; and Arcius, a joint venture with bp holding 51% and XRG holding 49%, has taken a final investment decision to develop the Harmattan gas field in Egypt’s El Burg offshore concession, a significant step toward executing one of its first projects in Egypt.
+
+
+9
+
+
+Table of contents
+
+gas & low carbon energy (continued)
+
+Second | First | Second | First | First |
+quarter | quarter | quarter | half | half |
+$ million | 2026 | 2026 | 2025 | 2026 | 2025 |
+
+Profit before interest and tax | 1,564 | 1,054 | 1,047 | 2,618 | 2,405 |
+Inventory holding (gains) losses* | — | — | — | — | — |
+RC profit before interest and tax | 1,564 | 1,054 | 1,047 | 2,618 | 2,405 |
+Net (favourable) adverse impact of adjusting items | 558 | 282 | 415 | 840 | 54 |
+Underlying RC profit before interest and tax | 2,122 | 1,336 | 1,462 | 3,458 | 2,459 |
+Taxation on an underlying RC basis | (706) | (473) | (509) | (1,179) | (980) |
+Underlying RC profit before interest | 1,416 | 863 | 953 | 2,279 | 1,479 |
+
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+Sales and other operating revenues (a)
+|
+Sales and other operating revenues | 11,675 | 9,172 | 21,122 | 19,950 |
+
+Depreciation, depletion and amortization |
+Total depreciation, depletion and amortization | 1,139 | 1,407 | 2,325 | 2,573 |
+
+Exploration write-offs |
+Exploration write-offs | 48 | 1 | 48 | 1 |
+
+Adjusted EBITDA* (b)
+|
+Total adjusted EBITDA | 3,309 | 2,870 | 5,831 | 5,033 |
+
+Capital expenditure |
+gas | 717 | 688 | 1,352 | 1,462 |
+low carbon energy | 59 | 102 | 119 | 231 |
+Total capital expenditure | 776 | 790 | 1,471 | 1,693 |
+
+(a) Includes sales to other segments.
+(b) A reconciliation to RC profit before interest and tax is provided on page 31 .
+
+
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+2026 | 2025 | 2026 | 2025 |
+Production (net of royalties) (c)
+|
+Liquids (mb/d) | 88 | 85 | 87 | 84 |
+Natural gas (mmcf/d) | 3,928 | 4,043 | 4,025 | 3,997 |
+Total hydrocarbons (mboe/d) | 765 | 782 | 782 | 773 |
+Of which equity-accounted entities: |
+Liquids (mb/d) | 5 | 5 | 5 | 5 |
+Natural gas (mmcf/d) | 144 | 170 | 146 | 169 |
+Total hydrocarbons (mboe/d) | 29 | 34 | 30 | 34 |
+
+Average realizations (d)
+|
+Liquids ($/bbl) | 94.09 | 64.15 | 81.26 | 67.21 |
+Natural gas ($/mcf) | 8.03 | 6.50 | 7.14 | 6.86 |
+Total hydrocarbons ($/boe) | 52.82 | 40.84 | 46.33 | 43.00 |
+
+(c) Includes bp’s share of production of equity-accounted entities in the gas & low carbon energy segment.
+(d) Realizations are based on sales by consolidated subsidiaries only – this excludes equity-accounted entities.
+
+
+
+
+10
+
+
+
+Table of contents
+
+oil production & operations
+Financial results
+• Sales and other operating revenues for the second quarter and half year were $7.8 billion and $13.8 billion respectively, compared with $6.1 billion and $12.6 billion for the corresponding periods in 2025. For the second quarter and half year, revenues were higher mainly due to higher realizations and higher volumes.
+• The replacement cost (RC) profit before interest and tax for the second quarter and half year was $3,397 million and $5,052 million respectively, compared with $1,916 million and $4,704 million for the same periods in 2025. The second quarter and half year are adjusted by an adverse impact of net adjusting items* of $184 million and $510 million respectively, compared with an adverse impact of net adjusting items of $346 million and $453 million for the same periods in 2025. See page 28 for more information on adjusting items.
+• After adjusting RC profit before interest and tax for adjusting items, the underlying RC profit before interest and tax* for the second quarter and half year was $3,581 million and $5,562 million respectively, compared with $2,262 million and $5,157 million for the same periods in 2025.
+• The underlying RC profit before interest and tax for the second quarter, compared with the same period in 2025, reflects higher liquid realizations and higher income from equity-accounted entities partly offset by higher exploration write-offs mainly due to sale of Bay du Nord in Canada, the divestment of the Culzean gas field in the UK North Sea, and lower production.
+• The underlying RC profit before interest and tax for the half year, compared with the same period in 2025, reflects higher liquid realizations and higher income from equity-accounted entities partly offset by higher exploration write-offs mainly due to sale of Bay du Nord in Canada, the divestment of the Culzean gas field in the UK North Sea and higher costs.
+Operational update
+• Reported production for the quarter was 1,436mboe/d, 5.4% lower than the same period in 2025. Underlying production for the quarter was 1.8% higher mainly due to increased production in bpx Energy and ramp up of major projects partly offset by seasonal maintenance.
+• Reported production for the half year was 1,488mboe/d, 0.6% lower than the same period in 2025. Underlying production for the half year was 3.8% higher mainly due to increased production in bpx Energy and ramp up of major projects partly offset by seasonal maintenance.
+Strategic progress
+• In May, bp as operator, confirmed a final investment decision (FID) on the Thunder Horse subsea pump. With plans to deliver first oil in 2028, the project is expected to add gross production of around 15,000 barrels of oil equivalent per day at peak.
+• In June bp confirmed the preliminary results of the Capricornus-1A appraisal well in Namibia's Orange Basin. This established an oil pay extension from the Capricornus discovery well. Petroleum Exploration License 85 (PEL85), where the well was drilled, is operated by Rhino Resources where Azule Energy has a 42.5% working interest. bp holds a 50% interest in Azule Energy.
+• In June bp, as operator, announced the commencement of non‑associated gas (NAG) production operations on the Azeri–Chirag–Gunashli (ACG) field in the Azerbaijan sector of the Caspian Sea. This marks the first commercial gas production operations on ACG, one of the world’s largest oil-producing fields.
+• In June bp announced the FID for the Greater PAJ Project, a major offshore oil development located in Blocks 31 and 31/21 in Angola, adding expected gross production of around 95,000 barrels of oil equivalent per day at peak. This is operated by Azule Energy, a 50:50 joint venture between bp and Eni. Azule Energy has a 26.67% working interest in Block 31 and a 50% working interest in Block 31/21.
+• In June, following regulatory approval, bp completed the sale of a 10% shareholding in Pan American Energy Group S.L., reducing its shareholding from 50% to 40%.
+• It was announced that, effective 1 July 2026, operatorship of the Baku–Tbilisi–Ceyhan (BTC) oil export pipeline was transferred from bp to SOCAR Midstream Operations LLC (SMO), a wholly owned subsidiary of SOCAR.
+• In July bp agreed to sell its non-operated interest in the Bay du Nord project offshore Newfoundland and Labrador, Canada, to Equinor. Completion of the transaction is subject to third party approvals.
+• In July bp has agreed terms for ConocoPhillips to acquire a 42% interest in BP Energy Company of Kirkuk Limited (BP ECKL), supporting the redevelopment of several large-scale oil fields in the Kirkuk area of northern Iraq. bp has also agreed terms for Turkiye Petrolleri Anonim Ortakligi (TPAO) to acquire a further 15% interest in BP ECKL. Completion of the respective transactions are subject to third party approvals.
+• In July bp successfully started up the Atlantis Major Facility Expansion project in the Gulf of America, the eighth of its 10 major projects due online between 2025 and 2027, adding two new subsea water injection wells.
+• In July bp announced its intention to market its North Sea business for a potential sale.
+• These events build on the progress announced in our first-quarter results, which comprised the following:
+Aker BP started oil production from the Solveig Phase 2 (formally called Utsira High) development in the North Sea (bp interest in Aker BP 15.9%). The project has been delivered on schedule; bp confirmed an oil discovery in the Algaita-01 exploration well offshore Angola. The well was drilled in Block 15/06, and is operated by Azule Energy; bp announced the start-up of the Ndungu full-field, part of the Agogo Integrated West Hub Project (IWH), in the western area of Block 15/06, offshore Angola. Agogo IWH is operated by Azule Energy; bp was the apparent highest bidder on three blocks in the BBG-2 Gulf of America lease sale; bp confirmed start-up of gas production from the Quiluma field, part of the New Gas Consortium in Angola, operated by Azule Energy; and bp agreed to acquire a 60% interest in three offshore exploration blocks in Namibia from Eco Atlantic Oil & Gas. Subject to Namibian government approvals, bp will be the operator of three blocks – PEL97, PEL99 and PEL100 – offshore Namibia in the Walvis Basin, with Eco Atlantic remaining a partner, along with Namibia’s national oil company NAMCOR.
+11
+
+
+Table of contents
+
+oil production & operations (continued)
+
+Second | First | Second | First | First |
+quarter | quarter | quarter | half | half |
+$ million | 2026 | 2026 | 2025 | 2026 | 2025 |
+
+Profit before interest and tax | 3,396 | 1,662 | 1,914 | 5,058 | 4,709 |
+Inventory holding (gains) losses* | 1 | (7) | 2 | (6) | (5) |
+RC profit before interest and tax | 3,397 | 1,655 | 1,916 | 5,052 | 4,704 |
+Net (favourable) adverse impact of adjusting items | 184 | 326 | 346 | 510 | 453 |
+Underlying RC profit before interest and tax | 3,581 | 1,981 | 2,262 | 5,562 | 5,157 |
+
+
+
+Taxation on an underlying RC basis | (1,659) | (854) | (1,062) | (2,513) | (2,437) |
+Underlying RC profit before interest | 1,922 | 1,127 | 1,200 | 3,049 | 2,720 |
+
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+Sales and other operating revenues (a)
+|
+Sales and other operating revenues | 7,813 | 6,053 | 13,765 | 12,555 |
+
+Depreciation, depletion and amortization |
+Total depreciation, depletion and amortization | 1,754 | 1,933 | 3,763 | 3,720 |
+
+Exploration write-offs |
+Exploration write-offs | 478 | 81 | 480 | 134 |
+
+Adjusted EBITDA* (b)
+|
+Total adjusted EBITDA | 5,813 | 4,276 | 9,805 | 9,011 |
+
+Capital expenditure |
+Total capital expenditure | 1,733 | 1,706 | 3,624 | 3,402 |
+
+(a) Includes sales to other segments.
+(b) A reconciliation to RC profit before interest and tax is provided on page 31 .
+
+
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+2026 | 2025 | 2026 | 2025 |
+Production (net of royalties) (c)
+|
+Liquids (mb/d) | 997 | 1,115 | 1,061 | 1,101 |
+Natural gas (mmcf/d) | 2,543 | 2,338 | 2,476 | 2,298 |
+Total hydrocarbons (mboe/d) | 1,436 | 1,518 | 1,488 | 1,497 |
+Of which equity-accounted entities: |
+Liquids (mb/d) | 209 | 271 | 234 | 267 |
+Natural gas (mmcf/d) | 447 | 443 | 429 | 440 |
+Total hydrocarbons (mboe/d) | 286 | 347 | 308 | 342 |
+
+Average realizations (d)
+|
+Liquids ($/bbl) | 84.10 | 59.74 | 71.67 | 63.54 |
+Natural gas ($/mcf) | 2.16 | 3.66 | 2.85 | 4.18 |
+Total hydrocarbons ($/boe) | 62.18 | 49.03 | 55.29 | 52.66 |
+
+
+(c) Includes bp’s share of production of equity-accounted entities in the oil production & operations segment.
+(d) Realizations are based on sales by consolidated subsidiaries only – this excludes equity-accounted entities.
+12
+
+
+
+Table of contents
+
+customers & products
+Financial results
+• Sales and other operating revenues for the second quarter and half year were $57.2 billion and $100.1 billion respectively, compared with $37.4 billion and $73.6 billion for the corresponding periods in 2025. The increase in the second quarter and half year was mainly due to higher product prices in 2026.
+• The replacement cost (RC) profit before interest and tax for the second quarter and half year was $5,100 million and $7,552 million respectively, compared with $972 million and $1,075 million for the same periods in 2025. The second quarter and half year are adjusted by a favourable impact of net adjusting items* of $146 million and an adverse impact of $605 million respectively, compared with an adverse impact of net adjusting items of $561 million and $1,135 million for the same periods in 2025. See page 28 for more information on adjusting items.
+• After adjusting RC profit before interest and tax for adjusting items, the underlying RC profit before interest and tax* (underlying result) for the second quarter and half year was $4,954 million and $8,157 million respectively, compared with $1,533 million and $2,210 million for the same periods in 2025.
+• The customers & products underlying result for the second quarter and for the half year was significantly higher compared with the same periods in 2025, reflecting a stronger performance across both sub-segments.
+• customers – the customers underlying result for the second quarter and half year was significantly higher compared with the same periods in 2025, reflecting stronger integrated performance across fuels and midstream and a stronger Castrol result, partly offset by a lower contribution from bioenergy and lower fuels volumes.
+• products – the products underlying result for the second quarter and half year was significantly higher compared with the same periods in 2025. In refining, the second quarter and first half result benefited from significantly higher realized refining margins and significantly lower turnaround activity, as well as crude selection timing effects. These benefits were partly offset by the impacts of the third party event at Whiting in April and other maintenance activities. The oil trading contribution for the second quarter and first half was significantly higher compared with the same periods in 2025.
+Operational update
+• bp-operated refining availability for the second quarter and half year was 94.7% and 95.5% respectively, lower compared with 96.4% and 96.3% for the same periods in 2025.
+Strategic progress
+• In July bp completed the sale of the Gelsenkirchen refinery and related businesses to Klesch Group, following the announcement in March that an agreement had been reached for the sale.
+• In July bp announced the sale of its Austria mobility & convenience and bp pulse businesses to volenergy AG. The sale is expected to complete by the end of 2026 subject to regulatory approvals.
+• bp signed a 25-year agreement to continue operating at Durban’s Island View Terminal, securing long-term access to strategic infrastructure that strengthens our supply position in South Africa.
+• Working with government partners, bp secured a fast-tracked lease extension at the Bulwer Island facility at the Port of Brisbane enabling investment in additional fuel storage capacity to support Australia's fuel security.
+• These events build on the progress announced in our first-quarter results, which comprised the following:
+◦ Air bp signed a multi‑year supply agreement with Airbus to provide jet fuel and sustainable aviation fuel (SAF), as well as aviation services in Germany and Spain.
+◦ In January bp and Castrol commenced their Formula 1 partnership with Audi during the start of the season. This reflects the outcome of several years of bp and Castrol fuels and lubricants research and development to support compliance with the new 2026 Formula 1 regulations. The partnership showcases our strengths in technology and innovation and helps build brand equity.
+
+
+13
+
+
+Table of contents
+
+customers & products (continued)
+
+Second | First | Second | First | First |
+quarter | quarter | quarter | half | half |
+$ million | 2026 | 2026 | 2025 | 2026 | 2025 |
+
+Profit before interest and tax | 4,231 | 6,604 | 420 | 10,835 | 675 |
+Inventory holding (gains) losses* | 869 | (4,152) | 552 | (3,283) | 400 |
+RC profit before interest and tax | 5,100 | 2,452 | 972 | 7,552 | 1,075 |
+Net (favourable) adverse impact of adjusting items | (146) | 751 | 561 | 605 | 1,135 |
+Underlying RC profit before interest and tax | 4,954 | 3,203 | 1,533 | 8,157 | 2,210 |
+Of which: (a)
+|
+customers – convenience & mobility | 1,771 | 1,009 | 1,056 | 2,780 | 1,720 |
+Castrol – included in customers | 429 | 346 | 245 | 775 | 483 |
+products – refining & trading | 3,183 | 2,194 | 477 | 5,377 | 490 |
+
+Taxation on an underlying RC basis | (1,034) | (646) | (251) | (1,680) | (327) |
+Underlying RC profit before interest | 3,920 | 2,557 | 1,282 | 6,477 | 1,883 |
+
+(a) A reconciliation to RC profit before interest and tax by business is provided on page 31 .
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+Sales and other operating revenues (b)
+|
+Sales and other operating revenues | 57,159 | 37,449 | 100,120 | 73,612 |
+
+Adjusted EBITDA* (c)
+|
+customers – convenience & mobility | 2,340 | 1,698 | 3,881 | 2,929 |
+Castrol – included in customers | 429 | 295 | 775 | 579 |
+products – refining & trading | 3,616 | 895 | 6,242 | 1,326 |
+
+5,956 | 2,593 | 10,123 | 4,255 |
+
+Depreciation, depletion and amortization |
+Total depreciation, depletion and amortization | 1,002 | 1,060 | 1,966 | 2,045 |
+
+Capital expenditure |
+customers – convenience & mobility | 309 | 387 | 676 | 972 |
+Castrol – included in customers | (3) | 36 | 12 | 73 |
+products – refining & trading | 229 | 410 | 519 | 768 |
+
+Total capital expenditure | 538 | 797 | 1,195 | 1,740 |
+
+(b) Includes sales to other segments.
+(c) A reconciliation to RC profit before interest and tax by business is provided on page 31 .
+
+
+
+Second
+| Second
+| First
+| First
+|
+quarter
+| quarter
+| half
+| half
+|
+Marketing sales of refined products (mb/d)
+| 2026
+| 2025
+| 2026
+| 2025
+|
+US | 1,189 | 1,248 | 1,181 | 1,225 |
+Europe | 986 | 1,006 | 955 | 976 |
+Rest of World | 449 | 466 | 453 | 466 |
+2,624 | 2,720 | 2,589 | 2,667 |
+Trading/supply sales of refined products | 539 | 478 | 508 | 460 |
+Total sales volume of refined products | 3,163 | 3,198 | 3,097 | 3,127 |
+
+
+
+
+
+bp average refining indicator margin (RIM) ($/bbl)
+| 29.6 | 11.9 | 23.3 | 10.0 |
+
+
+
+
+Refinery throughputs (mb/d) |
+US | 626 | 573 | 654 | 623 |
+Europe | 841 | 715 | 843 | 768 |
+
+Total refinery throughputs | 1,467 | 1,288 | 1,497 | 1,391 |
+
+bp-operated refining availability (%) | 94.7 | 96.4 | 95.5 | 96.3 |
+
+14
+
+
+
+Table of contents
+
+other businesses & corporate
+Other businesses & corporate comprises technology, bp ventures, shipping, our corporate activities & functions and any residual costs of the Gulf of America oil spill.
+Financial results
+• The replacement cost (RC) loss before interest and tax for the second quarter and half year was $250 million and $1,105 million respectively, compared with a profit of $645 million and $623 million for the same periods in 2025. The second quarter and half year are adjusted by a favourable impact of net adjusting items* of $95 million and an adverse impact of $488 million respectively, compared with a favourable impact of net adjusting items of $683 million and $778 million for the same periods in 2025. Adjusting items include a favourable impact of fair value accounting effects* of $114 million and an adverse impact of $104 million for the second quarter and half year, and a favourable impact of $740 million and $1,109 million for the same periods in 2025. See page 28 for more information on adjusting items.
+• After adjusting RC loss before interest and tax for adjusting items, the underlying RC loss before interest and tax* for the second quarter and half year was $345 million and $617 million respectively, compared with a loss of $38 million and $155 million for the same periods in 2025.
+
+
+Strategic progress
+• In July bp reached an agreement to sell the majority of the direct investments held in bp Ventures, subject to regulatory and contractual approvals. Alongside this transaction bp intends to further simplify its portfolio by closing bp Ventures.
+
+
+
+
+
+Second
+| First
+| Second
+| First
+| First
+|
+quarter
+| quarter
+| quarter
+| half
+| half
+|
+$ million | 2026
+| 2026
+| 2025
+| 2026
+| 2025
+|
+Profit (loss) before interest and tax | (250) | (855) | 645 | (1,105) | 623 |
+Inventory holding (gains) losses* | — | — | — | — | — |
+RC profit (loss) before interest and tax | (250) | (855) | 645 | (1,105) | 623 |
+Net (favourable) adverse impact of adjusting items (a)
+| (95) | 583 | (683) | 488 | (778) |
+Underlying RC profit (loss) before interest and tax | (345) | (272) | (38) | (617) | (155) |
+Taxation on an underlying RC basis | 91 | 124 | 109 | 215 | 142 |
+Underlying RC profit (loss) before interest | (254) | (148) | 71 | (402) | (13) |
+
+(a) Includes fair value accounting effects relating to hybrid bonds. See page 36 for more information.
+
+
+
+
+
+
+15
+
+
+
+Table of contents
+
+Financial statements
+
+Group income statement
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+
+Sales and other operating revenues (Note 5)
+| 69,105 | 46,627 | 121,360 | 93,532 |
+Earnings from joint ventures – after interest and tax | 438 | 241 | 761 | 568 |
+Earnings from associates – after interest and tax | 145 | 155 | 498 | 404 |
+Interest and other income | 411 | 375 | 749 | 760 |
+Gains on sale of businesses and fixed assets | 15 | 279 | 117 | 293 |
+Total revenues and other income | 70,114 | 47,677 | 123,485 | 95,557 |
+Purchases | 41,149 | 26,875 | 67,399 | 54,595 |
+Production and manufacturing expenses | 8,954 | 6,153 | 17,491 | 12,267 |
+Production and similar taxes | 629 | 414 | 1,058 | 861 |
+Depreciation, depletion and amortization (Note 6)
+| 4,149 | 4,641 | 8,559 | 8,824 |
+Net impairment and losses on sale of businesses and fixed assets (Note 3)
+| 1,100 | 1,157 | 1,689 | 1,660 |
+Exploration expense | 582 | 139 | 626 | 242 |
+Distribution and administration expenses | 4,610 | 4,242 | 9,236 | 8,653 |
+Profit (loss) before interest and taxation | 8,941 | 4,056 | 17,427 | 8,455 |
+Finance costs | 1,175 | 1,229 | 2,350 | 2,550 |
+Net finance (income) expense relating to pensions and other post-employment benefits | ( 55 ) | ( 56 ) | ( 109 ) | ( 108 ) |
+Profit (loss) before taxation | 7,821 | 2,883 | 15,186 | 6,013 |
+Taxation | 3,491 | 954 | 6,644 | 3,102 |
+Profit (loss) for the period | 4,330 | 1,929 | 8,542 | 2,911 |
+Attributable to |
+bp shareholders | 3,911 | 1,629 | 7,753 | 2,316 |
+Non-controlling interests
+| 419 | 300 | 789 | 595 |
+4,330 | 1,929 | 8,542 | 2,911 |
+
+Earnings per share (Note 7)
+|
+Profit (loss) for the period attributable to bp shareholders |
+Per ordinary share (cents) |
+Basic | 24.77 | 10.41 | 49.60 | 14.73 |
+Diluted | 24.54 | 10.27 | 48.99 | 14.44 |
+Per ADS (dollars) |
+Basic | 1.49 | 0.62 | 2.98 | 0.88 |
+Diluted | 1.47 | 0.62 | 2.94 | 0.87 |
+
+
+
+
+
+
+
+16
+
+
+
+Table of contents
+
+Condensed group statement of comprehensive income
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+
+Profit (loss) for the period | 4,330 | 1,929 | 8,542 | 2,911 |
+Other comprehensive income |
+Items that may be reclassified subsequently to profit or loss |
+Currency translation differences (a)
+| 65 | 1,323 | ( 126 ) | 2,142 |
+Exchange (gains) losses on translation of foreign operations reclassified to gain or loss on sale of businesses and fixed assets | 2 | — | 2 | — |
+
+
+
+
+
+
+
+Cash flow hedges and costs of hedging | ( 8 ) | 235 | 151 | 50 |
+Share of items relating to equity-accounted entities, net of tax | ( 1 ) | 3 | 6 | 4 |
+Income tax relating to items that may be reclassified | ( 15 ) | ( 57 ) | ( 29 ) | ( 15 ) |
+43 | 1,504 | 4 | 2,181 |
+Items that will not be reclassified to profit or loss |
+Remeasurements of the net pension and other post-employment benefit liability or asset | ( 364 ) | ( 214 ) | ( 245 ) | 117 |
+Remeasurements of equity investments | 3 | 2 | 2 | 1 |
+Cash flow hedges that will subsequently be transferred to the balance sheet | — | 2 | 3 | 4 |
+Income tax relating to items that will not be reclassified | 91 | 52 | 54 | ( 43 ) |
+( 270 ) | ( 158 ) | ( 186 ) | 79 |
+Other comprehensive income | ( 227 ) | 1,346 | ( 182 ) | 2,260 |
+Total comprehensive income | 4,103 | 3,275 | 8,360 | 5,171 |
+Attributable to |
+bp shareholders | 3,700 | 2,883 | 7,616 | 4,439 |
+Non-controlling interests | 403 | 392 | 744 | 732 |
+4,103 | 3,275 | 8,360 | 5,171 |
+
+(a) Second quarter and first half 2025 are principally affected by movements in the Pound Sterling against the US dollar.
+17
+
+
+
+Table of contents
+
+Condensed group statement of changes in equity
+
+bp shareholders’ | Non-controlling interests | Total |
+$ million | equity | Hybrid bonds | Other interest | equity |
+
+
+At 1 January 2026 | 53,052 | 15,955 | 4,993 | 74,000 |
+
+Total comprehensive income | 7,616 | 371 | 373 | 8,360 |
+Dividends | ( 2,574 ) | — | ( 377 ) | ( 2,951 ) |
+Cash flow hedges transferred to the balance sheet, net of tax
+| ( 1 ) | — | — | ( 1 ) |
+
+Repurchase of ordinary share capital | ( 114 ) | — | — | ( 114 ) |
+Share-based payments, net of tax | 498 | — | — | 498 |
+
+
+Redemption of perpetual hybrid bonds, net of tax (a)
+| ( 65 ) | ( 2,816 ) | — | ( 2,881 ) |
+Payments on perpetual hybrid bonds | — | ( 495 ) | — | ( 495 ) |
+
+
+Transactions involving non-controlling interests, net of tax | 16 | — | ( 12 ) | 4 |
+At 30 June 2026 | 58,428 | 13,015 | 4,977 | 76,420 |
+
+bp shareholders’ | Non-controlling interests | Total |
+$ million | equity | Hybrid bonds | Other interest | equity |
+
+
+At 1 January 2025 | 59,246 | 16,649 | 2,423 | 78,318 |
+
+Total comprehensive income | 4,439 | 402 | 330 | 5,171 |
+Dividends | ( 2,515 ) | — | ( 219 ) | ( 2,734 ) |
+Cash flow hedges transferred to the balance sheet, net of tax
+| ( 4 ) | — | — | ( 4 ) |
+
+Repurchase of ordinary share capital | ( 2,511 ) | — | — | ( 2,511 ) |
+Share-based payments, net of tax | 594 | — | — | 594 |
+
+Issue of perpetual hybrid bonds | — | 500 | — | 500 |
+
+Payments on perpetual hybrid bonds | ( 9 ) | ( 511 ) | — | ( 520 ) |
+
+
+Transactions involving non-controlling interests, net of tax | — | — | 966 | 966 |
+At 30 June 2025 | 59,240 | 17,040 | 3,500 | 79,780 |
+
+(a) In the second quarter 2026, BP Capital Markets p.l.c. exercised its option to redeem € 2.5 billion of hybrid bonds.
+
+
+
+
+
+
+18
+
+
+
+Table of contents
+
+Group balance sheet
+
+30 June | 31 December |
+$ million | 2026 | 2025 |
+Non-current assets |
+Property, plant and equipment | 96,444 | 98,633 |
+Goodwill | 9,639 | 10,300 |
+Intangible assets | 8,081 | 8,197 |
+Investments in joint ventures | 13,106 | 13,400 |
+Investments in associates | 7,167 | 7,325 |
+Other investments | 705 | 857 |
+Fixed assets | 135,142 | 138,712 |
+Loans | 2,073 | 1,991 |
+Trade and other receivables | 2,551 | 2,376 |
+Derivative financial instruments | 22,541 | 20,957 |
+Prepayments | 625 | 608 |
+Deferred tax assets | 2,921 | 4,325 |
+Defined benefit pension plan surpluses | 7,488 | 7,771 |
+173,341 | 176,740 |
+Current assets |
+Loans | 462 | 457 |
+Inventories | 31,003 | 22,499 |
+Trade and other receivables | 35,004 | 26,014 |
+Derivative financial instruments | 7,852 | 5,180 |
+Prepayments | 3,209 | 3,422 |
+Current tax receivable | 740 | 1,153 |
+Other investments | 57 | 158 |
+Cash and cash equivalents | 37,168 | 36,556 |
+115,495 | 95,439 |
+Assets classified as held for sale (Note 2)
+| 5,791 | 6,347 |
+121,286 | 101,786 |
+Total assets | 294,627 | 278,526 |
+Current liabilities |
+Trade and other payables | 61,844 | 56,843 |
+Derivative financial instruments | 6,947 | 4,413 |
+Accruals | 5,330 | 5,572 |
+Lease liabilities | 2,961 | 2,832 |
+Finance debt | 5,888 | 3,356 |
+Current tax payable | 3,215 | 1,262 |
+Provisions | 7,095 | 4,709 |
+93,280 | 78,987 |
+Liabilities directly associated with assets classified as held for sale (Note 2)
+| 2,084 | 1,594 |
+95,364 | 80,581 |
+Non-current liabilities |
+Other payables | 6,843 | 7,975 |
+Derivative financial instruments | 22,274 | 19,667 |
+Accruals | 1,995 | 1,834 |
+Lease liabilities | 11,395 | 11,739 |
+Finance debt | 52,449 | 54,602 |
+Deferred tax liabilities | 7,826 | 7,642 |
+Provisions | 15,928 | 15,670 |
+Defined benefit pension plan and other post-employment benefit plan deficits | 4,133 | 4,816 |
+122,843 | 123,945 |
+Total liabilities | 218,207 | 204,526 |
+Net assets | 76,420 | 74,000 |
+Equity |
+bp shareholders’ equity | 58,428 | 53,052 |
+Non-controlling interests | 17,992 | 20,948 |
+Total equity | 76,420 | 74,000 |
+
+
+
+19
+
+
+
+Table of contents
+
+Condensed group cash flow statement
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+Operating activities |
+Profit (loss) before taxation | 7,821 | 2,883 | 15,186 | 6,013 |
+Adjustments to reconcile profit (loss) before taxation to net cash provided by operating activities
+|
+Depreciation, depletion and amortization and exploration expenditure written off
+| 4,675 | 4,723 | 9,087 | 8,959 |
+Net impairment and (gain) loss on sale of businesses and fixed assets | 1,085 | 878 | 1,572 | 1,367 |
+Earnings from equity-accounted entities, less dividends received
+| 51 | 40 | ( 316 ) | ( 160 ) |
+
+Net charge for interest and other finance expense, less net interest paid
+| 151 | 126 | 186 | 273 |
+Share-based payments
+| 201 | 215 | 519 | 616 |
+Net operating charge for pensions and other post-employment benefits, less contributions and benefit payments for unfunded plans | ( 18 ) | ( 36 ) | ( 47 ) | ( 47 ) |
+Net charge for provisions, less payments
+| 948 | 666 | 3,305 | 1,770 |
+Movements in inventories and other current and non-current assets and liabilities
+| ( 2,675 ) | ( 2,030 ) | ( 13,217 ) | ( 7,099 ) |
+Income taxes paid
+| ( 1,381 ) | ( 1,194 ) | ( 2,557 ) | ( 2,587 ) |
+Net cash provided by operating activities | 10,858 | 6,271 | 13,718 | 9,105 |
+Investing activities |
+
+
+Expenditure on property, plant and equipment, intangible and other assets | ( 3,087 ) | ( 3,236 ) | ( 6,329 ) | ( 6,587 ) |
+Acquisitions, net of cash acquired | 9 | ( 39 ) | ( 5 ) | ( 241 ) |
+Investment in joint ventures | ( 8 ) | ( 59 ) | ( 30 ) | ( 117 ) |
+Investment in associates | — | ( 27 ) | ( 12 ) | ( 39 ) |
+Total cash capital expenditure | ( 3,086 ) | ( 3,361 ) | ( 6,376 ) | ( 6,984 ) |
+Proceeds from disposal of fixed assets | 425 | 322 | 584 | 614 |
+Proceeds from disposal of businesses, net of cash disposed | 184 | 76 | 286 | 112 |
+Proceeds from loan repayments | 31 | 31 | 63 | 62 |
+Cash provided from investing activities | 640 | 429 | 933 | 788 |
+Net cash used in investing activities | ( 2,446 ) | ( 2,932 ) | ( 5,443 ) | ( 6,196 ) |
+Financing activities |
+Net issue (repurchase) of shares (Note 7)
+| — | ( 1,063 ) | ( 562 ) | ( 2,910 ) |
+Lease liability payments | ( 761 ) | ( 784 ) | ( 1,525 ) | ( 1,511 ) |
+Proceeds from long-term financing | 1,170 | 1,155 | 1,237 | 1,209 |
+Repayments of long-term financing | ( 21 ) | ( 848 ) | ( 866 ) | ( 2,214 ) |
+Net increase (decrease) in short-term debt | ( 2,726 ) | 39 | 386 | ( 86 ) |
+Issue of perpetual hybrid bonds | — | — | — | 500 |
+Redemption of perpetual hybrid bonds (a)
+| ( 2,855 ) | — | ( 2,855 ) | — |
+Payments relating to perpetual hybrid bonds | ( 293 ) | ( 332 ) | ( 530 ) | ( 604 ) |
+Payments relating to transactions involving non-controlling interests (Other interest) | — | — | ( 13 ) | — |
+Receipts relating to transactions involving non-controlling interests (Other interest) | 1 | 965 | 1 | 965 |
+Dividends paid - bp shareholders | ( 1,302 ) | ( 1,238 ) | ( 2,580 ) | ( 2,495 ) |
+- non-controlling interests
+| ( 206 ) | ( 127 ) | ( 381 ) | ( 201 ) |
+Net cash provided by (used in) financing activities | ( 6,993 ) | ( 2,233 ) | ( 7,688 ) | ( 7,347 ) |
+Currency translation differences relating to cash and cash equivalents | 49 | 193 | ( 60 ) | 299 |
+Increase (decrease) in cash and cash equivalents | 1,468 | 1,299 | 527 | ( 4,139 ) |
+Cash and cash equivalents at beginning of period (b)
+| 35,717 | 33,831 | 36,658 | 39,269 |
+Cash and cash equivalents at end of period (c)
+| 37,185 | 35,130 | 37,185 | 35,130 |
+
+(a) See Condensed group statement of changes in equity - footnote (a) for further information.
+(b) First half 2026 includes the impact of initial adoption of amendments to IFRS 9 'Financial Instruments'. See note 1.
+(c) Second quarter and first half 2026 include $17 million (second quarter and first half 2025 $63 million) of cash and cash equivalents classified as assets held for sale in the group balance sheet.
+20
+
+
+
+Table of contents
+
+Notes
+
+Note 1. Basis of preparation
+The interim financial information included in this report has been prepared in accordance with IAS 34 'Interim Financial Reporting'.
+The results for the interim periods presented herein are unaudited and, in the opinion of management, include all adjustments necessary for a fair presentation of the results for each period. All such adjustments are of a normal recurring nature. This report should be read in conjunction with the consolidated financial statements and related notes for the year ended 31 December 2025 included in bp Annual Report and Form 20-F 2025.
+The directors consider it appropriate to adopt the going concern basis of accounting in preparing these interim financial statements.
+bp prepares its consolidated financial statements included within bp Annual Report and Form 20-F on the basis of United Kingdom adopted international accounting standards and IFRS Accounting Standards® (IFRS) as issued by the International Accounting Standards Board (IASB), IFRS as adopted by the European Union (EU), and in accordance with the provisions of the UK Companies Act 2006 as applicable to companies reporting under international accounting standards. IFRS as adopted by the UK does not differ from IFRS as adopted by the EU. IFRS as adopted by the UK and EU differ in certain respects from IFRS as issued by the IASB. The differences have no impact on the group’s consolidated financial statements for the periods presented. The financial information presented herein has been prepared in accordance with the accounting policies expected to be used in preparing bp Annual Report and Form 20-F 2026, which are the same as those used in preparing bp Annual Report and Form 20-F 2025 .
+New standards and amendments to IFRS
+On 1 January 2026, bp adopted the amendments to IFRS 9 ‘Financial Instruments’ relating to the settlement of liabilities through electronic payment systems using the modified retrospective approach. The impact to the interim financial information upon transition was a $ 34 million increase to cash and cash equivalents.
+Significant accounting judgements and estimates
+bp's significant accounting judgements and estimates were disclosed in bp Annual Report and Form 20-F 2025 . These have been subsequently considered at the end of this quarter to determine if any changes were required to those judgements and estimates.
+Considerations in respect of ongoing geopolitical instability i n the Middle East and impact on the economic environment
+The impact of ongoing geopolitical instability in the Middle East and the associated economic developments have been considered for the basis of preparation for the interim financial information. Such factors include the economic effect of price volatility, supply disruptions in the region, operability of producing assets and discount rates.
+Impairment testing assumptions
+As a result of ongoing geopolitical instability in the Middle East and the related economic impact, the group’s value-in-use impairment testing price assumptions for Brent oil and Henry Hub gas were revised during the second quarter from those disclosed in the bp Annual Report and Form 20-F 2025 , and also revised since the first quarter 2026. The group has updated its estimate of Brent oil prices to $ 80 /bbl (previously $ 70 /bbl) and Henry Hub gas prices to $ 3.34 /mmBtu (previously $ 3.80 /mmBtu) in real 2024 terms on an average basis for the full year 2026. With reference to the Brent price, this estimate assumes that the ongoing supply disruptions resulting from geopolitical instability in the Middle East resolve before the year end 2026. With regard to the Henry Hub gas price assumption, the price decrease is based on an expectation of oversupply in 2026 in the US domestic market, partly offset by supply disruption. No material impairment or reversal of impairment arose in the second quarter 2026 and half year 2026 interim periods as a result of the changes to these commodity price assumptions. The post-tax discount rate used for value-in-use impairment testing of assets other than certain low carbon energy assets was maintained at 8 % (31 December 2025 8 %).
+Segmentation
+Reportable segments for external financial reporting will remain Oil production & operations, Gas & low carbon energy and Customers & products until 31 December 2026, as the financial reporting aspects of the new segment model announced on 9 June 2026 will take time to implement. Until the new reporting segments take effect from the financial year beginning 1 January 2027, decisions about resource allocation and performance assessment of segments will continue to be made on the existing segmental internal reporting regularly reviewed by the chief operating decision maker.
+21
+
+
+
+Table of contents
+
+Note 2. Non-current assets held for sale
+The carrying amount of assets classified as held for sale at 30 June 2026 is $ 5,791 million, with associated liabilities of $ 2,084 million.
+Gas & low carbon energy
+On 24 October 2024, bp completed the acquisition of the remaining 50.03% of Lightsource bp. The acquisition included certain assets for which sales processes were in progress at the acquisition date. The sales of these assets are expected to complete in 2026. The carrying amount of assets classified as held for sale at 30 June 2026 is $ 789 million, with associated liabilities of $ 496 million.
+Customers & products
+On 18 March 2026, bp agreed with the Klesch Group to divest its 100% interest in the Gelsenkirchen refinery and associated assets. The carrying amount of assets classified as held for sale at 30 June 2026 is $ 549 million, with associated liabilities of $ 1,260 million. Working capital balances, including inventory, as at completion will be transferred to the buyer. The transaction completed on 31 July 2026.
+On 24 December 2025, bp announced an agreement with Stonepeak to divest a 65 % shareholding in the Castrol business with bp retaining a 35 % interest through a holding in a newly incorporated entity. Cash proceeds are estimated at $ 6 billion. The transaction is expected to complete by the end of 2026, subject to regulatory approvals. The carrying amount of assets classified as held for sale at 30 June 2026 is $ 4,453 million including $ 2,713 million of goodwill that arose on the acquisition of Castrol in 2000, with associated liabilities of $ 328 million. Net working capital has not been classified as assets and associated liabilities held for sale. The working capital balances, including inventory, as at completion will be transferred to the buyer. The shares to be held by Stonepeak after the transaction closes are subject to preferred distributions, the effect of which is that bp does not expect to recognize income or dividends from the investment in the short to medium term.
+
+
+
+Note 3. Impairment and losses on sale of businesses and fixed assets
+Net impairment charges and losses on sale of businesses and fixed assets for the second quarter and half year were $ 1,100 million and $1,689 million respectively, compared with net charges of $ 1,157 million and $ 1,660 million for the same periods in 2025 and include net impairment charges for the second quarter and half year of $ 888 million and $1,248 million respectively, compared with net impairment charges of $ 1,130 million and $1,561 million for the same periods in 2025.
+Gas & low carbon energy
+Second quarter and half year 2026 impairments includes a net impairment charge of $ 680 million and $ 525 million respectively, primarily related to the group's transition businesses, compared with net charges of $ 431 million and $ 746 million for the same periods in 2025 in the gas & low carbon energy segment.
+Oil production & operations
+Second quarter and half year 2026 impairments includes a net impairment charge of $ 107 million and $ 255 million respectively, compared with net charges of $ 326 million and $ 336 million for the same periods in 2025 in the oil production & operations segment.
+Customers & products
+Second quarter and half year 2026 impairments includes a net impairment charge of $ 101 million and $ 225 million respectively, compared with net charges of $ 373 million and $ 477 million for the same periods in 2025 in the customers & products segment.
+
+
+22
+
+
+
+Table of contents
+
+Note 4. Analysis of replacement cost profit (loss) before interest and tax and reconciliation to profit (loss) before taxation
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+gas & low carbon energy | 1,564 | 1,047 | 2,618 | 2,405 |
+oil production & operations
+| 3,397 | 1,916 | 5,052 | 4,704 |
+customers & products | 5,100 | 972 | 7,552 | 1,075 |
+other businesses & corporate | ( 250 ) | 645 | ( 1,105 ) | 623 |
+9,811 | 4,580 | 14,117 | 8,807 |
+Consolidation adjustment – UPII* | — | 30 | 21 | 43 |
+9,811 | 4,610 | 14,138 | 8,850 |
+Inventory holding gains (losses)* |
+gas & low carbon energy | — | — | — | — |
+oil production & operations
+| ( 1 ) | ( 2 ) | 6 | 5 |
+customers & products | ( 869 ) | ( 552 ) | 3,283 | ( 400 ) |
+
+Profit (loss) before interest and tax | 8,941 | 4,056 | 17,427 | 8,455 |
+Finance costs | 1,175 | 1,229 | 2,350 | 2,550 |
+Net finance expense/(income) relating to pensions and other post-employment benefits | ( 55 ) | ( 56 ) | ( 109 ) | ( 108 ) |
+Profit (loss) before taxation | 7,821 | 2,883 | 15,186 | 6,013 |
+
+RC profit (loss) before interest and tax* |
+US | 3,727 | 1,417 | 5,248 | 2,950 |
+Non-US | 6,084 | 3,193 | 8,890 | 5,900 |
+9,811 | 4,610 | 14,138 | 8,850 |
+
+
+
+23
+
+
+
+Table of contents
+
+Note 5. Sales and other operating revenues
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+By segment |
+gas & low carbon energy | 11,675 | 9,172 | 21,122 | 19,950 |
+oil production & operations
+| 7,813 | 6,053 | 13,765 | 12,555 |
+customers & products | 57,159 | 37,449 | 100,120 | 73,612 |
+other businesses & corporate | 739 | 539 | 1,300 | 1,023 |
+77,386 | 53,213 | 136,307 | 107,140 |
+
+Less: sales and other operating revenues between segments |
+gas & low carbon energy | 808 | 337 | 1,155 | 1,068 |
+oil production & operations
+| 7,289 | 5,818 | 12,889 | 11,636 |
+customers & products | ( 293 ) | ( 55 ) | 182 | ( 13 ) |
+other businesses & corporate | 477 | 486 | 721 | 917 |
+8,281 | 6,586 | 14,947 | 13,608 |
+
+External sales and other operating revenues |
+gas & low carbon energy | 10,867 | 8,835 | 19,967 | 18,882 |
+oil production & operations
+| 524 | 235 | 876 | 919 |
+customers & products | 57,452 | 37,504 | 99,938 | 73,625 |
+other businesses & corporate | 262 | 53 | 579 | 106 |
+Total sales and other operating revenues | 69,105 | 46,627 | 121,360 | 93,532 |
+
+By geographical area |
+US | 25,125 | 18,890 | 44,601 | 37,979 |
+Non-US | 57,019 | 36,233 | 99,596 | 71,934 |
+82,144 | 55,123 | 144,197 | 109,913 |
+Less: sales and other operating revenues between areas | 13,039 | 8,496 | 22,837 | 16,381 |
+69,105 | 46,627 | 121,360 | 93,532 |
+
+Revenues from contracts with customers |
+Sales and other operating revenues include the following in relation to revenues from contracts with customers: |
+Crude oil | 402 | 421 | 735 | 836 |
+Oil products | 43,549 | 28,572 | 73,400 | 55,734 |
+Natural gas, LNG and NGLs | 8,523 | 6,049 | 15,160 | 13,312 |
+Non-oil products and other revenues from contracts with customers | 3,721 | 3,697 | 7,416 | 7,330 |
+Revenue from contracts with customers | 56,195 | 38,739 | 96,711 | 77,212 |
+Other operating revenues (a)
+| 12,910 | 7,888 | 24,649 | 16,320 |
+Total sales and other operating revenues | 69,105 | 46,627 | 121,360 | 93,532 |
+
+
+
+(a) Principally relates to commodity derivative transactions including sales of bp own production in trading books.
+
+
+
+Note 6. Depreciation, depletion and amortization
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+Total depreciation, depletion and amortization by segment |
+gas & low carbon energy | 1,139 | 1,407 | 2,325 | 2,573 |
+oil production & operations
+| 1,754 | 1,933 | 3,763 | 3,720 |
+customers & products | 1,002 | 1,060 | 1,966 | 2,045 |
+other businesses & corporate | 254 | 241 | 505 | 486 |
+4,149 | 4,641 | 8,559 | 8,824 |
+Total depreciation, depletion and amortization by geographical area |
+US | 1,721 | 1,897 | 3,600 | 3,633 |
+Non-US | 2,428 | 2,744 | 4,959 | 5,191 |
+4,149 | 4,641 | 8,559 | 8,824 |
+
+
+
+
+
+24
+
+
+
+Table of contents
+
+Note 7. Earnings per share and shares in issue
+Basic earnings per ordinary share (EpS) amounts are calculated by dividing the profit (loss) for the period attributable to ordinary shareholders by the weighted average number of ordinary shares outstanding during the period.
+The calculation of EpS is performed separately for each discrete quarterly period, and for the year-to-date period. As a result, the sum of the discrete quarterly EpS amounts in any particular year-to-date period may not be equal to the EpS amount for the year-to-date period.
+For the diluted EpS calculation the weighted average number of shares outstanding during the period is adjusted for the number of shares that are potentially issuable in connection with employee share-based payment plans using the treasury stock method.
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+Results for the period |
+Profit (loss) for the period attributable to bp shareholders | 3,911 | 1,629 | 7,753 | 2,316 |
+Less: preference dividend | 1 | 1 | 1 | 1 |
+
+
+Less: (gain) loss on redemption of perpetual hybrid bonds (a)
+| 65 | — | 65 | — |
+Profit (loss) attributable to bp ordinary shareholders | 3,845 | 1,628 | 7,687 | 2,315 |
+
+Number of shares (thousand) (b)
+|
+Basic weighted average number of shares outstanding
+| 15,522,233 | 15,645,561 | 15,496,928 | 15,711,554 |
+ADS equivalent (c)
+| 2,587,038 | 2,607,593 | 2,582,821 | 2,618,592 |
+
+Weighted average number of shares outstanding used to calculate diluted earnings per share
+| 15,667,335 | 15,854,588 | 15,691,289 | 16,026,670 |
+ADS equivalent (c)
+| 2,611,222 | 2,642,431 | 2,615,214 | 2,671,111 |
+
+Shares in issue at period-end | 15,546,713 | 15,596,112 | 15,546,713 | 15,596,112 |
+ADS equivalent (c)
+| 2,591,118 | 2,599,352 | 2,591,118 | 2,599,352 |
+
+(a) See Condensed group statement of changes in equity - footnote (a) for further information.
+(b) Excludes treasury shares and includes certain shares that will be issued in the future under employee share-based payment plans.
+(c) One ADS is equivalent to six ordinary shares.
+
+
+Issued ordinary share capital as at 30 June 2026 comprised 15,702,899,365 ordinary shares (31 December 2025 15,628,880,285 ordinary shares). This includes shares held in trust to settle future employee share plan obligations and excludes 783,413,629 ordinary shares which have been bought back and are held in treasury by bp (31 December 2025 857,432,709 ordinary shares).
+
+
+
+Note 8. Dividends
+Dividends payable
+bp today announced an interim dividend of 8.660 cents per ordinary share which is expected to be paid on 18 September 2026 to ordinary shareholders and American Depositary Share (ADS) holders on the register on 14 August 2026. The ex-dividend date will be 13 August 2026 for ordinary shareholders and 14 August 2026 for ADS holders. The corresponding amount in sterling is due to be announced on 8 September 2026, calculated based on the average of the market exchange rates over three dealing days between 2 September 2026 and 4 September 2026. Holders of ADSs are expected to receive $ 0.5196 per ADS (less applicable fees). The board has decided not to offer a scrip dividend alternative in respect of the second quarter 2026 dividend. Ordinary shareholders and ADS holders (subject to certain exceptions) will be able to participate in a dividend reinvestment programme. Details of the second quarter dividend and timetable are available at bp.com/dividends and further details of the dividend reinvestment programmes are available at bp.com/drip .
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+2026 | 2025 | 2026 | 2025 |
+Dividends paid per ordinary share |
+cents | 8.320 | 8.000 | 16.640 | 16.000 |
+pence | 6.184 | 5.899 | 12.410 | 12.075 |
+Dividends paid per ADS (cents) | 49.92 | 48.00 | 99.84 | 96.00 |
+
+
+
+25
+
+
+
+Table of contents
+
+Note 9. Net debt
+
+30 June | 30 June | 31 December |
+
+$ million | 2026 | 2025 | 2025 |
+Finance debt (a)
+| 58,337 | 60,346 | 57,958 |
+Fair value (asset) liability of hedges related to finance debt (b)
+| 1,082 | 764 | 780 |
+59,419 | 61,110 | 58,738 |
+Less: cash and cash equivalents | 37,168 | 35,067 | 36,556 |
+Net debt (c)
+| 22,251 | 26,043 | 22,182 |
+Total equity | 76,420 | 79,780 | 74,000 |
+Gearing* | 22.6 % | 24.6 % | 23.1 % |
+
+(a) The fair value of finance debt at 30 June 2026 was $ 54,869 million (30 June 2025 $ 57,135 million, 31 December 2025 $ 54,935 million).
+(b) Derivative financial instruments entered into for the purpose of managing foreign currency exchange risk associated with net debt with a fair value liability position of $ 105 million at 30 June 2026 (second quarter 2025 liability of $ 96 million, fourth quarter 2025 liability of $ 94 million) are not included in the calculation of net debt shown above as hedge accounting is not applied for these instruments.
+(c) Net debt does not include accrued interest, which is reported within other receivables and other payables on the balance sheet and for which the associated cash flows are presented as operating cash flows in the group cash flow statement.
+
+
+
+Note 10. Statutory accounts
+The financial information shown in this publication, which was approved by the Board of Directors on 3 August 2026, is unaudited and does not constitute statutory financial statements. Audited financial information will be published in bp Annual Report and Form 20-F 2026.
+
+
+
+
+26
+
+
+
+Table of contents
+
+Additional information
+Capital expenditure
+Capital expenditure is a measure that provides useful information to understand how bp’s management allocates resources including the investment of funds in projects which expand the group’s activities through acquisition.
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+Capital expenditure |
+Organic capital expenditure* | 3,086 | 3,321 | 6,362 | 6,761 |
+Inorganic capital expenditure* | — | 40 | 14 | 223 |
+3,086 | 3,361 | 6,376 | 6,984 |
+
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+Capital expenditure by segment |
+gas & low carbon energy
+| 776 | 790 | 1,471 | 1,693 |
+oil production & operations
+| 1,733 | 1,706 | 3,624 | 3,402 |
+customers & products
+| 538 | 797 | 1,195 | 1,740 |
+other businesses & corporate
+| 39 | 68 | 86 | 149 |
+3,086 | 3,361 | 6,376 | 6,984 |
+Capital expenditure by geographical area |
+US
+| 1,423 | 1,576 | 3,025 | 3,009 |
+Non-US
+| 1,663 | 1,785 | 3,351 | 3,975 |
+3,086 | 3,361 | 6,376 | 6,984 |
+
+
+
+
+
+
+
+
+
+
+27
+
+
+
+Table of contents
+
+Adjusting items*
+Adjusting items are items that management considers to be important to period-on-period analysis of the group's results and are disclosed in order to enable investors to better understand and evaluate the group’s reported financial performance. Adjusting items are used as a reconciling adjustment to derive underlying RC profit or loss and related underlying measures which are non-IFRS measures.
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+gas & low carbon energy |
+Gains on sale of businesses and fixed assets | 7 | 69 | 8 | 68 |
+Net impairment and losses on sale of businesses and fixed assets | (687) | (439) | (743) | (805) |
+Environmental and related provisions | — | — | — | — |
+Restructuring, integration and rationalization costs | (9) | 3 | (22) | (11) |
+Fair value accounting effects (a)(b)
+| 205 | 18 | (68) | 686 |
+Other | (74) | (66) | (15) | 8 |
+(558) | (415) | (840) | (54) |
+oil production & operations |
+Gains on sale of businesses and fixed assets | 5 | 196 | 72 | 205 |
+Net impairment and losses on sale of businesses and fixed assets | (108) | (330) | (263) | (345) |
+Environmental and related provisions | (42) | (55) | (212) | (86) |
+Restructuring, integration and rationalization costs | (9) | (46) | (75) | (87) |
+Fair value accounting effects | — | — | — | — |
+Other | (30) | (111) | (32) | (140) |
+(184) | (346) | (510) | (453) |
+customers & products |
+Gains on sale of businesses and fixed assets | 4 | 16 | 37 | 19 |
+Net impairment and losses on sale of businesses and fixed assets | (306) | (389) | (440) | (503) |
+Environmental and related provisions | — | (1) | (3) | (1) |
+Restructuring, integration and rationalization costs | (40) | (86) | (100) | (177) |
+Fair value accounting effects (b)
+| 641 | (201) | 48 | (283) |
+Other | (153) | 100 | (147) | (190) |
+146 | (561) | (605) | (1,135) |
+
+
+
+other businesses & corporate |
+Gains on sale of businesses and fixed assets | — | — | 1 | — |
+Net impairment and losses on sale of businesses and fixed assets | 1 | — | (243) | (5) |
+Environmental and related provisions | (21) | (18) | (21) | (90) |
+Restructuring, integration and rationalization costs | (5) | (39) | (115) | (237) |
+Fair value accounting effects (b)
+| 114 | 740 | (104) | 1,109 |
+
+Gulf of America oil spill | — | (9) | (4) | (18) |
+Other | 6 | 9 | (2) | 19 |
+95 | 683 | (488) | 778 |
+
+Total before interest and taxation | (501) | (639) | (2,443) | (864) |
+Finance costs (c)
+| (67) | (78) | (141) | (265) |
+Total before taxation | (568) | (717) | (2,584) | (1,129) |
+Taxation on adjusting items (d)(e)
+| (439) | 400 | (959) | 539 |
+Taxation – tax rate change effect (f)
+| (97) | — | (97) | (539) |
+
+
+Total after taxation for period | (1,104) | (317) | (3,640) | (1,129) |
+
+(a) Under IFRS bp marks-to-market the value of the hedges used to risk-manage LNG contracts, but not the contracts themselves, resulting in a mismatch in accounting treatment. The fair value accounting effect includes the change in value of LNG contracts that are being risk managed, and the underlying result reflects how bp risk-manages its LNG contracts.
+(b) For further information, including the nature of fair value accounting effects reported in each segment, see pages 6 , 9 and 36 .
+(c) Includes the unwinding of discounting effects relating to Gulf of America oil spill payables, the income statement impact of temporary valuation differences related to the group’s interest rate and foreign currency exchange risk management associated with finance debt, and the unwinding of discounting effects relating to certain onerous contract provisions.
+(d) Includes certain foreign exchange effects on tax as adjusting items. These amounts represent the impact of: (i) foreign exchange on deferred tax balances arising from the conversion of local currency tax base amounts into functional currency, and (ii) taxable gains and losses from the retranslation of US dollar-denominated intra-group loans to local currency.
+(e) Second quarter and half year 2026 include the impact of the reassessment of the recognition of deferred tax assets.
+(f) Second quarter 2026 and first half 2025 include revisions to the deferred tax impact of the introduction of the UK Energy Profits Levy (EPL) on temporary differences existing at the opening balance sheet date. The EPL increases the headline rate of tax on taxable profits from bp’s North Sea business to 78%. In the first quarter 2025 a two-year extension of the EPL to 31 March 2030 was substantively enacted.
+
+
+28
+
+
+
+Table of contents
+
+Net debt including leases*
+Gearing including leases and net debt including leases are non-IFRS measures that provide the impact of the group’s lease portfolio on net debt and gearing.
+
+Net debt including leases
+| 30 June | 30 June | 31 December |
+
+$ million | 2026 | 2025 | 2025 |
+Net debt* | 22,251 | 26,043 | 22,182 |
+Lease liabilities | 14,356 | 14,636 | 14,571 |
+Net partner (receivable) payable for leases entered into on behalf of joint operations
+| (1,040) | (1,030) | (1,067) |
+
+Net debt including leases | 35,567 | 39,649 | 35,686 |
+Total equity | 76,420 | 79,780 | 74,000 |
+Gearing including leases* | 31.8% | 33.2% | 32.5% |
+
+
+
+
+Gulf of America oil spill
+
+
+
+30 June | 31 December |
+$ million | 2026 | 2025 |
+
+
+Gulf of America oil spill payables and provisions | (5,878) | (7,256) |
+Of which - current | (1,120) | (1,522) |
+
+Deferred tax asset | 877 | 1,110 |
+
+During the second quarter pre-tax payments of $1,129 million were made relating to the 2016 consent decree and settlement agreement with the United States and the five Gulf coast states. Payables and provisions presented in the table above reflect the latest estimate for the remaining costs associated with the Gulf of America oil spill. Where amounts have been provided on an estimated basis, the amounts ultimately payable may differ from the amounts provided and the timing of payments is uncertain. Further information relating to the Gulf of America oil spill, including information on the nature and expected timing of payments relating to provisions and other payables, is provided in bp Annual Report and Form 20-F 2025 - Financial statements - Notes 7, 22, 23, 29, and 33.
+
+
+29
+
+
+
+Table of contents
+
+Underlying operating expenditure* reconciliation
+Underlying operating expenditure is a non-IFRS measure and a subset of production and manufacturing expenses plus distribution and administration expenses and excludes costs that are classified as adjusting items. It represents the majority of the remaining expenses in these line items but excludes certain costs that are variable, primarily with volumes (such as freight costs).
+Management believes that underlying operating expenditure is a performance measure that provides investors with useful information regarding the company’s financial performance because it considers these expenses to be the principal operating and overhead expenses that are most directly under their control although they also include certain foreign exchange and commodity price effects.
+
+Second
+| Second
+| First
+| First
+|
+quarter
+| quarter
+| half
+| half
+|
+$ million | 2026
+| 2025
+| 2026
+| 2025
+|
+From group income statement |
+Production and manufacturing expenses | 8,954 | 6,153 | 17,491 | 12,267 |
+Distribution and administration expenses | 4,610 | 4,242 | 9,236 | 8,653 |
+13,564 | 10,395 | 26,727 | 20,920 |
+
+Less certain variable costs: |
+Transportation and shipping costs | 3,772 | 2,634 | 6,855 | 5,080 |
+Environmental costs | 2,917 | 1,630 | 5,316 | 2,967 |
+Marketing and distribution costs | 724 | 421 | 1,491 | 848 |
+Commission, storage and handling costs | 423 | 405 | 822 | 771 |
+Other variable costs and non-cash costs
+| 253 | 435 | 756 | 732 |
+Certain variable costs and non-cash costs
+| 8,089 | 5,525 | 15,240 | 10,398 |
+
+Adjusted operating expenditure*
+| 5,475 | 4,870 | 11,487 | 10,522 |
+
+Less certain adjusting items*: |
+Gulf of America oil spill | — | 9 | 4 | 18 |
+Environmental and related provisions | 63 | 74 | 236 | 177 |
+Restructuring, integration and rationalization costs | 63 | 168 | 312 | 512 |
+Fair value accounting effects – derivative instruments relating to the hybrid bonds | (114) | (740) | 104 | (1,109) |
+Other certain adjusting items | 130 | (98) | 129 | 163 |
+Certain adjusting items | 142 | (587) | 785 | (239) |
+
+Underlying operating expenditure | 5,333 | 5,457 | 10,702 | 10,761 |
+
+
+(Decrease) increase in underlying operating expenditure | (59) |
+Of which:
+|
+Structural cost reduction*
+| (782) |
+Increase/(decrease) in underlying operating expenditure due to inflation, exchange movements, portfolio changes and growth
+| 723 |
+
+Structural cost reduction at 30 June 2026 since 2023 |
+Structural cost reduction in 2024 and 2025 | (2,761) |
+Structural cost reduction in the first half 2026 | (782) |
+Cumulative structural cost reduction | (3,543) |
+
+
+
+
+30
+
+
+
+Table of contents
+
+Reconciliation of customers & products RC profit before interest and tax to underlying RC profit before interest and tax* to adjusted EBITDA* by business
+
+
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million
+| 2026 | 2025 | 2026 | 2025 |
+RC profit before interest and tax for customers & products | 5,100 | 972 | 7,552 | 1,075 |
+
+
+
+
+
+Less: Adjusting items* gains (charges) | 146 | (561) | (605) | (1,135) |
+
+
+
+
+
+Underlying RC profit before interest and tax for customers & products | 4,954 | 1,533 | 8,157 | 2,210 |
+By business: |
+customers – convenience & mobility | 1,771 | 1,056 | 2,780 | 1,720 |
+Castrol – included in customers | 429 | 245 | 775 | 483 |
+products – refining & trading | 3,183 | 477 | 5,377 | 490 |
+
+
+
+Add back: Depreciation, depletion and amortization | 1,002 | 1,060 | 1,966 | 2,045 |
+By business: |
+customers – convenience & mobility | 569 | 642 | 1,101 | 1,209 |
+Castrol – included in customers | — | 50 | — | 96 |
+products – refining & trading | 433 | 418 | 865 | 836 |
+
+
+
+Adjusted EBITDA for customers & products | 5,956 | 2,593 | 10,123 | 4,255 |
+By business: |
+customers – convenience & mobility | 2,340 | 1,698 | 3,881 | 2,929 |
+Castrol – included in customers | 429 | 295 | 775 | 579 |
+products – refining & trading | 3,616 | 895 | 6,242 | 1,326 |
+
+
+
+
+
+
+Reconciliation of gas & low carbon energy and oil production & operations RC profit before interest and tax to adjusted EBITDA*
+
+
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+$ million
+| 2026 | 2025 | 2026 | 2025 |
+gas & low carbon energy |
+RC profit before interest and tax | 1,564 | 1,047 | 2,618 | 2,405 |
+Less: Net favourable (adverse) impact of adjusting items* | (558) | (415) | (840) | (54) |
+Underlying RC profit before interest and tax* | 2,122 | 1,462 | 3,458 | 2,459 |
+Add back: Depreciation, depletion and amortization | 1,139 | 1,407 | 2,325 | 2,573 |
+Exploration write-offs | 48 | 1 | 48 | 1 |
+Adjusted EBITDA | 3,309 | 2,870 | 5,831 | 5,033 |
+
+oil production & operations |
+RC profit before interest and tax | 3,397 | 1,916 | 5,052 | 4,704 |
+Less: Net favourable (adverse) impact of adjusting items | (184) | (346) | (510) | (453) |
+Underlying RC profit before interest and tax | 3,581 | 2,262 | 5,562 | 5,157 |
+Add back: Depreciation, depletion and amortization | 1,754 | 1,933 | 3,763 | 3,720 |
+Exploration write-offs | 478 | 81 | 480 | 134 |
+Adjusted EBITDA | 5,813 | 4,276 | 9,805 | 9,011 |
+
+
+
+
+
+31
+
+
+
+Table of contents
+
+Reconciliation of basic earnings per ordinary share / ADS to underlying replacement cost profit (loss) per ordinary share* / ADS*
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+Per ordinary share (cents) | 2026 | 2025 | 2026 | 2025 |
+Profit (loss) for the period attributable to bp shareholders | 24.77 | 10.41 | 49.60 | 14.73 |
+Inventory holding (gains) losses*, before tax | 5.60 | 3.54 | (21.22) | 2.51 |
+Taxation charge (credit) on inventory holding gains and losses | (0.98) | (0.94) | 5.33 | (0.67) |
+29.39 | 13.01 | 33.71 | 16.57 |
+Net (favourable) adverse impact of adjusting items*, before tax (a)
+| 4.22 | 4.58 | 17.24 | 7.19 |
+Taxation charge (credit) on adjusting items (a)
+| 3.31 | (2.56) | 6.67 | — |
+Underlying RC profit (loss) | 36.92 | 15.03 | 57.62 | 23.76 |
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+Per ADS (dollars) | 2026 | 2025 | 2026 | 2025 |
+Profit (loss) for the period attributable to bp shareholders | 1.49 | 0.62 | 2.98 | 0.88 |
+Inventory holding (gains) losses, before tax | 0.34 | 0.21 | (1.27) | 0.15 |
+Taxation charge (credit) on inventory holding gains and losses | (0.07) | (0.05) | 0.31 | (0.04) |
+1.76 | 0.78 | 2.02 | 0.99 |
+Net (favourable) adverse impact of adjusting items, before tax (a)
+| 0.25 | 0.27 | 1.03 | 0.44 |
+Taxation charge (credit) on adjusting items (a)
+| 0.21 | (0.15) | 0.41 | — |
+Underlying RC profit (loss) | 2.22 | 0.90 | 3.46 | 1.43 |
+
+(a) Second quarter and first half 2026 calculated based on adjusting items as adjusted for a foreign exchange loss on redemption of hybrid bonds of $87 million and taxation thereon of $22 million (see Note 7).
+
+
+
+
+
+
+
+Reconciliation of effective tax rate (ETR) to underlying ETR*
+
+Taxation (charge) credit | Second | Second | First | First |
+quarter | quarter | half | half |
+$ million | 2026 | 2025 | 2026 | 2025 |
+Taxation on profit or loss before taxation | (3,491) | (954) | (6,644) | (3,102) |
+Exclude: |
+Taxation on inventory holding gains and losses | 153 | 147 | (826) | 106 |
+
+Total taxation on adjusting items | (536) | 400 | (1,056) | — |
+
+Taxation on underlying replacement cost profit | (3,108) | (1,501) | (4,762) | (3,208) |
+
+
+Effective tax rate | Second | Second | First | First |
+quarter | quarter | half | half |
+% | 2026 | 2025 | 2026 | 2025 |
+ETR on profit or loss before taxation | 45 | 33 | 44 | 52 |
+Adjusted for inventory holding gains or losses | (3) | (1) | 5 | (2) |
+
+Excluding adjusting items | (8) | 4 | (16) | (7) |
+
+Underlying ETR | 34 | 36 | 33 | 43 |
+
+32
+
+
+
+Table of contents
+
+Realizations* and marker prices
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+2026 | 2025 | 2026 | 2025 |
+Average realizations (a)
+|
+Liquids* (b) ($/bbl)
+|
+US | 76.03 | 53.39 | 63.20 | 57.54 |
+Europe | 97.49 | 64.62 | 90.58 | 70.09 |
+Rest of World | 95.39 | 69.69 | 82.60 | 72.09 |
+bp average | 85.14 | 60.16 | 72.61 | 63.88 |
+Natural gas ($/mcf)
+|
+US | 1.72 | 2.52 | 2.51 | 2.82 |
+Europe | 17.25 | 13.06 | 12.52 | 14.81 |
+Rest of World | 8.03 | 6.50 | 7.14 | 6.86 |
+bp average | 5.89 | 5.56 | 5.62 | 5.97 |
+Total hydrocarbons* ($/boe)
+|
+US | 48.47 | 39.51 | 43.65 | 42.77 |
+Europe | 97.85 | 68.02 | 88.09 | 74.91 |
+Rest of World | 64.34 | 48.44 | 55.77 | 50.82 |
+bp average | 58.62 | 45.84 | 51.86 | 48.95 |
+Average oil marker prices ($/bbl)
+|
+Brent | 103.85 | 67.88 | 92.31 | 71.87 |
+West Texas Intermediate | 93.11 | 63.81 | 83.00 | 67.60 |
+Western Canadian Select | 72.86 | 53.16 | 64.98 | 55.74 |
+Alaska North Slope | 103.05 | 68.82 | 90.40 | 72.30 |
+
+
+Average natural gas marker prices |
+Henry Hub gas price (c) ($/mmBtu)
+| 2.90 | 3.44 | 3.98 | 3.55 |
+UK Gas – National Balancing Point (p/therm) | 112.39 | 84.53 | 106.53 | 100.47 |
+
+
+
+
+
+
+
+
+
+
+
+
+(a) Based on sales of consolidated subsidiaries only – this excludes equity-accounted entities.
+(b) Liquids comprises crude oil, condensate and natural gas liquids.
+(c) Henry Hub First of Month Index.
+
+
+
+Exchange rates
+
+Second | Second | First | First |
+quarter | quarter | half | half |
+2026 | 2025 | 2026 | 2025 |
+$/£ average rate for the period | 1.34 | 1.34 | 1.35 | 1.30 |
+$/£ period-end rate | 1.32 | 1.37 | 1.32 | 1.37 |
+
+$/€ average rate for the period | 1.16 | 1.13 | 1.17 | 1.09 |
+$/€ period-end rate | 1.14 | 1.17 | 1.14 | 1.17 |
+
+$/AUD average rate for the period | 0.71 | 0.64 | 0.70 | 0.63 |
+$/AUD period-end rate | 0.69 | 0.65 | 0.69 | 0.65 |
+
+
+33
+
+
+
+Table of contents
+
+Principal risks and uncertainties
+The principal risks and uncertainties affecting bp are described in the Principal risks and uncertainties (Risk factors) section of bp Annual Report and Form 20-F 2025 (pages 62-66) and are summarized below.
+There are no material changes expected in those risk factors for the remaining six months of the financial year.
+The risks and uncertainties summarized below, separately or in combination, could have a material adverse effect on the implementation of our strategy, business, financial performance, results of operations, cash flows, liquidity, prospects, shareholder value and returns, and reputation.
+
+
+Strategic and commercial risks
+• Commodity prices and market environment – our financial performance is impacted by fluctuations in the prices of oil, natural gas, refined products, and emerging energy commodities due to factors such as volatile energy markets, exchange rates, or structural shifts in demand and supply, policy, or trade (such as carbon pricing or LNG flows).
+• Accessing and producing hydrocarbon resources – failure to adequately access, develop or sustain production of hydrocarbon resources may result in delivery delays, missed strategic targets and adversely impact our financial performance and undermine our reputation.
+• Major project delivery – failure to invest in the best opportunities or deliver major projects successfully could adversely affect our financial performance and long-term competitiveness.
+• Geopolitical exposure – the diverse locations of our business activities and operations around the world expose us to a wide range of geopolitical developments (including sanctions, trade route restrictions, civil unrest, conflict, or government intervention).
+• Liquidity, capital access and financial resilience – external market conditions can impact our ability to maintain liquidity, credit strength, or access to capital markets which could impair our ability to operate, meet financial commitments, or deliver our strategy.
+• Partner and third-party risk – the performance, standards, or compliance of non-operated joint ventures, strategic partners, contractors, sub-contractors, or other third parties could expose bp to legal, operational, financial, or reputational harm.
+• Digital, cyber security and data risk – increasing reliance on digital infrastructure, growing AI adoption, and evolving cyber threats exposes bp and our third-party suppliers and contractors to data loss, infrastructure failures, or system compromise which could result in operational disruption, regulatory breaches, significant fines and reputational harm.
+• Climate change and the transition to a lower carbon economy – developments in policy, law, regulation, technology and markets, including societal and investor sentiment, related to the issue of climate change and the transition to a lower carbon economy could increase costs, reduce revenues, constrain our operations and affect our business plans and financial performance.
+• Competitiveness – failure to maintain a competitive strategy, underpinned by a strong portfolio of assets, cost performance, innovative technology, projects and long-term growth opportunities, could negatively impact our investors’ confidence in our ability to grow long-term shareholder value and returns.
+• Talent, leadership and organizational capability – failure to retain, develop, and attract the talent, leadership, capabilities and behaviours required to deliver our strategy could weaken performance, culture, and long-term value creation.
+Safety and operational risks
+• Process safety, personal safety, and environmental risks – bp’s operations and business activities are exposed to a wide range of safety, operational integrity, and environmental risks – particularly under growing complexity and delivery intensity – which could result in major incidents that harm people or the environment, disrupted operations, damage to bp's reputation, legal liability, undermine our financial standing or threaten our licence to operate.
+• Security – hostile acts such as terrorism, civil unrest, armed conflict, sabotage, activism, piracy, insider threats, workplace violence, cyber-enabled physical attacks, or threats to personnel security such as kidnapping or detention could harm our people, disrupt operations, compromise critical assets, or damage our reputation.
+• Product quality – failure to supply products to customers, meet technical specifications or regulatory standards could lead to harm, operational disruption, reputational damage, or legal and financial consequences.
+Compliance and control risks
+• Legal, regulatory and ethical compliance – ethical misconduct, non-compliance with law and regulation or changes in law and regulation could increase costs, constrain our operations and affect our strategy, business plans and financial performance. Incidents of ethical misconduct or non-compliance could also damage our reputation and result in litigation, regulatory action, penalties and potentially affect our licence to operate.
+• Financial and physical commodity trading activities – we undertake physical and financial trading across global commodity and financial markets. Risk associated with our trading activities could arise from a failure to maintain robust oversight, controls, and disciplined execution in our trading activities which could result in business disruption, financial loss, regulatory action, or reputational damage.
+• Integrity of financial and non-financial reporting – failure to maintain integrity in financial and non-financial reporting may result in material misstatement or regulatory breach, which could lead to regulatory action, legal liability and reputational damage.
+34
+
+
+
+Table of contents
+
+Legal proceedings
+For a full discussion of the group’s material legal proceedings, see pages 236-237 of bp Annual Report and Form 20-F 2025 .
+
+
+
+Glossary
+Non-IFRS measures are provided for investors because they are closely tracked by management to evaluate bp’s operating performance and to make financial, strategic and operating decisions. Non-IFRS measures are sometimes referred to as alternative performance measures.
+Adjusted EBITDA is a non-IFRS measure presented for bp's operating segments and is defined as replacement cost (RC) profit before interest and tax, adjusting for net adjusting items* before interest and tax, and adding back depreciation, depletion and amortization and exploration write-offs (net of adjusting items). Adjusted EBITDA by business is a further analysis of adjusted EBITDA for the customers & products businesses. bp believes it is helpful to disclose adjusted EBITDA by operating segment and by business because it reflects how the segments measure underlying business delivery. The nearest equivalent measure on an IFRS basis for the segment is RC profit or loss before interest and tax, which is bp's measure of profit or loss that is required to be disclosed for each operating segment under IFRS. A reconciliation to IFRS information is provided on page 31 for the segments.
+Adjusted operating expenditure is a non-IFRS measure and a subset of production and manufacturing expenses plus distribution and administration expenses. It represents the majority of the remaining expenses in these line items but excludes certain costs that are variable, primarily with volumes (such as freight costs). Other variable costs are included in purchases in the income statement. Management believes that adjusted operating expenditure is a performance measure that provides investors with useful information regarding the company’s financial performance because it considers these expenses to be the principal operating and overhead expenses that are most directly under their control although they also include certain adjusting items*, foreign exchange and commodity price effects. The nearest IFRS measures are production and manufacturing expenses and distributions and administration expenses. A reconciliation of production and manufacturing expenses plus distribution and administration expenses to adjusted operating expenditure is provided on page 30 .
+Adjusting items are items that bp discloses separately because it considers such disclosures to be meaningful and relevant to investors. They are items that management considers to be important to period-on-period analysis of the group's results and are disclosed in order to enable investors to better understand and evaluate the group’s reported financial performance. Adjusting items include gains and losses on the sale of businesses and fixed assets, impairments, environmental and related provisions and charges, restructuring, integration and rationalization costs, fair value accounting effects and costs relating to the Gulf of America oil spill and other items. Adjusting items within equity-accounted earnings are reported net of incremental income tax reported by the equity-accounted entity. Adjusting items are used as a reconciling adjustment to derive underlying RC profit or loss and related underlying measures which are non-IFRS measures. An analysis of adjusting items by segment and type is shown on page 28 .
+Capital expenditure is total cash capital expenditure as stated in the condensed group cash flow statement. Capital expenditure for the operating segments, gas & low carbon energy businesses and customers & products businesses is presented on the same basis.
+CMU Cash Flow and ROACE Targets are the following targets first announced by bp on 26 February 2025: (i) bp’s target for adjusted free cash flow compound annual growth of greater than 20% from 2024-2027; and (ii) bp’s target for group ROACE above 16% in 2027.
+• Adjusted free cash flow is a non-IFRS measure and defined as operating cash flow excluding working capital (after adjusting for inventory holding gains/losses, fair value accounting effects and other adjusting items) less cash capital expenditure.
+• ROACE is a non-IFRS measure and is defined as underlying replacement cost profit after adding back non-controlling interest and interest expense net of tax, divided by the average of the beginning and ending balances of total equity plus finance debt excluding cash and cash equivalents and goodwill as presented on the group balance sheet over the periods. Interest expense before tax is finance costs as presented on the group income statement, excluding lease interest, the unwinding of the discount on provisions and other payables and other adjusting items reported in finance costs.
+Consolidation adjustment – UPII is unrealized profit in inventory arising on inter-segment transactions.
+Divestment proceeds are disposal proceeds as per the condensed group cash flow statement.
+35
+
+
+Table of contents
+
+Glossary (continued)
+Fair value accounting effects are non-IFRS adjustments to our IFRS profit (loss). They reflect the difference between the way bp manages the economic exposure and internally measures performance of certain activities and the way those activities are measured under IFRS. Fair value accounting effects are included within adjusting items. They relate to certain of the group's commodity, interest rate and currency risk exposures as detailed below. Other than as noted below, the fair value accounting effects described are reported in both the gas & low carbon energy and customer & products segments.
+bp uses derivative instruments to manage the economic exposure relating to inventories above normal operating requirements of crude oil, natural gas and petroleum products. Under IFRS, these inventories are recorded at historical cost. The related derivative instruments, however, are required to be recorded at fair value with gains and losses recognized in the income statement. This is because hedge accounting is either not permitted or not followed, principally due to the impracticality of effectiveness-testing requirements. Therefore, measurement differences in relation to recognition of gains and losses occur. Gains and losses on these inventories, other than net realizable value provisions, are not recognized until the commodity is sold in a subsequent accounting period. Gains and losses on the related derivative commodity contracts are recognized in the income statement, from the time the derivative commodity contract is entered into, on a fair value basis using forward prices consistent with the contract maturity.
+bp enters into physical commodity contracts to meet certain business requirements, such as the purchase of crude for a refinery or the sale of bp’s gas production. Under IFRS these physical contracts are treated as derivatives and are required to be fair valued when they are managed as part of a larger portfolio of similar transactions. Gains and losses arising are recognized in the income statement from the time the derivative commodity contract is entered into.
+IFRS require that inventory held for trading is recorded at its fair value using period-end spot prices, whereas any related derivative commodity instruments are required to be recorded at values based on forward prices consistent with the contract maturity. Depending on market conditions, these forward prices can be either higher or lower than spot prices, resulting in measurement differences.
+bp enters into contracts for pipelines and other transportation, storage capacity, oil and gas processing, liquefied natural gas (LNG) and certain gas and power contracts that, under IFRS, are recorded on an accruals basis. These contracts are risk-managed using a variety of derivative instruments that are fair valued under IFRS. This results in measurement differences in relation to recognition of gains and losses.
+The way that bp manages the economic exposures described above, and measures performance internally, differs from the way these activities are measured under IFRS. bp calculates this difference for consolidated entities by comparing the IFRS result with management’s internal measure of performance. We believe that disclosing management’s estimate of this difference provides useful information for investors because it enables investors to see the economic effect of these activities as a whole.
+These include:
+• Under management’s internal measure of performance the inventory, transportation and capacity contracts in question are valued based on fair value using relevant forward prices prevailing at the end of the period.
+• Fair value accounting effects also include changes in the fair value of the near-term portions of LNG contracts that fall within bp’s risk management framework. LNG contracts are not considered derivatives, because there is insufficient market liquidity, and they are therefore accrual accounted under IFRS. However, oil and natural gas derivative financial instruments used to risk manage the near-term portions of the LNG contracts are fair valued under IFRS. The fair value accounting effect, which is reported in the gas and low carbon energy segment, represents the change in value of LNG contracts that are being risk managed and which is reflected in the underlying result, but not in reported earnings. Management believes that this gives a better representation of performance in each period.
+Furthermore, the fair values of derivative instruments used to risk manage certain other oil, gas, power and other contracts, are deferred to match with the underlying exposure. The commodity contracts for business requirements are accounted for on an accruals basis.
+In addition, fair value accounting effects include changes in the fair value of derivatives entered into by the group to manage currency exposure and interest rate risks relating to hybrid bonds to their respective first call periods. The hybrid bonds which are classified as equity instruments were recorded in the balance sheet at their issuance date at their USD equivalent issued value. Under IFRS these equity instruments are not remeasured from period to period, and do not qualify for application of hedge accounting. The derivative instruments relating to the hybrid bonds, however, are required to be recorded at fair value with mark to market gains and losses recognized in the income statement. Therefore, measurement differences in relation to the recognition of gains and losses occur. The fair value accounting effect, which is reported in the other businesses & corporate segment, eliminates the fair value gains and losses of these derivative financial instruments that are recognized in the income statement. We believe that this gives a better representation of performance, by more appropriately reflecting the economic effect of these risk management activities, in each period.
+36
+
+
+Table of contents
+
+Glossary (continued)
+Gas & low carbon energy segment comprises our gas and low carbon businesses. Our gas business includes regions with upstream activities that predominantly produce natural gas, gas trading and our Archaea Energy business. Our low carbon business includes solar, offshore wind, hydrogen and CCS, and power trading, and until December 2025 also included onshore wind. Power trading and marketing includes trading of both renewable and non-renewable power.
+Gearing and gearing including leases are non-IFRS measures. See Net debt or net debt including leases below.
+Hydrocarbons – Liquids and natural gas. Natural gas is converted to oil equivalent at 5.8 billion cubic feet = 1 million barrels.
+Inorganic capital expenditure is a subset of capital expenditure on a cash basis and a non-IFRS measure. Inorganic capital expenditure comprises consideration in business combinations and certain other significant investments made by the group. It is reported on a cash basis. bp believes that this measure provides useful information as it allows investors to understand how bp’s management invests funds in projects which expand the group’s activities through acquisition. The nearest equivalent measure on an IFRS basis is capital expenditure on a cash basis. Further information and a reconciliation to IFRS information is provided on page 27 .
+Inventory holding gains and losses are non-IFRS adjustments to our IFRS profit (loss) and represent:
+• the difference between the cost of sales calculated using the replacement cost of inventory and the cost of sales calculated on the first-in first-out (FIFO) method after adjusting for any changes in provisions where the net realizable value of the inventory is lower than its cost. Under the FIFO method, which we use for IFRS reporting of inventories other than for trading inventories, the cost of inventory charged to the income statement is based on its historical cost of purchase or manufacture, rather than its replacement cost. In volatile energy markets, this can have a significant distorting effect on reported income. The amounts disclosed as inventory holding gains and losses represent the difference between the charge to the income statement for inventory on a FIFO basis (after adjusting for any related movements in net realizable value provisions) and the charge that would have arisen based on the replacement cost of inventory. For this purpose, the replacement cost of inventory is calculated using data from each operation’s production and manufacturing system, either on a monthly basis, or separately for each transaction where the system allows this approach; and
+• an adjustment relating to certain trading inventories that are not price risk managed which relate to a minimum inventory volume that is required to be held to maintain underlying business activities. This adjustment represents the movement in fair value of the inventories due to prices, on a grade by grade basis, during the period. This is calculated from each operation’s inventory management system on a monthly basis using the discrete monthly movement in market prices for these inventories.
+The amounts disclosed are not separately reflected in the financial statements as a gain or loss. No adjustment is made in respect of the cost of inventories held as part of a trading position and certain other temporary inventory positions that are price risk-managed. See Replacement cost (RC) profit or loss definition below.
+Liquids – Liquids comprises crude oil, condensate and natural gas liquids. For the oil production & operations segment, it also includes bitumen.
+Major projects have a bp net investment of at least $250 million, or are considered to be of strategic importance to bp or of a high degree of complexity.
+Net debt and gearing are non-IFRS measures. Net debt is calculated as finance debt, as shown in the balance sheet, plus the fair value of associated derivative financial instruments that are used to hedge foreign currency exchange and interest rate risks relating to finance debt, for which hedge accounting is applied, less cash and cash equivalents. Net debt does not include accrued interest, which is reported within other receivables and other payables on the balance sheet and for which the associated cash flows are presented as operating cash flows in the group cash flow statement. Gearing is defined as the ratio of net debt to the total of net debt plus total equity. bp believes these measures provide useful information to investors. Net debt enables investors to see the economic effect of finance debt, related hedges and cash and cash equivalents in total. Gearing enables investors to see how significant net debt is relative to total equity. The derivatives are reported on the balance sheet within the headings ‘Derivative financial instruments’. The nearest equivalent measures on an IFRS basis are finance debt and finance debt ratio. A reconciliation of finance debt to net debt is provided on page 26 .
+We are unable to present reconciliations of forward-looking information for net debt or gearing to finance debt and total equity, because without unreasonable efforts, we are unable to forecast accurately certain adjusting items required to present a meaningful comparable IFRS forward-looking financial measure. These items include fair value asset (liability) of hedges related to finance debt and cash and cash equivalents, that are difficult to predict in advance in order to include in an IFRS estimate.
+Net debt including leases and gearing including leases are non-IFRS measures. Net debt including leases is calculated as net debt plus lease liabilities, less the net amount of partner receivables and payables relating to leases entered into on behalf of joint operations. Gearing including leases is defined as the ratio of net debt including leases to the total of net debt including leases plus total equity. bp believes these measures provide useful information to investors as they enable investors to understand the impact of the group’s lease portfolio on net debt and gearing. The nearest equivalent measures on an IFRS basis are finance debt and finance debt ratio. A reconciliation of finance debt to net debt including leases is provided on page 29 .
+37
+
+
+Table of contents
+
+Glossary (continued)
+Operating cash flow is net cash provided by (used in) operating activities as stated in the condensed group cash flow statement.
+Organic capital expenditure is a non-IFRS measure. Organic capital expenditure comprises capital expenditure on a cash basis less inorganic capital expenditure. bp believes that this measure provides useful information as it allows investors to understand how bp’s management invests funds in developing and maintaining the group’s assets. The nearest equivalent measure on an IFRS basis is capital expenditure on a cash basis and a reconciliation to IFRS information is provided on page 27 .
+We are unable to present reconciliations of forward-looking information for organic capital expenditure to total cash capital expenditure, because without unreasonable efforts, we are unable to forecast accurately the adjusting item, inorganic capital expenditure, that is difficult to predict in advance in order to derive the nearest IFRS estimate.
+Production-sharing agreement/contract (PSA/PSC) is an arrangement through which an oil and gas company bears the risks and costs of exploration, development and production. In return, if exploration is successful, the oil company receives entitlement to variable physical volumes of hydrocarbons, representing recovery of the costs incurred and a stipulated share of the production remaining after such cost recovery.
+Realizations are the result of dividing revenue generated from hydrocarbon sales, excluding revenue generated from purchases made for resale and royalty volumes, by revenue generating hydrocarbon production volumes. Revenue generating hydrocarbon production reflects the bp share of production as adjusted for any production which does not generate revenue. Adjustments may include losses due to shrinkage, amounts consumed during processing, and contractual or regulatory host committed volumes such as royalties. For the gas & low carbon energy and oil production & operations segments, realizations include transfers between businesses.
+Refining availability represents Solomon Associates’ operational availability for bp-operated refineries, which is defined as the percentage of the year that a unit is available for processing after subtracting the annualized time lost due to turnaround activity and all mechanical, process and regulatory downtime.
+Refining indicator margin (RIM) is a simple indicator of the weighted average of bp’s crude slate and product yield as deemed representative for each refinery. Actual margins realized by bp may vary due to a variety of factors, including the actual mix of a crude and product for a given quarter.
+Replacement cost (RC) profit or loss / RC profit or loss attributable to bp shareholders reflects the replacement cost of inventories sold in the period and is calculated as profit or loss attributable to bp shareholders, adjusting for inventory holding gains and losses (net of tax). RC profit or loss for the group is not a recognized IFRS measure. bp believes this measure is useful to illustrate to investors the fact that crude oil and product prices can vary significantly from period to period and that the impact on our reported result under IFRS can be significant. Inventory holding gains and losses vary from period to period due to changes in prices as well as changes in underlying inventory levels. In order for investors to understand the operating performance of the group excluding the impact of price changes on the replacement of inventories, and to make comparisons of operating performance between reporting periods, bp’s management believes it is helpful to disclose this measure. The nearest equivalent measure on an IFRS basis is profit or loss attributable to bp shareholders. A reconciliation to IFRS information is provided on page 3 . RC profit or loss before interest and tax is bp's measure of profit or loss that is required to be disclosed for each operating segment under IFRS.
+Structural cost reduction is calculated as decreases in underlying operating expenditure* (as defined on page 39 ) as a result of operational efficiencies, divestments, workforce reductions and other cost saving measures that are expected to be sustainable compared with 2023 levels. The total change between periods in underlying operating expenditure will reflect both structural cost reductions and other changes in spend, including market factors, such as inflation and foreign exchange impacts, as well as changes in activity levels and costs associated with new operations. Estimates of cumulative annual structural cost reduction may be revised depending on whether cost reductions realized in prior periods are determined to be sustainable compared with 2023 levels. Structural cost reductions are stewarded internally to support management’s oversight of spending over time.
+bp believes this performance measure is useful in demonstrating how management drives cost discipline across the entire organization, simplifying our processes and portfolio and streamlining the way we work. The nearest IFRS measures are production and manufacturing expenses and distributions and administration expenses. A reconciliation of production and manufacturing expenses plus distribution and administration expenses to underlying operating expenditure is provided on page 30 .
+38
+
+
+Table of contents
+
+Glossary (continued)
+Technical service contract (TSC) – Technical service contract is an arrangement through which an oil and gas company bears the risks and costs of exploration, development and production. In return, the oil and gas company receives entitlement to variable physical volumes of hydrocarbons, representing recovery of the costs incurred and a profit margin which reflects incremental production added to the oilfield.
+Tier 1 and tier 2 process safety events – Tier 1 events are losses of primary containment from a process of greatest consequence – causing harm to a member of the workforce, damage to equipment from a fire or explosion, a community impact or exceeding defined quantities. Tier 2 events are those of lesser consequence. These represent reported incidents occurring within bp’s operational HSSE reporting boundary. That boundary includes bp’s own operated facilities and certain other locations or situations. Reported process safety events are investigated throughout the year and as a result there may be changes in previously reported events. Therefore comparative movements are calculated against internal data reflecting the final outcomes of such investigations, rather than the previously reported comparative period, as this represents a more up to date reflection of the safety environment.
+Underlying effective tax rate (ETR) is a non-IFRS measure. The underlying ETR is calculated by dividing taxation on an underlying replacement cost (RC) basis by underlying RC profit or loss before tax. Taxation on an underlying RC basis for the group is calculated as taxation as stated on the group income statement adjusted for taxation on inventory holding gains and losses and total taxation on adjusting items. Information on underlying RC profit or loss is provided below. Taxation on an underlying RC basis presented for the operating segments is calculated through an allocation of taxation on an underlying RC basis to each segment. bp believes it is helpful to disclose the underlying ETR because this measure may help investors to understand and evaluate, in the same manner as management, the underlying trends in bp’s operational performance on a comparable basis, period on period. Taxation on an underlying RC basis and underlying ETR are non-IFRS measures. The nearest equivalent measure on an IFRS basis is the ETR on profit or loss for the period.
+We are unable to present reconciliations of forward-looking information for underlying ETR to ETR on profit or loss for the period, because without unreasonable efforts, we are unable to forecast accurately certain adjusting items required to present a meaningful comparable IFRS forward-looking financial measure. These items include the taxation on inventory holding gains and losses and adjusting items, that are difficult to predict in advance in order to include in an IFRS estimate. A reconciliation to IFRS information is provided on page 32 .
+Underlying operating expenditure is a non-IFRS measure and a subset of production and manufacturing expenses plus distribution and administration expenses and excludes costs that are classified as adjusting items. It represents the majority of the remaining expenses in these line items but excludes certain costs that are variable, primarily with volumes (such as freight costs). Other variable costs are included in purchases in the income statement. Management believes that underlying operating expenditure is a performance measure that provides investors with useful information regarding the company’s financial performance because it considers these expenses to be the principal operating and overhead expenses that are most directly under their control although they also include certain foreign exchange and commodity price effects. The nearest IFRS measures are production and manufacturing expenses and distribution and administration expenses. A reconciliation of production and manufacturing expenses plus distribution and administration expenses to underlying operating expenditure is provided on page 30 .
+Underlying production – 2026 underlying production, when compared with 2025, is production after adjusting for acquisitions and divestments, curtailments, and entitlement impacts in our production-sharing agreements/contracts and technical service contract*.
+Underlying RC profit or loss / underlying RC profit or loss attributable to bp shareholders is a non-IFRS measure and is RC profit or loss* (as defined on page 38 ) after excluding net adjusting items and related taxation. See page 28 for additional information on the adjusting items that are used to arrive at underlying RC profit or loss in order to enable a full understanding of the items and their financial impact.
+Underlying RC profit or loss before interest and tax for the operating segments or customers & products businesses is calculated as RC profit or loss (as defined above) including profit or loss attributable to non-controlling interests before interest and tax for the operating segments and excluding net adjusting items for the respective operating segment or business.
+bp believes that underlying RC profit or loss is a useful measure for investors because it is a measure closely tracked by management to evaluate bp’s operating performance and to make financial, strategic and operating decisions and because it may help investors to understand and evaluate, in the same manner as management, the underlying trends in bp’s operational performance on a comparable basis, period on period, by adjusting for the effects of these adjusting items. The nearest equivalent measure on an IFRS basis for the group is profit or loss attributable to bp shareholders. The nearest equivalent measure on an IFRS basis for segments and businesses is RC profit or loss before interest and taxation. A reconciliation to IFRS information is provided on page 3 for the group and pages 9 - 15 for the segments.
+
+
+39
+
+
+Table of contents
+
+Glossary (continued)
+Underlying RC profit or loss per share / underlying RC profit or loss per ADS is a non-IFRS measure. Earnings per share is defined in Note 7. Underlying RC profit or loss per ordinary share is calculated using the same denominator as earnings per share as defined in the consolidated financial statements. The numerator used is underlying RC profit or loss attributable to bp shareholders, rather than profit or loss attributable to bp ordinary shareholders. Underlying RC profit or loss per ADS is calculated as outlined above for underlying RC profit or loss per share except the denominator is adjusted to reflect one ADS equivalent to six ordinary shares. bp believes it is helpful to disclose the underlying RC profit or loss per ordinary share and per ADS because these measures may help investors to understand and evaluate, in the same manner as management, the underlying trends in bp’s operational performance on a comparable basis, period on period. The nearest equivalent measure on an IFRS basis is basic earnings per share based on profit or loss for the period attributable to bp ordinary shareholders. A reconciliation to IFRS information is provided on page 32 .
+upstream includes oil and natural gas field development and production within the gas & low carbon energy and oil production & operations segments.
+upstream/hydrocarbon plant reliability (bp-operated) is calculated taking 100% less the ratio of total unplanned plant deferrals divided by installed production capacity, excluding non-operated assets and bpx energy. Unplanned plant deferrals are associated with the topside plant and where applicable the subsea equipment (excluding wells and reservoir). Unplanned plant deferrals include breakdowns, which does not include Gulf of America weather related downtime.
+upstream unit production costs are calculated as production cost divided by units of production. Production cost does not include ad valorem and severance taxes. Units of production are barrels for liquids and thousands of cubic feet for gas. Amounts disclosed are for bp subsidiaries only and do not include bp’s share of equity-accounted entities.
+Working capital is movements in inventories and other current and non-current assets and liabilities as reported in the condensed group cash flow statement.
+Trade marks
+Trade marks of the bp group appear throughout this announcement. They include:
+bp , Amoco , Aral , ampm , bp pulse , Castrol , PETRO , TA, and Thorntons
+40
+
+
+
+Table of contents
+
+Cautionary statement In order to utilize the ‘safe harbor’ provisions of the United States Private Securities Litigation Reform Act of 1995 (the ‘PSLRA’) and the general doctrine of cautionary statements, bp is providing the following cautionary statement:
+The discussion in this announcement contains certain forecasts, projections and forward-looking statements - that is, statements related to future, not past events and circumstances - with respect to the financial condition, results of operations and businesses of bp and certain of the plans and objectives of bp with respect to these items. These statements may generally, but not always, be identified by the use of words such as ‘will’, ‘expects’, ‘is expected to’, ‘aims’, ‘should’, ‘may’, ‘objective’, ‘is likely to’, ‘intends’, ‘believes’, ‘anticipates’, ‘plans’, ‘we see’, ‘focus on’ or similar expressions.
+In particular, the following, among other statements, are all forward-looking in nature: plans, expectations and assumptions regarding oil and gas demand, supply, prices or volatility; expectations regarding production and volumes; expectations regarding turnaround and maintenance activity; plans and expectations regarding bp’s balance sheet, financial performance, results of operations, cost reduction, cash flows, and shareholder returns; plans and expectations regarding the amount and timing of dividends, share buybacks, dividend reinvestment programs and the use of excess cash; plans and expectations regarding bp’s upstream production; plans and expectations regarding the amount, effects, timing, quantum and nature of certain acquisitions, divestments and related payments and proceeds, including expectations regarding the Castrol business, the offshore exploration blocks in Namibia, the Austrian mobility & convenience and bp pulse businesses, Lightsource bp, the North Sea business, the Bay Du Nord project, the Archaea business and other bp businesses and assets subject to disposal or divestment; plans and expectations regarding the closing of bp Ventures; plans and expectations regarding the Bab Gas Cap project, the Thunder Horse Major Project, the Greater PAJ Project, and the Atlantis Major Facility Expansion project; plans and expectations regarding bp’s net debt, credit rating, hybrid capital (including with respect to the redemption, without replacement, of hybrid bonds), investment strategy, capital expenditures, underlying effective tax rate, depreciation, depletion and amortization and the impact of the Gelsenkirchen divestment on the bp refining indicator margin and associated refining rule of thumb; expectations regarding bp’s customers business, including with respect to volumes, underlying operating expenditure, earnings growth, midstream performance, fuels margins, the impact of base oil costs and conditions in the Middle East, structural cost reduction and the earnings impact of divestments; expectations regarding bp’s products, including underlying performance, refining margins, and refinery turnaround activity; expectations regarding bp’s income taxes payable, including the timing of instalment payments; expectations regarding bp’s other businesses & corporate underlying annual charge; and expectations regarding Gulf of America settlement payments.
+By their nature, forward-looking statements involve risk and uncertainty because they relate to events and depend on circumstances that will or may occur in the future and are outside the control of bp. Recent global developments have caused significant uncertainty and volatility in macroeconomic conditions and commodity markets. Each item of outlook and guidance set out in this announcement is based on bp’s current expectations but actual outcomes and results may be impacted by these evolving macroeconomic and market conditions.
+Actual results or outcomes may differ materially from those expressed in such statements, depending on a variety of factors, including: the extent and duration of the impact of current market conditions including the volatility of oil prices, the effects of bp’s plan to exit its shareholding in Rosneft and other investments in Russia, overall global economic and business conditions impacting bp’s business and demand for bp’s products as well as the specific factors identified in the discussions accompanying such forward-looking statements; changes in consumer preferences and societal expectations; the pace of development and adoption of alternative energy solutions; developments in policy, law, regulation, technology and markets, including societal and investor sentiment related to the issue of climate change; the receipt of relevant third party and/or regulatory approvals including ongoing approvals required for the continued developments of approved projects; the timing and level of maintenance and/or turnaround activity; the timing and volume of refinery additions and outages; the timing of bringing new fields onstream; the timing, quantum and nature of certain acquisitions and divestments; future levels of industry product supply, demand and pricing, including supply growth in North America and continued base oil and additive supply shortages; OPEC+ quota restrictions; PSA and TSC effects; operational and safety problems; potential lapses in product quality; economic and financial market conditions generally or in various countries and regions; political stability and economic growth in relevant areas of the world; changes in laws and governmental regulations and policies, including related to climate change; changes in social attitudes and customer preferences; regulatory or legal actions including the types of enforcement action pursued and the nature of remedies sought or imposed; the actions of prosecutors, regulatory authorities and courts; delays in the processes for resolving claims; amounts ultimately payable and timing of payments relating to the Gulf of America oil spill; the conditions and developments in the Middle East; exchange rate fluctuations; development and use of new technology; recruitment and retention of a skilled workforce; the success or otherwise of partnering; the actions of competitors, trading partners, contractors, subcontractors, creditors, rating agencies and others; bp’s access to future credit resources; business disruption and crisis management; the impact on bp’s reputation of ethical misconduct and non-compliance with regulatory obligations; trading losses; major uninsured losses; the possibility that international sanctions or other steps taken by governmental authorities or any other relevant persons may impact bp’s ability to sell its interests in Rosneft, or the price for which bp could sell such interests; the actions of contractors; natural disasters and adverse weather conditions; changes in public expectations and other changes to business conditions; wars and acts of terrorism; cyber-attacks or sabotage; and those factors discussed under “Risk factors” in bp’s Annual Report and Form 20-F for fiscal year 2025 as filed with the US Securities and Exchange Commission.
+41
+
+
+
+Table of contents
+
+The following table shows the unaudited consolidated capitalization and indebtedness of the BP group as of 30 June 2026:
+Capitalization and indebtedness
+
+30 June |
+$ million | 2026 |
+Share capital and reserves |
+Capital shares (1-2) | 4,142 |
+Paid-in surplus (3) | 16,916 |
+Merger reserve (3) | 27,206 |
+Treasury shares | (6,887) |
+Investments in equity instruments | (28) |
+Cash flow hedge reserve | 134 |
+Costs of hedging reserve | (118) |
+Foreign currency translation reserve | (475) |
+
+Profit and loss account | 17,538 |
+BP shareholders' equity | 58,428 |
+Hybrid bonds | 13,015 |
+Other interest | 4,977 |
+Equity attributable to non-controlling interests | 17,992 |
+Total equity | 76,420 |
+
+Finance debt and lease liabilities (4-6) |
+Lease liabilities due within one year | 2,961 |
+Finance debt due within one year | 5,888 |
+Lease liabilities due after more than one year | 11,395 |
+Finance debt due after more than one year | 52,449 |
+Total finance debt and lease liabilities | 72,693 |
+Total (7)(8) | 149,113 |
+
+1. Issued share capital as of 30 June 2026 comprised 15,702,899,365 ordinary shares, par value US$0.25 per share, and 12,706,252 preference shares, par value £1 per share. This excludes 783,413,629 ordinary shares which have been bought back and are held in treasury by bp. These shares are not taken into consideration in relation to the payment of dividends and voting at shareholders’ meetings.
+2. Capital shares represent the ordinary and preference shares of bp which have been issued and are fully paid.
+3. Paid-in surplus and merger reserve represent additional paid-in capital of bp which cannot normally be returned to shareholders.
+4. Finance debt and lease liabilities recorded in currencies other than US dollars has been translated into US dollars at the relevant exchange rates existing on 30 June 2026.
+5. Finance debt and lease liabilities presented in the table above consists of borrowings and obligations under leases. This includes one hundred percent of lease liabilities for joint operations where bp is the only party with the legal obligation to make lease payments to the lessor. Other contractual obligations are not presented in the table above – see BP Annual Report and Form 20-F 2025 – Liquidity and capital resources for further information.
+6. At 30 June 2026, the parent company, BP p.l.c. had issued guarantees totalling $57,615 million relating to group finance debt issued by subsidiaries. Thus 99% of the group’s finance debt had been guaranteed by BP p.l.c. In addition, BP p.l.c. guarantees $10.5 billion of perpetual subordinated hybrid bonds issued by a subsidiary. At 30 June 2026, $767 million of finance debt was secured by the pledging of assets. The remainder of finance debt was unsecured.
+7. At 30 June 2026, the group had issued third-party guarantees under which amounts outstanding, incremental to amounts recognized on the group balance sheet, were $923 million in respect of the borrowings of equity-accounted entities and $327 million in respect of the borrowings of other third parties.
+8. Total capitalisation and indebtedness includes non-controlling interests of $17,992 million at 30 June 2026 which includes $10.5 billion related to perpetual hybrid bonds and $2.5 billion related to perpetual subordinated hybrid securities issued by group subsidiaries. See Condensed group statement of changes in equity footnotes for further information.
+9. There has been no material change since 30 June 2026 in the consolidated capitalization and indebtedness of bp.
+42
+
+
+
+Table of contents
+
+Signatures
+
+
+Pursuant to the requirements of the Securities Exchange Act of 1934, the registrant has duly caused this report to be signed on its behalf by the undersigned, thereunto duly authorized.
+
+
+
+
+BP p.l.c.
+(Registrant)
+
+
+
+
+
+Dated: | 4 August 2026 | /s/ Kate Thomson |
+Kate Thomson |
+Chief Financial Officer |
+
+
+
+
+43

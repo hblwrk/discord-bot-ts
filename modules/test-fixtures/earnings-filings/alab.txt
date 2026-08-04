@@ -1,0 +1,443 @@
+EX-99.1
+2
+q226exhibit991.htm
+EX-99.1
+
+
+
+
+Document
+Exhibit 99.1
+
+
+
+
+IR CONTACT: Leslie Green
+leslie.green@asteralabs.com
+
+
+
+
+Astera Labs Reports Second Quarter 2026 Financial Results
+
+
+• Record quarterly revenue of $392.4 million, up 27% QoQ and up 104% year-over-year
+• Q2 revenue strength reflects diversified growth across AI fabrics and signal conditioning
+• Q3 revenue inflection to be driven by Scorpio™ X-Series 320-lane fabric switch production ramp
+
+
+
+
+SAN JOSE, CA, U.S. – August 4, 2026 – Astera Labs, Inc. (Nasdaq: ALAB), a leader in semiconductor-based connectivity solutions for rack-scale AI infrastructure, today announced preliminary financial results for the second quarter of fiscal year 2026, ended June 30, 2026.
+
+
+“Astera Labs delivered outstanding Q2 2026 results, with record revenue of $392.4 million, up 27% sequentially and 104% year-over-year, driven by broad-based strength across our portfolio, including record quarterly revenue for our Aries product line,” said Jitendra Mohan, Astera Labs’ Chief Executive Officer. “We expect momentum to accelerate in Q3 as Scorpio fabric switches become our largest product family, one quarter ahead of our prior expectations. This milestone will mark our evolution into a complete AI fabric infrastructure provider. New design wins across a broadening set of customers coupled with our expansion into optical interconnects and custom solutions further expand our growth opportunity in 2027 and beyond.”
+
+
+Second Quarter of Fiscal 2026 Financial Highlights
+
+
+GAAP Financial Results:
+• Revenue of $392.4 million, up 27% sequentially and up 104% year-over-year
+• GAAP gross margin of 73.3%
+• GAAP operating income of $89.2 million
+• GAAP operating margin of 22.7%
+• GAAP net income of $153.1 million
+• GAAP diluted net income per share of $0.83
+
+
+Non-GAAP Financial Results (1) :
+• Non-GAAP gross margin of 73.7%
+• Non-GAAP operating income of $153.5 million
+• Non-GAAP operating margin of 39.1%
+• Non-GAAP net income of $145.8 million
+• Non-GAAP diluted net income per share of $0.80
+____________
+(1) See “Reconciliation of GAAP to Non-GAAP Financial Measures” table included below.
+
+
+
+
+
+
+
+
+Q2 2026 and Recent Business Highlights
+
+
+• Expanded Taurus signal conditioning portfolio to include 3.2T Smart Retimers and Smart Redrivers for 224G Ethernet and UALink connectivity, purpose-built for AI infrastructure. The new Taurus Smart Signal Conditioners are the industry’s first OCP standard footprint compatible design to enable Smart Swap, which will give architects the flexibility to choose between low-power Smart Redrivers and long-reach Smart Retimers without board re-design. The expanded portfolio leverages Astera Labs’ Unified COSMOS software capabilities and will integrate telemetry, diagnostics, and intelligent link management to deliver advanced observability across high-speed interconnects.
+• Showcased comprehensive portfolio updates at Computex 2026 in Taiwan highlighting current AI rack-scale connectivity strategy and the first public demonstration of the Scorpio X-Series 320 Lane Smart Fabric Switch. Additional demonstrations included ultra-low latency optical connectivity, NVIDIA MGX-based reference designs, 200G/lane technology with SerDes diagnostics, COSMOS-enabled rack-level validation, and production ready systems from Astera Labs and ecosystem partners.
+• Demonstrated ecosystem partnership and compatibility at AMD Advancing AI 2026 with multiple exhibits highlighting Astera Labs’ solutions to resolve data movement bottlenecks across PCIe, CXL, and Ethernet. Joint architectures included AMD Instinct platforms operating with Scorpio P-Series 320L for fabric optimization, Leo CXL memory controller for smart memory tiering, and Taurus 1.6T Smart Ethernet Retimers for scale-out connectivity, all with full-stack interop validated from end to end.
+• Announced significant expansion of Astera Labs’ Taiwan operations and Cloud-Scale Interop Lab, deepening the company’s presence within one of the world’s most important semiconductor ecosystems. Astera Labs’ expanded Taiwan footprint positions the company to bring together broader engineering, cross-functional support, and closer business coordination with key AI platform providers including AMD, Arm, Intel, and NVIDIA.
+
+
+
+
+
+Third Quarter of Fiscal 2026 Financial Outlook
+
+
+Based on current business trends and conditions, Astera Labs estimates the following:
+
+
+GAAP Financial Outlook:
+• Revenue within a range of $540 million to $560 million
+• GAAP gross margin of approximately 72%
+• GAAP operating expenses within a range of approximately $232 million to $236 million
+• GAAP tax rate of approximately 4%
+• GAAP diluted net income per share of approximately $0.87 to $0.92 on weighted-average diluted shares outstanding of approximately 185 million
+
+
+Non-GAAP Financial Outlook (2) :
+• Non-GAAP gross margin of approximately 72%
+• Non-GAAP operating expenses within a range of approximately $156 million to $160 million
+• Non-GAAP tax rate of approximately 12%
+• Non-GAAP dilu ted net income per share of approximately $1.16 to $1.21 on weighted-average diluted shares outstanding of approximately 185 million
+_____________
+(2) See “Reconciliation of GAAP to Non-GAAP Outlook” table included below.
+
+
+
+
+
+
+
+
+Earnings Webcast and Conference Call
+Astera Labs will host a conference call to review its financial results for the second quarter of 2026 and to discuss our financial outlook today at 1:30 p.m. Pacific Time. Interested parties may join the conference call by dialing 1-833-461-5787 and using conference ID 622 676 657. The call will also be webcast and can be accessed at the Astera Labs website at https://ir.asteralabs.com/. The webcast will be recorded and available for replay on the company’s website for the next six months.
+
+
+Discussion of Non-GAAP Financial Measures
+We use certain non-GAAP financial measures, including those concerning our financial outlook, to supplement the performance measures in our consolidated financial statements, which are presented in accordance with GAAP. A reconciliation of these non-GAAP measures to the closest GAAP measure can be found later in this release. The timing and impact of any adjustments to arrive at the corresponding GAAP financial measures concerning our financial outlook are inherently dependent on future events that are typically uncertain or that may be outside of our control. These non-GAAP financial measures include non-GAAP gross profit, non-GAAP gross margin, non-GAAP operating expenses, non-GAAP operating income, non-GAAP operating margin, non-GAAP tax rate, non-GAAP net income, and non-GAAP diluted net income per share. We use these non-GAAP financial measures for financial and operational decision-making and as a means to assist us in evaluating period-to-period comparisons. By excluding certain items that may not be indicative of our recurring core operating results, we believe that, non-GAAP gross profit, non-GAAP gross margin, non-GAAP operating expenses, non-GAAP operating income, non-GAAP operating margin, non-GAAP tax rate, non-GAAP net income, and non-GAAP diluted net income per share provide meaningful supplemental information regarding our performance. Accordingly, we believe these non-GAAP financial measures are useful to investors and others because they allow for additional information with respect to financial measures used by management in its financial and operational decision-making and they may be used by our institutional investors and the analyst community to help them analyze the health of our business. However, there are a number of limitations related to the use of non-GAAP financial measures, and these non-GAAP measures should be considered in addition to, not as a substitute for or in isolation from, our financial results prepared in accordance with GAAP. Other companies, including companies in our industry, may calculate these non-GAAP financial measures differently or not at all, which reduces their usefulness as comparative measures.
+
+
+We adjust the following items from one or more of our non-GAAP financial measures:
+
+
+Stock-based compensation expense
+We exclude non-cash stock-based compensation expense from certain of our non-GAAP financial measures because we believe that excluding this item provides meaningful supplemental information regarding operational performance. In particular, companies calculate non-cash stock-based compensation expense using a variety of valuation methodologies and subjective assumptions. Moreover, stock-based compensation expense is a non-cash charge that can vary significantly from period to period for reasons that are unrelated to our core operating performance, and therefore excluding this item provides investors and other users of our financial information with information that allows meaningful comparisons of our business performance across periods.
+
+
+Acquisition-related costs
+We exclude acquisition-related costs incurred in connection with our acquisitions, which we generally would have not otherwise incurred in the periods presented as part of our continuing operations. Acquisition-related costs include certain incremental expenses incurred to effect a business combination such as third-party costs: advisory, legal, accounting, valuation, and other professional fees. We believe that providing the non-GAAP measures excluding these costs assists our investors because such costs are not reflective of our ongoing operating results.
+
+
+
+
+
+
+
+
+
+Income tax effect
+This represents the impact of the non-GAAP adjustments on an after-tax basis and one-off discrete tax adjustments that are unrelated to our core operating performance in connection with the presentation of non-GAAP net income and non-GAAP net income per diluted share. This approach is designed to enhance investors’ ability to understand the impact of our non-GAAP tax expense on our current operations, provide improved modeling accuracy, and substantially reduce fluctuations caused by GAAP to non-GAAP adjustments.
+
+
+Other
+We exclude other adjustments, including non-cash fair value adjustments related to equity investments without readily determinable fair values. These investments are measured at cost and adjusted for observable price changes or impairment on a nonrecurring basis only upon the occurrence of certain events. Accordingly, these adjustments are not indicative of our core operating performance.
+
+
+Cautionary Note Regarding Forward-Looking Statements
+This press release contains forward-looking statements based on Astera Labs' current expectations. The words “accelerating,” “advance,” “ahead,” “aim,” “anticipate,” “beginning,” “believe,” “capabilities,” “coming,” “commence,” “committed,” “confidence,” “continue,” “could,” “deliver,” “designed,” “drive ,” “early stages,” “enable,” “estimates," “expanding,” “expect," “forecasting,” “forthcoming,” “forward,” “future,” “goal,” “going forward,” “growth,” “guidance,” “intend," “interest,” “long-term,” “look,” “may,” “mission,” “momentum,” “multi-year,” “next,” “on track,” “opportunity,” “outlook,” “paths,” “planning,” “poised,” “positions,” “potential,” “progressing,” “project,” “proliferate,” “proposed,” “prospects,” “provide,” “pursuing,” “ramp,” “represent,” “roadmap,” “should,” “strategy,” “targeted,” “track,” “trajectory,” “trends,” “upcoming,” “upside,” “ultimately,” “vision,” “well positioned,” “will,” “would,” and similar phrases as they relate to Astera Labs are intended to identify such forward-looking statements. These forward-looking statements reflect the current views and assumptions of Astera Labs as of August 4, 2026, and are subject to various assumptions, beliefs, risks and uncertainties that could cause actual results to differ materially from expectations. These forward-looking statements include, but are not limited to, statements regarding market trends, dynamics and expectations (including cloud and AI infrastructure and connectivity market trends and the industry’s build out); our and our ultimate customers’ future demand, product purchases, deployment of systems incorporating our products, business, operating results, cash flow, financial position, outlook and guidance (and any underlying drivers), including for the third quarter of fiscal 2026; our business strategy, plans and market, revenue or other forms of opportunities, our absolute or relative market share or growth profile or rate and our timing and ability to further build upon our revenue base, expand our product offerings, portfolio and features or performance, increase and service our market opportunity (including the timing and extent of such market opportunities), remain at the forefront of an AI infrastructure transformation, and scale or expand our connectivity platform; our objectives or strategies for future operations (such as our optical and custom solutions businesses), organizational investments and changes, and the drivers, timing and impacts associated therewith; our production, development, shipping/shipments and delivery of (including timing and customers), activity, applications and demand for, availability of, as well as absolute and relative revenue, growth (including the drivers), ramping and roadmap (e.g., optical) for, existing, new, growing or enhanced (whether technologically or otherwise) products or software, including the high volume deployment of Scorpio X-Series solutions, production volume deployment of Scorpio X-Series 320-L, additional growth catalysts across our Scorpio P-Series, Aries, Taurus and Leo portfolios, and the comparative capabilities, performance and results of those products or software for our customers; the benefits, timing, impact, proliferation and customer adoption of different connectivity standards and demands; the design wins at and diversification, activity, engagements and expectations of our customers; the plans and potential success of our announced and ongoing collaborations, partnerships and strategic relationships, including our warrant agreement with Amazon; the ability of UALink 2.0 to provide for a purpose-built AI compute fabric capable of scaling with industry needs over time and the timing of any initial programs; our competitive positioning and the impacts thereof; our R&D, technology
+
+
+
+
+
+
+
+and strategic IP plans; our expanded global footprint with our new Israel Design Center, and the anticipated effects and benefits associated with the design center; the strategies associated with, investments in and size of our team, as well as the associated impacts; and maximize and future industry and macroeconomic conditions, events and trends such as in cloud and AI infrastructure as well as our preparedness and solutions for them. A variety of risks and factors that are beyond our control could cause actual results to differ materially from those in the forward-looking statements including, without limitation: the competitive and cyclical nature of the semiconductor industry; the concentration of our customer base; the changes in demand for AI; the macroeconomic and/or geopolitical environment, including economic uncertainty and volatility in the capital markets; risks that demand for our products and the supply chain may be adversely affected, including by the imposition of tariffs by the United States or any other jurisdiction and any corresponding retaliatory tariffs, changes in political policies, military conflict (such as between Russia/Ukraine and in Israel, Iran and the Middle East), terrorism, sanctions or other geopolitical events globally (including conflict between Taiwan and China); quarterly fluctuations in revenues and operating results; difficulties developing new products that achieve market acceptance; risks associated with managing international activities (including trade barriers, particularly with respect to China); our ability to successfully complete acquisitions and to integrate newly acquired businesses and offerings; absence of long-term commitments from customers; risks that Astera Labs may not be able to manage strains associated with its growth; credit risks associated with its accounts receivable; stock price volatility; information technology risks, including cyber-attacks against Astera Labs' products and its networks; and other risks and uncertainties that are detailed under the caption “Risk Factors” and elsewhere in our Annual Report on 10-K, filed with the U.S. Securities and Exchange Commission (“SEC”) on February 20, 2026, and in subsequent Quarterly Reports on Form 10-Q filed with the SEC and the other SEC filings and reports Astera Labs may make from time to time. Moreover, we operate in a very competitive and rapidly changing environment, and new risks may emerge from time to time. It is not possible for our management to predict all risks, nor can we assess the impact of all factors on our business or the extent to which any factor(s) may cause actual results or outcomes to differ materially from those contained in any forward-looking statements we may make. Accordingly, you should not unduly rely on any of the forward-looking statements. Astera Labs disclaims any intention or obligation to update or revise any forward-looking statements, whether as a result of new information, future events, or otherwise, except as required by law.
+
+
+About Astera Labs
+Astera Labs (Nasdaq: ALAB) provides rack-scale AI infrastructure through purpose-built connectivity solutions. By collaborating with hyperscalers and ecosystem partners, Astera Labs enables organizations to unlock the full potential of modern AI. Astera Labs' Intelligent Connectivity Platform integrates CXL®, Ethernet, NVLink Fusion, PCIe®, and UALink™ semiconductor-based technologies with the company's COSMOS software suite to unify diverse components into cohesive, flexible systems that deliver end-to-end scale-up and scale-out connectivity. The company’s custom connectivity solutions business complements its standards-based portfolio, enabling customers to deploy tailored architectures to meet their unique infrastructure requirements. Discover more at www.asteralabs.com.
+
+
+
+
+
+
+
+
+
+
+
+ASTERA LABS, INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS (Unaudited)
+(In thousands)
+| | | | | | | | | | | | | | |
+| | As of |
+| | June 30,
+2026 | | December 31,
+2025 |
+Assets | | | | |
+Current assets | | | | |
+Cash and cash equivalents | | $ | 111,453 | | | $ | 167,611 | |
+Marketable securities | | 1,141,505 | | | 1,021,205 | |
+Accounts receivable, net | | 192,469 | | | 83,202 | |
+Inventory | | 113,781 | | | 58,979 | |
+Prepaid expenses and other current assets | | 92,687 | | | 31,033 | |
+Total current assets | | 1,651,895 | | | 1,362,030 | |
+Property and equipment, net | | 119,284 | | | 92,038 | |
+Goodwill
+| | 91,557 | | | 19,015 | |
+Other assets | | 68,765 | | | 58,740 | |
+Total assets | | $ | 1,931,501 | | | $ | 1,531,823 | |
+| | | | |
+Liabilities and Stockholders’ Equity |
+Current liabilities | | | | |
+Accounts payable | | $ | 53,930 | | | $ | 42,362 | |
+Accrued expenses and other current liabilities | | 110,377 | | | 90,680 | |
+Total current liabilities | | 164,307 | | | 133,042 | |
+Other liabilities | | 41,490 | | | 35,147 | |
+Total liabilities | | 205,797 | | | 168,189 | |
+| | | | |
+Stockholders’ equity | | | | |
+Common stock | | 17 | | | 17 | |
+Additional paid-in capital | | 1,485,320 | | | 1,348,969 | |
+Accumulated other comprehensive (loss) income | | (3,369) | | | 4,310 | |
+Retained earnings | | 243,736 | | | 10,338 | |
+Total stockholders’ equity | | 1,725,704 | | | 1,363,634 | |
+Total liabilities and stockholders’ equity | | $ | 1,931,501 | | | $ | 1,531,823 | |
+
+
+
+
+
+
+
+
+
+ASTERA LABS, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS (Unaudited)
+(In thousands, except per share amounts)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended | | Six Months Ended |
+| | June 30,
+2026 | | March 31,
+2026 | | June 30,
+2025 | | June 30,
+2026 | | June 30,
+2025 |
+Revenue | | $ | 392,400 | | | $ | 308,361 | | | $ | 191,925 | | | $ | 700,761 | | | $ | 351,367 | |
+Cost of revenue | | 104,833 | | | 73,220 | | | 46,362 | | | 178,053 | | | 86,393 | |
+Gross profit | | 287,567 | | | 235,141 | | | 145,563 | | | 522,708 | | | 264,974 | |
+| | | | | | | | | | |
+Operating expenses | | | | | | | | | | |
+Research and development | | 135,898 | | | 125,634 | | | 66,724 | | | 261,532 | | | 131,278 | |
+Sales and marketing | | 26,372 | | | 21,899 | | | 18,609 | | | 48,271 | | | 40,311 | |
+General and administrative | | 36,049 | | | 25,775 | | | 20,456 | | | 61,824 | | | 42,326 | |
+Total operating expenses | | 198,319 | | | 173,308 | | | 105,789 | | | 371,627 | | | 213,915 | |
+Operating income | | 89,248 | | | 61,833 | | | 39,774 | | | 151,081 | | | 51,059 | |
+Interest and other income | | 13,577 | | | 11,581 | | | 10,885 | | | 25,158 | | | 21,317 | |
+Income before income taxes | | 102,825 | | | 73,414 | | | 50,659 | | | 176,239 | | | 72,376 | |
+Income tax benefit | | 50,263 | | | 6,896 | | | 560 | | | 57,159 | | | 10,662 | |
+Net income | | $ | 153,088 | | | $ | 80,310 | | | $ | 51,219 | | | $ | 233,398 | | | $ | 83,038 | |
+| | | | | | | | | | |
+Net income per share attributable to common stockholders:
+| | | | |
+Basic | | $ | 0.89 | | | $ | 0.47 | | | $ | 0.31 | | | $ | 1.36 | | | $ | 0.51 | |
+Diluted | | $ | 0.83 | | | $ | 0.44 | | | $ | 0.29 | | | $ | 1.28 | | | $ | 0.47 | |
+Weighted-average shares used in calculating net income per share attributable to common stockholders:
+| | | | | | | | | | |
+Basic | | 172,378 | | 170,726 | | 165,428 | | 171,557 | | 164,316 |
+Diluted | | 183,340 | | 181,157 | | 178,100 | | 182,254 | | 178,281 |
+
+
+
+
+
+
+
+
+
+ASTERA LABS, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS (Unaudited)
+(In thousands)
+| | | | | | | | | | | | | | | | | | | |
+| | | Six Months Ended
+June 30, |
+| | | | | | | 2026 | | 2025 |
+Cash flows from operating activities | | | | | | | | | |
+Net income | | | | | | | $ | 233,398 | | | $ | 83,038 | |
+Adjustments to reconcile net income to net cash provided by operating activities | | | | | | | | | |
+Stock-based compensation | | | | | | | 112,905 | | | 77,920 | |
+Depreciation and amortization | | | | | | | 7,639 | | | 2,517 | |
+Non-cash operating lease expense | | | | | | | 2,718 | | | 1,522 | |
+Warrants contra revenue | | | | | | | 12,313 | | | 2,136 | |
+Accretion of discounts on marketable securities | | | | | | | (2,180) | | | (4,489) | |
+Other, net | | | | | | | (2,961) | | | 734 | |
+Changes in operating assets and liabilities: | | | | | | | | | |
+Accounts receivable, net | | | | | | | (109,461) | | | 14,491 | |
+Inventory | | | | | | | (53,127) | | | (14,577) | |
+Prepaid expenses and other assets | | | | | | | (41,422) | | | (18,474) | |
+Accounts payable | | | | | | | 2,811 | | | 4,607 | |
+Accrued expenses and other liabilities | | | | | | | (357) | | | (3,555) | |
+| | | | | | | | | |
+Net cash provided by operating activities | | | | | | | 162,276 | | | 145,870 | |
+Cash flows from investing activities | | | | | | | | | |
+Purchases of property and equipment | | | | | | | (28,054) | | | (6,562) | |
+Purchases of marketable securities | | | | | | | (359,732) | | | (404,682) | |
+Sales and maturities of marketable securities | | | | | | | 233,933 | | | 343,611 | |
+Payments for business combinations, net of cash acquired | | | | | | | (69,214) | | | — | |
+Other investing activities | | | | | | | (2,500) | | | — | |
+Net cash used in investing activities | | | | | | | (225,567) | | | (67,633) | |
+Cash flows from financing activities | | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Proceeds from exercises of stock options | | | | | | | 836 | | | 778 | |
+Proceeds from employee stock purchase plan | | | | | | | 6,294 | | | 4,345 | |
+Net cash provided by financing activities | | | | | | | 7,130 | | | 5,123 | |
+Net (decrease) increase in cash, cash equivalents, and restricted cash | | | | | | | (56,161) | | | 83,360 | |
+Cash, cash equivalents, and restricted cash | | | | | | | | | |
+Beginning of the period | | | | | | | 167,684 | | | 80,044 | |
+End of the period | | | | | | | $ | 111,523 | | | $ | 163,404 | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+
+
+
+
+
+
+
+
+
+ASTERA LABS, INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL MEASURES (Unaudited)
+(In thousands, except percentages and per share amounts)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended | | Six Months Ended |
+| | June 30,
+2026 | | March 31,
+2026 | | June 30,
+2025 | | June 30,
+2026 | | June 30,
+2025 |
+GAAP gross profit | | $ | 287,567 | | | $ | 235,141 | | | $ | 145,563 | | | $ | 522,708 | | | $ | 264,974 | |
+Stock-based compensation expense | | 1,692 | | | 499 | | | 353 | | | 2,191 | | | 315 | |
+Non-GAAP gross profit | | $ | 289,259 | | | $ | 235,640 | | | $ | 145,916 | | | $ | 524,899 | | | $ | 265,289 | |
+| | | | | | | | | | |
+GAAP gross margin | | 73.3 | % | | 76.3 | % | | 75.8 | % | | 74.6 | % | | 75.4 | % |
+Stock-based compensation expense | | 0.4 | | | 0.2 | | | 0.2 | | | 0.3 | | | 0.1 | |
+Non-GAAP gross margin (1)
+| | 73.7 | % | | 76.4 | % | | 76.0 | % | | 74.9 | % | | 75.5 | % |
+| | | | | | | | | | |
+GAAP operating income | | $ | 89,248 | | | $ | 61,833 | | | $ | 39,774 | | | $ | 151,081 | | | $ | 51,059 | |
+Stock-based compensation expense | | 63,992 | | | 48,913 | | | 35,474 | | | 112,905 | | | 77,920 | |
+Acquisition-related costs (2)
+| | 232 | | | 983 | | | — | | | 1,213 | | | — | |
+Non-GAAP operating income | | $ | 153,472 | | | $ | 111,729 | | | $ | 75,248 | | | $ | 265,199 | | | $ | 128,979 | |
+| | | | | | | | | | |
+GAAP operating margin | | 22.7 | % | | 20.1 | % | | 20.7 | % | | 21.6 | % | | 14.5 | % |
+Stock-based compensation expense | | 16.3 | | | 15.9 | | | 18.5 | | | 16.1 | | | 22.2 | |
+Acquisition-related costs (2)
+| | 0.1 | | | 0.3 | | | — | | | 0.2 | | | — | |
+Non-GAAP operating margin (1)
+| | 39.1 | % | | 36.2 | % | | 39.2 | % | | 37.8 | % | | 36.7 | % |
+| | | | | | | | | | |
+GAAP net income | | $ | 153,088 | | | $ | 80,310 | | | $ | 51,219 | | | $ | 233,398 | | | $ | 83,038 | |
+Stock-based compensation expense | | 63,992 | | | 48,913 | | | 35,474 | | | 112,905 | | | 77,920 | |
+Acquisition-related costs (2)
+| | 232 | | | 983 | | | — | | | 1,213 | | | — | |
+Other (3)
+| | (1,500) | | | — | | | — | | | (1,500) | | | — | |
+Income tax effect (4)
+| | (69,996) | | | (20,137) | | | (8,670) | | | (90,133) | | | (23,308) | |
+Non-GAAP net income | | $ | 145,816 | | | $ | 110,069 | | | $ | 78,023 | | | $ | 255,883 | | | $ | 137,650 | |
+| | | | | | | | | | |
+Net income per share attributable to common stockholders: | | | | |
+GAAP - basic | | $ | 0.89 | | | $ | 0.47 | | | $ | 0.31 | | | $ | 1.36 | | | $ | 0.51 | |
+GAAP - diluted | | $ | 0.83 | | | $ | 0.44 | | | $ | 0.29 | | | $ | 1.28 | | | $ | 0.47 | |
+Non-GAAP - diluted | | $ | 0.80 | | | $ | 0.61 | | | $ | 0.44 | | | $ | 1.40 | | | $ | 0.77 | |
+| | | | | | | | | | |
+Weighted average shares used to compute net income per share attributable to common stockholders: |
+GAAP - basic | | 172,378 | | | 170,726 | | | 165,428 | | | 171,557 | | | 164,316 | |
+GAAP - diluted | | 183,340 | | | 181,157 | | | 178,100 | | | 182,254 | | | 178,281 | |
+| | | | | | | | | | |
+____________________
+(1) Total may not sum due to rounding.
+(2 ) Acquisition-related costs included certain incremental expenses incurred to effect a business combination such as third-party costs: advisory, legal, accounting, valuation, and other professional fees.
+(3) Other included non-cash and nonrecurring fair value adjustments on equity investments without readily determinable fair values.
+
+
+
+
+
+
+
+(4) Income tax effect is calculated based on the tax laws in the jurisdictions in which we operate and is calculated to exclude the impact of stock-based compensation expense and one-off discrete tax adjustments that are unrelated to our core operating performance. For the three months ended June 30, 2026, March 31, 2026, and June 30, 2025, the non-GAAP tax expense rate was approximately 12%, 11%, and 9%, respectively. For the six months ended June 30, 2026 and 2025, the non-GAAP tax expense rate was approximat ely 11% an d 8%, respectively.
+
+
+
+
+
+
+
+
+
+
+ASTERA LABS, INC.,
+RECONCILIATION OF GAAP TO NON-GAAP OUTLOOK (Unaudited)
+(In millions, except percentages and per share amounts)
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | |
+| | Outlook for Three Months Ending September 30, 2026 | | | | |
+| | Low | | High | | | | |
+GAAP gross margin | | 72 | % | | 72 | % | | | | |
+Stock-based compensation expense
+| | — | | | — | | | | | |
+Non-GAAP gross margin | | 72 | % | | 72 | % | | | | |
+| | | | | | | | |
+GAAP operating expense | | $ | 232 | | | $ | 236 | | | | | |
+Stock-based compensation expense | | (76) | | | (76) | | | | | |
+Non-GAAP operating expense | | $ | 156 | | | $ | 160 | | | | | |
+| | | | | | | | |
+GAAP tax rate | | 4 | % | | 4 | % | | | | |
+Income tax effect
+| | 8 | | | 8 | | | | | |
+Non-GAAP tax rate | | 12 | % | | 12 | % | | | | |
+| | | | | | | | |
+GAAP net income per share - diluted | | $ | 0.87 | | | $ | 0.92 | | | | | |
+Stock-based compensation expense
+| | 0.40 | | | 0.40 | | | | | |
+Income tax effect | | (0.11) | | | (0.11) | | | | | |
+Non-GAAP net income per share - diluted | | $ | 1.16 | | | $ | 1.21 | | | | | |
+
+
+
+
+
+
+ASTERA LABS, INC.
+SUPPLEMENTAL FINANCIAL INFORMATION
+STOCK-BASED COMPENSATION EXPENSE (Unaudited)
+(In thousands)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended | |
+| June 30,
+2026 | | March 31,
+2026 | | June 30,
+2025 | | June 30,
+2026 | | June 30,
+2025 | |
+Cost of revenue | $ | 1,692 | | | $ | 499 | | | $ | 353 | | | $ | 2,191 | | | $ | 315 | | |
+Research and development | 36,413 | | | 29,404 | | | 17,852 | | | 65,817 | | | 37,038 | | |
+Sales and marketing | 11,419 | | | 9,892 | | | 9,194 | | | 21,311 | | | 21,513 | | |
+General and administrative | 14,468 | | | 9,118 | | | 8,075 | | | 23,586 | | | 19,054 | | |
+Total stock-based compensation expense | $ | 63,992 | | | $ | 48,913 | | | $ | 35,474 | | | $ | 112,905 | | | $ | 77,920 | | |
