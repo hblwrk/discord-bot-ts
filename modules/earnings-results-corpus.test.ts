@@ -143,7 +143,7 @@ const filingCorpus: {
     ],
     outlook: [
       ["FY2026 Revenue", "$60.5B to $62.5B"],
-      ["FY2026 EPS", "$2.8 to $3"]
+      ["FY2026 Adj EPS", "$2.8 to $3"]
     ],
     quarterLabel: "Q2 2026",
     source: "78003/000007800326000094/pfe-6282026xex99.htm",
@@ -209,6 +209,7 @@ const filingCorpus: {
     ],
     outlook: [
       ["Revenue", "$3.3B"],
+      ["Adj EPS", "$1.06 to $1.08"],
       ["Operating margin", "49%"]
     ],
     quarterLabel: "Q2 2026",
@@ -272,9 +273,9 @@ const filingCorpus: {
   },
   {
     // A shareholder-letter release: the adjusted measure is named by what it leaves out
-    // ("diluted EPS excluding certain items"), and the quarter is a fiscal one the document
-    // states only as "fiscal Q3" against a "Q3 fiscal 2025" comparative, so no quarter
-    // label is derived rather than risking the prior year or the calendar quarter.
+    // ("diluted EPS excluding certain items"), the fiscal quarter is stated only as "third
+    // quarter results for fiscal 2026", and the outlook mixes a full-year per-share range
+    // with a single-quarter segment figure.
     company: "Walt Disney",
     metrics: [
       ["adjusted_eps", "$2.06"],
@@ -283,12 +284,56 @@ const filingCorpus: {
       ["net_income", "$2.64B"],
     ],
     outlook: [
-      ["EPS", "12% growth"],
-      ["Operating income", "$4.9B"],
+      ["FY2026 Adj EPS", "12% growth"],
+      ["Q4 Operating income", "$4.9B"],
     ],
-    quarterLabel: undefined,
+    quarterLabel: "Q3 2026",
     source: "1744489/000174448926000056/fy2026_q3xerxex991.htm",
     ticker: "dis",
+  },
+  {
+    // Prior-year-first columns with the year header more than twenty rows above the
+    // per-share row, and an outlook stating the figure and its growth in one breath.
+    company: "Uber Technologies",
+    metrics: [
+      ["adjusted_eps", "$0.81"],
+      ["gaap_eps", "$1.17"],
+      ["revenue", "$14.19B"],
+      ["net_income", "$2.39B"],
+    ],
+    outlook: [
+      ["Adj EPS", "$0.84 to $0.88"],
+      ["Adj EBITDA", "$2.86B to $2.96B"]
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1543151/000154315126000027/uberq226earningspressrelea.htm",
+    ticker: "uber",
+  },
+  {
+    // The reporting period is stated only as the period the statements ended, while the
+    // guidance section names a later quarter; per-share figures live in a separate
+    // supplemental and are correctly absent.
+    company: "Shopify",
+    metrics: [
+      ["revenue", "$3.58B"],
+      ["net_income", "$1.5B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1594805/000159480526000046/exhibit991pressreleaseq220.htm",
+    ticker: "shop",
+  },
+  {
+    company: "1stdibs.com",
+    metrics: [
+      ["gaap_eps", "-$0.03"],
+      ["revenue", "$23.3M"],
+      ["net_income", "-$1.02M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1600641/000160064126000032/ex991q2fy26earningsrelease.htm",
+    ticker: "dibs",
   },
 ];
 
@@ -310,6 +355,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(20);
+    expect(filingCorpus).toHaveLength(23);
   });
 });
