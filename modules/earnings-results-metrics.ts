@@ -1,4 +1,7 @@
-import {getPositionedQuarterValues} from "./earnings-results-format-selection.ts";
+import {
+  getPositionedQuarterValues,
+  isDefinitionalLine,
+} from "./earnings-results-format-selection.ts";
 import {getMoneyScaleFromContextText} from "./earnings-results-money.ts";
 
 export type EarningsResultOutcome = "beat" | "inline" | "miss";
@@ -50,6 +53,9 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       // "Non-GAAP diluted net income per share" / "Non-GAAP Diluted Loss Per Share" are
       // the reconciliation-table labels for the same measure.
       /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?(?:earnings|net\s+income|net\s+loss|loss|\(loss\))\s+per\s+(?:common\s+)?share\b/i,
+      // A reconciliation table can name the measure after the caption instead of before
+      // it ("Earnings per share - Non-GAAP").
+      /\b(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\s*[–—-]\s*non-gaap\b/i,
       /\badjusted\s+profit\s+per\s+(?:common\s+)?share\b/i,
       // Some filers name the measure by what it leaves out — "diluted EPS excluding certain
       // items" — which their own footnote then defines as adjusted EPS.
@@ -86,7 +92,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /\brevenues?\b/i,
       /\bsales\b/i,
     ],
-    skipPattern: /\bcosts?\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsystemwide\s+sales\b|\b(?:U\.S\.|U\.K\.|US|international|domestic|non-US|segment)\s+(?:commercial\s+|government\s+)?revenues?\b|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b/i,
+    skipPattern: /\bcosts?\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsystemwide\s+sales\b|\b(?:U\.S\.|U\.K\.|US|international|domestic|non-US|segment)\s+(?:commercial\s+|government\s+)?revenues?\b|\b(?:U\.S\.|US|international|worldwide|non-US)\s+(?:[A-Z][A-Za-z]+\s+){1,2}revenues?\b|\brevenues?\s+(?:in|outside)\s+the\s+U\.S\.|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b/i,
     valueType: "money",
   },
   {
@@ -236,6 +242,13 @@ export function getMetricLineWithContinuation(
   for (let index = lineIndex + 1; index < lines.length && index <= lineIndex + continuationLimit; index++) {
     const nextLine = lines[index];
     if (undefined === nextLine) {
+      break;
+    }
+
+    // A footnote below the row explains it rather than continuing it, and it often restates
+    // the measure with a different figure ("(1) non-GAAP EPS included $3.03 of charges").
+    // Joined to the row, that figure becomes the only currency-cued value in it.
+    if (true === isDefinitionalLine(nextLine)) {
       break;
     }
 

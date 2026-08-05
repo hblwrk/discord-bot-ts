@@ -1,0 +1,538 @@
+EX-99.1
+2
+q226lillysalesandearningsp.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+
+
+
+
+
+
+
+August 5, 2026
+
+
+
+
+
+
+
+
+For release: Immediately
+Refer to: Megan MacCauley; maccauley_megan@lilly.com (Media)
+Mike Czapar; czapar_michael_c@lilly.com (Investors)
+
+
+Lilly reports second-quarter 2026 financial results, raise s full-year guidance, and highlights continued growth and pipeline progress
+
+
+• Revenue in Q2 2026 increased 48% to $23.0 billion driven primarily by Mounjaro and Zepbound volume.
+
+
+• Q2 2026 EPS increased by 26% to $7.94 on a reported basis and increased by 33% to $8.38 on a non-GAAP basis. Q2 2026 reported and non-GAAP EPS included $3.03 of acquired IPR&D charges compared to $0.14 in Q2 2025.
+• Increased 2026 full-year revenue guidance to be in the range of $85.0 billion to $87.0 billion and raised underlying non-GAAP EPS guidance for the full year by $2.78 at the midpoint, which was more than offset by $3.03 of acquired IPR&D charges from Q2 business development activity, resulting in an updated range of $35.50 to $36.50.
+• Regulatory progress included U.S. FDA approval of Ebglyss for one maintenance dose every eight weeks in moderate-to-severe atopic dermatitis, European Commission approval of Jaypirca as monotherapy for adults with chronic lymphocytic leukemia across all lines of therapy, and the submission for orforglipron for type 2 diabetes in the U.S.
+• Pipeline highlights included positive data from three additional Phase 3 trials of retatrutide in obesity. The clinical data package is now complete to support global registrations for obesity, obstructive sleep apnea, and knee osteoarthritis pain, with plans to submit a Biologics License Application to the U.S. FDA in the first quarter of 2027.
+• Business development activity in Q2 2026 included the completed acquisitions of Orna Therapeutics, Inc., Ajax Therapeutics, Inc., Centessa Pharmaceuticals plc. and Kelonia Therapeutics, Inc. Subsequent to quarter end, we completed three acquisitions to build an infectious disease portfolio and entered into an agreement to acquire AtaiBeckley, Inc.
+• Committed an additional $4.5 billion to expand Indiana manufacturing sites.
+
+
+INDIANAPOLIS, August 5, 2026 - Eli Lilly and Company (NYSE: LLY) today announced its financial results for the second quarter of 2026 and provided updated 2026 financial guidance.
+
+
+"Lilly's momentum continues, as we delivered 48% revenue growth and raised our full-year guidance," said David A. Ricks, Lilly chair and CEO. "At the same time, Lilly is building for the future. With our next-generation weight-loss medicine retatrutide and its complete clinical data package in hand, new manufacturing capacity coming online, and exciting new assets entering our pipeline through business development, Lilly's future, after 150 years, has never been brighter."
+
+
+Eli Lilly and Company | Lilly Corporate Center | Indianapolis, Indiana 46285 | U.S.A.
+
+
+
+| | |
+|
+
+
+
+
+
+
+
+
+Financial Results
+| | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | | | | | |
+$ in millions, except
+per share data | Second-Quarter
+| | | |
+| 2026 | | 2025 | | % Change | | | | | |
+Revenue | $ | 22,974 | | | $ | 15,558 | | | 48% | | | | | |
+| | | | | | | | | | |
+Net income – Reported | 7,095 | | | 5,661 | | | 25% | | | | | |
+Earnings per share – Reported (1)
+| 7.94 | | | 6.29 | | | 26% | | | | | |
+| | | | | | | | | | |
+Net income – Non-GAAP | 7,493 | | | 5,680 | | | 32% | | | | | |
+Earnings per share – Non-GAAP (1)
+| 8.38 | | | 6.31 | | | 33% | | | | | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+(1) Q2 2026 reported and non-GAAP EPS included $3.03 of acquired IPR&D charges compared to $0.14 in Q2 2025
+| | | | | |
+
+
+
+A discussion of the non-GAAP financial measures is included below under "Reconciliation of GAAP Reported to Selected Non-GAAP Adjusted Information (Unaudited)."
+
+
+Second-Quarter Reported Results
+In Q2 2026, worldwide revenue was $23.0 billion, an increase of 48% compared with Q2 2025, driven by a 60% increase in volume, partially offset by a 13% decrease in realized prices. Key Products 1 revenue grew to $15.7 billion in Q2 2026, led by Mounjaro and Zepbound. Key Products revenue in the Immunology, Oncology, and Neuroscience therapeutic areas grew 121% in Q2 2026 compared to Q2 2025.
+
+
+Revenue in the U.S. increased 33% to $14.4 billion, driven by a 37% increase in volume, partially offset by a 3% decrease in realized prices. The increase in U.S. volume was driven by Zepbound and Mounjaro. The decline in realized prices was primarily driven by Zepbound and Mounjaro, partially offset by adjustments to estimates for rebates and discounts primarily driven by Trulicity, Zepbound, and Mounjaro. Excluding these adjustments, U.S. price would have declined by approximately 9%.
+
+
+Revenue outside the U.S. increased 80% to $8.6 billion, driven by a 113% increase in volume, partially offset by a 36% decrease in realized prices. The lower realized prices outside the U.S. were driven primarily by the addition of Mounjaro to the National Reimbursement Drug List (NRDL) in China. The
+
+1 The Company currently defines Key Products as Ebglyss, Foundayo (added Q2 2026), Inluriyo, Jaypirca, Kisunla, Mounjaro, Omvoh, and Zepbound.
+| | |
+2
+|
+
+
+
+| | |
+|
+
+
+
+
+
+
+volume increase outside the U.S. was driven by Mounjaro. Jardiance revenue outside the U.S. included a sales-based milestone of $250 million in Q2 2026, associated with the company's collaboration with Boehringer Ingelheim.
+
+
+Gross margin increased 50% to $19.7 billion in Q2 2026. Gross margin as a percent of revenue was 85.8%, an increase of 1.5 percentage points versus the same quarter last year. The increase was primarily driven by improved cost of production and favorable product mix, partially offset by lower realized prices.
+
+
+In Q2 2026, research and development expenses increased 14% to $3.8 billion, or 17% of revenue, driven by continued investments in the company's early and late-stage portfolio.
+
+
+Marketing, selling, and administrative expenses increased 25% to $3.4 billion in Q2 2026, primarily driven by promotional efforts supporting ongoing and planned launches.
+
+
+In Q2 2026, the company recognized acquired in-process research and development (IPR&D) charges of
+$2.8 billion compared with $154 million in Q2 2025. The Q2 2026 charges primarily related to the acquisitions of Orna Therapeutics, Inc. and Ajax Therapeutics, Inc.
+
+
+Asset impairment, restructuring and other special charges of $703 million in Q2 2026 were primarily related to the accelerated vesting of employee equity awards and other acquisition and integration costs associated with the closing of our acquisitions of Kelonia Therapeutics, Inc. and Centessa Pharmaceuticals plc. In Q2 2025, there were no asset impairment, restructuring and other special charges.
+
+
+The effective tax rate was 23.3% in Q2 2026 compared with 16.5% in Q2 2025, primarily driven by the unfavorable tax impact of non-deductible acquired IPR&D charges in Q2 2026.
+
+
+In Q2 2026, net income and earnings per share (EPS) were $7.1 billion and $7.94, respectively, compared with net income of $5.7 billion and EPS of $6.29 in Q2 2025. EPS in Q2 2026 and Q2 2025 included acquired IPR&D charges of $3.03 and $0.14, respectively.
+
+
+
+Second-Quarter Non-GAAP Measures
+On a non-GAAP basis, Q2 2026 gross margin increased 50% to $19.8 billion. Gross margin as a percent of revenue was 86.3%, an increase of 1.3 percentage points versus the same quarter last year. The
+
+
+| | |
+3
+|
+
+
+
+
+
+| | |
+|
+
+
+
+
+
+
+increase was primarily driven by improved cost of production and favorable product mix, partially offset by lower realized prices.
+
+
+The non-GAAP effective tax rate was 22.2% in Q2 2026 compared with 16.5% in Q2 2025, primarily driven by the unfavorable tax impact of non-deductible acquired IPR&D charges in Q2 2026.
+
+
+On a non-GAAP basis, Q2 2026 net income and EPS were $7.5 billion and $8.38, respectively, compared with net income of $5.7 billion and EPS of $6.31 in Q2 2025. Non-GAAP EPS in Q2 2026 and Q2 2025 included acquired IPR&D charges of $3.03 and $0.14, respectively.
+
+
+For further detail on non-GAAP measures, see the reconciliation below as well as the "Reconciliation of GAAP Reported to Selected Non-GAAP Adjusted Information (Unaudited)" table later in this press release.
+
+
+| | | | | | | | | | | | | | | | | |
+| Second-Quarter
+|
+| 2026 | | 2025 | | % Change |
+Earnings per share (reported) | $ | 7.94 | | | $ | 6.29 | | | 26% |
+Amortization of intangible assets | .11 | | | .11 | | | |
+Asset impairment, restructuring and other special charges | .72 | | | — | | | |
+Net gains on investments in equity securities | (.39) | | | (.09) | | | |
+| | | | | |
+Earnings per share (non-GAAP) | $ | 8.38 | | | $ | 6.31 | | | 33% |
+| | | | | |
+Acquired IPR&D | 3.03 | | | .14 | | | NM |
+Numbers may not add due to rounding | | | | | |
+NM - not meaningful |
+
+| | |
+4
+|
+
+
+
+
+| | |
+|
+
+
+
+
+
+
+Selected Revenue Highlights
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+(Dollars in millions)
+| Second-Quarter
+| | Year-to-Date | |
+Selected Products | 2026 | | 2025 | | % Change | | 2026 | | 2025 | | % Change | | | | | |
+Mounjaro | $ | 9,943 | | | $ | 5,199 | | | 91% | | $ | 18,605 | | | $ | 9,041 | | | 106% | | | | | |
+Zepbound (1)
+| 4,928 | | | 3,381 | | | 46% | | 9,088 | | | 5,693 | | | 60% | | | | | |
+| | | | | | | | | | | | | | | | |
+Jaypirca
+| 192 | | | 123 | | | 56% | | 357 | | | 215 | | | 66% | | | | | |
+Ebglyss
+| 201 | | | 87 | | | 131% | | 346 | | | 147 | | | 135% | | | | | |
+Kisunla
+| 167 | | | 49 | | | NM | | 291 | | | 70 | | | NM | | | | | |
+Omvoh
+| 102 | | | 75 | | | 36% | | 182 | | | 112 | | | 62% | | | | | |
+Inluriyo
+| 75 | | | — | | | NM | | 110 | | | — | | | NM | | | | | |
+Foundayo | 98 | | | — | | | NM | | 98 | | | — | | | NM | | | | | |
+| | | | | | | | | | | | | | | | |
+Total Revenue | 22,974 | | | 15,558 | | | 48% | | 42,773 | | | 28,286 | | | 51% | | | | | |
+| | | | | | | | | | | | | | | | |
+(1) Tirzepatide is marketed for obesity under the brand name Zepbound in Canada, Japan, and the United States.
+| | | | | |
+NM - not meaningful | | | | | |
+|
+
+
+
+Mounjaro
+For Q2 2026, worldwide Mounjaro revenue increased 91% to $9.9 billion. U.S. revenue was $4.8 billion, an increase of 45%, reflecting strong demand, partially offset by lower realized prices. Lower realized prices were partially offset by adjustments to estimates for rebates and discounts. Revenue outside the U.S. increased 172% to $5.2 billion primarily driven by volume growth, partially offset by lower realized prices driven by the addition of Mounjaro to the NRDL in Q1 2026.
+
+
+Zepbound
+For Q2 2026, U.S. Zepbound revenue increased 44% to $4.9 billion, primarily driven by strong demand, partially offset by lower realized prices, including previously announced reductions in cash-pay prices. Lower realized prices were partially offset by adjustments to estimates for rebates and discounts.
+| | |
+5
+|
+
+
+
+
+| | |
+|
+
+
+
+
+
+
+Lilly shared numerous updates recently on key regulatory, clinical, business development, and other events, including:
+| | | | | |
+Regulatory | Lilly's Jaypirca (pirtobrutinib) recommended by CHMP for approval in the European Union for adults with chronic lymphocytic leukemia (CLL) across all lines of therapy (announcement) |
+FDA approves Lilly's EBGLYSS® (lebrikizumab-lbkz) for one maintenance dose every eight weeks in patients with moderate-to-severe atopic dermatitis (announcement) |
+Clinical | Lilly's olomorasib receives U.S. FDA's Breakthrough Therapy designation for the treatment of previously treated KRAS G12C-mutant advanced pancreatic cancer (announcement) |
+Lilly's triple agonist, retatrutide, successful in two additional Phase 3 obesity trials, delivering significant improvements in weight and A1C (announcement) |
+Lilly's Jaypirca (pirtobrutinib) significantly reduced the risk of disease progression or death by 45% when added to a venetoclax time-limited regimen in people with previously treated CLL/SLL (announcement) |
+Lilly's oral GLP-1 Foundayo (orforglipron) delivered superior A1C control and weight loss in three pivotal type 2 diabetes trials (announcement) |
+Lilly's Foundayo (orforglipron), the only oral GLP-1 taken without food or water restrictions, was associated with significant weight loss in women at every stage of menopause (announcement) |
+Lilly's triple agonist, retatrutide, drove substantial improvements in weight, A1C, knee osteoarthritis pain, and obstructive sleep apnea, demonstrating its remarkable potential to treat obesity and its complications (announcement) |
+Lilly's Retevmo (selpercatinib) demonstrated an 83% reduction in the risk of disease recurrence or death as adjuvant therapy for people with early-stage RET fusion-positive lung cancer (announcement) |
+A single dose of Lilly's PCSK9 base editor, VERVE-102, reduced PCSK9 by up to 88% and LDL-C by up to 62%, with durable effects supporting its potential as a one-time treatment for hypercholesterolemia (announcement) |
+Lilly's triple agonist, retatrutide, delivered powerful weight loss in pivotal Phase 3 obesity trial (announcement) |
+Lilly's Foundayo and lower-dose Zepbound helped people maintain weight loss after switching from higher doses of injectable incretin therapy in two late-phase trials (announcement) |
+Lilly's Omvoh (mirikizumab-mrkz) is the first and only IL-23p19 to demonstrate durable disease clearance in ulcerative colitis through four years (announcement) |
+Other | Lilly to acquire AtaiBeckley to advance therapies for treatment-resistant depression and other mental health conditions (announcement) |
+What Medicare Part D patients need to know about accessing Foundayo (orforglipron) and Zepbound (tirzepatide) for weight management (announcement) |
+Lilly completes acquisition of Centessa Pharmaceuticals to advance treatments for sleep-wake disorders (announcement) |
+Foundayo and Zepbound now covered for millions of Americans (announcement) |
+Lilly announces three acquisitions to build infectious disease portfolio (announcement) |
+|
+Lilly commits additional $4.5 billion across Indiana manufacturing sites, opens first dedicated genetic medicine facility (announcement) |
+
+For information on important public announcements, visit the news section of Lilly's website.
+
+
+
+2026 Financial Guidance
+In addition to providing guidance for GAAP revenue, Lilly provides guidance for certain non-GAAP measures.
+The following table summarizes the company's updated full-year 2026 non-GAAP financial guidance, reflecting the continued strong revenue performance in Q2. The first half of 2026 also benefited from sales based milestones and adjustments for rebates and discounts. In addition to updates to Revenue and Performance Margin guidance, EPS guidance has been adjusted to reflect an increase of $2.78 (at the midpoint of the range) due to strong underlying business growth, offset by $3.03 associated with the Q2 acquired IPR&D charges from recent business development activity:
+| | | | | | | | | | | | | | |
+| | | Prior | Updated |
+| | | | |
+Revenue | | | $82 to $85 billion | $85 to $87 billion |
+| | | | |
+Performance Margin (1)(2)
+| | | 47.0% to 48.5% | 49.0% to 50.5% |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+Tax Rate (1)(3)
+| | | 18% to 19% | unchanged |
+| | | | |
+| | | | |
+Earnings per Share (1)(3)(4)
+| | | $35.50 to $37.00 | $35.50 to $36.50 |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+|
+|
+|
+(1) Lilly does not provide reconciliations of forward-looking non-GAAP measures to the most directly comparable GAAP measures because comparable GAAP measures are not reasonably accessible or reliable due to the inherent difficulty in forecasting and quantifying measures that would be necessary for a reconciliation. In particular, Lilly cannot reasonably predict certain items including net gains and losses on equity securities, asset impairment, acquisition or divestiture-related items, or restructuring and other adjustments, without unreasonable effort. These items are uncertain, depend on various factors, and could have a material impact on Lilly's reported results in accordance with GAAP. See Reconciliation of GAAP Reported to Selected Non-GAAP Adjusted Information (Unaudited) table below for additional Non-GAAP information.
+|
+(2) The company defines performance margin as gross margin less research and development and marketing, selling, and administrative expenses divided by revenue.
+|
+(3) Guidance does not include acquired in-process research and development (IPR&D) incurred after June 30, 2026.
+|
+(4) Assumes shares outstanding of approximately 894 million and foreign currency exchange rate assumptions of 1.14 (Euro), 153 (Yen) and 7.1 (Yuan)
+|
+|
+|
+
+| | |
+6
+|
+
+
+
+| | |
+|
+
+
+
+
+
+
+
+
+
+Webcast of Conference Call
+As previously announced, investors and the general public can access a live webcast of the Q2 2026 financial results conference call through a link on Lilly's website at investor.lilly.com/webcasts-and-presentations. The conference call will begin at 10 a.m. Eastern time today and will be available for replay via the website.
+
+
+Non-GAAP Financial Measures
+Certain financial information is presented on both a reported and a non-GAAP basis. Some numbers in this press release may not add due to rounding. Reported results were prepared in accordance with U.S. generally accepted accounting principles (GAAP) and include all revenue and expenses recognized during the periods. Historical non-GAAP measures reflect adjustments for the items described in the reconciliation tables later in the release. Related materials provide certain GAAP and non-GAAP figures excluding the impact of foreign exchange rates. Lilly recalculates current period figures on a constant currency basis by keeping constant the exchange rates from the base period. The company's 2026 financial guidance (other than revenue) is provided on a non-GAAP basis, as described in "2026 Financial Guidance" above. Non-GAAP measures are presented to provide additional insights into the underlying trends in the company's business.
+
+
+About Lilly
+Lilly is a medicine company turning science into healing to make life better for people around the world. We've been pioneering life-changing discoveries for 150 years, and today our medicines help tens of millions of people across the globe. Harnessing the power of biotechnology, chemistry and genetic medicine, our scientists are urgently advancing new discoveries to solve some of the world's most significant health challenges: redefining diabetes care; treating obesity and curtailing its most devastating long-term effects; advancing the fight against Alzheimer's disease; providing solutions to some of the most debilitating immune system disorders; and transforming the most difficult-to-treat cancers into manageable diseases. With each step toward a healthier world, we're motivated by one thing: making life better for millions more people. That includes delivering innovative clinical trials that reflect the diversity of our world and working to en sure our medicines are accessible and affordable. To learn more, visit Lilly.com and Lilly.com/news. F-LLY
+
+
+| | |
+7
+|
+
+
+
+| | |
+|
+
+
+
+
+
+
+Cautionary Statement Regarding Forward-Looking Statements
+This press release and the related attachments contain management's intentions and expectations for the future, all of which are forward-looking statements within the meaning of Section 27A of the Securities Act of 1933 and Section 21E of the Securities Exchange Act of 1934. The words "estimate", "project", "intend", "expect", "believe", "target", "plan", "anticipate", "may", "could", "aim", "seek", "will", "continue", and similar expressions are intended to identify forward-looking statements. Actual results may differ materially due to various factors. The following include some but not all of the factors that could cause actual results or events to differ from those anticipated, including the significant costs and uncertainties in the pharmaceutical research and development process, including with respect to the timing and process of obtaining regulatory approvals and the ability of the company's clinical trials to meet expectations; the impact and uncertain outcome of acquisitions and business development transactions and related costs; intense competition affecting the company's products, pipeline, or industry; market uptake of launched products and indications; continued pricing pressures and the impact of actions of governmental and private actors affecting pricing of, reimbursement for, and patient access to pharmaceuticals, or reporting obligations related thereto; the implementation of the company's voluntary agreement with the U.S. government related to drug pricing and access; developments or uncertainties related to the company's or competitive products, including as may relate to safety or efficacy concerns; dependence on relatively few products or product classes for a significant percentage of the company's total revenue and a consolidated supply chain; the expiration of intellectual property protection for certain of the company's products and competition from generic and biosimilar products; the company's ability to protect and enforce patents and other intellectual property and changes in patent law or regulations related to data package exclusivity; information technology system inadequacies, inadequate controls or procedures, security breaches, or operating failures; unauthorized access, disclosure, misappropriation, or compromise of confidential information or other data stored in the company's information technology systems, networks, and facilities, or those of third parties with whom the company shares its data and violations of data protection laws or regulations; issues with product supply, regulatory approvals, or other negative outcomes stemming from manufacturing difficulties, disruptions, or shortages, including as a result of unpredictability and variability in demand, labor shortages, third-party performance, quality, cyber-attacks, or regulatory actions related to the company's and third-party facilities; reliance on third-party relationships and outsourcing arrangements; the use of artificial intelligence or other emerging technologies in various facets of the company's operations, including partnerships related to the use of, or the sharing of such technologies with third parties, which may exacerbate competitive, regulatory, litigation, cybersecurity, and other risks; the impact of global macroeconomic conditions, including uneven economic growth or downturns or uncertainty, trade and other global disputes and interruptions, including related to tariffs, trade protection measures, and similar restrictions, international tension, conflicts, regional dependencies, or other costs, uncertainties, and risks related to engaging in business globally; fluctuations in foreign currency exchange rates, changes in interest rates and inflation or deflation; significant and sudden declines or volatility in the trading price of the company's common stock and market capitalization; litigation, investigations, or other similar proceedings involving past, current, or future products, activities, or intellectual property; changes in tax law and regulations, tax rates, or events that differ from the company's assumptions related to tax positions; regulatory changes, developments, and uncertainty; regulatory oversight and actions regarding the company's operations and products; regulatory compliance problems or government investigations; risks from the proliferation of counterfeit, misbranded, adulterated, or illegally compounded products; actual or perceived deviation from environmental-, social-, or governance-related requirements or expectations; asset impairments and restructuring charges; and changes in accounting and reporting standards. For additional information about the factors that could cause actual results or events to differ materially from forward-looking statements, please see the company's latest Form 10-K and subsequent Forms 8-K and 10-Q filed with the Securities and Exchange Commission. You should not place undue reliance on forward-looking statements contained in this press release and the related attachments, which, except as otherwise noted, speak only as of the date of this release. Except as is required by law, the company expressly disclaims any obligation to publicly release any revisions to forward-looking statements contained in this press release and the related attachments to reflect events or circumstances after the date of this release.
+
+
+# # #
+
+
+Website Information
+
+
+The information contained on, or that may be accessed through, our website or any third-party website is not incorporated by reference into, and is not a part of, this earnings release.
+
+
+Trademarks and Trade Names
+
+
+All trademarks or trade names referred to in this press release are the property of the company, or, to the extent trademarks or trade names belonging to other companies are referenced in this press release, the property of their respective owners. Solely for convenience, the trademarks and trade names in this press release are referred to without the ® and ™ symbols, but such references should not be construed as any indicator that the company or, to the extent applicable, their respective owners will not assert, to the fullest extent under applicable law, the company's or their rights thereto. We do not intend the use or display of other companies’ trademarks and trade names to imply a relationship with, or endorsement or sponsorship of us by, any other companies.
+| | |
+8
+|
+
+
+
+
+| | |
+|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | |
+Eli Lilly and Company |
+Operating Results (Unaudited) – REPORTED |
+(Dollars in millions, except per share data; numbers may not add due to rounding) |
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended | | | Six Months Ended |
+| | June 30, | | | June 30, |
+| | 2026 | | 2025 | | % Chg. | | | 2026 | | 2025 | | % Chg. |
+| | | | | | | | | | | | | |
+Revenue | $ | 22,974 | | $ | 15,558 | | | 48% | | $ | 42,773 | | $ | 28,286 | | | 51% |
+| | | | | | | | | | | | | |
+Cost of sales | | 3,268 | | | 2,448 | | | 33% | | | 6,845 | | | 4,672 | | | 47% |
+Research and development | | 3,819 | | | 3,336 | | | 14% | | | 7,329 | | | 6,070 | | | 21% |
+Marketing, selling, and administrative | | 3,430 | | | 2,753 | | | 25% | | | 6,364 | | | 5,221 | | | 22% |
+Acquired IPR&D | | 2,776 | | | 154 | | | NM | | | 3,360 | | | 1,726 | | | 95% |
+Asset impairment, restructuring and other special charges | | 703 | | | — | | | NM | | | 982 | | | 35 | | | NM |
+Operating income | | 8,978 | | | 6,867 | | | 31% | | | 17,893 | | | 10,562 | | | 69% |
+| | | | | | | | | | | | | |
+Net interest income (expense) | | (274) | | | (209) | | | | | | (527) | | | (405) | | | |
+Net other income (expense) | | 543 | | | 119 | | | | | | 731 | | | 76 | | | |
+Other income (expense) | | 269 | | | (90) | | | NM | | | 204 | | | (329) | | | (162)% |
+| | | | | | | | | | | | | |
+Income before income taxes | | 9,247 | | | 6,777 | | | 36% | | | 18,097 | | | 10,233 | | | 77% |
+Income tax expense | | 2,152 | | | 1,116 | | | 93% | | | 3,606 | | | 1,813 | | | 99% |
+| | | | | | | | | | | | | |
+Net income | $ | 7,095 | | $ | 5,661 | | | 25% | | $ | 14,491 | | $ | 8,420 | | | 72% |
+| | | | | | | | | | | | | |
+Earnings per share - diluted | $ | 7.94 | | $ | 6.29 | | | 26% | | $ | 16.19 | | $ | 9.35 | | | 73% |
+| | | | | | | | | | | | | |
+Dividends paid per share | $ | 1.73 | | $ | 1.50 | | | 15% | | $ | 3.46 | | $ | 3.00 | | | 15% |
+Weighted-average shares outstanding (thousand) - diluted | | 893,671 | | | 899,793 | | | | | | 894,837 | | | 900,199 | | | |
+| | | | | | | | | | | | | |
+
+
+
+NM – not meaningful
+| | |
+9
+|
+
+
+
+
+| | |
+|
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | |
+Eli Lilly and Company |
+Reconciliation of GAAP Reported to Selected Non-GAAP Adjusted Information (Unaudited) |
+(Dollars in millions, except per share data; numbers may not add due to rounding) |
+| | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | 2026 | 2025 | | 2026 | 2025 |
+Gross Margin - As Reported | | $ | 19,706 | | $ | 13,110 | | | $ | 35,928 | | $ | 23,614 | |
+| | | | | | |
+Increase for excluded items: | | | | | | |
+Amortization of intangible assets (Cost of sales) (1)
+| | 125 | | 122 | | | 253 | | 245 | |
+| | | | | | |
+Gross Margin - Non-GAAP | | $ | 19,831 | | $ | 13,232 | | | $ | 36,181 | | $ | 23,859 | |
+| | | | | | |
+Gross Margin as a percent of revenue - As Reported | | 85.8 | % | 84.3 | % | | 84.0 | % | 83.5 | % |
+Gross Margin as a percent of revenue - Non-GAAP (2)
+| | 86.3 | % | 85.0 | % | | 84.6 | % | 84.3 | % |
+
+
+
+1. Excludes amortization of intangibles primarily associated with costs of marketed products acquired or licensed from third parties.
+2. Non-GAAP gross margin as a percent of revenue reflects the gross margin effects of the adjustments presented above.
+
+
+| | |
+10
+|
+
+
+
+| | |
+|
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | |
+Reconciliation of GAAP Reported to Selected Non-GAAP Adjusted Information (Unaudited) |
+(Dollars in millions, except per share data; numbers may not add due to rounding) |
+|
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | 2026 | 2025 | | 2026 | 2025 |
+Net income - Reported | | $ | 7,095 | | $ | 5,661 | | | $ | 14,491 | | $ | 8,420 | |
+| | | | | | |
+Increase (decrease) for excluded items: | | | | | | |
+Amortization of intangible assets (Cost of sales) (1)
+| | 125 | | 122 | | | 253 | | 245 | |
+Asset impairment, restructuring and other special charges (2)
+| | 703 | | — | | | 982 | | 35 | |
+Net (gains) losses on investments in equity securities (Other income/expense) | | (445) | | (99) | | | (524) | | 53 | |
+| | | | | | |
+Corresponding tax effects (Income taxes) | | 15 | | (4) | | | (46) | | (69) | |
+| | | | | | |
+Net income - Non-GAAP | | $ | 7,493 | | $ | 5,680 | | | $ | 15,156 | | $ | 8,684 | |
+| | | | | | |
+Effective tax rate - Reported | | 23.3 | % | 16.5 | % | | 19.9 | % | 17.7 | % |
+Effective tax rate - Non-GAAP (3)
+| | 22.2 | % | 16.5 | % | | 19.4 | % | 17.8 | % |
+Earnings per share (diluted) - Reported | | $ | 7.94 | | $ | 6.29 | | | $ | 16.19 | | $ | 9.35 | |
+Earnings per share (diluted) - Non-GAAP | | $ | 8.38 | | $ | 6.31 | | | $ | 16.94 | | $ | 9.65 | |
+
+
+
+1. Excludes amortization of intangibles primarily associated with costs of marketed products acquired or licensed from third parties.
+2. For the three months ended June 30, 2026, excluded charges primarily related to the accelerated vesting of employee equity awards and other acquisition and integration costs associated with the closing of the company's acquisitions of Kelonia Therapeutics, Inc. and Centessa Pharmaceuticals plc. For the six months ended June 30, 2026, also excluded charges related to litigation matters.
+3. Non-GAAP tax rate reflects the tax effects of the adjustments presented above.
+
+
+| | |
+11
+|

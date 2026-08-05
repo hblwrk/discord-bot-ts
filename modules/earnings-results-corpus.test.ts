@@ -335,6 +335,24 @@ const filingCorpus: {
     source: "1600641/000160064126000032/ex991q2fy26earningsrelease.htm",
     ticker: "dibs",
   },
+  {
+    // Guidance sits in a prior-versus-updated table whose captions and value cells are on
+    // separate lines, so it is not reached: the recorded outlook is a raise stated in a
+    // highlights bullet, which is a change rather than a level. Documented as a known gap.
+    company: "Eli Lilly",
+    metrics: [
+      ["adjusted_eps", "$8.38"],
+      ["gaap_eps", "$7.94"],
+      ["revenue", "$23B"],
+      ["net_income", "$7.09B"],
+    ],
+    outlook: [
+      ["Q2 EPS", "$2.78"]
+    ],
+    quarterLabel: "Q2 2026",
+    source: "59478/000005947826000077/q226lillysalesandearningsp.htm",
+    ticker: "lly",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -355,6 +373,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(23);
+    expect(filingCorpus).toHaveLength(24);
   });
 });
