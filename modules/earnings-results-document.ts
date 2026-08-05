@@ -1,10 +1,16 @@
 import moment from "moment-timezone";
 import {stripReferenceMarkers} from "./earnings-results-format-selection.ts";
-import {getCurrencyCodeFromText} from "./earnings-results-money.ts";
+import {findNumericValues, getCurrencyCodeFromText} from "./earnings-results-money.ts";
 import {type EarningsResultMetric} from "./earnings-results-metrics.ts";
 import {type EarningsOutlookMetric} from "./earnings-results-outlook.ts";
 
 export type ParsedEarningsDocument = {
+  // The weighted-average diluted share count as printed, without applying a scale. Filings
+  // scale shares independently of money in the same table ("in millions, except share
+  // amounts which are reflected in thousands"), so the reader compares magnitudes rather
+  // than trusting a unit. Not a posted metric — it exists to check that a reported EPS and
+  // net income belong to the same period.
+  dilutedShareMantissa?: number | undefined;
   headline?: string | undefined;
   metrics: EarningsResultMetric[];
   outlook: EarningsOutlookMetric[];
@@ -198,4 +204,37 @@ function getQuarterFromName(name: string): string | undefined {
     ["fourth", "Q4"],
   ]);
   return quarterByName.get(name.toLowerCase());
+}
+
+// The share row sits under a "weighted-average shares" caption, with the diluted count
+// below the basic one. Any period's count serves the purpose: a company's share count moves
+// by a few percent between quarters, while the errors this guards against — a prior-year
+// column, a misplaced decimal — are off by far more.
+export function getDilutedShareMantissa(lines: string[]): number | undefined {
+  for (const [lineIndex, line] of lines.entries()) {
+    // The caption has to be about shares. "dollar-weighted average contract duration" is
+    // boilerplate about contracts, and matching it reads an unrelated figure as a count.
+    const captionMatch = /weighted[-\s]average\s+(?:number\s+of\s+)?(?:[a-z]+\s+){0,3}shares\b|shares\s+used\s+in\s+(?:the\s+)?(?:comput|calculat)/i
+      .exec(line);
+    if (null === captionMatch) {
+      continue;
+    }
+
+    // Read forward from the caption only. A guidance bullet states the per-share figure
+    // before the count it rests on ("per share of approximately $0.87 to $0.92 on
+    // weighted-average diluted shares outstanding of approximately 185 million"), and
+    // reading the whole line would take the per-share figure as the count.
+    const blockText = [
+      line.slice(captionMatch.index + captionMatch[0].length),
+      ...lines.slice(lineIndex + 1, lineIndex + 4),
+    ].join(" ");
+    const dilutedMatch = /\bdiluted\b([\s\S]*)$/i.exec(blockText);
+    const counts = findNumericValues(dilutedMatch?.[1] ?? blockText, {minUncuedAbsValue: 10})
+      .filter(count => count >= 100);
+    if (0 < counts.length) {
+      return counts[0];
+    }
+  }
+
+  return undefined;
 }

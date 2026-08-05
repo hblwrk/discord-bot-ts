@@ -432,3 +432,56 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 function getArray(value: unknown): unknown[] {
   return Array.isArray(value) ? value : [];
 }
+
+// Net income divided by earnings per share is the share count, so a filing that states all
+// three lets the reported pair be checked against the company's own denominator. This is what
+// catches a per-share figure taken from the wrong column or with a misplaced decimal, where
+// the value is plausible on its own but cannot belong to the reported net income.
+//
+// The count is compared by magnitude rather than by unit, because a filing scales shares
+// independently of money in the same table ("in millions, except share amounts which are
+// reflected in thousands").
+const shareCountScales = [1, 1_000, 1_000_000];
+
+// Below these magnitudes the published figures are rounded so coarsely that the implied count
+// is meaningless: a reported "-$0.01" per share on a "$1 million" loss reconciles to anywhere
+// between 67 and 200 million shares.
+const minimumReconcilableEps = 0.05;
+const minimumReconcilableNetIncome = 5_000_000;
+
+// The audited corpus reconciles within 8%. A figure off by more than this cannot be a
+// rounding artefact, which leaves a wide margin before a correct filing is ever questioned.
+const shareCountTolerance = 0.6;
+
+export function getInconsistentPerShareReasons(
+  metrics: EarningsResultMetric[],
+  dilutedShareMantissa: number | undefined,
+): SuspiciousEarningsReason[] {
+  const netIncome = metrics.find(metric => "net_income" === metric.key)?.numericValue;
+  const epsMetric = metrics.find(metric => "gaap_eps" === metric.key);
+  const eps = epsMetric?.numericValue;
+  if (undefined === epsMetric ||
+      "number" !== typeof eps ||
+      "number" !== typeof netIncome ||
+      "number" !== typeof dilutedShareMantissa ||
+      false === Number.isFinite(eps) ||
+      false === Number.isFinite(netIncome) ||
+      Math.abs(eps) < minimumReconcilableEps ||
+      Math.abs(netIncome) < minimumReconcilableNetIncome ||
+      0 >= dilutedShareMantissa) {
+    return [];
+  }
+
+  const impliedShareCount = Math.abs(netIncome / eps);
+  const closestDeviation = Math.min(...shareCountScales
+    .map(scale => Math.abs(impliedShareCount / (dilutedShareMantissa * scale) - 1)));
+  if (closestDeviation <= shareCountTolerance) {
+    return [];
+  }
+
+  return [{
+    message: `${epsMetric.label} ${epsMetric.value} does not reconcile with net income over the reported share count.`,
+    metricKey: epsMetric.key,
+    severity: "high",
+  }];
+}

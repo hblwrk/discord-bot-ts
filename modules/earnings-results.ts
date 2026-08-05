@@ -7,6 +7,7 @@ import {
 import {
   checkEarningsQualityWithAi,
   clearEarningsAiState,
+  getInconsistentPerShareReasons,
   getSuspiciousEarningsReasons,
   type EarningsAiQualityGateResult,
   type SuspiciousEarningsReason,
@@ -705,6 +706,7 @@ async function buildEarningsResultAnnouncement(
   const metrics = getMessageMetrics(sourceMetrics, surprise, watch.event);
   const suspiciousReasons = [
     ...getSuspiciousEarningsReasons(metrics, surprise, watch.event),
+    ...getInconsistentPerShareReasons(metrics, parsedDocument.dilutedShareMantissa),
     ...getSuspiciousQuarterReasons(parsedDocument.quarterLabel, now),
   ];
   const filingUrl = filingDetails?.documentUrl || filing.filingUrl;

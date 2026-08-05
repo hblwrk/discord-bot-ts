@@ -8,6 +8,7 @@ import {
 import {extractOutlookMetrics} from "./earnings-results-outlook.ts";
 import {
   getDocumentCurrencyCode,
+  getDilutedShareMantissa,
   getDocumentHeadline,
   getMeaningfulLines,
   getQuarterLabel,
@@ -65,6 +66,7 @@ export function parseEarningsDocument(html: string): ParsedEarningsDocument {
   const quarterLabel = getQuarterLabel(text);
   const documentCurrencyCode = getDocumentCurrencyCode(lines);
   return {
+    dilutedShareMantissa: getDilutedShareMantissa(lines),
     headline: getDocumentHeadline(lines),
     metrics: extractEarningsMetrics(lines, quarterLabel, documentCurrencyCode),
     outlook: extractOutlookMetrics(lines, documentCurrencyCode),
