@@ -167,7 +167,8 @@ export function isEmbeddedAlphaNumericValue(
 export function stripReferenceMarkers(line: string): string {
   const withoutParenthesisedMarkers = line
     .replace(/\(\s*Note\s+\d{1,2}\s*\)/gi, " ")
-    .replace(/([A-Za-z]) ?\(\d{1,2}\)/g, "$1");
+    // A caption can carry more than one marker ("Earnings per Share(3)(4)").
+    .replace(/([A-Za-z])(?: ?\(\d{1,2}\))+/g, "$1");
 
   // A bare superscript trailing a label ("Profit per common share - diluted 2") is a
   // footnote too. Only strip it where the line carries no value cell of its own, so a

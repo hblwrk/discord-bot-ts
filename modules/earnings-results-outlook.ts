@@ -31,6 +31,10 @@ type OutlookSection = {
   heading?: string | undefined;
   lines: string[];
   mixedPeriods: boolean;
+  // A guidance table headed "Prior | Updated" restates each figure twice. Its rows are the
+  // guidance, so they are read rather than dismissed as a comparison table, and the updated
+  // column is the one that now applies.
+  revisedColumns: boolean;
 };
 
 const moneyTokenPatternSource = String.raw`(?<![\d.])\(?\s*(?:(?:C\s*\$|[$€£¥])\s*|(?:(?:USD|CAD|EUR|GBP|JPY)\s+))?-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b)?\)?`;
@@ -143,9 +147,12 @@ export function extractOutlookMetrics(
     const metric = extractOutlookMetric(
       section.lines,
       definition,
-      section.mixedPeriods,
+      // Every row of a revised-guidance table covers the same period, so the rows are not
+      // asked to name it themselves — which they cannot, and which would discard them all.
+      section.mixedPeriods && false === section.revisedColumns,
       section.heading,
       documentCurrencyCode,
+      section.revisedColumns,
     );
     if (null === metric || true === seenKeys.has(metric.key)) {
       continue;
@@ -190,7 +197,15 @@ function getOutlookSection(lines: string[]): OutlookSection {
     heading,
     lines: sectionLines,
     mixedPeriods: mixedPeriods || hasMixedOutlookPeriods(sectionLines),
+    revisedColumns: sectionLines.some(line => hasRevisedColumnHeader(line)),
   };
+}
+
+// The header of a revised-guidance table, carrying only the two column captions.
+function hasRevisedColumnHeader(line: string): boolean {
+  return /\bprior\b/i.test(line) &&
+    /\bupdated\b/i.test(line) &&
+    false === /\d/.test(line);
 }
 
 function hasMixedOutlookPeriods(lines: string[]): boolean {
@@ -270,10 +285,11 @@ function extractOutlookMetric(
   includePeriodLabel: boolean,
   sectionHeading: string | undefined,
   documentCurrencyCode: string,
+  revisedColumns: boolean,
 ): EarningsOutlookMetric | null {
   let bestCandidate: OutlookMetricCandidate | null = null;
-  for (const line of lines) {
-    if (true === isNoisyOutlookLine(line)) {
+  for (const [lineIndex, line] of lines.entries()) {
+    if (false === revisedColumns && true === isNoisyOutlookLine(line)) {
       continue;
     }
 
@@ -282,11 +298,17 @@ function extractOutlookMetric(
         continue;
       }
 
+      // A guidance table can carry its caption on one line and its cells on the next
+      // ("Earnings per Share" / "| | | $35.50 to $37.00 | $35.50 to $36.50 |").
+      const valueLine = true === revisedColumns && false === /\d/.test(line)
+        ? `${line} ${lines[lineIndex + 1] ?? ""}`
+        : line;
       const value = extractOutlookValue(
-        line,
+        valueLine,
         pattern,
         definition.valueType,
         documentCurrencyCode,
+        revisedColumns,
       );
       if (null === value) {
         continue;
@@ -314,7 +336,9 @@ function extractOutlookMetric(
         metric.periodLabel = periodLabel;
       }
       const candidate = {
-        score: getOutlookMetricCandidateScore(line),
+        // Score what the value was read from: a caption joined to its cells is a table row,
+        // whereas the caption alone looks like prose.
+        score: getOutlookMetricCandidateScore(valueLine),
         metric,
       };
       if (null === bestCandidate || candidate.score > bestCandidate.score) {
@@ -354,6 +378,15 @@ function getOutlookPeriodLabel(line: string): string | undefined {
 function getOutlookMetricCandidateScore(line: string): number {
   let score = 0;
 
+  // A guidance table states the figures; the paragraph introducing it only describes them,
+  // and any amount it happens to mention belongs to that description rather than to the
+  // metric ("...guidance, reflecting the continued strong revenue performance in Q2").
+  if (2 <= (line.match(/\|/g)?.length ?? 0)) {
+    score += 30;
+  } else if (200 < line.length) {
+    score -= 20;
+  }
+
   if (/\b(?:expects?|expected|guidance|outlook|forecast|projected|targets?|targeting|anticipates?|anticipated|reaffirms?|reiterates?|maintains?|raises?|raised)\b/i.test(line)) {
     score += 20;
   }
@@ -380,10 +413,11 @@ function extractOutlookValue(
   pattern: RegExp,
   valueType: OutlookValueType,
   documentCurrencyCode: string,
+  revisedColumns = false,
 ): string | null {
   pattern.lastIndex = 0;
   const patternMatch = pattern.exec(line);
-  for (const rawValueText of getOutlookValueSegments(line, patternMatch)) {
+  for (const rawValueText of getOutlookValueSegments(line, patternMatch, revisedColumns)) {
     const valueText = normalizeOutlookValueText(rawValueText);
     if ("" === valueText) {
       continue;
@@ -409,9 +443,23 @@ function extractOutlookValue(
   return null;
 }
 
-function getOutlookValueSegments(line: string, patternMatch: RegExpExecArray | null): string[] {
+function getOutlookValueSegments(
+  line: string,
+  patternMatch: RegExpExecArray | null,
+  revisedColumns: boolean,
+): string[] {
   if (null === patternMatch) {
     return [line];
+  }
+
+  // Each row of a revised-guidance table holds the prior figure and then the updated one.
+  // Reading from the last cell backwards takes the figure that now applies.
+  if (true === revisedColumns) {
+    const cells = line.slice(patternMatch.index + patternMatch[0].length).split("|");
+    const populatedCells = cells.filter(cell => /\d/.test(cell)).reverse();
+    if (0 < populatedCells.length) {
+      return populatedCells;
+    }
   }
 
   const rawValueText = line.slice(patternMatch.index + patternMatch[0].length);
