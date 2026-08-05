@@ -257,6 +257,39 @@ const filingCorpus: {
     source: "2488/000000248826000121/q22026991.htm",
     ticker: "amd",
   },
+  {
+    company: "CVS Health",
+    metrics: [
+      ["adjusted_eps", "$2.58"],
+      ["gaap_eps", "$2.31"],
+      ["revenue", "$106.1B"],
+      ["net_income", "$2.98B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "64803/000006480326000097/cvs_ex99x1q2-26.htm",
+    ticker: "cvs",
+  },
+  {
+    // A shareholder-letter release: the adjusted measure is named by what it leaves out
+    // ("diluted EPS excluding certain items"), and the quarter is a fiscal one the document
+    // states only as "fiscal Q3" against a "Q3 fiscal 2025" comparative, so no quarter
+    // label is derived rather than risking the prior year or the calendar quarter.
+    company: "Walt Disney",
+    metrics: [
+      ["adjusted_eps", "$2.06"],
+      ["gaap_eps", "$1.51"],
+      ["revenue", "$25.25B"],
+      ["net_income", "$2.64B"],
+    ],
+    outlook: [
+      ["EPS", "12% growth"],
+      ["Operating income", "$4.9B"],
+    ],
+    quarterLabel: undefined,
+    source: "1744489/000174448926000056/fy2026_q3xerxex991.htm",
+    ticker: "dis",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -277,6 +310,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(18);
+    expect(filingCorpus).toHaveLength(20);
   });
 });
