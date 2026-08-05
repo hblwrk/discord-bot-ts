@@ -1,0 +1,965 @@
+EX-99.1
+2
+cvs_ex99x1q2-26.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+
+
+
+| | | | | |
+CVS HEALTH CORPORATION REPORTS STRONG SECOND QUARTER 2026 RESULTS
+AND RAISES FULL-YEAR 2026 GUIDANCE
+|
+| |
+• Second quarter total revenues increased to $106.1 billion, up 7.3% year-over-year
+• Second quarter GAAP diluted EPS of $2.31 and Adjusted EPS of $2.58
+• Generated year-to-date cash flow from operations of $10.6 billion
+• Raising full-year 2026 guidance:
+◦ GAAP diluted EPS guidance range to $6.84 to $7.04 from $6.24 to $6.44
+◦ Adjusted EPS guidance range to $7.90 to $8.10 from $7.30 to $7.50
+◦ Cash flow from operations guidance to at least $11.5 billion from at least $9.5 billion
+|
+
+| | | | | |
+
+
+|
+WOONSOCKET, RHODE ISLAND, August 5, 2026 - CVS Health Corporation (NYSE: CVS) today announced operating results for the three months ended June 30, 2026.
+|
+| |
+|
+“Our CVS Health colleagues build trust every day in communities across our country by making healthcare easier for millions of customers, patients and members. As our businesses work together to deliver a technology-powered care engagement experience, we continue to deliver strong performance. We uniquely enable what our customers want the most: simple, connected and convenient access to affordable, quality healthcare, where, when, and how they want it.”
+- David Joyner, CVS Health Chairman and CEO
+|
+
+
+
+| | | | | | | | | | | | | | | | | |
+| Three Months Ended
+June 30, | | Year Ending
+December 31,
+|
+In billions, except per share amounts
+| 2026 | | 2025 | | 2026 Projected
+|
+Total revenues
+| $ | 106.1 | | | $ | 98.9 | | | At least $414.0
+|
+| | | | | |
+| | | | | |
+Diluted earnings per share
+| $ | 2.31 | | | $ | 0.80 | | | $6.84-$7.04
+|
+Adjusted EPS (2)
+| $ | 2.58 | | | $ | 1.81 | | | $7.90-$8.10
+|
+| | | | | |
+
+
+
+Second quarter GAAP diluted EPS of $2.31 increased from $0.80 in the prior year. Adjusted EPS of $2.58 increased from $1.81 in the prior year, primarily due to improved adjusted operating income in the Health Care Benefits segment, reflecting continued execution on the Health Care Benefits segment margin recovery plan.
+
+
+The Company is increasing its full-year 2026 GAAP diluted EPS, Adjusted EPS and cash flow from operations guidance to reflect increases in the Health Care Benefits and Pharmacy & Consumer Wellness segments, while maintaining a cautious view for the remainder of the year in light of continued elevated cost trends and the potential for macro headwinds.
+
+
+
+1
+
+
+
+
+
+
+
+Consolidated second quarter results
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended
+June 30, | | Six Months Ended
+June 30, |
+In millions, except per share amounts | 2026 | | 2025 | | Change | | 2026 | | 2025 | | Change |
+Total revenues
+| $ | 106,096 | | | $ | 98,915 | | | $ | 7,181 | | | $ | 206,522 | | | $ | 193,503 | | | $ | 13,019 | |
+Operating income
+| 4,703 | | | 2,381 | | | 2,322 | | | 9,383 | | | 5,755 | | | 3,628 | |
+Adjusted operating income (1)
+| 5,157 | | | 3,808 | | | 1,349 | | | 10,307 | | | 8,387 | | | 1,920 | |
+Net income
+| 2,995 | | | 1,013 | | | 1,982 | | | 5,952 | | | 2,795 | | | 3,157 | |
+Diluted earnings per share
+| $ | 2.31 | | | $ | 0.80 | | | $ | 1.51 | | | $ | 4.61 | | | $ | 2.21 | | | $ | 2.40 | |
+Adjusted EPS (2)
+| $ | 2.58 | | | $ | 1.81 | | | $ | 0.77 | | | $ | 5.16 | | | $ | 4.06 | | | $ | 1.10 | |
+
+
+
+For the three months ended June 30, 2026 compared to the prior year:
+• Total revenues increased 7.3% driven by revenue growth across all operating segments.
+• Operating income increased 97.5% primarily due to the increase in adjusted operating income described below and the absence of $833 million in legacy litigation charges recorded in the prior year.
+• Adjusted operating income increased 35.4% driven by increases across all operating segments. See pages 3 through 5 for additional discussion of the adjusted operating income performance of the Company’s segments.
+
+
+Operational Updates
+• CVS Health launched a comprehensive approach to GLP-1 support across its CVS Pharmacy ® and MinuteClinic ® locations. New offerings include expanded pharmacy support designed to help patients access these treatments and stay on them, and a new $29 MinuteClinic virtual visit that connects eligible adults with licensed clinicians who can evaluate and, where clinically appropriate, prescribe GLP-1 therapy. In addition, CVS Pharmacy participates in the Centers for Medicare & Medicaid Services Medicare GLP-1 Bridge program, which runs through December 31, 2027. Eligible Medicare beneficiaries can access certain GLP-1 medications for $50 per month, offering more predictable and affordable pricing for patients who qualify.
+• CVS Caremark updated its most common commercial formularies, expanding GLP-1 options for members, building on its industry-leading efforts to help patients get FDA-approved weight management medications at an affordable cost.
+• CVS Health is deploying agentic AI to simplify and streamline call center interactions for members and providers engaging with Aetna ® and CVS Caremark ® businesses on a secure call center platform.
+• Aetna launched its second generation Aetna Claims Assist Manager (“CAM”), an AI-powered agentic claims advisor platform designed to streamline claims processing and improve payment accuracy. CAM reduces processing time by over 20% for complex claims that require manual review, helping providers get paid faster and more consistently.
+2
+
+
+
+
+
+
+
+
+Health Care Benefits segment
+
+
+The Health Care Benefits segment offers a full range of insured and self-insured (“ASC”) medical, pharmacy, dental and behavioral health products and services. The segment results for the three and six months ended June 30, 2026 and 2025 were as follows:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended
+June 30, | | Six Months Ended
+June 30, |
+In millions, except percentages | 2026 | | 2025 | | Change | | 2026 | | 2025 | | Change |
+Total revenues | $ | 37,538 | | $ | 36,258 | | $ | 1,280 | | $ | 73,509 | | $ | 71,068 | | $ | 2,441 |
+Adjusted operating income (1)
+| 2,426 | | 1,308 | | 1,118 | | 5,467 | | 3,301 | | 2,166 |
+Medical benefit ratio (“MBR”) (3)
+| 87.4 | % | | 89.9 | % | | (2.5) | % | | 86.0 | % | | 88.6 | % | | (2.6) | % |
+Medical membership (4)
+| | | | | | | 26.0 | | 26.7 | | (0.7) |
+
+
+
+• Total revenues increased 3.5% for the three months ended June 30, 2026 compared to the prior year primarily driven by an increase in the Government business, partially offset by a decline as a result of the Company’s exit of the individual exchange business in 2026.
+• Adjusted operating income increased 85.5% for the three months ended June 30, 2026 compared to the prior year primarily driven by improved underlying performance in the Government business and the absence of a $471 million premium deficiency reserve recorded within the Group Medicare Advantage product line in the prior year.
+• The MBR decreased to 87.4% in the three months ended June 30, 2026 compared to 89.9% in the prior year primarily driven by improved underlying performance in the Government business and the absence of the premium deficiency reserve recorded in the prior year.
+• Medical membership as of June 30, 2026 of 26.0 million remained consistent compared with March 31, 2026.
+• Prior years’ health care costs payable estimates developed favorably by $1.2 billion during the six months ended June 30, 2026.
+• Days claims payable were 41.7 days as of June 30, 2026, a decrease of 1.2 days compared to March 31, 2026.
+3
+
+
+
+
+
+
+
+
+Health Services segment
+
+
+The Health Services segment provides a full range of pharmacy benefit management solutions, delivers health care services in its medical clinics, virtually, and in the home, and offers provider enablement solutions. The segment results for the three and six months ended June 30, 2026 and 2025 were as follows:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended
+June 30, | | Six Months Ended
+June 30, |
+In millions | 2026 | | 2025 | | Change | | 2026 | | 2025 | | Change |
+Total revenues | $ | 51,795 | | | $ | 46,453 | | | $ | 5,342 | | | $ | 100,032 | | | $ | 89,915 | | | $ | 10,117 | |
+Adjusted operating income (1)
+| 1,733 | | | 1,575 | | | 158 | | | 3,222 | | | 3,178 | | | 44 | |
+Pharmacy claims processed (5) (6)
+| 473.0 | | | 469.0 | | | 4.0 | | | 937.7 | | | 933.2 | | | 4.5 | |
+
+
+• Total revenues increased 11.5% for the three months ended June 30, 2026 compared to the prior year primarily driven by pharmacy drug mix and brand inflation, partially offset by continued pharmacy client price improvements.
+• Adjusted operating income increased 10.0% for the three months ended June 30, 2026 compared to the prior year primarily driven by improved purchasing economics, pharmacy drug mix and modest improvement in the Company’s health care delivery business. These increases were partially offset by continued pharmacy client price improvements.
+• Pharmacy claims processed remained consistent on a 30-day equivalent basis for the three months ended June 30, 2026 compared to the prior year.
+4
+
+
+
+
+
+
+
+
+Pharmacy & Consumer Wellness segment
+
+
+The Pharmacy & Consumer Wellness segment dispenses prescriptions in its retail pharmacies and through its infusion operations, provides ancillary pharmacy services including pharmacy patient care programs and vaccination administration, and sells a wide assortment of health and wellness products and general merchandise. The segment also provides pharmacy fulfillment services to support the Health Services segment’s specialty and mail order pharmacy offerings. The segment results for the three and six months ended June 30, 2026 and 2025 were as follows:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended
+June 30, | | Six Months Ended
+June 30, |
+In millions | 2026 | | 2025 | | Change | | 2026 | | 2025 | | Change |
+Total revenues | $ | 33,816 | | | $ | 33,581 | | | $ | 235 | | | $ | 65,805 | | | $ | 65,493 | | | $ | 312 | |
+Adjusted operating income (1)
+| 1,475 | | | 1,338 | | | 137 | | | 2,672 | | | 2,651 | | | 21 | |
+Prescriptions filled (5) (6)
+| 457.0 | | | 438.1 | | | 18.9 | | | 908.2 | | | 873.6 | | | 34.6 | |
+
+
+• Total revenues increased slightly for the three months ended June 30, 2026 compared to the prior year primarily driven by pharmacy drug mix, increased prescription volume, including contributions from the Company’s Rite Aid asset acquisitions which were completed during the third quarter of 2025, and brand inflation. These increases were largely offset by regulatory-related price reductions on certain drugs, the impact of recent generic drug introductions and pharmacy reimbursement pressure.
+• Adjusted operating income increased 10.2% for the three months ended June 30, 2026 compared to the prior year primarily driven by core pharmacy strength and contributions from the Company’s Rite Aid asset acquisitions. These increases were partially offset by continued business investments and the impact of consumer dynamics.
+• Prescriptions filled increased 4.3% on a 30-day equivalent basis for the three months ended June 30, 2026 compared to the prior year primarily driven by incremental volume resulting from the Company’s Rite Aid prescription file acquisitions and increased utilization, partially offset by the absence of long-term care pharmacy prescription volume following the deconsolidation of Omnicare, LLC in September 2025.
+5
+
+
+
+
+
+
+
+
+About CVS Health
+
+
+CVS Health is a leading health solutions company simplifying health care one person, one family and one community at a time. As of June 30, 2026, the Company had approximately 9,000 retail pharmacy locations, more than 1,000 walk-in and primary care medical clinics and a leading pharmacy benefits manager with approximately 87 million plan members. The Company also serves an estimated 37 million people through a broad range of health insurance products and related services. The Company’s integrated model uses personalized, technology driven services to connect people to simply better health, increasing access to quality care, delivering better outcomes, and lowering overall costs.
+
+
+Teleconference and Webcast
+
+
+The Company will be holding a conference call today for investors at 8:00 a.m. (Eastern Time) to discuss its second quarter results. An audio webcast of the call will be broadcast simultaneously for all interested parties through the Investor Relations section of the CVS Health website at http://investors.cvshealth.com. This webcast will be archived and available on the website for a one-year period following the conference call.
+
+
+Non-GAAP Financial Information
+
+
+The Company presents both GAAP and non-GAAP financial measures in this press release to assist in the comparison of the Company’s past financial performance with its current financial performance. See “Non-GAAP Financial Information” beginning on page 10 and endnotes beginning on page 20 for explanations of non-GAAP financial measures presented in this press release. See pages 12 through 14 and page 19 for reconciliations of each non-GAAP financial measure used in this release to the most directly comparable GAAP financial measure.
+
+
+Cautionary Statement Concerning Forward-looking Statements
+
+
+The Private Securities Litigation Reform Act of 1995 provides a safe harbor for forward-looking statements made by or on behalf of CVS Health Corporation. Statements in this press release that are forward-looking include, but are not limited to, the full-year 2026 guidance information, Mr. Joyner’s quotation and the information included in the reconciliations and endnotes. By their nature, all forward-looking statements are not guarantees of future performance or results and are subject to risks and uncertainties that are difficult to predict and/or quantify. Actual results may differ materially from those contemplated by the forward-looking statements due to the risks and uncertainties described in our Securities and Exchange Commission (“SEC”) filings, including those set forth in the Risk Factors section and under the heading “Cautionary Statement Concerning Forward-Looking Statements” in our most recently filed Annual Report on Form 10-K, our Quarterly Reports on Form 10-Q for the quarterly periods ended March 31, 2026 and June 30, 2026 and our Current Reports on Form 8-K.
+
+
+You are cautioned not to place undue reliance on CVS Health’s forward-looking statements. CVS Health’s forward-looking statements are and will be based upon management’s then-current views and assumptions regarding future events and operating performance, and are applicable only as of the dates of such statements. CVS Health does not assume any duty to update or revise forward-looking statements, whether as a result of new information, future events, uncertainties or otherwise.
+
+
+| | |
+|
+
+Investor Contact: Larry McGrath | Executive Vice President, Capital Markets | (800) 201-0938
+Media Contact: Ethan Slavin | Executive Director, Corporate Communications | (860) 273-6095
+
+
+- Tables Follow -
+
+
+
+6
+
+
+
+
+
+
+
+
+CVS HEALTH CORPORATION
+Condensed Consolidated Statements of Operations
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended
+June 30, | | Six Months Ended
+June 30, |
+In millions, except per share amounts | 2026 | | 2025
+| | 2026 | | 2025
+|
+Revenues: | | | | | | | |
+Products | $ | 66,219 | | | $ | 60,607 | | | $ | 128,445 | | | $ | 118,276 | |
+Premiums | 35,117 | | | 34,195 | | | 68,908 | | | 67,015 | |
+Services | 4,119 | | | 3,626 | | | 7,954 | | | 7,205 | |
+Net investment income | 641 | | | 487 | | | 1,215 | | | 1,007 | |
+Total revenues | 106,096 | | | 98,915 | | | 206,522 | | | 193,503 | |
+Operating costs: | | | | | | | |
+Cost of products sold | 58,862 | | | 54,005 | | | 114,306 | | | 105,062 | |
+Health care costs | 31,485 | | | 31,317 | | | 60,843 | | | 60,452 | |
+Operating expenses | 11,046 | | | 11,212 | | | 21,990 | | | 22,234 | |
+| | | | | | | |
+Total operating costs | 101,393 | | | 96,534 | | | 197,139 | | | 187,748 | |
+Operating income
+| 4,703 | | | 2,381 | | | 9,383 | | | 5,755 | |
+| | | | | | | |
+Interest expense | (757) | | | (763) | | | (1,531) | | | (1,548) | |
+Other income | 31 | | | 29 | | | 63 | | | 57 | |
+Income before income tax provision
+| 3,977 | | | 1,647 | | | 7,915 | | | 4,264 | |
+Income tax provision | 982 | | | 634 | | | 1,963 | | | 1,469 | |
+Net income
+| 2,995 | | | 1,013 | | | 5,952 | | | 2,795 | |
+Net (income) loss attributable to noncontrolling interests | (16) | | | 8 | | | (30) | | | 5 | |
+Net income attributable to CVS Health
+| $ | 2,979 | | | $ | 1,021 | | | $ | 5,922 | | | $ | 2,800 | |
+| | | | | | | |
+Net income per share attributable to CVS Health:
+| | | | | | | |
+Basic | $ | 2.33 | | | $ | 0.81 | | | $ | 4.64 | | | $ | 2.22 | |
+Diluted | $ | 2.31 | | | $ | 0.80 | | | $ | 4.61 | | | $ | 2.21 | |
+Weighted average shares outstanding: | | | | | | | |
+Basic | 1,279 | | | 1,266 | | | 1,276 | | | 1,264 | |
+Diluted | 1,287 | | | 1,270 | | | 1,283 | | | 1,267 | |
+
+
+
+7
+
+
+
+
+
+
+
+
+CVS HEALTH CORPORATION
+Condensed Consolidated Balance Sheets
+(Unaudited) | | | | | | | | | | | |
+In millions | June 30,
+2026 | | December 31,
+2025 |
+Assets: | | | |
+Cash and cash equivalents | $ | 11,329 | | | $ | 8,453 | |
+Investments | 2,629 | | | 2,145 | |
+Accounts receivable, net | 40,309 | | | 39,779 | |
+Inventories | 17,622 | | | 19,246 | |
+Other current assets | 3,457 | | | 5,091 | |
+Total current assets | 75,346 | | | 74,714 | |
+Long-term investments | 33,247 | | | 32,669 | |
+Property and equipment, net | 13,168 | | | 13,083 | |
+Operating lease right-of-use assets | 14,451 | | | 14,973 | |
+Goodwill | 85,478 | | | 85,478 | |
+Intangible assets, net | 24,644 | | | 25,508 | |
+Other assets | 7,434 | | | 7,113 | |
+Total assets | $ | 253,768 | | | $ | 253,538 | |
+| | | |
+Liabilities: | | | |
+Accounts payable | $ | 17,167 | | | $ | 17,641 | |
+Pharmacy claims and discounts payable | 26,203 | | | 26,344 | |
+Health care costs payable | 16,313 | | | 15,399 | |
+Accrued expenses and other current liabilities
+| 22,477 | | | 22,387 | |
+Other insurance liabilities | 1,009 | | | 1,116 | |
+Current portion of operating lease liabilities | 1,914 | | | 1,737 | |
+| | | |
+Current portion of long-term debt | 1,958 | | | 4,068 | |
+| | | |
+Total current liabilities | 87,041 | | | 88,692 | |
+Long-term operating lease liabilities | 12,982 | | | 13,643 | |
+Long-term debt | 59,452 | | | 60,502 | |
+Deferred income taxes | 3,766 | | | 3,832 | |
+Other long-term insurance liabilities | 4,516 | | | 4,716 | |
+Other long-term liabilities | 6,112 | | | 6,771 | |
+Total liabilities | 173,869 | | | 178,156 | |
+| | | |
+Shareholders’ equity: | | | |
+Preferred stock | — | | | — | |
+Common stock and capital surplus | 50,968 | | | 50,402 | |
+Treasury stock | (36,852) | | | (36,790) | |
+Retained earnings | 65,398 | | | 61,196 | |
+Accumulated other comprehensive income | 188 | | | 406 | |
+Total CVS Health shareholders’ equity | 79,702 | | | 75,214 | |
+Noncontrolling interests | 197 | | | 168 | |
+Total shareholders’ equity | 79,899 | | | 75,382 | |
+Total liabilities and shareholders’ equity | $ | 253,768 | | | $ | 253,538 | |
+
+
+
+8
+
+
+
+
+
+
+
+
+CVS HEALTH CORPORATION
+Condensed Consolidated Statements of Cash Flows
+(Unaudited)
+| | | | | | | | | | | |
+| Six Months Ended
+June 30, |
+In millions | 2026 | | 2025
+|
+Cash flows from operating activities: | | | |
+Reconciliation of net income to net cash provided by operating activities:
+| | | |
+Net income
+| $ | 5,952 | | | $ | 2,795 | |
+Adjustments required to reconcile net income to net cash provided by operating activities:
+| | | |
+Depreciation and amortization | 2,241 | | | 2,325 | |
+| | | |
+Stock-based compensation | 442 | | | 262 | |
+Loss on sale of subsidiary
+| — | | | 236 | |
+| | | |
+Deferred income taxes and other items
+| (241) | | | (283) | |
+Change in operating assets and liabilities
+| 2,200 | | | 1,118 | |
+Net cash provided by operating activities | 10,594 | | | 6,453 | |
+| | | |
+Cash flows from investing activities: | | | |
+Proceeds from sales and maturities of investments | 7,483 | | | 6,866 | |
+Purchases of investments | (8,704) | | | (7,186) | |
+Purchases of property and equipment | (1,540) | | | (1,350) | |
+Acquisitions
+| (9) | | | (139) | |
+Other | 12 | | | 23 | |
+Net cash used in investing activities | (2,758) | | | (1,786) | |
+| | | |
+Cash flows from financing activities: | | | |
+Commercial paper borrowings (repayments), net | — | | | 921 | |
+| | | |
+Repayments of long-term debt | (3,287) | | | (762) | |
+| | | |
+Dividends paid | (1,725) | | | (1,706) | |
+Proceeds from exercise of stock options | 217 | | | 191 | |
+Payments for taxes related to net share settlement of equity awards | (154) | | | (125) | |
+Other | (62) | | | (45) | |
+Net cash used in financing activities | (5,011) | | | (1,526) | |
+Net increase in cash, cash equivalents and restricted cash | 2,825 | | | 3,141 | |
+Cash, cash equivalents and restricted cash at the beginning of the period | 8,712 | | | 8,884 | |
+Cash, cash equivalents and restricted cash at the end of the period | $ | 11,537 | | | $ | 12,025 | |
+
+
+
+
+
+9
+
+
+
+
+
+
+
+
+Non-GAAP Financial Information
+
+
+The Company uses non-GAAP financial measures to analyze underlying business performance and trends. The Company believes that providing these non-GAAP financial measures enhances the Company’s and investors’ ability to compare the Company’s past financial performance with its current and expected future performance. These non-GAAP financial measures, which are included in this press release and which may be referred to on the conference call discussing the Company’s second quarter financial results, are provided as supplemental information to the financial measures presented in this press release and discussed on the conference call that are calculated and presented in accordance with GAAP. Non-GAAP financial measures should not be considered a substitute for, or superior to, financial measures determined or calculated in accordance with GAAP. The Company’s definitions of its non-GAAP financial measures may not be comparable to similarly titled measures reported by other companies.
+
+
+Non-GAAP financial measures such as consolidated adjusted operating income, adjusted earnings per share (“EPS”) and adjusted income attributable to CVS Health exclude from the relevant GAAP metrics, as applicable: amortization of intangible assets, net realized capital gains or losses and other items, if any, that neither relate to the ordinary course of the Company’s business nor reflect the Company’s underlying business performance.
+
+
+For the periods covered in this press release, the following items are excluded from the non-GAAP financial measures described above, as applicable, because the Company believes they neither relate to the ordinary course of the Company’s business nor reflect the Company’s underlying business performance:
+• The Company’s acquisition activities have resulted in the recognition of intangible assets as required under the acquisition method of accounting which consist primarily of trademarks, customer contracts/relationships, covenants not to compete, technology, provider networks and value of business acquired. Definite-lived intangible assets are amortized over their estimated useful lives and are tested for impairment when events indicate that the carrying value may not be recoverable. The amortization of intangible assets is reflected in operating expenses within each segment. Although intangible assets contribute to the Company’s revenue generation, the amortization of intangible assets does not directly relate to the underwriting of the Company’s insurance products, the services performed for the Company’s customers or the sale of the Company’s products or services. Additionally, intangible asset amortization expense typically fluctuates based on the size and timing of the Company’s acquisition activity. Accordingly, the Company believes excluding the amortization of intangible assets enhances the Company’s and investors’ ability to compare the Company’s past financial performance with its current performance and to analyze underlying business performance and trends. Intangible asset amortization excluded from the related non-GAAP financial measure represents the entire amount recorded within the Company’s GAAP financial statements, and the revenue generated by the associated intangible assets has not been excluded from the related non-GAAP financial measure. Intangible asset amortization is excluded from the related non-GAAP financial measure because the amortization, unlike the related revenue, is not affected by operations of any particular period unless an intangible asset becomes impaired or the estimated useful life of an intangible asset is revised.
+• The Company’s net realized capital gains and losses arise from various types of transactions, primarily in the course of managing a portfolio of assets that support the payment of insurance liabilities. Net realized capital gains and losses are reflected in net investment income (loss) within each segment. These capital gains and losses are the result of investment decisions, market conditions and other economic developments that are unrelated to the performance of the Company’s business, and the amount and timing of these capital gains and losses do not directly relate to the underwriting of the Company’s insurance products, the services performed for the Company’s customers or the sale of the Company’s products or services. Accordingly, the Company believes excluding net realized capital gains and losses enhances the Company’s and investors’ ability to compare the Company’s past financial performance with its current performance and to analyze underlying business performance and trends.
+• During the three and six months ended June 30, 2026 and 2025, the acquisition-related integration costs relate to the acquisitions of Signify Health, Inc. and Oak Street Health, Inc. The acquisition-related integration costs are reflected in operating expenses within the Corporate/Other segment.
+10
+
+
+
+
+
+
+
+• During the three and six months ended June 30, 2025, the Company recorded legacy litigation charges related to two court decisions associated with its past business practices. The legacy litigation charges were reflected in operating expenses within the Pharmacy & Consumer Wellness and Health Services segments.
+• During the three and six months ended June 30, 2025, the loss on the wind down and sale of Accountable Care assets represents the pre-tax loss on the divestiture of the Company’s Medicare Shared Savings Program (“MSSP”) operations, as well as costs incurred in connection with the wind down of the Company’s ACO REACH operations. The loss on Accountable Care assets was reflected in operating expenses within the Health Services segment.
+• During the three and six months ended June 30, 2025, the office real estate optimization charges primarily relate to the abandonment of leased real estate and the related right-of-use assets and property and equipment in connection with the Company’s evaluation of corporate office real estate space. The office real estate optimization charges were reflected in operating expenses within each segment.
+• The corresponding tax benefit or expense related to the items excluded from adjusted income attributable to CVS Health and Adjusted EPS above. The nature of each non-GAAP adjustment is evaluated to determine whether a discrete adjustment should be made to the adjusted income tax provision.
+
+
+See endnotes (1) and (2) on page 20 for definitions of non-GAAP financial measures. Reconciliations of each non-GAAP financial measure to the most directly comparable GAAP financial measure are presented on pages 12 through 14 and page 19 .
+11
+
+
+
+
+
+
+
+
+Reconciliations of Non-GAAP Financial Measures to the Most Directly Comparable GAAP Financial Measures
+
+
+Adjusted Operating Income
+(Unaudited)
+
+
+The following are reconciliations of consolidated operating income (GAAP measure) to consolidated adjusted operating income, as well as reconciliations of segment GAAP operating income (loss) to segment adjusted operating income (loss):
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, 2026 | | |
+In millions | Health Care
+Benefits | | Health
+Services | | Pharmacy &
+Consumer
+Wellness | | Corporate/
+Other | | Consolidated
+Totals | | |
+Operating income (loss) (GAAP measure) | $ | 2,191 | | | $ | 1,603 | | | $ | 1,411 | | | $ | (502) | | | $ | 4,703 | | | |
+Amortization of intangible assets | 237 | | | 130 | | | 64 | | | — | | | 431 | | | |
+Net realized capital (gains) losses | (2) | | | — | | | — | | | 15 | | | 13 | | | |
+Acquisition-related integration costs | — | | | — | | | — | | | 10 | | | 10 | | | |
+| | | | | | | | | | | |
+Adjusted operating income (loss) (1)
+| $ | 2,426 | | | $ | 1,733 | | | $ | 1,475 | | | $ | (477) | | | $ | 5,157 | | | |
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, 2025 |
+In millions | Health Care
+Benefits | | Health
+Services | | Pharmacy &
+Consumer
+Wellness | | Corporate/
+Other | | | | Consolidated
+Totals |
+Operating income (loss) (GAAP measure) | $ | 1,002 | | | $ | 1,102 | | | $ | 736 | | | $ | (459) | | | | | $ | 2,381 | |
+Amortization of intangible assets | 293 | | | 141 | | | 60 | | | — | | | | | 494 | |
+Net realized capital losses | 13 | | | — | | | — | | | 14 | | | | | 27 | |
+Acquisition-related integration costs
+| — | | | — | | | — | | | 28 | | | | | 28 | |
+Legacy litigation charges | — | | | 291 | | | 542 | | | — | | | | | 833 | |
+Loss on Accountable Care assets
+| — | | | 41 | | | — | | | — | | | | | 41 | |
+Office real estate optimization charges | — | | | — | | | — | | | 4 | | | | | 4 | |
+Adjusted operating income (loss) (1)
+| $ | 1,308 | | | $ | 1,575 | | | $ | 1,338 | | | $ | (413) | | | | | $ | 3,808 | |
+
+
+
+12
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Six Months Ended June 30, 2026 |
+In millions | Health Care
+Benefits | | Health
+Services | | Pharmacy &
+Consumer
+Wellness | | Corporate/
+Other | | | | Consolidated
+Totals |
+Operating income (loss) (GAAP measure)
+| $ | 4,997 | | | $ | 2,950 | | | $ | 2,545 | | | $ | (1,109) | | | | | $ | 9,383 | |
+Amortization of intangible assets | 473 | | | 272 | | | 127 | | | 1 | | | | | 873 | |
+Net realized capital (gains) losses | (3) | | | — | | | — | | | 32 | | | | | 29 | |
+Acquisition-related integration costs
+| — | | | — | | | — | | | 22 | | | | | 22 | |
+| | | | | | | | | | | |
+Adjusted operating income (loss) (1)
+| $ | 5,467 | | | $ | 3,222 | | | $ | 2,672 | | | $ | (1,054) | | | | | $ | 10,307 | |
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Six Months Ended June 30, 2025 |
+In millions | Health Care
+Benefits | | Health
+Services | | Pharmacy &
+Consumer
+Wellness | | Corporate/
+Other | | | | Consolidated
+Totals |
+Operating income (loss) (GAAP measure) | $ | 2,676 | | | $ | 2,329 | | | $ | 1,600 | | | $ | (850) | | | | | $ | 5,755 | |
+Amortization of intangible assets | 587 | | | 285 | | | 120 | | | 1 | | | | | 993 | |
+Net realized capital (gains) losses | 34 | | | (15) | | | — | | | 29 | | | | | 48 | |
+Acquisition-related integration costs
+| — | | | — | | | — | | | 73 | | | | | 73 | |
+| | | | | | | | | | | |
+Legacy litigation charges | — | | | 291 | | | 929 | | | — | | | | | 1,220 | |
+Loss on Accountable Care assets | — | | | 288 | | | — | | | — | | | | | 288 | |
+Office real estate optimization charges | 4 | | | — | | | 2 | | | 4 | | | | | 10 | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+Adjusted operating income (loss) (1)
+| $ | 3,301 | | | $ | 3,178 | | | $ | 2,651 | | | $ | (743) | | | | | $ | 8,387 | |
+
+13
+
+
+
+
+
+
+
+
+Adjusted Earnings Per Share
+(Unaudited)
+
+
+The following are reconciliations of net income attributable to CVS Health to adjusted income attributable to CVS Health and calculations of GAAP diluted EPS and Adjusted EPS:
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended
+June 30, 2026 | | Three Months Ended
+June 30, 2025 |
+In millions, except per share amounts | Total
+Company | | Per
+Common
+Share | | Total
+Company | | Per
+Common
+Share |
+Net income attributable to CVS Health (GAAP measure) | $ | 2,979 | | | $ | 2.31 | | | $ | 1,021 | | | $ | 0.80 | |
+Amortization of intangible assets | 431 | | | 0.33 | | | 494 | | | 0.39 | |
+Net realized capital losses | 13 | | | 0.01 | | | 27 | | | 0.02 | |
+Acquisition-related integration costs
+| 10 | | | 0.01 | | | 28 | | | 0.02 | |
+Legacy litigation charges | — | | | — | | | 833 | | | 0.66 | |
+Loss on Accountable Care assets | — | | | — | | | 41 | | | 0.03 | |
+Office real estate optimization charges | — | | | — | | | 4 | | | — | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Tax impact of non-GAAP adjustments | (109) | | | (0.08) | | | (144) | | | (0.11) | |
+Adjusted income attributable to CVS Health (2)
+| $ | 3,324 | | | $ | 2.58 | | | $ | 2,304 | | | $ | 1.81 | |
+| | | | | | | |
+Weighted average diluted shares outstanding | | | 1,287 | | | | | 1,270 | |
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Six Months Ended
+June 30, 2026 | | Six Months Ended
+June 30, 2025 |
+In millions, except per share amounts | Total
+Company | | Per
+Common
+Share | | Total
+Company | | Per
+Common
+Share |
+Net income attributable to CVS Health (GAAP measure) | $ | 5,922 | | | $ | 4.61 | | | $ | 2,800 | | | $ | 2.21 | |
+Amortization of intangible assets | 873 | | | 0.68 | | | 993 | | | 0.78 | |
+Net realized capital losses | 29 | | | 0.02 | | | 48 | | | 0.04 | |
+Acquisition-related integration costs
+| 22 | | | 0.02 | | | 73 | | | 0.06 | |
+| | | | | | | |
+| | | | | | | |
+Legacy litigation charges | — | | | — | | | 1,220 | | | 0.96 | |
+Loss on Accountable Care assets | — | | | — | | | 288 | | | 0.23 | |
+Office real estate optimization charges | — | | | — | | | 10 | | | 0.01 | |
+| | | | | | | |
+| | | | | | | |
+Tax impact of non-GAAP adjustments | (230) | | | (0.17) | | | (284) | | | (0.23) | |
+Adjusted income attributable to CVS Health (2)
+| $ | 6,616 | | | $ | 5.16 | | | $ | 5,148 | | | $ | 4.06 | |
+| | | | | | | |
+Weighted average diluted shares outstanding
+| | | 1,283 | | | | | 1,267 | |
+
+14
+
+
+
+
+
+
+
+
+Supplemental Information
+(Unaudited)
+
+
+The following are reconciliations of financial measures of the Company’s segments to the consolidated totals:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+In millions | Health Care
+Benefits | | Health
+Services
+| | Pharmacy &
+Consumer
+Wellness | | Corporate/
+Other | | Intersegment
+Eliminations (a)
+| | Consolidated
+Totals |
+Three Months Ended | | | | | | | | | | | |
+June 30, 2026 | | | | | | | | | | | |
+Total revenues | $ | 37,538 | | | $ | 51,795 | | | $ | 33,816 | | | $ | 147 | | | $ | (17,200) | | | $ | 106,096 | |
+Adjusted operating income (loss) (1)
+| 2,426 | | | 1,733 | | | 1,475 | | | (477) | | | — | | | 5,157 | |
+June 30, 2025 | | | | | | | | | | | |
+Total revenues | $ | 36,258 | | | $ | 46,453 | | | $ | 33,581 | | | $ | 96 | | | $ | (17,473) | | | $ | 98,915 | |
+Adjusted operating income (loss) (1)
+| 1,308 | | | 1,575 | | | 1,338 | | | (413) | | | — | | | 3,808 | |
+| | | | | | | | | | | |
+Six Months Ended | | | | | | | | | | | |
+June 30, 2026 | | | | | | | | | | | |
+Total revenues | $ | 73,509 | | | $ | 100,032 | | | $ | 65,805 | | | $ | 273 | | | $ | (33,097) | | | $ | 206,522 | |
+Adjusted operating income (loss) (1)
+| 5,467 | | | 3,222 | | | 2,672 | | | (1,054) | | | — | | | 10,307 | |
+June 30, 2025 | | | | | | | | | | | |
+Total revenues | $ | 71,068 | | | $ | 89,915 | | | $ | 65,493 | | | $ | 229 | | | $ | (33,202) | | | $ | 193,503 | |
+Adjusted operating income (loss) (1)
+| 3,301 | | | 3,178 | | | 2,651 | | | (743) | | | — | | | 8,387 | |
+
+_____________________________________________
+(a) Intersegment revenue eliminations relate to intersegment revenue generating activities that occur between the Health Care Benefits segment, the Health Services segment, and/or the Pharmacy & Consumer Wellness segment.
+
+15
+
+
+
+
+
+
+
+
+Supplemental Information
+(Unaudited)
+
+
+Health Care Benefits segment
+
+
+The following table summarizes the Health Care Benefits segment’s performance for the respective periods:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | Change |
+| Three Months Ended
+June 30, | | Six Months Ended
+June 30, | | Three Months Ended
+June 30,
+2026 vs 2025 | | Six Months Ended
+June 30,
+2026 vs 2025 |
+In millions, except percentages and basis points (“bps”) | 2026 | | 2025 | | 2026 | | 2025 | | $ | | % | | $ | | % |
+Revenues: | | | | | | | | | | | | | | | |
+Premiums | $ | 35,119 | | $ | 34,184 | | $ | 68,911 | | $ | 66,992 | | $ | 935 | | | 2.7 | % | | $ | 1,919 | | | 2.9 | % |
+Services | 1,911 | | 1,667 | | 3,628 | | 3,282 | | 244 | | | 14.6 | % | | 346 | | | 10.5 | % |
+Net investment income | 508 | | 407 | | 970 | | 794 | | 101 | | | 24.8 | % | | 176 | | | 22.2 | % |
+Total revenues | 37,538 | | 36,258 | | 73,509 | | 71,068 | | 1,280 | | | 3.5 | % | | 2,441 | | | 3.4 | % |
+Health care costs | 30,692 | | 30,740 | | 59,271 | | 59,377 | | (48) | | | (0.2) | % | | (106) | | | (0.2) | % |
+MBR (Health care costs as a % of premium revenues) (3)
+| 87.4 | % | | 89.9 | % | | 86.0 | % | | 88.6 | % | | (250) | | bps | | (260) | | bps |
+Operating expenses | $ | 4,655 | | $ | 4,516 | | $ | 9,241 | | $ | 9,015 | | $ | 139 | | | 3.1 | % | | $ | 226 | | | 2.5 | % |
+Operating expenses as a % of total revenues | 12.4 | % | | 12.5 | % | | 12.6 | % | | 12.7 | % | | | | | | | | |
+Operating income
+| $ | 2,191 | | $ | 1,002 | | $ | 4,997 | | $ | 2,676 | | $ | 1,189 | | | 118.7 | % | | $ | 2,321 | | | 86.7 | % |
+Operating income as a % of total revenues
+| 5.8 | % | | 2.8 | % | | 6.8 | % | | 3.8 | % | | | | | | | | |
+Adjusted operating income (1)
+| $ | 2,426 | | $ | 1,308 | | $ | 5,467 | | $ | 3,301 | | $ | 1,118 | | | 85.5 | % | | $ | 2,166 | | | 65.6 | % |
+Adjusted operating income as a % of total revenues
+| 6.5 | % | | 3.6 | % | | 7.4 | % | | 4.6 | % | | | | | | | | |
+Premium revenues (by business): | | | | | | | | | | | | | | | |
+Government | $ | 28,494 | | $ | 25,930 | | $ | 56,277 | | $ | 50,832 | | $ | 2,564 | | | 9.9 | % | | $ | 5,445 | | | 10.7 | % |
+Commercial | 6,625 | | 8,254 | | 12,634 | | 16,160 | | (1,629) | | | (19.7) | % | | (3,526) | | | (21.8) | % |
+
+
+
+The following table summarizes the Health Care Benefits segment’s medical membership for the respective periods:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| June 30, 2026 | | March 31, 2026 | | December 31, 2025 | | June 30, 2025 |
+In thousands | Insured | | ASC | | Total | | Insured | | ASC | | Total | | Insured | | ASC | | Total | | Insured | | ASC | | Total |
+Medical membership: (4)
+| | | | | | | | | | | | | | | | | | | | | | | |
+Commercial | 2,487 | | | 15,833 | | | 18,320 | | | 2,462 | | | 15,872 | | | 18,334 | | | 3,447 | | | 15,350 | | | 18,797 | | | 3,608 | | | 15,251 | | | 18,859 | |
+Medicare Advantage | 4,202 | | | — | | | 4,202 | | | 4,175 | | | — | | | 4,175 | | | 4,267 | | | — | | | 4,267 | | | 4,240 | | | — | | | 4,240 | |
+Medicare Supplement | 1,176 | | | — | | | 1,176 | | | 1,192 | | | — | | | 1,192 | | | 1,202 | | | — | | | 1,202 | | | 1,236 | | | — | | | 1,236 | |
+Medicaid | 1,964 | | | 361 | | | 2,325 | | | 1,938 | | | 366 | | | 2,304 | | | 1,952 | | | 373 | | | 2,325 | | | 1,985 | | | 401 | | | 2,386 | |
+Total medical membership | 9,829 | | | 16,194 | | | 26,023 | | | 9,767 | | | 16,238 | | | 26,005 | | | 10,868 | | | 15,723 | | | 26,591 | | | 11,069 | | | 15,652 | | | 26,721 | |
+| | | | | | | | | | | | | | | | | | | | | | | |
+Supplemental membership information: | | | | | | | | | | | | | | | | | | | | |
+Medicare Prescription Drug Plan (stand-alone) | 3,870 | | | | | | | 3,889 | | | | | | | 4,041 | | | | | | | 4,065 | |
+
+
+
+The following table summarizes the Health Care Benefits segment’s days claims payable for the respective periods:
+| | | | | | | | | | | | | | | | | | | | | | | | | |
+| June 30, 2026 | | March 31, 2026 | | | | December 31, 2025 | | June 30, 2025 |
+Days Claims Payable (7)
+| 41.7 | | | 42.9 | | | | | 38.9 | | | 40.9 | |
+
+16
+
+
+
+
+
+
+
+
+Supplemental Information
+(Unaudited)
+
+
+Health Services segment
+
+
+The following table summarizes the Health Services segment’s performance for the respective periods:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | | Change |
+| Three Months Ended
+June 30, | | Six Months Ended
+June 30, | | Three Months Ended
+June 30,
+2026 vs 2025 | | Six Months Ended
+June 30,
+2026 vs 2025 |
+In millions, except percentages | 2026 | | 2025 | | 2026 | | 2025 | | $ | | % | | $ | | % |
+Revenues: | | | | | | | | | | | | | | | |
+Products | $ | 49,216 | | $ | 44,223 | | $ | 94,942 | | $ | 85,358 | | $ | 4,993 | | | 11.3 | % | | $ | 9,584 | | | 11.2 | % |
+Services | 2,580 | | 2,233 | | 5,091 | | 4,546 | | 347 | | | 15.5 | % | | 545 | | | 12.0 | % |
+Net investment income (loss) | (1) | | (3) | | (1) | | 11 | | 2 | | | 66.7 | % | | (12) | | | (109.1) | % |
+Total revenues | 51,795 | | 46,453 | | 100,032 | | 89,915 | | 5,342 | | | 11.5 | % | | 10,117 | | | 11.3 | % |
+Cost of products sold | 47,908 | | 43,080 | | 92,627 | | 83,195 | | 4,828 | | | 11.2 | % | | 9,432 | | | 11.3 | % |
+Health care costs | 1,350 | | 1,101 | | 2,652 | | 2,148 | | 249 | | | 22.6 | % | | 504 | | | 23.5 | % |
+Gross profit (8)
+| 2,537 | | 2,272 | | 4,753 | | 4,572 | | 265 | | | 11.7 | % | | 181 | | | 4.0 | % |
+Gross margin (Gross profit as a % of total revenues) (8)
+| 4.9 | % | | 4.9 | % | | 4.8 | % | | 5.1 | % | | | | | | | | |
+Operating expenses | $ | 934 | | $ | 1,170 | | $ | 1,803 | | $ | 2,243 | | $ | (236) | | | (20.2) | % | | $ | (440) | | | (19.6) | % |
+Operating expenses as a % of total revenues | 1.8 | % | | 2.5 | % | | 1.8 | % | | 2.5 | % | | | | | | | | |
+| | | | | | | | | | | | | | | |
+Operating income
+| $ | 1,603 | | $ | 1,102 | | $ | 2,950 | | $ | 2,329 | | $ | 501 | | | 45.5 | % | | $ | 621 | | | 26.7 | % |
+Operating income as a % of total revenues
+| 3.1 | % | | 2.4 | % | | 2.9 | % | | 2.6 | % | | | | | | | | |
+Adjusted operating income (1)
+| $ | 1,733 | | $ | 1,575 | | $ | 3,222 | | $ | 3,178 | | $ | 158 | | | 10.0 | % | | $ | 44 | | | 1.4 | % |
+Adjusted operating income as a % of total revenues
+| 3.3 | % | | 3.4 | % | | 3.2 | % | | 3.5 | % | | | | | | | | |
+Pharmacy claims processed (5) (6)
+| 473.0 | | 469.0 | | 937.7 | | 933.2 | | 4.0 | | | 0.9 | % | | 4.5 | | | 0.5 | % |
+
+17
+
+
+
+
+
+
+
+
+Supplemental Information
+(Unaudited)
+
+
+Pharmacy & Consumer Wellness segment
+
+
+The following table summarizes the Pharmacy & Consumer Wellness segment’s performance for the respective periods:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | | Change |
+| Three Months Ended
+June 30, | | Six Months Ended
+June 30, | | Three Months Ended
+June 30,
+2026 vs 2025 | | Six Months Ended
+June 30,
+2026 vs 2025 |
+In millions, except percentages | 2026 | | 2025 | | 2026 | | 2025 | | $ | | % | | $ | | % |
+Revenues: | | | | | | | | | | | | | | | |
+Products | $ | 33,152 | | $ | 32,942 | | $ | 64,491 | | $ | 64,227 | | $ | 210 | | | 0.6 | % | | $ | 264 | | | 0.4 | % |
+Services | 664 | | 639 | | 1,314 | | 1,266 | | 25 | | | 3.9 | % | | 48 | | | 3.8 | % |
+| | | | | | | | | | | | | | | |
+Total revenues | 33,816 | | 33,581 | | 65,805 | | 65,493 | | 235 | | | 0.7 | % | | 312 | | | 0.5 | % |
+Cost of products sold | 27,282 | | 27,554 | | 53,072 | | 53,358 | | (272) | | | (1.0) | % | | (286) | | | (0.5) | % |
+Gross profit (8)
+| 6,534 | | 6,027 | | 12,733 | | 12,135 | | 507 | | | 8.4 | % | | 598 | | | 4.9 | % |
+Gross margin (Gross profit as a % of total revenues) (8)
+| 19.3 | % | | 17.9 | % | | 19.3 | % | | 18.5 | % | | | | | | | | |
+Operating expenses | $ | 5,123 | | $ | 5,291 | | $ | 10,188 | | $ | 10,535 | | $ | (168) | | | (3.2) | % | | $ | (347) | | | (3.3) | % |
+Operating expenses as a % of total revenues | 15.1 | % | | 15.8 | % | | 15.5 | % | | 16.1 | % | | | | | | | | |
+Operating income | $ | 1,411 | | $ | 736 | | $ | 2,545 | | $ | 1,600 | | $ | 675 | | | 91.7 | % | | $ | 945 | | | 59.1 | % |
+Operating income as a % of total revenues
+| 4.2 | % | | 2.2 | % | | 3.9 | % | | 2.4 | % | | | | | | | | |
+Adjusted operating income (1)
+| $ | 1,475 | | $ | 1,338 | | $ | 2,672 | | $ | 2,651 | | $ | 137 | | | 10.2 | % | | $ | 21 | | | 0.8 | % |
+Adjusted operating income as a % of total revenues
+| 4.4 | % | | 4.0 | % | | 4.1 | % | | 4.0 | % | | | | | | | | |
+Revenues (by major goods/service lines): | | | | | | | | | | | | | | | |
+Pharmacy | $ | 27,781 | | $ | 27,631 | | $ | 53,904 | | $ | 53,707 | | $ | 150 | | | 0.5 | % | | $ | 197 | | | 0.4 | % |
+Front Store | 5,407 | | 5,368 | | 10,666 | | 10,611 | | 39 | | | 0.7 | % | | 55 | | | 0.5 | % |
+Other | 628 | | 582 | | 1,235 | | 1,175 | | 46 | | | 7.9 | % | | 60 | | | 5.1 | % |
+| | | | | | | | | | | | | | | |
+Prescriptions filled (5) (6)
+| 457.0 | | 438.1 | | 908.2 | | 873.6 | | 18.9 | | | 4.3 | % | | 34.6 | | | 4.0 | % |
+Same store sales increase: (9)
+| | | | | | | | | | | | | | | |
+Total | 2.6 | % | | 15.4 | % | | 2.7 | % | | 14.8 | % | | | | | | | | |
+Pharmacy | 2.9 | % | | 18.1 | % | | 3.0 | % | | 17.9 | % | | | | | | | | |
+Front Store | 1.0 | % | | 3.4 | % | | 1.1 | % | | 1.5 | % | | | | | | | | |
+Prescription volume (6)
+| 7.0 | % | | 6.4 | % | | 6.9 | % | | 6.5 | % | | | | | | | | |
+
+
+
+
+18
+
+
+
+
+
+
+
+
+Adjusted Earnings Per Share Guidance
+(Unaudited)
+
+
+The following reconciliations of projected net income attributable to CVS Health to projected adjusted income attributable to CVS Health and calculations of projected GAAP diluted EPS and projected Adjusted EPS contain forward-looking information. All forward-looking information involves risks and uncertainties. Actual results may differ materially from those contemplated by the forward-looking information for a number of reasons as described in our SEC filings, including those set forth in the Risk Factors section and under the heading “Cautionary Statement Concerning Forward-Looking Statements” in our most recently filed Annual Report on Form 10-K and our most recently filed Quarterly Report on Form 10-Q. See “Non-GAAP Financial Information” earlier in this press release and endnote (2) later in this press release for more information on how we calculate Adjusted EPS.
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Year Ending
+December 31, 2026
+|
+| Low
+| | High |
+In millions, except per share amounts | Total
+Company | | Per
+Common
+Share | | Total
+Company | | Per
+Common
+Share |
+Net income attributable to CVS Health (GAAP measure)
+| $ | 8,810 | | | $ | 6.84 | | | $ | 9,065 | | | $ | 7.04 | |
+Non-GAAP adjustments: | | | | | | | |
+Amortization of intangible assets | 1,730 | | | 1.34 | | | 1,730 | | | 1.34 | |
+Net realized capital losses | 29 | | | 0.02 | | | 29 | | | 0.02 | |
+Acquisition-related integration costs | 80 | | | 0.06 | | | 80 | | | 0.06 | |
+Tax impact of non-GAAP adjustments | (463) | | | (0.36) | | | (463) | | | (0.36) | |
+Adjusted income attributable to CVS Health (2)
+| $ | 10,186 | | | $ | 7.90 | | | $ | 10,441 | | | $ | 8.10 | |
+| | | | | | | |
+Weighted average diluted shares outstanding | | | 1,289 | | | | | 1,289 | |
+
+
+
+
+
+19
+
+
+
+
+
+
+
+
+Endnotes
+
+
+(1) The Company defines adjusted operating income as operating income (GAAP measure) excluding the impact of amortization of intangible assets, net realized capital gains or losses and other items, if any, that neither relate to the ordinary course of the Company’s business nor reflect the Company’s underlying business performance, such as acquisition-related integration costs, certain legacy litigation charges, losses on Accountable Care assets and office real estate optimization charges. The chief operating decision maker (the “CODM”) uses adjusted operating income as its principal measure of segment performance as it enhances the CODM’s ability to compare past financial performance with current performance and analyze underlying business performance and trends. The consolidated measure is not determined in accordance with GAAP and should not be considered a substitute for, or superior to, the most directly comparable GAAP measure, consolidated operating income. See “Non-GAAP Financial Information” earlier in this press release for additional information regarding the items excluded from consolidated operating income in determining consolidated adjusted operating income.
+(2) GAAP diluted earnings per share and Adjusted EPS, respectively, are calculated by dividing net income attributable to CVS Health and adjusted income attributable to CVS Health by the Company’s weighted average diluted shares outstanding. The Company defines adjusted income attributable to CVS Health as net income attributable to CVS Health (GAAP measure) excluding the impact of amortization of intangible assets, net realized capital gains or losses and other items, if any, that neither relate to the ordinary course of the Company’s business nor reflect the Company’s underlying business performance, such as acquisition-related integration costs, certain legacy litigation charges, losses on Accountable Care assets, office real estate optimization charges, as well as the corresponding income tax benefit or expense related to the items excluded from adjusted income attributable to CVS Health. See “Non-GAAP Financial Information” earlier in this press release for additional information regarding the items excluded from net income attributable to CVS Health in determining adjusted income attributable to CVS Health.
+(3) Medical benefit ratio is calculated by dividing the Health Care Benefits segment’s health care costs by premium revenues and represents the percentage of premium revenues spent on medical benefits for the segment’s insured members. Management uses MBR to assess the underlying business performance and underwriting of its insurance products, understand variances between actual results and expected results and identify trends in period-over-period results. MBR provides management and investors with information useful in assessing the operating results of the Health Care Benefits segment’s insured products.
+(4) Medical membership represents the number of members covered by the Health Care Benefits segment’s insured and ASC medical products and related services at a specified point in time. Management uses this metric to understand variances between actual medical membership and expected amounts as well as trends in period-over-period results. This metric provides management and investors with information useful in understanding the impact of medical membership on the Health Care Benefits segment’s total revenues and operating results.
+(5) Pharmacy claims processed represents the number of prescription claims processed through the Company’s pharmacy benefits manager and dispensed by either its retail network pharmacies or the Company’s mail and specialty pharmacies. Prescriptions filled represents the number of prescriptions dispensed through the Pharmacy & Consumer Wellness segment’s retail pharmacies and infusion services operations, as well as through the Omnicare long-term care pharmacies prior to their deconsolidation in September 2025. Management uses these metrics to understand variances between actual claims processed and prescriptions dispensed, respectively, and expected amounts as well as trends in period-over-period results. These metrics provide management and investors with information useful in understanding the impact of pharmacy claim volume and prescription volume, respectively, on segment total revenues and operating results.
+(6) Includes an adjustment to convert 90-day prescriptions to the equivalent of three 30-day prescriptions. This adjustment reflects the fact that these prescriptions include approximately three times the amount of product days supplied compared to a normal prescription.
+20
+
+
+
+
+
+
+
+(7) Days claims payable is calculated by dividing the Health Care Benefits segment’s health care costs payable at the end of each quarter by its average health care costs per day during such quarter. Management and investors use this metric as one of the indicators of the adequacy of the health care costs payable liability at the end of each quarter.
+(8) Gross profit is calculated as the segment’s total revenues less its cost of products sold, and, for the Health Services segment, health care costs. Gross margin is calculated by dividing the segment’s gross profit by its total revenues and represents the percentage of total revenues that remains after incurring direct costs associated with the segment’s products sold and services provided. Gross margin provides investors with information that may be useful in assessing the operating results of the Company’s Health Services and Pharmacy & Consumer Wellness segments.
+(9) Same store sales and prescription volume represent the change in revenues and prescriptions filled in the Company’s retail pharmacy stores that have been operating for greater than one year and digital sales initiated online or through mobile applications and fulfilled through the Company’s distribution centers, expressed as a percentage that indicates the increase or decrease relative to the comparable prior period. Same store metrics exclude revenues and prescriptions from infusion services operations and long-term care pharmacies. Management uses these metrics to evaluate the performance of existing stores on a comparable basis and to inform future decisions regarding existing stores and new locations. Same-store metrics provide management and investors with information useful in understanding the portion of current revenues and prescriptions resulting from organic growth in existing locations versus the portion resulting from opening new stores.
+21

@@ -51,6 +51,9 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       // the reconciliation-table labels for the same measure.
       /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?(?:earnings|net\s+income|net\s+loss|loss|\(loss\))\s+per\s+(?:common\s+)?share\b/i,
       /\badjusted\s+profit\s+per\s+(?:common\s+)?share\b/i,
+      // Some filers name the measure by what it leaves out — "diluted EPS excluding certain
+      // items" — which their own footnote then defines as adjusted EPS.
+      /\b(?:diluted\s+)?(?:eps|earnings\s+per\s+(?:common\s+)?share)\s+excluding\s+certain\s+items\b/i,
     ],
     // Guidance restates the same non-GAAP measure as a forward range, so without this
     // the low end of a full-year outlook is posted as the reported quarter.
@@ -71,7 +74,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?(?:\s*(?:cents?|¢))?)\s+per\s+(?:fully\s+)?(?:common\s+)?diluted\s+share\b/i,
       /\beps\b/i,
     ],
-    skipPattern: /\badjusted\b|\bnon-gaap\b|\bguidance\b|\boutlook\b|\bforecast\b|\bexcept\s+(?:eps|per\s+share(?:\s+amounts?)?)\b/i,
+    skipPattern: /\badjusted\b|\bnon-gaap\b|\bexcluding\s+certain\s+items\b|\bguidance\b|\boutlook\b|\bforecast\b|\bexcept\s+(?:eps|per\s+share(?:\s+amounts?)?)\b/i,
     valueType: "eps",
   },
   {

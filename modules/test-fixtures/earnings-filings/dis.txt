@@ -1,0 +1,1030 @@
+EX-99.1
+2
+fy2026_q3xerxex991.htm
+EARNINGS RELEASE
+
+
+
+
+Document
+Exhibit 99.1
+
+
+
+August 5, 2026
+To Our Shareholders and the Broader Investment Community,
+Our strong fiscal Q3 results and reiterated full-year outlook reinforce our confidence that we are uniquely well positioned. Decades of IP investment have built deep fan connections that translate into strong financial results. Our accelerating global guests growth at Experiences, Toy Story 5 's theatrical and consumer products success, and strong ESPN viewership gains all helped expand our consumer reach this quarter. Together, our results show a unique ability to engage consumers at scale, both digitally and physically, even amid macro uncertainty.
+Revenues increased 7% for the third quarter to $25.2 billion from $23.7 billion in Q3 fiscal 2025. Income before income taxes increased 14% to $3.6 billion from $3.2 billion in Q3 fiscal 2025. Total segment operating income (1) modestly exceeded our prior guidance. Total segment operating income increased 21% to $5.6 billion from $4.6 billion in Q3 fiscal 2025. Diluted earnings per share (EPS) decreased to $1.51 from $2.92 in Q3 fiscal 2025. Adjusted EPS (1) increased to $2.06 from $1.61 in Q3 fiscal 2025.
+Fiscal 2026 outlook:
+• We continue to expect fiscal 2026 adjusted EPS growth of approximately 12%, excluding the impact of the 53 rd week.
+• We continue to expect fiscal 2026 adjusted EPS growth of approximately 16%, including the impact of the 53 rd week.
+• We expect Q4 total segment operating income of approximately $4.9 billion, including the impact of the 53 rd week.
+• We are now targeting at least $9 billion in share repurchases in fiscal 2026.
+Fiscal 2027 outlook:
+• We continue to expect double-digit growth in adjusted EPS in fiscal 2027, excluding the impact of the 53 rd week. Note that in Q4 fiscal 2027 we will lap the impact of the 53 rd week in Q4 fiscal 2026.
+
+(1) Total segment operating income, diluted EPS excluding certain items (also referred to as adjusted EPS), Entertainment SVOD operating income (also referred to as SVOD operating income), SVOD operating margin and free cash flow are non-GAAP financial measures. The most comparable GAAP measures are income before income taxes, diluted EPS, Entertainment segment operating income, Entertainment segment operating margin and cash provided by operations. See the discussion on pages 23 through 27 for how we define and calculate these measures, a reconciliation thereof to the most directly comparable GAAP measures and as applicable, why the Company is not providing the forward-looking quantitative reconciliation thereof to the most comparable GAAP measures.
+1
+
+
+
+
+
+
+SUMMARIZED FINANCIAL RESULTS
+The following table summarizes third quarter results for fiscal 2026 and 2025:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Quarter Ended | | | | Nine Months Ended | | |
+($ in millions, except per share amounts)
+| June 27,
+2026 | | June 28,
+2025 | | Change | | June 27,
+2026 | | June 28,
+2025 | | Change |
+Revenues | $ | 25,248 | | | $ | 23,650 | | | 7 % | | $ | 76,397 | | | $ | 71,961 | | | 6 % |
+Income before income taxes
+| $ | 3,645 | | | $ | 3,211 | | | 14 % | | $ | 10,705 | | | $ | 9,958 | | | 8 % |
+Total segment operating income (1)
+| $ | 5,555 | | | $ | 4,575 | | | 21 % | | $ | 14,758 | | | $ | 14,071 | | | 5 % |
+| | | | | | | | | | | |
+Diluted EPS
+| $ | 1.51 | | | $ | 2.92 | | | (48) % | | $ | 4.12 | | | $ | 6.12 | | | (33) % |
+Diluted EPS excluding certain items (1)
+| $ | 2.06 | | | $ | 1.61 | | | 28 % | | $ | 5.25 | | | $ | 4.82 | | | 9 % |
+Cash provided by operations
+| $ | 4,866 | | | $ | 3,669 | | | 33 % | | $ | 12,515 | | | $ | 13,627 | | | (8) % |
+Free cash flow (1)
+| $ | 3,072 | | | $ | 1,889 | | | 63 % | | $ | 5,735 | | | $ | 7,519 | | | (24) % |
+
+(1) Total segment operating income, diluted EPS excluding certain items and free cash flow are non-GAAP financial measures. The most comparable GAAP measures are income before income taxes, diluted EPS and cash provided by operations, respectively. See the discussion on pages 23 through 27 for how we define and calculate these measures and a reconciliation thereof to the most directly comparable GAAP measures.
+SUMMARIZED SEGMENT FINANCIAL RESULTS
+The following table summarizes third quarter segment revenue and operating income for fiscal 2026 and 2025:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Quarter Ended | | | | Nine Months Ended | | |
+($ in millions) | June 27,
+2026 | | June 28,
+2025 | | Change | | June 27,
+2026 | | June 28,
+2025 | | Change |
+Revenues:
+| | | | | | | | | | | |
+Entertainment
+| $ | 11,345 | | | $ | 10,704 | | | 6 % | | $ | 34,669 | | | $ | 32,258 | | | 7 % |
+Sports
+| 4,500 | | | 4,308 | | | 4 % | | 14,018 | | | 13,692 | | | 2 % |
+Experiences
+| 9,968 | | | 9,086 | | | 10 % | | 29,461 | | | 27,390 | | | 8 % |
+Eliminations (1)
+| (565) | | | (448) | | | (26) % | | (1,751) | | | (1,379) | | | (27) % |
+Total revenues
+| $ | 25,248 | | | $ | 23,650 | | | 7 % | | $ | 76,397 | | | $ | 71,961 | | | 6 % |
+Segment operating income:
+| | | | | | | | | | |
+Entertainment
+| $ | 1,680 | | | $ | 1,022 | | | 64 % | | $ | 4,116 | | | $ | 3,983 | | | 3 % |
+Sports
+| 858 | | | 1,037 | | | (17) % | | 1,701 | | | 1,971 | | | (14) % |
+Experiences
+| 3,017 | | | 2,516 | | | 20 % | | 8,941 | | | 8,117 | | | 10 % |
+Total segment operating income (2)
+| $ | 5,555 | | | $ | 4,575 | | | 21 % | | $ | 14,758 | | | $ | 14,071 | | | 5 % |
+
+(1) Reflects fees paid by (a) the entertainment vMVPD services to the sports and entertainment linear networks for the right to air the networks on the Hulu Live TV and Fubo services and (b) the Entertainment segment to the Sports segment to program certain sports content on ABC Network and Disney+. The increase in eliminations for the quarter and nine-month period was due to the Fubo and NFL Transactions (refer to page 18).
+(2) Total segment operating income is a non-GAAP financial measure. The most comparable GAAP measure is income before income taxes. See the discussion on pages 23 through 27 for how we define and calculate this measure and a reconciliation thereof to the most directly comparable GAAP measure.
+2
+
+
+
+
+
+
+OUR STRATEGY
+Results in the quarter reflect our continued execution across our three strategic pillars:
+1. Investing in IP and creativity that breaks through, builds connections, and endures
+2. Using advanced technologies to power our storytelling and increase monetization and returns
+3. Reaching more consumers in more seamless, engaging ways around the world with a One Disney operating model
+INVESTING IN IP
+We had a solid quarter creatively, highlighted by the June 19 theatrical release of Toy Story 5 . The Toy Story franchise is an example of a uniquely Disney asset, one we continue to invest in, and one that delights audiences old and new, while generating value across our entire company. Toy Story 5 has already surpassed $1 billion in global box office, bringing the franchise's lifetime global box office to more than $4 billion.
+This film's value also extends well beyond the theatrical window. Its release further lifted the franchise on Disney+, which has over two billion hours streamed, while Toy Story merchandise helped deliver our strongest quarter of year-over-year growth in Consumer Products revenue in 20 quarters. And as our fans know well, Toy Story has a presence at every park and on every cruise ship we operate around the world. Beyond Toy Story 5 , we were pleased by the performance of The Devil Wears Prada 2 , especially internationally.
+While audience scores for both Star Wars: The Mandalorian and Grogu and fiscal Q4's live action Moana have been strong, both films underperformed our box office expectations. Even so, these franchise investments contributed to value creation beyond their theatrical releases.
+We executed our first-ever day-and-date attraction update with a new Mandalorian-themed Millennium Falcon: Smuggler's Run at Star Wars: Galaxy's Edge at Disneyland and Walt Disney World. Additionally, the film drove healthy growth in retail sales for the Star Wars franchise during the quarter. Looking ahead, we expect the live-action Moana to be a strong title on Disney+, building on the success of the original film, which is one of the most streamed movies of all time (1) , and extending the reach of the franchise, which now includes three films, a themed area at EPCOT, and a robust global merchandise business.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | |
+|
+
+(1) Source: Nielsen.
+3
+
+
+
+
+
+
+On the direct-to-consumer front, early success in our emerging international programming slate gives us confidence to further ramp investment. Rivals season 2 became the biggest EMEA region original premiere in the UK and Ireland on Disney+. The Perfect Crown became the most-watched Korean premiere on Disney+ globally to date. And Dear Killer Nannies is the #1 most viewed LATAM original premiere globally over the past year on Disney+. Across the next three years we plan to roughly triple the number of local original series on Disney+ to drive new international users to the platform and reduce churn.
+Meanwhile, we continue to bolster ESPN's place as the front door for sports fans as we build out ESPN's “marketplace of sports,” creating a single destination for fans. To date, we have relationships with the NFL, MLB, FOX One, and - launched just yesterday - the CW Network, where more than 800 annual hours of CW Sports will stream live on the ESPN app for viewers with an ESPN Unlimited subscription plan. We are encouraged that a growing number of subscribers are taking advantage of these options.
+ESPN is the #1 sports media brand with the most comprehensive rights portfolio. After unlocking a selection of ESPN content on Disney+ domestically in 2024 and expanding it globally since then, we plan to deliver a more robust subset of games for Disney+ subscribers beginning this fall, anchored by additional college football simulcasts, alongside the continued simulcast of our industry-leading college football pregame show, College GameDay . The strategy is to bring more live sports to more users and drive greater engagement on Disney+ and greater upsell to our trio bundle, which includes ESPN Unlimited.
+We're also continually looking for new ways to expand our content offering beyond traditional premium film and TV to drive engagement and fandom. Our first-of-its-kind agreement with TikTok, announced today, is a great example. The agreement will bring creators to the forefront of Disney+, with a curated feed of fan-created content featuring our characters and stories. The agreement brings a pipeline of creator content to Verts on Disney+, promotes discovery, and elevates creators through an ambassador program unique to Disney.
+
+
+4
+
+
+
+
+
+IMPROVING MONETIZATION AND RETURNS
+We want to grow annual revenue, operating income, and adjusted EPS consistently over time. In the fiscal third quarter, total revenue grew 7%, led by 11% revenue growth at our domestic parks and experiences, including the expanding Disney Cruise Line portfolio. Total Parks & Experiences revenue increased 10%, driven by roughly 6% volume and 3% rate across the global portfolio.
+We were pleased with 4% per capita spending growth at our domestic parks, reflecting the value our fans see in the parks experience and our decades of investment. We recorded approximately $100 million in a tariff refund this quarter, reversing out tariff payments earlier in the fiscal year. While we may receive additional refunds in the coming quarters, their dollar amounts are expected to be insignificant. Disney Experiences segment operating income growth was 20%, with the tariff refund representing roughly four points of that growth. There was no impact on Experiences segment revenues.
+
+Toy Story 5 and Star Wars: The Mandalorian and Grogu merchandise sales contributed to 7% growth in Consumer Products revenues when compared to the prior-year quarter. Strength at our domestic parks, Disney Cruise Line, Consumer Products, and Disneyland Paris helped offset softness at our Asia parks, which we expect to continue in fiscal Q4.
+Our Entertainment SVOD (1) revenue growth of 11% reflects subscription revenue growth of 15% relative to the prior-year quarter, driven by both rate and volume, with foreign exchange representing approximately 1%. Entertainment SVOD advertising revenues were up 3%, reflecting the impact of continued marketplace supply growth, which created a softer overall demand environment relative to fiscal Q2.
+Entertainment SVOD operating margin was 13% in fiscal Q3, benefiting, in part, from the timing of marketing and programming spend. We continue to expect double-digit Entertainment SVOD operating margin for full-year fiscal 2026, excluding the impact of the 53rd week.
+
+
+| | |
+|
+
+(1) Disney+, Hulu subscription video-on-demand and Disney+ Hotstar (through November 14, 2024) streaming services (excluding Hulu Live TV and Fubo vMVPD services) are collectively referred to as “Entertainment SVOD” or “SVOD.”
+5
+
+
+
+
+
+Entertainment segment subscription and affiliate fees increased 12% versus the prior-year quarter, with the Fubo transaction and foreign exchange representing approximately 4% and 1%, respectively. Sports segment subscription and affiliate fees increased 8% versus the prior-year quarter, with the NFL transaction representing approximately 4%. These revenue growth rates reflect the successful monetization evolution our company is executing as we scale our streaming platforms.
+Our Sports segment operating income decline of 17% versus the prior-year quarter was modestly steeper than our prior guidance of approximately 14%. Contributing to the lower-than-expected operating income were four-game sweeps in early rounds of the NBA Playoffs and the impact of a network carriage dispute.
+We see emerging technologies as a significant opportunity for our company to drive returns, one that builds on our legacy of innovating at the intersection of creativity and breakthrough technology. We've been developing AI and machine learning capabilities for decades, and we're actively investing in groundbreaking teams that have always pushed the boundaries of storytelling across Industrial Light & Magic, Pixar, Disney Research Studios, Walt Disney Imagineering, and others.
+With AI, it isn't simply about efficiency. We use it first and foremost to enhance a creative process that will always be human-centered, artist-driven, and creator-led. We've cultivated the world's richest portfolio of IP and production experience across a century of filmmaking, giving us an advantage that our peers and no new entrant can quickly replicate.
+We're already putting this into practice. At Disney Experiences, AI is accelerating how we design, build, and operate our parks and attractions. We made our J.A.R.V.I.S. AI tool available to our more than 2,000 Imagineers earlier this year, giving them instant access to over 70 years of institutional knowledge. We're using AI-powered digital twins and simulation tools to design and stress-test new attractions, including leveraging these tools for the Abu Dhabi park. And we're applying AI to simplify the booking and planning journey for our guests, while equipping our cast members with AI-assisted tools to better serve guests in the moment.
+INCREASING REACH AND ENGAGEMENT
+We are the only entertainment company with a profitable, scaled leadership position in both the physical and digital worlds. That position, built on decades of meaningful investment in storytelling and IP, creates deep consumer connections and durable growth opportunities. By operating as One Disney in a more integrated manner, we can deepen these consumer relationships and attract new fans.
+Global guests across the Experiences segment grew 4% and attendance at our domestic parks grew 3% versus the prior-year quarter. Walt Disney World had a stand-out quarter, with healthy core attendance increases from domestic tourists and annual passholders, and effective summer promotions and new experiences that further supplemented growth.
+We continued to face headwinds from international attendance at our domestic parks, but as expected, those headwinds moderated relative to the year-over-year impact observed in fiscal Q2. We also saw strong attendance growth at Disneyland Paris following the opening of World of Frozen.
+Forward bookings at Walt Disney World remain robust and we expect another quarter of global guests growth in fiscal Q4, excluding the 53rd week, despite consumer softness in Asia.
+Fiscal Q3 was the first full quarter with our two newest cruise ships, the Disney Destiny and Disney Adventure . Together, these ships increased stateroom capacity by approximately 50% compared to the prior-year quarter and we remain encouraged by current occupancy and forward bookings. We are looking forward to bringing additional cruise capacity online in the years ahead.
+6
+
+
+
+
+
+
+Below, we provide historical trending for global guests (1) . As a reminder, this metric combines attendance at our domestic and international parks with passenger cruise days. We feel this provides a lens into our increasingly global and diversified Experiences businesses, and aligns more closely with our investment initiatives around the world.
+
+
+
+| | |
+|
+
+(1) In addition to revenue, costs, and operating income, management uses the metric global guests to analyze trends and evaluate the overall performance of our theme parks and cruise businesses, and we believe this metric is useful to investors in analyzing the businesses.
+7
+
+
+
+
+
+Our Experiences segment operating margin for the nine-month period ended June 27, 2026 of approximately 30% reflects, in part, the healthy cumulative results we're generating from our investments. We expect our future capital projects, over their lifetimes, to deliver double-digit returns.
+
+Turning from the physical to the digital, our ambition is for Disney+ to become the digital centerpiece of The Walt Disney Company. This long-term strategy rests on two pillars: making the streaming experience the best in the world and connecting Disney's services into a single ecosystem. In the short-term, we are focused on continuing to improve foundational elements of our service and believe we have the opportunity to increase engagement and retention. We also believe we can bring more value to our subscribers by better leveraging sports in the U.S., completing the integration of Hulu and Disney+, and investing in international programming.
+Long-term, we aim to evolve Disney+ into a comprehensive membership ecosystem. By integrating high-value, always-on benefits with our storytelling, we can reach more fans, deepen engagement, and increase subscriber retention. These product enhancements will also allow us to further segment the market, increasing our addressable opportunity over time. We expect to begin introducing elements of this vision in Spring 2027.
+We believe our product and technology improvements are contributing to engagement growth, with much of this year's lift coming from improved search and discovery informed by a deeper understanding of user preferences. We continue to see churn reduction as a significant opportunity and we're pleased with the Q3 decline in Disney+ churn across our domestic and international services.
+This quarter we passed an important milestone in app unification, allowing Hulu Standalone and Bundle subscribers to link profiles, watch history, and manage subscriptions on Disney+. We are also making the user experience more dynamic with autoplay video on the home page, and we added social clips to Disney+ Verts, which will now be enhanced via our new agreement with TikTok.
+8
+
+
+
+
+
+
+Turning to Sports, this was an unforgettable quarter for fans, anchored by the NBA and NHL postseasons on ABC and ESPN. Ratings more than doubled for both championship series compared to the prior year (1) , with the 2026 NBA and NHL playoffs finishing as the most-viewed ever on our networks (2) . That audience strength extended beyond the NBA and NHL, with aggregate sports consumption on ESPN networks up healthy double digits overall in the key P18-49 demo (3) .
+This was the most-watched fiscal Q3 for ESPN, ESPN2, and ESPN on ABC since 2016, a remarkable sign of ESPN's relevance today given the continued fragmentation of media and the proliferation of sports content across TV and streaming. And through the lens of digital and social engagement, ESPN recorded its best month ever in June, reaching nearly 230 million unique fans and over 80% of the U.S. internet population (4) .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | |
+|
+
+(1) Includes viewership of TNT Sports’ coverage of the Stanley Cup Finals in 2025.
+(2) Nielsen Media Research (L+SD), Big Data + Panel, P2+ Viewers.
+(3) Nielsen Media Research (L+SD), Big Data + Panel, Total Sports Minutes by Network Group, All Sports Codes, 3/29/26-6/27/26, Includes Sustainers.
+(4) Comscore Media Metrix - Total Audience (Desktop P2+ and Mobile 18+), June 2026, U.S.
+9
+
+
+
+
+
+CAPITAL ALLOCATION AND OTHER MATTERS
+We believe our shares are undervalued and we continued to lean into share repurchases during the quarter. In addition, our strategy of simplifying the company and exiting non-core assets has resulted in an agreement to sell our 50% stake in A+E Global Media to an affiliate of co-owner Hearst Corporation. We plan to use the approximately $1.2 billion in cash proceeds to repurchase additional Disney shares and now expect full year fiscal 2026 share repurchases to be at least $9 billion.
+Additionally, we intend to shift much of our Consumer Products business from our Experiences segment to our Entertainment segment, beginning in Q1 of fiscal 2027. We believe this shift will have strategic and operational benefits by bringing the monetization of our IP through consumer products closer to the studios that create that IP. Additionally, we believe this presentation will better reflect the returns our Entertainment segment is generating from the content it produces and make our Entertainment segment more comparable to peer reporting methodologies.
+We remain highly focused on reducing costs across the enterprise to create incremental capacity to invest for growth and are evaluating a variety of levers, including reductions in labor and SG&A. We are mid-stream in this work and will provide future updates on our progress.
+GUIDANCE AND THE IMPACT OF OUR 53 RD WEEK
+We expect Q4 total segment operating income of $4.9 billion, with the 53rd week contributing approximately $600 million spread across the segments. The 53rd week has a fairly proportionate impact on total revenues, with roughly a 1.5-2% lift (53/52-1). However, portions of our expense base do not increase equally with the additional week. Note that we will lap this impact across the P&L in fiscal 2027, specifically Q4 fiscal 2027.
+Our guidance reflects our expectations for continued healthy growth at Experiences, which we now believe will come in at the high end of our prior high-single-digit segment operating income guidance for the fiscal year, excluding the impact of the 53rd week. We continue to expect Sports segment operating income to grow in the mid-single digits for the year, excluding the 53rd week. We continue to expect double-digit segment operating income growth at our Entertainment segment for the fiscal year, excluding the 53rd week. However, our Q4 Entertainment segment results will reflect the impact of Moana 's box office performance coming in below our prior expectations, along with a softer than expected advertising environment, particularly in domestic SVOD.
+We reiterate our prior full-year guidance for cash provided by operations and capital expenditures of at least $19 billion and approximately $9 billion, respectively, for fiscal 2026.
+Overall, we are pleased with Q3 results and are optimistic about the remainder of the fiscal year.
+Thank you,
+Josh D’Amaro, Chief Executive Officer and Hugh Johnston, Chief Financial Officer
+10
+
+
+
+
+
+
+FORM 10-Q AND WEBCAST INFORMATION
+Please review this release in conjunction with our Form 10-Q, which can be found on our website at www.disney.com/investors. The Walt Disney Company will host a live Webcast today, August 5, 2026, at 8:30 AM EDT/5:30 AM PDT. To access the Webcast go to www.disney.com/investors . The Webcast replay will also be available on the site.
+11
+
+
+
+
+
+
+DISCUSSION OF THIRD QUARTER SEGMENT RESULTS
+
+Entertainment
+Operating results for Entertainment were as follows:
+| | | | | | | | | | | | | | | | | |
+| Quarter Ended | | Change |
+(in millions) | June 27,
+2026 | | June 28,
+2025 | |
+Revenues | | | | | |
+Subscription and affiliate fees | $ | 7,545 | | | $ | 6,765 | | | 12 % |
+Advertising | 1,625 | | | 1,641 | | | (1) % |
+Content sales | 1,596 | | | 1,698 | | | (6) % |
+Other | 579 | | | 600 | | | (4) % |
+Total revenues | 11,345 | | | 10,704 | | | 6 % |
+Operating expenses | (7,238) | | | (7,098) | | | (2) % |
+Selling, general, administrative and other | (2,301) | | | (2,488) | | | 8 % |
+Depreciation and amortization | (218) | | | (198) | | | (10) % |
+Total costs and expenses
+| (9,757) | | | (9,784) | | | — % |
+Equity in the income of investees | 92 | | | 102 | | | (10) % |
+| | | | | |
+Operating Income | $ | 1,680 | | | $ | 1,022 | | | 64 % |
+
+Revenues - Subscription and affiliate fees
+Growth in subscription and affiliate fees was due to increases of 4% from the Fubo Transaction, 3% from higher effective rates, 3% from more subscribers and 1% from a favorable foreign exchange impact.
+Revenues - Advertising
+The decrease in advertising revenue was attributable to a decrease of 4% from lower rates, partially offset by increases of 1% from more impressions and 1% from the Fubo Transaction.
+Revenues - Content sales
+Lower content sales revenue was due to a decrease of 8% from TV/VOD and home entertainment distribution revenue .
+Revenues - Other
+The decrease in other revenue was attributable to the impact of our foreign exchange hedging program, partially offset by revenue increases including from higher intersegment allocations of revenues from the Experiences segment reflecting an increase in merchandise licensing royalties.
+12
+
+
+
+
+
+Operating Expenses
+| | | | | | | | | | | | | | | | | |
+| Quarter Ended | | Change |
+(in millions) | June 27,
+2026 | | June 28,
+2025 | |
+Programming and production costs | $ | (5,819) | | | $ | (5,772) | | | (1) % |
+Other operating expenses | (1,419) | | | (1,326) | | | (7) % |
+| $ | (7,238) | | | $ | (7,098) | | | (2) % |
+
+Programming and production costs reflected increases of 4% from the Fubo Transaction and 2% from our streaming services, which were largely offset by decreases of 3% from lower film cost impairments and 2% from linear networks.
+The increase in other operating expenses was attributable to higher technology and distribution costs.
+Selling, general, administrative and other
+Selling, general, administrative and other costs decreased $187 million, to $2,301 million from $2,488 million, driven by lower marketing costs, partially offset by the Fubo Transaction.
+Depreciation and amortization
+Depreciation and amortization increased $20 million, to $218 million from $198 million, due to investments in technology.
+Equity in the Income of Investees
+Income from equity investees decreased $10 million, to $92 million from $102 million, due to lower income from A+E attributable to a decrease in advertising revenue.
+Operating Income from Entertainment
+Segment operating income increased $658 million, to $1,680 million from $1,022 million, due to an increase in subscription and affiliate fees.
+13
+
+
+
+
+
+Supplemental SVOD detail
+The following table provides supplemental SVOD detail:
+| | | | | | | | | | | | | | | | | |
+| Quarter Ended | | Change
+|
+($ in millions)
+| June 27,
+2026 | | June 28,
+2025 | |
+Revenues | | | | | |
+Subscription fees | $ | 4,715 | | $ | 4,116 | | 15 % |
+Advertising | 851 | | 830 | | 3 % |
+Other | (34) | | 26 | | nm |
+Total revenues | 5,532 | | 4,972 | | 11 % |
+Programming and production costs | (2,577) | | (2,481) | | (4) % |
+Other expenses (1)
+| (2,243) | | (2,162) | | (4) % |
+Total costs and expenses
+| (4,820) | | (4,643) | | (4) % |
+Entertainment SVOD operating income (2)
+| $ | 712 | | $ | 329 | | >100 % |
+| | | | | |
+
+(1) Includes other operating expenses, selling, general and administrative expenses and depreciation and amortization.
+(2) Entertainment SVOD operating income (also referred to as SVOD operating income) is a non-GAAP financial measure. The most comparable GAAP measure is Entertainment segment operating income. See the discussion on pages 23 through 27 for how we define and calculate this measure and a reconciliation thereof to the most directly comparable GAAP measure.
+Growth in subscription fees was attributable to increases of 9% from more subscribers, 3% from higher effective rates and 1% from a favorable foreign exchange impact.
+Higher advertising revenue was due to an increase of 8% from more impressions, partially offset by a decrease of 4% from lower rates.
+The decrease in other revenue was due to the impact of our foreign exchange hedging program.
+
+Sports
+Operating results for Sports were as follows: | | | | | | | | | | | | | | | | | |
+| Quarter Ended | | Change |
+(in millions) | June 27,
+2026 | | June 28,
+2025 | |
+Revenues | | | | | |
+Subscription and affiliate fees | $ | 3,142 | | | $ | 2,899 | | | 8 % |
+Advertising | 1,204 | | | 1,148 | | | 5 % |
+Other | 154 | | | 261 | | | (41) % |
+Total revenues | 4,500 | | | 4,308 | | | 4 % |
+Operating expenses | (3,304) | | | (3,008) | | | (10) % |
+Selling, general, administrative and other | (344) | | | (276) | | | (25) % |
+Depreciation and amortization | (29) | | | (13) | | | >(100) % |
+Total costs and expenses
+| (3,677) | | | (3,297) | | | (12) % |
+Equity in the income of investees | 35 | | | 26 | | | 35 % |
+Operating Income | $ | 858 | | | $ | 1,037 | | | (17) % |
+
+14
+
+
+
+
+
+Revenues - Subscription and affiliate fees
+Growth in subscription and affiliate fees reflected increases of 5% from higher effective rates and 4% from the NFL Transaction.
+Revenues - Advertising
+Advertising revenue growth was due to higher impressions.
+Revenues - Other
+The decrease in other revenue was primarily due to the comparison to Ultimate Fighting Championship (UFC) pay-per-view revenue in the prior-year quarter. Our UFC rights expired in December 2025.
+Operating expenses
+| | | | | | | | | | | | | | | | | |
+| Quarter Ended | | Change |
+(in millions) | June 27,
+2026 | | June 28,
+2025 | |
+Programming and production costs | $ | (3,050) | | $ | (2,762) | | (10) % |
+Other operating expenses | (254) | | (246) | | (3) % |
+| $ | (3,304) | | $ | (3,008) | | (10) % |
+
+Programming and production costs increased in the current quarter compared to the prior-year quarter primarily due to contractual rate increases, costs for new sports rights and an impact from the timing of rights costs recognition as a result of the NBA contract renewal. These increases were partially offset by the absence of certain rights costs compared to the prior-year quarter, primarily for UFC content. The NBA contract renewal resulted in a shift of costs from the first half of the year to the third quarter.
+Selling, general, administrative and other
+Selling, general, administrative and other costs increased $68 million, to $344 million from $276 million, primarily due to higher sales and marketing costs.
+Depreciation and amortization
+Depreciation and amortization increased $16 million, to $29 million from $13 million, due to investments in technology.
+Operating Income from Sports
+Segment operating income decreased $179 million, to $858 million from $1,037 million, as an increase in subscription and affiliate fees was more than offset by higher programming and production costs.
+15
+
+
+
+
+
+
+Experiences
+Operating results for Experiences were as follows:
+| | | | | | | | | | | | | | | | | |
+| Quarter Ended | | Change |
+(in millions) | June 27,
+2026 | | June 28,
+2025 | |
+Revenues | | | | | |
+Theme park admissions | $ | 3,253 | | | $ | 2,996 | | | 9 % |
+Resorts and vacations | 2,766 | | | 2,373 | | | 17 % |
+Parks & Experiences merchandise, food and beverage | 2,284 | | | 2,143 | | | 7 % |
+Merchandise licensing and retail | 1,056 | | | 979 | | | 8 % |
+Parks licensing and other | 609 | | | 595 | | | 2 % |
+Total revenues | 9,968 | | | 9,086 | | | 10 % |
+Operating expenses | (5,065) | | | | (4,808) | | | (5) % |
+Selling, general, administrative and other | (1,065) | | | (1,051) | | | (1) % |
+Depreciation and amortization | (821) | | | (711) | | | (15) % |
+Total costs and expenses
+| (6,951) | | | (6,570) | | | (6) % |
+| | | | | |
+Operating Income | $ | 3,017 | | | $ | 2,516 | | | 20 % |
+
+Revenues - Theme park admissions
+Theme park admissions revenue growth was due to increases of 5% from higher average per capita ticket revenue and 3% from increased attendance.
+Revenues - Resorts and vacations
+Higher resorts and vacations revenue was attributable to increases of 10% from additional passenger cruise days, 2% from an increase in average daily hotel room rates and 2% from higher occupied hotel room nights. The increase in passenger cruise days reflected the launches of the Disney Destiny in November 2025 and the Disney Adventure in March 2026.
+Revenues - Parks & Experiences merchandise, food and beverage
+Parks & Experiences merchandise, food and beverage revenue growth was due to increases of 4% from volume growth and 3% from higher average guest spending.
+16
+
+
+
+
+
+Revenues - Merchandise licensing and retail
+Higher merchandise licensing and retail revenue was due to an increase of 10% from merchandise licensing, partially offset by a decrease of 2% from an unfavorable foreign exchange impact.
+Operating expenses
+| | | | | | | | | | | | | | | | | |
+| Quarter Ended | | Change |
+(in millions) | June 27,
+2026 | | June 28,
+2025 | |
+Operating labor | $ | (2,356) | | $ | (2,284) | | (3) % |
+Infrastructure costs | (953) | | (870) | | (10) % |
+Cost of goods sold and distribution costs | (721) | | (779) | | 7 % |
+Other operating expense | (1,035) | | (875) | | (18) % |
+| $ | (5,065) | | $ | (4,808) | | (5) % |
+
+Higher operating labor was due to new guest offerings and inflation. The increase in infrastructure costs was attributable to new guest offerings and higher operations support costs. The decrease in cost of goods sold and distribution costs was due to tariff refunds, partially offset by volume growth and inflation. Higher other operating expense was primarily due to new guest offerings, volume growth and inflation. New guest offerings include the fleet expansion at Disney Cruise Line.
+Depreciation and amortization
+Depreciation and amortization increased $110 million, to $821 million from $711 million, primarily due to higher depreciation at our domestic parks and experiences attributable to an increase at Disney Cruise Line.
+Operating Income from Experiences
+Segment operating income increased $501 million, to $3,017 million from $2,516 million, due to higher revenues at Parks & Experiences and, to a lesser extent, Consumer Products, partially offset by higher costs.
+
+
+17
+
+
+
+
+
+Supplemental revenue and operating income
+The following table presents supplemental revenue and operating income detail for the Experiences segment:
+| | | | | | | | | | | | | | | | | |
+| Quarter Ended | | Change |
+(in millions) | June 27,
+2026 | | June 28,
+2025 | |
+Supplemental revenue detail | | | | | |
+Parks & Experiences | | | | | |
+Domestic | $ | 7,116 | | | $ | 6,403 | | | 11 % |
+International | 1,787 | | | 1,691 | | | 6 % |
+Total Parks & Experiences | 8,903 | | | 8,094 | | | 10 % |
+Consumer Products | 1,065 | | | 992 | | | 7 % |
+| $ | 9,968 | | | $ | 9,086 | | | 10 % |
+Supplemental operating income detail | | | | | |
+Parks & Experiences | | | | | |
+Domestic | $ | 2,088 | | | $ | 1,650 | | | 27 % |
+International | 369 | | | 422 | | | (13) % |
+Consumer Products | 560 | | | 444 | | | 26 % |
+| $ | 3,017 | | | $ | 2,516 | | | 20 % |
+
+Total Parks & Experiences revenue increased $809 million, to $8,903 million from $8,094 million due to increases of 6% from higher volumes and 3% from increased guest spending.
+
+OTHER DEVELOPMENTS
+In July 2026, the Company entered into an agreement to sell its 50% interest in A+E Global Media (A+E) to an affiliate of co-owner Hearst Corporation for approximately $1.2 billion in cash. Closing is currently expected by the end of fiscal 2026, subject to customary closing conditions, including regulatory approvals and government consents. In the current quarter, the Company recorded an impairment of our investment in A+E of $812 million, which is included in “Restructuring and impairment charges” in the Condensed Consolidated Statement of Income.
+On January 31, 2026, ESPN acquired NFL Network and certain other media assets owned and controlled by NFL Enterprises LLC, including the NFL RedZone channel’s pay TV distribution and NFL Fantasy (collectively the Specified Assets), from NFL Enterprises LLC in exchange for a 10% noncontrolling interest in ESPN (the NFL Transaction). Following the NFL Transaction, the Company has an effective 72% interest in ESPN and Hearst Corporation has an 18% interest. As of January 31, 2026, the operating results attributable to the Specified Assets are included in the Company’s consolidated results.
+On October 29, 2025, the Company and FuboTV Inc. (Fubo), a publicly-traded virtual multi-channel video programming distributor (vMVPD), combined certain Hulu Live TV assets with Fubo (the Fubo Transaction). The Company has a 70% interest in the combined operations on a fully diluted basis. As of October 29, 2025, the operating results attributable to Fubo are included in the Company’s consolidated results.
+18
+
+
+
+
+
+
+CASH FLOW
+Cash provided by operations and free cash flow (1) were as follows:
+| | | | | | | | | | | | | | | | | |
+| Nine Months Ended | | |
+($ in millions)
+| June 27,
+2026 | | June 28,
+2025 | | Change |
+Cash provided by operations
+| $ | 12,515 | | | $ | 13,627 | | | $ | (1,112) | |
+Investments in parks, resorts and other property | (6,780) | | | (6,108) | | | (672) | |
+Free cash flow (1)
+| $ | 5,735 | | | $ | 7,519 | | | $ | (1,784) | |
+
+(1) Free cash flow is not a financial measure defined by GAAP. The most comparable GAAP measure is cash provided by operations. See the discussion on pages 23 through 27.
+Cash provided by operations decreased $1.1 billion to $12.5 billion in the current period from $13.6 billion in the prior-year period due to higher income tax payments and, to a lesser extent, lower operating cash flows at Sports driven by higher spending on sports content. These decreases were partially offset by higher operating cash flows at Experiences and Entertainment. The current period included payment of U.S. federal and California state income tax liabilities for fiscal 2025 and a portion of fiscal 2024, which were deferred pursuant to relief related to the 2025 wildfires in California.
+Investments in parks, resorts and other property increased to $6.8 billion from $6.1 billion due to higher spending on new theme park attractions at the Experiences segment.
+19
+
+
+
+
+
+
+THE WALT DISNEY COMPANY
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(unaudited; $ in millions, except per share data)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Quarter Ended | | Nine Months Ended |
+| June 27,
+2026 | | June 28,
+2025 | | June 27,
+2026 | | June 28,
+2025 |
+Revenues | $ | 25,248 | | | $ | 23,650 | | | $ | 76,397 | | | $ | 71,961 | |
+Costs and expenses | (20,488) | | | (20,005) | | | (63,973) | | | (60,732) | |
+Restructuring and impairment charges | (900) | | | (185) | | | (1,139) | | | (437) | |
+| | | | | | | |
+Interest expense, net | (298) | | | (324) | | | (813) | | | (1,037) | |
+Equity in the income of investees | 83 | | | 75 | | | 233 | | | 203 | |
+Income before income taxes
+| 3,645 | | | 3,211 | | | 10,705 | | | 9,958 | |
+Income taxes
+| (801) | | | 2,732 | | | (2,912) | | | 2,030 | |
+| | | | | | | |
+| | | | | | | |
+Net income
+| 2,844 | | | 5,943 | | | 7,793 | | | 11,988 | |
+Net income attributable to noncontrolling interests
+| (206) | | | (681) | | | (506) | | | (897) | |
+| | | | | | | |
+Net income attributable to The Walt Disney Company (Disney)
+| $ | 2,638 | | | $ | 5,262 | | | $ | 7,287 | | | $ | 11,091 | |
+| | | | | | | |
+Earnings per share attributable to Disney:
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Diluted | $ | 1.51 | | | $ | 2.92 | | | $ | 4.12 | | | $ | 6.12 | |
+| | | | | | | |
+| | | | | | | |
+Basic
+| $ | 1.52 | | | $ | 2.92 | | | $ | 4.13 | | | $ | 6.14 | |
+| | | | | | | |
+Weighted average number of common and common equivalent shares outstanding: | | | | | | | |
+Diluted | 1,743 | | | 1,805 | | | 1,769 | | | 1,812 | |
+Basic | 1,738 | | | 1,799 | | | 1,763 | | | 1,806 | |
+| | | | | | | |
+
+20
+
+
+
+
+
+
+THE WALT DISNEY COMPANY
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(unaudited; $ in millions, except per share data) | | | | | | | | | | | |
+| June 27,
+2026 | | September 27,
+2025 |
+ASSETS | | | |
+Current assets | | | |
+Cash and cash equivalents | $ | 5,185 | | | $ | 5,695 | |
+Receivables, net | 14,553 | | | 13,217 | |
+Inventories | 2,081 | | | 2,134 | |
+Content advances | 1,934 | | | 2,063 | |
+| | | |
+Other current assets | 1,139 | | | 1,158 | |
+| | | |
+| | | |
+Total current assets | 24,892 | | | 24,267 | |
+Produced and licensed content costs | 30,193 | | | 31,327 | |
+Investments | 7,627 | | | 8,097 | |
+Parks, resorts and other property | | | |
+Attractions, buildings and equipment | 87,448 | | | 82,041 | |
+Accumulated depreciation | (49,056) | | | (48,889) | |
+| 38,392 | | | 33,152 | |
+Projects in progress | 5,169 | | | 6,911 | |
+Land | 1,183 | | | 1,192 | |
+| 44,744 | | | 41,255 | |
+Intangible assets, net | 9,786 | | | 9,272 | |
+Goodwill | 74,682 | | | 73,294 | |
+| | | |
+| | | |
+Other assets | 12,816 | | | 10,002 | |
+Total assets | $ | 204,740 | | | $ | 197,514 | |
+LIABILITIES AND EQUITY | | | |
+Current liabilities | | | |
+Accounts payable and other accrued liabilities | $ | 19,548 | | | $ | 21,203 | |
+Current portion of borrowings | 8,627 | | | 6,711 | |
+Deferred revenue and other | 6,930 | | | 6,248 | |
+| | | |
+| | | |
+Total current liabilities | 35,105 | | | 34,162 | |
+Borrowings | 37,414 | | | 35,315 | |
+Deferred income taxes | 5,219 | | | 3,524 | |
+| | | |
+| | | |
+Other long-term liabilities | 10,160 | | | 9,901 | |
+Commitments and contingencies | | | |
+| | | |
+Equity | | | |
+Preferred stock | — | | | — | |
+Common stock and additional paid-in capital, $0.01 par value, Authorized – 4.6 billion shares, Issued – 1.9 billion shares | 62,639 | | | 59,814 | |
+Retained earnings | 65,052 | | | 60,410 | |
+Accumulated other comprehensive loss | (2,908) | | | (2,914) | |
+Treasury stock, at cost, 148 million shares at June 27, 2026 and 79 million shares at September 27, 2025
+| (14,751) | | | (7,441) | |
+Total Disney Shareholders’ equity | 110,032 | | | 109,869 | |
+Noncontrolling interests | 6,810 | | | 4,743 | |
+Total equity | 116,842 | | | 114,612 | |
+Total liabilities and equity | $ | 204,740 | | | $ | 197,514 | |
+
+
+
+21
+
+
+
+
+
+
+THE WALT DISNEY COMPANY
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(unaudited; $ in millions)
+| | | | | | | | | | | |
+| Nine Months Ended |
+| June 27,
+2026 | | June 28,
+2025 |
+OPERATING ACTIVITIES | | | |
+Net income
+| $ | 7,793 | | | $ | 11,988 | |
+Depreciation and amortization | 4,135 | | | 3,932 | |
+Impairments of investments and produced content | 959 | | | 419 | |
+| | | |
+Deferred income taxes | 1,028 | | | (2,915) | |
+Equity in the income of investees | (233) | | | (203) | |
+Cash distributions received from equity investees | 191 | | | 110 | |
+Net change in produced and licensed content costs and advances | 1,106 | | | 819 | |
+| | | |
+Equity-based compensation | 1,160 | | | 1,004 | |
+| | | |
+Other, net | (121) | | | (153) | |
+Changes in operating assets and liabilities | | | |
+Receivables | (1,170) | | | (660) | |
+Inventories | 1 | | | (70) | |
+Other assets | (194) | | | (201) | |
+Accounts payable and other liabilities | (529) | | | (307) | |
+Income taxes | (1,611) | | | (136) | |
+Cash provided by operations
+| 12,515 | | | 13,627 | |
+| | | |
+INVESTING ACTIVITIES | | | |
+Investments in parks, resorts and other property | (6,780) | | | (6,108) | |
+| | | |
+Acquisitions and purchase of investments, net
+| (540) | | | (98) | |
+Other, net | 64 | | | 13 | |
+Cash used in investing activities
+| (7,256) | | | (6,193) | |
+| | | |
+FINANCING ACTIVITIES | | | |
+Commercial paper borrowings (payments), net
+| 2,268 | | | (1,498) | |
+Borrowings | 5,046 | | | 1,057 | |
+Reduction of borrowings | (3,625) | | | (2,969) | |
+Dividends | (1,337) | | | (905) | |
+Repurchases of common stock | (7,245) | | | (2,496) | |
+| | | |
+| | | |
+Acquisition of redeemable noncontrolling interests | — | | | (439) | |
+Other, net | (847) | | | (840) | |
+Cash used in financing activities
+| (5,740) | | | (8,090) | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+Impact of exchange rates on cash, cash equivalents and restricted cash | (19) | | | 31 | |
+| | | |
+Change in cash, cash equivalents and restricted cash | (500) | | | (625) | |
+Cash, cash equivalents and restricted cash, beginning of period
+| 5,799 | | | 6,102 | |
+Cash, cash equivalents and restricted cash, end of period
+| $ | 5,299 | | | $ | 5,477 | |
+
+22
+
+
+
+
+
+
+NON-GAAP FINANCIAL MEASURES
+This earnings release presents diluted EPS excluding certain items (also referred to as adjusted EPS), total segment operating income, free cash flow, Entertainment SVOD operating income and SVOD operating margin. Diluted EPS excluding certain items, total segment operating income, free cash flow, Entertainment SVOD operating income and SVOD operating margin are important financial measures for the Company but are not financial measures defined by GAAP.
+These measures should be reviewed in conjunction with the most comparable GAAP financial measures and are not presented as alternative measures of diluted EPS, income before income taxes, cash provided by operations, Entertainment segment operating income or Entertainment segment operating margin as determined in accordance with GAAP. Diluted EPS excluding certain items, total segment operating income, free cash flow, Entertainment SVOD operating income and SVOD operating margin as we have calculated them may not be comparable to similarly titled measures reported by other companies.
+Our definitions and calculations of diluted EPS excluding certain items, total segment operating income, free cash flow, Entertainment SVOD operating income and SVOD operating margin, as well as quantitative reconciliations of each of these measures to the most directly comparable GAAP financial measure, are provided below.
+The Company is not providing the forward-looking measure for diluted EPS, income before income taxes, Entertainment segment operating income or Entertainment segment operating margin, which are the most directly comparable GAAP measures to diluted EPS excluding certain items, total segment operating income, Entertainment SVOD operating income and SVOD operating margin, respectively, or reconciliations of forward-looking diluted EPS excluding certain items, total segment operating income, Entertainment SVOD operating income and SVOD operating margin to those most directly comparable GAAP measures. The Company is unable to predict or estimate with reasonable certainty the ultimate outcome of certain significant items required for such GAAP measures without unreasonable effort. Information about other adjusting items that is currently not available to the Company could have a potentially unpredictable and significant impact on future GAAP financial results.
+
+Diluted EPS excluding certain items
+The Company uses diluted EPS excluding (1) certain items affecting comparability of results from period to period and (2) amortization of intangible assets, including purchase accounting step-up adjustments for released content recognized in the fiscal 2019 acquisition of TFCF and Hulu and business acquisitions occurring after fiscal 2025 (Acquisition Amortization), to facilitate the evaluation of the performance of the Company’s operations exclusive of these items, and these adjustments reflect how senior management is evaluating segment performance.
+The Company believes that providing diluted EPS exclusive of certain items impacting comparability is useful to investors, particularly where the impact of the excluded items is significant in relation to reported earnings and because the measure allows for comparability between periods of the operating performance of the Company’s business and allows investors to evaluate the impact of these items separately.
+23
+
+
+
+
+
+The following table reconciles reported diluted EPS to diluted EPS excluding certain items for the third quarter:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+($ in millions except EPS)
+| Pre-Tax Income/Loss | | Tax Benefit/Expense (1)
+| | After-Tax Income/Loss (2)
+| | Diluted EPS (3)
+| | Change vs. prior-year period
+|
+Quarter Ended June 27, 2026 | | | | | | | | | |
+As reported | $ | 3,645 | | | $ | (801) | | | $ | 2,844 | | | $ | 1.51 | | | (48) % |
+Exclude: | | | | | | | | | |
+Restructuring and impairment charges (4)
+| 900 | | | (175) | | | 725 | | | 0.41 | | | |
+Acquisition Amortization (5)
+| 334 | | | (76) | | | 258 | | | 0.13 | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Excluding certain items | $ | 4,879 | | | $ | (1,052) | | | $ | 3,827 | | | $ | 2.06 | | | 28 % |
+| | | | | | | | | |
+Quarter Ended June 28, 2025 | | | | | | | | | |
+As reported | $ | 3,211 | | | $ | 2,732 | | | $ | 5,943 | | | $ | 2.92 | | | |
+Exclude: | | | | | | | | | |
+Hulu Transaction Impacts (6)
+| — | | | (3,277) | | | (3,277) | | | (1.56) | | | |
+| | | | | | | | | |
+Acquisition Amortization (5)
+| 395 | | | (92) | | | 303 | | | 0.16 | | | |
+Restructuring and impairment charges (4)
+| 185 | | | (43) | | | 142 | | | 0.08 | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Excluding certain items | $ | 3,791 | | | $ | (680) | | | $ | 3,111 | | | $ | 1.61 | | | |
+
+(1) Tax benefit/expense is determined using the tax rate applicable to the individual item.
+(2) Before noncontrolling interest share.
+(3) Net of noncontrolling interest share, where applicable. Total may not equal the sum of the column due to rounding.
+(4) Amounts for the current quarter included an impairment of our investment in A+E ($812 million) and severance costs ($88 million). Amounts for the prior-year quarter included an impairment of our investment in Tata Play Limited ($179 million).
+(5) For the current quarter, intangible asset amortization was $270 million and step-up amortization was $64 million. For the prior-year quarter, intangible asset amortization was $326 million, step-up amortization was $66 million and amortization of intangible assets related to an equity investee was $3 million.
+(6) Reflects a $3,277 million non-cash tax benefit recognized upon the change in Hulu’s U.S. income tax classification and $477 million recognized in “Net income attributable to noncontrolling interests” related to the acquisition of Hulu (Hulu Transaction Impacts).
+24
+
+
+
+
+
+
+The following table reconciles reported diluted EPS to diluted EPS excluding certain items for the nine-month period:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+($ in millions except EPS)
+| Pre-Tax Income/Loss | | Tax Benefit/Expense (1)
+| | After-Tax Income/Loss (2)
+| | Diluted EPS (3)
+| | Change vs. prior year
+|
+Nine Months Ended June 27, 2026
+| | | | | | | | | |
+As reported | $ | 10,705 | | | $ | (2,912) | | | $ | 7,793 | | | $ | 4.12 | | | (33) % |
+Exclude: | | | | | | | | | |
+Restructuring and impairment charges (4)
+| 1,139 | | | (197) | | | 942 | | | 0.53 | | | |
+Acquisition Amortization (5)
+| 947 | | | (216) | | | 731 | | | 0.37 | | | |
+Non-cash tax charges resulting from the Fubo and NFL Transactions
+| — | | | 422 | | | 422 | | | 0.22 | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Excluding certain items | $ | 12,791 | | | $ | (2,903) | | | $ | 9,888 | | | $ | 5.25 | | 9 % |
+| | | | | | | | | |
+Nine Months Ended June 28, 2025
+| | | | | | | | | |
+As reported | $ | 9,958 | | | $ | 2,030 | | | $ | 11,988 | | | $ | 6.12 | | | |
+Exclude: | | | | | | | | | |
+Hulu Transaction Impacts | — | | | (3,277) | | | (3,277) | | | $ | (1.55) | | | |
+Resolution of a prior-year tax matter | — | | | (1,016) | | | (1,016) | | | (0.56) | | | |
+Acquisition Amortization (5)
+| 1,188 | | | (276) | | | 912 | | | 0.49 | | | |
+Restructuring and impairment charges (4)
+| 437 | | | 145 | | | 582 | | | 0.32 | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Excluding certain items | $ | 11,583 | | | $ | (2,394) | | | $ | 9,189 | | | $ | 4.82 | | | |
+
+(1) Tax benefit/expense is determined using the tax rate applicable to the individual item.
+(2) Before noncontrolling interest share.
+(3) Net of noncontrolling interest share, where applicable. Total may not equal the sum of the column due to rounding.
+(4) Amounts for the current period included an impairment of our investment in A+E ($959 million) and severance costs ($180 million). Amounts for the prior-year period included impairment charges related to our investment in Tata Play Limited ($179 million), the formation of the India joint venture ($143 million) and content ($109 million). Tax expense includes a $99 million tax benefit on the impairment charges and a non-cash tax charge of $244 million related to the formation of the India joint venture.
+(5) For the current period, intangible asset amortization was $755 million and step-up amortization was $192 million. For the prior-year period, intangible asset amortization was $980 million, step-up amortization was $199 million and amortization of intangible assets related to an equity investee was $9 million.
+
+Total segment operating income
+The Company evaluates the performance of its operating segments based on segment operating income, and management uses total segment operating income (the sum of segment operating income from all of the Company’s segments) as a measure of the performance of operating businesses separate from non-operating factors. The Company believes that information about total segment operating income assists investors by allowing them to evaluate changes in the operating results of the Company’s portfolio of businesses separate from non-operational factors that affect net income, thus providing separate insight into both operations and other factors that affect reported results.
+25
+
+
+
+
+
+The following table reconciles income before income taxes to total segment operating income:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Quarter Ended | | | | Nine Months Ended | | |
+($ in millions)
+| June 27,
+2026 | | June 28,
+2025 | | Change | | June 27,
+2026 | | June 28,
+2025 | | Change |
+Income before income taxes
+| $ | 3,645 | | | $ | 3,211 | | | 14 % | | $ | 10,705 | | | $ | 9,958 | | | 8 % |
+Add (subtract): | | | | | | | | | | | |
+| | | | | | | | | | | |
+Corporate and unallocated shared expenses | 334 | | | 410 | | | 19 % | | 1,018 | | | 1,265 | | | 20 % |
+Equity in the loss of India joint venture
+| 44 | | | 50 | | | 12 % | | 136 | | | 186 | | | 27 % |
+Restructuring and impairment charges
+| 900 | | | 185 | | | >(100) % | | 1,139 | | | 437 | | | >(100) % |
+| | | | | | | | | | | |
+Interest expense, net | 298 | | | 324 | | | 8 % | | 813 | | | 1,037 | | | 22 % |
+Acquisition Amortization
+| 334 | | | 395 | | | 15 % | | 947 | | | 1,188 | | | 20 % |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+Total segment operating income | $ | 5,555 | | | $ | 4,575 | | | 21 % | | $ | 14,758 | | | $ | 14,071 | | | 5 % |
+
+
+Free cash flow
+The Company uses free cash flow (cash provided by operations less investments in parks, resorts and other property), among other measures, to evaluate the ability of its operations to generate cash that is available for purposes other than capital expenditures. Management believes that information about free cash flow provides investors with an important perspective on the cash available to service debt obligations, make strategic acquisitions and investments and pay dividends or repurchase shares.
+The following table presents a summary of the three major categories of the Company’s consolidated cash flows:
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Quarter Ended | | Nine Months Ended |
+($ in millions) | June 27,
+2026 | | June 28,
+2025 | | June 27,
+2026 | | June 28,
+2025 |
+Cash provided by operations | $ | 4,866 | | | $ | 3,669 | | | $ | 12,515 | | | $ | 13,627 | |
+Cash used in investing activities | (1,787) | | | (1,720) | | | (7,256) | | | (6,193) | |
+Cash used in financing activities
+| (3,578) | | | (2,537) | | | (5,740) | | | (8,090) | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+
+The following table reconciles the Company’s consolidated cash provided by operations to free cash flow:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Quarter Ended | | | | Nine Months Ended | | |
+($ in millions) | June 27,
+2026 | | June 28,
+2025 | | Change | | June 27,
+2026 | | June 28,
+2025 | | Change |
+Cash provided by operations | $ | 4,866 | | | $ | 3,669 | | | $ | 1,197 | | $ | 12,515 | | | $ | 13,627 | | | $ | (1,112) |
+Investments in parks, resorts and other property | (1,794) | | | (1,780) | | | (14) | | (6,780) | | | (6,108) | | | (672) |
+Free cash flow | $ | 3,072 | | | $ | 1,889 | | | $ | 1,183 | | $ | 5,735 | | | $ | 7,519 | | | $ | (1,784) |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+
+26
+
+
+
+
+
+
+Entertainment SVOD operating income
+Entertainment SVOD operating income consists of operating income for the Disney+, Hulu subscription video-on-demand and Disney+ Hotstar (through November 14, 2024) streaming services (collectively, “Entertainment SVOD” or “SVOD”), which excludes results for the Hulu Live TV and Fubo vMVPD services.
+The Company uses Entertainment SVOD operating income (and related SVOD operating margin) as a measure of the performance of Entertainment SVOD, and we believe Entertainment SVOD operating income (and related SVOD operating margin) assists investors by allowing them to evaluate the performance of Entertainment SVOD separately from our other Entertainment businesses.
+The following table reconciles Entertainment SVOD operating income to Entertainment segment operating income:
+| | | | | | | | | | | | | | | | | |
+| Quarter Ended | | |
+($ in millions)
+| June 27,
+2026 | | June 28,
+2025 | | Change |
+Entertainment segment operating income (1)
+| $ | 1,680 | | $ | 1,022 | | 64 % |
+Subtract: Other Entertainment businesses operating income
+| 968 | | 693 | | 40 % |
+Entertainment SVOD operating income (1)
+| $ | 712 | | $ | 329 | | >100 % |
+| | | | | |
+
+(1) For the current quarter, Entertainment segment operating margin and SVOD operating margin were 14.8% and 12.9%, respectively. Entertainment segment operating margin is calculated as Entertainment segment operating income divided by Entertainment segment revenue, and SVOD operating margin is calculated as Entertainment SVOD operating income divided by Entertainment SVOD revenue.
+
+
+27
+
+
+
+
+
+
+FORWARD-LOOKING STATEMENTS
+Certain statements and information in this earnings release may constitute “forward-looking statements” within the meaning of the Private Securities Litigation Reform Act of 1995, including statements regarding our expectations, beliefs, plans, financial prospects, outlook and guidance; financial or performance estimates and expectations (including estimated or expected revenues, earnings, operating income, timing of expenses, capital expenditures, margins and cash flow) and expected drivers; potential future efficiencies and cost reductions; future capital allocation, including investments, content spend, capital expenditures and share repurchases, and expected drivers; strategies, priorities and opportunities for growth, including plans for, future value of and investments in, as applicable, our IP, franchises, content offerings, businesses and assets, increasing reach and engagement and using technologies, including to increase monetization and returns and reduce churn; the completion and benefits of, as applicable, new initiatives and agreements, future projects, including at parks and experiences, and technologies, including AI; plans, expectations or drivers for growth in our streaming services and parks and experiences; anticipated demand (including, as applicable, visitation patterns) for and timing, availability or nature of our offerings, including at our parks and experiences, the content and functionality within our products and services and our content releases, including the applicable distribution channel; estimates of the financial impact of certain items, accounting treatment, events or circumstances; and other statements that are not historical in nature. Any information that is not historical in nature is subject to change. These statements are made on the basis of management’s views and assumptions regarding future events and business performance as of the time the statements are made. Management does not undertake any obligation to update these statements.
+Actual results may differ materially from those expressed or implied. Such differences may result from actions taken by the Company, including restructuring or strategic initiatives (including capital investments, asset acquisitions or dispositions, new or expanded business lines or cessation of certain operations), our execution of our business plans (including the content we create and IP we invest in, our pricing decisions, our cost structure and our management and other personnel decisions), our ability to quickly execute on cost rationalization while preserving revenue, the discovery of additional information or other business decisions, as well as from developments beyond the Company’s control, including:
+• the occurrence of subsequent events;
+• deterioration in domestic and global economic conditions or failure of conditions to improve as anticipated;
+• deterioration in or pressures from competitive conditions, including competition to create or acquire content, competition for talent and competition for advertising revenue;
+• consumer preferences for and acceptance of our content offerings and the distribution channel (including pricing and bundling of our streaming services and impact on churn and subscriber additions) and our travel destinations;
+• the market for advertising sales on our streaming services and linear networks;
+• health concerns and their impact on our businesses and productions;
+• international, including tariffs and other trade policies, political or military developments;
+• regulatory and legal developments;
+• technological developments;
+• the continued availability of our licenses;
+• labor markets and activities, including work stoppages;
+• adverse weather conditions or natural disasters; and
+• availability of content.
+Such developments may further affect entertainment, travel and leisure businesses generally and may, among other things, affect (or further affect, as applicable):
+• our operations, business plans or profitability;
+• demand for our products and services;
+• the performance of the Company’s content;
+• our ability to create or obtain desirable content at or under the value we assign the content;
+• the advertising market for programming;
+• taxation; and
+• performance of some or all Company businesses either directly or through their impact on those who distribute our products.
+28
+
+
+
+
+
+Additional factors are set forth in the Company’s most recent Annual Report on Form 10-K, including under the captions “Risk Factors,” “Management’s Discussion and Analysis of Financial Condition and Results of Operations,” and “Business,” subsequent quarterly reports on Form 10-Q, including under the captions “Risk Factors” and “Management’s Discussion and Analysis of Financial Condition and Results of Operations,” and subsequent filings with the Securities and Exchange Commission.
+The terms “Company,” “we,” and “our” are used in this report to refer collectively to the parent company and the subsidiaries through which our various businesses are actually conducted.
+
+
+
+CONTACTS:
+
+
+David Jefferson
+Corporate Communications
+818-560-4832
+
+
+
+
+Benjamin Swinburne
+Investor Relations
+818-560-4245
+
+
+
+
+
+
+
+
+29
