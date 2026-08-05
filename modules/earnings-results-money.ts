@@ -42,7 +42,7 @@ export function findColumnValueMatch(
   return matches[columnIndex] ?? matches[0] ?? null;
 }
 
-function findNumericValues(
+export function findNumericValues(
   text: string,
   options: NumericValueOptions = {},
 ): number[] {
