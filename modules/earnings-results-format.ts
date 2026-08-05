@@ -6,6 +6,7 @@ import {
   isDefinitionalLine,
 } from "./earnings-results-format-selection.ts";
 import {extractOutlookMetrics} from "./earnings-results-outlook.ts";
+import {gaapTermSource} from "./earnings-results-terms.ts";
 import {
   getDocumentCurrencyCode,
   getDilutedShareMantissa,
@@ -262,7 +263,7 @@ function extractMetric(
     const isForwardLooking = isForwardLookingLine(line);
     const hasExplicitGaapEps = "gaap_eps" === definition.key &&
       false === isForwardLooking &&
-      /\bgaap\s+(?:diluted\s+)?eps\b/i.test(line);
+      explicitGaapEpsPattern.test(line);
     const hasReportedGaapEps = "gaap_eps" === definition.key &&
       false === isForwardLooking &&
       true === hasGaapNarrativeBeforeAdjustment(line, definition.patterns);
@@ -363,6 +364,10 @@ function isSkippedMetricLine(line: string, definition: MetricDefinition): boolea
 
   return true;
 }
+
+// A line naming only the non-GAAP measure must not override the adjusted skip, so this uses
+// the shared GAAP term rather than a bare \bgaap.
+const explicitGaapEpsPattern = new RegExp(String.raw`${gaapTermSource}\s+(?:diluted\s+)?eps\b`, "i");
 
 function isForwardLookingLine(line: string): boolean {
   return /\b(?:guidance|outlook|forecast)\b/i.test(line) ||

@@ -1,3 +1,4 @@
+import {gaapTermSource} from "./earnings-results-terms.ts";
 
 export type EarningsOutlookMetric = {
   key: string;
@@ -59,9 +60,7 @@ const outlookMetricDefinitions: OutlookMetricDefinition[] = [
     key: "eps",
     label: "EPS",
     patterns: [
-      // "non-" ends a word, so a bare \bgaap here also matches inside "Non-GAAP EPS" and
-      // reports the adjusted guidance a second time under the GAAP label.
-      /(?<!non-)\bgaap\s+(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?eps\b/i,
+      new RegExp(String.raw`${gaapTermSource}\s+(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?eps\b`, "i"),
       // Guidance for a non-GAAP per-share measure must not be posted under the GAAP label,
       // so an occurrence carrying that qualifier is passed over. One sentence often guides
       // on both measures ("Earnings per Share (EPS) is expected to be between $4.05 and
