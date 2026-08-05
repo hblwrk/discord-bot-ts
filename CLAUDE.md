@@ -1,6 +1,8 @@
-# CLAUDE.md
+# Repository guidance
 
 Coding guidance for this repo. Extracts the rules a contributor (human or agent) needs to write code that passes CI and runs in production. README.md remains the source of truth for setup, secrets, and operations.
+
+`AGENTS.md` is a symlink to this file, so tools that look for either name read the same rules and neither can drift from the other.
 
 ## Stack
 
