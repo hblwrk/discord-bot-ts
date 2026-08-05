@@ -49,6 +49,9 @@ const outlookMetricDefinitions: OutlookMetricDefinition[] = [
     patterns: [
       /\badjusted\s+continuing(?:\s+operations?)?\s+(?:diluted\s+)?eps\b/i,
       /\badjusted\s+continuing(?:\s+operations?)?\s+earnings\s+per\s+(?:common\s+)?share\b/i,
+      /\badjusted\s+(?:diluted\s+)?eps\b/i,
+      /\badjusted\s+(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\b/i,
+      /\bnon-gaap\s+(?:diluted\s+)?(?:eps|(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share)\b/i,
     ],
     valueType: "eps",
   },
@@ -56,9 +59,17 @@ const outlookMetricDefinitions: OutlookMetricDefinition[] = [
     key: "eps",
     label: "EPS",
     patterns: [
-      /\bgaap\s+(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?eps\b/i,
-      /\b(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?eps\b/i,
-      /\bearnings\s+per\s+(?:common\s+)?share\b/i,
+      // "non-" ends a word, so a bare \bgaap here also matches inside "Non-GAAP EPS" and
+      // reports the adjusted guidance a second time under the GAAP label.
+      /(?<!non-)\bgaap\s+(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?eps\b/i,
+      // Guidance for a non-GAAP per-share measure must not be posted under the GAAP label,
+      // so an occurrence carrying that qualifier is passed over. One sentence often guides
+      // on both measures ("Earnings per Share (EPS) is expected to be between $4.05 and
+      // $4.25 ... Adjusted EPS is estimated in the range of $4.80 to $5.00"), so this
+      // rejects the qualified occurrence rather than the whole line, which would discard
+      // the GAAP figure alongside it.
+      /(?<!\b(?:adjusted|non-gaap)\s)(?<!\b(?:adjusted|non-gaap)\s\w{1,14}\s)\b(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?eps\b/i,
+      /(?<!\b(?:adjusted|non-gaap)\s)(?<!\b(?:adjusted|non-gaap)\s\w{1,14}\s)\bearnings\s+per\s+(?:common\s+)?share\b/i,
     ],
     valueType: "eps",
   },
@@ -187,7 +198,11 @@ function hasMixedOutlookPeriods(lines: string[]): boolean {
   const sectionText = lines.join(" ");
   const hasQuarter = /\b(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b/i.test(sectionText) ||
     /\bq[1-4]\b/i.test(sectionText);
-  const hasFullYear = /\b(?:full[\s–—-]+year|fiscal\s+year|fy)\b/i.test(sectionText);
+  // "fiscal 2026" states an annual period just as "fiscal year 2026" does. Without the bare
+  // form a section mixing it with a quarter item reads as single-period, and every item is
+  // then rendered without the period it belongs to.
+  const hasFullYear = /\b(?:full[\s–—-]+year|fiscal\s+year|fy)\b/i.test(sectionText) ||
+    /\bfiscal\s+20\d{2}\b/i.test(sectionText);
   return hasQuarter && hasFullYear;
 }
 
@@ -329,7 +344,7 @@ function getOutlookPeriodLabel(line: string): string | undefined {
     return quarterByName.get(writtenQuarterMatch[1].toLowerCase());
   }
 
-  const fullYearMatch = /\b(?:full[\s–—-]+year|fiscal\s+year|fy)\s*(?:of\s+)?(20\d{2}|\d{2})\b/i.exec(line);
+  const fullYearMatch = /\b(?:full[\s–—-]+year|fiscal(?:\s+year)?|fy)\s*(?:of\s+)?(20\d{2}|\d{2})\b/i.exec(line);
   if (undefined !== fullYearMatch?.[1]) {
     return `FY${2 === fullYearMatch[1].length ? `20${fullYearMatch[1]}` : fullYearMatch[1]}`;
   }
@@ -375,7 +390,13 @@ function extractOutlookValue(
       continue;
     }
 
-    const value = getGrowthOutlookValue(valueText) ??
+    // A per-share range is the figure being guided to, so it wins over a growth rate quoted
+    // in the same breath ("Non-GAAP EPS of $0.84 to $0.88, representing growth of 28% to
+    // 35%"). Guidance given only as growth still falls through to the growth reading.
+    const value = ("eps" === valueType
+      ? getOutlookRangeValue(valueText, valueType, documentCurrencyCode)
+      : null) ??
+      getGrowthOutlookValue(valueText) ??
       getOutlookRangeValue(valueText, valueType, documentCurrencyCode) ??
       ("eps" === valueType ? getEpsPercentOutlookValue(valueText) : null) ??
       ("text" === valueType ? getSingleOutlookValue(valueText, "money", documentCurrencyCode) : null) ??
@@ -449,12 +470,27 @@ function getNumericGrowthOutlookValue(value: string): string | null {
   return `${formatPercent(Number.parseFloat(percentMatch[1]))} ${getGrowthDirection(value)}`;
 }
 
+function getEpsMoneyRangeValue(value: string, documentCurrencyCode: string): string | null {
+  for (const moneyRangeMatch of value.matchAll(moneyRangePattern)) {
+    const firstValue = parseNumber(moneyRangeMatch[1]);
+    const secondValue = parseNumber(moneyRangeMatch[2]);
+    if (null !== firstValue && null !== secondValue) {
+      return `${formatEps(firstValue, documentCurrencyCode)} to ${formatEps(secondValue, documentCurrencyCode)}`;
+    }
+  }
+
+  return null;
+}
+
 function getOutlookRangeValue(
   value: string,
   valueType: OutlookValueType,
   documentCurrencyCode: string,
 ): string | null {
-  if ("eps" === valueType) {
+  // A per-share range is read before a percentage one, so guidance that states the figure
+  // and its growth together ("$0.84 to $0.88, representing growth of 28% to 35%") reports
+  // the figure. Guidance given only as growth still falls through to the percentage below.
+  if ("eps" === valueType && null === getEpsMoneyRangeValue(value, documentCurrencyCode)) {
     const percentRangeValue = getPercentRangeOutlookValue(value);
     if (null !== percentRangeValue) {
       return withPercentGrowthDirection(percentRangeValue, value);

@@ -137,6 +137,13 @@ describe("extractOutlookMetrics", () => {
       "The Company is updating its estimates for the year ending December 31, 2026, which reflects the addition of PayneCrest. Net income is expected to be between $223.0 million and $234.0 million. Earnings per Share (EPS) is expected to be between $4.05 and $4.25 per fully diluted share. Adjusted EPS is estimated in the range of $4.80 to $5.00, and Adjusted EBITDA for the full year 2026 is expected to range from $480.0 to $500.0 million.",
       "The Company is targeting SG&A expenses as a percentage of revenue in the mid-to-high 5% range for full year 2026. The Company's targeted gross margins by segment are as follows: Utilities in the range of 10 to 12%; Energy in the range of 9 to 11%.",
     ])).toEqual([
+      // The sentence guides on both per-share measures, so both are reported under their
+      // own labels rather than the adjusted figure appearing as the GAAP one.
+      {
+        key: "adjusted_eps",
+        label: "Adj EPS",
+        value: "$4.8 to $5",
+      },
       {
         key: "eps",
         label: "EPS",
@@ -231,8 +238,8 @@ describe("extractOutlookMetrics", () => {
         value: "high single-digit growth",
       },
       {
-        key: "eps",
-        label: "EPS",
+        key: "adjusted_eps",
+        label: "Adj EPS",
         value: "12% growth",
       },
     ]);
@@ -249,8 +256,8 @@ describe("extractOutlookMetrics", () => {
         value: "$690M to $710M",
       },
       {
-        key: "eps",
-        label: "EPS",
+        key: "adjusted_eps",
+        label: "Adj EPS",
         value: "$3.65 to $3.85",
       },
       {

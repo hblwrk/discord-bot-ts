@@ -198,10 +198,23 @@ export function getCurrentPeriodColumnIndex(
     return 0;
   }
 
-  for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 12; index--, examined++) {
+  // An income statement puts twenty or more rows between its year header and the per-share
+  // rows at the bottom, so a short lookback misses the header entirely and the row is read
+  // as though the reported period came first. The nearest header still wins, which keeps a
+  // row below one table from picking up the header of another.
+  for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 40; index--, examined++) {
     const line = lines[index];
     if (undefined === line) {
       continue;
+    }
+
+    // A header naming its columns by period end ("June 30, 2026 | March 31, 2026 |
+    // December 31, 2025") does not map onto a year run — and where such a table also carries
+    // a year-to-date pair, those bare years look like a run that starts at the wrong column.
+    // The row's own header decides the layout either way, so stop here rather than adopting
+    // the columns of an unrelated table further up.
+    if (true === isPeriodHeaderLine(line)) {
+      return 0;
     }
 
     const headerYears = getColumnHeaderYears(line);
@@ -221,6 +234,14 @@ export function getCurrentPeriodColumnIndex(
 // A column header ends in a run of year cells ("... Three Months Ended March 31 2025
 // 2026", "$ million | 2026 | 2025 | 2026 | 2025"). Requiring the years to be separated
 // by nothing but cell punctuation keeps prose such as "between 2025 and 2026" out.
+// A column header names a period per column, either as a bare year or as a period-end date.
+function isPeriodHeaderLine(line: string): boolean {
+  const dateColumns = line.match(
+    /\b(?:january|february|march|april|may|june|july|august|september|october|november|december)\s+\d{1,2},?\s*(?:20\d{2})?/gi,
+  );
+  return 2 <= (dateColumns?.length ?? 0);
+}
+
 function getColumnHeaderYears(line: string): string[] {
   const yearMatches = [...line.matchAll(/\b20\d{2}\b/g)];
   if (2 > yearMatches.length) {

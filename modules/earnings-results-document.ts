@@ -115,7 +115,11 @@ export function getQuarterLabel(text: string): string | undefined {
     return `Q${ordinalQuarterMatch[1]} ${ordinalQuarterMatch[2]}`;
   }
 
-  const writtenFiscalQuarterMatch = text.match(/\b(first|second|third|fourth)[\s–—-]+quarter(?:\s+and\s+full)?\s+(?:fiscal\s+year|FY)\s*(20\d{2}|\d{2})\b/i);
+  // A shareholder letter names the period as "third quarter results for fiscal 2026":
+  // written quarter, a caption word, then a bare "fiscal". Only a short caption is allowed
+  // through, so the match cannot reach across prose into a prior-year comparative such as
+  // "for the third quarter to $25.2 billion from $23.7 billion in Q3 fiscal 2025".
+  const writtenFiscalQuarterMatch = text.match(/\b(first|second|third|fourth)[\s–—-]+quarter(?:\s+and\s+full)?(?:\s+(?:results?|segment\s+\w+(?:\s+and\s+\w+)?))?\s+(?:for\s+)?(?:fiscal(?:\s+year)?|FY)\s*(20\d{2}|\d{2})\b/i);
   if (undefined !== writtenFiscalQuarterMatch?.[1] && undefined !== writtenFiscalQuarterMatch[2]) {
     const quarter = getQuarterFromName(writtenFiscalQuarterMatch[1]);
     if (quarter) {
@@ -128,17 +132,22 @@ export function getQuarterLabel(text: string): string | undefined {
     return namedPeriodEndedQuarter;
   }
 
+  // The period the statements cover is stated as the period they ended, and it outranks a
+  // written quarter elsewhere in the document: a release for the quarter ended June 30 also
+  // says "For the third quarter of 2026, we expect", and that guidance period must not
+  // become the reporting period. A fiscal filer whose quarter number differs from the
+  // calendar one is already resolved by the fiscal patterns above.
+  const periodEndedQuarter = getQuarterLabelFromPeriodEnded(text);
+  if (undefined !== periodEndedQuarter) {
+    return periodEndedQuarter;
+  }
+
   const writtenQuarterMatch = text.match(/\b(first|second|third|fourth)[\s–—-]+quarter\s+(?:of\s+)?(20\d{2})\b/i);
   if (undefined !== writtenQuarterMatch?.[1] && undefined !== writtenQuarterMatch[2]) {
     const quarter = getQuarterFromName(writtenQuarterMatch[1]);
     if (quarter) {
       return `${quarter} ${writtenQuarterMatch[2]}`;
     }
-  }
-
-  const periodEndedQuarter = getQuarterLabelFromPeriodEnded(text);
-  if (undefined !== periodEndedQuarter) {
-    return periodEndedQuarter;
   }
 
   const directQuarterMatch = text.match(/\b(Q[1-4])\s+(20\d{2})\b/i);

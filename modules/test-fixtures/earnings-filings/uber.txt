@@ -1,0 +1,556 @@
+EX-99.1
+2
+uberq226earningspressrelea.htm
+EXHIBIT 99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+Uber Announces Results for Second Quarter 2026
+
+
+Gross Bookings grew 22% year-over-year on a constant currency basis; Trips grew 18% year-over-year
+GAAP Income from operations of $1.9 billion; Non-GAAP Operating Income of $2.1 billion, up 40% year-over-year
+GAAP Diluted EPS of $1.17; Non-GAAP EPS of $0.81, up 35% year-over-year
+
+
+SAN FRANCISCO – August 5, 2026 – Uber Technologies, Inc. (NYSE: UBER) today announced financial results for the quarter ended June 30, 2026.
+
+
+“Uber’s platform advantage continues to compound: record consumers and engagement, and profitable growth across our business,” said Dara Khosrowshahi, CEO. “In fact, we’ve added more first-time users over the past twelve months than in any period over the past five years. We’re investing from a position of strength, as we accelerate our cross-platform strategy at a global scale and build the world’s largest platform for autonomous vehicles.”
+“We continue to convert strong top-line growth into faster earnings and significant cash generation,” said Balaji Krishnamurthy, CFO. “Gross Bookings grew 22%, Non-GAAP EPS grew 35%, and trailing twelve-month free cash flow exceeded $10 billion for the first time in Uber’s history—giving us the flexibility to both invest for the future and pursue strategic opportunities, while continuing to reduce our share count.”
+
+
+
+
+Financial and Operational Highlights for Second Quarter 2026
+• Trips during the quarter grew 18% year-over-year (“YoY”) to 3.9 billion, driven by Monthly Active Platform Consumers (“MAPCs") growth of 16% YoY and monthly Trips per MAPC growth of 2% YoY.
+• Gross Bookings grew 24% YoY to $58.0 billion, and 22% on a constant currency basis.
+• Revenue grew 12% YoY to $14.2 billion, or 11% on a constant currency basis. Business model changes negatively impacted total revenue YoY growth by 8 percentage points on a reported and constant currency basis.
+• GAAP Income from operations grew 30% YoY to $1.9 billion.
+• GAAP Net income attributable to Uber Technologies, Inc. was $2.4 billion, which includes a $1.6 billion net benefit (pre-tax) from revaluations of Uber’s equity investments. GAAP Diluted earnings per share (“EPS”) was $1.17.
+• Adjusted EBITDA grew 33% YoY to $2.8 billion. Adjusted EBITDA margin as a percentage of Gross Bookings was 4.9%, up from 4.5% in Q2 2025.
+• Non-GAAP Operating Income grew 40% YoY to $2.1 billion. Non-GAAP Operating Income as a percentage of Gross Bookings was 3.7%, up from 3.3% in Q2 2025.
+• Non-GAAP Net Income grew 29% YoY to $1.7 billion and Non-GAAP EPS grew 35% YoY to $0.81.
+• Net cash provided by operating activities was $2.9 billion and free cash flow, defined as net cash flows from operating activities less capital expenditures, was $2.8 billion.
+• Unrestricted cash, cash equivalents, and short-term investments were $5.4 billion at the end of the second quarter.
+
+
+Outlook for Q3 2026
+For Q3 2026, we anticipate:
+• Gross Bookings of $58.25 billion to $60.25 billion, representing growth of 18% to 22% YoY on a constant-currency basis.
+◦ Our outlook assumes a roughly 1 percentage-point currency headwind to total reported YoY growth.
+• Non-GAAP EPS of $0.84 to $0.88, representing growth of 28% to 35% YoY.
+◦ Our outlook translates to Adjusted EBITDA of $2.86 billion to $2.96 billion.
+
+
+
+
+
+
+
+
+
+
+1
+
+
+
+
+
+
+
+Financial and Operational Highlights for Second Quarter 2026
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | | | |
+(In millions, except percentages and per share amounts) | | 2025 | | 2026 | | % Change | | % Change
+(Constant Currency (1) )
+|
+| | | | | | | | |
+Monthly Active Platform Consumers (“MAPCs”) | | 180 | | | 208 | | | 16 | % | | |
+Trips | | 3,268 | | | 3,867 | | | 18 | % | | |
+Gross Bookings | | $ | 46,756 | | | $ | 58,022 | | | 24 | % | | 22 | % |
+Revenue | | $ | 12,651 | | | $ | 14,191 | | | 12 | % | | 11 | % |
+GAAP Income from operations | | $ | 1,450 | | | $ | 1,890 | | | 30 | % | | |
+GAAP Net income attributable to Uber Technologies, Inc. (2)
+| | $ | 1,355 | | | $ | 2,394 | | | 77 | % | | |
+GAAP Diluted EPS | | $ | 0.63 | | | $ | 1.17 | | | 85 | % | | |
+Adjusted EBITDA (1)
+| | $ | 2,119 | | | $ | 2,819 | | | 33 | % | | |
+Non-GAAP Operating Income (1)
+| | $ | 1,534 | | | $ | 2,143 | | | 40 | % | | |
+Non-GAAP Net Income (1)
+| | $ | 1,280 | | | $ | 1,652 | | | 29 | % | | |
+Non-GAAP EPS (1)
+| | $ | 0.60 | | | $ | 0.81 | | | 35 | % | | |
+Net cash provided by operating activities
+| | $ | 2,564 | | | $ | 2,862 | | | 12 | % | | |
+Free cash flow (1)
+| | $ | 2,475 | | | $ | 2,792 | | | 13 | % | | |
+
+(1) See “Definitions of Non-GAAP Measures” and “Reconciliations of Non-GAAP Measures” sections herein for an explanation and reconciliations of non-GAAP measures used throughout this release.
+(2) Q2 2025 net income includes a $17 million net headwind (pre-tax) from revaluations of Uber’s equity investments. Q2 2026 net income includes a $1.6 billion net benefit (pre-tax) from revaluations of Uber’s equity investments.
+
+
+Results by Offering and Segment
+Gross Bookings
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | | | |
+(In millions, except percentages) | | 2025 | | 2026 | | % Change | | % Change
+(Constant Currency) |
+| | | | | | | | |
+Gross Bookings: | | | | | | | | |
+Mobility | | $ | 23,762 | | | $ | 28,988 | | | 22 | % | | 20 | % |
+Delivery | | 21,734 | | | 27,463 | | | 26 | % | | 25 | % |
+Freight | | 1,260 | | | 1,571 | | | 25 | % | | 25 | % |
+Total | | $ | 46,756 | | | $ | 58,022 | | | 24 | % | | 22 | % |
+
+
+
+Revenue
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | | | |
+(In millions, except percentages) | | 2025 | | 2026 | | % Change | | % Change
+(Constant Currency) |
+| | | | | | | | |
+Revenue: | | | | | | | | |
+Mobility
+| | $ | 7,288 | | | $ | 7,363 | | | 1 | % | | 0 | % |
+Delivery
+| | 4,102 | | | 5,245 | | | 28 | % | | 26 | % |
+Freight | | 1,261 | | | 1,583 | | | 26 | % | | 25 | % |
+Total
+| | $ | 12,651 | | | $ | 14,191 | | | 12 | % | | 11 | % |
+
+
+
+
+
+2
+
+
+
+
+
+
+
+Non-GAAP Operating Income and Segment Operating Income (Loss)
+| | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | |
+(In millions, except percentages) | | 2025 | | 2026 | | % Change |
+| | | | | | |
+Segment Operating Income (Loss): | | | | | | |
+Mobility | | $ | 1,729 | | | $ | 2,215 | | | 28 | % |
+Delivery | | 766 | | | 1,055 | | | 38 | % |
+Freight | | (26) | | | (24) | | | 8 | % |
+Corporate G&A and Platform R&D (1)
+| | (935) | | | (1,103) | | | (18) | % |
+Non-GAAP Operating Income (2)
+| | $ | 1,534 | | | $ | 2,143 | | | 40 | % |
+
+(1) Includes costs that are not directly attributable to our reportable segments. Corporate G&A also includes certain shared costs such as finance, accounting, tax, human resources, information technology and legal costs. Platform R&D also includes mapping and payment technologies and support and development of the internal technology infrastructure. Our allocation methodology is periodically evaluated and may change.
+(2) “Non-GAAP Operating Income” is a non-GAAP measure as defined by the SEC. See “Definitions of Non-GAAP Measures” and “Reconciliations of Non-GAAP Measures” sections herein for an explanation and reconciliations of non-GAAP measures used throughout this release.
+
+
+
+
+3
+
+
+
+
+
+Webcast and conference call information
+A live audio webcast of our second quarter ended June 30, 2026 earnings release call will be available at https://investor.uber.com/, along with the earnings press release and slide presentation. The call begins on August 5, 2026 at 5:00 AM (PT) / 8:00 AM (ET). This press release, including the reconciliations of certain non-GAAP measures to their nearest comparable GAAP measures, is also available on that site.
+We also provide announcements regarding our financial performance and other matters, including SEC filings, investor events, press and earnings releases, on our investor relations website (https://investor.uber.com/), and our blogs (https://uber.com/blog) and X accounts (@uber and @dkhos), as a means of disclosing material information and complying with our disclosure obligations under Regulation FD.
+About Uber
+Uber’s mission is to create opportunity through movement. We started in 2010 to solve a simple problem: how do you get access to a ride at the touch of a button? More than 79 billion trips later, we're building products to get people closer to where they want to be. By changing how people, food, and things move through cities, Uber is a platform that opens up the world to new possibilities.
+Forward-Looking Statements
+This press release contains forward-looking statements regarding our future business expectations which involve risks and uncertainties. Actual results may differ materially from the results predicted, and reported results should not be considered as an indication of future performance. Forward-looking statements include all statements that are not historical facts and can be identified by terms such as “anticipate,” “believe,” “contemplate,” “continue,” “could,” “estimate,” “expect,” “hope,” “intend,” “may,” “might,” “objective,” “ongoing,” “plan,” “potential,” “predict,” “project,” “should,” “target,” “will,” or “would” or similar expressions and the negatives of those terms. Forward-looking statements involve known and unknown risks, uncertainties and other factors that may cause our actual results, performance or achievements to be materially different from any future results, performance or achievements expressed or implied by the forward-looking statements. These risks, uncertainties and other factors relate to, among others: competition, managing our growth and corporate culture, financial performance, investments in new products or offerings, our ability to attract drivers, consumers and other partners to our platform, our brand and reputation and other legal and regulatory developments, particularly with respect to our relationships with drivers and couriers and the impact of the global economy, including rising inflation and interest rates. For additional information on other potential risks and uncertainties that could cause actual results to differ from the results predicted, please see our annual report on Form 10-K for the year ended December 31, 2025 and subsequent quarterly reports and other filings filed with the Securities and Exchange Commission from time to time. All information provided in this release and in the attachments is as of the date of this press release and any forward-looking statements contained herein are based on assumptions that we believe to be reasonable as of this date. Undue reliance should not be placed on the forward-looking statements in this press release, which are based on information available to us on the date hereof. We undertake no duty to update this information unless required by law.
+Non-GAAP Financial Measures
+To supplement our financial information, which is prepared and presented in accordance with generally accepted accounting principles in the United States of America (“GAAP”), we use the following non-GAAP financial measures: Adjusted EBITDA; Non-GAAP Operating Income; Non-GAAP Net Income; Non-GAAP EPS; Free cash flow; as well as, revenue growth rates in constant currency. The presentation of this financial information is not intended to be considered in isolation or as a substitute for, or superior to, the financial information prepared and presented in accordance with GAAP. We use these non-GAAP financial measures for financial and operational decision-making and as a means to evaluate period-to-period comparisons. We believe that these non-GAAP financial measures provide meaningful supplemental information regarding our performance by excluding certain items that may not be indicative of our recurring core business operating results.
+We believe that both management and investors benefit from referring to these non-GAAP financial measures in assessing our performance and when planning, forecasting, and analyzing future periods. These non-GAAP financial measures also facilitate management’s internal comparisons to our historical performance. We believe these non-GAAP financial measures are useful to investors both because (1) they allow for greater transparency with respect to key metrics used by management in its financial and operational decision-making and (2) they are used by our institutional investors and the analyst community to help them analyze the health of our business.
+There are a number of limitations related to the use of non-GAAP financial measures. In light of these limitations, we provide specific information regarding the GAAP amounts excluded from these non-GAAP financial measures and evaluating these non-GAAP financial measures together with their relevant financial measures in accordance with GAAP.
+
+
+
+
+4
+
+
+
+
+
+For more information on these non-GAAP financial measures, please see the sections titled “Definitions of Non-GAAP Measures” and “Reconciliations of Non-GAAP Measures” included at the end of this release. In regards to forward looking non-GAAP guidance, we are not able to reconcile the forward-looking Non-GAAP EPS and Adjusted EBITDA measures to the closest corresponding GAAP measures without unreasonable efforts because we are unable to predict the ultimate outcome of certain significant items. These items include, but are not limited to, significant legal settlements, unrealized gains and losses on equity investments, tax and regulatory reserve changes, restructuring costs and acquisition and financing related impacts.
+Contacts
+Investors and analysts: investor@uber.com
+Media: press@uber.com
+
+
+
+
+5
+
+
+
+
+
+
+UBER TECHNOLOGIES, INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(In millions)
+(Unaudited)
+| | | | | | | | | | | | | | |
+| | As of December 31, 2025 | | As of June 30, 2026 |
+Assets | | | | |
+Cash and cash equivalents | | $ | 7,105 | | | $ | 4,870 | |
+Short-term investments | | 528 | | | 521 | |
+Restricted cash and cash equivalents | | 631 | | | 661 | |
+Accounts receivable, net | | 3,827 | | | 4,298 | |
+Prepaid expenses and other current assets | | 1,902 | | | 2,179 | |
+Total current assets | | 13,993 | | | 12,529 | |
+Restricted cash and cash equivalents | | 1,911 | | | 1,646 | |
+Restricted investments | | 8,874 | | | 9,486 | |
+Investments | | 9,178 | | | 8,759 | |
+Equity method investments | | 287 | | | 3,773 | |
+Property and equipment, net | | 1,897 | | | 1,809 | |
+Operating lease right-of-use assets | | 1,114 | | | 1,558 | |
+Intangible assets, net | | 1,048 | | | 1,132 | |
+Goodwill | | 8,931 | | | 9,472 | |
+Deferred tax assets | | 10,951 | | | 10,162 | |
+Other non-current assets | | 3,618 | | | 5,475 | |
+Total assets | | $ | 61,802 | | | $ | 65,801 | |
+Liabilities, redeemable non-controlling interests and equity | | | | |
+Accounts payable | | $ | 1,013 | | | $ | 1,366 | |
+Short-term insurance reserves | | 3,387 | | | 3,758 | |
+Operating lease liabilities, current | | 169 | | | 178 | |
+Short-term debt | | — | | | 1,997 | |
+Accrued and other current liabilities | | 7,751 | | | 7,572 | |
+Total current liabilities | | 12,320 | | | 14,871 | |
+Long-term insurance reserves | | 9,076 | | | 9,528 | |
+Long-term debt, net of current portion | | 10,521 | | | 10,726 | |
+Operating lease liabilities, non-current | | 1,390 | | | 1,830 | |
+Other non-current liabilities | | 412 | | | 447 | |
+Total liabilities | | 33,719 | | | 37,402 | |
+| | | | |
+Redeemable non-controlling interests | | 165 | | | 180 | |
+Equity | | | | |
+Common stock | | — | | | — | |
+Additional paid-in capital | | 38,101 | | | 35,698 | |
+Accumulated other comprehensive loss | | (432) | | | (432) | |
+Accumulated deficit | | (10,628) | | | (7,950) | |
+Total Uber Technologies, Inc. stockholders' equity | | 27,041 | | | 27,316 | |
+Non-redeemable non-controlling interests | | 877 | | | 903 | |
+Total equity | | 27,918 | | | 28,219 | |
+Total liabilities, redeemable non-controlling interests and equity | | $ | 61,802 | | | $ | 65,801 | |
+
+
+
+
+
+
+
+
+
+6
+
+
+
+
+
+UBER TECHNOLOGIES, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(In millions, except share amounts which are reflected in thousands, and per share amounts)
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | 2025 | | 2026 | | 2025 | | 2026 |
+Revenue | | $ | 12,651 | | | $ | 14,191 | | | $ | 24,184 | | | $ | 27,394 | |
+Costs and expenses | | | | | | | | |
+Cost of revenue, exclusive of depreciation and amortization shown separately below | | 7,611 | | | 7,815 | | | 14,548 | | | 15,073 | |
+Operations and support | | 696 | | | 805 | | | 1,364 | | | 1,568 | |
+Sales and marketing | | 1,210 | | | 1,515 | | | 2,267 | | | 2,841 | |
+Research and development | | 840 | | | 1,043 | | | 1,655 | | | 1,994 | |
+General and administrative | | 669 | | | 935 | | | 1,326 | | | 1,733 | |
+Depreciation and amortization | | 175 | | | 188 | | | 346 | | | 372 | |
+Total costs and expenses | | 11,201 | | | 12,301 | | | 21,506 | | | 23,581 | |
+Income from operations | | 1,450 | | | 1,890 | | | 2,678 | | | 3,813 | |
+Interest expense | | (108) | | | (127) | | | (213) | | | (235) | |
+Interest income | | 181 | | | 172 | | | 350 | | | 347 | |
+Other income (expense), net | | (19) | | | 1,342 | | | 74 | | | (152) | |
+Income before income taxes and loss from equity method investments | | 1,504 | | | 3,277 | | | 2,889 | | | 3,773 | |
+Provision for (benefit from) income taxes | | 142 | | | 840 | | | (260) | | | 1,034 | |
+Loss from equity method investments | | (12) | | | (21) | | | (25) | | | (41) | |
+Net income including non-controlling interests | | 1,350 | | | 2,416 | | | 3,124 | | | 2,698 | |
+Less: net income (loss) attributable to non-controlling interests, net of tax | | (5) | | | 22 | | | (7) | | | 41 | |
+Net income attributable to Uber Technologies, Inc. | | $ | 1,355 | | | $ | 2,394 | | | $ | 3,131 | | | $ | 2,657 | |
+Net income per share attributable to Uber Technologies, Inc. common stockholders: | | | | | | | | |
+Basic | | $ | 0.65 | | | $ | 1.18 | | | $ | 1.50 | | | $ | 1.30 | |
+Diluted | | $ | 0.63 | | | $ | 1.17 | | | $ | 1.46 | | | $ | 1.29 | |
+Weighted-average shares used to compute net income per share attributable to common stockholders: | | | | | | | | |
+Basic | | 2,091,106 | | | 2,036,458 | | | 2,091,781 | | | 2,044,279 | |
+Diluted | | 2,125,628 | | | 2,050,225 | | | 2,124,181 | | | 2,060,763 | |
+
+
+
+
+
+7
+
+
+
+
+
+UBER TECHNOLOGIES, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(In millions)
+(Unaudited) | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | 2025 | | 2026 | | 2025 | | 2026 |
+Cash flows from operating activities | | | | | | | | |
+Net income including non-controlling interests | | $ | 1,350 | | | $ | 2,416 | | | $ | 3,124 | | | $ | 2,698 | |
+Adjustments to reconcile net income to net cash provided by operating activities: | | | | | | | | |
+Depreciation and amortization | | 181 | | | 195 | | | 359 | | | 386 | |
+Stock-based compensation | | 475 | | | 550 | | | 910 | | | 1,023 | |
+Deferred income taxes | | 87 | | | 665 | | | (325) | | | 771 | |
+(Gains) losses on debt and equity securities, net | | 17 | | | (1,612) | | | (34) | | | (138) | |
+(Gains) losses on foreign currency transactions, net | | (101) | | | (58) | | | (152) | | | (53) | |
+Other | | 106 | | | 296 | | | 79 | | | 316 | |
+Change in assets and liabilities, net of impact of business acquisitions and disposals: | | | | | | | | |
+Accounts receivable | | (212) | | | (425) | | | (335) | | | (499) | |
+Prepaid expenses and other assets | | (251) | | | (163) | | | (748) | | | (375) | |
+Operating lease right-of-use assets | | 46 | | | 38 | | | 89 | | | 100 | |
+Accounts payable | | 125 | | | 161 | | | 131 | | | 345 | |
+Accrued insurance reserves | | 812 | | | 387 | | | 1,487 | | | 830 | |
+Accrued expenses and other liabilities | | (20) | | | 447 | | | 410 | | | (94) | |
+Operating lease liabilities | | (51) | | | (35) | | | (107) | | | (97) | |
+Net cash provided by operating activities | | 2,564 | | | 2,862 | | | 4,888 | | | 5,213 | |
+Cash flows from investing activities | | | | | | | | |
+Purchases of property and equipment | | (89) | | | (70) | | | (163) | | | (135) | |
+Purchases of non-marketable equity securities | | (12) | | | (175) | | | (191) | | | (507) | |
+Purchases of marketable securities | | (5,095) | | | (10,887) | | | (7,635) | | | (17,646) | |
+Purchases of notes receivable | | — | | | (111) | | | — | | | (298) | |
+Proceeds from maturities and sales of marketable securities | | 4,636 | | | 8,119 | | | 7,033 | | | 14,665 | |
+Acquisition of businesses, net of cash acquired | | (804) | | | (647) | | | (804) | | | (653) | |
+Purchase of total return swaps | | — | | | (1,640) | | | — | | | (1,640) | |
+Other investing activities | | (97) | | | 22 | | | (243) | | | 52 | |
+Net cash used in investing activities | | (1,461) | | | (5,389) | | | (2,003) | | | (6,162) | |
+Cash flows from financing activities | | | | | | | | |
+Proceeds from term loan, notes, and credit facility, net of issuance costs | | 1,127 | | | 3,997 | | | 1,127 | | | 3,997 | |
+Principal repayment on term loan, notes, and credit facility | | — | | | (2,000) | | | — | | | (2,000) | |
+Principal payments on finance leases | | (28) | | | (42) | | | (75) | | | (82) | |
+Proceeds from the issuance of common stock under the Employee Stock Purchase Plan | | 120 | | | 136 | | | 120 | | | 136 | |
+Repurchases of common stock | | (1,363) | | | (518) | | | (3,148) | | | (3,529) | |
+Other financing activities | | (51) | | | (33) | | | (81) | | | (73) | |
+Net cash provided by (used in) financing activities | | (195) | | | 1,540 | | | (2,057) | | | (1,551) | |
+Effect of exchange rate changes on cash and cash equivalents, and restricted cash and cash equivalents | | 159 | | | 54 | | | 229 | | | 30 | |
+Net increase (decrease) in cash and cash equivalents, and restricted cash and cash equivalents | | 1,067 | | | (933) | | | 1,057 | | | (2,470) | |
+
+
+
+
+
+8
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+Cash and cash equivalents, and restricted cash and cash equivalents | | | | | | | | |
+Beginning of period | | 8,600 | | | 8,110 | | | 8,610 | | | 9,647 | |
+End of period | | $ | 9,667 | | | $ | 7,177 | | | $ | 9,667 | | | $ | 7,177 | |
+
+
+Key Terms for Our Key Metrics
+Driver(s). The term Driver collectively refers to independent providers of ride or delivery services who use our platform to provide Mobility or Delivery services, or both.
+Gross Bookings. We define Gross Bookings as the total dollar value, including any applicable taxes, tolls, and fees, of: Mobility rides, Delivery orders (in each case without any adjustment for consumer discounts and refunds, Driver and Merchant earnings, and Driver incentives) and Freight revenue. Gross Bookings do not include tips earned by Drivers. Gross Bookings are an indication of the scale of our current platform, which ultimately impacts revenue.
+Monthly Active Platform Consumers (“MAPCs”). We define MAPCs as the number of unique consumers who completed a Mobility ride or received a Delivery order on our platform at least once in a given month, averaged over each month in the quarter. While a unique consumer can use multiple product offerings on our platform in a given month, that unique consumer is counted as only one MAPC.
+Segment Operating Income (Loss). We define each segment’s Operating Income (Loss) as segment revenue less direct costs and expenses of that segment as well as any applicable exclusions from Non-GAAP Operating Income.
+Trips. We define Trips as the number of completed consumer Mobility rides and Delivery orders in a given period. For example, an UberX Share ride with three paying consumers represents three unique Trips, whereas an UberX ride with three passengers represents one Trip. We believe that Trips are a useful metric to measure the scale and usage of our platform.
+
+Definitions of Non-GAAP Measures
+We collect and analyze operating and financial data to evaluate the health of our business and assess our performance. In addition to revenue, net income (loss), income (loss) from operations, and other results under GAAP, we use: Non-GAAP Operating Income; Non-GAAP Net Income; Non-GAAP EPS; Free cash flow; as well as, reve nue growth rates in constant currency, which are described below, to evaluate our business. Adjusted EBITDA is no longer a key measure used by management; we include a disclosure on Adjusted EBITDA to assist during the transition to our new non-GAAP measures. We have included these non-GAAP financial measures because they are key measures used by our management to evaluate our operating performance, generate future operating plans, and make strategic decisions. Accordingly, we believe that these non-GAAP financial measures provide useful information to investors and others in understanding and evaluating our operating results in the same manner as our management team and board of directors. In addition, they provide useful measures for period-to-period comparisons of our business, as they remove the effect of certain non-cash expenses, certain variable charges and other gains, losses, benefits, or charges that are unpredictable, in both magnitude and timing, and items not indicative of our ongoing operating performance. Our calculation of these non-GAAP financial measures may differ from similarly-titled non-GAAP measures, if any, reported by our peer companies. These non-GAAP financial measures should not be considered in isolation from, or as substitutes for, financial information prepared in accordance with GAAP.
+Non-GAAP Operating Income
+We define Non-GAAP Operating Income as income from operations, excluding (i) amortization of acquired intangible assets, (ii) certain legal, non-income tax, and regulatory reserve changes and settlements, (iii) goodwill and asset impairments/loss on sale of assets, (iv) acquisition, financing and divestitures related expenses, (v) restructuring and related charges, and (vi) other items not indicative of our ongoing operating performance.
+• Amortization of acquired intangible assets. Management views amortization of acquired intangible assets as items arising from pre-acquisition activities determined at the time of an acquisition. While these intangible assets are continually evaluated for impairment, amortization of acquired intangible assets is a static expense, which is not typically affected by operations during any particular period and is not reflective of ongoing operating performance. Although we exclude the amortization of acquired intangibles, management believes that it is important for investors to understand that such intangible assets were recorded as part of purchase accounting and contribute to revenue generation.
+• Legal, non-income tax, and regulatory reserve changes and settlements. Legal, non-income tax, and regulatory reserve changes and settlements are primarily related to certain significant legal proceedings or governmental investigations related to worker classification definitions, or tax agencies challenging our non-income tax positions. These matters have limited precedent, cover extended historical periods and are unpredictable in both magnitude and timing, therefore are distinct from normal, recurring legal, non-income tax and regulatory matters and related expenses incurred in our ongoing operating performance.
+Non-GAAP Net Income
+
+
+
+
+9
+
+
+
+
+
+Our Non-GAAP Net Income excludes the adjustments that are excluded from Non-GAAP Operating Income, as well as certain components below income from operations, such as certain items that are not indicative of our recurring core business operating results and certain income tax effects.
+• Other income (expense), net. Primarily includes items not indicative of our ongoing operating performance. From time to time, we may exclude other gains, losses, benefits, or charges that are unpredictable, in both magnitude and timing, and items not indicative of our ongoing operating performance. These items include, but are not limited to: foreign currency exchange gain (losses), net, and unrealized (gain) loss on debt and equity securities, net.
+• Income tax effects. Primarily include the income tax effects of the adjustments excluded from Non-GAAP Net Income and exclude other income tax benefits or expenses that are unpredictable, in both magnitude and timing, and not indicative of the tax associated with our ongoing operating performance.
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | 2025 | | 2026 | | 2025 | | 2026 |
+GAAP effective tax rate | | 9 | % | | 26 | % | | (9) | % | | 27 | % |
+Total adjustments to GAAP provision for income taxes | | 12 | % | | (2) | % | | 31 | % | | (3) | % |
+Non-GAAP effective tax rate
+| | 21 | % | | 24 | % | | 22 | % | | 24 | % |
+
+• Adjustment to redeemable non-controlling interests. Primarily reflects changes in the carrying value of redeemable non-controlling interests that are subject to put or call arrangements not solely within our control, which are remeasured to their estimated redemption value on a quarterly basis. These adjustments are non-cash in nature and are not indicative of our ongoing operating performance.
+Non-GAAP EPS
+We define Non-GAAP EPS as Non-GAAP Net Income attributable to common stockholders divided by Non-GAAP weighted-average shares outstanding. Adjustments to GAAP diluted weighted-average shares outstanding are for any potentially dilutive outstanding securities in periods where Non-GAAP Net Income is positive, but GAAP Net income was in a loss position.
+Limitations of Non-GAAP Operating Income, Non-GAAP Net Income and Non-GAAP EPS and Non-GAAP Operating Income, Non-GAAP Net Income and Non-GAAP EPS Reconciliations
+These non-GAAP financial measures have limitations as financial measures, should be considered as supplemental in nature, and are not meant as a substitute for the related financial information prepared in accordance with GAAP. These limitations include the following:
+• These non-GAAP financial measures exclude certain recurring, non-cash charges, such as amortization of acquired intangible assets, and although these are non-cash charges, the assets being amortized may have to be replaced in the future, and Non-GAAP Operating Income and Non-GAAP Net Income do not reflect all cash capital expenditure requirements for such replacements or for new capital expenditure requirements;
+• These non-GAAP financial measures exclude certain restructuring and related charges, part of which may be settled in cash;
+• These non-GAAP financial measures exclude certain legal, non-income tax, and regulatory reserve changes and settlements that may reduce cash available to us;
+• These non-GAAP financial measures exclude other items not indicative of our ongoing operating performance; and
+• These non-GAAP financial measures do not reflect the components of other income (expense), net, which primarily includes: foreign currency exchange gains (losses), net; and unrealized gain (loss) on debt and equity securities, net.
+Adjusted EBITDA
+We define Adjusted EBITDA as net income (loss), excluding (i) income (loss) from discontinued operations, net of income taxes, (ii) net income (loss) attributable to non-controlling interests, net of tax, (iii) provision for (benefit from) income taxes, (iv) income (loss) from equity method investments, (v) interest expense, (vi) interest income, (vii) other income (expense), net, (viii) depreciation and amortization, (ix) stock-based compensation expense, (x) certain legal, non-income tax, and regulatory reserve changes and settlements, (xi) goodwill and asset impairments/loss on sale of assets, (xii) acquisition, financing and divestitures related expenses, (xiii) restructuring and related charges and (xiv) other items not indicative of our ongoing operating performance.
+• Legal, non-income tax, and regulatory reserve changes and settlements. Legal, non-income tax, and regulatory reserve changes and settlements are primarily related to certain significant legal proceedings or governmental investigations related to worker classification definitions, or tax agencies challenging our non-income tax positions. These matters have limited precedent, cover extended historical periods and are unpredictable in both magnitude and timing, therefore are distinct from
+
+
+
+
+10
+
+
+
+
+
+normal, recurring legal, non-income tax and regulatory matters and related expenses incurred in our ongoing operating performance.
+Limitations of Adjusted EBITDA and Adjusted EBITDA Reconciliation
+Adjusted EBITDA has limitations as a financial measure, should be considered as supplemental in nature, and is not meant as a substitute for the related financial information prepared in accordance with GAAP. These limitations include the following:
+• Adjusted EBITDA excludes certain recurring, non-cash charges, such as depreciation of property and equipment and amortization of intangible assets, and although these are non-cash charges, the assets being depreciated and amortized may have to be replaced in the future, and Adjusted EBITDA does not reflect all cash capital expenditure requirements for such replacements or for new capital expenditure requirements;
+• Adjusted EBITDA excludes stock-based compensation expense, which has been, and will continue to be for the foreseeable future, a significant recurring expense in our business and an important part of our compensation strategy;
+• Adjusted EBITDA excludes certain restructuring and related charges, part of which may be settled in cash;
+• Adjusted EBITDA excludes other items not indicative of our ongoing operating performance;
+• Adjusted EBITDA does not reflect period to period changes in taxes, income tax expense or the cash necessary to pay income taxes;
+• Adjusted EBITDA does not reflect the components of other income (expense), net, which primarily includes: foreign currency exchange gains (losses), net; and unrealized gain (loss) on debt and equity securities, net; and
+• Adjusted EBITDA excludes certain legal, non-income tax, and regulatory reserve changes and settlements that may reduce cash available to us.
+Constant Currency
+We compare the percent change in our current period results from the corresponding prior period using constant currency disclosure. We present constant currency growth rate information to provide a framework for assessing how our underlying revenue performed excluding the effect of foreign currency rate fluctuations. We calculate constant currency by translating our current period financial results using the corresponding prior period’s monthly exchange rates for our transacted currencies other than the U.S. dollar.
+Free Cash Flow
+We define free cash flow as net cash flows from operating activities less capital expenditures.
+
+
+
+
+
+
+
+11
+
+
+
+
+
+Reconciliations of Non-GAAP Measures
+Non-GAAP Operating Income, Non-GAAP Net Income and Non-GAAP EPS
+The following tables present reconciliations of GAAP and Non-GAAP Operating Income, GAAP and Non-GAAP Net Income and GAAP and Non-GAAP EPS:
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+(In millions, except share amounts which are reflected in thousands, and per share amounts) | | 2025 | | 2026 | | 2025 | | 2026 |
+GAAP Income from operations | | $ | 1,450 | | | $ | 1,890 | | | $ | 2,678 | | | $ | 3,813 | |
+Add (deduct): | | | | | | | | |
+Amortization of acquired intangible assets | | 65 | | | 61 | | | 129 | | | 120 | |
+Legal, non-income tax, and regulatory reserve changes and settlements | | — | | | 141 | | | 28 | | | 12 | |
+Goodwill and asset impairments/loss on sale of assets | | — | | | 4 | | | — | | | 4 | |
+Acquisition, financing and divestitures related expenses | | 19 | | | 31 | | | 22 | | | 56 | |
+Loss on lease arrangement, net | | — | | | — | | | 2 | | | 5 | |
+Restructuring and related charges | | — | | | 16 | | | 1 | | | 16 | |
+Total adjustments excluded from Non-GAAP Operating Income | | 84 | | | 253 | | | 182 | | | 213 | |
+Non-GAAP Operating Income | | $ | 1,534 | | | $ | 2,143 | | | $ | 2,860 | | | $ | 4,026 | |
+| | | | | | | | |
+GAAP Net income attributable to Uber Technologies, Inc. | | 1,355 | | | 2,394 | | | 3,131 | | | 2,657 | |
+Adjustments excluded from Non-GAAP Operating Income (see above) | | 84 | | | 253 | | | 182 | | | 213 | |
+Other (income) expense, net | | 19 | | | (1,342) | | | (74) | | | 152 | |
+Income tax effects (1)
+| | (190) | | | 315 | | | (912) | | | 61 | |
+Loss from equity method investments | | 12 | | | 21 | | | 25 | | | 41 | |
+Adjustment to redeemable non-controlling interests | | — | | | 11 | | | — | | | 21 | |
+Non-GAAP Net Income | | 1,280 | | | 1,652 | | | 2,352 | | | 3,145 | |
+Assumed net loss attributable to Freight Holding contingently issuable shares | | (14) | | | — | | | (27) | | | — | |
+Non-GAAP Net Income attributable to common stockholders | | $ | 1,266 | | | $ | 1,652 | | | $ | 2,325 | | | $ | 3,145 | |
+| | | | | | | | |
+Diluted weighted-average shares outstanding
+| | 2,125,628 | | | 2,050,225 | | | 2,124,181 | | | 2,060,763 | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+GAAP Diluted EPS (2)
+| | $ | 0.63 | | | $ | 1.17 | | | $ | 1.46 | | | $ | 1.29 | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+Non-GAAP EPS (2)
+| | $ | 0.60 | | | $ | 0.81 | | | $ | 1.09 | | | $ | 1.53 | |
+
+(1) Income tax effects include the impact of a stock loss and capitalized research and development expenses through Q2 2025 and the deferred U.S. tax impact related to our equity securities through Q2 2026.
+(2) Per share amounts are calculated using unrounded numbers and therefore may not recalculate.
+
+
+
+
+12
+
+
+
+
+
+Adjusted EBITDA
+The following table presents reconciliations of Adjusted EBITDA to the most directly comparable GAAP financial measure for each of the periods indicated:
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+(In millions) | | 2025 | | 2026 | | 2025 | | 2026 |
+Adjusted EBITDA reconciliation: | | | | | | | | |
+Net income attributable to Uber Technologies, Inc. | | $ | 1,355 | | | $ | 2,394 | | | $ | 3,131 | | | $ | 2,657 | |
+Add (deduct): | | | | | | | | |
+Net income (loss) attributable to non-controlling interests, net of tax | | (5) | | | 22 | | | (7) | | | 41 | |
+Loss from equity method investments | | 12 | | | 21 | | | 25 | | | 41 | |
+Provision for (benefit from) income taxes | | 142 | | | 840 | | | (260) | | | 1,034 | |
+Other (income) expense, net | | 19 | | | (1,342) | | | (74) | | | 152 | |
+Interest expense | | 108 | | | 127 | | | 213 | | | 235 | |
+Interest income | | (181) | | | (172) | | | (350) | | | (347) | |
+Income from operations | | 1,450 | | | 1,890 | | | 2,678 | | | 3,813 | |
+Add (deduct): | | | | | | | | |
+Depreciation and amortization | | 175 | | | 188 | | | 346 | | | 372 | |
+Stock-based compensation expense | | 475 | | | 549 | | | 910 | | | 1,022 | |
+Legal, non-income tax, and regulatory reserve changes and settlements | | — | | | 141 | | | 28 | | | 12 | |
+Goodwill and asset impairments/loss on sale of assets, net | | — | | | 4 | | | — | | | 4 | |
+Acquisition, financing and divestitures related expenses | | 19 | | | 31 | | | 22 | | | 56 | |
+| | | | | | | | |
+Loss on lease arrangement, net | | — | | | — | | | 2 | | | 5 | |
+Restructuring and related charges | | — | | | 16 | | | 1 | | | 16 | |
+Adjusted EBITDA | | $ | 2,119 | | | $ | 2,819 | | | $ | 3,987 | | | $ | 5,300 | |
+| | | | | | | | |
+
+Free Cash Flow
+The following tables present reconciliations of free cash flow to the most directly comparable GAAP financial measure for each of the periods indicated:
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+(In millions) | | 2025 | | 2026 | | 2025 | | 2026 |
+Free cash flow reconciliation: | | | | | | | | |
+Net cash provided by operating activities | | $ | 2,564 | | | $ | 2,862 | | | $ | 4,888 | | | $ | 5,213 | |
+Purchases of property and equipment | | (89) | | | (70) | | | (163) | | | (135) | |
+Free cash flow | | $ | 2,475 | | | $ | 2,792 | | | $ | 4,725 | | | $ | 5,078 | |
+
+
+
+
+
+13

@@ -500,6 +500,7 @@ describe("earnings result money parsing", () => {
   // offers a second candidate that happens to be right. Pinned directly so a regression
   // fails here rather than surfacing as a wrong posted figure.
   describe("per-share value plausibility", () => {
+
     test("rejects a value denominated in a money scale", () => {
       // A revenue milestone sharing a line with a non-GAAP EPS label is not $3.00 of EPS.
       expect(findEpsValue(" as the company achieved its first $3+ billion revenue quarter.", 0))

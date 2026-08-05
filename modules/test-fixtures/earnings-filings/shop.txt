@@ -1,0 +1,341 @@
+EX-99.1
+2
+exhibit991pressreleaseq220.htm
+EX-99.1
+
+
+
+
+Document
+
+
+Shopify Delivers Big: 30%+ Growth Across
+GMV, Revenue, Gross Profit, and Free Cash Flow
+August 5, 2026 - Shopify announced today financial results for the quarter ended June 30, 2026. Shopify achieved 34% revenue growth (33% in constant currency) and 18% free cash flow margins.
+“This was a monster quarter: more than 30% growth in GMV AND revenue AND gross profit AND free cash flow,” said Harley Finkelstein, President of Shopify. “We power every kind of business, and with AI, we're expanding what's possible for all of them. No one else comes close.”
+“GMV growth accelerated on top of last year’s already strong Q2 with solid results across all merchant sizes, channels, and geographies. Alongside this momentum, we continue to drive operating leverage, which flowed through to 18% free cash flow margins. Broad-based, consistent, and compounding growth with financial discipline; that’s exactly the model that we’ve been building,” said Jeff Hoffmeister, Chief Financial Officer.
+Selected Business Performance Information (1)
+(In US $ millions, except percentages)
+| | | | | | | | | | | | | | | | |
+| Three months ended | | |
+| June 30, 2026 | | June 30, 2025 | | | | | |
+GMV | 115,567 | | 87,837 | | | | | |
+| | | | | | | | |
+MRR | 221 | | 185 | | | | | |
+| | | | | | | | |
+Revenue | 3,583 | | 2,680 | | | | | |
+| | | | | | | | |
+Gross profit | 1,708 | | 1,302 | | | | | |
+| | | | | | | | |
+Operating income | 488 | | 291 | | | | | |
+| | | | | | | | |
+Free cash flow | 654 | | 422 | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+YoY revenue growth rate | 34 | % | | 31 | % | | | | | |
+| | | | | | | | |
+Free cash flow margin | 18 | % | | 16 | % | | | | | |
+
+(1) See endnotes below for definitions of GMV and MRR and additional information on constant currency, free cash flow, and free cash flow margin, which are non-GAAP financial measures and are rec onciled to the comparable GAAP measures in the non-GAAP reconciliations at the end of this press release. Please refer to the Condensed Consolidated Statements of Cash Flows for additional information on the presentation of cash flows in 2026 and 2025.
+1
+
+
+
+
+
+2026 Outlook
+The outlook that follows supersedes all prior financial outlook statements made by Shopify, constitutes forward-looking information within the meaning of applicable securities laws, is based on a number of assumptions, and is subject to a number of risks. Actual results could vary materially as a result of numerous factors, including certain risk factors, many of which are beyond Shopify’s control. Please see "Forward-looking Statements" at the end of this press release.
+For the third quarter of 2026, we expect:
+• Revenue to grow at a low-thirties percentage rate on a year-over-year basis;
+• Gross profit dollars to grow at a mid-to-high twenties percentage rate on a year-over-year basis;
+• Operating expenses as a percentage of revenue to be 33% to 34%;
+• Stock-based compensation to be $150 million; and
+• Free cash flow margin to be in the high-teens to low-twenties.
+
+
+Quarterly Conference Call
+Shopify’s management team will hold a conference call to discuss its second-quarter results today, August 5, 2026, at 8:30 a.m. ET. The conference call will be webcast in the Investor Relations section of Shopify’s website at www.shopify.com/investors/events . An archived replay of the webcast will be available following the conclusion of the call.
+Shopify’s Form 10-Q for the quarter ended June 30, 2026, including the unaudited Condensed Consolidated Financial Statements and accompanying Notes, and Management's Discussion and Analysis, will be available on Shopify’s website at www.shopify.com and will be filed on EDGAR at www.sec.gov and on SEDAR+ at www.sedarplus.ca .
+About Shopify
+Shopify provides essential internet infrastructure for commerce. Shopify’s all-in-one platform makes it easier to start, run, and grow a business, powering sales online, in-store, and everywhere in between. Millions of businesses in 175+ countries use Shopify—from entrepreneurs to brands like Aldo, BarkBox, Carrier, Meta, SKIMS, Supreme, and Vuori.
+For more information, visit www.shopify.com .
+| | | | | | | | | | | | | | |
+CONTACT INVESTORS: | Shane Kleinstein | | CONTACT MEDIA: | Ben McConaghy |
+| Director, Investor Relations | | | Director, Communications |
+| IR@shopify.com | | | press@shopify.com |
+
+2
+
+
+
+
+
+
+
+Shopify Inc. Condensed Consolidated Statements of Operations
+(In US $ millions)
+| | | | | | | | | | | | | | | | |
+| Three months ended | | |
+| June 30, 2026 | | June 30, 2025 | | | | | |
+Revenues | | | | | | | | |
+Subscription solutions | 802 | | 656 | | | | | |
+Merchant solutions | 2,781 | | 2,024 | | | | | |
+| 3,583 | | 2,680 | | | | | |
+Cost of revenues | | | | | | | | |
+Subscription solutions | 163 | | 121 | | | | | |
+Merchant solutions | 1,712 | | 1,257 | | | | | |
+| 1,875 | | 1,378 | | | | | |
+Gross profit | 1,708 | | 1,302 | | | | | |
+Operating expenses | | | | | | | | |
+Sales and marketing | 498 | | 415 | | | | | |
+Research and development | 445 | | 394 | | | | | |
+General and administrative | 136 | | 122 | | | | | |
+Transaction and loan losses | 141 | | 80 | | | | | |
+| | | | | | | | |
+Total operating expenses | 1,220 | | 1,011 | | | | | |
+Operating income | 488 | | 291 | | | | | |
+Net other income, including taxes (2)
+| 1,014 | | 615 | | | | | |
+Net Income | 1,502 | | 906 | | | | | |
+less: equity investments, marked to market, net of taxes | 1,063 | | 568 | | | | | |
+Net income excluding the impact of equity investments (3)
+| 439 | | 338 | | | | | |
+| | | | | |
+(2) Net other income, including taxes includes interest income, gains and losses on equity and other investments, foreign exchange gains and losses, and our provision for income taxes.
+|
+(3) Net income excluding the impact of equity investments is a non-GAAP financial measure which is reconciled at the end of this press release. This measure excludes the impact of any gains or losses on our equity investments in third parties. Shopify believes this measure provides useful information to investors given that valuations of third parties in public and private markets are outside of our control, and therefore, fluctuations in those valuations are not relevant to the fundamentals of our business and have little analytical or predictive value regarding our ability to drive operational results. This measure does not have a standardized meaning under US GAAP and may not be comparable to similar measures presented by other companies. GAAP and non-GAAP diluted net income (loss) per share are available in the Financial Supplemental posted on www.shopify.com/investors .
+Note: More detailed Condensed Consolidated Statements of Operations and Comprehensive Income are available in the Quarterly Report on Form 10-Q filed concurrently with this press release with US and Canadian regulators and available on www.sec.gov and www.sedarplus.ca .
+|
+
+3
+
+
+
+
+
+
+
+Shopify Inc. Condensed Consolidated Balance Sheets
+(In US $ millions)
+| | | | | | | | | | | |
+| | | |
+| June 30, 2026 | | December 31, 2025 |
+Assets | | | |
+Current assets | | | |
+Cash and cash equivalents | 1,656 | | | 1,545 | |
+Marketable securities | 3,291 | | | 4,233 | |
+Trade and other receivables, net | 466 | | | 500 | |
+Loans and merchant cash advances, net | 2,184 | | | 1,784 | |
+Other current assets | 219 | | | 234 | |
+| 7,816 | | | 8,296 | |
+Long-term assets | | | |
+| | | |
+| | | |
+| | | |
+Long-term assets (4)
+| 195 | | | 210 | |
+Deferred tax assets | 30 | | | 33 | |
+| | | |
+Long-term investments | 525 | | | 975 | |
+Equity and other investments | 4,854 | | | 4,582 | |
+Equity method investment | 559 | | | 602 | |
+Goodwill | 491 | | | 491 | |
+| 6,654 | | | 6,893 | |
+Total assets | 14,470 | | | 15,189 | |
+Liabilities and shareholders’ equity | | | |
+Liabilities | | | |
+| | | |
+| | | |
+| | | |
+| | | |
+Accounts payable | 575 | | | 570 | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+Deferred tax liabilities | 79 | | | 55 | |
+Other liabilities (5)
+| 1,132 | | | 1,091 | |
+| 1,786 | | | 1,716 | |
+| | | |
+Shareholders’ equity | 12,684 | | | 13,473 | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+Total liabilities and shareholders’ equity | 14,470 | | | 15,189 | |
+| | | |
+(4) Long-term assets includes Property and equipment, net, Operating lease right-of-use assets, net, Intangible assets, net, and Other long-term assets.
+|
+(5) Other liabilities includes Accrued liabilities, Current and Long-term Deferred revenue, and Operating lease liabilities.
+|
+Note: More detailed Condensed Consolidated Balance Sheet and Notes to the Condensed Consolidated Financial Statements are available in the Quarterly Report on Form 10-Q filed concurrently with this press release with US and Canadian regulators and available on www.sec.gov and www.sedarplus.ca .
+|
+
+4
+
+
+
+
+
+
+
+Shopify Inc. Condensed Consolidated Statements of Cash Flows
+(In US $ millions)
+| | | | | | | | | | | | | | | | |
+| Three months ended | | |
+| June 30, 2026 | | June 30, 2025 | | | | | |
+Cash flows from operating activities | | | | | | | | |
+Net income for the period | 1,502 | | 906 | | | | | |
+Adjustments to reconcile net income to
+net cash provided by operating activities: | | | | | | | | |
+Amortization and depreciation | 7 | | 8 | | | | | |
+| | | | | | | | |
+Stock-based compensation | 128 | | 113 | | | | | |
+Impairment of right-of-use assets and leasehold improvements | — | | 10 | | | | | |
+Provision for transaction and loan losses | 94 | | 44 | | | | | |
+Deferred income tax recovery
+| 165 | | 98 | | | | | |
+Revenue related to non-cash consideration | (13) | | (12) | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+Net gain on equity and other investments | (1,250) | | (682) | | | | | |
+Net loss on equity method investment
+| 22 | | 24 | | | | | |
+Unrealized foreign exchange loss (gain)
+| 4 | | (46) | | | | | |
+Changes in operating assets and liabilities | (1) | | (35) | | | | | |
+Net cash provided by operating activities | 658 | | 428 | | | | | |
+Cash flows from investing activities | | | | | | | | |
+Purchases of property and equipment | (4) | | (6) | | | | | |
+Purchases of marketable securities | (654) | | (1,464) | | | | | |
+Maturities of marketable securities | 1,450 | | 1,464 | | | | | |
+Purchases and originations of loans and merchant cash advances (6)
+| (1,584) | | (944) | | | | | |
+Repayments and sales of loans and merchant cash advances (6)
+| 1,417 | | 767 | | | | | |
+Purchases of equity and other investments | (55) | | (71) | | | | | |
+Acquisition of businesses, net of cash acquired | — | | — | | | | | |
+Other | 1 | | 2 | | | | | |
+Net cash provided by (used in) investing activities | 571 | | (252) | | | | | |
+Cash flows from financing activities | | | | | | | | |
+Proceeds from the exercise of stock options | 3 | | 44 | | | | | |
+| | | | | | | | |
+Repurchases of common stock | (1,420) | | — | | | | | |
+Net cash (used in) provided by financing activities | (1,417) | | 44 | | | | | |
+Effect of foreign exchange on cash,
+cash equivalents and restricted cash | (4) | | 13 | | | | | |
+Net (decrease) increase in cash, cash
+equivalents and restricted cash | (192) | | 233 | | | | | |
+Cash, cash equivalents and restricted cash – beginning of period | 1,848 | | 1,309 | | | | | |
+Cash, cash equivalents and restricted cash – end of period | 1,656 | | 1,542 | | | | | |
+
+(6) Starting in April 2026, the cash flows associated with merchant cash advances are presented within investing cash flows rather than operating cash flows on a basis consistent with loans, given the similar nature of the underlying lending activities. For the three months ended June 30, 2026, the changes described above resulted in a net cash use of $37 million presented in Investing activities after consideration of repayments and purchases and originations.
+
+
+
+
+
+
+5
+
+
+
+
+
+
+
+Reconciliation of Non-GAAP Financial Measures
+Free Cash Flow Reconciliation
+(In US $ millions, except percentages)
+The following table illustrates how free cash flow is calculated in this press release:
+| | | | | | | | | | | | | | | | |
+| Three months ended | | |
+| June 30, 2026 | | June 30, 2025 | | | | | |
+Net cash provided by operating
+activities (6)
+| 658 | | | 428 | | | | | | |
+less: capital expenditures (7)
+| (4) | | | (6) | | | | | | |
+Free cash flow | 654 | | | 422 | | | | | | |
+Revenue | 3,583 | | | 2,680 | | | | | | |
+Free cash flow margin | 18 | % | | 16 | % | | | | | |
+
+
+
+
+
+
+
+Net Income Excluding the Impact of Equity Investments Reconciliation
+(In US $ millions)
+The following table illustrates how Net income excluding the impact of equity investments is calculated in this press release:
+| | | | | | | | | | | | | | | | |
+| Three months ended | | |
+| June 30, 2026 | | June 30, 2025 | | | | | |
+Net Income | 1,502 | | 906 | | | | | |
+less: equity investments,
+marked to market, net of taxes | 1,063 | | 568 | | | | | |
+Net income
+excluding the impact of equity investments (3)
+| 439 | | 338 | | | | | |
+
+(7) Capital expenditures is equivalent to the amount included in “Purchases of property and equipment” on our Condensed Consolidated Statements of Cash Flows for the reported period.
+6
+
+
+
+
+
+
+
+Constant Currency Analysis
+(In US $ millions, except percentages)
+The following table converts our GMV, revenues, gross profit, and operating income using the comparative period's monthly average exchange rates. We have provided the below disclosure as we believe it presents a clear comparison of our period-to-period operating results by removing the impact of fluctuations in foreign exchange rates and to assist investors in understanding our financial and operating performance. The table below and our Condensed Consolidated Statements of Operations disclosure are supplements to our Condensed Consolidated Financial Statements, which are prepared and presented in accordance with US GAAP (excluding GMV).
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended June 30, |
+| GMV | | Revenue | | Subscription solutions revenue | | Merchant solutions revenue | | Gross profit | | Operating income |
+2025 as reported | 87,837 | | 2,680 | | 656 | | 2,024 | | 1,302 | | 291 |
+2026 as reported | 115,567 | | 3,583 | | 802 | | 2,781 | | 1,708 | | 488 |
+Percentage change YoY | 32 | % | | 34 | % | | 22 | % | | 37 | % | | 31 | % | | 68 | % |
+Constant currency impact | 1,149 | | | 16 | | | 3 | | | 44 | | | 12 | | | 11 | |
+Percentage change YoY
+constant currency | 30 | % | | 33 | % | | 22 | % | | 35 | % | | 30 | % | | 64 | % |
+| | | | | | | | | | | |
+| |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+
+7
+
+
+
+
+
+
+
+Regulatory Disclosures and Forward-looking Statements
+Advisory Regarding Forward-looking Statements
+This press release contains forward-looking statements and forward-looking information (collectively, “forward-looking statements“), including statements related to Shopify’s financial outlook, such as expected revenue and expenses for the next fiscal quarter, Shopify's expectations regarding its ability to support merchants as they scale, and Shopify's expectations regarding the development of emerging technologies, including AI. These statements can be identified by words such as “will“ and “expect“ and are based on Shopify's current projections and expectations about future events and financial results. Known and unknown risks may cause actual results to differ materially from those described in the forward-looking statements. These risks include, but are not limited to, the Company’s ability to maintain expected growth and manage expenses, the impact of changes in economic conditions and consumer spending in key markets such as the United States, Europe, and globally, the impact of measures that affect international trade, including tariffs, the adoption and impact of emerging technologies such as AI, our reliance on third-party providers to deliver services, a cyberattack or security breach, and serious errors or defects in software or hardware. Other factors and risks that may cause actual results to differ materially from those set out in the forward-looking statements are set out in Shopify's Form 10-Q under the heading “Risk Factors“ and other filings made with US and Canadian securities regulators, available at www.sec.gov and www.sedarplus.ca . Undue reliance should not be placed on the forward-looking statements in this press release, which are based on information available to management on the date hereof and represent management’s beliefs regarding future events, projections, and financial trends, which, by their nature, are inherently uncertain. The forward-looking statements are provided to give additional information about management’s expectations and beliefs and may not be appropriate for other purposes. Shopify undertakes no duty to publicly update or revise any forward-looking statements, except as may be required by law.
+
+
+Endnotes:
+Gross Merchandise Volume, or GMV, represents the total dollar value of orders facilitated through the Shopify platform including certain apps and channels for which a revenue-sharing arrangement is in place in the period, net of refunds, and inclusive of shipping and handling, duty, and value-added taxes.
+Monthly Recurring Revenue , or MRR, is the aggregate value of all subscription plans, excluding variable platform fees, in effect on the last day of the period, assuming merchants maintain their subscription the following month and is used by management as a directional indicator of subscription solutions revenue going forward.
+Free cash flow and free cash flow margin are non-GAAP financial measures that are reconciled in the non-GAAP reconciliation within this press release. These non-GAAP financial measures do not have standardized meanings under US GAAP and may not be comparable to similar measures presented by other companies. Shopify believes free cash flow and free cash flow margin provide useful information to help investors and others understand our operating results and the performance of our business in the same manner as management. Shopify does not reconcile forward-looking non-GAAP free cash flow margin because certain financial information, the probable significance of which cannot be determined, is not available and cannot be reasonably estimated. Free cash flow is a non-GAAP financial measure calculated as cash flow from operations less capital expenditures.
+8
