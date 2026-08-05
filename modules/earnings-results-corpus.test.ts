@@ -337,8 +337,9 @@ const filingCorpus: {
   },
   {
     // Guidance sits in a prior-versus-updated table whose captions and value cells are on
-    // separate lines, so it is not reached: the recorded outlook is a raise stated in a
-    // highlights bullet, which is a change rather than a level. Documented as a known gap.
+    // separate lines. Each figure is read from the updated column; the tax rate reads from the
+    // prior one because its update is stated as "unchanged". The per-share row is labelled by
+    // its own caption, though the table as a whole is the company's non-GAAP guidance.
     company: "Eli Lilly",
     metrics: [
       ["adjusted_eps", "$8.38"],
@@ -347,7 +348,9 @@ const filingCorpus: {
       ["net_income", "$7.09B"],
     ],
     outlook: [
-      ["Q2 EPS", "$2.78"]
+      ["Revenue", "$85B to $87B"],
+      ["EPS", "$35.5 to $36.5"],
+      ["Tax rate", "18% to 19%"],
     ],
     quarterLabel: "Q2 2026",
     source: "59478/000005947826000077/q226lillysalesandearningsp.htm",
