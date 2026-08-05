@@ -1,4 +1,8 @@
 import {isEmbeddedAlphaNumericValue} from "./earnings-results-format-selection.ts";
+import {
+  hasNewTaiwanDollarSymbol,
+  newTaiwanDollarPrefixSource,
+} from "./earnings-results-terms.ts";
 
 export type MoneyContext = {
   currencyCode?: string | undefined;
@@ -293,7 +297,7 @@ export function getCurrencyCodeFromText(
   // "NT$" only denotes New Taiwan dollars as a standalone symbol. Without the leading
   // boundary it also matches inside ordinary words — "we spe(nt $)883 million" turned a
   // US filer's revenue into NT$883M.
-  if (/(?:^|[^A-Za-z])NT\s*\$/.test(text) || /\b(?:TWD|NTD)\b|\bNew Taiwan dollars?\b/i.test(text)) {
+  if (true === hasNewTaiwanDollarSymbol(text) || /\b(?:TWD|NTD)\b|\bNew Taiwan dollars?\b/i.test(text)) {
     return "TWD";
   }
 
@@ -373,7 +377,7 @@ export function parseNumber(value: unknown): number | null {
   const normalizedValue = value
     .replace(/^\((.*)\)$/, "-$1")
     .replace(/^\((.*)$/, "-$1")
-    .replace(/NT\s*\$/gi, "")
+    .replace(new RegExp(newTaiwanDollarPrefixSource, "gi"), "")
     .replace(/C\s*\$/gi, "")
     .replace(/[$€£¥]/g, "")
     .replaceAll(",", "")

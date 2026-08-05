@@ -2,6 +2,7 @@ import {
   getPositionedQuarterValues,
   isDefinitionalLine,
 } from "./earnings-results-format-selection.ts";
+import {gaapTermSource, unitedStatesSource} from "./earnings-results-terms.ts";
 import {getMoneyScaleFromContextText} from "./earnings-results-money.ts";
 
 export type EarningsResultOutcome = "beat" | "inline" | "miss";
@@ -75,7 +76,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /\bprofit\s+(?:\(loss\)\s+)?per\s+(?:common\s+|ordinary\s+)?(?:share|ADS)\b/i,
       /\bnet\s+loss\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,
       /\bdiluted\s+eps\b/i,
-      /\bgaap\s+(?:diluted\s+)?eps\b/i,
+      new RegExp(String.raw`${gaapTermSource}\s+(?:diluted\s+)?eps\b`, "i"),
       /\b(?:reported\s+)?(?:net\s+)?earnings?\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
       /(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?(?:\s*(?:cents?|¢))?)\s+per\s+(?:fully\s+)?(?:common\s+)?diluted\s+share\b/i,
       /\beps\b/i,
@@ -92,7 +93,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /\brevenues?\b/i,
       /\bsales\b/i,
     ],
-    skipPattern: /\bcosts?\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsystemwide\s+sales\b|\b(?:U\.S\.|U\.K\.|US|international|domestic|non-US|segment)\s+(?:commercial\s+|government\s+)?revenues?\b|\b(?:U\.S\.|US|international|worldwide|non-US)\s+(?:[A-Z][A-Za-z]+\s+){1,2}revenues?\b|\brevenues?\s+(?:in|outside)\s+the\s+U\.S\.|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b/i,
+    skipPattern: new RegExp(String.raw`\bcosts?\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsystemwide\s+sales\b|\b(?:${unitedStatesSource}|U\.K\.|US|international|domestic|non-US|segment)\s+(?:commercial\s+|government\s+)?revenues?\b|\b(?:${unitedStatesSource}|US|international|worldwide|non-US)\s+(?:[A-Z][A-Za-z]+\s+){1,2}revenues?\b|\brevenues?\s+(?:in|outside)\s+the\s+${unitedStatesSource}|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b`, "i"),
     valueType: "money",
   },
   {
