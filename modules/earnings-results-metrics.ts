@@ -53,7 +53,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /\bnon-gaap\s+(?:diluted\s+)?(?:earnings\s+per\s+share|eps)\b/i,
       // "Non-GAAP diluted net income per share" / "Non-GAAP Diluted Loss Per Share" are
       // the reconciliation-table labels for the same measure.
-      /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?(?:earnings|net\s+income|net\s+loss|loss|\(loss\))\s+per\s+(?:common\s+)?share\b/i,
+      /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?(?:earnings|net\s+income|net\s+loss|loss)(?:\s*\/?\s*\(loss(?:es)?\))?\s+per\s+(?:common\s+)?share\b/i,
       // A reconciliation table can name the measure after the caption instead of before
       // it ("Earnings per share - Non-GAAP").
       /\b(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\s*[–—-]\s*non-gaap\b/i,
@@ -333,8 +333,11 @@ export function hasMixedMonthQuarterColumns(lines: string[], lineIndex: number):
   const context = lines
     .slice(Math.max(0, lineIndex - 8), lineIndex + 1)
     .join(" ");
-  const hasMonth = /\b(?:month|january|february|march|april|may|june|july|august|september|october|november|december)\b/i.test(context);
-  return hasMonth && /\bquarter\b/i.test(context) && /\bchange\b/i.test(context);
+  // Only a monthly-and-quarterly layout puts the reported quarter in the second column
+  // group. Accepting any month name here caught an ordinary "Quarter Ended June 30 | Six
+  // Months Ended June 30" table too, and skipped its quarter columns for the half-year ones.
+  return /\bmonths?\s+and\s+quarter\b|\bquarter\s+and\s+months?\b/i.test(context) &&
+    /\bchange\b/i.test(context);
 }
 
 export function isNearTableNoteColumn(lines: string[], lineIndex: number): boolean {

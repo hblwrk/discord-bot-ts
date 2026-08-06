@@ -3,7 +3,10 @@ import {stripReferenceMarkers} from "./earnings-results-format-selection.ts";
 import {findNumericValues, getCurrencyCodeFromText} from "./earnings-results-money.ts";
 import {type EarningsResultMetric} from "./earnings-results-metrics.ts";
 import {type EarningsOutlookMetric} from "./earnings-results-outlook.ts";
-import {hasNewTaiwanDollarSymbol} from "./earnings-results-terms.ts";
+import {
+  hasDeclaredIsoCode,
+  hasNewTaiwanDollarSymbol,
+} from "./earnings-results-terms.ts";
 
 export type ParsedEarningsDocument = {
   // The weighted-average diluted share count as printed, without applying a scale. Filings
@@ -66,7 +69,7 @@ export function getDocumentCurrencyCode(lines: string[]): string | undefined {
   const headerLines = lines.slice(0, 60);
   const currencyDeclaration = headerLines
     .find(line => /\b(?:Canadian|New Taiwan|U\.S\.)\s+dollars?\b/i.test(line) ||
-      /\b(?:CAD|TWD|NTD|USD|EUR|GBP|JPY)\b/.test(line) ||
+      hasDeclaredIsoCode(line, ["CAD", "TWD", "NTD", "USD", "EUR", "GBP", "JPY"]) ||
       hasNewTaiwanDollarSymbol(line));
   if (undefined !== currencyDeclaration) {
     return getDominantCurrencyCode(currencyDeclaration) ??

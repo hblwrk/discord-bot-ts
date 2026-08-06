@@ -356,6 +356,141 @@ const filingCorpus: {
     source: "59478/000005947826000077/q226lillysalesandearningsp.htm",
     ticker: "lly",
   },
+  {
+    // A "Quarter Ended | Six Months Ended" highlights table: reading past the first column
+    // group took both revenue and net income from the half-year columns.
+    company: "AppLovin",
+    metrics: [
+      ["gaap_eps", "$3.76"],
+      ["revenue", "$1.92B"],
+      ["net_income", "$1.27B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1751008/000175100826000057/exhibit991-2q26earningspre.htm",
+    ticker: "app",
+  },
+  {
+    company: "Fastly",
+    metrics: [
+      ["adjusted_eps", "$0.15"],
+      ["gaap_eps", "-$0.10"],
+      ["revenue", "$183.3M"],
+      ["net_income", "-$15.59M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1517413/000151741326000212/ex991-fslypressrelease63026.htm",
+    ticker: "fsly",
+  },
+  {
+    company: "Dutch Bros",
+    metrics: [
+      ["gaap_eps", "$0.28"],
+      ["revenue", "$550.9M"],
+      ["net_income", "$51.6M"],
+    ],
+    outlook: [
+      ["Revenue", "$2.1B to $2.13B"],
+      ["Adj EBITDA", "$385M to $390M"],
+      ["Capex", "$350M to $370M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1866581/000186658126000131/a2026-q2_ex991.htm",
+    ticker: "bros",
+  },
+  {
+    // Guidance states its scale once above the rows, and a footnote states the size of the
+    // items the non-GAAP measures exclude rather than the measures themselves.
+    company: "Sandisk",
+    metrics: [
+      ["adjusted_eps", "$39.25"],
+      ["gaap_eps", "$43.97"],
+      ["revenue", "$8.97B"],
+      ["net_income", "$6.9B"],
+    ],
+    outlook: [
+      ["Revenue", "$10.3B to $10.8B"],
+      ["Gross margin", "83% to 84.9%"],
+      ["Operating expenses", "$574M to $614M"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "2023554/000162828026053346/sndkq4-26ex991xpressrelease.htm",
+    ticker: "sndk",
+  },
+  {
+    // "typing the call into the CAD in another jurisdiction" is Computer-Aided Dispatch in a
+    // customer quote, not a currency declaration.
+    company: "Axon Enterprise",
+    metrics: [
+      ["revenue", "$904M"],
+      ["net_income", "$29.43M"],
+    ],
+    outlook: [
+      ["Capex", "$160M to $190M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1069183/000162828026053363/axon-20260805xex991.htm",
+    ticker: "axon",
+  },
+  {
+    company: "e.l.f. Beauty",
+    metrics: [
+      ["adjusted_eps", "$1.75"],
+      ["gaap_eps", "$1.12"],
+      ["revenue", "$479.37M"],
+      ["net_income", "$66.6M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q1 2027",
+    source: "1600033/000160003326000036/q12027er-991.htm",
+    ticker: "elf",
+  },
+  {
+    // A segment results table repeats the consolidated captions, distinguished only by its
+    // heading naming the segment ("Specialties Results").
+    company: "Albemarle",
+    metrics: [
+      ["gaap_eps", "$3.52"],
+      ["revenue", "$1.74B"],
+      ["net_income", "$480M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "915913/000091591326000101/a2q26earningsreleaseex991.htm",
+    ticker: "alb",
+  },
+  {
+    // "Net Loss improved by $56.0 million year-over-year to $(41.0) million" leads with the
+    // change, so the loss itself comes second.
+    company: "Redwire",
+    metrics: [
+      ["adjusted_eps", "-$0.09"],
+      ["gaap_eps", "-$0.19"],
+      ["revenue", "$117.1M"],
+      ["net_income", "-$41.48M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1819810/000181981026000121/exhibit991redwire06302026e.htm",
+    ticker: "rdw",
+  },
+  {
+    // Reported net income with a diluted loss per share: genuine, from the if-converted
+    // treatment of the notes, and recorded so the pair is not "corrected" later.
+    company: "Beyond Meat",
+    metrics: [
+      ["gaap_eps", "-$0.06"],
+      ["revenue", "$68.8M"],
+      ["net_income", "$16.4M"],
+    ],
+    outlook: [
+      ["Revenue", "$60M to $65M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1655210/000165521026000053/ex991pressrelease-q22026ea.htm",
+    ticker: "bynd",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -376,6 +511,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(24);
+    expect(filingCorpus).toHaveLength(33);
   });
 });

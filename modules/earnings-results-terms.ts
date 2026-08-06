@@ -38,3 +38,19 @@ export function hasNewTaiwanDollarSymbol(text: string): boolean {
 export function hasStandaloneGaapTerm(text: string): boolean {
   return new RegExp(gaapTermSource, "i").test(text);
 }
+
+// A three-letter currency code is also an ordinary acronym, so on its own it says nothing
+// about the reporting currency. Defeated by: "typing the call into the CAD in another
+// jurisdiction" — Computer-Aided Dispatch in a customer quote, which reported a US filer's
+// revenue in Canadian dollars. A code counts only where it declares units or sits against an
+// amount.
+export function hasDeclaredIsoCode(text: string, codes: string[]): boolean {
+  const alternatives = codes.join("|");
+  return new RegExp(
+    String.raw`\biso4217:(?:${alternatives})\b` +
+    String.raw`|\bin\s+(?:${alternatives})\b` +
+    String.raw`|\(\s*(?:${alternatives})\b` +
+    String.raw`|\b(?:${alternatives})\s*(?:[$\d]|millions?|billions?|thousands?)`,
+    "i",
+  ).test(text);
+}

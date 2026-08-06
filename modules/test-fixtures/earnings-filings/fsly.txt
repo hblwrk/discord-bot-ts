@@ -1,0 +1,562 @@
+EX-99.1
+2
+ex991-fslypressrelease63026.htm
+EX-99.1
+
+
+
+
+Document
+
+
+Exhibit 99.1
+
+Fastly Announces Second Quarter 2026 Financial Results
+
+
+Record second quarter revenue of $183.3 million grew 23% year-over-year
+Record second quarter gross margin of 63.3% and record non-GAAP gross margin of 65.8%
+LTM NRR of 117% reaches highest level in over three years
+
+
+SAN FRANCISCO — August 5, 2026 — Fastly, Inc. (NASDAQ: FSLY), a leader in global edge cloud platforms, today announced financial results for its second quarter ended June 30, 2026.
+"Record second quarter results reflect strong execution and the deep trust customers place in our technology and our teams," said Kip Compton, CEO of Fastly. "Our platform strategy is driving business momentum, giving us the confidence to raise our full-year outlook."
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+($ in thousands, except per share data) (unaudited) | | Three months ended
+June 30, | | Six months ended
+June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+Revenue | | $ | 183,317 | | | $ | 148,709 | | | $ | 356,338 | | | $ | 293,183 | |
+Gross margin | | | | | | | | |
+GAAP gross margin | | 63.3 | % | | 54.5 | % | | 62.9 | % | | 53.9 | % |
+Non-GAAP gross margin (1)
+| | 65.8 | % | | 59.0 | % | | 65.5 | % | | 58.2 | % |
+Operating loss | | | | | | | | |
+GAAP operating loss | | $ | (14,433) | | | $ | (36,943) | | | $ | (38,328) | | | $ | (75,122) | |
+Non-GAAP operating income (loss) (1)
+| | $ | 26,993 | | | $ | (4,594) | | | $ | 46,136 | | | $ | (10,439) | |
+Net income (loss) per share | | | | | | | | |
+GAAP net loss per common share — basic and diluted | | $ | (0.10) | | | $ | (0.26) | | | $ | (0.23) | | | $ | (0.53) | |
+Non-GAAP net income (loss) per common share — basic (1)
+| | $ | 0.17 | | | $ | (0.03) | | | $ | 0.32 | | | $ | (0.08) | |
+Non-GAAP net income (loss) per common share — diluted (1)
+| | $ | 0.15 | | | $ | (0.03) | | | $ | 0.28 | | | $ | (0.08) | |
+
+For a reconciliation of non-GAAP financial measures to their corresponding GAAP measures, please refer to the reconciliation table at the end of this press release.
+Second Quarter 2026 Financial Summary
+• Total revenue of $183.3 million, representing 23% year-over-year growth. Network Services revenue of $133.9 million, representing 17% year-over-year growth. Security revenue of $41.7 million, representing 43% year-over-year growth. Other revenue of $7.7 million, representing 69% year-over-year growth. Network Services revenue includes solutions designed to improve performance of websites, apps, APIs, and digital media. Security revenue includes products designed to protect websites, apps, APIs, and users. Other revenue includes Compute and Observability solutions.
+• Generated $39.3 million of operating cash flow compared to $25.8 million of operating cash flow in the second quarter of 2025. Generated $3.6 million of positive free cash flow compared to $10.9 million in the second quarter of 2025.
+• GAAP gross margin of 63.3%, compared to 54.5% in the second quarter of 2025. Non-GAAP gross margin 1 of 65.8%, compared to 59.0% in the second quarter of 2025.
+• GAAP net loss of $15.6 million, compared to $37.5 million in the second quarter of 2025. Non-GAAP net income 1 of $26.2 million, compared to non-GAAP net loss 1 of $5.0 million in the second quarter of 2025.
+• GAAP net loss per basic and diluted share of $0.10, compared to $0.26 in the second quarter of 2025. Non-GAAP net income per basic share 1 of $0.17, c ompared to non-GAAP net loss per basic share 1 of $0.03 in the second quarter of 2025. Non-GAAP net income per diluted share 1 of $0.15, compared to non-GAAP net loss per diluted share 1 of $0.03 in the second quarter of 2025.
+Key Metrics
+• Remaining Performance Obligations (RPO) 2 were $341 million, up 38% from $247 million in the second quarter of 2025.
+• Fastly's top ten customers accounted for 37% of revenue in the second quarter of 2026 compared to 31% in the second quarter of 2025.
+
+
+
+
+
+
+
+
+
+
+
+• Last 12-month net retention rate (LTM NRR) 3 increased to 117% in the second quarter from 113% in the first quarter of 2026.
+Second Quarter Business and Product Highlights
+• Announced new research showing how rapidly growing AI traffic is reshaping the internet, growing 6.5x faster than human traffic this year, and why organizations need new strategies to manage machine traffic.
+• Released a joint announcement with LALIGA on the collaboration of anti-piracy solutions that are designed to address illegal streaming of live sports and help rights holders prevent lost revenue.
+• Announced a new partnership with Skyfire, enabling trusted commerce at the edge so enterprises can now securely identify, verify, and transact with AI agents in real time and at global scale, without re-architecting existing infrastructure.
+• Released C++ SDK for Fastly Compute, enabling enterprises to secure, scale, and accelerate their C++ AI workloads, gaming features, and other low-latency applications.
+
+
+Third Quarter and Full Year 2026 Guidance
+| | | | | | | | | | | | | | |
+| | Q3 2026 | | Full Year 2026 |
+Total Revenue (millions) | | $184.0 - $190.0 | | $732.0 - $746.0 |
+Non-GAAP Operating Income (millions)
+| | $20.0 - $24.0 | | $88.0 - $96.0 |
+Non-GAAP Net Income per share (4)(5)
+| | $0.11 - $0.13 | | $0.50 - $0.54 |
+
+A reconciliation of non-GAAP guidance measures to corresponding GAAP measures is not available on a forward-looking basis without unreasonable effort due to the uncertainty of expenses that may be incurred in the future and cannot be reasonably determined or predicted at this time, although it is important to note that these factors could be material to Fastly’s future GAAP financial results.
+Conference Call Information
+Fastly will host an investor conference call to discuss its results at 1:30 p.m. PT / 4:30 p.m. ET on Wednesday, August 5, 2026.
+To access the conference call, please pre-register and dial-in using this link at least 15 minutes prior to the 1:30 p.m. PT start time. Registrants will receive an email confirmation with dial-in details.
+A live webcast of the event can be accessed using this link. A replay of the webcast will be available on https://investors.fastly.com starting approximately two hours after the event and archived on the site for one quarter.
+
+
+About Fastly, Inc.
+Fastly’s powerful and programmable edge cloud platform helps the world’s top brands deliver online experiences that are fast, safe, and engaging through edge compute, delivery, security, and observability offerings that improve site performance, enhance security, and empower innovation at global scale. Compared to other providers, Fastly’s powerful, high-performance, and modern platform architecture empowers developers to deliver secure websites and apps with rapid time-to-market and demonstrated, industry-leading cost savings. Organizations around the world trust Fastly to help them upgrade the internet experience, including Reddit, Universal Music Group, and SeatGeek. Learn more about Fastly at https://www.fastly.com, and follow us @fastly.
+
+
+
+Forward-Looking Statements
+This press release contains “forward-looking” statements that are based on our beliefs and assumptions and on information currently available to us. Forward-looking statements may involve known and unknown risks, uncertainties, and other factors that may cause our actual results, performance, or achievements to be materially different from those expressed or implied by the forward-looking statements. These statements include, but are not limited to, statements regarding our future financial and operating performance and shareholder returns, including our outlook and guidance and ability to maintain and strengthen our liquidity position; our ability to acquire new customers, expand cross-sell opportunities, and grow market share; our ability to enrich our revenue mix with platform enhancements; the performance of our existing and new platform enhancements; our ability to accelerate global growth; our partnerships and collaborations; the performance, capabilities, and expectations regarding customer experiences with Fastly Compute, including its C++ SDK, Bot Management and DDoS Protection, and Next-Gen WAF; and Fastly's strategies, platform, and business plans. Except as required by law, we assume no
+
+
+
+
+
+
+
+
+
+
+
+obligation to update these forward-looking statements publicly or to update the reasons actual results could differ materially from those anticipated in the forward-looking statements, even if new information becomes available in the future. Important factors that could cause our actual results to differ materially are detailed from time to time in the reports Fastly files with the Securities and Exchange Commission (“SEC”), including those more fully described in Fastly’s Annual Report on Form 10-K for the year ended December 31, 2025 . Additional information will also be set forth in Fastly’s Quarterly Report on Form 10-Q for the quarter ended June 30, 2026, and other filings and reports that Fastly may file from time to time with the SEC . Copies of reports filed with the SEC are posted on Fastly’s website and are available from Fastly without charge.
+Use of Non-GAAP Financial Measures
+To supplement our condensed consolidated financial statements, which are prepared and presented in accordance with accounting principles generally accepted in the United States ( “ GAAP ” ), the Company uses the following non-GAAP measures of financial performance: non-GAAP gross profit, non-GAAP gross margin, non-GAAP operating income (loss), non-GAAP net income (loss), non-GAAP basic and diluted net income (loss) per common share, non-GAAP research and development, non-GAAP sales and marketing, non-GAAP general and administrative, free cash flow and adjusted EBITDA. The presentation of this additional financial information is not intended to be considered in isolation from, as a substitute for, or superior to, the financial information prepared and presented in accordance with GAAP. These non-GAAP measures have limitations in that they do not reflect all of the amounts associated with our results of operations as determined in accordance with GAAP. In addition, these non-GAAP financial measures may be different from the non-GAAP financial measures used by other companies. These non-GAAP measures should only be used to evaluate our results of operations in conjunction with the corresponding GAAP measures. Management compensates for these limitations by reconciling these non-GAAP financial measures to the most comparable GAAP financial measures within our earnings releases.
+Non-GAAP gross profit, non-GAAP gross margin, non-GAAP operating income (loss), non-GAAP net income (loss) and non-GAAP basic and diluted net income (loss) per common share, non-GAAP research and development, non-GAAP sales and marketing, and non-GAAP general and administrative differ from GAAP in that they exclude stock-based compensation expense and related employer payroll taxes, amortization of capitalized stock-based compensation - cost of revenue , amortization of acquired intangible assets, executive transition costs, and amortization of debt discount and issuance costs.
+Adjusted EBITDA : excludes stock-based compensation expense and related employer payroll taxes, amortization of capitalized stock-based compensation - cost of revenue, gain on modification of lease, depreciation and other amortization expenses, amortization of acquired intangible assets, impairment expense, executive transition costs, interest income, interest expense, including amortization of debt discount and issuance costs, other expense (income), net, and income taxes.
+Amortization of Acquired Intangible Assets : consists of non-cash charges that can be affected by the timing and magnitude of asset purchases and acquisitions. Management considers its operating results without this activity when evaluating its ongoing non-GAAP performance and its adjusted EBITDA performance because these charges are non-cash expenses that can be affected by the timing and magnitude of asset purchases and acquisitions and may not be reflective of our core business, ongoing operating results, or future outlook .
+Amortization of Debt Discount and Issuance Costs : consists primarily of amortization expense related to our debt obligations. Management considers its operating results without this activity when evaluating its ongoing non-GAAP net income (loss) performance and its adjusted EBITDA performance because it is not believed by management to be reflective of our core business, ongoing operating results or future outlook. These are included in our total interest expense.
+Capital Expenditures : consists of cash used for purchases of property and equipment, net of proceeds from sale of property and equipment, capitalized internal-use software and payments on finance lease obligations, as reflected in our statement of cash flows.
+Depreciation a nd Other Amortization Expense : consists of non-cash charges that can be affected by the timing and magnitude of asset purchases. Management considers its operating results without this activity when evaluating its ongoing adjusted EBITDA performance because these charges are non-cash expenses that can be affected by the timing and magnitude of asset purchases and may not be reflective of our core business, ongoing operating results, or future outlook.
+Executive Transition Costs : consists of one-time cash charges recognized with respect to changes in our executive’s employment status. Management considers its operating results without this activity when evaluating its ongoing non-GAAP net income (loss) performance and its adjusted EBITDA performance because it is not believed by management to be reflective of our core business, ongoing operating results, or future outlook.
+Free Cash Flow : calculated as net cash used in operating activities less purchases of property and equipment, net of proceeds from sale of property and equipment, and capitalized internal-use software costs. Management specifically identifies adjusting items in the reconciliation of GAAP to non-GAAP financial measures. Management considers non-GAAP free cash flow to be a profitability and liquidity measure that provides useful information to management and investors about the amount of cash generated by the business that can possibly be used for investing in Fastly's business and strengthening its balance sheet, but it is not intended to represent the residual cash flow available for discretionary expenditures. The
+
+
+
+
+
+
+
+
+
+
+
+presentation of non-GAAP free cash flow is also not meant to be considered in isolation or as an alternative to cash flows from operating activities as a measure of liquidity.
+Gain on Modification of Lease : consists of a one-time non-cash charge recognized with respect to the modification of our leases. Management considers its operating results without this activity when evaluating its ongoing non-GAAP net income (loss) performance and its adjusted EBITDA performance because it is not believed by management to be reflective of our core business, ongoing operating results, or future outlook.
+Impairment Expense: consists of charges related to our long-lived assets. Management considers its operating results without this activity when evaluating its ongoing non-GAAP net income (loss) performance and its adjusted EBITDA performance because it is not believed by management to be reflective of our core business, ongoing operating results or future outlook.
+Income Taxes : consists primarily of expenses recognized related to state and foreign income taxes. Management considers its operating results without this activity when evaluating its ongoing adjusted EBITDA performance because it is not believed by management to be reflective of our core business, ongoing operating results or future outlook.
+Interest Expense : consists primarily of interest expense related to our debt instruments, including amortization of debt discount and issuance costs. Management considers its operating results without this activity when evaluating its ongoing non-GAAP net income (loss) performance and its adjusted EBITDA performance because it is not believed by management to be reflective of our core business, ongoing operating results or future outlook.
+Interest Income : consists primarily of interest income related to our marketable securities. Management considers its operating results without this activity when evaluating its ongoing non-GAAP net income (loss) performance and its adjusted EBITDA performance because it is not believed by management to be reflective of our core business, ongoing operating results or future outlook.
+Other (Expense) Income, Net : consists primarily of foreign currency transaction gains and losses. Management considers its operating results without this activity when evaluating its ongoing adjusted EBITDA performance because it is not believed by management to be reflective of our core business, ongoing operating results or future outlook.
+Stock-Based Compensation Expense and Related Employer Payroll Taxes : consists of expenses for stock options, restricted stock units, performance awards and other shares issued under our equity incentive plans or our Employee Stock Purchase Plan ("ESPP"), as applicable, and the related employer payroll taxes. Although stock-based compensation and its related employer payroll taxes are expenses for the Company, management considers its operating results without this activity when evaluating its ongoing non-GAAP net income (loss) performance and its adjusted EBITDA performance, primarily because they are expenses not believed by management to be reflective of our core business, ongoing operating results, or future outlook. In addition, the value of some stock-based instruments is determined using formulas that incorporate variables, such as market volatility, that are beyond our control.
+Amortization of Capitalized Stock-Based Compensation - Cost of Revenue : in order to reflect the performance of our core business, ongoing operating results, or future outlook, and to be consistent with the way many investors evaluate our performance and compare our operating results to peer companies, similar to stock-based compensation, management considers it appropriate to exclude amortization of capitalized stock-based compensation from our non-GAAP financial measures.
+Management believes these non-GAAP financial measures and adjusted EBITDA serve as useful metrics for our management and investors because they enable a better understanding of the long-term performance of our core business and facilitate comparisons of our operating results over multiple periods and to those of peer companies, and when taken together with the corresponding GAAP financial measures and our reconciliations, enhance investors' overall understanding of our current financial performance.
+In the financial tables below, the Company provides a reconciliation of the most comparable GAAP financial measure to the historical non-GAAP financial measures used in this press release.
+Key Metrics
+1 Beginning with the quarter ended March 31, 2026, we are excluding stock-based compensation related employer payroll taxes from our non-GAAP gross margin, non-GAAP operating income (loss), non-GAAP net income (loss) per common share — basic and non-GAAP net income (loss) per common share — diluted, because we consider our operating results without this activity when evaluating our ongoing non-GAAP net income (loss) performance and our adjusted EBITDA performance. We did not recast the presentation for all prior periods presented due to the immaterial amount of such payroll taxes.
+2 Remaining Performance Obligations include future committed revenue for periods within current contracts with customers, as well as deferred revenue arising from consideration invoiced for which the related performance obligations have not been satisfied. During the third quarter of 2025, we identified an error in RPO calculations from certain contracts with a termination-for-convenience clause. We recast the presentation of RPO for all prior periods presented to reflect the correction of this error.
+
+
+
+
+
+
+
+
+
+
+
+3 We calculate LTM Net Retention Rate by dividing the total customer revenue for the prior twelve-month period (“prior 12-month period”) ending at the beginning of the last twelve-month period (“LTM period”) minus revenue contraction due to billing decreases or customer churn, plus revenue expansion due to billing increases during the LTM period from the same customers by the total prior 12-month period revenue. We believe the LTM Net Retention Rate is supplemental as it removes some of the volatility that is inherent in a usage-based business model.
+4 Non-GAAP net income per share is calculated as Non-GAAP net income divided by weighted average diluted shares for 2026.
+5 Assumes weighted average diluted shares outstanding of 181.4 million in Q3 2026 and 180.3 million for the full year 2026.
+
+
+
+
+
+
+
+
+
+
+
+
+Condensed Consolidated Statements of Operations
+(unaudited, in thousands, except per share amounts)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three months ended
+June 30, | | Six months ended
+June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+Revenue | | $ | 183,317 | | | $ | 148,709 | | | $ | 356,338 | | | $ | 293,183 | |
+Cost of revenue (1)
+| | 67,366 | | | 67,593 | | | 132,206 | | | 135,269 | |
+Gross profit | | 115,951 | | | 81,116 | | | 224,132 | | | 157,914 | |
+Operating expenses: | | | | | | | | |
+Research and development (1)
+| | 42,071 | | | 42,221 | | | 84,043 | | | 79,650 | |
+Sales and marketing (1)
+| | 56,735 | | | 51,100 | | | 111,849 | | | 100,413 | |
+General and administrative (1)
+| | 31,578 | | | 24,323 | | | 66,568 | | | 52,558 | |
+Impairment expense | | — | | | 415 | | | — | | | 415 | |
+Total operating expenses | | 130,384 | | | 118,059 | | | 262,460 | | | 233,036 | |
+Loss from operations | | (14,433) | | | (36,943) | | | (38,328) | | | (75,122) | |
+Interest income | | 2,842 | | | 3,084 | | | 5,769 | | | 6,059 | |
+Interest expense | | (3,348) | | | (3,164) | | | (6,654) | | | (6,337) | |
+Other (expense) income, net | | (400) | | | 39 | | | (780) | | | (41) | |
+Loss before income taxes | | (15,339) | | | (36,984) | | | (39,993) | | | (75,441) | |
+Income tax expense (benefit) | | 252 | | | 557 | | | (3,878) | | | 1,248 | |
+Net loss | | $ | (15,591) | | | $ | (37,541) | | | $ | (36,115) | | | $ | (76,689) | |
+Net loss per share attributable to common stockholders, basic and diluted | | $ | (0.10) | | | $ | (0.26) | | | $ | (0.23) | | | $ | (0.53) | |
+Weighted-average shares used in computing net loss per share attributable to common stockholders, basic and diluted | | 157,596 | | | 145,780 | | | 155,598 | | | 144,539 | |
+
+__________
+(1) Includes stock-based compensation expense as follows:
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three months ended
+June 30, | | Six months ended
+June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+Cost of revenue | | $ | 2,757 | | | $ | 2,573 | | | $ | 5,293 | | | $ | 4,512 | |
+Research and development | | 11,902 | | | 11,755 | | | 21,932 | | | 20,648 | |
+Sales and marketing | | 10,344 | | | 8,176 | | | 19,697 | | | 14,869 | |
+General and administrative | | 10,169 | | | 3,831 | | | 23,231 | | | 11,888 | |
+Total | | $ | 35,172 | | | $ | 26,335 | | | $ | 70,153 | | | $ | 51,917 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Reconciliation of GAAP to Non-GAAP Financial Measures
+(unaudited, in thousands, except per share data)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three months ended
+June 30, | | Six months ended
+June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+Gross profit | | | | | | | | |
+GAAP gross profit | | $ | 115,951 | | | $ | 81,116 | | | $ | 224,132 | | | $ | 157,914 | |
+Stock-based compensation expense and related employer payroll taxes (1)
+| | 3,026 | | | 2,573 | | | 5,773 | | | 4,512 | |
+Amortization of capitalized stock-based compensation - Cost of revenue
+| | 1,694 | | | 1,581 | | | 3,383 | | | 3,222 | |
+Amortization of acquired intangible assets | | — | | | 2,475 | | | — | | | 4,950 | |
+Non-GAAP gross profit | | $ | 120,671 | | | $ | 87,745 | | | $ | 233,288 | | | $ | 170,598 | |
+GAAP gross margin | | 63.3 | % | | 54.5 | % | | 62.9 | % | | 53.9 | % |
+Non-GAAP gross margin | | 65.8 | % | | 59.0 | % | | 65.5 | % | | 58.2 | % |
+Research and development | | | | | | | | |
+GAAP research and development | | $ | 42,071 | | | $ | 42,221 | | | $ | 84,043 | | | $ | 79,650 | |
+Stock-based compensation expense and related employer payroll taxes (1)
+| | (12,967) | | | (11,755) | | | (24,355) | | | (20,648) | |
+Non-GAAP research and development | | $ | 29,104 | | | $ | 30,466 | | | $ | 59,688 | | | $ | 59,002 | |
+Sales and marketing | | | | | | | | |
+GAAP sales and marketing | | $ | 56,735 | | | $ | 51,100 | | | $ | 111,849 | | | $ | 100,413 | |
+Stock-based compensation expense and related employer payroll taxes (1)
+| | (10,869) | | | (8,176) | | | (21,009) | | | (14,869) | |
+Amortization of acquired intangible assets | | (2,160) | | | (2,279) | | | (4,319) | | | (4,580) | |
+Executive transition costs | | — | | | — | | | (262) | | | — | |
+Non-GAAP sales and marketing | | $ | 43,706 | | | $ | 40,645 | | | $ | 86,259 | | | $ | 80,964 | |
+General and administrative | | | | | | | | |
+GAAP general and administrative | | $ | 31,578 | | | $ | 24,323 | | | $ | 66,568 | | | $ | 52,558 | |
+Stock-based compensation expense and related employer payroll taxes (1)
+| | (10,710) | | | (3,831) | | | (24,302) | | | (11,888) | |
+Executive transition costs | | — | | | — | | | (1,061) | | | (335) | |
+Gain on modification of lease | | — | | | 736 | | | — | | | 736 | |
+Non-GAAP general and administrative | | $ | 20,868 | | | $ | 21,228 | | | $ | 41,205 | | | $ | 41,071 | |
+Operating income (loss) | | | | | | | | |
+GAAP operating loss | | $ | (14,433) | | | $ | (36,943) | | | $ | (38,328) | | | $ | (75,122) | |
+Stock-based compensation expense and related employer payroll taxes (1)
+| | 37,572 | | | 26,335 | | | 75,439 | | | 51,917 | |
+Amortization of capitalized stock-based compensation - Cost of revenue
+| | 1,694 | | | 1,581 | | | 3,383 | | | 3,222 | |
+Executive transition costs | | — | | | — | | | 1,323 | | | 335 | |
+Gain on modification of lease | | — | | | (736) | | | — | | | (736) | |
+Amortization of acquired intangible assets | | 2,160 | | | 4,754 | | | 4,319 | | | 9,530 | |
+Impairment expense | | — | | | 415 | | | — | | | 415 | |
+Non-GAAP operating income (loss) | | $ | 26,993 | | | $ | (4,594) | | | $ | 46,136 | | | $ | (10,439) | |
+Net income (loss) | | | | | | | | |
+GAAP net loss | | $ | (15,591) | | | $ | (37,541) | | | $ | (36,115) | | | $ | (76,689) | |
+Stock-based compensation expense and related employer payroll taxes (1)
+| | 37,572 | | | 26,335 | | | 75,439 | | | 51,917 | |
+Amortization of capitalized stock-based compensation - Cost of revenue
+| | 1,694 | | | 1,581 | | | 3,383 | | | 3,222 | |
+Executive transition costs | | — | | | — | | | 1,323 | | | 335 | |
+Gain on modification of lease | | — | | | (736) | | | — | | | (736) | |
+Amortization of acquired intangible assets | | 2,160 | | | 4,754 | | | 4,319 | | | 9,530 | |
+Impairment expense | | — | | | 415 | | | — | | | 415 | |
+Amortization of debt discount and issuance costs | | 366 | | | 217 | | | 767 | | | 434 | |
+Non-GAAP net income (loss) | | $ | 26,201 | | | $ | (4,975) | | | $ | 49,116 | | | $ | (11,572) | |
+Non-GAAP net income (loss) per common share — basic | | $ | 0.17 | | | $ | (0.03) | | | $ | 0.32 | | | $ | (0.08) | |
+Non-GAAP net income (loss) per common share — diluted | | $ | 0.15 | | | $ | (0.03) | | | $ | 0.28 | | | $ | (0.08) | |
+Weighted average basic common shares | | 157,596 | | | 145,780 | | | 155,598 | | | 144,539 | |
+Weighted average diluted common shares | | 180,304 | | | 145,780 | | | 178,410 | | | 144,539 | |
+
+
+
+
+
+
+
+
+
+
+
+
+(1) Similar to stock-based compensation, we believe it is also appropriate to exclude employer payroll taxes related to stock-based compensation from our non-GAAP financial measures in order to reflect the performance of our core business and to be consistent with the way many investors evaluate our performance and compare our operating results to peer companies. In order to continue to improve the usefulness of our non-GAAP financial measures to the investors, starting with the quarter ended March 31, 2026, we are excluding stock-based compensation related employer payroll taxes from our non-GAAP financial measures. We did not recast the presentation for all prior periods presented due to the immaterial amount of such payroll taxes. Refer to Non-GAAP Financial Measures definition for further details.
+Reconciliation of GAAP to Non-GAAP Financial Measures (continued)
+(unaudited, in thousands, except per share data)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three months ended
+June 30, | | Six months ended
+June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+Reconciliation of GAAP to Non-GAAP diluted shares | | | | | | | | |
+GAAP diluted shares | | 157,596 | | | 145,780 | | | 155,598 | | | 144,539 | |
+Other dilutive equity awards | | 22,708 | | | — | | | 22,812 | | | — | |
+Non-GAAP diluted shares | | 180,304 | | | 145,780 | | | 178,410 | | | 144,539 | |
+Non-GAAP diluted net income (loss) per share | | $ | 0.15 | | | $ | (0.03) | | | $ | 0.28 | | | $ | (0.08) | |
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three months ended
+June 30, | | Six months ended
+June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+Adjusted EBITDA | | | | | | | | |
+GAAP net loss | | $ | (15,591) | | | $ | (37,541) | | | $ | (36,115) | | | $ | (76,689) | |
+Stock-based compensation expense and related employer payroll taxes (1)
+| | 37,572 | | | 26,335 | | | 75,439 | | | 51,917 | |
+Amortization of capitalized stock-based compensation - Cost of revenue | | 1,694 | | | 1,581 | | | 3,383 | | | 3,222 | |
+Gain on modification of lease | | — | | | (736) | | | — | | | (736) | |
+Depreciation and other amortization | | 11,129 | | | 13,505 | | | 21,449 | | | 27,155 | |
+Amortization of acquired intangible assets | | 2,160 | | | 4,754 | | | 4,319 | | | 9,530 | |
+Amortization of debt discount and issuance costs | | 366 | | | 217 | | | 767 | | | 434 | |
+Impairment expense | | — | | | 415 | | | — | | | 415 | |
+Executive transition costs | | — | | | — | | | 1,323 | | | 335 | |
+Interest income | | (2,842) | | | (3,084) | | | (5,769) | | | (6,059) | |
+Interest expense | | 2,982 | | | 2,947 | | | 5,887 | | | 5,903 | |
+Other expense (income), net | | 400 | | | (39) | | | 780 | | | 41 | |
+Income tax expense (benefit) | | 252 | | | 557 | | | (3,878) | | | 1,248 | |
+Adjusted EBITDA | | $ | 38,122 | | | $ | 8,911 | | | $ | 67,585 | | | $ | 16,716 | |
+
+
+
+
+
+(1) Similar to stock-based compensation, we believe it is also appropriate to exclude employer payroll taxes related to stock-based compensation from our non-GAAP financial measures in order to reflect the performance of our core business and to be consistent with the way many investors evaluate our performance and compare our operating results to peer companies. In order to continue to improve the usefulness of our non-GAAP financial measures to the investors, starting with the quarter ended March 31, 2026, we are excluding stock-based compensation related employer payroll taxes from our non-GAAP financial measures. We did not recast the presentation for all prior periods presented due to the immaterial amount of such payroll taxes. Refer to Non-GAAP Financial Measures definition for further details.
+
+
+
+
+
+
+
+
+
+
+
+
+Condensed Consolidated Balance Sheets
+(unaudited, in thousands)
+| | | | | | | | | | | | | | |
+| | As of
+June 30, 2026 | | As of
+December 31, 2025 |
+ASSETS | | | | |
+Current assets: | | | | |
+Cash and cash equivalents | | $ | 89,798 | | | $ | 180,563 | |
+Marketable securities
+| | 247,700 | | | 181,196 | |
+Accounts receivable, net of allowance for credit losses | | 114,216 | | | 118,029 | |
+Prepaid expenses and other current assets | | 27,333 | | | 26,921 | |
+Total current assets | | 479,047 | | | 506,709 | |
+Property and equipment, net | | 220,354 | | | 186,785 | |
+Operating lease right-of-use assets, net | | 58,213 | | | 52,067 | |
+Goodwill | | 670,356 | | | 670,356 | |
+Intangible assets, net | | 21,232 | | | 25,771 | |
+Other assets | | 54,441 | | | 57,789 | |
+Total assets | | $ | 1,503,643 | | | $ | 1,499,477 | |
+LIABILITIES AND STOCKHOLDERS’ EQUITY | | | | |
+Current liabilities: | | | | |
+Accounts payable | | $ | 20,124 | | | $ | 17,612 | |
+Accrued expenses | | 52,937 | | | 70,669 | |
+Long-term debt, current | | — | | | 38,557 | |
+Operating lease liabilities, current | | 30,100 | | | 24,427 | |
+Deferred revenue
+| | 34,266 | | | 35,234 | |
+Other current liabilities | | 5,096 | | | 7,499 | |
+Total current liabilities | | 142,523 | | | 193,998 | |
+Long-term debt, net
+| | 323,958 | | | 323,282 | |
+Operating lease liabilities, non-current | | 44,234 | | | 43,921 | |
+Other long-term liabilities | | 2,111 | | | 8,698 | |
+Total liabilities | | 512,826 | | | 569,899 | |
+Stockholders’ equity: | | | | |
+Common stock | | 3 | | | 3 | |
+Additional paid-in capital | | 2,141,909 | | | 2,044,103 | |
+Accumulated other comprehensive loss | | (493) | | | (41) | |
+Accumulated deficit | | (1,150,602) | | | (1,114,487) | |
+Total stockholders’ equity | | 990,817 | | | 929,578 | |
+Total liabilities and stockholders’ equity | | $ | 1,503,643 | | | $ | 1,499,477 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Condensed Consolidated Statements of Cash Flows
+(unaudited, in thousands) | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three months ended
+June 30, | | Six months ended
+June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+Cash flows from operating activities: | | | | | | | | |
+Net loss | | $ | (15,591) | | | $ | (37,541) | | | $ | (36,115) | | | $ | (76,689) | |
+Adjustments to reconcile net loss to net cash provided by operating activities:
+| | | | | | | | |
+Depreciation expense | | 12,720 | | | 14,962 | | | 24,612 | | | 30,129 | |
+Amortization of intangible assets | | 2,262 | | | 4,878 | | | 4,539 | | | 9,778 | |
+Non-cash lease expense | | 6,887 | | | 5,694 | | | 13,085 | | | 11,349 | |
+Amortization of debt discount and issuance costs | | 366 | | | 217 | | | 767 | | | 434 | |
+Amortization of deferred contract costs | | 4,733 | | | 4,847 | | | 9,491 | | | 9,697 | |
+Stock-based compensation | | 35,172 | | | 26,335 | | | 70,153 | | | 51,917 | |
+Deferred income taxes | | (23) | | | 327 | | | (4,353) | | | 749 | |
+Provision for credit losses | | 1,014 | | | 1,048 | | | 2,532 | | | 1,994 | |
+(Gain) loss on disposals of property and equipment | | (9) | | | (43) | | | 267 | | | (43) | |
+Accretion of discounts and amortization of premiums, net | | (1,019) | | | (1,356) | | | (1,817) | | | (1,982) | |
+Impairment expense | | — | | | 415 | | | — | | | 415 | |
+Non-cash interest expense | | 969 | | | 969 | | | 969 | | | 969 | |
+Other adjustments | | (57) | | | (84) | | | (275) | | | 292 | |
+Changes in operating assets and liabilities: | | | | | | | | |
+Accounts receivable, net | | 14,807 | | | 669 | | | 1,281 | | | (3,324) | |
+Prepaid expenses and other current assets | | 2,227 | | | 121 | | | (412) | | | 2,337 | |
+Other assets | | (3,195) | | | (6,076) | | | (1,845) | | | (8,171) | |
+Accounts payable | | 1,497 | | | 3,446 | | | 8,309 | | | 6,021 | |
+Accrued expenses | | (2,651) | | | 1,577 | | | 872 | | | (1,806) | |
+Operating lease liabilities | | (7,114) | | | (2,332) | | | (12,923) | | | (7,888) | |
+Other liabilities | | (13,661) | | | 7,725 | | | (10,937) | | | 16,908 | |
+Net cash provided by operating activities | | 39,334 | | | 25,798 | | | 68,200 | | | 43,086 | |
+Cash flows from investing activities: | | | | | | | | |
+Purchases of marketable securities | | (87,262) | | | (93,440) | | | (266,602) | | | (272,926) | |
+Maturities of marketable securities | | 24,329 | | | 37,836 | | | 201,472 | | | 45,805 | |
+Purchases of property and equipment | | (31,623) | | | (9,852) | | | (52,644) | | | (12,457) | |
+Proceeds from sale of property and equipment | | 10 | | | 44 | | | 10 | | | 44 | |
+Capitalized internal-use software | | (4,148) | | | (4,542) | | | (7,884) | | | (9,305) | |
+Net cash used in investing activities | | (98,694) | | | (69,954) | | | (125,648) | | | (248,839) | |
+Cash flows from financing activities: | | | | | | | | |
+Repayment of convertible senior notes | | — | | | — | | | (38,593) | | | — | |
+Payments of other debt issuance costs | | — | | | — | | | (502) | | | — | |
+Repayments of finance lease liabilities | | — | | | (537) | | | — | | | (2,248) | |
+Proceeds from exercise of vested stock options | | 92 | | | 279 | | | 1,135 | | | 687 | |
+Proceeds from employee stock purchase plan | | 2,397 | | | 1,240 | | | 4,676 | | | 3,371 | |
+Net cash provided by (used in) financing activities | | 2,489 | | | 982 | | | (33,284) | | | 1,810 | |
+Effects of exchange rate changes on cash and cash equivalents | | (1) | | | 177 | | | (33) | | | 255 | |
+Net decrease in cash and cash equivalents | | (56,872) | | | (42,997) | | | (90,765) | | | (203,688) | |
+Cash and cash equivalents at beginning of period | | 146,670 | | | 125,484 | | | 180,563 | | | 286,175 | |
+Cash and cash equivalents at end of period | | $ | 89,798 | | | $ | 82,487 | | | $ | 89,798 | | | $ | 82,487 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Free Cash Flow
+( unaudited, in thousands) | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three months ended
+June 30, | | Six months ended
+June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+Net cash provided by operating activities | | $ | 39,334 | | | $ | 25,798 | | | $ | 68,200 | | | $ | 43,086 | |
+Capital expenditures (1)
+| | (35,761) | | | (14,887) | | | (60,518) | | | (23,966) | |
+Free Cash Flow | | $ | 3,573 | | | $ | 10,911 | | | $ | 7,682 | | | $ | 19,120 | |
+
+__________
+(1) Capital expenditures are defined as cash used for purchases of property and equipment, net of proceeds from sale of property and equipment, capitalized internal-use software and payments on finance lease obligations, as reflected in our statement of cash flows.
+
+
+
+
+
+
+
+
+Contacts
+Investor Contact
+Vernon Essi, Jr.
+ir@fastly.com
+
+
+Media Contact
+Stacey Hurwitz
+press@fastly.com
+
+
+Source: Fastly, Inc.

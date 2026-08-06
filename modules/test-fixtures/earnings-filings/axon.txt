@@ -1,0 +1,792 @@
+EX-99.1
+2
+axon-20260805xex991.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+CONTACT:
+Investor Relations
+Axon Enterprise, Inc.
+IR@axon.com
+Axon reports Q2 2026 revenue of $904 million, up 35% year over year
+
+
+• Annual recurring revenue grows 39% to $1.6 billion; net revenue retention reaches 126%
+• Software & Services revenue grows 36% year over year to $398 million; AI Era revenue grows nearly 700%
+• Platform Solutions revenue grows 123% year over year to $150 million; Dedrone revenue surpasses $100 million
+• Reports net income of $29 million, non-GAAP net income of $155 million and Adjusted EBITDA of $242 million
+• Raises full-year revenue growth outlook to 32% to 34% ; maintains Adjusted EBITDA margin outlook at 25.5%
+Fellow shareholders,
+
+
+Axon delivered another record quarter, with revenue increasing 35% year over year to $904 million — our 10th consecutive quarter of revenue growth above 30%. Demand remained robust among both new and existing customers, supporting our vision to build the operating system for public safety and advancing our mission to protect life.
+
+
+Growth was broad-based across both segments. Software & Services revenue increased 36% year over year to $398 million, driven by new users and increased adoption of premium software offerings, including the AI Era Plan. Connected Devices revenue increased 35% year over year to $507 million, driven by Dedrone, TASER 10 and Axon Body 4. This performance reflects continued adoption across the Axon Ecosystem as customers connect more devices, data and workflows.
+
+
+Forward indicators were equally strong, with future contracted bookings growing 41% year over year to $15.1 billion. Notable wins included two nine-figure agreements with major U.S. cities, including the largest individual TASER order in our history, two eight-figure agreements with major state corrections customers and our first full-scope Axon 911 customer agreement. Momentum was also particularly strong in newer markets, with international and enterprise bookings each approximately tripling year over year. As we expand across these markets, where contract durations are often shorter than in state and local public safety, we are beginning to share new contract bookings on a five-year normalized basis to provide a more comparable view of underlying demand across end markets. On that basis, new contract bookings grew more than 30% year over year.
+
+
+Axon’s strategy is rooted in a relentless focus on delivering better outcomes for our customers and the communities they serve, supported by disciplined investment and execution. Alongside our growth, we delivered a net income margin of 3.3%, an Adjusted EBITDA margin of 26.8% and positive operating cash flow. We now expect 2026 revenue growth of 32% to 34%, up from 30% to 32% previously, and continue to expect an Adjusted EBITDA margin of approximately 25.5%.
+
+
+The examples below show the Axon Ecosystem in action—from citywide deployments and a global event to enterprise environments—and provide context for the financial performance and outlook that follow.
+
+
+
+
+
+
+
+
+
+Select Highlights
+The Axon Ecosystem
+Axon is building the largest connected network in public safety, bringing together sensors, customer-controlled data, AI-powered intelligence and response tools across the full mission chain. Fixed, body-worn and in-car cameras, drones and 911 systems create signals from the field. At the center, Axon Evidence and our broader cloud suite form the largest data repository in public safety, preserving and connecting video, audio and operational information across real-time operations, reporting, records and justice workflows.
+
+
+The relationship works in both directions, and the advantage compounds with each additional connection and data point. Each connected device enriches the data platform with additional signal and context, while the data and intelligence in the platform make every device, workflow and response more useful. AI and real-time operations help surface relevant information, automate routine tasks and accelerate decision-making, while keeping people at the center of critical decisions. TASER devices, Drone as First Responder (DFR), communications and training then help people act on that intelligence. As customers add devices, users and workflows, the network becomes more useful, more intelligent and more valuable. At the center of it all is our mission to Protect Life.
+
+
+“ I’m going to add multiple pieces of technology that need to work together — so I look at systems and how they’ll function. ” — Sheriff Michael Adkinson, Walton County, Florida
+
+
+The Network in Action
+The capabilities of the Axon network come together in different configurations for each customer and mission. Across deployments, the network follows a consistent operating arc:
+• Sense: Connected sensors identify an incident and add context.
+• Respond: Real-time awareness, training and response tools help coordinate the right response and shape what happens in the moment.
+• Resolve: Data moves through evidence, records and justice workflows to close the case and improve the next response.
+
+
+Because customers already rely on Axon across many of these workflows, they have a direct path to expand from one operational need into a comprehensive network. Today, over 80% of Axon customers deploy at least one integrated solution spanning hardware and software, while over 40% subscribe to at least one premium solution beyond our core TASER, body camera and evidence management products. The broadest deployments connect operations end to end across all three functions. Brookhaven Police Department provides one recent example of the measurable impact this model can deliver.
+
+
+Sense
+With DFR coverage across 96% of the city, Brookhaven achieved a 53-second average drone response time, providing rapid visibility into incidents as they unfolded.
+
+
+Respond
+By connecting DFR with Axon Respond, Fusus and field cameras, Brookhaven cleared 10% of calls without dispatching an officer .
+
+
+Resolve
+Brookhaven reported a 77% shoplifting clearance rate in 2025 and a 22% reduction in detective caseloads over two years . According to the department, no DFR-assisted cases had proceeded to trial, with defendants instead accepting plea agreements.
+
+
+Across the full deployment, Brookhaven also reported a 12% reduction in total index crime and a 45% reduction in burglaries in 2025.
+
+
+“ Our response time is under 60 seconds. So while you’re still typing the call into the CAD in another jurisdiction, we’ve already got the drone on the scene of the call. That’s DFR. ” — Captain Abrem Ayana, Brookhaven Police Department
+
+
+
+
+
+
+
+
+
+
+
+World Cup 2026
+The same foundation can scale beyond one city to increasingly complex missions. The 2026 World Cup demonstrated the network’s extensibility. Across U.S. host cities, agencies built on existing Axon deployments to support a mission of significantly greater scale and complexity, spanning stadiums, fan zones, transit corridors and surrounding communities.
+
+
+The World Cup deployment highlights:
+• Dedrone supported all 11 U.S. World Cup stadiums
+• More than 50 additional sites were supported, including fan zones, team facilities and other key venues
+• Multiple agencies, jurisdictions and data sources were connected through shared operating pictures
+
+
+“For FIFA, our security strategy is total visibility. Axon’s Ecosystem—from our new First Responder Drones in the air to our real-time intelligence center on the ground—means we aren’t just responding to incidents; we are seeing them unfold before officers even arrive. This technology allows us to de-escalate situations faster, track threats across a crowded city, and ensure that while the world is watching Dallas, everyone inside and outside the stadium stays safe.” — Daniel C. Comeaux, Chief of Police, Dallas
+
+
+The strategic significance extends beyond the event itself. The same real-time operations, DFR, counter-drone, ALPR and communications capabilities remain in place after the tournament, supporting routine patrol, severe weather response, retail crime intelligence and other daily needs.
+
+
+Axon Body Mini Launches for Enterprise
+In June, Axon Body Mini became generally available across the United States, Canada, the United Kingdom, the European Union, Australia and New Zealand. Purpose-built for frontline enterprise workers, Body Mini combines panic activation, livestreaming, two-way voice and Axon Assistant to provide immediate access to support.
+
+
+Early deployment activity demonstrates how workers are using the device when that support matters most:
+• 300+ cameras trialed across eight retail and healthcare organizations
+• 6,400+ recordings captured during early deployments
+• 620+ panic activations connecting workers with supervisor support
+• 420+ livestreams providing real-time visibility into unfolding situations
+
+
+Cosentino’s Food Stores provides another enterprise example, showing how an initial body-camera deployment can expand into a system for de-escalation, employee protection and incident management. Across 31 grocery locations, body-worn cameras, Axon Auto-Transcribe, Axon Evidence and retail crime intelligence workflows helped reduce physical confrontations, strengthen employee confidence and improve incident documentation, coaching and training.
+
+
+Together, these examples show how integrated deployments can deepen adoption among existing customers, extend Axon into new markets and strengthen the durability of our growth. Our financial results that follow reflect this momentum.
+
+
+Q2 2026 Summary Results
+Quarterly revenue of $904 million grew 35% year over year, driven by Software & Services revenue of $398 million, up 36% year over year, and Connected Devices revenue of $507 million, up 35% year over year.
+Total company gross margin of 60.4% was flat year over year and up 130 basis points sequentially. Excluding non-GAAP adjustments, adjusted gross margin of 62.9% decreased 40 basis points year over year and increased 130 basis points sequentially. Gross margin performance reflected a higher mix of professional services revenue and scaling new product offerings, partially offset by global tariff refunds received in the quarter.
+Operating income of $47 million increased $48 million year over year, driven by higher revenue and global tariff refunds, partially offset by increased investment to drive future growth.
+• COGS of $358 million, or 39.6% of revenue, included $11 million in stock-based compensation expense.
+
+
+
+
+
+
+
+
+
+• SG&A expense of $291 million, or 32.2% of revenue, included $71 million in stock-based compensation expense.
+• R&D expense of $209 million, or 23.1% of revenue, included $62 million in stock-based compensation expense.
+Net income of $29 million (3.3% net income margin), or $0.36 per diluted share, decreased from $36 million (5.4% net income margin) year over year. Non-GAAP net income of $155 million (17.2% non-GAAP net income margin), or $1.88 per diluted share, decreased from $179 million (26.7% non-GAAP net income margin), or $2.18 per diluted share. The year-over-year decreases in net income and non-GAAP net income primarily reflect a large tax benefit recognized in the prior year; pre-tax income increased year over year.
+Adjusted EBITDA of $242 million (26.8% Adjusted EBITDA margin) increased over 40% year over year, driven by higher revenue and global tariff refunds.
+Operating cash flow improved to $20 million from an outflow of $92 million in the prior year and drove free cash outflow of $1 million, a meaningful year-over-year improvement, primarily driven by higher EBITDA, partially offset by continued inventory investment to support customer demand and timing of customer billing and collections.
+As of June 30, 2026, Axon had $685 million in cash, cash equivalents and short-term investments and outstanding senior notes with a principal amount of $1.8 billion, resulting in a net debt position of $1.1 billion, up $46 million sequentially. Total cash received from tariff refunds was $47 million, including $18 million in expenses realized in 2025, and the remaining associated with amounts primarily classified as inventory and property and equipment, net, for which the majority would have been expensed in the current year.
+
+
+Detailed definitions of our non-GAAP financial measures and caution on the use of non-GAAP measures are included later in this letter .
+Financial commentary by segment
+Software & Services
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| THREE MONTHS ENDED | | CHANGE
+|
+| 30 JUN 2026 | | 31 MAR 2026 | | 30 JUN 2025 | | QoQ | | YoY |
+| (in thousands) | | | | |
+Revenue | $ | 397,836 | | $ | 354,524 | | $ | 292,178 | | 12.2 | % | | 36.2 | % |
+Gross margin | 71.3 | % | | 72.4 | % | | 75.6 | % | | (110) bp | | (430) bp |
+Adjusted gross margin | 75.1 | % | | 75.8 | % | | 78.9 | % | | (70) bp | | (380) bp |
+
+• Software & Services revenue grew 36% year over year, primarily driven by new users and increased adoption of premium software solutions by existing customers, including Axon Fusus, the AI Era Plan and Axon 911.
+• Software & Services gross margin of 71.3% decreased from 75.6% year over year. Excluding non-GAAP adjustments, adjusted gross margin of 75.1% decreased from 78.9%. The decrease in gross margin and adjusted gross margin was primarily driven by a higher mix of professional services revenue and scaling new product offerings. Software-only gross margin continued to exceed 80%.
+
+
+Connected Devices
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| THREE MONTHS ENDED | | CHANGE
+|
+| 30 JUN 2026 | | 31 MAR 2026 | | 30 JUN 2025 | | QoQ | | YoY |
+| (in thousands) | | | | |
+Revenue | $ | 506,553 | | $ | 452,821 | | $ | 376,360 | | 11.9 | % | | 34.6 | % |
+Gross margin | 51.9 | % | | 48.7 | % | | 48.6 | % | | 320 | bp | | 330 | bp |
+Adjusted gross margin | 53.4 | % | | 50.4 | % | | 51.1 | % | | 300 | bp | | 230 | bp |
+
+
+
+
+
+
+
+
+
+
+• Connected Devices revenue grew 35% year over year, primarily driven by Dedrone, TASER 10 and Axon Body 4.
+• Connected Devices gross margin increased to 51.9% from 48.6% a year ago and 48.7% in the prior quarter. Excluding non-GAAP adjustments, adjusted gross margin increased to 53.4% from 51.1% a year ago and 50.4% in the prior quarter. The improvement was primarily driven by global tariff refunds, partially offset by a higher revenue mix from Dedrone.
+
+
+Forward-Looking Operating Metrics
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| 30 JUN 2026 | | 31 MAR 2026 | | 31 DEC 2025 | | 30 SEP 2025 | | 30 JUN 2025 |
+| |
+Annual recurring revenue ($ millions) (1)
+| $ | 1,639 | | | $ | 1,493 | | | $ | 1,347 | | | $ | 1,252 | | | $ | 1,183 | |
+Net revenue retention (1)
+| 126 | % | | 125 | % | | 125 | % | | 124 | % | | 124 | % |
+Future contracted bookings ($ billions) (1)
+| $ | 15.1 | | | $ | 14.3 | | | $ | 14.4 | | | $ | 11.4 | | | $ | 10.7 | |
+
+____________________________________________________________________
+(1) Refer to “Statistical Definitions” below.
+• Annual recurring revenue grew 39% year over year to $1.6 billion, reflecting growing demand for premium software offerings, including our newer Axon 911 and AI Era solutions.
+• Net revenue retention reached 126% in the quarter, reflecting our ability to deliver additional value to customers over time with de minimis at trition. We drive adoption of our cloud software solutions through integrated subscription plans that include a variety of premium software options. This Software-as-a-Service (SaaS) metric excludes the hardware portion of customer subscriptions and is normalized to account for phased customer deployments throughout the year.
+• Future contracted bookings grew 41% year over year to $15.1 billion. T his operational metric tracks total unfulfilled contracted bookings for products and services, including remaining performance obligations as well as contracts with certain ter mination or other clauses that are not otherwise included in remaining performance obligations. We expect to fulfill between 20% and 25% of this balance over the next 12 months and generally expect the remainder to be fulfilled over the following ten years.
+2026 Outlook
+The following forward-looking statements reflect Axon’s expectations as of August 5, 2026 and are subject to risks and uncertainties. Please refer to “ Forward-Looking Statements ” below for additional information.
+
+
+• 2026 Revenue: Axon expects full-year 2026 revenue growth in a range of 32% to 34%, an increase from 30% to 32% previously. Our increased revenue guidance is supported by our continued execution against $15.1 billion in Future Contracted Bookings, and an expanding pipeline that supports our expectation for greater than 30% growth in five-year normalized bookings year over year for 2026.
+
+
+• 2026 Adjusted EBITDA: Axon expects full-year 2026 Adjusted EBITDA margin of 25.5%.
+
+
+◦ We provide Adjusted EBITDA guidance, rather than net income guidance, due to the inherent difficulty of forecasting certain types of expenses and gains such as income tax expenses and gains or losses on marketable securities and strategic investments, which affect net income but not Adjusted EBITDA. We are unable to reasonably estimate the impact of such expenses, which could be material, on net income. Accordingly, we do not provide a reconciliation of projected net income to projected Adjusted EBITDA.
+
+
+
+
+
+
+
+
+
+
+
+• 2026 Stock-based compensation: Axon expects full-year 2026 stock-based compensation expense to be approximately $590 million to $620 million, in line with prior guidance.
+
+
+◦ Full-year 2026 stock-based compensation expense includes approximately $280 million related to the broad-based Employee XSP and the CEO Performance Award, primarily within SG&A and R&D. These performance-based incentive programs are tied to stock price, operational, and time-based requirements.
+
+
+• 2026 CapEx: Axon expects 2026 CapEx to be in the range of $160 million to $190 million. Our 2026 capital expenditure plans include long-term R&D investment projects, continued capacity expansion, global facility build-outs and new product development costs. Expected capital expenditures do not include costs related to investments in a new headquarters.
+Quarterly conference call and webcast
+We will host our Q2 2026 earnings conference call webinar on Wednesday, August 5 at 2:00 p.m. PT / 5:00 p.m. ET
+
+
+The webcast will be available via a link on Axon's investor relations website at https://investor.axon.com or can be accessed directly via https://axon.zoom.us/j/92722647497 .
+Statistical Definitions
+Annual recurring revenue: Annual recurring revenue is a performance indicator that management believes provides more visibility into the growth of our revenue generated by our highest margin, recurring services. Annual recurring revenue should be viewed independently of revenue and deferred revenue because it is an operating measure and is not intended to be combined with or to replace GAAP revenue or deferred revenue, as they can be impacted by contract start and end dates and renewal rates. Annual recurring revenue is not intended to be a replacement or forecast of revenue or deferred revenue. We calculate annual recurring revenue as monthly recurring license, integration, warranty and storage revenue, annualized.
+
+
+Net revenue retention: Dollar-based net revenue retention is an important metric to measure our ability to retain and expand our relationships with existing customers. We calculate it as the software, camera and TASER warranty subscription and support revenue from a base set of agency customers from which we generated Axon Cloud subscription and warranty revenue in the last month of a quarter divided by the software and camera warranty subscription and support revenue from the year-ago month of that same customer base. This calculation includes high-margin warranty revenue but purposely excludes the lower-margin hardware subscription component of the customer contracts, as it is meant to be a SaaS metric that we use to monitor the health of the recurring revenue business we are building. This calculation also excludes the implied monthly revenue contribution of customers that were added since the year-ago quarter, and therefore excludes the benefit of new customer acquisition. The metric includes customers, if any, that terminated during the annual period, and therefore, this metric is inclusive of customer churn. This metric is downwardly adjusted to account for the effect of phased deployments — meaning that, for the year-ago period, we consider the total contractually obligated implied monthly revenue amount, rather than monthly revenue amounts that might have been in actuality smaller on a GAAP basis due to the customer not having yet fully deployed their Axon solution. For more information relative to our revenue recognition policies, please reference our filings with the Securities and Exchange Commission (SEC).
+
+
+
+
+
+
+
+
+
+
+
+Future contracted bookings: This operational metric tracks our total unfulfilled contracted bookings, including remaining performance obligations, in addition to contracts with certain termination or other clauses that exclude them from remaining performance obligations. Total future contracted bookings for products and services represent total orders that the Company has received and not yet performed. Beginning in Q3 2025, we have updated future contracted bookings to include cumulative gross bookings, including amounts associated with third-party agent arrangements, where we may only recognize the net portion expected to be paid on behalf of our customers as revenue. The impact of this change in historical periods was determined to be immaterial, so historical amounts have not been recast. The amounts associated with third-party agent arrangements not recognized will be eliminated from future contracted bookings upon fulfillment. This operational metric is subject to change based on future events, including terminations for convenience, the execution of optional periods or other contract modifications or cancellations. This operational metric may be unique to the Company, as it may be different from similarly titled operational metrics used by other companies. As such, the presentation of this operational metric may not enhance the comparability of the Company’s results to the results of other companies.
+
+
+Bookings: This operational metric represents total product and service orders the Company received during the period, including customer contracts with certain termination or cancellation clauses, optional periods or other clauses, as well as customer orders associated with third-party agent arrangements. To facilitate comparison across end markets with varying contract durations, the Company also presents five-year normalized bookings, which adjusts the value of new contract bookings to reflect a standardized five-year contract duration. The Company is beginning to provide this metric as growth in newer end markets, including international and enterprise, increases the mix of contracts with shorter durations than those often signed in state and local public safety. Management believes five-year normalized bookings provides a comparable view of underlying demand across end markets and periods.
+
+
+
+
+
+
+
+
+
+Supplementary Non-GAAP Measures
+To supplement the Company's financial results presented in accordance with GAAP, we present the non-GAAP financial measures of EBITDA, Adjusted EBITDA, Adjusted EBITDA margin, adjusted gross margin, non-GAAP net income, non-GAAP diluted earnings per share, free cash flow and adjusted free cash flow. The Company's management uses these non-GAAP financial measures in evaluating the Company's performance in comparison to prior periods. We believe that both management and investors benefit from referring to these non-GAAP financial measures in assessing the Company's performance, and when planning and forecasting our future periods. A reconciliation of GAAP to the non-GAAP financial measures is presented below.
+Beginning in the quarterly period ended March 31, 2026, we updated the calculation of Adjusted EBITDA to exclude all components of other income (loss), net — primarily resulting in incremental adjustments for foreign currency exchange gains and losses, net and fees incurred related to our Credit Agreement, as we do not consider these adjustments to be representative of our core operating results. For all comparable prior periods presented, our adjustment for other income (loss), net does not include the above incremental items, as the impact of this change on historical periods was determined to be de minimis. Accordingly, other income (loss), net for all comparable prior periods has not been recast and solely reflects adjustment for the impacts of net realized and unrealized gains on strategic investments and marketable securities, net realized gains on previously held minority interests acquired in business combinations and debt inducement expense.
+Furthermore, beginning in the quarterly period ended March 31, 2026, we updated the calculation of non-GAAP Net Income and non-GAAP Diluted Earnings per Share to exclude amortization expense incurred related to acquired intangible assets. Management's estimates and assumptions form the basis for determining allocation amounts, which are subject to amortization. Since the portion of the purchase price assigned to intangible assets along with the corresponding amortization period can differ considerably from one acquisition to another, we do not consider this activity to be representative of our core ongoing operations. For all comparable prior periods presented, non-GAAP Net Income and non-GAAP Diluted Earnings per Share have been recast, including the respective income tax effects.
+Furthermore, beginning in the quarterly period ended June 30, 2026, we updated the calculation of Adjusted EBITDA and Adjusted Gross Margin to exclude additional jurisdiction-specific compensation-related taxes incurred as a direct result of Employee XSP vesting events. This update expands upon our existing adjustment, which was historically limited to payroll taxes related to Employee XSP vesting events. For all comparable prior periods presented, our adjustment does not include any incremental jurisdiction-specific compensation-related taxes, as the impact of this change on historical periods was determined to be de minimis. Accordingly, compensation taxes related to Employee XSP vesting for all comparable prior periods has not been recast and solely reflects adjustment for payroll taxes incurred.
+
+
+• EBITDA (most comparable GAAP measure: Net income) – Earnings before interest expense, investment interest income, income taxes, depreciation and amortization.
+
+
+• Adjusted EBITDA (most comparable GAAP measure: Net income) – Earnings before interest expense; investment interest income; income taxes; depreciation; amortization; all components of other income (loss), net, which is primarily comprised of fair value adjustments and income or losses related to strategic investments and marketable securities, debt inducement expense associated with the early repurchase of a portion of our 2027 Notes, foreign currency exchange gains and losses, net, and fees incurred related to our Credit Agreement; noncash stock-based compensation expense; transaction and integration costs related to strategic investments and acquisitions, including the change in fair value of contingent consideration arrangements; non-recurring severance costs, including employee cash payments, equity, and related benefits; costs (or subsequent recoveries of prior costs) related to certain legal or regulatory matters we consider outside of our core operating activities; mark-to-market adjustments on our non-qualified deferred compensation liabilities; compensation taxes related to Employee XSP vesting; and inventory step-up amortization related to acquisitions.
+
+
+• Adjusted EBITDA margin (most comparable GAAP measure: Net income margin) – Adjusted EBITDA as a percentage of net sales.
+
+
+
+
+
+
+
+
+
+
+
+• Adjusted gross margin (most comparable GAAP measure: Gross margin) – Gross margin before noncash stock-based compensation expense; compensation taxes related to Employee XSP vesting; amortization of acquired intangible assets; non-recurring severance costs, including employee cash payments, equity, and related benefits; and inventory step-up amortization related to acquisitions.
+
+
+• Non-GAAP net income (most comparable GAAP measure: Net income) – Net income excluding fair value adjustments and income or losses related to strategic investments and marketable securities; the costs of noncash stock-based compensation expense; amortization of acquired intangible assets; transaction and integration costs related to strategic investments and acquisitions, including the change in fair value of contingent consideration arrangements; compensation taxes related to Employee XSP vesting; costs (or subsequent recoveries of prior costs) related to certain legal or regulatory matters we consider outside of our core operating activities; non-recurring severance costs, including employee cash payments, equity, and related benefits; debt inducement expense associated with the early repurchase of a portion of our 2027 Notes; and inventory step-up amortization related to acquisitions. The Company tax-effects non-GAAP adjustments using the blended statutory federal and state tax rates for each period presented.
+
+
+• Non-GAAP diluted earnings per share (most comparable GAAP measure: Earnings per share) – Measure of the Company's non-GAAP net income divided by the weighted average number of diluted common shares outstanding during the period presented.
+
+
+• Free cash flow (most comparable GAAP measure: Cash flow from operating activities) – Cash flows provided by operating activities minus purchases of property and equipment.
+
+
+• Adjusted free cash flow (most comparable GAAP measure: Cash flow from operating activities) – Free cash flow, excluding the net impact of investments in our new Scottsdale, Arizona campus and bond premium amortization.
+◦ We believe that free cash flow and adjusted free cash flow excluding the impact of bond premium amortization and net campus investment are non-GAAP measures that are useful to investors and management to evaluate the Company’s ability to generate cash. These non-GAAP measures can also be used to evaluate the Company’s ability to generate cash flow from operations and the impact that this cash flow has on the Company’s liquidity.
+Caution on Use of Non-GAAP Measures
+Although these non-GAAP financial measures are not consistent with GAAP, management believes investors will benefit by referring to these non-GAAP financial measures when assessing the Company's operating results, as well as when forecasting and analyzing future periods. However, management recognizes that:
+• these non-GAAP financial measures are limited in their usefulness and should be considered only as a supplement to the Company's GAAP financial measures;
+• these non-GAAP financial measures should not be considered in isolation from, or as a substitute for, the Company's GAAP financial measures;
+• these non-GAAP financial measures should not be considered to be superior to the Company's GAAP financial measures; and
+• these non-GAAP financial measures were not prepared in accordance with GAAP or under a comprehensive set of rules or principles proposed by a third party.
+Further, these non-GAAP financial measures may be unique to the Company, as they may be different from similarly titled non-GAAP financial measures used by other companies. As such, this presentation of non-GAAP financial measures may not enhance the comparability of the Company's results to the results of other companies.
+
+
+
+
+
+
+
+
+
+About Axon
+Axon (Nasdaq: AXON) is the global leader in public safety technology, relentlessly innovating to protect more lives in more places. Founder-led since 1993, Axon began with a mission to reimagine conflict in law enforcement and has grown into a global company serving everyone who takes on the responsibility of public safety, enterprise security, and national security — from first responders and governments to companies, frontline workers, and communities. Our trusted network connects TASER energy devices, cameras and sensors including body-worn, fixed and in-car cameras, drones and robotics, digital evidence and records management, real-time operations, immersive training, productivity tools, and AI-driven capabilities and insights. Designed to work seamlessly together, these solutions create a connected picture of safety that helps protect people and places with greater speed, clarity, and accountability.
+Non-Axon trademarks are property of their respective owners.
+Axon, Axon 911, Axon Assistant, AI Era Plan, Axon Body, Axon Body Mini, Axon Ecosystem, Axon Evidence, Axon Fusus, Axon Auto-Transcribe, Dedrone, TASER, TASER 10, the Filled Bolt within Circle Logo and the Delta Logo are trademarks of Axon Enterprise, Inc., some of which are registered in the United States and other countries. For more information, visit www.axon.com/legal. All rights reserved.
+Forward-looking Statements
+Forward-looking statements in this letter include, without limitation, statements regarding: proposed products and services and related development efforts and activities; expectations about the market for our current and future products and services, including statements related to our user base and customer profiles; strategies and trends relating to subscription plan programs and revenues; our expectations about the future implementation of new strategies related to artificial intelligence; the timing and realization of future contracted revenue; the fulfillment of bookings; the timing of product shipment and delivery; strategies and trends, including the amounts and benefits of R&D investments; the sufficiency of our liquidity and financial resources; expectations about customer behavior; statements concerning projections, predictions, expectations, estimates or forecasts as to our business, financial and operational results and future economic performance, including our outlook for 2026 full-year revenue, stock-based compensation expense, Adjusted EBITDA, Adjusted EBITDA margin, and capital expenditures; statements of management’s strategies, goals and objectives and other similar expressions; as well as the ultimate resolution of financial statement items requiring critical accounting estimates, including those set forth in our Annual Report on Form 10‑K for the year ended December 31, 2025 and our Quarterly Report on Form 10-Q for the quarter ended June 30, 2026. Such statements give our current expectations or forecasts of future events; they do not relate strictly to historical or current facts. Words such as “may,” “will,” “should,” “could,” “would,” “predict,” “potential,” “continue,” “expect,” “anticipate,” “future,” “intend,” “plan,” “believe,” “estimate,” and similar expressions, as well as statements in future tense, identify forward-looking statements. However, not all forward-looking statements contain these identifying words.
+
+
+
+
+
+
+
+
+
+
+
+We cannot guarantee that any forward-looking statement will be realized, although we believe we have been prudent in our plans and assumptions. Achievement of future results is subject to risks, uncertainties and potentially inaccurate assumptions. The following important factors could cause actual results to differ materially from those in the forward-looking statements: our exposure to cancellations of government contracts due to non-appropriation clauses, exercise of a cancellation clause or non-exercise of contractually optional periods; the ability of law enforcement agencies to obtain funding, including based on tax revenues; our ability to design, introduce and sell new products, services or features; our ability to defend against litigation and protect our intellectual property, and the resulting costs of this activity; our ability to win bids through the open bidding process for governmental agencies; our ability to manage our supply chain and avoid production delays, shortages and impacts to expected gross margins; the impacts of inflation, macroeconomic conditions and global events; the impact of catastrophic events or public health emergencies; the impact of stock-based compensation expense, impairment expense and income tax expense on our financial results; customer purchase behavior, including adoption of our software as a service delivery model; negative media publicity or sentiment regarding our products; the impact of various factors on projected gross margins; defects in, or misuse of, our products; changes in the costs of product components and labor; loss of customer data, a breach of security or an extended outage, including by our third-party cloud-based storage providers; exposure to international operational risks; delayed cash collections and possible credit losses due to our subscription model; changes in government regulations in the United States and in foreign markets, especially related to the classification of our products by the United States Bureau of Alcohol, Tobacco, Firearms and Explosives; our ability to integrate acquired businesses; the impact of declines in the fair values or impairment of our investments, including our strategic investments; our ability to attract and retain key personnel; litigation or inquiries and related time and costs; and counterparty risks relating to cash balances held in excess of federally insured limits. Many events beyond our control may determine whether results we anticipate will be achieved. Should known or unknown risks or uncertainties materialize, or should underlying assumptions prove inaccurate, actual results could differ materially from past results and those anticipated, estimated or projected. You should bear this in mind as you consider forward-looking statements. These factors are intended as cautionary statements for investors within the meaning of Section 21E of the Securities Exchange Act of 1934, as amended, and Section 27A of the Securities Act of 1933, as amended. Readers can find them under the heading “Risk Factors” in our Annual and Quarterly Reports, and investors should refer to them. You should understand that it is not possible to predict or identify all such factors. Consequently, you should not consider any such list to be a complete set of all potential risks or uncertainties.
+
+Except as required by law, we undertake no obligation to publicly update forward-looking statements, whether as a result of new information, future events or otherwise. You are advised, however, to consult any further disclosures we make on related subjects in our Form 8-K, 10‑Q and 10‑K reports to the SEC. Our filings with the SEC may be accessed at the SEC’s website at www.sec.gov.
+
+
+
+
+
+
+
+
+
+
+
+
+AXON ENTERPRISE, INC.
+CONSOLIDATED STATEMENTS OF OPERATIONS
+(in thousands, except per share data)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| THREE MONTHS ENDED | | SIX MONTHS ENDED |
+| 30 JUN 2026 | | 31 MAR 2026 | | 30 JUN 2025 | | 30 JUN 2026 | | 30 JUN 2025 |
+Net sales from products | $ | 506,553 | | | $ | 452,821 | | | $ | 376,360 | | | $ | 959,374 | | $ | 717,256 |
+Net sales from services | 397,836 | | | 354,524 | | | 292,178 | | | 752,360 | | 554,915 |
+Net sales | 904,389 | | | 807,345 | | | 668,538 | | | 1,711,734 | | 1,272,171 |
+Cost of product sales | 243,861 | | | 232,156 | | | 193,507 | | | 476,017 | | 363,688 |
+Cost of service sales | 114,081 | | | 97,903 | | | 71,288 | | | 211,984 | | 139,001 |
+Cost of sales | 357,942 | | | 330,059 | | | 264,795 | | | 688,001 | | 502,689 |
+Gross margin | 546,447 | | | 477,286 | | | 403,743 | | | 1,023,733 | | 769,482 |
+Operating expenses: | | | | | | | | | |
+Selling, general and administrative | 290,982 | | | 259,093 | | | 242,212 | | | 550,075 | | 465,721 |
+Research and development | 208,687 | | | 188,950 | | | 162,567 | | | 397,637 | | 313,590 |
+Total operating expenses | 499,669 | | | 448,043 | | | 404,779 | | | 947,712 | | 779,311 |
+Income (loss) from operations
+| 46,778 | | | 29,243 | | | (1,036) | | | 76,021 | | (9,829) |
+Interest income | 6,815 | | | 10,611 | | | 23,253 | | | 17,426 | | 33,857 |
+Interest expense | (28,101) | | | (28,643) | | | (28,686) | | | (56,744) | | | (36,507) | |
+Other income (loss), net | 7,192 | | | 189,010 | | | (32,414) | | | 196,202 | | | 81,987 | |
+Income (loss) before provision for income taxes | 32,684 | | | 200,221 | | | (38,883) | | | 232,905 | | | 69,508 | |
+Provision for (benefit from) income taxes | 3,257 | | | 30,909 | | | (75,000) | | | 34,166 | | | (54,589) | |
+Net income | $ | 29,427 | | | $ | 169,312 | | | $ | 36,117 | | | $ | 198,739 | | $ | 124,097 |
+Net income per common and common equivalent shares: | | | | | | | | | |
+Basic | $ | 0.37 | | | $ | 2.11 | | | $ | 0.46 | | | $ | 2.47 | | $ | 1.60 |
+Diluted | $ | 0.36 | | | $ | 2.05 | | | $ | 0.44 | | | $ | 2.41 | | $ | 1.52 |
+Weighted average number of common and common equivalent shares outstanding: | | | | | | | | | |
+Basic | 80,573 | | | 80,150 | | | 77,999 | | | 80,363 | | 77,448 |
+Diluted | 82,541 | | | 82,478 | | | 82,062 | | | 82,518 | | 81,782 |
+
+
+
+
+
+
+
+
+
+
+
+AXON ENTERPRISE, INC.
+SALES BY PRODUCT AND SERVICE
+(in thousands)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| THREE MONTHS ENDED | | THREE MONTHS ENDED | | THREE MONTHS ENDED
+|
+| 30 JUN 2026 | | 31 MAR 2026 | | 30 JUN 2025 |
+| Connected Devices | | Software & Services | | Total | | Connected Devices | | Software & Services | | Total | | Connected Devices | | Software & Services | | Total |
+TASER (1)
+| $ | 261,321 | | | $ | — | | | $ | 261,321 | | | $ | 232,853 | | | $ | — | | | $ | 232,853 | | | $ | 216,234 | | | $ | — | | | $ | 216,234 | |
+Personal Sensors (2)
+| 95,392 | | | — | | | 95,392 | | | 108,751 | | | — | | | 108,751 | | | 92,819 | | | — | | | 92,819 | |
+Platform Solutions (3)
+| 149,840 | | | — | | | 149,840 | | | 111,217 | | | — | | | 111,217 | | | 67,307 | | | — | | | 67,307 | |
+Software & Services | — | | | 397,836 | | | 397,836 | | | — | | | 354,524 | | | 354,524 | | | — | | | 292,178 | | | 292,178 | |
+Total | $ | 506,553 | | | $ | 397,836 | | | $ | 904,389 | | | $ | 452,821 | | | $ | 354,524 | | | $ | 807,345 | | | $ | 376,360 | | | $ | 292,178 | | | $ | 668,538 | |
+
+____________________________________________________________________________________
+(1) 'TASER' includes TASER handles, cartridges and related extended warranties.
+(2) 'Personal Sensors' primarily includes body cameras and accessories, signal sidearm, and related extended warranties.
+(3) 'Platform Solutions' primarily includes fleet in-car video, interview room, fixed cameras, drones and counter-drone equipment, virtual reality training hardware, and related extended warranties.
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| SIX MONTHS ENDED | | SIX MONTHS ENDED |
+| 30 JUN 2026 | | 30 JUN 2025 |
+| Connected Devices | | Software & Services | | Total | | Connected Devices | | Software & Services | | Total |
+TASER (1)
+| $ | 494,174 | | | $ | — | | | $ | 494,174 | | | $ | 411,729 | | | $ | — | | | $ | 411,729 | |
+Personal Sensors (2)
+| 204,143 | | | — | | | 204,143 | | | 181,224 | | | — | | | 181,224 | |
+Platform Solutions (3)
+| 261,057 | | | — | | | 261,057 | | | 124,303 | | | — | | | 124,303 | |
+Software & Services | — | | | 752,360 | | | 752,360 | | | — | | | 554,915 | | | 554,915 | |
+Total | $ | 959,374 | | | $ | 752,360 | | | $ | 1,711,734 | | | $ | 717,256 | | | $ | 554,915 | | | $ | 1,272,171 | |
+
+____________________________________________________________________________________
+(1) 'TASER' includes TASER handles, cartridges and related extended warranties.
+(2) 'Personal Sensors' primarily includes body cameras and accessories, signal sidearm, and related extended warranties.
+(3) 'Platform Solutions' primarily includes fleet in-car video, interview room, fixed cameras, drones and counter-drone equipment, virtual reality training hardware, and related extended warranties.
+
+
+
+
+
+
+
+
+
+
+
+
+SALES BY GEOGRAPHY
+(in thousands)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| THREE MONTHS ENDED | | THREE MONTHS ENDED | | THREE MONTHS ENDED |
+| 30 JUN 2026 | | 31 MAR 2026 | | 30 JUN 2025 |
+United States | $ | 742,307 | | | 82 | % | | $ | 646,527 | | | 80 | % | | $ | 537,373 | | | 80 | % |
+Other countries | 162,082 | | | 18 | | | 160,818 | | | 20 | | | 131,165 | | | 20 | |
+Total | $ | 904,389 | | | 100 | % | | $ | 807,345 | | | 100 | % | | $ | 668,538 | | | 100 | % |
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| SIX MONTHS ENDED | | SIX MONTHS ENDED |
+| 30 JUN 2026 | | 30 JUN 2025 |
+United States | $ | 1,388,834 | | | 81 | % | | $ | 1,066,756 | | | 84 | % |
+Other countries | 322,900 | | | 19 | | | 205,415 | | | 16 | |
+Total | $ | 1,711,734 | | | 100 | % | | $ | 1,272,171 | | | 100 | % |
+
+
+
+
+
+
+
+
+
+
+
+AXON ENTERPRISE, INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL MEASURES
+(in thousands)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| THREE MONTHS ENDED | | SIX MONTHS ENDED |
+| 30 JUN 2026 | | 31 MAR 2026 | | 30 JUN 2025 | | 30 JUN 2026 | | 30 JUN 2025 |
+EBITDA and Adjusted EBITDA: | | | | | | | | | |
+Net income | $ | 29,427 | | $ | 169,312 | | $ | 36,117 | | $ | 198,739 | | $ | 124,097 |
+Depreciation and amortization | 31,615 | | 29,346 | | 19,324 | | 60,961 | | 38,519 |
+Interest expense | 28,101 | | 28,643 | | 28,686 | | 56,744 | | 36,507 |
+Investment interest income | (6,815) | | (10,611) | | (23,253) | | (17,426) | | (33,857) |
+Provision for (benefit from) income taxes | 3,257 | | 30,909 | | (75,000) | | 34,166 | | (54,589) |
+EBITDA | $ | 85,585 | | $ | 247,599 | | $ | (14,126) | | $ | 333,184 | | $ | 110,677 |
+| | | | | | | | | |
+Non-GAAP adjustments: | | | | | | | | | |
+Other (income) loss, net | $ | (7,192) | | $ | (189,010) | | $ | 32,167 | | $ | (196,202) | | $ | (83,088) |
+Stock-based compensation expense | 144,320 | | 133,685 | | 139,244 | | 278,005 | | 279,483 |
+Transaction costs related to strategic investments and acquisitions | 4,560 | | 6,488 | | 2,230 | | 11,048 | | 4,957 |
+Compensation taxes related to Employee XSP vesting | 9,417 | | 115 | | 9,782 | | 9,532 | | 9,782 |
+Litigation and regulatory costs | 1,886 | | 1,334 | | 774 | | 3,220 | | 2,823 |
+Severance costs (1)
+| 681 | | 2,049 | | — | | 2,730 | | — |
+Non-qualified deferred compensation liability adjustments | 2,767 | | (630) | | 1,561 | | 2,137 | | 1,561 |
+Inventory step-up amortization | — | | — | | — | | — | | 607 |
+Adjusted EBITDA | $ | 242,024 | | $ | 201,630 | | $ | 171,632 | | $ | 443,654 | | $ | 326,802 |
+Net income as a percentage of net sales | 3.3 | % | | 21.0 | % | | 5.4 | % | | 11.6 | % | | 9.8 | % |
+Adjusted EBITDA as a percentage of net sales | 26.8 | % | | 25.0 | % | | 25.7 | % | | 25.9 | % | | 25.7 | % |
+| | | | | | | | | |
+Stock-based compensation expense: | | | | | | | | | |
+Cost of product and service sales | $ | 11,341 | | $ | 10,709 | | $ | 12,561 | | $ | 22,050 | | $ | 25,448 |
+Selling, general and administrative expenses | 70,988 | | 66,519 | | 72,187 | | 137,507 | | 143,534 |
+Research and development expenses | 61,667 | | 57,473 | | 54,496 | | 119,140 | | 110,501 |
+Total stock-based compensation expense | 143,996 | | 134,701 | | 139,244 | | 278,697 | | 279,483 |
+Severance costs (2)
+| (324) | | 1,016 | | — | | 692 | | — |
+Total stock-based compensation expense, excluding non-recurring severance costs | $ | 144,320 | | $ | 133,685 | | $ | 139,244 | | $ | 278,005 | | $ | 279,483 |
+
+____________________________________________________________________________________
+(1) For the six months ended June 30, 2026, non-recurring severance costs of $2.7 million consisted of stock-based compensation, cash payments and employee benefits.
+
+
+(2) For the six months ended June 30, 2026, stock-based compensation expense included $0.7 million of non-recurring severance costs. The majority of these costs were recorded in selling, general and administrative expenses.
+
+
+
+
+
+
+
+
+
+
+
+AXON ENTERPRISE, INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL MEASURES - continued
+(in thousands)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| THREE MONTHS ENDED | | SIX MONTHS ENDED |
+| 30 JUN 2026 | | 31 MAR 2026 | | 30 JUN 2025 | | 30 JUN 2026 | | 30 JUN 2025 |
+Non-GAAP net income: | | | | | | | | | |
+GAAP net income | $ | 29,427 | | $ | 169,312 | | $ | 36,117 | | $ | 198,739 | | $ | 124,097 |
+Non-GAAP adjustments: | | | | | | | | | |
+(Income) or losses from investments and marketable securities, net | (6,784) | | (191,089) | | 32,167 | | (197,873) | | (111,754) |
+Stock-based compensation expense | 144,320 | | 133,685 | | 139,244 | | 278,005 | | 279,483 |
+Amortization of acquired intangible assets | 13,445 | | 11,500 | | 6,746 | | 24,945 | | 13,309 |
+Transaction costs related to strategic investments and acquisitions | 4,560 | | 6,488 | | 2,230 | | 11,048 | | 4,957 |
+Compensation taxes related to Employee XSP vesting | 9,417 | | 115 | | 9,782 | | 9,532 | | 9,782 |
+Litigation and regulatory costs | 1,886 | | 1,334 | | 774 | | 3,220 | | 2,823 |
+Severance costs (1)
+| 681 | | 2,049 | | — | | 2,730 | | — |
+Debt inducement expense | — | | — | | — | | — | | 28,666 |
+Inventory step-up amortization | — | | — | | — | | — | | 607 |
+Income tax effects | (41,475) | | (453) | | (48,275) | | (41,928) | | (53,359) |
+Non-GAAP net income | $ | 155,477 | | $ | 132,941 | | $ | 178,785 | | $ | 288,418 | | $ | 298,611 |
+Non-GAAP net income as a percentage of net sales | 17.2 | % | | 16.5 | % | | 26.7 | % | | 16.8 | % | | 23.5 | % |
+| | | | | | | | | |
+Diluted income per common share | | | | | | | | | |
+GAAP | $ | 0.36 | | $ | 2.05 | | $ | 0.44 | | $ | 2.41 | | $ | 1.52 |
+Non-GAAP | $ | 1.88 | | $ | 1.61 | | $ | 2.18 | | $ | 3.50 | | $ | 3.65 |
+| | | | | | | | | |
+Weighted average number of diluted common and common equivalent shares outstanding | 82,541 | | 82,478 | | 82,062 | | 82,518 | | 81,782 |
+
+____________________________________________________________________________________
+(1) For the three and six months ended June 30, 2026, non-recurring severance costs of $0.7 million and $2.7 million, respectively, consisted of stock-based compensation, cash payments and employee benefits.
+
+
+
+
+
+
+
+
+
+AXON ENTERPRISE, INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL MEASURES - continued
+(in thousands)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| THREE MONTHS ENDED | | SIX MONTHS ENDED |
+| 30 JUN 2026 | | 31 MAR 2026 | | 30 JUN 2025 | | 30 JUN 2026 | | 30 JUN 2025 |
+Net sales | $ | 904,389 | | | $ | 807,345 | | | $ | 668,538 | | | $ | 1,711,734 | | | $ | 1,272,171 | |
+Cost of sales | (357,942) | | | (330,059) | | | (264,795) | | | (688,001) | | | (502,689) | |
+Gross margin | 546,447 | | | 477,286 | | | 403,743 | | | 1,023,733 | | | 769,482 | |
+Stock-based compensation expense | 11,341 | | | 10,503 | | | 12,561 | | | 21,844 | | | 25,448 | |
+Amortization of acquired intangible assets | 10,301 | | | 8,966 | | | 5,186 | | | 19,267 | | | 10,149 | |
+Compensation taxes related to Employee XSP vesting | 1,059 | | | — | | | 1,488 | | | 1,059 | | | 1,488 | |
+Severance costs | (25) | | | 166 | | | — | | | 141 | | | — | |
+Inventory step-up amortization | — | | | — | | | — | | | — | | | 607 | |
+Adjusted gross margin | $ | 569,123 | | | $ | 496,921 | | | $ | 422,978 | | | $ | 1,066,044 | | | $ | 807,174 | |
+Gross margin | 60.4 | % | | 59.1 | % | | 60.4 | % | | 59.8 | % | | 60.5 | % |
+Adjusted gross margin | 62.9 | % | | 61.6 | % | | 63.3 | % | | 62.3 | % | | 63.4 | % |
+
+Software & Services
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| THREE MONTHS ENDED | | SIX MONTHS ENDED |
+| 30 JUN 2026 | | 31 MAR 2026 | | 30 JUN 2025 | | 30 JUN 2026 | | 30 JUN 2025 |
+Net sales | $ | 397,836 | | | $ | 354,524 | | | $ | 292,178 | | | $ | 752,360 | | | $ | 554,915 | |
+Cost of sales | (114,081) | | | (97,903) | | | (71,288) | | | (211,984) | | | (139,001) | |
+Gross margin | 283,755 | | | 256,621 | | | 220,890 | | | 540,376 | | | 415,914 | |
+Stock-based compensation expense | 5,825 | | | 4,728 | | | 4,978 | | | 10,553 | | | 10,389 | |
+Amortization of acquired intangible assets | 8,572 | | | 7,236 | | | 3,853 | | | 15,808 | | | 7,479 | |
+Compensation taxes related to Employee XSP vesting | 633 | | | — | | | 854 | | | 633 | | | 854 | |
+Severance costs | — | | | 20 | | | — | | | 20 | | | — | |
+Adjusted gross margin | $ | 298,785 | | | $ | 268,605 | | | $ | 230,575 | | | $ | 567,390 | | | $ | 434,636 | |
+Gross margin | 71.3 | % | | 72.4 | % | | 75.6 | % | | 71.8 | % | | 75.0 | % |
+Adjusted gross margin | 75.1 | % | | 75.8 | % | | 78.9 | % | | 75.4 | % | | 78.3 | % |
+
+
+
+
+
+
+
+
+
+
+Connected Devices
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| THREE MONTHS ENDED | | SIX MONTHS ENDED |
+| 30 JUN 2026 | | 31 MAR 2026 | | 30 JUN 2025 | | 30 JUN 2026 | | 30 JUN 2025 |
+Net sales | $ | 506,553 | | | $ | 452,821 | | | $ | 376,360 | | | $ | 959,374 | | | $ | 717,256 | |
+Cost of sales | (243,861) | | | (232,156) | | | (193,507) | | | (476,017) | | | (363,688) | |
+Gross margin | 262,692 | | | 220,665 | | | 182,853 | | | 483,357 | | | 353,568 | |
+Stock-based compensation expense | 5,516 | | | 5,775 | | | 7,583 | | | 11,291 | | | 15,059 | |
+Amortization of acquired intangible assets | 1,729 | | | 1,730 | | | 1,333 | | | 3,459 | | | 2,670 | |
+Compensation taxes related to Employee XSP vesting | 426 | | | — | | | 634 | | | 426 | | | 634 | |
+Severance costs | (25) | | | 146 | | | — | | | 121 | | | — | |
+Inventory step-up amortization | — | | | — | | | — | | | — | | | 607 | |
+Adjusted gross margin | $ | 270,338 | | | $ | 228,316 | | | $ | 192,403 | | | $ | 498,654 | | | $ | 372,538 | |
+Gross margin | 51.9 | % | | 48.7 | % | | 48.6 | % | | 50.4 | % | | 49.3 | % |
+Adjusted gross margin | 53.4 | % | | 50.4 | % | | 51.1 | % | | 52.0 | % | | 51.9 | % |
+
+
+
+
+
+
+
+
+
+
+
+
+
+AXON ENTERPRISE, INC.
+CONSOLIDATED BALANCE SHEETS
+(in thousands)
+| | | | | | | | | | | |
+| 30 JUN 2026 | | 31 DEC 2025 |
+| (Unaudited) | | |
+ASSETS | | | |
+Current Assets: | | | |
+Cash and cash equivalents | $ | 597,704 | | | $ | 1,201,147 | |
+Short-term investments | 75,703 | | | 505,417 | |
+Marketable securities | 19,126 | | | 27,213 | |
+Accounts and notes receivable, net of allowance
+| 768,637 | | | 777,486 | |
+Contract assets, net | 750,950 | | | 582,630 | |
+Inventory | 486,556 | | | 341,811 | |
+Prepaid expenses | 190,682 | | | 149,800 | |
+Other current assets | 115,347 | | | 127,548 | |
+Total current assets | 3,004,705 | | | 3,713,052 | |
+| | | |
+Property and equipment, net | 341,507 | | | 330,979 | |
+Deferred tax assets, net | 345,500 | | | 359,803 | |
+Intangible assets, net | 281,583 | | | 196,972 | |
+Goodwill | 1,898,827 | | | 1,370,189 | |
+Long-term notes receivable, net | 1,597 | | | 6,066 | |
+Long-term contract assets, net | 296,458 | | | 178,249 | |
+Strategic investments | 853,842 | | | 416,833 | |
+Other long-term assets | 457,138 | | | 428,170 | |
+Total assets | $ | 7,481,157 | | | $ | 7,000,313 | |
+| | | |
+LIABILITIES AND STOCKHOLDERS’ EQUITY | | | |
+Current Liabilities: | | | |
+Accounts payable | $ | 269,957 | | | $ | 139,086 | |
+Accrued liabilities | 423,932 | | | 510,538 | |
+Current portion of deferred revenue | 670,740 | | | 714,708 | |
+Current portion of notes payable, net | — | | | 80,552 | |
+Customer deposits | 16,477 | | | 16,156 | |
+Other current liabilities | 17,131 | | | 9,107 | |
+Total current liabilities | 1,398,237 | | | 1,470,147 | |
+| | | |
+Deferred revenue, net of current portion | 385,659 | | | 359,902 | |
+Liability for unrecognized tax benefits | 26,587 | | | 24,376 | |
+Long-term deferred compensation | 33,094 | | | 23,675 | |
+Long-term lease liabilities | 101,658 | | | 98,942 | |
+Long-term notes payable, net | 1,731,817 | | | 1,730,170 | |
+Other long-term liabilities | 129,568 | | | 50,443 | |
+Total liabilities | 3,806,620 | | | 3,757,655 | |
+| | | |
+Stockholders’ Equity: | | | |
+Common stock | 1 | | | 1 | |
+Additional paid-in capital | 2,735,708 | | | 2,475,035 | |
+Treasury stock | (180,164) | | | (157,242) | |
+Retained earnings | 1,135,409 | | | 936,670 | |
+Accumulated other comprehensive loss | (16,417) | | | (11,806) | |
+Total stockholders’ equity | 3,674,537 | | | 3,242,658 | |
+Total liabilities and stockholders’ equity | $ | 7,481,157 | | | $ | 7,000,313 | |
+
+
+
+
+
+
+
+
+
+
+
+AXON ENTERPRISE, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(in thousands)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| THREE MONTHS ENDED | | SIX MONTHS ENDED |
+| 30 JUN 2026 | | 31 MAR 2026 | | 30 JUN 2025 | | 30 JUN 2026 | | 30 JUN 2025 |
+| (Unaudited) | | (Unaudited) | | (Unaudited) | | (Unaudited) | | (Unaudited) |
+Cash flows from operating activities: | | | | | | | | | |
+Net income | $ | 29,427 | | | $ | 169,312 | | | $ | 36,117 | | | $ | 198,739 | | | $ | 124,097 | |
+Adjustments to reconcile net income to net cash (used in) provided by operating activities: | | | | | | | | | |
+Stock-based compensation | 143,996 | | | 134,701 | | | 139,244 | | | 278,697 | | | 279,483 | |
+Gain on strategic investments and marketable securities, net | (6,783) | | | (191,090) | | | 32,167 | | | (197,873) | | | (111,754) | |
+Debt inducement expense | — | | | — | | | — | | | — | | | 28,666 | |
+Depreciation and amortization | 32,463 | | | 30,361 | | | 17,157 | | | 62,824 | | | 36,610 | |
+Provision for bad debts and inventory | 662 | | | 1,968 | | | 2,454 | | | 2,630 | | | 6,254 | |
+Deferred income taxes | (6,564) | | | 18,020 | | | (21,297) | | | 11,456 | | | (70,065) | |
+Other noncash items | 6,771 | | | 11,695 | | | 9,763 | | | 18,466 | | | 19,278 | |
+Change in assets and liabilities: | | | | | | | | | |
+Receivables and contract assets | (305,834) | | | 48,915 | | | (139,268) | | | (256,919) | | | (212,833) | |
+Inventory | (80,386) | | | (64,713) | | | (31,112) | | | (145,099) | | | (48,098) | |
+Deferred revenue | 4,961 | | | (40,295) | | | (84,648) | | | (35,334) | | | (51,143) | |
+Accounts payable, accrued and other liabilities | 256,578 | | | (151,047) | | | 12,564 | | | 105,531 | | | 21,175 | |
+Prepaid expenses and other assets | (55,214) | | | 656 | | | (64,845) | | | (54,558) | | | (87,580) | |
+Net cash provided by (used in) operating activities | 20,077 | | | (31,517) | | | (91,704) | | | (11,440) | | | (65,910) | |
+Cash flows from investing activities: | | | | | | | | | |
+Purchases of investments | (10,892) | | | (291,952) | | | (714,693) | | | (302,844) | | | (1,793,862) | |
+Business combinations, net of cash acquired | (1,912) | | | (549,681) | | | (3,809) | | | (551,593) | | | (3,809) | |
+Proceeds from call, maturity, and sale of investments | 185,000 | | | 249,345 | | | 354,843 | | | 434,345 | | | 756,654 | |
+Purchases of property and equipment | (21,049) | | | (23,125) | | | (22,953) | | | (44,174) | | | (47,815) | |
+Other, net | 28 | | | (1,524) | | | 80 | | | (1,496) | | | 83 | |
+Net cash provided by (used in) investing activities | 151,175 | | | (616,937) | | | (386,532) | | | (465,762) | | | (1,088,749) | |
+Cash flows from financing activities: | | | | | | | | | |
+Net proceeds from equity offering | 100,477 | | | — | | | 183,960 | | | 100,477 | | | 183,960 | |
+Principal payments for conversion and redemption of convertible debt | — | | | (81,110) | | | — | | | (81,110) | | | (407,453) | |
+Income and payroll tax payments for net-settled stock awards | (129,982) | | | (10,210) | | | (187,800) | | | (140,192) | | | (192,835) | |
+Payments to third parties for debt issuance, amendment, conversion and redemption activity | — | | | (964) | | | (525) | | | (964) | | | (24,735) | |
+Proceeds from issuance of notes | — | | | — | | | — | | | — | | | 1,750,000 | |
+Other, net | (825) | | | (4) | | | — | | | (829) | | | (76) | |
+Net cash (used in) provided by financing activities | (30,330) | | | (92,288) | | | (4,365) | | | (122,618) | | | 1,308,861 | |
+Effect of exchange rate changes on cash and cash equivalents | (2,454) | | | (1,495) | | | 5,305 | | | (3,949) | | | 6,497 | |
+Net change in cash and cash equivalents | 138,468 | | | (742,237) | | | (477,296) | | | (603,769) | | | 160,699 | |
+Cash and cash equivalents and restricted cash, beginning of period | 471,156 | | | 1,213,393 | | | 1,104,758 | | | 1,213,393 | | | 466,763 | |
+Cash and cash equivalents and restricted cash, end of period | $ | 609,624 | | | $ | 471,156 | | | $ | 627,462 | | | $ | 609,624 | | | $ | 627,462 | |
+
+
+
+
+
+
+
+
+
+
+
+AXON ENTERPRISE, INC.
+SELECTED CASH FLOW INFORMATION
+(in thousands)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| THREE MONTHS ENDED | | SIX MONTHS ENDED |
+| 30 JUN 2026 | | 31 MAR 2026 | | 30 JUN 2025 | | 30 JUN 2026 | | 30 JUN 2025 |
+Net cash provided by (used in) operating activities | $ | 20,077 | | | $ | (31,517) | | | $ | (91,704) | | | $ | (11,440) | | | $ | (65,910) | |
+Purchases of property and equipment | (21,049) | | | (23,125) | | | (22,953) | | | (44,174) | | | (47,815) | |
+Free cash flow, a non-GAAP measure | (972) | | | (54,642) | | | (114,657) | | | (55,614) | | | (113,725) | |
+Bond premium amortization | — | | | 366 | | | 3,289 | | | 366 | | | 4,549 | |
+Net campus investment | 262 | | | 152 | | | 653 | | | 414 | | | 1,169 | |
+Adjusted free cash flow, a non-GAAP measure | $ | (710) | | | $ | (54,124) | | | $ | (110,715) | | | $ | (54,834) | | | $ | (108,007) | |
+
+
+AXON ENTERPRISE, INC.
+SUPPLEMENTAL TABLES
+(in thousands)
+| | | | | | | | | | | |
+| 30 JUN 2026 | | 31 DEC 2025 |
+Cash and cash equivalents | $ | 597,704 | | | $ | 1,201,147 | |
+Restricted cash | 11,920 | | | 12,246 | |
+Short-term investments | 75,703 | | | 505,417 | |
+Cash, cash equivalents, restricted cash and investments, net | 685,327 | | | 1,718,810 | |
+Current portion of notes payable, principal amount | — | | | (81,110) | |
+Long-term notes payable, principal amount | (1,750,000) | | | (1,750,000) | |
+Total cash, cash equivalents, restricted cash and investments, net of notes payable | $ | (1,064,673) | | | $ | (112,300) | |
