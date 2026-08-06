@@ -1,3 +1,5 @@
+import {isDefinitionalLine} from "./earnings-results-format-selection.ts";
+import {getMoneyScaleFromContextText} from "./earnings-results-money.ts";
 import {gaapTermSource} from "./earnings-results-terms.ts";
 
 export type EarningsOutlookMetric = {
@@ -29,6 +31,9 @@ type ParsedMoneyValue = {
 
 type OutlookSection = {
   heading?: string | undefined;
+  // A guidance table states its scale once, above the rows ("(in millions, except per share
+  // amounts)"). Without it a row reading "$10,300 - $10,800" is published as $10.3K.
+  moneyUnit?: string | undefined;
   lines: string[];
   mixedPeriods: boolean;
   // A guidance table headed "Prior | Updated" restates each figure twice. Its rows are the
@@ -153,6 +158,7 @@ export function extractOutlookMetrics(
       section.heading,
       documentCurrencyCode,
       section.revisedColumns,
+      section.moneyUnit,
     );
     if (null === metric || true === seenKeys.has(metric.key)) {
       continue;
@@ -195,10 +201,28 @@ function getOutlookSection(lines: string[]): OutlookSection {
 
   return {
     heading,
+    moneyUnit: getSectionMoneyUnit(sectionLines),
     lines: sectionLines,
     mixedPeriods: mixedPeriods || hasMixedOutlookPeriods(sectionLines),
     revisedColumns: sectionLines.some(line => hasRevisedColumnHeader(line)),
   };
+}
+
+const unitByMoneyScale = new Map<number, string>([
+  [1_000, "thousand"],
+  [1_000_000, "million"],
+  [1_000_000_000, "billion"],
+]);
+
+function getSectionMoneyUnit(lines: string[]): string | undefined {
+  for (const line of lines) {
+    const scale = getMoneyScaleFromContextText(line);
+    if (null !== scale) {
+      return unitByMoneyScale.get(scale);
+    }
+  }
+
+  return undefined;
 }
 
 // The header of a revised-guidance table, carrying only the two column captions.
@@ -286,10 +310,18 @@ function extractOutlookMetric(
   sectionHeading: string | undefined,
   documentCurrencyCode: string,
   revisedColumns: boolean,
+  sectionMoneyUnit: string | undefined,
 ): EarningsOutlookMetric | null {
   let bestCandidate: OutlookMetricCandidate | null = null;
   for (const [lineIndex, line] of lines.entries()) {
     if (false === revisedColumns && true === isNoisyOutlookLine(line)) {
+      continue;
+    }
+
+    // A footnote to a guidance table states what the measure excludes, not the measure:
+    // "(1) ... guidance excludes ... totaling $59 million to $81 million" is the size of the
+    // exclusions, and reading it reports that range as the guidance itself.
+    if (true === isDefinitionalLine(line)) {
       continue;
     }
 
@@ -309,6 +341,7 @@ function extractOutlookMetric(
         definition.valueType,
         documentCurrencyCode,
         revisedColumns,
+        sectionMoneyUnit,
       );
       if (null === value) {
         continue;
@@ -414,6 +447,7 @@ function extractOutlookValue(
   valueType: OutlookValueType,
   documentCurrencyCode: string,
   revisedColumns = false,
+  sectionMoneyUnit?: string,
 ): string | null {
   pattern.lastIndex = 0;
   const patternMatch = pattern.exec(line);
@@ -427,14 +461,14 @@ function extractOutlookValue(
     // in the same breath ("Non-GAAP EPS of $0.84 to $0.88, representing growth of 28% to
     // 35%"). Guidance given only as growth still falls through to the growth reading.
     const value = ("eps" === valueType
-      ? getOutlookRangeValue(valueText, valueType, documentCurrencyCode)
+      ? getOutlookRangeValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit)
       : null) ??
       getGrowthOutlookValue(valueText) ??
-      getOutlookRangeValue(valueText, valueType, documentCurrencyCode) ??
+      getOutlookRangeValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit) ??
       ("eps" === valueType ? getEpsPercentOutlookValue(valueText) : null) ??
       ("text" === valueType ? getSingleOutlookValue(valueText, "money", documentCurrencyCode) : null) ??
       ("text" === valueType ? getNumericGrowthOutlookValue(valueText) : null) ??
-      getSingleOutlookValue(valueText, valueType, documentCurrencyCode);
+      getSingleOutlookValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit);
     if (null !== value) {
       return value;
     }
@@ -533,6 +567,7 @@ function getOutlookRangeValue(
   value: string,
   valueType: OutlookValueType,
   documentCurrencyCode: string,
+  sectionMoneyUnit?: string,
 ): string | null {
   // A per-share range is read before a percentage one, so guidance that states the figure
   // and its growth together ("$0.84 to $0.88, representing growth of 28% to 35%") reports
@@ -571,7 +606,9 @@ function getOutlookRangeValue(
       continue;
     }
 
-    const inferredUnit = getMoneyUnit(secondRangeValue) ?? getMoneyUnit(firstRangeValue);
+    const inferredUnit = getMoneyUnit(secondRangeValue) ??
+      getMoneyUnit(firstRangeValue) ??
+      sectionMoneyUnit;
     const inferredCurrencyCode = getCurrencyCodeFromText(secondRangeValue, documentCurrencyCode) ??
       getCurrencyCodeFromText(firstRangeValue, documentCurrencyCode) ??
       getCurrencyCodeFromText(value, documentCurrencyCode) ??
@@ -590,6 +627,7 @@ function getSingleOutlookValue(
   value: string,
   valueType: OutlookValueType,
   documentCurrencyCode: string,
+  sectionMoneyUnit?: string,
 ): string | null {
   if ("percent" === valueType) {
     const percentMatch = value.match(/-?\d+(?:\.\d+)?\s*%/);
@@ -609,7 +647,7 @@ function getSingleOutlookValue(
         continue;
       }
 
-      const moneyValue = parseMoneyWithOptionalUnit(token, undefined, inferredCurrencyCode);
+      const moneyValue = parseMoneyWithOptionalUnit(token, sectionMoneyUnit, inferredCurrencyCode);
       if (null !== moneyValue) {
         return formatMoneyCompact(moneyValue.value, moneyValue.currencyCode);
       }

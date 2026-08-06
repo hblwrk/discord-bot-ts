@@ -58,7 +58,7 @@ export function getMetricCandidateScore({
     score -= 60;
   }
 
-  if (/\b(?:increase|decrease|improvement|decline|change)(?:d)?\s+(?:by|of)\b/i.test(metricLine) ||
+  if (/\b(?:increase|decrease|improve|improvement|decline|worsen|change)(?:d)?\s+(?:by|of)\b/i.test(metricLine) ||
       /\b(?:rose|fell|grew|up|down)\s+by\b/i.test(metricLine)) {
     score -= 140;
   }
@@ -79,6 +79,12 @@ export function getMetricCandidateScore({
     score += 40;
   } else if ("annual" === periodScope) {
     score -= 80;
+  }
+
+  // A row under a guidance heading states guidance even where its caption does not say so,
+  // so a table of forward ranges is not read as the reported quarter.
+  if (true === isUnderGuidanceHeading(lines, lineIndex)) {
+    score -= 120;
   }
 
   if (true === hasForeignPeriodAttribution(metricLine, quarterLabel)) {
@@ -369,6 +375,28 @@ function getLineScope(line: string): PeriodScope {
 
 // "compared with earnings per share of $1.76 for the second quarter of 2025" states a
 // prior-year figure; the leading value on such a line is not the reported quarter.
+function isUnderGuidanceHeading(lines: string[], lineIndex: number): boolean {
+  for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 14; index--, examined++) {
+    const line = lines[index];
+    if (undefined === line || line.length > 130) {
+      continue;
+    }
+
+    const heading = line.replace(/^[\s•–—-]+/, "").replace(/[\s|:]+$/, "");
+    if (/\b(?:outlook|guidance)\b/i.test(heading) && 90 > heading.length) {
+      return true;
+    }
+
+    // A results or statement heading ends the guidance section above it.
+    if (/\b(?:results|statements?\s+of\s+operations|balance\s+sheets?|highlights)\b/i.test(heading) &&
+        90 > heading.length) {
+      return false;
+    }
+  }
+
+  return false;
+}
+
 function hasForeignPeriodAttribution(
   metricLine: string,
   quarterLabel: string | undefined,

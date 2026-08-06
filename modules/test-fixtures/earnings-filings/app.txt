@@ -1,0 +1,356 @@
+EX-99.1
+2
+exhibit991-2q26earningspre.htm
+PRESS RELEASE, DATED AUGUST 5, 2026
+
+
+
+
+Document
+Exhibit 99.1
+
+
+
+AppLovin Announces Second Quarter 2026 Financial Results
+
+
+
+PALO ALTO – August 5, 2026 – AppLovin Corporation (NASDAQ: APP) (“AppLovin”), a leading marketing platform, today announced financial results for the quarter ended June 30, 2026 and posted a financial update on its Investor Relations website located at https://investors.applovin.com .
+
+
+Second Quarter 2026 Financial Highlights:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Quarter Ended June 30, | | | | Six Months Ended June 30, | | |
+(In millions, except percentages) | 2026 | | 2025 | | % Change | | 2026 | | 2025 | | % Change |
+Revenue | $1,924 | | $1,259 | | 53 | % | | $3,766 | | $2,418 | | 56 | % |
+Net Income | $1,267 | | $820 | | 55 | % | | $2,472 | | $1,396 | | 77 | % |
+Net Income from Continuing Operations | $1,267 | | $772 | | 64 | % | | $2,472 | | $1,495 | | 65 | % |
+Adjusted EBITDA | $1,614 | | $1,018 | | 58 | % | | $3,171 | | $1,956 | | 62 | % |
+
+
+
+Additional Financial Highlights:
+
+
+● Net cash from operating activities was $869.0 million and Free Cash Flow was $863.3 million for the second quarter 2026.
+
+● Basic and Diluted earnings per share ("EPS") were $3.77 and $3.76, respectively, for the second quarter 2026.
+
+● During the second quarter 2026, we repurchased and withheld 1.1 million shares of our Class A common stock, for a total cost of $551.3 million 1 . At the end of 2Q 2026, we had 335 million shares of our Class A and Class B common stock outstanding.
+
+Third Quarter 2026 Financial Guidance Summary 2
+
+
+| | | | | | | | | | | |
+| 3Q26 |
+(In millions, except percentages) | Low | | High |
+Revenue | $2,055 | | $2,085 |
+Adjusted EBITDA | 1,710 | | 1,740 |
+Adjusted EBITDA Margin | 83 | % | | 83 | % |
+
+
+
+
+
+
+1 Includes repurchased shares as well as withholdings upon net share settlement of vested equity awards. Total cost includes repurchase costs, including commissions, taxes, and fees, as well as cash paid in connection with tax withholding and remittance obligations upon net share settlement.
+2 We have not provided the forward-looking GAAP equivalents for forward-looking non-GAAP metrics, specifically Adjusted EBITDA and Adjusted EBITDA margin, or a GAAP
+reconciliation as a result of the uncertainty regarding, and the potential variability of, reconciling items such as stock-based compensation expense. Accordingly, a reconciliation of
+these non-GAAP guidance metrics to their corresponding GAAP equivalents is not available without unreasonable effort. However, it is important to note that material changes to
+reconciling items could have a significant effect on future GAAP results. We have provided historical reconciliations of GAAP to non-GAAP metrics in tables at the end of this press release.
+1
+
+
+
+
+
+Webcast and Conference Call
+
+AppLovin will host a webinar today at 2:00 PM PT / 5:00 PM ET, during which management will discuss the Company’s second quarter 2026 results and provide commentary on its business performance. A question-and-answer session will follow the prepared remarks.
+
+
+The webinar may be accessed on the Company’s investor relations website or via webinar registration . A replay of the webinar will also be available under the Events & Presentations section of our Investor Relations website.
+
+About AppLovin
+AppLovin makes technologies that help businesses of every size connect to their ideal customers. The company provides end-to-end advertising solutions for businesses to reach, monetize and grow their global audiences. For more information about AppLovin, visit: www.applovin.com.
+
+
+Contacts
+| | | | | |
+Investors
+David Hsiao
+ir@applovin.com
+| Press
+Emelyne Interior
+press@applovin.com
+|
+
+
+
+Source: AppLovin Corp.
+
+
+
+
+Forward Looking Statements
+This press release contains forward-looking statements within the meaning of Section 27A of the Securities Act of 1933 and Section 21E of the Securities Exchange Act of 1934. Forward-looking statements generally relate to future events or our future financial or operating performance. In some cases, you can identify forward-looking statements because they contain words such as “may,” “will,” “should,” “expect,” “plan,” “anticipate,” “going to,” “could,” “intend,” “target,” “project,” “contemplate,” “believe,” “estimate,” “predict,” “potential,” or “continue,” or the negative of these words or other similar terms or expressions that concern our expectations, strategy, priorities, plans, or intentions. Forward-looking statements in this press release include our expected financial results and guidance. Our expectations and beliefs regarding these matters may not materialize, and actual results in future periods are subject to risks and uncertainties, including changes in our plans or assumptions, which could cause actual results to differ materially from those projected. These risks include our inability to forecast our business effectively, the macroeconomic environment, fluctuations in our results of operations, our ability to execute on our operational and financial priorities, our ability to scale our business to support new customers, the competitive advertising ecosystem, and our inability to adapt to emerging technologies and business models. The forward-looking statements contained in this press release are also subject to other risks and uncertainties, including those more fully described in our Quarterly Report on Form 10-Q for the fiscal quarter ended March 31, 2026. Additional information will also be set forth in our Quarterly Report on Form 10-Q for the quarter ended June 30, 2026. The forward-looking statements in this press release are based on information available to us as of the date hereof, and we disclaim any obligation to update any forward-looking statements, except as required by law.
+2
+
+
+
+
+
+Non-GAAP Financial Measures
+To supplement our financial information presented in accordance with generally accepted accounting principles in the United States (“GAAP”), this press release includes certain financial measures that are not prepared in accordance with GAAP, including Adjusted EBITDA, Adjusted EBITDA margin, and Free Cash Flow. A reconciliation of each such non-GAAP financial measure to the most directly comparable GAAP measure can be found below.
+We define Adjusted EBITDA for a particular period as net income adjusted for loss (income) from discontinued operations, net of income taxes, interest expense, other (income) expense, net (excluding certain recurring items), provision for income taxes, amortization, depreciation and write-offs and as further adjusted for non-operating foreign exchange gain, stock-based compensation, transaction-related expense, restructuring costs (benefits), as well as certain other items that we believe are not reflective of our core operating performance. We define Adjusted EBITDA margin as Adjusted EBITDA divided by revenue for the same period.
+
+
+We define Free Cash Flow as net cash provided by operating activities less purchases of property and equipment and principal payments on finance leases. We subtract both purchases of property and equipment and payment of finance leases in our calculation of Free Cash Flow because we believe these items represent our ongoing requirements for property and equipment to support our business, regardless of whether we utilize a finance lease to obtain such property or equipment.
+
+
+We believe that the presentation of these non-GAAP financial measures provides useful information to investors regarding our results of operations and operating performance, as they are similar to measures reported by our public competitors and are regularly used by securities analysts, institutional investors, and other interested parties in analyzing operating performance and prospects.
+
+
+Adjusted EBITDA and Adjusted EBITDA margin are key measures we use to assess our financial performance and are also used for internal planning and forecasting purposes. We believe Adjusted EBITDA and Adjusted EBITDA margin are helpful to investors, analysts, and other interested parties because they can assist in providing a more consistent and comparable overview of our operations across our historical financial periods. We use Adjusted EBITDA and Adjusted EBITDA margin in conjunction with GAAP measures as part of our overall assessment of our performance, including the preparation of our annual operating budget and quarterly forecasts, to evaluate the effectiveness of our business strategies, and to communicate with our board of directors concerning our financial performance. We use Free Cash Flow in addition to GAAP measures to help manage our business and prepare budgets and annual planning, and we believe Free Cash Flow provides useful supplemental information to help investors understand underlying trends in our business and our liquidity.
+
+
+These measures have certain limitations in that they do not include the impact of certain expenses that are reflected in our consolidated statement of operations that are necessary to run our business. Free Cash Flow reflects cash flows from both of continuing and discontinued operations. Our definitions may differ from the definitions used by other companies and therefore comparability may be limited. In addition, other companies may not publish these or similar metrics. Thus, our non-GAAP financial measures should be considered in addition to, not as substitutes for, or in isolation from, measures prepared in accordance with GAAP.
+3
+
+
+
+
+
+
+AppLovin Corporation
+Consolidated Balance Sheets
+(In thousands, except per share data)
+(Unaudited)
+
+
+
+
+| | | | | | | | | | | |
+| June 30,
+2026
+| | December 31, 2025 |
+Assets | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 3,053,306 | | | $ | 2,487,096 | |
+Accounts receivable, net | 2,171,017 | | | 1,819,366 | |
+Prepaid expenses and other current assets | 167,993 | | | 124,330 | |
+Total current assets | 5,392,316 | | | 4,430,792 | |
+Property and equipment, net | 111,948 | | | 122,445 | |
+Goodwill | 1,518,587 | | | 1,539,986 | |
+Intangible assets, net | 355,661 | | | 396,714 | |
+Equity method investments | 289,959 | | | 287,666 | |
+Other non-current assets | 600,660 | | | 482,007 | |
+Total assets | $ | 8,269,131 | | | $ | 7,259,610 | |
+Liabilities and Stockholders’ Equity | | | |
+Current liabilities: | | | |
+Accounts payable | $ | 778,942 | | | $ | 746,977 | |
+Accrued and other current liabilities | 475,016 | | | 586,811 | |
+Total current liabilities | 1,253,958 | | | 1,333,788 | |
+Long-term debt | 3,515,072 | | | 3,512,987 | |
+Other non-current liabilities | 337,085 | | | 278,164 | |
+Total liabilities | 5,106,115 | | | 5,124,939 | |
+Stockholders’ equity: | | | |
+Preferred Stock, $0.00003 par value—100,000 shares authorized, no shares issued and outstanding as of June 30, 2026 and December 31, 2025 | — | | | — | |
+Class A, Class B, and Class C Common Stock, $0.00003 par value—1,850,000 (Class A 1,500,000, Class B 200,000, Class C 150,000) shares authorized, 335,291 (Class A 305,084, Class B 30,208, Class C nil) and 338,313 (Class A 307,955, Class B 30,358, Class C nil) shares issued and outstanding as of June 30, 2026 and December 31, 2025, respectively | 11 | | | 11 | |
+Additional paid-in capital | 575,057 | | | 446,550 | |
+Accumulated other comprehensive loss | (73,805) | | | (46,987) | |
+Retained earnings | 2,661,753 | | | 1,735,097 | |
+Total stockholders’ equity | 3,163,016 | | | 2,134,671 | |
+Total liabilities and stockholders’ equity | $ | 8,269,131 | | | $ | 7,259,610 | |
+
+
+
+4
+
+
+
+
+
+
+AppLovin Corporation
+Consolidated Statements of Operations
+(In thousands, except per share data)
+(Unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Quarter Ended June 30, | | | Six Months Ended June 30, |
+| 2026 | | 2025 | | | 2026 | | 2025 |
+Revenue | $ | 1,923,686 | | | $ | 1,258,754 | | | | $ | 3,766,135 | | | $ | 2,417,728 | |
+Costs and expenses: | | | | | | | | |
+Cost of revenue | 225,801 | | | 155,076 | | | | 429,433 | | | 306,756 | |
+Sales and marketing | 63,394 | | | 46,917 | | | | 124,145 | | | 106,300 | |
+Research and development | 99,901 | | | 44,032 | | | | 194,005 | | | 100,438 | |
+General and administrative | 40,313 | | | 55,047 | | | | 84,342 | | | 106,570 | |
+Total costs and expenses | 429,409 | | | 301,072 | | | | 831,925 | | | 620,064 | |
+Income from operations | 1,494,277 | | | 957,682 | | | | 2,934,210 | | | 1,797,664 | |
+Other income (expense): | | | | | | | | |
+Interest expense | (51,156) | | | (51,409) | | | | (102,315) | | | (104,297) | |
+Other income (expense), net
+| 62,405 | | | (22,269) | | | | 105,039 | | | (14,757) | |
+Total other income (expense), net
+| 11,249 | | | (73,678) | | | | 2,724 | | | (119,054) | |
+Income before income taxes | 1,505,526 | | | 884,004 | | | | 2,936,934 | | | 1,678,610 | |
+Provision for income taxes | 238,988 | | | 112,148 | | | | 464,783 | | | 183,216 | |
+Net income from continuing operations | 1,266,538 | | | 771,856 | | | | 2,472,151 | | | 1,495,394 | |
+Income (loss) from discontinued operations, net of income taxes
+| — | | | 47,675 | | | | — | | | (99,444) | |
+Net income | 1,266,538 | | | 819,531 | | | | 2,472,151 | | | 1,395,950 | |
+| | | | | | | | |
+Net income (loss) per share attributed to Class A and Class B common stockholders - Basic: | | | | | | | | |
+Continuing operations | $ | 3.77 | | | $ | 2.28 | | | | $ | 7.34 | | | $ | 4.41 | |
+Discontinued operations | — | | | 0.14 | | | | — | | | (0.30) | |
+Basic net income per share | $ | 3.77 | | | $ | 2.42 | | | | $ | 7.34 | | | $ | 4.11 | |
+| | | | | | | | |
+Net income (loss) per share attributed to Class A and Class B common stockholders - Diluted: | | | | | | | | |
+Continuing operations | $ | 3.76 | | | $ | 2.26 | | | | $ | 7.32 | | | $ | 4.35 | |
+Discontinued operations | — | | | 0.13 | | | | — | | | (0.29) | |
+Diluted net income per share | $ | 3.76 | | | $ | 2.39 | | | | $ | 7.32 | | | $ | 4.06 | |
+| | | | | | | | |
+Weighted-average common shares used to compute net income (loss) per share attributable to Class A and Class B common stockholders:
+| | | | | | | | |
+Basic | 335,800 | | | 338,617 | | | | 336,595 | | | 339,224 | |
+Diluted | 337,031 | | | 342,194 | | | | 337,875 | | | 343,529 | |
+
+
+
+
+
+5
+
+
+
+
+
+
+AppLovin Corporation
+Consolidated Statements of Cash Flows
+(In thousands)
+(Unaudited)
+
+
+| | | | | | | | | | | |
+| Six Months Ended June 30, |
+| 2026 | | 2025 |
+Operating Activities | | | |
+Net income | $ | 2,472,151 | | | $ | 1,395,950 | |
+Adjustments to reconcile net income to net cash provided by operating activities:
+| | | |
+Amortization, depreciation and write-offs | 66,228 | | | 126,940 | |
+Goodwill impairment | — | | | 188,943 | |
+Stock-based compensation, excluding cash-settled awards | 168,981 | | | 97,026 | |
+Gain on divestiture, net of transaction costs | — | | | (106,229) | |
+Other | (42,130) | | | 41,617 | |
+Changes in operating assets and liabilities: | | | |
+Accounts receivable | (352,557) | | | (291,551) | |
+Prepaid expenses and other assets | (56,890) | | | 20,691 | |
+Accounts payable | 29,617 | | | 39,040 | |
+Accrued and other liabilities | (124,967) | | | 91,511 | |
+Net cash provided by operating activities | 2,160,433 | | | 1,603,938 | |
+Investing Activities | | | |
+Proceeds from divestiture, net of cash divested | — | | | 424,702 | |
+Purchase of non-marketable equity securities | — | | | (18,678) | |
+Other investing activities | (7,688) | | | (27,140) | |
+Net cash provided by (used in) investing activities | (7,688) | | | 378,884 | |
+Financing Activities | | | |
+Repurchases of common stock
+| (1,532,952) | | | (1,272,429) | |
+Payment of withholding taxes related to net share settlement
+| (46,451) | | | (256,650) | |
+Principal repayments of debt | — | | | (200,000) | |
+Payments of licensed asset obligation | — | | | (13,532) | |
+Proceeds from issuance of debt | — | | | 200,000 | |
+Other financing activities | (3,248) | | | 3,017 | |
+Net cash used in financing activities | (1,582,651) | | | (1,539,594) | |
+Effect of foreign exchange rate on cash and cash equivalents | (3,884) | | | 7,969 | |
+Net increase in cash and cash equivalents, including cash from discontinued operations | 566,210 | | | 451,197 | |
+Less: net decrease in cash from discontinued operations
+| — | | | (44,381) | |
+Net increase in cash and cash equivalents | 566,210 | | | 495,578 | |
+Cash and cash equivalents at beginning of the period | 2,487,096 | | | 697,030 | |
+Cash and cash equivalents at end of the period | $ | 3,053,306 | | | $ | 1,192,608 | |
+| | | |
+Supplemental disclosure of cash flow information: | | | |
+Cash paid for interest | $ | 99,653 | | | $ | 99,553 | |
+Cash paid for income taxes, net of refunds | $ | 639,820 | | | $ | 100,621 | |
+
+6
+
+
+
+
+
+
+AppLovin Corporation
+Reconciliation of Net Cash Provided By Operating Activities to Free Cash Flow
+(In thousands)
+
+
+The following table provides a reconciliation of net cash provided by operating activities to Free Cash Flow for the periods presented:
+
+
+| | | | | | | | | | | | | | | | |
+| Quarter Ended June 30, | | | |
+| 2026 | | 2025 | | | | | |
+Net cash provided by operating activities | 869,040 | | | 772,226 | | | | | | |
+Less: | | | | | | | | |
+Purchase of property and equipment | (1,427) | | | (42) | | | | | | |
+Principal payments of finance leases
+| (4,296) | | | (4,121) | | | | | | |
+Free Cash Flow | $ | 863,317 | | | $ | 768,063 | | | | | | |
+Net cash provided by (used in) investing activities | $ | (2,441) | | | $ | 401,548 | | | | | | |
+Net cash used in financing activities | $ | (570,419) | | | $ | (537,377) | | | | | | |
+
+7
+
+
+
+
+
+
+AppLovin Corporation
+Reconciliation of Net Income to Adjusted EBITDA
+(In thousands, except percentages)
+
+
+The following table provides our Adjusted EBITDA and Adjusted EBITDA Margin and a reconciliation of Net Income to Adjusted EBITDA for the periods presented:
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Quarter Ended
+June 30, | | | Six Months Ended
+June 30, |
+| 2026 | | 2025 | | | 2026 | | 2025 |
+Revenue | $ | 1,923,686 | | $ | 1,258,754 | | | $ | 3,766,135 | | | $ | 2,417,728 | |
+Net income
+| 1,266,538 | | 819,531 | | | 2,472,151 | | | 1,395,950 | |
+Net margin
+| 66% | | 65% | | | 66% | | 58% |
+Loss (income) from discontinued operations, net of income taxes | — | | | (47,675) | | | | — | | | 99,444 | |
+Net income from continuing operations
+| 1,266,538 | | | 771,856 | | | | 2,472,151 | | | 1,495,394 | |
+Net margin from continuing operations
+| 66% | | 61% | | | 66% | | 62% |
+Adjusted as follows: | | | | | | | | |
+Interest expense | 51,156 | | | 51,409 | | | | 102,315 | | | 104,297 | |
+Other (income) expense, net | (59,863) | | | 12,798 | | | | (101,223) | | | 4,154 | |
+Provision for income taxes | 238,988 | | | 112,148 | | | | 464,783 | | | 183,216 | |
+Amortization, depreciation and write-offs | 32,563 | | | 31,064 | | | | 66,228 | | | 63,010 | |
+Non-operating foreign exchange gain | (2,364) | | | (1,210) | | | | (3,630) | | | (1,530) | |
+Stock-based compensation | 85,783 | | | 34,552 | | | | 169,252 | | | 93,667 | |
+Transaction-related expense | 59 | | | 5,097 | | | | 10 | | | 9,680 | |
+Restructuring costs | 963 | | | 633 | | | | 856 | | | 4,231 | |
+Adjusted EBITDA | $ | 1,613,823 | | | $ | 1,018,347 | | $ | 1,018,347 | | | $ | 3,170,742 | | | $ | 1,956,119 | |
+Adjusted EBITDA margin
+| 84% | | 81% | | | 84% | | 81% |
+
+
+
+8

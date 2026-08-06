@@ -1,5 +1,6 @@
 import {isEmbeddedAlphaNumericValue} from "./earnings-results-format-selection.ts";
 import {
+  hasDeclaredIsoCode,
   hasNewTaiwanDollarSymbol,
   newTaiwanDollarPrefixSource,
 } from "./earnings-results-terms.ts";
@@ -297,27 +298,33 @@ export function getCurrencyCodeFromText(
   // "NT$" only denotes New Taiwan dollars as a standalone symbol. Without the leading
   // boundary it also matches inside ordinary words — "we spe(nt $)883 million" turned a
   // US filer's revenue into NT$883M.
-  if (true === hasNewTaiwanDollarSymbol(text) || /\b(?:TWD|NTD)\b|\bNew Taiwan dollars?\b/i.test(text)) {
+  if (true === hasNewTaiwanDollarSymbol(text) ||
+      true === hasDeclaredIsoCode(text, ["TWD", "NTD"]) ||
+      /\bNew Taiwan dollars?\b/i.test(text)) {
     return "TWD";
   }
 
-  if (/(?:^|[^A-Za-z])C\s*\$/.test(text) || /\bCAD\b|\bCanadian dollars?\b/i.test(text)) {
+  if (/(?:^|[^A-Za-z])C\s*\$/.test(text) ||
+      true === hasDeclaredIsoCode(text, ["CAD"]) ||
+      /\bCanadian dollars?\b/i.test(text)) {
     return "CAD";
   }
 
-  if (text.includes("€") || /\bEUR\b/i.test(text)) {
+  if (text.includes("€") || true === hasDeclaredIsoCode(text, ["EUR"])) {
     return "EUR";
   }
 
-  if (text.includes("£") || /\bGBP\b/i.test(text)) {
+  if (text.includes("£") || true === hasDeclaredIsoCode(text, ["GBP"])) {
     return "GBP";
   }
 
-  if (text.includes("¥") || /\bJPY\b/i.test(text)) {
+  if (text.includes("¥") || true === hasDeclaredIsoCode(text, ["JPY"])) {
     return "JPY";
   }
 
-  if (/US\s*\$|\bUSD\b|\bU\.S\. dollars?\b/i.test(text)) {
+  if (/US\s*\$/i.test(text) ||
+      true === hasDeclaredIsoCode(text, ["USD"]) ||
+      /\bU\.S\. dollars?\b/i.test(text)) {
     return "USD";
   }
 

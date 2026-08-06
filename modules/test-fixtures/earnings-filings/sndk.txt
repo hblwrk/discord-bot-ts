@@ -1,0 +1,502 @@
+EX-99.1
+2
+sndkq4-26ex991xpressrelease.htm
+EX-99.1
+
+
+
+
+Document
+Exhibit 99.1
+
+
+
+
+Sandisk Reports Fiscal Fourth Quarter 2026 Financial Results
+News Summary
+• Fiscal fourth quarter revenue was $8.97 billion, up 51% sequentially, with GAAP net income reported at $6.90 billion ($43.97 diluted net income per share). Sequential revenue growth came approximately one-third from higher volumes and two-thirds from higher pricing. Fourth quarter Non-GAAP diluted net income per share was $39.25.
+• Fiscal year 2026 revenue was $20.25 billion, up 175% year-over-year, with GAAP net income reported at $11.43 billion ($73.76 diluted net income per share). Revenue outperformance was driven by both our mix shift toward higher-value customers, with Datacenter up 437%, and higher pricing. Fiscal year 2026 Non-GAAP diluted net income per share was $70.88.
+• Since announcing five New Business Model (“NBM”) agreements during our April earnings call, we have signed five additional agreements, including three NBMs with new customers and two deals expanding on previously signed NBMs.
+• Expanded our share repurchase authorization, with Sandisk’s Board of Directors approving an additional $14 billion buyback program, bringing total remaining authorization to $15.5 billion.
+• Expect first quarter 2027 revenue to be in the range of $10.30 billion to $10.80 billion, with expected Non-GAAP diluted net income per share to be in the range of $44.00 to $46.00.
+MILPITAS, Calif. — August 5, 2026 — Sandisk Corporation (Nasdaq: SNDK) today reported fiscal fourth quarter financial results.
+
+
+"We closed fiscal 2026 with a leading technology portfolio, established datacenter as a key growth pillar, and deepened our customer partnerships," said David Goeckeler, Chairman and Chief Executive Officer of Sandisk. "Our technology and products are well positioned to create value for our customers and generate growing and durable free cash flow."
+
+
+
+
+1
+
+
+
+
+
+
+
+
+Q4 2026 Financial Highlights
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| GAAP | | Non-GAAP |
+($ in millions, except per share amounts)
+| Q4 2026 | | Q3 2026 | | Q/Q | | Q4 2026 | | Q3 2026 | | Q/Q |
+Revenue | $8,965 | | $5,950 | | up 51% | | $8,965 | | $5,950 | | up 51% |
+Gross Margin | 84.6% | | 78.4% | | up 6.2 ppt | | 84.6% | | 78.4% | | up 6.2 ppt |
+Operating Expenses | $545 | | $551 | | down 1% | | $484 | | $448 | | up 8% |
+Operating Income | $7,037 | | $4,111 | | up 71% | | $7,104 | | $4,218 | | up 68% |
+Net Income | $6,903 | | $3,615 | | up 91% | | $6,162 | | $3,675 | | up 68% |
+Diluted Net Income Per Share
+| $43.97 | | $23.03 | | up 91% | | $39.25 | | $23.41 | | up 68% |
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| GAAP | | Non-GAAP |
+($ in millions, except per share amounts)
+| Q4 2026 | | Q4 2025 | | Y/Y | | Q4 2026 | | Q4 2025 | | Y/Y |
+Revenue | $8,965 | | $1,901 | | up 372% | | $8,965 | | $1,901 | | up 372% |
+Gross Margin | 84.6% | | 26.2% | | up 58.4 ppt | | 84.6% | | 26.4% | | up 58.2 ppt |
+Operating Expenses | $545 | | $480 | | up 14% | | $484 | | $402 | | up 20% |
+Operating Income | $7,037 | | $18 | | * | | $7,104 | | $100 | | * |
+Net Income (Loss) | $6,903 | | $(23) | | * | | $6,162 | | $42 | | * |
+Diluted Net Income (Loss) Per Share
+| $43.97 | | $(0.16) | | * | | $39.25 | | $0.29 | | * |
+
+* Not a meaningful figure
+Fiscal Year 2026 Financial Highlights
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| GAAP | | Non-GAAP |
+($ in millions, except per share amounts)
+| 2026 | | 2025 | | Y/Y | | 2026 | | 2025 | | Y/Y |
+Revenue | $20,248 | | $7,355 | | up 175% | | $20,248 | | $7,355 | | up 175% |
+Gross Margin | 71.5% | | 30.1% | | up 41.4 ppt | | 71.6% | | 30.3% | | up 41.3 ppt |
+Operating Expenses | $2,083 | | $3,589 | | down 42% | | $1,791 | | $1,539 | | up 16% |
+Operating Income (Loss) | $12,389 | | $(1,377) | | * | | $12,700 | | $689 | | * |
+Net Income (Loss) | $11,433 | | $(1,641) | | up 797% | | $10,987 | | $440 | | * |
+Diluted Net Income (Loss) Per Share
+| $73.76 | | $(11.32) | | up 752% | | $70.88 | | $2.99 | | * |
+
+* Not a meaningful figure
+
+End Market Summary
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Revenue ($ in millions) | Q4 2026 | | Q3 2026 | | Q/Q | | Q4 2025 | | Y/Y | | | | | | |
+Datacenter | $2,977 | | $1,467 | | up 103% | | $213 | | * | | | | | | |
+Edge | $5,432 | | $3,663 | | up 48% | | $1,103 | | up 392% | | | | | | |
+Consumer | $556 | | $820 | | down 32% | | $585 | | down 5% | | | | | | |
+Total Revenue | $8,965 | | $5,950 | | up 51% | | $1,901 | | up 372% | | | | | | |
+
+* Not a meaningful figure
+| | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Revenue ($ in millions) | | | | | | | | | | | 2026 | | 2025 | | Y/Y |
+Datacenter | | | | | | | | | | | $5,153 | | $960 | | up 437% |
+Edge | | | | | | | | | | | $12,160 | | $4,127 | | up 195% |
+Consumer | | | | | | | | | | | $2,935 | | $2,268 | | up 29% |
+Total Revenue | | | | | | | | | | | $20,248 | | $7,355 | | up 175% |
+
+Additional details can be found within the Company’s earnings presentation, which is accessible online at investor.sandisk.com .
+2
+
+
+
+
+
+
+
+
+Business Outlook for Fiscal First Quarter of 2027
+| | | | | | | | |
+(in millions, except per share amounts)
+| GAAP | Non-GAAP (1)
+|
+Revenue | $10,300 - $10,800 | $10,300 - $10,800 |
+Gross Margin | 83.0% - 84.9% | 83.0% - 85.0% |
+Operating Expenses | $574 - $614 | $520 - $540 |
+| | |
+Tax Expense (2)
+| N/A | 15.0% |
+Diluted Net Income Per Share | N/A | $44.00 - $46.00 |
+Diluted Shares Outstanding | ~ 155 | ~ 155 |
+
+(1) Non-GAAP gross margin guidance excludes stock-based compensation expense, totaling approximately $5 million to $7 million. The Company’s Non-GAAP operating expenses guidance excludes stock-based compensation expense, totaling approximately $54 million to $74 million. Non-GAAP diluted net income per share guidance excludes these items totaling $59 million to $81 million. The timing and amount of these charges excluded from Non-GAAP gross margin, Non-GAAP operating expenses, and Non-GAAP diluted net income per share cannot be further allocated or quantified with certainty. Additionally, the timing and amount of certain other adjustments included in the Company's Non-GAAP diluted net income per share guidance are dependent on the timing and determination of certain actions or events and cannot be reasonably predicted. Accordingly, full reconciliations of Non-GAAP gross margin, Non-GAAP operating expenses, and Non-GAAP diluted net income per share to the most directly comparable GAAP financial measures (gross margin, operating expenses, and diluted net income per share, respectively) are not available without unreasonable effort.
+(2) Non-GAAP tax expense is determined based on a Non-GAAP pre-tax income or loss. Our estimated Non-GAAP tax expense may differ from our GAAP tax expense (i) due to differences in the tax treatment of items excluded from our Non-GAAP net income or loss; (ii) due to the fact that our GAAP income tax expense or benefit recorded in any interim period is based on an estimated forecasted GAAP tax expense for the full year, excluding loss jurisdictions; and (iii) because our GAAP taxes recorded in any interim period are dependent on the timing and determination of certain GAAP operating expenses.
+3
+
+
+
+
+
+
+
+
+Basis of Presentation
+On February 21, 2025, Sandisk Corporation (the “Company”) completed its separation from Western Digital Corporation (“WDC”) and became a standalone publicly traded company.
+The Company’s financial and operating results after the separation are presented on a consolidated basis. For periods prior to the separation, the Company’s historical combined financial statements were prepared on a carve-out basis and were derived from WDC’s consolidated financial statements and accounting records and prepared as if the Company existed on a standalone basis. The financial statements for all periods presented, including the historical results of the Company prior to February 21, 2025, are now referred to as “Consolidated Financial Statements” and have been prepared in accordance with U.S. generally accepted accounting principles (“GAAP”).
+Investor Communications
+The investment community conference call to discuss these results and the Company’s business outlook for the fiscal first quarter of 2027 will be broadcast live online today at 1:30 p.m. Pacific/4:30 p.m. Eastern. The live and archived conference call/webcast and the earnings presentation can be accessed online at investor.sandisk.com .
+About Sandisk
+Sandisk is a leading global semiconductor memory company with more than 30 years of innovation in NAND flash technology. We are a vertically integrated solutions provider with ownership of chip-level design and IP, front and back-end manufacturing, as well as systems engineering and design. With a differentiated innovation engine driving advancements in storage and semiconductor technologies, our broad and ever-expanding portfolio delivers powerful flash storage solutions for artificial intelligence workloads in datacenters, edge devices, and consumer applications. Our technologies enable everyone from students, gamers and home offices, to the largest enterprises and public clouds to produce, analyze, and store data. Our solutions include a broad range of solid state drives, embedded products, removable cards, universal serial bus drives, and wafers and components. Learn more about Sandisk at www.sandisk.com .
+4
+
+
+
+
+
+
+
+Forward-Looking Statements
+This press release contains forward-looking statements within the meaning of U.S. federal securities laws, including statements regarding expectations for: the Company’s business outlook and operational and financial performance for the fiscal first quarter of 2027 and beyond; the market leadership of the Company’s technology; the contribution of the Company’s datacenter business to growth generation and the expected benefits of its customer partnerships; and the Company’s ability to create value for its customers through technology and generate growing and durable free cash flow. These forward-looking statements are based on management’s current expectations and are subject to risks and uncertainties that could cause actual results to differ materially from those expressed or implied in the forward looking statements. The financial results for the Company’s fiscal fourth quarter ended July 3, 2026 included in this press release represent the most current information available to management. Actual results when disclosed in the Company’s Form 10-K may differ from these results as a result of the completion of the Company’s financial closing procedures; final adjustments; completion of the audit by the Company’s independent registered accounting firm; and other developments that may arise between now and the filing of the Company’s Form 10-K. Other key risks and uncertainties that could cause actual results to differ materially from those expressed or implied in the forward-looking statements include: adverse changes in global or regional economic conditions, including the impact of evolving trade policies, tariff regimes and trade wars; volatility in demand for the Company’s products; pricing trends and fluctuations in average selling prices; inflation; changes in interest rates and a potential economic recession; future responses to and effects of global health crises; the impact of business and market conditions; the impact of competitive products and pricing; the Company’s development and introduction of products based on new technologies and management of technology transitions; risks associated with strategic initiatives, including restructurings, acquisitions, divestitures, cost saving measures and joint ventures; risks related to product defects; difficulties or delays in product ramps, manufacturing or other supply chain disruptions; our reliance on strategic relationships with key partners, including Kioxia Corporation; risks related to our long-term agreements; fluctuation of our operating results, including due to changes in demand, industry cycle and timing of customer deployments, and our ability to accurately forecast demand; the attraction, retention and development of skilled management and technical talent; risks associated with the use of artificial intelligence in our business operations; changes to the Company’s relationships with key customers or consolidation among our customer base; compromise, damage or interruption from cybersecurity incidents or other data system security risks; our reliance on intellectual property; fluctuations in currency exchange rates; actions by competitors; risks related to our share repurchase program; risks associated with compliance with changing legal and regulatory requirements; and other risks and uncertainties listed in the Company’s filings with the Securities and Exchange Commission, including our Annual Report on Form 10-K and Quarterly Reports on Form 10-Q, to which your attention is directed. You should not place undue reliance on these forward-looking statements, which speak only as of the date hereof, and the Company undertakes no obligation to update or revise these forward-looking statements to reflect new information or events, except as required by law.
+###
+Sandisk and the Sandisk logo are registered trademarks or trademarks of Sandisk Corporation or its affiliates in the United States and/or other countries.
+5
+
+
+
+
+
+
+
+
+SANDISK CORPORATION
+CONSOLIDATED BALANCE SHEETS
+(in millions; except par value, unaudited)
+| | | | | | | | | | | |
+| July 3,
+2026 | | June 27,
+2025 |
+ASSETS |
+Current assets: | | | |
+Cash and cash equivalents | $ | 4,762 | | | $ | 1,481 | |
+Accounts receivable, net | 4,708 | | | 1,068 | |
+Inventories | 2,698 | | | 2,079 | |
+Income tax receivable | 22 | | | 66 | |
+Other current assets | 590 | | | 392 | |
+Total current assets | 12,780 | | | 5,086 | |
+Marketable equity securities | 1,777 | | | — | |
+Property, plant and equipment, net | 674 | | | 619 | |
+Notes receivable and investments in Flash Ventures | 678 | | | 654 | |
+Goodwill | 4,994 | | | 4,999 | |
+Income tax receivable, non-current | 169 | | | 80 | |
+Deferred tax assets | 66 | | | 58 | |
+Other non-current assets | 1,369 | | | 1,489 | |
+Total assets | $ | 22,507 | | | $ | 12,985 | |
+LIABILITIES AND SHAREHOLDERS’ EQUITY |
+Current liabilities: | | | |
+Accounts payable | $ | 516 | | | $ | 366 | |
+Accounts payable to related parties | 460 | | | 400 | |
+Accrued expenses | 313 | | | 274 | |
+Accrued compensation | 657 | | | 173 | |
+Refund liabilities | 1,500 | | | 126 | |
+Contract liabilities | 849 | | | 25 | |
+Income tax payable, current | 1,286 | | | 43 | |
+Current portion of long-term debt | — | | | 20 | |
+Total current liabilities | 5,581 | | | 1,427 | |
+Deferred tax liabilities | 161 | | | 17 | |
+Income tax payable, non-current | 258 | | | 131 | |
+Long-term debt | — | | | 1,829 | |
+Non-current contract liabilities | 393 | | | — | |
+Other liabilities | 378 | | | 365 | |
+Total liabilities | 6,771 | | | 3,769 | |
+| | | |
+Shareholders’ equity: | | | |
+Common stock, $0.01 par value; authorized — 450 shares; issued and outstanding — 149 shares and 146 shares, respectively (issued and outstanding as of June 27, 2025 - 146 shares)
+| $ | 1 | | | $ | 1 | |
+Treasury stock | (4,537) | | | — | |
+Additional paid-in capital | 10,879 | | | 11,248 | |
+Accumulated other comprehensive loss | (256) | | | (249) | |
+Retained earnings (Accumulated deficit) | 9,649 | | | (1,784) | |
+Total shareholders’ equity | 15,736 | | | 9,216 | |
+Total liabilities and shareholders’ equity | $ | 22,507 | | | $ | 12,985 | |
+
+6
+
+
+
+
+
+
+
+
+SANDISK CORPORATION
+CONSOLIDATED STATEMENTS OF OPERATIONS
+(in millions, except per share amounts; unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Year Ended |
+| July 3,
+2026 | | June 27,
+2025 | | July 3,
+2026 | | June 27,
+2025 |
+Revenue, net | $ | 8,965 | | | $ | 1,901 | | | $ | 20,248 | | | $ | 7,355 | |
+Cost of revenue | 1,383 | | | 1,403 | | | 5,776 | | | 5,143 | |
+Gross profit | 7,582 | | | 498 | | | 14,472 | | | 2,212 | |
+Operating expenses: | | | | | | | |
+Research and development | 348 | | | 285 | | | 1,328 | | | 1,132 | |
+Selling, general and administrative | 197 | | | 162 | | | 676 | | | 573 | |
+Goodwill impairment | — | | | — | | | — | | | 1,830 | |
+Loss on debt extinguishment | — | | | — | | | 46 | | | — | |
+Business separation costs | — | | | 17 | | | 25 | | | 67 | |
+Employee termination and other | — | | | 16 | | | (2) | | | 21 | |
+(Gain) loss on business divestiture | — | | | — | | | 10 | | | (34) | |
+Total operating expenses | 545 | | | 480 | | | 2,083 | | | 3,589 | |
+Operating income (loss) | 7,037 | | | 18 | | | 12,389 | | | (1,377) | |
+Interest and other income (expense), net: | | | | | | | |
+Gain (loss) on equity securities, net | 804 | | | (1) | | | 808 | | | (2) | |
+Interest income | 30 | | | 11 | | | 70 | | | 22 | |
+Interest expense | (2) | | | (41) | | | (73) | | | (63) | |
+Other income (expense), net | (20) | | | (5) | | | (177) | | | (59) | |
+Total interest and other income (expense), net | 812 | | | (36) | | | 628 | | | (102) | |
+Income (loss) before taxes | 7,849 | | | (18) | | | 13,017 | | | (1,479) | |
+Income tax expense | 946 | | | 5 | | | 1,584 | | | 162 | |
+Net income (loss) | $ | 6,903 | | | $ | (23) | | | $ | 11,433 | | | $ | (1,641) | |
+| | | | | | | |
+Net income (loss) per common share: | | | | | | | |
+Basic | $ | 46.96 | | | $ | (0.16) | | | $ | 77.78 | | | $ | (11.32) | |
+Diluted | $ | 43.97 | | | $ | (0.16) | | | $ | 73.76 | | | $ | (11.32) | |
+| | | | | | | |
+Weighted average shares outstanding: | | | | | | | |
+Basic | 147 | | | 145 | | | 147 | | | 145 | |
+Diluted | 157 | | | 145 | | | 155 | | | 145 | |
+
+7
+
+
+
+
+
+
+
+
+SANDISK CORPORATION
+CONSOLIDATED STATEMENTS OF CASH FLOWS
+(in millions; unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Year Ended |
+| July 3,
+2026 | | June 27,
+2025 | | July 3,
+2026 | | June 27,
+2025 |
+Cash flows from operating activities | | | | | | | |
+Net income (loss) | $ | 6,903 | | | $ | (23) | | | $ | 11,433 | | | $ | (1,641) | |
+Adjustments to reconcile net income (loss) to net cash provided by operations: | | | | | | | |
+Depreciation and amortization | 37 | | | 36 | | | 149 | | | 163 | |
+Stock-based compensation | 67 | | | 49 | | | 232 | | | 182 | |
+Goodwill impairment | — | | | — | | | — | | | 1,830 | |
+Deferred income taxes | 162 | | | (19) | | | 120 | | | (12) | |
+(Gain) loss on disposal of assets | 4 | | | — | | | 5 | | | (1) | |
+(Gain) loss on equity securities, net | (804) | | | 1 | | | (808) | | | 2 | |
+Unrealized foreign exchange (gain) loss | 47 | | | (19) | | | 86 | | | (25) | |
+(Gain) loss on business divestiture | — | | | — | | | 10 | | | (34) | |
+Loss on debt extinguishment | — | | | — | | | 46 | | | — | |
+Amortization of debt issuance costs and discounts | 1 | | | 2 | | | 7 | | | 3 | |
+Equity loss in investees, net of dividends received | 102 | | | 5 | | | 160 | | | 73 | |
+Settlement of accrued interest on Notes due to Western Digital Corporation | — | | | — | | | — | | | (99) | |
+Other non-cash operating activities, net | (1) | | | 6 | | | 19 | | | 23 | |
+Changes in: | | | | | | | |
+Accounts receivable, net | (1,982) | | | (89) | | | (3,640) | | | (100) | |
+Inventories | (460) | | | 81 | | | (619) | | | (160) | |
+Accounts payable | 73 | | | (6) | | | 109 | | | 93 | |
+Accounts payable to related parties | 25 | | | 5 | | | 60 | | | (23) | |
+Accrued expenses | 45 | | | 2 | | | 10 | | | (1) | |
+Accrued compensation | 304 | | | 59 | | | 460 | | | 21 | |
+Refund liability | 1,360 | | | 4 | | | 1,374 | | | 25 | |
+Contract liabilities | 731 | | | 4 | | | 1,217 | | | (11) | |
+Income taxes payable | 730 | | | — | | | 1,370 | | | — | |
+Other assets and liabilities, net | (218) | | | (4) | | | (129) | | | (224) | |
+Net cash provided by operating activities | 7,126 | | | 94 | | | 11,671 | | | 84 | |
+Cash flows from investing activities | | | | | | | |
+Purchase of marketable equity securities | (970) | | | — | | | (970) | | | — | |
+Purchases of property, plant and equipment | (43) | | | (45) | | | (177) | | | (204) | |
+Proceeds from dispositions of business | — | | | — | | | 25 | | | 401 | |
+Notes receivable issuances to Flash Ventures | (123) | | | (59) | | | (462) | | | (333) | |
+Notes receivable proceeds from Flash Ventures | 13 | | | 87 | | | 187 | | | 515 | |
+Distributions from Flash Ventures | — | | | — | | | — | | | 176 | |
+Strategic investments and other, net | — | | | — | | | 11 | | | 1 | |
+Net cash provided by (used in) investing activities | (1,123) | | | (17) | | | (1,386) | | | 556 | |
+Cash flows from financing activities | | | | | | | |
+Issuance of stock under employee stock plans | 29 | | | 5 | | | 53 | | | 5 | |
+Taxes paid on vested stock awards under employee stock plans | (481) | | | (7) | | | (630) | | | (13) | |
+Repurchases of common stock | (4,524) | | | — | | | (4,524) | | | — | |
+Proceeds from debt | — | | | — | | | — | | | 1,970 | |
+Repayment of debt | — | | | (100) | | | (1,900) | | | (100) | |
+Debt issuance costs | — | | | — | | | — | | | (32) | |
+Proceeds from borrowings on Notes due to Western Digital Corporation | — | | | — | | | — | | | 550 | |
+Proceeds from principal repayments on Notes due from Western Digital Corporation | — | | | — | | | — | | | 101 | |
+Repayments of principal on Notes due to Western Digital Corporation | — | | | — | | | — | | | (76) | |
+Transfers from (to) Western Digital Corporation | — | | | — | | | — | | | (1,887) | |
+Net cash provided by (used in) financing activities | (4,976) | | | (102) | | | (7,001) | | | 518 | |
+Effect of exchange rate changes on cash | — | | | (1) | | | (3) | | | (5) | |
+Net increase (decrease) in cash and cash equivalents | 1,027 | | | (26) | | | 3,281 | | | 1,153 | |
+Cash and cash equivalents, beginning of year | 3,735 | | | 1,507 | | | 1,481 | | | 328 | |
+Cash and cash equivalents, end of year | $ | 4,762 | | | $ | 1,481 | | | $ | 4,762 | | | $ | 1,481 | |
+| | | | | | | |
+Supplemental disclosure of cash flow information: | | | | | | | |
+Cash paid for interest | $ | 5 | | | $ | 37 | | | $ | 116 | | | $ | 139 | |
+Cash received for interest | 30 | | | — | | | 70 | | | 2 | |
+Cash paid for income taxes | 29 | | | 40 | | | 146 | | | 50 | |
+Non-cash transfers of: | | | | | | | |
+Notes due to (from) Western Digital Corporation | — | | | — | | | — | | | 1,223 | |
+Other assets and liabilities, net, from Western Digital Corporation | — | | | — | | | — | | | 105 | |
+Contribution of equity interest in Unis Venture from Western Digital Corporation
+| — | | | — | | | — | | | 61 | |
+Property, plant and equipment from Western Digital Corporation | — | | | — | | | — | | | 27 | |
+Tax balances from (to) Western Digital Corporation | — | | | — | | | — | | | 8 | |
+Tax indemnification liability to Western Digital Corporation | — | | | — | | | — | | | (112) | |
+
+8
+
+
+
+
+
+
+
+
+SANDISK CORPORATION
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL MEASURES
+(in millions; unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Year Ended |
+| July 3,
+2026 | | April 3,
+2026 | | June 27,
+2025 | | July 3,
+2026 | | June 27,
+2025 |
+GAAP gross profit | $ | 7,582 | | | $ | 4,662 | | | $ | 498 | | | $ | 14,472 | | | $ | 2,212 | |
+Stock-based compensation expense | 6 | | | 4 | | | 4 | | | 19 | | | 16 | |
+| | | | | | | | | |
+Non-GAAP gross profit | $ | 7,588 | | | $ | 4,666 | | | $ | 502 | | | $ | 14,491 | | | $ | 2,228 | |
+| | | | | | | | | |
+GAAP operating expenses | $ | 545 | | | $ | 551 | | | $ | 480 | | | $ | 2,083 | | | $ | 3,589 | |
+Goodwill impairment | — | | | — | | | — | | | — | | | (1,830) | |
+Stock-based compensation expense | (61) | | | (50) | | | (45) | | | (213) | | | (166) | |
+Business separation costs | — | | | (7) | | | (17) | | | (25) | | | (67) | |
+Employee termination and other | — | | | — | | | (16) | | | 2 | | | (21) | |
+(Loss) gain on business divestiture | — | | | — | | | — | | | (10) | | | 34 | |
+| | | | | | | | | |
+Loss on debt extinguishment | — | | | (46) | | | — | | | (46) | | | — | |
+Non-GAAP operating expenses | $ | 484 | | | $ | 448 | | | $ | 402 | | | $ | 1,791 | | | $ | 1,539 | |
+| | | | | | | | | |
+GAAP operating income (loss) | $ | 7,037 | | | $ | 4,111 | | | $ | 18 | | | $ | 12,389 | | | $ | (1,377) | |
+Gross profit adjustments | 6 | | | 4 | | | 4 | | | 19 | | | 16 | |
+Operating expense adjustments | 61 | | | 103 | | | 78 | | | 292 | | | 2,050 | |
+Non-GAAP operating income | $ | 7,104 | | | $ | 4,218 | | | $ | 100 | | | $ | 12,700 | | | $ | 689 | |
+| | | | | | | | | |
+GAAP interest and other income (expense), net | $ | 812 | | | $ | (4) | | | $ | (36) | | | $ | 628 | | | $ | (102) | |
+(Gain) loss on equity securities, net | (804) | | | — | | | 1 | | | (808) | | | 2 | |
+Other, net | — | | | 1 | | | (2) | | | 111 | | | (9) | |
+Non-GAAP interest and other income (expense), net | $ | 8 | | | $ | (3) | | | $ | (37) | | | $ | (69) | | | $ | (109) | |
+| | | | | | | | | |
+GAAP income tax expense | $ | 946 | | | $ | 492 | | | $ | 5 | | | $ | 1,584 | | | $ | 162 | |
+Income tax adjustments | 4 | | | 48 | | | 16 | | | 60 | | | (22) | |
+Non-GAAP income tax expense | $ | 950 | | | $ | 540 | | | $ | 21 | | | $ | 1,644 | | | $ | 140 | |
+
+
+
+9
+
+
+
+
+
+
+
+SANDISK CORPORATION
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL MEASURES
+(in millions, except per share amounts; unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Year Ended |
+| July 3,
+2026 | | April 3,
+2026 | | June 27,
+2025 | | July 3,
+2026 | | June 27,
+2025 |
+GAAP net income (loss) | $ | 6,903 | | | $ | 3,615 | | | $ | (23) | | | $ | 11,433 | | | $ | (1,641) | |
+Goodwill impairment | — | | | — | | | — | | | — | | | 1,830 | |
+Stock-based compensation expense | 67 | | | 54 | | | 49 | | | 232 | | | 182 | |
+Business separation costs | — | | | 7 | | | 17 | | | 25 | | | 67 | |
+Employee termination and other | — | | | — | | | 16 | | | (2) | | | 21 | |
+| | | | | | | | | |
+(Gain) loss on business divestiture | — | | | — | | | — | | | 10 | | | (34) | |
+Loss on debt extinguishment | — | | | 46 | | | — | | | 46 | | | — | |
+(Gain) loss on equity securities, net | (804) | | | — | | | 1 | | | (808) | | | 2 | |
+Other, net | — | | | 1 | | | (2) | | | 111 | | | (9) | |
+Income tax adjustments | (4) | | | (48) | | | (16) | | | (60) | | | 22 | |
+Non-GAAP net income | $ | 6,162 | | | $ | 3,675 | | | $ | 42 | | | $ | 10,987 | | | $ | 440 | |
+| | | | | | | | | |
+Diluted net income (loss) per share
+| | | | | | | | | |
+GAAP | $ | 43.97 | | | $ | 23.03 | | | $ | (0.16) | | | $ | 73.76 | | | $ | (11.32) | |
+Non-GAAP | $ | 39.25 | | | $ | 23.41 | | | $ | 0.29 | | | $ | 70.88 | | | $ | 2.99 | |
+| | | | | | | | | |
+Diluted weighted average shares outstanding: | | | | | | | | | |
+GAAP | 157 | | | 157 | | | 145 | | | 155 | | | 145 | |
+Non-GAAP | 157 | | | 157 | | | 147 | | | 155 | | | 147 | |
+| | | | | | | | | |
+Cash flows | | | | | | | | | |
+Cash flow from operating activities | $ | 7,126 | | | $ | 3,038 | | | $ | 94 | | | $ | 11,671 | | | $ | 84 | |
+Purchases of property, plant and equipment, net | (43) | | | (45) | | | (45) | | | (177) | | | (204) | |
+Free cash flow | 7,083 | | | 2,993 | | | 49 | | | 11,494 | | | (120) | |
+Activity related to Flash Ventures, net | (110) | | | (38) | | | 28 | | (275) | | | 358 |
+Impact of NBM prepayments and deposits | (1,938) | | | (538) | | | — | | | (2,476) | | | — | |
+Adjusted free cash flow | $ | 5,035 | | | $ | 2,417 | | | $ | 77 | | | $ | 8,743 | | | $ | 238 | |
+
+10
+
+
+
+
+
+
+
+
+To supplement the consolidated financial statements presented in accordance with GAAP, the table above sets forth Non-GAAP gross profit; Non-GAAP operating expenses; Non-GAAP operating income; Non-GAAP interest and other income (expense), net; Non-GAAP income tax expense; Non-GAAP net income; Non-GAAP diluted net income (loss) per share; Non-GAAP diluted weighted average shares outstanding; Free cash flow; and Adjusted free cash flow (collectively, the “Non-GAAP measures”). These Non-GAAP measures are not in accordance with, or alternatives for measures prepared in accordance with GAAP and may be different from similarly titled Non-GAAP measures used by other companies. The Company believes the presentation of these Non-GAAP measures, when shown in conjunction with the corresponding GAAP measures, provides useful information to investors for measuring the Company’s earnings performance and comparing it against prior periods. Specifically, the Company believes these Non-GAAP measures provide useful information to both management and investors as they exclude certain expenses, gains, and losses that the Company believes are not indicative of its core operating results or because they are consistent with the financial models and estimates published by many analysts who follow the Company and its peers. As discussed further below, these Non-GAAP measures exclude, as applicable, goodwill impairment, stock-based compensation expense, business separation costs, employee termination and other, (gain) loss on business divestiture, loss on debt extinguishment, (gain) loss on equity securities, net, other adjustments, and income tax adjustments. The Company believes these measures, along with the related reconciliations to the most directly comparable GAAP measures, provide additional detail and comparability for assessing the Company’s results. These Non-GAAP measures are some of the primary indicators management uses for assessing the Company’s performance and planning and forecasting future periods. These measures should be considered in addition to results prepared in accordance with GAAP, but should not be considered a substitute for, or superior to, GAAP results.
+As described above, the Company excludes the following items from its Non-GAAP measures:
+Goodwill impairment. After the completion of the separation, in the third quarter of fiscal 2025, the Company identified potential impairment indicators related to the trading price of the Company’s common stock and resulting market capitalization that warranted a quantitative impairment analysis of long-lived assets and goodwill. Management performed a quantitative impairment analysis and determined that the carrying value of the reporting unit exceeded its fair value, resulting in the recognition of a $1.8 billion impairment charge for the year ended June 27, 2025. The Company believes this charge does not reflect the Company’s operating results and is not indicative of the underlying performance of the business.
+Stock-based compensation expense . Because of the variety of equity awards used by companies, the varying methodologies for determining stock-based compensation expense, the subjective assumptions involved in those determinations and the volatility in valuations that can be driven by market conditions outside the Company’s control, the Company believes excluding stock-based compensation expense enhances the ability of management and investors to understand and assess the underlying performance of the business over time and compare it against the Company’s peers, a majority of whom also exclude stock-based compensation expense from their Non-GAAP results.
+11
+
+
+
+
+
+
+
+Business separation costs . On October 30, 2023, Western Digital Corporation (“WDC”) announced that its board of directors (the “WDC Board of Directors”) authorized management to pursue a plan to separate the Company into an independent public company. The separation received final approval by the WDC Board of Directors and was completed on February 21, 2025. Prior to February 21, 2025, the Company was wholly owned by WDC. As a result of the plan, the Company incurred separation and transition costs through the completion of the separation of the companies. The separation and transition costs are recorded within Business separation costs in the Consolidated Statements of Operations. The Company believes these charges do not reflect the Company’s operating results and that they are not indicative of the underlying results of its business.
+Employee termination and other . From time to time, in order to realign the Company’s operations with anticipated market demand, the Company may terminate employees and/or restructure its operations. From time to time, the Company may also incur charges from the impairment of long-lived assets. In addition, the Company may record credits related to gains upon sale of property due to restructuring or reversals of charges recorded in prior periods as well as from taking actions to reduce the amount of capital invested in facilities, including the sale-leaseback of facilities. These charges or credits are inconsistent in amount and frequency, and the Company believes they are not indicative of the underlying performance of its business.
+(Gain) loss on business divestiture . In connection with the Company’s strategic decision to outsource the manufacturing of certain components and assemblies, on September 28, 2024, the Company completed the sale of 80% of its equity interest in one of its manufacturing subsidiaries. On September 25, 2025, the Company entered into an Amendment No. 1 to the Amended and Restated Equity Purchase Agreement that included a $10 million provision for working capital support. The Company recognized the adjustment as a Loss on business divestiture during the first fiscal quarter of 2026. The overall transaction resulted in a discrete gain, which the Company believes is not indicative of the underlying performance of its ongoing business operations.
+Loss on debt extinguishment . From time to time, the Company incurs debt extinguishment charges consisting of the costs to call the existing debt and/or the write-off of any related unamortized debt issuance costs. These charges do not reflect the Company’s operating results, and the Company believes these charges are not indicative of the underlying performance of its business.
+(Gain) loss on equity securities, net . (Gain) loss on equity securities, net consists of ongoing mark-to-market adjustments on the Company ’ s investments in marketable equity securities, the gains from the sale of equity investments and related impairment charges. These charges do not reflect the Company’s operating results, and the Company believes these charges are not indicative of the underlying performance of its business.
+Other adjustments . From time to time, the Company incurs charges or gains that the Company believes are not a part of the ongoing operation of its business. For the year ended July 3, 2026, Other adjustments include charges for the settlement of certain previously existing legal matters. The resulting expense or benefit is inconsistent in amount and frequency.
+Income tax adjustments . Income tax adjustments include the difference between income taxes based on a forecasted annual Non-GAAP tax rate and a forecasted annual GAAP tax rate as a result of the timing of certain Non-GAAP pre-tax adjustments. The income tax adjustments also include the re-measurement of certain unrecognized tax benefits primarily related to tax positions taken in prior quarters, including interest. These adjustments are excluded because the Company believes that they are not indicative of the underlying performance of its ongoing business.
+12
+
+
+
+
+
+
+
+Additionally, Free cash flow is defined as Cash Flow from operating activities less purchases of property, plant and equipment, net. Adjusted free cash flow is defined as Free cash flow plus the activity related to Flash Ventures, net less the impact of cash prepayments under NBM agreements (the “NBM Prepayments”) and deposits received and returned under NBM agreements (the “NBM Deposits” and together with the NBM Prepayments, the “NBM Payments”). The Company is adjusting for the NBM Payments because the Company believes that these cash flows are not indicative of the core underlying cash flows of the Company’s business. The Company considers Free cash flow and Adjusted free cash flow generated in any period to be useful indicators of cash that is available for strategic opportunities, including, among others, investing in the Company’s business, making strategic acquisitions and strengthening the balance sheet.
+Gross Margin and Non-GAAP Gross Margin are calculated by dividing Gross Profit and Non-GAAP Gross Profit, respectively, by Revenue. Cash flow from operating activities margin and Adjusted free cash flow margin are calculated by dividing Cash flow from operating activities and Adjusted free cash flow, respectively, by Revenue.
+
+
+
+| | | | | | | | |
+Company Contacts:
+|
+Sandisk Corporation
+| | |
+| | |
+Investor Contact: | | Media Contact: |
+Ivan Donaldson
+| | Media Relations
+|
+E: ivan.donaldson@sandisk.com
+| | mediainquiries@sandisk.com |
+investors@sandisk.com
+| | |
+
+13

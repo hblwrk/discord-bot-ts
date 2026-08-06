@@ -1,0 +1,882 @@
+EX-99.1
+2
+a2q26earningsreleaseex991.htm
+EX-99.1
+
+
+
+
+Document
+Exhibit 99.1
+
+
+| | | | | |
+Contact: | |
+invest@albemarle.com | 1.980.308.6194 |
+
+
+
+
+
+
+Albemarle Reports Second Quarter 2026 Results
+| | |
+|
+
+
+
+CHARLOTTE, N.C. – August 5, 2026 - Albemarle Corporation (NYSE: ALB), a global leader in providing essential elements for mobility, energy, connectivity and health, today announced its results for the second quarter ended June 30, 2026.
+Second Quarter 2026 and Recent Highlights
+(Unless otherwise stated, all percentage changes represent year-over-year comparisons and do not exclude the prior-period results of Ketjen’s refining catalyst solutions business in which the company sold a 51% stake on March 2, 2026)
+• Net sales of $1.7 billion, up 31% due to higher pricing in Energy Storage (+73%) and higher pricing and volumes in Specialties (price +11%, volume +8%).
+• Net income of $480 million, or $3.52 per diluted share attributable to common shareholders.
+• Adjusted EBITDA (a) of $858 million; up 155% due primarily to higher pricing in Energy Storage, increased pricing and volumes in Specialties and ongoing cost and productivity improvements. Adjusted EBITDA expanded in both Energy Storage (+229%) and Specialties (+61%).
+• Cash from operating activities of $710 million and free cash flow of $638 million (a) . Operating cash flow conversion of 83% (a) , primarily driven by timing of an increased dividend from the Talison joint venture and non-recurring working capital benefits.
+• Delivered $100 million in year-to-date run-rate cost and productivity improvements, tracking towards the high end of our full-year target of $100 to $150 million.
+• Improving full-year 2026 outlook considerations including:
+◦ Increasing full-year Specialties net sales outlook to $1.4 to $1.6 billion and adjusted EBITDA outlook to $275 to $325 million, due to stronger-than-expected pricing and volume performance year to date.
+◦ Expect minimal impact to Energy Storage sales volume related to the fire at Talison CGP3 which occurred on June 9, in part due to better-than-planned output from the Wodgina mine.
+◦ Reducing full-year capital expenditure forecast to approximately $500 million due to ongoing capital efficiency improvements.
+(a) See Non-GAAP Reconciliations for further details.
+
+
+“Albemarle delivered another quarter of strong results, reflecting improved pricing, continued strength in Specialties, disciplined cost and productivity execution, and strong cash generation,” said Kent Masters, Chairman and CEO. “We continue to see resilient demand fundamentals across our core markets, including energy storage, electric vehicles, and semiconductors. We are advancing our highest value organic growth opportunities while maintaining a disciplined approach to capital allocation and execution.”
+
+
+Second Quarter 2026 Results | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | |
+| | |
+In millions, except per share amounts | Q2 2026 | | Q2 2025 | | $ Change | | % Change | | | |
+Net sales | $ | 1,743.3 | | | $ | 1,330.0 | | | $ | 413.3 | | | 31.1 | % | | | |
+|
+| | | | | | | | | | |
+Net income attributable to Albemarle Corporation | $ | 480.0 | | | $ | 22.9 | | | $ | 457.1 | | | 1,996.2 | % | | | |
+|
+Adjusted EBITDA (a)
+| $ | 858.1 | | | $ | 336.5 | | | $ | 521.6 | | | 155.0 | % | | | |
+|
+| | | | | | | | | | |
+Diluted income (loss) per share attributable to common shareholders | $ | 3.52 | | | $ | (0.16) | | | $ | 3.68 | | | NM | | | |
+| | | | | | | | | | |
+Non-recurring and other unusual items (a)
+| 0.22 | | | 0.27 | | | | | | | | |
+| | | | | | | | | | |
+Adjusted diluted income per share attributable to common shareholders (a)(b)
+| $ | 3.75 | | | $ | 0.11 | | | $ | 3.64 | | | NM | | | |
+
+(a) See Non-GAAP Reconciliations for further details.
+(b) Totals may not add due to rounding.
+
+
+1
+
+
+
+
+
+
+
+Net sales for the second quarter of 2026 were $1.7 billion compared to $1.3 billion for the prior-year quarter, up 31%, driven primarily by higher prices in both Energy Storage and Specialties and volume growth in Specialties. Adjusted EBITDA of $858 million increased by $522 million from the prior-year quarter, primarily due to higher net sales and ongoing cost and productivity improvements.
+
+
+Net income attributable to Albemarle of $480 million increased year over year by $457 million. The effective income tax rate for the second quarter of 2026 was 21.3% or 19.1% on an adjusted basis.
+
+
+Energy Storage Results | | | | | | | | | | | | | | | | | | | | | | | |
+In millions | Q2 2026 | | Q2 2025 | | $ Change | | % Change |
+Net Sales | $ | 1,276.7 | | | $ | 717.7 | | | $ | 559.0 | | | 77.9 | % |
+Sales Volume (kT LCE) (a)
+| 65 | | | 59 | | | 6 | | | 11.0 | % |
+Avg. Realized Price ($/kg LCE) (a)
+| $ | 19.53 | | | $ | 12.17 | | | $ | 7.36 | | | 60.5 | % |
+Adjusted EBITDA | $ | 723.5 | | | $ | 219.7 | | | $ | 503.7 | | | 229.3 | % |
+
+(a) Includes aggregated salts and spodumene sales on a lithium carbonate equivalent (LCE) basis.
+
+
+Energy Storage net sales for the second quarter of 2026 were $1.3 billion, an increase of $559 million, or 78%, due to higher pricing. Adjusted EBITDA of $723 million increased $504 million, or 229%, primarily due to higher lithium pricing partially offset by higher CORFO commissions.
+
+
+Specialties Results | | | | | | | | | | | | | | | | | | | | | | | |
+In millions | Q2 2026 | | Q2 2025 | | $ Change | | % Change |
+Net Sales | $ | 423.5 | | | $ | 351.6 | | | $ | 71.9 | | | 20.5 | % |
+Adjusted EBITDA | $ | 117.7 | | | $ | 73.0 | | | $ | 44.7 | | | 61.3 | % |
+
+
+
+Specialties net sales for the second quarter of 2026 were $423 million, an increase of $72 million, or 20%, primarily due to higher volumes (+8%) and pricing (+11%). Adjusted EBITDA of $118 million increased $45 million, or 61%, primarily due to higher volumes and favorable pricing in bromine and derivatives, along with continued productivity improvements and proactive management of cost escalations driven by the conflict in the Middle East.
+
+
+2026 Outlook Considerations
+
+
+Total Corporate Outlook Considerations
+The table below reflects expected outcomes for the total company based on recently observed lithium market price scenarios. Outlook ranges for each scenario are based on variation in sales volume and product mix. Energy Storage production volumes are expected to increase year over year. Sales volumes are expected to be in the range of 225 to 235 kilotons lithium carbonate equivalent, as increased Wodgina volumes partially offset a delay in the Talison CGP3 ramp due to a fire that occurred on June 9. All three scenarios assume flat market pricing flowing through Energy Storage’s current contract book which includes approximately 40% of salts volume (or one-third of total volumes) on long-term agreements. Scenarios also assume that spodumene pricing averages 10% of the lithium carbonate equivalent (LCE) price, while other costs are assumed to be constant.
+
+
+| | | | | | | | | | | |
+| Total Corporate FY 2026E |
+Observed market price case (a)
+| FY 2025 avg. | Q1 2026 avg. | 2021-2025 avg. |
+Average lithium market price ($/kg LCE) (a)
+| ~$10 | ~$20 | ~$30 |
+Net sales | $4.1 - $4.3 billion | $5.7 - $6.0 billion | $7.5 - $7.8 billion |
+Adjusted EBITDA (b)
+| $0.9 - $1.0 billion | $2.4 - $2.6 billion | $4.2 - $4.4 billion |
+
+
+
+(a) Price represents blend of relevant market pricing including spot and regional indices for the periods referenced.
+(b) The Company does not provide a reconciliation of forward-looking non-GAAP financial measures to the most directly comparable financial measures calculated and reported in accordance with GAAP, as the company is unable to estimate significant non-recurring or unusual items without unreasonable effort. See “Additional Information Regarding Non-GAAP Measures” for more information.
+
+
+2
+
+
+
+
+
+Energy Storage Market Price Scenarios
+| | | | | | | | | | | |
+| Energy Storage FY 2026E |
+Observed market price case (a)
+| FY 2025 avg. | Q1 2026 avg. | 2021-2025 avg. |
+Average lithium market price ($/kg LCE) (a)
+| ~$10 | ~$20 | ~$30 |
+Net sales | $2.5 - $2.6 billion | $4.0 - $4.2 billion | $5.9 - $6.1 billion |
+Adjusted EBITDA | $0.7 - $0.8 billion | $2.1 - $2.3 billion | $3.9 - $4.1 billion |
+Equity in net income of unconsolidated investments (net of tax) (b)
+| $0.2 - $0.3 billion | $0.6 - $0.7 billion | $1.0 - $1.1 billion |
+
+
+
+(a) Price represents blend of relevant market pricing including spot and regional indices for the periods referenced.
+(b) Included in adjusted EBITDA on a pre-tax basis.
+
+
+Specialties Outlook Considerations
+Specialties net sales and adjusted EBITDA outlook is improved primarily due to strong year to date performance driven by volume growth in bromine specialties and cost and productivity improvements. Our outlook continues to reflect modest volume growth in key end markets led by semiconductors, oil and gas, flame retardants and pharmaceuticals partially offset by expected softness in automotive and petrochemicals. Second-half outlook assumes stabilization in the bromine market and continued uncertainties including the situation in the Middle East. Operations at the Jordan Bromine Company (JBC) joint venture are in line with expectations as it continues to navigate geopolitical tensions in the region.
+
+
+| | | | | |
+| Segment FY 2026E |
+Specialties net sales | $1.4 - $1.6 billion |
+Specialties adjusted EBITDA | $275 - $325 million |
+
+
+
+Other Corporate Outlook Considerations
+Albemarle expects its full-year 2026 capital expenditures to be approximately $500 million, down 15% compared to 2025 due to ongoing capital efficiency improvements.
+
+
+Following the sale of a controlling stake in Ketjen’s refining catalyst solutions business, announced on March 2, 2026, the refining catalyst business earnings are now classified as equity income and included in Corporate, as are the results of the retained Performance Catalyst Solutions (PCS) business. The adjusted EBITDA and equity income contributions from these are expected to be immaterial post transaction.
+
+
+Interest and financing expense is expected to be between $120 and $140 million for 2026 following the debt reduction actions completed in the first quarter of 2026.
+| | | | | |
+| Other Corporate FY 2026E |
+Capital expenditures | ~$500 million |
+Depreciation and amortization | $660 - $680 million |
+Adjusted effective tax rate (a)
+| (50)% - 30% |
+Corporate adjusted EBITDA (incl. FX, Ketjen equity income & PCS) | ($20) - $20 million |
+Interest and financing expenses | $120 - $140 million |
+Weighted-average common shares outstanding (diluted) (b)
+| ~136 million |
+
+(a) Adjusted effective tax rate dependent on lithium market prices and geographic income mix
+(b) Diluted weighted-average common shares outstanding amount assumes the conversion of preferred stock and the net income attributable to common shareholders will not be reduced by mandatory convertible preferred stock dividends. If the reduction of mandatory convertible preferred stock dividends results in a more dilutive earnings per share, the diluted weighted-average common shares outstanding will not assume conversion of the preferred stock.
+
+
+Cash Flow and Capital Deployment
+Cash from operations of $1.1 billion in the first half of 2026 increased $518 million compared to the prior-year period. Capital expenditures of $170 million in the first six months of 2026 decreased by $132 million versus the prior-year period.
+
+
+Balance Sheet and Liquidity
+As of June 30, 2026, Albemarle had estimated liquidity of approximately $3.2 billion, including $1.6 billion of cash and cash equivalents, $1.5 billion available under our revolver and $78 million available under other credit lines. Total debt was $1.9 billion, representing a net debt to adjusted EBITDA ratio (as defined in our credit agreement) of approximately 0.5 (a) .
+(a) See Non-GAAP Reconciliations for further details.
+3
+
+
+
+
+
+Earnings Call | | | | | |
+Date: | Thurs., August 6, 2026 |
+Time: | 8:00 AM Eastern time |
+Dial-in (U.S.): | 1-800-590-8290 |
+Dial-in (International): | 1-240-690-8800 |
+Conference ID: | ALBQ2 |
+
+
+
+The company’s earnings presentation and supporting material are available on Albemarle’s website at https://investors.albemarle.com.
+
+
+About Albemarle
+Albemarle Corporation (NYSE: ALB) is a world leader in transforming essential resources into critical ingredients for mobility, energy, connectivity and health. We partner to pioneer new ways to move, power, connect and protect with people and planet in mind. A reliable and high-quality global supply of lithium and bromine allows us to deliver advanced solutions for our customers. Learn more about how the people of Albemarle are enabling a more resilient world at Albemarle.com.
+
+
+Albemarle regularly posts information to Albemarle.com, including notification of events, news, financial performance, investor presentations and webcasts, non-GAAP reconciliations, U.S. Securities and Exchange Commission filings and other information regarding the company, its businesses and the markets it serves.
+
+
+Forward-Looking Statements
+This press release contains statements concerning our expectations, anticipations and beliefs regarding the future, which constitute “forward-looking statements” within the meaning of the Private Securities Litigation Reform Act of 1995. These forward-looking statements, which are based on assumptions that we have made as of the date hereof and are subject to known and unknown risks and uncertainties, often contain words such as “ambition,” “anticipate,” “believe,” “estimate,” “expect,” “goal,” “guidance,” “intend,” “may,” “outlook,” “scenario,” “should,” “would,” and “will.” Forward-looking statements may include statements regarding: our 2026 company and segment outlooks, including expected market pricing of lithium carbonate equivalent and spodumene and other underlying assumptions and outlook consideration; plans and expectations regarding customer demand and sales; production impacts; financial flexibility and optionality; expected or actual market pricing of lithium, spodumene, bromine, and lithium specialties (“Company Products”); supply and demand for Company Products; drivers of long-term demand and growth; other underlying assumptions and outlook considerations; expected capital allocation and expenditure amounts and the corresponding impact on cash flow; expected impact of tariffs and other trade restrictions; plans and expectations regarding other mining interests, resources, reserves, projects and activities, compound annual growth rate, cost reductions, conversion network optimization, margin improvement, accounting charges, and all other information relating to matters that are not historical facts. Factors that could cause Albemarle’s actual results to differ materially from the outlook expressed or implied in any forward-looking statement include: changes in economic and business conditions; changes in trade policies and tariffs; and the financial and operating performance of customers; timing and magnitude of customer orders; fluctuations in market pricing of lithium carbonate equivalent and spodumene; potential production volume shortfalls; increased competition and pressure to renegotiate contract terms; changes in product or conversion demand; availability and cost of raw materials and energy; technological change and development; fluctuations in foreign currencies; changes in laws and government regulation; regulatory actions, proceedings, claims or litigation; cyber-security breaches, terrorist attacks, industrial accidents or natural disasters; risks related to the integration of artificial intelligence technologies into our operations; geopolitical conflicts and political unrest affecting global trade, including tensions in the Middle East; the global economy and clean energy initiatives; our ability to retain key personnel and attract new skilled personnel changes in inflation or interest rates; volatility and uncertainties in the debt and equity markets; acquisition and divestiture transactions; timing and success of projects; expected benefits and expenses from new operating structure and asset optimization activities; performance of Albemarle’s partners in joint ventures and other projects; changes in credit ratings; and the other factors detailed from time to time in the reports Albemarle files with the SEC, including those described under “Risk Factors” in Albemarle’s most recent Annual Report on Form 10-K and any subsequently filed Quarterly Reports on Form 10-Q, which are filed with the SEC and available on the investor section of Albemarle’s website (investors.albemarle.com) and on the SEC’s website at www.sec.gov. These forward-looking statements speak only as of the date of this press release. Albemarle assumes no obligation to provide any revisions to any forward-looking statements should circumstances change, except as otherwise required by securities and other applicable laws.
+
+
+
+
+
+4
+
+
+
+
+
+Albemarle Corporation and Subsidiaries
+Consolidated Statements of Income
+(In Thousands Except Per Share Amounts) (Unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| June 30, | | June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Net sales | $ | 1,743,313 | | | $ | 1,329,992 | | | $ | 3,172,044 | | | $ | 2,406,873 | |
+Cost of goods sold | 1,153,012 | | | 1,133,116 | | | 2,080,777 | | | 2,053,698 | |
+Gross profit | 590,301 | | | 196,876 | | | 1,091,267 | | | 353,175 | |
+Selling, general and administrative expenses | 126,353 | | | 132,457 | | | 263,759 | | | 255,959 | |
+| | | | | | | |
+Restructuring charges and asset write-offs | 7,337 | | | 4,448 | | | 33,203 | | | 3,385 | |
+Research and development expenses | 3,667 | | | 12,444 | | | 12,837 | | | 26,543 | |
+Loss on sale of business | — | | | — | | | 95,018 | | | — | |
+| | | | | | | |
+Operating income | 452,944 | | | 47,527 | | | 686,450 | | | 67,288 | |
+Interest and financing expenses | (30,924) | | | (49,939) | | | (64,045) | | | (98,916) | |
+Other income (expenses), net | 19,629 | | | (6,559) | | | 73,439 | | | 3,691 | |
+Income (loss) before income taxes and equity in net income of unconsolidated investments | 441,649 | | | (8,971) | | | 695,844 | | | (27,937) | |
+Income tax expense | 94,002 | | | 34,094 | | | 115,513 | | | 30,116 | |
+Income (loss) before equity in net income of unconsolidated investments | 347,647 | | | (43,065) | | | 580,331 | | | (58,053) | |
+Equity in net income of unconsolidated investments (net of tax) | 151,564 | | | 78,258 | | | 247,857 | | | 142,544 | |
+| | | | | | | |
+| | | | | | | |
+Net income | 499,211 | | | 35,193 | | | 828,188 | | | 84,491 | |
+Net income attributable to noncontrolling interests | (19,252) | | | (12,296) | | | (29,138) | | | (20,246) | |
+Net income attributable to Albemarle Corporation | 479,959 | | | 22,897 | | | 799,050 | | | 64,245 | |
+Mandatory convertible preferred stock dividends | (41,687) | | | (41,687) | | | (83,375) | | | (83,375) | |
+Net income (loss) attributable to Albemarle Corporation common shareholders | $ | 438,272 | | | $ | (18,790) | | | $ | 715,675 | | | $ | (19,130) | |
+Basic earnings (loss) per share attributable to common shareholders | $ | 3.72 | | | $ | (0.16) | | | $ | 6.07 | | | $ | (0.16) | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Diluted earnings (loss) per share attributable to common shareholders | $ | 3.52 | | | $ | (0.16) | | | $ | 5.87 | | | $ | (0.16) | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Weighted-average common shares outstanding – basic | 117,961 | | | 117,665 | | | 117,907 | | | 117,634 | |
+Weighted-average common shares outstanding – diluted | 136,212 | | | 117,665 | | | 136,170 | | | 117,634 | |
+
+
+
+
+
+
+5
+
+
+
+
+
+Albemarle Corporation and Subsidiaries
+Condensed Consolidated Balance Sheets
+(In Thousands) (Unaudited)
+| | | | | | | | | | | |
+| June 30, | | December 31, |
+| 2026 | | 2025 |
+ASSETS | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 1,631,688 | | | $ | 1,618,001 | |
+Trade accounts receivable | 603,805 | | | 593,502 | |
+Other accounts receivable | 123,870 | | | 105,110 | |
+Inventories | 1,384,563 | | | 1,179,271 | |
+Other current assets | 200,275 | | | 140,440 | |
+Current assets held for sale | — | | | 371,815 | |
+Total current assets
+| 3,944,201 | | | 4,008,139 | |
+Property, plant and equipment | 11,902,156 | | | 11,768,840 | |
+Less accumulated depreciation and amortization | 3,442,831 | | | 3,156,429 | |
+Net property, plant and equipment
+| 8,459,325 | | | 8,612,411 | |
+Investments | 1,109,241 | | | 900,926 | |
+Other assets | 707,577 | | | 647,185 | |
+Goodwill | 1,482,672 | | | 1,499,657 | |
+Other intangibles, net of amortization | 202,079 | | | 214,233 | |
+Noncurrent assets held for sale | — | | | 491,660 | |
+Total assets | $ | 15,905,095 | | | $ | 16,374,211 | |
+LIABILITIES AND EQUITY | | | |
+Current liabilities: | | | |
+Accounts payable to third parties | $ | 670,229 | | | $ | 779,160 | |
+Accounts payable to related parties | 445,421 | | | 134,369 | |
+Accrued expenses | 507,556 | | | 521,831 | |
+| | | |
+Current portion of long-term debt | 74,677 | | | 74,077 | |
+Dividends payable | 61,514 | | | 61,387 | |
+| | | |
+Income taxes payable | 131,703 | | | 35,467 | |
+Current liabilities held for sale | — | | | 191,753 | |
+Total current liabilities
+| 1,891,100 | | | 1,798,044 | |
+Long-term debt | 1,802,107 | | | 3,119,464 | |
+Postretirement benefits | 45,198 | | | 44,744 | |
+Pension benefits | 105,729 | | | 117,361 | |
+Other noncurrent liabilities | 1,158,555 | | | 1,084,892 | |
+Deferred income taxes | 368,552 | | | 368,275 | |
+Noncurrent liabilities held for sale | — | | | 59,970 | |
+Commitments and contingencies | | | |
+Equity: | | | |
+Albemarle Corporation shareholders’ equity: | | | |
+Common stock | 1,180 | | | 1,178 | |
+Mandatory convertible preferred stock | 2,235,105 | | | 2,235,105 | |
+Additional paid-in capital | 3,048,664 | | | 3,018,213 | |
+Accumulated other comprehensive loss | (243,599) | | | (334,807) | |
+Retained earnings | 5,233,819 | | | 4,613,676 | |
+Total Albemarle Corporation shareholders’ equity | 10,275,169 | | | 9,533,365 | |
+Noncontrolling interests | 258,685 | | | 248,096 | |
+Total equity | 10,533,854 | | | 9,781,461 | |
+Total liabilities and equity | $ | 15,905,095 | | | $ | 16,374,211 | |
+
+
+
+
+
+6
+
+
+
+
+
+Albemarle Corporation and Subsidiaries
+Selected Consolidated Cash Flow Data
+(In Thousands) (Unaudited)
+| | | | | | | | | | | |
+| Six Months Ended
+June 30, |
+| 2026 | | 2025 |
+Cash and cash equivalents at beginning of year | $ | 1,618,001 | | | $ | 1,192,230 | |
+Cash flows from operating activities: | | | |
+Net income | 828,188 | | | 84,491 | |
+Adjustments to reconcile net income to cash flows from operating activities: | | | |
+Depreciation and amortization | 313,606 | | | 330,485 | |
+| | | |
+| | | |
+| | | |
+| | | |
+Loss on sale of business | 95,018 | | | — | |
+Gain on sale of equity investment | (42,300) | | | — | |
+| | | |
+| | | |
+Stock-based compensation and other | 14,661 | | | 17,068 | |
+Equity in net income of unconsolidated investments (net of tax) | (247,857) | | | (142,544) | |
+Dividends received from unconsolidated investments and nonmarketable securities | 131,744 | | | 67,765 | |
+Pension and postretirement expense | 5,299 | | | 3,504 | |
+Pension and postretirement contributions | (14,298) | | | (9,934) | |
+| | | |
+Unrealized (gain) loss on investments in marketable securities | (2,792) | | | 4,984 | |
+Gain on early extinguishment of debt | (12,543) | | | — | |
+Deferred income taxes | (19,798) | | | (38,907) | |
+Working capital changes | (53,125) | | | (96,762) | |
+| | | |
+| | | |
+Noncurrent liability changes and other, net | 60,438 | | | 318,030 | |
+Net cash provided by operating activities | 1,056,241 | | | 538,180 | |
+Cash flows from investing activities: | | | |
+| | | |
+| | | |
+| | | |
+Capital expenditures | (170,407) | | | (302,252) | |
+| | | |
+Proceeds from sale of businesses, net of cash sold | 525,156 | | | — | |
+Proceeds from sale of property and equipment | — | | | 23,751 | |
+Proceeds from sale of investments | 123,270 | | | — | |
+Proceeds from sale of available for sale debt securities | — | | | 288,000 | |
+| | | |
+(Payments) proceeds from settlement of foreign currency forward contracts, net | (18,772) | | | 171,262 | |
+Sales of marketable securities, net | 1,392 | | | 2,971 | |
+| | | |
+Investments in equity investments and nonmarketable securities | (119) | | | (120) | |
+Net cash provided by investing activities | 460,520 | | | 183,612 | |
+Cash flows from financing activities: | | | |
+| | | |
+| | | |
+Repayments of long-term debt and credit agreements | (1,314,151) | | | (29,103) | |
+Proceeds from borrowings of long-term debt and credit agreements | 35,952 | | | 19,488 | |
+Other debt repayments, net | (12,309) | | | (2,427) | |
+Fees related to early extinguishment of debt | (1,686) | | | — | |
+Dividends paid to common shareholders | (95,372) | | | (95,244) | |
+Dividends paid to mandatory convertible preferred shareholders | (83,375) | | | (83,375) | |
+Dividends paid to noncontrolling interests | (37,463) | | | (18,169) | |
+| | | |
+Proceeds from exercise of stock options | 19,635 | | | 1,186 | |
+Withholding taxes paid on stock-based compensation award distributions | (4,199) | | | (2,941) | |
+| | | |
+Other | (438) | | | (55) | |
+Net cash used in financing activities | (1,493,406) | | | (210,640) | |
+Net effect of foreign exchange on cash and cash equivalents | (9,668) | | | 103,447 | |
+Increase in cash and cash equivalents | 13,687 | | | 614,599 | |
+Cash and cash equivalents at end of period | $ | 1,631,688 | | | $ | 1,806,829 | |
+
+7
+
+
+
+
+
+Albemarle Corporation and Subsidiaries
+Consolidated Summary of Segment Results
+(In Thousands) (Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| June 30, | | June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Net sales: | | | | | | | |
+Energy Storage | $ | 1,276,684 | | | $ | 717,656 | | | $ | 2,167,849 | | | $ | 1,242,221 | |
+Specialties | 423,484 | | | 351,560 | | | 781,897 | | | 672,574 | |
+| | | | | | | |
+Total segment net sales | 1,700,168 | | | 1,069,216 | | | 2,949,746 | | | 1,914,795 | |
+| | | | | | | |
+Corporate and all other | 43,145 | | | 260,776 | | | 222,298 | | | 492,078 | |
+Total net sales | $ | 1,743,313 | | | $ | 1,329,992 | | | $ | 3,172,044 | | | $ | 2,406,873 | |
+| | | | | | | |
+Adjusted EBITDA: | | | | | | | |
+Energy Storage | $ | 723,457 | | | $ | 219,725 | | | $ | 1,274,813 | | | $ | 406,080 | |
+Specialties | 117,720 | | | 72,977 | | | 193,849 | | | 131,643 | |
+| | | | | | | |
+| | | | | | | |
+Total segment adjusted EBITDA | 841,177 | | | 292,702 | | | 1,468,662 | | | 537,723 | |
+Corporate and all other | 16,920 | | | 43,773 | | | 53,249 | | | 65,896 | |
+Total adjusted EBITDA | $ | 858,097 | | | $ | 336,475 | | | $ | 1,521,911 | | | $ | 603,619 | |
+
+
+
+See accompanying non-GAAP reconciliations below.
+
+
+Additional Information Regarding Non-GAAP Measures
+
+
+It should be noted that adjusted net income attributable to Albemarle Corporation, adjusted net income (loss) attributable to Albemarle Corporation common shareholders, adjusted diluted income (loss) per share attributable to common shareholders, non-operating pension and other post-employment benefit (“OPEB”) items per diluted share, non-recurring and other unusual items per diluted share, adjusted effective income tax rates, EBITDA, adjusted EBITDA (on a consolidated basis), EBITDA margin, adjusted EBITDA margin, operating cash flow conversion and net debt to adjusted EBITDA ratio are financial measures that are not required by, or presented in accordance with, accounting principles generally accepted in the United States, or GAAP. These non-GAAP measures should not be considered as alternatives to Net income attributable to Albemarle Corporation (“earnings”) or other comparable measures calculated and reported in accordance with GAAP. These measures are presented here to provide additional useful measurements to review the company’s operations, provide transparency to investors and enable period-to-period comparability of financial performance. The company’s chief operating decision maker uses these measures to assess the ongoing performance of the company and its segments, as well as for business and enterprise planning purposes.
+
+
+A description of other non-GAAP financial measures that Albemarle uses to evaluate its operations and financial performance, and reconciliation of these non-GAAP financial measures to the most directly comparable financial measures calculated and reported in accordance with GAAP can be found on the following pages of this press release, which is also is available on Albemarle’s website at https://investors.albemarle.com. The company does not provide a reconciliation of forward-looking non-GAAP financial measures to the most directly comparable financial measures calculated and reported in accordance with GAAP, as the company is unable to estimate significant non-recurring or unusual items without unreasonable effort. The amounts and timing of these items are uncertain and could be material to the company's results calculated in accordance with GAAP.
+
+
+8
+
+
+
+
+
+ALBEMARLE CORPORATION AND SUBSIDIARIES
+Non-GAAP Reconciliations
+(Unaudited)
+See below for a reconciliation of adjusted net income attributable to Albemarle Corporation, adjusted net income (loss) attributable to Albemarle Corporation common shareholders, EBITDA and adjusted EBITDA (on a consolidated basis), which are non-GAAP financial measures, to Net income attributable to Albemarle Corporation, the most directly comparable financial measure calculated and reported in accordance with GAAP. Adjusted net income attributable to Albemarle Corporation is defined as net income attributable to Albemarle Corporation before the non-recurring, other unusual and non-operating pension and other post-employment benefit (OPEB) items as listed below. The non-recurring and unusual items may include acquisition and integration related costs, gains or losses on sales of businesses, restructuring charges, facility divestiture charges, certain litigation and arbitration costs and charges, and other significant non-recurring items. Adjusted net income (loss) attributable to Albemarle Corporation common stockholders is defined as adjusted net income attributable to Albemarle Corporation after mandatory convertible preferred stock dividends. EBITDA is defined as net income attributable to Albemarle Corporation before interest and financing expenses, income tax expense (benefit), and depreciation and amortization. Adjusted EBITDA is defined as EBITDA plus or minus the proportionate share of Windfield Holdings income tax expense, non-recurring and other unusual items, and non-operating pension and OPEB items as listed below.
+9
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+
+
+| Three Months Ended | | Six Months Ended |
+
+
+| June 30, | | June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+In thousands, except percentages and per share amounts | $ | | % of net sales | | $ | | % of net sales | | $ | | % of net sales | | $ | | % of net sales |
+Net income attributable to Albemarle Corporation | $479,959 | | | |
+
+| $ | 22,897 | | | |
+
+| $ | 799,050 | | | |
+
+| $ | 64,245 | | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+Add back: | | | | | | | | | | | | | | | |
+Non-operating pension and OPEB items (net of tax) | 626 | | | |
+
+| 169 | | | |
+
+| 1,597 | | | |
+
+| 294 | | | |
+Non-recurring and other unusual items (net of tax) | 30,555 | | | |
+
+| 31,708 | | | |
+
+| 111,945 | | | |
+
+| 10,508 | | | |
+Adjusted net income attributable to Albemarle Corporation | 511,140 | | | |
+
+| 54,774 | | | |
+
+| 912,592 | | | |
+
+| 75,047 | | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+Mandatory convertible preferred stock dividends (a)
+| — | | | | | (41,687) | | | | | — | | | | | (83,375) | | | |
+Adjusted net income (loss) attributable to Albemarle Corporation common shareholders | $511,140 | | | | | $ | 13,087 | | | | | $ | 912,592 | | | | | $ | (8,328) | | | |
+
+
+|
+
+| | |
+
+|
+
+| | |
+
+|
+
+| | |
+
+|
+
+| | |
+Adjusted diluted income (loss) per share attributable to common shareholders | $ | 3.75 | | | |
+
+| $ | 0.11 | | | |
+
+| $ | 6.70 | | | |
+
+| $ | (0.07) | | | |
+
+
+|
+
+| | |
+
+|
+
+| | |
+
+|
+
+| | |
+
+|
+
+| | |
+Adjusted weighted-average common shares outstanding – diluted (a)
+| 136,212 | | | | | 117,691 | | | | | 136,170 | | | | | 117,634 | | | |
+
+
+|
+
+| | |
+
+|
+
+| | |
+
+|
+
+| | |
+
+|
+
+| | |
+Net income attributable to Albemarle Corporation | $479,959 | | | 27.5 | % |
+
+| $ | 22,897 | | | 1.7 | % |
+
+| $ | 799,050 | | | 25.2 | % |
+
+| $ | 64,245 | | | 2.7 | % |
+Add back: |
+
+| | |
+
+|
+
+| | |
+
+|
+
+| | |
+
+|
+
+| | |
+| | | | | | | | | | | | | | | |
+Interest and financing expenses | 30,924 | | | 1.8 | % |
+
+| 49,939 | | | 3.8 | % |
+
+| 64,045 | | | 2.0 | % |
+
+| 98,916 | | | 4.1 | % |
+Income tax expense | 94,002 | | | 5.4 | % |
+
+| 34,094 | | | 2.6 | % |
+
+| 115,513 | | | 3.6 | % |
+
+| 30,116 | | | 1.3 | % |
+Depreciation and amortization | 155,801 | | | 8.9 | % |
+
+| 168,731 | | | 12.7 | % |
+
+| 313,606 | | | 9.9 | % |
+
+| 330,485 | | | 13.7 | % |
+EBITDA | 760,686 | | | 43.6 | % |
+
+| 275,661 | | | 20.7 | % |
+
+| 1,292,214 | | | 40.7 | % |
+
+| 523,762 | | | 21.8 | % |
+Proportionate share of Windfield income tax expense | 70,766 | | | 4.1 | % | | 33,150 | | | 2.5 | % | | 112,300 | | | 3.5 | % | | 58,476 | | | 2.4 | % |
+Non-operating pension and OPEB items | 854 | | | — | % |
+
+| 336 | | | — | % |
+
+| 2,201 | | | 0.1 | % |
+
+| 611 | | | — | % |
+Non-recurring and other unusual items | 25,791 | | | 1.5 | % |
+
+| 27,328 | | | 2.1 | % |
+
+| 115,196 | | | 3.6 | % |
+
+| 20,770 | | | 0.9 | % |
+Adjusted EBITDA | $858,097 | | | 49.2 | % |
+
+| $ | 336,475 | | | 25.3 | % |
+
+| $ | 1,521,911 | | | 48.0 | % |
+
+| $ | 603,619 | | | 25.1 | % |
+
+
+|
+
+| | |
+
+|
+
+| | |
+
+|
+
+| | |
+
+|
+
+| | |
+Net sales | $ | 1,743,313 | | | |
+
+| $ | 1,329,992 | | | |
+
+| $ | 3,172,044 | | | |
+
+| $ | 2,406,873 | | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+
+
+
+(a) Calculation of adjusted diluted income (loss) per share attributable to common shareholders for the three and six months ended June 30, 2026 excludes $41.7 million and $83.4 million, respectively, of mandatory convertible preferred stock dividends and includes the assumed conversion of preferred stock into the diluted shares outstanding, as this results in the more dilutive per share result.
+
+
+Non-operating pension and OPEB items, consisting of mark-to-market actuarial gains/losses, settlements/curtailments, interest cost and expected return on assets, are not allocated to Albemarle’s operating segments and are included in the Corporate and all other category. In addition, the company believes that these components of pension cost are mainly driven by market performance, and the company manages these separately from the operational performance of the company’s businesses. In accordance with GAAP, these non-operating pension and OPEB items are included in Other income (expenses), net. Non-operating pension and OPEB items were as follows (in thousands):
+
+
+10
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| June 30, | | June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | | | |
+| | | | | | | |
+Interest cost | $ | 8,994 | | | $ | 8,924 | | | $ | 18,035 | | | $ | 17,734 | |
+Expected return on assets | (8,140) | | | (8,588) | | | (15,834) | | | (17,123) | |
+Total | $ | 854 | | | $ | 336 | | | $ | 2,201 | | | $ | 611 | |
+
+
+
+In addition to the non-operating pension and OPEB items disclosed above, the company has identified certain other items and excluded them from Albemarle’s adjusted net income (loss) calculation for the periods presented. A listing of these items, as well as a detailed description of each follows below (per diluted share):
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| June 30, | | June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Restructuring charges and asset write-offs (1)
+| $ | 0.05 | | | $ | 0.02 | | | $ | 0.24 | | | $ | 0.01 | |
+| | | | | | | |
+Acquisition and integration related costs (2)
+| 0.01 | | | 0.01 | | | 0.01 | | | 0.02 | |
+| | | | | | | |
+| | | | | | | |
+Loss on sale of business/equity investment, net (3)
+| — | | | — | | | 0.39 | | | — | |
+Gain on early extinguishment of debt (4)
+| — | | | — | | | (0.09) | | | — | |
+(Gain) loss in fair value of public equity securities (5)
+| (0.05) | | | — | | | (0.01) | | | 0.03 | |
+| | | | | | | |
+Other (6)
+| 0.17 | | | 0.13 | | | 0.20 | | | 0.05 | |
+Tax related items (7)
+| 0.04 | | | 0.11 | | | 0.08 | | | (0.02) | |
+Total non-recurring and other unusual items | $ | 0.22 | | | $ | 0.27 | | | $ | 0.82 | | | $ | 0.09 | |
+
+
+
+(1) In 2026, the Company announced it would place Kemerton Train 1 into care and maintenance. As a result, and in addition to other previously announced restructuring actions, the Company recorded charges of $7.3 million and $33.2 million in Restructuring charges and asset write-offs for the three and six months ended June 30, 2026, respectively. Due to the impact of valuation allowances, this resulted in total after-tax charges of $7.5 million and $33.3 million, or $0.05 and $0.24 per share, for the three and six months ended June 30, 2026, respectively. The three and six months ended June 30, 2025 included certain restructuring costs and adjustments to previously recorded costs related to restructuring actions originally entered into in 2024. As a result, the Company recorded charges of $4.4 million and $3.4 million in Restructuring charges and asset write-offs and gains (losses) of $0.1 million and ($0.1) million in Other income (expenses), net for the three and six months ended June 30, 2025, respectively. Due to the impact of valuation allowances, this resulted in total after-tax gains of $2.9 million and $0.8 million, or $0.02 and $0.01 per share, for the three and six months ended June 30, 2025, respectively.
+
+
+(2) Costs related to the acquisition, integration and divestitures for various significant projects, recorded in Selling, general and administrative expenses for the three and six months ended June 30, 2026 were $0.8 million and $1.9 million ($0.01 and $0.01 per share, with no income tax effect due to the impact of valuation allowances), respectively, and for the three and six months ended June 30, 2025 were $1.8 million and $3.2 million ($1.4 million and $2.5 million after income taxes, or $0.01 and $0.02 per share), respectively.
+
+
+(3) During the first quarter of 2026, the Company divested its controlling ownership interest in its Refining Solutions business and its full 50% ownership interest in the Eurecat joint venture. As a result of these transactions, the Company recorded a net loss of $52.7 million ($0.39 per share, with no income tax effect due to the impact of valuation allowances), representing the proceeds received less the carrying value as of the transaction dates.
+
+
+(4) During the first quarter of 2026, the Company completed a $1.3 billion debt tender and redemption, resulting in a gain on early extinguishment of debt of $12.5 million ($0.09 per share, with no income tax effect due to the impact of valuation allowances), representing the repurchase of this debt at a discount, partially offset by tender premiums and redemption fees.
+
+
+11
+
+
+
+
+
+(5) Gains resulting from the net change in fair value of investments in public equity securities, recorded in Other income (expenses), net for the three and six months ended June 30, 2026 of $6.5 million and $1.0 million ($0.05 and $0.01 per share, with no income tax effect due to the impact of valuation allowances), respectively, and for the three and six months ended June 30, 2025 gains (losses) of $0.2 million and ($4.8) million ($0.1 million and ($3.8 million) after income taxes, or less than $0.01 and $0.03 per share), respectively.
+
+
+(6) Other adjustments for the three months ended June 30, 2026 included amounts recorded in:
+• Cost of goods sold - $3.9 million of expenses related to non-routine labor and compensation related costs that are outside normal compensation arrangements.
+• Selling, general and administrative expenses - Primarily comprised of $19.0 million of expenses, mainly consulting fees, related to the Company's strategic cost savings initiative.
+• Other income (expenses), net - Primarily related to $3.4 million of charges for asset retirement obligations at a site not part of our operations and a net loss of $1.5 million primarily driven by indemnification charges related to the Eurecat S.A. joint venture sale, partially offset by a $3.9 million gain resulting from the adjustment of indemnification related to previously disposed businesses.
+After income taxes, these net losses totaled $22.8 million, or $0.17 per share.
+
+
+Other adjustments for the three months ended June 30, 2025 included amounts recorded in:
+• Selling, general and administrative expenses - $8.3 million of gains from the sale of assets not part of our production operations, partially offset by $1.8 million of severance expenses not related to a restructuring plan.
+• Other income (expenses), net - $38.0 million loss resulting from the redemption of preferred equity in a Grace subsidiary, partially offset by $10.1 million of income from PIK dividends of that preferred equity prior to redemption.
+After income taxes, these net losses totaled $15.3 million, or $0.13 per share.
+
+
+Other adjustments for the six months ended June 30, 2026 included amounts recorded in:
+• Cost of goods sold - $3.9 million of expenses related to non-routine labor and compensation related costs that are outside normal compensation arrangements.
+• Selling, general and administrative expenses - Primarily comprised of $19.0 million of expenses, mainly consulting fees, related to the Company's strategic cost savings initiative and a $3.9 million charge for a non-income tax audit of a facility no longer controlled by the Company.
+• Other income (expenses), net - Primarily related to $3.4 million of charges for asset retirement obligations at a site not part of our operations and a net loss of $1.5 million primarily driven by indemnification charges related to the Eurecat S.A. joint venture sale, partially offset by a $3.9 million gain resulting from the adjustment of indemnification related to previously disposed businesses.
+After income taxes, these net losses totaled $27.0 million, or $0.20 per share.
+
+
+Other adjustments for the six months ended June 30, 2025 included amounts recorded in:
+• Selling, general and administrative expenses - $11.4 million of gains from the sale of assets not part of our production operations, partially offset by $1.8 million of severance expenses not related to a restructuring plan and $0.6 million of expenses related to certain historical legal matters.
+• Other income (expenses), net - $38.0 million loss resulting from the redemption of preferred equity in a Grace subsidiary and $1.9 million of charges for asset retirement obligations at a site not part of our operations, partially offset by $19.8 million of income from PIK dividends of the preferred equity in a Grace subsidiary prior to redemption and a $1.9 million gain primarily resulting from the adjustment of indemnification related to previously disposed businesses.
+After income taxes, these net losses totaled $5.4 million, or $0.05 per share.
+
+
+(7) Included in Income tax expense for the three and six months ended June 30, 2026 are discrete net tax expenses of $6.0 million and $10.6 million, or $0.04 and $0.08 per share, respectively, primarily related to the impact of foreign tax reserves and foreign return to provisions.
+
+
+Included in Income tax expense for the three and six months ended June 30, 2025 are discrete net tax expenses of $12.2 million, or $0.11 per share, and benefits of $2.0 million, or $0.02 per share,
+12
+
+
+
+
+
+respectively, primarily related to the impact of foreign tax reserves and excess tax benefits realized from stock-based compensation arrangements.
+
+
+See below for a reconciliation of the adjusted effective income tax rate, the non-GAAP financial measure, to the effective income tax rate, the most directly comparable financial measure calculated and reporting in accordance with GAAP (in thousands, except percentages).
+| | | | | | | | | | | | | | | | | |
+| Income (loss) before income taxes and equity in net income of unconsolidated investments | | Income tax expense (benefit) | | Effective income tax rate |
+Three months ended June 30, 2026 | | | | | |
+As reported | $ | 441,649 | | | $ | 94,002 | | | 21.3 | % |
+Non-recurring, other unusual and non-operating pension and OPEB items | 26,691 | | | (4,490) | | | |
+As adjusted | $ | 468,340 | | | $ | 89,512 | | | 19.1 | % |
+| | | | | |
+Three months ended June 30, 2025 | | | | | |
+As reported | $ | (8,971) | | | $ | 34,094 | | | (380.0) | % |
+Non-recurring, other unusual and non-operating pension and OPEB items | 27,664 | | | (4,213) | | | |
+As adjusted | $ | 18,693 | | | $ | 29,881 | | | 159.9 | % |
+| | | | | |
+Six months ended June 30, 2026 | | | | | |
+As reported | $ | 695,844 | | | $ | 115,513 | | | 16.6 | % |
+Non-recurring, other unusual and non-operating pension and OPEB items | 104,853 | | | (8,689) | | | |
+As adjusted | $ | 800,697 | | | $ | 106,824 | | | 13.3 | % |
+| | | | | |
+Six months ended June 30, 2025 | | | | | |
+As reported | $ | (27,937) | | | $ | 30,116 | | | (107.8) | % |
+Non-recurring, other unusual and non-operating pension and OPEB items | 21,381 | | | 10,579 | | | |
+As adjusted | $ | (6,556) | | | $ | 40,695 | | | (620.7) | % |
+
+
+
+See below for the calculation of operating cash flow conversion and a reconciliation of free cash flow, a non-GAAP measure, to net cash provided by operating activities, the most directly comparable financial measure calculated and reporting in accordance with GAAP. The Company defines operating cash flow conversion as Net cash provided by operating activities from the statement of cash flows divided by adjusted EBITDA, which is a non-GAAP measure. A reconciliation of adjusted EBITDA, the non-GAAP financial measure, from net income attributable to Albemarle Corporation, the most directly comparable financial measure calculated and reporting in accordance with GAAP, is provided in the above tables (in thousands, except percentages).
+| | | | | |
+| Three Months Ended |
+| June 30, 2026 |
+Free cash flow: | |
+Net cash provided by operating activities | $ | 709,997 | |
+Less: Capital expenditures | (71,731) | |
+Free cash flow | $ | 638,266 | |
+| |
+Operating cash flow conversion: | |
+Net cash provided by operating activities | $ | 709,997 | |
+| |
+Adjusted EBITDA | $ | 858,097 | |
+| |
+Operating cash flow conversion | 83 | % |
+
+
+
+See below for the calculation of the net debt to adjusted EBITDA ratio (“Consolidated Leverage Ratio,” as defined in our credit agreement), a non-GAAP financial measure, for the twelve months ended June 30, 2026 (in thousands, except ratio).
+13
+
+
+
+
+
+| | | | | |
+| Twelve Months Ended |
+| June 30, 2026 |
+Adjusted EBITDA | $ | 2,016,285 | |
+Equity in net income of non-Windfield Holdings unconsolidated investments (net of tax) | 544 | |
+Dividends received from non-Windfield Holdings unconsolidated investments | 9,804 | |
+Consolidated Windfield-Adjusted EBITDA | $ | 2,026,633 | |
+| |
+Total Albemarle Corporation long-term debt (as reported) | $ | 1,876,784 | |
+49% Windfield Holdings debt | 718,079 | |
+Off-balance sheet obligations and other | 95,200 | |
+Consolidated Windfield-Adjusted Funded Debt | $ | 2,690,063 | |
+Less Cash | 1,631,688 | |
+Less 49% Windfield Holdings cash | 62,249 | |
+Consolidated Windfield-Adjusted Funded Net Debt | $ | 996,126 | |
+| |
+Consolidated Leverage Ratio | 0.5 |
+
+14
