@@ -336,6 +336,47 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  // A guidance table states its basis once, in the prose above it, and then captions its rows
+  // plainly. Reading the caption alone posts the excluded items away: Lilly's "Earnings per
+  // Share | $35.50 to $36.50" is its non-GAAP guidance, not its reported guidance.
+  describe("a section that declares a non-GAAP basis", () => {
+    test("posts a plainly captioned per-share row as adjusted", () => {
+      expect(extractOutlookMetrics([
+        "2026 Financial Guidance",
+        "In addition to providing guidance for GAAP revenue, Lilly provides guidance for certain non-GAAP measures.",
+        "| | | Prior | Updated |",
+        "Revenue | | | $82 to $85 billion | $85 to $87 billion |",
+        "Earnings per Share",
+        "| | | $35.50 to $37.00 | $35.50 to $36.50 |",
+      ])).toEqual([
+        {key: "revenue", label: "Revenue", value: "$85B to $87B"},
+        {key: "adjusted_eps", label: "Adj EPS", value: "$35.5 to $36.5"},
+      ]);
+    });
+
+    test("leaves a row that names GAAP itself under the reported label", () => {
+      expect(extractOutlookMetrics([
+        "2026 Financial Guidance",
+        "The company is updating its non-GAAP financial guidance for full-year 2026.",
+        "The company expects GAAP EPS of $4.10 to $4.30.",
+      ])).toEqual([
+        {key: "eps", label: "EPS", value: "$4.1 to $4.3"},
+      ]);
+    });
+
+    test("is not declared by the boilerplate footnote about reconciliations", () => {
+      // Filings that guide on a non-GAAP measure carry this sentence whether or not the rows
+      // themselves are non-GAAP. It names the words without stating the basis.
+      expect(extractOutlookMetrics([
+        "2026 Financial Guidance",
+        "The company expects earnings per share of $4.10 to $4.30 for full-year 2026.",
+        "The company does not provide reconciliations of forward-looking non-GAAP measures to the most directly comparable GAAP measures.",
+      ])).toEqual([
+        {key: "eps", label: "EPS", value: "$4.1 to $4.3"},
+      ]);
+    });
+  });
+
   test("limits outlook scanning and ignores unusable fallback values", () => {
     const lines = [
       "Business Outlook",

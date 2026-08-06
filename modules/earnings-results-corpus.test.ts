@@ -338,8 +338,10 @@ const filingCorpus: {
   {
     // Guidance sits in a prior-versus-updated table whose captions and value cells are on
     // separate lines. Each figure is read from the updated column; the tax rate reads from the
-    // prior one because its update is stated as "unchanged". The per-share row is labelled by
-    // its own caption, though the table as a whole is the company's non-GAAP guidance.
+    // prior one because its update is stated as "unchanged". The per-share row is captioned
+    // plainly as "Earnings per Share", but the prose above the table declares the basis —
+    // "Lilly provides guidance for certain non-GAAP measures" — so it posts as adjusted.
+    // Revenue stays reported: the same sentence names it as the GAAP item.
     company: "Eli Lilly",
     metrics: [
       ["adjusted_eps", "$8.38"],
@@ -349,7 +351,7 @@ const filingCorpus: {
     ],
     outlook: [
       ["Revenue", "$85B to $87B"],
-      ["EPS", "$35.5 to $36.5"],
+      ["Adj EPS", "$35.5 to $36.5"],
       ["Tax rate", "18% to 19%"],
     ],
     quarterLabel: "Q2 2026",
