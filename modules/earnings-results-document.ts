@@ -218,7 +218,12 @@ export function getDilutedShareMantissa(lines: string[]): number | undefined {
   for (const [lineIndex, line] of lines.entries()) {
     // The caption has to be about shares. "dollar-weighted average contract duration" is
     // boilerplate about contracts, and matching it reads an unrelated figure as a count.
-    const captionMatch = /weighted[-\s]average\s+(?:number\s+of\s+)?(?:[a-z]+\s+){0,3}shares\b|shares\s+used\s+in\s+(?:the\s+)?(?:comput|calculat)/i
+    //
+    // "Average Shares Outstanding Assuming Dilution" is the same row without the word
+    // "weighted" — how Merck captions it. Requiring "weighted" left such a filing with no
+    // share count at all, and a filing with no count is exempt from the per-share consistency
+    // check rather than failing it, so the caption went unnoticed.
+    const captionMatch = /weighted[-\s]average\s+(?:number\s+of\s+)?(?:[a-z]+\s+){0,3}shares\b|\baverage\s+shares\s+outstanding\b|shares\s+used\s+in\s+(?:the\s+)?(?:comput|calculat)/i
       .exec(line);
     if (null === captionMatch) {
       continue;

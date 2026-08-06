@@ -55,4 +55,26 @@ describe("per-share consistency gate", () => {
   test("says nothing when the filing states no share count", () => {
     expect(getInconsistentPerShareReasons(asMetrics(2_394_000_000, 0.63), undefined)).toEqual([]);
   });
+
+  // A caption the reader does not recognise leaves the filing with no count, and a filing with
+  // no count is exempt from the check rather than failing it — so an unread caption is a hole
+  // in the gate, not a visible error. Merck captions the row without the word "weighted".
+  test("reads a share count captioned without the word weighted", () => {
+    const document = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>ExampleCo Reports Second Quarter 2026 Results</h1>
+          <p>($ in millions except per share amounts)</p>
+          <p>Three Months Ended June 30,</p>
+          <tr><td>Net Income (Loss)</td><td>$</td><td>(1,330)</td></tr>
+          <tr><td>Loss per Common Share Assuming Dilution</td><td>$</td><td>(0.54)</td></tr>
+          <tr><td>Average Shares Outstanding Assuming Dilution</td><td>2,470</td></tr>
+        </body>
+      </html>
+    `);
+
+    expect(document.dilutedShareMantissa).toBe(2_470);
+    expect(getInconsistentPerShareReasons(document.metrics, document.dilutedShareMantissa))
+      .toEqual([]);
+  });
 });

@@ -1,6 +1,6 @@
 import {isDefinitionalLine} from "./earnings-results-format-selection.ts";
 import {getMoneyScaleFromContextText} from "./earnings-results-money.ts";
-import {gaapTermSource} from "./earnings-results-terms.ts";
+import {gaapTermSource, hasStandaloneGaapTerm} from "./earnings-results-terms.ts";
 
 export type EarningsOutlookMetric = {
   key: string;
@@ -36,6 +36,11 @@ type OutlookSection = {
   moneyUnit?: string | undefined;
   lines: string[];
   mixedPeriods: boolean;
+  // A guidance section states its basis once, in the prose above the table ("Lilly provides
+  // guidance for certain non-GAAP measures"), and then captions its rows plainly — "Earnings
+  // per Share", not "non-GAAP EPS". Under the reported label such a row understates the
+  // guidance by whatever it excludes.
+  nonGaapMeasures: boolean;
   // A guidance table headed "Prior | Updated" restates each figure twice. Its rows are the
   // guidance, so they are read rather than dismissed as a comparison table, and the updated
   // column is the one that now applies.
@@ -46,6 +51,21 @@ const moneyTokenPatternSource = String.raw`(?<![\d.])\(?\s*(?:(?:C\s*\$|[$€£�
 const moneyRangePattern = new RegExp(`(${moneyTokenPatternSource})\\s*(?:to|through|-|–|and)\\s*(${moneyTokenPatternSource})`, "gi");
 const singleMoneyPattern = new RegExp(moneyTokenPatternSource, "gi");
 
+// Held separately because a plainly captioned per-share row is relabelled to it when the
+// section declares a non-GAAP basis, and the two must not drift apart.
+const adjustedEpsDefinition: OutlookMetricDefinition = {
+  key: "adjusted_eps",
+  label: "Adj EPS",
+  patterns: [
+    /\badjusted\s+continuing(?:\s+operations?)?\s+(?:diluted\s+)?eps\b/i,
+    /\badjusted\s+continuing(?:\s+operations?)?\s+earnings\s+per\s+(?:common\s+)?share\b/i,
+    /\badjusted\s+(?:diluted\s+)?eps\b/i,
+    /\badjusted\s+(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\b/i,
+    /\bnon-gaap\s+(?:diluted\s+)?(?:eps|(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share)\b/i,
+  ],
+  valueType: "eps",
+};
+
 const outlookMetricDefinitions: OutlookMetricDefinition[] = [
   {
     key: "revenue",
@@ -53,18 +73,7 @@ const outlookMetricDefinitions: OutlookMetricDefinition[] = [
     patterns: [/\brevenues?\b/i, /\bnet\s+sales\b/i],
     valueType: "text",
   },
-  {
-    key: "adjusted_eps",
-    label: "Adj EPS",
-    patterns: [
-      /\badjusted\s+continuing(?:\s+operations?)?\s+(?:diluted\s+)?eps\b/i,
-      /\badjusted\s+continuing(?:\s+operations?)?\s+earnings\s+per\s+(?:common\s+)?share\b/i,
-      /\badjusted\s+(?:diluted\s+)?eps\b/i,
-      /\badjusted\s+(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\b/i,
-      /\bnon-gaap\s+(?:diluted\s+)?(?:eps|(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share)\b/i,
-    ],
-    valueType: "eps",
-  },
+  adjustedEpsDefinition,
   {
     key: "eps",
     label: "EPS",
@@ -159,6 +168,7 @@ export function extractOutlookMetrics(
       documentCurrencyCode,
       section.revisedColumns,
       section.moneyUnit,
+      section.nonGaapMeasures,
     );
     if (null === metric || true === seenKeys.has(metric.key)) {
       continue;
@@ -204,8 +214,18 @@ function getOutlookSection(lines: string[]): OutlookSection {
     moneyUnit: getSectionMoneyUnit(sectionLines),
     lines: sectionLines,
     mixedPeriods: mixedPeriods || hasMixedOutlookPeriods(sectionLines),
+    nonGaapMeasures: hasNonGaapGuidanceBasis(sectionLines),
     revisedColumns: sectionLines.some(line => hasRevisedColumnHeader(line)),
   };
+}
+
+// Only a sentence declaring what the guidance *is* counts. The boilerplate footnote that a
+// filer "does not provide reconciliations of forward-looking non-GAAP measures" mentions the
+// same words while saying nothing about the basis of these rows.
+function hasNonGaapGuidanceBasis(lines: string[]): boolean {
+  const sectionText = lines.join(" ");
+  return /\bnon-gaap\s+(?:financial\s+)?guidance\b/i.test(sectionText) ||
+    /\bguidance\s+for\s+(?:certain\s+)?non-gaap\s+measures\b/i.test(sectionText);
 }
 
 const unitByMoneyScale = new Map<number, string>([
@@ -311,6 +331,7 @@ function extractOutlookMetric(
   documentCurrencyCode: string,
   revisedColumns: boolean,
   sectionMoneyUnit: string | undefined,
+  nonGaapMeasures: boolean,
 ): EarningsOutlookMetric | null {
   let bestCandidate: OutlookMetricCandidate | null = null;
   for (const [lineIndex, line] of lines.entries()) {
@@ -354,9 +375,16 @@ function extractOutlookMetric(
         continue;
       }
 
+      // The row's own caption wins where it has one: a line naming GAAP keeps the reported
+      // label even inside a non-GAAP section, which is how a table guiding on both measures
+      // stays intelligible. Revenue is never relabelled — the sentence that declares the
+      // basis names revenue as the GAAP item.
+      const isAdjustedBySectionBasis = "eps" === definition.key &&
+        true === nonGaapMeasures &&
+        false === hasStandaloneGaapTerm(line);
       const metric: EarningsOutlookMetric = {
-        key: definition.key,
-        label: definition.label,
+        key: isAdjustedBySectionBasis ? adjustedEpsDefinition.key : definition.key,
+        label: isAdjustedBySectionBasis ? adjustedEpsDefinition.label : definition.label,
         value,
       };
       Object.defineProperty(metric, "sourceSnippet", {
