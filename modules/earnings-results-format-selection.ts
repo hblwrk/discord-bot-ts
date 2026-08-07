@@ -4,8 +4,13 @@ type MetricValueType = "eps" | "money" | "number";
 // the GAAP statement is complete before the word appears — "GAAP earnings per share of
 // $0.03. Generated $92 million of adjusted EBITDA" — the line still reports GAAP EPS, and
 // discarding it loses the only place the figure is stated.
+//
+// "Non-GAAP" bounds the GAAP statement the same way, and a filer that states both measures in
+// one clause uses that word rather than "adjusted": "GAAP diluted net loss per share $0.16;
+// non-GAAP diluted net loss per share $0.05". Reading only "adjusted" here discarded the line
+// and with it the reported figure, leaving the adjusted one posted alone.
 export function hasGaapNarrativeBeforeAdjustment(line: string, patterns: RegExp[]): boolean {
-  const adjustedIndex = line.search(/\badjusted\b/i);
+  const adjustedIndex = line.search(/\badjusted\b|\bnon-gaap\b/i);
   if (-1 === adjustedIndex) {
     return false;
   }
@@ -53,7 +58,9 @@ export function getMetricCandidateScore({
   // A combined statement names both periods in one header ("Three Months Ended | Six Months
   // Ended"); its quarter columns come first and are chosen by column index, so it must not
   // be treated as a year-to-date line.
-  if (/\b(?:YTD|year[-\s]to[-\s]date|six\s+months|nine\s+months|full\s+year|annual)\b/i.test(metricLine) &&
+  // "six-month 2026 earnings were $6.1 billion, or $5.00 per share" states the half-year as an
+  // adjective, so the period words have to be matched with the hyphen as well as the space.
+  if (/\b(?:YTD|year[-\s]to[-\s]date|six[-\s]months?|nine[-\s]months?|full\s+year|annual)\b/i.test(metricLine) &&
       "quarter" !== getPeriodEndedScope(metricLine)) {
     score -= 60;
   }
@@ -95,6 +102,10 @@ export function getMetricCandidateScore({
   // positionally, so the leading value is not the reported quarter.
   if (/\brespectively\b/i.test(metricLine)) {
     score -= 100;
+  }
+
+  if (null !== patternMatch && true === isComparisonClause(metricLine, patternMatch.index)) {
+    score -= 150;
   }
 
   if (("eps" === valueType || "money" === valueType) && /[$€£¥]/.test(metricLine)) {
@@ -373,8 +384,21 @@ function getLineScope(line: string): PeriodScope {
   return undefined;
 }
 
-// "compared with earnings per share of $1.76 for the second quarter of 2025" states a
-// prior-year figure; the leading value on such a line is not the reported quarter.
+// A figure introduced by "compared to" is the comparison, not the reported period. Normally
+// the caption comes first and the whole line reads as current — "Revenue was $10.2 billion,
+// compared with $9.1 billion" — but a hard line break inside a paragraph can leave the
+// comparison clause standing alone as its own line, carrying the reported period's date with
+// it: "...period ended June 30, 2026, compared to net income of $7.2 million". So the clause
+// is recognised from the caption's position, and only where the caption follows the comparison
+// marker directly. A caption further along the line ("compared with $9.1 billion, and adjusted
+// EPS was $1.42") still states the reported period.
+function isComparisonClause(line: string, captionIndex: number): boolean {
+  return /\b(?:compared\s+(?:to|with)|versus|vs\.?)\s+(?:a\s+|the\s+)?$/i
+    .test(line.slice(0, captionIndex));
+}
+
+// A row under a guidance heading is guidance whatever its caption says, so the heading is
+// searched for upwards from the row, stopping at whatever heading ends that section.
 function isUnderGuidanceHeading(lines: string[], lineIndex: number): boolean {
   for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 14; index--, examined++) {
     const line = lines[index];

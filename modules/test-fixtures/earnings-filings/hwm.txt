@@ -1,0 +1,3272 @@
+EX-99.1
+2
+tm2622325d1_ex99-1.htm
+EXHIBIT 99.1
+
+
+
+
+
+
+
+
+
+
+Exhibit
+99.1
+
+
+
+
+
+
+
+
+
+
+
+FOR
+IMMEDIATE RELEASE
+
+
+
+
+
+
+
+Investor
+Contact |
+Media
+Contact |
+
+
+Paul
+T. Luther |
+Rob
+Morrison |
+
+
+(412)
+553-1950 |
+(412)
+553-2666 |
+
+
+Paul.Luther@howmet.com |
+Rob.Morrison@howmet.com |
+
+
+
+
+
+Howmet
+Aerospace Reports Second Quarter 2026 Results
+
+
+Revenue
+up 24% Year over Year, Organic Growth 21% ; G AAP EPS $1.33, Adjusted EPS $1.33
+
+
+Strong
+Second Quarter Cash Generation; $300 Million Deployed for Common Stock Repurchases
+
+
+Full
+Year 2026 Guidance Increased
+
+
+
+
+
+Summary
+Financial Results
+
+
+
+
+
+
+
+| |
+Second
+Quarter | | |
+|
+|
+| | |
+Six Months | | |
+| |
+
+
+Dollars in Millions; Per share amounts in dollars,
+diluted | |
+2026 | | |
+2025 | | |
+|
+Change |
+| | |
+2026 | | |
+2025 | | |
+Change |
+| |
+
+
+Revenue | |
+$ | 2,547 | | |
+$ | 2,053 | | |
+| 24 | % |
+| |
+$ | 4,860 | | |
+$ | 3,995 | | |
+22 | % |
+|
+
+
+| |
+| | | |
+| | | |
+| | |
+| |
+| | | |
+| | | |
+| |
+|
+
+
+GAAP Metrics | |
+| | | |
+| | | |
+| | |
+| |
+| | | |
+| | | |
+| |
+|
+
+
+Operating Income | |
+$ | 711 | | |
+$ | 521 | | |
+| 36 | % |
+| |
+$ | 1,464 | | |
+$ | 1,015 | | |
+44 | % |
+|
+
+
+Operating Income Margin | |
+| 27.9 | % | |
+| 25.4 | % | |
+| 250 | bps |
+| |
+| 30.1 | % | |
+| 25.4 | % | |
+470 | bps |
+|
+
+
+Earnings per Share (EPS) | |
+$ | 1.33 | | |
+$ | 1.00 | | |
+| 33 | % |
+| |
+$ | 2.77 | | |
+$ | 1.84 | | |
+51 | % |
+|
+
+
+Cash from Operations | |
+$ | 583 | | |
+$ | 446 | | |
+| 31 | % |
+| |
+$ | 1,036 | | |
+$ | 699 | | |
+48 | % |
+|
+
+
+| |
+| | | |
+| | | |
+| | |
+| |
+| | | |
+| | | |
+| |
+|
+
+
+Non-GAAP
+Metrics 1 | |
+| | | |
+| | | |
+| | |
+| |
+| | | |
+| | | |
+| |
+|
+
+
+Adjusted EBITDA | |
+$ | 817 | | |
+$ | 589 | | |
+| 39 | % |
+| |
+$ | 1,557 | | |
+$ | 1,149 | | |
+36 | % |
+|
+
+
+Adjusted EBITDA Margin | |
+| 32.1 | % | |
+| 28.7 | % | |
+| 340 | bps |
+| |
+| 32.0 | % | |
+| 28.8 | % | |
+320 | bps |
+|
+
+
+Adjusted Operating Income | |
+$ | 733 | | |
+$ | 520 | | |
+| 41 | % |
+| |
+$ | 1,399 | | |
+$ | 1,011 | | |
+38 | % |
+|
+
+
+Adjusted Operating Income Margin | |
+| 28.8 | % | |
+| 25.3 | % | |
+| 350 | bps |
+| |
+| 28.8 | % | |
+| 25.3 | % | |
+350 | bps |
+|
+
+
+Adjusted Earnings per Share (EPS) | |
+$ | 1.33 | | |
+$ | 0.91 | | |
+| 46 | % |
+| |
+$ | 2.56 | | |
+$ | 1.77 | | |
+45 | % |
+|
+
+
+Free Cash Flow | |
+$ | 479 | | |
+$ | 344 | | |
+| 39 | % |
+| |
+$ | 838 | | |
+$ | 478 | | |
+75 | % |
+|
+
+
+
+
+
+
+1
+For more information, see &ldquo;Non-GAAP Financial Measures&rdquo; and the schedules to this release.
+
+
+
+
+
+Key
+Activity
+
+
+
+
+
+
+| &middot; | Completed
+acquisition of CAM on April 6, 2026 for approximately $1.8 billion |
+
+
+| &middot; | Paid
+down the Company's $186 million Japanese Yen-denominated term loan facility and entered into
+a separate $300 million cross-currency swap, reducing annualized interest expense by $12
+million |
+
+
+| &middot; | Increased
+the third quarter common stock dividend by 17% to $0.14
+per s hare |
+
+
+
+
+
+
+
+
+
+1
+
+
+
+
+
+
+
+
+
+
+PITTSBURGH,
+PA, August 6, 2026 &ndash; Howmet Aerospace (NYSE: HWM) announced results today for the second quarter 2026.
+
+
+
+
+
+Howmet
+Aerospace Executive Chairman and Chief Executive Officer John Plant said, &ldquo;The Howmet team delivered a strong set of results, with
+revenue, adjusted EBITDA, adjusted EBITDA margin, and adjusted earnings per share all exceeding the high end of guidance. Revenue growth
+was healthy at 24% year over year and 21% excluding the net impact of the three asset transactions completed this year. Adjusted EBITDA
+margin expanded 340 basis points year over year to 32.1%, including the absorption of the CAM fastener acquisition in April. Free cash
+flow performance was excellent at $479 million after $104 million in capital expenditures, supporting the future growth rate of the Company.
+The free cash flow also enabled $800 million in common stock repurchases year to date through July, an amount already greater than total
+repurchases in 2025.&rdquo;
+
+
+
+
+
+Mr.
+Plant continued, &ldquo;Looking ahead, Howmet is well positioned, with all our major markets in growth mode. More robust build rates
+for commercial aircraft are supported by record backlogs, while engine spares needs continue to increase. Defense markets remain healthy,
+and the focus for missiles, drones and collaborative combat aircraft continues with growth expected over the medium term. Demand in the
+gas turbines market is extraordinary with customers already revisiting and adding to their demand
+outlooks . The commercial transportation market has begun to recover, as anticipated.&rdquo;
+
+
+
+
+
+"Our
+capital expenditure requirements continue to increase, and we already see the need to increase this further in 2027 to support future
+organic growth expectations in both the aerospace and gas turbines markets. We closed the CAM acquisition in April, and the integration
+is on track. Continued healthy cash generation will allow us to achieve pre-CAM leverage levels in short order, with the Company well
+positioned to consider all paths of capital deployment optionality going forward."
+
+
+
+
+
+2026
+Guidance
+
+
+
+
+
+
+
+| |
+Q3 2026
+Guidance | | |
+FY 2026
+Guidance | |
+
+
+Dollars in Millions; Per share amounts in dollars,
+diluted | |
+Low | | |
+Baseline | | |
+High | | |
+Low | | |
+Baseline | | |
+High | |
+
+
+Revenue | |
+$ | 2,565 | | |
+$ | 2,575 | | |
+$ | 2,585 | | |
+$ | 10,000 | | |
+$ | 10,050 | | |
+$ | 10,100 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| Baseline | | |
+| +$ 400 | | |
+| | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| Change | | |
+| | | |
+| | |
+
+
+Adj.
+EBITDA 1 | |
+$ | 825 | | |
+$ | 830 | | |
+$ | 835 | | |
+$ | 3,210 | | |
+$ | 3,230 | | |
+$ | 3,250 | |
+
+
+Adj.
+EBITDA Margin 1 | |
+| 32.2 | % | |
+| 32.2 | % | |
+| 32.3 | % | |
+| 32.1 | % | |
+| 32.1 | % | |
+| 32.2 | % |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| Baseline | | |
+| +$170
+
+| | |
+| | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| Change | | |
+| +
+40 bps | | |
+| | |
+
+
+Adj.
+Earnings per Share 1 | |
+$ | 1.34 | | |
+$ | 1.35 | | |
+$ | 1.36 | | |
+$ | 5.23 | | |
+$ | 5.27 | | |
+$ | 5.31 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| Baseline | | |
+| +$ 0.33 | | |
+| | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| Change | | |
+| | | |
+| | |
+
+
+Free
+Cash Flow 1 | |
+| | | |
+| | | |
+| | | |
+$ | 1,850 | | |
+$ | 1,900 | | |
+$ | 1,950 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| Baseline | | |
+| +$ 150 | | |
+| | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| Change | | |
+| | | |
+| | |
+
+
+
+
+
+
+1
+Reconciliations of the forward-looking non-GAAP financial measures to the most directly comparable GAAP financial measures, as well as
+the directly comparable GAAP measures, are not available without unreasonable efforts due to the variability and complexity of the charges
+and other components excluded from the non-GAAP measures, such as gains or losses on sales of assets, taxes, and any future restructuring
+or impairment charges. In addition, there is inherent variability already included in the GAAP measures, including, but not limited to,
+price/mix and volume. Howmet Aerospace believes such reconciliations would imply a degree of precision that would be confusing or misleading
+to investors.
+
+
+
+
+
+Consolidated
+Results
+
+
+
+
+
+Howmet
+Aerospace reported second quarter 2026 revenue of $2.55 billion, up 24% year ov er year with organic
+growth of 21%, and Adjusted EPS of $1.33, up 46% year over year. Revenue was driv en by 28% growth in the commercial aerospace
+market, 11% growth in the defense aerospace market and 38% growth in the gas turbines market.
+
+
+
+
+
+
+
+
+
+2
+
+
+
+
+
+
+
+
+
+
+The
+Company reported adjusted EBITDA of $817 million, up 39% year over year. The year-over-year increase was driven
+by strong growth in the commercial aerospace, defense aerospace, and gas turbines markets. Adj usted EBITDA margin was up approximately
+340 basis points year over year at 32.1%.
+
+
+
+
+
+Segment
+Results
+
+
+
+
+
+Engine
+Products
+
+
+
+
+
+
+
+| |
+Second
+Quarter | | |
+| |
+
+
+Dollars in Millions | |
+2026 | | |
+2025 | | |
+Change | |
+
+
+Third-party sales | |
+$ | 1,373 | | |
+$ | 1,038 | | |
+| 32 | % |
+
+
+Segment adjusted EBITDA | |
+$ | 517 | | |
+$ | 343 | | |
+| 51 | % |
+
+
+Segment adjusted EBITDA margin | |
+| 37.7 | % | |
+| 33.0 | % | |
+| 470
+| bps |
+
+
+Provision for depreciation and amortization | |
+$ | 42 | | |
+$ | 35 | | |
+| | |
+
+
+
+
+
+
+Engine
+Products reported second quarter 2026 revenue of $1.37 billion, an increase of 32% year
+over year, driven by growth in t he commercial aerospace, defense aerospace, and gas turbines markets.
+Segment Adjusted EBITDA was $517 million, up 51% year over year, driven by growth in the commercial aerospace, defense aerospace, and
+gas t urbines markets. The Segment absorbed approximately 485 net headcount in the quarter in support of expected revenue increases.
+Segment Adjusted EBITDA margin increased approximately 470 basis points year over year to 37.7%.
+
+
+
+
+
+Fastening
+Systems
+
+
+
+
+
+
+
+| |
+Second
+Quarter | | |
+| |
+
+
+Dollars in Millions | |
+2026 | | |
+2025 | | |
+Change | |
+
+
+Third-party sales | |
+$ | 589 | | |
+$ | 431 | | |
+| 37 | % |
+
+
+Segment adjusted EBITDA | |
+$ | 177 | | |
+$ | 126 | | |
+| 40 | % |
+
+
+Segment adjusted EBITDA margin | |
+| 30.1 | % | |
+| 29.2 | % | |
+| 90
+| bps |
+
+
+Provision for depreciation and amortization | |
+$ | 20 | | |
+$ | 12 | | |
+| | |
+
+
+
+
+
+
+Fastening
+Systems repor ted revenue of $589 million, an increase
+of 37% year over year, driven by growth in the commercial aerospace and defense aerospace markets. Revenue includes the impacts from
+the CAM and Brunner acquisitions. Segment Adjusted EBITDA was $177 million, up 40% year
+over year, driven by growth in the commercial aerospace and defense aerospace markets and including contributions from the acquisitions.
+Segm ent Adjusted EBITDA margin increased approximately 90 basis points year over year to 30.1%.
+
+
+
+
+
+Engineered
+Structures
+
+
+
+
+
+
+
+| |
+Second
+Quarter | | |
+| |
+
+
+Dollars in Millions | |
+2026 | | |
+2025 | | |
+Change | |
+
+
+Third-party sales | |
+$ | 269 | | |
+$ | 308 | | |
+| (13 | )% |
+
+
+Segment adjusted EBITDA | |
+$ | 64 | | |
+$ | 68 | | |
+| (6 | )% |
+
+
+Segment adjusted EBITDA margin | |
+| 23.8 | % | |
+| 22.1 | % | |
+| 170
+| bps |
+
+
+Provision for depreciation and amortization | |
+$ | 11 | | |
+$ | 10 | | |
+| | |
+
+
+
+
+
+
+Engineered
+Structures reported revenue of $269 million, a decrease of 13% year over year, driven by the divestiture
+of the Savannah disk forging facility and product rationalization. Se gment Adjusted EBITDA was $64 million, a decrease of 6% year
+over year on the exit of lower-margin business including the divestiture . Se gment Adjusted
+EBITDA margin increased approximately 170 basis points year over year to 23.8%.
+
+
+
+
+
+
+
+
+
+3
+
+
+
+
+
+
+
+
+
+
+Forged
+Wheels
+
+
+
+
+
+
+
+| |
+Second
+Quarter | | |
+| |
+
+
+Dollars in Millions | |
+2026 | | |
+2025 | | |
+Change | |
+
+
+Third-party sales | |
+$ | 316 | | |
+$ | 276 | | |
+| 14 | % |
+
+
+Segment adjusted EBITDA | |
+$ | 88 | | |
+$ | 76 | | |
+| 16 | % |
+
+
+Segment adjusted EBITDA margin | |
+| 27.8 | % | |
+| 27.5 | % | |
+| 30 | bps |
+
+
+Provision for depreciation and amortization | |
+$ | 10 | | |
+$ | 10 | | |
+| | |
+
+
+
+
+
+
+Forged
+Wheels reported revenue of $316 million, an increase of 14% year over year, with 8% lower volumes in the commercial transportation
+market more than offset by an increase in aluminum and other inflationary cost pass through. Volumes increased 7% sequentially from the
+first quarter 2026, reflecting the beginning of the recovery of the North American commercial transportation market. Segm ent Adjusted
+EBITDA was $88 million and increased 16% year over year, driven by cost reductions, including lower net headcount, in response to lower
+volumes. Segment Adjusted EBITDA margin increased approximately 30 basis points year over year to 27.8% despite the impact of higher
+aluminum cost pass through.
+
+
+
+
+
+Completed
+Acquisition of CAM for Approximately $1.8 Billion
+
+
+
+
+
+On
+April 6, 2026, the Company completed the acquisition of Consolidated Aerospace Manufacturing, LLC (CAM) for approximately $1.8 billion
+from Stanley Black & Decker, Inc. CAM is a leading global designer and manufacturer of precision fasteners, fluid fittings, and other
+complex, highly engineered products for demanding aerospace and defense applications.
+
+
+
+
+
+Debt
+Actions in Second Quarter Reduce Annualized Interest Expense by Approximately $12 Million
+
+
+
+
+
+On
+May 22, 2026, the Company repaid the outstanding principal amount of its Japanese Yen-denominated, senior unsecured term loan facility
+for approximately $186 million with cash on hand. The Company also entered into a cross-currency swap to synthetically convert the outstanding
+$300 million aggregate principal amount of its 6.75% Bonds due 2028 into a Japanese Yen liability for a fixed interest rate of approximately
+3.88%. The combined effect of these debt actions will reduce annualized interest expense by $12 million.
+
+
+
+
+
+Repurchased
+$300 Million of Common Stock in Second Quarter 2026; $200 Million in July 2026
+
+
+
+
+
+In
+the second quarter 2026, Howmet Aerospace repurchased $300 million of common stock at an average price of $250.61 per share, retiring
+approximately 1.2 million shares. In July 2026, the Company repurchased an additional $20 0 million
+of common stock at an average price of $276.61 per share, retiring approximately 0.7 million shares. Year to date through July, the Company
+has repurchased $800 million of shares at an average price of $248.29 per share, exceeding the $700 million of shares repurchased in
+all of 2025. As of August 6, 2026, total share repurchase authorization available was $697
+million.
+
+
+
+
+
+Quarterly
+Common Stock Dividend Increas es 17% to $0.14 Per Sh are in Third Quarter 2026
+
+
+
+
+
+On
+July 27 , 2026, the Board of Directors declared a dividend o f
+$0.14 pe r share on its common stock to be paid on August 25 , 2026 to holders of record
+as of the close of business on August 7 , 2026. The quarterly dividend represents a
+17% inc rease from the second quarter 2026 dividend of $0.12 per share.
+
+
+
+
+
+
+
+
+
+4
+
+
+
+
+
+
+
+
+
+
+Howmet
+Aerospace will hold its quarterly conference call at 10:00 AM Eastern Time on Thursday, August 6, 2026. The call will be webcast via
+www.howmet.com. The press release and presentation materials will be available at approximately 7:00 AM ET on August 6, via the &ldquo;Investors&rdquo;
+section of the Howmet Aerospace website.
+
+
+
+
+
+About
+Howmet Aerospace
+
+
+
+
+
+Howmet
+Aerospace Inc., headquartered in Pittsburgh, Pennsylvania, is a leading global provider of advanced engineered solutions for the aerospace,
+gas turbine, and transportation industries. The Company&rsquo;s primary businesses focus on engine components, fastening systems, and
+airframe structural components necessary for mission-critical performance and efficiency, including in aerospace, defense, and gas turbine
+applications, as well as forged aluminum wheels for commercial transportation. With approximately 1,200 granted and pending patents,
+the Company&rsquo;s differentiated technologies enable lighter, more fuel-efficient aircraft and commercial trucks to operate with a
+lower carbon footprint. For more information, visit www.howmet.com.
+
+
+
+
+
+Dissemination
+of Company Information
+
+
+
+
+
+Howmet
+Aerospace intends to make future announcements regarding Company developments and financial performance through its website at www.howmet.com.
+
+
+
+
+
+Forward-Looking
+Statements
+
+
+
+
+
+This
+release contains statements that relate to future events and expectations and as such constitute forward-looking statements within the
+meaning of the Private Securities Litigation Reform Act of 1995. Forward-looking statements include those containing such words as "anticipates,"
+"believes," "could," &ldquo;envisions,&rdquo; "estimates," "expects," "forecasts,"
+"goal," "guidance," "intends," "may," "outlook," "plans," &ldquo;poised,&rdquo;
+"projects," "seeks," "sees," "should," "targets," "will," "would,"
+or other words of similar meaning. All statements that reflect Howmet Aerospace&rsquo;s expectations, assumptions or projections about
+the future, other than statements of historical fact, are forward-looking statements, including, without limitation, statements, forecasts
+and outlook relating to the condition of markets; future financial results or operating performance; future strategic actions; Howmet
+Aerospace's strategies, outlook, and business and financial prospects; any future dividends, debt issuances, debt reduction and repurchases
+of its common stock; and statements regarding any acquisitions, including expected benefits. These statements reflect beliefs and assumptions
+that are based on Howmet Aerospace&rsquo;s perception of historical trends, current conditions and expected future developments, as well
+as other factors Howmet Aerospace believes are appropriate in the circumstances. Forward-looking statements are not guarantees of future
+performance and are subject to risks, uncertainties and changes in circumstances that are difficult to predict, which could cause actual
+results to differ materially from those indicated by these statements. Such risks and uncertainties include, but are not limited to:
+(a) deterioration in global economic and financial market conditions generally, or unfavorable changes in the markets served by Howmet
+Aerospace, including due to escalating tariff and other trade policies and energy costs, and the resulting impacts on Howmet Aerospace&rsquo;s
+supply and distribution chains, as well as on market volatility and global trade generally; (b) the impact of potential cyber attacks
+and information technology or data security breaches; (c) the loss of significant customers or adverse changes in customers&rsquo; business
+or financial conditions; (d) manufacturing difficulties or other issues that impact product performance, quality or safety; (e) inability
+of suppliers to meet obligations due to supply chain disruptions or otherwise; (f) failure to attract and retain a qualified workforce
+and key personnel, labor disputes or other employee relations issues; (g) the inability to achieve anticipated or targeted financial
+performance, operations or competitiveness, or realization of expected benefits from acquisitions, including the effective integration
+of acquired businesses; (h) inability to meet increased demand, production targets or commitments; (i) competition from new product offerings,
+disruptive technologies or other developments; (j) geopolitical, economic, and regulatory risks relating to Howmet Aerospace&rsquo;s
+global operations, including geopolitical and diplomatic tensions, instabilities, conflicts and wars, as well as compliance with U.S.
+and foreign trade and tax laws, sanctions, embargoes and other regulations; (k) the outcome of contingencies, including legal proceedings,
+government or regulatory investigations, and environmental remediation; (l) failure to comply with government contracting regulations;
+(m) adverse changes in discount rates or investment returns on pension assets; and (n) the other risk factors summarized in Howmet Aerospace&rsquo;s
+Form 10-K for the year ended December 31, 2025 and other reports filed with the U.S. Securities and Exchange Commission. Market projections
+are subject to the risks discussed above and other risks in the market. Under its share repurchase program, the Company may repurchase
+shares from time to time, in amounts, at prices, and at such times as the Company deems appropriate, subject to market conditions, legal
+requirements and other considerations. The Company is not obligated to repurchase any specific number of shares or to do so at any particular
+time. The declaration of any future dividends is subject to the discretion and approval of the Board of Directors after the Board&rsquo;s
+consideration of all factors it deems relevant and subject to applicable law. The Company may modify, suspend, or cancel its share repurchase
+program or any dividend policy in any manner and at any time that it may deem necessary or appropriate. Credit ratings are not a recommendation
+to buy or hold any Howmet Aerospace securities, and they may be revised or revoked at any time at the sole discretion of the credit rating
+organizations. The statements in this release are made as of the date of this release, even if subsequently made available by Howmet
+Aerospace on its website or otherwise. Howmet Aerospace disclaims any intention or obligation to update publicly any forward-looking
+statements, whether in response to new information, future events, or otherwise, except as required by applicable law.
+
+
+
+
+
+
+
+
+
+5
+
+
+
+
+
+
+
+
+
+
+Non-GAAP
+Financial Measures
+
+
+
+
+
+Some
+of the information included in this release is derived from Howmet Aerospace&rsquo;s consolidated financial information but is not presented
+in Howmet Aerospace&rsquo;s financial statements prepared in accordance with accounting principles generally accepted in the United States
+of America (GAAP). Certain of these data are considered &ldquo;non-GAAP financial measures&rdquo; under SEC rules. These non-GAAP financial
+measures supplement our GAAP disclosures and should not be considered an alternative to the GAAP measure. Reconciliations to the most
+directly comparable GAAP financial measures and management&rsquo;s rationale for the use of the non-GAAP financial measures can be found
+in the schedules to this release.
+
+
+
+
+
+Adjusted
+EBITDA is defined as Operating Income excluding Restructuring and other (credits) charges, Special Items and provision for depreciation
+and amortization.
+
+
+
+
+
+Other
+Information
+
+
+
+
+
+In
+this press release, the acronym &ldquo;FY&rdquo; means &ldquo;full year&rdquo;; &ldquo;Q&rdquo; means &ldquo;quarter&rdquo;; &ldquo;YoY&rdquo;
+means year over year; &ldquo;Adj.&rdquo; means adjusted; Howmet, Howmet Aerospace, or the Company means Howmet Aerospace Inc.; "organic
+growth" refers to the Company's revenue growth excluding the impact of acquisitions and divestitures; and references to performance
+by Howmet Aerospace or its segments as &ldquo;record&rdquo; mean its best result since April 1, 2020 when Howmet Aerospace Inc. (previously
+named Arconic Inc.) separated from Arconic Corporation.
+
+
+
+
+
+
+
+
+
+6
+
+
+
+
+
+
+
+
+
+
+Howmet
+Aerospace Inc. and subsidiaries
+
+
+Statement
+of Consolidated Operations (unaudited)
+
+
+(in
+U.S. dollar millions, except per-share and share amounts)
+
+
+
+
+
+
+
+| |
+Quarter
+ended | |
+
+
+| |
+June 30,
+2026 | | |
+March 31,
+2026 | | |
+June 30,
+2025 | |
+
+
+Sales | |
+$ | 2,547 | | |
+$ | 2,313 | | |
+$ | 2,053 | |
+
+
+Cost of goods sold (exclusive of expenses below) | |
+| 1,596 | | |
+| 1,459 | | |
+| 1,365 | |
+
+
+Selling, general administrative, and other expenses | |
+| 148 | | |
+| 111 | | |
+| 89 | |
+
+
+Research and development expenses | |
+| 8 | | |
+| 9 | | |
+| 9 | |
+
+
+Provision for depreciation and amortization | |
+| 84 | | |
+| 74 | | |
+| 69 | |
+
+
+Restructuring and other credits | |
+| &mdash; | | |
+| (93 | ) | |
+| &mdash; | |
+
+
+Operating income | |
+| 711 | | |
+| 753 | | |
+| 521 | |
+
+
+Interest expense, net | |
+| 51 | | |
+| 43 | | |
+| 38 | |
+
+
+Other expense, net | |
+| 11 | | |
+| 2 | | |
+| 14 | |
+
+
+Income before income taxes | |
+| 649 | | |
+| 708 | | |
+| 469 | |
+
+
+Provision for income taxes | |
+| 115 | | |
+| 128 | | |
+| 62 | |
+
+
+Net income | |
+$ | 534 | | |
+$ | 580 | | |
+$ | 407 | |
+
+
+| |
+| | | |
+| | | |
+| | |
+
+
+Amounts Attributable to Howmet Aerospace Common Shareholders: | |
+| | | |
+| | | |
+| | |
+
+
+Earnings
+per share - basic (1) : | |
+| | | |
+| | | |
+| | |
+
+
+Net income per share | |
+$ | 1.33 | | |
+$ | 1.45 | | |
+$ | 1.01 | |
+
+
+Average
+number of shares (2)(3) | |
+| 400 | | |
+| 401 | | |
+| 404 | |
+
+
+Earnings
+per share - diluted (1) : | |
+| | | |
+| | | |
+| | |
+
+
+Net income per share | |
+$ | 1.33 | | |
+$ | 1.44 | | |
+$ | 1.00 | |
+
+
+Average
+number of shares (2)(3) | |
+| 402 | | |
+| 403 | | |
+| 406 | |
+
+
+Common stock outstanding at the end
+of the period | |
+| 400 | | |
+| 401 | | |
+| 404 | |
+
+
+
+
+
+
+
+| (1) | In
+order to calculate both basic and diluted earnings per share through December 31, 2025, preferred
+stock dividends declared of less than $1 for the quarters presented need to be subtracted
+from Net income. |
+
+
+| (2) | For
+the quarters presented, the difference between the diluted average number of shares and the
+basic average number of shares relates to share equivalents associated with outstanding restricted
+stock unit awards and employee stock options. |
+
+
+| (3) | As
+average shares outstanding are used in the calculation of both basic and diluted earnings
+per share, the full impact of share repurchases is not fully realized in earnings per share
+("EPS") in the period of repurchase since share repurchases may occur at varying
+points during a period. |
+
+
+
+
+
+
+
+
+
+7
+
+
+
+
+
+
+
+
+
+
+Howmet
+Aerospace Inc. and subsidiaries
+
+
+Consolidated
+Balance Sheet (unaudited)
+
+
+(in
+U.S. dollar millions)
+
+
+
+
+
+
+
+| |
+June
+30, 2026 | | |
+December
+31, 2025 | |
+
+
+Assets | |
+| | | |
+| | |
+
+
+Current assets: | |
+| | | |
+| | |
+
+
+Cash and cash equivalents | |
+$ | 563 | | |
+$ | 742 | |
+
+
+Receivables from customers, less allowances
+of $&mdash; in both 2026 and 2025 | |
+| 1,040 | | |
+| 779 | |
+
+
+Inventories | |
+| 2,183 | | |
+| 1,849 | |
+
+
+Prepaid expenses
+and other current assets | |
+| 407 | | |
+| 409 | |
+
+
+Total current assets | |
+| 4,193 | | |
+| 3,779 | |
+
+
+Properties, plants, and equipment, net | |
+| 2,817 | | |
+| 2,593 | |
+
+
+Goodwill | |
+| 5,084 | | |
+| 4,022 | |
+
+
+Deferred income taxes | |
+| 48 | | |
+| 40 | |
+
+
+Intangibles, net | |
+| 869 | | |
+| 457 | |
+
+
+Other noncurrent assets | |
+| 240 | | |
+| 288 | |
+
+
+Total assets | |
+$ | 13,251 | | |
+$ | 11,179 | |
+
+
+| |
+| | | |
+| | |
+
+
+Liabilities | |
+| | | |
+| | |
+
+
+Current liabilities: | |
+| | | |
+| | |
+
+
+Accounts payable, trade | |
+$ | 1,149 | | |
+$ | 845 | |
+
+
+Accrued compensation and retirement
+costs | |
+| 304 | | |
+| 343 | |
+
+
+Taxes, including income taxes | |
+| 87 | | |
+| 77 | |
+
+
+Accrued interest payable | |
+| 62 | | |
+| 47 | |
+
+
+Deferred revenue | |
+| 119 | | |
+| 147 | |
+
+
+Other current liabilities | |
+| 134 | | |
+| 121 | |
+
+
+Long-term debt due within one year | |
+| 1 | | |
+| 191 | |
+
+
+Short-term borrowings | |
+| 450 | | |
+| &mdash; | |
+
+
+Total current liabilities | |
+| 2,306 | | |
+| 1,771 | |
+
+
+Long-term debt, less amount due within one year | |
+| 4,050 | | |
+| 2,859 | |
+
+
+Accrued pension benefits | |
+| 511 | | |
+| 546 | |
+
+
+Accrued other postretirement benefits | |
+| 34 | | |
+| 38 | |
+
+
+Other noncurrent liabilities and deferred
+credits | |
+| 618 | | |
+| 612 | |
+
+
+Total liabilities | |
+| 7,519 | | |
+| 5,826 | |
+
+
+| |
+| | | |
+| | |
+
+
+Equity | |
+| | | |
+| | |
+
+
+Howmet Aerospace shareholders&rsquo; equity: | |
+| | | |
+| | |
+
+
+Common stock | |
+| 400 | | |
+| 402 | |
+
+
+Additional capital | |
+| 1,919 | | |
+| 2,531 | |
+
+
+Retained earnings | |
+| 5,110 | | |
+| 4,093 | |
+
+
+Accumulated other
+comprehensive loss | |
+| (1,697 | ) | |
+| (1,673 | ) |
+
+
+Total equity | |
+| 5,732 | | |
+| 5,353 | |
+
+
+Total liabilities
+and equity | |
+$ | 13,251 | | |
+$ | 11,179 | |
+
+
+
+
+
+
+
+
+
+
+8
+
+
+
+
+
+
+
+
+
+
+Howmet
+Aerospace Inc. and subsidiaries
+
+
+Statement
+of Consolidated Cash Flows (unaudited)
+
+
+(in
+U.S. dollar millions)
+
+
+
+
+
+
+
+| |
+Six months ended | |
+
+
+| |
+June 30, | |
+
+
+| |
+2026 | | |
+2025 | |
+
+
+Operating activities | |
+| | | |
+| | |
+
+
+Net income | |
+$ | 1,114 | | |
+$ | 751 | |
+
+
+Adjustments to reconcile net income
+to cash provided from operations: | |
+| | | |
+| | |
+
+
+Depreciation and amortization | |
+| 158 | | |
+| 138 | |
+
+
+Deferred income taxes | |
+| 9 | | |
+| 12 | |
+
+
+Restructuring and other credits | |
+| (93 | ) | |
+| (4 | ) |
+
+
+Net realized and unrealized losses | |
+| 8 | | |
+| 11 | |
+
+
+Net periodic pension cost | |
+| 23 | | |
+| 21 | |
+
+
+Stock-based compensation | |
+| 57 | | |
+| 39 | |
+
+
+Other | |
+| 5 | | |
+| 2 | |
+
+
+Changes in assets
+and liabilities, excluding effects of acquisitions, divestitures, and foreign currency translation adjustments: | |
+| | | |
+| | |
+
+
+Increase in receivables | |
+| (196 | ) | |
+| (170 | ) |
+
+
+Increase in inventories | |
+| (165 | ) | |
+| (81 | ) |
+
+
+(Increase) decrease in prepaid expenses
+and other current assets | |
+| (53 | ) | |
+| 6 | |
+
+
+Increase in accounts payable, trade | |
+| 279 | | |
+| 74 | |
+
+
+Decrease in accrued expenses | |
+| (59 | ) | |
+| (47 | ) |
+
+
+Decrease in taxes, including income
+taxes | |
+| (27 | ) | |
+| (20 | ) |
+
+
+Pension contributions | |
+| (21 | ) | |
+| (15 | ) |
+
+
+Increase in noncurrent assets | |
+| (7 | ) | |
+| (2 | ) |
+
+
+Increase (decrease) in noncurrent liabilities | |
+| 4 | | |
+| (16 | ) |
+
+
+Cash provided
+from operations | |
+| 1,036 | | |
+| 699 | |
+
+
+Financing Activities | |
+| | | |
+| | |
+
+
+Net change in commercial paper | |
+| 450 | | |
+| &mdash; | |
+
+
+Additions to debt | |
+| 1,200 | | |
+| &mdash; | |
+
+
+Repurchases and payments on debt | |
+| (186 | ) | |
+| (77 | ) |
+
+
+Debt issuance costs | |
+| (12 | ) | |
+| &mdash; | |
+
+
+Repurchases of common stock | |
+| (600 | ) | |
+| (300 | ) |
+
+
+Dividends paid to shareholders | |
+| (97 | ) | |
+| (83 | ) |
+
+
+Taxes paid for net share settlement
+of equity awards | |
+| (65 | ) | |
+| (44 | ) |
+
+
+Other | |
+| (5 | ) | |
+| (2 | ) |
+
+
+Cash provided
+from (used for) financing activities | |
+| 685 | | |
+| (506 | ) |
+
+
+Investing Activities | |
+| | | |
+| | |
+
+
+Capital expenditures | |
+| (198 | ) | |
+| (221 | ) |
+
+
+Acquisitions, net of cash acquired | |
+| (1,929 | ) | |
+| &mdash; | |
+
+
+Proceeds from the sale of assets and
+businesses | |
+| 225 | | |
+| 8 | |
+
+
+Other | |
+| 2 | | |
+| 1 | |
+
+
+Cash used
+for investing activities | |
+| (1,900 | ) | |
+| (212 | ) |
+
+
+Effect of exchange rate changes
+on cash, cash equivalents and restricted cash | |
+| &mdash; | | |
+| &mdash; | |
+
+
+Net change in cash, cash equivalents
+and restricted cash | |
+| (179 | ) | |
+| (19 | ) |
+
+
+Cash, cash equivalents
+and restricted cash at beginning of period | |
+| 743 | | |
+| 565 | |
+
+
+Cash, cash
+equivalents and restricted cash at end of period | |
+$ | 564 | | |
+$ | 546 | |
+
+
+
+
+
+
+
+
+
+
+9
+
+
+
+
+
+
+
+
+
+
+Howmet
+Aerospace Inc. and subsidiaries
+
+
+Segment
+Information (unaudited)
+
+
+(in
+U.S. dollar millions)
+
+
+
+
+
+
+
+| |
+| 1Q25 | | |
+| 2Q25 | | |
+| 3Q25 | | |
+| 4Q25 | | |
+| 2025 | | |
+| 1Q26 | | |
+| 2Q26 | |
+
+
+Engine Products | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Third-party sales | |
+$ | 974 | | |
+$ | 1,038 | | |
+$ | 1,087 | | |
+$ | 1,143 | | |
+$ | 4,242 | | |
+$ | 1,253 | | |
+$ | 1,373 | |
+
+
+Inter-segment sales | |
+$ | 2 | | |
+$ | 3 | | |
+$ | 2 | | |
+$ | 1 | | |
+$ | 8 | | |
+$ | 2 | | |
+$ | 3 | |
+
+
+Provision for depreciation and amortization | |
+$ | 33 | | |
+$ | 35 | | |
+$ | 37 | | |
+$ | 39 | | |
+$ | 144 | | |
+$ | 38 | | |
+$ | 42 | |
+
+
+Segment Adjusted EBITDA | |
+$ | 318 | | |
+$ | 343 | | |
+$ | 362 | | |
+$ | 393 | | |
+$ | 1,416 | | |
+$ | 458 | | |
+$ | 517 | |
+
+
+Segment Adjusted EBITDA Margin | |
+| 32.6 | % | |
+| 33.0 | % | |
+| 33.3 | % | |
+| 34.4 | % | |
+| 33.4 | % | |
+| 36.6 | % | |
+| 37.7 | % |
+
+
+Restructuring and other charges | |
+$ | &mdash; | | |
+$ | &mdash; | | |
+$ | &mdash; | | |
+$ | 88 | | |
+$ | 88 | | |
+$ | &mdash; | | |
+$ | &mdash; | |
+
+
+Capital expenditures | |
+$ | 85 | | |
+$ | 74 | | |
+$ | 73 | | |
+$ | 84 | | |
+$ | 316 | | |
+$ | 59 | | |
+$ | 77 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Fastening Systems | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Third-party sales | |
+$ | 412 | | |
+$ | 431 | | |
+$ | 448 | | |
+$ | 454 | | |
+$ | 1,745 | | |
+$ | 471 | | |
+$ | 589 | |
+
+
+Inter-segment sales | |
+$ | &mdash; | | |
+$ | &mdash; | | |
+$ | &mdash; | | |
+$ | 1 | | |
+$ | 1 | | |
+$ | &mdash; | | |
+$ | &mdash; | |
+
+
+Provision for depreciation and amortization | |
+$ | 12 | | |
+$ | 12 | | |
+$ | 12 | | |
+$ | 12 | | |
+$ | 48 | | |
+$ | 13 | | |
+$ | 20 | |
+
+
+Segment Adjusted EBITDA | |
+$ | 127 | | |
+$ | 126 | | |
+$ | 138 | | |
+$ | 139 | | |
+$ | 530 | | |
+$ | 150 | | |
+$ | 177 | |
+
+
+Segment Adjusted EBITDA Margin | |
+| 30.8 | % | |
+| 29.2 | % | |
+| 30.8 | % | |
+| 30.6 | % | |
+| 30.4 | % | |
+| 31.8 | % | |
+| 30.1 | % |
+
+
+Restructuring and other charges (credits) | |
+$ | &mdash; | | |
+$ | 1 | | |
+$ | &mdash; | | |
+$ | (1 | ) | |
+$ | &mdash; | | |
+$ | &mdash; | | |
+$ | &mdash; | |
+
+
+Capital expenditures | |
+$ | 10 | | |
+$ | 9 | | |
+$ | 13 | | |
+$ | 20 | | |
+$ | 52 | | |
+$ | 17 | | |
+$ | 11 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Engineered Structures | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Third-party sales | |
+$ | 304 | | |
+$ | 308 | | |
+$ | 307 | | |
+$ | 307 | | |
+$ | 1,226 | | |
+$ | 294 | | |
+$ | 269 | |
+
+
+Inter-segment sales | |
+$ | 7 | | |
+$ | 8 | | |
+$ | 7 | | |
+$ | 4 | | |
+$ | 26 | | |
+$ | 8 | | |
+$ | 8 | |
+
+
+Provision for depreciation and amortization | |
+$ | 13 | | |
+$ | 10 | | |
+$ | 10 | | |
+$ | 10 | | |
+$ | 43 | | |
+$ | 10 | | |
+$ | 11 | |
+
+
+Segment Adjusted EBITDA | |
+$ | 67 | | |
+$ | 68 | | |
+$ | 64 | | |
+$ | 66 | | |
+$ | 265 | | |
+$ | 66 | | |
+$ | 64 | |
+
+
+Segment Adjusted EBITDA Margin | |
+| 22.0 | % | |
+| 22.1 | % | |
+| 20.8 | % | |
+| 21.5 | % | |
+| 21.6 | % | |
+| 22.4 | % | |
+| 23.8 | % |
+
+
+Restructuring and other credits | |
+$ | (4 | ) | |
+$ | &mdash; | | |
+$ | &mdash; | | |
+$ | &mdash; | | |
+$ | (4 | ) | |
+$ | (93 | ) | |
+$ | &mdash; | |
+
+
+Capital expenditures | |
+$ | 6 | | |
+$ | 7 | | |
+$ | 10 | | |
+$ | 13 | | |
+$ | 36 | | |
+$ | 12 | | |
+$ | 8 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Forged Wheels | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Third-party sales | |
+$ | 252 | | |
+$ | 276 | | |
+$ | 247 | | |
+$ | 264 | | |
+$ | 1,039 | | |
+$ | 295 | | |
+$ | 316 | |
+
+
+Provision for depreciation and amortization | |
+$ | 10 | | |
+$ | 10 | | |
+$ | 11 | | |
+$ | 11 | | |
+$ | 42 | | |
+$ | 11 | | |
+$ | 10 | |
+
+
+Segment Adjusted EBITDA | |
+$ | 68 | | |
+$ | 76 | | |
+$ | 73 | | |
+$ | 79 | | |
+$ | 296 | | |
+$ | 90 | | |
+$ | 88 | |
+
+
+Segment Adjusted EBITDA Margin | |
+| 27.0 | % | |
+| 27.5 | % | |
+| 29.6 | % | |
+| 29.9 | % | |
+| 28.5 | % | |
+| 30.5 | % | |
+| 27.8 | % |
+
+
+Restructuring and other credits | |
+$ | &mdash; | | |
+$ | (1 | ) | |
+$ | &mdash; | | |
+$ | &mdash; | | |
+$ | (1 | ) | |
+$ | &mdash; | | |
+$ | &mdash; | |
+
+
+Capital expenditures | |
+$ | 15 | | |
+$ | 8 | | |
+$ | 9 | | |
+$ | 4 | | |
+$ | 36 | | |
+$ | 3 | | |
+$ | 4 | |
+
+
+
+
+
+
+Differences
+between the total segment and consolidated totals are in Corporate.
+
+
+
+
+
+
+
+
+
+10
+
+
+
+
+
+
+
+
+
+
+Howmet
+Aerospace Inc. and subsidiaries
+
+
+Calculation
+of Financial Measures (unaudited)
+
+
+(in
+U.S. dollar millions)
+
+
+
+
+
+Reconciliation
+of Total Segment Adjusted EBITDA to Consolidated Operating income
+
+
+
+
+
+
+
+
+
+| |
+| 1Q25 | | |
+| 2Q25 | | |
+| 3Q25 | | |
+| 4Q25 | | |
+| 2025 | | |
+| 1Q26 | | |
+| 2Q26 | |
+
+
+Operating income | |
+$ | 494 | | |
+$ | 521 | | |
+$ | 542 | | |
+$ | 489 | | |
+$ | 2,046 | | |
+$ | 753 | | |
+$ | 711 | |
+
+
+Segment provision for depreciation and amortization | |
+| 68 | | |
+| 67 | | |
+| 70 | | |
+| 72 | | |
+| 277 | | |
+| 72 | | |
+| 83 | |
+
+
+Unallocated amounts: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Restructuring and other (credits) charges | |
+| (4 | ) | |
+| &mdash; | | |
+| &mdash; | | |
+| 88 | | |
+| 84 | | |
+| (93 | ) | |
+| &mdash; | |
+
+
+Corporate
+expense (1) | |
+| 22 | | |
+| 25 | | |
+| 25 | | |
+| 28 | | |
+| 100 | | |
+| 32 | | |
+| 52 | |
+
+
+Total Segment Adjusted EBITDA | |
+$ | 580 | | |
+$ | 613 | | |
+$ | 637 | | |
+$ | 677 | | |
+$ | 2,507 | | |
+$ | 764 | | |
+$ | 846 | |
+
+
+
+
+
+
+Total
+Segment Adjusted EBITDA is a non-GAAP financial measure. Management
+believes that this measure is meaningful to investors because Total Segment Adjusted EBITDA provides additional information with respect
+to the Company's operating performance and the Company&rsquo;s ability to meet its financial obligations. The Total Segment Adjusted
+EBITDA presented may not be comparable to similarly titled measures of other companies. Howmet&rsquo;s definition of Total Segment Adjusted
+EBITDA is defined as Operating Income excluding Restructuring and other (credits) charges and Special items and Provision for depreciation
+and amortization. Special items, including Restructuring and other (credits) charges, are excluded from Adjusted EBITDA.
+
+
+
+
+
+(1)
+Pre-tax special items included in Corporate expense
+
+
+
+
+
+
+
+
+
+| |
+| 1Q25 | | |
+| 2Q25 | | |
+| 3Q25 | | |
+| 4Q25 | | |
+| 2025 | | |
+| 1Q26 | | |
+| 2Q26 | |
+
+
+Acquisition
+and acquisition-related costs (2) | |
+$ | &mdash; | | |
+$ | &mdash; | | |
+$ | &mdash; | | |
+$ | 2 | | |
+$ | 2 | | |
+$ | 6 | | |
+$ | 22 | |
+
+
+Costs (benefits) associated with closures,
+supply chain disruptions, and other items | |
+| 1 | | |
+| (1 | ) | |
+| &mdash; | | |
+| 1 | | |
+| 1 | | |
+| &mdash; | | |
+| &mdash; | |
+
+
+Total Pre-tax special items included
+in Corporate expense | |
+$ | 1 | | |
+$ | (1 | ) | |
+$ | &mdash; | | |
+$ | 3 | | |
+$ | 3 | | |
+$ | 6 | | |
+$ | 22 | |
+
+
+
+
+
+
+
+
+| (2) | Interest
+expense of $1 related to the CAM acquisition financing in 1Q26. |
+
+
+
+
+
+
+
+
+
+11
+
+
+
+
+
+
+
+
+
+
+Howmet
+Aerospace Inc. and subsidiaries
+
+
+Calculation
+of Financial Measures (unaudited), continued
+
+
+(in
+U.S. dollars millions)
+
+
+
+
+
+Reconciliation
+of Free cash flow
+
+
+
+
+
+
+
+
+| |
+Quarter
+ended | | |
+Six
+months ended | |
+
+
+| |
+1Q26 | | |
+2Q26 | | |
+2Q26 | |
+
+
+Cash provided from operations | |
+$ | 453 | | |
+$ | 583 | | |
+$ | 1,036 | |
+
+
+Capital expenditures | |
+| (94 | ) | |
+| (104 | ) | |
+| (198 | ) |
+
+
+Free cash flow | |
+$ | 359 | | |
+$ | 479 | | |
+$ | 838 | |
+
+
+| |
+| | | |
+| | | |
+| | |
+
+
+Cash provided from (used for) financing activities | |
+$ | 1,226 | | |
+| (541 | ) | |
+| 685 | |
+
+
+Cash provided from (used for) investing activities | |
+$ | 14 | | |
+| (1,914 | ) | |
+| (1,900 | ) |
+
+
+
+
+
+
+
+The
+Accounts Receivable Securitization program remains unchanged at $250 outstanding.
+
+
+
+
+
+Free
+cash flow is a non-GAAP financial measure. Management believes that this measure is meaningful to investors because management reviews
+cash flows generated from operations after taking into consideration capital expenditures (due to the fact that these expenditures are
+considered necessary to maintain and expand the Company's asset base and are expected to generate future cash flows from operations).
+It is important to note that Free cash flow does not represent the residual cash flow available for discretionary expenditures since
+other non-discretionary expenditures, such as mandatory debt service requirements, are not deducted from the measure.
+
+
+
+
+
+
+
+
+
+12
+
+
+
+
+
+
+
+
+
+
+Howmet
+Aerospace Inc. and subsidiaries
+
+
+Calculation
+of Financial Measures (unaudited), continued
+
+
+(in
+U.S. dollar millions, except per-share and share amounts)
+
+
+
+
+
+Reconciliation
+of Adjusted Net income
+
+
+
+
+
+
+
+| |
+Quarter
+ended | | |
+Six months
+ended | |
+
+
+| |
+2Q25 | | |
+1Q26 | | |
+2Q26 | | |
+June 30,
+2025 | | |
+June 30,
+2026 | |
+
+
+Net income | |
+$ | 407 | | |
+$ | 580 | | |
+$ | 534 | | |
+$ | 751 | | |
+$ | 1,114 | |
+
+
+Diluted earnings per share ("EPS") | |
+$ | 1.00 | | |
+$ | 1.44 | | |
+$ | 1.33 | | |
+$ | 1.84 | | |
+$ | 2.77 | |
+
+
+Average number of diluted shares | |
+| 406 | | |
+| 403 | | |
+| 402 | | |
+| 407 | | |
+| 402 | |
+
+
+Special items: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Restructuring
+and other credits (1) | |
+| &mdash; | | |
+| (93 | ) | |
+| &mdash; | | |
+| (4 | ) | |
+| (93 | ) |
+
+
+Acquisition
+and acquisition-related costs (2) | |
+| &mdash; | | |
+| 7 | | |
+| 22 | | |
+| &mdash; | | |
+| 29 | |
+
+
+Benefits
+associated with closures, supply chain disruptions, and other items | |
+| (1 | ) | |
+| &mdash; | | |
+| &mdash; | | |
+| &mdash; | | |
+| &mdash; | |
+
+
+Subtotal: Pre-tax special items | |
+| (1 | ) | |
+| (86 | ) | |
+| 22 | | |
+| (4 | ) | |
+| (64 | ) |
+
+
+Tax
+impact of Pre-tax special items (3) | |
+| &mdash; | | |
+| 30 | | |
+| (4 | ) | |
+| 1 | | |
+| 26 | |
+
+
+Subtotal | |
+| (1 | ) | |
+| (56 | ) | |
+| 18 | | |
+| (3 | ) | |
+| (38 | ) |
+
+
+Discrete
+and other tax special items (4) | |
+| (35 | ) | |
+| (30 | ) | |
+| (18 | ) | |
+| (26 | ) | |
+| (48 | ) |
+
+
+Total: After-tax special items | |
+| (36 | ) | |
+| (86 | ) | |
+| &mdash; | | |
+| (29 | ) | |
+| (86 | ) |
+
+
+Adjusted Net income | |
+$ | 371 | | |
+$ | 494 | | |
+$ | 534 | | |
+$ | 722 | | |
+$ | 1,028 | |
+
+
+Adjusted EPS | |
+$ | 0.91 | | |
+$ | 1.22 | | |
+$ | 1.33 | | |
+$ | 1.77 | | |
+$ | 2.56 | |
+
+
+
+
+
+
+
+Adjusted
+Net income and Adjusted EPS are non-GAAP financial measures. Management believes that these measures are meaningful to investors because
+management reviews the operating results of the Company excluding the impacts of Restructuring and other credits, Discrete tax items,
+and Other special items (collectively, &ldquo;Special items&rdquo;). There can be no assurances that additional Special items will not
+occur in future periods. To compensate for this limitation, management believes that it is appropriate to consider both Net income and
+Diluted EPS determined under GAAP as well as Adjusted Net income and Adjusted EPS.
+
+
+
+
+
+
+| (1) | Restructuring
+and other credits for the quarter ended 1Q26 and the six months ended June 30, 2026 included
+a gain on the sale of the Company's disk forging facility in Savannah, GA within Engineered
+Structures. |
+
+
+
+
+
+
+| (2) | Includes
+legal and advisory costs, amortization expense of inventory step-up recorded in accordance
+with purchase accounting, and other acquisition-related costs for CAM and Brunner. Additionally,
+interest expense of $1 related to the CAM acquisition financing in 1Q26. |
+
+
+
+
+
+
+| (3) | The
+Tax impact of Pre-tax special items is based on the applicable statutory rates whereby the
+difference between such rates and the Company&rsquo;s consolidated estimated annual effective
+tax rate is itself a Special item. |
+
+
+
+
+
+
+| (4) | Discrete
+tax items for each period included the following: |
+
+
+
+
+
+
+| &middot; | for
+2Q25, benefits related to U.S. accounting method changes for certain prior period transaction
+and other costs ($17), an excess benefit for stock compensation ($13), and a net benefit
+related to U.S. federal and state research and development ("R&D") credits
+claimed for prior years ($5). |
+
+
+
+
+
+
+| &middot; | for
+1Q26, an excess benefit for stock compensation ($21); |
+
+
+
+
+
+
+| &middot; | for
+2Q26, a benefit to release a valuation allowance related to U.S. foreign tax credits ($22),
+a benefit to release a valuation allowance related to U.S. state tax losses ($10), a benefit
+to release a tax reserve in Germany ($3), an excess benefit for stock compensation ($1),
+and a charge to establish an international withholding tax reserve $16; |
+
+
+
+
+
+
+| &middot; | for
+the six months ended 2Q25, benefits related to U.S. accounting method changes for certain
+prior period transaction and other costs ($17), an excess benefit for stock compensation
+($14), a net benefit related to U.S. federal and state R&D credits claimed for prior
+years ($5), a net charge related to the expiration of a tax holiday in China $6, a charge
+for a tax reserve established in Germany $2, and a net charge for other small items $2; and |
+
+
+
+
+
+
+| &middot; | for
+the six months ended 2Q26, a benefit to release a valuation allowance related to U.S. foreign
+tax credits ($22), an excess benefit for stock compensation ($22), a benefit to release a
+valuation allowance related to U.S. state tax losses ($10), a benefit to release a tax reserve
+in Germany ($3), and a charge to establish an international withholding tax reserve $16. |
+
+
+
+
+
+
+
+
+
+13
+
+
+
+
+
+
+
+
+
+
+Howmet
+Aerospace Inc. and subsidiaries
+
+
+Calculation
+of Financial Measures (unaudited), continued
+
+
+(in
+U.S. dollar millions)
+
+
+
+
+
+Reconciliation
+of Operational tax rate
+
+
+
+
+
+
+
+| |
+Quarter
+ended | | |
+Six months
+ended | |
+
+
+| |
+2Q26 | | |
+2Q26 | |
+
+
+| |
+Effective
+
+
+tax rate,
+
+as reported | | |
+Special
+
+
+items (1)(2) | | |
+Operational
+
+
+tax rate, as
+
+adjusted | | |
+Effective
+
+
+tax rate,
+
+as
+
+reported | | |
+Special
+
+
+items (1)(2) | | |
+Operational
+
+
+tax rate, as
+
+adjusted | |
+
+
+Income before income taxes | |
+$ | 649 | | |
+$ | 22 | | |
+$ | 671 | | |
+$ | 1,357 | | |
+$ | (64 | ) | |
+$ | 1,293 | |
+
+
+Provision for income taxes | |
+$ | 115 | | |
+$ | 22 | | |
+$ | 137 | | |
+$ | 243 | | |
+$ | 22 | | |
+$ | 265 | |
+
+
+Tax rate | |
+| 17.7 | % | |
+| | | |
+| 20.4 | % | |
+| 17.9 | % | |
+| | | |
+| 20.5 | % |
+
+
+
+
+
+
+
+Operational
+tax rate is a non-GAAP financial measure. Management believes that this measure is meaningful to investors because management reviews
+the operating results of the Company excluding the impacts of Special items. There can be no assurances that additional Special items
+will not occur in future periods. To compensate for this limitation, management believes that it is appropriate to consider both the
+Effective tax rate determined under GAAP as well as the Operational tax rate.
+
+
+
+
+
+
+| (1) | Pre-tax
+special items for 2Q26 included Acquisition and acquisition-related costs $22. Pre-tax special
+items for the six months ended 2Q26 included Restructuring and other credits ($93) and Acquisition
+and acquisition-related costs $29. |
+
+
+
+
+
+
+| (2) | Tax
+Special items includes discrete tax items, the tax impact on Special items based on the applicable
+statutory rates, the difference between such rates and the Company&rsquo;s consolidated estimated
+annual effective tax rate and other tax related items. Discrete tax items for each period
+included the following: |
+
+
+
+
+
+
+| &middot; | for
+the quarter ended 2Q26, a benefit to release a valuation allowance related to U.S. foreign
+tax credits ($22), a benefit to release a valuation allowance related to U.S. state tax losses
+($10), a benefit to release a tax reserve in Germany ($3), an excess benefit for stock compensation
+($1), and a charge to establish an international withholding tax reserve $16. |
+
+
+
+
+
+
+| &middot; | for
+the six months ended 2Q26, a benefit to release a valuation allowance related to U.S. foreign
+tax credits ($22), an excess benefit for stock compensation ($22), a benefit to release a
+valuation allowance related to U.S. state tax losses ($10), a benefit to release a tax reserve
+in Germany ($3), and a charge to establish an international withholding tax reserve $16. |
+
+
+
+
+
+
+
+
+
+14
+
+
+
+
+
+
+
+
+
+
+
+
+
+Howmet
+Aerospace Inc. and subsidiaries
+
+
+Calculation
+of Financial Measures (unaudited), continued
+
+
+(in
+U.S. dollars millions)
+
+
+
+
+
+Reconciliation
+of Adjusted Operating Income, Adjusted Operating Income Margin, Adjusted EBITDA, and Adjusted EBITDA margin
+
+
+
+
+
+
+
+| |
+Quarter
+ended | | |
+Six months
+ended | |
+
+
+| |
+2Q25 | | |
+1Q26 | | |
+2Q26 | | |
+June 30,
+2025 | | |
+June 30,
+2026 | |
+
+
+Sales | |
+$ | 2,053 | | |
+$ | 2,313 | | |
+$ | 2,547 | | |
+$ | 3,995 | | |
+$ | 4,860 | |
+
+
+Operating income | |
+$ | 521 | | |
+$ | 753 | | |
+$ | 711 | | |
+$ | 1,015 | | |
+$ | 1,464 | |
+
+
+Operating income margin | |
+| 25.4 | % | |
+| 32.6 | % | |
+| 27.9 | % | |
+| 25.4 | % | |
+| 30.1 | % |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Operating income | |
+$ | 521 | | |
+$ | 753 | | |
+$ | 711 | | |
+$ | 1,015 | | |
+$ | 1,464 | |
+
+
+Add: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Restructuring and other credits | |
+$ | &mdash; | | |
+$ | (93 | ) | |
+$ | &mdash; | | |
+| (4 | ) | |
+| (93 | ) |
+
+
+Acquisition
+and acquisition-related costs (1) | |
+| &mdash; | | |
+| 6 | | |
+| 22 | | |
+| &mdash; | | |
+| 28 | |
+
+
+Benefits associated
+with closures, supply chain disruptions, and other items | |
+| (1 | ) | |
+| &mdash; | | |
+| &mdash; | | |
+| &mdash; | | |
+| &mdash; | |
+
+
+Adjusted operating income | |
+$ | 520 | | |
+$ | 666 | | |
+$ | 733 | | |
+$ | 1,011 | | |
+$ | 1,399 | |
+
+
+Adjusted operating income margin | |
+| 25.3 | % | |
+| 28.8 | % | |
+| 28.8 | % | |
+| 25.3 | % | |
+| 28.8 | % |
+
+
+Provision for
+depreciation and amortization | |
+| 69 | | |
+| 74 | | |
+| 84 | | |
+| 138 | | |
+| 158 | |
+
+
+Adjusted EBITDA | |
+$ | 589 | | |
+$ | 740 | | |
+$ | 817 | | |
+$ | 1,149 | | |
+$ | 1,557 | |
+
+
+Adjusted EBITDA margin | |
+| 28.7 | % | |
+| 32.0 | % | |
+| 32.1 | % | |
+| 28.8 | % | |
+| 32.0 | % |
+
+
+
+
+
+
+
+Adjusted
+operating income and Adjusted operating income margin are non-GAAP financial measures. Special items, including Restructuring and other
+credits, are excluded from Adjusted operating income. Management believes that these measures are meaningful to investors because management
+reviews the operating results of the Company excluding the impacts of Special items. There can be no assurances that additional Special
+items will not occur in future periods. To compensate for this limitation, management believes that it is appropriate to consider both
+Operating income and Operating income margin determined under GAAP as well as Adjusted operating income and Adjusted operating income
+margin.
+
+
+
+
+
+Adjusted
+EBITDA and Adjusted EBITDA margin are non-GAAP financial measures. Management believes that these measures are meaningful to investors
+because they provide additional information with respect to the Company's operating performance and the Company&rsquo;s ability to meet
+its financial obligations. The Adjusted EBITDA presented may not be comparable to similarly titled measures of other companies. The Company's
+definition of Adjusted EBITDA is defined as Operating Income excluding Restructuring and other credits and Special items and Provision
+for depreciation and amortization. Special items, including Restructuring and other credits, are excluded from Adjusted EBITDA.
+
+
+
+
+
+
+| (1) | Interest
+expense of $1 related to the CAM acquisition financing in 1Q26. |
+
+
+
+
+
+
+
+
+
+15
+
+
+
+
+
+
+
+
+
+
+Howmet
+Aerospace Inc. and subsidiaries
+
+
+Calculation
+of Financial Measures (unaudited), continued
+
+
+(in
+U.S. dollars millions)
+
+
+
+
+
+Reconciliation of Organic Revenue
+
+
+
+
+
+
+
+| |
+Quarter
+ended | | |
+| | |
+Six months
+ended | | |
+| |
+
+
+| |
+2Q25 | | |
+2Q26 | | |
+% Change | | |
+June 30,
+2025 | | |
+June 30,
+2026 | | |
+% Change | |
+
+
+Sales | |
+$ | 2,053 | | |
+$ | 2,547 | | |
+| 24 | % | |
+$ | 3,995 | | |
+$ | 4,860 | | |
+| 22 | % |
+
+
+Less: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net Acquisitions and Divestitures | |
+$ | 34 | | |
+$ | 100 | | |
+| | | |
+$ | 65 | | |
+$ | 146 | | |
+| | |
+
+
+Total: Organic Revenue | |
+$ | 2,019 | | |
+$ | 2,447 | | |
+| 21 | % | |
+$ | 3,930 | | |
+$ | 4,714 | | |
+| 20 | % |
+
+
+
+
+
+
+
+Organic
+revenue is a non-GAAP financial measure. Management believes this measure is meaningful to investors as it presents revenue on a comparable
+basis for all periods presented excluding the impact of the acquisitions of CAM (acquired April 2026) and Brunner (acquired February
+2026) and the sale of the disk forging facility in Savannah, GA (divested March 2026). Management believes that it is appropriate to
+consider both Sales determined under GAAP as well as Organic Revenue.
+
+
+
+
+
+
+
+
+
+16

@@ -1,0 +1,409 @@
+EX-99.1
+2
+exh_991.htm
+PRESS RELEASE
+
+EdgarFiling EXHIBIT 99.1
+Himax Technologies, Inc. Reports Second Quarter 2026 Financial Results; Provides Third Quarter 2026 Guidance
+
+
+Q2 2026 Revenue, GM and EPS All Exceeded the Guidance Issued on May 7, 2026
+Company Q3 2026 Guidance: Revenues to Increase 7% to 11% QoQ, Gross Margin is Expected to be around 34%. Profit per Diluted ADS to be 8.0 Cents to 10.0 Cents
+
+Q2 2026 revenues were $227.4 million, a sequential increase of 14.2%, exceeding the guidance range of a 10.0% to 13.0% increase QoQ, primarily driven by better-than-expected automotive IC sales Q2 GM reached 33.1%, substantially exceeding the guidance of around 32%, primarily due to a more favorable product mix, with increased sales from higher-margin automotive IC products Q2 2026 after-tax profit was $19.9 million, or 11.4 cents per diluted ADS, exceeding the guidance range of 8.6 to 10.3 cents Himax Q3 2026 revenues to increase 7% to 11% QoQ. GM to be around 34%. Profit per diluted ADS to be in the range of 8.0 cents to 10.0 cents Himax remains optimistic about the long-term growth of automotive display IC business and is well positioned to capitalize on the secular growth of smart vehicle interiors through its comprehensive LCD and OLED portfolio, broad global customer base, and robust design-win pipeline Automakers are accelerating new vehicle launches, driving broader platform standardization across vehicle models. Himax is well positioned to benefit through its comprehensive and validated automotive display IC portfolio, enabling customers to rapidly deploy proven solutions across multiple vehicle models while reducing engineering effort, lowering system costs, and shortening product development cycles Himax expects full-year 2026 auto IC sales to grow by double digits YoY, with strong growth momentum extending into 2027 as adoption of smart car interiors continues to drive increases in number, size, and sophistication of displays in both EV and conventional vehicles Himax remains particularly optimistic about smart glasses market and is one of the few companies offering both ultralow power AI sensing and microdisplay technologies. A leading global brand launching WiseEye powered smart glasses this fall, with growing engagement from platform providers, ODMs, and consumer electronics companies worldwide, and several projects poised to enter MP in 2027 Aggressive CPO customer development timelines, with demand showing no signs of slowing. CPO products entered engineering production ramps as scheduled in Q3. 2027 CPO shipments significantly exceed 2026, with meaningful financial contribution starting in 2027
+
+TAINAN, Taiwan, Aug. 06, 2026 (GLOBE NEWSWIRE) -- Himax Technologies, Inc. (Nasdaq: HIMX) (“Himax” or “Company”), a leading supplier and fabless manufacturer of display drivers and other semiconductor products, announced its financial results for the second quarter 2026 ended June 30, 2026.
+“Notwithstanding industry-wide supply constraints, we remain optimistic about the long-term growth prospects of our automotive display IC business. We continue to view automotive as one of the industry's most attractive secular growth markets, driven by rapid advancements in smart vehicle interiors, characterized by a growing number of displays per vehicle, along with larger, higher-resolution displays and more diverse vehicle cabin configurations. Himax is well positioned to capitalize on these industry trends through our comprehensive automotive display portfolio spanning both LCD and OLED technologies, a broad and diversified global customer base, and a robust design-win pipeline. The industry's ongoing pursuit of richer human-machine interfaces, immersive infotainment, and enhanced in-cabin user experiences is driving the adoption of a broader range of our display technologies. This not only increases Himax's dollar content per vehicle but also creates multiple long-term growth opportunities,” said Mr. Jordan Wu, President and Chief Executive Officer of Himax.
+“We remain particularly optimistic about the smart glasses market. Recently, a leading global brand just launched a smart glasses product powered by our WiseEye technology. We are seeing growing engagement with leading global brands, technology platform providers, ODMs, as well as hyperscalers, with some projects poised to enter mass production as we move into 2027. Meanwhile, Himax’s CPO products have begun engineering production ramps as scheduled in Q3. These products are expected to drive sequential shipment growth quarter over quarter, laying the foundation for a more meaningful volume shipment beginning in 2027. The official mass-production timing remains subject to customer deployment schedules. Nevertheless, we expect our shipments in 2027 to be significantly higher than in 2026, starting to make meaningful contribution to our financials,” concluded Mr. Jordan Wu.
+Second Quarter 2026 Financial Results
+Himax net revenues registered $227.4 million, representing a sequential increase of 14.2%, exceeding the guidance range of a 10.0% to 13.0% increase, primarily driven by better-than-expected automotive IC sales. Gross margin was 33.1%, substantially exceeding the guidance of around 32%, up from 30.4% in the previous quarter. Q2 profit per diluted ADS was 11.4 cents, significantly exceeding the guidance range of 8.6 to 10.3 cents.
+Revenue from large display drivers came in at $19.2 million, representing a decline of 21.0% from the previous quarter, attributable to panel makers pulling forward their inventory purchases for high-end TV ICs in prior quarters. In contrast, sales for both monitor and notebook IC products increased quarter-over-quarter due to higher legacy product shipments to key customers. Sales of large panel driver ICs accounted for 8.4% of total revenues for the quarter, compared to 12.2% last quarter and 11.6% a year ago.
+Revenue from the small and medium-sized display driver segment totaled $162.3 million, reflecting an increase of 19.6% sequentially. Q2 automotive driver sales, including both traditional DDIC and TDDI, increased by double digits quarter over quarter, primarily driven by broad-based customer replenishment of TDDI and DDIC following seasonally lower shipments during the Lunar New Year in Q1. The ramp-up of new TDDI and DDIC projects for a leading panel customer also contributed to the sequential increase. Customers continued to operate under a make-to-order model while maintaining lean inventory levels. Himax’s automotive business, comprising DDIC, TDDI, Tcon, and OLED IC sales, remained the largest revenue contributor in the second quarter, representing well over 50% of total revenues.
+Second quarter tablet IC sales, covering both LCD and OLED products, also increased sequentially, attributable to customers’ early pull-in demand against the backdrop of rising memory price sentiment in the market, together with continued shipments for a customer’s premium OLED model. In contrast, smartphone IC sales decreased sequentially following the initial ramp up of an OLED IC for a leading smartphone brand’s mainstream model in Q1. The small and medium-sized driver IC segment accounted for 71.4% of total sales for the quarter, compared to 68.2% in the previous quarter and 67.3% a year ago.
+Q2 non-driver sales reached $45.9 million, a 17.7% increase from the previous quarter, attributable to robust automotive Tcon shipments, supported by replenishment across a broad customer base. Tcon business accounted for over 10% of total sales, with more than half contributed by automotive Tcon. As the market leader in automotive Tcon, particularly in solutions featuring local dimming functionality, Himax expects strong growth momentum to continue into next year. Non-driver products accounted for 20.2% of total revenues, as compared to 19.6% in the previous quarter and 21.1% a year ago.
+Second quarter operating expenses were $50.7 million, an increase of 0.8% from the previous quarter and 3.6% compared to the same period last year. The year-over-year increase was mainly attributable to higher tape-out expenses. Himax remains disciplined in managing costs while continuing to invest strategically in select non-driver IC businesses with compelling long-term growth potential.
+Second quarter operating income was $24.6 million, representing an operating margin of 10.8%, compared to 5.1% in the previous quarter and 8.4% for the same period last year. Both the quarter-over-quarter and year-over-year changes were primarily driven by higher revenues and gross margin. Second-quarter after-tax profit was $19.9 million, or 11.4 cents per diluted ADS, compared to $8.0 million, or 4.6 cents per diluted ADS last quarter, and up from $16.5 million, or 9.5 cents in the same period last year.
+Balance Sheet and Cash Flow
+Himax had $298.7 million of cash, cash equivalents and other financial assets as of June 30, 2026. This compares to $332.8 million at the same time last year and $287.6 million a quarter ago. The sequential increase was mainly driven by operating cash flow of $17.5 million in the second quarter. As is the Company’s usual practice, income tax payments are made in the second quarter. Under a new Taiwan government policy, Himax is entitled to defer approximately $11.0 million of these payments for one year without interest. Excluding this deferral, second-quarter operating cash flow would have been approximately $6.5 million. Looking ahead to Q3, Himax anticipates a decline in cash, cash equivalents, and other financial assets, primarily due to a payment of $44 million for annual dividends to shareholders made on July 10. In addition, subject to the final Board decision, Himax will distribute around $11.7 million, the immediately vested portion of this year's employee bonus awards, at the end of Q3.
+Himax’s quarter-end inventories as of June 30, 2026 were $151.5 million, about the same as $151.7 million last quarter but higher than $134.6 million in the same period last year. After maintaining lean inventory levels for several years, Himax proactively adjusted its inventory strategy about a year ago, selectively building inventory in anticipation of tightening supply across the industry. Accounts receivable at the end of June was $220.3 million, up from $190.9 million last quarter and $219.0 million a year ago. DSO was 93 days at the quarter end, as compared to 86 days last quarter and 92 days a year ago. Second quarter capital expenditure, primarily for R&D-related equipment for Himax’s IC design business, was $4.3 million, versus $2.9 million last quarter and $4.6 million a year ago.
+Outstanding Share
+As of June 30, 2026, Himax had 174.4 million ADS outstanding, unchanged from last quarter. On a fully diluted basis, the total number of ADS outstanding for the second quarter was 174.4 million.
+Investment Portfolio Update
+
+During the quarter, on July 1, Himax announced the proposed divestiture of investment in one of the Company’s equity-method investees. Based on the information provided by the said investee company, Himax expects to recognize a pre-tax gain of approximately $23 to $24 million upon closing. The transaction is expected to close in the fourth quarter of this year subject to customary closing conditions and regulatory approvals. Himax will provide more updates as appropriate as the transaction progresses.
+Q3 2026 Outlook
+The ongoing surge in AI demand continues to impact non-AI applications. This has rippled across the broader semiconductor supply chain, resulting in capacity constraints at foundry, packaging and testing facilities on the mature process nodes where many of Himax’s products are manufactured. Consequently, Himax is experiencing higher manufacturing and procurement costs, extended lead times, and increased difficulty in securing sufficient capacity across a broad range of its product lines. Himax expects the supply environment to remain challenging in the near term.
+To enhance production flexibility and secure the capacity needed to meet customer needs and support upcoming production ramps, Himax continues to leverage its established supply chain in Taiwan while further strengthening its presence across China, Singapore, Korea, Japan and Malaysia. In parallel, as Himax mentioned last quarter, the company has been working closely with customers on pricing adjustments to share these increased costs. Some adjustments took effect in the second quarter with additional pricing adjustments possibly implemented over time as market conditions warrant.
+Notwithstanding these industry-wide supply constraints, Himax remains optimistic about the long-term growth prospects of its automotive display IC business. Himax continues to view automotive as one of the industry's most attractive secular growth markets, driven by rapid advancements in smart vehicle interiors. This trend is characterized by, among other things, a growing number of displays per vehicle, now averaging more than three and continuing to rise, along with larger, higher-resolution displays and more diverse vehicle cabin configurations, including curved, integrated, multi-display, and pillar-to-pillar designs.
+Himax is well positioned to capitalize on these industry trends through its comprehensive automotive display portfolio spanning both LCD and OLED technologies, a broad and diversified global customer base, and a robust design-win pipeline. Himax further differentiates itself by continuously introducing next-generation automotive display technologies, including LTDI solutions for ultra-large displays, advanced Tcon solutions for head-up displays, OLED driver and touch controller ICs and Micro LED display technologies. Himax’s portfolio also includes Knob-on-Display solutions and capacitive physical buttons where customer interest continues to grow, driven in part by regulatory and vehicle safety initiatives in key automotive markets, including China and Europe, where greater emphasis is being placed on intuitive physical controls to enhance driving safety and reduce driver distraction. The industry's ongoing pursuit of richer human-machine interfaces, immersive infotainment, and enhanced in-cabin user experiences is driving the adoption of a broader range of Himax’s display technologies. This not only increases Himax's dollar content per vehicle but also creates multiple long-term growth opportunities. In addition, Himax’s well-established global supply chain provides the Company with greater flexibility to navigate the current supply environment while securing the capacity needed to support both existing projects and upcoming production ramps.
+Himax is also seeing an important trend in the automotive industry with automakers introducing new vehicle models at an accelerating pace amid intensifying competition. As a result, product lifecycles are becoming shorter, creating greater pressure to improve engineering efficiency, reduce development costs, and shorten time to market of new car models. These challenges are driving broader adoption of platform standardization across multiple vehicle models, favoring suppliers with comprehensive and validated technology portfolios and proven track records. Himax is one such supplier, boasting the industry's most compelling automotive display IC offerings, market-leading positions across automotive DDIC, TDDI, and Tcon, and continued leadership in next-generation technologies such as LTDI and OLED technologies. By adopting Himax’s solutions as part of their standardized platforms, customers can quickly deploy validated display IC products across multiple new vehicle developments, reducing engineering effort, lowering system costs, and shortening development cycle of each project.
+In addition to automotive, Himax is also making solid progress across several strategic growth areas, including smart glasses, ultralow power AI, and CPO. These emerging businesses diversify Himax’s revenue base into markets with attractive long-term growth prospects and margin profiles while strengthening its overall competitive position. Himax believes these businesses are poised to become increasingly meaningful contributors to the Company’s future growth.
+Smart glasses market is an area Himax remains particularly optimistic about. Himax is one of the few companies offering both ultralow power AI sensing and microdisplay technologies, both critical building blocks for next-generation smart glasses. On the AI sensing front, WiseEye enables ultralow power, always-on outward and inward sensing, supporting an expanding range of AI use cases, including contextual awareness, real-time visual assistance, and personalized user experiences. Recently, a leading global brand just launched a smart glasses product powered by Himax’s WiseEye technology, and the Company continues to see strong design-in momentum across customers worldwide. In particular, Himax is seeing growing engagement with leading global brands, technology platform providers, ODMs, as well as hyperscalers who traditionally do not offer hardware products but are now entering smart glasses market, with some projects poised to enter mass production as Himax moves into 2027.
+In microdisplays for AR glasses, Himax’s Front-lit LCoS microdisplay delivers an optimal balance of size, weight, resolution, image quality, power consumption, and cost. It can also be configured to operate in a high-brightness, ultralow power green-only mode and seamlessly switch to full-color operation as needed. This flexibility differentiates Himax’s solution from alternative display technologies, letting customers optimize power efficiency while maintaining visual performance and meeting their system design and cost targets. Together, these capabilities make Himax’s Front-lit LCoS a compelling display platform for next-generation AR glasses equipped with see-through displays. Currently Himax is working closely with multiple waveguide partners across Asia, Europe, and North America to deliver integrated AR display solutions that simplify system integration and shorten customers' development cycles. This is driving broader customer engagement and positioning Himax to convert more opportunities into design wins. Backed by well over a decade of LCoS expertise and a proven track record of successful production shipments, Himax is well positioned to support the next generation of AR glasses.
+In the field of Co-Packaged Optics (CPO), customer development timelines remain aggressive with demand showing no sign of slowing. Together with Himax’s strategic partner, FOCI, the Company continues to deepen customer engagements by offering a flexible portfolio of solutions, including customized designs tailored specifically for customers’ needs as well as a standardized technology platform developed in collaboration with a leading foundry partner. Himax and FOCI’s solutions support both co-packaged and pluggable packaging architectures to address diverse customer needs.
+Himax’s primary focus for the second half of this year remains on achieving mass production readiness, including key customer qualification milestones, while continuing to improve manufacturing yields and establish stable mass-production capabilities. The Company has already made encouraging progress toward these objectives. Both Gen 1 product, supporting 1.6T and 3.2T transmission bandwidths, and Gen 2 product, designed for 6.4T bandwidth, have begun engineering production ramps as scheduled in the third quarter. These products are expected to drive sequential shipment growth quarter over quarter, laying the foundation for a more meaningful volume shipment beginning in 2027. The official mass-production timing remains subject to customer deployment schedules. Nevertheless, Himax expects its shipments in 2027 to be significantly higher than in 2026, starting to make meaningful contribution to the Company’s financials.
+At the same time, Himax and FOCI are also co-developing next-generation optical solutions with customers, featuring higher fiber-count architectures, enhanced optical precision, and increasingly sophisticated designs such as CWDM (Coarse Wavelength Division Multiplexing), to address the explosive bandwidth demands of HPC and AI data center applications.
+Display Driver IC Businesses
+LDDIC
+In Q3 2026, Himax anticipates large display driver IC sales to decline by single digit from last quarter. Monitor IC sales are expected to decline quarter over quarter, as customers already pulled forward inventory purchases in prior quarters. In contrast, TV IC sales are poised for sequential increases, driven by higher legacy product shipments to key customers.
+Looking ahead in the notebook market, Himax is seeing encouraging design-in momentum, particularly in OLED notebooks with several industry trends creating favorable tailwinds. Rising memory prices are accelerating the shift from entry-level to premium notebook models, while the scheduled ramp-up of new Gen 8.6 OLED fabs in China later this year and into 2027 is expected to further drive OLED penetration in the notebook market. Himax is well positioned to capitalize on these favorable industry trends with its comprehensive notebook display OLED IC portfolio, spanning DDIC, Tcon, power management IC and touch controllers. This one-stop offering lets Himax serve customers with a complete solution while increasing the Company’s value content per device.
+SMDDIC
+Q3 small and medium-sized display driver IC business is expected to increase by high-single-digits from last quarter. Q3 automotive driver IC sales, including TDDI and traditional DDIC, are set to increase by a solid double-digit quarter-over quarter. This increase reflects broader customer demand of DDIC and TDDI products, together with the mass production of multiple LTDI projects across car brands worldwide. Strong sequential growth underscores the accelerating adoption of larger and more sophisticated automotive displays, with Chinese automakers leading the charge.
+Himax continues to see healthy underlying customer demand, supported by multiple new projects entering mass production in the coming quarters. Himax expects its full-year 2026 automotive driver IC sales to grow by double digits from last year with strong growth momentum extending into next year as adoption of smart car interiors continues to drive increases in the number, size, and sophistication of displays in both electric and conventional vehicles.
+Meanwhile, the industry's shift toward platform standardization is creating meaningful opportunities for Himax. This is evidenced by the growing number of customers adopting Himax’s industry-pioneering LTDI and local dimming Tcon solutions as the standard platform for their ultra-large automotive displays. Following years of customer engagement, several of these projects are now entering mass production across multiple car brands. These ultra-large display panels typically require four or more LTDI chips, and in some cases more than ten, together with at least one local dimming Tcon per panel. As customers increasingly adopt Himax’s solution across multiple ultra-large display platforms, this not only strengthens customer stickiness and makes it more difficult for competitors to compete with the Company, but also increases Himax’s content value on a per-panel and per-vehicle basis.
+Looking ahead, the accelerating adoption of OLED displays in automotive presents a compelling long-term growth opportunity and is poised to become a key pillar of Himax’s automotive business. For several years, Himax has been collaborating closely with leading OLED panel makers in Korea and China, and the Company’s comprehensive portfolio of DDICs, Tcons, touch controller ICs, and customized ASIC solutions gives customers the flexibility to select the solutions that best meet their specific requirements. This broad product coverage and Himax’s early customer engagements have already translated into numerous development programs, providing a solid foundation for future growth as premium automotive displays transition from LCD to OLED.
+With OLED adoption on the way, Himax continues to introduce innovative IC solutions to address evolving customer needs. For example, Himax’s latest TED (Tcon Embedded Driver IC) solution, which integrates DDIC and Tcon into a single chip, offers a cost-effective, flexible, and highly integrated solution ideal for smaller, lower-resolution automotive displays. Himax’s TED technology is now being adopted across a diverse range of applications, including automotive, robotics, and IT applications, with several projects involving customized ASIC solutions co-developed with leading global end customers.
+Himax expects Q3 smartphone IC revenue to increase quarter over quarter, driven by continued shipments for a leading smartphone brand's mainstream models and inventory build-up for its upcoming premium models. Q3 tablet IC sales are expected to decrease sequentially, as capacity constraints limit Himax’s ability to support additional shipments.
+Non-Driver Product Categories
+Q3 non-driver IC revenues are expected to increase by low-teens sequentially.
+Timing Controller (Tcon)
+Himax anticipates Q3 2026 Tcon sales to increase by low-teens quarter over quarter. Himax’s automotive Tcon business is expected to deliver decent double-digit growth in Q3, extending the strong momentum from Q2 and far outpacing the Company’s corporate average. This growth is driven by continued legacy product shipments across a broad, diversified customer base, along with several new projects entering mass production. Despite ongoing industry-wide capacity constraints, Himax is confident in the strong growth trajectory of its automotive Tcon business. With hundreds of design wins already secured and new design-ins continuing to expand, Himax is well positioned for another robust growth year in automotive Tcon as the Company moves into 2027.
+During the quarter, Himax was pleased to announce that its T2000 Tcon has been adopted into E Ink's next-generation color ePaper platform. Himax's proprietary parallel-processing architecture is at the core of this ASIC product, enabling simultaneous display refresh and data transmission, significantly enhancing dynamic display performance while preserving the ultralow power advantage of ePaper technology. This breakthrough enables smoother display of dynamic content on large format ePaper displays, helping accelerate the transition from traditional static signage to dynamic applications such as retail advertising, public information displays, and smart commercial environments.
+WiseEye  Ultralow Power AI Sensing
+On the update of WiseEye ultralow power AI sensing solution, a cutting-edge ultralow power AI sensing total solution, targeting battery-powered endpoint devices. WiseEye differentiates itself with an industry-leading ultralow power architecture, consuming only a few milliwatts while delivering on-device AI inferencing, 24/7 always-on image and voice sensing, and an exceptionally compact form factor. This unique combination enables endpoint AI devices that were previously impractical due to power and size constraints, driving broad adoption across applications including notebooks, surveillance systems, access control, palm vein authentication, smart office, and smart glasses, with design-in activities continuing to expand across leading customers worldwide.
+WiseEye modules’ design-in activities continue to expand, driven by its plug-and-play architecture, ultralow power consumption, and on-device AI capabilities. During the quarter, Himax’s WiseEye biometric palm vein modules achieved the verification of TÜV Rheinland, one of the world's leading and most credible independent testing, inspection, and certification organizations. The assessment validated recognition accuracy, response speed and liveness detection. This verification, together with Himax’s earlier achievement of GDPR compliance, one of the world's strictest data privacy standards, reinforces the privacy, security, and performance of Himax’s biometric authentication solutions, giving customers greater confidence to accelerate deployment across security-sensitive applications. Himax is seeing expanding design-in activities for its PalmVein modules across smart access, workforce management, smart door locks, and, more recently, computer monitors and smart office solutions.
+Built on the same core hardware platform as the WiseEye technology, Himax’s WiseGuard module is specifically designed for security applications, delivering ultralow power operation, a wide field of view, long-range detection, and exceptional low-light performance. WiseGuard accurately detects and continuously tracks multiple individuals, including their presence, location, and movement, substantially reducing the false triggers commonly associated with traditional PIR-based solutions. Its proactive, 24/7 sensing capability enables security systems to detect and continuously track activity from the outset, capturing the full sequence of events rather than only the moment motion is detected, providing a significant advantage over traditional reactive solutions. WiseGuard delivers up to 5 years of battery life while maintaining high-precision detection over long distances, even in environments with illumination as low as 1 lux. Since its debut just six months ago, WiseGuard has seen encouraging customer engagement across a wide range of applications, including surveillance cameras, access control, IoT, and wildlife monitoring. Himax is also pleased to share that WiseGuard has already been adopted by a U.S. customer for surveillance applications, with mass production scheduled to begin toward the end of this year.
+Meanwhile, WiseEye is gaining broad market recognition for smart glasses as a compact, ultralow power, always-on AI perception front end. WiseEye supports outward-facing environmental sensing, first through scene understanding by analyzing the user’s contextual surroundings and environment, followed by object classification to recognize and identify specific objects typically associated with the identified scene. It also supports inward-facing capabilities, including eyeball tracking for intuitive gaze-based interaction and iris authentication for secure identity verification. Together, these capabilities enable AI glasses to continuously capture visual snapshots of the real world and enable intelligent, responsive, low-latency human-machine interaction while consuming only a few milliwatts of power. With a leading global brand launching WiseEye powered smart glasses this fall, Himax is seeing growing engagement from platform providers, ODMs, and consumer electronics companies worldwide. Some of these projects are expected to enter mass production in the upcoming quarters.
+Third Quarter 2026 Guidance |
+|
+Net Revenue: | 7% to 11% QoQ |
+Gross Margin: | Around 34%, depending on final product mix |
+Profit: | 8.0 cents to 10.0 cents per diluted ADS |
+| |
+As Himax has done historically, the Company will grant employees’ annual bonus, including RSUs and cash awards, on or around September 30 this year. Q3 guidance for profit per diluted ADS has taken into account the expected 2026 annual bonus, which, subject to Board approval, is now estimated to be around $13 million, out of which $11.7 million will be vested and expensed immediately on the grant date. As a reminder, the total annual bonus amount and the immediately vested portion are Himax’s current best estimates only and the actual amounts could vary materially depending on, among other things, the Company’s Q4 profit expectations and the final Board decision for the total bonus amount and its vesting scheme. The $13 million expected annual bonus does not include the above-mentioned gain on investment from divestiture of an equity-method investee, as the transaction is pending regulatory approvals and has not yet closed. As is the case for previous years, Himax expects the annual bonus grant in 2026 to lead to higher third quarter operating expenses compared to the other quarters of the year. In comparison, the annual bonus for 2025 and 2024 were $7.7 million and $12.5 million respectively, of which $7.5 million and $11.2 million vested immediately.
+In providing Himax’s Q3 financial guidance, the Q3 expense related to employee bonus is estimated to be $11.8 million, representing 6.8 cents per diluted ADS before tax, comprised of $11.7 million of the immediately vested portion of this year’s bonus, and $0.1 million of the amortized portion of the unvested bonuses from previous years. By comparison, employee bonus expense in each of the last three quarters was around $0.2 million.
+HIMAX TECHNOLOGIES INC. SECOND QUARTER 2026 EARNINGS CONFERENCE CALL |
+DATE: | Thursday, August 6, 2026
+|
+TIME: | U.S. | 8:00 a.m. EDT |
+| Taiwan | 8:00 p.m. |
+
+
+Live Webcast (Video and Audio): https://www.zucast.com/webcast/Hp09k4XB
+|
+Toll Free Dial-in Number (Audio Only):
+|
+| Hong Kong 2112-1444
+Taiwan 0080-119-6666
+Australia 1-800-015-763
+Canada 1-877-252-8508
+China (1) 4008-423-888
+China (2) 4006-786-286
+Singapore 800-492-2072
+UK 0800-068-8186
+United States (1) 1-800-811-0860
+United States (2) 1-866-212-5567 |
+Dial-in Number (Audio Only):
+|
+| Taiwan Domestic Access 02-3396-1191
+International Access +886-2-3396-1191 |
+Participant PIN Code: | 1116006# |
+| |
+If you choose to attend the call by dialing in via phone, please enter the Participant PIN Code 1116006# after the call is connected. A replay of the webcast will be available beginning two hours after the call on www.himax.com.tw. This webcast can be accessed by clicking on this link or visiting Himax’s website, where it will remain available until August 6, 2027.
+About Himax Technologies, Inc.
+Himax Technologies, Inc. (NASDAQ: HIMX) is a leading global fabless semiconductor solution provider dedicated to display imaging processing technologies. The Company’s display driver ICs and timing controllers have been adopted at scale across multiple industries worldwide including TVs, PC monitors, laptops, mobile phones, tablets, automotive, ePaper devices, industrial displays, among others. As the global market share leader in automotive display technology, the Company offers innovative and comprehensive automotive IC solutions, including traditional driver ICs, advanced in-cell Touch and Display Driver Integration (TDDI), local dimming timing controllers (Local Dimming Tcon), Large Touch and Display Driver Integration (LTDI) and OLED display technologies. Himax is also a pioneer in tinyML visual-AI and optical technology related fields. The Company’s industry-leading WiseEye Ultralow Power AI Sensing technology which incorporates Himax proprietary ultralow power AI processor, always-on CMOS image sensor, and CNN-based AI algorithm has been widely deployed in consumer electronics and AIoT related applications. Himax optics technologies, such as diffractive wafer level optics, LCoS microdisplays and 3D sensing solutions, are critical for facilitating emerging AR/VR/metaverse technologies. Additionally, Himax designs and provides touch controllers, OLED ICs, LED ICs, EPD ICs, power management ICs, and CMOS image sensors for diverse display application coverage. Founded in 2001 and headquartered in Tainan, Taiwan, Himax currently employs around 2,200 people from three Taiwan-based offices in Tainan, Hsinchu and Taipei and country offices in China, Korea, and the US. Himax has 2,555 patents granted and 318 patents pending approval worldwide as of June 30, 2026.
+http://www.himax.com.tw
+Forward Looking Statements
+Factors that could cause actual events or results to differ materially from the effect of the Covid-19 pandemic on the Company’s business; general business and economic conditions and the state of the semiconductor industry; market acceptance and competitiveness of the driver and non-driver products developed by the Company; demand for end-use applications products; reliance on a small group of principal customers; the uncertainty of continued success in technological innovations; our ability to develop and protect our intellectual property; pricing pressures including declines in average selling prices; changes in customer order patterns; changes in estimated full-year effective tax rate; shortage in supply of key components; changes in environmental laws and regulations; changes in export license regulated by Export Administration Regulations (EAR); exchange rate fluctuations; regulatory approvals for further investments in our subsidiaries; our ability to collect accounts receivable and manage inventory and other risks described from time to time in the Company's SEC filings, including those risks identified in the section entitled "Risk Factors" in its Form 20-F for the year ended December 31, 2025 filed with the SEC, as may be amended.
+Company Contacts:
+Karen Tiao, Head of IR/PR
+Himax Technologies, Inc.
+Tel: +886-2-2370-3999
+Fax: +886-2-2314-0877
+Email: hx_ir@himax.com.tw
+www.himax.com.tw
+Mark Schwalenberg, Director
+Investor Relations - US Representative
+MZ North America
+Tel: +1-312-261-6430
+Email: HIMX@mzgroup.us
+www.mzgroup.us
+
+
+
+-Financial Tables-
+Himax Technologies, Inc. |
+Unaudited Condensed Consolidated Statements of Profit or Loss |
+(These interim financials do not fully comply with IFRS because they omit all interim disclosure required by IFRS) |
+(Amounts in Thousands of U.S. Dollars, Except Share and Per Share Data) |
+|
+| Three Months
+Ended June 30, | | Three Months
+Ended
+March 31 , |
+| | 2026 | | | | 2025 | | | | 2026 | |
+| | | | | |
+Revenues | | | | | |
+Revenues from third parties, net | $ | 227,334 | | | $ | 214,761 | | | $ | 199,003 | |
+Revenues from related parties, net | | 38 | | | | 37 | | | | 10 | |
+| | 227,372 | | | | 214,798 | | | | 199,013 | |
+| | | | | |
+Costs and expenses: | | | | | |
+Cost of revenues | | 152,135 | | | | 147,791 | | | | 138,568 | |
+Research and development | | 37,922 | | | | 37,542 | | | | 38,179 | |
+General and administrative | | 6,656 | | | | 5,806 | | | | 6,027 | |
+Sales and marketing | | 6,096 | | | | 5,550 | | | | 6,079 | |
+Total costs and expenses | | 202,809 | | | | 196,689 | | | | 188,853 | |
+| | | | | |
+Operating income | | 24,563 | | | | 18,109 | | | | 10,160 | |
+| | | | | |
+Non operating income: | | | | | |
+Interest income | | 2,224 | | | | 2,737 | | | | 1,979 | |
+Changes in fair value of financial assets at fair value through profit or loss | | 137 | | | | 274 | | | | 139 | |
+Foreign currency exchange gains (losses), net | | (103 | ) | | | 2,396 | | | | (51 | ) |
+Finance costs | | (815 | ) | | | (870 | ) | | | (807 | ) |
+Share of losses of associates | | (1,005 | ) | | | (588 | ) | | | (881 | ) |
+Other income (losses) | | (1 | ) | | | 6 | | | | 9 | |
+| | 437 | | | | 3,955 | | | | 388 | |
+Profit before income taxes | | 25,000 | | | | 22,064 | | | | 10,548 | |
+Income tax expense | | 4,645 | | | | 5,054 | | | | 2,109 | |
+Profit for the period | | 20,355 | | | | 17,010 | | | | 8,439 | |
+Profit attributable to noncontrolling interests | | (476 | ) | | | (466 | ) | | | (450 | ) |
+Profit attributable to Himax Technologies, Inc. stockholders | $ | 19,879 | | | $ | 16,544 | | | $ | 7,989 | |
+| | | | | |
+Basic earnings per ADS attributable to Himax Technologies, Inc. stockholders | $ | 0.114 | | | $ | 0.095 | | | $ | 0.046 | |
+Diluted earnings per ADS attributable to Himax Technologies, Inc. stockholders | $ | 0.114 | | | $ | 0.095 | | | $ | 0.046 | |
+| | | | | |
+Basic Weighted Average Outstanding ADS | | 174,426 | | | | 174,380 | | | | 174,426 | |
+Diluted Weighted Average Outstanding ADS | | 174,426 | | | | 174,544 | | | | 174,426 | |
+
+
+Himax Technologies, Inc. |
+Unaudited Condensed Consolidated Statements of Profit or Loss |
+(Amounts in Thousands of U.S. Dollars, Except Share and Per Share Data) |
+|
+| | Six Months
+Ended June 30, |
+| | | 2026 | | | | 2025 | |
+| | | | |
+Revenues | | | | |
+Revenues from third parties, net | | $ | 426,337 | | | $ | 429,856 | |
+Revenues from related parties, net | | | 48 | | | | 75 | |
+| | | 426,385 | | | | 429,931 | |
+| | | | |
+Costs and expenses: | | | | |
+Cost of revenues | | | 290,703 | | | | 297,372 | |
+Research and development | | | 76,101 | | | | 72,529 | |
+General and administrative | | | 12,683 | | | | 11,363 | |
+Sales and marketing | | | 12,175 | | | | 10,752 | |
+Total costs and expenses | | | 391,662 | | | | 392,016 | |
+| | | | |
+Operating income | | | 34,723 | | | | 37,915 | |
+| | | | |
+Non operating income: | | | | |
+Interest income | | | 4,203 | | | | 5,049 | |
+Changes in fair value of financial assets at fair value through profit or loss | | | 276 | | | | 257 | |
+Foreign currency exchange gains (losses), net | | | (154 | ) | | | 2,741 | |
+Finance costs | | | (1,622 | ) | | | (1,773 | ) |
+Share of losses of associates | | | (1,886 | ) | | | (1,330 | ) |
+Other gains | | | - | | | | 3,205 | |
+Other income | | | 8 | | | | 23 | |
+| | | 825 | | | | 8,172 | |
+Profit before income taxes | | | 35,548 | | | | 46,087 | |
+Income tax expense | | | 6,754 | | | | 8,895 | |
+Profit for the period | | | 28,794 | | | | 37,192 | |
+Profit attributable to noncontrolling interests | | | (926 | ) | | | (661 | ) |
+Profit attributable to Himax Technologies, Inc. stockholders | | $ | 27,868 | | | $ | 36,531 | |
+| | | | |
+Basic earnings per ADS attributable to Himax Technologies, Inc. stockholders | | $ | 0.160 | | | $ | 0.209 | |
+Diluted earnings per ADS attributable to Himax Technologies, Inc. stockholders | | $ | 0.160 | | | $ | 0.209 | |
+| | | | |
+Basic Weighted Average Outstanding ADS | | | 174,426 | | | | 174,645 | |
+Diluted Weighted Average Outstanding ADS | | | 174,426 | | | | 174,806 | |
+
+
+Himax Technologies, Inc. |
+IFRS Unaudited Condensed Consolidated Statements of Financial Position |
+(Amounts in Thousands of U.S. Dollars) |
+|
+| | June 30,
+2026 | | June 30,
+2025 | | March 31,
+2026 |
+Assets | | | | | | |
+Current assets: | | | | | | |
+Cash and cash equivalents | | $ | 271,296 | | | $ | 304,678 | | | $ | 259,693 | |
+Financial assets at amortized cost | | | 4,113 | | | | 3,517 | | | | 3,881 | |
+Financial assets at fair value through profit or loss | | | 23,328 | | | | 24,556 | | | | 24,036 | |
+Accounts receivable, net (including related parties) | | | 220,250 | | | | 219,035 | | | | 190,940 | |
+Inventories | | | 151,471 | | | | 134,573 | | | | 151,671 | |
+Income taxes receivable | | | 21 | | | | 802 | | | | 41 | |
+Restricted deposit | | | 568,200 | | | | 503,700 | | | | 568,200 | |
+Other receivable from related parties | | | 10 | | | | 7 | | | | 18 | |
+Other current assets | | | 53,536 | | | | 40,165 | | | | 56,941 | |
+Total current assets | | | 1,292,225 | | | | 1,231,033 | | | | 1,255,421 | |
+Financial assets at fair value through profit or loss | | | 26,250 | | | | 23,645 | | | | 25,587 | |
+Financial assets at fair value through other
+comprehensive income | | | 85,796 | | | | 33,828 | | | | 76,252 | |
+Equity method investments | | | 9,865 | | | | 12,729 | | | | 10,254 | |
+Property, plant and equipment, net | | | 117,263 | | | | 121,248 | | | | 118,501 | |
+Deferred tax assets | | | 21,950 | | | | 23,642 | | | | 21,865 | |
+Goodwill | | | 28,138 | | | | 28,138 | | | | 28,138 | |
+Other intangible assets, net | | | 1,769 | | | | 563 | | | | 2,146 | |
+Restricted deposit | | | - | | | | 34 | | | | - | |
+Refundable deposits | | | 172,690 | | | | 215,320 | | | | 172,706 | |
+Other non-current assets | | | 18,226 | | | | 17,954 | | | | 18,012 | |
+| | | 481,947 | | | | 477,101 | | | | 473,461 | |
+Total assets | | $ | 1,774,172 | | | $ | 1,708,134 | | | $ | 1,728,882 | |
+Liabilities and Equity | | | | | | |
+Current liabilities: | | | | | | |
+Short-term unsecured borrowings | | $ | - | | | $ | 1,024 | | | $ | - | |
+Current portion of long-term unsecured borrowings | | | 6,000 | | | | 6,000 | | | | 6,000 | |
+Short-term secured borrowings | | | 568,200 | | | | 503,700 | | | | 568,200 | |
+Accounts payable | | | 132,055 | | | | 143,048 | | | | 128,307 | |
+Income taxes payable | | | 19,520 | | | | 17,359 | | | | 15,758 | |
+Other payable to related parties | | | - | | | | 47 | | | | - | |
+Contract liabilities-current | | | 4,418 | | | | 4,563 | | | | 2,986 | |
+Other current liabilities | | | 105,590 | | | | 122,678 | | | | 54,443 | |
+Total current liabilities | | | 835,783 | | | | 798,419 | | | | 775,694 | |
+Long-term unsecured borrowings | | | 19,500 | | | | 25,500 | | | | 21,000 | |
+Deferred tax liabilities | | | 699 | | | | 631 | | | | 709 | |
+Other non-current liabilities | | | 8,740 | | | | 12,297 | | | | 8,541 | |
+| | | 28,939 | | | | 38,428 | | | | 30,250 | |
+Total liabilities | | | 864,722 | | | | 836,847 | | | | 805,944 | |
+Equity | | | | | | |
+Ordinary shares | | | 107,010 | | | | 107,010 | | | | 107,010 | |
+Additional paid-in capital | | | 115,157 | | | | 115,853 | | | | 115,136 | |
+Treasury shares | | | (9,760 | ) | | | (9,431 | ) | | | (9,760 | ) |
+Accumulated other comprehensive income | | | 61,305 | | | | 14,666 | | | | 49,774 | |
+Retained earnings | | | 625,799 | | | | 636,538 | | | | 651,577 | |
+Equity attributable to owners of Himax Technologies, Inc. | | | 899,511 | | | | 864,636 | | | | 913,737 | |
+Noncontrolling interests | | | 9,939 | | | | 6,651 | | | | 9,201 | |
+Total equity | | | 909,450 | | | | 871,287 | | | | 922,938 | |
+Total liabilities and equity | | $ | 1,774,172 | | | $ | 1,708,134 | | | $ | 1,728,882 | |
+
+
+Himax Technologies, Inc. |
+Unaudited Condensed Consolidated Statements of Cash Flows |
+(Amounts in Thousands of U.S. Dollars) |
+|
+| | Three Months
+Ended June 30, | | Three Months Ended
+March 31 , |
+| | | 2026 | | | | 2025 | | | | 2026 | |
+| | | | | | |
+Cash flows from operating activities: | | | | | | |
+Profit for the period | | $ | 20,355 | | | $ | 17,010 | | | $ | 8,439 | |
+Adjustments for: | | | | | | |
+Depreciation and amortization | | | 5,905 | | | | 5,275 | | | | 5,938 | |
+Share-based compensation expenses | | | 50 | | | | 147 | | | | 98 | |
+Losses on disposals and scrap of property, plant and equipment, net | | | - | | | | - | | | | 4 | |
+Changes in fair value of financial assets at fair value through profit or loss | | | (137 | ) | | | (274 | ) | | | (139 | ) |
+Interest income | | | (2,224 | ) | | | (2,737 | ) | | | (1,979 | ) |
+Finance costs | | | 815 | | | | 870 | | | | 807 | |
+Income tax expense | | | 4,645 | | | | 5,054 | | | | 2,109 | |
+Share of losses of associates | | | 1,005 | | | | 588 | | | | 881 | |
+Inventories write downs | | | 1,722 | | | | 6,006 | | | | 3,041 | |
+Unrealized foreign currency exchange losses | | | 481 | | | | 118 | | | | 440 | |
+| | | 32,617 | | | | 32,057 | | | | 19,639 | |
+Changes in: | | | | | | |
+Accounts receivable (including related parties) | | | (29,310 | ) | | | (1,483 | ) | | | 9,934 | |
+Inventories | | | (1,517 | ) | | | (10,712 | ) | | | (2,047 | ) |
+Other receivable from related parties | | | 7 | | | | 4 | | | | 4 | |
+Other current assets | | | 2,413 | | | | 1,046 | | | | 1,774 | |
+Accounts payable | | | 3,746 | | | | 37,390 | | | | (10,380 | ) |
+Other payable to related parties | | | - | | | | 47 | | | | (364 | ) |
+Contract liabilities | | | 1,431 | | | | (613 | ) | | | (334 | ) |
+Other current liabilities | | | 6,543 | | | | 3,441 | | | | (14,544 | ) |
+Other non-current liabilities | | | 20 | | | | 71 | | | | 21 | |
+Cash generated from operating activities | | | 15,950 | | | | 61,248 | | | | 3,703 | |
+Interest received | | | 3,399 | | | | 4,315 | | | | 585 | |
+Interest paid | | | (772 | ) | | | (939 | ) | | | (596 | ) |
+Income tax refunded (paid), net | | | (1,039 | ) | | | (4,150 | ) | | | 318 | |
+Net cash provided by operating activities | | | 17,538 | | | | 60,474 | | | | 4,010 | |
+| | | | | | |
+Cash flows from investing activities: | | | | | | |
+Acquisitions of property, plant and equipment | | | (4,349 | ) | | | (4,596 | ) | | | (2,858 | ) |
+Acquisitions of intangible assets | | | (160 | ) | | | - | | | | (104 | ) |
+Acquisitions of financial assets at amortized cost | | | (1,500 | ) | | | (3,517 | ) | | | (1,145 | ) |
+Proceeds from disposal of financial assets at amortized cost | | | 1,291 | | | | 2,286 | | | | - | |
+Acquisitions of financial assets at fair value through profit or loss | | | (12,374 | ) | | | (44,557 | ) | | | (9,508 | ) |
+Proceeds from disposal of financial assets at fair value through profit or loss | | | 12,250 | | | | 26,225 | | | | 10,257 | |
+Acquisitions of financial assets at fair value through other comprehensive income | | | - | | | | - | | | | (6,385 | ) |
+Acquisitions of equity method investment | | | - | | | | (2,500 | ) | | | (244 | ) |
+Decrease in refundable deposits | | | 9 | | | | 30 | | | | 10,270 | |
+Net cash provided by (used in) investing activities | | | (4,833 | ) | | | (26,629 | ) | | | 283 | |
+Cash flows from financing activities: | | | | | | |
+Purchase of treasury shares | | | - | | | | (3,885 | ) | | | - | |
+Prepayments for purchase of treasury shares | | | - | | | | 885 | | | | - | |
+Payment of cash dividends | | | - | | | | (442 | ) | | | - | |
+Proceeds from issuance of new shares by subsidiaries | | | 411 | | | | - | | | | - | |
+Proceeds of short-term unsecured borrowings | | | - | | | | 334 | | | | - | |
+Repayments of short-term unsecured borrowings | | | - | | | | - | | | | (140 | ) |
+Repayments of long-term unsecured borrowings | | | (1,500 | ) | | | (1,500 | ) | | | (1,500 | ) |
+Proceeds from short-term secured borrowings | | | 580,900 | | | | 484,300 | | | | 580,900 | |
+Repayments of short-term secured borrowings | | | (580,900 | ) | | | (484,300 | ) | | | (580,900 | ) |
+Payment of lease liabilities | | | (558 | ) | | | (584 | ) | | | (518 | ) |
+Guarantee deposits received | | | 400 | | | | - | | | | - | |
+Net cash used in financing activities | | | (1,247 | ) | | | (5,192 | ) | | | (2,158 | ) |
+Effect of foreign currency exchange rate changes on cash and cash equivalents | | | 145 | | | | 580 | | | | 54 | |
+Net increase in cash and cash equivalents | | | 11,603 | | | | 29,233 | | | | 2,189 | |
+Cash and cash equivalents at beginning of period | | | 259,693 | | | | 275,445 | | | | 257,504 | |
+Cash and cash equivalents at end of period | | $ | 271,296 | | | $ | 304,678 | | | $ | 259,693 | |
+
+
+Himax Technologies, Inc. |
+Unaudited Condensed Consolidated Statements of Cash Flows |
+(Amounts in Thousands of U.S. Dollars) |
+| | Six Months
+Ended June 30, |
+| | | 2026 | | | | 2025 | |
+| | | | |
+Cash flows from operating activities: | | | | |
+Profit for the period | | $ | 28,794 | | | $ | 37,192 | |
+Adjustments for: | | | | |
+Depreciation and amortization | | | 11,843 | | | | 10,431 | |
+Share-based compensation expenses | | | 148 | | | | 247 | |
+Losses (gains)on disposals and scrap of property, plant and equipment, net | | | 4 | | | | (3,205 | ) |
+Changes in fair value of financial assets at fair value through profit or loss | | | (276 | ) | | | (257 | ) |
+Interest income | | | (4,203 | ) | | | (5,049 | ) |
+Finance costs | | | 1,622 | | | | 1,773 | |
+Income tax expense | | | 6,754 | | | | 8,895 | |
+Share of losses of associates | | | 1,886 | | | | 1,330 | |
+Inventories write downs | | | 4,763 | | | | 10,450 | |
+Unrealized foreign currency exchange losses | | | 921 | | | | 559 | |
+| | | 52,256 | | | | 62,366 | |
+Changes in: | | | | |
+Accounts receivable (including related parties) | | | (19,376 | ) | | | 11,600 | |
+Inventories | | | (3,564 | ) | | | 13,723 | |
+Other receivable from related parties | | | 11 | | | | 6 | |
+Other current assets | | | 4,187 | | | | 68 | |
+Accounts payable | | | (6,634 | ) | | | 30,140 | |
+Other payable to related parties | | | (364 | ) | | | 47 | |
+Contract liabilities | | | 1,097 | | | | 122 | |
+Other current liabilities | | | (8,001 | ) | | | (322 | ) |
+Other non-current liabilities | | | 41 | | | | 142 | |
+Cash generated from operating activities | | | 19,653 | | | | 117,892 | |
+Interest received | | | 3,984 | | | | 4,753 | |
+Interest paid | | | (1,368 | ) | | | (1,774 | ) |
+Income tax paid | | | (721 | ) | | | (4,350 | ) |
+Net cash provided by operating activities | | | 21,548 | | | | 116,521 | |
+| | | | |
+Cash flows from investing activities: | | | | |
+Acquisitions of property, plant and equipment | | | (7,207 | ) | | | (9,817 | ) |
+Acquisitions of intangible assets | | | (264 | ) | | | (52 | ) |
+Acquisitions of financial assets at amortized cost | | | (2,645 | ) | | | (3,517 | ) |
+Proceeds from disposal of financial assets at amortized cost | | | 1,291 | | | | 4,286 | |
+Acquisitions of financial assets at fair value through profit or loss | | | (21,882 | ) | | | (50,717 | ) |
+Proceeds from disposal of financial assets at fair value through profit or loss | | | 22,507 | | | | 31,242 | |
+Acquisitions of financial assets at fair value through other comprehensive income | | | (6,385 | ) | | | (2,500 | ) |
+Acquisitions of equity method investments | | | (244 | ) | | | (2,500 | ) |
+Decrease in refundable deposits | | | 10,279 | | | | 10,313 | |
+Net cash used in investing activities | | | (4,550 | ) | | | (23,262 | ) |
+Cash flows from financing activities: | | | | |
+Purchase of treasury stock | | | - | | | | (3,885 | ) |
+Decrease in prepayments for purchase of treasury stock | | | - | | | | 885 | |
+Payments of cash dividends | | | - | | | | (442 | ) |
+Proceeds from issuance of new shares by subsidiary | | | 411 | | | | - | |
+Proceeds from short-term unsecured borrowings | | | - | | | | 946 | |
+Repayments of short-term unsecured borrowings | | | (140 | ) | | | - | |
+Repayments of long-term unsecured borrowings | | | (3,000 | ) | | | (3,000 | ) |
+Proceeds from short-term secured borrowings | | | 1,161,800 | | | | 968,600 | |
+Repayments of short-term secured borrowings | | | (1,161,800 | ) | | | (968,600 | ) |
+Payment of lease liabilities | | | (1,076 | ) | | | (2,032 | ) |
+Guarantee deposits received | | | 400 | | | | - | |
+Net cash used in financing activities | | | (3,405 | ) | | | (7,528 | ) |
+Effect of foreign currency exchange rate changes on cash and cash equivalents | | | 199 | | | | 799 | |
+Net increase in cash and cash equivalents | | | 13,792 | | | | 86,530 | |
+Cash and cash equivalents at beginning of period | | | 257,504 | | | | 218,148 | |
+Cash and cash equivalents at end of period | | $ | 271,296 | | | $ | 304,678 | |

@@ -1,0 +1,1414 @@
+EX-99.1
+2
+tm2621499d1_ex99-1.htm
+EXHIBIT 99.1
+
+
+
+
+
+
+
+
+
+
+Exhibit 99.1
+
+
+
+
+
+
+
+
+
+
+
+Innodata Reports Record Second Quarter 2026 Results
+
+
+
+
+
+
+| &middot; | Revenue
+Up 58% Year-Over-Year, Beats Consensus by 7% |
+
+
+
+| &middot; | Adjusted
+EBITDA of $25.4 Million, Beats Consensus by 50% |
+
+
+
+| &middot; | Adjusted
+Gross Margin Expands to 49% |
+
+
+
+| &middot; | Announces
+Planned Leadership Transition Effective September 30: Rahul Singhal to Become President and
+CEO, Jack Abuhoff to Become Executive Chairman |
+
+
+
+
+
+NEW YORK &ndash; August 6, 2026 &ndash; INNODATA
+INC. (Nasdaq: INOD) today reported results for the second quarter ended June 30, 2026.
+
+
+
+
+
+
+| &middot; | Revenue
+of $92.1 million, representing 58% year-over-year revenue growth. |
+
+
+
+
+
+
+| &middot; | Adjusted
+Gross Profit of $45.4 million, representing Adjusted Gross Margin of 49%.* |
+
+
+
+
+
+
+| &middot; | Adjusted
+EBITDA of $25.4 million, or 27.5% of revenue, an increase of $12.1 million from $13.2
+million in the same period last year.* |
+
+
+
+
+
+
+| &middot; | Net
+income of $14.4 million, or $0.43 per basic share and $0.41 per diluted share for the
+three-month period ended June 30, 2026, compared to net income of $7.2 million, or $0.23
+per basic share and $0.20 per diluted share, in the same period last year. |
+
+
+
+
+
+
+| &middot; | Cash,
+cash equivalents and short-term investments of $250.4 million as of June 30, 2026, an
+increase of $168.2 million from $82.2 million as of December 31, 2025. Cash as of June 30,
+2026 includes customer prepayments related to pass-through costs; net of these prepayments,
+cash was approximately $134 million as of June 30, 2026. |
+
+
+
+
+
+* Adjusted Gross Profit, Adjusted Gross Margin,
+and Adjusted EBITDA are non-GAAP financial measures and are defined below.
+
+
+
+
+
+Jack Abuhoff, CEO, said,
+&ldquo;Q2 was another record quarter for Innodata - and another across-the-board beat. Revenue, Adjusted Gross Profit, Adjusted EBITDA,
+and cash all reached new highs, and we exceeded analyst consensus on every key metric. Revenue of $92.1 million grew 58% year-over-year
+while Adjusted EBITDA grew 92% - operating leverage by definition. This was our 12th consecutive quarter of year-over-year growth, and,
+as in Q1, our quarterly revenue exceeded our annual revenue of just three years ago. Adjusted Gross Margin of 49% now stands
+nine points above our publicly stated 40% target, driven by mix: off-the-shelf datasets, where we retain intellectual property and monetize
+the same asset across multiple customers, as well as high-value pre-training programs. Once again, we delivered growth, margin expansion,
+and cash generation together - while investing in innovation that converts to revenue within quarters, not years. That is the business
+model working as designed.
+
+
+
+
+
+&ldquo;The diversification
+we planned for has now been delivered. In Q2, our largest customer represented 37% of revenue, down from 56% in Q1, while the Big Tech
+customer we announced last quarter scaled from 17% of revenue to 34%. While our largest customer contributed less revenue in Q2 than
+in Q1, we continue to forecast it to grow year-over-year for the full year. We also landed an important new customer in the quarter,
+one of the fastest-scaling frontier labs. Our base continues to broaden, in both customers and customer programs.
+
+
+
+
+
+&ldquo;We are reiterating
+our full-year 2026 revenue growth guidance of 40% or more year-over-year. There are large potential programs from both new and anticipated
+customers - likely wins, in our judgment - that are not factored into our 40% number. Once their scope and timing are finalized, we will
+include them and update guidance accordingly.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&ldquo;Our growth is
+increasingly research driven. Through our research efforts, we have established an early position in agentic reinforcement learning,
+one of the most important frontiers in AI development, winning a significant new program with our largest customer covering personalization
+of long-horizon agents - now scaling - and a second program covering reinforcement-learning environments for computer-use agentic tasks.
+We released two public benchmarks designed to surface the failure modes that standard leaderboards miss as well as the first stage of
+our AI Cyber Training Suite - twelve datasets and evaluation systems that train AI coding agents to write secure code and repair vulnerabilities.
+We also ran successful egocentric data-collection pilots with leading robotics companies and shifted our data-collection practice from
+individual pilots to scoping enterprise-scale, multi-modal programs.&rdquo;
+
+
+
+
+
+A Planned Leadership
+Transition
+
+
+
+
+
+Innodata also announced
+today a planned leadership transition. Effective September 30, 2026, Rahul Singhal will become President and Chief Executive Officer
+of Innodata and will join the Company&rsquo;s Board of Directors, and Jack Abuhoff, the Company&rsquo;s founder and CEO, will transition
+into the role of Executive Chairman.
+
+
+
+
+
+&ldquo;This is a planned
+transition, made from a position of strength,&rdquo; said Abuhoff. &ldquo;Rahul has been a principal architect of Innodata&rsquo;s transformation
+into a strategic partner to the world&rsquo;s leading AI builders. He knows our customers, he knows our technology, and he knows our
+people - and he has been central to every element of the strategy behind the results you have seen quarter after quarter. The Board and
+I didn&rsquo;t have to look far for the right leader. Rahul earned this role &ndash; taking on expanding responsibility year after year
+and delivering every time. As Executive Chairman, I will remain deeply engaged, focused on partnering with Rahul to build capabilities
+enabled by our research team. Bringing these capabilities to the federal government and to the enterprise, I believe, is where I can
+best contribute to creating significant shareholder value, and as one of the company's largest shareholders, that is exactly what I want
+to be doing. Our work with the Mag 7 and the leading AI labs is on a firm path to greater heights and greater diversification. Our Enterprise
+AI and Federal strategies - built on the differentiated technology we develop for the frontier labs - represent opportunities for potentially
+driving high quality recurring revenue that results in significant value creation.&rdquo;
+
+
+
+
+
+Rahul Singhal, incoming
+President and Chief Executive Officer, said, &ldquo;I am truly honored by the confidence Jack and the Board have placed in me, and I
+intend to repay it with results. Innodata has extraordinary momentum, an extraordinary team, and an extraordinary opportunity in front
+of it. I intend to build on all three. Research and innovation have become our growth engine - the means by which we differentiate, expand
+existing partnerships, and forge new customer relationships across the full model training lifecycle, from pre-training and post-training
+to model evaluation and benchmarking.&rdquo;
+
+
+
+
+
+The Company also recently
+announced that Jayant Chauhan has joined Innodata as Chief Financial Officer, with Mariz Espineli stepping into the role of Chief Accounting
+Officer. Beyond the traditional CFO mandate, Jayant will work strategically on capital allocation and capital markets, customer partnerships,
+M&A, and investor communications.
+
+
+
+
+
+Abuhoff concluded, &ldquo;We
+are confident that 2026 will be a tremendous year for Innodata and its shareholders, and we are excited about the opportunities that
+lie ahead in 2027 and beyond.&rdquo;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Amounts in this press release have been
+rounded. All percentages have been calculated using unrounded amounts.
+
+
+
+
+
+Timing of Conference Call with Q&A
+
+
+
+
+
+Innodata will conduct an earnings conference call,
+including a question-and-answer period, at 5:00 PM eastern time today. You can participate in this call by dialing the following call-in
+numbers:
+
+
+
+
+
+The call-in numbers for the conference call are:
+
+
+
+
+
+
+
+(+1) 800 715 9871 |
+North America, Toll Free |
+
+
+
+(+44) 800 358 0970 |
+United Kingdom |
+
+
+
+(+1) 646 307 1963 |
+International |
+
+
+
+Participant Access Code |
+3150581 |
+
+
+
+
+
+
+
+For Replay:
+
+
+
+
+
+
+
+(+1) 800 770 2030 |
+North America-Toll Free |
+
+
+
+(+44) 203 433 3849 |
+United Kingdom |
+
+
+
+(+1) 609 800 9909 |
+International |
+
+
+
+Replay ID |
+3150581# |
+
+
+
+
+
+
+
+It is recommended that
+participants dial in approximately 10 minutes prior to the start of the call. Investors are also invited
+to access a live Webcast of the conference call at the Investor Relations section of Innodata&rsquo;s website at https://investor.innodata.com/events-and-presentations/ .
+Please note that the Webcast feature will be in listen-only mode.
+
+
+
+
+
+Call-in replay will be available for seven days following the conference
+call, and Webcast replay will be available for 30 days following the conference call, at the Investor Relations
+section of Innodata&rsquo;s website at https://investor.innodata.com/events-and-presentations/ .
+
+
+
+
+
+About Innodata
+
+
+
+
+
+Innodata (Nasdaq: INOD) is a global data
+engineering company. We believe that data and Artificial Intelligence (AI) are inextricably linked. Our mission is to enable the
+responsible advancement of artificial intelligence by providing the data, evaluation frameworks, and human expertise required to build
+AI systems that can be trusted at scale. We provide a range of transferable solutions, platforms, and services for Generative AI
+/ AI builders and adopters. In every relationship, we honor our 36+ year legacy delivering the highest quality data and outstanding outcomes
+for our customers.
+
+
+
+
+
+Visit www.innodata.com
+to learn more.
+
+
+
+
+
+Forward-Looking Statements
+
+
+
+
+
+This press release may contain certain forward-looking
+statements within the meaning of Section 21E of the Securities Exchange Act of 1934, as amended, and Section 27A of the Securities
+Act of 1933, as amended. These forward-looking statements include, without limitation, statements concerning our operations, economic
+performance, financial condition, developmental program expansion and position in the AI services market. Words such as &ldquo;project,&rdquo;
+&ldquo;forecast,&rdquo; &ldquo;believe,&rdquo; &ldquo;expect,&rdquo; &ldquo;can,&rdquo; &ldquo;continue,&rdquo; &ldquo;could,&rdquo; &ldquo;intend,&rdquo;
+&ldquo;may,&rdquo; &ldquo;should,&rdquo; &ldquo;will,&rdquo; &ldquo;anticipate,&rdquo; &ldquo;indicate,&rdquo; &ldquo;guide,&rdquo; &ldquo;predict,&rdquo;
+&ldquo;likely,&rdquo; &ldquo;estimate,&rdquo; &ldquo;plan,&rdquo; &ldquo;potential,&rdquo; &ldquo;possible,&rdquo; &ldquo;promises,&rdquo;
+or the negatives thereof, and other similar expressions generally identify forward-looking statements.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+These forward-looking statements are based on
+management&rsquo;s current expectations, assumptions and estimates and are subject to a number of risks and uncertainties, including,
+without limitation, impacts resulting from ongoing geopolitical conflicts; anticipated and actual use cases and outcomes; investments
+in large language models; that contracts may be terminated by customers; projected or committed volumes of work may not materialize; pipeline
+opportunities and customer discussions which may not materialize into work or expected volumes of work; the likelihood of continued development
+of the AI markets, particularly new and emerging markets, that our services support; the ability and willingness of our customers and
+prospective customers to execute business plans that give rise to requirements for our services; continuing reliance on project-based
+work and the primarily at-will nature of such contracts and the ability of these customers to reduce, delay or cancel projects; potential
+inability to replace projects that are completed, canceled or reduced; revenue concentration among a limited number of customers; our
+dependency on third-party providers and partners; our ability to achieve revenue and growth targets; difficulty in integrating and deriving
+synergies from acquisitions, joint ventures and strategic investments; potential undiscovered liabilities of companies and businesses
+that we may acquire; potential impairment of the carrying value of goodwill and other acquired intangible assets of companies and businesses
+that we acquire; a continued downturn in or depressed market conditions; changes in external market factors; the potential effects of
+U.S. global trade and monetary policy, including the interest rate policies of the Federal Reserve; changes in our business or growth
+strategy; the emergence of new, or growth in existing competitors; various other competitive and technological factors; our use of and
+reliance on information technology systems, including potential security breaches, cyber-attacks, privacy breaches or data breaches that
+result in the unauthorized disclosure of consumer, customer, employee or company information, or service interruptions; and other risks
+and uncertainties indicated from time to time in our filings with the Securities and Exchange Commission (&ldquo;SEC&rdquo;).
+
+
+
+
+
+Our actual results could differ materially from
+the results referred to in any forward-looking statements. Factors that could cause or contribute to such differences include, but are
+not limited to, the risks discussed in Part I, Item 1A. &ldquo;Risk Factors,&rdquo; Part II, Item 7. &ldquo;Management&rsquo;s
+Discussion and Analysis of Financial Condition and Results of Operations,&rdquo; and other parts of our Annual Report on Form 10-K,
+filed with the SEC on February 26, 2026, and in our other filings that we may make with the SEC. In light of these risks and uncertainties,
+there can be no assurance that the results referred to in any forward-looking statements will occur, and you should not place undue reliance
+on these forward-looking statements. These forward-looking statements speak only as of the date hereof.
+
+
+
+
+
+We undertake no obligation to update or review
+any guidance or other forward-looking statements, whether as a result of new information, future developments or otherwise, except as
+may be required by the U.S. federal securities laws.
+
+
+
+
+
+Company Contact
+
+
+
+
+
+Aneesh Pendharkar
+
+
+investor@innodata.com
+
+
+(201) 371-8000
+
+
+
+
+
+Non-GAAP Financial Measures
+
+
+
+
+
+In addition to the financial information prepared
+in conformity with U.S. GAAP (&ldquo;GAAP&rdquo;), we provide certain non-GAAP financial information. We believe that these non-GAAP financial
+measures assist investors in making comparisons of period-to-period operating results. In some respects, management believes non-GAAP
+financial measures are more indicative of our ongoing core operating performance than their GAAP equivalents by making adjustments that
+management believes are reflective of the ongoing performance of the business.
+
+
+
+
+
+We believe that the presentation of this non-GAAP
+financial information provides investors a more complete understanding of our financial performance, competitive position, and prospects
+for the future, particularly by providing the same information that management and our Board of Directors use to evaluate our performance
+and manage the business. However, the non-GAAP financial measures presented in this press release have certain limitations in that they
+do not reflect all of the costs associated with the operations of our business as determined in accordance with GAAP. Therefore, investors
+should consider non-GAAP financial measures in addition to, and not as a substitute for, or as superior to, measures of financial performance
+prepared in accordance with GAAP. Further, the non-GAAP financial measures that we present may differ from similar non-GAAP financial
+measures used by other companies.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Adjusted Gross Profit and Adjusted Gross Margin
+
+
+
+
+
+We define Adjusted Gross Profit as revenues less
+direct operating costs attributable to Innodata Inc. and its subsidiaries in accordance with GAAP, plus depreciation and amortization
+of intangible assets, stock-based compensation and other one-time costs included within direct operating cost.
+
+
+
+
+
+We define Adjusted Gross Margin by dividing Adjusted
+Gross Profit over total GAAP revenues.
+
+
+
+
+
+We use Adjusted Gross Profit and Adjusted Gross
+Margin to evaluate results of operations and trends between fiscal periods and believe that these measures are important components of
+our internal performance measurement process.
+
+
+
+
+
+A reconciliation of Adjusted Gross Profit and
+Adjusted Gross Margin to the most directly comparable GAAP measure is included in the tables that accompany this release.
+
+
+
+
+
+Adjusted EBITDA
+
+
+
+
+
+We define Adjusted EBITDA as net income attributable
+to Innodata Inc. and its subsidiaries in accordance with GAAP before interest expense, income taxes, depreciation and amortization of
+intangible assets (which derives EBITDA), plus additional adjustments for loss on impairment of intangible assets and goodwill, stock-based
+compensation, income attributable to non-controlling interests and other one-time costs.
+
+
+
+
+
+We use Adjusted EBITDA to evaluate core results
+of operations and trends between fiscal periods and believe that these measures are important components of our internal performance measurement
+process.
+
+
+
+
+
+A reconciliation of Adjusted EBITDA to the most
+directly comparable GAAP measure is included in the tables that accompany this release.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INNODATA INC. AND SUBSIDIARIES
+
+
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+
+
+(Unaudited)
+
+
+(In thousands, except per-share amounts)
+
+
+
+
+
+
+
+| |
+Three Months Ended | | |
+Six Months Ended | |
+
+
+| |
+June 30, | | |
+June 30, | |
+
+
+| |
+2026 | | |
+2025 | | |
+2026 | | |
+2025 | |
+
+
+Revenues | |
+$ | 92,142 | | |
+$ | 58,393 | | |
+$ | 182,238 | | |
+$ | 116,737 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Operating costs and expenses: | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Direct operating costs | |
+| 49,682 | | |
+| 35,370 | | |
+| 99,986 | | |
+| 70,462 | |
+
+
+Selling and administrative expenses | |
+| 26,600 | | |
+| 14,112 | | |
+| 49,492 | | |
+| 29,092 | |
+
+
+Interest income, net | |
+| (1,695 | ) | |
+| (577 | ) | |
+| (2,137 | ) | |
+| (704 | ) |
+
+
+| |
+| 74,587 | | |
+| 48,905 | | |
+| 147,341 | | |
+| 98,850 | |
+
+
+Income before provision for income taxes | |
+| 17,555 | | |
+| 9,488 | | |
+| 34,897 | | |
+| 17,887 | |
+
+
+Provision for income taxes | |
+| 3,143 | | |
+| 2,269 | | |
+| 5,587 | | |
+| 2,881 | |
+
+
+Consolidated net income | |
+| 14,412 | | |
+| 7,219 | | |
+| 29,310 | | |
+| 15,006 | |
+
+
+Income attributable to non-controlling interests | |
+| - | | |
+| - | | |
+| - | | |
+| - | |
+
+
+Net income attributable to Innodata Inc. and Subsidiaries | |
+$ | 14,412 | | |
+$ | 7,219 | | |
+$ | 29,310 | | |
+$ | 15,006 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Income per share attributable to Innodata Inc. and Subsidiaries: | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Basic | |
+$ | 0.43 | | |
+$ | 0.23 | | |
+$ | 0.89 | | |
+$ | 0.47 | |
+
+
+Diluted | |
+$ | 0.41 | | |
+$ | 0.20 | | |
+$ | 0.86 | | |
+$ | 0.43 | |
+
+
+Weighted average shares outstanding: | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Basic | |
+| 33,468 | | |
+| 31,785 | | |
+| 33,044 | | |
+| 31,609 | |
+
+
+Diluted | |
+| 34,771 | | |
+| 35,301 | | |
+| 34,268 | | |
+| 35,120 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INNODATA INC. AND SUBSIDIARIES
+
+
+CONDENSED CONSOLIDATED BALANCE SHEETS
+
+
+(Unaudited)
+
+
+(In thousands)
+
+
+
+
+
+
+
+| |
+June 30,
+2026 | | |
+December 31,
+2025 | |
+
+
+ASSETS | |
+| | | |
+| | |
+
+
+Current assets: | |
+| | | |
+| | |
+
+
+Cash and cash equivalents | |
+$ | 240,278 | | |
+$ | 82,216 | |
+
+
+Short term investments | |
+| 10,093 | | |
+| 14 | |
+
+
+Accounts receivable, net | |
+| 47,560 | | |
+| 46,510 | |
+
+
+Prepaid expenses and other current assets | |
+| 22,833 | | |
+| 6,654 | |
+
+
+Total current assets | |
+| 320,764 | | |
+| 135,394 | |
+
+
+Property and equipment, net | |
+| 8,392 | | |
+| 7,966 | |
+
+
+Right-of-use asset, net | |
+| 3,571 | | |
+| 4,094 | |
+
+
+Other assets | |
+| 3,206 | | |
+| 1,648 | |
+
+
+Deferred income taxes, net | |
+| 4,515 | | |
+| 3,429 | |
+
+
+Intangibles, net | |
+| 14,189 | | |
+| 13,983 | |
+
+
+Goodwill | |
+| 2,036 | | |
+| 2,079 | |
+
+
+Total assets | |
+$ | 356,673 | | |
+$ | 168,593 | |
+
+
+| |
+| | | |
+| | |
+
+
+LIABILITIES AND STOCKHOLDERS&rsquo; EQUITY | |
+| | | |
+| | |
+
+
+| |
+| | | |
+| | |
+
+
+Current liabilities: | |
+| | | |
+| | |
+
+
+Accounts payable | |
+$ | 53,039 | | |
+$ | 9,615 | |
+
+
+Advances from customers | |
+| 66,962 | | |
+| 1,812 | |
+
+
+Accrued expenses and other liabilities | |
+| 36,346 | | |
+| 7,800 | |
+
+
+Accrued salaries, wages and related benefits | |
+| 15,568 | | |
+| 16,480 | |
+
+
+Deferred revenues | |
+| 6,246 | | |
+| 7,493 | |
+
+
+Income and other taxes | |
+| 3,900 | | |
+| 4,471 | |
+
+
+Long-term obligations - current portion | |
+| 2,255 | | |
+| 1,659 | |
+
+
+Operating lease liability - current portion | |
+| 1,287 | | |
+| 1,202 | |
+
+
+Total current liabilities | |
+| 185,603 | | |
+| 50,532 | |
+
+
+Deferred income taxes, net | |
+| 47 | | |
+| 146 | |
+
+
+Long-term obligations, net of current portion | |
+| 8,944 | | |
+| 7,625 | |
+
+
+Operating lease liability, net of current portion | |
+| 2,545 | | |
+| 3,228 | |
+
+
+Total liabilities | |
+| 197,139 | | |
+| 61,531 | |
+
+
+STOCKHOLDERS' EQUITY | |
+| 159,534 | | |
+| 107,062 | |
+
+
+Total liabilities and stockholders&rsquo; equity | |
+$ | 356,673 | | |
+$ | 168,593 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INNODATA INC. AND SUBSIDIARIES
+
+
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+
+
+(Unaudited) (In thousands)
+
+
+
+
+
+
+
+| |
+Six Months Ended | |
+
+
+| |
+June
+30, | |
+
+
+| |
+2026 | | |
+2025 | |
+
+
+Cash flows from operating activities: | |
+| | | |
+| | |
+
+
+Consolidated net income | |
+$ | 29,310 | | |
+$ | 15,006 | |
+
+
+Adjustments to reconcile consolidated net income to net
+cash | |
+| | | |
+| | |
+
+
+provided by operating activities: | |
+| | | |
+| | |
+
+
+Stock-based compensation | |
+| 13,104 | | |
+| 5,602 | |
+
+
+Depreciation and amortization | |
+| 4,475 | | |
+| 3,164 | |
+
+
+Deferred income taxes, net | |
+| (1,175 | ) | |
+| 1,355 | |
+
+
+Pension cost | |
+| 818 | | |
+| 672 | |
+
+
+Loss on lease termination | |
+| | | |
+| | |
+
+
+Changes in operating assets and liabilities: | |
+| | | |
+| | |
+
+
+Accounts receivable | |
+| (1,228 | ) | |
+| (5,716 | ) |
+
+
+Prepaid expenses
+and other current assets | |
+| (15,384 | ) | |
+| (387 | ) |
+
+
+Other assets | |
+| 236 | | |
+| (76 | ) |
+
+
+Accounts payable,
+accrued expenses and other | |
+| 135,827 | | |
+| (1,499 | ) |
+
+
+Accrued salaries,
+wages and related benefits | |
+| (894 | ) | |
+| (1,490 | ) |
+
+
+Income and
+other taxes | |
+| (532 | ) | |
+| (1,529 | ) |
+
+
+Pension
+benefit payments | |
+| (116 | ) | |
+| (112 | ) |
+
+
+Net
+cash provided by operating activities | |
+| 164,441 | | |
+| 14,990 | |
+
+
+| |
+| | | |
+| | |
+
+
+Cash flows from investing activities: | |
+| | | |
+| | |
+
+
+Capital expenditures | |
+| (5,309 | ) | |
+| (4,058 | ) |
+
+
+Purchase of short
+term investments | |
+| (10,079 | ) | |
+| - | |
+
+
+Net
+cash used in investing activities | |
+| (15,388 | ) | |
+| (4,058 | ) |
+
+
+| |
+| | | |
+| | |
+
+
+Cash flows from financing activities: | |
+| | | |
+| | |
+
+
+Proceeds from exercise of stock options | |
+| 10,904 | | |
+| 1,468 | |
+
+
+Withholding taxes on net settlement
+of restricted stock units | |
+| (62 | ) | |
+| - | |
+
+
+Payment of long-term
+obligations | |
+| (877 | ) | |
+| (117 | ) |
+
+
+Net
+cash provided by financing activities | |
+| 9,965 | | |
+| 1,351 | |
+
+
+| |
+| | | |
+| | |
+
+
+Effect of exchange
+rate changes on cash and cash equivalents | |
+| (956 | ) | |
+| 612 | |
+
+
+| |
+| | | |
+| | |
+
+
+Net increase in cash and cash equivalents | |
+| 158,062 | | |
+| 12,895 | |
+
+
+| |
+| | | |
+| | |
+
+
+Cash and cash
+equivalents, beginning of period | |
+| 82,216 | | |
+| 46,897 | |
+
+
+| |
+| | | |
+| | |
+
+
+Cash and cash
+equivalents, end of period | |
+$ | 240,278 | | |
+$ | 59,792 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INNODATA INC. AND SUBSIDIARIES
+
+
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL
+MEASURES
+
+
+(Unaudited)
+
+
+(In thousands)
+
+
+
+
+
+Adjusted Gross Profit and Adjusted Gross Margin
+
+
+
+
+
+
+
+| |
+For the Three Months Ended
+June 30, | | |
+For the Six Months Ended
+June 30, | |
+
+
+| |
+2026 | | |
+2025 | | |
+2026 | | |
+2025 | |
+
+
+Gross Profit attributable to Innodata Inc. and Subsidiaries | |
+$ | 42,460 | | |
+$ | 23,023 | | |
+$ | 82,252 | | |
+$ | 46,275 | |
+
+
+Depreciation and amortization | |
+| 2,242 | | |
+| 1,583 | | |
+| 4,361 | | |
+| 3,127 | |
+
+
+Stock-based compensation | |
+| 681 | | |
+| 441 | | |
+| 1,345 | | |
+| 868 | |
+
+
+Adjusted Gross Profit | |
+$ | 45,383 | | |
+$ | 25,047 | | |
+$ | 87,958 | | |
+$ | 50,270 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Gross Margin | |
+| 46 | % | |
+| 39 | % | |
+| 45 | % | |
+| 40 | % |
+
+
+Adjusted Gross Margin | |
+| 49 | % | |
+| 43 | % | |
+| 48 | % | |
+| 43 | % |
+
+
+
+
+
+
+
+
+Adjusted EBITDA
+
+
+
+
+
+
+
+| |
+For
+the Three Months Ended
+June 30, | | |
+For
+the Six Months Ended
+June 30, | |
+
+
+| |
+2026 | | |
+2025 | | |
+2026 | | |
+2025 | |
+
+
+Net income attributable to Innodata Inc.
+and Subsidiaries | |
+$ | 14,412 | | |
+$ | 7,219 | | |
+$ | 29,310 | | |
+$ | 15,006 | |
+
+
+Provision for income taxes | |
+| 3,143 | | |
+| 2,269 | | |
+| 5,587 | | |
+| 2,881 | |
+
+
+Interest income, net | |
+| (1,695 | ) | |
+| (577 | ) | |
+| (2,137 | ) | |
+| (704 | ) |
+
+
+Depreciation and amortization | |
+| 2,299 | | |
+| 1,602 | | |
+| 4,475 | | |
+| 3,164 | |
+
+
+Stock-based
+compensation | |
+| 7,196 | | |
+| 2,721 | | |
+| 13,104 | | |
+| 5,602 | |
+
+
+Adjusted EBITDA | |
+$ | 25,355 | | |
+$ | 13,234 | | |
+$ | 50,339 | | |
+$ | 25,949 | |

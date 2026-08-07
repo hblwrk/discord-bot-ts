@@ -1,0 +1,651 @@
+EX-99.1
+2
+vistra-20260630xearningsre.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+
+
+
+
+
+
+Vistra Reports Second Quarter 2026 Results
+
+
+
+
+Earnings Release Highlights
+• GAAP second quarter 2026 Net Income of $305 million, including an unrealized loss from hedges expected to settle in future years of $472 million.
+• Achieved more than 30% growth in Ongoing Operations Adjusted EBITDA 1 to $1,767 million for the quarter compared to second quarter 2025.
+• Reaffirmed 2026 Ongoing Operations Adjusted EBITDA 1 and Ongoing Operations Adjusted FCFbG 1 guidance ranges of $6.8 billion to $7.6 billion and $3.925 billion to $4.725 billion, respectively. 3
+• Announced Helix Digital Infrastructure alongside KKR, KIA, and NVIDIA with an initial commitment from Vistra of up to $1.0 billion.
+• Received Federal Energy Regulatory Commission approval of the pending Cogentrix Energy acquisition.
+• Earned second consecutive distinction as one of U.S. News & World Report ' s Best Companies to Work For.
+
+IRVING, Texas — Aug. 7, 2026 — Vistra Corp. (NYSE: VST) today reported its second quarter 2026 financial results and other highlights.
+
+
+"The Vistra team delivered another strong quarter, building on our momentum from the start of the year and continuing to execute at a high level," said Jim Burke, president and CEO of Vistra. "I'm incredibly proud of our employees across the company - through their commitment, collaboration, and focus on serving our customers, Vistra delivered a more than 30% year-over-year increase in Ongoing Operations Adjusted EBITDA. 1 From our generation team maintaining a reliable fleet, to our commercial and retail teams navigating dynamic market conditions and delivering solutions for customers, these results reflect the hard work and dedication of our people."
+
+
+"We also announced an important investment to further position Vistra for long-term growth. The formation of Helix Digital Infrastructure, alongside our partners NVIDIA, KKR, and Kuwait Investment Authority, as well as Vistra's role as Helix's preferred power provider, create an exciting opportunity for the company. At the same time, we continued advancing key strategic initiatives, including the pending Cogentrix acquisition, construction of our two Permian Basin natural gas units, and development of solar facilities, including Oak Hill 2 and Pulaski."
+
+
+"Operationally, the Vistra team's preparation and disciplined execution during our annual spring maintenance season set us up for strong, reliable performance during the first half of the summer. During recent periods of extreme heat in Texas and the PJM market, Vistra achieved commercial availability of 97% or greater across our fleet, helping ensure reliable power when our customers and communities needed it most. As we complete the critical summer period and the remainder of the year, we remain focused on safely and reliably operating our fleet, advancing our strategy, and continuing to create solutions and value for our customers, communities, employees, and shareholders."
+
+
+
+
+Vistra – Press Release
+Aug. 7, 2026, Page 2
+
+
+
+
+
+
+
+
+
+Summary of Financial Results for the Three and Six Months Ended June 30, 2026 and 2025
+(Unaudited) (Millions of Dollars)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Net income | $ | 305 | | | $ | 327 | | | $ | 1,334 | | | $ | 59 | |
+| | | | | | | |
+Ongoing operations Adjusted EBITDA | $ | 1,767 | | | $ | 1,349 | | | $ | 3,261 | | | $ | 2,589 | |
+| | | | | | | |
+Adjusted EBITDA by Segment | | | | | | | |
+Retail | $ | 773 | | | $ | 756 | | | $ | 841 | | | $ | 940 | |
+Texas | $ | 311 | | | $ | 142 | | | $ | 897 | | | $ | 632 | |
+East | $ | 642 | | | $ | 418 | | | $ | 1,443 | | | $ | 932 | |
+West | $ | 68 | | | $ | 49 | | | $ | 124 | | | $ | 111 | |
+| | | | | | | |
+Corporate and Other | $ | (27) | | | $ | (16) | | | $ | (44) | | | $ | (26) | |
+Asset Closure | $ | (23) | | | $ | (17) | | | $ | (42) | | | $ | (41) | |
+
+
+
+
+
+For the quarter ended June 30, 2026, Vistra reported Net Income of $305 million and Ongoing Operations Adjusted EBITDA 1 of $1,767 million. Net Income for the second quarter 2026 decreased $22 million compared to the second quarter 2025, driven primarily by an increase in unrealized mark-to-market losses of $488 million on derivative positions, mostly offset by higher realized prices and capacity revenue, and three months' contribution from the plants acquired from Lotus. Ongoing Operations Adjusted EBITDA for the second quarter 2026 increased by $418 million compared to the second quarter 2025, driven primarily by higher realized energy and capacity prices and three months' contribution from the plants acquired from Lotus.
+
+
+Guidance 3
+| | | | | |
+
+
+($ in millions)
+| Reaffirmed 2026
+Guidance Ranges
+|
+Ongoing Operations Adjusted EBITDA | $6,800 - $7,600
+|
+Ongoing Operations Adjusted FCFbG | $3,925 - $4,725
+|
+
+
+
+
+
+As of Aug. 3, 2026, Vistra had hedged approximately 100% of its expected generation volumes for 2026, approximately 94% for 2027, and approximately 72% for 2028. The company's comprehensive hedging program provides support for the reaffirmed 2026 guidance ranges and the previously announced Ongoing Operations Adjusted EBITDA midpoint opportunity 2 range of $7.4 billion to $7.8 billion for 2027. 3 The ranges exclude any potential benefits from the pending acquisition of Cogentrix and the signed power purchase agreements with Meta, part of which are expected to contribute to our Adjusted EBITDA in 2027.
+
+
+
+
+Vistra – Press Release
+Aug. 7, 2026, Page 3
+
+
+
+
+
+
+
+Share Repurchase Program
+
+
+As of Aug. 3, 2026:
+• Vistra executed ~$6.5 billion in share repurchases since November 2021.
+• Vistra had ~336 million shares outstanding, representing a ~30% reduction of the amount of the shares outstanding on Nov. 2, 2021.
+• ~$1.2 billion of the share repurchase authorization remained available, which we expect to complete no later than year-end 2027.
+
+
+Liquidity
+As of June 30, 2026, Vistra had total available liquidity of approximately $6,295 million, including cash and cash equivalents of $435 million, $4,408 million of availability under its corporate revolving credit facility, and $1,452 million of availability under its commodity-linked revolving credit facility. Available capacity under the commodity-linked revolving credit facility reflects the borrowing base of $1,452 million and excludes $298 million of commitments under the facility that were not available to be drawn as of June 30, 2026.
+
+
+
+
+
+
+Vistra – Press Release
+Aug. 7, 2026, Page 4
+
+
+
+
+
+
+
+Earnings Webcast
+
+
+Vistra will host a webcast today, Aug. 7, 2026, beginning at 10 a.m. ET (9 a.m. CT) to discuss these results and related matters. The live webcast and the accompanying slides that will be discussed on the call can be accessed via Vistra’s website at www.vistracorp.com under “Investor Relations” and then “Events & Presentations.” Participants can also listen by phone by registering here prior to the start time of the call to receive a conference call dial-in number. A replay of the webcast will be available on Vistra’s website for one year following the live event.
+
+
+About Vistra
+
+
+Vistra (NYSE: VST) is a leading, Fortune 500 integrated retail electricity and power generation company based in Irving, Texas, that provides essential resources to customers, businesses, and communities from California to Maine. Vistra is a leader in transforming the energy landscape, with an unyielding focus on reliability, affordability, and sustainability. The company safely operates a reliable, efficient power generation fleet of natural gas, nuclear, coal, solar, and battery energy storage facilities while taking an innovative, customer-centric approach to its retail business. Learn more at https://www.vistracorp.com.
+
+
+Media
+Meranda Cohn
+214-875-8004
+Media.Relations@vistracorp.com
+
+
+Analysts
+Eric Micek
+214-812-0046
+Investor@vistracorp.com
+
+
+1 Ongoing Operations excludes the Asset Closure segment. Ongoing Operations Adjusted EBITDA and Ongoing Operations Adjusted Free Cash Flow before Growth are non-GAAP financial measures. Any reference to “Ongoing Operations Adjusted FCFbG” is a reference to Ongoing Operations Adjusted Free Cash Flow before Growth. See the “Non-GAAP Reconciliation” tables for further detail. Total segment information may not tie due to rounding.
+
+
+2 Midpoint opportunities are not intended to be guidance and represent only our estimate of potential opportunities for Ongoing Operations Adjusted EBITDA in 2027 based on market curves as of October 31, 2025. Actual results could vary and are subject to a number of risks, uncertainties and factors, including power price market movements and our hedging strategy. We have not provided a quantitative reconciliation of Ongoing Operations Adjusted EBITDA opportunities for 2027 to GAAP net income (loss) because we cannot, without unreasonable effort, calculate certain reconciling items with confidence due to the variability, complexity, and limited visibility of the adjusting items that would be excluded from Ongoing Operations Adjusted EBITDA in such out year periods.
+
+
+3 2026 Ongoing Operations Adjusted EBITDA and Ongoing Operations Adjusted Free Cash Flow before Growth guidance ranges and 2027 Ongoing Operations Adjusted EBITDA Midpoint Opportunity exclude any potential impact from the pending acquisition of Cogentrix and the announced long-term power purchase agreements with Meta.
+
+
+
+
+Vistra – Press Release
+Aug. 7, 2026, Page 5
+
+
+
+
+
+
+
+About Non-GAAP Financial Measures and Items Affecting Comparability
+
+
+"Adjusted EBITDA" (EBITDA as adjusted for unrealized gains or losses from hedging activities, transition and merger expenses, non-cash compensation expenses, nuclear decommissioning trust income, asset retirement obligation expenses, and certain other items described from time to time in Vistra’s earnings releases), "Adjusted Free Cash Flow before Growth" (or "Adjusted FCFbG") (cash from operating activities excluding changes in margin deposits and working capital and adjusted for maintenance capital expenditures, other net investment activities, and other items described from time to time in Vistra’s earnings releases), "Ongoing Operations Adjusted EBITDA" (adjusted EBITDA less adjusted EBITDA from Asset Closure segment), and "Ongoing Operations Adjusted Free Cash Flow before Growth" or "Ongoing Operations Adjusted FCFbG" (adjusted free cash flow before growth less cash flow from operating activities from Asset Closure segment before growth) are "non-GAAP financial measures." A non-GAAP financial measure is a numerical measure of financial performance that excludes or includes amounts so as to be different than the most directly comparable measure calculated and presented in accordance with GAAP in Vistra’s consolidated statements of operations, comprehensive income, changes in stockholders’ equity and cash flows. Non-GAAP financial measures should not be considered in isolation or as a substitute for the most directly comparable GAAP measures. Vistra’s non-GAAP financial measures may be different from non-GAAP financial measures used by other companies.
+
+
+Vistra uses Adjusted EBITDA as a measure of performance and believes that analysis of its business by external users is enhanced by visibility to both Net Income prepared in accordance with GAAP and Adjusted EBITDA. Vistra uses Adjusted Free Cash Flow before Growth as a measure of liquidity and performance, and believes that analysis of capital available to allocate for debt service, growth, and return of capital to stockholders is supported by disclosure of both cash provided by (used in) operating activities prepared in accordance with GAAP as well as Adjusted Free Cash Flow before Growth. Vistra uses Ongoing Operations Adjusted EBITDA as a measure of performance and Ongoing Operations Adjusted Free Cash Flow before Growth as a measure of liquidity and performance, and Vistra’s management and board of directors have found it informative to view the Asset Closure segment as separate and distinct from Vistra’s ongoing operations. The schedules attached to this earnings release reconcile the non-GAAP financial measures to the most directly comparable financial measures calculated and presented in accordance with U.S. GAAP.
+
+
+Cautionary Note Regarding Forward-Looking Statements
+
+The information presented herein includes forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995. These forward-looking statements, which are based on current expectations, estimates and projections about the industry and markets in which Vistra Corp. ("Vistra") operates and beliefs of and assumptions made by Vistra’s management, involve risks and uncertainties, which are difficult to predict and are not guarantees of future performance, that could significantly affect the financial results of Vistra. All statements, other than statements of historical facts, that are presented herein, or in response to questions or otherwise, that address activities, events or developments that may occur in the future, including such matters as activities related to our financial or operational projections, financial condition and cash flows, projected synergy, net debt targets, capital allocation, capital expenditures, liquidity, projected Adjusted EBITDA to free cash flow conversion rate, dividend policy, business strategy, competitive strengths, goals, future acquisitions or dispositions, development or operation of power generation assets, market and industry developments and the growth of our businesses and operations, including potential transactions with large load facilities at our nuclear and natural gas plants (often, but not always, through the use of words or phrases, or the negative variations of those words or other comparable words of a future or forward-looking nature, including, but not limited to: "intends," "plans," "will likely," "unlikely," "believe," "confident," "expect," "seek," "anticipate," "estimate," "continue," "will," "shall," "should," "could," "may," "might," "predict," "project," "forecast," "target," "potential," "goal," "objective," "guidance," "on track" and "outlook"), are forward-looking statements. Readers are cautioned not to place undue reliance on forward-looking statements. Although Vistra believes that in making any such forward-looking statement, Vistra’s expectations are based on reasonable assumptions, any such forward-looking statement involves uncertainties and risks that could cause results to differ materially from those projected in or implied by any such forward-looking statement, including, but not limited to: (i) adverse changes in general economic or market conditions (including changes in interest rates) or changes in political conditions or federal or state laws and regulations; (ii) the ability of Vistra to execute upon its contemplated strategic, capital allocation, performance, and cost-saving initiatives and to successfully integrate acquired businesses, including our ability to close the acquisition of Cogentrix Energy; (iii) actions by credit ratings agencies; (iv) the severity, magnitude and duration of extreme weather events, contingencies and uncertainties relating thereto, most of which are difficult to predict and many of which are beyond our control, and the resulting effects on our results of operations, financial condition and cash flows; and (v) those additional risks and factors discussed in reports filed with the Securities and Exchange Commission by Vistra from time to time, including the uncertainties and risks discussed in the sections entitled "Risk Factors" and "Forward-Looking Statements" in Vistra’s annual report on Form 10-K for the year ended December 31, 2025 and subsequently filed quarterly reports on Form 10-Q.
+
+
+Any forward-looking statement speaks only at the date on which it is made, and except as may be required by law, Vistra will not undertake any obligation to update any forward-looking statement to reflect events or circumstances after the date on which it is made or to reflect the occurrence of unanticipated events. New factors emerge from time to time, and it is not possible to predict all of them; nor can Vistra assess the impact of each such factor or the extent to which any factor, or combination of factors, may cause results to differ materially from those contained in any forward-looking statement.
+
+
+
+
+
+
+
+Vistra – Press Release
+Aug. 7, 2026, Page 6
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+VISTRA CORP.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(Unaudited) (Millions of Dollars) |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Operating revenues | $ | 4,017 | | | $ | 4,250 | | | $ | 9,657 | | | $ | 8,183 | |
+Fuel, purchased power costs, and delivery fees | (1,774) | | | (1,974) | | | (4,304) | | | (4,421) | |
+Operating costs | (853) | | | (733) | | | (1,553) | | | (1,426) | |
+Depreciation and amortization | (445) | | | (541) | | | (929) | | | (1,063) | |
+Selling, general, and administrative expenses | (392) | | | (419) | | | (819) | | | (810) | |
+| | | | | | | |
+Impairment of long-lived assets | — | | | (68) | | | — | | | (68) | |
+Operating income | 553 | | | 515 | | | 2,052 | | | 395 | |
+Other income (deductions), net | 186 | | | 191 | | | 162 | | | 186 | |
+| | | | | | | |
+Interest expense and related charges | (312) | | | (303) | | | (575) | | | (622) | |
+| | | | | | | |
+| | | | | | | |
+Net income (loss) before income taxes | 427 | | | 403 | | | 1,639 | | | (41) | |
+Income tax (expense) benefit | (122) | | | (76) | | | (305) | | | 100 | |
+| | | | | | | |
+| | | | | | | |
+Net income attributable to Vistra | $ | 305 | | | $ | 327 | | | $ | 1,334 | | | $ | 59 | |
+Cumulative dividends attributable to preferred stock | (47) | | | (47) | | | (96) | | | (96) | |
+Net income (loss) attributable to Vistra common stock | $ | 258 | | | $ | 280 | | | $ | 1,238 | | | $ | (37) | |
+
+
+
+
+
+
+
+
+Vistra – Press Release
+Aug. 7, 2026, Page 7
+
+
+
+
+
+
+
+| | | | | | | | | | | |
+VISTRA CORP.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(Unaudited) (Millions of Dollars) |
+| Six Months Ended June 30, |
+| 2026 | | 2025 |
+Cash flows — operating activities: | | | |
+Net income | $ | 1,334 | | | $ | 59 | |
+Adjustments to reconcile net income (loss) to cash provided by operating activities: | | | |
+Depreciation and amortization | 1,363 | | | 1,534 | |
+Deferred income tax expense (benefit), net | 255 | | | (128) | |
+| | | |
+| | | |
+Impairment of long-lived and other assets | — | | | 68 | |
+Unrealized net (gain) loss from mark-to-market valuations of commodities | (251) | | | 551 | |
+Unrealized net (gain) loss from mark-to-market valuations of interest rate swaps | (7) | | | 74 | |
+Unrealized net (gain) loss from nuclear decommissioning trusts | 22 | | | (74) | |
+Asset retirement obligation accretion expense | 63 | | | 66 | |
+| | | |
+| | | |
+Bad debt expense | 86 | | | 87 | |
+Stock-based compensation expense | 67 | | | 46 | |
+Involuntary conversion gain | (48) | | | (80) | |
+Other, net | — | | | 13 | |
+Changes in operating assets and liabilities: | | | |
+Margin deposits, net | (188) | | | (368) | |
+Accrued interest | 61 | | | (5) | |
+Accrued taxes other than income | (100) | | | (56) | |
+Accrued employee incentive | (99) | | | (145) | |
+Other operating assets and liabilities | (336) | | | (471) | |
+Cash provided by operating activities | 2,222 | | | 1,171 | |
+Cash flows — investing activities: | | | |
+Capital expenditures, including nuclear fuel purchases and LTSA prepayments | (1,572) | | | (1,458) | |
+Lotus acquisition purchase price adjustment | 6 | | | — | |
+Proceeds from sales of nuclear decommissioning trust fund securities | 3,036 | | | 3,024 | |
+Investments in nuclear decommissioning trust fund securities | (3,037) | | | (3,035) | |
+Proceeds from sales of environmental allowances | 128 | | | 25 | |
+Purchases of environmental allowances | (201) | | | (392) | |
+Insurance proceeds for recovery of damaged property, plant, and equipment | 234 | | | 173 | |
+Proceeds from sales of property, plant, and equipment, including nuclear fuel | 50 | | | — | |
+Other, net | 77 | | | (8) | |
+Cash used in investing activities | (1,279) | | | (1,671) | |
+
+
+
+
+
+Vistra – Press Release
+Aug. 7, 2026, Page 8
+
+
+
+
+
+
+
+| | | | | | | | | | | |
+VISTRA CORP.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(Unaudited) (Millions of Dollars) |
+| Six Months Ended June 30, |
+| 2026 | | 2025 |
+Cash flows — financing activities: | | | |
+Issuances of debt | 6,422 | | | 209 | |
+Repayments/repurchases of debt | (3,859) | | | (757) | |
+Net borrowings (repayments) under accounts receivable financing | (925) | | | 375 | |
+Borrowings under Revolving Credit Facility | 400 | | | — | |
+Repayments under Revolving Credit Facility | (780) | | | — | |
+Borrowings under Commodity-Linked Facility | — | | | 987 | |
+Repayments under Commodity-Linked Facility | (1,420) | | | (126) | |
+| | | |
+| | | |
+| | | |
+Debt issuance costs | (72) | | | — | |
+Stock repurchases | (709) | | | (589) | |
+Dividends paid to common stockholders | (154) | | | (152) | |
+Dividends paid to preferred stockholders | (96) | | | (96) | |
+| | | |
+Tax withholding on stock-based compensation | (69) | | | (50) | |
+Principal payment on forward repurchase obligation | (19) | | | (41) | |
+| | | |
+Other, net | (3) | | | 13 | |
+Cash used in financing activities | (1,284) | | | (227) | |
+Net change in cash, cash equivalents and restricted cash (current and noncurrent) | (341) | | | (727) | |
+Cash, cash equivalents and restricted cash (current and noncurrent) — beginning balance | 822 | | | 1,222 | |
+Cash, cash equivalents and restricted cash (current and noncurrent) — ending balance | $ | 481 | | | $ | 495 | |
+
+
+
+
+
+
+
+
+Vistra – Press Release
+Aug. 7, 2026, Page 9
+
+
+
+
+
+
+
+VISTRA CORP.
+NON-GAAP RECONCILIATIONS - ADJUSTED EBITDA
+FOR THE THREE MONTHS ENDED JUNE 30, 2026
+(Unaudited) (Millions of Dollars) | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Retail | | Texas | | East | | West | | | | Eliminations / Corp and Other | | Ongoing Operations Consolidated | | Asset Closure | | Vistra Corp. Consolidated |
+Net income (loss) | $ | 484 | | | $ | 592 | | | $ | (166) | | | $ | 28 | | | | | $ | (517) | | | $ | 421 | | | $ | (116) | | | $ | 305 | |
+Income tax expense | — | | | — | | | — | | | — | | | | | 122 | | | 122 | | | — | | | 122 | |
+Interest expense and related charges (a) | 10 | | | (10) | | | (24) | | | (4) | | | | | 339 | | | 311 | | | 1 | | | 312 | |
+Depreciation and amortization (b) | 10 | | | 213 | | | 302 | | | 14 | | | | | 18 | | | 557 | | | 3 | | | 560 | |
+EBITDA before Adjustments | 504 | | | 795 | | | 112 | | | 38 | | | | | (38) | | | 1,411 | | | (112) | | | 1,299 | |
+Unrealized net (gain) loss resulting from commodity hedging transactions | 261 | | | (446) | | | 629 | | | 28 | | | | | — | | | 472 | | | — | | | 472 | |
+| | | | | | | | | | | | | | | | | |
+Purchase accounting impacts | 1 | | | — | | | (14) | | | — | | | | | (13) | | | (26) | | | — | | | (26) | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+Non-cash compensation expenses | — | | | — | | | — | | | — | | | | | 35 | | | 35 | | | — | | | 35 | |
+Transition and merger expenses | 1 | | | — | | | 2 | | | — | | | | | 12 | | | 15 | | | — | | | 15 | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+Insurance income (c) | — | | | (48) | | | — | | | — | | | | | — | | | (48) | | | — | | | (48) | |
+Decommissioning-related activities (d) | — | | | 4 | | | (95) | | | 1 | | | | | — | | | (90) | | | 90 | | | — | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+Other, net | 6 | | | 6 | | | 8 | | | 1 | | | | | (23) | | | (2) | | | (1) | | | (3) | |
+Adjusted EBITDA | $ | 773 | | | $ | 311 | | | $ | 642 | | | $ | 68 | | | | | $ | (27) | | | $ | 1,767 | | | $ | (23) | | | $ | 1,744 | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+
+___________
+(a) Corporate and Other includes $9 million of unrealized mark-to-market net losses on interest rate swaps.
+(b) Includes nuclear fuel amortization of $30 million and $86 million, respectively, in the Texas and East segments.
+(c) Includes involuntary conversion gain recognized from Martin Lake Incident property damage insurance in the Texas segment.
+(d) Includes NDT (income) loss of the PJM nuclear facilities, ARO and environmental remediation expenses, and other expenses associated with the Moss Landing Incident.
+
+
+
+
+
+
+
+Vistra – Press Release
+Aug. 7, 2026, Page 10
+
+
+
+
+
+
+
+VISTRA CORP.
+NON-GAAP RECONCILIATIONS - ADJUSTED EBITDA
+FOR THE SIX MONTHS ENDED JUNE 30, 2026
+(Unaudited) (Millions of Dollars) | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Retail | | Texas | | East | | West | | | | Eliminations / Corp and Other | | Ongoing Operations Consolidated | | Asset Closure | | Vistra Corp. Consolidated |
+Net income (loss) | $ | (240) | | | $ | 2,683 | | | $ | 10 | | | $ | 62 | | | | | $ | (1,045) | | | $ | 1,470 | | | $ | (136) | | | $ | 1,334 | |
+Income tax expense | — | | | — | | | — | | | — | | | | | 305 | | | 305 | | | — | | | 305 | |
+Interest expense and related charges (a) | 23 | | | (24) | | | (46) | | | (7) | | | | | 628 | | | 574 | | | 1 | | | 575 | |
+Depreciation and amortization (b) | 20 | | | 424 | | | 657 | | | 28 | | | | | 36 | | | 1,165 | | | 6 | | | 1,171 | |
+EBITDA before Adjustments | (197) | | | 3,083 | | | 621 | | | 83 | | | | | (76) | | | 3,514 | | | (129) | | | 3,385 | |
+Unrealized net (gain) loss resulting from commodity hedging transactions | 1,026 | | | (2,168) | | | 854 | | | 37 | | | | | — | | | (251) | | | — | | | (251) | |
+| | | | | | | | | | | | | | | | | |
+Purchase accounting impacts | 1 | | | — | | | (15) | | | — | | | | | (13) | | | (27) | | | — | | | (27) | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+Non-cash compensation expenses | — | | | — | | | — | | | — | | | | | 67 | | | 67 | | | — | | | 67 | |
+Transition and merger expenses | — | | | — | | | 2 | | | — | | | | | 24 | | | 26 | | | — | | | 26 | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+Insurance income (c) | — | | | (48) | | | — | | | — | | | | | — | | | (48) | | | (6) | | | (54) | |
+Decommissioning-related activities (d) | — | | | 8 | | | (35) | | | 1 | | | | | — | | | (26) | | | 92 | | | 66 | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+Other, net | 11 | | | 22 | | | 16 | | | 3 | | | | | (46) | | | 6 | | | 1 | | | 7 | |
+Adjusted EBITDA | $ | 841 | | | $ | 897 | | | $ | 1,443 | | | $ | 124 | | | | | $ | (44) | | | $ | 3,261 | | | $ | (42) | | | $ | 3,219 | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+
+___________
+(a) Corporate and Other includes $7 million of unrealized mark-to-market net gains on interest rate swaps.
+(b) Includes nuclear fuel amortization of $66 million and $176 million, respectively, in the Texas and East segments.
+(c) Includes involuntary conversion gain recognized from Martin Lake Incident property damage insurance in Texas segment and revenues from Moss Landing Incident business interruption proceeds in the Asset Closure segment.
+(d) Includes NDT (income) loss of the PJM nuclear facilities, ARO and environmental remediation expenses, and other expenses associated with the Moss Landing Incident.
+
+
+
+
+
+
+
+Vistra – Press Release
+Aug. 7, 2026, Page 11
+
+
+
+
+
+
+
+VISTRA CORP.
+NON-GAAP RECONCILIATIONS - ADJUSTED EBITDA
+FOR THE THREE MONTHS ENDED JUNE 30, 2025
+(Unaudited) (Millions of Dollars) | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Retail | | Texas | | East | | West | | | | Eliminations / Corp and Other | | Ongoing Operations Consolidated | | Asset Closure | | Vistra Corp. Consolidated |
+Net income (loss) | $ | (123) | | | $ | 863 | | | $ | 120 | | | $ | (50) | | | | | $ | (440) | | | $ | 370 | | | $ | (43) | | | $ | 327 | |
+Income tax expense | — | | | — | | | 1 | | | — | | | | | 75 | | | 76 | | | — | | | 76 | |
+Interest expense and related charges (a) | 17 | | | (18) | | | (8) | | | (1) | | | | | 312 | | | 302 | | | 1 | | | 303 | |
+Depreciation and amortization (b) | 24 | | | 197 | | | 412 | | | 16 | | | | | 20 | | | 669 | | | (1) | | | 668 | |
+EBITDA before Adjustments | (82) | | | 1,042 | | | 525 | | | (35) | | | | | (33) | | | 1,417 | | | (43) | | | 1,374 | |
+Unrealized net (gain) loss resulting from commodity hedging transactions | 841 | | | (900) | | | (39) | | | 82 | | | | | — | | | (16) | | | — | | | (16) | |
+| | | | | | | | | | | | | | | | | |
+Purchase accounting impacts | 8 | | | — | | | 9 | | | — | | | | | — | | | 17 | | | — | | | 17 | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+Non-cash compensation expenses | — | | | — | | | — | | | — | | | | | 25 | | | 25 | | | — | | | 25 | |
+Transition and merger expenses | 5 | | | — | | | — | | | — | | | | | 17 | | | 22 | | | — | | | 22 | |
+Impairment of long-lived assets | — | | | 68 | | | — | | | — | | | | | — | | | 68 | | | — | | | 68 | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+Insurance income (c) | — | | | (80) | | | — | | | — | | | | | — | | | (80) | | | (21) | | | (101) | |
+Decommissioning-related activities (d) | — | | | 4 | | | (81) | | | — | | | | | — | | | (77) | | | 43 | | | (34) | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+ERP system implementation expenses | 3 | | | 3 | | | 3 | | | — | | | | | — | | | 9 | | | 1 | | | 10 | |
+Other, net (e) | (19) | | | 5 | | | 1 | | | 2 | | | | | (25) | | | (36) | | | 3 | | | (33) | |
+Adjusted EBITDA | $ | 756 | | | $ | 142 | | | $ | 418 | | | $ | 49 | | | | | $ | (16) | | | $ | 1,349 | | | $ | (17) | | | $ | 1,332 | |
+
+___________
+(a) Corporate and Other includes $26 million of unrealized mark-to-market net losses on interest rate swaps.
+(b) Includes nuclear fuel amortization of $30 million and $92 million, respectively, in the Texas and East segments.
+(c) Includes involuntary conversion gain recognized from Martin Lake Incident property damage insurance in the Texas segment and revenues from Moss Landing Incident business interruption proceeds in the Asset Closure segment.
+(d) Includes NDT (income) loss of the PJM nuclear facilities, ARO and environmental remediation expenses, and other expenses associated with the Moss Landing Incident.
+(e) Includes the final application of bill credits to large commercial and industrial customers that curtailed their usage during Winter Storm Uri in the Retail segment.
+
+
+
+
+
+
+
+Vistra – Press Release
+Aug. 7, 2026, Page 12
+
+
+
+
+
+
+
+VISTRA CORP.
+NON-GAAP RECONCILIATIONS - ADJUSTED EBITDA
+FOR THE SIX MONTHS ENDED JUNE 30, 2025
+(Unaudited) (Millions of Dollars) | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Retail | | Texas | | East | | West | | | | Eliminations / Corp and Other | | Ongoing Operations Consolidated | | Asset Closure | | Vistra Corp. Consolidated |
+Net income (loss) | $ | 1,009 | | | $ | 143 | | | $ | (370) | | | $ | 27 | | | | | $ | (639) | | | $ | 170 | | | $ | (111) | | | $ | 59 | |
+Income tax expense (benefit) | — | | | — | | | 1 | | | — | | | | | (101) | | | (100) | | | — | | | (100) | |
+Interest expense and related charges (a) | 35 | | | (32) | | | (20) | | | (2) | | | | | 639 | | | 620 | | | 2 | | | 622 | |
+Depreciation and amortization (b) | 47 | | | 378 | | | 808 | | | 31 | | | | | 39 | | | 1,303 | | | (2) | | | 1,301 | |
+EBITDA before Adjustments | 1,091 | | | 489 | | | 419 | | | 56 | | | | | (62) | | | 1,993 | | | (111) | | | 1,882 | |
+Unrealized net (gain) loss resulting from commodity hedging transactions | (156) | | | 130 | | | 528 | | | 50 | | | | | — | | | 552 | | | (1) | | | 551 | |
+| | | | | | | | | | | | | | | | | |
+Purchase accounting impacts | 8 | | | — | | | 23 | | | — | | | | | — | | | 31 | | | — | | | 31 | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+Non-cash compensation expenses | — | | | — | | | — | | | — | | | | | 46 | | | 46 | | | — | | | 46 | |
+Transition and merger expenses | 5 | | | — | | | 1 | | | — | | | | | 34 | | | 40 | | | — | | | 40 | |
+Impairment of long-lived assets | — | | | 68 | | | — | | | — | | | | | — | | | 68 | | | — | | | 68 | |
+| | | | | | | | | | | | | | | | | |
+Insurance income (c) | — | | | (80) | | | — | | | — | | | | | — | | | (80) | | | (21) | | | (101) | |
+Decommissioning-related activities (d) | — | | | 9 | | | (46) | | | — | | | | | — | | | (37) | | | 89 | | | 52 | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+ERP system implementation expenses | 3 | | | 3 | | | 3 | | | — | | | | | — | | | 9 | | | 1 | | | 10 | |
+Other, net (e) | (11) | | | 13 | | | 4 | | | 5 | | | | | (44) | | | (33) | | | 2 | | | (31) | |
+Adjusted EBITDA | $ | 940 | | | $ | 632 | | | $ | 932 | | | $ | 111 | | | | | $ | (26) | | | $ | 2,589 | | | $ | (41) | | | $ | 2,548 | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+
+___________
+(a) Corporate and Other includes $74 million of unrealized mark-to-market net losses on interest rate swaps.
+(b) Includes nuclear fuel amortization of $61 million and $176 million, respectively, in the Texas and East segments.
+(c) Includes involuntary conversion gain recognized from Martin Lake Incident property damage insurance in the Texas segment and revenues from Moss Landing Incident business interruption proceeds in the Asset Closure segment.
+(d) Includes NDT (income) loss of the PJM nuclear facilities, ARO and environmental remediation expenses, and other expenses associated with the Moss Landing Incident.
+(e) Includes the final application of bill credits to large commercial and industrial customers that curtailed their usage during Winter Storm Uri in the Retail segment.
+
+
+
+
+
+
+
+Vistra – Press Release
+Aug. 7, 2026, Page 13
+
+
+
+
+
+
+
+VISTRA CORP. - NON-GAAP RECONCILIATIONS 2026 GUIDANCE 1
+(Unaudited) (Millions of Dollars) | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Ongoing
+Operations | | Asset
+Closure | | Vistra Corp.
+Consolidated |
+| Low | | High | | Low | | High | | Low | | High |
+Net income (loss) | $ | 3,100 | | | $ | 3,730 | | | $ | (90) | | | $ | (90) | | | $ | 3,010 | | | $ | 3,640 | |
+Income tax expense | 830 | | | 1,000 | | | — | | | — | | | 830 | | | 1,000 | |
+Interest expense and related charges (a) | 1,200 | | | 1,200 | | | — | | | — | | | 1,200 | | | 1,200 | |
+Depreciation and amortization (b) | 2,150 | | | 2,150 | | | — | | | — | | | 2,150 | | | 2,150 | |
+EBITDA before Adjustments | $ | 7,280 | | | $ | 8,080 | | | $ | (90) | | | $ | (90) | | | $ | 7,190 | | | $ | 7,990 | |
+Unrealized net (gain) loss resulting from hedging transactions | (728) | | | (728) | | | — | | | — | | | (728) | | | (728) | |
+Fresh start/purchase accounting impacts | 58 | | | 58 | | | — | | | — | | | 58 | | | 58 | |
+Non-cash compensation expenses | 137 | | | 137 | | | — | | | — | | | 137 | | | 137 | |
+Transition and merger expenses | 29 | | | 29 | | | — | | | — | | | 29 | | | 29 | |
+Decommissioning-related activities (c)
+| 64 | | | 64 | | | 22 | | | 22 | | | 86 | | | 86 | |
+ERP system implementation expenses & other transformational initiatives | 17 | | | 17 | | | — | | | — | | | 17 | | | 17 | |
+Other, net | (57) | | | (57) | | | (12) | | | (12) | | | (69) | | | (69) | |
+Adjusted EBITDA guidance | $ | 6,800 | | | $ | 7,600 | | | $ | (80) | | | $ | (80) | | | $ | 6,720 | | | $ | 7,520 | |
+
+___________
+1 Regulation G Table 2026 Guidance prepared as of November 6, 2025, based on market curves as of October 31, 2025. Guidance excludes any potential benefit from the nuclear production tax credit.
+(a) Includes $60 million interest related to noncontrolling interest repurchase.
+(b) Includes nuclear fuel amortization of $423 million.
+(c) Represents net of all NDT income (loss) of the PJM nuclear facilities, ARO accretion expense for operating assets and ARO remeasurement impacts for operating assets.
+
+
+
+
+
+
+
+
+Vistra – Press Release
+Aug. 7, 2026, Page 14
+
+
+
+
+
+
+
+VISTRA CORP. - NON-GAAP RECONCILIATIONS 2026 GUIDANCE 1
+(Unaudited) (Millions of Dollars) | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Ongoing
+Operations | | Asset
+Closure | | Vistra Corp.
+Consolidated |
+| Low | | High | | Low | | High | | Low | | High |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+Adjusted EBITDA guidance | $ | 6,800 | | | $ | 7,600 | | | $ | (80) | | | $ | (80) | | | $ | 6,720 | | | $ | 7,520 | |
+Interest paid, net | (1,125) | | | (1,125) | | | — | | | — | | | (1,125) | | | (1,125) | |
+Tax (paid) / received | (111) | | | (111) | | | — | | | — | | | (111) | | | (111) | |
+Working capital, margin deposits and accrued environmental allowances | 640 | | | 640 | | | — | | | — | | | 640 | | | 640 | |
+Reclamation and remediation | (78) | | | (78) | | | (80) | | | (80) | | | (158) | | | (158) | |
+ERP system implementation expenses & other transformational initiatives | (16) | | | (16) | | | — | | | — | | | (16) | | | (16) | |
+Other changes in other operating assets and liabilities | (112) | | | (112) | | | (5) | | | (5) | | | (117) | | | (117) | |
+Cash provided by operating activities | $ | 5,998 | | | $ | 6,798 | | | $ | (165) | | | $ | (165) | | | $ | 5,833 | | | $ | 6,633 | |
+Capital expenditures including nuclear fuel purchases and LTSA prepayments | (1,536) | | | (1,536) | | | — | | | — | | | (1,536) | | | (1,536) | |
+Other net investing activities | (20) | | | (20) | | | — | | | — | | | (20) | | | (20) | |
+Working capital, margin deposits and accrued environmental allowances | (640) | | | (640) | | | — | | | — | | | (640) | | | (640) | |
+Transition and merger expenses | 41 | | | 41 | | | — | | | — | | | 41 | | | 41 | |
+Interest on noncontrolling interest repurchase obligation | 60 | | | 60 | | | — | | | — | | | 60 | | | 60 | |
+ERP system implementation expenses & other transformational initiatives | 22 | | | 22 | | | — | | | — | | | 22 | | | 22 | |
+Adjusted free cash flow before growth guidance | $ | 3,925 | | | $ | 4,725 | | | $ | (165) | | | $ | (165) | | | $ | 3,760 | | | $ | 4,560 | |
+
+___________
+1 Regulation G Table 2026 Guidance prepared as of November 6, 2025, based on market curves as of October 31, 2025.

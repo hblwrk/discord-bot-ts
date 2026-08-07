@@ -405,8 +405,14 @@ function extractMetricValue(
   const isLossCaption = undefined !== patternMatch?.[0] &&
     /\bloss\b/i.test(patternMatch[0]) &&
     false === /\b(?:income|earnings|profit)\b/i.test(patternMatch[0]);
+  // Prose can state the sign beside the value instead, which is the only place it appears when
+  // the caption is a combined one: "(GAAP) loss / earnings per share (EPS) assuming dilution
+  // was a loss per share of $0.54". Only the wording directly introducing the first value
+  // counts, so a later mention of an unrelated loss does not flip the figure.
+  const isLossIntroducedValue = /\ba?\s*loss\s+(?:per\s+(?:common\s+)?share\s+)?of\s*$/i
+    .test(getValueIntroText(preferredSearchText));
   const signedValue = (value: number): number =>
-    true === isLossCaption && value > 0 ? -value : value;
+    (true === isLossCaption || true === isLossIntroducedValue) && value > 0 ? -value : value;
 
   if ("eps" === valueType) {
     const perShareTableValue = findPerShareTableValue(preferredSearchText, currentPeriodColumnIndex);
@@ -517,6 +523,12 @@ function getMetricValueSentenceText(text: string): string {
   }
 
   return text.slice(0, boundaryMatch.index + 1);
+}
+
+// The wording that introduces the first value in the text, up to and excluding that value.
+function getValueIntroText(text: string): string {
+  const valueIndex = text.search(/[$€£¥(]?\s*-?\d/);
+  return -1 === valueIndex ? text : text.slice(0, valueIndex);
 }
 
 function getQuarterColumnSearchText(text: string): string {

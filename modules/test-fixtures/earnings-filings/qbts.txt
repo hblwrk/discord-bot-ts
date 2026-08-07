@@ -1,0 +1,373 @@
+EX-99.1
+2
+qbts-20260806xexx991.htm
+EX-99.1
+
+
+
+
+Document
+Exhibit 99.1
+
+D-Wave Reports Second Quarter 2026 Results
+First Half Bookings of $35.5 Million Up over 1,120% Year over Year
+First Half QCaaS Production Revenue Comprised 37.3% of Total QCaaS Revenue
+First Half Remaining Performance Obligations of $40.7 Million Up 668% Year Over Year
+PALO ALTO, Calif. – August 6, 2026 – D-Wave Quantum Inc. (NASDAQ: QBTS) (“D-Wave” or the “Company”), the only dual-platform quantum computing company, providing both annealing and gate-model systems, software, and services, today announced financial results for its second quarter ended June 30, 2026 .
+“This quarter reinforced the strength and breadth of D-Wave’s leadership,” said Dr. Alan Baratz, CEO of D-Wave. “We expanded commercial momentum through stronger bookings and engagements with major global organizations, while achieving important milestones across our dual-platform technology roadmap. The peer-reviewed validation of our dual-rail architecture and recognition by IDC as an industry Leader reflects growing confidence in both our ability to deliver customer value and our approach to building scalable quantum computer systems. D-Wave is translating technical leadership into commercial progress, and we believe that our differentiated technology, expanding customer base and disciplined execution position us to lead as the quantum computing market accelerates.”
+Recent Business and Technical Highlights
+• Bookings for the first six months of 2026 were $35.5 million, a 1,120% year over year increase from bookings of $2.9 million for the first six months of 2025.
+• Named a Leader in the IDC MarketScape: Worldwide Quantum Computing 2026 Vendor Assessment. IDC evaluated quantum computing companies based on their current capabilities and future strategies. D-Wave was one of only two companies named to the “Leaders” category.
+• Provided additional details on the Company’s annealing quantum computing roadmap, which involves packaging and superconducting interconnect technologies to scale the annealing architectures to multi-chip fabrics. We expect this multi-chip approach will allow the next generation Advantage3 TM system to ultimately reach 100,000 qubits by 2031, with an intermediate step of a 20,000 qubit system available in 2029. The Company also announced the design of a new prototype for scalable I/O that would allow quantum processing unit (QPU) scaling with an expectation of reaching a 100,000 qubit system with no more than a 20% increase over the number of I/O lines required for the current 4,500 qubit Advantage2 TM system.
+• Announced a new gate-model quantum computing roadmap, designed to accelerate the development of commercial, fault-tolerant gate model quantum computing, which includes the following key milestones:
+▪ 2026: Delivery of a 17-physical-qubit system that supports logical error rates 2 times lower than physical error rates
+▪ 2027: Completion of a 49-physical-qubit system that can deliver an expected 20-fold error reduction factor over the physical error rate
+▪ 2028: Completion of a 181-physical-qubit system that can deliver an expected 2,000-fold error reduction factor over the physical error rate; representing the scalable blueprint for fault-tolerant architectures
+
+
+
+
+
+
+
+▪ 2030: Completion of a 10-logical qubit system that can support the first fault tolerant algorithms
+▪ 2032: Completion of a 100-logical-qubit system capable of successfully performing more than one million operations that can support initial quantum chemistry and quantum AI applications
+• Announced a major research breakthrough, as published in the peer-reviewed scientific journal Nature, that advances a faster, more practical path to fault tolerant gate-model quantum computing. The research demonstrates a fast, high-fidelity two-qubit entangling gate that preserves the inherent error-correction advantages of D-Wave’s superconducting dual-rail qubit architecture, addressing one of the industry’s most consequential challenges by reducing the immense hardware overhead typically required to detect and correct quantum errors as systems scale.
+• Announced a forthcoming gate-model quantum computing simulator, which is expected to be the first of its kind designed for error-aware programming. Built around D-Wave’s dual-rail technology, we expect the simulator to give developers visibility into errors, so they can design applications and workflows that respond to errors as they occur. D-Wave will offer new quantum development bundles that provide access to both the simulator and gate-model systems.
+• Selected to receive a $1,566,240 grant from the U.S. National Science Foundation (NSF) through the agency’s National Quantum Virtual Laboratory (NQVL) program. This funding will support D-Wave’s gate model efforts as a partner in the ERASE (Erasure Qubits and Dynamic Circuits for Quantum Advantage) project, which is focused on developing foundational technologies for fault-tolerant quantum computing and strengthening U.S. leadership in quantum innovation.
+• Awarded second year funding for the Improved Materials for Superconducting Qubits with Scalable Fabrication (SQFab) project by the Northeast Regional Defense Technology Hub (NORDTECH). The SQFab project is one of four innovative programs selected by the U.S. Department of War (DOW) through NORDTECH that collectively received more than $25 million in funding after achieving key first-year benchmarks.
+• Signed a number of new and renewing customer engagements for both commercial and research applications, including with: one of the world’s largest gambling and entertainment companies; AT&T – one of the world’s largest telecommunications companies; Nasdaq Verafin– a global technology company serving the capital markets and other industries; Oki Electric Industry Co., Ltd. – a leading Japanese technology company focused on info-telecom and infrastructure innovation; Shionogi & Co. Ltd. – a major Japanese pharmaceutical company dedicated to innovative medicines; and Unisys – a global technology solutions company that powers breakthroughs for the world’s leading organizations.
+• Awarded the Great Place to Work Certification TM for 2026. Great Place to Work is regarded as a global authority on workplace culture, employee experience and leadership behaviors proven to help organizations build high-performing workplaces.
+
+
+
+
+
+
+
+
+
+
+Second Quarter 2026 Financial Highlights
+• Revenue: Revenue for the second quarter of 2026 was $3.1 million, essentially flat when compared with the second quarter of 2025 revenue of $3.1 million. 62.4% of second quarter of 2026 revenue was derived from commercial customers compared to 45.1% in the second quarter of 2025. Forbes Global 2000 customers accounted for 47.7% of total revenue in the second quarter of 2026 compared to 20.4% of total revenue in the second quarter of 2025.
+• Bookings 1 : Bookings for the second quarter of 2026 were $2.1 million, an increase of $0.8 million, or 59%, from the second quarter of 2025 Bookings of $1.3 million, with the average Booking size increasing by over 87% on a year over year basis.
+• GAAP Gross Profit: GAAP gross profit for the second quarter of 2026 was $1.7 million, a decrease of $0.3 million, or 14%, from the second quarter of 2025 GAAP gross profit of $2.0 million, with the decrease due primarily to increased personnel costs.
+• GAAP Gross Margin: GAAP gross margin for the second quarter of 2026 was 55.4%, a decrease of 8.4% from the second quarter of 2025 GAAP gross margin of 63.8%.
+• Non-GAAP Gross Profit 2 : Non-GAAP Gross Profit for the second quarter of 2026 was $2.0 million, a decrease of $0.2 million, or 10%, from the second quarter of 2025 Non-GAAP Gross Profit of $2.2 million. The difference between GAAP and Non-GAAP Gross Profit is limited to non-cash stock-based compensation, and depreciation and amortization expenses that are excluded from the Non-GAAP Gross Profit.
+• Non-GAAP Gross Margin 2 : Non-GAAP Gross Margin for the second quarter of 2026 was 64.9%, a decrease of 6.9% from the second quarter of 2025 Non-GAAP Gross Margin of 71.8%. The difference between GAAP and Non-GAAP Gross Margin is limited to non-cash stock-based compensation and depreciation and amortization expenses that are excluded from the Non-GAAP Gross Margin.
+• GAAP Operating Expenses: GAAP operating expenses for the second quarter of 2026 were $55.0 million, an increase of $26.5 million, or 93%, from the second quarter of 2025 GAAP operating expenses of $28.5 million, with the increase driven primarily by increases of $9.7 million in personnel costs, $4.5 million in non-cash stock-based compensation, $4.4 million in non-cash depreciation and amortization, $1.8 million in third party professional services, and $1.0 million in marketing expenses. The increased operating expenses stem from investments to support the Company’s accelerated product development and go-to-market initiatives.
+• Non-GAAP Adjusted Operating Expenses 2 : Non-GAAP Adjusted Operating Expenses for the second quarter of 2026 were $39.1 million, an increase of $16.9 million, or 76%, from the second quarter of 2025 Non-GAAP Adjusted Operating Expenses of $22.2 million, with the difference between GAAP and Non-GAAP Adjusted Operating Expenses being primarily non-cash stock-based compensation expense, depreciation and amortization, and non-recurring or non-operating expenses that are excluded from the Non-GAAP Adjusted Operating Expenses.
+• Net Loss: Net loss for the second quarter of 2026 was $48.0 million, or $0.13 per share, a decrease of $119.3 million, or $0.42 per share, from the second quarter of 2025 net loss of $167.3 million, or $0.55 per share. The decrease was primarily due to a $142.0 million decrease in the amount of non-cash, non-operating charges related to the remeasurement of the Company's warrant liability. All of the Company's remaining publicly traded warrants were redeemed in November 2025.
+• Adjusted EBITDA Loss 2 : Adjusted EBITDA Loss for the second quarter of 2026 was $37.1 million, an increase of $17.1 million, or 85%, from the second quarter of 2025 Adjusted EBITDA Loss of $20.0 million, with the increase due primarily to increased investments to support the Company’s accelerated product development and go-to-market initiatives.
+
+
+
+
+
+
+
+
+Financial Results for the First Half of 2026
+• Revenue: Revenue for the six months ended June 30, 2026 was $5.9 million, a decrease of $12.2 million, or 67%, from revenue of $18.1 million for the six months ended June 30, 2025, which included $13.7 million in revenue recognized from the Company's first sale of an annealing quantum computing system. 67.7% of first half 2026 revenue was derived from commercial customers compared to 16.0% in the first half of 2025. Forbes Global 2000 customers accounted for 48.5% of total first half 2026 revenue compared to 7.5% in the first half of 2025. QCaaS revenue derived from production applications totaled $1.3 million, or 37.3% of total QCaaS revenue, for the first half of 2026 compared with $0.3 million, or 9.8% of total QCaaS revenue, for the first half of 2025.
+• Bookings 1 : Bookings for the six months ended June 30, 2026 were $35.5 million, an increase of $32.6 million, or 1,120%, from Bookings of $2.9 million for the six months ended June 30, 2025 with the average Booking size increasing by over 1,120% on a year over year basis. The first half of 2026 Bookings include a $20 million system sale, the revenue for which will be recognized in subsequent quarters.
+• Remaining Performance Obligations 3 : As of June 30, 2026, the aggregate amount of remaining performance obligations (RPOs) that were unsatisfied or partially unsatisfied related to customer contracts totaled $40.7 million, an increase of $35.4 million, or 668%, from the June 30, 2025 RPO balance of $5.3 million. Approximately 57% of the $40.7 million 2026 second quarter RPO balance is expected to be recognized as revenue in the next 12 months, and 72% is expected to be recognized as revenue in the next two years, with the remainder to be recognized thereafter.
+• Customers: During the six months ended June 30, 2026, D-Wave recognized revenue from over 100 individual customers with over 50% of such customers being commercial enterprises.
+• GAAP Gross Profit: GAAP gross profit for the six months ended June 30, 2026 was $3.5 million, a decrease of $12.4 million, or 78%, from $15.9 million in GAAP gross profit for the six months ended June 30, 2025, with the decrease due primarily to a high margin annealing quantum computer system sale during the six months ended June 30, 2025.
+• GAAP Gross Margin: GAAP gross margin for the six months ended June 30, 2026 was 59.4%, a decrease of 28.2% from the 87.6% GAAP gross margin for the six months ended June 30, 2025, with the decrease due primarily to a high margin annealing quantum computer system sale during the six months ended June 30, 2025.
+• Non-GAAP Gross Profit 2 : Non-GAAP Gross Profit for the six months ended June 30, 2026 was $4.0 million, a decrease of $12.3 million, or 75%, from the Non-GAAP Gross Profit of $16.3 million for the six months ended June 30, 2025. The difference between GAAP and Non-GAAP Gross Profit is limited to non-cash stock-based compensation and depreciation and amortization expenses that are excluded from the Non-GAAP Gross Profit.
+• Non-GAAP Gross Margin 2 : Non-GAAP Gross Margin for the six months ended June 30, 2026 was 67.7%, a decrease of 22.2% from the 89.9% Non-GAAP Gross Margin for the six months ended June 30, 2025. The difference between GAAP and Non-GAAP Gross Margin is limited to non-cash stock-based compensation and depreciation and amortization expenses that are excluded from the Non-GAAP Gross Margin.
+• GAAP Operating Expenses: GAAP operating expenses for the six months ended June 30, 2026 were $111.5 million, an increase of $57.9 million, or 108% from GAAP operating expenses of $53.6 million for the six months ended June 30, 2025, with the increase partially driven by $9.3 million of non-recurring costs related to the acquisition of Quantum Circuits, Inc. ("Quantum Circuits") and increases of $19.0 million in salaries and related personnel costs, 73% of which relate to increases in Sales & Marketing and Research & Development
+personnel; $16.4 million in non-cash stock-based compensation and depreciation and amortization expenses, $3.9 million in fabrication costs and $2.3 million in marketing expenses. These increased operating expenses stem from investments to support the Company’s accelerated product development and go-to-market initiatives, as well as Quantum Circuits expenses incurred subsequent to the January acquisition closing date.
+• Non-GAAP Adjusted Operating Expenses 2 : Non-GAAP Adjusted Operating Expenses for the six months ended June 30, 2026 were $73.9 million, an increase of $31.5 million, or 74%, from Non-GAAP Adjusted Operating Expenses of $42.4 million for the six months ended June 30, 2025, with the difference between GAAP and Non-GAAP Operating Expenses being primarily non-cash stock-based compensation expense, non-cash depreciation and amortization expense, and non-recurring one-time expenses that are excluded from the Non-GAAP Adjusted Operating Expenses.
+• Net Loss: Net loss for the six months ended June 30, 2026 was $66.4 million, or $0.18 per share, a decrease of $106.4 million, or $0.41 per share, compared with the net loss of $172.8 million, or $0.59 per share for the six months ended June 30, 2025, primarily due to a decrease of $138.1 million in the amount of non-cash, non-operating charges related to the remeasurement of the Company's warrant liability, offset by a tax benefit of $28.4 million arising from the Quantum Circuits acquisition.
+• Adjusted EBITDA Loss 2 : Adjusted EBITDA Loss for the six months ended June 30, 2026 was $69.9 million, an increase of $43.8 million from the Adjusted EBITDA Loss of $26.1 million for the six months ended June 30, 2025, with the increase due primarily to increased investments to support the Company’s accelerated product development and go-to-market initiatives.
+__________________
+1 “Bookings” is an operating metric that is defined as customer orders received that are expected to generate net revenues in the future. Year-to-date 2026 Bookings includes $2.3 million in Quantum Circuits bookings that were closed immediately prior to the completion of the acquisition of Quantum Circuits in January 2026. We present the operating metric of Bookings because it reflects customers' demand for our products and services and to assist readers in analyzing our potential performance in future periods.
+2 "Non-GAAP Gross Profit", "Non-GAAP Gross Margin", "Non-GAAP Adjusted Operating Expenses" and "Adjusted EBITDA Loss" are non-GAAP financial measures. Please see the discussion in the section “Non-GAAP Financial Measures” and the reconciliations included at the end of this press release.
+3 Revenue allocated to remaining performance obligations represents the transaction price of noncancellable orders for which service has not been performed, which include deferred revenue and the amounts that will be invoiced and recognized as revenues in future periods from open contracts and excludes unexercised renewals.
+
+
+
+
+
+
+
+
+
+
+Balance Sheet and Liquidity
+As of June 30, 2026, D-Wave’s consolidated cash and marketable investment securities balance totaled $546.2 million, representing a $273.1 million, or 33% decrease from the June 30, 2025 consolidated cash and marketable investment securities balance of $819.3 million with over 90% of the decrease attributable to the cash consideration associated with the January 2026 acquisition of Quantum Circuits.
+
+Earnings Conference Call
+In conjunction with this announcement, D-Wave will host a conference call on Thursday, August 6, 2026, at 8:00 a.m. (Eastern Time), to discuss the Company’s financial results and business outlook. The live dial-in number is 1-833-890-9920 (domestic) or 1-412-564-6463 (international). Participants can use those dial-in numbers or can click this link for instant telephone access to the event. The link will be made active 15 minutes prior to the call’s scheduled start time, and the passcode is 3354042. An on-demand webcast will be available, and a transcript of the conference call will be posted on the D-Wave Investor Relations website after the call. Participating in the call will be Chief Executive Officer Dr. Alan Baratz and Chief Financial Officer John Markovich.
+About D-Wave Quantum Inc.
+D-Wave is a leader in the development and delivery of quantum computing systems, software, and services. It is the world’s first commercial supplier of quantum computers, and the first and only to offer dual-platform quantum computing products and services, spanning both annealing and gate-model quantum computing technologies. D-Wave’s mission is to help customers realize the value of quantum today through enterprise-grade systems available on-premises and via its Leap™ quantum cloud service, which offers 99.9% availability and uptime. More than 100 organizations across commercial, government and research sectors trust D-Wave to address complex computational challenges using quantum computing. Learn more about realizing the value of quantum computing today and how D-Wave is shaping the quantum-driven industrial and societal advancements of tomorrow: ir.dwavequantum.com.
+Non-GAAP Financial Measures
+To supplement the financial information presented in accordance with GAAP, we use non-GAAP measures of certain components of financial performance. Each of Non-GAAP Gross Profit, Non-GAAP Gross Margin, Adjusted EBITDA Loss and Non-GAAP Adjusted Operating Expenses is a financial measure that is not required by or presented in accordance with GAAP. Management believes that each measure provides investors an additional meaningful method to evaluate certain aspects of such results period over period. The Company defines each of its non-GAAP financial measures as follows:
+• Non-GAAP Gross Profit is defined as GAAP gross profit less depreciation and amortization expense and non-cash stock-based compensation expense. We use Non-GAAP Gross Profit to measure, understand and evaluate our core operating performance and trends and to develop short-term and long-term operating plans.
+• Non-GAAP Gross Margin is defined as GAAP gross margin adjusted to exclude depreciation and amortization expense and non-cash stock-based compensation expense. We use Non-GAAP Gross Margin to measure, understand and evaluate our core business performance.
+• Adjusted EBITDA Loss is defined as net loss before interest income, interest expense, depreciation and amortization expense, stock-based compensation, remeasurements of liability-classified warrants, and other non-operating or non-recurring income and expenses. We use Adjusted EBITDA Loss to measure the operating performance of our business, excluding specifically identified items that we do not believe directly reflect our core operations and may not be indicative of our recurring operations.
+• Non-GAAP Adjusted Operating Expenses is defined as operating expenses before depreciation and amortization expense, non-operating or non-recurring expenses and non-cash stock-based compensation expense. We use Non-GAAP Adjusted Operating Expenses to measure our operating expenses, excluding items we do not believe directly reflect our core operations.
+The presentation of non-GAAP financial measures is not meant to be considered in isolation or as a substitute for the financial results prepared in accordance with GAAP, and our presentation of non-GAAP measures may be different from non-GAAP measures used by other companies. For a reconciliation of each of Non-GAAP Gross Profit, Non-GAAP Gross Margin, Adjusted EBITDA Loss and Non-GAAP Adjusted Operating Expenses to its most directly comparable GAAP measure, please refer to the reconciliations below.
+Forward Looking Statements
+Certain statements in this press release are forward-looking, as defined in the Private Securities Litigation Reform Act of 1995, including statements relating to our ability to help customers realize value from quantum computing, development of annealing and gate-model systems, enterprise-scale adoption of quantum computing, our development and commercialization plans, dual-platform roadmap and milestones, expectations regarding our quantum computing simulator, error-corrected gate-model quantum computer, among others. In some cases, you can identify forward-looking statements by the following words: “believe,” “may,” “will,” “could,” “would,” “should,” “expect,” “intend,” “plan,” “anticipate,” “trend,” “estimate,” “predict,” “project,” “potential,” “seem,” “seek,” “future,” “outlook,” “forecast,” “projection,” “continue,” “ongoing,” or the negative of these terms or other comparable terminology, although not all forward-looking statements contain these words. These statements involve risks, uncertainties, and other factors that may cause actual results to differ materially from the information expressed or implied by these forward-looking statements and may not be indicative of future results. These forward-looking statements are subject to a number of risks and uncertainties, including, among others, various factors beyond management’s control, including the risks set forth under the caption “Item 1A. Risk Factors” in Part I of our most recent Annual Report on Form 10-K or any updates discussed under the caption “Item 1A. Risk Factors” in Part II of our Quarterly Reports on Form 10-Q and in our other filings with the Securities and Exchange Commission. Undue reliance should not be placed on the forward-looking statements in this press release in making an investment decision, which are based on information available to us on the date hereof. We undertake no duty to update this information unless required by law.
+Contacts
+Investor Contact:
+ir@dwavesys.com
+Media Contact:
+media@dwavesys.com
+
+
+
+
+
+
+
+
+
+
+
+
+D-Wave Quantum Inc.
+Condensed Consolidated Balance Sheets
+(Unaudited)
+
+
+| | | | | | | | | | | |
+| June 30, | | December 31, |
+(In thousands, except share and per share data) | 2026 | | 2025 |
+Assets | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 296,642 | | | $ | 635,347 | |
+Marketable investment securities | 249,573 | | | 249,134 | |
+Trade accounts receivable, net of allowance for credit losses of $1 and $176
+| 2,019 | | | 1,587 | |
+Inventories | 3,488 | | | 2,776 | |
+Prepaid expenses and other current assets | 8,872 | | | 7,388 | |
+Total current assets | 560,594 | | | 896,232 | |
+Property and equipment, net | 22,076 | | | 7,841 | |
+Operating lease right-of-use assets | 12,042 | | | 6,518 | |
+Intangible assets, net | 211,816 | | | 915 | |
+Goodwill | 342,588 | | | — | |
+Other non-current assets, net | 9,314 | | | 4,307 | |
+Total assets | $ | 1,158,430 | | | $ | 915,813 | |
+| | | |
+Liabilities and stockholders' equity | | | |
+Current liabilities: | | | |
+Trade accounts payable | $ | 4,521 | | | $ | 950 | |
+Accrued expenses and other current liabilities | 12,135 | | | 15,838 | |
+Current portion of operating lease liabilities | 1,250 | | | 1,448 | |
+Loans payable, net, current | 146 | | | 134 | |
+Deferred revenue, current | 9,234 | | | 2,778 | |
+Total current liabilities | 27,286 | | | 21,148 | |
+Operating lease liabilities, net of current portion | 11,826 | | | 6,050 | |
+Loans payable, net, non-current | 34,886 | | | 35,825 | |
+Deferred revenue, non-current | 1,322 | | | 560 | |
+Total liabilities | $ | 75,320 | | | $ | 63,583 | |
+| | | |
+Commitments and contingencies
+| | | |
+| | | |
+Stockholders' equity: | | | |
+Common stock, par value $0.0001 per share; 675,000,000 shares authorized at both June 30, 2026 and December 31, 2025; 372,011,420 shares and 358,741,605 shares issued and outstanding as of June 30, 2026 and December 31, 2025, respectively. | 37 | | | 35 | |
+Additional paid-in capital | 2,140,499 | | | 1,843,218 | |
+Accumulated deficit | (1,048,387) | | | (982,002) | |
+Accumulated other comprehensive loss | (9,039) | | | (9,021) | |
+Total stockholders' equity | 1,083,110 | | | 852,230 | |
+Total liabilities and stockholders’ equity | $ | 1,158,430 | | | $ | 915,813 | |
+
+
+
+
+
+
+
+
+
+
+
+D-Wave Quantum Inc.
+Condensed Consolidated Statements of Operations and Comprehensive Loss
+(Unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+(In thousands, except share and per share data) | 2026 | | 2025 | | 2026 | | 2025 |
+Revenue | $ | 3,076 | | | $ | 3,095 | | | $ | 5,934 | | | $ | 18,096 | |
+Cost of revenue | 1,372 | | | 1,119 | | | 2,412 | | | 2,243 | |
+Total gross profit | 1,704 | | | 1,976 | | | 3,522 | | | 15,853 | |
+Operating expenses: | | | | | | | |
+Research and development | 28,239 | | | 12,694 | | | 54,032 | | | 22,982 | |
+General and administrative | 15,388 | | | 9,151 | | | 35,663 | | | 17,108 | |
+Sales and marketing | 11,355 | | | 6,633 | | | 21,832 | | | 13,556 | |
+Total operating expenses | 54,982 | | | 28,478 | | | 111,527 | | | 53,646 | |
+Loss from operations | (53,278) | | | (26,502) | | | (108,005) | | | (37,793) | |
+Other income (expense), net: | | | | | | | |
+Interest income | 5,028 | | | 4,311 | | | 10,813 | | | 7,410 | |
+Interest expense | (255) | | | (206) | | | (514) | | | (432) | |
+Gain on investment in marketable securities, net | — | | | — | | | 1,880 | | | — | |
+Change in fair value of warrant liabilities | — | | | (142,048) | | | — | | | (138,105) | |
+Other income (expense), net | 485 | | | (2,884) | | | 997 | | | (3,830) | |
+Total other income (expense), net | 5,258 | | | (140,827) | | | 13,176 | | | (134,957) | |
+Loss before income taxes | (48,020) | | | (167,329) | | | (94,829) | | | (172,750) | |
+Income tax benefit (provision), net | (8) | | | — | | | 28,444 | | | — | |
+Net loss | $ | (48,028) | | | $ | (167,329) | | | $ | (66,385) | | | $ | (172,750) | |
+Net loss per share, basic and diluted | $ | (0.13) | | | $ | (0.55) | | | $ | (0.18) | | | $ | (0.59) | |
+Weighted-average shares used in computing net loss per share, basic and diluted | 370,840,115 | | | 302,288,793 | | | 369,165,968 | | | 294,398,419 | |
+| | | | | | | |
+Comprehensive loss: | | | | | | | |
+Net loss | $ | (48,028) | | | $ | (167,329) | | | $ | (66,385) | | | $ | (172,750) | |
+Other comprehensive income (loss), net of tax: | | | | | | | |
+Foreign currency translation adjustment | 140 | | | 787 | | | 158 | | | 1,285 | |
+Unrealized losses on available-for-sale securities | (7) | | | — | | | (160) | | | — | |
+Reclassification adjustment for realized gains (losses) included in net income | (16) | | | — | | | (16) | | | — | |
+Total other comprehensive income (loss), net of tax | 117 | | | 787 | | | (18) | | | 1,285 | |
+Net comprehensive loss | $ | (47,911) | | | $ | (166,542) | | | $ | (66,403) | | | $ | (171,465) | |
+
+
+
+
+
+
+
+
+
+
+
+D-Wave Quantum Inc.
+Condensed Consolidated Statements of Cash Flows
+(Unaudited)
+| | | | | | | | | | | | | |
+| Six Months Ended June 30, |
+(in thousands) | 2026 | | 2025 | | |
+Cash flows from operating activities: | | | | | |
+Net loss | $ | (66,385) | | | $ | (172,750) | | | |
+Adjustments to reconcile net loss to cash used in operating activities: | | | | | |
+Depreciation and amortization | 8,536 | | | 714 | | | |
+Deferred income taxes | (28,365) | | | — | | | |
+Stock-based compensation | 19,132 | | | 10,664 | | | |
+Amortization of operating right-of-use assets | 699 | | | 346 | | | |
+Provision for excess and obsolete inventory | (103) | | | — | | | |
+Non-cash interest income | 1,262 | | | — | | | |
+Non-cash interest expense | 467 | | | 387 | | | |
+Change in fair value of warrant liabilities | — | | | 138,105 | | | |
+Gain on marketable equity securities | (1,880) | | | — | | | |
+Unrealized foreign exchange loss (gain) | (1,740) | | | 1,998 | | | |
+Other noncash items | — | | | 267 | | | |
+Change in operating assets and liabilities: | | | | | |
+Trade accounts receivable | (432) | | | (57) | | | |
+Inventories | (2,605) | | | (762) | | | |
+Prepaid expenses and other current assets | (455) | | | (1,368) | | | |
+Trade accounts payable | (975) | | | 416 | | | |
+Accrued expenses and other current liabilities | (4,371) | | | 2,695 | | | |
+Deferred revenue | 7,218 | | | (13,796) | | | |
+Operating lease liability | (332) | | | (344) | | | |
+Other non-current assets, net | (3,134) | | | (1,080) | | | |
+Net cash used in operating activities | (73,463) | | | (34,565) | | | |
+Cash flows from investing activities: | | | | | |
+Acquisition of business, net of cash acquired | (252,821) | | | — | | | |
+Purchase of property and equipment | (5,521) | | | (1,187) | | | |
+Purchases of marketable debt securities | (149,117) | | | — | | | |
+| | | | | |
+Maturities of marketable debt securities | 147,241 | | | — | | | |
+Proceeds from recovery of previously written-off convertible note | — | | | 959 | | | |
+| | | | | |
+Expenditures for internal-use software | (363) | | | (129) | | | |
+Net cash used in investing activities | (260,581) | | | (357) | | | |
+Cash flows from financing activities: | | | | | |
+Proceeds from the issuance of common stock pursuant to the Lincoln Park Purchase Agreement | — | | | 37,787 | | | |
+Proceeds from the issuance of common stock in at-the-market offerings, net of issuance costs | — | | | 536,741 | | | |
+Proceeds from issuance of common stock upon exercise of warrants | — | | | 99,319 | | | |
+Proceeds from the issuance of common stock upon exercise of stock options | 1,614 | | | 6,860 | | | |
+Proceeds from common stock issued under the Employee Stock Purchase Plan | 724 | | | 291 | | | |
+Payment of tax withheld pursuant to stock-based compensation settlements | (6,885) | | | (5,664) | | | |
+| | | | | |
+Repayments on TPC loan | — | | | (365) | | | |
+| | | | | |
+| | | | | |
+Repayment of the Equipment Financing Term Loan
+| (69) | | | — | | | |
+Payments of equity issuance costs | (203) | | | — | | | |
+Net cash provided by (used in) financing activities | (4,819) | | | 674,969 | | | |
+Effect of exchange rate changes on cash and cash equivalents | 158 | | | 1,285 | | | |
+Net increase (decrease) in cash and cash equivalents | (338,705) | | | 641,332 | | | |
+Cash and cash equivalents at beginning of period | 635,347 | | | 177,980 | | | |
+Cash and cash equivalents at end of period | $ | 296,642 | | | $ | 819,312 | | | |
+
+
+
+
+
+
+
+
+
+D-Wave Quantum Inc.
+Reconciliation of Gross Profit to Non-GAAP Gross Profit
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | Three Months Ended June 30, | | Six Months Ended June 30, |
+(in thousands of U.S. dollars) | | | | | | 2026 | | 2025 | | 2026 | | 2025 |
+Gross Profit | | | | | | $ | 1,704 | | | $ | 1,976 | | | $ | 3,522 | | | $ | 15,853 | |
+Gross Margin | | | | | | 55.4 | % | | 63.8 | % | | 59.4 | % | | 87.6 | % |
+Excluding: | | | | | | | | | | | | |
+Depreciation and Amortization (1) | | | | | | 14 | | | 14 | | | 29 | | | 42 | |
+Stock-based compensation (2) | | | | | | 279 | | | 231 | | | 464 | | | 373 | |
+Non-GAAP Gross Profit | | | | | | $ | 1,997 | | | $ | 2,221 | | | $ | 4,015 | | | $ | 16,268 | |
+Non-GAAP Gross Margin | | | | | | 64.9 | % | | 71.8 | % | | 67.7 | % | | 89.9 | % |
+
+(1) Depreciation and Amortization reflects the Depreciation and Amortization recorded in Cost of Revenue only, which differs from the total Depreciation and Amortization set forth in the Condensed Consolidated Statement of Cash Flows that also includes Depreciation and Amortization recorded in Operating Expenses.
+(2) Stock-based compensation reflects the stock-based compensation recorded in Cost of Revenue only, which differs from the total stock-based compensation set forth in the Condensed Consolidated Statement of Cash Flows that also includes stock-based compensation recorded in Operating Expenses.
+
+D-Wave Quantum Inc.
+Reconciliation of Operating Expenses to Non-GAAP Adjusted Operating Expenses
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | Three Months Ended June 30, | | Six Months Ended June 30, |
+(in thousands of U.S. dollars) | | | | | | 2026 | | 2025 | | 2026 | | 2025 |
+Operating expenses | | | | | | $ | 54,982 | | | $ | 28,478 | | | $ | 111,527 | | | $ | 53,646 | |
+Excluding: | | | | | | | | | | | | |
+Depreciation and Amortization (1) | | | | | | (4,721) | | | (324) | | | (8,508) | | | (672) | |
+Stock-based compensation (2) | | | | | | (10,833) | | | (6,440) | | | (18,668) | | | (10,291) | |
+Other non-operating or non-recurring expenses (3)
+| | | | | | (358) | | | 506 | | | (10,451) | | | (304) | |
+Non-GAAP Adjusted Operating Expenses
+| | | | | | $ | 39,070 | | | $ | 22,220 | | | $ | 73,900 | | | $ | 42,379 | |
+
+(1) Depreciation and Amortization reflects the Depreciation and Amortization recorded in the Operating Expenses only, which differs from the total Depreciation and Amortization set forth in the Condensed Consolidated Statement of Cash Flows that also includes Depreciation and Amortization recorded in Cost of Revenue.
+(2) Stock-based compensation reflects the stock-based compensation recorded in Operating Expenses only, which differs from the total stock-based compensation set forth in the Condensed Consolidated Statement of Cash Flows that also includes stock-based compensation recorded in Cost of Revenue.
+(3) Includes non-recurring costs related to the Quantum Circuits acquisition, as well as legal, consulting, and accounting fees associated with capital markets activities unrelated to the Company’s core operations, and other non-recurring professional fees and credit loss expenses and recoveries.
+
+
+
+
+
+
+
+
+
+
+D-Wave Quantum Inc.
+Reconciliation of Net Loss to Adjusted EBITDA Loss
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | Three Months Ended June 30, | | Six Months Ended June 30, |
+(in thousands of U.S. dollars) | | | | | | 2026 | | 2025 | | 2026 | | 2025 |
+Net loss | | | | | | $ | (48,028) | | | $ | (167,329) | | | $ | (66,385) | | | $ | (172,750) | |
+Excluding: | | | | | | | | | | | | |
+Depreciation and Amortization | | | | | | 4,735 | | | 338 | | | 8,536 | | | 714 | |
+Income tax benefit (provision), net | | | | | | 8 | | | — | | | (28,444) | | | — | |
+Stock-based compensation | | | | | | 11,112 | | | 6,671 | | | 19,132 | | | 10,664 | |
+Interest income | | | | | | (5,028) | | | (4,311) | | | (10,813) | | | (7,410) | |
+Interest expense (1) | | | | | | 255 | | | 206 | | | 514 | | | 432 | |
+Change in fair value of warrant liabilities | | | | | | — | | | 142,048 | | | — | | | 138,105 | |
+Gain on marketable equity securities | | | | | | — | | | — | | | (1,880) | | | — | |
+Other (income) expense, net (2) | | | | | | (485) | | | 2,884 | | | (997) | | | 3,830 | |
+Other non-operating or non-recurring items (3) | | | | | | 358 | | | (506) | | | 10,451 | | | 304 | |
+Adjusted EBITDA Loss | | | | | | $ | (37,073) | | | $ | (19,999) | | | $ | (69,886) | | | $ | (26,111) | |
+| | | | | | | | | | | | |
+
+(1) Interest expense primarily reflects the interest associated with the Equipment Financing Agreement entered into on August 1, 2025, and interest and adjustments to accrued interest on the SIF Loan.
+(2) Other income (expense), net consists primarily of foreign exchange gains and losses.
+(3) Includes non-recurring costs related to the Quantum Circuits acquisition, as well as legal, consulting, and accounting fees associated with capital markets activities unrelated to the Company’s core operations, and other non-recurring professional fees and credit loss expenses and recoveries.

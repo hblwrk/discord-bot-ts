@@ -377,6 +377,22 @@ describe("extractOutlookMetrics", () => {
     });
   });
 
+  test("prefers a two-column guidance row over the prose around it", () => {
+    // One caption cell and one value cell is one pipe. Scored as prose, the row lost to a
+    // sentence carrying a different year's "midpoint opportunity" — which the filing's own
+    // footnote calls not intended to be guidance.
+    expect(extractOutlookMetrics([
+      "Guidance 3",
+      "($ in millions)",
+      "| Reaffirmed 2026",
+      "Guidance Ranges",
+      "Ongoing Operations Adjusted EBITDA | $6,800 - $7,600",
+      "The company's comprehensive hedging program provides support for the reaffirmed 2026 guidance ranges and the previously announced Ongoing Operations Adjusted EBITDA midpoint opportunity 2 range of $7.4 billion to $7.8 billion for 2027.",
+    ])).toEqual([
+      {key: "adjusted_ebitda", label: "Adj EBITDA", value: "$6.8B to $7.6B"},
+    ]);
+  });
+
   test("limits outlook scanning and ignores unusable fallback values", () => {
     const lines = [
       "Business Outlook",
