@@ -1,5 +1,5 @@
 import moment from "moment-timezone";
-import {stripReferenceMarkers} from "./earnings-results-format-selection.ts";
+import {isDefinitionalLine, stripReferenceMarkers} from "./earnings-results-format-selection.ts";
 import {findNumericValues, getCurrencyCodeFromText} from "./earnings-results-money.ts";
 import {type EarningsResultMetric} from "./earnings-results-metrics.ts";
 import {type EarningsOutlookMetric} from "./earnings-results-outlook.ts";
@@ -216,6 +216,15 @@ function getQuarterFromName(name: string): string | undefined {
 // column, a misplaced decimal — are off by far more.
 export function getDilutedShareMantissa(lines: string[]): number | undefined {
   for (const [lineIndex, line] of lines.entries()) {
+    // The non-GAAP section defines its per-share measure in words — "non-GAAP net loss
+    // divided by the weighted average shares used to compute net loss per share" — which
+    // carries the caption without any count, so the reader took a figure out of the prose
+    // that followed. A count read from the wrong place is worse than none: the consistency
+    // check then contradicts a correct filing.
+    if (true === isDefinitionalLine(line)) {
+      continue;
+    }
+
     // The caption has to be about shares. "dollar-weighted average contract duration" is
     // boilerplate about contracts, and matching it reads an unrelated figure as a count.
     //

@@ -52,8 +52,10 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?eps\b/i,
       /\bnon-gaap\s+(?:diluted\s+)?(?:earnings\s+per\s+share|eps)\b/i,
       // "Non-GAAP diluted net income per share" / "Non-GAAP Diluted Loss Per Share" are
-      // the reconciliation-table labels for the same measure.
-      /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?(?:earnings|net\s+income|net\s+loss|loss)(?:\s*\/?\s*\(loss(?:es)?\))?\s+per\s+(?:common\s+)?share\b/i,
+      // the reconciliation-table labels for the same measure. "Diluted" also appears on the
+      // far side of "per" — "non-GAAP net income per diluted share" — and without that
+      // spelling the measure's only remaining source in a release is a guidance range.
+      /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?(?:earnings|net\s+income|net\s+loss|loss)(?:\s*\/?\s*\(loss(?:es)?\))?\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
       // A reconciliation table can name the measure after the caption instead of before
       // it ("Earnings per share - Non-GAAP").
       /\b(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\s*[–—-]\s*non-gaap\b/i,

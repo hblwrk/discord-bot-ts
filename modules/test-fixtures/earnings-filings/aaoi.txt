@@ -1,0 +1,1325 @@
+EX-99.1
+2
+aaoi_ex9901.htm
+PRESS RELEASE
+
+
+
+
+
+
+
+Exhibit 99.1
+
+
+
+
+
+
+
+
+
+
+
+Applied Optoelectronics
+Reports Second Quarter 2026 Results
+
+
+
+
+
+Sugar Land, Texas, August 6, 2026 &ndash; Applied Optoelectronics,
+Inc. (NASDAQ: AAOI) (&ldquo;AOI&rdquo;), a leading provider of advanced optical and HFC networking products that power AI, today announced
+financial results for its second quarter ended June 30, 2026.
+
+
+
+
+
+&ldquo;Q2 was a pivotal quarter for AOI. We delivered record revenue
+for our fifth consecutive quarter and achieved an important milestone as we returned to non-GAAP profitability in the quarter. Further,
+we saw a strong volume ramp of our 800G products, which more than doubled sequentially,&rdquo; said Dr. Thompson Lin, AOI&rsquo;s Founder,
+President and Chief Executive Officer. &ldquo;Strong demand for high-speed optics alongside high-volume adoption of our 1.8 GHz CATV products
+generated powerful results during the quarter. We continue to see robust customer engagement around our 800G transceivers and 1.6 Tb products,
+and we forecast that demand will continue to outpace our production capacity through mid-2027. We continue to believe the fundamental
+drivers of long-term demand for our business remain robust and we are uniquely positioned as a key supplier to the AI, cloud infrastructure,
+and CATV markets.&rdquo;
+
+
+
+
+
+&ldquo;We&rsquo;re pleased to deliver second quarter results that were
+in line with or better than our expectations,&rdquo; said Dr. Stefan Murry, AOI&rsquo;s Chief Financial Officer and Chief Strategy Officer.
+&ldquo;During Q2, we continued to make solid progress on our production capacity ramp, particularly for our 800G and 1.6Tb products. We
+have a total manufacturing capacity approaching 200,000 units per month and continue to expect by the end of this year that we will be
+capable of producing around 650,000 pieces of 800G and 1.6 Tb products per month. We&rsquo;re working hard to expand our capacity, and
+we continue to anticipate steady sequential revenue growth this year.&rdquo;
+
+
+
+
+
+Second Quarter 2026 Financial Summary
+
+
+
+
+
+
+| &middot; | GAAP revenue was $191.9 million, compared with $103.0 million in the second
+quarter of 2025 and $151.1 million in the first quarter of 2026. |
+
+
+| | |
+
+
+| &middot; | GAAP gross margin was 27.7%, compared with 30.3% in the second quarter of
+2025 and 29.1% in the first quarter of 2026. Non-GAAP gross margin was 29.8%, compared with 30.4% in the second quarter of 2025 and 29.2%
+in the first quarter of 2026. |
+
+
+| | |
+
+
+| &middot; | GAAP net loss was $22.8 million, or $0.28 per basic share, compared with
+net loss of $9.1 million, or $0.16 per basic share in the second quarter of 2025, and a net loss of $14.3 million, or $0.19 per basic
+share in the first quarter of 2026. |
+
+
+| | |
+
+
+| &middot; | Non-GAAP net income was $5.5 million, or $0.06 per diluted share, compared
+with non-GAAP net loss of $8.8 million, or $0.16 per basic share in the second quarter of 2025, and a non-GAAP net loss of $4.9 million,
+or $0.07 per basic share in the first quarter of 2026. |
+
+
+
+
+
+A reconciliation between all GAAP and non-GAAP information referenced
+above is contained in the tables below. Please also refer to &ldquo;Non-GAAP Financial Measures&rdquo; below for a description of these
+non-GAAP financial measures.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| 1 | |
+
+
+
+
+
+
+
+
+
+
+Third Quarter 2026 Business Outlook (+)
+
+
+
+
+
+For third quarter of 2026, the company currently expects:
+
+
+
+
+
+
+| &middot; | Revenue in the range of $255 million to $290 million. |
+
+
+| &middot; | Non-GAAP gross margin in the range of 29% to 30.5%. |
+
+
+| &middot; | Non-GAAP net income in the range of $10.1 million to $24.0 million, and non-GAAP
+income per share in the range of $0.11 to $0.26 using approximately 92.8 million shares. |
+
+
+
+
+
+(+) Please refer to the note below on forward-looking
+statements and the risks involved with such statements as well as the note on non-GAAP financial measures.
+
+
+
+
+
+Conference Call Information
+
+
+
+
+
+The company will host a conference call and webcast for analysts and
+investors today, August 6, 2026 to discuss its second quarter 2026 financial results and outlook for its third quarter 2026 at 4:30 p.m.
+Eastern time / 3:30 p.m. Central time. This call will be open to the public, and investors may access the call by dialing 844-890-1794
+(domestic) or 412-717-9586 (international). A live audio webcast of the conference call along with supplemental financial information
+will also be accessible on the company's website at investors.ao-inc.com.
+Following the webcast, an archived version will be available on the website for one year. A telephonic replay of the call will be available
+one hour after the call and will run for five business days and may be accessed by dialing 855-669-9658 (domestic) or 412-317-0088 (international)
+and entering passcode 6704856.
+
+
+
+
+
+Forward-Looking Information
+
+
+
+
+
+This press release contains forward-looking statements within the meaning
+of the Private Securities Litigation Reform Act of 1995. In some cases, you can identify forward-looking statements by terminology such
+as "believe," "may," "estimate," "continue," "anticipate," "intend," "should,"
+"could," "would," "target," "seek," "aim," "predicts," "think,"
+"objectives," "optimistic," "new," "goal," &ldquo;priorities,&rdquo; "strategy," "potential,"
+"is likely," "will," "expect," &ldquo;momentum,&rdquo; "plan" "project," "permit,"
+&ldquo;positions&rdquo; or by other similar expressions that convey uncertainty of future events or outcomes. These statements include
+management&rsquo;s beliefs and expectations related to our outlook for the third quarter of 2026, the remainder of the year, and the first
+half of 2027. Such forward-looking statements reflect the views of management at the time such statements are made. These forward-looking
+statements involve risks and uncertainties, as well as assumptions and current expectations, which could cause the company's actual results
+to differ materially from those anticipated in such forward-looking statements. These risks and uncertainties include but are not limited
+to: reduction in the size or quantity of customer orders; change in demand for the company's products due to industry conditions; changes
+in manufacturing operations; volatility in manufacturing costs; delays in shipments of products; disruptions in the supply chain; change
+in the rate of design wins or the rate of customer acceptance of new products; the company's reliance on a small number of customers for
+a substantial portion of its revenues; potential pricing pressure; a decline in demand for our customers' products or their rate of deployment
+of their products; general conditions in the internet datacenter, cable television (CATV) broadband, telecom, or fiber-to-the-home (FTTH)
+markets; changes in the world economy (particularly in the United States and China); changes in the regulation and taxation of international
+trade, including the imposition of tariffs; changes in currency exchange rates; the negative effects of seasonality; and other risks and
+uncertainties described more fully in the company's documents filed with or furnished to the Securities and Exchange Commission, including
+our Annual Report on Form 10-K for the year ended December 31, 2025 and our Quarterly report on Form
+10-Q for the quarter ended June 30, 2026 . More information about these and other risks that may impact the company's business are
+set forth in the "Risk Factors" section of the company's quarterly and annual reports on file with the Securities and Exchange
+Commission. You should not rely on forward-looking statements as predictions of future events. All forward-looking statements in this
+press release are based upon information available to us as of the date hereof, and qualified in their entirety by this cautionary statement.
+Except as required by law, we assume no obligation to update forward-looking statements for any reason after the date of this press release
+to conform these statements to actual results or to changes in the company's expectations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| 2 | |
+
+
+
+
+
+
+
+
+
+
+Non-GAAP Financial Measures
+
+
+
+
+
+We provide non-GAAP gross margin, non-GAAP net income (loss), and non-GAAP
+earnings (loss) per share, and non-GAAP Adjusted EBITDA to eliminate the impact of items that we do not consider indicative of our overall
+operating performance. To arrive at our non-GAAP gross margin, we exclude stock-based compensation and related expenses, expenses associated
+with discontinued products, and non-recurring (income) expenses, if any, from our GAAP gross margin. To arrive at our non-GAAP net income
+(loss), we exclude all amortization of intangible assets, stock-based compensation expense, non-recurring expenses, unrealized foreign
+exchange loss (gain), losses from the disposal of idle assets, if any, and non-GAAP tax benefit (expenses) from our GAAP net income (loss).
+Included in our non-recurring expenses in Q2 2026 and Q2 2025 are employee severance expenses
+(if any) and legal expenses associated with litigation and certain legal and advisory expenses associated with purchase termination or
+patent protection. In computing our non-GAAP income tax benefit (expense), we have applied an estimate of our annual effective income
+tax rate and applied it to our net income before income taxes. Our non-GAAP Adjusted EBITDA is calculated by excluding depreciation expense,
+non-GAAP tax benefit (expense), and interest (income) expense, as well as the items excluded from non-GAAP net income (loss), from our
+GAAP net income (loss). Our non-GAAP diluted net earnings (loss) per share is calculated by dividing our non-GAAP net gain (loss) by the
+fully diluted share count (for periods in which non-GAAP net income is positive) or basic share count (for periods in which our non-GAAP
+net income is negative).
+
+
+
+
+
+We believe that our non-GAAP measures are useful to investors in evaluating
+our operating performance for the following reasons:
+
+
+
+
+
+| • | We
+believe that elimination of items such as amortization of intangible assets, stock-based compensation expense, non-recurring revenue
+and expenses, losses from the disposal of idle assets, unrealized foreign exchange gain or loss, and depreciation on certain equipment
+undergoing reconfiguration is appropriate because treatment of these items may vary for reasons unrelated to our overall operating performance; |
+
+| • | We
+believe that elimination of expenses associated with discontinued products, including depreciation and inventory obsolescence is appropriate
+because these expenses are not indicative of our ongoing operations; |
+
+| • | We
+believe that estimating non-GAAP income taxes allows comparison with prior periods and provides additional information regarding the
+generation of potential future deferred tax assets; |
+
+| • | We
+believe that non-GAAP measures provide better comparability with our past financial performance, period-to-period results and with our
+peer companies, many of which also use similar non-GAAP financial measures; and |
+
+| • | We
+anticipate that investors and securities analysts will utilize non-GAAP measures as a supplement to GAAP measures to evaluate our overall
+operating performance. |
+
+
+
+
+
+A reconciliation of our GAAP net income (loss), GAAP total gross profit,
+GAAP earnings (loss), and GAAP earnings (loss) per share for Q2 2026 to our non-GAAP net income (loss), non-GAAP total gross profit, Adjusted
+EBITDA, and earnings (loss) per share, respectively, is provided below, together with corresponding reconciliations for Q2 2025.
+
+
+
+
+
+Non-GAAP measures should not be considered as an alternative to gross
+profit, net income (loss), earnings (loss) per share, or any other measure of financial performance calculated and presented in accordance
+with GAAP. Our non-GAAP measures may not be comparable to similarly titled measures of other organizations because other organizations
+may not calculate such other non-GAAP measures in the same manner. We have not reconciled the non-GAAP measures included in our guidance
+to the appropriate GAAP financial measures because the GAAP measures are not readily determinable on a forward-looking basis. GAAP measures
+that impact our non-GAAP financial measures may include stock-based compensation expense, non-recurring expenses, amortization of intangible
+assets, unrealized exchange loss (gain), asset impairment charges, loss (gain) from disposal of idle assets, and changes in the fair value
+of our convertible notes. These GAAP measures cannot be reasonably predicted and may directly impact our non-GAAP gross margin, our non-GAAP
+net income and our non-GAAP fully-diluted earnings per share, although changes with respect to certain of these measures may offset other
+changes. In addition, certain of these measures are out of our control. Accordingly, a reconciliation of the non-GAAP financial measure
+guidance to the corresponding GAAP measures is not available without unreasonable effort.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| 3 | |
+
+
+
+
+
+
+
+
+
+
+About Applied Optoelectronics
+
+
+
+
+
+Applied Optoelectronics,
+Inc. (AOI) is a leading developer and manufacturer of advanced optical and HFC networking products that are the building blocks for AI
+datacenters, CATV and broadband fiber access networks around the world. AOI supplies this critical infrastructure to tier-one customers
+across cloud computing, CATV broadband, telecom, and FTTH markets. The company has R&D facilities in Atlanta, GA, and engineering
+and manufacturing facilities at its corporate headquarters in Sugar Land, TX, as well as in Taipei, Taiwan and Ningbo, China. For
+additional information, visit www.ao-inc.com .
+
+
+
+
+
+
+# # #
+
+
+
+
+
+Investor Relations Contacts:
+
+
+
+
+
+The Blueshirt Group, Investor Relations
+
+
+Lindsay Savarese
+
+
++1-212-331-8417
+
+
+ir@ao-inc.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| 4 | |
+
+
+
+
+
+
+
+
+
+
+Applied Optoelectronics, Inc.
+
+
+Preliminary Condensed Consolidated Balance Sheets
+
+
+(In thousands)
+
+
+(Unaudited)
+
+
+
+
+
+
+
+
+
+
+
+
+| |
+June 30, 2026 | | |
+December 31, 2025 | |
+
+
+ASSETS | |
+| | | |
+| | |
+
+
+CURRENT ASSETS | |
+| | | |
+| | |
+
+
+Cash, Cash Equivalents and Restricted Cash | |
+$ | 508,758 | | |
+$ | 216,035 | |
+
+
+Accounts Receivable, Net | |
+| 314,009 | | |
+| 244,404 | |
+
+
+Inventories | |
+| 278,791 | | |
+| 183,105 | |
+
+
+Prepaid Expenses and Other Current Assets | |
+| 88,316 | | |
+| 32,183 | |
+
+
+Total Current Assets | |
+| 1,189,874 | | |
+| 675,727 | |
+
+
+| |
+| | | |
+| | |
+
+
+Property, Plant And Equipment, Net | |
+| 697,086 | | |
+| 376,050 | |
+
+
+Land Use Rights, Net | |
+| 4,917 | | |
+| 4,825 | |
+
+
+Operating Right of Use Asset | |
+| 75,168 | | |
+| 49,697 | |
+
+
+Intangible Assets, Net | |
+| 3,633 | | |
+| 3,623 | |
+
+
+Other Assets | |
+| 330,514 | | |
+| 58,501 | |
+
+
+TOTAL ASSETS | |
+$ | 2,301,192 | | |
+$ | 1,168,423 | |
+
+
+| |
+| | | |
+| | |
+
+
+LIABILITIES AND STOCKHOLDERS' EQUITY | |
+| | | |
+| | |
+
+
+CURRENT LIABILITIES | |
+| | | |
+| | |
+
+
+Accounts Payable | |
+$ | 286,088 | | |
+$ | 143,932 | |
+
+
+Bank Acceptance Payable | |
+| 33,940 | | |
+| 33,363 | |
+
+
+Accrued Expenses | |
+| 46,939 | | |
+| 42,491 | |
+
+
+Current Lease Liability-Operating | |
+| 4,223 | | |
+| 3,522 | |
+
+
+Current Portion of Notes Payable and Long Term Debt | |
+| 57,258 | | |
+| 33,975 | |
+
+
+Total Current Liabilities | |
+| 428,448 | | |
+| 257,283 | |
+
+
+Convertible Senior Notes | |
+| 129,142 | | |
+| 129,829 | |
+
+
+Other Long-Term Liabilities | |
+| 75,577 | | |
+| 47,393 | |
+
+
+TOTAL LIABILITIES | |
+| 633,167 | | |
+| 434,505 | |
+
+
+| |
+| | | |
+| | |
+
+
+STOCKHOLDERS' EQUITY | |
+| | | |
+| | |
+
+
+Common Stock | |
+| 84 | | |
+| 75 | |
+
+
+Additional Paid-in Capital | |
+| 2,192,682 | | |
+| 1,224,538 | |
+
+
+Cumulative Translation Adjustment | |
+| 2,399 | | |
+| (617 | ) |
+
+
+Retained Earnings | |
+| (527,140 | ) | |
+| (490,078 | ) |
+
+
+TOTAL STOCKHOLDERS' EQUITY | |
+| 1,668,025 | | |
+| 733,918 | |
+
+
+| |
+| | | |
+| | |
+
+
+TOTAL LIABILITIES AND STOCKHOLDERS' EQUITY | |
+$ | 2,301,192 | | |
+$ | 1,168,423 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| 5 | |
+
+
+
+
+
+
+
+
+
+
+Applied Optoelectronics, Inc.
+
+
+Preliminary Condensed Consolidated Statements of Operations
+
+
+(In thousands)
+
+
+(Unaudited)
+
+
+
+
+
+
+
+
+
+
+
+
+| |
+Three Months Ended June 30, | | |
+Six Months Ended June 30, | |
+
+
+| |
+2026 | | |
+2025 | | |
+2026 | | |
+2025 | |
+
+
+Revenue | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+CATV | |
+$ | 80,578 | | |
+$ | 56,019 | | |
+$ | 147,419 | | |
+$ | 120,520 | |
+
+
+Datacenter | |
+| 107,662 | | |
+| 44,791 | | |
+| 189,066 | | |
+| 76,841 | |
+
+
+Telecom | |
+| 3,411 | | |
+| 1,940 | | |
+| 5,971 | | |
+| 4,876 | |
+
+
+Other | |
+| 271 | | |
+| 202 | | |
+| 610 | | |
+| 574 | |
+
+
+Total Revenue | |
+| 191,922 | | |
+| 102,952 | | |
+| 343,066 | | |
+| 202,811 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Total Cost of Goods Sold | |
+| 138,715 | | |
+| 71,790 | | |
+| 245,943 | | |
+| 141,105 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Total Gross Profit | |
+| 53,207 | | |
+| 31,162 | | |
+| 97,123 | | |
+| 61,706 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Operating Expenses: | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Research and Development | |
+| 34,871 | | |
+| 20,612 | | |
+| 60,527 | | |
+| 38,422 | |
+
+
+Sales and Marketing | |
+| 11,490 | | |
+| 8,135 | | |
+| 17,837 | | |
+| 13,492 | |
+
+
+General and Administrative | |
+| 31,573 | | |
+| 18,391 | | |
+| 56,477 | | |
+| 34,706 | |
+
+
+Total Operating Expenses | |
+| 77,934 | | |
+| 47,138 | | |
+| 134,841 | | |
+| 86,620 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Operating Loss | |
+| (24,727 | ) | |
+| (15,976 | ) | |
+| (37,718 | ) | |
+| (24,914 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Other Income (Expense): | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Interest Income | |
+| 3,248 | | |
+| 286 | | |
+| 4,985 | | |
+| 511 | |
+
+
+Interest Expense | |
+| (927 | ) | |
+| (818 | ) | |
+| (1,790 | ) | |
+| (1,752 | ) |
+
+
+Other Income (Expense), net | |
+| 914 | | |
+| 7,410 | | |
+| (201 | ) | |
+| 7,885 | |
+
+
+Total Other Income (Expense): | |
+| 3,235 | | |
+| 6,878 | | |
+| 2,994 | | |
+| 6,644 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net loss before Income Taxes | |
+| (21,492 | ) | |
+| (9,098 | ) | |
+| (34,724 | ) | |
+| (18,270 | ) |
+
+
+Income Tax Expense | |
+| (1,289 | ) | |
+| &ndash; | | |
+| (2,338 | ) | |
+| &ndash; | |
+
+
+Net loss | |
+$ | (22,781 | ) | |
+$ | (9,098 | ) | |
+$ | (37,062 | ) | |
+$ | (18,270 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net loss per share attributable to common stockholders | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+basic | |
+$ | (0.28 | ) | |
+$ | (0.16 | ) | |
+$ | (0.47 | ) | |
+$ | (0.34 | ) |
+
+
+diluted | |
+$ | (0.28 | ) | |
+$ | (0.16 | ) | |
+$ | (0.47 | ) | |
+$ | (0.34 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Weighted-average shares used to compute net loss per share attributable to common stockholders | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+basic | |
+| 81,568 | | |
+| 56,772 | | |
+| 78,789 | | |
+| 53,426 | |
+
+
+diluted | |
+| 81,568 | | |
+| 56,772 | | |
+| 78,789 | | |
+| 53,426 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| 6 | |
+
+
+
+
+
+
+
+
+
+
+Applied Optoelectronics, Inc.
+
+
+Reconciliation of Statements of Operations under GAAP and Non-GAAP
+
+
+(In thousands)
+
+
+(Unaudited)
+
+
+
+
+
+
+
+
+
+
+
+
+| |
+Three Months Ended June 30, | | |
+Six Months Ended June 30, | |
+
+
+| |
+2026 | | |
+2025 | | |
+2026 | | |
+2025 | |
+
+
+GAAP total gross profit (a) | |
+$ | 53,207 | | |
+$ | 31,162 | | |
+$ | 97,123 | | |
+$ | 61,706 | |
+
+
+Share-based compensation expense | |
+| 170 | | |
+| 94 | | |
+| 326 | | |
+| 177 | |
+
+
+Non-recurring expense | |
+| 282 | | |
+| 41 | | |
+| 298 | | |
+| 41 | |
+
+
+Expenses associated with discontinued products | |
+| 3,594 | | |
+| &ndash; | | |
+| 3,594 | | |
+| &ndash; | |
+
+
+Non-GAAP total gross profit (a) | |
+$ | 57,253 | | |
+$ | 31,297 | | |
+$ | 101,341 | | |
+$ | 61,924 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+GAAP net loss | |
+$ | (22,781 | ) | |
+$ | (9,098 | ) | |
+$ | (37,062 | ) | |
+$ | (18,270 | ) |
+
+
+Share-based compensation expense | |
+| 4,863 | | |
+| 3,164 | | |
+| 9,254 | | |
+| 5,726 | |
+
+
+Expenses associated with discontinued products | |
+| 3,594 | | |
+| &ndash; | | |
+| 3,594 | | |
+| &ndash; | |
+
+
+Non-cash expenses associated with discontinued products | |
+| 1,102 | | |
+| 1,073 | | |
+| 2,017 | | |
+| 2,118 | |
+
+
+Amortization of intangible assets | |
+| 123 | | |
+| 110 | | |
+| 244 | | |
+| 218 | |
+
+
+Non-recurring (income) expense | |
+| 4,744 | | |
+| 862 | | |
+| 5,021 | | |
+| 1,255 | |
+
+
+Unrealized exchange loss (gain) | |
+| (432 | ) | |
+| (5,278 | ) | |
+| 745 | | |
+| (5,061 | ) |
+
+
+Tax (benefit) expense related to the above | |
+| 14,262 | | |
+| 337 | | |
+| 16,722 | | |
+| 4,325 | |
+
+
+Non-GAAP net Gain (loss) | |
+$ | 5,475 | | |
+$ | (8,830 | ) | |
+$ | 535 | | |
+$ | (9,689 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+GAAP net loss | |
+$ | (22,781 | ) | |
+$ | (9,098 | ) | |
+$ | (37,062 | ) | |
+$ | (18,270 | ) |
+
+
+Share-based compensation expense | |
+| 4,863 | | |
+| 3,164 | | |
+| 9,254 | | |
+| 5,726 | |
+
+
+Expenses associated with discontinued products | |
+| 3,594 | | |
+| &ndash; | | |
+| 3,594 | | |
+| &ndash; | |
+
+
+Non-cash expenses associated with discontinued products | |
+| 1,102 | | |
+| 1,073 | | |
+| 2,017 | | |
+| 2,118 | |
+
+
+Amortization of intangible assets | |
+| 123 | | |
+| 110 | | |
+| 244 | | |
+| 218 | |
+
+
+Non-recurring expense (income) | |
+| 4,744 | | |
+| 862 | | |
+| 5,021 | | |
+| 1,255 | |
+
+
+Unrealized exchange loss (gain) | |
+| (432 | ) | |
+| (5,278 | ) | |
+| 745 | | |
+| (5,061 | ) |
+
+
+Depreciation expense | |
+| 9,276 | | |
+| 5,217 | | |
+| 17,467 | | |
+| 9,790 | |
+
+
+Interest (income) expense, net | |
+| (2,321 | ) | |
+| 532 | | |
+| (3,195 | ) | |
+| 1,241 | |
+
+
+Income tax expenses (credit) | |
+| 1,289 | | |
+| &ndash; | | |
+| 2,338 | | |
+| &ndash; | |
+
+
+Adjusted EBITDA | |
+$ | (543 | ) | |
+$ | (3,418 | ) | |
+$ | 423 | | |
+$ | (2,983 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+GAAP diluted net loss per share | |
+$ | (0.28 | ) | |
+$ | (0.16 | ) | |
+$ | (0.47 | ) | |
+$ | (0.34 | ) |
+
+
+Share-based compensation expense | |
+| 0.06 | | |
+| 0.06 | | |
+| 0.11 | | |
+| 0.11 | |
+
+
+Expenses associated with discontinued products | |
+| 0.04 | | |
+| &ndash; | | |
+| 0.04 | | |
+| &ndash; | |
+
+
+Non-cash expenses associated with discontinued products | |
+| 0.01 | | |
+| 0.02 | | |
+| 0.02 | | |
+| 0.04 | |
+
+
+Non-recurring (income) expense | |
+| 0.05 | | |
+| 0.01 | | |
+| 0.06 | | |
+| 0.02 | |
+
+
+Unrealized exchange loss (gain) | |
+| &ndash; | | |
+| (0.10 | ) | |
+| 0.01 | | |
+| (0.09 | ) |
+
+
+Non-GAAP tax benefit | |
+| 0.18 | | |
+| 0.01 | | |
+| 0.24 | | |
+| 0.08 | |
+
+
+Non-GAAP diluted net earnings (loss) per share | |
+$ | 0.06 | | |
+$ | (0.16 | ) | |
+$ | 0.01 | | |
+$ | (0.18 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Shares used to compute diluted loss per share | |
+| 81,568 | | |
+| 56,772 | | |
+| 78,789 | | |
+| 53,426 | |
+
+
+Shares used to compute diluted earnings per share | |
+| 88,152 | | |
+| 62,037 | | |
+| 85,373 | | |
+| 58,690 | |
+
+
+
+
+
+
+
+
+(a) Provided for the purpose of calculating gross profit as a percentage of revenue (gross margin).
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| 7 | |

@@ -77,4 +77,28 @@ describe("per-share consistency gate", () => {
     expect(getInconsistentPerShareReasons(document.metrics, document.dilutedShareMantissa))
       .toEqual([]);
   });
+
+  // A count read from the wrong place is worse than none: the check then contradicts a correct
+  // filing and suppresses it. The non-GAAP section defines its per-share measure in words,
+  // carrying the share caption with no count of its own.
+  test("ignores the share caption inside a prose definition", () => {
+    const document = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>ExampleCo Announces Second Quarter 2026 Results</h1>
+          <p>(in thousands, except per share data)</p>
+          <p>Three Months Ended June 30, 2026</p>
+          <p>Non-GAAP net loss per share is defined as non-GAAP net loss divided by the weighted average shares used to compute net loss per share attributable to common stockholders-basic and diluted. The Company excludes stock-based compensation of $100 and other items.</p>
+          <p>GAAP diluted net loss per share $0.16</p>
+          <p>Net loss | $ | (52,600) | |</p>
+          <p>Weighted average shares used to compute net loss per share - basic and diluted</p>
+          <p>| 333,215 | |</p>
+        </body>
+      </html>
+    `);
+
+    expect(document.dilutedShareMantissa).toBe(333_215);
+    expect(getInconsistentPerShareReasons(document.metrics, document.dilutedShareMantissa))
+      .toEqual([]);
+  });
 });

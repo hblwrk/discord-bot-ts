@@ -442,7 +442,11 @@ function getOutlookMetricCandidateScore(line: string): number {
   // A guidance table states the figures; the paragraph introducing it only describes them,
   // and any amount it happens to mention belongs to that description rather than to the
   // metric ("...guidance, reflecting the continued strong revenue performance in Q2").
-  if (2 <= (line.match(/\|/g)?.length ?? 0)) {
+  //
+  // One pipe is enough: a two-column guidance table is a caption and a value cell, so
+  // requiring two left its rows scoring below the surrounding prose — which is how a range
+  // the filing itself disclaims as "not intended to be guidance" was posted as the guidance.
+  if (1 <= (line.match(/\|/g)?.length ?? 0)) {
     score += 30;
   } else if (200 < line.length) {
     score -= 20;

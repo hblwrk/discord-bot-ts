@@ -1,0 +1,1735 @@
+EX-99.1
+2
+ex-991x20260630x8k.htm
+EX-99.1
+
+
+
+
+Document
+
+
+Exhibit 99.1
+
+
+
+Datadog Announces Second Quarter 2026 Financial Results
+
+
+August 6, 2026
+
+
+Second quarter revenue grew 36% year-over-year to $1.12 billion
+Robust growth of larger customers, with about 4,720 $100k+ ARR customers, up from about 3,850 a year ago
+Launched AI-powered Bits Code, Bits Chat, and Bits Agent Builder for general availability
+
+
+NEW YORK-- Datadog, Inc. (NASDAQ:DDOG), the leading AI-powered observability and security platform, today announced financial results for its second quarter ended June 30, 2026.
+"Datadog delivered a strong quarter, with 36% year-over-year revenue growth, $316 million in operating cash flow, and $279 million in free cash flow," said Olivier Pomel, co-founder and CEO of Datadog. "Our customers are building and deploying with AI, and they are using the Datadog platform to observe, secure, and act on their AI-enabled solutions."
+Pomel added, "We are innovating rapidly to help our customers manage rising complexity, and increasingly build autonomy into their operations."
+Second Quarter 2026 Financial Highlights:
+• Revenue was $1.12 billion, an increase of 36% year-over-year.
+• GAAP operating income was $5 million; GAAP operating margin was 0%.
+• Non-GAAP operating income was $257 million; non-GAAP operating margin was 23%.
+• GAAP net income per diluted share was $0.12; non-GAAP net income per diluted share was $0.65.
+• Operating cash flow was $316 million, with free cash flow of $279 million.
+• Cash, cash equivalents, and marketable securities were $5.0 billion as of June 30, 2026.
+Second Quarter & Recent Business Highlights:
+• As of June 30, 2026, we had about 4,720 customers with ARR of $100,000 or more, an increase of 23% from about 3,850 as of June 30, 2025.
+• Named a Leader in the Gartner Magic Quadrant for Observability Platforms, 2026. This is the sixth consecutive year Gartner has positioned Datadog as a Leader in the Magic Quadrant.
+
+
+
+
+
+
+
+
+
+• Acquired Adaptive ML, a frontier AI startup developing the world’s first Reinforcement Learning Operations platform, to accelerate Datadog AI Research’s investment in world models and agentic LLM post-training for observability—combining Datadog’s access to real-world infrastructure and security data with Adaptive ML’s expertise in building specialized, high-performance AI agents.
+• Launched more than 100 new capabilities at DASH 2026 to help customers drive autonomy and manage growing AI and security complexity. Highlights included fully autonomous Bits AI for end-to-end incident detection, investigation, and remediation; AI Guard to protect AI agents from prompt injection and poisoning attacks; Bring Your Own Cloud for deploying Datadog within customer environments; and Bits Agent Builder for creating custom AI agents.
+Third Quarter and Full Year 2026 Outlook:
+Based on information as of today, August 6, 2026, Datadog is providing the following guidance:
+• Third Quarter 2026 Outlook:
+◦ Revenue between $1.135 billion and $1.145 billion.
+◦ Non-GAAP operating income between $260 million and $270 million.
+◦ Non-GAAP net income per share between $0.63 and $0.65, assuming approximately 378 million weighted average diluted shares outstanding.
+• Full Year 2026 Outlook:
+◦ Revenue between $4.45 billion and $4.47 billion.
+◦ Non-GAAP operating income between $1.01 billion and $1.03 billion.
+◦ Non-GAAP net income per share between $2.50 and $2.54, assuming approximately 376 million weighted average diluted shares outstanding.
+Datadog has not reconciled its expectations as to non-GAAP operating income, or as to non-GAAP net income per share, to their most directly comparable GAAP measure as a result of uncertainty regarding, and the potential variability of, reconciling items such as stock-based compensation and employer payroll taxes on equity incentive plans. Accordingly, reconciliation is not available without unreasonable effort, although it is important to note that these factors could be material to Datadog’s results computed in accordance with GAAP.
+Co nference Call Details:
+• W hat: Datadog financial results for the second quarter of 2026 and outlook for the third quarter and the full year 2026
+• When: August 6, 2026 a t 8:00 A.M. Eastern Time (5:00 A.M. Pacific Time)
+
+
+
+
+
+
+
+
+
+• Dial in: To access the call in the U.S., please register here . Callers are encouraged to dial into the call 10 to 15 minutes prior to the start to prevent any delay in joining.
+• Webcast: https://investors.datadoghq.com (live and replay)
+• Replay: A replay of the call will be archived on the investor relations website
+About Datadog
+Datadog is the leading observability and security platform for the AI era, providing businesses with unified visibility across the technology stack to manage complexity at scale. It brings applications, infrastructure, data, models, and security into one place, using AI to detect and resolve issues before they impact customers. Trusted globally by Fortune 500 companies and high-growth AI leaders, Datadog enables businesses to move faster with clarity and confidence.
+Forward-Looking Statements
+This press release and the earnings call referencing this press release contain “forward-looking” statements, as that term is defined under the federal securities laws, including but not limited to statements regarding Datadog’s strategy, product and platform capabilities, the growth in and ability to capitalize on long-term market opportunities including the pace and scope of cloud migration, digital transformation and AI deployment, gross margins, operating margins including with respect to sales and marketing, research and development expenses, net interest and other income, cash taxes, capital expenditures and capitalized software, and Datadog’s future financial performance, including its outlook for the third quarter and the full year 2026 third quarter and the full year 2026 and related notes and assumptions. These forward-looking statements are based on Datadog’s current assumptions, expectations and beliefs and are subject to substantial risks, uncertainties, assumptions and changes in circumstances that may cause Datadog’s actual results, performance or achievements to differ materially from those expressed or implied in any forward-looking statement.
+The risks and uncertainties referred to above include, but are not limited to (1) our recent rapid growth may not be indicative of our future growth; (2) our history of operating losses; (3) our limited operating history; (4) our dependence on existing customers purchasing additional subscriptions and products from us and renewing their subscriptions; (5) our ability to attract new customers; (6) our ability to effectively develop and expand our sales and marketing capabilities; (7) risk of a security breach; (8) risk of interruptions or performance problems associated with our products and platform capabilities; (9) our ability to adapt and respond to rapidly changing technology or customer needs; (10) the competitive markets in which we participate; (11) risks associated with successfully managing our growth; (12) risks associated with changing laws, regulations, and contractual obligations related to data privacy and security and (13) general market, political, economic, and business conditions including concerns about trade policies, tariffs, reduced economic growth and associated decreases in information technology spending. These risks and uncertainties are more fully described in our filings with
+
+
+
+
+
+
+
+
+
+the Securities and Exchange Commission (SEC), including in the section entitled “Risk Factors” in our Annual Report on Form 10-K for the year ended December 31, 2025, filed with the SEC on February 18, 2026. Additional information will be made available in our Quarterly Report on Form 10-Q for the quarter ended June 30, 2026 and other filings and reports that we may file from time to time with the SEC. Moreover, we operate in a very competitive and rapidly changing environment. New risks emerge from time to time. It is not possible for our management to predict all risks, nor can we assess the impact of all factors on our business or the extent to which any factor, or combination of factors, may cause actual results to differ materially from those contained in any forward-looking statements we may make. In light of these risks, uncertainties and assumptions, we cannot guarantee future results, levels of activity, performance, achievements, or events and circumstances reflected in the forward-looking statements will occur. Forward-looking statements represent our beliefs and assumptions only as of the date of this press release. We disclaim any obligation to update forward-looking statements.
+About Non-GAAP Financial Measures
+Datadog discloses the following non-GAAP financial measures in this release and the earnings call referencing this press release: non-GAAP gross profit, non-GAAP gross margin, non-GAAP operating expenses (research and development, sales and marketing and general and administrative), non-GAAP operating income (loss), non-GAAP operating margin, non-GAAP net income (loss), non-GAAP net income (loss) per diluted share, non-GAAP net income (loss) per basic share, free cash flow and free cash flow margin. Datadog uses each of these non-GAAP financial measures internally to understand and compare operating results across accounting periods, for internal budgeting and forecasting purposes, for short- and long-term operating plans, and to evaluate Datadog’s financial performance. Datadog believes they are useful to investors, as a supplement to GAAP measures, in evaluating its operational performance, as further discussed below. Datadog’s non-GAAP financial measures may not provide information that is directly comparable to that provided by other companies in its industry, as other companies in its industry may calculate non-GAAP financial results differently, particularly related to non-recurring and unusual items. In addition, there are limitations in using non-GAAP financial measures because the non-GAAP financial measures are not prepared in accordance with GAAP and may be different from non-GAAP financial measures used by other companies and exclude expenses that may have a material impact on Datadog’s reported financial results.
+Non-GAAP financial measures should not be considered in isolation from, or as a substitute for, financial information prepared in accordance with GAAP. A reconciliation of the historical non-GAAP financial measures to their most directly comparable GAAP measures has been provided in the financial statement tables included below in this press release.
+Datadog defines non-GAAP gross profit, non-GAAP gross margin, non-GAAP operating expenses (research and development, sales and marketing and general and administrative), non-GAAP operating income (loss), non-GAAP operating margin and non-GAAP net income (loss) as the respective GAAP balances, adjusted for,
+
+
+
+
+
+
+
+
+
+as applicable: (1) stock-based compensation expense; (2) the amortization of acquired intangibles; (3) employer payroll taxes on employee stock transactions; (4) M&A transaction costs; (5) amortization of issuance costs; and (6) an assumed provision for income taxes based on our long-term projected tax rate. Non-GAAP financial measures prior to April 1, 2025 have not been adjusted for M&A transaction costs, as such costs were not material to our results of operations in such prior periods. Our estimated long-term projected tax rate is subject to change for a variety of reasons, including the rapidly evolving global tax environment, significant changes in Datadog's geographic earnings mix, or other changes to our strategy or business operations. We will re-evaluate our long-term projected tax rate as appropriate. Datadog defines free cash flow as net cash provided by operating activities, minus capital expenditures and minus capitalized software development costs, if any. Investors are encouraged to review the reconciliation of these historical non-GAAP financial measures to their most directly comparable GAAP financial measures.
+Management believes these non-GAAP financial measures are useful to investors and others in assessing Datadog’s operating performance due to the following factors:
+Stock-based compensation. Datadog utilizes stock-based compensation to attract and retain employees. It is principally aimed at aligning their interests with those of its stockholders and at long-term retention, rather than to address operational performance for any particular period. As a result, stock-based compensation expenses vary for reasons that are generally unrelated to financial and operational performance in any particular period.
+Amortization of acquired intangibles. Datadog views amortization of acquired intangible assets as items arising from pre-acquisition activities determined at the time of an acquisition. While these intangible assets are evaluated for impairment regularly, amortization of the cost of acquired intangibles is an expense that is not typically affected by operations during any particular period.
+Employer payroll taxes on employee stock transactions. Datadog excludes employer payroll tax expense on equity incentive plans as these expenses are tied to the exercise or vesting of underlying equity awards and the price of Datadog’s common stock at the time of vesting or exercise. As a result, these taxes may vary in any particular period independent of the financial and operating performance of Datadog’s business.
+M&A transaction costs . Datadog views acquisition-related expenses, such as transaction costs, as costs that are not necessarily reflective of operational performance during a period. In particular, Datadog believes the consideration of measures that exclude such expenses can assist in the comparison of operational performance in different periods which may or may not include such expenses.
+Amortization of issuance costs. In June 2020 and December 2024, Datadog issued $747.5 million of 0.125% convertible senior notes due 2025 and $1.0 billion of 0% convertible senior notes due 2029, respectively. Debt issuance costs, which reduce the carrying value of the convertible debt instrument, are amortized as interest expense over the term. The expense for the amortization of debt issuance costs is a non-cash item, and we believe the exclusion of this interest expense will provide for a more useful comparison of our operational performance in different periods.
+
+
+
+
+
+
+
+
+
+Additionally, Datadog’s management believes that the non-GAAP financial measure free cash flow is meaningful to investors because it is a measure of liquidity that provides useful information in understanding and evaluating the strength of our liquidity and future ability to generate cash that can be used for strategic opportunities or investing in our business. Free cash flow represents net cash provided by operating activities, reduced by capital expenditures and capitalized software development costs, if any. The reduction of capital expenditures and amounts capitalized for software development facilitates comparisons of Datadog's liquidity on a period-to-period basis and excludes items that management does not consider to be indicative of our liquidity.
+Operating Metrics
+Datadog’s number of customers with ARR of $100,000 or more is based on the ARR of each customer, as of the last month of the quarter.
+We define the number of customers as the number of accounts with a unique account identifier for which we have an active subscription in the period indicated. Users of our free trials or tier are not included in our customer count. A single organization with multiple divisions, segments or subsidiaries is generally counted as a single customer. However, in some cases where they have separate billing terms, we may count separate divisions, segments or subsidiaries as multiple customers.
+We define ARR as the annualized revenue run-rate of subscription agreements from all customers at a point in time. We calculate ARR by taking the monthly recurring revenue, or MRR, and multiplying it by 12. MRR for each month is calculated by aggregating, for all customers during that month, monthly revenue from committed contractual amounts, additional usage, usage from subscriptions for a committed contractual amount of usage that is delivered as used, and monthly subscriptions. ARR and MRR should be viewed independently of revenue, and do not represent our revenue under GAAP on a monthly or annualized basis, as they are operating metrics that can be impacted by contract start and end dates and renewal rates. ARR and MRR are not intended to be replacements or forecasts of revenue.
+
+
+
+
+
+
+
+
+
+
+
+
+Datadog, Inc.
+Condensed Consolidated Statements of Operations
+(In thousands, except per share data; unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended
+June 30,
+| | Six Months Ended
+June 30,
+|
+| | 2026
+| | 2025
+| | 2026
+| | 2025
+|
+Revenue
+| | $
+| 1,121,454
+|
+| | $
+| 826,760
+|
+| | $
+| 2,127,880
+|
+| | $
+| 1,588,313
+|
+|
+Cost of revenue (1)(2)(3)
+| | 240,113
+|
+| | 165,978
+|
+| | 449,341
+|
+| | 323,606
+|
+|
+Gross profit
+| | 881,341
+|
+| | 660,782
+|
+| | 1,678,539
+|
+| | 1,264,707
+|
+|
+Operating expenses:
+| | | | | | | | |
+Research and development (1)(3)
+| | 477,968
+|
+| | 387,482
+|
+| | 913,266
+|
+| | 728,543
+|
+|
+Sales and marketing (1)(2)(3)
+| | 311,519
+|
+| | 239,026
+|
+| | 591,342
+|
+| | 453,317
+|
+|
+General and administrative (1)(3)(4)
+| | 86,399
+|
+| | 69,774
+|
+| | 161,149
+|
+| | 130,767
+|
+|
+Total operating expenses
+| | 875,886
+|
+| | 696,282
+|
+| | 1,665,757
+|
+| | 1,312,627
+|
+|
+Operating income (loss)
+| | 5,455
+|
+| | (35,500)
+|
+| | 12,782
+|
+| | (47,920)
+|
+|
+Other income:
+| | | | | | | | |
+Interest expense (5)
+| | (3,255)
+|
+| | (3,075)
+|
+| | (6,374)
+|
+| | (6,038)
+|
+|
+Interest income and other income, net
+| | 49,533
+|
+| | 44,663
+|
+| | 104,255
+|
+| | 91,842
+|
+|
+Other income, net
+| | 46,278
+|
+| | 41,588
+|
+| | 97,881
+|
+| | 85,804
+|
+|
+Income before provision for income taxes
+| | 51,733
+|
+| | 6,088
+|
+| | 110,663
+|
+| | 37,884
+|
+|
+Provision for income taxes
+| | 7,175
+|
+| | 3,441
+|
+| | 13,531
+|
+| | 10,595
+|
+|
+Net income
+| | $
+| 44,558
+|
+| | $
+| 2,647
+|
+| | $
+| 97,132
+|
+| | $
+| 27,289
+|
+|
+Net income per share - basic
+| | $
+| 0.13
+|
+| | $
+| 0.01
+|
+| | $
+| 0.27
+|
+| | $
+| 0.08
+|
+|
+| | | | | | | | |
+Net income per share - diluted
+| | $
+| 0.12
+|
+| | $
+| 0.01
+|
+| | $
+| 0.27
+|
+| | $
+| 0.08
+|
+|
+Weighted average shares used in calculating net income per share:
+| | | | | | | | |
+Basic
+| | 356,253
+|
+| | 346,185
+|
+| | 354,771
+|
+| | 344,650
+|
+|
+Diluted
+| | 371,023
+|
+| | 358,725
+|
+| | 368,271
+|
+| | 361,289
+|
+|
+| | | | | | | | |
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+(1) Includes stock-based compensation expense as follows:
+| | | | | | | | |
+Cost of revenue
+| | $
+| 9,256
+|
+| | $
+| 6,783
+|
+| | $
+| 17,815
+|
+| | $
+| 13,434
+|
+|
+Research and development
+| | 131,682
+|
+| | 112,445
+|
+| | 255,353
+|
+| | 218,180
+|
+|
+Sales and marketing
+| | 47,098
+|
+| | 37,442
+|
+| | 89,396
+|
+| | 71,567
+|
+|
+General and administrative
+| | 32,215
+|
+| | 23,792
+|
+| | 54,529
+|
+| | 41,546
+|
+|
+Total
+| | $
+| 220,251
+|
+| | $
+| 180,462
+|
+| | $
+| 417,093
+|
+| | $
+| 344,727
+|
+|
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+(2) Includes amortization of acquired intangibles as follows:
+| | | | | | | | | | | | |
+Cost of revenue
+| | $
+| 1,310
+|
+| | $
+| 1,518
+|
+| | $
+| 2,592
+|
+| | $
+| 2,412
+|
+| | | | |
+Sales and marketing
+| | 362
+|
+| | 188
+|
+| | 719
+| | 391
+| | | | |
+Total
+| | $
+| 1,672
+|
+| | $
+| 1,706
+|
+| | $
+| 3,311
+|
+| | $
+| 2,803
+|
+| | | | |
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+(3) Includes employer payroll taxes on employee stock transactions as follows:
+|
+Cost of revenue
+| | $
+| 392
+|
+| | $
+| 165
+|
+| | $
+| 580
+|
+| | $
+| 351
+|
+|
+Research and development
+| | 21,211
+|
+| | 11,819
+|
+| | 32,487
+|
+| | 21,401
+|
+|
+Sales and marketing
+| | 3,632
+|
+| | 1,359
+|
+| | 5,527
+|
+| | 2,929
+|
+|
+General and administrative
+| | 2,408
+|
+| | 2,724
+|
+| | 6,045
+|
+| | 4,949
+|
+|
+Total
+| | $
+| 27,643
+|
+| | $
+| 16,067
+|
+| | $
+| 44,639
+|
+| | $
+| 29,630
+|
+|
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+(4) Includes M&A transaction costs as follows:
+| | | | | | | | |
+General and administrative
+| | $
+| 2,010
+|
+| | $
+| 1,373
+|
+| | $
+| 2,704
+|
+| | $
+| 1,373
+|
+|
+Total
+| | $
+| 2,010
+|
+| | $
+| 1,373
+|
+| | $
+| 2,704
+|
+| | $
+| 1,373
+|
+|
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+(5) Includes amortization of issuance costs as follows:
+| | | | | | | | |
+Interest expense
+| | $
+| 1,049
+|
+| | $
+| 1,691
+|
+| | $
+| 2,096
+|
+| | $
+| 3,510
+|
+|
+Total
+| | $
+| 1,049
+|
+| | $
+| 1,691
+|
+| | $
+| 2,096
+|
+| | $
+| 3,510
+|
+|
+
+
+
+
+
+
+
+
+
+
+
+Datadog, Inc.
+Condensed Consolidated Balance Sheets
+(In thousands; unaudited)
+| | | | | | | | | | | | | | |
+| | June 30,
+2026
+| | December 31,
+2025
+|
+ASSETS
+| | | | |
+CURRENT ASSETS:
+| | | | |
+Cash and cash equivalents
+| | $
+| 434,957
+|
+| | $
+| 401,305
+|
+|
+Marketable securities
+| | 4,550,481
+|
+| | 4,073,531
+|
+|
+Accounts receivable, net of allowance for credit losses of $24,021 and $19,292 as of June 30, 2026 and December 31, 2025, respectively
+| | 827,345
+|
+| | 741,262
+|
+|
+Deferred contract costs, current
+| | 87,350
+|
+| | 76,022
+|
+|
+Prepaid expenses and other current assets
+| | 108,424
+|
+| | 90,160
+|
+|
+Total current assets
+| | 6,008,557
+|
+| | 5,382,280
+|
+|
+Property and equipment, net
+| | 409,634
+|
+| | 338,093
+|
+|
+Operating lease assets
+| | 206,037
+|
+| | 214,674
+|
+|
+Goodwill
+| | 706,721
+|
+| | 530,568
+|
+|
+Intangible assets, net
+| | 23,157
+|
+| | 14,968
+|
+|
+Deferred contract costs, non-current
+| | 145,028
+|
+| | 126,708
+|
+|
+| | | | |
+Other assets
+| | 48,541
+|
+| | 36,553
+|
+|
+TOTAL ASSETS
+| | $
+| 7,547,675
+|
+| | $
+| 6,643,844
+|
+|
+LIABILITIES AND STOCKHOLDERS' EQUITY
+| | | | |
+CURRENT LIABILITIES:
+| | | | |
+Accounts payable
+| | $
+| 313,529
+|
+| | $
+| 148,791
+|
+|
+Accrued expenses and other current liabilities
+| | 230,548
+|
+| | 209,595
+|
+|
+Operating lease liabilities, current
+| | 44,218
+|
+| | 39,369
+|
+|
+| | | | |
+Deferred revenue, current
+| | 1,286,690
+|
+| | 1,193,646
+|
+|
+Total current liabilities
+| | 1,874,985
+|
+| | 1,591,401
+|
+|
+Operating lease liabilities, non-current
+| | 248,038
+|
+| | 256,187
+|
+|
+Convertible senior notes, net, non-current
+| | 985,545
+|
+| | 983,449
+|
+|
+Deferred revenue, non-current
+| | 50,860
+|
+| | 68,711
+|
+|
+Other liabilities
+| | 21,087
+|
+| | 11,890
+|
+|
+Total liabilities
+| | 3,180,515
+|
+| | 2,911,638
+|
+|
+STOCKHOLDERS' EQUITY:
+| | | | |
+Common stock
+| | 3
+|
+| | 3
+|
+|
+Additional paid-in capital
+| | 4,139,000
+|
+| | 3,579,010
+|
+|
+Accumulated other comprehensive (loss) income
+| | (6,764)
+|
+| | 15,404
+|
+|
+Retained earnings
+| | 234,921
+|
+| | 137,789
+|
+|
+Total stockholders’ equity
+| | 4,367,160
+|
+| | 3,732,206
+|
+|
+TOTAL LIABILITIES AND STOCKHOLDERS' EQUITY
+| | $
+| 7,547,675
+|
+| | $
+| 6,643,844
+|
+|
+| | | | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Datadog, Inc.
+Condensed Consolidated Statements of Cash Flow
+(In thousands; unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended
+June 30,
+| | Six Months Ended
+June 30,
+|
+| | 2026
+| | 2025
+| | 2026
+| | 2025
+|
+CASH FLOWS FROM OPERATING ACTIVITIES:
+| | | | | | | | |
+Net income
+| | $
+| 44,558
+|
+| | $
+| 2,647
+|
+| | $
+| 97,132
+|
+| | $
+| 27,289
+|
+|
+Adjustments to reconcile net income to net cash provided by operating activities:
+| | | | | | | | |
+Depreciation and amortization
+| | 19,489
+|
+| | 12,822
+|
+| | 37,412
+|
+| | 24,077
+|
+|
+Accretion of discounts on marketable securities
+| | (12,480)
+|
+| | (10,927)
+|
+| | (24,360)
+|
+| | (21,297)
+|
+|
+Amortization of issuance costs
+| | 1,049
+|
+| | 1,691
+|
+| | 2,096
+|
+| | 3,510
+|
+|
+Amortization of deferred contract costs
+| | 22,077
+|
+| | 15,977
+|
+| | 42,402
+|
+| | 30,830
+|
+|
+Stock-based compensation, net of amounts capitalized
+| | 220,251
+|
+| | 180,462
+|
+| | 417,093
+|
+| | 344,727
+|
+|
+Non-cash lease expense
+| | 9,517
+|
+| | 9,001
+|
+| | 18,590
+|
+| | 17,390
+|
+|
+Allowance for credit losses on accounts receivable
+| | 5,641
+|
+| | 3,895
+|
+| | 10,594
+|
+| | 8,415
+|
+|
+Loss on disposal of property and equipment
+| | 534
+|
+| | 977
+|
+| | 1,668
+|
+| | 832
+|
+|
+Changes in operating assets and liabilities:
+| | | | | | | | |
+Accounts receivable, net
+| | (151,649)
+|
+| | (115,899)
+|
+| | (95,775)
+|
+| | (11,672)
+|
+|
+Deferred contract costs
+| | (36,505)
+|
+| | (24,301)
+|
+| | (72,050)
+|
+| | (45,820)
+|
+|
+Prepaid expenses and other current assets
+| | (730)
+|
+| | 11,343
+|
+| | (15,175)
+|
+| | 1,080
+|
+|
+Other assets
+| | (1,955)
+|
+| | (1,821)
+|
+| | (2,477)
+|
+| | (3,038)
+|
+|
+Accounts payable
+| | 133,620
+|
+| | 96,352
+|
+| | 155,120
+|
+| | 85,640
+|
+|
+Accrued expenses and other liabilities
+| | 6,975
+|
+| | (3,250)
+|
+| | 3,098
+|
+| | 2,398
+|
+|
+Deferred revenue
+| | 55,480
+|
+| | 21,086
+|
+| | 75,127
+|
+| | 7,235
+|
+|
+Net cash provided by operating activities
+| | 315,872
+|
+| | 200,055
+|
+| | 650,495
+|
+| | 471,596
+|
+|
+CASH FLOWS FROM INVESTING ACTIVITIES:
+| | | | | | | | |
+Purchases of marketable securities
+| | (1,132,495)
+|
+| | (751,477)
+|
+| | (2,437,460)
+|
+| | (1,721,779)
+|
+|
+Maturities of marketable securities
+| | 598,288
+|
+| | 697,172
+|
+| | 1,644,703
+|
+| | 1,253,110
+|
+|
+Proceeds from sale of marketable securities
+| | 323,146
+|
+| | 13,212
+|
+| | 323,089
+|
+| | 13,136
+|
+|
+Purchases of property and equipment
+| | (9,889)
+|
+| | (15,152)
+|
+| | (21,247)
+|
+| | (23,900)
+|
+|
+Capitalized software development costs
+| | (27,279)
+|
+| | (19,550)
+|
+| | (61,452)
+|
+| | (37,952)
+|
+|
+Cash paid for acquisition of businesses; net of cash acquired
+| | (101,650)
+|
+| | (115,272)
+|
+| | (112,310)
+|
+| | (117,090)
+|
+|
+Net cash used in investing activities
+| | (349,879)
+|
+| | (191,067)
+|
+| | (664,677)
+|
+| | (634,475)
+|
+|
+CASH FLOWS FROM FINANCING ACTIVITIES:
+| | | | | | | | |
+Proceeds from exercise of stock options
+| | 2,754
+|
+| | 1,685
+|
+| | 12,465
+|
+| | 3,358
+|
+|
+Proceeds for issuance of common stock under the employee stock purchase plan
+| | 39,067
+|
+| | 28,578
+|
+| | 39,067
+|
+| | 28,578
+|
+|
+Proceeds from issuance of 2029 Convertible Senior Notes, net of issuance costs
+| | —
+|
+| | (190)
+|
+| | —
+|
+| | (190)
+|
+|
+Repayments of 2025 Convertible Senior Notes
+| | —
+|
+| | (635,527)
+|
+| | —
+|
+| | (635,547)
+|
+|
+Net cash provided by (used in) financing activities
+| | 41,821
+|
+| | (605,454)
+|
+| | 51,532
+|
+| | (603,801)
+|
+|
+| | | | | | | | |
+Effect of exchange rate changes on cash and cash equivalents
+| | 783
+|
+| | 5,642
+|
+| | (3,698)
+|
+| | 8,727
+|
+|
+| | | | | | | | |
+NET INCREASE (DECREASE) IN CASH AND CASH EQUIVALENTS
+| | 8,597
+|
+| | (590,824)
+|
+| | 33,652
+|
+| | (757,953)
+|
+|
+CASH AND CASH EQUIVALENTS—Beginning of period
+| | 426,360
+|
+| | 1,079,854
+|
+| | 401,305
+|
+| | 1,246,983
+|
+|
+CASH AND CASH EQUIVALENTS—End of period
+| | $
+| 434,957
+|
+| | $
+| 489,030
+|
+| | $
+| 434,957
+|
+| | $
+| 489,030
+|
+|
+| | | | | | | | |
+|
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+Datadog, Inc.
+Reconciliation from GAAP to Non-GAAP Results
+(In thousands; unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended
+June 30,
+| | Six Months Ended
+June 30,
+|
+| | 2026
+| | 2025
+| | 2026
+| | 2025
+|
+Reconciliation of gross profit and gross margin
+| | | | | | | | |
+GAAP gross profit
+| | $
+| 881,341
+| | $
+| 660,782
+| | $
+| 1,678,539
+| | $
+| 1,264,707
+|
+Plus: Stock-based compensation expense
+| | 9,256
+| | 6,783
+| | 17,815
+| | 13,434
+|
+Plus: Amortization of acquired intangibles
+| | 1,310
+| | 1,518
+| | 2,592
+| | 2,412
+|
+Plus: Employer payroll taxes on employee stock transactions
+| | 392
+| | 165
+| | 580
+| | 351
+|
+Non-GAAP gross profit
+| | $
+| 892,299
+| | $
+| 669,248
+| | $
+| 1,699,526
+| | $
+| 1,280,904
+|
+GAAP gross margin
+| | 79%
+| | 80%
+| | 79%
+| | 80%
+|
+Non-GAAP gross margin
+| | 80%
+| | 81%
+| | 80%
+| | 81%
+|
+| | | | | | | | |
+Reconciliation of operating expenses
+| | | | | | | | |
+GAAP research and development
+| | $
+| 477,968
+| | $
+| 387,482
+| | $
+| 913,266
+| | $
+| 728,543
+|
+Less: Stock-based compensation expense
+| | (131,682)
+| | (112,445)
+| | (255,353)
+| | (218,180)
+|
+Less: Employer payroll taxes on employee stock transactions
+| | (21,211)
+| | (11,819)
+| | (32,487)
+| | (21,401)
+|
+Non-GAAP research and development
+| | $
+| 325,075
+| | $
+| 263,218
+| | $
+| 625,426
+| | $
+| 488,962
+|
+| | | | | | | | |
+GAAP sales and marketing
+| | $
+| 311,519
+| | $
+| 239,026
+| | $
+| 591,342
+| | $
+| 453,317
+|
+Less: Stock-based compensation expense
+| | (47,098)
+| | (37,442)
+| | (89,396)
+| | (71,567)
+|
+Less: Amortization of acquired intangibles
+| | (362)
+| | (188)
+| | (719)
+| | (391)
+|
+Less: Employer payroll taxes on employee stock transactions
+| | (3,632)
+| | (1,359)
+| | (5,527)
+| | (2,929)
+|
+Non-GAAP sales and marketing
+| | $
+| 260,427
+| | $
+| 200,037
+| | $
+| 495,700
+| | $
+| 378,430
+|
+| | | | | | | | |
+GAAP general and administrative
+| | $
+| 86,399
+| | $
+| 69,774
+| | $
+| 161,149
+| | $
+| 130,767
+|
+Less: Stock-based compensation expense
+| | (32,215)
+| | (23,792)
+| | (54,529)
+| | (41,546)
+|
+Less: Employer payroll taxes on employee stock transactions
+| | (2,408)
+| | (2,724)
+| | (6,045)
+| | (4,949)
+|
+Less: M&A transaction costs
+| | (2,010)
+| | (1,373)
+| | (2,704)
+| | (1,373)
+|
+Non-GAAP general and administrative
+| | $
+| 49,766
+| | $
+| 41,885
+| | $
+| 97,871
+| | $
+| 82,899
+|
+| | | | | | | | |
+Reconciliation of operating (loss) income and operating margin
+| | | | | | | | |
+GAAP operating income (loss)
+| | $
+| 5,455
+| | $
+| (35,500)
+| | $
+| 12,782
+| | $
+| (47,920)
+|
+Plus: Stock-based compensation expense
+| | 220,251
+| | 180,462
+| | 417,093
+| | 344,727
+|
+Plus: Amortization of acquired intangibles
+| | 1,672
+| | 1,706
+| | 3,311
+| | 2,803
+|
+Plus: Employer payroll taxes on employee stock transactions
+| | 27,643
+| | 16,067
+| | 44,639
+| | 29,630
+|
+Plus: M&A transaction costs
+| | 2,010
+| | 1,373
+| | 2,704
+| | 1,373
+|
+Non-GAAP operating income
+| | $
+| 257,031
+| | $
+| 164,108
+| | $
+| 480,529
+| | $
+| 330,613
+|
+GAAP operating margin
+| | 0%
+| | (4)%
+| | 1%
+| | (3)%
+|
+Non-GAAP operating margin
+| | 23%
+| | 20%
+| | 23%
+| | 21%
+|
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+
+
+
+
+
+
+
+
+
+
+
+
+Datadog, Inc.
+Reconciliation from GAAP to Non-GAAP Results
+(In thousands, except per share data; unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended
+June 30,
+| | Six Months Ended
+June 30,
+|
+| | 2026
+| | 2025
+| | 2026
+| | 2025
+|
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+Reconciliation of net income
+| | | | | | | | |
+GAAP net income
+| | $
+| 44,558
+| | $
+| 2,647
+| | $
+| 97,132
+| | $
+| 27,289
+|
+Plus: Stock-based compensation expense
+| | 220,251
+| | 180,462
+| | 417,093
+| | 344,727
+|
+Plus: Amortization of acquired intangibles
+| | 1,672
+| | 1,706
+| | 3,311
+| | 2,803
+|
+Plus: Employer payroll taxes on employee stock transactions
+| | 27,643
+| | 16,067
+| | 44,639
+| | 29,630
+|
+Plus: M&A transaction costs
+| | 2,010
+| | 1,373
+| | 2,704
+| | 1,373
+|
+Plus: Amortization of issuance costs
+| | 1,049
+| | 1,691
+| | 2,096
+| | 3,510
+|
+Non-GAAP net income before non-GAAP tax adjustments
+| | $
+| 297,183
+| | $
+| 203,946
+| | $
+| 566,975
+| | $
+| 409,332
+|
+Income tax effects and adjustments (1)
+| | 56,740
+| | 40,110
+| | 108,374
+| | 77,589
+|
+Non-GAAP net income after non-GAAP tax adjustments
+| | $
+| 240,443
+| | $
+| 163,836
+| | $
+| 458,601
+| | $
+| 331,743
+|
+Net income per share before non-GAAP tax adjustments - basic
+| | $
+| 0.83
+| | $
+| 0.59
+| | $
+| 1.60
+| | $
+| 1.19
+|
+Net income per share before non-GAAP tax adjustments - diluted
+| | $
+| 0.80
+| | $
+| 0.57
+| | $
+| 1.54
+| | $
+| 1.13
+|
+| | | | | | | | |
+Net income per share after non-GAAP tax adjustments - basic
+| | $
+| 0.67
+| | $
+| 0.47
+| | $
+| 1.29
+| | $
+| 0.96
+|
+Net income per share after non-GAAP tax adjustments - diluted
+| | $
+| 0.65
+| | $
+| 0.46
+| | $
+| 1.25
+| | $
+| 0.92
+|
+| | | | | | | | |
+Shares used in non-GAAP net income per share calculations:
+| | | | | | | | |
+Basic
+| | 356,253
+| | 346,185
+| | 354,771
+| | 344,650
+|
+Diluted
+| | 371,023
+| | 358,725
+| | 368,271
+| | 361,289
+|
+
+| | |
+|
+
+1) Non-GAAP financial information for the periods shown are adjusted for an assumed provision for income taxes based on our long-term projected tax rate of 21%. Due to the differences in the tax treatment of items excluded from non-GAAP earnings, our estimated tax rate on non-GAAP income may differ from our GAAP tax rate and from our actual tax liabilities.
+
+
+
+
+
+
+
+
+
+
+
+
+Datadog, Inc.
+Reconciliation of GAAP Cash Flow from Operating Activities to Free Cash Flow
+(In thousands; unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended
+June 30,
+| | Six Months Ended
+June 30,
+|
+| | 2026
+| | 2025
+| | 2026
+| | 2025
+|
+Net cash provided by operating activities
+| | $
+| 315,872
+| | $
+| 200,055
+| | $
+| 650,495
+| | $
+| 471,596
+|
+Less: Purchases of property and equipment
+| | (9,889)
+| | (15,152)
+| | (21,247)
+| | (23,900)
+|
+Less: Capitalized software development costs
+| | (27,279)
+| | (19,550)
+| | (61,452)
+| | (37,952)
+|
+Free cash flow
+| | $
+| 278,704
+| | $
+| 165,353
+| | $
+| 567,796
+| | $
+| 409,744
+|
+Free cash flow margin
+| | 25%
+| | 20%
+| | 27%
+| | 26%
+|
+
+
+
+
+
+Contact Information
+Yuka Broderick
+Datadog Investor Relations
+IR@datadoghq.com
+
+
+Dan Haggerty
+Datadog Public Relations
+Press@datadoghq.com
+
+
+Datadog is a registered trademark of Datadog, Inc.
+All product and company names herein may be trademarks of their registered owners.

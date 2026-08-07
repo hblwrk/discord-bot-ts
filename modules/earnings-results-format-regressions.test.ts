@@ -482,4 +482,67 @@ describe("earnings result filing regressions", () => {
     expect(values).not.toContain("€2.65");
   });
 
+  // The half-year wording ("six-month 2026 earnings ... or $5.00 per share") and the comparison
+  // clause left on its own line by a paragraph break are pinned by the ConocoPhillips and
+  // Innodata corpus entries. Reduced to a synthetic document neither reproduces the tie they
+  // lost — the surrounding filing is what makes the wrong line competitive — so a synthetic
+  // here would pass with or without the guard and imply coverage that is not there.
+
+  test("reads a non-GAAP measure captioned with diluted after per", () => {
+    // Without this spelling the measure's only source was the guidance range below it, whose
+    // low end was posted as the quarter's result.
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>ExampleCo Announces Second Quarter 2026 Financial Results</h1>
+          <p>Three Months Ended June 30, 2026</p>
+          <p>GAAP net income per diluted share was $0.12; non-GAAP net income per diluted share was $0.65.</p>
+          <p>Third Quarter 2026 Outlook:</p>
+          <p>Non-GAAP net income per share between $0.63 and $0.65, assuming approximately 378 million weighted average diluted shares outstanding.</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "adjusted_eps", numericValue: 0.65}),
+    ]));
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$0.63");
+  });
+
+  test("keeps the reported figure from a clause that goes on to give the non-GAAP one", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>ExampleCo Announces Second Quarter 2026 Results</h1>
+          <p>Three Months Ended June 30, 2026</p>
+          <p>For the three months ended June 30, 2026: GAAP diluted net loss per share $0.16; non-GAAP diluted net loss per share $0.05</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "gaap_eps", numericValue: -0.16}),
+      expect.objectContaining({key: "adjusted_eps", numericValue: -0.05}),
+    ]));
+  });
+
+  test("signs a loss stated beside the value under a combined caption", () => {
+    // "loss / earnings per share" carries no sign of its own, so the words introducing the
+    // value are the only place the sign appears.
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>ExampleCo Announces Second Quarter 2026 Results</h1>
+          <p>Three Months Ended June 30, 2026</p>
+          <p>Generally Accepted Accounting Principles (GAAP) loss / earnings per share (EPS) assuming dilution was a loss per share of $0.54 and non-GAAP loss per share was $0.13.</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "gaap_eps", numericValue: -0.54}),
+    ]));
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$0.54");
+  });
+
 });

@@ -422,9 +422,12 @@ const filingCorpus: {
   },
   {
     // "typing the call into the CAD in another jurisdiction" is Computer-Aided Dispatch in a
-    // customer quote, not a currency declaration.
+    // customer quote, not a currency declaration. The per-share figure is stated in a sentence
+    // that goes on to give the non-GAAP one, and it agrees with the statements table's
+    // "Diluted | $ | 0.36" and with $29.4M over 82.5M shares.
     company: "Axon Enterprise",
     metrics: [
+      ["gaap_eps", "$0.36"],
       ["revenue", "$904M"],
       ["net_income", "$29.43M"],
     ],
@@ -493,6 +496,189 @@ const filingCorpus: {
     source: "1655210/000165521026000053/ex991pressrelease-q22026ea.htm",
     ticker: "bynd",
   },
+  {
+    company: "Himax Technologies",
+    metrics: [
+      ["revenue", "$227.33M"],
+    ],
+    outlook: [
+      ["Gross margin", "34%"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1342338/000117184326005288/exh_991.htm",
+    ticker: "himx",
+  },
+  {
+    // Reported and adjusted per-share figures are genuinely equal this quarter — the release
+    // says so in its own subtitle, so the repeated value is not a duplicated read. Net income
+    // is $534 million; the figure is stored as printed because the statement's scale is
+    // declared too far above the row to reach it, and an unscaled value is dropped before
+    // posting rather than published.
+    company: "Howmet Aerospace",
+    metrics: [
+      ["adjusted_eps", "$1.33"],
+      ["gaap_eps", "$1.33"],
+      ["revenue", "$2.55B"],
+      ["net_income", "$534"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "4281/000110465926091610/tm2622325d1_ex99-1.htm",
+    ticker: "hwm",
+  },
+  {
+    company: "D-Wave Quantum",
+    metrics: [
+      ["gaap_eps", "-$0.13"],
+      ["revenue", "$3.08M"],
+      ["net_income", "-$48.03M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1907982/000190798226000127/qbts-20260806xexx991.htm",
+    ticker: "qbts",
+  },
+  {
+    // The adjusted measure is captioned "non-GAAP net income per diluted share" — "diluted"
+    // on the far side of "per". Unmatched, the only remaining source for the measure was the
+    // Q3 guidance range, whose low end ($0.63) was posted as the quarter's result.
+    company: "Datadog",
+    metrics: [
+      ["adjusted_eps", "$0.65"],
+      ["gaap_eps", "$0.12"],
+      ["revenue", "$1.12B"],
+      ["net_income", "$44.56M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1561550/000162828026053829/ex-991x20260630x8k.htm",
+    ticker: "ddog",
+  },
+  {
+    // "six-month 2026 earnings were $6.1 billion, or $5.00 per share" states the half year with
+    // a hyphen, so the year-to-date penalty missed it and both per-share figures were taken
+    // from the six-month sentence instead of the quarter's ($3.23 and $3.24).
+    company: "ConocoPhillips",
+    metrics: [
+      ["adjusted_eps", "$3.24"],
+      ["gaap_eps", "$3.23"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1163165/000116316526000030/cop-20260806x8kexx991.htm",
+    ticker: "cop",
+  },
+  {
+    // Revenue is $5.8 billion. The stored "$2.22K" is a North America segment row read under a
+    // "$ in mm" heading the reader does not treat as a scale; unscaled, it is dropped before
+    // posting. Scaling it without first distinguishing segment rows from consolidated ones
+    // would turn a dropped figure into a published wrong one.
+    company: "Parker-Hannifin",
+    metrics: [
+      ["adjusted_eps", "$9.27"],
+      ["gaap_eps", "$8.54"],
+      ["revenue", "$2.22K"],
+      ["net_income", "$1.09B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q4 2026",
+    source: "76334/000007633426000082/exhibit991q4fy26.htm",
+    ticker: "ph",
+  },
+  {
+    // One clause states both per-share measures — "GAAP diluted net loss per share $0.16;
+    // non-GAAP diluted net loss per share $0.05" — and the non-GAAP half had the whole line
+    // discarded, leaving the adjusted figure posted alone. The share count comes from the
+    // statements, not from the non-GAAP section's prose definition of the same caption.
+    company: "Rigetti Computing",
+    metrics: [
+      ["adjusted_eps", "-$0.05"],
+      ["gaap_eps", "-$0.16"],
+      ["revenue", "$5.1M"],
+      ["net_income", "-$52.6M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1838359/000110465926091979/rgti-20260806xex99d1.htm",
+    ticker: "rgti",
+  },
+  {
+    // Net sales are $752.1 million, stored as printed: the table declares its scale as "$MM",
+    // which the reader does not recognise, so the figure is dropped before posting.
+    company: "Century Aluminum",
+    metrics: [
+      ["adjusted_eps", "$2.46"],
+      ["gaap_eps", "$2.39"],
+      ["revenue", "$752.1"],
+      ["net_income", "$249.3M"],
+    ],
+    outlook: [
+      ["Adj EBITDA", "$325M to $345M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "949157/000162828026054300/a20260630q2ex991earningsre.htm",
+    ticker: "cenx",
+  },
+  {
+    company: "Applied Optoelectronics",
+    metrics: [
+      ["gaap_eps", "-$0.28"],
+      ["revenue", "$191.9M"],
+      ["net_income", "-$22.8M"],
+    ],
+    outlook: [
+      ["Revenue", "$255M to $290M"],
+      ["Gross margin", "29% to 30.5%"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1158114/000168316826006055/aaoi_ex9901.htm",
+    ticker: "aaoi",
+  },
+  {
+    // A hard line break inside the paragraph leaves the prior-year clause standing as its own
+    // line, carrying the reported period's date: "...period ended June 30, 2026, compared to
+    // net income of $7.2 million". That comparison figure was posted as the quarter's; the
+    // quarter's is $14.41 million.
+    company: "Innodata",
+    metrics: [
+      ["gaap_eps", "$0.41"],
+      ["revenue", "$92.14M"],
+      ["net_income", "$14.41M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "903651/000110465926092010/tm2621499d1_ex99-1.htm",
+    ticker: "inod",
+  },
+  {
+    company: "Cloudflare",
+    metrics: [
+      ["adjusted_eps", "$0.29"],
+      ["gaap_eps", "-$0.48"],
+      ["revenue", "$696.1M"],
+      ["net_income", "-$169.98M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1477333/000147733326000053/q226exhibit991.htm",
+    ticker: "net",
+  },
+  {
+    // Guidance sits in a two-column table — one pipe per row — which scored below the prose
+    // around it. The prose that won carried a 2027 "midpoint opportunity" range the filing's
+    // own footnote calls "not intended to be guidance"; the reaffirmed 2026 range is the table's.
+    company: "Vistra",
+    metrics: [
+      ["revenue", "$4.02B"],
+      ["net_income", "$305M"],
+    ],
+    outlook: [
+      ["Adj EBITDA", "$6.8B to $7.6B"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1692819/000169281926000017/vistra-20260630xearningsre.htm",
+    ticker: "vst",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -513,6 +699,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(33);
+    expect(filingCorpus).toHaveLength(45);
   });
 });

@@ -1,0 +1,610 @@
+EX-99.1
+2
+q226exhibit991.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+
+
+
+Cloudflare Announces Second Quarter 2026 Financial Results
+
+
+• Second quarter revenue totaled $696.1 million, representing an increase of 36% year-over-year
+• GAAP loss from operations of $205.7 million, or 30% of total revenue, and non-GAAP income from operations of $96.1 million, or 14% of revenue
+• Delivered Current RPO year-over-year growth of 35%
+San Francisco, CA, August 6, 2026 — Cloudflare, Inc. (NYSE: NET), the leading connectivity cloud company, today announced financial results for its second quarter ended June 30, 2026.
+
+
+“We delivered a stellar second quarter, highlighted by revenue accelerating to $696.1 million, up 36% year-over-year, and record growth in total paying customers, large customers, and developers on our platform,” said Matthew Prince, co-founder & CEO of Cloudflare. “As the web shifts to AI answer engines and agent-driven commerce, we are seeing a fundamental rewrite of the Internet for machine-to-machine traffic. Cloudflare sits at the center of this paradigm shift—building the infrastructure, controls, developer tools, and payment rails for the Agentic Internet. The business model of the web is changing, and no company is better positioned than Cloudflare to help define its future.”
+
+
+Second Quarter Fiscal 2026 Financial Highlights
+
+
+• Revenue : Total revenue of $696.1 million, representing an increase of 36% year-over-year.
+• Gross Profit : GAAP gross profit was $499.5 million, or 71.8% gross margin, compared to $383.6 million, or 74.9%, in the second quarter of 2025. Non-GAAP gross profit was $508.9 million, or 73.1% gross margin, compared to $390.7 million, or 76.3%, in the second quarter of 2025.
+• Operating Income (Loss) : GAAP loss from operations was $205.7 million, or 29.6% of revenue, compared to $67.3 million, or 13.1% of revenue, in the second quarter of 2025. Non-GAAP income from operations was $96.1 million, or 13.8% of revenue, compared to $72.3 million, or 14.1% of revenue, in the second quarter of 2025.
+• Net Income (Loss) : GAAP net loss was $170.0 million, compared to $50.4 million in the second quarter of 2025. GAAP net loss per basic and diluted share was $0.48, compared to $0.15 in the second quarter of 2025. Non-GAAP net income was $107.8 million, compared to $75.1 million in the second quarter of 2025. Non-GAAP net income per diluted share was $0.29, compared to $0.21 in the second quarter of 2025.
+• Cash Flow : Net cash flow from operating activities was $117.6 million, compared to $99.8 million for the second quarter of 2025. Free cash flow was $56.4 million, or 8% of revenue, compared to $33.3 million, or 6% of revenue, in the second quarter of 2025.
+• Cash, cash equivalents, and available-for-sale securities were $4,162.8 million as of June 30, 2026.
+
+
+The section titled "Non-GAAP Financial Information" below describes our usage of non-GAAP financial measures. Reconciliations between historical GAAP and non-GAAP information are contained at the end of this press release following the accompanying financial data.
+
+
+Financial Outlook
+
+
+For the third quarter of fiscal 2026, we expect:
+
+
+• Total revenue of $736.0 to $737.0 million
+• Non-GAAP income from operations of $129.0 to $130.0 million
+• Non-GAAP net income per share of $0.34, utilizing weighted average common shares outstanding of approximately 374 million
+
+
+
+
+
+
+
+
+
+
+
+For the full year fiscal 2026, we expect:
+
+
+• Total revenue of $2,864.0 to $2,870.0 million
+• Non-GAAP income from operations of $443.0 to $445.0 million
+• Non-GAAP net income per share of $1.25 to $1.26, utilizing weighted average common shares outstanding of approximately 374 million
+
+
+These statements are forward-looking and actual results may differ materially. Refer to the Forward-Looking Statements safe harbor below for information on the factors that could cause our actual results to differ materially from these forward-looking statements.
+
+
+
+Conference Call Information
+
+
+Cloudflare will host an investor conference call to discuss its second quarter ended June 30, 2026 earnings results today at 2:00 p.m. Pacific time (5:00 p.m. Eastern time). Interested parties can access the call by dialing (646) 968-2727 or toll-free at (888) 596-4244 with conference ID 3723782. A live webcast of the conference call will be accessible from the investor relations website at https://cloudflare.NET. A replay will be available approximately two hours after the conclusion of the live event and will remain available for approximately one year.
+
+
+
+Supplemental Financial and Other Information
+
+
+Supplemental financial and other information can be accessed through the Company’s investor relations website at https://cloudflare.NET.
+
+
+
+Non-GAAP Financial Information
+
+
+Cloudflare believes that the presentation of non-GAAP financial information provides important supplemental information to management and investors regarding financial and business trends relating to the Company’s financial condition and results of operations. Reconciliations of non-GAAP financial measures to the most directly comparable financial results as determined in accordance with GAAP are included at the end of this press release following the accompanying financial data. A reconciliation of non-GAAP guidance measures to corresponding GAAP measures is not available on a forward-looking basis without unreasonable effort due to the uncertainty of expenses that may be incurred in the future. For further information regarding why Cloudflare believes that these non-GAAP measures provide useful information to investors, the specific manner in which management uses these measures, and some of the limitations associated with the use of these measures, please refer to the “Explanation of Non-GAAP Financial Measures” section at the end of this press release.
+
+
+
+Available Information
+
+
+Cloudflare intends to use its press releases, website, investor relations website, news site, blog, X account, Facebook account, and Instagram account, in addition to filings made with the Securities and Exchange Commission (SEC) and public conference calls, as a means of disclosing material non-public information and for complying with its disclosure obligations under Regulation FD.
+
+
+
+Forward-Looking Statements
+
+
+This press release contains forward-looking statements within the meaning of Section 27A of the Securities Act of 1933, as amended, and Section 21E of the Securities Exchange Act of 1934, as amended, which statements involve substantial risks and uncertainties. In some cases, you can identify forward-looking statements because they contain words such as “may,” “will,” “should,” “expect,” “explore,” “plan,” “anticipate,” “could,” “intend,” “target,” “project,” “contemplate,” “believe,” “estimate,” “predict,” “potential,” or “continue,” or the negative of these words, or other similar terms or expressions that concern our expectations, strategy, plans, or intentions. However, not all forward-looking statements contain these identifying words. Forward-looking statements expressed or implied in this press release include, but are not limited to, statements regarding our future financial and operating performance, our reputation and performance in the market, general market trends, our estimated and projected revenue, non-GAAP income from operations and non-GAAP net income per share, shares outstanding, the benefits to customers from using our products, the expected functionality and performance of our products, the demand by customers for our products, our plans and objectives for future operations, growth, initiatives, or strategies, our
+
+
+
+
+
+
+
+
+
+market opportunity, the plan to further accelerate our evolution to an agentic AI-first operating model and the intent for the plan to align our organizational structure with this new operating model, the estimated reduction of our current workforce, the estimated charges in connection with this plan, including the primary components of such charges, the anticipated timing of the implementation of this plan and the timing of such charges, the expected benefits from this plan and related actions, and comments made by our CEO and others. There are a significant number of factors that could cause actual results to differ materially from statements made in this press release, including: the impact of adverse macroeconomic conditions on our and our customers’, vendors’, and partners’ operations and future financial performance; the impact of conflicts and geopolitical tension around the world, particularly in Eastern Europe or the Middle East, or any worsening or expansion of those conflicts or tensions, as well as other geopolitical events such as elections and other governmental changes, threats of tariffs and other impediments to cross-border trade; our history of net losses; risks associated with managing our growth; our ability to attract and retain new customers (including new large customers); our ability to retain and upgrade paying customers and convert free customers to paying customers; our ability to expand the number of products we sell to paying customers; our ability to effectively increase sales to large customers; our ability to incorporate AI tools and automation to increase productivity and maintain operational efficiency; our ability to increase brand awareness; our ability to continue to innovate and develop new products and product features; our ability to generate demand for our products; our ability to effectively attract, train, and retain our sales force to be able to sell our existing and new products and product features; our sales team’s productivity; our ability to effectively attract, integrate and retain key personnel; problems with our internal systems, network, or data, including actual or perceived breaches or failures; rapidly evolving technological developments in the market, including advancements in AI; length of our sales cycles and the timing of payments by our customers; activities of our paying and free customers or the content of their websites and other Internet properties that use our network and products; foreign currency fluctuations; changes in the legal, tax, and regulatory environment applicable to our business; and other general market, political, economic, and business conditions. Our actual results could differ materially from those stated or implied in forward-looking statements due to a number of factors, including but not limited to, risks detailed in our filings with the SEC, including our Quarterly Report on Form 10-Q filed on May 8, 2026, as well as other filings that we may make from time to time with the SEC.
+
+
+The forward-looking statements made in this press release relate only to events as of the date on which the statements are made. We undertake no obligation to update any forward-looking statements made in this press release to reflect events or circumstances after the date of this press release or to reflect new information or the occurrence of unanticipated events, except as required by law. We may not actually achieve the plans, intentions, or expectations disclosed in our forward-looking statements, and you should not place undue reliance on our forward-looking statements.
+
+
+
+
+About Cloudflare
+
+
+Cloudflare, Inc. (NYSE: NET) is the leading connectivity cloud company on a mission to help build a better Internet. It empowers organizations to make their employees, applications and networks faster and more secure everywhere, while reducing complexity and cost. Cloudflare’s connectivity cloud delivers the most full-featured, unified platform of cloud-native products and developer tools, so any organization can gain the control they need to work, develop, and accelerate their business.
+
+
+Powered by one of the world’s largest and most interconnected networks, Cloudflare blocks billions of threats online for its customers every day. It is trusted by millions of organizations – from the largest brands to entrepreneurs and small businesses to nonprofits, humanitarian groups, and governments across the globe.
+
+
+Learn more about Cloudflare’s connectivity cloud at cloudflare.com/connectivity-cloud. Learn more about the latest Internet trends and insights at radar.cloudflare.com.
+
+
+
+
+Investor Relations Information
+Phil Winslow
+ir@cloudflare.com
+
+
+Press Contact Information
+Daniella Vallurupalli
+press@cloudflare.com
+
+
+Source: Cloudflare, Inc.
+
+
+
+
+
+
+
+
+
+
+CLOUDFLARE, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(in thousands, except per share data)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended
+June 30, | | Six Months Ended
+June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Revenue | $ | 696,061 | | | $ | 512,316 | | | $ | 1,335,816 | | | $ | 991,403 | |
+Cost of revenue (1)(2)
+| 196,544 | | | 128,677 | | | 380,702 | | | 244,253 | |
+Gross profit | 499,517 | | | 383,639 | | | 955,114 | | | 747,150 | |
+Operating expenses: | | | | | | | |
+Sales and marketing (1)(2)(3)
+| 276,122 | | | 219,359 | | | 547,722 | | | 433,370 | |
+Research and development (1)
+| 159,486 | | | 134,557 | | | 310,458 | | | 249,646 | |
+General and administrative (1)(3)(5)(6)
+| 118,912 | | | 96,987 | | | 213,931 | | | 184,645 | |
+Restructuring and other charges | 150,693 | | | — | | | 150,693 | | | — | |
+Total operating expenses | 705,213 | | | 450,903 | | | 1,222,804 | | | 867,661 | |
+Loss from operations | (205,696) | | | (67,264) | | | (267,690) | | | (120,511) | |
+Non-operating income (expense): | | | | | | | |
+Interest income | 39,932 | | | 25,406 | | | 80,098 | | | 46,805 | |
+Interest expense (4)
+| (3,089) | | | (1,524) | | | (5,652) | | | (2,967) | |
+| | | | | | | |
+Other income (expense), net | 913 | | | (3,907) | | | 3,903 | | | (7,375) | |
+Total non-operating income, net | 37,756 | | | 19,975 | | | 78,349 | | | 36,463 | |
+Loss before income taxes
+| (167,940) | | | (47,289) | | | (189,341) | | | (84,048) | |
+Provision for income taxes | 2,041 | | | 3,157 | | | 3,567 | | | 4,852 | |
+Net loss | $ | (169,981) | | | $ | (50,446) | | | $ | (192,908) | | | $ | (88,900) | |
+Net loss per share attributable to common stockholders, basic and diluted | $ | (0.48) | | | $ | (0.15) | | | $ | (0.55) | | | $ | (0.26) | |
+Weighted-average shares used in computing net loss per share attributable to common stockholders, basic and diluted | 354,334 | | | 347,489 | | | 353,485 | | | 346,605 | |
+| | | | | | | |
+
+____________
+(1) Includes stock-based compensation and related employer payroll taxes as follows: | | | | | | | | | | | | | | | | | | | | | | | |
+Cost of revenue | $ | 4,311 | | | $ | 3,693 | | | $ | 8,455 | | | $ | 6,599 | |
+Sales and marketing | 41,246 | | | 36,818 | | | 84,070 | | | 67,023 | |
+Research and development | 55,435 | | | 50,956 | | | 104,936 | | | 89,225 | |
+General and administrative | 39,601 | | | 40,526 | | | 70,589 | | | 75,041 | |
+Total stock-based compensation and related employer payroll taxes | $ | 140,593 | | | $ | 131,993 | | | $ | 268,050 | | | $ | 237,888 | |
+
+(2) Includes amortization of acquired intangible assets as follows: | | | | | | | | | | | | | | | | | | | | | | | |
+Cost of revenue | $ | 5,050 | | | $ | 3,329 | | | $ | 11,011 | | | $ | 6,182 | |
+Sales and marketing | 2,391 | | | 417 | | | 3,641 | | | 805 | |
+Total amortization of acquired intangible assets | $ | 7,441 | | | $ | 3,746 | | | $ | 14,652 | | | $ | 6,987 | |
+
+(3) Includes acquisition-related and other expenses as follows: | | | | | | | | | | | | | | | | | | | | | | | |
+Sales and marketing | $ | 33 | | | $ | — | | | $ | 33 | | | $ | — | |
+General and administrative | 2,047 | | | — | | | 2,470 | | | 112 | |
+Total acquisition-related and other expenses | $ | 2,080 | | | $ | — | | | $ | 2,503 | | | $ | 112 | |
+
+(4) Includes amortization of debt issuance costs as follows: | | | | | | | | | | | | | | | | | | | | | | | |
+Interest expense | $ | 2,439 | | | $ | 1,199 | | | $ | 4,865 | | | $ | 2,189 | |
+Total amortization of debt issuance costs | $ | 2,439 | | | $ | 1,199 | | | $ | 4,865 | | | $ | 2,189 | |
+
+
+
+
+
+
+
+
+
+
+(5) Includes lease impairment charges as follows: | | | | | | | | | | | | | | | | | | | | | | | |
+General and administrative | $ | — | | | $ | 3,840 | | | $ | — | | | $ | 3,840 | |
+Total lease impairment charges | $ | — | | | $ | 3,840 | | | $ | — | | | $ | 3,840 | |
+
+(6) Includes legal reserve and settlements as follows: | | | | | | | | | | | | | | | | | | | | | | | |
+General and administrative | $ | 1,000 | | | $ | — | | | $ | 1,000 | | | $ | — | |
+Total legal reserve and settlements | $ | 1,000 | | | $ | — | | | $ | 1,000 | | | $ | — | |
+
+
+
+
+
+
+
+
+
+
+
+CLOUDFLARE, INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(in thousands, except par value)
+(unaudited)
+| | | | | | | | | | | |
+| June 30,
+2026 | | December 31,
+2025 |
+Assets | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 1,663,773 | | | $ | 943,536 | |
+Available-for-sale securities | 2,499,025 | | | 3,157,715 | |
+Accounts receivable, net | 422,945 | | | 382,488 | |
+Contract assets | 27,187 | | | 23,531 | |
+Restricted cash short-term | 12,163 | | | 9,364 | |
+Prepaid expenses and other current assets | 153,282 | | | 128,203 | |
+Total current assets | 4,778,375 | | | 4,644,837 | |
+Property and equipment, net | 703,209 | | | 618,691 | |
+Goodwill | 376,204 | | | 226,563 | |
+Acquired intangible assets, net | 57,369 | | | 41,799 | |
+Operating lease right-of-use assets | 247,675 | | | 237,646 | |
+Deferred contract acquisition costs, noncurrent | 240,523 | | | 219,499 | |
+Restricted cash | — | | | 1,457 | |
+Other noncurrent assets | 70,772 | | | 45,764 | |
+Total assets | $ | 6,474,127 | | | $ | 6,036,256 | |
+Liabilities and Stockholders’ Equity | | | |
+Current liabilities: | | | |
+Accounts payable | $ | 127,032 | | | $ | 84,115 | |
+Accrued expenses and other current liabilities | 165,788 | | | 109,054 | |
+Accrued compensation | 151,528 | | | 111,005 | |
+Operating lease liabilities | 78,239 | | | 70,901 | |
+| | | |
+Deferred revenue | 812,187 | | | 684,207 | |
+Current portion of convertible senior notes, net | 1,293,260 | | | 1,291,281 | |
+Total current liabilities | 2,628,034 | | | 2,350,563 | |
+Convertible senior notes, net | 1,977,006 | | | 1,974,120 | |
+Operating lease liabilities, noncurrent | 180,845 | | | 182,025 | |
+Deferred revenue, noncurrent | 40,252 | | | 41,088 | |
+Other noncurrent liabilities | 27,970 | | | 29,337 | |
+Total liabilities | 4,854,107 | | | 4,577,133 | |
+| | | |
+| | | |
+| | | |
+Stockholders’ Equity | | | |
+Class A common stock; $0.001 par value; 2,250,000 shares authorized as of June 30, 2026 and December 31, 2025; 322,176 and 317,319 shares issued and outstanding as of June 30, 2026 and December 31, 2025, respectively
+| 322 | | | 317 | |
+Class B common stock; $0.001 par value; 315,000 shares authorized as of June 30, 2026 and December 31, 2025; 33,755 and 34,568 shares issued and outstanding as of June 30, 2026 and December 31, 2025, respectively
+| 33 | | | 34 | |
+Additional paid-in capital | 3,027,713 | | | 2,651,420 | |
+Accumulated deficit | (1,397,815) | | | (1,204,907) | |
+Accumulated other comprehensive income (loss) | (10,233) | | | 12,259 | |
+Total stockholders’ equity | 1,620,020 | | | 1,459,123 | |
+Total liabilities and stockholders’ equity | $ | 6,474,127 | | | $ | 6,036,256 | |
+
+
+
+
+
+
+
+
+
+
+
+CLOUDFLARE, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(in thousands)
+(unaudited) | | | | | | | | | | | |
+| Six Months Ended June 30, |
+| 2026 | | 2025 |
+Cash Flows from Operating Activities | | | |
+Net loss | $ | (192,908) | | | $ | (88,900) | |
+Adjustments to reconcile net loss to cash provided by operating activities: | | | |
+Depreciation and amortization expense | 123,170 | | | 87,688 | |
+Non-cash operating lease costs | 41,696 | | | 29,872 | |
+Amortization of deferred contract acquisition costs | 63,486 | | | 47,296 | |
+Stock-based compensation expense | 274,113 | | | 217,912 | |
+Amortization of debt issuance costs | 4,865 | | | 2,189 | |
+Net accretion of discounts and amortization of premiums on available-for-sale securities | (13,233) | | | (11,987) | |
+Deferred income taxes | (7,013) | | | (480) | |
+Provision for bad debt | 5,157 | | | 7,815 | |
+| | | |
+| | | |
+Other | (6,814) | | | 3,227 | |
+Changes in operating assets and liabilities, net of effect of asset acquisitions and business combinations: | | | |
+Accounts receivable, net | (45,614) | | | 1,431 | |
+Contract assets | (3,656) | | | (4,707) | |
+Deferred contract acquisition costs | (84,510) | | | (58,998) | |
+Prepaid expenses and other current assets | (60,612) | | | (46,339) | |
+Other noncurrent assets | 7,142 | | | 4,312 | |
+Accounts payable | 1,205 | | | (247) | |
+Accrued expenses and other current liabilities | 48,699 | | | 758 | |
+Accrued compensation | 40,523 | | | (2,914) | |
+Operating lease liabilities | (45,567) | | | (24,973) | |
+Deferred revenue | 127,144 | | | 82,643 | |
+| | | |
+Other noncurrent liabilities | (1,379) | | | (18) | |
+Net cash provided by operating activities | 275,894 | | | 245,580 | |
+Cash Flows from Investing Activities | | | |
+Purchases of property and equipment | (115,192) | | | (145,786) | |
+Capitalized internal-use software | (20,244) | | | (13,647) | |
+Asset acquisitions and business combinations, net of cash acquired | (75,098) | | | (6,462) | |
+Purchases of available-for-sale securities | (783,933) | | | (1,530,775) | |
+| | | |
+Maturities of available-for-sale securities | 1,442,199 | | | 810,825 | |
+Other investing activities | 1,636 | | | 382 | |
+| | | |
+Net cash provided by (used in) investing activities | 449,368 | | | (885,463) | |
+Cash Flows from Financing Activities | | | |
+| | | |
+Proceeds from settlement of the 2025 capped calls
+| — | | | 309,616 | |
+Gross proceeds from issuance of 2030 convertible senior notes
+| — | | | 2,000,000 | |
+Purchases of capped calls related to the 2030 convertible senior notes
+| — | | | (283,400) | |
+| | | |
+Cash paid for issuance costs on 2030 convertible senior notes
+| — | | | (27,873) | |
+| | | |
+| | | |
+Proceeds from the exercise of stock options | 9,815 | | | 17,942 | |
+| | | |
+| | | |
+| | | |
+Proceeds from the issuance of common stock for employee stock purchase plan | 16,075 | | | 13,057 | |
+| | | |
+Payment of tax withholding obligation on RSU and PSU settlement | (29,473) | | | (18,217) | |
+Payment of indemnity holdback | (100) | | | — | |
+Net cash provided by (used in) financing activities | (3,683) | | | 2,011,125 | |
+Net increase in cash, cash equivalents, and restricted cash | 721,579 | | | 1,371,242 | |
+Cash, cash equivalents, and restricted cash, beginning of period | 954,357 | | | 154,214 | |
+Cash, cash equivalents, and restricted cash, end of period | $ | 1,675,936 | | | $ | 1,525,456 | |
+
+
+
+
+
+
+
+
+
+
+
+CLOUDFLARE, INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL MEASURES
+(in thousands, except per share amounts)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended
+June 30, | | Six Months Ended
+June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+Reconciliation of cost of revenue: | | | | | | | | |
+GAAP cost of revenue | | $ | 196,544 | | | $ | 128,677 | | | $ | 380,702 | | | $ | 244,253 | |
+Less: Stock-based compensation and related employer payroll taxes | | (4,311) | | | (3,693) | | | (8,455) | | | (6,599) | |
+Less: Amortization of acquired intangible assets | | (5,050) | | | (3,329) | | | (11,011) | | | (6,182) | |
+Non-GAAP cost of revenue | | $ | 187,183 | | | $ | 121,655 | | | $ | 361,236 | | | $ | 231,472 | |
+Reconciliation of gross profit: | | | | | | | | |
+GAAP gross profit | | $ | 499,517 | | | $ | 383,639 | | | $ | 955,114 | | | $ | 747,150 | |
+Add: Stock-based compensation and related employer payroll taxes | | 4,311 | | | 3,693 | | | 8,455 | | | 6,599 | |
+Add: Amortization of acquired intangible assets | | 5,050 | | | 3,329 | | | 11,011 | | | 6,182 | |
+Non-GAAP gross profit | | $ | 508,878 | | | $ | 390,661 | | | $ | 974,580 | | | $ | 759,931 | |
+GAAP gross margin | | 71.8% | | 74.9% | | 71.5% | | 75.4% |
+Non-GAAP gross margin | | 73.1% | | 76.3% | | 73.0% | | 76.7% |
+Reconciliation of operating expenses: | | | | | | | | |
+GAAP sales and marketing | | $ | 276,122 | | | $ | 219,359 | | | $ | 547,722 | | | $ | 433,370 | |
+Less: Stock-based compensation and related employer payroll taxes | | (41,246) | | | (36,818) | | | (84,070) | | | (67,023) | |
+Less: Amortization of acquired intangible assets | | (2,391) | | | (417) | | | (3,641) | | | (805) | |
+| | | | | | | | |
+Less: Acquisition-related and other expenses | | (33) | | | — | | | (33) | | | — | |
+Non-GAAP sales and marketing | | $ | 232,452 | | | $ | 182,124 | | | $ | 459,978 | | | $ | 365,542 | |
+GAAP research and development | | $ | 159,486 | | | $ | 134,557 | | | $ | 310,458 | | | $ | 249,646 | |
+Less: Stock-based compensation and related employer payroll taxes | | (55,435) | | | (50,956) | | | (104,936) | | | (89,225) | |
+| | | | | | | | |
+Non-GAAP research and development | | $ | 104,051 | | | $ | 83,601 | | | $ | 205,522 | | | $ | 160,421 | |
+GAAP general and administrative | | $ | 118,912 | | | $ | 96,987 | | | $ | 213,931 | | | $ | 184,645 | |
+Less: Stock-based compensation and related employer payroll taxes | | (39,601) | | | (40,526) | | | (70,589) | | | (75,041) | |
+Less: Acquisition-related and other expenses | | (2,047) | | | — | | | (2,470) | | | (112) | |
+Less: Lease impairment charges | | — | | | (3,840) | | | — | | | (3,840) | |
+Less: Legal reserve and settlements
+| | (1,000) | | | — | | | (1,000) | | | — | |
+Non-GAAP general and administrative | | $ | 76,264 | | | $ | 52,621 | | | $ | 139,872 | | | $ | 105,652 | |
+GAAP restructuring and other charges | | $ | 150,693 | | | $ | — | | | $ | 150,693 | | | $ | — | |
+Less: Restructuring and other charges | | (150,693) | | | — | | | (150,693) | | | — | |
+Non-GAAP restructuring and other charges | | $ | — | | | $ | — | | | $ | — | | | $ | — | |
+Reconciliation of income (loss) from operations: | | | | | | | | |
+GAAP loss from operations | | $ | (205,696) | | | $ | (67,264) | | | $ | (267,690) | | | $ | (120,511) | |
+Add: Stock-based compensation and related employer payroll taxes | | 140,593 | | | 131,993 | | | 268,050 | | | 237,888 | |
+Add: Amortization of acquired intangible assets | | 7,441 | | | 3,746 | | | 14,652 | | | 6,987 | |
+Add: Acquisition-related and other expenses | | 2,080 | | | — | | | 2,503 | | | 112 | |
+| | | | | | | | |
+Add: Lease impairment charges | | — | | | 3,840 | | | — | | | 3,840 | |
+Add: Legal reserve and settlements
+| | 1,000 | | | — | | | 1,000 | | | — | |
+Add: Restructuring and other charges | | 150,693 | | | — | | | 150,693 | | | — | |
+Non-GAAP income from operations | | $ | 96,111 | | | $ | 72,315 | | | $ | 169,208 | | | $ | 128,316 | |
+GAAP operating margin | | (29.6)% | | (13.1)% | | (20.0)% | | (12.2)% |
+Non-GAAP operating margin | | 13.8% | | 14.1% | | 12.7% | | 12.9% |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+
+
+
+
+
+
+
+
+
+
+CLOUDFLARE, INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL MEASURES
+(in thousands, except per share amounts)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended
+June 30, | | Six Months Ended
+June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+Reconciliation of interest expense: | | | | | | | | |
+GAAP interest expense | | $ | (3,089) | | | $ | (1,524) | | | $ | (5,652) | | | $ | (2,967) | |
+Add: Amortization of debt issuance costs | | 2,439 | | | 1,199 | | | 4,865 | | | 2,189 | |
+Non-GAAP interest expense | | $ | (650) | | | $ | (325) | | | $ | (787) | | | $ | (778) | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+Reconciliation of provision for income taxes: | | | | | | | | |
+GAAP provision for income taxes | | $ | 2,041 | | | $ | 3,157 | | | $ | 3,567 | | | $ | 4,852 | |
+Income tax effect of non-GAAP adjustments | | 26,485 | | | 15,275 | | | 47,059 | | | 28,644 | |
+Non-GAAP provision for income taxes | | $ | 28,526 | | | $ | 18,432 | | | $ | 50,626 | | | $ | 33,496 | |
+Reconciliation of net income (loss) and net income (loss) per share: | | | | | | | | |
+GAAP net loss attributable to common stockholders | | $ | (169,981) | | | $ | (50,446) | | | $ | (192,908) | | | $ | (88,900) | |
+Add: Stock-based compensation and related employer payroll taxes | | 140,593 | | | 131,993 | | | 268,050 | | | 237,888 | |
+Add: Amortization of acquired intangible assets | | 7,441 | | | 3,746 | | | 14,652 | | | 6,987 | |
+Add: Acquisition-related and other expenses | | 2,080 | | | — | | | 2,503 | | | 112 | |
+| | | | | | | | |
+Add: Amortization of debt issuance costs | | 2,439 | | | 1,199 | | | 4,865 | | | 2,189 | |
+| | | | | | | | |
+Add: Lease impairment charges | | — | | | 3,840 | | | — | | | 3,840 | |
+Add: Legal reserve and settlements
+| | 1,000 | | | — | | | 1,000 | | | — | |
+Add: Restructuring and other charges | | 150,693 | | | — | | | 150,693 | | | — | |
+Income tax effect of non-GAAP adjustments | | (26,485) | | | (15,275) | | | (47,059) | | | (28,644) | |
+Non-GAAP net income | | $ | 107,780 | | | $ | 75,057 | | | $ | 201,796 | | | $ | 133,472 | |
+| | | | | | | | |
+GAAP net loss per share, basic | | $ | (0.48) | | | $ | (0.15) | | | $ | (0.55) | | | $ | (0.26) | |
+| | | | | | | | |
+GAAP net loss per share, diluted | | $ | (0.48) | | | $ | (0.15) | | | $ | (0.55) | | | $ | (0.26) | |
+Add: Stock-based compensation and related employer payroll taxes | | 0.40 | | | 0.38 | | | 0.76 | | | 0.69 | |
+Add: Amortization of acquired intangible assets | | 0.02 | | | 0.01 | | | 0.04 | | | 0.02 | |
+Add: Acquisition-related and other expenses | | 0.01 | | | — | | | 0.01 | | | — | |
+| | | | | | | | |
+Add: Amortization of debt issuance costs | | 0.01 | | | — | | | 0.01 | | | 0.01 | |
+| | | | | | | | |
+Add: Lease impairment charges | | — | | | 0.01 | | | — | | | 0.01 | |
+Add: Legal reserve and settlements
+| | — | | | — | | | — | | | — | |
+Add: Restructuring and other charges | | 0.43 | | | — | | | 0.43 | | | — | |
+Income tax effect of non-GAAP adjustments
+| | (0.07) | | | (0.04) | | | (0.13) | | | (0.08) | |
+Effect of dilutive shares | | (0.03) | | | — | | | (0.03) | | | (0.02) | |
+Non-GAAP net income per share, diluted (1)
+| | $ | 0.29 | | | $ | 0.21 | | | $ | 0.54 | | | $ | 0.37 | |
+| | | | | | | | |
+Weighted-average shares used in computing net loss per share attributable to common stockholders, basic | | 354,334 | | | 347,489 | | | 353,485 | | | 346,605 | |
+Weighted-average shares used in computing non-GAAP net income per share attributable to common stockholders, diluted | | 373,683 | | | 365,264 | | | 374,672 | | | 363,962 | |
+
+____________
+(1) Totals may not sum due to rounding. Figures are calculated based upon the respective underlying non-rounded data.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CLOUDFLARE, INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL MEASURES
+(in thousands, except per share amounts)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended
+June 30, | | Six Months Ended
+June 30, |
+2026 | | 2025 | | 2026 | | 2025 |
+Free cash flow | | | | | | | |
+Net cash provided by operating activities | $ | 117,564 | | | $ | 99,796 | | | $ | 275,894 | | | $ | 245,580 | |
+Less: Purchases of property and equipment | (49,961) | | | (59,897) | | | (115,192) | | | (145,786) | |
+Less: Capitalized internal-use software | (11,219) | | | (6,619) | | | (20,244) | | | (13,647) | |
+Free cash flow | $ | 56,384 | | | $ | 33,280 | | | $ | 140,458 | | | $ | 86,147 | |
+Net cash provided by (used in) investing activities | $ | 608,174 | | | $ | (793,025) | | | $ | 449,368 | | | $ | (885,463) | |
+Net cash provided by (used in) financing activities | $ | 5,785 | | | $ | 2,007,603 | | | $ | (3,683) | | | $ | 2,011,125 | |
+Net cash provided by operating activities
+(percentage of revenue) | 17 | % | | 19 | % | | 21 | % | | 25 | % |
+Less: Purchases of property and equipment
+(percentage of revenue) | (7) | % | | (12) | % | | (9) | % | | (15) | % |
+Less: Capitalized internal-use software
+(percentage of revenue) | (2) | % | | (1) | % | | (1) | % | | (1) | % |
+Free cash flow margin (1)
+| 8 | % | | 6 | % | | 11 | % | | 9 | % |
+
+
+
+____________
+
+
+(1) Totals may not sum due to rounding. Figures are calculated based upon the respective underlying non-rounded data.
+
+
+
+
+
+
+
+
+
+Explanation of Non-GAAP Financial Measures
+
+
+In addition to our results determined in accordance with generally accepted accounting principles in the United States (U.S. GAAP), we believe the following non-GAAP measures are useful in evaluating our operating performance. We use the following non-GAAP financial information to evaluate our ongoing operations and for internal planning and forecasting purposes. We believe that non-GAAP financial information, when taken collectively, may be helpful to investors because it provides consistency and comparability with past financial performance. However, non-GAAP financial information is presented for supplemental informational purposes only, has limitations as an analytical tool and should not be considered in isolation or as a substitute for financial information presented in accordance with U.S. GAAP. In particular, free cash flow is not a substitute for cash provided by operating activities. Additionally, the utility of free cash flow as a measure of our liquidity is further limited as it does not represent the total increase or decrease in our cash balance for a given period. In addition, other companies, including companies in our industry, may calculate similarly-titled non-GAAP measures differently or may use other measures to evaluate their performance, all of which could reduce the usefulness of our non-GAAP financial measures as tools for comparison. A reconciliation is provided above for each non-GAAP financial measure to the most directly comparable financial measure stated in accordance with U.S. GAAP. Investors are encouraged to review the related U.S. GAAP financial measures and the reconciliation of these non-GAAP financial measures to their most directly comparable U.S. GAAP financial measures, and not to rely on any single financial measure to evaluate our business.
+
+
+Items Excluded from Non-GAAP Measures. We exclude stock-based compensation expense, which is a non-cash expense, from certain of our non-GAAP financial measures because we believe that excluding this item provides meaningful supplemental information regarding operational performance. We exclude employer payroll tax expenses related to stock-based compensation, which is a cash expense, from certain of our non-GAAP financial measures because such expenses are dependent upon the price of our Class A common stock and other factors that are beyond our control and do not correlate to the operation of our business. We exclude amortization of acquired intangible assets, which is a non-cash expense, related to business combinations from certain of our non-GAAP financial measures because such expenses are related to business combinations and have no direct correlation to the operation of our business. We exclude acquisition-related and other expenses from certain of our non-GAAP financial measures because such expenses are related to business combinations and have no direct correlation to the operation of our business. Acquisition-related and other expenses can be cash or non-cash expenses and include third-party transaction costs and compensation expense for key acquired personnel. We exclude lease impairment charges related to real estate leases, which is a non-cash expense, from certain of our non-GAAP financial measures because they are not indicative of our ongoing cost structure and core business performance. We exclude amortization of debt issuance costs, which is a non-cash expense, from certain of our non-GAAP financial measures because such expenses have no direct correlation to the operation of our business. We exclude legal reserve and settlements, which can be cash or non-cash expenses, from certain of our non-GAAP financial measures because they are not indicative of our ongoing cost structure and core business performance. We exclude restructuring and other charges, which can be cash or non-cash expenses, from certain of our non-GAAP financial measures because they are not indicative of our ongoing cost structure and core business performance.
+
+
+Non-GAAP Gross Profit and Non-GAAP Gross Margin. We define non-GAAP gross profit and non-GAAP gross margin as U.S. GAAP gross profit and U.S. GAAP gross margin, respectively, excluding stock-based compensation and related employer payroll taxes and amortization of acquired intangible assets.
+
+
+Non-GAAP Income from Operations and Non-GAAP Operating Margin . We define non-GAAP income from operations and non-GAAP operating margin as U.S. GAAP loss from operations and U.S. GAAP operating margin, respectively, excluding stock-based compensation expense and its related employer payroll taxes, amortization of acquired intangible assets, acquisition-related and other expenses, lease impairment charges, legal reserve and settlements, and restructuring and other charges.
+
+
+Non-GAAP Net Income and Non-GAAP Net Income per Share, Diluted . We define non-GAAP net income as GAAP net loss adjusted for stock-based compensation expense and its related employer payroll taxes, amortization of acquired intangible assets, acquisition-related and other expenses, amortization of issuance costs, lease impairment charges, legal reserve and settlements, restructuring and other charges, and a non-GAAP provision for (benefit from) income taxes. Generally, the difference between our GAAP and non-GAAP income tax expense (benefit) is primarily due to adjustments in stock-based compensation and related employer payroll taxes, amortization of acquired intangibles associated with business combinations, acquisition-related and other expenses, amortization of issuance costs, lease impairment charges, legal reserve and settlements, and restructuring and other charges. We define non-GAAP net income per share, diluted, as non-GAAP net income divided by the weighted-average common shares outstanding, adjusted for dilutive potential shares that were assumed outstanding during period. Currently, potential
+
+
+
+
+
+
+
+
+
+dilutive effect mainly consists of employee equity incentive plans and convertible senior notes. We believe that excluding these items from non-GAAP net income per share, diluted, provides management and investors with greater visibility into the underlying performance of our core business operating results.
+
+
+Free Cash Flow and Free Cash Flow Margin . Free cash flow is a non-GAAP financial measure that we calculate as net cash provided by operating activities less cash used for purchases of property and equipment and capitalized internal-use software. Free cash flow margin is calculated as free cash flow divided by revenue. We believe that free cash flow and free cash flow margin are useful indicators of liquidity that provide information to management and investors about the amount of cash generated from our operations that, after the investments in property and equipment and capitalized internal-use software, can be used for strategic initiatives, including investing in our business, and strengthening our financial position. We believe that historical and future trends in free cash flow and free cash flow margin, even if negative, provide useful information about the amount of cash generated by our operating activities that is available (or not available) to be used for strategic initiatives. For example, if free cash flow is negative, we may need to access cash reserves or other sources of capital to invest in strategic initiatives. One limitation of free cash flow and free cash flow margin is that they do not reflect our future contractual commitments. Additionally, free cash flow does not represent the total increase or decrease in our cash balance for a given period.
