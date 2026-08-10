@@ -74,9 +74,12 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     label: "EPS",
     patterns: [
       /\b(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\b/i,
+      /\bnet\s+\(loss(?:es)?\)\s+income\s+per\s+(?:common\s+)?share\b/i,
       /\b(?:earnings|profit|net\s+income)(?:\s*\/)?\s*\(loss(?:es)?\)\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,
       /\bprofit\s+(?:\(loss\)\s+)?per\s+(?:common\s+|ordinary\s+)?(?:share|ADS)\b/i,
       /\bnet\s+loss\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,
+      /(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?)\s+loss\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,
+      /\b(?:basic\s+and\s+diluted\s+)?loss\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,
       /\bdiluted\s+eps\b/i,
       new RegExp(String.raw`${gaapTermSource}\s+(?:diluted\s+)?eps\b`, "i"),
       /\b(?:reported\s+)?(?:net\s+)?earnings?\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
@@ -90,12 +93,16 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     key: "revenue",
     label: "Revenue",
     patterns: [
+      // Some narrative headlines put the value before the caption: "$234 million in Q2
+      // revenue". Capturing it keeps a later comparison ("$34 million higher") from being
+      // mistaken for the reported result.
+      /(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\)?)\s+in\s+(?:q[1-4]|the\s+(?:first|second|third|fourth)\s+quarter)\s+(?:total\s+)?revenues?\b/i,
       /\btotal\s+revenues?(?:\s+and\s+other\s+income)?\b/i,
       /\bnet\s+sales\b/i,
       /\brevenues?\b/i,
       /\bsales\b/i,
     ],
-    skipPattern: new RegExp(String.raw`\bcosts?\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsystemwide\s+sales\b|\b(?:${unitedStatesSource}|U\.K\.|US|international|domestic|non-US|segment)\s+(?:commercial\s+|government\s+)?revenues?\b|\b(?:${unitedStatesSource}|US|international|worldwide|non-US)\s+(?:[A-Z][A-Za-z]+\s+){1,2}revenues?\b|\brevenues?\s+(?:in|outside)\s+the\s+${unitedStatesSource}|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b`, "i"),
+    skipPattern: new RegExp(String.raw`\bcosts?\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsystemwide\s+sales\b|\bsubscription\s+and\s+services?\s+revenues?\b|\blicensing\s+and\s+related\s+revenues?\b|\broyalty\s+revenues?\b|\bsales\s+of\s+equipment\b|\b(?:${unitedStatesSource}|U\.K\.|US|international|domestic|non-US|segment)\s+(?:commercial\s+|government\s+)?revenues?\b|\b(?:${unitedStatesSource}|US|international|worldwide|non-US)\s+(?:[A-Z][A-Za-z]+\s+){1,2}revenues?\b|\brevenues?\s+(?:in|outside)\s+the\s+${unitedStatesSource}|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b`, "i"),
     valueType: "money",
   },
   {
@@ -114,7 +121,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     // reconciliation adjustment rows so the headline "net income/earnings attributable
     // to <company>" row wins rather than "net earnings before income tax", "net
     // earnings including NCI" or "increase to net loss / decrease to net income".
-    skipPattern: /\beps\b|\bbefore\s+(?:income\s+)?tax(?:es)?\b|\b(?:including|attributable\s+to)\s+noncontrolling\b|\b(?:increase|decrease)\s+to\s+net\b/i,
+    skipPattern: /\badjusted\b|\bnon-gaap\b|\beps\b|\bbefore\s+(?:income\s+)?tax(?:es)?\b|\b(?:including|attributable\s+to)\s+noncontrolling\b|\b(?:increase|decrease)\s+to\s+net\b/i,
     valueType: "money",
   },
   {
@@ -226,7 +233,16 @@ export function getMetricLineWithContinuation(
   definition: MetricDefinition,
   quarterLabel: string | undefined,
 ): string {
-  const baseLine = lines[lineIndex] ?? "";
+  const line = lines[lineIndex] ?? "";
+  const precedingLine = lines[lineIndex - 1] ?? "";
+  // Inline tables can wrap a qualifier into its own cell ("Adjusted" / "EPS was ...").
+  // Reattach that orphaned qualifier so the current value is read from the first caption,
+  // instead of the prior-year "adjusted EPS" comparison later on the line.
+  const baseLine = precedingLine.length <= 60 &&
+      /\b(?:adjusted|non-gaap|gaap)\s*$/i.test(precedingLine) &&
+      /^\s*(?:diluted\s+)?(?:eps|earnings|net\s+(?:income|loss))\b/i.test(line)
+    ? `${precedingLine} ${line}`
+    : line;
   const positionedQuarterValues = getPositionedQuarterValues(
     lines,
     lineIndex,
