@@ -30,6 +30,10 @@ export function htmlToText(html: string): string {
     .replace(/<\/t[dh]>/gi, " | ")
     .replace(/<[^>]+>/g, " ")
     .replace(/\u00a0/g, " ")
+    // SEC exhibits sometimes use zero-width characters as otherwise-empty table cells.
+    // Left intact, a row between a metric caption and its values is not recognised as a
+    // value-only continuation, so the entire per-share row is dropped.
+    .replace(/[\u200B-\u200D\uFEFF]/g, "")
     .replace(/[ \t]+/g, " ")
     .replace(/[ \t]*\n[ \t]*/g, "\n")
     .trim();

@@ -369,7 +369,7 @@ function extractOutlookMetric(
       }
 
       const periodLabel = true === includePeriodLabel
-        ? getOutlookPeriodLabel(line)
+        ? getOutlookPeriodLabel(lines, lineIndex)
         : undefined;
       if (true === includePeriodLabel && undefined === periodLabel) {
         continue;
@@ -411,7 +411,28 @@ function extractOutlookMetric(
   return bestCandidate?.metric ?? null;
 }
 
-function getOutlookPeriodLabel(line: string): string | undefined {
+function getOutlookPeriodLabel(lines: string[], lineIndex: number): string | undefined {
+  const directPeriodLabel = getLineOutlookPeriodLabel(lines[lineIndex] ?? "");
+  if (undefined !== directPeriodLabel) {
+    return directPeriodLabel;
+  }
+
+  // Some releases introduce a short group of bullets with a standalone period caption.
+  // Only inherit from that caption form: looking back through ordinary metric rows leaks
+  // one row's period onto the next otherwise-unlabelled row.
+  for (let index = lineIndex - 1; index >= 0 && index >= lineIndex - 4; index--) {
+    const contextLine = lines[index] ?? "";
+    if (false === /^\s*for\s+the\s+(?:(?:first|second|third|fourth)\s+quarter|full[\s–—-]+year)\b[^:]{0,40}\b(?:we|the\s+company)\s+expect\s*:\s*$/i.test(contextLine)) {
+      continue;
+    }
+
+    return getLineOutlookPeriodLabel(contextLine);
+  }
+
+  return undefined;
+}
+
+function getLineOutlookPeriodLabel(line: string): string | undefined {
   const directQuarterMatch = /\bq([1-4])(?:\s+20\d{2})?\b/i.exec(line);
   if (undefined !== directQuarterMatch?.[1]) {
     return `Q${directQuarterMatch[1]}`;
@@ -502,11 +523,27 @@ function extractOutlookValue(
       ("text" === valueType ? getNumericGrowthOutlookValue(valueText) : null) ??
       getSingleOutlookValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit);
     if (null !== value) {
-      return value;
+      return applyOutlookLossSign(value, valueText, valueType);
     }
   }
 
   return null;
+}
+
+function applyOutlookLossSign(
+  value: string,
+  source: string,
+  valueType: OutlookValueType,
+): string {
+  if (false === ("money" === valueType || "eps" === valueType) ||
+      false === /^\s*(?:a\s+)?loss\b/i.test(source)) {
+    return value;
+  }
+
+  return value
+    .split(" to ")
+    .map(part => part.startsWith("-") ? part : `-${part}`)
+    .join(" to ");
 }
 
 function getOutlookValueSegments(

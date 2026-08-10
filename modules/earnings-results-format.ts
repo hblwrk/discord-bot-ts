@@ -267,9 +267,13 @@ function extractMetric(
     const hasReportedGaapEps = "gaap_eps" === definition.key &&
       false === isForwardLooking &&
       true === hasGaapNarrativeBeforeAdjustment(line, definition.patterns);
+    const hasReportedGaapNetIncome = "net_income" === definition.key &&
+      false === isForwardLooking &&
+      true === hasMetricValueBeforeAdjustment(line, definition.patterns);
     if (true === isSkippedMetricLine(line, definition) &&
         false === hasExplicitGaapEps &&
-        false === hasReportedGaapEps) {
+        false === hasReportedGaapEps &&
+        false === hasReportedGaapNetIncome) {
       continue;
     }
 
@@ -328,6 +332,26 @@ function extractMetric(
   }
 
   return bestCandidate?.metric ?? null;
+}
+
+function hasMetricValueBeforeAdjustment(line: string, patterns: RegExp[]): boolean {
+  const adjustedIndex = line.search(/\badjusted\b|\bnon-gaap\b/i);
+  if (0 >= adjustedIndex) {
+    return false;
+  }
+
+  const reportedText = line.slice(0, adjustedIndex);
+  return patterns.some(pattern => {
+    pattern.lastIndex = 0;
+    const patternMatch = pattern.exec(reportedText);
+    if (null === patternMatch) {
+      return false;
+    }
+
+    const valueText = reportedText.slice(patternMatch.index + patternMatch[0].length);
+    return /[$€£¥]\s*\(?-?\d|\b\(?-?\d[\d,]*(?:\.\d+)?\)?\s+(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b/i
+      .test(valueText);
+  });
 }
 
 // Disqualifiers are matched against the whole line, which is right for a statement row or

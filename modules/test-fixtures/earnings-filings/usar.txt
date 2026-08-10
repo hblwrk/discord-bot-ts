@@ -1,0 +1,524 @@
+EX-99.1
+2
+exhibit991-earningsrelease.htm
+EXHIBIT 99.1 - Q2'2026 EARNINGS RELEASE
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+
+
+
+USA Rare Earth Reports Second Quarter 2026 Financial Results
+
+
+STILLWATER, Okla. - August 10, 2026 – USA Rare Earth, Inc. (Nasdaq: USAR) (the Company), (USAR), a rare earth, critical minerals and advanced materials company, today announced its financial and operational results for the second quarter and six months ended June 30, 2026.
+
+
+
+Executive Commentary
+
+
+“The second quarter of 2026 marked a period of decisive progress for USA Rare Earth, defined by the milestones that bring our integrated global rare earth value chain to life,” said Barbara Humpton, CEO of USA Rare Earth. “We announced our intent to acquire Serra Verde, the only scaled producer of all four magnetic rare earths outside Asia; signed definitive documentation for our funding package with the U.S. Department of Commerce; announced our intent to invest in Carester; and selected Blacksburg, South Carolina, as the site of our second U.S. metal-making and magnet manufacturing facility. We also commissioned our hydrometallurgical facility in Wheat Ridge, Colorado, a critical step that demonstrates our processing capability that lies at the heart of a secure, non-China supply chain.”
+
+
+Ms. Humpton continued, “With these building blocks in place, USA Rare Earth is entering a new chapter. We are moving from assembling a world-class set of operations to delivering for our customers and driving value for our shareholders. The urgency in the market has never been greater, and we are among the very few companies anywhere positioned to meet it. I am confident we have the right assets, the right operations, and the right team to establish ourselves as the global leader in rare earths, the partner of choice for advanced manufacturers, and to secure the critical materials essential for Western industrial leadership.”
+
+
+
+Second Quarter Highlights
+
+
+Financial Highlights
+• The Company’s cash balance as of June 30, 2026 was approximately $1.53 billion
+• Revenues for Q2’2026 of $5.8 million
+
+
+Business Highlights
+• Finalized Definitive Agreements with the U.S. Department of Commerce : In June 2026, the Company announced the execution of definitive agreements with the U.S. Department of Commerce, unlocking access to up to $1.6 billion in funding under the Department of Commerce’s CHIPS Act program. The definitive agreements comprise up to $277 million in federal funding and up to $1.3 billion in senior secured loan capacity under the CHIPS Act, with disbursements tied to the achievement of project milestones. These agreements significantly de-risk the Company’s path to full scale production, and the Company views them as a validation of its asset base, its business model, and its growth plans.
+• Announced definitive agreement to acquire Serra Verde Group for ~$2.8 billion, creating the global rare earth leader : In April 2026, the Company announced a definitive agreement to acquire 100% of Serra Verde Group, owner of the Pela Ema rare earth mine and processing plant in Goiás, Brazil. The acquisition would secure the only large-scale producer of vital HREEs outside Asia, de-risk upstream supply with a 15-year 100% offtake agreement including price floors, and accelerate the Company’s EBITDA and cash-flow generation.
+• Announced investment in Carester and strategic partnership in France : In April 2026, the Company along with InfraVia, the leading independent European private investment platform specialized in real assets and technology investments, announced it had entered into an investment term sheet to take a stake in Carester, a leading French specialist in rare earth processing and separation technologies, subject to the execution of a definitive documentation and closing conditions. The Company believes the platform will unite the technological expertise, process innovation, and production capacity of USA Rare Earth, Less Common Metals (LCM), and Carester to accelerate development and strengthen capabilities across the rare earth value chain.
+
+
+
+
+
+
+
+• Selected South Carolina for new rare earth metal and magnet manufacturing operation : In June 2026, the Company announced the selection of Blacksburg, South Carolina, as the site of a new magnet manufacturing and refined metals operation. The facility is targeting production capacity of 6,400 metric tons per annum (tpa) of NdFeB rare earth magnets and 5,000 tpa of strip-cast, metal and alloy. Combined with the planned expansion at the Company’s Stillwater facility, the Company expects total domestic production capacity to reach 10,000 tpa of NdFeB rare earth magnets and 10,000 tpa of heavy rare earth strip-cast, metal and alloy, aligned with the Company’s business plan and government financing. The project is expected to create about 490 high-skill, high-wage jobs, with commissioning targeted to begin in 2028.
+• Commissioned hydrometallurgical demonstration facility, targeting heavy rare earth oxide production in Q3 2026 : In June 2026, the Company announced the commissioning of its hydrometallurgical demonstration facility in Wheat Ridge, Colorado. The facility has commenced an initial campaign to de-risk three processing flowsheets in parallel: ore from Round Top, third-party mixed rare earth carbonate (MREC) feedstock — including material from Serra Verde’s Pela Ema mine — and rare earth magnet swarf recycling. Insights from the campaigns are expected to underpin the Round Top Definitive Feasibility Study, on track for Q4 2026 completion and Q1 2027 publication, and to guide commercial engineering of the planned on-site Round Top processing facility and the Company’s anticipated third-party MREC processing and magnet swarf recycling facility.
+• Completed first commercial Yttrium metal production : In April 2026, the Company announced the first commercial pour of 2N–2N5 (99%–99.5% purity) yttrium metal through its wholly-owned subsidiary, LCM, at its facility in Cheshire, United Kingdom. This milestone places the Company among a limited number of producers of commercial-grade yttrium metal operating outside of China. Yttrium is a key material in thermal barrier coatings used on turbine blades and other high-temperature aerospace components, where it enhances oxidation resistance and improves adhesion, helping extend component life under intense thermal and mechanical stress. Yttrium is also used in electronics, energy systems, lasers, superconductors, and advanced ceramics, where its chemical stability and high-temperature performance are essential.
+• Expanded the corporate leadership team with additional expertise : In April 2026, the Company announced the appointment of Chaitan Kansal as Chief Commercial Officer. Mr. Kansal brings more than 25 years of experience across the critical minerals, specialty chemicals, and advanced materials sectors. Mr. Kansal’s deep experience across lithium, battery materials, and specialty chemicals - combined with a track record of executing go-to-market strategies at global scale - makes him the ideal leader to drive customer engagement, secure long-term offtake partnerships, and position the Company as the partner of choice for rare earth products across the Western world.
+• Awarded $14.2 million grant from the Texas Semiconductor Innovation Fund to accelerate round top heavy rare earth project : In May 2026, the Company announced it was selected to receive a grant for up to $14.2 million from the Texas Semiconductor Innovation Fund to accelerate the development of its Round Top Mountain heavy rare earth project in Hudspeth County, Texas. The award would support a project expected to generate approximately 260 new jobs and to represent more than $1.4 billion in capital investment in West Texas.
+• Selected for U.S. Department of Energy Funding Under Critical Minerals Innovation Program : In May 2026, the Company announced that the U.S. Department of Energy (DOE) has selected it to receive up to $19.3 million in funding, subject to final negotiation, under DOE’s Critical Minerals Innovation, Efficiency and Alternatives program. The award will support the development of a pilot-scale rare earth element (“REE”) separations project advancing domestic processing capacity for materials essential to U.S. energy, defense and advanced manufacturing supply chains.
+• Expanded commitment to France with plans for additional investment in the French rare earth ecosystem : In June 2026, the Company announced a planned expansion of its metal, alloy, and magnet production in France, building upon its planned LCM Lacq facility and Carester investment. Aligned with the U.S. Department of Commerce funding plan, the initiative projects over €175 million in investment and 300+ new jobs by 2030, supported by French government incentives such as C3IV, potential debt guarantees, and possible direct equity investment into the USAR European subsidiary.
+
+
+Recent Developments
+
+Subsequent to quarter-end, the Company announced the following achievements and milestones:
+• Successfully produced first light and heavy rare earth oxide samples for qualification : In July 2026, the Company announced that its hydrometallurgical facility in Wheat Ridge, Colorado, had successfully produced commercial-grade dysprosium (Dy) oxide and neodymium-praseodymium (NdPr) oxide samples from recycled rare earth magnet scrap, known in the industry as “swarf.” This positions USA Rare Earth as one of the few Western producers capable of executing this technically demanding process outside Asia. In addition, this capability broadens the Company’s feedstock options and strengthens the circularity of its value chain, with swarf projected to support up to 30% of future magnetic rare earth oxide feedstock needs.
+• Announced retirement of CEO Barbara Humpton, to be succeeded by Thras Moraitis, current CEO of Serra Verde : In July 2026, the Company announced that Barbara Humpton will retire as Chief Executive Officer and Board Director on October 1, 2026. The Company’s Board of Directors named Thras Moraitis, current CEO of the Serra Verde Group (“Serra Verde”) and a highly experienced operator in the rare earths industry, as Ms. Humpton’s successor. Mr. Moraitis will assume the CEO role on October 1, 2026, following the anticipated completion of the Company’s combination with Serra Verde by the end of August. During the interim period, Mr. Moraitis will continue to oversee the combined company’s operations as President.
+
+
+
+
+
+
+
+• Finalized definitive agreements to acquire minority stake in Carester : In July 2026, the Company announced that it had entered into definitive agreements to acquire a strategic minority stake representing approximately 13.6 percent in Carester SAS, a French leader in rare earth processing and separation. InfraVia, acting through its Critical Metals Fund, seeded by the French State as an anchor investor alongside private institutional capital, is acquiring a similar stake in Carester alongside the Company. In addition to targeting healthy returns, the Company and its subsidiary Less Common Metals – Europe will have the ability to purchase a portion of Carester’s oxide output from its Caremag facility. The Company will have access to Carester’s engineering capabilities and related intellectual property for separation, processing, and recycling. In turn, Carester will have access to the Company’s feedstock sources, including Serra Verde and the Round Top deposit in Texas.
+• Closed Acquisition of Texas Mineral Resources Corp. (TMRC): In August 2026, the company closed the acquisition of TMRC, to which the Company acquired 100% of the outstanding shares of TMRC. Subsequent to closing, the Company will be the sole operator and 100% economic beneficiary of the Round Top project. This strategic transaction is expected to streamline the Company’s operations, governance and decision-making as it builds the global leader in rare earths and critical minerals.
+
+
+2026 Outlook
+As it builds a global leader in rare earths, in 2026 the Company expects to:
+• Complete the Round Top Definitive Feasibility Study (DFS) in Q4 2026: This DFS is expected to be completed in Q4 2026 and published in Q1 2027, and is expected to provide the balance of commercial engineering and design and definitive project economics.
+• Reach 600 MTPA of run-rate magnet manufacturing capacity at the Stillwater Facility in Q4 2026: This manufacturing capacity build out is expected to support the Company’s growing pipeline of magnet customers across the aerospace, defense, semiconductor, industrial motor, heavy equipment, mobility, healthcare, and energy sectors.
+• Evaluate metal making and alloy capacity at LCM to optimize for customer demand across rare earth and critical mineral metals and alloys, and geographic footprint distribution: This capacity build out is expected to support the Company’s internal metal and alloy needs for magnet manufacturing, as well as a growing pipeline of third-party rare earth and critical mineral metal and alloy demand.
+
+
+
+Financial Highlights
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | | Six Months Ended June 30, |
+| 2026
+| | 2025
+| | | 2026
+| | 2025
+|
+| (In thousands, except for per share amounts) |
+Loss from operations | $ | (46,314) | | | $ | (8,804) | | | | $ | (82,989) | | | $ | (17,522) | |
+| | | | | | | | |
+Net loss attributable to USA Rare Earth, Inc. | (10,333) | | | (142,506) | | | | (77,322) | | | (90,674) | |
+Net loss per share attributable to USA Rare Earth, Inc. - Diluted
+| (0.05) | | | (1.54) | | | | (0.37) | | | (0.99) | |
+Net cash used in operating activities | (56,868) | | | (7,909) | | | | (75,324) | | | (18,238) | |
+| | | | | | | | |
+Cash and cash equivalents | | | | | | 1,530,147 | | | 359,925 | |
+
+
+
+
+Non-GAAP Financial Highlights (1)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | | Six Months Ended June 30, |
+| 2026
+| | 2025
+| | | 2026
+| | 2025
+|
+| (In thousands, except for per share amounts) |
+Adjusted net loss attributable to USA Rare Earth, Inc. | $ | (33,484) | | | $ | (19,084) | | | | $ | (57,629) | | | $ | (28,031) | |
+Adjusted net loss per share attributable to USA Rare Earth, Inc. - Diluted
+| (0.15) | | | (0.21) | | | | (0.27) | | | (0.31) | |
+| | | | | | | | |
+| | | | | | | | |
+
+| | | | | |
+| |
+
+(1) Refer to the sections “About Non-GAAP Financial Measures” and “Reconciliation of Non-GAAP Financial Measures” for definitions of our non-GAAP financial measures and reconciliations of GAAP to non-GAAP amounts, respectively.
+
+
+
+
+
+
+
+
+
+
+Forward-looking Statements
+
+
+This press release contains “forward-looking statements” within the meaning of the Private Securities Litigation Reform Act of 1995. These statements include those relating to the proposed acquisition of Serra Verde Group, the expected timing and completion of the Serra Verde acquisition, the expected benefits of the Serra Verde acquisition, the expected benefits from our transactions with Carester SAS and Texas Mineral Resources Corp. (“TMRC”), development of our magnet production facility at Stillwater and our refined metals production facility at Blacksburg, the benefits expected from the acquisition of Less Common Metals Ltd., the ability to satisfy the funding conditions of and to realize the anticipated benefits of the anticipated funding from the U.S. Department of Commerce, demand for magnets from our production facility once it is operational, the opportunity, size and growth rates of the rare earth element market and the market for related magnets, our ability to process raw materials for magnet production including through swarf processing and development of the Round Top Project, development of our Wheat Ridge, Colorado hydrometallurgical demonstration facility, development and results of the Round Top Project, the ability to raise financing in the future and to comply with restrictive covenants contained in our long-term indebtedness, the future financial performance of our business, the ability to retain or recruit key personnel, the ability to comply with laws and regulations applicable to our business, expansion plans and opportunities, our anticipated operating and financial performance, our business plans, strategy, goals and prospects, our plans for and prospects of our other acquisitions, investments and other business development activities, including the announced Carester transaction, our ability to successfully capitalize on growth opportunities and prospects, and other statements regarding the Company’s expectations for future development, operations, strategies, transactions and financial performance. Such statements can be identified by the fact that they do not relate strictly to historical or current facts. Words such as “”accelerate,” “advance,” “aim,” “anticipate,” “believe,” “can,” “continue,” “could,” “estimate,” “expect,” “growth,” “intend,” “may,” “might,” “plan,” “potential,” “project,” “propose,” “should,” “target,” “vision,” “will,” “would” and similar expressions may identify forward-looking statements, but the absence of these words does not mean that a statement is not forward-looking.
+
+
+Forward-looking statements are subject to risks and uncertainties and potentially inaccurate assumptions that could cause actual results to differ materially from our expectations, including without limitation: risks that the proposed transactions with Serra Verde and Carester may not be consummated on their anticipated timeline or at all; risks that we may not realize the anticipated benefits of our proposed, current, and prior acquisitions, including transactions with Serra Verde, Carester and TMRC, including expected synergies, financial performance, estimated EBITDA and, in the case of Serra Verde, integration of operations, on the anticipated timeline or at all; ; political, economic, regulatory, tax, currency and other risks associated with Serra Verde’s operations in Brazil and Switzerland following the consummation of the Serra Verde acquisition; the assumption of substantial indebtedness under Serra Verde’s Retained Finance Agreement, which contains restrictive covenants and other requirements that could adversely affect the combined company’s financial flexibility and operations; the potential failure to satisfy the conditions precedent to the offtake agreement entered into in connection with the Serra Verde acquisition, and the possibility that the offtake agreement may be terminated for any reason; the risk that the planned CEO transition is contingent on the timely closing of the Serra Verde acquisition and that any delay or failure of this acquisition to close could result in leadership uncertainty and may require the Board to identify an alternative CEO successor; the ability of our Stillwater magnet manufacturing facility to generate revenue and the ability of our planned Blacksburg facility to commence commercial operations on the timing and with the production capacity anticipated or at all; our limited operating history; our ability to commercially extract minerals from the Round Top deposit on our anticipated timeline or at all; risks that we may experience delays, unforeseen expenses, increased capital costs, and other complications while developing our projects; our ability to raise necessary capital on acceptable terms or at all; potential dilution to existing stockholders and adverse effect on our stock price if we issue additional common stock or equity-linked securities; the volatility of our stock price; the availability of rare earth oxide, metal feedstock and other materials, utilities (including power and water) and equipment in quantities and prices that allow us to develop and commercially operate our Stillwater facility and other facilities; our ability to meet individual customer specifications and produce a consistently high quality product; fluctuations in demand for and prices of neo magnets and our other products, including without limitation as a result of dumping, predatory pricing and other tactics by the Company’s competitors or state actors or the overall competitive environment; our ability to achieve positive cash flow or profitability or the ability to access cash flow within our corporate structure due to restrictions contained in our financing agreements; our ability to convert current commercial discussions and/or memorandums of understanding with customers for the sale of our neo magnets and other products into definitive orders; our dependence, in part, on the growth of existing and emerging uses for neo magnets; the risk that additional manufacturing, refining and mining competitors could result in a reduction in revenue; geopolitical developments or disruptions, such as changes in the political environment, export/import or environmental policy of the People’s Republic of China, the United States or other countries in which we operate or sell products or otherwise; our designation on an export control list by China which has had and is expected to continue to have an adverse impact on our ability to source key raw materials and supplies from China; war, terrorism, natural disasters or public health emergencies; our ability to retain or recruit key personnel; environmental, health and safety regulations; the receipt of funding from the U.S. Department of Commerce is subject to the achievement of milestones which may not be achieved on the expected timeline or at all; and our ability to comply with requirements for federal, state and local government incentives and financing.
+
+
+Additional risks and detailed information regarding factors that may cause actual results to differ materially has been and will be included in the Company’s filings with the SEC, including the Company’s most recently filed Annual Report on Form 10-K and any subsequent Quarterly Reports on Form 10-Q and subsequent filings. Any forward-looking statements speak only as of the date of this press release (or such other date as is specified in such statements), and the Company undertakes no obligation to update any forward-looking statements as a result of new information or future events or developments.
+
+
+
+
+
+
+
+
+
+About Non-GAAP Financial Measures
+
+
+This press release includes certain non-GAAP financial measures, including adjusted net loss attributable to USA Rare Earth, Inc., and adjusted net loss per share attributable to USA Rare Earth, Inc. (defined as follows):
+
+
+• Adjusted net loss attributable to USA Rare Earth, Inc. is defined as net loss attributable to USA Rare Earth, Inc. adjusted for declared and deemed dividends, and interest accretion, and loss (gain) on fair market value of financial instruments, net.
+• Adjusted net loss per share attributable to USA Rare Earth, Inc. - Diluted is defined as adjusted net loss attributable to USA Rare Earth, Inc. divided by weighted average diluted shares outstanding.
+
+
+Generally, a non-GAAP financial measure is a numerical measure of a company’s performance, financial position, or cash flows that either excludes or includes amounts that are not normally excluded or included in the most directly comparable measure calculated and presented in accordance with generally accepted accounting principles in the United States of America, or GAAP. These non-GAAP financial measures do not reflect a comprehensive system of accounting, differ from GAAP measures with the same captions, and may differ from non-GAAP financial measures with the same or similar captions that are used by other companies. As such, these non-GAAP measures should be considered as a supplement to, and not as a substitute for, or superior to, financial measures calculated in accordance with GAAP.
+
+
+The Company believes these non-GAAP measures of financial results provide useful supplemental information to management and investors regarding certain financial and business trends related to the Company’s financial condition and results of operations, and as a supplemental tool for investors to use in evaluating its ongoing operating results and trends and in comparing its financial measures with other companies that present similar non-GAAP financial measures. The Company uses these non-GAAP financial measures to analyze its operating performance and future prospects, develop internal budgets and financial goals, and to facilitate period-to-period comparisons. The Company believes these non-GAAP financial measures reflect an additional way of viewing aspects of its operations that, when viewed with its GAAP results, provide a more complete understanding of factors and trends affecting its business. Current and prospective investors should review the Company’s audited annual and unaudited interim financial statements, which are filed with the U.S. Securities and Exchange Commission, and not rely on any single financial measure to evaluate our business.
+
+
+
+Conference Call to Discuss Financial Results
+
+
+The Company will hold a conference call on Monday, August 10, 2026, at 5:00 PM ET to discuss its second quarter and six months ended June 30, 2026 results. Please see below for dial-in information.
+
+
+LIVE CONFERENCE CALL:
+Monday, August 10, 2026, at 5:00 PM ET
+US / Canada Toll-Free: +1 (833) 890-8030
+Local / International Toll: +1 (412) 564-6268
+
+
+CONFERENCE CALL REPLAY:
+Available approximately three hours after conclusion of the live call.
+Expiration: September 10, 2026
+US/Canada Toll-Free: +1 (855) 669-9658
+International Toll: +1 (412) 317-0088
+Access code: 7520719
+
+
+Investors may also access the live call and the replay over the internet on the “Events” page of the Company’s investor website located at www.usare.com or at https://event.choruscall.com/mediaframe/webcast.html?webcastid=SCYm7iDr.
+
+
+
+Disclosure Information
+
+
+USA Rare Earth uses the investor relations section on its website as means of complying with its disclosure obligations under Regulation FD. Accordingly, investors should monitor USA Rare Earth’s investor relations website in addition to following USA Rare Earth’s press releases, SEC filings, and public conference calls and webcasts.
+
+
+
+
+
+
+
+
+
+
+About USA Rare Earth
+
+
+USA Rare Earth, Inc. (Nasdaq: USAR) is building a fully integrated rare earth and permanent magnet value chain across the United States, the United Kingdom, France and Brazil. Through its ownership of Less Common Metals (LCM), one of the world’s leading producers of rare earth metals and alloys, its development of magnet manufacturing capacity in Stillwater, Oklahoma, the Pela Ema mine in Brazil (subject to closing the SVG transaction) and the Round Top deposit in Texas, USA Rare Earth operates across the entire value chain from mining to metal-making, alloy production and neodymium magnet manufacturing. USA Rare Earth is establishing a secure, Western-aligned supply of materials essential to the aerospace and defense, semiconductor, energy, data center, physical AI, mobility, healthcare and industrial sectors.
+
+
+For more information, visit www.usare.com.
+
+
+
+Investor Relations Contact
+J.B. Lowe, CFA
+VP, Head of Investor Relations
+ir@USARE.com
+
+
+Media Relations Contact
+Collected Strategies
+Dan Moore / Scott Bisang
+USAR-CS@collectedstrategies.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+USA Rare Earth, Inc.
+Condensed Consolidated Balance Sheets
+(Unaudited)
+
+
+| | | | | | | | | | | | |
+| | |
+| | June 30,
+2026 | | December 31,
+2025 |
+| | (In thousands) |
+| ASSETS | | | |
+| Current assets | | | |
+| Cash and cash equivalents | $ | 1,530,147 | | | $ | 359,925 | |
+| | | | |
+| | | | |
+| Accounts receivable | 6,270 | | | 3,764 | |
+| | | | |
+| | | | |
+| Inventories | 50,138 | | | 18,535 | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| Prepaid expenses and other current assets | 86,034 | | | 3,151 | |
+| | | | |
+| Total current assets | 1,672,589 | | | 385,375 | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| Property, plant and equipment, net | 146,751 | | | 86,449 | |
+| Mineral interests | 17,339 | | | 17,339 | |
+| Goodwill | 134,848 | | | 134,848 | |
+| Other intangible assets, net | 65,899 | | | 68,612 | |
+| Equipment deposits | 46,904 | | | 1,879 | |
+| Operating lease right-of-use assets | 2,151 | | | 321 | |
+| Deferred arrangement costs | 912,091 | | | — | |
+| Other assets, non-current | 255 | | | 176 | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| Total assets | $ | 2,998,827 | | | $ | 694,999 | |
+| | | | |
+| | | | |
+| LIABILITIES, MEZZANINE AND STOCKHOLDERS' EQUITY | | | |
+| Liabilities | | | |
+| Current liabilities | | | |
+| Accounts payable | $ | 17,367 | | | $ | 11,069 | |
+| Accrued liabilities | 31,679 | | | 14,073 | |
+| Contract liabilities, current | 1,328 | | | 10,500 | |
+| | | | |
+| Note payable | — | | | 1,849 | |
+| | | | |
+| | | | |
+| Finance and operating leases, current | 640 | | | 420 | |
+| | | | |
+| | | | |
+| Total current liabilities | 51,014 | | | 37,911 | |
+| | | | |
+| | | | |
+| | | | |
+| Deferred grant income | 8,482 | | | 8,200 | |
+| | | | |
+| | | | |
+| Finance and operating leases, non-current | 2,556 | | | 777 | |
+| | | | |
+| | | | |
+| Warrant and earnout liabilities | 364,189 | | | 128,205 | |
+| | | | |
+| | | | |
+| Deferred tax liability | 15,665 | | | 16,715 | |
+| Contract liabilities, non-current | 9,602 | | | — | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| Total liabilities | 451,508 | | | 191,808 | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| Mezzanine equity | 10,347 | | | 8,905 | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| | | | |
+| Stockholders' equity | 2,536,972 | | | 494,286 | |
+| | | | |
+| Total liabilities, mezzanine equity, and stockholders' equity | $ | 2,998,827 | | | $ | 694,999 | |
+| | | | |
+| | | | |
+
+
+
+
+
+
+
+
+
+USA Rare Earth, Inc.
+Condensed Consolidated Statements of Operations
+(Unaudited)
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+| | (In thousands, except per share amounts) |
+| | | | | | | | |
+| | | | | | | | |
+| Revenue | $ | 5,821 | | | $ | — | | | $ | 11,519 | | | $ | — | |
+| Cost of product revenue | 7,404 | | | — | | | 12,996 | | | — | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| Gross loss | (1,583) | | | — | | | (1,477) | | | — | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| Operating expenses: | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| Selling, general and administrative | 32,607 | | | 6,227 | | | 53,782 | | | 13,256 | |
+| Research and development | 10,768 | | | 2,577 | | | 25,017 | | | 4,266 | |
+| Amortization of intangible assets | 1,356 | | | — | | | 2,713 | | | — | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| Total operating expenses | 44,731 | | | 8,804 | | | 81,512 | | | 17,522 | |
+| | | | | | | | |
+| Loss from operations | (46,314) | | | (8,804) | | | (82,989) | | | (17,522) | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| Other income (expense), net | 33,838 | | | (133,909) | | | 1,868 | | | (73,509) | |
+| | | | | | | | |
+| Loss before income taxes | (12,476) | | | (142,713) | | | (81,121) | | | (91,031) | |
+| | | | | | | | |
+| Benefit from income taxes | (513) | | | — | | | (1,090) | | | — | |
+| Net loss | $ | (11,963) | | | $ | (142,713) | | | $ | (80,031) | | | $ | (91,031) | |
+| | | | | | | | |
+| | | | | | | | |
+| Net loss attributable to non-controlling interest | $ | (1,630) | | | $ | (207) | | | $ | (2,709) | | | $ | (357) | |
+| Net loss attributable to USA Rare Earth, Inc. | (10,333) | | | (142,506) | | | (77,322) | | | (90,674) | |
+
+
+
+
+
+
+
+
+
+
+
+USA Rare Earth, Inc.
+Condensed Consolidated Statements of Cash Flows
+(Unaudited)
+
+
+| | | | | | | | | | | | | | | | |
+| | | | Six Months Ended June 30, |
+| | | | | | 2026 | | 2025 |
+| | | | | | (In thousands)
+|
+| Cash flows from operating activities: | | | | | | | |
+| Net loss | | | | | $ | (80,031) | | | $ | (91,031) | |
+| Non-cash adjustments | | | | | 36,598 | | | 78,080 | |
+| Changes in assets and liabilities | | | | | (31,891) | | | (5,287) | |
+| Net cash used in operating activities | | | | | $ | (75,324) | | | $ | (18,238) | |
+| | | | | | | | |
+| | | | | | | | |
+| Cash flows from investing activities: | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| Capital expenditures and equipment deposits | | | | | $ | (108,388) | | | $ | (6,297) | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| Net cash used in investing activities | | | | | $ | (108,388) | | | $ | (6,297) | |
+| | | | | | | | |
+| | | | | | | | |
+| Cash flows from financing activities: | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| Reverse merger costs | | | | | $ | — | | | $ | 45,717 | |
+| Issuance costs | | | | | (51,003) | | | (8,281) | |
+| Proceeds from issuance of common stock under PIPE financing | | | | | 1,500,000 | | | 75,000 | |
+| Proceeds from exercise of warrants | | | | | 68 | | | 21,951 | |
+| Finance leases | | | | | (140) | | | — | |
+| Other | | | | | (29,594) | | | (4,822) | |
+| Net cash provided by financing activities | | | | | $ | 1,419,331 | | | $ | 129,565 | |
+| | | | | | | | |
+| | | | | | | | |
+| Effect of exchange rate differences on cash, cash equivalents and restricted cash | | | | | $ | (1,175) | | | $ | — | |
+| | | | | | | | |
+| Net change in cash, cash equivalents and restricted cash | | | | | $ | 1,234,444 | | | $ | 105,030 | |
+| | | | | | | | |
+| Cash, cash equivalents and restricted cash, beginning of period | | | | | 359,925 | | | 16,761 | |
+| Cash, cash equivalents and restricted cash, end of period | | | | | $ | 1,594,369 | | | $ | 121,791 | |
+
+
+
+
+
+
+
+
+
+USA Rare Earth, Inc.
+Reconciliation of Non-GAAP Financial Measures
+(Unaudited)
+
+
+
+This press release includes certain non-GAAP financial information. The following table reconciles the GAAP financial information to the non-GAAP financial information.
+| | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Six Months Ended June 30, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+| | (In thousands, except for per share amounts) |
+| Net loss attributable to USA Rare Earth, Inc. | $ | (10,333) | | | $ | (142,506) | | | $ | (77,322) | | | $ | (90,674) | |
+| Declared and deemed dividends, and interest accretion
+| (733) | | | (11,240) | | | (1,442) | | | (11,719) | |
+| | | | | | | | |
+| Loss (gain) on fair market value of financial instruments, net | (22,418) | | | 134,662 | | | 21,135 | | | 74,362 | |
+| Adjusted net loss attributable to USA Rare Earth, Inc. (1)
+| $ | (33,484) | | | $ | (19,084) | | | $ | (57,629) | | | $ | (28,031) | |
+| | | | | | | | |
+| | | | | | | | |
+| Adjusted net loss per share attributable to USA Rare Earth, Inc. - Diluted (1)
+| $ | (0.15) | | | $ | (0.21) | | | $ | (0.27) | | | $ | (0.31) | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+
+| | | | | |
+| |
+
+(1) Refer to the section “About Non-GAAP Financial Measures” for an explanation of our use of non-GAAP financial measures and the definitions of such measures.

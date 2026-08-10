@@ -81,6 +81,19 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("applies an explicit loss caption to an unsigned guidance range", () => {
+    expect(extractOutlookMetrics([
+      "Business Outlook",
+      "Adjusted EBITDA loss of $17 million to $23 million.",
+    ])).toEqual([
+      {
+        key: "adjusted_ebitda",
+        label: "Adj EBITDA",
+        value: "-$17M to -$23M",
+      },
+    ]);
+  });
+
   test("ignores non-outlook and forward-looking boilerplate headings", () => {
     expect(extractOutlookMetrics([
       "Forward-looking statements",

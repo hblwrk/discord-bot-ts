@@ -23,4 +23,9 @@ describe("earnings result document text", () => {
       "A&B <tag> &lt;safe&gt; $1",
     );
   });
+
+  test("removes zero-width placeholders from otherwise-empty table cells", () => {
+    expect(htmlToText("<tr><td>Loss per share</td><td>\u200B</td><td>$(0.10)</td></tr>"))
+      .toBe("Loss per share | | $(0.10) |");
+  });
 });

@@ -658,7 +658,10 @@ const filingCorpus: {
       ["revenue", "$696.1M"],
       ["net_income", "-$169.98M"],
     ],
-    outlook: [],
+    outlook: [
+      ["Q3 Revenue", "$736M to $737M"],
+      ["Q3 Adj EPS", "$0.34"],
+    ],
     quarterLabel: "Q2 2026",
     source: "1477333/000147733326000053/q226exhibit991.htm",
     ticker: "net",
@@ -678,6 +681,140 @@ const filingCorpus: {
     quarterLabel: "Q2 2026",
     source: "1692819/000169281926000017/vistra-20260630xearningsre.htm",
     ticker: "vst",
+  },
+  {
+    // Zero-width characters fill otherwise-empty cells between the per-share caption and
+    // values. They must not terminate the table row before the reported loss per share.
+    company: "CEVA",
+    metrics: [
+      ["adjusted_eps", "$0.08"],
+      ["gaap_eps", "-$0.10"],
+      ["revenue", "$29.03M"],
+      ["net_income", "-$2.91M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1173489/000143774926026648/ex_1001319.htm",
+    ticker: "ceva",
+  },
+  {
+    // The adjusted qualifier is a separate table cell above "EPS was", while the same line
+    // later names prior-year adjusted EPS. The consolidated net-revenue row must also beat
+    // its individual equipment-sales rows.
+    company: "Plug Power",
+    metrics: [
+      ["adjusted_eps", "-$0.07"],
+      ["gaap_eps", "-$0.14"],
+      ["revenue", "$178.3M"],
+      ["net_income", "-$188.21M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1093691/000110465926093339/tm2622713d1_ex99-1.htm",
+    ticker: "plug",
+  },
+  {
+    // Quarter and full-year outlook values sit below standalone period captions, and the
+    // GAAP row is captioned "Net (loss) income per share attributable to common stockholders".
+    company: "Hims & Hers Health",
+    metrics: [
+      ["gaap_eps", "-$0.37"],
+      ["revenue", "$753M"],
+      ["net_income", "-$86.29M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$880M to $900M"],
+      ["Q3 Adj EBITDA", "$75M to $95M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1773751/000177375126000161/hims-20260630x8xkearningsr.htm",
+    ticker: "hims",
+  },
+  {
+    // The reported value precedes its caption ("$234 million in Q2 revenue") and is followed
+    // by the $34 million sequential increase. Q3 adjusted EBITDA is explicitly a loss.
+    company: "Rocket Lab",
+    metrics: [
+      ["gaap_eps", "-$0.08"],
+      ["revenue", "$234M"],
+      ["net_income", "-$49.26M"],
+    ],
+    outlook: [
+      ["Revenue", "$250M to $265M"],
+      ["Adj EBITDA", "-$17M to -$23M"],
+      ["Operating expenses", "$143M to $149M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1819994/000181999426000061/rklb-08102026ex991.htm",
+    ticker: "rklb",
+  },
+  {
+    company: "Alamar Biosciences",
+    metrics: [
+      ["gaap_eps", "-$0.22"],
+      ["revenue", "$29.4M"],
+      ["net_income", "-$13.2M"],
+    ],
+    outlook: [
+      ["Revenue", "$116M to $120M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "2104204/000119312526342378/ck0002104204-ex99_1.htm",
+    ticker: "almr",
+  },
+  {
+    // The statements use a generic "Loss per share" caption rather than naming net loss.
+    company: "Quantum Computing",
+    metrics: [
+      ["gaap_eps", "-$0.05"],
+      ["revenue", "$5.6M"],
+      ["net_income", "-$11.8M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1758009/000121390026087267/ea030143301ex99-1.htm",
+    ticker: "qubt",
+  },
+  {
+    // Subscription and services are one revenue component; total revenue rounds to $105M.
+    // The narrative puts the current loss per share before its caption and then compares 2025.
+    company: "GoPro",
+    metrics: [
+      ["adjusted_eps", "-$0.21"],
+      ["gaap_eps", "-$0.30"],
+      ["revenue", "$105M"],
+      ["net_income", "-$51M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1500435/000150043526000034/gpro2026-6x30ex991xer.htm",
+    ticker: "gpro",
+  },
+  {
+    company: "AST SpaceMobile",
+    metrics: [
+      ["gaap_eps", "-$0.77"],
+      ["revenue", "$31.5M"],
+      ["net_income", "-$299.92M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1780312/000119312526342540/asts-ex99_1.htm",
+    ticker: "asts",
+  },
+  {
+    // The non-GAAP reconciliation's adjusted net loss is larger than the reported loss.
+    // It must not be published as GAAP net income; the company-attributable row is $10.333M.
+    company: "USA Rare Earth",
+    metrics: [
+      ["gaap_eps", "-$0.05"],
+      ["revenue", "$5.8M"],
+      ["net_income", "-$10.33M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1970622/000197062226000056/exhibit991-earningsrelease.htm",
+    ticker: "usar",
   },
 ];
 
@@ -699,6 +836,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(45);
+    expect(filingCorpus).toHaveLength(54);
   });
 });
