@@ -48,6 +48,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     label: "Adj EPS",
     patterns: [
       /\badjusted\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
+      /\bnon-gaap\s+(?:net\s+)?(?:income|earnings|loss)\s+for\s+(?:the\s+)?(?:q[1-4]|(?:first|second|third|fourth)[\s–—-]+quarter)\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
       /\badjusted\s+(?:\d{1,2}\s+)?(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?(?:earnings\s+per\s+(?:common\s+)?share|eps)\b/i,
       /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?eps\b/i,
       /\bnon-gaap\s+(?:diluted\s+)?(?:earnings\s+per\s+share|eps)\b/i,
@@ -66,13 +67,14 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     ],
     // Guidance restates the same non-GAAP measure as a forward range, so without this
     // the low end of a full-year outlook is posted as the reported quarter.
-    skipPattern: /\bguidance\b|\boutlook\b|\bforecast\b|\bexpects?\s+(?:non-gaap\s+)?(?:eps|adjusted)\b|\bto\s+be\s+(?:between|in\s+(?:a\s+)?range)\b/i,
+    skipPattern: /\bguidance\b|\boutlook\b|\bforecast(?:s|ed|ing)?\b|\bexpects?\s+(?:non-gaap\s+)?(?:eps|adjusted)\b|\bto\s+be\s+(?:between|in\s+(?:a\s+)?range)\b/i,
     valueType: "eps",
   },
   {
     key: "gaap_eps",
     label: "EPS",
     patterns: [
+      /\b(?:gaap\s+)?net\s+loss\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?)\s+per\s+(?:fully\s+)?(?:common\s+)?diluted\s+share\b/i,
       /\bnet\s+(?:income|earnings)\s+attributable\s+to\s+(?:common\s+)?(?:stockholders|shareholders)\s+per\s+share\s*[–—-]\s*diluted\b/i,
       /\b(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\b/i,
       /\bnet\s+\(loss(?:es)?\)\s+income\s+per\s+(?:common\s+)?share\b/i,
@@ -244,6 +246,7 @@ export function getMetricLineWithContinuation(
       /^\s*(?:diluted\s+)?(?:eps|earnings|net\s+(?:income|loss))\b/i.test(line)
     ? `${precedingLine} ${line}`
     : line;
+  const periodScopedBaseLine = getCurrentQuarterNarrativeSegments(baseLine, quarterLabel);
   const positionedQuarterValues = getPositionedQuarterValues(
     lines,
     lineIndex,
@@ -253,8 +256,8 @@ export function getMetricLineWithContinuation(
     return [baseLine, ...positionedQuarterValues].join(" ");
   }
 
-  const metricLines = [baseLine];
-  const isSummaryHeading = isSummaryMetricHeading(baseLine, definition);
+  const metricLines = [periodScopedBaseLine];
+  const isSummaryHeading = isSummaryMetricHeading(periodScopedBaseLine, definition);
   // A per-share block spans a basic and a diluted row of several period columns, each
   // rendered as its own line; stopping too early truncates the diluted row and leaves
   // only the basic figure to read.
@@ -273,7 +276,7 @@ export function getMetricLineWithContinuation(
     }
 
     if (true === isValueOnlyLine(nextLine) ||
-        true === isPerShareMetricDetailLine(baseLine, nextLine)) {
+        true === isPerShareMetricDetailLine(periodScopedBaseLine, nextLine)) {
       metricLines.push(nextLine);
       continue;
     }
@@ -302,6 +305,37 @@ export function getMetricLineWithContinuation(
   }
 
   return metricLines.join(" ");
+}
+
+function getCurrentQuarterNarrativeSegments(
+  line: string,
+  quarterLabel: string | undefined,
+): string {
+  if (2 <= (line.match(/\|/g)?.length ?? 0)) {
+    return line;
+  }
+
+  const quarterMatch = /^Q([1-4])\s+(20\d{2})$/.exec(quarterLabel ?? "");
+  if (undefined === quarterMatch?.[1] || undefined === quarterMatch[2]) {
+    return line;
+  }
+
+  const quarterNames = ["", "first", "second", "third", "fourth"];
+  const quarterName = quarterNames[Number.parseInt(quarterMatch[1], 10)] ?? "";
+  const currentPeriodPattern = new RegExp(
+    String.raw`\b(?:q${quarterMatch[1]}|${quarterName}[\s–—-]+quarter)\b[^.!?]{0,40}\b${quarterMatch[2]}\b`,
+    "i",
+  );
+  const explicitPeriodPattern = /\b(?:q[1-4]|(?:first|second|third|fourth)[\s–—-]+quarter)\b[^.!?]{0,40}\b20\d{2}\b/i;
+  const segments = line.split(/(?<=[.!?])\s+/);
+  const hasForeignPeriodSegment = segments.some(segment =>
+    explicitPeriodPattern.test(segment) && false === currentPeriodPattern.test(segment));
+  if (false === hasForeignPeriodSegment) {
+    return line;
+  }
+
+  const currentSegments = segments.filter(segment => currentPeriodPattern.test(segment));
+  return 0 < currentSegments.length ? currentSegments.join(" ") : line;
 }
 
 function isSummaryMetricHeading(line: string, definition: MetricDefinition): boolean {

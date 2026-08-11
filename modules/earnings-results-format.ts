@@ -153,11 +153,19 @@ function normalizeEpsMetrics(
 
   if (adjustedEpsMetric &&
       gaapEpsMetric &&
-      true === isImplausibleSecondaryGaapEps(gaapEpsMetric.numericValue, adjustedEpsMetric.numericValue)) {
+      true === isImplausibleSecondaryGaapEps(gaapEpsMetric.numericValue, adjustedEpsMetric.numericValue) &&
+      false === isExplicitLargeGaapLoss(gaapEpsMetric)) {
     return metrics.filter(metric => "gaap_eps" !== metric.key);
   }
 
   return metrics;
+}
+
+function isExplicitLargeGaapLoss(metric: EarningsResultMetric): boolean {
+  return "number" === typeof metric.numericValue &&
+    metric.numericValue < 0 &&
+    /\bGAAP\s+net\s+loss\b/i.test(metric.sourceSnippet ?? "") &&
+    /\bper\s+(?:fully\s+)?(?:common\s+)?diluted\s+share\b/i.test(metric.sourceSnippet ?? "");
 }
 
 function getProviderMatchedEpsMetric(

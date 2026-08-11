@@ -1,4 +1,7 @@
-import {isDefinitionalLine} from "./earnings-results-format-selection.ts";
+import {
+  hasStandaloneFullYearPeriod,
+  isDefinitionalLine,
+} from "./earnings-results-format-selection.ts";
 import {getMoneyScaleFromContextText} from "./earnings-results-money.ts";
 import {gaapTermSource, hasStandaloneGaapTerm} from "./earnings-results-terms.ts";
 
@@ -260,12 +263,7 @@ function hasMixedOutlookPeriods(lines: string[]): boolean {
   const sectionText = lines.join(" ");
   const hasQuarter = /\b(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b/i.test(sectionText) ||
     /\bq[1-4]\b/i.test(sectionText);
-  // "fiscal 2026" states an annual period just as "fiscal year 2026" does. Without the bare
-  // form a section mixing it with a quarter item reads as single-period, and every item is
-  // then rendered without the period it belongs to.
-  const hasFullYear = /\b(?:full[\s–—-]+year|fiscal\s+year|fy)\b/i.test(sectionText) ||
-    /\bfiscal\s+20\d{2}\b/i.test(sectionText);
-  return hasQuarter && hasFullYear;
+  return hasQuarter && hasStandaloneFullYearPeriod(sectionText);
 }
 
 function isOutlookHeading(line: string): boolean {
@@ -282,7 +280,7 @@ function isOutlookHeading(line: string): boolean {
 
   return /^(?:business\s+|financial\s+)?(?:outlook|guidance)\b/i.test(normalizedLine) ||
     /^(?:the\s+)?company\s+(?:raises?|updates?|reaffirms?|provides?|issues?)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine) ||
-    /^(?:(?:fiscal(?:\s+year)?\s+)?(?:20\d{2}|fy\s?\d{2}|q[1-4]\s+20\d{2}|quarter)|(?:first|second|third|fourth)[\s–—-]+quarter)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine);
+    /^(?:(?:(?:fiscal(?:\s+year)?|fiscal\s+full[\s–—-]+year)\s+)?(?:20\d{2}|fy\s?\d{2}|q[1-4]\s+20\d{2}|quarter)|(?:first|second|third|fourth)[\s–—-]+quarter)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine);
 }
 
 function isMixedPeriodOutlookHeading(line: string): boolean {
@@ -524,7 +522,16 @@ function isHistoricalOutlookMetricLine(line: string): boolean {
 
 function isNoisyOutlookLine(line: string): boolean {
   const pipeCount = line.match(/\|/g)?.length ?? 0;
-  return pipeCount >= 4 ||
+  // SEC inline-XBRL tables often render a two-column row with empty spacer cells:
+  // "Adjusted EBITDA | | $181M to $191M | |". Count populated numeric cells rather
+  // than separators so that row remains guidance, while a dense historical comparison
+  // with several numeric columns is still excluded.
+  const populatedNumericCells = line
+    .split("|")
+    .filter(cell => /\d/.test(cell))
+    .length;
+  const isSparseTwoColumnRow = 4 === pipeCount && 1 === populatedNumericCells;
+  return (pipeCount >= 4 && false === isSparseTwoColumnRow) ||
     /\bpost[-\s]?20\d{2}\b.*\bcompound\s+annual\s+growth\s+rate\b/i.test(line);
 }
 

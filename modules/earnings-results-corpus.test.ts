@@ -897,6 +897,41 @@ const filingCorpus: {
     source: "1375365/000137536526000021/exhibit991_20260630.htm",
     ticker: "smci",
   },
+  {
+    // The guidance caption combines both qualifiers as "Fiscal Full-Year 2026 Outlook".
+    // It is a real outlook heading, rather than prose mentioning outlook inside the section.
+    company: "CAVA Group",
+    metrics: [
+      ["gaap_eps", "$0.19"],
+      ["revenue", "$365.4M"],
+      ["net_income", "$23M"],
+    ],
+    outlook: [
+      ["Adj EBITDA", "$181M to $191M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1639438/000162828026055709/earningsrelease2026q2.htm",
+    ticker: "cava",
+  },
+  {
+    // The results prose states Q4, Q3 and prior-year Q4 on the same lines. Q1 guidance
+    // supplies the formerly selected $4.05, while $144.2M is the preceding quarter.
+    company: "Lumentum Holdings",
+    metrics: [
+      ["adjusted_eps", "$3.23"],
+      ["gaap_eps", "-$84.65"],
+      ["revenue", "$1.01B"],
+      ["net_income", "-$7.2B"],
+    ],
+    outlook: [
+      ["Revenue", "$1.225B to $1.275B"],
+      ["Adj EPS", "$4.05 to $4.35"],
+      ["Operating margin", "39.5% to 40.5%"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "1633978/000162828026055726/lite_ex991xq4fy26.htm",
+    ticker: "lite",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -917,6 +952,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(58);
+    expect(filingCorpus).toHaveLength(60);
   });
 });

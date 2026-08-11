@@ -339,6 +339,20 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("treats a quarter of a fiscal year as one outlook period", () => {
+    expect(extractOutlookMetrics([
+      "Business Outlook",
+      "Lumentum expects the following for the first quarter of fiscal year 2027:",
+      "Net revenue in the range of $1.225 billion to $1.275 billion",
+      "Non-GAAP operating margin of 39.5% to 40.5%",
+      "Non-GAAP diluted net income per share of $4.05 to $4.35",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", value: "$1.225B to $1.275B"},
+      {key: "adjusted_eps", label: "Adj EPS", value: "$4.05 to $4.35"},
+      {key: "operating_margin", label: "Operating margin", value: "39.5% to 40.5%"},
+    ]);
+  });
+
   test("maps a reversed non-GAAP and GAAP tax-rate pair to GAAP", () => {
     expect(extractOutlookMetrics([
       "Business Outlook",
@@ -466,6 +480,16 @@ describe("extractOutlookMetrics", () => {
       "Non-GAAP earnings per share | $12.40 to $12.60 |",
     ])).toEqual([
       {key: "adjusted_eps", label: "Adj EPS", value: "$12.4 to $12.6"},
+    ]);
+  });
+
+  test("reads sparse guidance rows under a fiscal full-year outlook caption", () => {
+    expect(extractOutlookMetrics([
+      "Fiscal Full-Year 2026 Outlook:",
+      "CAVA Group reaffirmed fiscal full-year 2026 guidance, as follows:",
+      "Adjusted EBITDA | | $181.0 to $191.0 million | |",
+    ])).toEqual([
+      {key: "adjusted_ebitda", label: "Adj EBITDA", value: "$181M to $191M"},
     ]);
   });
 

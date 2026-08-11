@@ -153,6 +153,25 @@ export function getMetricCandidateScore({
   return score;
 }
 
+export function hasStandaloneFullYearPeriod(text: string): boolean {
+  if (/\bfull[\s–—-]+year\b/i.test(text)) {
+    return true;
+  }
+
+  const fiscalPeriodPattern = /\b(?:fiscal(?:\s+year)?|fy)\s*(?:of\s+)?(?:20\d{2}|\d{2})\b/gi;
+  for (const periodMatch of text.matchAll(fiscalPeriodPattern)) {
+    const precedingText = text.slice(Math.max(0, periodMatch.index - 40), periodMatch.index);
+    // "first quarter of fiscal year 2027" names one quarter, not a simultaneous
+    // full-year outlook. Only an independently stated fiscal period is annual.
+    if (false === /\b(?:q[1-4]|(?:first|second|third|fourth)[\s–—-]+quarter)(?:\s+of)?\s*$/i
+      .test(precedingText)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
 function hasExcludingQualifierAroundMetric(
   line: string,
   metricStartIndex: number,

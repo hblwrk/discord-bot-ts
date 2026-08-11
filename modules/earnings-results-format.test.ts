@@ -544,6 +544,39 @@ describe("earnings result formatting", () => {
     expect(metrics.find(metric => "revenue" === metric.key)).not.toHaveProperty("estimate");
   });
 
+  test("does not publish a forecast introduced with forecasting as adjusted EPS", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example reports fourth quarter 2026 results</h1>
+      <p>Forecasting first quarter fiscal year 2027 non-GAAP diluted net income per share of $4.05 to $4.35.</p>
+    `);
+
+    expect(parsedDocument.metrics.some(metric => "adjusted_eps" === metric.key)).toBe(false);
+  });
+
+  test("keeps an explicitly reported large GAAP loss per share", () => {
+    const event: EarningsEvent = {
+      ticker: "LITE",
+      when: "after_close",
+      date: "2026-08-11",
+      importance: 1,
+    };
+    const metrics = getMessageMetrics([
+      {key: "adjusted_eps", label: "Adj EPS", numericValue: 3.23, value: "$3.23"},
+      {
+        key: "gaap_eps",
+        label: "EPS",
+        numericValue: -84.65,
+        sourceSnippet: "GAAP net loss was $7.2 billion, or $84.65 per diluted share.",
+        value: "-$84.65",
+      },
+    ], null, event);
+
+    expect(metrics.map(metric => [metric.key, metric.value])).toEqual([
+      ["adjusted_eps", "$3.23"],
+      ["gaap_eps", "-$84.65"],
+    ]);
+  });
+
   test("does not overwrite filing EPS with an unmatched provider actual", () => {
     const event: EarningsEvent = {
       ticker: "RBA",
