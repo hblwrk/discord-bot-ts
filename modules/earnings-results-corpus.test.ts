@@ -226,6 +226,7 @@ const filingCorpus: {
     ],
     outlook: [
       ["Revenue", "$540M to $560M"],
+      ["EPS", "$0.87 to $0.92"],
       ["Gross margin", "72%"],
       ["Operating expenses", "$232M to $236M"],
       ["Tax rate", "4%"]
@@ -285,6 +286,7 @@ const filingCorpus: {
     ],
     outlook: [
       ["FY2026 Adj EPS", "12% growth"],
+      ["FY2027 Adj EPS", "double-digit growth"],
       ["Q4 Operating income", "$4.9B"],
     ],
     quarterLabel: "Q3 2026",
@@ -660,7 +662,9 @@ const filingCorpus: {
     ],
     outlook: [
       ["Q3 Revenue", "$736M to $737M"],
+      ["FY2026 Revenue", "$2.864B to $2.87B"],
       ["Q3 Adj EPS", "$0.34"],
+      ["FY2026 Adj EPS", "$1.25 to $1.26"],
     ],
     quarterLabel: "Q2 2026",
     source: "1477333/000147733326000053/q226exhibit991.htm",
@@ -724,7 +728,9 @@ const filingCorpus: {
     ],
     outlook: [
       ["Q3 Revenue", "$880M to $900M"],
+      ["FY2026 Revenue", "$3.1B to $3.3B"],
       ["Q3 Adj EBITDA", "$75M to $95M"],
+      ["FY2026 Adj EBITDA", "$275M to $325M"],
     ],
     quarterLabel: "Q2 2026",
     source: "1773751/000177375126000161/hims-20260630x8xkearningsr.htm",
@@ -870,6 +876,27 @@ const filingCorpus: {
     source: "721371/000072137126000037/a26q4_x063026xex991xnewsre.htm",
     ticker: "cah",
   },
+  {
+    // Q1 and FY2027 both guide revenue. The two tax percentages are respectively mapped
+    // GAAP and non-GAAP assumptions, not the endpoints of a tax-rate range.
+    company: "Super Micro Computer",
+    metrics: [
+      ["adjusted_eps", "$1.70"],
+      ["gaap_eps", "$1.62"],
+      ["revenue", "$11.1B"],
+      ["net_income", "$1.18B"],
+    ],
+    outlook: [
+      ["Q1 Revenue", "$14.5B to $15.5B"],
+      ["FY2027 Revenue", "$65B to $72B"],
+      ["Q1 Adj EPS", "$1.01 to $1.1"],
+      ["Q1 EPS", "$0.89 to $0.98"],
+      ["Q1 Tax rate", "20.1%"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "1375365/000137536526000021/exhibit991_20260630.htm",
+    ticker: "smci",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -890,6 +917,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(57);
+    expect(filingCorpus).toHaveLength(58);
   });
 });

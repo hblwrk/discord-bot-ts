@@ -58,10 +58,10 @@ const adjustedEpsDefinition: OutlookMetricDefinition = {
   label: "Adj EPS",
   patterns: [
     /\badjusted\s+continuing(?:\s+operations?)?\s+(?:diluted\s+)?eps\b/i,
-    /\badjusted\s+continuing(?:\s+operations?)?\s+earnings\s+per\s+(?:common\s+)?share\b/i,
+    /\badjusted\s+continuing(?:\s+operations?)?\s+earnings\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
     /\badjusted\s+(?:diluted\s+)?eps\b/i,
-    /\badjusted\s+(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\b/i,
-    /\bnon-gaap\s+(?:diluted\s+)?(?:eps|(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share)\b/i,
+    /\badjusted\s+(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
+    /\bnon-gaap\s+(?:diluted\s+)?(?:eps|(?:earnings|net\s+income)\s+per\s+(?:common\s+)?(?:diluted\s+)?share)\b/i,
   ],
   valueType: "eps",
 };
@@ -79,6 +79,7 @@ const outlookMetricDefinitions: OutlookMetricDefinition[] = [
     label: "EPS",
     patterns: [
       new RegExp(String.raw`${gaapTermSource}\s+(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?eps\b`, "i"),
+      new RegExp(String.raw`${gaapTermSource}\s+(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b`, "i"),
       // Guidance for a non-GAAP per-share measure must not be posted under the GAAP label,
       // so an occurrence carrying that qualifier is passed over. One sentence often guides
       // on both measures ("Earnings per Share (EPS) is expected to be between $4.05 and
@@ -156,9 +157,9 @@ export function extractOutlookMetrics(
   }
 
   const metrics: EarningsOutlookMetric[] = [];
-  const seenKeys = new Set<string>();
+  const seenMetrics = new Set<string>();
   for (const definition of outlookMetricDefinitions) {
-    const metric = extractOutlookMetric(
+    const definitionMetrics = extractOutlookMetricsForDefinition(
       section.lines,
       definition,
       // Every row of a revised-guidance table covers the same period, so the rows are not
@@ -170,12 +171,15 @@ export function extractOutlookMetrics(
       section.moneyUnit,
       section.nonGaapMeasures,
     );
-    if (null === metric || true === seenKeys.has(metric.key)) {
-      continue;
-    }
+    for (const metric of definitionMetrics) {
+      const identity = `${metric.periodLabel ?? ""}:${metric.key}`;
+      if (true === seenMetrics.has(identity)) {
+        continue;
+      }
 
-    metrics.push(metric);
-    seenKeys.add(metric.key);
+      metrics.push(metric);
+      seenMetrics.add(identity);
+    }
   }
 
   return metrics.slice(0, 6);
@@ -324,7 +328,7 @@ function isNextSectionHeading(line: string): boolean {
     /[A-Z]{3,}/.test(normalizedLine);
 }
 
-function extractOutlookMetric(
+function extractOutlookMetricsForDefinition(
   lines: string[],
   definition: OutlookMetricDefinition,
   includePeriodLabel: boolean,
@@ -333,8 +337,8 @@ function extractOutlookMetric(
   revisedColumns: boolean,
   sectionMoneyUnit: string | undefined,
   nonGaapMeasures: boolean,
-): EarningsOutlookMetric | null {
-  let bestCandidate: OutlookMetricCandidate | null = null;
+): EarningsOutlookMetric[] {
+  const bestCandidateByPeriod = new Map<string, OutlookMetricCandidate>();
   for (const [lineIndex, line] of lines.entries()) {
     if (false === revisedColumns && true === isNoisyOutlookLine(line)) {
       continue;
@@ -360,6 +364,7 @@ function extractOutlookMetric(
       const value = extractOutlookValue(
         valueLine,
         pattern,
+        definition.key,
         definition.valueType,
         documentCurrencyCode,
         revisedColumns,
@@ -397,19 +402,29 @@ function extractOutlookMetric(
       if (undefined !== periodLabel) {
         metric.periodLabel = periodLabel;
       }
+      const candidateScore = getOutlookMetricCandidateScore(valueLine);
+      // Once a mixed-period section can retain one candidate per period, an actual result
+      // from one period can no longer hide behind stronger guidance for another. Require
+      // each retained period to be forward-looking on its own.
+      if (true === includePeriodLabel && true === isHistoricalOutlookMetricLine(valueLine)) {
+        continue;
+      }
+
       const candidate = {
         // Score what the value was read from: a caption joined to its cells is a table row,
         // whereas the caption alone looks like prose.
-        score: getOutlookMetricCandidateScore(valueLine),
+        score: candidateScore,
         metric,
       };
-      if (null === bestCandidate || candidate.score > bestCandidate.score) {
-        bestCandidate = candidate;
+      const candidatePeriod = periodLabel ?? "";
+      const bestCandidate = bestCandidateByPeriod.get(candidatePeriod);
+      if (undefined === bestCandidate || candidate.score > bestCandidate.score) {
+        bestCandidateByPeriod.set(candidatePeriod, candidate);
       }
     }
   }
 
-  return bestCandidate?.metric ?? null;
+  return [...bestCandidateByPeriod.values()].map(candidate => candidate.metric);
 }
 
 function getOutlookPeriodLabel(lines: string[], lineIndex: number): string | undefined {
@@ -434,9 +449,13 @@ function getOutlookPeriodLabel(lines: string[], lineIndex: number): string | und
 }
 
 function getLineOutlookPeriodLabel(line: string): string | undefined {
+  const periodCandidates: {index: number; label: string;}[] = [];
   const directQuarterMatch = /\bq([1-4])(?:\s+20\d{2})?\b/i.exec(line);
   if (undefined !== directQuarterMatch?.[1]) {
-    return `Q${directQuarterMatch[1]}`;
+    periodCandidates.push({
+      index: directQuarterMatch.index,
+      label: `Q${directQuarterMatch[1]}`,
+    });
   }
 
   const writtenQuarterMatch = /\b(first|second|third|fourth)[\s–—-]+quarter\b/i.exec(line);
@@ -447,15 +466,24 @@ function getLineOutlookPeriodLabel(line: string): string | undefined {
       ["third", "Q3"],
       ["fourth", "Q4"],
     ]);
-    return quarterByName.get(writtenQuarterMatch[1].toLowerCase());
+    const quarterLabel = quarterByName.get(writtenQuarterMatch[1].toLowerCase());
+    if (undefined !== quarterLabel) {
+      periodCandidates.push({
+        index: writtenQuarterMatch.index,
+        label: quarterLabel,
+      });
+    }
   }
 
   const fullYearMatch = /\b(?:full[\s–—-]+year|fiscal(?:\s+year)?|fy)\s*(?:of\s+)?(20\d{2}|\d{2})\b/i.exec(line);
   if (undefined !== fullYearMatch?.[1]) {
-    return `FY${2 === fullYearMatch[1].length ? `20${fullYearMatch[1]}` : fullYearMatch[1]}`;
+    periodCandidates.push({
+      index: fullYearMatch.index,
+      label: `FY${2 === fullYearMatch[1].length ? `20${fullYearMatch[1]}` : fullYearMatch[1]}`,
+    });
   }
 
-  return undefined;
+  return periodCandidates.sort((first, second) => first.index - second.index)[0]?.label;
 }
 
 function getOutlookMetricCandidateScore(line: string): number {
@@ -489,6 +517,11 @@ function getOutlookMetricCandidateScore(line: string): number {
   return score;
 }
 
+function isHistoricalOutlookMetricLine(line: string): boolean {
+  return /\b(?:reported|generated|was|were|amounted|totaled)\b/i.test(line) &&
+    false === /\b(?:expects?|expected|guidance|outlook|forecast|projected|targets?|targeting|anticipates?|anticipated|reaffirms?|reiterates?|maintains?|raises?|raised)\b/i.test(line);
+}
+
 function isNoisyOutlookLine(line: string): boolean {
   const pipeCount = line.match(/\|/g)?.length ?? 0;
   return pipeCount >= 4 ||
@@ -498,6 +531,7 @@ function isNoisyOutlookLine(line: string): boolean {
 function extractOutlookValue(
   line: string,
   pattern: RegExp,
+  metricKey: string,
   valueType: OutlookValueType,
   documentCurrencyCode: string,
   revisedColumns = false,
@@ -514,9 +548,12 @@ function extractOutlookValue(
     // A per-share range is the figure being guided to, so it wins over a growth rate quoted
     // in the same breath ("Non-GAAP EPS of $0.84 to $0.88, representing growth of 28% to
     // 35%"). Guidance given only as growth still falls through to the growth reading.
-    const value = ("eps" === valueType
-      ? getOutlookRangeValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit)
+    const value = ("tax_rate" === metricKey
+      ? getBasisSpecificTaxRateValue(line, valueText)
       : null) ??
+      ("eps" === valueType
+        ? getOutlookRangeValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit)
+        : null) ??
       getGrowthOutlookValue(valueText) ??
       getOutlookRangeValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit) ??
       ("eps" === valueType ? getEpsPercentOutlookValue(valueText) : null) ??
@@ -567,7 +604,7 @@ function getOutlookValueSegments(
   }
 
   const rawValueText = line.slice(patternMatch.index + patternMatch[0].length);
-  const nextMetricPattern = /\b(?:adjusted\s+(?:continuing\s+)?eps|gaap\s+(?:continuing\s+)?eps|diluted\s+eps|eps|earnings\s+per\s+(?:common\s+)?share|revenues?|net\s+sales|sales|gross(?:\s+profit)?\s+margin|operating\s+margin|operating\s+income|operating\s+expenses?|opex|tax\s+rate|capex|capital\s+expenditures?|free\s+cash\s+flow|dcf\s+per\s+share|distributable\s+cash\s+flow\s+per\s+share|adjusted\s+ebitda\s+margin|adjusted\s+ebitda|ebitda)\b/gi;
+  const nextMetricPattern = /\b(?:adjusted\s+(?:continuing\s+)?eps|gaap\s+(?:continuing\s+)?eps|diluted\s+eps|eps|(?:(?:adjusted|non-gaap|gaap)\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?(?:diluted\s+)?share|revenues?|net\s+sales|sales|gross(?:\s+profit)?\s+margin|operating\s+margin|operating\s+income|operating\s+expenses?|opex|tax\s+rate|capex|capital\s+expenditures?|free\s+cash\s+flow|dcf\s+per\s+share|distributable\s+cash\s+flow\s+per\s+share|adjusted\s+ebitda\s+margin|adjusted\s+ebitda|ebitda)\b/gi;
   const currentCaptionPattern = new RegExp(
     patternMatch[0].replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
     "i",
@@ -637,6 +674,32 @@ function getNumericGrowthOutlookValue(value: string): string | null {
   return `${formatPercent(Number.parseFloat(percentMatch[1]))} ${getGrowthDirection(value)}`;
 }
 
+function getBasisSpecificTaxRateValue(line: string, value: string): string | null {
+  if (false === /\brespectively\b/i.test(value)) {
+    return null;
+  }
+
+  const percentages = [...value.matchAll(/(-?\d+(?:\.\d+)?)\s*%/g)]
+    .map(percentMatch => Number.parseFloat(percentMatch[1] ?? ""))
+    .filter(Number.isFinite);
+  if (2 > percentages.length) {
+    return null;
+  }
+
+  // A plain Tax rate label means the GAAP assumption. When the sentence provides GAAP and
+  // non-GAAP assumptions "respectively", map the values by their stated basis instead of
+  // turning two distinct measures into a range.
+  if (/\bGAAP\s+and\s+non-GAAP\b[^.]{0,180}\btax\s+rate\b/i.test(line)) {
+    return formatPercent(percentages[0] ?? 0);
+  }
+
+  if (/\bnon-GAAP\s+and\s+GAAP\b[^.]{0,180}\btax\s+rate\b/i.test(line)) {
+    return formatPercent(percentages[1] ?? 0);
+  }
+
+  return null;
+}
+
 function getEpsMoneyRangeValue(value: string, documentCurrencyCode: string): string | null {
   for (const moneyRangeMatch of value.matchAll(moneyRangePattern)) {
     const firstValue = parseNumber(moneyRangeMatch[1]);
@@ -666,6 +729,10 @@ function getOutlookRangeValue(
   }
 
   if ("percent" === valueType) {
+    if (/\brespectively\b/i.test(value)) {
+      return null;
+    }
+
     const percentRangeMatch = value.match(/(-?\d+(?:\.\d+)?)\s*%\s*(?:to|through|-|–|and)\s*(-?\d+(?:\.\d+)?)\s*%/i);
     return undefined !== percentRangeMatch?.[1] && undefined !== percentRangeMatch[2]
       ? `${formatPercent(Number.parseFloat(percentRangeMatch[1]))} to ${formatPercent(Number.parseFloat(percentRangeMatch[2]))}`
@@ -779,7 +846,18 @@ function findNumericValue(
   for (const numberMatch of numberMatches) {
     const token = numberMatch[0];
     const endIndex = numberMatch.index + token.length;
+    const beforeToken = text.slice(Math.max(0, numberMatch.index - 4), numberMatch.index);
+    if (/\b(?:Q|FY)\s*$/i.test(beforeToken)) {
+      continue;
+    }
+
     if (true === options.skipPercentages && "%" === text.slice(endIndex, endIndex + 1)) {
+      continue;
+    }
+
+    // "53rd week" and similar calendar ordinals are not per-share figures. They occur in
+    // outlook prose next to EPS growth language and otherwise look like plausible bare EPS.
+    if (/^\s*(?:st|nd|rd|th)\b/i.test(text.slice(endIndex, endIndex + 5))) {
       continue;
     }
 
