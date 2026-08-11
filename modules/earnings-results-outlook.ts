@@ -47,7 +47,7 @@ type OutlookSection = {
   revisedColumns: boolean;
 };
 
-const moneyTokenPatternSource = String.raw`(?<![\d.])\(?\s*(?:(?:C\s*\$|[$€£¥])\s*|(?:(?:USD|CAD|EUR|GBP|JPY)\s+))?-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b)?\)?`;
+const moneyTokenPatternSource = String.raw`(?<![\d.])\(?\s*(?:(?:C\s*\$|[$€£¥])\s*|(?:(?:USD|CAD|EUR|GBP|JPY|CHF)\s+))?-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b)?\)?`;
 const moneyRangePattern = new RegExp(`(${moneyTokenPatternSource})\\s*(?:to|through|-|–|and)\\s*(${moneyTokenPatternSource})`, "gi");
 const singleMoneyPattern = new RegExp(moneyTokenPatternSource, "gi");
 
@@ -105,7 +105,7 @@ const outlookMetricDefinitions: OutlookMetricDefinition[] = [
   {
     key: "gross_margin",
     label: "Gross margin",
-    patterns: [/\bgross\s+margin\b/i],
+    patterns: [/\bgross(?:\s+profit)?\s+margin\b/i],
     valueType: "percent",
   },
   {
@@ -278,7 +278,7 @@ function isOutlookHeading(line: string): boolean {
 
   return /^(?:business\s+|financial\s+)?(?:outlook|guidance)\b/i.test(normalizedLine) ||
     /^(?:the\s+)?company\s+(?:raises?|updates?|reaffirms?|provides?|issues?)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine) ||
-    /^(?:(?:fiscal\s+)?(?:20\d{2}|fy\s?\d{2}|q[1-4]\s+20\d{2}|quarter)|(?:first|second|third|fourth)[\s–—-]+quarter)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine);
+    /^(?:(?:fiscal(?:\s+year)?\s+)?(?:20\d{2}|fy\s?\d{2}|q[1-4]\s+20\d{2}|quarter)|(?:first|second|third|fourth)[\s–—-]+quarter)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine);
 }
 
 function isMixedPeriodOutlookHeading(line: string): boolean {
@@ -302,7 +302,8 @@ function isOutlookSectionEnd(line: string): boolean {
   }
 
   if (line.length <= 140 &&
-      /^\s*(?:use\s+of\s+)?(?:non-gaap|reconciliation)\b/i.test(line)) {
+      /^\s*(?:use\s+of\s+)?(?:non-gaap|reconciliation)\b/i.test(line) &&
+      false === /\d|\|/.test(line)) {
     return true;
   }
 
@@ -566,7 +567,23 @@ function getOutlookValueSegments(
   }
 
   const rawValueText = line.slice(patternMatch.index + patternMatch[0].length);
-  const nextMetricMatch = /\b(?:adjusted\s+(?:continuing\s+)?eps|gaap\s+(?:continuing\s+)?eps|diluted\s+eps|eps|earnings\s+per\s+(?:common\s+)?share|revenues?|net\s+sales|sales|gross\s+margin|operating\s+margin|operating\s+income|operating\s+expenses?|opex|tax\s+rate|capex|capital\s+expenditures?|free\s+cash\s+flow|dcf\s+per\s+share|distributable\s+cash\s+flow\s+per\s+share|adjusted\s+ebitda|ebitda)\b/i.exec(rawValueText);
+  const nextMetricPattern = /\b(?:adjusted\s+(?:continuing\s+)?eps|gaap\s+(?:continuing\s+)?eps|diluted\s+eps|eps|earnings\s+per\s+(?:common\s+)?share|revenues?|net\s+sales|sales|gross(?:\s+profit)?\s+margin|operating\s+margin|operating\s+income|operating\s+expenses?|opex|tax\s+rate|capex|capital\s+expenditures?|free\s+cash\s+flow|dcf\s+per\s+share|distributable\s+cash\s+flow\s+per\s+share|adjusted\s+ebitda\s+margin|adjusted\s+ebitda|ebitda)\b/gi;
+  const currentCaptionPattern = new RegExp(
+    patternMatch[0].replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
+    "i",
+  );
+  const nextMetricMatch = [...rawValueText.matchAll(nextMetricPattern)]
+    .find(candidateMatch => {
+      if (false === currentCaptionPattern.test(candidateMatch[0])) {
+        return true;
+      }
+
+      // Guidance prose often states growth first and then translates it into an absolute
+      // range: "this implies absolute net sales of CHF ...". The repeated caption still
+      // belongs to the same metric, so it is not a boundary between outlook items.
+      const precedingText = rawValueText.slice(0, candidateMatch.index);
+      return false === /\b(?:implies?|indicates?)\s+(?:an?\s+)?absolute\s*$/i.test(precedingText);
+    });
   const endIndex = nextMetricMatch?.index ?? rawValueText.length;
   const previousValueText = getPreviousOutlookValueSegment(line, patternMatch.index);
   return [
@@ -758,7 +775,7 @@ function findNumericValue(
   text: string,
   options: {maxAbsValue?: number; skipPercentages?: boolean;} = {},
 ): number | null {
-  const numberMatches = text.matchAll(/\(?-?(?:[$€£¥]\s*|\b(?:USD|EUR|GBP|JPY)\s+)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?/gi);
+  const numberMatches = text.matchAll(/\(?-?(?:[$€£¥]\s*|\b(?:USD|EUR|GBP|JPY|CHF)\s+)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?/gi);
   for (const numberMatch of numberMatches) {
     const token = numberMatch[0];
     const endIndex = numberMatch.index + token.length;
@@ -794,7 +811,7 @@ function parseNumber(value: unknown): number | null {
     .replace(/^\((.*)\)$/, "-$1")
     .replace(/C\s*\$/g, "")
     .replace(/[€£¥$]/g, "")
-    .replace(/\b(?:usd|cad|eur|gbp|jpy)\b/gi, "")
+    .replace(/\b(?:usd|cad|eur|gbp|jpy|chf)\b/gi, "")
     .replaceAll(",", "")
     .replaceAll("%", "")
     .trim()
@@ -845,7 +862,7 @@ function parseMoneyWithOptionalUnit(
 }
 
 function hasMoneyValueCue(value: string): boolean {
-  return /[$€£¥]|\b(?:USD|CAD|EUR|GBP|JPY)\b/i.test(value) || undefined !== getMoneyUnit(value);
+  return /[$€£¥]|\b(?:USD|CAD|EUR|GBP|JPY|CHF)\b/i.test(value) || undefined !== getMoneyUnit(value);
 }
 
 function getMoneyUnit(value: string): string | undefined {
@@ -870,6 +887,10 @@ function getCurrencyCodeFromText(
 
   if (text.includes("¥") || /\bJPY\b/i.test(text)) {
     return "JPY";
+  }
+
+  if (/\bCHF\b/i.test(text)) {
+    return "CHF";
   }
 
   if (/US\s*\$|\bUSD\b|\bU\.S\. dollars?\b/i.test(text)) {
@@ -926,6 +947,10 @@ function getCurrencySymbol(currencyCode: string): string {
 
   if ("JPY" === currencyCode) {
     return "¥";
+  }
+
+  if ("CHF" === currencyCode) {
+    return "CHF ";
   }
 
   return "$";

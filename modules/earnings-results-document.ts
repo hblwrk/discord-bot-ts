@@ -73,7 +73,7 @@ export function getDocumentCurrencyCode(lines: string[]): string | undefined {
   const headerLines = lines.slice(0, 60);
   const currencyDeclaration = headerLines
     .find(line => /\b(?:Canadian|New Taiwan|U\.S\.)\s+dollars?\b/i.test(line) ||
-      hasDeclaredIsoCode(line, ["CAD", "TWD", "NTD", "USD", "EUR", "GBP", "JPY"]) ||
+      hasDeclaredIsoCode(line, ["CAD", "TWD", "NTD", "USD", "EUR", "GBP", "JPY", "CHF"]) ||
       hasNewTaiwanDollarSymbol(line));
   if (undefined !== currencyDeclaration) {
     return getDominantCurrencyCode(currencyDeclaration) ??
@@ -190,7 +190,7 @@ function normalizeFiscalYear(value: string): string {
 
 function getQuarterLabelFromPeriodEnded(text: string): string | undefined {
   const periodEndedMatch = text.match(
-    /\b(?:three\s+months|quarter)\s+ended\s+([A-Z][a-z]+)\s+\d{1,2},\s+(20\d{2})\b/,
+    /\b(?:three[-\s]+months?(?:\s+period)?|quarter)\s+ended\s+([A-Z][a-z]+)\s+\d{1,2},\s+(20\d{2})\b/,
   );
   if (undefined === periodEndedMatch?.[1] || undefined === periodEndedMatch[2]) {
     return undefined;

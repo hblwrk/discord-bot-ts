@@ -816,6 +816,60 @@ const filingCorpus: {
     source: "1970622/000197062226000056/exhibit991-earningsrelease.htm",
     ticker: "usar",
   },
+  {
+    // The 6-K also furnishes an MD&A whose later-quarter discussion used to become the
+    // reporting period. The press release states results in CHF and supplies the outlook.
+    company: "On Holding",
+    metrics: [
+      ["adjusted_eps", "CHF 0.35"],
+      ["gaap_eps", "CHF 0.31"],
+      ["revenue", "CHF 850.3M"],
+      ["net_income", "CHF 105M"],
+    ],
+    outlook: [
+      ["Revenue", "CHF 3.47B to CHF 3.56B"],
+      ["Gross margin", "65.0%"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1858985/000185898526000018/a26q2-ex993xpressrelease.htm",
+    ticker: "onon",
+  },
+  {
+    // The EPS caption inserts "attributable to common stockholders" before "per share".
+    // Its diluted row is $0.51; the basic row immediately above it is $0.54.
+    company: "Venture Global",
+    metrics: [
+      ["gaap_eps", "$0.51"],
+      ["revenue", "$4.6B"],
+      ["net_income", "$1.3B"],
+    ],
+    outlook: [
+      ["FY2026 Adj EBITDA", "$8.7B to $9.1B"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "2007855/000200785526000063/vgincq22026earningsrelease.htm",
+    ticker: "vg",
+  },
+  {
+    // Reported non-GAAP EPS is $2.91. The $2.60 figure removes a tariff refund from that
+    // already-adjusted measure and therefore cannot carry the bot's plain adjusted label.
+    company: "Cardinal Health",
+    metrics: [
+      ["adjusted_eps", "$2.91"],
+      ["gaap_eps", "$1.70"],
+      ["revenue", "$63.7B"],
+      ["net_income", "$398M"],
+    ],
+    outlook: [
+      ["Adj EPS", "$12.4 to $12.6"],
+      ["Tax rate", "19% to 20%"],
+      ["Capex", "$700M"],
+      ["Free cash flow", "$3.5B to $4B"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "721371/000072137126000037/a26q4_x063026xex991xnewsre.htm",
+    ticker: "cah",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -836,6 +890,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(54);
+    expect(filingCorpus).toHaveLength(57);
   });
 });

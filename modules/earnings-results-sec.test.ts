@@ -1,4 +1,5 @@
 import {beforeEach, describe, expect, test, vi} from "vitest";
+import {parseEarningsDocument} from "./earnings-results-format.ts";
 import {
   clearSecEarningsResultCaches,
   isLikelyEarningsFiling,
@@ -371,6 +372,65 @@ describe("SEC earnings result source", () => {
       expect.objectContaining({
         responseType: "text",
       }),
+    );
+  });
+
+  test("selects a usable press release ahead of an MD&A with later-quarter guidance", async () => {
+    const filing = createFiling({
+      accessionNumber: "0001858985-26-000018",
+      cik: "0001858985",
+      form: "6-K",
+      items: [],
+    });
+    const pressRelease = `
+      <h1>On Reports Results</h1>
+      <p>Key metrics for the three-month period ended June 30, 2026 include:</p>
+      <p>Net sales increased to CHF 850.3 million.</p>
+    `;
+    const managementDiscussion = `
+      <h1>Management Discussion and Analysis</h1>
+      <p>Net sales for the three-month period ended June 30, 2026 were CHF 850.3 million.</p>
+      <p>For the third quarter of 2026, management expects continued growth.</p>
+    `;
+    getWithRetryFn.mockImplementation(async (url: string) => {
+      if (url.endsWith("/index.json")) {
+        return {
+          data: {
+            directory: {
+              item: [
+                {name: "a26q2-exhibit992xmda.htm", type: "text.gif"},
+                {name: "a26q2-ex993xpressrelease.htm", type: "text.gif"},
+              ],
+            },
+          },
+        };
+      }
+
+      return {
+        data: url.endsWith("/a26q2-ex993xpressrelease.htm")
+          ? pressRelease
+          : managementDiscussion,
+      };
+    });
+    const dependencies = {
+      getWithRetryFn,
+      logger,
+    } as Parameters<typeof loadSecFilingDetails>[1];
+
+    const details = await loadSecFilingDetails(filing, dependencies, {
+      isUsableDocument: html => {
+        const parsedDocument = parseEarningsDocument(html);
+        return undefined !== parsedDocument.quarterLabel && 0 < parsedDocument.metrics.length;
+      },
+    });
+
+    expect(details).toEqual({
+      documentUrl: "https://www.sec.gov/Archives/edgar/data/1858985/000185898526000018/a26q2-ex993xpressrelease.htm",
+      html: pressRelease,
+    });
+    expect(getWithRetryFn).not.toHaveBeenCalledWith(
+      expect.stringContaining("a26q2-exhibit992xmda.htm"),
+      expect.anything(),
     );
   });
 

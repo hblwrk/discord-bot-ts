@@ -73,6 +73,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     key: "gaap_eps",
     label: "EPS",
     patterns: [
+      /\bnet\s+(?:income|earnings)\s+attributable\s+to\s+(?:common\s+)?(?:stockholders|shareholders)\s+per\s+share\s*[–—-]\s*diluted\b/i,
       /\b(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\b/i,
       /\bnet\s+\(loss(?:es)?\)\s+income\s+per\s+(?:common\s+)?share\b/i,
       /\b(?:earnings|profit|net\s+income)(?:\s*\/)?\s*\(loss(?:es)?\)\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,

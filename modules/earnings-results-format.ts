@@ -321,6 +321,7 @@ function extractMetric(
     const score = getMetricCandidateScore({
       lines,
       lineIndex,
+      metricKey: definition.key,
       metricLine,
       pattern,
       quarterLabel,

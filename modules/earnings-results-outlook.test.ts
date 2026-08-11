@@ -406,6 +406,26 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("reads absolute CHF guidance after a repeated net-sales caption", () => {
+    expect(extractOutlookMetrics([
+      "Outlook",
+      "Net Sales: Expected to grow in the low-20% range. At current spot rates, this implies absolute net sales of CHF 3.47 billion to CHF 3.56 billion.",
+      "Gross profit margin: Expected to be at least 65.0%.",
+    ], "CHF")).toEqual([
+      {key: "revenue", label: "Revenue", value: "CHF 3.47B to CHF 3.56B"},
+      {key: "gross_margin", label: "Gross margin", value: "65.0%"},
+    ]);
+  });
+
+  test("keeps a non-GAAP EPS row inside a fiscal-year outlook section", () => {
+    expect(extractOutlookMetrics([
+      "Fiscal year 2027 outlook 2",
+      "Non-GAAP earnings per share | $12.40 to $12.60 |",
+    ])).toEqual([
+      {key: "adjusted_eps", label: "Adj EPS", value: "$12.4 to $12.6"},
+    ]);
+  });
+
   test("limits outlook scanning and ignores unusable fallback values", () => {
     const lines = [
       "Business Outlook",
