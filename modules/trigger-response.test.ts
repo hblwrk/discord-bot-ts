@@ -319,13 +319,12 @@ describe("addTriggerResponses", () => {
   test("replies with whatis embed-only when no attachment exists", async () => {
     const {client, getHandler} = createEventClient();
 
-    addTriggerResponses(client, [], [], [
-      {
-        name: "whatis_faq",
-        title: "FAQ",
-        text: "Answer",
-      },
-    ]);
+    const whatIsAsset = new ImageAsset();
+    whatIsAsset.name = "whatis_faq";
+    whatIsAsset.title = "FAQ";
+    whatIsAsset.text = "Answer";
+
+    addTriggerResponses(client, [], [], [whatIsAsset]);
 
     const handler = getHandler("messageCreate");
     const message = createMessage("!whatis faq");

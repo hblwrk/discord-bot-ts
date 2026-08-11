@@ -288,8 +288,8 @@ export function addTriggerResponses(
             {name: asset.title, value: asset.text},
           );
 
-          if (true === Object.prototype.hasOwnProperty.call(asset, "_fileName")) {
-            if (!asset?.fileContent || !asset.fileName) {
+          if (asset.fileName) {
+            if (!asset.fileContent) {
               logger.log(
                 "warn",
                 `Whatis asset ${asset.name} is temporarily unavailable.`,

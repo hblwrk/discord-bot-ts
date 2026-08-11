@@ -794,6 +794,33 @@ describe("interactSlashCommands", () => {
     });
   });
 
+  test("replies to text-only whatis assets with an embed", async () => {
+    const {client, getHandler} = createEventClient();
+    interactSlashCommands(client, [], [], [
+      createImageAsset({
+        name: "whatis_faq",
+        title: "FAQ",
+        text: "Answer",
+        fileName: "",
+      }),
+    ], []);
+
+    const handler = getHandler("interactionCreate");
+    const interaction = createChatInputInteraction("whatis");
+    interaction.options.getString.mockImplementation(name => name === "search" ? "whatis_faq" : null);
+
+    await handler(interaction);
+
+    const payload = getReplyPayload(interaction);
+    expect(payload.files).toBeUndefined();
+    expect(payload.embeds?.[0]?.toJSON()).toEqual({
+      fields: [{
+        name: "FAQ",
+        value: "Answer",
+      }],
+    });
+  });
+
   test("handles whatis unavailable responses when reply itself fails", async () => {
     const {client, getHandler} = createEventClient();
     interactSlashCommands(client, [], [], [
