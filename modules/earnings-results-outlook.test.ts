@@ -325,6 +325,63 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("keeps quarter and full-year values and maps basis-specific tax assumptions", () => {
+    expect(extractOutlookMetrics([
+      "Business Outlook",
+      "The Company expects net sales in the range of $14.5 billion and $15.5 billion for the first quarter of fiscal year 2027, GAAP net income per diluted share of $0.89 to $0.98 and non-GAAP net income per diluted share of $1.01 to $1.10. The Company's projections for GAAP and non-GAAP net income per diluted share assume a tax rate of approximately 20.1% and 20.5%, respectively.",
+      "For fiscal year 2027, the Company expects net sales in the range of $65.0 billion to $72.0 billion.",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", periodLabel: "Q1", value: "$14.5B to $15.5B"},
+      {key: "revenue", label: "Revenue", periodLabel: "FY2027", value: "$65B to $72B"},
+      {key: "adjusted_eps", label: "Adj EPS", periodLabel: "Q1", value: "$1.01 to $1.1"},
+      {key: "eps", label: "EPS", periodLabel: "Q1", value: "$0.89 to $0.98"},
+      {key: "tax_rate", label: "Tax rate", periodLabel: "Q1", value: "20.1%"},
+    ]);
+  });
+
+  test("treats a quarter of a fiscal year as one outlook period", () => {
+    expect(extractOutlookMetrics([
+      "Business Outlook",
+      "Lumentum expects the following for the first quarter of fiscal year 2027:",
+      "Net revenue in the range of $1.225 billion to $1.275 billion",
+      "Non-GAAP operating margin of 39.5% to 40.5%",
+      "Non-GAAP diluted net income per share of $4.05 to $4.35",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", value: "$1.225B to $1.275B"},
+      {key: "adjusted_eps", label: "Adj EPS", value: "$4.05 to $4.35"},
+      {key: "operating_margin", label: "Operating margin", value: "39.5% to 40.5%"},
+    ]);
+  });
+
+  test("maps a reversed non-GAAP and GAAP tax-rate pair to GAAP", () => {
+    expect(extractOutlookMetrics([
+      "Business Outlook",
+      "For Q1 2027, projections for non-GAAP and GAAP EPS assume a tax rate of 20.5% and 20.1%, respectively.",
+    ])).toEqual([
+      {key: "tax_rate", label: "Tax rate", value: "20.1%"},
+    ]);
+  });
+
+  test("does not turn respectively mapped percentages into a range", () => {
+    expect(extractOutlookMetrics([
+      "Business Outlook",
+      "For Q1 2027, the two earnings bases assume a tax rate of 20.1% and 20.5%, respectively.",
+    ])).toEqual([
+      {key: "tax_rate", label: "Tax rate", value: "20.1%"},
+    ]);
+  });
+
+  test("uses the first stated outlook period and ignores calendar ordinals as EPS", () => {
+    expect(extractOutlookMetrics([
+      "Financial Outlook",
+      "We expect double-digit growth in adjusted EPS in fiscal 2027, excluding the impact of the 53rd week. In Q4 fiscal 2027, we will lap the 53rd week in Q4 fiscal 2026.",
+      "For Q4 fiscal 2027, operating income is expected to be $4.9 billion.",
+    ])).toEqual([
+      {key: "adjusted_eps", label: "Adj EPS", periodLabel: "FY2027", value: "double-digit growth"},
+      {key: "operating_income", label: "Operating income", periodLabel: "Q4", value: "$4.9B"},
+    ]);
+  });
+
   test("extracts Trane-style full-year growth and continuing EPS guidance", () => {
     expect(extractOutlookMetrics([
       "Company Raises Full-Year 2026 Guidance",
@@ -403,6 +460,36 @@ describe("extractOutlookMetrics", () => {
       "The company's comprehensive hedging program provides support for the reaffirmed 2026 guidance ranges and the previously announced Ongoing Operations Adjusted EBITDA midpoint opportunity 2 range of $7.4 billion to $7.8 billion for 2027.",
     ])).toEqual([
       {key: "adjusted_ebitda", label: "Adj EBITDA", value: "$6.8B to $7.6B"},
+    ]);
+  });
+
+  test("reads absolute CHF guidance after a repeated net-sales caption", () => {
+    expect(extractOutlookMetrics([
+      "Outlook",
+      "Net Sales: Expected to grow in the low-20% range. At current spot rates, this implies absolute net sales of CHF 3.47 billion to CHF 3.56 billion.",
+      "Gross profit margin: Expected to be at least 65.0%.",
+    ], "CHF")).toEqual([
+      {key: "revenue", label: "Revenue", value: "CHF 3.47B to CHF 3.56B"},
+      {key: "gross_margin", label: "Gross margin", value: "65.0%"},
+    ]);
+  });
+
+  test("keeps a non-GAAP EPS row inside a fiscal-year outlook section", () => {
+    expect(extractOutlookMetrics([
+      "Fiscal year 2027 outlook 2",
+      "Non-GAAP earnings per share | $12.40 to $12.60 |",
+    ])).toEqual([
+      {key: "adjusted_eps", label: "Adj EPS", value: "$12.4 to $12.6"},
+    ]);
+  });
+
+  test("reads sparse guidance rows under a fiscal full-year outlook caption", () => {
+    expect(extractOutlookMetrics([
+      "Fiscal Full-Year 2026 Outlook:",
+      "CAVA Group reaffirmed fiscal full-year 2026 guidance, as follows:",
+      "Adjusted EBITDA | | $181.0 to $191.0 million | |",
+    ])).toEqual([
+      {key: "adjusted_ebitda", label: "Adj EBITDA", value: "$181M to $191M"},
     ]);
   });
 

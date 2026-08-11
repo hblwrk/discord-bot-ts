@@ -1,0 +1,390 @@
+EX-99.1
+2
+vgincq22026earningsrelease.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+
+
+
+Venture Global Reports Second Quarter 2026 Results
+
+
+Summary Financial Highlights
+
+
+| | | | | | | | | | | | | | | | |
+| | | | | | |
+(in billions) | Three months ended
+June 30, 2026 | | | | Six months ended
+June 30, 2026 | | | |
+| | | | | | | | |
+Revenue | $4.6 | | | | $9.2 | | | |
+Income from operations
+| $2.2 | | | | $3.3 | | | |
+Net income 1
+| $1.3 | | | | $1.8 | | | |
+Consolidated Adjusted EBITDA 2
+| $2.5 | | | | $3.9 | | | |
+
+
+
+ARLINGTON, Va., August 11, 2026 – Venture Global, Inc. ("Venture Global," "we," or "our") (NYSE: VG) has reported financial results for the quarter ended June 30, 2026. As a reminder, Venture Global will host a conference call for investors and analysts beginning at 9:00 am Eastern Time (ET), August 11, 2026, to discuss second quarter results.
+Key financial highlights include:
+• Generated strong second quarter 2026 financial results:
+◦ Revenue of $4.6 billion, an increase of 48% from Q2 2025
+◦ Income from operations of $2.2 billion, an increase of 111% from Q2 2025
+◦ Net income 1 of $1.3 billion, an increase of 266% from Q2 2025
+◦ Consolidated Adjusted EBITDA 2 of $2.5 billion, an increase of 79% from Q2 2025
+• Exported 127 cargos and sold 466.4 TBtu of liquefied natural gas ("LNG"), an increase of 38 cargos and 137.2 TBtu sold, or 42%, fr om Q2 2025 .
+• Expanded total assets as of June 30, 2026 to $61.5 billion , an increase of $15.0 billion from $46.5 billion as of June 30, 2025 .
+• Exported our 1,000th cargo across our exporting projects, just four years after Venture Global's first exported cargo in 2022.
+• Increased Consolidated Adjusted EBITDA guidance to $8.7 - $9.1 billion 3 , up from $8.2 - $8.5 billion, which assumes a weighted average liquefaction fee of $12.50/MMBtu - $13.50/MMBtu for our remaining unsold cargos, in line with current forward curves.
+• Increased contracted 2026 cargos t o 91% of available cargos at a weighted average liquefaction fee of $5.05/M MBtu.
+• Tightened and raised the midpoint of the expected cargo ran ge to 500 - 518 fr om 494 - 523 for 2026.
+• Executed over 2 MTPA of new or increased LNG offtake agreements, including:
+◦ Increased the existing 20-year sales and purchase agreement ("SPA") with Atlantic-SEE to 1.0 MTPA, up from 0.5 MTPA.
+◦ Entered a new five-year SPA with EnBW to sell approximately 0.82 MTPA starting in 2026.
+◦ As previously announced during Q2 2026, signed two additional five-year SPAs: one with TotalEnergies for 0.85 MTPA and increased our existing SPA with Vitol to 1.7 MTPA, up from 1.5 MTPA.
+
+1 Net income as used herein refers to net income attributable to common stockholders on our condensed consolidated statements of operations.
+2 Consolidated Adjusted EBITDA is a non-GAAP measure. See Reconciliation of Non-GAAP Measures below for further information, including a reconciliation of Consolidated Adjusted EBITDA to net income attributable to common stockholders, the most directly comparable financial measure prepared and presented in accordance with GAAP. Consolidated Adjusted EBITDA includes portions attributable to non-controlling interests.
+3 We do not provide a reconciliation of forward-looking amounts of Consolidated Adjusted EBITDA to net income attributable to common stockholders, the most directly comparable financial measure prepared and presented in accordance with GAAP, due to the inherent difficulty in forecasting and quantifying certain amounts that are necessary for such reconciliation. Many of the adjustments and exclusions used to calculate the projected Consolidated Adjusted EBITDA may vary significantly based on actual events, so we are not able to forecast on a GAAP basis with reasonable certainty all adjustments needed in order to provide a GAAP calculation of these projected amounts. The amounts of these adjustments may be material and, therefore, could result in the GAAP measure being materially different from (including materially less than) the projected non-GAAP measures. The guidance in this press release is only effective as of the date it is given and will not be updated or affirmed unless and until we publicly announce updated or affirmed guidance.
+1
+
+
+
+
+
+• Other recent key financial milestones achieved during the second quarter through today include:
+◦ Declared a dividend of $0.04 per share for the third quarter, an increase of 122%.
+◦ Venture Global LNG, Inc. ("VGLNG") issued $2.25 billion of senior secured notes; proceeds were used to repay in full the VGLNG $2.25 billion senior secured notes due 2028.
+◦ Calcasieu Pass Funding, LLC closed a $1.75 billion senior secured term loan B credit facility; proceeds were used to redeem in full its redeemable preferred equity interests.
+◦ Venture Global Shipping Holdings, LLC closed a $1.5 billion senior secured term loan credit facility; proceeds are expected to be used for general corporate purposes.
+◦ Venture Global Calcasieu Pass, LLC issued $750 million senior secured notes; proceeds were used to repay in full the Calcasieu Pass construction term loan
+
+
+Calcasieu Pass: We completed major scheduled maintenance on the gas turbines at our Calcasieu Pass facility. Despite major maintenance typically requiring LNG facilities to curtail large portions of production, Calcasieu Pass produced 37 cargos in Q2, surpassing our SPA obligations. Calcasieu Pass' performance this quarter highlights a strategic advantage of our modular approach which enables redundancy of critical components, and generates a more stable and elevated production profile.
+
+Plaquemines: We are in the final stages of construction, commissioning, and assurance testing required in advance of COD of our Plaquemines Project Phase 1, and the team is working tirelessly to safely complete the remaining Phase 1 scopes. As recently communicated with our Phase 1 customers, we are pleased to reaffirm that we are targeting Plaquemines Project Phase 1 COD in Q4 2026 and Plaquemines Project Phase 2 COD in mid-2027. We continue to progress early development of the Plaquemines Expansion Phase 1, following our permit applications filed with FERC and the DOE late last year. Subject to regulatory approvals, we are targeting FID in the first half of 2027 and first LNG in 2029.
+
+
+CP2: Construction at our CP2 Project continues to advance well, and we remain on schedule to produce first LNG in the second half of 2027. While only a year from FID, we have made extraordinary progress, with 16 liquefaction modules already on site, roofs raised on all four LNG tanks, and five of the gas and steam turbines on foundations, highlighting our speed to execution and operational excellence. During the quarter, we filed for CP2 brownfield expansion permits with FERC and non-FTA export authorization at DOE. Subject to regulatory approval, we are targeting FID on the CP2 Expansion in early 2027 with first production in late 2028.
+
+
+"Venture Global has proven our ability to successfully build and operate complex machines that generate exceptional results. The second quarter of 2026 is a perfect demonstration of that execution in operations, construction, and financing, with significant year-over-year financial gains, production this quarter at the high end of our forecasted range, construction at CP2 on schedule driven by our in-house EPC efforts, and refinancings that translate into more than $100 million of annual cost savings,” said Venture Global CEO Mike Sabel. "Moving into the second half of the year, with safety remaining our top priority, we are focused on moving Plaquemines Phase I into commercial operations, continuing construction momentum at CP2, and progressing commercial and financial activities in support of FID at the brownfield expansions at both CP2 and Plaquemines."
+
+
+
+
+
+
+
+
+2
+
+
+
+
+
+
+Summary and Review of Financial Results
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+(in millions, except LNG data) | | Three months ended June 30, | | Six months ended June 30, |
+| 2026 | | 2025 | | % Change | | 2026 | | 2025 | | % Change |
+| | | | | | | | | | | | |
+Revenue | | $4,578 | | $3,101 | | 48% | | $9,177 | | $5,995 | | 53% |
+Income from operations
+| | $2,188 | | $1,038 | | 111% | | $3,339 | | $2,118 | | 58% |
+Net income 1
+| | $1,347 | | $368 | | 266% | | $1,835 | | $764 | | 140% |
+Consolidated Adjusted EBITDA 2
+| | $2,491 | | $1,393 | | 79% | | $3,863 | | $2,739 | | 41% |
+LNG volumes exported: | | | | | | | | | | | | |
+Cargos | | 127 | | 89 | | 43% | | 257 | | 152 | | 69% |
+TBtu | | 478.3 | | 330.8 | | 45% | | 965.5 | | 564.4 | | 71% |
+LNG volumes sold (TBtu) | | 466.4 | | 329.2 | | 42% | | 947.2 | | 557.5 | | 70% |
+
+
+
+Net income 1 and Consolidated Adjusted EBITDA 2 increased approximately $1.0 billion and $1.1 billion, respectively, for the three months ended June 30, 2026 as compared to the same period in 2025. These increases were primarily driven by higher LNG sales volumes, predominantly from Plaquemines as a result of commissioning progress, and higher LNG sales prices net of feed gas costs due to higher implied liquefaction fees for LNG sold under commissioning sales agreements.
+
+
+Net income 1 and Consolidated Adjusted EBITDA 2 each increased approximately $1.1 billion for the six months ended June 30, 2026 as compared to the same period in 2025. These increases were primarily driven by higher LNG sales volumes, predominantly from Plaquemines as a result of commissioning progress, partially offset by lower LNG sales prices net of the cost of feed gas primarily due to lower implied liquefaction fees as Calcasieu Pass transitioned from selling LNG under commissioning sales agreements to under post-COD SPAs in April 2025.
+
+1 Net income as used herein refers to net income attributable to common stockholders on our Condensed Consolidated Statements of Operations.
+2 Consolidated Adjusted EBITDA is a non-GAAP measure. See Reconciliation of Non-GAAP Measures below for further information, including a reconciliation of Consolidated Adjusted EBITDA to net income attributable to common stockholders, the most directly comparable financial measure prepared and presented in accordance with GAAP. Consolidated Adjusted EBITDA includes portions attributable to non-controlling interests.
+3
+
+
+
+
+
+
+2026 Outlook
+
+
+Our updated guidance for 2026 is as follows:
+• Consolidated Adjusted EBITDA 1 guidance for the full year 2026 is $8.7 billion - $9.1 billion.
+◦ As noted in previous quarters, changes in natural gas prices, both domestic and international, could impact Consolidated Adjusted EBITDA guidance. We assume a fixed liquefaction fee range of $12.50/MMBtu - $13.50/MMBtu for our remaining unsold cargos in 2026 in support of our guidance, reflecting market forward prices and recently executed cargo sales.
+◦ +/- $1.00/MMBtu change in fixed liquefaction fees will impact our full year 2026 Consolidated Adjusted EBITDA by $180 million - $210 million.
+• We expect to export 149 - 154 cargos from Calcasieu Pass and 351 - 364 cargos from Plaquemines in 2026.
+• We continue to anticipate Plaquemines Project Phase 1 COD in Q4 2026 following the conclusion of commissioning and assurance testing and any required remediation or rectification work.
+
+
+
+
+Declaration of Dividend
+
+
+Venture Global, Inc. has announced that its board of directors declared a cash dividend of $0.04 per share on its Class A common stock and Class B common stock. The dividend is payable on September 30, 2026, to shareholders of record as of the close of business on September 15, 2026.
+
+
+
+
+Webcast and Conference Call Information
+
+
+Venture Global will host a conference call to discuss second quarter 2026 results and provide guidance for the fiscal year 2026 at 9:00 am Eastern Time (ET) on August 11, 2026. The live webcast of Venture Global’s earnings conference call can be accessed at our website at www.ventureglobal.com along with the earnings press release, financial tables, and slide presentation. After the conclusion of the webcast, a replay will be made available on the Venture Global website.
+
+
+
+
+About Venture Global
+
+
+Venture Global is an American producer and exporter of low-cost U.S. liquefied natural gas (LNG) with over 100 MTPA of capacity in production, construction, or development. Venture Global began producing LNG from its first facility in 2022 and is now one of the largest LNG exporters in the United States. The company’s vertically integrated business includes assets across the LNG supply chain including LNG production, natural gas transport, shipping and regasification. The company’s first three projects, Calcasieu Pass, Plaquemines, and CP2, are located in Louisiana along the Gulf of America. Venture Global is developing carbon capture and sequestration projects at each of its LNG facilities.
+
+
+
+
+Forward-Looking Statements
+
+
+This press release contains forward-looking statements. We intend such forward-looking statements to be covered by the safe harbor provisions for forward-looking statements contained in Section 27A of the Securities Act of 1933, as amended (the “Securities Act”), and Section 21E of the Securities Exchange Act of 1934, as amended (the “Exchange Act”). All statements, other than statements of historical facts, included herein are “forward-looking statements.” In some cases, forward-looking statements can be identified by terminology such as “may,” “might,” “will,” “could,” “should,” “expect,” “plan,” “project,” “intend,” “anticipate,” “believe,” “estimate,” “predict,” “potential,” “pursue,” “target,” “continue,” the negative of such terms or other comparable terminology.
+
+
+These forward-looking statements, which are subject to risks, uncertainties and assumptions about us, may include projections of our future financial performance, expectations regarding the development, construction, commissioning and
+
+1 Consolidated Adjusted EBITDA is a non-GAAP measure. See Reconciliation of Non-GAAP Measures below for further information. Consolidated Adjusted EBITDA includes portions attributable to non-controlling interests. For 2026, the non-controlling interest share of Consolidated Adjusted EBITDA is projected to be $150 million - $170 million.
+4
+
+
+
+
+
+completion of our projects, expectations regarding sales of LNG cargos, estimates of the cost of our projects and schedule to construct and commission our projects, our anticipated growth strategies and anticipated trends impacting our business. These statements are only predictions based on our current expectations and projections about future events. There are important factors that could cause our actual results, level of activity, performance or achievements to differ materially from the results, level of activity, performance or achievements expressed or implied by the forward-looking statements, including: our potential inability to maintain profitability, maintain positive operating cash flow and ensure adequate liquidity in the future, including as a result of the significant uncertainty in our ability to generate proceeds and the amount of proceeds that will regularly be received from sales of uncontracted commissioning cargos and excess cargos due to volatility and variability in the LNG markets; our need for significant additional capital to construct and complete projects, including some of our existing projects, future projects, potential bolt-on expansions and related assets, and our potential inability to secure such financing on acceptable terms, or at all; our potential inability to construct or operate all of our proposed LNG facilities or pipelines or any additional LNG facilities or pipelines beyond those currently planned, including any of the bolt-on expansion opportunities which we have identified, and to produce LNG in excess of our nameplate capacity, which could limit our growth prospects, including as a result of delays in obtaining regulatory approvals or inability to obtain requisite regulatory approvals to complete construction during our estimated development periods; significant operational risks related to our natural gas liquefaction and export projects, including the our existing projects and any potential bolt-on expansions, any future projects we develop, our pipelines, our LNG tankers, and our regasification terminal usage rights; our potential inability to accurately estimate costs for our projects, and the risk that the construction and operations of natural gas pipelines and pipeline connections for our projects suffer cost overruns and delays related to obtaining regulatory approvals, development risks, labor costs, unavailability of skilled workers, operational hazards and other risks; the uncertainty regarding the future of international trade agreements and the United States’ position on international trade, including the effects of tariffs as well as the effects of ongoing legal challenges to tariffs and reimbursements of tariffs; our current and potential involvement in disputes and legal proceedings, including the arbitrations and other proceedings currently pending against us and the possibility and magnitude of negative outcomes in any such dispute or proceeding and the potential impact thereof on our results of operations, liquidity and our existing contracts; our potential inability to enter into the necessary contracts to construct our projects, or any potential bolt-on expansion, on a timely basis or on terms that are acceptable to us; our potential inability to enter into Contracted SPAs with customers for, or to otherwise sell, an adequate portion of the total expected nameplate capacity at our projects, or any potential bolt-on expansion, or any future projects we develop; our dependence on our EPC contractors and suppliers for the successful completion of our projects and delivery of our LNG tankers, including the potential inability of our contractors to perform their obligations under their contracts; various economic and political factors, including opposition by environmental or other public interest groups, or the lack of local government and community support required for our projects, which could negatively affect the permitting status, timing or overall development, construction and operation of our projects; the effects of FERC regulation on our interstate natural gas pipelines and their FERC gas tariffs; the risk that the natural gas liquefaction system and mid-scale design we utilize at our projects will not achieve the level of performance or other benefits that we anticipate; potential additional risks arising from the duration of and the phased commissioning start-up of our projects; the potential risk that our customers or we may terminate our SPAs if certain conditions are not met or for other reasons; potential decreases in the price of natural gas and its related impact on our ability to pay the cost of gas transportation, the payment of a premium by us for feed gas relative to the contractual price we charge our customers, or other impacts to the price of natural gas resulting from inflationary pressures, including from the disruption in international oil and natural gas supply chains caused by the ongoing conflict in Iran and decline in commercial traffic in the Strait of Hormuz; the potential negative impacts of seasonal fluctuations on our business; the risks related to the development and/or contracting for additional gas transportation capacity to support the operation and expansion capacity of our LNG projects; the risks related to the management and operation of our LNG tanker fleet and our future regasification terminal usage rights; the potential effects of existing and future environmental and similar laws and governmental regulations on compliance costs, operating and/or construction costs and restrictions; our potential inability to obtain, maintain or comply with necessary permits or approvals from governmental and regulatory agencies on which the construction of our projects depends, including as a result of opposition by environmental and other public interest groups; our indebtedness levels, and the fact that we may be able to incur substantially more indebtedness, which may increase the risks created by our substantial indebtedness. For more information on these and other factors that could cause our results to differ materially from expected results, please refer to the risks and uncertainties discussed in our Annual Report on Form 10-K for the year ended December 31, 2025. In addition, please note that the date of this press release is August 11, 2026, and any forward-
+5
+
+
+
+
+
+looking statements contained herein are based on assumptions that we believe to be reasonable as of this date. We undertake no obligation to update these statements as a result of new information or future events.
+
+
+
+
+Contacts
+
+
+Investors:
+Ben Nolan
+IR@ventureglobalLNG.com
+
+
+Media:
+Shaylyn Hynes
+press@ventureglobalLNG.com
+6
+
+
+
+
+
+
+VENTURE GLOBAL, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(in millions, except per share information)
+(unaudited) 1
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended June 30,
+| | Six months ended
+June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | | | |
+REVENUE | $ | 4,578 | | | $ | 3,101 | | | $ | 9,177 | | | $ | 5,995 | |
+| | | | | | | |
+OPERATING EXPENSE | | | | | | | |
+Cost of sales (exclusive of depreciation and amortization shown separately below) | 1,660 | | | 1,419 | | | 4,444 | | | 2,478 | |
+Operating and maintenance expense | 335 | | | 217 | | | 605 | | | 469 | |
+General and administrative expense | 112 | | | 103 | | | 209 | | | 208 | |
+Development expense | 23 | | | 57 | | | 69 | | | 239 | |
+Depreciation and amortization | 260 | | | 267 | | | 511 | | | 483 | |
+Total operating expense | 2,390 | | | 2,063 | | | 5,838 | | | 3,877 | |
+| | | | | | | |
+INCOME FROM OPERATIONS | 2,188 | | | 1,038 | | | 3,339 | | | 2,118 | |
+| | | | | | | |
+OTHER INCOME (EXPENSE) | | | | | | | |
+Interest income | 26 | | | 38 | | | 54 | | | 94 | |
+Interest expense, net | (489) | | | (310) | | | (933) | | | (586) | |
+Gain (loss) on interest rate swaps | 124 | | | (112) | | | 139 | | | (304) | |
+Loss on financing transactions | (96) | | | (63) | | | (109) | | | (63) | |
+Loss on foreign currency transactions
+| — | | | — | | | (1) | | | — | |
+Total other expense | (435) | | | (447) | | | (850) | | | (859) | |
+| | | | | | | |
+INCOME BEFORE INCOME TAX EXPENSE | 1,753 | | | 591 | | | 2,489 | | | 1,259 | |
+Income tax expense | 336 | | | 116 | | | 447 | | | 267 | |
+NET INCOME | 1,417 | | | 475 | | | 2,042 | | | 992 | |
+| | | | | | | |
+Less: Net income attributable to redeemable stock of subsidiary | 5 | | | 39 | | | 47 | | | 77 | |
+Less: Net income (loss) attributable to non-controlling interests | (2) | | | 1 | | | 25 | | | 16 | |
+Less: Dividends on VGLNG Series A Preferred Shares | 67 | | | 67 | | | 135 | | | 135 | |
+NET INCOME ATTRIBUTABLE TO COMMON STOCKHOLDERS | $ | 1,347 | | | $ | 368 | | | $ | 1,835 | | | $ | 764 | |
+| | | | | | | |
+BASIC EARNINGS PER SHARE | | | | | | | |
+Net income attributable to common stockholders per share—basic | $ | 0.54 | | | $ | 0.15 | | | $ | 0.74 | | | $ | 0.32 | |
+Weighted average number of shares of common stock outstanding—basic
+| 2,489 | | | 2,423 | | | 2,476 | | | 2,411 | |
+| | | | | | | |
+DILUTED EARNINGS PER SHARE | | | | | | | |
+Net income attributable to common stockholders per share—diluted | $ | 0.51 | | | $ | 0.14 | | | $ | 0.70 | | | $ | 0.29 | |
+Weighted average number of shares of common stock outstanding—diluted
+| 2,643 | | | 2,635 | | | 2,639 | | | 2,639 | |
+
+
+1 Refer to the Venture Global, Inc. Quarterly Report on Form 10-Q for the quarter ended June 30, 2026, filed with the Securities and Exchange Commission.
+7
+
+
+
+
+
+
+VENTURE GLOBAL, INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(in millions, except share information)
+(unaudited) 1
+
+
+| | | | | | | | | | | |
+| June 30, 2026
+| | December 31, 2025
+|
+| | | |
+ASSETS | | | |
+Current assets | | | |
+Cash and cash equivalents | $ | 3,120 | | | $ | 2,355 | |
+Restricted cash | 68 | | | 195 | |
+Accounts receivable | 844 | | | 918 | |
+Inventory, net | 290 | | | 253 | |
+Derivative assets | 97 | | | 65 | |
+Prepaid expenses and other current assets | 110 | | | 254 | |
+Total current assets | 4,529 | | | 4,040 | |
+Property, plant and equipment, net | 53,216 | | | 46,588 | |
+Right-of-use assets | 707 | | | 737 | |
+Noncurrent restricted cash | 1,402 | | | 875 | |
+Deferred financing costs | 877 | | | 543 | |
+Noncurrent derivative assets | 278 | | | 216 | |
+Other noncurrent assets | 506 | | | 447 | |
+TOTAL ASSETS | $ | 61,515 | | | $ | 53,446 | |
+| | | |
+LIABILITIES AND EQUITY | | | |
+Current liabilities | | | |
+Accounts payable | $ | 828 | | | $ | 737 | |
+Accrued and other liabilities | 2,706 | | | 2,795 | |
+Current portion of long-term debt, net | 287 | | | 812 | |
+Total current liabilities | 3,821 | | | 4,344 | |
+Long-term debt, net | 41,527 | | | 33,393 | |
+Noncurrent operating lease liabilities | 690 | | | 696 | |
+Deferred tax liabilities, net | 2,715 | | | 2,320 | |
+Other noncurrent liabilities | 683 | | | 697 | |
+Total liabilities | 49,436 | | | 41,450 | |
+| | | |
+Redeemable stock of subsidiary | — | | | 1,696 | |
+Equity | | | |
+Venture Global, Inc. stockholders' equity | | | |
+Class A common stock, par value $0.01 per share (529 million and 488 million shares issued and outstanding as of June 30, 2026 and December 31, 2025, respectively)
+| 5 | | | 4 | |
+Class B common stock, par value $0.01 per share (1,969 million shares issued and outstanding as of June 30, 2026 and December 31, 2025)
+| 20 | | | 20 | |
+Additional paid in capital
+| 2,313 | | | 2,238 | |
+Retained earnings | 6,466 | | | 4,720 | |
+Accumulated other comprehensive loss
+| (232) | | | (239) | |
+Total Venture Global, Inc. stockholders' equity | 8,572 | | | 6,743 | |
+Non-controlling interests | 3,507 | | | 3,557 | |
+Total equity | 12,079 | | | 10,300 | |
+TOTAL LIABILITIES AND EQUITY | $ | 61,515 | | | $ | 53,446 | |
+
+
+
+
+1 Refer to the Venture Global, Inc. Quarterly Report on Form 10-Q for the quarter ended June 30, 2026, filed with the Securities and Exchange Commission.
+8
+
+
+
+
+
+
+Reconciliation of Non-GAAP Measures
+
+
+
+
+This earnings release contains references to Consolidated Adjusted EBITDA, which is not required by, or presented in accordance with, generally accepted accounting principles in the United States (“GAAP”).
+
+
+We believe Consolidated Adjusted EBITDA provides investors and other users of our consolidated financial statements with useful supplemental information to evaluate the financial performance of our business on an unleveraged basis, to enable comparison of our operating performance across periods. Consolidated Adjusted EBITDA also allows investors and other users of our financial statements to evaluate our operating performance in a manner that is consistent with management’s evaluation of financial and operating performance.
+
+
+We define Consolidated Adjusted EBITDA as net income attributable to common stockholders of Venture Global Inc., as determined in accordance with GAAP, adjusted to exclude net income attributable to non-controlling interests, income taxes, gain/loss on interest rate swaps, gain/loss on financing transactions, interest expense, net of capitalized interest, interest income, depreciation and amortization, stock-based compensation expense, gain/loss from changes in the fair value of forward natural gas supply contracts, and gain/loss from changes in exchange rates on foreign currency transactions. We believe the exclusion of these items enables investors and other users of our consolidated financial statements to assess our sequential and year-over-year performance and operating trends on a more comparable basis.
+
+
+Consolidated Adjusted EBITDA has material limitations as an analytical tool and should be viewed as a supplement to and not a substitute for measures of performance, financial results and cash flow from operations calculated in accordance with GAAP. For example, Consolidated Adjusted EBITDA excludes certain recurring, non-cash charges such as stock-based compensation expense and gain/loss from changes in the fair value of forward natural gas supply contracts, and does not reflect changes in, or cash requirements for, our working capital needs. In addition, although depreciation and amortization are non-cash charges, the assets being depreciated and amortized may have to be replaced in the future, and Consolidated Adjusted EBITDA does not reflect cash requirements for such replacements. Other companies, including companies in our industry, may also calculate Consolidated Adjusted EBITDA differently, which may limit its usefulness as a comparative measure.
+
+
+The following table reconciles our Consolidated Adjusted EBITDA for the three and six months ended June 30, 2026 and 2025 (in millions) to net income attributable to common stockholders, the most directly comparable financial measure prepared and presented in accordance with GAAP:
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended
+June 30, | | Six months ended
+June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | | | |
+NET INCOME ATTRIBUTABLE TO COMMON STOCKHOLDERS | $ | 1,347 | | | $ | 368 | | | $ | 1,835 | | | $ | 764 | |
+Net income attributable to non-controlling interests
+| 70 | | | 107 | | | 207 | | | 228 | |
+Income tax expense | 336 | | | 116 | | | 447 | | | 267 | |
+Loss on foreign currency transactions
+| — | | | — | | | 1 | | | — | |
+Loss on financing transactions | 96 | | | 63 | | | 109 | | | 63 | |
+(Gain) loss on interest rate swaps | (124) | | | 112 | | | (139) | | | 304 | |
+Interest expense, net | 489 | | | 310 | | | 933 | | | 586 | |
+Interest income | (26) | | | (38) | | | (54) | | | (94) | |
+INCOME FROM OPERATIONS | $ | 2,188 | | | $ | 1,038 | | | $ | 3,339 | | | $ | 2,118 | |
+Depreciation and amortization | 260 | | | 267 | | | 511 | | | 483 | |
+Stock based compensation expense | 15 | | | 11 | | | 27 | | | 23 | |
+(Gain) loss from changes in fair value of other derivatives 1 | 28 | | | 77 | | | (14) | | | 115 | |
+Consolidated Adjusted EBITDA
+| $ | 2,491 | | | $ | 1,393 | | | $ | 3,863 | | | $ | 2,739 | |
+
+
+1 Change in fair value of forward natural gas supply contracts.
+
+
+9

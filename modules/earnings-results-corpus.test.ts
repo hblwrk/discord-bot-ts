@@ -226,6 +226,7 @@ const filingCorpus: {
     ],
     outlook: [
       ["Revenue", "$540M to $560M"],
+      ["EPS", "$0.87 to $0.92"],
       ["Gross margin", "72%"],
       ["Operating expenses", "$232M to $236M"],
       ["Tax rate", "4%"]
@@ -285,6 +286,7 @@ const filingCorpus: {
     ],
     outlook: [
       ["FY2026 Adj EPS", "12% growth"],
+      ["FY2027 Adj EPS", "double-digit growth"],
       ["Q4 Operating income", "$4.9B"],
     ],
     quarterLabel: "Q3 2026",
@@ -660,7 +662,9 @@ const filingCorpus: {
     ],
     outlook: [
       ["Q3 Revenue", "$736M to $737M"],
+      ["FY2026 Revenue", "$2.864B to $2.87B"],
       ["Q3 Adj EPS", "$0.34"],
+      ["FY2026 Adj EPS", "$1.25 to $1.26"],
     ],
     quarterLabel: "Q2 2026",
     source: "1477333/000147733326000053/q226exhibit991.htm",
@@ -724,7 +728,9 @@ const filingCorpus: {
     ],
     outlook: [
       ["Q3 Revenue", "$880M to $900M"],
+      ["FY2026 Revenue", "$3.1B to $3.3B"],
       ["Q3 Adj EBITDA", "$75M to $95M"],
+      ["FY2026 Adj EBITDA", "$275M to $325M"],
     ],
     quarterLabel: "Q2 2026",
     source: "1773751/000177375126000161/hims-20260630x8xkearningsr.htm",
@@ -816,6 +822,116 @@ const filingCorpus: {
     source: "1970622/000197062226000056/exhibit991-earningsrelease.htm",
     ticker: "usar",
   },
+  {
+    // The 6-K also furnishes an MD&A whose later-quarter discussion used to become the
+    // reporting period. The press release states results in CHF and supplies the outlook.
+    company: "On Holding",
+    metrics: [
+      ["adjusted_eps", "CHF 0.35"],
+      ["gaap_eps", "CHF 0.31"],
+      ["revenue", "CHF 850.3M"],
+      ["net_income", "CHF 105M"],
+    ],
+    outlook: [
+      ["Revenue", "CHF 3.47B to CHF 3.56B"],
+      ["Gross margin", "65.0%"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1858985/000185898526000018/a26q2-ex993xpressrelease.htm",
+    ticker: "onon",
+  },
+  {
+    // The EPS caption inserts "attributable to common stockholders" before "per share".
+    // Its diluted row is $0.51; the basic row immediately above it is $0.54.
+    company: "Venture Global",
+    metrics: [
+      ["gaap_eps", "$0.51"],
+      ["revenue", "$4.6B"],
+      ["net_income", "$1.3B"],
+    ],
+    outlook: [
+      ["FY2026 Adj EBITDA", "$8.7B to $9.1B"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "2007855/000200785526000063/vgincq22026earningsrelease.htm",
+    ticker: "vg",
+  },
+  {
+    // Reported non-GAAP EPS is $2.91. The $2.60 figure removes a tariff refund from that
+    // already-adjusted measure and therefore cannot carry the bot's plain adjusted label.
+    company: "Cardinal Health",
+    metrics: [
+      ["adjusted_eps", "$2.91"],
+      ["gaap_eps", "$1.70"],
+      ["revenue", "$63.7B"],
+      ["net_income", "$398M"],
+    ],
+    outlook: [
+      ["Adj EPS", "$12.4 to $12.6"],
+      ["Tax rate", "19% to 20%"],
+      ["Capex", "$700M"],
+      ["Free cash flow", "$3.5B to $4B"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "721371/000072137126000037/a26q4_x063026xex991xnewsre.htm",
+    ticker: "cah",
+  },
+  {
+    // Q1 and FY2027 both guide revenue. The two tax percentages are respectively mapped
+    // GAAP and non-GAAP assumptions, not the endpoints of a tax-rate range.
+    company: "Super Micro Computer",
+    metrics: [
+      ["adjusted_eps", "$1.70"],
+      ["gaap_eps", "$1.62"],
+      ["revenue", "$11.1B"],
+      ["net_income", "$1.18B"],
+    ],
+    outlook: [
+      ["Q1 Revenue", "$14.5B to $15.5B"],
+      ["FY2027 Revenue", "$65B to $72B"],
+      ["Q1 Adj EPS", "$1.01 to $1.1"],
+      ["Q1 EPS", "$0.89 to $0.98"],
+      ["Q1 Tax rate", "20.1%"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "1375365/000137536526000021/exhibit991_20260630.htm",
+    ticker: "smci",
+  },
+  {
+    // The guidance caption combines both qualifiers as "Fiscal Full-Year 2026 Outlook".
+    // It is a real outlook heading, rather than prose mentioning outlook inside the section.
+    company: "CAVA Group",
+    metrics: [
+      ["gaap_eps", "$0.19"],
+      ["revenue", "$365.4M"],
+      ["net_income", "$23M"],
+    ],
+    outlook: [
+      ["Adj EBITDA", "$181M to $191M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1639438/000162828026055709/earningsrelease2026q2.htm",
+    ticker: "cava",
+  },
+  {
+    // The results prose states Q4, Q3 and prior-year Q4 on the same lines. Q1 guidance
+    // supplies the formerly selected $4.05, while $144.2M is the preceding quarter.
+    company: "Lumentum Holdings",
+    metrics: [
+      ["adjusted_eps", "$3.23"],
+      ["gaap_eps", "-$84.65"],
+      ["revenue", "$1.01B"],
+      ["net_income", "-$7.2B"],
+    ],
+    outlook: [
+      ["Revenue", "$1.225B to $1.275B"],
+      ["Adj EPS", "$4.05 to $4.35"],
+      ["Operating margin", "39.5% to 40.5%"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "1633978/000162828026055726/lite_ex991xq4fy26.htm",
+    ticker: "lite",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -836,6 +952,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(54);
+    expect(filingCorpus).toHaveLength(60);
   });
 });

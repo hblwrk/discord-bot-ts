@@ -31,6 +31,7 @@ export function hasGaapNarrativeBeforeAdjustment(line: string, patterns: RegExp[
 export function getMetricCandidateScore({
   lines,
   lineIndex,
+  metricKey,
   metricLine,
   pattern,
   quarterLabel,
@@ -38,6 +39,7 @@ export function getMetricCandidateScore({
 }: {
   lines: string[];
   lineIndex: number;
+  metricKey: string;
   metricLine: string;
   pattern: RegExp;
   quarterLabel: string | undefined;
@@ -108,6 +110,20 @@ export function getMetricCandidateScore({
     score -= 150;
   }
 
+  // A company may publish its standard adjusted EPS and then an additional figure that
+  // removes a one-off item from that adjusted result. The plain "Adj EPS" label refers to
+  // the company-reported non-GAAP measure; an "excluding ..." variant needs a distinct
+  // label, so prefer the unqualified candidate when the filing provides both.
+  if ("adjusted_eps" === metricKey &&
+      null !== patternMatch &&
+      true === hasExcludingQualifierAroundMetric(
+        metricLine,
+        patternMatch.index,
+        patternMatch.index + patternMatch[0].length,
+      )) {
+    score -= 130;
+  }
+
   if (("eps" === valueType || "money" === valueType) && /[$€£¥]/.test(metricLine)) {
     score += 10;
   }
@@ -135,6 +151,47 @@ export function getMetricCandidateScore({
   }
 
   return score;
+}
+
+export function hasStandaloneFullYearPeriod(text: string): boolean {
+  if (/\bfull[\s–—-]+year\b/i.test(text)) {
+    return true;
+  }
+
+  const fiscalPeriodPattern = /\b(?:fiscal(?:\s+year)?|fy)\s*(?:of\s+)?(?:20\d{2}|\d{2})\b/gi;
+  for (const periodMatch of text.matchAll(fiscalPeriodPattern)) {
+    const precedingText = text.slice(Math.max(0, periodMatch.index - 40), periodMatch.index);
+    // "first quarter of fiscal year 2027" names one quarter, not a simultaneous
+    // full-year outlook. Only an independently stated fiscal period is annual.
+    if (false === /\b(?:q[1-4]|(?:first|second|third|fourth)[\s–—-]+quarter)(?:\s+of)?\s*$/i
+      .test(precedingText)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function hasExcludingQualifierAroundMetric(
+  line: string,
+  metricStartIndex: number,
+  metricEndIndex: number,
+): boolean {
+  const clauseStartIndex = Math.max(
+    line.lastIndexOf(". ", metricStartIndex),
+    line.lastIndexOf(";", metricStartIndex),
+    line.lastIndexOf("|", metricStartIndex),
+  );
+  if (/\bexcluding\b/i.test(line.slice(clauseStartIndex + 1, metricStartIndex))) {
+    return true;
+  }
+
+  const afterMetric = line.slice(metricEndIndex);
+  const firstValueIndex = afterMetric.search(/\(?-?(?:[$€£¥]\s*)?\d/);
+  return /\bexcluding\b/i.test(afterMetric.slice(
+    0,
+    -1 === firstValueIndex ? Math.min(120, afterMetric.length) : firstValueIndex,
+  ));
 }
 
 export function getPositionedQuarterValues(

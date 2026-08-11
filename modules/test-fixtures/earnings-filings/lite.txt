@@ -1,0 +1,541 @@
+EX-99.1
+2
+lite_ex991xq4fy26.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+NEWS RELEASE
+
+
+
+
+
+LUMENTUM ANNOUNCES FOURTH QUARTER AND FULL FISCAL YEAR 2026 RESULTS
+
+
+Fiscal Fourth Quarter Highlights:
+• Net revenue of $1.01 billion
+• GAAP gross margin of 47.4%; Non-GAAP gross margin of 50.4%
+• GAAP operating margin of 27.8%; Non-GAAP operating margin of 36.6%
+• Forecasting first quarter of fiscal year 2027 revenue of $1.225 billion to $1.275 billion; Non-GAAP operating margin of 39.5% to 40.5%; and Non-GAAP diluted net income per share of $4.05 to $4.35
+
+
+San Jose, Calif., August 11, 2026 – Lumentum Holdings Inc. (“Lumentum” or the “Company”) today reported results for its fiscal fourth quarter and full fiscal year ended June 27, 2026.
+“Lumentum is positioned at the heart of a secular industry shift. As AI compute workloads increase in both speed and bandwidth, data center architects are turning to optical links as a primary means of connectivity. While our Q4 results demonstrate broad-based traction, key growth drivers such as OCS solutions and our cloud module business, where we are advancing 1.6T adoption, are beginning to layer in. Increasing demand for ultra-high-power CPO lasers, an initial order for ELS modules, as well as our breadth of NPO engagements are the first signs that optics are starting to penetrate in-rack connectivity, significantly upping our optical TAM,” said President and CEO Michael Hurlston.
+“Looking ahead, our trajectory continues to accelerate as AI demand drives our Q1 revenue guidance midpoint to $1.25 billion, reaching our target model more than a quarter ahead of schedule.”
+Fiscal Fourth Quarter:
+Net revenue for the fourth quarter of fiscal year 2026 was $1.01 billion, with GAAP net loss of $7.2 billion, or $84.65 per diluted share. The GAAP net loss was driven by the equitization of certain amounts of our convertible notes in the fourth quarter of fiscal year 2026, which contributed to a one-time, non-cash loss on debt extinguishment of $7.8 billion. Net revenue for the third quarter of fiscal year 2026 was $808.4 million, with GAAP net income of $144.2 million, or $1.50 per diluted share. Net revenue for the fourth quarter of fiscal year 2025 was $480.7 million, with GAAP net income of $213.3 million, or $2.96 per diluted share.
+Non-GAAP net income for the fourth quarter of fiscal year 2026 was $326.3 million, or $3.23 per diluted share . Non-GAAP net income for the third quarter of fiscal year 2026 was $225.7 million, or $2.37 per diluted share. Non-GAAP net income for the fourth quarter of fiscal year 2025 was $63.3 million, or $0.88 per diluted share.
+The Company held $2.7 billion in total cash, cash equivalents, and short-term investments at the end of the fourth quarter of fiscal year 2026, a decrease of $433.9 million from the end of the third quarter of fiscal year 2026.
+Full Fiscal Year 2026:
+Net revenue for fiscal year 2026 was $3.01 billion, with GAAP net loss of $6.9 billion, or $92.96 per diluted share. The GAAP net loss was driven by the equitization of certain amounts of our convertible notes in the fourth quarter of fiscal year 2026, which contributed to a one-time, non-cash loss on debt extinguishment of $7.8 billion. Net revenue for fiscal year 2025 was $1.6 billion, with GAAP net income of $25.9 million, or $0.37 per diluted share.
+Non-GAAP net income for fiscal year 2026 was $782.3 million, or $8.67 per diluted share. Non-GAAP net income for fiscal year 2025 was $146.4 million, or $2.06 per diluted share.
+The Company held $2.7 billion in total cash, cash equivalents, and short-term investments at the end of the fourth quarter of fiscal year 2026, an increase of $1.9 billion from the end of fiscal year 2025.
+
+
+
+
+
+
+
+
+
+
+
+Financial Overview – Fiscal Fourth Quarter Ended June 27, 2026
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| GAAP Results ($ in millions) |
+| Q4 | | Q3 | | Q4 | | Change |
+| FY 2026 | | FY 2026 | | FY 2025 | | Q/Q | | Y/Y |
+Net revenue | $ | 1,006.3 | | | $ | 808.4 | | | $ | 480.7 | | | 24.5% | | 109.3% |
+GAAP gross margin | 47.4 | % | | 44.2 | % | | 33.3 | % | | 320bps | | 1,410bps |
+GAAP operating margin (loss) | 27.8 | % | | 21.6 | % | | (1.7) | % | | 620bps | | 2,950bps |
+| | | | | | | | | |
+| Non-GAAP Results ($ in millions) |
+| Q4 | | Q3 | | Q4 | | Change |
+| FY 2026 | | FY 2026 | | FY 2025 | | Q/Q | | Y/Y |
+Net revenue | $ | 1,006.3 | | | $ | 808.4 | | | $ | 480.7 | | | 24.5% | | 109.3% |
+Non-GAAP gross margin | 50.4 | % | | 47.9 | % | | 37.8 | % | | 250bps | | 1,260bps |
+Non-GAAP operating margin | 36.6 | % | | 32.2 | % | | 15.0 | % | | 440bps | | 2,160bps |
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Net Revenue by Product Type ($ in millions) |
+| Q4 | | % of | | Q3 | | Q4 | | Change |
+| FY 2026 | | Net Revenue | | FY 2026 | | FY 2025 | | Q/Q | | Y/Y |
+Components | $ | 649.4 | | | 64.5 | % | | $ | 533.3 | | | $ | 320.4 | | | 21.8 | % | | 102.7 | % |
+Systems | 356.9 | | | 35.5 | % | | 275.1 | | | 160.3 | | | 29.7 | % | | 122.6 | % |
+Total | $ | 1,006.3 | | | 100.0 | % | | $ | 808.4 | | | $ | 480.7 | | | 24.5 | % | | 109.3 | % |
+
+
+
+Financial Overview – Fiscal Year Ended June 27, 2026
+| | | | | | | | | | | | | | | | | | |
+| GAAP Results ($ in millions) |
+| FY 2026 | | FY 2025 | | Change Y/Y | |
+Net revenue | $ | 3,014.0 | | | $ | 1,645.0 | | | 83.2% | |
+GAAP Gross margin | 41.7 | % | | 28.0 | % | | 1,370bps | |
+GAAP Operating margin (loss) | 17.4 | % | | (10.9) | % | | 2,830bps | |
+
+| | | | | | | | | | | | | | | | | | |
+| Non-GAAP Results ($ in millions) |
+| FY 2026 | | FY 2025 | | Change Y/Y | |
+Net revenue | $ | 3,014.0 | | | $ | 1,645.0 | | | 83.2% | |
+Non-GAAP Gross margin | 46.0 | % | | 34.7 | % | | 1,130bps | |
+Non-GAAP Operating margin | 29.8 | % | | 9.7 | % | | 2,010bps | |
+
+
+
+| | | | | | | | | | | | | | | | | | |
+| Net Revenue by Product Type ($ in millions) |
+| FY 2026 | | FY 2025 | | Change Y/Y | |
+Components | $ | 2,005.6 | | | $ | 1,116.3 | | | 79.7% | |
+Systems | 1,008.4 | | | 528.7 | | | 90.7% | |
+Total | $ | 3,014.0 | | | $ | 1,645.0 | | | 83.2% | |
+
+The tables above provide comparisons of quarterly and annual results to prior periods, including sequential quarterly and year-over-year changes. A reconciliation between GAAP and non-GAAP financial measures is contained in this release under the section titled “Use of Non-GAAP Financial Measures”.
+
+
+
+
+
+
+
+
+
+Business Outlook
+Lumentum expects the following for the first quarter of fiscal year 2027:
+• Net revenue in the range of $1.225 billion to $1.275 billion
+• Non-GAAP operating margin of 39.5% - 40.5%
+• Non-GAAP diluted net income per share of $4.05 to $4.35
+We have not provided reconciliations from GAAP to non-GAAP financial measures or the equivalent GAAP measure for non-GAAP financial measures in our outlook, as they cannot be provided without unreasonable effort. A large portion of non-GAAP adjustments, such as stock-based compensation and related payroll expenses, acquisition related costs, net, integration related costs, restructuring and related charges, non-GAAP income tax reconciling adjustments, and other non-GAAP adjustments are by their nature highly volatile and we have low visibility as to the range that may be incurred in the future.
+Conference Call
+Lumentum will host a conference call today, August 11, 2026 , at 2:00 pm PT / 5:00 pm ET to discuss its fiscal fourth quarter and full year results. A live webcast of the call will be available in the Investors section of the Lumentum website at http://investor.lumentum.com. The earnings press release will be posted on http://investor.lumentum.com under the “News Releases” section. Supporting materials outlining the Company’s latest financial results will be posted on http://investor.lumentum.com under the “Events” section concurrently with this earnings press release. Lumentum has used, and intends to continue to use, its Investor Relations website as means of disclosing material nonpublic information and for complying with its disclosure obligations under Regulation FD. This press release is also being furnished as an exhibit to a Current Report on Form 8-K filed with the Securities and Exchange Commission and will be available at http://www.sec.gov/.
+About Lumentum
+Lumentum (NASDAQ: LITE) is a global leader in optical and photonic technologies that power the networks and infrastructure behind AI, cloud computing, and next-generation communications. Built on decades of photonics innovation, Lumentum delivers high-performance lasers, modules, and optical subsystems that enable scalable, energy-efficient data center connectivity, advanced telecom networks, industrial manufacturing, and sensing applications. Headquartered in San Jose, California, the company operates R&D, manufacturing, and sales facilities worldwide. Learn more at www.lumentum.com .
+
+
+
+
+
+
+
+
+
+
+
+Forward-Looking Statements
+
+
+This press release contains forward-looking statements within the meaning of Section 27A of the Securities Act of 1933 and Section 21E of the Securities Exchange Act of 1934. These include statements regarding: our belief and expectations with respect to transition to optical links in data center architecture, demand in our markets (including accelerating AI demand) and for our products, product enhancement, revenue growth and opportunities, growth drivers, our total addressable market, our target model for revenue, and our guidance with respect to future net revenue, non-GAAP diluted earnings per share, and non-GAAP operating margin, and related assumptions. These forward-looking statements involve risks and uncertainties that could cause actual results to differ materially from those projected. Among the factors that could cause actual results to differ from those contemplated are: (a) uncertainty and volatility in the global markets, including uncertainty and volatility in the macroeconomic environment, volatility and uncertainty with respect to economic growth, inflationary pressures, changes in the political or economic environment, such as geopolitical conflicts, war, international trade regulation and restrictions (including tariffs, duties and export controls to be implemented by the U.S. and other countries), including for certain rare earth minerals, and the effect of such market disruptions on demand for our products, technology spending by our customers, our costs and expenses and our ability to obtain components for our products; (b) quarter-over-quarter product mix fluctuations, which can materially impact profitability measures due to the broad gross margin ranges across our portfolio; (c) decline of average selling prices across our businesses or increase in costs, either of which will also decrease our margins; (d) effects of seasonality; (e) our ability to increase our manufacturing capacity and our ability and the ability of our suppliers and contract manufacturers to meet production, quality, and delivery requirements for our forecasted demand; (f) changes in customer demand, including due to changes in inventory practices and end-customer demand, and potential order cancellations, reductions or delays and their effects; (g) our ability to attract and retain new customers, particularly in the cloud photonics and imaging and sensing markets; (h) the risk that our markets will not grow or develop as expected or that our strategies and ability to compete in those markets are not successful, (i) the risk that Lumentum’s financing or operating strategies will not be successful; (j) risks related to our restructuring initiatives and changes to our operations; (k) failure to successfully integrate acquisitions into our business or that we will not achieve the expected benefits; (l) risks related to servicing our current and future debt and compliance with the covenants under our revolving credit facility and term loans. A detailed discussion of these and other risks and uncertainties that could cause actual results and events to differ materially from such forward-looking statements is included in the Company’s Quarterly Report on Form 10-Q for the fiscal quarter ended March 28, 2026 filed with the Securities and Exchange Commission (the “SEC”), and in the Company’s other filings with the SEC, including the Company’s Annual Report on Form 10-K for the fiscal year ended June 27, 2026, which will be filed with the SEC, available at www.sec.gov, under the caption “Risk Factors” and elsewhere. The forward-looking statements contained in this presentation are made as of the date hereof and the Company assumes no obligation to update such statements, except as required by applicable law.
+
+
+
+
+Contact Information
+
+
+Investors: Kathy Ta, +1.408.750.3853; investor.relations@lumentum.com
+Media: Victoria McDonald, +1.408.404.0636; media@lumentum.com
+Category: Financial
+The following financial tables are presented in accordance with GAAP, unless otherwise specified.
+
+
+
+
+
+
+
+
+
+
+LUMENTUM HOLDINGS INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(in millions, except per share data)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Twelve Months Ended |
+| June 27, 2026 | | June 28, 2025 | | June 27, 2026 | | June 28, 2025 |
+Net revenue | $ | 1,006.3 | | | $ | 480.7 | | | $ | 3,014.0 | | | $ | 1,645.0 | |
+Cost of sales | 509.8 | | | 301.5 | | | 1,680.5 | | | 1,102.9 | |
+Amortization of acquired developed intangibles | 19.2 | | | 19.3 | | | 77.6 | | | 82.2 | |
+Gross profit | 477.3 | | | 159.9 | | | 1,255.9 | | | 459.9 | |
+Operating expenses: | | | | | | | |
+Research and development | 104.4 | | | 79.5 | | | 356.5 | | | 303.9 | |
+Selling, general and administrative | 91.2 | | | 83.6 | | | 363.2 | | | 348.2 | |
+Restructuring and related charges | 2.4 | | | 5.2 | | | 11.4 | | | 22.8 | |
+| | | | | | | |
+Gain on sale of facility | — | | | — | | | — | | | (34.9) | |
+Total operating expenses | 198.0 | | | 168.3 | | | 731.1 | | | 640.0 | |
+Income (loss) from operations | 279.3 | | | (8.4) | | | 524.8 | | | (180.1) | |
+Loss on debt extinguishment (1)
+| (7,756.6) | | | — | | | (7,756.6) | | | — | |
+Escrow settlement | — | | | — | | | 27.5 | | | — | |
+Interest expense | (3.6) | | | (5.4) | | | (21.8) | | | (22.2) | |
+Other income, net | 22.6 | | | 2.4 | | | 53.3 | | | 30.2 | |
+Total other (expense) income, net | (7,737.6) | | | (3.0) | | | (7,697.6) | | | 8.0 | |
+Loss before income taxes | (7,458.3) | | | (11.4) | | | (7,172.8) | | | (172.1) | |
+Income tax (benefit) provision | (296.6) | | | (224.7) | | | (237.7) | | | (198.0) | |
+Net (loss) income (1)
+| $ | (7,161.7) | | | $ | 213.3 | | | $ | (6,935.1) | | | $ | 25.9 | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Net (loss) income per share: | | | | | | | |
+Basic | $ | (84.65) | | | $ | 3.06 | | | $ | (92.96) | | | $ | 0.38 | |
+Diluted | $ | (84.65) | | | $ | 2.96 | | | $ | (92.96) | | | $ | 0.37 | |
+| | | | | | | |
+Shares used to compute net (loss) income per share - common stock and preferred stock assuming conversion: | | | | | | | |
+Basic | 84.6 | | | 69.6 | | | 74.6 | | | 69.0 | |
+Diluted | 84.6 | | | 72.0 | | | 74.6 | | | 69.6 | |
+
+(1) The GAAP net loss for the three and twelve months ended June 27, 2026 was driven by the equitization of certain amounts of our convertible notes in the fourth quarter of fiscal year 2026, which contributed to a one-time, non-cash loss on debt extinguishment of $7.8 billion.
+
+
+
+
+
+
+
+
+
+
+LUMENTUM HOLDINGS INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(in millions, except per share data)
+(unaudited)
+| | | | | | | | | | | |
+| June 27, 2026 | | June 28, 2025 |
+ASSETS | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 2,043.5 | | | $ | 520.7 | |
+Short-term investments | 694.9 | | | 356.4 | |
+Accounts receivable, net | 520.3 | | | 250.0 | |
+Inventories | 691.6 | | | 470.1 | |
+Prepayments and other current assets | 211.6 | | | 120.1 | |
+Total current assets | 4,161.9 | | | 1,717.3 | |
+Property, plant and equipment, net | 1,159.1 | | | 726.4 | |
+Operating lease right-of-use assets, net | 29.2 | | | 27.9 | |
+Goodwill | 1,069.3 | | | 1,060.9 | |
+Other intangible assets, net | 326.9 | | | 465.1 | |
+Deferred tax asset | 530.9 | | | 210.3 | |
+Other non-current assets | 30.2 | | | 10.8 | |
+Total assets | $ | 7,307.5 | | | $ | 4,218.7 | |
+LIABILITIES AND STOCKHOLDERS’ EQUITY | | | |
+Current liabilities: | | | |
+Accounts payable | $ | 567.4 | | | $ | 225.2 | |
+Accrued payroll and related expenses | 146.3 | | | 57.9 | |
+Accrued expenses | 64.9 | | | 34.6 | |
+Current portion of long-term debt | 1,596.9 | | | 10.6 | |
+Operating lease liabilities, current | 13.5 | | | 11.4 | |
+Other current liabilities | 91.5 | | | 53.1 | |
+Total current liabilities | 2,480.5 | | | 392.8 | |
+Long-term debt | 40.5 | | | 2,562.6 | |
+| | | |
+Operating lease liabilities, non-current | 20.3 | | | 23.6 | |
+Deferred tax liability | 7.1 | | | 7.2 | |
+Other non-current liabilities | 115.2 | | | 97.8 | |
+Total liabilities | 2,663.6 | | | 3,084.0 | |
+| | | |
+| | | |
+| | | |
+| | | |
+Stockholders’ equity: | | | |
+Preferred stock, $0.001 par value, 10 authorized shares, 2.9 shares and zero shares issued and outstanding as of June 27, 2026 and June 28, 2025, respectively
+| — | | | — | |
+Common stock, $0.001 par value, 990 authorized shares; 88.6 and 69.8 shares issued and outstanding as of June 27, 2026 and June 28, 2025, respectively
+| 0.1 | | | 0.1 | |
+Additional paid-in capital | 12,430.1 | | | 1,986.8 | |
+Accumulated deficit | (7,796.3) | | | (861.2) | |
+Accumulated other comprehensive income | 10.0 | | | 9.0 | |
+Total stockholders’ equity | 4,643.9 | | | 1,134.7 | |
+Total liabilities and stockholders’ equity | $ | 7,307.5 | | | $ | 4,218.7 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+Use of Non-GAAP Financial Measures
+
+
+In this press release, Lumentum provides investors with certain non-GAAP financial measures: gross profit, gross margin, research and development expense, selling, general and administrative expense, operating margin, income (loss) from operations, total other income (expense), net, income before income taxes, provision (benefit) for income taxes, net income (loss), shares used in per share calculation, and net income (loss) per share on a non-GAAP basis, as well as the non-GAAP measures of EBITDA and Adjusted EBITDA. Lumentum believes this non-GAAP financial information provides additional insight into the Company’s on-going business operations and results, and has therefore chosen to provide this information to investors for a more consistent basis of comparison and to help them evaluate the results of the Company’s on-going operations and enable more meaningful period to period comparisons. In addition, the Company believes that providing certain of these measures allows investors to better understand the Company’s operating performance and, importantly, to evaluate the methodology and information used by management to monitor, manage, evaluate and measure the Company’s business and results of operations. However, investors are cautioned that there are material limitations associated with the use of non-GAAP financial measures as an analytical tool. In particular, many of the adjustments to our GAAP financial measures reflect the exclusion of items that are recurring and will be reflected in our financial results for the foreseeable future. Moreover, the non-GAAP financial measures we present may be different from non-GAAP financial measures used by other companies or may not be comparable to similarly titled measurements reported by other companies, limiting their usefulness for comparison purposes. We do not consider non-GAAP financial measures to be a substitute for, or superior to, the information provided by GAAP financial measures, and the non-GAAP financial measures used in this press release should not be considered in isolation from measures of financial performance prepared in accordance with GAAP.
+Our non-GAAP measures used in this press release exclude (i) stock-based compensation and related payroll taxes, (ii) acquisition-related warranty provision, (iii) escrow settlement, (iv) acquisition related costs, net (v) integration related costs, (vi) amortization of acquired intangibles, (vii) restructuring and related charges, (viii) intangible assets write-off, (ix) gain on sale of facility, (x) foreign exchange losses (gains), net, (xi) loss on debt extinguishment, (xii) inducement expense, (xiii) non-cash interest expense, (xiv) other charges or income related to non-recurring activities, and (xv) non-GAAP income tax reconciling adjustments.
+We utilize a long-term projected non-GAAP tax rate to compute our non-GAAP income tax provision. The long-term projected non-GAAP tax rate is based on a multi-year projection of our estimated annual GAAP income tax forecast, adjusted to account for the tax effect of non-GAAP pretax adjustments as well as the effects of significant non-recurring and period specific tax items. Our non-GAAP tax provision for fiscal year 2026 is 16.5%. The difference between our GAAP income tax provision and our non-GAAP income tax provision is presented as non-GAAP income tax reconciling adjustments.
+A quantitative reconciliation between GAAP and non-GAAP financial data is included in the supplemental financial table attached to this press release.
+
+
+
+
+
+
+
+
+
+
+
+
+LUMENTUM HOLDINGS INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL MEASURES
+(in millions, except per share data)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Twelve Months Ended |
+| June 27, 2026 | | March 28, 2026 | | June 28, 2025 | | June 27, 2026 | | June 28, 2025 |
+| | | | | | | | | |
+Gross profit on GAAP basis | $ | 477.3 | | | $ | 357.0 | | | $ | 159.9 | | | $ | 1,255.9 | | | $ | 459.9 | |
+Stock-based compensation and related payroll taxes (1)
+| 10.5 | | | 10.5 | | | 8.8 | | | 44.0 | | | 36.9 | |
+Acquisition-related warranty provision (2)
+| — | | | — | | | — | | | 9.8 | | | — | |
+Integration related costs | — | | | 0.2 | | | 0.6 | | | 0.2 | | | 2.9 | |
+Amortization of acquired intangibles | 19.2 | | | 19.3 | | | 19.3 | | | 77.6 | | | 82.2 | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Other charges, net (7)
+| (0.1) | | | (0.1) | | | (7.0) | | | (0.8) | | | (10.4) | |
+Gross profit on non-GAAP basis | $ | 506.9 | | | $ | 386.9 | | | $ | 181.6 | | | $ | 1,386.7 | | | $ | 571.5 | |
+Gross margin on non-GAAP basis | 50.4 | % | | 47.9 | % | | 37.8 | % | | 46.0 | % | | 34.7 | % |
+| | | | | | | | | |
+Research and development on GAAP basis | $ | 104.4 | | | $ | 90.6 | | | $ | 79.5 | | | $ | 356.5 | | | $ | 303.9 | |
+Stock-based compensation and related payroll taxes (1)
+| (13.5) | | | (11.5) | | | (11.4) | | | (46.8) | | | (43.3) | |
+Integration related costs | — | | | (0.2) | | | — | | | (0.2) | | | (0.3) | |
+Amortization of acquired intangibles | (0.4) | | | (0.5) | | | (0.4) | | | (1.7) | | | (1.6) | |
+Intangible assets write-off | (2.5) | | | — | | | (0.1) | | | (2.5) | | | (2.7) | |
+| | | | | | | | | |
+Other charges, net (7)
+| (0.5) | | | — | | | — | | | (0.5) | | | — | |
+Research and development on non-GAAP basis | $ | 87.5 | | | $ | 78.4 | | | $ | 67.6 | | | $ | 304.8 | | | $ | 256.0 | |
+| | | | | | | | | |
+Selling, general and administrative on GAAP basis | $ | 91.2 | | | $ | 90.8 | | | $ | 83.6 | | | $ | 363.2 | | | $ | 348.2 | |
+Stock-based compensation and related payroll taxes (1)
+| (26.1) | | | (24.8) | | | (19.8) | | | (100.5) | | | (97.0) | |
+| | | | | | | | | |
+| | | | | | | | | |
+Acquisition related costs, net (3)
+| — | | | (0.4) | | | (0.7) | | | (2.1) | | | (1.2) | |
+Integration related costs | (0.5) | | | (1.0) | | | (0.7) | | | (2.0) | | | (6.0) | |
+| | | | | | | | | |
+| | | | | | | | | |
+Amortization of acquired intangibles | (13.9) | | | (14.0) | | | (14.9) | | | (56.4) | | | (65.9) | |
+Other charges, net (7)
+| (0.1) | | | (2.8) | | | (5.8) | | | (17.3) | | | (22.7) | |
+Selling, general and administrative on non-GAAP basis | $ | 50.6 | | | $ | 47.8 | | | $ | 41.7 | | | $ | 184.9 | | | $ | 155.4 | |
+| | | | | | | | | |
+Income (loss) from operations on GAAP basis | $ | 279.3 | | | $ | 174.5 | | | $ | (8.4) | | | $ | 524.8 | | | $ | (180.1) | |
+Stock-based compensation and related payroll taxes (1)
+| 50.1 | | | 46.8 | | | 40.0 | | | 191.3 | | | 177.2 | |
+| | | | | | | | | |
+Acquisition-related warranty provision (2)
+| — | | | — | | | — | | | 9.8 | | | — | |
+Acquisition related costs, net (3)
+| — | | | 0.4 | | | 0.7 | | | 2.1 | | | 1.2 | |
+Integration related costs | 0.5 | | | 1.4 | | | 1.3 | | | 2.4 | | | 9.2 | |
+| | | | | | | | | |
+Amortization of acquired intangibles | 33.5 | | | 33.8 | | | 34.6 | | | 135.7 | | | 149.7 | |
+| | | | | | | | | |
+Restructuring and related charges (4)
+| 2.4 | | | 1.1 | | | 5.2 | | | 11.4 | | | 22.8 | |
+Intangible assets write-off | 2.5 | | | — | | | 0.1 | | | 2.5 | | | 2.7 | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Gain on sale of facility | — | | | — | | | — | | | — | | | (34.9) | |
+Other charges, net (7)
+| 0.5 | | | 2.7 | | | (1.2) | | | 17.0 | | | 12.3 | |
+Income from operations on non-GAAP basis | $ | 368.8 | | | $ | 260.7 | | | $ | 72.3 | | | $ | 897.0 | | | $ | 160.1 | |
+Operating margin on non-GAAP basis | 36.6 | % | | 32.2 | % | | 15.0 | % | | 29.8 | % | | 9.7 | % |
+| | | | | | | | | |
+Total other income (expense), net on GAAP basis | $ | (7,737.6) | | | $ | 9.3 | | | $ | (3.0) | | | $ | (7,697.6) | | | $ | 8.0 | |
+Escrow settlement (2)
+| — | | | — | | | — | | | (27.5) | | | — | |
+Acquisition related income (3)
+| — | | | — | | | — | | | (1.8) | | | — | |
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Foreign exchange losses (gains), net | 2.2 | | | (0.8) | | | 5.8 | | | 0.5 | | | 4.2 | |
+Loss on debt extinguishment (5)
+| 7,756.6 | | | — | | | — | | | 7,756.6 | | | — | |
+Inducement expense (6)
+| — | | | — | | | — | | | 5.9 | | | — | |
+Non-cash interest expense | 0.8 | | | 1.1 | | | 0.7 | | | 3.8 | | | 3.0 | |
+Total other income, net on non-GAAP basis | $ | 22.0 | | | $ | 9.6 | | | $ | 3.5 | | | $ | 39.9 | | | $ | 15.2 | |
+| | | | | | | | | |
+Income (loss) before income taxes on GAAP basis | $ | (7,458.3) | | | $ | 183.8 | | | $ | (11.4) | | | $ | (7,172.8) | | | $ | (172.1) | |
+Stock-based compensation and related payroll taxes (1)
+| 50.1 | | | 46.8 | | | 40.0 | | | 191.3 | | | 177.2 | |
+Acquisition-related warranty provision (2)
+| — | | | — | | | — | | | 9.8 | | | — | |
+Escrow settlement (2)
+| — | | | — | | | — | | | (27.5) | | | — | |
+Acquisition related costs, net (3)
+| — | | | 0.4 | | | 0.7 | | | 0.3 | | | 1.2 | |
+Integration related costs | 0.5 | | | 1.4 | | | 1.3 | | | 2.4 | | | 9.2 | |
+| | | | | | | | | |
+Amortization of acquired intangibles | 33.5 | | | 33.8 | | | 34.6 | | | 135.7 | | | 149.7 | |
+| | | | | | | | | |
+Restructuring and related charges (4)
+| 2.4 | | | 1.1 | | | 5.2 | | | 11.4 | | | 22.8 | |
+Gain on sale of facility | — | | | — | | | — | | | — | | | (34.9) | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Intangible assets write-off
+| 2.5 | | | — | | | 0.1 | | | 2.5 | | | 2.7 | |
+| | | | | | | | | |
+Foreign exchange losses (gains), net | 2.2 | | | (0.8) | | | 5.8 | | | 0.5 | | | 4.2 | |
+Loss on debt extinguishment (5)
+| 7,756.6 | | | — | | | — | | | 7,756.6 | | | — | |
+Inducement expense (6)
+| — | | | — | | | — | | | 5.9 | | | — | |
+Non-cash interest expense | 0.8 | | | 1.1 | | | 0.7 | | | 3.8 | | | 3.0 | |
+Other charges, net (7)
+| 0.5 | | | 2.7 | | | (1.2) | | | 17.0 | | | 12.3 | |
+Income before income taxes on non-GAAP basis | $ | 390.8 | | | $ | 270.3 | | | $ | 75.8 | | | $ | 936.9 | | | $ | 175.3 | |
+| | | | | | | | | |
+Income tax provision (benefit) on GAAP basis | $ | (296.6) | | | $ | 39.6 | | | $ | (224.7) | | | $ | (237.7) | | | $ | (198.0) | |
+Non-GAAP income tax reconciling adjustments | 361.1 | | | 5.0 | | | 237.2 | | | 392.3 | | | 226.9 | |
+Income tax provision on non-GAAP basis | $ | 64.5 | | | $ | 44.6 | | | $ | 12.5 | | | $ | 154.6 | | | $ | 28.9 | |
+| | | | | | | | | |
+Net income (loss) on GAAP basis | $ | (7,161.7) | | | $ | 144.2 | | | $ | 213.3 | | | $ | (6,935.1) | | | $ | 25.9 | |
+Stock-based compensation and related payroll taxes (1)
+| 50.1 | | | 46.8 | | | 40.0 | | | 191.3 | | | 177.2 | |
+Acquisition-related warranty provision (2)
+| — | | | — | | | — | | | 9.8 | | | — | |
+Escrow settlement (2)
+| — | | | — | | | — | | | (27.5) | | | — | |
+Acquisition related costs, net (3)
+| — | | | 0.4 | | | 0.7 | | | 0.3 | | | 1.2 | |
+Integration related costs | 0.5 | | | 1.4 | | | 1.3 | | | 2.4 | | | 9.2 | |
+| | | | | | | | | |
+Amortization of acquired intangibles | 33.5 | | | 33.8 | | | 34.6 | | | 135.7 | | | 149.7 | |
+| | | | | | | | | |
+Restructuring and related charges (4)
+| 2.4 | | | 1.1 | | | 5.2 | | | 11.4 | | | 22.8 | |
+Intangible assets write-off | 2.5 | | | — | | | 0.1 | | | 2.5 | | | 2.7 | |
+Gain on sale of facility | — | | | — | | | — | | | — | | | (34.9) | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Foreign exchange losses (gains), net | 2.2 | | | (0.8) | | | 5.8 | | | 0.5 | | | 4.2 | |
+Loss on debt extinguishment (5)
+| 7,756.6 | | | — | | | — | | | 7,756.6 | | | — | |
+Inducement expense (6)
+| — | | | — | | | — | | | 5.9 | | | — | |
+Non-cash interest expense | 0.8 | | | 1.1 | | | 0.7 | | | 3.8 | | | 3.0 | |
+| | | | | | | | | |
+Other charges (income), net (7)
+| 0.5 | | | 2.7 | | | (1.2) | | | 17.0 | | | 12.3 | |
+Non-GAAP income tax reconciling adjustments | (361.1) | | | (5.0) | | | (237.2) | | | (392.3) | | | (226.9) | |
+Net income on non-GAAP basis | $ | 326.3 | | | $ | 225.7 | | | $ | 63.3 | | | $ | 782.3 | | | $ | 146.4 | |
+| | | | | | | | | |
+Net income per share on non-GAAP basis | $ | 3.23 | | | $ | 2.37 | | | $ | 0.88 | | | $ | 8.67 | | | $ | 2.06 | |
+| | | | | | | | | |
+Shares used in per share calculation - diluted on GAAP basis | 84.6 | | | 96.2 | | | 72.0 | | | 74.6 | | | 69.6 | |
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Non-GAAP adjustment (8)
+| 16.5 | | | (1.0) | | | — | | | 15.6 | | | 1.6 | |
+Shares used in per share calculation - diluted on non-GAAP basis | 101.1 | | | 95.2 | | | 72.0 | | | 90.2 | | | 71.2 | |
+
+
+
+(1) Stock-based compensation and related payroll taxes for the three and twelve months ended June 27, 2026 includes $9.3 million and $21.1 million of payroll taxes on stock-based compensation, respectively.
+(2) During the twelve months ended June 27, 2026, we completed the settlement process with the sellers on the escrow agreement for the acquisition of Cloud Light. We believe the completion of this settlement represents a non-recurring activity as it relates directly to an acquisition. The settlement of $27.5 million, recorded as escrow settlement, for the twelve months ended June 27, 2026 represents the mutually agreed escrow settlement associated with indemnification obligations and working capital adjustments, including warranty adjustments, under the Cloud Light Merger Agreement. Acquisition-related warranty provision of $9.8 million associated with Cloud Light’s legacy products is recorded in cost of sales. As the measurement period for U.S. GAAP expired, these amounts were all included in our condensed consolidated results of operations on a GAAP basis as no further adjustments to the purchase consideration of Cloud Light can be made. Therefore, for non-GAAP reporting purposes, we have removed the net benefit of $17.7 million for the twelve months ended June 27, 2026.
+(3) Acquisition related costs, net for the twelve months ended June 27, 2026 represent legal expenses incurred related to the Cloud Light escrow settlement of $1.7 million and $0.4 million of legal expenses and other professional fees incurred related to an acquisition of a business in fiscal year 2026 in selling, general and administrative expenses offset by $1.8 million of interest income from the Cloud Light escrow fund in other income, net.
+(4) During the three and twelve months ended June 27, 2026, we recorded restructuring and related charges of $2.4 million and $11.4 million, respectively, primarily related to a reduction in force during the period in order to enhance operational efficiency and realign our investments toward the most critical initiatives.
+(5) Loss on debt extinguishment of $7.8 billion for the three and twelve months ended June 27, 2026 resulted from the equitization of certain amounts of our 2026 Notes, 2028 Notes, and 2029 Notes (collectively “Extinguished Notes”) as we exchanged our common shares to settle these Extinguished Notes. Included in loss on debt extinguishment are $7.8 billion of conversion value in excess of principal amounts, $3.1 million of related transaction costs and $2.9 million of unamortized debt issuance costs, offset by $2.9 million of forfeited interest and $1.6 million of a negotiated exchange discount.
+(6) Inducement expense on the partial repurchase of our 2026 Notes for the twelve months ended June 27, 2026 represents the excess of fair value of the total consideration over the fair value of securities issuable pursuant to the original conversion terms, which was recorded during the first quarter of fiscal year 2026.
+(7) Other charges, net for the twelve months ended June 27, 2026 mainly includes legal fees of $9.6 million primarily related to non-ordinary course legal matters and an impairment charge of $7.7 million to write-down assets held for sale to fair value less cost to sell in selling, general and administrative expenses.
+(8) The adjustment for the three months ended June 27, 2026 represents the impact of potentially dilutive common shares resulting from stock-based benefit plans, which includes the assumed exercise of outstanding stock options, assumed vesting of equity awards, assumed issuance of stock under the ESPP, of about 3.1 million shares, and assumed conversion of our outstanding convertible notes of about 14.0 million shares reduced by 0.6 million shares from the impact of the capped call options. The adjustment for the twelve months ended June 27, 2026 represents the impact of potentially dilutive common shares resulting from stock-based benefit plans, which includes the assumed exercise of outstanding stock options, assumed vesting of equity awards, assumed issuance of stock under the ESPP, of about 2.8 million shares, and assumed conversion of our outstanding convertible notes of 13.6 million shares reduced by 0.8 million shares from the impact of the capped call options. Our outstanding capped call options are anti-dilutive as they are specifically designed to mitigate the dilutive impact of the 2032 Notes, such that no dilution will occur until the capped call price is exceeded. Therefore, we reduced 0.6 million and 0.8 million shares from the capped call in the calculation of non-GAAP diluted shares in the three and twelve months ended June 27, 2026 to provide investors with useful information in evaluating our performance on a per share basis.
+We calculate basic net (loss) income per share pursuant to the two-class method as a result of the issuance of the Series A Convertible Preferred Stock (the “Preferred Stock”) in March 2026. Our Preferred Stock represents a second class of common stock for purposes of computing net (loss) income per share under the two-class method as it is entitled to receive dividends on an as-converted basis in the same manner as holders of common stock and does not have any material preferential rights relative to our common stock.
+
+
+
+
+
+
+
+
+
+Diluted net (loss) income per share is calculated assuming the Preferred Stock have been converted into common stock, and the related shares are included in diluted weighted-average shares outstanding.
+As the Preferred Stock participates on an if-converted basis, and there are no dividends, the (loss) income allocated to the two classes of stock converge and the results are mathematically equal. Thus, basic and diluted net (loss) income per share is calculated assuming the Preferred Stock have been converted into common stock, and the related shares are included in the weighted average shares outstanding.
+
+
+
+
+
+
+
+
+
+
+
+
+LUMENTUM HOLDINGS INC.
+RECONCILIATION OF GAAP NET (LOSS) INCOME TO ADJUSTED EBITDA
+(in millions, except per share data)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Twelve Months Ended |
+| June 27, 2026 | | March 28, 2026 | | June 28, 2025 | | June 27, 2026 | | June 28, 2025 |
+GAAP net (loss) income | $ | (7,161.7) | | | $ | 144.2 | | | $ | 213.3 | | | $ | (6,935.1) | | | $ | 25.9 | |
+Loss on debt extinguishment | 7,756.6 | | | — | | | — | | | 7,756.6 | | | — | |
+Escrow settlement | — | | | — | | | — | | | (27.5) | | | — | |
+Interest expense | 3.6 | | | 6.2 | | | 5.4 | | | 21.8 | | | 22.2 | |
+Other income, net | (22.6) | | | (15.5) | | | (2.4) | | | (53.3) | | | (30.2) | |
+Income tax (benefit) provision | (296.6) | | | 39.6 | | | (224.7) | | | (237.7) | | | (198.0) | |
+Depreciation expense | 37.6 | | | 32.8 | | | 26.4 | | | 128.8 | | | 104.3 | |
+Amortization of acquired intangibles | 33.5 | | | 33.8 | | | 34.6 | | | 135.7 | | | 149.7 | |
+EBITDA | 350.4 | | | 241.1 | | | 52.6 | | | 789.3 | | | 73.9 | |
+| | | | | | | | | |
+Restructuring and related charges | 2.4 | | | 1.1 | | | 5.2 | | | 11.4 | | | 22.8 | |
+Stock-based compensation and related payroll taxes | 50.1 | | | 46.8 | | | 40.0 | | | 191.3 | | | 177.2 | |
+Acquisition-related warranty provision | — | | | — | | | — | | | 9.8 | | | — | |
+Acquisition related costs, net | — | | | 0.4 | | | 0.7 | | | 2.1 | | | 1.2 | |
+Integration related costs | 0.5 | | | 1.4 | | | 1.3 | | | 2.4 | | | 9.2 | |
+Intangible assets write-off | 2.5 | | | — | | 0.1 | | | 2.5 | | | 2.7 | |
+Gain on sale of facility | — | | | — | | | — | | | — | | | (34.9) | |
+| | | | | | | | | |
+Other charges (income), net | 0.5 | | | 2.7 | | | (1.2) | | | 17.0 | | | 12.1 | |
+Adjusted EBITDA | $ | 406.4 | | | $ | 293.5 | | | $ | 98.7 | | | $ | 1,025.8 | | | $ | 264.2 | |

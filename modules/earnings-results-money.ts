@@ -322,6 +322,10 @@ export function getCurrencyCodeFromText(
     return "JPY";
   }
 
+  if (true === hasDeclaredIsoCode(text, ["CHF"])) {
+    return "CHF";
+  }
+
   if (/US\s*\$/i.test(text) ||
       true === hasDeclaredIsoCode(text, ["USD"]) ||
       /\bU\.S\. dollars?\b/i.test(text)) {
@@ -460,6 +464,10 @@ function getCurrencySymbol(currencyCode: string): string {
 
   if ("JPY" === currencyCode) {
     return "¥";
+  }
+
+  if ("CHF" === currencyCode) {
+    return "CHF ";
   }
 
   return "$";

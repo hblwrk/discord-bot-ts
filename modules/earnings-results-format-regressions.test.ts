@@ -545,4 +545,42 @@ describe("earnings result filing regressions", () => {
     expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$0.54");
   });
 
+  test("reads diluted EPS when attributable stockholders appear inside the caption", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>ExampleCo Announces Second Quarter 2026 Results</h1>
+          <p>Three Months Ended June 30, 2026</p>
+          <p>Net income attributable to common stockholders per share—basic | $ | 0.54 | $ | 0.15</p>
+          <p>Net income attributable to common stockholders per share—diluted | $ | 0.51 | $ | 0.14</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "gaap_eps", numericValue: 0.51, value: "$0.51"}),
+    ]));
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$0.54");
+  });
+
+  test("prefers reported adjusted EPS over a further-normalized excluding variant", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>ExampleCo Reports Q4 Fiscal Year 2026 Results</h1>
+          <p>Excluding a one-time positive impact of $0.31, fourth quarter non-GAAP diluted EPS increased 25% to $2.60.</p>
+          <p>Fourth quarter non-GAAP diluted EPS increased 40% to $2.91.</p>
+          <p>Q4 FY26 | Q4 FY25 | Y/Y</p>
+          <p>Non-GAAP diluted EPS | $2.91 | $2.08 | 40%</p>
+          <p>Non-GAAP diluted EPS, excluding the one-time item | $2.60 | $2.08 | 25%</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "adjusted_eps", numericValue: 2.91, value: "$2.91"}),
+    ]));
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$2.60");
+  });
+
 });

@@ -1,5 +1,10 @@
 import {describe, expect, test} from "vitest";
-import {decodeHtmlEntities, htmlToText} from "./earnings-results-document.ts";
+import {
+  decodeHtmlEntities,
+  getDocumentCurrencyCode,
+  getQuarterLabel,
+  htmlToText,
+} from "./earnings-results-document.ts";
 
 describe("earnings result document text", () => {
   test("removes script/style blocks with spaced closing tags", () => {
@@ -27,5 +32,19 @@ describe("earnings result document text", () => {
   test("removes zero-width placeholders from otherwise-empty table cells", () => {
     expect(htmlToText("<tr><td>Loss per share</td><td>\u200B</td><td>$(0.10)</td></tr>"))
       .toBe("Loss per share | | $(0.10) |");
+  });
+
+  test("uses a three-month period end before a later-quarter outlook", () => {
+    expect(getQuarterLabel([
+      "Results for the three-month period ended June 30, 2026.",
+      "For the third quarter of 2026, the company expects continued growth.",
+    ].join(" "))).toBe("Q2 2026");
+  });
+
+  test("recognizes Swiss francs declared with their ISO code", () => {
+    expect(getDocumentCurrencyCode([
+      "On Holding AG financial results",
+      "Net sales increased to CHF 850.3 million.",
+    ])).toBe("CHF");
   });
 });
