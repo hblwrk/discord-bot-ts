@@ -2,6 +2,37 @@ import {describe, expect, test} from "vitest";
 import {parseEarningsDocument} from "./earnings-results-format.ts";
 
 describe("earnings result metric selection", () => {
+  test("uses a reported diluted loss rather than a forecasted EPS table", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example Announces Second Quarter 2026 Results</h1>
+      <h2>Second Quarter 2026 Financial Highlights</h2>
+      <p>Diluted loss per share was $(2.02) on a GAAP basis and diluted earnings per share was $0.86 on a non-GAAP basis.</p>
+      <h2>Forward-Looking Guidance</h2>
+      <table>
+        <tr><td>Forecasted GAAP diluted net income (loss) per share:</td><td>$0.39</td><td>$0.44</td></tr>
+      </table>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({
+        key: "gaap_eps",
+        numericValue: -2.02,
+        value: "-$2.02",
+      }),
+    ]));
+  });
+
+  test("does not publish a forecasted per-share value as a reported result", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example Announces Second Quarter 2026 Results</h1>
+      <table>
+        <tr><td>Forecasted GAAP diluted net income per share:</td><td>$0.39</td><td>$0.44</td></tr>
+      </table>
+    `);
+
+    expect(parsedDocument.metrics.map(metric => metric.key)).not.toContain("gaap_eps");
+  });
+
   test("keeps fiscal-quarter highlights separate from full-year highlights", () => {
     const parsedDocument = parseEarningsDocument(`
       <h1>Example Reports Strong Fourth Quarter and Full-Year Results</h1>

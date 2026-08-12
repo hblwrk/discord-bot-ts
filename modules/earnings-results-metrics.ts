@@ -76,6 +76,9 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     patterns: [
       /\b(?:gaap\s+)?net\s+loss\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?)\s+per\s+(?:fully\s+)?(?:common\s+)?diluted\s+share\b/i,
       /\bnet\s+(?:income|earnings)\s+attributable\s+to\s+(?:common\s+)?(?:stockholders|shareholders)\s+per\s+share\s*[–—-]\s*diluted\b/i,
+      // This plain GAAP loss caption can share a sentence with non-GAAP earnings. Keep it
+      // ahead of the generic earnings pattern so the later adjusted figure cannot win.
+      /\bdiluted\s+loss\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,
       /\b(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\b/i,
       /\bnet\s+\(loss(?:es)?\)\s+income\s+per\s+(?:common\s+)?share\b/i,
       /\b(?:earnings|profit|net\s+income)(?:\s*\/)?\s*\(loss(?:es)?\)\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,
@@ -89,7 +92,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?(?:\s*(?:cents?|¢))?)\s+per\s+(?:fully\s+)?(?:common\s+)?diluted\s+share\b/i,
       /\beps\b/i,
     ],
-    skipPattern: /\badjusted\b|\bnon-gaap\b|\bexcluding\s+certain\s+items\b|\bguidance\b|\boutlook\b|\bforecast\b|\bexcept\s+(?:eps|per\s+share(?:\s+amounts?)?)\b/i,
+    skipPattern: /\badjusted\b|\bnon-gaap\b|\bexcluding\s+certain\s+items\b|\bguidance\b|\boutlook\b|\bforecast(?:s|ed|ing)?\b|\bexcept\s+(?:eps|per\s+share(?:\s+amounts?)?)\b/i,
     valueType: "eps",
   },
   {

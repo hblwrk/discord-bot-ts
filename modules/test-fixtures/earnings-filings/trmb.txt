@@ -1,0 +1,508 @@
+EX-99.1
+2
+a2026q2-8kex991_00version.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+Trimble Announces Second Quarter 2026 Results and Raises Full Year Guidance
+• Record annualized recurring revenue, reflecting ongoing execution of the Connect & Scale strategy
+• Record second quarter gross margins
+• Second quarter results exceeded expectations
+• Raising full year 2026 revenue and earnings guidance
+• Board of Directors approves new share repurchase authorization of $1.0 billion
+WESTMINSTER, Colo., Aug 12, 2026 - Trimble Inc. (Nasdaq: TRMB) today announced financial results for the second quarter of 2026.
+
+Second Quarter 2026 Financial Highlights
+• Revenue of $972.0 million, up 11 percent on a year-over-year basis, up 10 percent on an organic basis
+• Annualized recurring revenue ("ARR") was $2.51 billion, up 14 percent year-over-year, up 12 percent on an organic basis
+• GAAP operating income was $132.0 million, 13.6 percent of revenue, and non-GAAP operating income was $260.6 million, 26.8 percent of revenue
+• GAAP net loss was $(471.7) million and non-GAAP net income was $200.3 million: the GAAP net loss was driven largely by a $562.0 million impairment of goodwill related to the Transportation and Logistics (“T&L”) segment.
+• Diluted loss per share was $(2.02) on a GAAP basis and diluted earnings per share was $0.86 on a non-GAAP basis
+• Adjusted EBITDA was $278.0 million, 28.6 percent of revenue
+Executive Quote
+"We delivered another strong quarter, increasing annualized recurring revenue to a record $2.509 billion, with strong recurring revenue growth across all segments," said Rob Painter, President and CEO of Trimble. "Our Connect and Scale strategy is building momentum with increasingly connected data and workflows across our ecosystem. Trimble is well positioned to accelerate AI-enabled value for customers and shareholders."
+New Share Repurchase Authorization
+The Board of Directors authorized the repurchase of up to $1.0 billion in shares of the Company's common stock. The stock repurchase authorization does not have an expiration date and replaces the prior authorization of up to $1.0 billion, of which $608.2 million was remaining as of the end of the second quarter of 2026, but is now cancelled.
+Under the 2026 stock repurchase program, Trimble may repurchase stock from time to time through accelerated stock repurchase programs, open market transactions, privately negotiated transactions, block purchases, tender offers, or other means. The timing and actual amount of any stock repurchased will depend on a variety of factors, including market conditions, Trimble's stock price, and other available uses of capital, applicable legal requirements, and other factors. This program may be suspended, modified, or discontinued at any time without prior notice.
+
+Forward-Looking Guidance
+For the full-year 2026, Trimble expects to report revenue between $3,900 million and $3,950 million, GAAP loss per share of $0.07 to $0.12, and non-GAAP earnings per share of $3.60 to $3.70. GAAP guidance assumes a tax rate of 145.0 percent and non-GAAP guidance assumes a tax rate of 17.3 percent. Both GAAP loss and non-GAAP earnings per share assume approximately 234 million shares outstanding.
+For the third quarter of 2026, Trimble expects to report revenue between $953 million and $978 million, GAAP earnings per share of $0.39 to $0.44, and non-GAAP earnings per share of $0.83 to $0.88. GAAP guidance assumes a tax rate of 24.0 percent and non-GAAP guidance assumes a tax rate of 17.3 percent. Both GAAP and non-GAAP earnings per share assume approximately 234 million shares outstanding.
+A reconciliation of the non-GAAP measures to the most directly comparable GAAP measures and other information relating to these non-GAAP measures are included in the supplemental reconciliation schedule attached.
+Investor Conference Call / Webcast Details
+Trimble will hold a conference call on August 12, 2026 at 8:00 a.m. ET to review its second quarter of 2026 results. An accompanying slide presentation will be made available on the "Investors" section of the Trimble website, https://
+
+
+
+
+
+
+
+investor.trimble.com , under the subheading "Events & Presentations." The call will be broadcast live on the web at https://investor.trimble.com . Investors and participants who wish to dial into the call may do so by first registering at https://events.q4inc.com/analyst/848449078?pwd=RQy4WSHT . Upon registration, dial-in details will be sent via email to the registrant. A replay will also be available on the web at the address above.
+About Trimble
+Trimble is a global technology company that connects the physical and digital worlds, transforming the ways work gets done. With relentless innovation in precise positioning, modeling and data analytics, Trimble enables essential industries including construction, geospatial and transportation. Whether it's helping customers build and maintain infrastructure, design and construct buildings, optimize global supply chains or map the world, Trimble is at the forefront, driving productivity and progress. For more information about Trimble (Nasdaq: TRMB), visit: https://www.trimble.com .
+Safe Harbor
+Certain statements made in this press release are forward-looking statements within the meaning of Section 21E of the Securities Exchange Act of 1934, as amended, and are made pursuant to the safe harbor provisions of the Securities Litigation Reform Act of 1995. These statements include expectations about our future financial and operational results. These forward-looking statements are subject to change, and actual results may materially differ due to certain risks and uncertainties. The Company's results may be adversely affected if the Company is unable to market, manufacture and ship new products, obtain new customers, effectively integrate new acquisitions or consummate divestitures in a timely manner, or get the benefits we are expecting from our joint ventures and partnerships, including with Platform Science. The Company's results could also be negatively impacted due to the general global macroeconomic outlook, including heightened trade tensions and export control restrictions between the U.S. and its trading partners, and associated supply chain disruptions, slowing growth, inflationary pressures, and fluctuations in interest rates, which may affect demand for our products and services, increase our costs and adversely affect our revenues and profitability; the pace at which our dealers work through their inventory; changes in our distribution channels; adverse geopolitical tensions and the ongoing impact of volatility and conflict in the political and economic environment, including the Middle East conflict, and the direct and indirect impact on our business; fluctuations in foreign currency exchange rates; the pace that we transition our business model towards a subscription model; the impact and risks of AI and AI-related developments; the impact of acquisitions or divestitures; the potential that any stock repurchases may not increase the value of our remaining shares, and we may elect not to purchase the full amount allocated under the 2026 stock repurchase program; and our ability to maintain effective internal controls over financial reporting, including our ability to remediate our material weaknesses in our internal controls over financial reporting. Any failure to achieve predicted results could negatively impact the Company's revenue, cash flow from operations, and other financial results. The Company's financial results will also depend on a number of other factors and risks detailed from time to time in reports filed with the U.S. Securities and Exchange Commission, including our quarterly reports on Form 10-Q and our annual report on Form 10-K. Undue reliance should not be placed on any forward-looking statement contained herein. These statements reflect the Company's position as of the date of this release. The Company expressly disclaims any undertaking to release publicly any updates or revisions to any statements to reflect any change in the Company's expectations or any change of events, conditions, or circumstances on which any such statement is based.
+FTRMB
+
+
+
+
+
+
+
+
+
+
+
+
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(In millions, except per share data)
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Second Quarter of | | First Two Quarters of |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Revenue: | | | | | | | |
+Product | $ | 331.4 | | | $ | 292.8 | | | $ | 642.6 | | | $ | 564.4 | |
+Subscription and services | 640.6 | | | 582.9 | | | 1,269.3 | | | 1,151.9 | |
+Total revenue | 972.0 | | | 875.7 | | | 1,911.9 | | | 1,716.3 | |
+Cost of sales: | | | | | | | |
+Product | 160.1 | | | 144.4 | | | 318.3 | | | 288.1 | |
+Subscription and services | 120.1 | | | 117.3 | | | 239.4 | | | 237.0 | |
+Amortization of purchased intangible assets | 16.9 | | | 16.1 | | | 33.0 | | | 32.5 | |
+Total cost of sales | 297.1 | | | 277.8 | | | 590.7 | | | 557.6 | |
+Gross margin | 674.9 | | | 597.9 | | | 1,321.2 | | | 1,158.7 | |
+Gross margin (%) | 69.4 | % | | 68.3 | % | | 69.1 | % | | 67.5 | % |
+Operating expense: | | | | | | | |
+Research and development | 177.1 | | | 163.3 | | | 346.6 | | | 321.8 | |
+Sales and marketing | 176.3 | | | 158.4 | | | 352.4 | | | 311.6 | |
+General and administrative | 149.7 | | | 117.6 | | | 276.4 | | | 239.1 | |
+Restructuring | 12.6 | | | 4.0 | | | 15.5 | | | 8.5 | |
+Amortization of purchased intangible assets | 27.2 | | | 26.8 | | | 54.3 | | | 52.4 | |
+Total operating expense | 542.9 | | | 470.1 | | | 1,045.2 | | | 933.4 | |
+Operating income | 132.0 | | | 127.8 | | | 276.0 | | | 225.3 | |
+Non-operating (expense) income, net: | | | | | | | |
+| | | | | | | |
+Goodwill impairment
+| (562.0) | | | — | | | (562.0) | | | — | |
+Interest expense, net | (20.9) | | | (19.4) | | | (40.4) | | | (35.0) | |
+Income from equity method investments, net
+| 2.6 | | | 2.3 | | | 3.4 | | | 3.3 | |
+Other income, net | 3.5 | | | 2.6 | | | 9.5 | | | 6.1 | |
+Total non-operating expense, net
+| (576.8) | | | (14.5) | | | (589.5) | | | (25.6) | |
+(Loss) income before taxes | (444.8) | | | 113.3 | | | (313.5) | | | 199.7 | |
+Income tax provision
+| 26.9 | | | 24.1 | | | 59.3 | | | 43.8 | |
+Net (loss) income | $ | (471.7) | | | $ | 89.2 | | | $ | (372.8) | | | $ | 155.9 | |
+| | | | | | | |
+| | | | | | | |
+Loss (earnings) per share:
+| | | | | | | |
+Basic | $ | (2.02) | | | $ | 0.37 | | | $ | (1.60) | | | $ | 0.65 | |
+Diluted | $ | (2.02) | | | $ | 0.37 | | | $ | (1.60) | | | $ | 0.64 | |
+Shares used in calculating (loss) earnings per share:
+| | | | | | | |
+Basic | 233.0 | | | 238.1 | | | 233.7 | | | 240.7 | |
+Diluted | 233.0 | | | 239.6 | | | 233.7 | | | 242.9 | |
+
+
+
+
+
+
+
+
+
+
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(In millions)
+(Unaudited)
+| | | | | | | | | | | |
+| As of
+|
+| Second Quarter of | | Year End |
+| 2026 | | 2025 |
+Assets | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 214.4 | | | $ | 253.4 | |
+Accounts receivable, net | 598.1 | | | 856.0 | |
+Inventories | 185.3 | | | 186.3 | |
+Prepaid expenses | 115.3 | | | 102.7 | |
+Other current assets | 231.8 | | | 233.5 | |
+| | | |
+Total current assets | 1,344.9 | | | 1,631.9 | |
+Property and equipment, net | 183.2 | | | 182.8 | |
+Goodwill | 4,826.6 | | | 5,239.7 | |
+Other purchased intangible assets, net | 850.4 | | | 924.1 | |
+Deferred income tax assets | 253.8 | | | 260.0 | |
+Equity investments | 617.4 | | | 610.8 | |
+Other non-current assets | 464.5 | | | 462.7 | |
+Total assets | $ | 8,540.8 | | | $ | 9,312.0 | |
+Liabilities and Stockholders' Equity | | | |
+Current liabilities: | | | |
+Short-term debt | $ | 16.4 | | | $ | — | |
+Accounts payable | 195.3 | | | 168.3 | |
+Accrued compensation and benefits | 166.5 | | | 211.7 | |
+Deferred revenue | 833.9 | | | 894.0 | |
+Income taxes payable | 6.6 | | | 17.7 | |
+Other current liabilities | 191.5 | | | 211.7 | |
+| | | |
+Total current liabilities | 1,410.2 | | | 1,503.4 | |
+Long-term debt | 1,442.9 | | | 1,392.2 | |
+Deferred revenue, non-current | 113.2 | | | 104.7 | |
+Deferred income tax liabilities | 180.9 | | | 190.5 | |
+| | | |
+Other non-current liabilities | 282.8 | | | 285.0 | |
+Total liabilities | 3,430.0 | | | 3,475.8 | |
+Stockholders' equity: | | | |
+Common stock | 0.2 | | | 0.2 | |
+Additional paid-in-capital | 2,489.9 | | | 2,437.9 | |
+Retained earnings | 2,702.3 | | | 3,387.6 | |
+Accumulated other comprehensive (loss) income | (81.6) | | | 10.5 | |
+| | | |
+| | | |
+Total stockholders' equity | 5,110.8 | | | 5,836.2 | |
+Total liabilities and stockholders' equity | $ | 8,540.8 | | | $ | 9,312.0 | |
+
+
+
+
+
+
+
+
+
+
+
+
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(In millions)
+(Unaudited)
+| | | | | | | | | | | | | | |
+| First Two Quarters of | | | |
+| 2026 | | 2025 | | | |
+Cash flow from operating activities: | | | | | | |
+Net (loss) income | $ | (372.8) | | | $ | 155.9 | | | | |
+Adjustments to reconcile net (loss) income to net cash provided by operating activities: | | | | | | |
+Depreciation and amortization | 101.0 | | | 98.8 | | | | |
+Goodwill impairment
+| 562.0 | | | — | | | | |
+Deferred income taxes | 5.3 | | | (19.5) | | | | |
+Stock-based compensation | 85.1 | | | 76.3 | | | | |
+| | | | | | |
+Other, net | (6.8) | | | 36.6 | | | | |
+(Increase) decrease in assets: | | | | | | |
+Accounts receivable, net | 250.4 | | | 202.7 | | | | |
+Inventories | 5.5 | | | 12.6 | | | | |
+Other current and non-current assets | (23.4) | | | (6.4) | | | | |
+Increase (decrease) in liabilities: | | | | | | |
+Accounts payable | 26.8 | | | (12.5) | | | | |
+Accrued compensation and benefits | (43.3) | | | (65.5) | | | | |
+Deferred revenue | (54.4) | | | (31.8) | | | | |
+Income taxes payable | (11.0) | | | (308.5) | | | | |
+Other current and non-current liabilities | (9.4) | | | (36.6) | | | | |
+Net cash provided by operating activities | 515.0 | | | 102.1 | | | | |
+Cash flow from investing activities: | | | | | | |
+Divestitures of businesses, net of cash divested | (2.0) | | | (7.3) | | | | |
+Acquisitions of businesses, net of cash acquired | (230.5) | | | (4.4) | | | | |
+Purchases of property and equipment | (13.2) | | | (12.5) | | | | |
+| | | | | | |
+| | | | | | |
+| | | | | | |
+| | | | | | |
+| | | | | | |
+Other, net | 0.4 | | | (3.0) | | | | |
+Net cash used in investing activities | (245.3) | | | (27.2) | | | | |
+Cash flow from financing activities: | | | | | | |
+Issuance of common stock, net of tax withholdings | (32.5) | | | (23.1) | | | | |
+Repurchases of common stock | (329.0) | | | (677.4) | | | | |
+Proceeds from debt and revolving credit lines | 795.8 | | | 348.3 | | | | |
+Payments on debt and revolving credit lines | (729.5) | | | (227.3) | | | | |
+Other, net | (7.2) | | | (3.1) | | | | |
+Net cash used in financing activities | (302.4) | | | (582.6) | | | | |
+Effect of exchange rate changes on cash and cash equivalents | (6.3) | | | 25.8 | | | | |
+Net decrease in cash and cash equivalents | (39.0) | | | (481.9) | | | | |
+Cash and cash equivalents - beginning of period (1)
+| 253.4 | | | 747.8 | | | | |
+Cash and cash equivalents - end of period
+| $ | 214.4 | | | $ | 265.9 | | | | |
+| | | | | | |
+| | | | | | |
+| | | | | | |
+| | | | | | |
+| | | | | | |
+(1) Includes $9.0 million of cash and cash equivalents classified as held for sale as of January 3, 2025.
+|
+
+
+
+
+
+
+
+
+
+
+REPORTING SEGMENTS
+(In millions)
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | |
+| | Reportable Segments
+| |
+| | AECO | | Field Systems | | T&L | |
+Second Quarter of 2026 | | | | | | | |
+Segment revenue | | $ | 388.5 | | | $ | 442.5 | | | $ | 141.0 | | |
+Cost of sales | | 61.2 | | | 177.3 | | | 34.1 | | |
+Operating expense
+| | 208.3 | | | 119.4 | | | 73.0 | | |
+Operating income | | $ | 119.0 | | | $ | 145.8 | | | $ | 33.9 | | |
+Operating income % | | 30.6 | % | | 32.9 | % | | 24.0 | % | |
+| | | | | | | |
+Second Quarter of 2025 | | | | | | | |
+Segment revenue | | $ | 350.3 | | | $ | 392.7 | | | $ | 132.7 | | |
+Cost of sales | | 59.7 | | | 161.9 | | | 33.6 | | |
+Operating expense | | 184.2 | | | 109.8 | | | 70.5 | | |
+Operating income | | $ | 106.4 | | | $ | 121.0 | | | $ | 28.6 | | |
+Operating income % | | 30.4 | % | | 30.8 | % | | 21.6 | % | |
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | |
+| | Reportable Segments |
+| | AECO | | Field Systems | | T&L |
+First Two Quarters of 2026 | | | | | | |
+Segment revenue | | $ | 779.6 | | | $ | 851.7 | | | $ | 280.6 | |
+Cost of sales | | 123.9 | | | 352.3 | | | 68.5 | |
+Operating expense | | 413.6 | | | 235.6 | | | 144.4 | |
+Operating income | | $ | 242.1 | | | $ | 263.8 | | | $ | 67.7 | |
+Operating income % | | 31.1 | % | | 31.0 | % | | 24.1 | % |
+| | | | | | |
+First Two Quarters of 2025 | | | | | | |
+Segment revenue | | $ | 685.7 | | | $ | 751.9 | | | $ | 278.7 | |
+Cost of sales | | 118.6 | | | 316.1 | | | 78.2 | |
+Operating expense | | 369.1 | | | 208.2 | | | 145.8 | |
+Operating income | | $ | 198.0 | | | $ | 227.6 | | | $ | 54.7 | |
+Operating income % | | 28.9 | % | | 30.3 | % | | 19.6 | % |
+
+
+
+
+
+
+
+
+
+
+
+
+GAAP TO NON-GAAP RECONCILIATION
+(Dollars in millions, except per share data)
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | Second Quarter of | | First Two Quarters of |
+| | | | | 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | Dollar Amount | % of Revenue | | Dollar Amount | % of Revenue | | Dollar Amount | % of Revenue | | Dollar Amount | % of Revenue |
+REVENUE: | | | | | | | | | | | | | |
+| GAAP revenue: | | | $ | 972.0 | | | | $ | 875.7 | | | | $ | 1,911.9 | | | | $ | 1,716.3 | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+GROSS MARGIN: | | | | | | | | | | | | | |
+| GAAP gross margin: | | | $ | 674.9 | | 69.4 | % | | $ | 597.9 | | 68.3 | % | | $ | 1,321.2 | | 69.1 | % | | $ | 1,158.7 | | 67.5 | % |
+| | Amortization of purchased intangible assets | (A) | | 16.9 | | | | 16.1 | | | | 33.0 | | | | 32.5 | | |
+| | | | | | | | | | | | | | | |
+| | Stock-based compensation / deferred compensation | (C) | | 3.8 | | | | 4.2 | | | | 8.0 | | | | 8.5 | | |
+| | Restructuring and other costs | (D) | | 2.5 | | | | 0.4 | | | | 2.8 | | | | 0.6 | | |
+| Non-GAAP gross margin: | | | $ | 698.1 | | 71.8 | % | | $ | 618.6 | | 70.6 | % | | $ | 1,365.0 | | 71.4 | % | | $ | 1,200.3 | | 69.9 | % |
+| | | | | | | | | | | | | | | |
+OPERATING EXPENSES: | | | | | | | | | | | | | |
+| GAAP operating expenses: | | | $ | 542.9 | | 55.9 | % | | $ | 470.1 | | 53.7 | % | | $ | 1,045.2 | | 54.7 | % | | $ | 933.4 | | 54.4 | % |
+| | Amortization of purchased intangible assets | (A) | | (27.2) | | | | (26.8) | | | | (54.3) | | | | (52.4) | | |
+| | Acquisition / divestiture items | (B) | | (23.9) | | | | (2.7) | | | | (29.8) | | | | (11.6) | | |
+| | Stock-based compensation / deferred compensation | (C) | | (40.5) | | | | (36.6) | | | | (80.0) | | | | (69.8) | | |
+| | Restructuring and other costs | (D) | | (13.8) | | | | (8.0) | | | | (19.9) | | | | (20.1) | | |
+| Non-GAAP operating expenses: | | | $ | 437.5 | | 45.0 | % | | $ | 396.0 | | 45.2 | % | | $ | 861.2 | | 45.0 | % | | $ | 779.5 | | 45.4 | % |
+| | | | | | | | | | | | | | | |
+OPERATING INCOME: | | | | | | | | | | | | | |
+| GAAP operating income: | | | $ | 132.0 | | 13.6 | % | | $ | 127.8 | | 14.6 | % | | $ | 276.0 | | 14.4 | % | | $ | 225.3 | | 13.1 | % |
+| | Amortization of purchased intangible assets | (A) | | 44.1 | | | | 42.9 | | | | 87.3 | | | | 84.9 | | |
+| | Acquisition / divestiture items | (B) | | 23.9 | | | | 2.7 | | | | 29.8 | | | | 11.6 | | |
+| | Stock-based compensation / deferred compensation | (C) | | 44.3 | | | | 40.8 | | | | 88.0 | | | | 78.3 | | |
+| | Restructuring and other costs | (D) | | 16.3 | | | | 8.4 | | | | 22.7 | | | | 20.7 | | |
+| Non-GAAP operating income: | | | $ | 260.6 | | 26.8 | % | | $ | 222.6 | | 25.4 | % | | $ | 503.8 | | 26.4 | % | | $ | 420.8 | | 24.5 | % |
+| | | | | | | | | | | | | | | |
+NON-OPERATING EXPENSE, NET: | | | | | | | | | | |
+| GAAP non-operating expense, net: | | | $ | (576.8) | | | | $ | (14.5) | | | | $ | (589.5) | | | | $ | (25.6) | | |
+| | Acquisition / divestiture items | (B) | | (5.5) | | | | (2.6) | | | | (9.6) | | | | (7.9) | | |
+| | Deferred compensation | (C) | | (0.9) | | | | (2.9) | | | | (2.9) | | | | (2.0) | | |
+| | Restructuring and other costs | (D) | | 2.8 | | | | 2.8 | | | | 4.7 | | | | 2.9 | | |
+| | Goodwill impairment | (E) | | 562.0 | | | | — | | | | 562.0 | | | | — | | |
+| Non-GAAP non-operating expense, net: | | | $ | (18.4) | | | | $ | (17.2) | | | | $ | (35.3) | | | | $ | (32.6) | | |
+| | | | | | | | | | | | | | | |
+| | | | | | Tax Rate %
+| | | Tax Rate %
+| | | Tax Rate %
+| | | Tax Rate %
+|
+| | | | | | (G)
+| | | (G) | | | (G) | | | (G) |
+INCOME TAX PROVISION: | | | | | | | | | | |
+| GAAP income tax provision: | | | $ | 26.9 | | (6.0) | % | | $ | 24.1 | | 21.3 | % | | $ | 59.3 | | (18.9) | % | | $ | 43.8 | | 21.9 | % |
+| | Non-GAAP items tax effected | (F) | | 15.0 | | | | 11.9 | | | | 22.0 | | | | 23.6 | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+| Non-GAAP income tax provision: | | | $ | 41.9 | | 17.3 | % | | $ | 36.0 | | 17.5 | % | | $ | 81.3 | | 17.4 | % | | $ | 67.4 | | 17.4 | % |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+NET (LOSS) INCOME: | | | | | | | | | | | | | |
+| GAAP net (loss) income: | | | $ | (471.7) | | | | $ | 89.2 | | | | $ | (372.8) | | | | $ | 155.9 | | |
+| | Amortization of purchased intangible assets | (A) | | 44.1 | | | | 42.9 | | | | 87.3 | | | | 84.9 | | |
+| | Acquisition / divestiture items | (B) | | 18.4 | | | | 0.1 | | | | 20.2 | | | | 3.7 | | |
+| | Stock-based compensation | (C) | | 43.4 | | | | 37.9 | | | | 85.1 | | | | 76.3 | | |
+| | Restructuring and other costs | (D) | | 19.1 | | | | 11.2 | | | | 27.4 | | | | 23.6 | | |
+| | Goodwill impairment | (E) | | 562.0 | | | | — | | | | 562.0 | | | | — | | |
+| | Non-GAAP tax adjustments | (F) | | (15.0) | | | | (11.9) | | | | (22.0) | | | | (23.6) | | |
+| Non-GAAP net income: | | | $ | 200.3 | | | | $ | 169.4 | | | | $ | 387.2 | | | | $ | 320.8 | | |
+| | | | | | | | | | | | | | | |
+DILUTED NET (LOSS) INCOME PER SHARE: | | | | | | | | | | |
+| GAAP diluted net (loss) income per share: | | | $ | (2.02) | | | | $ | 0.37 | | | | $ | (1.60) | | | | $ | 0.64 | | |
+| | Amortization of purchased intangible assets | (A) | | 0.19 | | | | 0.18 | | | | 0.37 | | | | 0.35 | | |
+| | | | | | | | | | | | | | | |
+| | Acquisition / divestiture items | (B) | | 0.08 | | | | — | | | | 0.09 | | | | 0.02 | | |
+| | Stock-based compensation | (C) | | 0.19 | | | | 0.16 | | | | 0.36 | | | | 0.31 | | |
+| | Restructuring and other costs | (D) | | 0.08 | | | | 0.05 | | | | 0.12 | | | | 0.10 | | |
+| | Goodwill impairment | (E) | | 2.40 | | | | — | | | | 2.40 | | | | — | | |
+| | Non-GAAP tax adjustments | (F) | | (0.06) | | | | (0.05) | | | | (0.09) | | | | (0.10) | | |
+| Non-GAAP diluted net income per share: | | | $ | 0.86 | | | | $ | 0.71 | | | | $ | 1.65 | | | | $ | 1.32 | | |
+| | | | | | | | | | | | | | | |
+ADJUSTED EBITDA: | | | | | | | | | | |
+| GAAP operating income: | | | $ | 132.0 | | 13.6 | % | | $ | 127.8 | | 14.6 | % | | $ | 276.0 | | 14.4 | % | | $ | 225.3 | | 13.1 | % |
+| | Amortization of purchased intangible assets | (A) | | 44.1 | | | | 42.9 | | | | 87.3 | | | | 84.9 | | |
+| | Acquisition / divestiture items | (B) | | 23.9 | | | | 2.7 | | | | 29.8 | | | | 11.6 | | |
+| | Stock-based compensation / deferred compensation | (C) | | 44.3 | | | | 40.8 | | | | 88.0 | | | | 78.3 | | |
+| | Restructuring and other costs | (D) | | 16.3 | | | | 8.4 | | | | 22.7 | | | | 20.7 | | |
+| Non-GAAP operating income: | | | 260.6 | | 26.8 | % | | 222.6 | | 25.4 | % | | 503.8 | | 26.4 | % | | 420.8 | | 24.5 | % |
+| | Depreciation expense and cloud computing amortization | | | 12.0 | | | | 12.3 | | | | 23.8 | | | | 24.3 | | |
+| | | | | | | | | | | | | | | |
+| | Income from equity method investments, net
+| | | 5.4 | | | | 5.0 | | | | 8.1 | | | | 6.9 | | |
+| Adjusted EBITDA: | | | $ | 278.0 | | 28.6 | % | | $ | 239.9 | | 27.4 | % | | $ | 535.7 | | 28.0 | % | | $ | 452.0 | | 26.3 | % |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+| | | | | First Two Quarters of | | | | | | |
+| | | | | 2026 | | 2025 | | | | | | |
+FREE CASH FLOW:
+| | | | | | | | | | | | | |
+| Net cash provided by operating activities
+| | | $ | 515.0 | | | $ | 102.1 | | | | | | | |
+| Capital expenditures
+| | | 13.2 | | | 12.5 | | | | | | | |
+| Free cash flow
+| | | $ | 501.8 | | | $ | 89.6 | | | | | | | |
+| | | | | | | | | | | | | | | |
+| | | | | Third Quarter of 2026 | | Year 2026
+| | | | | | |
+| | | | | Low End | High End | | Low End | High End | | | | | | |
+FORECASTED DILUTED NET INCOME (LOSS) PER SHARE: | | | | | | | | | |
+| Forecasted GAAP diluted net income (loss) per share:
+| | | $ | 0.39 | | $ | 0.44 | | | $ | (0.07) | | $ | (0.12) | | | | | | | |
+| | Amortization of purchased intangible assets | (A) | | 0.19 | | 0.19 | | | 0.74 | | 0.74 | | | | | | | |
+| | Acquisition / divestiture items | (B) | | 0.06 | | 0.06 | | | 0.16 | | 0.16 | | | | | | | |
+| | Stock-based compensation | (C) | | 0.15 | | 0.15 | | | 0.67 | | 0.67 | | | | | | | |
+| | Restructuring and other costs | (D) | | 0.08 | | 0.08 | | | 0.23 | | 0.23 | | | | | | | |
+| | Goodwill impairment | (E) | | — | | — | | | 2.40 | | 2.40 | | | | | | | |
+| | Non-GAAP tax adjustments | (F) | | (0.04) | | (0.04) | | | (0.53) | | (0.38) | | | | | | | |
+| Forecasted non-GAAP diluted net income per share: | | $ | 0.83 | | $ | 0.88 | | | $ | 3.60 | | $ | 3.70 | | | | | | | |
+
+
+
+
+
+
+
+
+
+
+FOOTNOTES TO GAAP TO NON-GAAP RECONCILIATION
+
+
+This press release includes GAAP financial measures as well as non-GAAP financial measures, which are not meant to be considered in isolation or as a substitute for comparable GAAP measures. We believe non-GAAP financial measures provide useful information to investors and others in understanding our "core operating performance", which excludes (i) the effect of non-cash items and certain variable charges not expected to recur and (ii) transactions that are not meaningful in comparison to our past operating performance or not reflective of ongoing financial results. Lastly, we believe that our core operating performance offers a supplemental measure for period-to-period comparisons and can be used to evaluate our historical and prospective financial performance, as well as our performance relative to competitors.
+The non-GAAP definitions and explanations to the adjustments to comparable GAAP measures are included below:
+Non-GAAP Definitions
+Non-GAAP gross margin
+We define Non-GAAP gross margin as GAAP gross margin, excluding the effects of amortization of purchased intangible assets, stock-based compensation, deferred compensation, and restructuring and other costs. We believe our investors benefit by understanding our non-GAAP gross margin as a way of understanding how product mix, pricing decisions, and manufacturing costs influence our business.
+Non-GAAP operating expenses
+We define Non-GAAP operating expenses as GAAP operating expenses, excluding the effects of amortization of purchased intangible assets, acquisition/divestiture items, stock-based compensation, deferred compensation, and restructuring and other costs. We believe this measure is important to investors evaluating our non-GAAP spending in relation to revenue.
+Non-GAAP operating income
+We define Non-GAAP operating income as GAAP operating income, excluding the effects of amortization of purchased intangible assets, acquisition/divestiture items, stock-based compensation, deferred compensation, and restructuring and other costs. We believe our investors benefit by understanding our non-GAAP operating income trends, which are driven by revenue, gross margin, and spending.
+Non-GAAP non-operating expense, net
+We define Non-GAAP non-operating expense, net as GAAP non-operating expense, net, excluding goodwill impairment, acquisition/divestiture items, deferred compensation, and restructuring and other costs. We believe this measure helps investors evaluate our non-operating expense trends.
+Non-GAAP income tax provision
+We define non-GAAP income tax provision as the GAAP income tax provision adjusted for the tax effects of the non-GAAP pre-tax adjustments (A) through (E), excluding certain tax charges and benefits such as net deferred tax impacts resulting from tax amortization related to a non-U.S. intercompany transfer of intellectual property and certain acquisitions, deferred tax impacts from net controlled foreign corporation tested income (“net CFC tested income”, formerly referred to as global intangible low-taxed income or “GILTI”), significant reserve releases upon the expiration of statute of limitations and audit closures, and tax law changes. We believe this measure helps investors because it provides for consistent treatment of excluded items in our non-GAAP presentation.
+Non-GAAP net income
+We define Non-GAAP net income as GAAP net (loss) income, excluding the effects of goodwill impairment, amortization of purchased intangible assets, acquisition/divestiture items, stock-based compensation, restructuring and other costs, and non-GAAP tax adjustments. This measure provides a supplemental view of net income trends, which are driven by non-GAAP income before taxes and our non-GAAP tax rate.
+
+
+
+
+
+
+
+Non-GAAP diluted net income per share
+We define Non-GAAP diluted net income per share as GAAP diluted net (loss) income per share, excluding the effects of goodwill impairment, amortization of purchased intangible assets, acquisition/divestiture items, stock-based compensation, restructuring and other costs, and non-GAAP tax adjustments. We believe our investors benefit by understanding our non-GAAP operating performance as reflected in a per share calculation as a way of measuring non-GAAP operating performance by ownership in the Company.
+Adjusted EBITDA
+We define Adjusted EBITDA as non-GAAP operating income plus depreciation expense, cloud computing amortization, and income from equity method investments, net, which excludes our proportionate share of items such as amortization of purchased intangibles, stock-based compensation, and restructuring costs. Other companies may define Adjusted EBITDA differently. Adjusted EBITDA is a performance measure that we believe offers a useful view of the overall operations of our business because it facilitates operating performance comparisons by removing potential differences caused by variations unrelated to operating performance, such as capital structures (interest expense), income taxes, depreciation, amortization of purchased intangibles and cloud computing costs, and income from equity method investments, net.
+Free cash flow
+We define free cash flow as cash flow from operating activities minus capital expenditures. We believe this measure is important to investors evaluating our generation of cash flow.
+Explanations of Non-GAAP adjustments
+(A) Amortization of purchased intangible assets . Non-GAAP gross margin and operating expenses exclude the amortization of purchased intangible assets, which primarily represents technology and/or customer relationships already developed.
+(B) Acquisition / divestiture items . Non-GAAP gross margin and operating expenses exclude costs consisting of external and incremental costs resulting directly from acquisitions, divestitures, and strategic investment activities such as legal, due diligence, integration, and other costs, including the acceleration of acquisition stock awards and adjustments to the fair value of earn-out liabilities. Non-GAAP non-operating expense, net, excludes one-time acquisition/divestiture charges, including foreign currency exchange rate gains/losses related to an acquisition, divestiture gains/losses, and strategic investment gains/losses. These are one-time costs that vary significantly in amount and timing and are not indicative of our core operating performance.
+(C) Stock-based compensation / deferred compensation . Non-GAAP gross margin and operating expenses exclude stock-based compensation and income or expense associated with movement in our non-qualified deferred compensation plan liabilities. Changes in non-qualified deferred compensation plan assets, included in non-operating expense, net, offset the income or expense in the plan liabilities.
+(D) Restructuring and other costs. Non-GAAP gross margin and operating expenses exclude restructuring costs composed of termination benefits related to reductions in employee headcount and other cost-saving initiatives, closure or exit of facilities, and cancellation of certain contracts, and other costs composed of one-time incremental expenses resulting from the re-audit and related remediation of control deficiencies . Non-GAAP non-operating expense net, excludes our proportionate share of items recorded in income from equity method investment items, such as goodwill impairment, amortization of purchased intangibles, stock-based compensation, and restructuring costs.
+(E) Goodwill Impairment. Non-GAAP non-operating expense, net excludes the goodwill impairment charge related to our T&L segment. The impairment was triggered by a sustained decline in market capitalization and stock price reflecting heightened macroeconomic uncertainty and lower market multiples for software businesses.
+(F) Non-GAAP items tax effected . This amount represents the income tax effect of non-GAAP pre-tax adjustments, excluding certain tax charges and benefits, which reconcile the GAAP income tax provision to the non-GAAP income tax provision.
+(G) Tax rate percentages . These percentages are defined as GAAP income tax provision as a percentage of GAAP income before taxes and non-GAAP income tax provision as a percentage of non-GAAP income before taxes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+OTHER KEY METRICS
+Annualized Recurring Revenue
+In addition to providing non-GAAP financial measures, Trimble provides an ARR performance measure in order to provide investors with a supplementary indicator of the value of the Company's current recurring revenue contracts. ARR represents the estimated annualized value of recurring revenue. ARR is calculated by taking our subscription and maintenance and support revenue for the current quarter and adding the portion of the contract value of all our term licenses attributable to the current quarter, then dividing that sum by the number of days in the quarter and then multiplying that quotient by 365. ARR should be viewed independently of revenue and deferred revenue as it is a performance measure and is not intended to be combined with or to replace either of those items.
+Organic Annualized Recurring Revenue
+Organic annualized recurring revenue refers to annualized recurring revenue excluding the impacts of (i) foreign currency translation and (ii) acquisitions and divestitures that closed in the prior 12 months.
+Organic Revenue
+Organic revenue refers to revenue excluding the impacts of (i) foreign currency translation and (ii) acquisitions and divestitures that closed in the prior 12 months.

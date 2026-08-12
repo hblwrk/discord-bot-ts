@@ -87,6 +87,7 @@ const outlookMetricDefinitions: OutlookMetricDefinition[] = [
     patterns: [
       new RegExp(String.raw`${gaapTermSource}\s+(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?eps\b`, "i"),
       new RegExp(String.raw`${gaapTermSource}\s+(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b`, "i"),
+      new RegExp(String.raw`${gaapTermSource}\s+(?:diluted\s+)?loss\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b`, "i"),
       // Guidance for a non-GAAP per-share measure must not be posted under the GAAP label,
       // so an occurrence carrying that qualifier is passed over. One sentence often guides
       // on both measures ("Earnings per Share (EPS) is expected to be between $4.05 and
@@ -282,7 +283,7 @@ function isOutlookHeading(line: string): boolean {
     .replace(/[\s|–—-]+$/, "")
     .trim();
 
-  return /^(?:business\s+|financial\s+)?(?:outlook|guidance)\b/i.test(normalizedLine) ||
+  return /^(?:forward[\s–—-]+looking\s+)?(?:business\s+|financial\s+)?(?:outlook|guidance)\b/i.test(normalizedLine) ||
     /^(?:the\s+)?company\s+(?:raises?|updates?|reaffirms?|provides?|issues?)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine) ||
     /^(?:(?:(?:fiscal(?:\s+year)?|fiscal\s+full[\s–—-]+year)\s+)?(?:20\d{2}|fy\s?\d{2}|q[1-4]\s+20\d{2}|quarter)|(?:first|second|third|fourth)[\s–—-]+quarter)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine);
 }
@@ -572,7 +573,9 @@ function extractOutlookValue(
       ("text" === valueType ? getNumericGrowthOutlookValue(valueText) : null) ??
       getSingleOutlookValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit);
     if (null !== value) {
-      return applyOutlookLossSign(value, valueText, valueType);
+      const isLossCaption = /\bloss\b/i.test(patternMatch?.[0] ?? "") &&
+        false === /\b(?:income|earnings|profit)\b/i.test(patternMatch?.[0] ?? "");
+      return applyOutlookLossSign(value, valueText, valueType, isLossCaption);
     }
   }
 
@@ -583,9 +586,10 @@ function applyOutlookLossSign(
   value: string,
   source: string,
   valueType: OutlookValueType,
+  isLossCaption = false,
 ): string {
   if (false === ("money" === valueType || "eps" === valueType) ||
-      false === /^\s*(?:a\s+)?loss\b/i.test(source)) {
+      (false === isLossCaption && false === /^\s*(?:a\s+)?loss\b/i.test(source))) {
     return value;
   }
 

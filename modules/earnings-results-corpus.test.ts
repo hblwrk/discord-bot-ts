@@ -980,6 +980,28 @@ const filingCorpus: {
     source: "1819576/000110465926094411/tm2622888d1_ex99-1.htm",
     ticker: "lqda",
   },
+  {
+    // The actual GAAP loss shares a sentence with adjusted earnings, while a later forecast
+    // table contains the previously selected $0.39. The guidance section covers two periods.
+    company: "Trimble",
+    metrics: [
+      ["adjusted_eps", "$0.86"],
+      ["gaap_eps", "-$2.02"],
+      ["revenue", "$972M"],
+      ["net_income", "-$471.7M"],
+    ],
+    outlook: [
+      ["FY2026 Revenue", "$3.9B to $3.95B"],
+      ["Q3 Revenue", "$953M to $978M"],
+      ["FY2026 Adj EPS", "$3.6 to $3.7"],
+      ["Q3 Adj EPS", "$0.83 to $0.88"],
+      ["FY2026 EPS", "-$0.07 to -$0.12"],
+      ["Q3 EPS", "$0.39 to $0.44"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "864749/000086474926000106/a2026q2-8kex991_00version.htm",
+    ticker: "trmb",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1000,6 +1022,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(63);
+    expect(filingCorpus).toHaveLength(64);
   });
 });

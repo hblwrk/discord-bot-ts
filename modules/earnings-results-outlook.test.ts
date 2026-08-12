@@ -2,6 +2,51 @@ import {describe, expect, test} from "vitest";
 import {extractOutlookMetrics} from "./earnings-results-outlook.ts";
 
 describe("extractOutlookMetrics", () => {
+  test("extracts mixed-period guidance from a forward-looking heading", () => {
+    expect(extractOutlookMetrics([
+      "Forward-Looking Guidance",
+      "For the full-year 2026, the company expects revenue between $3,900 million and $3,950 million, GAAP loss per share of $0.07 to $0.12, and non-GAAP earnings per share of $3.60 to $3.70.",
+      "For the third quarter of 2026, the company expects revenue between $953 million and $978 million, GAAP earnings per share of $0.39 to $0.44, and non-GAAP earnings per share of $0.83 to $0.88.",
+    ])).toEqual([
+      {
+        key: "revenue",
+        label: "Revenue",
+        periodLabel: "FY2026",
+        value: "$3.9B to $3.95B",
+      },
+      {
+        key: "revenue",
+        label: "Revenue",
+        periodLabel: "Q3",
+        value: "$953M to $978M",
+      },
+      {
+        key: "adjusted_eps",
+        label: "Adj EPS",
+        periodLabel: "FY2026",
+        value: "$3.6 to $3.7",
+      },
+      {
+        key: "adjusted_eps",
+        label: "Adj EPS",
+        periodLabel: "Q3",
+        value: "$0.83 to $0.88",
+      },
+      {
+        key: "eps",
+        label: "EPS",
+        periodLabel: "FY2026",
+        value: "-$0.07 to -$0.12",
+      },
+      {
+        key: "eps",
+        label: "EPS",
+        periodLabel: "Q3",
+        value: "$0.39 to $0.44",
+      },
+    ]);
+  });
+
   test("extracts normalized outlook metrics and stops before boilerplate sections", () => {
     const metrics = extractOutlookMetrics([
       "First quarter results",
