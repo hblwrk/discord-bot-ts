@@ -8,6 +8,7 @@ import {
   createClientWithChannel,
   getAssetByNameMock,
   getCalendarEventsMock,
+  getCalendarEventsResultMock,
   getCalendarOfficialSummaryMock,
   getCalendarMessagesMock,
   getEarningsMessagesMock,
@@ -219,13 +220,12 @@ describe("timers: other announcements", () => {
     expect(reminder.allowedMentions).toEqual({parse: [], roles: ["role-123"]});
     expect(reminder.embeds[0]!.data.title).toBe("🇺🇸 Consumer Price Index (CPI)");
     expect(reminder.embeds[0]!.data.description).toBe("**Consumer Price Index (CPI)**");
-    expect(reminder.embeds[0]!.data.footer?.text).toBe("🕒 14:30");
+    expect(reminder.embeds[0]!.data.footer?.text).toBe("🕒 14:30 · 📅 2025-02-19");
   });
 
   test("startOtherTimers keeps the agenda in the trading calendar thread but posts macro alerts to the main channel", async () => {
     const {client, parentSend, threadSend, mainSend} = createClientWithThreadAndMainChannel("trading-calendar-thread", "main-channel-id");
-    getCalendarEventsMock
-      .mockResolvedValueOnce([
+    getCalendarEventsMock.mockResolvedValueOnce([
         {
           date: "2025-02-19",
           time: "14:30",
@@ -234,8 +234,10 @@ describe("timers: other announcements", () => {
           name: "Consumer Price Index (CPI) y/y",
           previousValue: "3.1%",
         },
-      ])
-      .mockResolvedValueOnce([
+      ]);
+    getCalendarEventsResultMock.mockResolvedValueOnce({
+      status: "ok",
+      events: [
         {
           actualValue: "3.4%",
           date: "2025-02-19",
@@ -245,7 +247,8 @@ describe("timers: other announcements", () => {
           name: "Consumer Price Index (CPI) y/y",
           previousValue: "3.1%",
         },
-      ]);
+      ],
+    });
 
     startOtherTimers(client, "channel-id", [], [], [createCalendarReminderAsset({
       name: "us-cpi-1h",
@@ -278,7 +281,7 @@ describe("timers: other announcements", () => {
     expect(releaseUpdate.content).toBe("<@&role-123> Update");
     expect(releaseUpdate.embeds[0]!.data.title).toBe("🇺🇸 Consumer Price Index (CPI) y/y");
     expect(releaseUpdate.embeds[0]!.data.description).toBe("**Consumer Price Index (CPI) y/y** — `3.4%` ▲ exp. `3.2%` · prev. `3.1%`");
-    expect(releaseUpdate.embeds[0]!.data.footer?.text).toBe("🕒 14:30");
+    expect(releaseUpdate.embeds[0]!.data.footer?.text).toBe("🕒 14:30 · 📅 2025-02-19");
   });
 
   test("startOtherTimers bundles same-minute calendar reminder matches into one reminder", async () => {
@@ -319,13 +322,12 @@ describe("timers: other announcements", () => {
     expect(bundledReminder.allowedMentions).toEqual({parse: [], roles: ["role-123"]});
     expect(bundledReminder.embeds[0]!.data.title).toBe("🇺🇸 CPI y/y");
     expect(bundledReminder.embeds[0]!.data.description).toBe("**CPI y/y**\n**Core CPI y/y**\n**CPI m/m**");
-    expect(bundledReminder.embeds[0]!.data.footer?.text).toBe("🕒 14:30");
+    expect(bundledReminder.embeds[0]!.data.footer?.text).toBe("🕒 14:30 · 📅 2025-02-19");
   });
 
   test("startOtherTimers posts calendar actuals after the release when they become available", async () => {
     const {client, send} = createClientWithChannel();
-    getCalendarEventsMock
-      .mockResolvedValueOnce([
+    getCalendarEventsMock.mockResolvedValueOnce([
         {
           date: "2025-02-19",
           time: "14:30",
@@ -334,8 +336,10 @@ describe("timers: other announcements", () => {
           name: "Consumer Price Index (CPI) y/y",
           previousValue: "3.1%",
         },
-      ])
-      .mockResolvedValueOnce([
+      ]);
+    getCalendarEventsResultMock.mockResolvedValueOnce({
+      status: "ok",
+      events: [
         {
           actualValue: "3.4%",
           date: "2025-02-19",
@@ -345,7 +349,8 @@ describe("timers: other announcements", () => {
           name: "Consumer Price Index (CPI) y/y",
           previousValue: "3.1%",
         },
-      ]);
+      ],
+    });
 
     startOtherTimers(client, "channel-id", [], [], [createCalendarReminderAsset({
       name: "us-cpi-1h",
@@ -394,12 +399,11 @@ describe("timers: other announcements", () => {
         previousValue: "3.1%",
       },
     ];
-    let resolveFollowUpFetch: (events: unknown[]) => void = () => undefined;
-    const pendingFollowUpFetch = new Promise<unknown[]>(resolve => {
+    let resolveFollowUpFetch: (result: {events: unknown[]; status: "ok"}) => void = () => undefined;
+    const pendingFollowUpFetch = new Promise<{events: unknown[]; status: "ok"}>(resolve => {
       resolveFollowUpFetch = resolve;
     });
-    getCalendarEventsMock
-      .mockResolvedValueOnce([
+    getCalendarEventsMock.mockResolvedValueOnce([
         {
           date: "2025-02-19",
           time: "14:30",
@@ -408,9 +412,10 @@ describe("timers: other announcements", () => {
           name: "Consumer Price Index (CPI) y/y",
           previousValue: "3.1%",
         },
-      ])
+      ]);
+    getCalendarEventsResultMock
       .mockReturnValueOnce(pendingFollowUpFetch)
-      .mockResolvedValue(releasedEvents);
+      .mockResolvedValue({events: releasedEvents, status: "ok"});
 
     startOtherTimers(client, "channel-id", [], [], [createCalendarReminderAsset({
       name: "us-cpi-1h",
@@ -427,7 +432,7 @@ describe("timers: other announcements", () => {
     // A second follow-up fires while the first is mid-flight; it must skip, not duplicate.
     await followUpJobs[1]!.callback();
     // Let the first follow-up complete and post the single update.
-    resolveFollowUpFetch(releasedEvents);
+    resolveFollowUpFetch({events: releasedEvents, status: "ok"});
     await firstFollowUp;
 
     // 1 agenda + 1 morning reminder + exactly 1 release update (no duplicate).
@@ -447,6 +452,15 @@ describe("timers: other announcements", () => {
         name: "FOMC Statement",
       },
     ]);
+    getCalendarEventsResultMock.mockResolvedValue({
+      status: "ok",
+      events: [{
+        date: "2025-02-19",
+        time: "20:00",
+        country: "🇺🇸",
+        name: "FOMC Statement",
+      }],
+    });
     getCalendarOfficialSummaryMock.mockResolvedValueOnce({
       name: "Federal Reserve",
       summaryMarkdown: "The Fed emphasized inflation and labor-market risks.",
@@ -478,7 +492,7 @@ describe("timers: other announcements", () => {
     expect(summaryUpdate.allowedMentions).toEqual({parse: [], roles: ["role-123"]});
     expect(summaryUpdate.embeds[0]!.data.title).toBe("🇺🇸 FOMC Statement");
     expect(summaryUpdate.embeds[0]!.data.description).toBe("**FOMC Statement**\n\nThe Fed emphasized inflation and labor-market risks.");
-    expect(summaryUpdate.embeds[0]!.data.footer?.text).toBe("🕒 20:00 · Quelle: Federal Reserve");
+    expect(summaryUpdate.embeds[0]!.data.footer?.text).toBe("🕒 20:00 · 📅 2025-02-19 · Quelle: Federal Reserve");
   });
 
   test("startOtherTimers skips calendar reminder assets with wrong country or invalid config", async () => {
@@ -565,12 +579,12 @@ describe("timers: other announcements", () => {
     expect(gdpReminder.content).toBe("<@&role-123> Heute wichtig");
     expect(gdpReminder.embeds[0]!.data.title).toBe("🇺🇸 GDP q/q");
     expect(gdpReminder.embeds[0]!.data.description).toBe("**GDP q/q**");
-    expect(gdpReminder.embeds[0]!.data.footer?.text).toBe("🕒 14:30");
+    expect(gdpReminder.embeds[0]!.data.footer?.text).toBe("🕒 14:30 · 📅 2025-02-19");
     const fomcReminder = getReminderPayload(send, 2);
     expect(fomcReminder.content).toBe("<@&role-123> Heute wichtig");
     expect(fomcReminder.embeds[0]!.data.title).toBe("🇺🇸 FOMC Statement");
     expect(fomcReminder.embeds[0]!.data.description).toBe("**FOMC Statement**");
-    expect(fomcReminder.embeds[0]!.data.footer?.text).toBe("🕒 20:00");
+    expect(fomcReminder.embeds[0]!.data.footer?.text).toBe("🕒 20:00 · 📅 2025-02-19");
   });
 
   test("startOtherTimers skips Friday announcement when asset is unavailable", async () => {

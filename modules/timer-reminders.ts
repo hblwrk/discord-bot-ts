@@ -7,6 +7,10 @@ import {type CalendarEvent} from "./calendar.ts";
 import {type EarningsEvent} from "./earnings.ts";
 
 export type CalendarReminderKind = "reminder" | "update" | "summary";
+export type CalendarReminderGroup = {
+  asset: CalendarReminderAsset;
+  events: CalendarEvent[];
+};
 
 // Neutral embed accent — macro data has no inherent good/bad direction
 // (a hotter CPI print is not "good"), so do not colour by beat/miss.
@@ -296,6 +300,11 @@ export function buildCalendarReminderEmbed(
     footerParts.push(`🕒 ${time}`);
   }
 
+  const date = getCalendarEventDisplayValue(primaryEvent?.date);
+  if ("" !== date) {
+    footerParts.push(`📅 ${date}`);
+  }
+
   const sourceName = options.sourceName?.trim() ?? "";
   if ("summary" === kind && "" !== sourceName) {
     footerParts.push(`Quelle: ${sourceName}`);
@@ -311,8 +320,8 @@ export function buildCalendarReminderEmbed(
 export function getMatchedCalendarReminderEventGroups(
   calendarReminderAssets: CalendarReminderAsset[],
   calendarEvents: CalendarEvent[],
-): {asset: CalendarReminderAsset; events: CalendarEvent[]}[] {
-  const groupedReminderEvents = new Map<string, {asset: CalendarReminderAsset; events: CalendarEvent[]}>();
+): CalendarReminderGroup[] {
+  const groupedReminderEvents = new Map<string, CalendarReminderGroup>();
 
   for (const calendarReminderAsset of calendarReminderAssets) {
     const roleId = getNormalizedRoleId(calendarReminderAsset.roleId);
