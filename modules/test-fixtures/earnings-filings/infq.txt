@@ -1,0 +1,416 @@
+EX-99.1
+2
+infq-20260630xex991.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+
+
+Infleqtion Reports Record Q2 Revenue, Raises 2026 Outlook as Quantum Commercialization Accelerates
+
+
+Rising government investment and customer demand are accelerating Infleqtion’s commercial progress across quantum computing and sensing
+
+
+• Record Revenue and Raised Outlook
+Q2 revenue of $12.6 million, up 116% year over year, 100% organic and entirely from quantum; 2026 revenue outlook raised to approximately $43 million
+
+
+• Strong Balance Sheet to Fund Growth
+Ended Q2 with $582 million in cash, cash equivalents, restricted cash and available-for-sale securities and no debt. Results included a $27.4 million temporary working-capital benefit from payroll taxes collected but not remitted on stock-option exercises. We expect to remit the $27.4 million in Q3.
+
+
+• Government Selection Validates Infleqtion’s Commercialization Path
+Commerce LOI provides for up to $100 million in proposed funding to advance commercialization following review of Infleqtion’s technology and roadmap
+
+
+• Advancing Toward Utility-Scale Quantum Computing
+On track for 30 logical qubits in 2026; Illinois quantum computer planned for 2027 with a new architecture designed to scale through modular upgrades to more than 50 logical qubits
+
+
+• Building the Quantum Computing Platform for Energy
+Eaton is using private-cloud access to Sqale for energy applications, while three DOE Genesis Mission projects span AI, nuclear applications and quantum sensing.
+
+
+
+
+LOUISVILLE, Colo.—(BUSINESS WIRE)--August 12, 2026— Infleqtion, Inc. (NYSE: INFQ) ("Infleqtion" or the "Company"), a global leader in quantum computing and quantum sensing powered by neutral-atom technology, today reported record second-quarter 2026 revenue of $12.6 million, up 116% year over year, and raised its full-year 2026 revenue outlook to approximately $43 million.
+
+
+“Q2 was a record quarter for Infleqtion, and the pace of quantum commercialization is accelerating,” said Matt Kinsella, Chief Executive Officer of Infleqtion. “Governments are putting dates and dollars behind quantum, and we are building applications with customers now as they prepare for the next generation of quantum systems. We delivered 116% revenue growth, all organic, raised our revenue outlook, and remain on track for 30 logical qubits this year. The quantum market is entering an execution phase, and Infleqtion has spent more than a decade preparing for it.”
+
+
+During and following the second quarter, Infleqtion advanced major programs across quantum computing and sensing, including proposed funding from the U.S. Department of Commerce, selection for three Department of Energy Genesis Mission projects, a contracted fault-tolerant quantum computing system for Illinois, and expanded application work with commercial customers.
+
+
+
+
+
+
+
+
+
+Second Quarter 2026 Financial Summary
+• Revenue: $12.6 million, up 116% year over year. Revenue growth was 100% organic and entirely from quantum
+
+
+• Operating Loss: GAAP operating loss was $30.6 million, compared with $10.1 million in Q2 2025. The increase primarily reflects higher operating expenses as we invest in our strategy, along with higher stock-based compensation. Non-GAAP operating loss was $17.0 million, compared with $7.3 million in Q2 2025.
+
+
+• Operating Cash Flow: Cash generated from operations was $13.2 million in Q2 2026. Results included a $27.4 million temporary working-capital benefit from payroll taxes collected but not remitted until after June 30, 2026, on stock-option exercises. Excluding this timing benefit, operating cash burn was approximately $14 million
+
+
+• Balance Sheet: Ended the quarter with $582 million in cash, cash equivalents, restricted cash and available-for-sale securities and no debt. Results included a $27.4 million temporary working-capital benefit from payroll taxes collected but not remitted on stock-option exercises. We expect to remit the $27.4 million in Q3.
+
+
+• 2026 Outlook: Raised full-year revenue outlook to approximately $43 million and reiterated the target of 30 logical qubits in 2026
+
+
+
+
+Second Quarter and Recent Business Highlights
+
+
+• U.S. Government Investment: The U.S. Department of Commerce selected Infleqtion for a Letter of Intent providing for up to $100 million in proposed funding to advance commercialization following a technical review of the Company’s technology and roadmap. The LOI also contemplates the U.S. Department of Commerce receiving Infleqtion common stock. The proposed funding remains subject to definitive agreements and government approvals.
+
+
+• 30 Logical Qubits: Infleqtion remains on track to reach 30 logical qubits in 2026 and has defined logical qubit circuits for customer workloads in finance, energy, and precision medicine.
+
+
+• Illinois Quantum Computer: Infleqtion is under contract to deploy a neutral-atom quantum computer at the Illinois Quantum & Microelectronics Park in 2027, with a new architecture designed to scale through modular upgrades to more than 50 logical qubits on the path to the system’s 100-logical-qubit goal.
+
+
+• Quantum Computing for Energy: Eaton is using private-cloud access to Sqale to explore quantum computing applications for complex energy problems. Infleqtion was also selected for three Department of Energy Genesis Mission projects spanning nuclear applications, quantum sensing, and fusion research.
+
+
+• Quantum Sensing: Execution on NASA’s Quantum Gravity Gradiometer program was a major driver of year-over-year revenue growth in Q2. Infleqtion is also selling its third-generation Tiqker optical atomic clock systems, supported by a global co-selling partnership with Safran.
+
+
+
+
+
+
+
+
+
+
+
+Conference Call Details
+
+
+The Company will host a conference call at 4:30 PM Eastern Time on August 12, 2026, to discuss financial results. The call will be webcast live on the Company’s Investor Relations website at https://ir.infleqtion.com/ in the News & Events section. An archived replay will be available shortly after the call.
+
+
+Live Call
+Domestic Dial-In: 1-877-869-3847
+International Dial-In: 1-201-689-8261
+
+
+Replay
+Domestic Dial-In: 1-877-660-6853
+International Dial-In: 1-201-612-7415
+Access ID: 13762062
+
+
+Webcast
+Event URL: https://event.webcasts.com/starthere.jsp?ei=1771468&tp_key=da7569203b
+
+
+The replay will be available approximately three hours after the conclusion of the conference call through August 26, 2026.
+
+
+
+
+Forward Looking Statements
+
+
+This press release contains forward-looking statements within the meaning of federal securities laws, including the “safe harbor” provisions of the Private Securities Litigation Reform Act of 1995. These statements may be identified by words such as “anticipates,” “believes,” “plans,” “seeks,” “will,” “on track” and variations of these words or similar expressions that are intended to identify forward-looking statements. All statements, other than statements of historical facts, including without limitation statements regarding the Company’s expected 2026 revenue, business outlook, customer demand, technology milestones, commercial opportunities, and market momentum are forward looking statements. These statements are based on Infleqtion’s current expectations, assumptions and projections as of the date of this release and are subject to risks and uncertainties that could cause actual results to differ materially and adversely. Readers are cautioned not to place undue reliance on these forward-looking statements, which speak only as of the date hereof. Such risks and uncertainties include, without limitation, those related to Infleqtion’s ability to recognize anticipated benefits of its business combination with Churchill Capital Corp X; the implementation, market acceptance, and success of Infleqtion’s business model, growth strategy, and opportunities, and its ability to commercialize its quantum computing technology; the expected benefits of and ability to maintain and enter into new contracts, awards, and other relationships, partnerships, or collaborations with governments or government entities; the potential for quantum computing technology to achieve quantum advantages; the ability of Infleqtion’s products to meet government counterparties’ and customers’ technical requirements and compliance and regulatory needs; Infleqtion’s ability to obtain and maintain intellectual property protection and not infringe on the rights of others; and other risks and uncertainties described in Infleqtion’s Annual Report on Form 10-K for the year ended December 31, 2025 and subsequent filings with the U.S. Securities and
+
+
+
+
+
+
+
+Exchange Commission. The Company undertakes no obligation to update these forward-looking statements except as required by law.
+
+
+Non-GAAP Financial Measures
+
+
+This press release includes certain non-GAAP financial measures. Infleqtion believes these measures provide investors with additional insight into the underlying performance of the business and, when considered together with the corresponding GAAP measures, assist investors in evaluating Infleqtion’s operating performance and comparing its results across reporting periods. These non-GAAP financial measures should not be considered in isolation or as substitutes for the comparable GAAP measures. In addition, these non-GAAP financial measures may not be computed in the same manner as similarly titled measures used by other companies.
+
+
+“Non-GAAP Cost of revenue” is defined as cost of revenue expense adjusted to add back, when applicable, stock-based compensation and acquisition and integration costs.
+
+
+“Non-GAAP R&D” is defined as research and development expense adjusted to add back, when applicable, stock-based compensation and acquisition and integration costs.
+
+
+“Non-GAAP SG&A” is defined as selling, general and administrative expense adjusted to add back, when applicable, stock-based compensation, acquisition and integration costs, go-public transaction expenses and former executive release payments.
+
+
+“Non-GAAP Loss from operations” is defined as loss from operations adjusted to add back, when applicable, stock-based compensation, go-public transaction expenses, acquisition and integration costs, former executive release payment and impairment of assets and goodwill.
+
+
+“Non-GAAP Net loss” is defined as net loss adjusted to add back, when applicable, stock-based compensation, go-public transaction expenses, acquisition and integration costs, change in fair value of contingent consideration, change in fair value of SAFE liabilities, former executive release payment and impairment of assets and goodwill.
+
+
+See “Reconciliation of Non-GAAP Financial Measures” in this press release for reconciliations of these non-GAAP measures to the most directly comparable GAAP measures. Management believes that Non-GAAP Cost of revenue, Non-GAAP R&D, Non-GAAP SG&A, Non-GAAP Loss from operations and Non-GAAP Net loss provide useful information to investors because they facilitate an evaluation of Infleqtion’s underlying operating performance and period-to-period comparability by excluding certain items that management believes do not directly reflect the Company’s core operations or may not be indicative of recurring operating results. Management uses these non-GAAP measures, together with the corresponding GAAP measures, to assess the operating performance of the business.
+
+
+About Infleqtion
+Infleqtion, Inc. (NYSE: INFQ) is a global leader in quantum technology, delivering neutral-atom solutions for quantum computing, networking, sensing, and security. With a product portfolio spanning quantum computers, quantum optical clocks, RF receivers, and inertial sensors, Infleqtion’s full-stack approach combines high-performance hardware with the company’s proprietary Superstaq quantum computing software platform. Infleqtion’s systems are already in use by the U.S.
+
+
+
+
+
+
+
+Department of War, NASA, the U.K. government, and in multiple collaborations with NVIDIA. Infleqtion, in collaboration with NVIDIA, published the world’s first demonstration of a materials science application using logical qubits. With operations in the U.S., Europe, and Asia, Infleqtion meets the demands of government and commercial customers across the space, defense, energy, finance and telecommunications sectors. For more information, visit Infleqtion.com or follow Infleqtion on LinkedIn, YouTube , and X .
+Investor Contact
+Marcus Kupferschmidt
+investors@infleqtion.com
+Media Contact
+Stephanie Knight
+Solebury Strategic Communications
+sknight@soleburystrat.com
+
+
+
+
+
+
+
+
+
+
+
+Infleqtion, Inc.
+Condensed Consolidated Statements of Operations and Comprehensive Loss
+(Unaudited; in thousands, except share and per share amounts)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Total revenue | $ | 12,633 | | | $ | 5,837 | | | $ | 22,094 | | | $ | 14,140 | |
+Total cost of revenue | 11,244 | | | 4,820 | | | 18,714 | | | 9,746 | |
+Gross profit | 1,389 | | | 1,017 | | | 3,380 | | | 4,394 | |
+Research and development | 12,675 | | | 5,311 | | | 22,626 | | | 10,478 | |
+Selling, general and administrative | 19,818 | | | 6,250 | | | 46,138 | | | 12,034 | |
+Grant income | (468) | | | (471) | | | (1,173) | | | (1,095) | |
+Loss from operations | (30,636) | | | (10,073) | | | (64,211) | | | (17,023) | |
+Other income (expense): | | | | | | | |
+Interest income | 5,021 | | | 719 | | | 8,223 | | | 1,075 | |
+Other, net | 142 | | | 507 | | | 252 | | | 1,116 | |
+Total other income, net | 5,163 | | | 1,226 | | | 8,475 | | | 2,191 | |
+Loss before income taxes | (25,473) | | | (8,847) | | | (55,736) | | | (14,832) | |
+Income tax expense (benefit) | — | | | — | | | — | | | — | |
+Net loss | $ | (25,473) | | | $ | (8,847) | | | $ | (55,736) | | | $ | (14,832) | |
+Other comprehensive (loss) income: | | | | | | | |
+Unrealized loss on available-for-sale securities, net | (195) | | | — | | | (1,077) | | | — | |
+Foreign currency translation adjustment | (141) | | | (22) | | | (240) | | | 394 | |
+Total other comprehensive loss | (336) | | | (22) | | | (1,317) | | | 394 | |
+Comprehensive loss | $ | (25,809) | | | $ | (8,869) | | | $ | (57,053) | | | $ | (14,438) | |
+Net loss per share attributable to common stockholders - basic and diluted | $ | (0.12) | | | $ | (0.57) | | | $ | (0.33) | | | $ | (0.98) | |
+Weighted average shares used in computing net loss per share attributable to common stockholders – basic and diluted | 219,743,810 | | | 15,586,999 | | | 169,199,551 | | | 15,164,809 | |
+
+
+
+
+
+
+
+
+
+
+
+Infleqtion, Inc.
+Condensed Consolidated Balance Sheets
+(Unaudited; in thousands, except share and per share amounts)
+| | | | | | | | | | | |
+| As of |
+| June 30, 2026
+(Unaudited) | | December 31,
+2025 |
+ASSETS | | | |
+CURRENT ASSETS: | | | |
+Cash and cash equivalents | $ | 59,285 | | | $ | 11,694 | |
+Available-for-sale securities, current | 417,673 | | | 34,318 | |
+Accounts receivable | 5,413 | | | 9,543 | |
+Unbilled receivables | 4,147 | | | 4,734 | |
+Inventories | 5,834 | | | 4,299 | |
+Prepaid expenses and other current assets | 8,666 | | | 10,036 | |
+Total current assets | $ | 501,018 | | | $ | 74,624 | |
+Property and equipment, net | 8,684 | | | 8,674 | |
+Operating lease right-of-use assets | 13,709 | | | 4,923 | |
+Available-for-sale securities, non-current | 104,780 | | | 17,157 | |
+Goodwill | 9,315 | | | 9,315 | |
+Other assets | 4,617 | | | 620 | |
+TOTAL ASSETS | $ | 642,123 | | | $ | 115,313 | |
+LIABILITIES, CONVERTIBLE REDEEMABLE PREFERRED STOCK AND STOCKHOLDERS’ EQUITY (DEFICIT) | | | |
+CURRENT LIABILITIES: | | | |
+Accounts payable | 3,650 | | | $ | 5,644 | |
+Accrued liabilities | 45,964 | | | 8,610 | |
+Contract liabilities | 2,511 | | | 6,871 | |
+Current portion of operating lease liabilities | 1,002 | | | 1,076 | |
+Deferred consideration payable, current | — | | | 471 | |
+Total current liabilities | $ | 53,127 | | | $ | 22,672 | |
+Operating lease liabilities, net of current portion | 13,525 | | | 4,074 | |
+| | | |
+TOTAL LIABILITIES | $ | 66,652 | | | $ | 26,746 | |
+Convertible Redeemable Preferred Stock: | | | |
+Series Seed convertible redeemable preferred stock, $0.0001 par value per share | — | | | 6,526 | |
+Series Seed II convertible redeemable preferred stock; $0.0001 par value per share | — | | | 10,411 | |
+Series A convertible redeemable preferred stock, $0.0001 par value per share | — | | | 36,658 | |
+Series B convertible redeemable preferred stock; $0.0001 par value per share | — | | | 112,145 | |
+Series B-1 convertible redeemable preferred stock; $0.0001 par value per share | — | | | 32,990 | |
+Series C convertible redeemable preferred stock; $0.0001 par value per share | — | | | 71,733 | |
+Series C-1 convertible redeemable preferred stock; $0.0001 par value per share | — | | | 26,351 | |
+Total Convertible Redeemable Preferred Stock | $ | — | | | $ | 296,814 | |
+Commitments and contingencies (refer to note 9) | | | |
+Stockholders’ Equity (Deficit): | | | |
+Preferred stock: $0.0001 par value per share; 100,000,000 shares authorized; no shares issued and outstanding as of June 30, 2026 and December 31, 2025, respectively | — | | | — | |
+Common stock: $0.0001 par value per share; 1,400,000,000 shares authorized; 224,681,185 and 17,449,020 shares issued and outstanding as of June 30, 2026 and December 31, 2025, respectively | 23 | | | 2 | |
+Additional paid-in capital | 862,681 | | | 21,931 | |
+Accumulated deficit | (286,822) | | | (231,086) | |
+Accumulated other comprehensive income (loss) | (411) | | | 906 | |
+Total Stockholders' Equity (Deficit) | $ | 575,471 | | | $ | (208,247) | |
+Total Liabilities, Convertible Redeemable Preferred Stock and Stockholders’ Equity (Deficit) | $ | 642,123 | | | $ | 115,313 | |
+
+
+
+
+
+
+
+
+
+
+
+Infleqtion, Inc.
+Condensed Consolidated Statements of Cash Flows
+(Unaudited; in thousands)
+| | | | | | | | | | | |
+| Six Months Ended June 30, |
+| 2026 | | 2025 |
+Cash flows from operating activities | | | |
+Net loss | $ | (55,736) | | | $ | (14,832) | |
+Adjustments to reconcile net loss to net cash used in operating activities: | | | |
+Depreciation and amortization expense | 1,928 | | | 1,555 | |
+Stock-based compensation expense | 20,359 | | | 1,887 | |
+Change in fair value of contingent obligation | 1,472 | | | — | |
+Other non-cash operating adjustments | (2,429) | | | (807) | |
+Changes in operating assets and liabilities: | | | |
+Accounts receivable | 4,089 | | | 1,526 | |
+Unbilled receivables | 578 | | | (1,189) | |
+Inventories | (1,535) | | | (1,468) | |
+Prepaid expenses and other current assets | (3,845) | | | 671 | |
+Other assets | (75) | | | (37) | |
+Accounts payable | (1,986) | | | 4,507 | |
+Accrued liabilities | 35,205 | | | (2,237) | |
+Contract liabilities | (4,360) | | | 994 | |
+Operating lease right-of-use assets | 711 | | | 476 | |
+Operating lease liabilities | (350) | | | (773) | |
+Net cash used in operating activities | (5,974) | | | (9,727) | |
+Cash flows from investing activities | | | |
+Purchases of available-for-sale securities | (529,743) | | | — | |
+Maturities of available-for-sale securities | 60,200 | | | — | |
+Purchase of non-marketable equity investment | (3,000) | | | — | |
+Purchases of property and equipment | (1,702) | | | (1,098) | |
+Net cash used in investing activities | (474,245) | | | (1,098) | |
+Cash flows from financing activities | | | |
+Proceeds from issuance of Series C convertible redeemable preferred stock | — | | | 49,222 | |
+Proceeds from stock options and warrant exercises | 4,729 | | | 784 | |
+Payment of offering costs | (3,306) | | | — | |
+Proceeds from Business Combination, net of redemptions | 528,166 | | | — | |
+Payment of deferred cash consideration | (475) | | | (713) | |
+Net cash provided by financing activities | 529,114 | | | 49,293 | |
+Foreign currency translation | (370) | | | 1,187 | |
+Net increase in cash and cash equivalents and restricted cash | $ | 48,525 | | | $ | 39,655 | |
+Cash, cash equivalents and restricted cash at beginning of period | $ | 11,894 | | | $ | 48,142 | |
+Cash, cash equivalents and restricted cash at end of period | $ | 60,419 | | | $ | 87,797 | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+
+
+
+
+
+
+
+
+
+
+
+Infleqtion, Inc.
+Reconciliation of Non-GAAP Financial Measures
+(in thousands)
+The following is a reconciliation of non-GAAP measures of Infleqtion, Inc. for the three and six ended June 30, 2026 and 2025:
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Cost of revenue | $ | 11,244 | | | $ | 4,820 | | | $ | 18,714 | | | $ | 9,746 | |
+Adjustments: | | | | | | | |
+Stock-based compensation | 1,821 | | | 109 | | | 2,838 | | | 201 | |
+Acquisition and integration costs | — | | | — | | | — | | | — | |
+Non-GAAP Cost of revenue | $ | 9,423 | | | $ | 4,711 | | | $ | 15,876 | | | $ | 9,545 | |
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Research and development expense | $ | 12,675 | | | $ | 5,311 | | | $ | 22,626 | | | $ | 10,478 | |
+Adjustments: | | | | | | | |
+Stock-based compensation | 4,820 | | | 116 | | | 7,234 | | | 188 | |
+Acquisition and integration costs | — | | | — | | | — | | | — | |
+Non-GAAP R&D | $ | 7,855 | | | $ | 5,195 | | | $ | 15,392 | | | $ | 10,290 | |
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Selling, general and administrative expense | $ | 19,818 | | | $ | 6,250 | | | $ | 46,138 | | | $ | 12,034 | |
+Adjustments: | | | | | | | |
+Stock-based compensation | 5,425 | | | 544 | | | 10,287 | | | 1,498 | |
+Acquisition and integration costs | 841 | | | 2,000 | | | 1,472 | | | 2,000 | |
+Go-public transaction expenses | — | | | — | | | 11,466 | | | — | |
+Former executive release payment | 750 | | | — | | | 750 | | | — | |
+Non-GAAP SG&A | $ | 12,802 | | | $ | 3,706 | | | $ | 22,163 | | | $ | 8,536 | |
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Loss from operations | $ | (30,636) | | | $ | (10,073) | | | $ | (64,211) | | | $ | (17,023) | |
+Adjustments: | | | | | | | |
+Stock-based compensation | 12,066 | | | 769 | | | 20,359 | | | 1,887 | |
+Acquisition and integration costs | 841 | | | 2,000 | | | 1,472 | | | 2,000 | |
+Go-public transaction expenses | — | | | — | | | 11,466 | | | — | |
+Former executive release payment | 750 | | | — | | | 750 | | | — | |
+Non-GAAP Loss from operations | $ | (16,979) | | | $ | (7,304) | | | $ | (30,164) | | | $ | (13,136) | |
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Net loss | $ | (25,473) | | | $ | (8,847) | | | $ | (55,736) | | | $ | (14,832) | |
+Adjustments: | | | | | | | |
+Stock-based compensation | 12,066 | | | 769 | | | 20,359 | | | 1,887 | |
+Acquisition and integration costs | 841 | | | 2,000 | | | 1,472 | | | 2,000 | |
+Go-public transaction expenses | — | | | — | | | 11,466 | | | — | |
+Former executive release payment | 750 | | | — | | | 750 | | | — | |
+Non-GAAP Net loss | $ | (11,816) | | | $ | (6,078) | | | $ | (21,689) | | | $ | (10,945) | |\n

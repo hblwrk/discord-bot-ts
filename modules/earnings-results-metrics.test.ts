@@ -338,6 +338,50 @@ describe("earnings result metric selection", () => {
     ]);
   });
 
+  test("does not let unrelated revenue scale turn per-share net income into an aggregate", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example reports fourth quarter 2026 results</h1>
+      <p>In Q4 2026, revenue was $2.05 billion and GAAP net income was $1.19 per diluted share.</p>
+      <p>CONDENSED CONSOLIDATED STATEMENTS OF EARNINGS</p>
+      <p>(in millions, except per-share data)</p>
+      <table><tr><td>Net earnings attributable to Example</td><td>$</td><td>240.5</td></tr></table>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "net_income", value: "$240.5M"}),
+    ]));
+    expect(parsedDocument.metrics).not.toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "net_income", value: "$1.19"}),
+    ]));
+  });
+
+  test("prefers GAAP total revenue over a quarter-specific core measure", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example reports second quarter 2026 results</h1>
+      <p>In Q2 2026, Core revenue more than doubled to $210 million.</p>
+      <p>CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS</p>
+      <p>(in thousands)</p>
+      <table><tr><td>GAAP Total revenue</td><td>$</td><td>180,100</td></tr></table>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "revenue", value: "$180.1M"}),
+    ]));
+  });
+
+  test("reads per-share value introduced by non-GAAP net income", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example reports fourth quarter 2026 results</h1>
+      <p>For the fourth quarter, non-GAAP net income was $4.9 billion, or $1.22 per diluted share.</p>
+      <h2>Guidance</h2>
+      <p>Non-GAAP EPS is expected to be $1.32 to $1.34.</p>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "adjusted_eps", value: "$1.22"}),
+    ]));
+  });
+
   test("uses Amazon quarterly EPS and consolidated sales instead of YTD and run-rate values", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>

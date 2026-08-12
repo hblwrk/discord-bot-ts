@@ -566,6 +566,99 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("keeps core guidance separated across quarter and full-year sections", () => {
+    expect(extractOutlookMetrics([
+      "Third Quarter 2026 Financial Outlook",
+      "Core Non-GAAP Financial Outlook:",
+      "Core revenue of approximately $214 to $216 million",
+      "Core gross margin in the range of 38% - 40%",
+      "Core operating margins in the range of (25%) to (23%)",
+      "Full Year 2026 Financial Outlook",
+      "Core Non-GAAP Financial Outlook has been raised for all metrics:",
+      "Core revenue of $880 to $890 million",
+      "Core gross margin in the range of 41% - 43%",
+      "Core operating margins in the range of (19%) to (17%)",
+    ])).toEqual([
+      {key: "core_revenue", label: "Core revenue", periodLabel: "Q3", value: "$214M to $216M"},
+      {key: "core_revenue", label: "Core revenue", periodLabel: "FY2026", value: "$880M to $890M"},
+      {key: "core_gross_margin", label: "Core gross margin", periodLabel: "Q3", value: "38% to 40%"},
+      {key: "core_gross_margin", label: "Core gross margin", periodLabel: "FY2026", value: "41% to 43%"},
+      {key: "core_operating_margin", label: "Core operating margin", periodLabel: "Q3", value: "-25% to -23%"},
+      {key: "core_operating_margin", label: "Core operating margin", periodLabel: "FY2026", value: "-19% to -17%"},
+    ]);
+  });
+
+  test("reads only the guidance column of a results comparison table", () => {
+    expect(extractOutlookMetrics([
+      "Financial Outlook",
+      "(unaudited, in millions, except per share data)",
+      "| | Q3 2026 Guidance (1)",
+      "| | Q3 2025 Results | | Q2 2026 Results |",
+      "Revenue | | $9.0 - 10.0 | | $8.0 | | $9.0 |",
+      "Non-GAAP loss from operations",
+      "| | ($29.0 - 32.0) | | ($29.8) | | ($28.8) |",
+      "Non-GAAP net loss per share",
+      "| | ($0.13 - 0.17) | | ($0.14) | | ($0.13) |",
+      "Capital expenditures",
+      "| | $8.0 - 12.0 | | $3.0 | | $9.6 |",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", value: "$9M to $10M"},
+      {key: "adjusted_eps", label: "Adj EPS", value: "-$0.13 to -$0.17"},
+      {key: "adjusted_operating_income", label: "Adj operating income", value: "-$29M to -$32M"},
+      {key: "capex", label: "Capex", value: "$8M to $12M"},
+    ]);
+  });
+
+  test("extracts quantified guidance embedded in prose without a section heading", () => {
+    expect(extractOutlookMetrics([
+      "Based on its cash position, the company projects its runway into 2029. Guidance for operating expense in 2026 is expected to be approximately $165 million. GAAP operating expenses are expected to be approximately $225 million.",
+      "Conference Call",
+    ])).toEqual([
+      {key: "gaap_operating_expenses", label: "GAAP operating expenses", value: "$225M"},
+      {key: "operating_expenses", label: "Operating expenses", value: "$165M"},
+    ]);
+  });
+
+  test("keeps the metric on an inline annual outlook heading", () => {
+    expect(extractOutlookMetrics([
+      "2026 Outlook: Raised full-year revenue outlook to approximately $43 million and reiterated the target of 30 logical qubits in 2026",
+      "Second Quarter and Recent Business Highlights",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", value: "$43M"},
+    ]);
+  });
+
+  test("joins a wrapped range and preserves a postfix non-GAAP EPS basis", () => {
+    expect(extractOutlookMetrics([
+      "Business Outlook",
+      "Revenue between $2.2 billion and $2.4 billion.",
+      "EPS between $1.85 and $2.05 on a non-GAAP basis.",
+      "Total operating expenses are expected to be between $400 million and",
+      "$420 million on a non-GAAP basis.",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", value: "$2.2B to $2.4B"},
+      {key: "adjusted_eps", label: "Adj EPS", value: "$1.85 to $2.05"},
+      {key: "operating_expenses", label: "Operating expenses", value: "$400M to $420M"},
+    ]);
+  });
+
+  test("inherits mixed periods from standalone SEC table captions", () => {
+    expect(extractOutlookMetrics([
+      "Guidance",
+      "Q1 FY 2027 | | |",
+      "Revenue | | $18.0 billion - $18.2 billion |",
+      "Non-GAAP EPS | | $1.32 - $1.34 |",
+      "FY 2027 | | |",
+      "Revenue | | $72.2 billion - $73.4 billion |",
+      "Non-GAAP EPS | | $5.05 - $5.11 |",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", periodLabel: "Q1", value: "$18B to $18.2B"},
+      {key: "revenue", label: "Revenue", periodLabel: "FY2027", value: "$72.2B to $73.4B"},
+      {key: "adjusted_eps", label: "Adj EPS", periodLabel: "Q1", value: "$1.32 to $1.34"},
+      {key: "adjusted_eps", label: "Adj EPS", periodLabel: "FY2027", value: "$5.05 to $5.11"},
+    ]);
+  });
+
   test("limits outlook scanning and ignores unusable fallback values", () => {
     const lines = [
       "Business Outlook",

@@ -1002,6 +1002,123 @@ const filingCorpus: {
     source: "864749/000086474926000106/a2026q2-8kex991_00version.htm",
     ticker: "trmb",
   },
+  {
+    // Summary-table money units occupy their own SEC cells, and the actual non-GAAP EPS is
+    // introduced as the per-share equivalent of non-GAAP net income. Guidance spans Q1 and FY.
+    company: "Cisco Systems",
+    metrics: [
+      ["adjusted_eps", "$1.22"],
+      ["gaap_eps", "$0.97"],
+      ["revenue", "$17.3B"],
+      ["net_income", "$3.9B"],
+    ],
+    outlook: [
+      ["Q1 Revenue", "$18B to $18.2B"],
+      ["FY2027 Revenue", "$72.2B to $73.4B"],
+      ["Q1 Adj EPS", "$1.32 to $1.34"],
+      ["FY2027 Adj EPS", "$5.05 to $5.11"],
+      ["Q1 EPS", "$1.08 to $1.1"],
+      ["FY2027 EPS", "$4 to $4.06"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "858877/000085887726000106/exhibit991pressrelease-q4f.htm",
+    ticker: "csco",
+  },
+  {
+    // Core revenue is a non-GAAP operating measure, not the generic top-line result. The
+    // outlook publishes both Q3 and FY core measures, including parenthesized margin ranges.
+    company: "Cerebras Systems",
+    metrics: [
+      ["gaap_eps", "-$2.98"],
+      ["revenue", "$180.1M"],
+      ["net_income", "-$450.53M"],
+    ],
+    outlook: [
+      ["Q3 Core revenue", "$214M to $216M"],
+      ["FY2026 Core revenue", "$880M to $890M"],
+      ["Q3 Core gross margin", "38% to 40%"],
+      ["FY2026 Core gross margin", "41% to 43%"],
+      ["Q3 Core operating margin", "-25% to -23%"],
+      ["FY2026 Core operating margin", "-19% to -17%"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "2021728/000162828026056186/cbrsannouncesfinancialresu.htm",
+    ticker: "cbrs",
+  },
+  {
+    // The headline calls $1.19 "GAAP net income" per diluted share after mentioning scaled
+    // revenue. Aggregate net income is $240.5M, and the Q1 expense range wraps onto two lines.
+    company: "Coherent",
+    metrics: [
+      ["adjusted_eps", "$1.74"],
+      ["gaap_eps", "$1.19"],
+      ["revenue", "$2.05B"],
+      ["net_income", "$240.5M"],
+    ],
+    outlook: [
+      ["Revenue", "$2.2B to $2.4B"],
+      ["Adj EPS", "$1.85 to $2.05"],
+      ["Gross margin", "39.5% to 41.5%"],
+      ["Operating expenses", "$400M to $420M"],
+      ["Tax rate", "18% to 20%"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "820318/000119312526346860/d128030dex991.htm",
+    ticker: "cohr",
+  },
+  {
+    // The only quantified outlook is embedded in an ordinary cash-runway paragraph rather
+    // than under a guidance heading, and it states operating expense on two distinct bases.
+    company: "Allogene Therapeutics",
+    metrics: [
+      ["gaap_eps", "-$0.13"],
+      ["revenue", "$4.64M"],
+      ["net_income", "-$42.7M"],
+    ],
+    outlook: [
+      ["GAAP operating expenses", "$225M"],
+      ["Operating expenses", "$165M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1737287/000162828026056198/allo-20260630xexx991q226.htm",
+    ticker: "allo",
+  },
+  {
+    // The first value column is Q3 guidance and the following two are historical results.
+    // Captions and values are split across lines, with one parenthesis enclosing each range.
+    company: "Enovix",
+    metrics: [
+      ["adjusted_eps", "-$0.13"],
+      ["gaap_eps", "-$0.20"],
+      ["revenue", "$9M"],
+      ["net_income", "-$43.06M"],
+    ],
+    outlook: [
+      ["Revenue", "$9M to $10M"],
+      ["Adj EPS", "-$0.13 to -$0.17"],
+      ["Adj operating income", "-$29M to -$32M"],
+      ["Capex", "$8M to $12M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1828318/000182831826000055/envx8k-q22026x8122026ex991.htm",
+    ticker: "envx",
+  },
+  {
+    // The annual revenue figure is carried on the same bullet as its outlook heading, so
+    // skipping the heading also skips the only quantified guidance in the release.
+    company: "Infleqtion",
+    metrics: [
+      ["gaap_eps", "-$0.12"],
+      ["revenue", "$12.6M"],
+      ["net_income", "-$25.47M"],
+    ],
+    outlook: [
+      ["Revenue", "$43M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "2007825/000162828026056222/infq-20260630xex991.htm",
+    ticker: "infq",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1022,6 +1139,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(64);
+    expect(filingCorpus).toHaveLength(70);
   });
 });

@@ -341,7 +341,10 @@ export function getCurrencyCodeFromText(
 
 export function getExplicitMoneyScale(text: string, valueEndIndex: number): number | null {
   const afterValue = text.slice(valueEndIndex, valueEndIndex + 24);
-  const unitMatch = afterValue.match(/^\s*(trillion|trillions|tn|billion|billions|bn|million|millions|mm|thousand|thousands|[kmbt])\b/i);
+  // SEC tables preserve empty cell separators between a number and its unit
+  // ("$ | 17.3 | billion"). Those separators are presentation, not a break in
+  // the value, so retain the explicit scale across them.
+  const unitMatch = afterValue.match(/^[\s|]*(trillion|trillions|tn|billion|billions|bn|million|millions|mm|thousand|thousands|[kmbt])\b/i);
   const unit = unitMatch?.[1]?.toLowerCase();
   if (!unit) {
     return null;

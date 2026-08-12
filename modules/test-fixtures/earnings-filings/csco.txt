@@ -1,0 +1,763 @@
+EX-99.1
+2
+exhibit991pressrelease-q4f.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+
+| | | | | | | | |
+Press Contact: | | Investor Relations Contact: |
+Robyn Blum | | Sami Badri |
+Cisco | | Cisco |
+1 (408) 930-8548 | | 1 (469) 420-4834 |
+rojenkin@cisco.com | | sambadri@cisco.com |
+
+CISCO REPORTS FOURTH QUARTER AND FISCAL YEAR 2026 EARNINGS
+
+
+News Summary :
+• Record top and bottom-line performance with double-digit growth in Q4 and FY 2026, exceeding the high end of guidance ranges
+• Exceptional FY 2026 operating margin results, demonstrating strong execution and operating efficiency
+• Broad-based, record high demand for Cisco technology with a networking supercycle underway
+◦ Q4 total product orders up 35% year over year; up 25% excluding hyperscalers, with double-digit growth across every geography and customer market
+◦ Networking product orders grew 40% year over year in Q4, marking the eighth consecutive quarter of double-digit growth
+• Significant momentum and raised expectations for AI infrastructure from hyperscalers
+◦ $4 billion of orders taken in Q4, bringing the total for FY 2026 to $9.3 billion
+◦ Delivered approximately $4 billion of revenue in FY 2026; $7.5 billion expected in FY 2027
+• Q4 FY 2026 Results:
+◦ Revenue: $17.3 billion
+▪ Increase of 18% year over year
+◦ Operating Margin: GAAP: 24.7%; Non-GAAP: 35.9%
+◦ Earnings per Share: GAAP: $0.97; Non-GAAP: $1.22
+▪ GAAP EPS increased 52% year over year
+▪ Non-GAAP EPS increased 23% year over year
+• FY 2026 Results:
+◦ Revenue: $63.3 billion
+▪ Increase of 12% year over year
+◦ Operating Margin: GAAP: 24.3%; Non-GAAP: 34.8%
+◦ Earnings per Share: GAAP: $3.33; Non-GAAP: $4.33
+▪ GAAP EPS increased 31% year over year
+▪ Non-GAAP EPS increased 14% year over year
+• Q1 FY 2027 Guidance:
+◦ Revenue: $18.0 billion to $18.2 billion
+◦ Earnings per Share: GAAP: $1.08 to $1.10; Non-GAAP: $1.32 to $1.34
+• FY 2027 Guidance:
+◦ Revenue: $72.2 billion to $73.4 billion
+◦ Earnings per Share: GAAP: $4.00 to $4.06; Non-GAAP: $5.05 to $5.11
+
+
+
+
+1
+
+
+
+
+
+SAN JOSE, Calif. -- August 12, 2026 -- Cisco (NASDAQ: CSCO) today reported fourth quarter and fiscal year results for the period ended July 25, 2026. Cisco reported fourth quarter revenue of $17.3 billion, net income on a generally accepted accounting principles (GAAP) basis of $3.9 billion or $0.97 per share, and non-GAAP net income of $4.9 billion or $1.22 per share.
+“We delivered a very strong close to fiscal 2026, marking another record year for Cisco. Our record performance is a testament to the accelerated pace of innovation and the excellent execution by our teams,” said Chuck Robbins, Chair and CEO of Cisco. “With the breadth and depth of our portfolio and our competitive differentiation in secure networking, Cisco is well positioned to support our customers however or wherever they decide to deploy AI.”
+“In Q4, we delivered record revenue, non-GAAP operating income and EPS, all exceeding the high end of our guidance ranges and demonstrating strong financial discipline and operating leverage,” said Mark Patterson, CFO of Cisco. “In fiscal 2026, Cisco achieved its highest productivity metrics in 30 years measured by revenue, non-GAAP operating margin, and earnings per employee. As we enter fiscal 2027, we remain focused on delivering durable growth, consistent profitability and continued capital returns as we make the strategic investments to capitalize on the significant growth opportunities we see ahead.”
+
+
+Q4 GAAP Results
+| | | | | | | | | | | | | | | | | | | | |
+| | Q4 FY 2026 | | Q4 FY 2025 | | Vs. Q4 FY 2025 |
+Revenue | | $ | 17.3 | billion | | $ | 14.7 | billion | | 18% |
+Net Income | | $ | 3.9 | billion | | $ | 2.6 | billion | | 51% |
+Diluted Earnings per Share (EPS) | | $ | 0.97 | | | $ | 0.64 | | | 52% |
+
+
+Q4 Non-GAAP Results
+| | | | | | | | | | | | | | | | | | | | |
+| | Q4 FY 2026 | | Q4 FY 2025 | | Vs. Q4 FY 2025 |
+Net Income | | $ | 4.9 | billion | | $ | 4.0 | billion | | 23% |
+EPS | | $ | 1.22 | | | $ | 0.99 | | | 23% |
+
+
+Fiscal Year GAAP Results
+| | | | | | | | | | | | | | | | | | | | |
+| | FY 2026 | | FY 2025 | | Vs. FY 2025 |
+Revenue | | $ | 63.3 | billion | | $ | 56.7 | billion | | 12% |
+Net Income | | $ | 13.3 | billion | | $ | 10.2 | billion | | 30% |
+EPS | | $ | 3.33 | | | $ | 2.55 | | | 31% |
+
+
+Fiscal Year Non-GAAP Results
+| | | | | | | | | | | | | | | | | | | | |
+| | FY 2026 | | FY 2025 | | Vs. FY 2025 |
+Net Income | | $ | 17.2 | billion | | $ | 15.2 | billion | | 13% |
+EPS | | $ | 4.33 | | | $ | 3.81 | | | 14% |
+
+Reconciliations between net income, EPS, and other measures on a GAAP and non-GAAP basis are provided in the tables located in the section entitled "Reconciliations of GAAP to non-GAAP Measures."
+Cisco Declares Quarterly Dividend
+Cisco has declared a quarterly dividend of $0.42 per common share to be paid on October 21, 2026, to all stockholders of record as of the close of business on October 2, 2026. Future dividends will be subject to Board approval.
+
+
+
+
+
+
+2
+
+
+
+
+
+
+Financial Summary
+All comparative percentages are on a year-over-year basis unless otherwise noted.
+Q4 FY 2026 Highlights
+Revenue -- Total revenue was $17.3 billion, up 18%, with product revenue up 24% and services revenue was flat.
+Revenue by geographic segment was: Americas up 18%, EMEA up 19%, and APJC up 14%. Product revenue performance reflected growth in Networking up 28%, Security up 14%, Collaboration up 12%, and Observability up 6%.
+Gross Margin -- On a GAAP basis, total gross margin, product gross margin, and services gross margin were 64.1%, 62.6%, and 69.4%, respectively, as compared with 63.2%, 61.5%, and 68.3%, respectively, in the fourth quarter of fiscal 2025.
+Total gross margins by geographic segment were: 64.5% for the Americas, 70.1% for EMEA and 67.3% for APJC.
+On a non-GAAP basis, total gross margin, product gross margin, and services gross margin were 66.3%, 64.8%, and 71.6%, respectively, as compared with 68.4%, 67.5%, and 70.8%, respectively, in the fourth quarter of fiscal 2025.
+Operating Expenses -- On a GAAP basis, operating expenses were $6.8 billion, up 10% year over year, and were 39.4% of revenue. Non-GAAP operating expenses were $5.2 billion, up 5%, and were 30.4% of revenue.
+Operating Income -- GAAP operating income was $4.3 billion, up 38%, with GAAP operating margin of 24.7%. Non-GAAP operating income was $6.2 billion, up 23%, with non-GAAP operating margin at 35.9%.
+Provision for Income Taxes -- The GAAP tax provision rate was 21.8%. The non-GAAP tax provision rate was 18.8%.
+Net Income and EPS -- On a GAAP basis, net income was $3.9 billion, an increase of 51%, and EPS was $0.97, an increase of 52%. On a non-GAAP basis, net income was $4.9 billion, an increase of 23%, and EPS was $1.22, an increase of 23%.
+Cash Flow from Operating Activities -- $5.4 billion for the fourth quarter of fiscal 2026, an increase of 27% compared with $4.2 billion for the fourth quarter of fiscal 2025.
+FY 2026 Highlights
+Revenue -- Total revenue was $63.3 billion, an increase of 12%.
+Operating Income -- GAAP operating income was $15.4 billion, up 31%, with GAAP operating margin of 24.3%. Non-GAAP operating income was $22.0 billion, up 13%, with non-GAAP operating margin at 34.8%.
+Net Income and EPS -- On a GAAP basis, net income was $13.3 billion, an increase of 30%, and EPS was $3.33, an increase of 31%. On a non-GAAP basis, net income was $17.2 billion, an increase of 13%, and EPS was $4.33, an increase of 14%.
+Cash Flow from Operating Activities -- $14.2 billion for fiscal 2026, flat compared with fiscal 2025.
+Balance Sheet and Other Financial Highlights
+Cash and Cash Equivalents and Investments -- $15.9 billion at the end of the fourth quarter of fiscal 2026, compared with $16.6 billion at the end of the third quarter of fiscal 2026, and compared with $16.1 billion at the end of fiscal 2025.
+Remaining Performance Obligations (RPO) -- $46.7 billion, up 7% in total. Product RPO was up 9% and services RPO was up 6%.
+Deferred Revenue -- $29.8 billion, up 3% in total, with deferred product revenue up 2%. Deferred services revenue up 4%.
+Capital Allocation -- In the fourth quarter of fiscal 2026, we returned $3.2 billion to stockholders through share buybacks and dividends. We declared and paid a cash dividend of $0.42 per common share, or $1.7 billion, and repurchased approximately 13 million shares of common stock under our stock repurchase program at an average price of $111.53 per share for an aggregate purchase price of $1.5 billion. The remaining authorized amount for stock repurchases under the program is $8.1 billion with no termination date.
+Acquisitions
+In the fourth quarter of fiscal 2026, we closed the following acquisitions:
+• Galileo Technologies, Inc. , a privately held observability company
+• Astrix Securities Ltd. , a privately held security company focused on Non-Human Identity (NHI) Security
+
+
+
+
+3
+
+
+
+
+
+
+Guidance
+Cisco expects to achieve the following results for the first quarter of fiscal 2027:
+| | | | | | | | |
+Q1 FY 2027 | | |
+Revenue | | $18.0 billion - $18.2 billion |
+Non-GAAP gross margin | | 65% - 66% |
+Non-GAAP operating margin | | 35.5% - 36.5% |
+Non-GAAP EPS | | $1.32 - $1.34 |
+
+Cisco estimates that GAAP EPS will be $1.08 to $1.10 for the first quarter of fiscal 2027.
+Cisco expects to achieve the following results for fiscal 2027:
+| | | | | | | | |
+FY 2027 | | |
+Revenue | | $72.2 billion - $73.4 billion |
+Non-GAAP EPS | | $5.05 - $5.11 |
+
+Cisco estimates that GAAP EPS will be $4.00 to $4.06 for fiscal 2027.
+Our Q1 FY 2027 guidance assumes an effective tax provision rate of approximately 15% for GAAP and approximately 18.5% for non-GAAP results. Our FY 2027 guidance assumes an effective tax provision rate of approximately 14.5% for GAAP and approximately 18.5% for non-GAAP results.
+A reconciliation between the guidance on a GAAP and non-GAAP basis is provided in the tables entitled "GAAP to non-GAAP Guidance" located in the section entitled "Reconciliations of GAAP to non-GAAP Measures."
+
+
+
+Editor's Notes:
+• Q4 fiscal year 2026 conference call to discuss Cisco's results along with its guidance will be held on Wednesday, August 12, 2026 at 1:30 p.m. Pacific Time. Conference call number is 1-888-848-6507 (United States) or 1-212-519-0847 (international).
+• Conference call replay will be available from 4:00 p.m. Pacific Time, August 12, 2026 to 10:00 p.m. Pacific Time, August 18, 2026 at 1-800-839-2232 (United States) or 1-203-369-3662 (international). The replay will also be available via webcast on the Cisco Investor Relations website at https://investor.cisco.com.
+• Additional information regarding Cisco's financials, as well as a webcast of the conference call with visuals designed to guide participants through the call, will be available at 1:30 p.m. Pacific Time, August 12, 2026. The conference call will also be livestreamed on YouTube at https://www.youtube.com/live/yYJFmYwIPeM, LinkedIn at https://www.linkedin.com/events/7490076339694387200 & X at https://x.com/i/broadcasts/1AxRnnDawDgxl. Text of the conference call's prepared remarks will be available within 24 hours of completion of the call. The webcast and livestreaming will include both the prepared remarks and the question-and-answer session. This information, along with the GAAP to non-GAAP reconciliation information, will be available on the Cisco Investor Relations website at https://investor.cisco.com.
+4
+
+
+
+
+
+
+CISCO SYSTEMS, INC.
+CONSOLIDATED STATEMENTS OF OPERATIONS
+(In millions, except per-share amounts)
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Fiscal Year Ended |
+| July 25,
+2026 | | July 26,
+2025 | | July 25,
+2026 | | July 26,
+2025 |
+REVENUE: | | | | | | | |
+Product | $ | 13,459 | | | $ | 10,886 | | | $ | 48,295 | | | $ | 41,608 | |
+Services | 3,793 | | | 3,787 | | | 15,030 | | | 15,046 | |
+Total revenue | 17,252 | | | 14,673 | | | 63,325 | | | 56,654 | |
+COST OF SALES: | | | | | | | |
+Product | 5,029 | | | 4,194 | | | 17,781 | | | 15,121 | |
+Services | 1,160 | | | 1,199 | | | 4,684 | | | 4,743 | |
+Total cost of sales | 6,189 | | | 5,393 | | | 22,465 | | | 19,864 | |
+GROSS MARGIN | 11,063 | | | 9,280 | | | 40,860 | | | 36,790 | |
+OPERATING EXPENSES: | | | | | | | |
+Research and development | 2,431 | | | 2,380 | | | 9,563 | | | 9,300 | |
+Sales and marketing | 2,952 | | | 2,818 | | | 11,559 | | | 10,966 | |
+General and administrative | 679 | | | 706 | | | 2,761 | | | 2,992 | |
+Amortization of purchased intangible assets | 226 | | | 254 | | | 916 | | | 1,028 | |
+Restructuring and other charges | 511 | | | 35 | | | 693 | | | 744 | |
+Total operating expenses | 6,799 | | | 6,193 | | | 25,492 | | | 25,030 | |
+OPERATING INCOME | 4,264 | | | 3,087 | | | 15,368 | | | 11,760 | |
+Interest income | 220 | | | 227 | | | 866 | | | 1,001 | |
+Interest expense | (373) | | | (368) | | | (1,470) | | | (1,593) | |
+Other income (loss), net | 822 | | | 53 | | | 1,245 | | | (68) | |
+Interest and other income (loss), net | 669 | | | (88) | | | 641 | | | (660) | |
+INCOME BEFORE PROVISION FOR INCOME TAXES | 4,933 | | | 2,999 | | | 16,009 | | | 11,100 | |
+Provision for income taxes | 1,074 | | | 449 | | | 2,742 | | | 920 | |
+NET INCOME | $ | 3,859 | | | $ | 2,550 | | | $ | 13,267 | | | $ | 10,180 | |
+| | | | | | | |
+Net income per share: | | | | | | | |
+Basic | $ | 0.98 | | | $ | 0.64 | | | $ | 3.36 | | | $ | 2.56 | |
+Diluted | $ | 0.97 | | | $ | 0.64 | | | $ | 3.33 | | | $ | 2.55 | |
+Shares used in per-share calculation: | | | | | | | |
+Basic | 3,949 | | | 3,960 | | | 3,953 | | | 3,976 | |
+Diluted | 3,984 | | | 3,992 | | | 3,987 | | | 3,998 | |
+
+
+
+
+
+
+
+
+
+
+
+5
+
+
+
+
+
+
+CISCO SYSTEMS, INC.
+REVENUE BY SEGMENT
+(In millions, except percentages)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | July 25, 2026 |
+| | Three Months Ended | | Fiscal Year Ended |
+| | Amount | | Y/Y% | | Amount | | Y/Y% |
+Revenue :
+| | | | | | | | |
+Americas | | $ | 10,396 | | | 18% | | $ | 37,799 | | | 12% |
+EMEA | | 4,350 | | | 19% | | 16,613 | | | 12% |
+APJC | | 2,506 | | | 14% | | 8,914 | | | 9% |
+Total | | $ | 17,252 | | | 18% | | $ | 63,325 | | | 12% |
+
+Amounts may not sum and percentages may not recalculate due to rounding.
+
+
+CISCO SYSTEMS, INC.
+GROSS MARGIN PERCENTAGE BY SEGMENT
+(In percentages)
+
+
+| | | | | | | | | | | | | | |
+| | July 25, 2026 |
+| | Three Months Ended | | Fiscal Year Ended |
+Gross Margin Percentage :
+| | | | |
+Americas | | 64.5% | | 65.1% |
+EMEA | | 70.1% | | 71.2% |
+APJC | | 67.3% | | 66.6% |
+
+
+
+
+
+CISCO SYSTEMS, INC.
+REVENUE FOR GROUPS OF SIMILAR PRODUCTS AND SERVICES
+(In millions, except percentages)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | July 25, 2026 |
+| | Three Months Ended | | Fiscal Year Ended |
+| | Amount | | Y/Y % | | Amount | | Y/Y % |
+Revenue :
+| | | | | | | | |
+Networking | | $ | 9,791 | | | 28% | | $ | 34,668 | | | 22% |
+Security | | 2,226 | | | 14% | | 8,232 | | | 2% |
+Collaboration | | 1,167 | | | 12% | | 4,300 | | | 4% |
+Observability | | 275 | | | 6% | | 1,095 | | | 4% |
+Total Product | | 13,459 | | | 24% | | 48,295 | | | 16% |
+Services | | 3,793 | | | —% | | 15,030 | | | —% |
+Total | | $ | 17,252 | | | 18% | | $ | 63,325 | | | 12% |
+
+Amounts may not sum and percentages may not recalculate due to rounding.
+
+
+6
+
+
+
+
+
+
+CISCO SYSTEMS, INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(In millions)
+(Unaudited)
+
+
+| | | | | | | | | | | |
+| July 25,
+2026 | | July 26,
+2025 |
+ASSETS | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 7,218 | | | $ | 8,346 | |
+Investments | 8,700 | | | 7,764 | |
+Accounts receivable, net of allowance
+of $78 at July 25, 2026 and $69 at July 26, 2025
+| 7,470 | | | 6,701 | |
+Inventories | 5,694 | | | 3,164 | |
+Financing receivables, net | 3,392 | | | 3,061 | |
+Other current assets | 6,191 | | | 5,950 | |
+Total current assets | 38,665 | | | 34,986 | |
+Property and equipment, net | 2,760 | | | 2,113 | |
+Financing receivables, net | 4,940 | | | 3,466 | |
+Goodwill | 59,477 | | | 59,136 | |
+Purchased intangible assets, net | 7,557 | | | 9,175 | |
+Deferred tax assets | 7,109 | | | 7,356 | |
+Other assets | 9,129 | | | 6,059 | |
+TOTAL ASSETS | $ | 129,637 | | | $ | 122,291 | |
+LIABILITIES AND EQUITY | | | |
+Current liabilities: | | | |
+Short-term debt | $ | 10,161 | | | $ | 5,232 | |
+Accounts payable | 3,366 | | | 2,528 | |
+Income taxes payable | 190 | | | 1,857 | |
+Accrued compensation | 4,057 | | | 3,611 | |
+Deferred revenue | 16,988 | | | 16,416 | |
+Other current liabilities | 6,763 | | | 5,420 | |
+Total current liabilities | 41,525 | | | 35,064 | |
+Long-term debt | 19,372 | | | 22,861 | |
+Income taxes payable | 2,339 | | | 2,165 | |
+Deferred revenue | 12,793 | | | 12,363 | |
+Other long-term liabilities | 3,323 | | | 2,995 | |
+Total liabilities | 79,352 | | | 75,448 | |
+Total equity | 50,285 | | | 46,843 | |
+TOTAL LIABILITIES AND EQUITY | $ | 129,637 | | | $ | 122,291 | |
+
+
+
+
+
+
+
+
+
+7
+
+
+
+
+
+
+CISCO SYSTEMS, INC.
+CONSOLIDATED STATEMENTS OF CASH FLOWS
+(In millions)
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Fiscal Year Ended |
+| July 25,
+2026 | | July 26,
+2025 | | July 25,
+2026 | | July 26,
+2025 |
+Cash flows from operating activities: | | | | | | | |
+Net income | $ | 3,859 | | | $ | 2,550 | | | $ | 13,267 | | | $ | 10,180 | |
+Adjustments to reconcile net income to net cash provided by operating activities: | | | | | | | |
+Depreciation, amortization, and other | 638 | | | 635 | | | 2,540 | | | 2,811 | |
+Share-based compensation expense | 927 | | | 948 | | | 3,830 | | | 3,641 | |
+Provision for receivables | 12 | | | 7 | | | 23 | | | 24 | |
+Deferred income taxes | 443 | | | (341) | | | 226 | | | (1,133) | |
+(Gains) losses on divestitures, investments and other, net | (858) | | | (90) | | | (1,358) | | | (38) | |
+Change in operating assets and liabilities, net of effects of acquisitions and divestitures: | | | | | | | |
+Accounts receivable | (1,019) | | | (1,428) | | | (832) | | | (22) | |
+Inventories | (992) | | | (332) | | | (2,541) | | | 209 | |
+Financing receivables | (1,801) | | | (291) | | | (1,835) | | | 214 | |
+Other assets | (430) | | | 17 | | | (1,032) | | | (499) | |
+Accounts payable | 398 | | | 267 | | | 842 | | | 257 | |
+Income taxes, net | 38 | | | 163 | | | (2,304) | | | (1,839) | |
+Accrued compensation | 789 | | | 378 | | | 457 | | | (53) | |
+Deferred revenue | 1,266 | | | 772 | | | 1,125 | | | 248 | |
+Other liabilities | 2,116 | | | 979 | | | 1,769 | | | 193 | |
+Net cash provided by operating activities | 5,386 | | | 4,234 | | | 14,177 | | | 14,193 | |
+Cash flows from investing activities: | | | | | | | |
+Purchases of investments | (1,607) | | | (1,523) | | | (8,974) | | | (4,589) | |
+Proceeds from sales of investments | 129 | | | 415 | | | 2,013 | | | 2,643 | |
+Proceeds from maturities of investments | 2,294 | | | 958 | | | 6,105 | | | 4,943 | |
+Acquisitions, net of cash and cash equivalents acquired and divestitures | (470) | | | — | | | (516) | | | (291) | |
+Purchases of non-marketable equity securities | (247) | | | (118) | | | (946) | | | (383) | |
+Return of investments in non-marketable equity securities | 47 | | | 198 | | | 270 | | | 306 | |
+Acquisition of property and equipment | (390) | | | (217) | | | (1,410) | | | (905) | |
+Other | (20) | | | 14 | | | (26) | | | 9 | |
+Net cash provided by (used in) investing activities | (264) | | | (273) | | | (3,484) | | | 1,733 | |
+Cash flows from financing activities: | | | | | | | |
+Issuances of common stock | 451 | | | 416 | | | 805 | | | 736 | |
+Repurchases of common stock - repurchase program | (1,501) | | | (1,252) | | | (6,106) | | | (6,000) | |
+Shares repurchased for tax withholdings on vesting of restricted stock units | (511) | | | (312) | | | (1,873) | | | (1,222) | |
+Short-term borrowings, original maturities of 90 days or less, net | 204 | | | 448 | | | 616 | | | (31) | |
+Issuances of debt | 2,408 | | | 1,904 | | | 13,048 | | | 19,292 | |
+Repayments of debt | (4,397) | | | (3,528) | | | (12,251) | | | (22,073) | |
+Dividends paid | (1,659) | | | (1,625) | | | (6,553) | | | (6,437) | |
+Other | (1) | | | — | | | (33) | | | (80) | |
+Net cash used in financing activities | (5,006) | | | (3,949) | | | (12,347) | | | (15,815) | |
+Effect of foreign currency exchange rate changes on cash, cash equivalents, restricted cash and restricted cash equivalents | 28 | | | (20) | | | (29) | | | (43) | |
+Net increase (decrease) in cash, cash equivalents, restricted cash and restricted cash equivalents | 144 | | | (8) | | | (1,683) | | | 68 | |
+Cash, cash equivalents, restricted cash and restricted cash equivalents, beginning of period | 7,083 | | | 8,918 | | | 8,910 | | | 8,842 | |
+Cash, cash equivalents, restricted cash and restricted cash equivalents, end of period | $ | 7,227 | | | $ | 8,910 | | | $ | 7,227 | | | $ | 8,910 | |
+Supplemental cash flow information: | | | | | | | |
+Cash paid for interest | $ | 116 | | | $ | 130 | | | $ | 1,421 | | | $ | 1,500 | |
+Cash paid for income taxes, net | $ | 593 | | | $ | 627 | | | $ | 4,821 | | | $ | 3,892 | |
+
+8
+
+
+
+
+
+
+
+
+CISCO SYSTEMS, INC.
+REMAINING PERFORMANCE OBLIGATIONS
+(In millions, except percentages)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| July 25, 2026 | | April 25, 2026 | | July 26, 2025 |
+| Amount | | Y/Y % | | Amount | | Y/Y % | | Amount | | Y/Y % |
+Product | $ | 23,436 | | | 9 | % | | $ | 22,058 | | | 6 | % | | $ | 21,572 | | | 8 | % |
+Services | 23,298 | | | 6 | % | | 21,404 | | | 2 | % | | 21,961 | | | 5 | % |
+Total | $ | 46,734 | | | 7 | % | | $ | 43,462 | | | 4 | % | | $ | 43,533 | | | 6 | % |
+
+
+
+
+
+CISCO SYSTEMS, INC.
+DEFERRED REVENUE
+(In millions)
+| | | | | | | | | | | | | | | | | |
+| July 25,
+2026 | | April 25,
+2026 | | July 26,
+2025 |
+Deferred revenue: | | | | | |
+Product | $ | 13,817 | | | $ | 13,461 | | | $ | 13,490 | |
+Services | 15,964 | | | 15,138 | | | 15,289 | |
+Total | $ | 29,781 | | | $ | 28,599 | | | $ | 28,779 | |
+Reported as: | | | | | |
+Current | $ | 16,988 | | | $ | 16,446 | | | $ | 16,416 | |
+Noncurrent | 12,793 | | | 12,153 | | | 12,363 | |
+Total | $ | 29,781 | | | $ | 28,599 | | | $ | 28,779 | |
+
+
+
+CISCO SYSTEMS, INC.
+DIVIDENDS PAID AND REPURCHASES OF COMMON STOCK
+(In millions, except per-share amounts)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | DIVIDENDS | | STOCK REPURCHASE PROGRAM | | TOTAL |
+Quarter Ended | | Per Share | | Amount | | Shares | | Weighted-Average Price per Share | | Amount | | Amount |
+Fiscal 2026 | | | | | | | | | | | | |
+July 25, 2026 | | $ | 0.42 | | | $ | 1,659 | | | 13 | | | $ | 111.53 | | | $ | 1,502 | | | $ | 3,161 | |
+April 25, 2026 | | $ | 0.42 | | | $ | 1,660 | | | 16 | | | $ | 80.28 | | | $ | 1,252 | | | $ | 2,912 | |
+January 24, 2026 | | $ | 0.41 | | | $ | 1,617 | | | 18 | | | $ | 76.29 | | | $ | 1,351 | | | $ | 2,968 | |
+October 25, 2025 | | $ | 0.41 | | | $ | 1,617 | | | 29 | | | $ | 68.28 | | | $ | 2,001 | | | $ | 3,618 | |
+| | | | | | | | | | | | |
+Fiscal 2025 | | | | | | | | | | | | |
+July 26, 2025 | | $ | 0.41 | | | $ | 1,625 | | | 19 | | | $ | 64.65 | | | $ | 1,252 | | | $ | 2,877 | |
+April 26, 2025 | | $ | 0.41 | | | $ | 1,627 | | | 25 | | | $ | 59.78 | | | $ | 1,504 | | | $ | 3,131 | |
+January 25, 2025 | | $ | 0.40 | | | $ | 1,593 | | | 21 | | | $ | 58.58 | | | $ | 1,236 | | | $ | 2,829 | |
+October 26, 2024 | | $ | 0.40 | | | $ | 1,592 | | | 40 | | | $ | 49.56 | | | $ | 2,003 | | | $ | 3,595 | |
+
+
+
+
+
+
+
+
+
+9
+
+
+
+
+
+
+CISCO SYSTEMS, INC.
+RECONCILIATIONS OF GAAP TO NON-GAAP MEASURES
+
+
+GAAP TO NON-GAAP NET INCOME
+(In millions)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Fiscal Year Ended |
+| July 25,
+2026 | | July 26,
+2025 | | July 25,
+2026 | | July 26,
+2025 |
+GAAP net income | $ | 3,859 | | | $ | 2,550 | | | $ | 13,267 | | | $ | 10,180 | |
+Adjustments to cost of sales: | | | | | | | |
+Share-based compensation expense | 138 | | | 150 | | | 589 | | | 584 | |
+Amortization of acquisition-related intangible assets | 236 | | | 233 | | | 918 | | | 1,150 | |
+Acquisition/divestiture-related costs | 4 | | | 13 | | | 25 | | | 66 | |
+Legal and indemnification settlements/charges | — | | | 355 | | | — | | | 355 | |
+Supplier component remediation charge (adjustment) | — | | | — | | | — | | | (7) | |
+Total adjustments to GAAP cost of sales | 378 | | | 751 | | | 1,532 | | | 2,148 | |
+Adjustments to operating expenses: | | | | | | | |
+Share-based compensation expense | 751 | | | 797 | | | 3,181 | | | 3,019 | |
+Amortization of acquisition-related intangible assets | 226 | | | 255 | | | 916 | | | 1,029 | |
+Acquisition/divestiture-related costs | 68 | | | 104 | | | 350 | | | 791 | |
+Significant asset impairments and restructurings | 511 | | | 35 | | | 693 | | | 744 | |
+Total adjustments to GAAP operating expenses | 1,556 | | | 1,191 | | | 5,140 | | | 5,583 | |
+Adjustments to interest and other income (loss), net: | | | | | | | |
+(Gains) and losses on investments | (869) | | | (115) | | | (1,398) | | | (187) | |
+Total adjustments to GAAP interest and other income (loss), net | (869) | | | (115) | | | (1,398) | | | (187) | |
+Total adjustments to GAAP income before provision for income taxes | 1,065 | | | 1,827 | | | 5,274 | | | 7,544 | |
+Income tax effect of non-GAAP adjustments | (386) | | | (426) | | | (1,490) | | | (1,682) | |
+Significant tax matters | 330 | | | — | | | 198 | | | (829) | |
+Total adjustments to GAAP provision for income taxes | (56) | | | (426) | | | (1,292) | | | (2,511) | |
+Non-GAAP net income | $ | 4,868 | | | $ | 3,951 | | | $ | 17,249 | | | $ | 15,213 | |
+
+
+
+10
+
+
+
+
+
+CISCO SYSTEMS, INC.
+RECONCILIATIONS OF GAAP TO NON-GAAP MEASURES
+
+
+GAAP TO NON-GAAP EPS
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Fiscal Year Ended |
+| July 25,
+2026 | | July 26,
+2025 | | July 25,
+2026 | | July 26,
+2025 |
+GAAP EPS | $ | 0.97 | | | $ | 0.64 | | | $ | 3.33 | | | $ | 2.55 | |
+Adjustments to GAAP: | | | | | | | |
+Share-based compensation expense | 0.22 | | | 0.24 | | | 0.95 | | | 0.90 | |
+Amortization of acquisition-related intangible assets | 0.12 | | | 0.12 | | | 0.46 | | | 0.55 | |
+Acquisition/divestiture-related costs | 0.02 | | | 0.03 | | | 0.09 | | | 0.21 | |
+Legal and indemnification settlements/charges | — | | | 0.09 | | | — | | | 0.09 | |
+Significant asset impairments and restructurings | 0.13 | | | 0.01 | | | 0.17 | | | 0.19 | |
+(Gains) and losses on investments | (0.22) | | | (0.03) | | | (0.35) | | | (0.05) | |
+Income tax effect of non-GAAP adjustments | (0.10) | | | (0.11) | | | (0.37) | | | (0.42) | |
+Significant tax matters | 0.08 | | | — | | | 0.05 | | | (0.21) | |
+Non-GAAP EPS | $ | 1.22 | | | $ | 0.99 | | | $ | 4.33 | | | $ | 3.81 | |
+
+Amounts may not sum due to rounding .
+
+
+
+
+
+
+
+
+
+
+11
+
+
+
+
+
+CISCO SYSTEMS, INC.
+RECONCILIATIONS OF GAAP TO NON-GAAP MEASURES
+
+
+GROSS MARGINS, OPERATING EXPENSES, OPERATING MARGINS, INTEREST AND OTHER INCOME (LOSS), NET, AND NET INCOME
+(In millions, except percentages)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended |
+| July 25, 2026 |
+| Product Gross Margin | | Services Gross Margin | | Total Gross Margin | | Operating Expenses | | Y/Y | | Operating Income | | Y/Y | | Interest and other income (loss), net | | Net Income | | Y/Y |
+GAAP amount | $ | 8,430 | | | $ | 2,633 | | | $ | 11,063 | | | $ | 6,799 | | | 10% | | $ | 4,264 | | | 38% | | $ | 669 | | | $ | 3,859 | | | 51% |
+% of revenue | 62.6 | % | | 69.4 | % | | 64.1 | % | | 39.4 | % | | | | 24.7 | % | | | | 3.9 | % | | 22.4 | % | | |
+Adjustments to GAAP amounts: | | | | | | | | | | | | | | | | | | | |
+Share-based compensation expense | 59 | | | 79 | | | 138 | | | 751 | | | | | 889 | | | | | — | | | 889 | | | |
+Amortization of acquisition-related intangible assets | 236 | | | — | | | 236 | | | 226 | | | | | 462 | | | | | — | | | 462 | | | |
+Acquisition/divestiture-related costs | 1 | | | 3 | | | 4 | | | 68 | | | | | 72 | | | | | — | | | 72 | | | |
+Significant asset impairments and restructurings | — | | | — | | | — | | | 511 | | | | | 511 | | | | | — | | | 511 | | | |
+(Gains) and losses on investments | — | | | — | | | — | | | — | | | | | — | | | | | (869) | | | (869) | | | |
+Income tax effect/significant tax matters | — | | | — | | | — | | | — | | | | | — | | | | | — | | | (56) | | | |
+Non-GAAP amount | $ | 8,726 | | | $ | 2,715 | | | $ | 11,441 | | | $ | 5,243 | | | 5% | | $ | 6,198 | | | 23% | | $ | (200) | | | $ | 4,868 | | | 23% |
+% of revenue | 64.8 | % | | 71.6 | % | | 66.3 | % | | 30.4 | % | | | | 35.9 | % | | | | (1.2) | % | | 28.2 | % | | |
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended |
+| July 26, 2025 |
+| Product Gross Margin | | Services Gross Margin | | Total Gross Margin | | Operating Expenses | | Operating
+Income | | Interest and other income (loss), net | | Net
+Income |
+GAAP amount | $ | 6,692 | | | $ | 2,588 | | | $ | 9,280 | | | $ | 6,193 | | | $ | 3,087 | | | $ | (88) | | | $ | 2,550 | |
+% of revenue | 61.5 | % | | 68.3 | % | | 63.2 | % | | 42.2 | % | | 21.0 | % | | (0.6) | % | | 17.4 | % |
+Adjustments to GAAP amounts: | | | | | | | | | | | | | |
+Share-based compensation expense | 66 | | | 84 | | | 150 | | | 797 | | | 947 | | | — | | | 947 | |
+Amortization of acquisition-related intangible assets | 233 | | | — | | | 233 | | | 255 | | | 488 | | | — | | | 488 | |
+Acquisition/divestiture-related costs | 2 | | | 11 | | | 13 | | | 104 | | | 117 | | | — | | | 117 | |
+Legal and indemnification settlements/charges | 355 | | | — | | | 355 | | | — | | | 355 | | | — | | | 355 | |
+Significant asset impairments and restructurings | — | | | — | | | — | | | 35 | | | 35 | | | — | | | 35 | |
+(Gains) and losses on investments | — | | | — | | | — | | | — | | | — | | | (115) | | | (115) | |
+Income tax effect/significant tax matters | — | | | — | | | — | | | — | | | — | | | — | | | (426) | |
+Non-GAAP amount | $ | 7,348 | | | $ | 2,683 | | | $ | 10,031 | | | $ | 5,002 | | | $ | 5,029 | | | $ | (203) | | | $ | 3,951 | |
+% of revenue | 67.5 | % | | 70.8 | % | | 68.4 | % | | 34.1 | % | | 34.3 | % | | (1.4) | % | | 26.9 | % |
+
+Amounts may not sum and percentages may not recalculate due to rounding.
+12
+
+
+
+
+
+CISCO SYSTEMS, INC.
+RECONCILIATIONS OF GAAP TO NON-GAAP MEASURES
+
+
+GROSS MARGINS, OPERATING EXPENSES, OPERATING MARGINS, INTEREST AND OTHER INCOME (LOSS), NET, AND NET INCOME
+(In millions, except percentages)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Fiscal Year Ended |
+| July 25, 2026 |
+| Product Gross Margin | | Services Gross Margin | | Total Gross Margin | | Operating Expenses | | Y/Y | | Operating Income | | Y/Y | | Interest and other income (loss), net | | Net Income | | Y/Y |
+GAAP amount | $ | 30,514 | | | $ | 10,346 | | | $ | 40,860 | | | $ | 25,492 | | | 2% | | $ | 15,368 | | | 31% | | $ | 641 | | | $ | 13,267 | | | 30% |
+% of revenue | 63.2 | % | | 68.8 | % | | 64.5 | % | | 40.3 | % | | | | 24.3 | % | | | | 1.0 | % | | 21.0 | % | | |
+Adjustments to GAAP amounts: | | | | | | | | | | | | | | | | | | | |
+Share-based compensation expense | 254 | | | 335 | | | 589 | | | 3,181 | | | | | 3,770 | | | | | — | | | 3,770 | | | |
+Amortization of acquisition-related intangible assets | 918 | | | — | | | 918 | | | 916 | | | | | 1,834 | | | | | — | | | 1,834 | | | |
+Acquisition/divestiture-related costs | 7 | | | 18 | | | 25 | | | 350 | | | | | 375 | | | | | — | | | 375 | | | |
+Significant asset impairments and restructurings | — | | | — | | | — | | | 693 | | | | | 693 | | | | | — | | | 693 | | | |
+(Gains) and losses on investments | — | | | — | | | — | | | — | | | | | — | | | | | (1,398) | | | (1,398) | | | |
+Income tax effect/significant tax matters | — | | | — | | | — | | | — | | | | | — | | | | | — | | | (1,292) | | | |
+Non-GAAP amount | $ | 31,693 | | | $ | 10,699 | | | $ | 42,392 | | | $ | 20,352 | | | 5% | | $ | 22,040 | | | 13% | | $ | (757) | | | $ | 17,249 | | | 13% |
+% of revenue | 65.6 | % | | 71.2 | % | | 66.9 | % | | 32.1 | % | | | | 34.8 | % | | | | (1.2) | % | | 27.2 | % | | |
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Fiscal Year Ended |
+| July 26, 2025 |
+| Product Gross Margin | | Services Gross Margin | | Total Gross Margin | | Operating Expenses | | Operating
+Income | | Interest and other income (loss), net | | Net
+Income |
+GAAP amount | $ | 26,487 | | | $ | 10,303 | | | $ | 36,790 | | | $ | 25,030 | | | $ | 11,760 | | | $ | (660) | | | $ | 10,180 | |
+% of revenue | 63.7 | % | | 68.5 | % | | 64.9 | % | | 44.2 | % | | 20.8 | % | | (1.2) | % | | 18.0 | % |
+Adjustments to GAAP amounts: | | | | | | | | | | | | | |
+Share-based compensation expense | 255 | | | 329 | | | 584 | | | 3,019 | | | 3,603 | | | — | | | 3,603 | |
+Amortization of acquisition-related intangible assets | 1,150 | | | — | | | 1,150 | | | 1,029 | | | 2,179 | | | — | | | 2,179 | |
+Acquisition/divestiture-related costs | 14 | | | 52 | | | 66 | | | 791 | | | 857 | | | — | | | 857 | |
+Legal and indemnification settlements/charges | 355 | | | — | | | 355 | | | — | | | 355 | | | — | | | 355 | |
+Supplier component remediation charge (adjustment) | (7) | | | — | | | (7) | | | — | | | (7) | | | — | | | (7) | |
+Significant asset impairments and restructurings | — | | | — | | | — | | | 744 | | | 744 | | | — | | | 744 | |
+(Gains) and losses on investments | — | | | — | | | — | | | — | | | — | | | (187) | | | (187) | |
+Income tax effect/significant tax matters | — | | | — | | | — | | | — | | | — | | | — | | | (2,511) | |
+Non-GAAP amount | $ | 28,254 | | | $ | 10,684 | | | $ | 38,938 | | | $ | 19,447 | | | $ | 19,491 | | | $ | (847) | | | $ | 15,213 | |
+% of revenue | 67.9 | % | | 71.0 | % | | 68.7 | % | | 34.3 | % | | 34.4 | % | | (1.5) | % | | 26.9 | % |
+
+Amounts may not sum and percentages may not recalculate due to rounding.
+13
+
+
+
+
+
+CISCO SYSTEMS, INC.
+RECONCILIATIONS OF GAAP TO NON-GAAP MEASURES
+
+
+EFFECTIVE TAX RATE
+(In percentages)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Fiscal Year Ended |
+| July 25, 2026 | | July 26, 2025 | | July 25, 2026 | | July 26, 2025 |
+GAAP effective tax rate | 21.8 | % | | 15.0 | % | | 17.1 | % | | 8.3 | % |
+Total adjustments to GAAP provision for income taxes | (3.0) | % | | 3.1 | % | | 1.9 | % | | 10.1 | % |
+Non-GAAP effective tax rate | 18.8 | % | | 18.1 | % | | 19.0 | % | | 18.4 | % |
+
+
+
+
+
+
+
+
+
+
+
+
+GAAP TO NON-GAAP GUIDANCE
+| | | | | | | | | | | | | | | | | | | | |
+Q1 FY 2027 | | Gross Margin | | Operating Margin | | Earnings per Share (1)
+|
+GAAP | | 63% - 64% | | 28% - 29% | | $1.08 - $1.10 |
+Estimated adjustments for: | | | | | | |
+Share-based compensation expense | | 1.0% | | 4.5% | | $0.14 |
+Amortization of acquisition-related intangible assets and acquisition/divestiture-related costs | | 1.0% | | 2.5% | | $0.09 |
+Significant asset impairments and restructurings (2)
+| | — | | 0.5% | | $0.01 |
+Non-GAAP | | 65% - 66% | | 35.5% - 36.5% | | $1.32 - $1.34 |
+| | | | | | |
+
+| | | | | | | | |
+FY 2027 | | Earnings per Share (1)
+|
+GAAP | | $4.00 - $4.06 |
+Estimated adjustments for: | | |
+Share-based compensation expense | | $0.60 |
+Amortization of acquisition-related intangible assets and acquisition/divestiture-related costs | | $0.34 |
+Significant asset impairments and restructurings (2)
+| | $0.11 |
+Non-GAAP | | $5.05 - $5.11 |
+| | |
+
+(1) Estimated adjustments to GAAP earnings per share are shown after income tax effects.
+(2) Reflects charges related to a restructuring plan announced on May 13, 2026. We expect this plan to be substantially completed by the end of fiscal 2027.
+Except as noted above, this guidance does not include the effects of any future acquisitions/divestitures, significant asset impairments and restructurings, significant litigation settlements and other contingencies, gains and losses on investments, significant tax matters, or other items, which may or may not be significant.
+14
+
+
+
+
+
+
+Forward Looking Statements, Non-GAAP Information and Additional Information
+This release may be deemed to contain forward-looking statements, which are subject to the safe harbor provisions of the Private Securities Litigation Reform Act of 1995. These forward-looking statements include, among other things, statements regarding future events (such as being well positioned to support our customers however or wherever they decide to deploy AI, the significant momentum and raised expectations of AI infrastructure from hyperscalers, the broad-based high demand for Cisco technology, and the significant growth opportunities ahead) and the future financial performance of Cisco (including the guidance for Q1 FY 2027 and full year FY 2027) that involve risks and uncertainties, such as the actual impact of tariffs on our guidance for Q1 FY 2027 and full year FY 2027. Readers are cautioned that these forward-looking statements are only predictions and may differ materially from actual future events or results due to a variety of factors, including: business and economic conditions and growth trends in the networking industry, our customer markets and various geographic regions; global economic conditions and uncertainties in the geopolitical environment; our development and use of artificial intelligence; overall information technology spending; the growth and evolution of the Internet and levels of capital spending on Internet-based systems; variations in customer demand for products and services, including sales to the service provider market, cloud, enterprise and other customer markets; the return on our investments in certain key priority areas, and in certain geographical locations, as well as maintaining leadership in Networking and services; the timing of orders and manufacturing and customer lead times; supply constraints; changes in customer order patterns or customer mix; insufficient, excess or obsolete inventory; variability of component costs; variations in sales channels, product costs or mix of products sold; our ability to successfully acquire businesses and technologies and to successfully integrate and operate these acquired businesses and technologies; our ability to achieve expected benefits of our partnerships; increased competition in our product and services markets, including the data center market; dependence on the introduction and market acceptance of new product offerings and standards; rapid technological and market change; manufacturing and sourcing risks; product defects and returns; litigation involving patents, other intellectual property, antitrust, stockholder and other matters, and governmental investigations; our ability to achieve the benefits of restructurings and possible changes in the size and timing of related charges; cyber attacks, data breaches or other incidents; vulnerabilities and critical security defects; our ability to protect personal data; evolving regulatory uncertainty; terrorism; natural catastrophic events (including as a result of global climate change); any pandemic or epidemic; our ability to achieve the benefits anticipated from our investments in sales, engineering, service, marketing and manufacturing activities; our ability to recruit and retain key personnel; our ability to manage financial risk, and to manage expenses during economic downturns; risks related to the global nature of our operations, including our operations in emerging markets; currency fluctuations and other international factors; changes in provision for income taxes, including changes in tax laws and regulations or adverse outcomes resulting from examinations of our income tax returns; potential volatility in results of operations; and other factors listed in Cisco's most recent reports on Forms 10-Q and 10-K filed on May 19, 2026 and September 3, 2025, respectively. The financial information contained in this release should be read in conjunction with the consolidated financial statements and notes thereto included in Cisco's most recent reports on Forms 10-Q and 10-K as each may be amended from time to time. Cisco's results of operations for the three months and the year ended July 25, 2026 are not necessarily indicative of Cisco's results of operations for any future periods. Any projections in this release are based on limited information currently available to Cisco, which is subject to change. Although any such projections and the factors influencing them will likely change, Cisco will not necessarily update the information, since Cisco will only provide guidance at certain points during the year. Such information speaks only as of the date of this release.
+This release includes non-GAAP net income, non-GAAP gross margins, non-GAAP operating expenses, non-GAAP operating income and margin, non-GAAP effective tax rates, non-GAAP interest and other income (loss), net, and non-GAAP net income per share data for the periods presented. It also includes future estimated ranges for gross margin, operating margin, tax provision rate and EPS on a non-GAAP basis.
+These non-GAAP measures are not in accordance with, or an alternative for, measures prepared in accordance with generally accepted accounting principles (GAAP) and may be different from non-GAAP measures used by other companies. In addition, these non-GAAP measures are not based on any comprehensive set of accounting rules or principles. Cisco believes that non-GAAP measures have limitations in that they do not reflect all of the amounts associated with Cisco's results of operations as determined in accordance with GAAP and that these measures should only be used to evaluate Cisco's results of operations in conjunction with the corresponding GAAP measures.
+Cisco believes that the presentation of non-GAAP measures when shown in conjunction with the corresponding GAAP measures, provides useful information to investors and management regarding financial and business trends relating to its financial condition and its historical and projected results of operations.
+For its internal budgeting process, Cisco's management uses financial statements that do not include, when applicable, share-based compensation expense, amortization of acquisition-related intangible assets, acquisition/divestiture-related costs, significant asset impairments and restructurings, significant litigation settlements and other contingencies, gains and losses on investments, the income tax effects of the foregoing and significant tax matters. Cisco's management also uses the foregoing non-GAAP measures, in addition to the corresponding GAAP measures, in reviewing the financial results of Cisco. In prior periods, Cisco has excluded other items that it no longer excludes for purposes of its non-GAAP financial measures. From time to time in the future
+15
+
+
+
+
+
+there may be other items that Cisco may exclude for purposes of its internal budgeting process and in reviewing its financial results. For additional information on the items excluded by Cisco from one or more of its non-GAAP financial measures, refer to the Form 8-K regarding this release furnished today to the Securities and Exchange Commission.
+About Cisco
+Cisco (NASDAQ: CSCO) is the worldwide technology leader that is revolutionizing the way organizations connect and protect in the AI era. For more than 40 years, Cisco has securely connected the world. With its industry leading AI-powered solutions and services, Cisco enables its customers, partners and communities to unlock innovation, enhance productivity and strengthen digital resilience. With purpose at its core, Cisco remains committed to creating a more connected and inclusive future for all. Discover more on The Newsroom and follow us on X at @Cisco.
+Copyright © 2026 Cisco and/or its affiliates. All rights reserved. Cisco and the Cisco logo are trademarks or registered trademarks of Cisco and/or its affiliates in the U.S. and other countries. To view a list of Cisco trademarks, go to: www.cisco.com/go/trademarks. Third-party trademarks mentioned in this document are the property of their respective owners. The use of the word partner does not imply a partnership relationship between Cisco and any other company. This document is Cisco Public Information.
+RSS Feed for Cisco: https://newsroom.cisco.com/rss-feeds
+
+
+16\n
