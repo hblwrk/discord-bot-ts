@@ -146,6 +146,11 @@ export function getQuarterLabel(text: string): string | undefined {
     return namedPeriodEndedQuarter;
   }
 
+  const quarterAndFullYearHighlightsLabel = getQuarterAndFullYearHighlightsLabel(text);
+  if (undefined !== quarterAndFullYearHighlightsLabel) {
+    return quarterAndFullYearHighlightsLabel;
+  }
+
   // The period the statements cover is stated as the period they ended, and it outranks a
   // written quarter elsewhere in the document: a release for the quarter ended June 30 also
   // says "For the third quarter of 2026, we expect", and that guidance period must not
@@ -170,6 +175,22 @@ export function getQuarterLabel(text: string): string | undefined {
   }
 
   return undefined;
+}
+
+// A fiscal Q4 release can put the quarter number in its title and the year only in the
+// following period heading: "Fourth Quarter and Full-Year Results" followed by
+// "Highlights - Three Months Ended June 30, 2026". The calendar month cannot identify a
+// fiscal quarter, so join those two nearby declarations instead of mapping June to Q2.
+function getQuarterAndFullYearHighlightsLabel(text: string): string | undefined {
+  const quarterAndYearMatch = text.match(
+    /\b(first|second|third|fourth)[\s–—-]+quarter\s+and\s+full[\s–—-]+year\s+results\b[\s\S]{0,500}?\b(?:highlights?\s*[-:]\s*)?(?:three\s+months|fiscal\s+year)\s+ended\s+[A-Z][a-z]+\s+\d{1,2},\s+(20\d{2})\b/i,
+  );
+  if (undefined === quarterAndYearMatch?.[1] || undefined === quarterAndYearMatch[2]) {
+    return undefined;
+  }
+
+  const quarter = getQuarterFromName(quarterAndYearMatch[1]);
+  return quarter ? `${quarter} ${quarterAndYearMatch[2]}` : undefined;
 }
 
 function getNamedQuarterLabelFromPeriodEnded(text: string): string | undefined {

@@ -2,6 +2,50 @@ import {describe, expect, test} from "vitest";
 import {parseEarningsDocument} from "./earnings-results-format.ts";
 
 describe("earnings result metric selection", () => {
+  test("keeps fiscal-quarter highlights separate from full-year highlights", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example Reports Strong Fourth Quarter and Full-Year Results</h1>
+      <h2>Highlights - Three Months Ended June 30, 2026</h2>
+      <p>Net sales $6.4 billion.</p>
+      <p>Net income $389 million.</p>
+      <p>Diluted EPS of $0.83.</p>
+      <p>Adjusted Diluted EPS of $1.23.</p>
+      <h2>Highlights - Fiscal Year Ended June 30, 2026</h2>
+      <p>Net sales $23.5 billion.</p>
+      <p>Net income $1.1 billion.</p>
+      <p>Diluted EPS of $2.38.</p>
+      <p>Adjusted Diluted EPS of $4.02.</p>
+    `);
+
+    expect(parsedDocument.quarterLabel).toBe("Q4 2026");
+    expect(parsedDocument.metrics.map(metric => [metric.key, metric.value])).toEqual([
+      ["adjusted_eps", "$1.23"],
+      ["gaap_eps", "$0.83"],
+      ["revenue", "$6.4B"],
+      ["net_income", "$389M"],
+    ]);
+  });
+
+  test("prefers total revenue over product and service components", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example reports second quarter 2026 results</h1>
+      <p>Net product sales were $170.4 million.</p>
+      <table>
+        <tr><td>Net product sales</td><td>$170.382 million</td></tr>
+        <tr><td>Service revenue</td><td>$1.297 million</td></tr>
+        <tr><td>Total revenue</td><td>$171.679 million</td></tr>
+      </table>
+    `);
+
+    expect(parsedDocument.metrics).toEqual([
+      expect.objectContaining({
+        key: "revenue",
+        numericValue: 171_679_000,
+        value: "$171.679M",
+      }),
+    ]);
+  });
+
   test("parses mixed GAAP and footnoted adjusted EPS from an IBKR-style headline", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>

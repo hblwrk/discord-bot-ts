@@ -1,0 +1,823 @@
+EX-99.1
+2
+amcor4q2026ex991-june302026.htm
+EX-99.1
+
+
+
+
+Document
+| | | | | | | | |
+| | Exhibit 99.1 |
+
+|
+
+
+Amcor Reports Strong Fourth Quarter and Full-Year Results
+Highlights - Three Months Ended June 30, 2026
+• Net sales $6.4 billion, up 26% largely driven by Berry acquisition and pass through of higher raw material costs
+• Net income $389 million vs. -$39 million prior-year
+• Adjusted EBITDA $1,045 million vs. $789 million prior-year, up 32%
+• Diluted EPS of $0.83 vs. $-0.10 prior-year
+• Adjusted Diluted EPS of $1.23 vs $1.00 prior-year, up 23%
+Highlights - Fiscal Year Ended June 30, 2026
+• Net sales $23.5 billion, up 57% largely driven by the Berry acquisition
+• Net income $1,106 million vs. $511 million prior-year
+• Adjusted EBITDA $3,673 million vs. $2,186 million prior-year, up 68%
+• Diluted EPS of $2.38 vs. $1.60 prior-year
+• Adjusted Diluted EPS $4.02 vs. $3.56 prior-year, up 13%
+Outlook - Six Months Ended December 31, 2026 ('Transition Period')
+• Adjusted Diluted EPS of $1.80 to $1.90
+Amcor CEO Peter Konieczny said, “We delivered strong operating performance in the fourth quarter despite a challenging macro environment. We drove broad-based volume growth, while effectively managing unprecedented input cost inflation. Synergy realization came in ahead of plan, while performance in our non-core businesses improved substantially.
+Looking ahead, we are encouraged by the momentum we see across the business and the greater potential for growth and continued synergy capture following the transformative acquisition of Berry. As we complete the integration and begin to realize our potential as a global leader in consumer packaging, we remain confident in delivering on our medium and long-term commitments."
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Key Financials (1)(2)(3)
+| | | | Three Months Ended June 30, | | Twelve Months Ended June 30, | |
+GAAP results | | | | | | 2025 $ million | | 2026 $ million | | 2025 $ million | | 2026 $ million | |
+Net sales | | | | | | 5,082 | | | 6,398 | | | 15,009 | | | 23,506 | | |
+Net income | | | | | | (39) | | | 389 | | | 511 | | | 1,106 | | |
+EPS (diluted, $) | | | | | | (0.10) | | | 0.83 | | | 1.60 | | 2.38 | | |
+| | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Reported ∆% | | Twelve Months Ended June 30, | | Reported ∆% | |
+Adjusted non-GAAP results | | 2025 $ million | | 2026 $ million | | | 2025 $ million | | 2026 $ million | | |
+Net sales | | 5,082 | | | 6,398 | | | 26 | | | 15,009 | | | 23,506 | | | 57 | | |
+EBITDA | | 789 | | | 1,045 | | | 32 | | | 2,186 | | | 3,673 | | | 68 | | |
+EBIT | | 611 | | | 836 | | | 37 | | | 1,723 | | | 2,813 | | | 63 | | |
+Net income | | 408 | | | 570 | | | 40 | | | 1,136 | | | 1,863 | | | 64 | | |
+EPS ($) | | 1.00 | | | 1.23 | | | 23 | | | 3.56 | | | 4.02 | | | 13 | | |
+Free Cash Flow | | 943 | | | 1,396 | | | 48 | | | 926 | | | 1,303 | | | 41 | | |
+
+All amounts referenced throughout this document are in US dollars unless otherwise indicated and numbers may not add up to the totals provided due to rounding.
+(1) Adjusted non-GAAP results exclude items not considered representative of ongoing operations. Further details on non-GAAP measures and reconciliations to GAAP measures can be found under "Presentation of non-GAAP information”.
+(2) All prior year results reflect the Amcor plc group, considered the accounting acquirer in the April 30, 2025 combination between Amcor plc and Berry Global.
+(3) All periods presented in this release have been retroactively adjusted to reflect the 1-for-5 reverse stock split effected on January 14, 2026. Further details can be found under 'Reverse Stock Split'.
+
+
+
+
+| | | | | | | | | | | |
+| | |
+|
+1
+
+
+
+
+
+
+
+
+
+Financial results
+Three months ended June 30, 2026
+Net sales of $6,398 million were 26% higher than last year on a reported basis, including approximately $962 million of acquired sales net of divestitures, which represents growth of approximately 19%. The pass through of movements in raw material costs had a favorable impact of approximately $280 million, which represents growth of approximately 6%, movements in foreign exchange rates had a favorable impact of approximately 2% and the remaining (1%) year-over-year variation reflects the net impact of volumes and price/mix.
+The Company estimates that volumes were approximately 0.5% higher than estimated combined volumes for the legacy Amcor and legacy Berry businesses in the June quarter last year, excluding non-core and divested businesses. The Company estimates that price/mix had an unfavorable impact of approximately (1%) on comparable prior year net sales, excluding non-core and divested businesses.
+Adjusted EBIT of $836 million was 37% higher than last year on a reported basis, including approximately $96 million of acquired EBIT net of divestitures, which represents growth of approximately 15%. Movements in foreign exchange rates had a favorable impact of approximately 3% and the remaining 19% year-over-year variation mainly reflects synergy benefits from the Berry acquisition of approximately $100 million and strong execution against initiatives to drive cost and productivity benefits, including in the non-core businesses .
+GAAP net interest expense was $150 million and GAAP income tax expense was $97 million. Inclusive of acquisition- related financial benefits of approximately $15 million, adjusted net interest expense was $150 million an d adjusted tax expense was $116 million representing an effective tax rate of 16.8%. Adjusted net interest expense was $36 million higher than the prior year primarily as a result of increased acquisition related net debt.
+Twelve months ended June 30, 2026
+Net sales of $23,506 million were 57% higher than last year on a reported basis, including approximately $7.9 billion of acquired sales net of divestitures, which represents growth of approximately 52%. The pass through of movements in raw material costs had a favorable impact of approximately $240 million, which represents growth of approximately 2%, movements in foreign exchange rates had a favorable impact of approximately 5% and the remaining (2%) year-over-year variation reflects the net impact of volumes and price/mix.
+Adjusted EBIT of $2,813 million was 63% higher than last year on a reported basis, including approximately $842 million of acquired EBIT net of divestitures, which represents growth of approximately 49%. Movements in foreign exchange rates had a favorable impact of approximately 4% and the remaining 10% year-over-year variation mainly reflects synergy benefits from the Berry acquisition of approximately $240 million, partly offset by lower volumes.
+GAAP net interest expense was $610 million and GAAP income tax expense was $181 million. Inclusive of acquisition-related financial benefits of approximately $45 million, adjusted net interest expense was $581 million and adjusted tax expense was $368 million representing an effective tax rate of 16.5%.
+Free cash flow was $1,303 million after funding approximately $290 million of net transaction, restructuring and integration costs. Net debt was $12,897 million at June 30, 2026.
+
+
+Dividend
+The Board declared a quarterly cash dividend of 65.0 cents per share today, compared with 63.75 cents per share, declared as 12.75 cents per share before adjusting for the 1-for-5 reverse stock split effected on January 14, 2026. The dividend will be paid in US dollars to holders of Amcor’s ordinary shares trading on the NYSE. Holders of CDIs trading on the ASX will receive an unfranked dividend of 92.0 Australian cents per share, which reflects the quarterly dividend of 65.0 cents per share converted at an AUD:USD average exchange rate of 0.7043 over the fiv e trading days ended August 10, 2026.
+The ex-dividend date will be September 3, 2026 for holders of CDIs trading on the ASX and September 4, 2026 for holders of shares trading on the NYSE. For all shareholders, the record date will be September 4, 2026 and the payment date will be September 24, 2026.
+
+
+
+
+
+
+
+
+| | | | | | | | | | | |
+| | |
+|
+2
+
+
+
+
+
+Outlook
+Amcor will have a six-month reporting period from July 1, 2026, through December 31, 2026 ('Transition Period'), as part of transitioning from a previously announced June 30 to December 31 year-end.
+For the transition period, the Company expects Adjusted EPS of approximately $1.80 to $1.90, and leverage on December 31, 2026 of 3.5x - 3.6x. 1
+
+
+Outlook does not take into account the impact of potential portfolio optimization actions not announced to date. Outlook contemplates a range of factors, including ongoing geopolitical developments, which create a higher degree of uncertainty and additional complexity when estimating future financial results and actual results could vary materially. Reconciliations of projected non-GAAP measures are not included herein because the individual components are not known with certainty as individual financial statements for the periods referenced have not been completed. Refer to page 14 for further information.
+
+
+(1) Leverage calculated as Net Debt divided by LTM Adjusted EBITDA plus share-based compensation.
+
+
+Conference Call
+Amcor is hosting a conference call with investors and analysts to discuss these results on Wednesday August 12, 2026 at 8:00am US Eastern Daylight Time / 10:00pm Australian Eastern Standard Time. Investors are invited to listen to a live webcast of the conference call at our website, www.amcor.com, in the “Investors” section.
+Those wishing to access the call should use the following toll-free numbers, with the Conference ID : 980769865
+• USA: 833 461 5787 (toll free)
+• Australia: 1800 849 752 (toll free)
+• United Kingdom: 0808 196 8935 (toll free)
+• Singapore: 1800 408 1721 (toll free)
+• Hong Kong: 800 938 481 (toll free)
+From all other countries, the call can be accessed by dialing +1 585 542 9983 (toll).
+A replay of the webcast will also be available in the 'Investors" section at www.amcor.com following the call.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | | | | |
+| | |
+|
+3
+
+
+
+
+
+About Amcor
+Amcor is the global leader in developing and producing responsible consumer packaging and dispensing solutions across a variety of materials for nutrition, health, beauty and wellness categories. Our global product innovation and sustainability expertise enable us to solve packaging challenges around the world every day, producing a range of flexible packaging, rigid packaging, cartons and closures that are more sustainable, functional and appealing for our customers and their consumers. We are guided by our purpose of elevating customers, shaping lives and protecting the future. Supported by a commitment to safety, 75,000 people generate $23 billion in annual sales from operations that span approximately 400 locations in more than 40 countries. NYSE: AMCR; ASX: AMC
+www.amcor.com I LinkedIn I YouTube
+
+
+
+
+
+
+
+
+
+
+Contact Information
+| | | | | | | | | | | | | | |
+Investors | | | | |
+Kate Pearlman | | Damien Bird | | Dustin Stilwell |
+Sr. Vice President, Investor Relations and Treasury | | VP Investor Relations Asia Pacific | | VP Investor Relations North America |
++1 703 585 5353 | | +61 481 900 499 | | +1 812 306 2964 |
+kate.pearlman@amcor.com | | damien.bird@amcor.com | | dustin.stilwell@amcor.com |
+| | | | |
+Media - Australia | | Media - Europe | | Media - North America |
+James Strong | | Ernesto Duran | | Julie Liedtke |
+Managing Director | | Head of Global Communications | | Director, Media Relations |
+Sodali & Co | | Amcor | | Amcor |
++61 448 881 174 | | +41 78 698 69 40 | | +1 847 204 2319 |
+james.strong@sodali.com | | ernesto.duran@amcor.com | | julie.liedtke@amcor.com |
+
+
+
+Amcor plc UK Establishment Address: 83 Tower Road North, Warmley, Bristol, England, BS30 8XP, United Kingdom
+UK Overseas Company Number: BR020803
+Registered Office: 3rd Floor, 44 Esplanade, St Helier, JE4 9WG, Jersey
+Jersey Registered Company Number: 126984, Australian Registered Body Number (ARBN): 630 385 278
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | | | | |
+| | |
+|
+4
+
+
+
+
+
+Segment information
+Global Flexible Packaging Solutions segment - June 2026 quarter | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Reported ∆% | | Constant
+currency ∆% |
+| 2025 $ million | | 2026 $ million | | |
+Net sales | | 2,994 | | | 3,525 | | | 18 | | | 16 | |
+Adjusted EBIT | | 435 | | | 533 | | | 23 | | 20 | |
+Adjusted EBIT / Sales % | | 14.5 | | | 15.1 | | | | | |
+
+Net sales of $3,525 million were 16% higher than last year on a constant currency basis including approximately $297 million of acquired sales net of divestitures, which represents growth of approximately 10%. The pass through of movements in raw material costs had a favorable impact of approximately $190 million, or 6% on net sales.
+The Company estimates that volumes for the Global Flexible Packaging Solutions segment were approximately 1% higher compared to volumes for the combined legacy Amcor and Berry businesses in the June quarter last year. Market category highlights included higher volumes in pet food and protein, partly offset by lower volumes in healthcare. By region, volumes in developed markets were higher than the prior year led by North America. Emerging markets continued to see volume growth compared with the prior year, led by Asia. The Company estimates that price/mix had an unfavorable impact of approximately (1%) on comparable prior year net sales.
+Adjusted EBIT of $533 million was 20% higher than last year on a constant currency basis, reflecting approximately $31 million of acquired EBIT, net of divestitures which represents growth of approximately 7%. The remaining 13% year-over-year growth mainly reflects synergy realization from the Berry acquisition, favorable cost performance and productivity benefits.
+
+
+Global Flexible Packaging Solutions segment - FY 2026
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Twelve Months Ended June 30, | | Reported ∆% | | Constant
+currency ∆% |
+| 2025 $ million | | 2026 $ million | | |
+Net sales | | 10,066 | | | 12,829 | | | 27 | | | 24 | |
+Adjusted EBIT | | 1,398 | | | 1,789 | | | 28 | | | 26 | |
+Adjusted EBIT / Sales % | | 13.9 | | | 13.9 | | | | | |
+| | | | | | | | |
+
+Net sales of $12,829 million were 24% higher than last year on a constant currency basis including approximately $2.2 billion of acquired sales net of divestitures, which represents growth of approximately 22%. The pass through of movements in raw material costs had a favorable impact of approximately $240 million, or 2% on net sales.
+Adjusted EBIT of $1,7 89 million was 26% higher than last year on a constant currency basis, reflecting approximately $250 million of acquired EBIT, net of divestitures which represents growth of approximately 18%. The remaining 8% year-over-year growth mainly refle cts synergy benefits from the Berry acquisition, favorable cost performance and productivity benefits.
+
+
+Global Rigid Packaging Solutions segment - June 2026 quarter | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Reported ∆% | | Constant
+currency ∆% |
+| 2025 $ million | | 2026 $ million | | |
+Net sales | | 2,088 | | | 2,873 | | | 38 | | | 35 | |
+Adjusted EBIT | | 219 | | | 352 | | | 61 | | | 57 | |
+Adjusted EBIT / Sales % | | 10.5 | | | 12.3 | | | | | |
+
+Net sales of $2,873 million were 35% higher than last year on a constant currency basis, including approximately $665 million of acquired sales, which represents growth of approximately 32%. The pass through of movements in raw material costs had a favorable impact of approximately $90 million, or 4% on net sales, and the remaining (1%) year- over-year variation reflects the impact of volumes and price/mix.
+Excluding non-core businesses, the Company estimates that volumes for the Global Rigid Packaging Solutions segment were approximately 0.5% higher compared with volumes for the combined legacy Amcor and Berry businesses in the June quarter last year. Market category highlights included higher volumes in foodservice and
+
+
+
+
+| | | | | | | | | | | |
+| | |
+|
+5
+
+
+
+
+
+beauty & wellness, partly offset by lower volumes in liquids. By region, volumes in North America were in line with the prior year, higher than the prior year in Europe and modestly lower across emerging markets, primarily Latin America. The Company estimates that price/mix had an unfavorable impact of approximately (1%) on comparable prior year net sales.
+Adjusted EBIT of $352 million was 57% higher than last year on a constant currency basis, including approximately $52 million of acquired EBIT which represents growth of approximately 24%. The remaining 33% year-over-year variation mainly reflects synergy realization from the Berry acquisition and strong execution against initiatives to drive cost and productivity benefits, including the non-core businesses.
+
+
+Global Rigid Packaging Solutions segment - FY 2026
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Twelve Months Ended June 30, | | Reported ∆% | | Constant
+currency ∆% |
+| 2025 $ million | | 2026 $ million | | |
+Net sales | | 4,943 | | | 10,677 | | | 116 | | | 110 | |
+Adjusted EBIT | | 435 | | | 1,176 | | | 170 | | | 161 | |
+Adjusted EBIT / Sales % | | 8.8 | | | 11.0 | | | | | |
+| | | | | | | | |
+
+Net sales of $10,677 million, were 110% higher than last year on a constant currency basis, including approximately $5.6 billion of acquired sales net of divestitures, which represents growth of approximately 114%, while the remaining (4%) year-over-year variation reflects lower volumes and price/mix. The pass through of movements in raw material costs had no material impact on net sales.
+Adjusted EBIT of $1,176 million was 161% higher than last year on a constant currency basis, including approximately $635 million of acquired EBIT net of divestitures which represents growth of approximately 146%. The remaining 15% year-over-year variation mainly reflects synergy benefits from the Berry acquisition and cost reduction initiatives, partly offset by lower volumes and lower earnings in non-core businesses.
+Adjusted EBIT margins of 11.0% were 220 basis points higher than the prior year reflecting the improved quality of the combined business.
+
+
+
+
+
+
+| | | | | | | | | | | |
+| | |
+|
+6
+
+
+
+
+
+
+U.S. GAAP Condensed Consolidated Statements of Income (Unaudited) | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Twelve Months Ended June 30, |
+($ million, except per share amounts) | | 2025 | 2026 | | 2025 | | 2026 |
+Net sales | | 5,082 | | 6,398 | | | 15,009 | | | 23,506 | |
+Cost of sales | | (4,187) | | (5,061) | | | (12,175) | | | (18,816) | |
+Gross profit | | 895 | | 1,337 | | | 2,834 | | | 4,690 | |
+Selling, general, and administrative expenses | | (408) | | (568) | | | (1,205) | | | (1,931) | |
+Amortization of acquired intangible assets | | (130) | | (147) | | | (246) | | | (558) | |
+Research and development expenses | | (38) | | (42) | | | (120) | | | (170) | |
+Restructuring, transaction and integration expenses, net | | (236) | | (36) | | | (307) | | | (298) | |
+Other income, net | | 4 | | 102 | | | 53 | | | 166 | |
+Operating income | | 87 | | 646 | | | 1,009 | | | 1,899 | |
+Interest expense, net | | (125) | | (150) | | | (347) | | | (610) | |
+Other non-operating income/(loss), net | | (9) | | (11) | | | (12) | | | (7) | |
+Income/loss before income taxes and equity in income/(loss) of affiliated companies | | (47) | | 485 | | | 650 | | | 1,282 | |
+Income tax expense | | 6 | | (97) | | | (135) | | | (181) | |
+Equity in income/(loss) of affiliated companies, net of tax | | 2 | | 1 | | | 3 | | | 5 | |
+Net income/(loss) | | (39) | | 389 | | | 518 | | | 1,106 | |
+Net income attributable to non-controlling interests | | — | | — | | | (7) | | | — | |
+Net income/(loss) attributable to Amcor plc | | (39) | | 389 | | | 511 | | | 1,106 | |
+USD:EUR average FX rate | | 0.8825 | | 0.8614 | | | 0.9203 | | | 0.8574 | |
+| | | | | | | |
+Basic earnings per share attributable to Amcor | | (0.10) | | 0.84 | | | 1.60 | | | 2.39 | |
+Diluted earnings per share attributable to Amcor | | (0.10) | | 0.83 | | | 1.60 | | | 2.38 | |
+Weighted average number of shares outstanding – Basic | | 406.9 | | 463.4 | | | 317.9 | | | 463.2 | |
+Weighted average number of shares outstanding – Diluted | | 408.0 | | 464.6 | | | 318.6 | | | 463.8 | |
+
+
+
+
+
+
+
+
+
+| | | | | | | | | | | |
+| | |
+|
+7
+
+
+
+
+
+
+U.S. GAAP Condensed Consolidated Statements of Cash Flows (Unaudited) | | | | | | | | | | | | | | | | | | | | |
+| | Twelve Months Ended June 30, | |
+($ million) | | | 2025 | | 2026 | |
+Net income | | | 518 | | | 1,106 | | |
+Depreciation, amortization, and impairment | | | 722 | | | 1,479 | | |
+Net gain on disposal of businesses and investments | | | (8) | | | (54) | | |
+Changes in operating assets and liabilities, excluding effect of acquisitions, divestitures, and
+currency | | | (53) | | | (273) | | |
+Other non-cash items | | | 211 | | | (107) | | |
+Net cash provided by operating activities | | | 1,390 | | | 2,151 | | |
+Purchase of property, plant, and equipment and other intangible assets | | | (580) | | | (922) | | |
+Proceeds from sales of property, plant, and equipment and other intangible assets | | | 18 | | | 73 | | |
+Business acquisitions and Investments in affiliated companies, and other | | | (1,653) | | | (17) | | |
+Proceeds from divestitures | | | 113 | | | 272 | | |
+Proceeds from sale of affiliated companies and other investments | | | | | 70 | | |
+Net debt proceeds/(repayments) | | | 1,876 | | | (65) | | |
+Dividends paid | | | (845) | | | (1,195) | | |
+Share buy-back/cancellations | | | — | | | (1) | | |
+Purchase of treasury shares, proceeds from exercise of options and tax withholdings for share-based incentive plans | | | (107) | | | (65) | | |
+| | | | | | |
+Other, including effects of exchange rate on cash and cash equivalents | | | 27 | | | (13) | | |
+Net increase/decrease in cash and cash equivalents | | | 239 | | | 288 | | |
+Cash and cash equivalents at the beginning of the year | | | 588 | | | 827 | | |
+Cash and cash equivalents at the end of the year | | | 827 | | | 1,115 | | |
+
+
+
+
+
+U.S. GAAP Condensed Consolidated Balance Sheets (Unaudited) | | | | | | | | | | | | | | |
+($ million) | | June 30, 2025 | | June 30, 2026 |
+Cash and cash equivalents | | 827 | | | 1,115 | |
+Trade receivables, net | | 3,426 | | | 3,639 | |
+Inventories, net | | 3,471 | | | 3,672 | |
+| | | | |
+| | | | |
+Property, plant and equipment, net | | 8,202 | | | 7,409 | |
+Goodwill and other intangible assets, net | | 18,679 | | | 18,663 | |
+Other assets | | 2,461 | | | 2,597 | |
+Total assets | | 37,066 | | | 37,095 | |
+Trade payables | | 3,490 | | | 4,021 | |
+Short-term debt and current portion of long-term debt | | 257 | | | 150 | |
+Long-term debt, less current portion | | 13,841 | | | 13,862 | |
+| | | | |
+| | | | |
+Accruals and other liabilities | | 7,738 | | | 7,261 | |
+Shareholders' equity | | 11,740 | | | 11,801 | |
+Total liabilities and shareholders' equity | | 37,066 | | | 37,095 | |
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | | | | |
+| | |
+|
+8
+
+
+
+
+
+
+
+
+Components of Fiscal 2026 Net Sales growth
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30 | | Twelve Months Ended June 30 |
+($ million) | Global Flexible Packaging Solutions | Global Rigid Packaging Solutions | Total | | Global Flexible Packaging Solutions | Global Rigid Packaging Solutions | Total |
+Net sales fiscal year 2026 | 3,525 | | 2,873 | | 6,398 | | | 12,829 | | 10,677 | | 23,506 | |
+Net sales fiscal year 2025 | 2,994 | | 2,088 | | 5,082 | | | 10,066 | | 4,943 | | 15,009 | |
+Reported Growth % | 18 | | 38 | | 26 | | | 27 | | 116 | | 57 | |
+FX % | 2 | | 3 | | 2 | | | 3 | | 6 | | 5 | |
+Constant Currency Growth % | 16 | | 35 | | 24 | | | 24 | | 110 | | 52 | |
+Raw Material Pass Through % | 6 | | 4 | | 6 | | | 2 | | — | | 2 | |
+Items affecting comparability % | 10 | | 32 | | 19 | | | 22 | | 114 | | 52 | |
+| | | | | | | |
+| | | | | | | |
+Organic Growth % | — | | (1) | | (1) | | | — | | (4) | | (2) | |
+Volume % | 1 | | (1) | | — | | | (1) | | (3) | | (2) | |
+Price/Mix % | (1) | | — | | (1) | | | 1 | | (1) | | — | |
+| | | | | | | |
+| | | | | | | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | | | | |
+| | |
+|
+9
+
+
+
+
+
+
+
+
+
+Reconciliation of Non-GAAP Measures
+Reconciliation of adjusted Earnings before interest, tax, depreciation and amortization (EBITDA), Earnings before interest and tax (EBIT), Net income, Earnings per share (EPS) and Free Cash Flow
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, 2025 | | Three Months Ended June 30, 2026 |
+($ million) | | EBITDA | | EBIT | | Net Income | | EPS (Diluted) | | EBITDA | | EBIT | | Net Income | | EPS (Diluted) |
+Net income attributable to Amcor | | (39) | | | (39) | | | (39) | | | (0.10) | | | 389 | | | 389 | | | 389 | | | 0.83 | |
+Net income attributable to non-controlling interests | | — | | | — | | | | | | | — | | | — | | | | | |
+Tax expense | | (6) | | | (6) | | | | | | | 97 | | | 97 | | | | | |
+Interest expense, net | | 125 | | | 125 | | | | | | | 150 | | | 150 | | | | | |
+Depreciation and amortization | | 309 | | | | | | | | | 367 | | | | | | | |
+EBITDA, EBIT, Net income and EPS | | 389 | | | 80 | | | (39) | | | (0.10) | | | 1,003 | | | 636 | | | 389 | | | 0.83 | |
+Impact of hyperinflation | | 8 | | | 8 | | | 8 | | | 0.02 | | | 6 | | | 6 | | | 6 | | | 0.01 | |
+Restructuring, integration and related expenses, net (1)
+| | 53 | | | 53 | | | 53 | | | 0.13 | | | 24 | | | 36 | | | 36 | | | 0.08 | |
+Transaction costs | | 142 | | | 142 | | | 142 | | | 0.35 | | | — | | | — | | | — | | | — | |
+Merger related compensation | | 41 | | | 41 | | | 41 | | | 0.10 | | | — | | | — | | | — | | | — | |
+| | | | | | | | | | | | | | | | |
+Inventory step-up amortization | | 133 | | | 133 | | | 133 | | | 0.33 | | | — | | | — | | | — | | | — | |
+Other | | 24 | | | 24 | | | 24 | | | 0.06 | | | 12 | | | 12 | | | 12 | | | 0.03 | |
+Amortization of acquired intangibles (2)
+| | | | 130 | | | 130 | | | 0.32 | | | | | 147 | | | 147 | | | 0.32 | |
+Interest expense Berry Transaction | | | | | | 10 | | | 0.02 | | | | | | | — | | | — | |
+Tax effect of above items | | | | | | (94) | | | (0.23) | | | | | | | (20) | | | (0.04) | |
+Adjusted EBITDA, EBIT, Net income and EPS | | 789 | | | 611 | | | 408 | | | 1.00 | | | 1,045 | | | 836 | | | 570 | | | 1.23 | |
+| | | | | | | | | | | | | | | | |
+Reconciliation of adjusted growth to constant currency growth | | | | | | | | |
+% growth - Adjusted EBITDA, EBIT, Net income and EPS | | 32 | | | 37 | | | 40 | | | 23 | |
+% currency impact | | | | | | | | | | 2 | | | 3 | | | 4 | | | 3 | |
+% constant currency growth | | | | | | | | | | 30 | | | 34 | | | 36 | | | 20 | |
+| | | | | | | | |
+% items affecting comparability (3)
+| | | | | | | | | | 18 | | | 15 | | | | | |
+% from all other sources | | | | | | | | | | 12 | | | 19 | | | | | |
+Adjusted EBITDA | | 789 | | | | | | | | | 1,045 | | | | | | | |
+Interest paid, net | | (123) | | | | | | | | | (143) | | | | | | | |
+Income tax paid | | (138) | | | | | | | | | (70) | | | | | | | |
+Purchase of property, plant and equipment and other intangible assets | | (220) | | | | | | | | | (235) | | | | | | | |
+Proceeds from sales of property, plant and equipment and other intangible assets | | 9 | | | | | | | | | 35 | | | | | | | |
+Movement in working capital | | 744 | | | | | | | | | 849 | | | | | | | |
+Other | | (118) | | | | | | | | | (57) | | | | | | | |
+Adjusted Free Cash Flow | | 943 | | | | | | | | | 1,424 | | | | | | | |
+Berry transaction and integration costs | | | | | | | | | | (28) | | | | | | | |
+Free cash flow | | | | | | | | | | 1,396 | | | | | | | |
+
+(1) Three months ended June 30, 2026 primarily reflects restructuring and integration costs incurred in connection with the Berry Global acquisition.
+(2) Amortization of acquired intangible assets from business combinations.
+(3) Reflects the impact of acquired, disposed, and ceased operations.
+
+
+
+
+
+
+
+
+| | | | | | | | | | | |
+| | |
+|
+10
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Twelve Months Ended June 30, 2025 | | Twelve Months Ended June 30, 2026 |
+($ million) | | EBITDA | | EBIT | | Net Income | | EPS (Diluted) | | EBITDA | | EBIT | | Net Income | | EPS (Diluted) (1)
+|
+Net income attributable to Amcor | | 511 | | | 511 | | | 511 | | | 1.60 | | | 1,106 | | | 1,106 | | | 1,106 | | | 2.38 | |
+Net income attributable to non-controlling interests | | 7 | | | 7 | | | | | | | — | | | — | | | | | |
+Tax expense | | 135 | | | 135 | | | | | | | 181 | | | 181 | | | | | |
+Interest expense, net | | 347 | | | 347 | | | | | | | 610 | | | 610 | | | | | |
+Depreciation and amortization | | 710 | | | | | | | | | 1,450 | | | | | | | |
+EBITDA, EBIT, Net income and EPS | | 1,710 | | | 1,000 | | | 511 | | | 1.60 | | 3,347 | | | 1,897 | | | 1,106 | | | 2.38 | |
+Impact of hyperinflation | | 16 | | | 16 | | | 16 | | | 0.05 | | | 19 | | | 19 | | | 19 | | | 0.04 | |
+Restructuring, integration and related expenses, net (2)
+| | 97 | | | 97 | | | 97 | | | 0.30 | | | 234 | | | 266 | | | 266 | | | 0.58 | |
+Transaction costs | | 169 | | | 169 | | | 169 | | | 0.53 | | | 32 | | | 32 | | | 32 | | | 0.07 | |
+Merger related compensation | | 41 | | | 41 | | | 41 | | | 0.13 | | | — | | | — | | | — | | | — | |
+Inventory step-up amortization | | 133 | | | 133 | | | 133 | | | 0.42 | | | — | | | — | | | — | | | — | |
+Other | | 21 | | | 21 | | | 21 | | | 0.07 | | | 41 | | | 41 | | | 41 | | | 0.09 | |
+Amortization of acquired intangibles (3)
+| | | | 246 | | | 246 | | | 0.77 | | | | | 558 | | | 558 | | | 1.20 | |
+Interest expense Berry Transaction | | | | | | 15 | | | 0.05 | | | | | | | 29 | | | 0.06 | |
+Tax effect of above items | | | | | | (113) | | | (0.35) | | | | | | | (188) | | | (0.40) | |
+Adjusted EBITDA, EBIT, Net income and EPS | | 2,186 | | | 1,723 | | | 1,136 | | | 3.56 | | | 3,673 | | | 2,813 | | | 1,863 | | | 4.02 | |
+| | | | | | | | | | | | | | | | |
+Reconciliation of adjusted growth to constant currency growth | | | | | | | | |
+% growth - Adjusted EBITDA, EBIT, Net income, and EPS | | | | | | 68 | | | 63 | | | 64 | | | 13 | |
+% currency impact | | | | | | | | | | 4 | | | 4 | | | 5 | | | 3 | |
+% constant currency growth | | | | | | | | | | 64 | | | 59 | | | 59 | | | 10 | |
+| | | | | | | | |
+% items affecting comparability (4)
+| | | | | | | | | | 56 | | | 49 | | | | | |
+% from all other sources | | | | | | | | | | 8 | | | 10 | | | | | |
+Adjusted EBITDA | | 2,186 | | | | | | | | | 3,673 | | | | | | | |
+Interest paid, net | | (290) | | | | | | | | | (549) | | | | | | | |
+Income tax paid | | (286) | | | | | | | | | (451) | | | | | | | |
+Purchase of property, plant and equipment and other intangible assets | | (580) | | | | | | | | | (922) | | | | | | | |
+Proceeds from sales of property, plant and equipment and other intangible assets | | 18 | | | | | | | | | 48 | | | | | | | |
+Movement in working capital | | 34 | | | | | | | | | (50) | | | | | | | |
+Other | | (156) | | | | | | | | | (156) | | | | | | | |
+Adjusted Free Cash Flow | | 926 | | | | | | | | | 1,593 | | | | | | | |
+Berry transaction and integration costs | | | | | | | | | | (290) | | | | | | | |
+Free cash flow | | | | | | | | | | 1,303 | | | | | | | |
+'
+( 1) Calculation of diluted EPS for the twelve months ended June 30, 2026 and 2025, excludes net income attributable to shares to be repurchased under forward contracts of $0 million and $1 million, respectively. Earnings per share amounts are computed independently for each of the quarters presented. The sum of the quarters may not equal the total year amount due to the impact of changes in average quarterly shares outstanding and due to rounding.
+(2) Twelve months ended June 30, 2026 primarily reflects restructuring and integration costs incurred in connection with the Berry Global acquisition.
+(3) Amortization of acquired intangible assets from business combinations.
+(4) Reflects the impact of acquired, disposed, and ceased operations.
+
+
+
+
+
+
+| | | | | | | | | | | |
+| | |
+|
+11
+
+
+
+
+
+Reconciliation of adjusted EBIT by reporting segment
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, 2025 | | Three Months Ended June 30, 2026 |
+($ million) | | Global Flexible Packaging Solutions | | Global Rigid Packaging Solutions | | Other | | Total | | Global Flexible Packaging Solutions | | Global Rigid Packaging Solutions | | Other | | Total |
+Net income attributable to Amcor | | | | | | | | (39) | | | | | | | | | 389 | |
+Net income attributable to non-controlling interests | | | | | | | | — | | | | | | | | | — | |
+Tax expense | | | | | | | | (6) | | | | | | | | | 97 | |
+Interest expense, net | | | | | | | | 125 | | | | | | | | | 150 | |
+EBIT | | 298 | | | 17 | | | (236) | | | 80 | | | 440 | | | 293 | | | (98) | | | 636 | |
+Impact of hyperinflation | | 1 | | | 7 | | | — | | | 8 | | | — | | | 6 | | | — | | | 6 | |
+Restructuring, integration and related expenses, net (1)
+| | 38 | | | 7 | | | 8 | | | 53 | | | 28 | | | 22 | | | (14) | | | 36 | |
+Transaction costs | | 9 | | | 3 | | | 130 | | | 142 | | | — | | | — | | | — | | | — | |
+Merger related compensation | | — | | | — | | | 41 | | | 41 | | | — | | | — | | | — | | | — | |
+Inventory step-up amortization | | 27 | | | 106 | | | — | | | 133 | | | — | | | — | | | — | | | — | |
+Other | | 1 | | | 12 | | | 11 | | | 24 | | | (10) | | | (41) | | | 63 | | | 12 | |
+Amortization of acquired intangibles (2)
+| | 61 | | | 67 | | | 2 | | | 130 | | | 75 | | | 72 | | | 1 | | | 147 | |
+Adjusted EBIT | | 435 | | | 219 | | | (43) | | | 611 | | | 533 | | | 352 | | | (48) | | | 836 | |
+Adjusted EBIT / sales % | | 14.5 | % | | 10.5 | % | | | | 12.0 | % | | 15.1 | % | | 12.3 | % | | | | 13.1 | % |
+Reconciliation of adjusted growth to constant currency growth | | | | | | | | |
+% growth - Adjusted EBIT | | | | | | | | | | 23 | | | 61 | | | — | | | 37 | |
+% currency impact | | | | | | | | | | 3 | | | 4 | | | — | | | 3 | |
+% constant currency | | | | | | | | | | 20 | | | 57 | | | — | | | 34 | |
+| | | | | | | | |
+% items affecting comparability (3)
+| | | | | | | | | | 7 | | | 24 | | | — | | | 15 | |
+% from all other sources | | | | | | | | | | 13 | | | 33 | | | — | | | 19 | |
+
+(1) Three months ended June 30, 2026 primarily reflects restructuring and integration costs incurred in connection with the Berry Global acquisition.
+(2) Amortization of acquired intangible assets from business combinations.
+(3) Reflects the impact of acquired, disposed, and ceased operations.
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | | | | |
+| | |
+|
+12
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Twelve Months Ended June 30, 2025 | | Twelve Months Ended June 30, 2026 |
+($ million) | | Global Flexible Packaging Solutions | | Global Rigid Packaging Solutions | | Other | | Total | | Global Flexible Packaging Solutions | | Global Rigid Packaging Solutions | | Other | | Total |
+Net income attributable to Amcor | | | | | | | | 511 | | | | | | | | | 1,106 | |
+Net income attributable to non-controlling interests | | | | | | | | 7 | | | | | | | | | — | |
+Tax expense | | | | | | | | 135 | | | | | | | | | 181 | |
+Interest expense, net | | | | | | | | 347 | | | | | | | | | 610 | |
+EBIT | | 1,113 | | | 229 | | | (342) | | | 1,000 | | | 1,373 | | | 817 | | | (294) | | | 1,897 | |
+Impact of hyperinflation | | 1 | | | 15 | | | — | | | 16 | | | 1 | | | 18 | | | — | | | 19 | |
+Restructuring, integration and related expenses, net (1)
+| | 68 | | | 12 | | | 17 | | | 97 | | | 106 | | | 120 | | | 40 | | | 266 | |
+Transaction costs | | 9 | | | 4 | | | 156 | | | 169 | | | 8 | | | 2 | | | 22 | | | 32 | |
+Merger related compensation | | — | | | — | | | 41 | | | 41 | | | — | | | — | | | — | | | — | |
+Inventory step-up amortization | | 27 | | | 106 | | | — | | | 133 | | | — | | | — | | | — | | | — | |
+Other | | 12 | | | (4) | | | 13 | | | 21 | | | — | | | (35) | | | 76 | | | 41 | |
+Amortization of acquired intangibles (2)
+| | 169 | | | 73 | | | 4 | | | 246 | | | 300 | | | 254 | | | 4 | | | 558 | |
+Adjusted EBIT | | 1,398 | | | 435 | | | (110) | | | 1,723 | | | 1,789 | | | 1,176 | | | (152) | | | 2,813 | |
+Adjusted EBIT / sales % | | 13.9 | % | | 8.8 | % | | | | 11.5 | % | | 13.9 | % | | 11.0 | % | | | | 12.0 | % |
+Reconciliation of adjusted growth to constant currency growth | | | | | | | | |
+% growth - Adjusted EBIT | | | | | | | | | | 28 | | | 170 | | | — | | | 63 | |
+% currency impact | | | | | | | | | | 2 | | | 9 | | | — | | | 4 | |
+% constant currency growth | | | | | | | | | | 26 | | | 161 | | | — | | | 59 | |
+| | | | | | | | |
+% items affecting comparability (3)
+| | | | | | | | | | 18 | | | 146 | | | — | | | 49 | |
+% from all other sources | | | | | | | | | | 8 | | | 15 | | | — | | | 10 | |
+
+(1) Twelve months ended June 30, 2026 primarily reflects restructuring and integration costs incurred in connection with the Berry Global acquisition.
+(2) Amortization of acquired intangible assets from business combinations.
+(3) Reflects the impact of acquired, disposed, and ceased operations.
+
+
+Reconciliation of net debt | | | | | | | | | | | | | | |
+($ million) | | June 30, 2025 | | June 30, 2026 |
+Cash and cash equivalents | | (827) | | | (1,115) | |
+Short-term debt | | 116 | | | 135 | |
+Current portion of long-term debt | | 141 | | | 15 | |
+Long-term debt excluding current portion | | 13,841 | | | 13,862 | |
+Net debt | | 13,271 | | | 12,897 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | | | | |
+| | |
+|
+13
+
+
+
+
+
+
+Cautionary Statement Regarding Forward-Looking Statements
+Unless otherwise indicated, references to "Amcor," the "Company," "we," "our," and "us" in this document refer to Amcor plc and its consolidated subsidiaries. This document contains certain statements that are "forward-looking statements" within the meaning of the safe harbor provisions of the U.S. Private Securities Litigation Reform Act of 1995. Forward-looking statements are generally identified with words like "believe," "expect," "target," "project," "may," "could," "would," "approximately," "possible," "will," "should," "intend," "plan," "anticipate," "commit," "estimate," "potential," "ambitions," "outlook," or "continue," the negative of these words, other terms of similar meaning, or the use of future dates. Such statements are based on the current expectations of the management of Amcor and are qualified by the inherent risks and uncertainties surrounding future expectations generally. Actual results could differ materially from those currently anticipated due to a number of risks and uncertainties. Neither Amcor nor any of its respective directors, executive officers, or advisors, provide any representation, assurance, or guarantee that the occurrence of the events expressed or implied in any forward-looking statements will actually occur or if any of them do occur, what impact they will have on the business, results of operations or financial condition of Amcor. Should any risks and uncertainties develop into actual events, these developments could have a material adverse effect on Amcor's business. Risks and uncertainties that could cause actual results to differ from expectations include, but are not limited to: changes in consumer demand patterns and customer requirements in numerous industries; risk of loss of key customers, a reduction in their production requirements, or consolidation among key customers; significant competition in the industries and regions in which we operate; risk of integrating acquisitions and achieving the financial and other results and benefits anticipated at the time of acquisition; risk that the strategic review of our portfolio may cause disruptions to our business or may not result in completion of a transaction to restructure or divest non-core businesses or may not create additional value for our shareholders; an inability to expand our current business effectively through either organic growth, including product innovation, investments, or acquisitions; challenging global economic conditions, including impacts from the Middle East conflict; impacts of operating internationally; price fluctuations or shortages in the availability of raw materials, energy and other inputs, which could adversely affect our business; production, supply, and other commercial risks, including those resulting from geopolitical conflicts and counterparty credit risks, which may be exacerbated in times of economic volatility; pandemics, epidemics, or other disease outbreaks; an inability to attract, develop, and retain our skilled workforce and manage key transitions; labor disputes and an inability to renew collective bargaining agreements at acceptable terms; physical impacts of climate change; significant disruption at a key manufacturing facility; cybersecurity risks, which could disrupt our operations or risk of loss of our sensitive business information; failures or disruptions in our information technology systems which could disrupt our operations, compromise customer, employee, supplier, and other data; risk that the use of artificial intelligence could adversely affect our business and financial results; risk that the Company's significant indebtedness may limit its flexibility and increase its borrowing costs; rising interest rates that increase our borrowing costs on our variable rate indebtedness and could have other negative impacts; foreign exchange rate risk; a significant write-down of goodwill and/or other intangible assets; a failure to maintain an effective system of internal control over financial reporting; an inability of our insurance policies, including our use of a captive insurance company, to provide adequate protection against all of the key operational risks we face; an inability to defend our intellectual property rights or intellectual property infringement claims against us; litigation, including product liability claims or litigation related to Environmental, Social, and Governance ("ESG") matters, or regulatory developments; increasing scrutiny and changing expectations from investors, customers, suppliers, and governments with respect to our ESG practices and commitments resulting in additional costs or exposure to additional risks; changing ESG government regulations including climate-related rules; changing environmental, health, and safety laws; changes in tax laws or changes in our geographic mix of earnings; and changes in trade policy, including tariff and custom regulations or failure to comply with such regulations. These risks and uncertainties are supplemented by those identified from time to time in our filings with the Securities and Exchange Commission (the "SEC"), including without limitation, those described under Part I, "Item 1A - Risk Factors" in our Annual Report on Form 10-K for the fiscal year ended June 30, 2025, and as updated by our quarterly reports on Form 10-Q. You can obtain copies of Amcor’s filings with the SEC for free at the SEC’s website (www.sec.gov). Forward-looking statements included herein are made only as of the date hereof and Amcor does not undertake any obligation to update any forward-looking statements, or any other information in this communication, as a result of new information, future developments or otherwise, or to correct any inaccuracies or omissions in them which become apparent, except as expressly required by law. All forward-looking statements in this comm unication are qualified in their entirety by this cautionary statement.
+
+
+Presentation of non-GAAP information
+Included in this release are measures of financial performance that are not calculated in accordance with U.S. GAAP. These measures include adjusted EBITDA and EBITDA (calculated as earnings before interest and tax and depreciation and amortization), adjusted EBIT and EBIT (calculated as earnings before interest and tax), adjusted net income, adjusted earnings per share, adjusted free cash flow, and net debt. In arriving at these non-GAAP measures, we exclude items that either have a non-recurring impact on the income statement or which, in the judgment of our management, are items that, either as a result of their nature or size, could, were they not singled out, potentially cause investors to extrapolate future performance from an improper base. Note that while amortization of acquired intangible assets is excluded from non-GAAP adjusted financial measures, the revenue of the acquired entities and all other expenses unless otherwise stated, are reflected in our non-GAAP financial performance earnings measures. While not all inclusive, examples of these items include: material restructuring programs, including associated costs such as employee severance, pension and related benefits, impairment of property and equipment and other assets, accelerated depreciation, termination payments for contracts and leases, contractual obligations, and any other qualifying costs related to restructuring plans; material sales and earnings from disposed or ceased operations and any associated profit or loss on sale of businesses or subsidiaries; changes in the fair value of economic hedging instruments on commercial paper and contingent purchase consideration; pension settlements; impairments in goodwill and equity method investments; material acquisition compensation and transaction costs such as due diligence expenses, professional and legal fees, financing-related expenses; and integration costs; material purchase accounting adjustments for inventory; amortization of acquired intangible assets from business combination; gains or losses on significant property and divestitures and significant property and other impairments, net of insurance recovery; certain regulatory and legal matters; impacts from highly inflationary accounting; expenses related to the Company's CEO and CFO transition; and impacts related to the Russia-Ukraine conflict and conflict in the Middle East.
+Amcor also evaluates performance on a comparable constant currency basis, which measures financial results assuming constant foreign currency exchange rates used for translation based on the average rates in effect for the comparable prior year period. In order to compute comparable constant currency results, we multiply or divide, as appropriate, current-year U.S. dollar results by the current year average foreign exchange rates and then multiply or divide, as appropriate, those amounts by the prior-year average foreign exchange rates. We then adjust for other items affecting comparability. While not all inclusive, examples of items affecting comparability include the difference between sales or earnings in the current period and the prior period related to disposed, or ceased operations. Comparable constant currency net sales performance also excludes the impact from passing through movements in raw material costs.
+Management has used and uses these measures internally for planning, forecasting and evaluating the performance of the Company’s reporting segments and certain of the measures are used as a component of Amcor’s Board of Directors’ measurement of Amcor’s performance for incentive compensation purposes. Amcor believes that these non-GAAP measures are useful to enable investors to perform comparisons of current and historical performance of the Company. For each of these non-GAAP financial measures, a reconciliation to the most directly comparable U.S. GAAP financial measure has been provided herein. These non-GAAP financial measures should not be construed as an alternative to results determined in accordance with U.S. GAAP. The Company's outlook and guidance do not contemplate the impact of any potential portfolio optimization actions, including acquisitions, divestitures, or other portfolio actions, that have not been publicly announced as of the date of this release. The Company provides guidance on a non-GAAP basis as we are unable to predict with reasonable certainty the ultimate outcome and timing of certain significant for ward-looking items without unreasonable effort. These items include but are not limited to the impact of foreign exchange translation, restructuring program costs, asset impairments, possible gains and losses on the sale of assets, certain tax related events, and difficulty in making accurate forecasts and
+
+
+
+
+| | | | | | | | | | | |
+| | |
+|
+14
+
+
+
+
+
+projections in connection with the legacy Berry Global business given recency of access to all relevant information. These items are uncertain, depend on various factors, and could have a material impact on U.S. GAAP earnings and cash flow measures for the guidance period.
+Reconciliations of Transition Period projected non-GAAP measures are not included herein because the individual components are not known with certainty as individual financial statements for Transition Period have not been completed.
+
+
+Reverse Stock Split
+On January 14, 2026, the Company filed an amendment to its memorandum of association to effect a 1-for-5 reverse stock split (the “Reverse Split”) of the Company's ordinary shares. The Reverse Split became effective on January 14, 2026 and reduced the number of authorized ordinary shares to 1,800,000,000 and increased the par value of the ordinary shares to $0.05 per share. Accordingly, all share and per share amounts for all prior periods presented in the discussion within this release have been adjusted retroactively, where applicable, to reflect the Reverse Split.
+
+
+Presentation of combined volume performance
+In order to provide the most meaningful comparison of results of volume performance by region and end market for Amcor plc and for each of its reportable segments, the Company has included commentary to reflect Amcor’s estimate of year-over-year volume performance for the three and twelve months ended June 30, 2026 compared with estimated combined volumes for the legacy Amcor and Berry Global businesses for the three and twelve months ended June 30, 2025. The combined volume performance information has been presented for informational purposes and Amcor believes this information reflects the impact of the combination including allocation of volumes across the combined production footprint since May 1, 2025. For the avoidance of doubt, combined volume performance information is not intended to be, and was not, prepared on a basis consistent with pro forma financial information required by Article 11 of Regulation S-X.
+
+
+Dividends
+Amcor has received a waiver from the ASX’s settlement operating rules, which will allow the Company to defer processing conversions between its ordinary share and CDI registers from September 3, 2026 to September 4, 2026 inclusive.
+
+
+
+
+| | | | | | | | | | | |
+| | |
+|
+15

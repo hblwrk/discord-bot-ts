@@ -41,6 +41,14 @@ describe("earnings result document text", () => {
     ].join(" "))).toBe("Q2 2026");
   });
 
+  test("joins a fiscal Q4 title to the year in its following highlights heading", () => {
+    expect(getQuarterLabel([
+      "Amcor Reports Strong Fourth Quarter and Full-Year Results",
+      "Highlights - Three Months Ended June 30, 2026",
+      "Highlights - Fiscal Year Ended June 30, 2026",
+    ].join("\n"))).toBe("Q4 2026");
+  });
+
   test("recognizes Swiss francs declared with their ISO code", () => {
     expect(getDocumentCurrencyCode([
       "On Holding AG financial results",
