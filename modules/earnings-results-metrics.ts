@@ -47,6 +47,9 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     key: "adjusted_eps",
     label: "Adj EPS",
     patterns: [
+      // Some releases state non-GAAP net income and then introduce its per-share
+      // equivalent with "or", without ever spelling out EPS as a caption.
+      /\b(?:reported|for)\s+(?:the\s+)?(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b(?:(?![.!?]\s)[^!?\n]){0,360}?\bnon-gaap\s+(?:net\s+)?(?:income|earnings|loss)\b(?:(?![.!?]\s)[^!?\n]){0,180}?\bor\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
       /\badjusted\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
       /\bnon-gaap\s+(?:net\s+)?(?:income|earnings|loss)\s+for\s+(?:the\s+)?(?:q[1-4]|(?:first|second|third|fourth)[\s–—-]+quarter)\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
       /\badjusted\s+(?:\d{1,2}\s+)?(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?(?:earnings\s+per\s+(?:common\s+)?share|eps)\b/i,
@@ -230,8 +233,20 @@ function isQuarterSpecificSectionBoundary(line: string): boolean {
 export function isPerShareOnlyNetIncomeLine(line: string): boolean {
   const hasCombinedAggregateLabel =
     /\bnet\s+income\b.*\band\b.*\bnet\s+income\s+per\s+(?:common\s+|diluted\s+)?share\b/i.test(line);
+  if (true === hasCombinedAggregateLabel) {
+    return false;
+  }
+
+  // A headline can mention scaled revenue and then say "GAAP net income of
+  // $1.19 per diluted share". The unrelated revenue scale must not make that
+  // per-share statement look like an aggregate net-income figure.
+  const hasPerShareNetIncome = /\bnet\s+(?:income|earnings)\b[^.!?]{0,80}\b(?:of\s+)?\(?-?[$€£¥]?\s*\d+(?:\.\d+)?\)?\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i.test(line);
+  const hasAggregateNetIncome = /\bnet\s+(?:income|earnings)\b[^.!?]{0,80}\(?-?[$€£¥]?\s*\d+(?:\.\d+)?\)?\s+(?:trillion|billion|million|thousand)s?\b/i.test(line);
+  if (true === hasPerShareNetIncome && false === hasAggregateNetIncome) {
+    return true;
+  }
+
   return /\bper\s+(?:common\s+|diluted\s+)?share\b/i.test(line) &&
-    false === hasCombinedAggregateLabel &&
     false === /\b(?:trillion|billion|million|thousand)s?\b/i.test(line);
 }
 

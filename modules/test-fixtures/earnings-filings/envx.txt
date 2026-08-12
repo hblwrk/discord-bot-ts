@@ -1,0 +1,751 @@
+EX-99.1
+2
+envx8k-q22026x8122026ex991.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+
+Enovix Reports Second Quarter 2026 Results
+Second Quarter Revenue of $9.0 Million, Up 21% Year-over-Year, at High End of Guidance; First Half 2026 Revenue of $16.6 Million, Up 32% Year-over-Year
+Lead Smartphone Customer Confirms Passing More than 1,000 Cycles under the 0.2C Discharge Cycle Test 1 ; Final Accelerated Cycle-Life Test for Smartphone Qualification Underway, with Completion Expected in 2026
+
+
+
+
+FREMONT, Calif., August 12, 2026 -- Enovix Corporation (Nasdaq: ENVX) (“Enovix”), a developer and manufacturer of advanced lithium-ion batteries, including proprietary silicon-anode architectures, today reported financial results for the second quarter of 2026 .
+
+
+Second Quarter 2026 Highlights
+
+
+• Revenue of $9.0 million, up 21% year-over-year and 19% sequentially, at the high end of guidance — fifth consecutive quarter of year-over-year revenue growth; year-to-date revenue of $16.6 million, up 32% year-over-year.
+• Seventh consecutive quarter of positive gross profit, with GAAP gross margin of 14.4% and non-GAAP gross margin of 19.9%, down 11.6 and 10.9 percentage points, year-over-year, respectively, on a shift in battery product mix; year-to-date GAAP gross margin of 17.2% and non-GAAP gross margin of 22.8%, down 0.3 and up 1.5 percentage points year-over-year, respectively.
+• GAAP net loss per share of $0.20 and non-GAAP net loss per share of $0.13, compared to $0.22 and $0.13, respectively, in the prior-year quarter.
+• Lead smartphone customer confirms Enovix batteries passing more than 1,000 cycles under the 0.2C discharge cycle test 1 . Final accelerated cycle-life test for smartphone qualification is underway — built around a hybrid protocol defined in close collaboration with the customer and designed for silicon-anode cells.
+• Smart eyewear ramp underway: shipped approximately 2,100 AI-1 TM batteries, completed key international safety certifications, and recognized initial smart eyewear revenue; third quarter shipments expected to increase approximately 9x from the second quarter to approximately 19,000 packs against the 50,000-pack order.
+• Drone, defense, and industrial pipeline grew to $183 million, up approximately 41% from $130 million at the end of the first quarter, driven substantially by drone opportunities, which exceeded $100 million during the second quarter.
+• Third quarter 2026 outlook: revenue of $9.0 to $10.0 million, up approximately 13% to 25% year-over-year; full guidance detailed in the Financial Outlook section.
+
+1 Standard accelerated cycle-life testing condition based on a combination of 0.2C (2%) and 0.7C (98%) cycles used by customers as proxy for 0.2C cycle life. Blended average time per cycle ≈ 2.4 hours.
+1
+
+
+
+
+
+• Ended the quarter with approximately $552.1 million in cash, cash equivalents, and marketable securities, including restricted cash.
+
+
+“The second quarter showed momentum across all three of our target markets: our lead customer confirmed passing a defining smartphone qualification milestone. We have one final accelerated cycle-life test on the path to smartphone qualification, which we expect to complete this year. We also converted our smart eyewear ramp into initial revenue and substantially expanded our drone and defense pipeline,” said Dr. Raj Talluri, President and CEO of Enovix. “With revenue up 21% year-over-year at the high end of guidance and our fifth consecutive quarter of year-over-year growth, Enovix is executing the transition from technology validation to commercial scale.”
+
+
+Commercialization Progress: Smartphones
+
+
+Customer testing is now underway with the final accelerated cycle-life test, aligned through an iterative customer engagement process. This hybrid approach, which replaced the traditional 0.7C test used for legacy graphite batteries, consists of multiple test protocols across a range of charge and discharge conditions, with testing durations differing by variant mix. The lead customer is currently evaluating Enovix’s cells, including an enhanced design, across these multiple variants. The Company anticipates completing this final accelerated test in the fourth quarter of 2026, with targeted system-level field testing to follow.
+
+
+Enovix’s second smartphone OEM customer continues to progress toward alignment on a qualification framework, following a path parallel to that of the lead customer. The Company expects to begin sample deliveries in the fourth quarter of 2026.
+
+
+Commercialization Progress: Smart Eyewear
+
+
+“Our smart eyewear business recently marked several important milestones. We completed the international safety certifications required for commercial deployment, advanced our manufacturing ramp, and generated initial product revenue this quarter. Our next-generation AI-2 TM batteries are now in customers’ hands, and we expect them to be well received,” said Dr. Talluri. “We believe these milestones, achieved on a 100% silicon-anode battery in commercial production, further validate that our proprietary cell architecture can be manufactured, certified, and deployed at commercial scale.”
+
+
+Enovix’s smart eyewear ramp is well underway. Recently, Enovix completed key international safety certifications for its smart eyewear cells and battery packs, including UN 38.3 transportation testing, UL 2054, and KC 62133-2, and passed the full suite of customer reliability tests covering drop, tumble, thermal cycling, and extended heat soak.
+
+
+Following the start of commercial production in the first quarter, the Company shipped approximately 2,100 silicon-anode AI-1 batteries during the second quarter to support a leading smart eyewear reference platform and recognized initial smart eyewear product revenue. These shipments are being made under a customer order covering 50,000 battery packs for 2026 delivery. The customer has since issued delivery orders (specifying quantities and timing) under that same 50,000-pack order for approximately 19,000 packs to be delivered in the
+2
+
+
+
+
+
+third quarter — an approximately 9x increase over second-quarter shipments. The Company expects to fulfill the balance of the 50,000-pack order during the fourth quarter of 2026, with shipment volumes expected to grow in 2027 as downstream deployments are projected to expand.
+
+
+Commercialization Progress: Drones, Defense, and Industrial
+
+
+“Our defense and drone business delivered another quarter of strong growth and pipeline expansion,” said Dr. Talluri. “We are investing now to expand capacity so we can convert our growing pipeline into revenue as customer programs reach launch.”
+
+
+Demand across Enovix’s drone, defense, and industrial markets continued to expand in the second quarter. The Company’s global pipeline for products manufactured in South Korea increased 41% to approximately $183 million, up from $130 million at the end of the first quarter, with more than half of the growth driven by drone opportunities. Drone opportunities alone exceeded $100 million during the second quarter, with a substantial portion at stages where customers are actively evaluating and testing the Company’s cells or designing them into products. This pipeline represents the Company’s estimate of the peak annual production value of identified design opportunities.
+
+
+Enovix showcased the recently launched MX-1 TM at industry conferences across the U.S. and Europe during the quarter, with customer interest in the MX1-B01 TM drone cell continuing to grow. In particular, military customers are seeking products that satisfy various governmental requirements, and the Company is well-positioned to meet this demand. The product and transportation certifications necessary to support expanded customer sampling and initial deliveries are progressing well. Subsequent to quarter end, the Company commenced sampling to numerous customers in the third quarter and its drone battery passed UN 38.3 transportation testing, completing a key certification required for commercial shipment. Enovix believes demand for high-performance drone batteries that meet U.S. government sourcing requirements under the National Defense Authorization Act (NDAA) and the Trade Agreements Act (TAA) will materially exceed available supply through the end of the decade. Enovix’s South Korea manufacturing operations, with an established production history supporting defense customers, position the Company to be a scaled supplier able to address this gap, and the previously announced capacity expansion at the facility is underway, with the new capacity expected to come online in mid-2027. The expansion is expected to be capital-efficient, utilizing existing land and buildings the Company already owns and leveraging readily available production equipment.
+
+
+Technology Progress
+
+
+In the first quarter of 2026, Enovix produced the first engineering samples of AI-2, a next-generation smart eyewear battery expected to deliver approximately 20% higher volumetric energy density than AI-1. AI-2 leverages the EX-3M TM technology node, which reduces separator and current collector thickness, improves packaging efficiency, and increases cathode voltage. One tier 1 smart eyewear customer commenced sampling during the second quarter, and additional tier 1 customers are expected to receive samples in the third quarter. The same EX-3M innovations are also expected to support a step-function in performance gains for Enovix’s future smartphone batteries.
+
+
+3
+
+
+
+
+
+Enovix is also advancing the energy density of the silicon-blended graphite batteries produced at its South Korea facility. MX-2 TM , the next generation of the recently launched MX-1 drone cell, remains targeted for 2027, with a goal of reaching a gravimetric energy density of 400 Wh/kg — a significant advancement for this battery chemistry. Gravimetric energy density is especially critical in drone applications, where every gram of battery weight directly impacts flight time, range, payload capacity, and overall operational effectiveness.
+
+
+Manufacturing Readiness Progress
+
+
+Enovix continued to improve execution across Fab2 production zones. In smart eyewear battery production, all but one process step outside of Zone 1 delivered yields during the second quarter of 95% or greater, with individual steps as high as 99.6%. Zone 1 dicing — a key throughput driver across our smartphone and smart eyewear production lines — delivered step-level yield of approximately 84% in the second quarter, up from approximately 80% reported last quarter.
+
+
+To further improve throughput and cost efficiency, the Company has been implementing a hybrid dicing configuration that combines laser and mechanical dicing in Zone 1. This approach allows Enovix to apply the most effective technique at each step and is expected to reduce cell cost while increasing production rates to support early commercial demand as qualification progresses. The transition to mechanical dicing equipment is well underway, with multiple key dicing steps expected to come online at Fab2 around the end of the year.
+
+
+In parallel, Enovix is streamlining the manufacturing flow by eliminating select process steps, which is expected to further improve manufacturability, throughput, and yield while reducing capital intensity and unit costs. These initiatives reflect the Company’s ongoing focus on continuously improving efficiency and scalability across its manufacturing operations.
+
+
+Leadership
+
+
+As recently announced, Enovix appointed Michael Vyvoda to serve as its Chief Operating Officer to lead the Company’s next phase of global manufacturing execution. Mr. Vyvoda brings decades of operations leadership, including prior experience at Apple, and will oversee manufacturing, supply chain, quality, and customer delivery as Enovix scales production across multiple products, facilities, and end markets. His immediate focus is on scaling production to meet the Company’s second-half commitments: ramping smart eyewear output, preparing manufacturing for smartphone field-test builds, and driving the cost, yield and delivery initiatives underway across Enovix’s factories.
+
+
+Subsequent to quarter-end, Enovix also strengthened its commercial organization with a senior sales executive who spent nearly two decades at a leading global manufacturer of lithium-ion batteries for consumer devices, where he most recently headed its largest global sales region and built long-standing relationships across major smartphone OEMs.
+
+
+
+
+4
+
+
+
+
+
+Second Quarter and Year-to-Date 2026 Financial Results
+(in millions, except percentages)
+
+
+• Second quarter 2026 revenue of $9.0 million increased 21% year-over-year and rose 19% sequentially, at the high end of the Company’s guidance range and marking the fifth consecutive quarter of year-over-year revenue growth. Year-to-date, revenue of $16.6 million increased 32% from the first half of 2025. Growth in both periods primarily reflects continued strength in defense through Enovix’s South Korea operations, where the Company’s global pipeline grew to approximately $183 million during the period, driven substantially by new drone opportunities. Enovix also achieved commercial availability of its 100% silicon-anode smart eyewear battery during the second quarter and recognized initial smart eyewear product revenue — modest in amount, but an early proof point of contribution from AI-powered wearable devices.
+• GAAP gross profit was $1.3 million and non-GAAP gross profit was $1.8 million in 2Q26, marking the seventh consecutive quarter of positive gross profit on both a GAAP and non-GAAP basis and continued progression toward economically scalable production. GAAP gross margin was 14.4% and non-GAAP gross margin was 19.9%, down year-over-year primarily due to a shift in the mix of battery products sold through Enovix’s South Korea operations. Year-to-date, GAAP gross profit was $2.9 million and non-GAAP gross profit was $3.8 million, up from $2.2 million and $2.7 million in the first half of 2025, with non-GAAP gross margin improving to 22.8% from 21.3% on higher production volumes and operational execution improvements.
+• Net cash used in operating activities improved to $21.8 million in 2Q26 from $25.9 million in 2Q25. Free cash flow was an outflow of $31.4 million in 2Q26, compared to an outflow of $33.8 million in 2Q25. The modest year-over-year improvement primarily reflects favorable changes in working capital, partially offset by higher capital expenditures supporting manufacturing scale-up. For the first half of 2026, net cash used in operating activities was $54.9 million and free cash flow was an outflow of $67.7 million, compared to $42.8 million and $57.0 million, respectively, in the first half of 2025. The increase in year-to-date cash use primarily reflects greater working capital usage in the first quarter of 2026 and higher interest expense associated with the semi-annual interest payment of the Company’s convertible notes issued in the third quarter of 2025.
+• Cash, cash equivalents, and marketable securities, including restricted cash, totaled approximately $552.1 million at quarter-end, providing liquidity to support qualification completion and commercialization scale-up. Enovix continues to prioritize disciplined capital allocation as it advances manufacturing scale-up and commercialization, while maintaining flexibility to pursue select strategic opportunities. No shares were repurchased during the quarter under the Company’s previously authorized share repurchase program. The Company continues evaluating capital deployment alternatives under its existing authorization.
+
+
+
+
+
+5
+
+
+
+
+
+Second Quarter 2026 Financial Summary
+(unaudited, in millions, except per share data and percentages)
+Note: Amounts may not sum and percentages may not recompute due to rounding.
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| GAAP | | Non-GAAP |
+| Q2 2026 | | Q2 2025 | | YoY Δ | | Q2 2026 | | Q2 2025 | | YoY Δ |
+Revenue | $ | 9.0 | | $ | 7.5 | | $ | 1.5 | | $ | 9.0 | | $ | 7.5 | | $ | 1.5 |
+Gross profit | $ | 1.3 | | $ | 1.9 | | $ | (0.6) | | $ | 1.8 | | $ | 2.3 | | $ | (0.5) |
+Gross margin | 14.4 | % | | 26.0 | % | | (11.6)pts | | 19.9 | % | | 30.8 | % | | (10.9)pts |
+Operating expenses | $ | 44.6 | | $ | 45.7 | | $ | (1.1) | | $ | 30.6 | | $ | 28.8 | | $ | 1.8 |
+Loss from operations | $ | (43.3) | | $ | (43.7) | | $ | 0.4 | | $ | (28.8) | | $ | (26.5) | | $ | (2.3) |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+Net cash used in operating activities | $ | (21.8) | | $ | (25.9) | | $ | 4.1 | | $ | (21.8) | | $ | (25.9) | | $ | 4.1 |
+Capital expenditures (1)
+| $ | (9.6) | | $ | (8.0) | | $ | (1.6) | | $ | (9.6) | | $ | (8.0) | | $ | (1.6) |
+Free cash flow | N/A | | N/A | | N/A | | $ | (31.4) | | $ | (33.8) | | $ | 2.4 |
+Adjusted EBITDA | N/A | | N/A | | N/A | | $ | (18.9) | | $ | (20.1) | | $ | 1.2 |
+| | | | | | | | | | | |
+Net loss per share, basic (2)
+| $ | (0.20) | | $ | (0.22) | | $ | 0.02 | | $ | (0.13) | | $ | (0.13) | | $ | — |
+Weighted average shares, basic (3)
+| 218.5 | | 204.8 | | 13.7 | | 218.5 | | 204.8 | | 13.7 |
+Net loss per share, diluted (2)
+| $ | (0.20) | | $ | (0.22) | | $ | 0.02 | | $ | (0.13) | | $ | (0.13) | | $ | — |
+Weighted average shares, diluted (3)
+| 218.5 | | 204.8 | | 13.7 | | 218.5 | | 204.8 | | 13.7 |
+
+(1) Capital Expenditures reflects cash paid for property, equipment, and manufacturing assets and is a component of our free cash flow calculation. It excludes depreciation, accretion and amortization, and other non-cash investing items. It excludes one-time cash outflows related to business acquisitions. (2) Net loss per share attributable to Enovix. (3) Weighted average shares attributable to Enovix.
+
+
+
+
+2026 Year-to-Date Financial Summary
+(unaudited, in millions, except per share data and percentages)
+Note: Amounts may not sum and percentages may not recompute due to rounding.
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| GAAP | | Non-GAAP |
+| YTD 2026 | | YTD 2025 | | YoY Δ | | YTD 2026 | | YTD 2025 | | YoY Δ |
+Revenue | $ | 16.6 | | | $ | 12.6 | | | $ | 4.0 | | | $ | 16.6 | | | $ | 12.6 | | | $ | 4.0 | |
+Gross profit | $ | 2.9 | | | $ | 2.2 | | | $ | 0.7 | | | $ | 3.8 | | | $ | 2.7 | | | $ | 1.1 | |
+Gross margin | 17.2 | % | | 17.5 | % | | (0.3)pts | | 22.8 | % | | 21.3 | % | | 1.5pts |
+Operating expenses | $ | 90.0 | | | $ | 88.5 | | | $ | 1.5 | | | $ | 61.3 | | | $ | 57.1 | | | $ | 4.2 | |
+Loss from operations | $ | (87.2) | | | $ | (86.3) | | | $ | (0.9) | | | $ | (57.5) | | | $ | (54.5) | | | $ | (3.0) | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+Net cash used in operating activities | $ | (54.9) | | | $ | (42.8) | | | $ | (12.1) | | | $ | (54.9) | | | $ | (42.8) | | | $ | (12.1) | |
+Capital expenditures (1)
+| $ | (12.8) | | | $ | (14.2) | | | $ | 1.4 | | | $ | (12.8) | | | $ | (14.2) | | | $ | 1.4 | |
+Free cash flow | N/A | | N/A | | N/A | | $ | (67.7) | | | $ | (57.0) | | | $ | (10.7) | |
+Adjusted EBITDA | N/A | | N/A | | N/A | | $ | (39.3) | | | $ | (40.9) | | | $ | 1.6 | |
+| | | | | | | | | | | |
+Net loss per share, basic (2)
+| $ | (0.37) | | | $ | (0.33) | | | $ | (0.04) | | | $ | (0.27) | | | $ | (0.26) | | | $ | (0.01) | |
+Weighted average shares, basic (3)
+| 217.9 | | | 204.1 | | | 13.8 | | | 217.9 | | | 204.1 | | | 13.8 | |
+Net loss per share, diluted (2)
+| $ | (0.37) | | | $ | (0.33) | | | $ | (0.04) | | | $ | (0.27) | | | $ | (0.26) | | | $ | (0.01) | |
+Weighted average shares, diluted (3)
+| 217.9 | | | 204.1 | | | 13.8 | | | 217.9 | | | 204.1 | | | 13.8 | |
+
+(1) Capital Expenditures reflects cash paid for property, equipment, and manufacturing assets and is a component of our free cash flow calculation. It excludes depreciation, accretion and amortization, and other non-cash investing items. It excludes one-time cash outflows related to business acquisitions. (2) Net loss per share attributable to Enovix. (3) Weighted average shares attributable to Enovix.
+.
+6
+
+
+
+
+
+
+
+
+Financial Outlook
+(unaudited, in millions, except per share data)
+
+
+| | | | | | | | | | | | | | | | | | | | |
+| | Q3 2026 Guidance (1)
+| | Q3 2025 Results | | Q2 2026 Results |
+Revenue | | $9.0 - 10.0 | | $8.0 | | $9.0 |
+Non-GAAP loss from operations (2)
+| | ($29.0 - 32.0) | | ($29.8) | | ($28.8) |
+Non-GAAP net loss per share (2),(3)
+| | ($0.13 - 0.17) | | ($0.14) | | ($0.13) |
+Capital expenditures (4)
+| | $8.0 - 12.0 | | $3.0 | | $9.6 |
+
+(1) Our outlook does not include provisions for proposed tax law changes or for the recently enacted tax reform legislation, future asset impairments or for pending legal matters, other than future legal amounts that are probable and estimable. Further, due to their nature, certain income and expense items, such as certain investments, derivative and foreign currency transaction gains or losses, cannot be accurately forecast. Accordingly, we only include such items in our financial outlook to the extent they are reasonably certain. Actual results may differ materially from the outlook; (2) See Appendix for definitions and reconciliations of non-GAAP Gross Profit (Loss), non-GAAP Gross Margin, non-GAAP Operating Loss, Adjusted EBITDA, and non-GAAP Net Loss Per Share Attributable to Enovix to their nearest comparable GAAP metrics for the historical periods presented. We are not presenting a quantitative reconciliation of our guidance for non-GAAP Operating Loss and non-GAAP Net Loss Per Share Attributable to Enovix to their GAAP equivalents, in reliance on the unreasonable efforts exception under Item 10(e)(1)(i)(B) of Regulation S-K. Further information is provided below under the heading "Non-GAAP Financial Measures"; (3) non-GAAP Net Loss Per Share represents non-GAAP Net Loss Per Share Attributable to Enovix; (4) Capital Expenditures reflects cash paid for property, equipment, and manufacturing assets and is a component of our free cash flow calculation. It excludes depreciation, accretion, amortization, and other non-cash investing items. It excludes one-time cash outflows related to business acquisitions.
+
+
+
+Conference Call Information
+
+
+The Company will host a live, audio-only webcast today at 5:00 PM ET / 2:00 PM PT to discuss the results and provide a business update. To register for the audio webcast, please visit: https://enovix-q2-2026.open-exchange.net/ .
+
+
+About Enovix
+
+
+Enovix develops and manufactures advanced lithium-ion batteries, including proprietary silicon-anode architectures for smartphones, smart eyewear, defense, industrial, and emerging edge-AI applications. Its proprietary silicon-anode battery architecture enables higher energy density and performance in space-constrained devices while maintaining safety and reliability, supporting commercialization across consumer and industrial markets.
+
+
+Enovix is headquartered in Silicon Valley with facilities in India, Korea, and Malaysia, serving customers globally. For more information visit https://enovix.com and follow us on LinkedIn.
+
+
+
+Non-GAAP Financial Measures
+This press release includes the use of non-GAAP financial measures, which are intended to provide supplemental information regarding our performance. These non-GAAP measures include non-GAAP cost of revenue, non-GAAP gross profit (loss), non-GAAP gross margin, non-GAAP research and development expense, non-GAAP selling, general and administrative expense, non-GAAP operating expenses, non-GAAP income (loss) from operations, EBITDA, adjusted EBITDA, non-GAAP net loss attributable to Enovix shareholders, non-GAAP earnings (loss) per share, free cash flow, and other non-GAAP measures that are included in this press release.
+
+
+We use these non-GAAP measures to supplement our financial reporting and to evaluate ongoing operations and results, facilitate internal planning and forecasting, and assess performance against prior periods, industry peers, and the broader market. These non-GAAP measures are not prepared in accordance with generally accepted accounting principles (GAAP) and should not be considered as an alternative to GAAP results. Industry peers and other companies may calculate similar non-GAAP measures differently. Non-GAAP financial measures have limitations, including but not limited to, that they exclude certain expenses that are required under GAAP, which adjustments reflect the exercise of judgment by management. We believe that these non-GAAP measures, when considered together with the GAAP results, provide investors with an
+7
+
+
+
+
+
+additional understanding of our operating performance. Reconciliations of each non-GAAP financial measure to the most directly comparable GAAP financial measure can be found in the tables at the end of this press release.
+
+
+While Enovix provides third quarter 2026 guidance for non-GAAP loss from operations, non-GAAP net loss per share and capital expenditures, we are unable to provide without unreasonable effort a GAAP to non-GAAP reconciliation of these projected non-GAAP measures, and we have not provided a quantitative reconciliation in reliance on the unreasonable efforts exception under Item 10(e)(1)(i)(B) of Regulation S-K. Such reconciliation to the corresponding GAAP financial measure cannot be provided without unreasonable effort because of the inherent difficulty in accurately forecasting the occurrence and financial impact of the various adjustments that have not yet occurred, are out of our control, or cannot be reasonably predicted, including but not limited to change in fair value of common stock, stock-based compensation and related tax effects, legal costs related to shareholder lawsuit, gain on bargain purchase of assets, acquisition-related costs, and restructuring costs. As a result, we are unable to assess the probable significance of the unavailable information, which could have a material impact on our future GAAP financial results.
+
+
+
+Forward-Looking Statements
+This press release contains forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995. Forward-looking statements relate to future events or our future financial or operating performance and are identified by words such as anticipate, believe, could, estimate, expect, intend, may, might, plan, possible, potential, predict, project, should, will, would, and similar expressions. Forward-looking statements in this press release include, but are not limited to, statements regarding: our future operating results, financial position, growth opportunities, and guidance; expected performance, capabilities, and development of our battery products and technology roadmap; the timing, results and impact of customer testing, certification and qualification requirements; the timing and scale of sampling, product launches, production ramps, and customer programs; our ability to meet customer performance requirements and progress toward commercial deployment; our ability to scale and optimize manufacturing, including improvements in yield, throughput, dicing processes, performance, cost, timing and capital efficiency of our capacity expansion; our estimation of customer demand, adoption, growth and our ability to convert pipeline opportunities into revenue; our expectations regarding regulatory, certification and government sourcing requirements, including under the NDAA and TAA; and the sufficiency and use of our capital resources and our expectations regarding the benefits and use of our current balances of cash, cash equivalents, and marketable securities.
+
+
+Risks, uncertainties and assumptions that could cause actual results to differ materially from the results and events anticipated by such forward-looking statements include, but are not limited to: risks related to the outcome of customer testing and qualification activities, including the possibility that our products do not meet required performance thresholds or that such testing is delayed beyond expected time frames; our ability to successfully develop, manufacture and commercialize our battery products and transition to high-volume production; our ability to scale manufacturing operations and achieve expected production capacity and yields; the level and timing of customer demand, qualification and adoption of our products across end markets; our ability to enter into and expand commercial agreements, including securing design wins, purchase orders and production contracts; our ability to execute on our business strategy and build and scale our sales and commercial capabilities; lengthy and unpredictable customer qualification and sales cycles, safety considerations and contractual terms, particularly in defense and other regulated markets; risks related to battery performance, reliability and safety; customer concentration in the defense sector and certain consumer technology markets, such as smartphones and smart eyewear; challenges in forecasting demand, inventory and manufacturing requirements that may result in additional costs and production delays; our history of losses and expectation of continued losses; risks associated with the development and commercialization of products that remain under development and may not be successfully produced at commercial scale; our ability to effectively integrate and derive benefits from acquired businesses; fluctuations in foreign currency exchange rates and interest rates; operational and safety risks associated with manufacturing equipment; intense competition and our ability to keep up with rapid technological change and evolving standards in the battery industry; our ability to attract and retain qualified personnel; the outcome of litigation, regulatory investigations and other legal
+8
+
+
+
+
+
+matters, including the associated legal and other costs; liquidity constraints, capital availability and our ability to service existing debt; our ability to protect and enforce our intellectual property rights; volatility in the trading price of our common stock; changes in tax laws or regulations; the impact of cyber and other information technology or security related incidents on us, our customers or other parties; changes in the political, economic or regulatory environment generally and in the markets in which we operate; and other risks described in the disclosures contained in our filings with the Securities and Exchange Commission (“SEC”), including in the “Risk Factors” and “Management’s Discussion and Analysis of Financial Condition and Results of Operations” sections of our annual report on Form 10-K and quarterly reports on Form 10-Q and other documents that we have filed, or will file, with the SEC. These documents are available in the SEC Filings section of the Investor Relations page at https://ir.enovix.com and at www.sec.gov .
+
+
+Any forward-looking statements in this press release speak only as of the date on which they are made. We undertake no obligation to update or revise any forward-looking statements, whether as a result of new information, future events or otherwise.
+
+
+Note Regarding Customer Pipeline and Design Wins
+We may refer in this press release and other communications to our “customer pipeline” and “design wins.” Our customer pipeline represents our estimate of the peak annual production value of identified design opportunities for products manufactured in South Korea. A “design win” refers to an opportunity that has been awarded to Enovix but has not yet entered production. Customer pipeline and design win amounts do not represent customer orders, backlog or committed revenue and should not be viewed as forecasts of future revenue. Actual revenue, if any, will depend on a number of factors, including customer qualification, final program awards, production timing, capacity and volumes, and the successful launch and ramp of customer programs. These measures are forward-looking and are subject to the risks and uncertainties described above under “Forward-Looking Statements.”
+
+
+For media and investor inquiries, please contact:
+
+
+Investor Contact:
+Monica Gould
+ir@enovix.com
+
+
+
+
+
+9
+
+
+
+
+
+
+ENOVIX CORPORATION
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(Unaudited, in thousands, except share and par value amounts)
+
+
+| | | | | | | | | | | |
+| As of July 5,
+2026 | | As of December 28,
+2025 |
+Assets | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 33,741 | | | $ | 106,014 | |
+Short-term investments | 442,040 | | | 406,026 | |
+Accounts receivable, net | 3,097 | | | 4,421 | |
+Notes receivable, net | — | | | 4,012 | |
+Inventory | 17,520 | | | 13,617 | |
+Prepaid expenses and other current assets | 9,342 | | | 8,120 | |
+Total current assets | 505,740 | | | 542,210 | |
+Property and equipment, net | 165,155 | | | 170,263 | |
+Long-term investments | 74,430 | | | 106,810 | |
+Customer relationship intangibles and other intangibles, net | 29,168 | | | 31,638 | |
+Operating lease, right-of-use assets | 8,639 | | | 11,682 | |
+Goodwill | 12,217 | | | 12,217 | |
+Other assets, non-current | 4,270 | | | 4,155 | |
+Total assets | $ | 799,619 | | | $ | 878,975 | |
+Liabilities and Equity | | | |
+Current liabilities: | | | |
+Accounts payable | $ | 12,173 | | | $ | 17,818 | |
+Accrued expenses | 11,456 | | | 13,992 | |
+Accrued compensation | 7,560 | | | 6,219 | |
+Short-term debt | 10,593 | | | 9,865 | |
+Deferred revenue | 3,710 | | | 5,015 | |
+Warrant liability | — | | | 6,578 | |
+Other liabilities | 6,618 | | | 5,529 | |
+Total current liabilities | 52,110 | | | 65,016 | |
+Long-term debt, net | 520,994 | | | 519,271 | |
+| | | |
+Operating lease liabilities, non-current | 5,893 | | | 11,244 | |
+Deferred revenue, non-current | 300 | | | 300 | |
+Deferred tax liability | 8,320 | | | 9,119 | |
+Other liabilities, non-current | 13 | | | 14 | |
+Total liabilities | 587,630 | | | 604,964 | |
+| | | |
+Stockholders’ equity: | | | |
+Common stock, $0.0001 par value; authorized shares of 1,000,000,000; issued and outstanding shares of 219,195,932 and 216,556,238 as of July 5, 2026 and December 28, 2025, respectively
+| 23 | | | 22 | |
+Additional paid-in-capital | 1,328,872 | | | 1,307,912 | |
+Treasury stock, at cost | (58,385) | | | (58,385) | |
+Accumulated other comprehensive loss | (1,415) | | | (508) | |
+Accumulated deficit | (1,059,150) | | | (977,827) | |
+Total Enovix’s stockholders’ equity | 209,945 | | | 271,214 | |
+Non-controlling interest | 2,044 | | | 2,797 | |
+Total equity | 211,989 | | | 274,011 | |
+Total liabilities and equity | $ | 799,619 | | | $ | 878,975 | |
+
+
+
+
+
+
+
+
+
+ENOVIX CORPORATION
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(Unaudited, in thousands, Except Share and per Share Amounts)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Fiscal Quarters Ended | | Fiscal Years-to-Date Ended |
+| July 5,
+2026 | | June 29,
+2025 | | July 5,
+2026 | | June 29,
+2025 |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Revenue | $ | 9,024 | | | $ | 7,468 | | | $ | 16,624 | | | $ | 12,566 | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Cost of revenue | 7,722 | | | 5,526 | | | 13,770 | | | 10,363 | |
+Gross profit | 1,302 | | | 1,942 | | | 2,854 | | | 2,203 | |
+Operating expenses: | | | | | | | |
+Research and development | 24,444 | | | 28,148 | | | 50,972 | | | 54,077 | |
+Selling, general and administrative | 20,154 | | | 17,527 | | | 39,073 | | | 34,419 | |
+| | | | | | | |
+| | | | | | | |
+Total operating expenses | 44,598 | | | 45,675 | | | 90,045 | | | 88,496 | |
+Loss from operations | (43,296) | | | (43,733) | | | (87,191) | | | (86,293) | |
+Other income (expense): | | | | | | | |
+Change in fair value of common stock warrants | 181 | | | (5,885) | | | 6,578 | | | 9,911 | |
+| | | | | | | |
+| | | | | | | |
+Gain on bargain purchase of assets | — | | | 4,761 | | | — | | | 4,761 | |
+Interest income | 5,134 | | | 2,427 | | | 10,910 | | | 4,861 | |
+Interest expense | (6,521) | | | (1,705) | | | (13,529) | | | (3,421) | |
+Other income (expense), net | 984 | | | (992) | | | 1,327 | | | 1,361 | |
+Total other income (expense), net | (222) | | | (1,394) | | | 5,286 | | | 17,473 | |
+Loss before income tax benefit | (43,518) | | | (45,127) | | | (81,905) | | | (68,820) | |
+Income tax benefit | (441) | | | (861) | | | (570) | | | (1,023) | |
+Net loss | (43,077) | | | (44,266) | | | (81,335) | | | (67,797) | |
+Net gain (loss) attributable to non-controlling interest | (14) | | | 262 | | | (12) | | | 241 | |
+Net loss attributable to Enovix | $ | (43,063) | | | $ | (44,528) | | | $ | (81,323) | | | $ | (68,038) | |
+| | | | | | | |
+Net loss per share attributable to Enovix shareholders, basic and diluted (1)
+| $ | (0.20) | | | $ | (0.22) | | | $ | (0.37) | | | $ | (0.33) | |
+Weighted average number of common shares outstanding, basic and diluted (1)
+| 218,502,098 | | | 204,819,119 | | | 217,908,465 | | | 204,086,108 | |
+| | | | | | | |
+| | | | | | | |
+
+| | |
+|
+
+(1) As required by ASC 260, Earnings Per Share, the share and per share amounts presented in the above table for the fiscal quarter and fiscal year-to-date ended June 29, 2025 have been retroactively adjusted to reflect the warrant dividend issued in July 2025.
+
+
+
+
+
+
+
+
+ENOVIX CORPORATION
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(Unaudited, in thousands)
+
+
+| | | | | | | | | | | |
+| Fiscal Years-to-Date Ended |
+| July 5,
+2026 | | June 29,
+2025 |
+Cash flows used in operating activities: | | | |
+Net loss | $ | (81,335) | | | $ | (67,797) | |
+Adjustments to reconcile net loss to net cash used in operating activities | | | |
+Depreciation, accretion and amortization | 19,406 | | | 17,277 | |
+Stock-based compensation expense | 24,799 | | | 26,136 | |
+Change in fair value of common stock warrants | (6,578) | | | (9,911) | |
+Gain on bargain purchase of assets | — | | | (4,761) | |
+| | | |
+| | | |
+Others | (1,452) | | | 1,405 | |
+Changes in operating assets and liabilities: | | | |
+Accounts and notes receivables | 5,125 | | | (552) | |
+Inventory | (4,249) | | | (5,410) | |
+Prepaid expenses and other assets | (1,369) | | | 1,765 | |
+Accounts payable | (3,677) | | | 2,241 | |
+Accrued expenses and compensation | (1,660) | | | (5,001) | |
+Deferred revenue | (1,328) | | | 1,044 | |
+Deferred tax liability | (803) | | | (683) | |
+Other liabilities | (1,732) | | | 1,481 | |
+Net cash used in operating activities | (54,853) | | | (42,766) | |
+Cash flows from investing activities: | | | |
+Purchase of property and equipment | (12,844) | | | (14,243) | |
+Payment for business acquisition | — | | | (10,000) | |
+Purchases of investments | (230,074) | | | (85,473) | |
+Maturities of investments | 227,580 | | | 18,627 | |
+Net cash used in investing activities | (15,338) | | | (91,089) | |
+Cash flows from financing activities: | | | |
+| | | |
+| | | |
+| | | |
+| | | |
+Proceeds from loan borrowing | 1,300 | | | — | |
+| | | |
+| | | |
+Proceeds from issuance of common stock under employee stock purchase plan | 938 | | | 711 | |
+Payroll tax payments for shares withheld upon vesting of RSUs | (3,382) | | | (2,853) | |
+Purchase of Routejade shares from non-controlling interest | (740) | | | — | |
+Repayment of debt | (108) | | | (813) | |
+Proceeds from the exercise of stock options | — | | | 782 | |
+| | | |
+Payments of transaction costs related to common stock issuance | — | | | (512) | |
+Net cash used in financing activities | (1,992) | | | (2,685) | |
+Effect of exchange rate changes on cash, cash equivalents and restricted cash | (202) | | | (102) | |
+Change in cash, cash equivalents, and restricted cash | (72,385) | | | (136,642) | |
+Cash and cash equivalents and restricted cash, beginning of period | 107,979 | | | 274,691 | |
+Cash and cash equivalents and restricted cash, end of period | $ | 35,594 | | | $ | 138,049 | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+
+
+
+
+
+
+
+
+
+Net Loss Attributable to Enovix to Adjusted EBITDA Reconciliation
+“EBITDA” is defined as earnings (net loss) attributable to Enovix adjusted for interest income, interest expense, income tax benefit, depreciation, accretion and amortization expense. “Adjusted EBITDA” includes additional adjustments to EBITDA such as stock-based compensation expense, change in fair value of common stock warrants, impairment of equipment, warrant issuance cost, certain legal costs related to our defense of an ongoing securities class action complaint that is outside the ordinary course of business and that we do not consider representative of our performance, and other special items as determined by management which it does not believe to be indicative of its underlying business trends.
+These non-GAAP measures may differ from similarly titled measures used by other companies.
+
+
+Below is a reconciliation of net loss attributable to Enovix on a GAAP basis to the non-GAAP EBITDA and Adjusted EBITDA financial measures for the periods presented below (unaudited, in thousands):
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Fiscal Quarters Ended | | Fiscal Years-to-Date Ended |
+| July 5,
+2026 | | June 29,
+2025 | | July 5,
+2026 | | June 29,
+2025 |
+Net loss attributable to Enovix | $ | (43,063) | | | $ | (44,528) | | | $ | (81,323) | | | $ | (68,038) | |
+Interest expense (income), net | 1,387 | | | (722) | | | 2,619 | | | (1,440) | |
+Income tax benefit | (441) | | | (861) | | | (570) | | | (1,023) | |
+Depreciation, accretion and amortization | 10,036 | | | 8,829 | | | 19,406 | | | 17,277 | |
+EBITDA | (32,081) | | | (37,282) | | | (59,868) | | | (53,224) | |
+Stock-based compensation expense | 13,034 | | | 14,122 | | | 24,799 | | | 26,136 | |
+Change in fair value of common stock warrants | (181) | | | 5,885 | | | (6,578) | | | (9,911) | |
+| | | | | | | |
+| | | | | | | |
+Legal cost related to shareholder lawsuit (1)
+| 313 | | | 1,247 | | | 2,389 | | | 2,651 | |
+| | | | | | | |
+Acquisition cost | — | | | 664 | | | — | | | 664 | |
+Gain on bargain purchase of assets | — | | | (4,761) | | | — | | | (4,761) | |
+Import duty forgiveness | — | | | — | | | — | | | (2,431) | |
+Adjusted EBITDA | $ | (18,915) | | | $ | (20,125) | | | $ | (39,258) | | | $ | (40,876) | |
+
+| | |
+|
+
+(1) These amounts reflect litigation expenses related to the defense of an ongoing securities action.
+
+
+
+
+
+
+
+
+Reconciliation of Operating Loss to Non-GAAP Operating Loss and Adjusted EBITDA
+Additionally, below is a reconciliation of GAAP operating loss to non-GAAP operating loss and adjusted EBITDA for the periods presented (unaudited, in thousands).
+These non-GAAP measures may differ from similarly titled measures used by other companies.
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Fiscal Quarters Ended | | Fiscal Years-to-Date Ended |
+| | July 5,
+2026 | | June 29,
+2025 | | July 5,
+2026 | | June 29,
+2025 |
+GAAP loss from operations | | $ | (43,296) | | | $ | (43,733) | | | $ | (87,191) | | | $ | (86,293) | |
+Stock-based compensation expense | | 13,034 | | | 14,122 | | | 24,799 | | | 26,136 | |
+Amortization of intangible assets | | 1,190 | | | 1,188 | | | 2,471 | | | 2,378 | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+Legal cost related to shareholder lawsuit (1)
+| | 313 | | | 1,247 | | | 2,389 | | | 2,651 | |
+| | | | | | | | |
+Acquisition cost | | — | | | 664 | | | — | | | 664 | |
+Non-GAAP loss from operations | | (28,759) | | | (26,512) | | | (57,532) | | | (54,464) | |
+Depreciation, accretion and amortization (excluding amortization of intangible assets) | | 8,846 | | | 7,641 | | | 16,935 | | | 14,899 | |
+Other income (loss), net (excluding import duty forgiveness) | | 984 | | | (992) | | | 1,327 | | | (1,070) | |
+Net gain (loss) attributable to non-controlling interest | | 14 | | | (262) | | | 12 | | | (241) | |
+Adjusted EBITDA | | $ | (18,915) | | | $ | (20,125) | | | $ | (39,258) | | | $ | (40,876) | |
+
+| | |
+|
+
+(1) These amounts reflect litigation expenses related to the defense of an ongoing securities action.
+
+
+
+
+
+
+
+
+Free Cash Flow Reconciliation
+We define “Free Cash Flow” as (i) net cash from operating activities less (ii) capital expenditures, net of proceeds from disposals of property and equipment, all of which are derived from our Consolidated Statements of Cash Flow. The presentation of non-GAAP Free Cash Flow is not intended as an alternative measure of cash flows from operations, as determined in accordance with GAAP.
+We believe Free Cash Flow is a useful measure for investors because it provides insight into the cash generated or used by our operations after funding capital expenditures, and it helps assess our ability to pursue strategic growth initiatives. We use Free Cash Flow internally to evaluate performance, support decision-making, and measure our progress toward profitability and cash flow breakeven.
+This non-GAAP measure may differ from similarly titled measures used by other companies.
+Below is a reconciliation of net cash used in operating activities to the Free Cash Flow financial measures for the periods presented below (unaudited, in thousands):
+| | | | | | | | | | | |
+| Fiscal Years-to-Date Ended |
+| July 5,
+2026 | | June 29,
+2025 |
+Net cash used in operating activities | $ | (54,853) | | | $ | (42,766) | |
+Capital expenditures | (12,844) | | | (14,243) | |
+Free cash flow | $ | (67,697) | | | $ | (57,009) | |
+
+
+
+
+
+
+
+
+
+
+
+Other Non-GAAP Financial Measures Reconciliation
+(Unaudited, in thousands, except share and per share amounts)
+These non-GAAP measures may differ from similarly titled measures used by other companies.
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Fiscal Quarters Ended | | Fiscal Years-to-Date Ended |
+| | July 5,
+2026 | | June 29,
+2025 | | July 5,
+2026 | | June 29,
+2025 |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+Revenue | | $ | 9,024 | | | $ | 7,468 | | | $ | 16,624 | | | $ | 12,566 | |
+| | | | | | | | |
+Cost of revenue: | | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+GAAP cost of revenue | | $ | 7,722 | | | $ | 5,526 | | | $ | 13,770 | | | $ | 10,363 | |
+Stock-based compensation expense | | (490) | | | (356) | | | (935) | | | (477) | |
+| | | | | | | | |
+Non-GAAP cost of revenue | | $ | 7,232 | | | $ | 5,170 | | | $ | 12,835 | | | $ | 9,886 | |
+| | | | | | | | |
+GAAP gross profit | | $ | 1,302 | | | $ | 1,942 | | | $ | 2,854 | | | $ | 2,203 | |
+Stock-based compensation expense | | 490 | | | 356 | | | 935 | | | 477 | |
+| | | | | | | | |
+Non-GAAP gross profit | | $ | 1,792 | | | $ | 2,298 | | | $ | 3,789 | | | $ | 2,680 | |
+| | | | | | | | |
+GAAP research and development (R&D) expense | | $ | 24,444 | | | $ | 28,148 | | | $ | 50,972 | | | $ | 54,077 | |
+Stock-based compensation expense | | (4,620) | | | (6,941) | | | (9,690) | | | (13,296) | |
+Amortization of intangible assets | | (416) | | | (415) | | | (864) | | | (831) | |
+Non-GAAP R&D expense | | $ | 19,408 | | | $ | 20,792 | | | $ | 40,418 | | | $ | 39,950 | |
+| | | | | | | | |
+GAAP selling, general and administrative (SG&A) expense | | $ | 20,154 | | | $ | 17,527 | | | $ | 39,073 | | | $ | 34,419 | |
+Stock-based compensation expense | | (7,924) | | | (6,825) | | | (14,174) | | | (12,363) | |
+Amortization of intangible assets | | (774) | | | (773) | | | (1,607) | | | (1,547) | |
+Legal cost related to shareholder lawsuit (1)
+| | (313) | | | (1,247) | | | (2,389) | | | (2,651) | |
+| | | | | | | | |
+Acquisition cost | | — | | | (664) | | | — | | | (664) | |
+Non-GAAP SG&A expense | | $ | 11,143 | | | $ | 8,018 | | | $ | 20,903 | | | $ | 17,194 | |
+| | | | | | | | |
+GAAP operating expenses | | $ | 44,598 | | | $ | 45,675 | | | $ | 90,045 | | | $ | 88,496 | |
+Stock-based compensation expense included in R&D expense | | (4,620) | | | (6,941) | | | (9,690) | | | (13,296) | |
+Stock-based compensation expense included in SG&A expense | | (7,924) | | | (6,825) | | | (14,174) | | | (12,363) | |
+Amortization of intangible assets | | (1,190) | | | (1,188) | | | (2,471) | | | (2,378) | |
+| | | | | | | | |
+| | | | | | | | |
+Legal cost related to shareholder lawsuit (1)
+| | (313) | | | (1,247) | | | (2,389) | | | (2,651) | |
+| | | | | | | | |
+Acquisition cost | | — | | | (664) | | | — | | | (664) | |
+Non-GAAP operating expenses | | $ | 30,551 | | | $ | 28,810 | | | $ | 61,321 | | | $ | 57,144 | |
+| | | | | | | | |
+
+| | |
+|
+
+
+
+(1) These amounts reflect litigation expenses related to the defense of an ongoing securities action.
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Fiscal Quarters Ended | | Fiscal Years-to-Date Ended |
+| | July 5,
+2026 | | June 29,
+2025 | | July 5,
+2026 | | June 29,
+2025 |
+GAAP loss from operations | | $ | (43,296) | | | $ | (43,733) | | | $ | (87,191) | | | $ | (86,293) | |
+Stock-based compensation expense | | 13,034 | | | 14,122 | | | 24,799 | | | 26,136 | |
+Amortization of intangible assets | | 1,190 | | | 1,188 | | | 2,471 | | | 2,378 | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+Legal cost related to shareholder lawsuit (1)
+| | 313 | | | 1,247 | | | 2,389 | | | 2,651 | |
+| | | | | | | | |
+Acquisition cost | | — | | | 664 | | | — | | | 664 | |
+Non-GAAP loss from operations | | $ | (28,759) | | | $ | (26,512) | | | $ | (57,532) | | | $ | (54,464) | |
+| | | | | | | | |
+GAAP net loss attributable to Enovix | | $ | (43,063) | | | $ | (44,528) | | | $ | (81,323) | | | $ | (68,038) | |
+Stock-based compensation expense | | 13,034 | | | 14,122 | | | 24,799 | | | 26,136 | |
+Change in fair value of common stock warrants | | (181) | | | 5,885 | | | (6,578) | | | (9,911) | |
+| | | | | | | | |
+Amortization of intangible assets | | 1,190 | | | 1,188 | | | 2,471 | | | 2,378 | |
+| | | | | | | | |
+| | | | | | | | |
+Legal cost related to shareholder lawsuit (1)
+| | 313 | | | 1,247 | | | 2,389 | | | 2,651 | |
+| | | | | | | | |
+| | | | | | | | |
+Acquisition cost | | — | | | 664 | | | — | | | 664 | |
+| | | | | | | | |
+Gain on bargain purchase of assets | | — | | | (4,761) | | | — | | | (4,761) | |
+Import duty forgiveness | | — | | | — | | | — | | | (2,431) | |
+Non-GAAP net loss attributable to Enovix shareholders | | $ | (28,707) | | | $ | (26,183) | | | $ | (58,242) | | | $ | (53,312) | |
+| | | | | | | | |
+GAAP net loss per share attributable to Enovix, basic and diluted (2)
+| | $ | (0.20) | | | $ | (0.22) | | | $ | (0.37) | | | $ | (0.33) | |
+GAAP weighted average number of common shares outstanding, basic and diluted (2)
+| | 218,502,098 | | | 204,819,119 | | | 217,908,465 | | | 204,086,108 | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+Non-GAAP net loss per share attributable to Enovix, basic and diluted (2)
+| | $ | (0.13) | | | $ | (0.13) | | | $ | (0.27) | | | $ | (0.26) | |
+GAAP weighted average number of common shares outstanding, basic and diluted (2)
+| | 218,502,098 | | | 204,819,119 | | | 217,908,465 | | | 204,086,108 | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+
+| | |
+|
+
+(1) These amounts reflect litigation expenses related to the defense of an ongoing securities action.
+(2) As required by ASC 260, Earnings Per Share, the share and per share amounts presented in the above table for the fiscal quarter and fiscal year-to-date ended June 29, 2025 have been retroactively adjusted to reflect the warrant dividend issued in July 2025.\n

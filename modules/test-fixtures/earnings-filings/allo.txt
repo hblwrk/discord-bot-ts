@@ -1,0 +1,165 @@
+EX-99.1
+2
+allo-20260630xexx991q226.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+
+
+Exhibit 99.1
+
+
+
+Allogene Therapeutics Reports Second Quarter 2026 Financial Results and Business Update
+• Pivotal Phase 2 ALPHA3 Program in 1L Large B-cell Lymphoma (LBCL):
+◦ Recent Interim Futility Analysis Supports Cemacabtagene Ansegedleucel’s (Cema-Cel) Potential as an Outpatient, MRD-Guided 1L Consolidation Therapy
+◦ Strong Execution and Increased Investigator Interest Accelerated 2026 Site Activation Target by Six Months; Approximately 100 Sites Now Expected by Year-End, Further Supporting Enrollment
+◦ Next Update Anticipated in Mid-2027, with Trial Enrollment Expected to Be Completed by Year-End 2027
+◦ Following Review of the Interim Futility Analysis, FDA Granted RMAT and Fast Track Designations for Cema-Cel Underscoring MRD Positivity as an Unmet Need in LBCL
+• Phase 1 RESOLUTION Trial in Autoimmune Disease:
+◦ Brisk Enrollment Continues Across ALLO-329 Dose Escalation and Lymphodepletion Optimization Cohorts
+◦ Clinical Data Update Expected Q4 2026
+• Ended the Second Quarter of 2026 with $423.6 Million in Cash, Cash Equivalents and Investments
+• Conference Call and Webcast Scheduled for Today at 2:00 PM PT/5:00 PM ET
+
+
+SOUTH SAN FRANCISCO, Calif., August 12, 2026 – Allogene Therapeutics, Inc. (Nasdaq: ALLO), a clinical-stage biotechnology company pioneering the development of allogeneic CAR T (AlloCAR T) products for cancer and autoimmune disease, today provided corporate updates and reported financial results for the quarter ended June 30, 2026.
+
+
+“When we reset our strategy in 2024, we started with the patient and focused on where the distinct attributes of allogeneic CAR T could create a clinical advantage,” said Zachary Roberts, M.D., Ph.D., President and Chief Executive Officer of Allogene. “ALPHA3 is the clearest expression of that strategy: identifying patients at high risk of relapse, treating before disease returns clinically, and enabling CAR T delivery where patients already receive care. We took the same patient-first approach with ALLO-329, recognizing early that chemotherapy-based lymphodepletion and treatment interruptions associated with leukapheresis in autologous therapy could create meaningful burdens for patients with autoimmune disease. Together, these programs demonstrate that the value of allogeneic CAR T extends well beyond off-the-shelf availability, offering the flexibility to address clinical and practical barriers other approaches cannot. We believe the scale of that opportunity will become increasingly apparent as our programs continue to advance.”
+
+
+Cema-Cel: Pivotal Phase 2 ALPHA3 1L Consolidation Trial in LBCL
+Cemacabtagene ansegedleucel (cema-cel) is being evaluated in ALPHA3, the first pivotal, randomized Phase 2 trial in LBCL designed to assess whether MRD-guided treatment following first-line therapy can delay or prevent clinical relapse.
+
+
+In July, the U.S. Food and Drug Administration granted Regenerative Medicine Advanced Therapy (RMAT) and Fast Track designations for cema-cel as 1L consolidation therapy for patients with high-risk LBCL following review of the interim futility analysis. At the protocol-defined data cutoff, triggered when the 24th patient enrolled in the ongoing study arms completed the Day 45 MRD assessment, 58.3% (7/12) of patients in the cema-cel arm achieved MRD negativity, with the majority clearing MRD by the first post-treatment assessment, compared to 16.7% (2/12) in the observation arm. This represents a 41.6% absolute difference in MRD clearance between the two arms. Published literature and cross-study benchmarks suggest that MRD clearance differences of 25-30% may lead to clinically meaningful improvement at study completion.
+
+
+Cema-cel was well-tolerated as of the data cutoff with no treatment-related serious adverse events. There were no cases of cytokine release syndrome (CRS), immune effector cell-associated neurotoxicity syndrome (ICANS), graft-versus-host disease (GvHD) or high-grade infections. No tocilizumab or steroids were administered for toxicity prophylaxis or treatment, and no patients were hospitalized for treatment-related adverse events. This profile compares favorably with the broader CAR T experience, where hospitalization for toxicity management remains common.
+
+
+Most patients were treated and followed entirely in the outpatient setting. Community cancer centers accounted for approximately one-third of screening activity and cema-cel infusions, including sites with limited or no prior CAR T experience. These findings support ALPHA3’s potential to bring CAR T earlier in the course of disease and closer to where patients receive care.
+
+
+The Company achieved its 2026 goal of activating more than 80 sites approximately six months ahead of schedule, driven by strong execution and increased investigator interest following the interim futility analysis. The Company now expects
+
+
+
+
+
+
+
+
+
+approximately 100 sites to be active by year-end, with the significant majority in the United States and additional sites in Canada, Australia and South Korea. This expansion is expected to support enrollment momentum, broaden access to the trial, and provide more sites with hands-on experience administering cema-cel ahead of a potential commercial launch.
+
+
+ALPHA3 is expected to randomize approximately 220 MRD+ patients to either cema-cel consolidation or close observation, with enrollment anticipated to be completed by year-end 2027. The next program update tied to the interim event-free survival (EFS) analysis is expected in mid-2027.
+
+
+ALLO-329: Purpose-Built Allogeneic CAR T for Autoimmune Disease
+ALLO-329 is a next-generation, dual-targeting anti-CD19/CD70 AlloCAR T product incorporating the Company’s proprietary Dagger® technology. The product was designed to address allogeneic rejection by targeting activated CD70-positive host T cells, with the goal of supporting CAR T-cell expansion while reducing or eliminating the need for conventional chemotherapy-based lymphodepletion.
+
+
+The ongoing Phase 1 RESOLUTION trial is a dose-escalation study evaluating cell dose of ALLO-329 and the role played by Dagger with and without lymphodepletion across multiple autoimmune indications, including systemic lupus erythematosus, scleroderma, and inflammatory myositis.
+
+
+Enrollment continues at a brisk pace across cohorts, dose levels and lymphodepletion strategies. The Company remains on track to provide a clinical and translational update in the fourth quarter of 2026.
+
+
+2026 Second Quarter Financial Results
+• Research and development expenses were $30.7 million for the second quarter of 2026, which includes $2.1 million of non-cash stock-based compensation expense.
+• General and administrative expenses were $20.8 million for the second quarter of 2026, which includes $10.3 million of non-cash stock-based compensation expense.
+• Net loss for the second quarter of 2026 was $42.7 million, or $0.13 per share, including non-cash stock-based compensation expense of $12.4 million.
+• The Company had $423.6 million in cash, cash equivalents, and investments as of June 30, 2026.
+
+
+Based on its cash, cash equivalents, and investments as of June 30, 2026, the Company currently projects its cash runway into 2029. Guidance for operating expense in 2026 is expected to be approximately $165 million. GAAP Operating Expenses are expected to be approximately $225 million, including estimated non-cash stock-based compensation expense of approximately $35 million. These estimates exclude any impact from potential business development activities.
+
+
+Conference Call and Webcast Details
+Allogene will host a live conference call and webcast today at 2:00 p.m. PT/5:00 p.m. ET to discuss financial results and provide a business update. If you would like the option to ask a question on the conference call, please use this link to register. Upon registering for the conference call, you will receive a personal PIN to access the call, which will identify you as the participant and allow you the option to ask a question. The listen-only webcast will be made available on the Company's website at www.allogene.com under the Investors tab in the News and Events section. Following the live audio webcast, a replay will be available on the Company's website for approximately 30 days.
+
+
+About Allogene Therapeutics
+Allogene Therapeutics, with headquarters in South San Francisco, is a clinical-stage biotechnology company pioneering the development of allogeneic chimeric antigen receptor T cell (AlloCAR T) products for cancer and autoimmune disease. Led by cell therapy veterans applying proven CAR T experience, Allogene is developing a pipeline of off-the-shelf CAR T cell product candidates with the goal of delivering readily available cell therapy on-demand, more reliably, and at greater scale to more patients. For more information, please visit www.allogene.com, and follow Allogene Therapeutics on X and LinkedIn.
+
+
+Cautionary Note on Forward-Looking Statements
+This press release contains forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995. Forward-looking statements are based on management’s current expectations and assumptions and involve risks and uncertainties that could cause actual results to differ materially from those expressed or implied by such statements. In some cases, forward-looking statements may be identified by words such as “expect,” “believe,” “aim,” “plan,” “intend,” “seek,” “estimate,” “target,” “potential,” “may,” “could,” “will,” “would,” “should,” “anticipate,” “support,” “designed to,” “working to” and similar expressions. Forward-looking statements in this press release include, but are not limited to, statements regarding the timing, design, conduct, and results of Allogene’s clinical trials and analyses (including the interim futility analysis and MRD clearance outcomes from the Phase 2 ALPHA3 trial of cema-cel and updates from the Phase 1 RESOLUTION trial of ALLO-329); the extent to which additional clinical trial sites may support enrollment momentum, broaden access to the ALPHA3 trial, or provide more sites with hands-on experience administering cema-cel ahead of a potential commercial launch; the rate and pace of enrollment in the RESOLUTION trial; the potential benefits and regulatory
+
+
+
+
+
+
+
+
+
+implications of the RMAT and Fast Track designations for cema-cel; the potential clinical benefits, safety, tolerability, durability, and efficacy of Allogene’s product candidates; the potential for MRD-guided first-line consolidation to improve outcomes in LBCL; the extent to which published literature, cross-study benchmarks, and observed or potential MRD clearance differences of 25-30% may translate into clinically meaningful improvement at study completion; the potential value and advantages of allogeneic CAR T, including its ability to address clinical and practical barriers presented by other therapies; the potential to deliver allogeneic CAR T therapy in outpatient and community care settings and expand access across academic and community care settings and the extent to which interim data and analysis is supportive thereof; the potential to reduce or eliminate conventional lymphodepletion; expectations regarding clinical trial execution and operational performance; and expectations regarding Allogene’s financial position, cash runway, and 2026 operating outlook. Actual results may differ materially from those indicated by these forward-looking statements as a result of various important factors, including, but not limited to, risks and uncertainties inherent in clinical development (including that interim or early data may not be predictive of later or final results or clinical outcomes), patient enrollment and trial execution risks, uncertainties related to MRD testing and its clinical significance and whether observed differences in MRD clearance will translate into clinically meaningful benefit, the occurrence of adverse safety events, regulatory risks and uncertainties, manufacturing and CMC risks, reliance on third parties and licensors, competitive developments, intellectual property and contractual risks, and financial risks, including the need for additional capital. These and other risks and uncertainties are described more fully in Allogene’s filings with the Securities and Exchange Commission (SEC), including under the heading “Risk Factors” in its Quarterly Report on Form 10-Q for the quarter ended June 30, 2026, being filed with the SEC today. All forward-looking statements in this press release speak only as of the date of this press release, and Allogene undertakes no obligation to update or revise any forward-looking statements, whether as a result of new information, future events, or otherwise, except as required by law.
+
+
+Dagger® is a trademark of Allogene Therapeutics, Inc.
+
+
+Allogene’s investigational AlloCAR T oncology products utilize Cellectis technologies. Cemacabtagene ansegedleucel (cema-cel) was developed based on an exclusive license granted by Cellectis to Servier. Servier has granted Allogene exclusive rights to cema-cel in the U.S., all EU Member States and the United Kingdom. The anti-CD70 AlloCAR T program is licensed exclusively from Cellectis by Allogene and Allogene holds global development and commercial rights to this AlloCAR T program. ALLO-329 (CD19/CD70) in autoimmune disease uses CRISPR gene-editing technology.
+
+
+
+
+
+
+
+
+
+
+
+
+ALLOGENE THERAPEUTICS, INC.
+SELECTED FINANCIAL DATA
+(unaudited; in thousands, except share and per share data)
+
+STATEMENTS OF OPERATIONS | | | | | | | | | | | |
+| Three Months Ended June 30, |
+| 2026 | | 2025 |
+Collaboration revenue - related party | $ | 4,640 | | | $ | — | |
+Operating expenses: | | | |
+Research and development | $ | 30,721 | | | $ | 40,156 | |
+General and administrative | 20,839 | | | 14,281 | |
+Impairment of long-lived assets | — | | | 2,382 | |
+Total operating expenses | 51,560 | | | 56,819 | |
+Loss from operations | (46,920) | | | (56,819) | |
+Other income (expenses), net: | | | |
+Interest and other income, net | 4,647 | | | 6,187 | |
+Interest expense | (343) | | | (268) | |
+Other income (expenses), net | (61) | | | (43) | |
+Total other income (expenses), net | 4,243 | | | 5,876 | |
+Net loss | $ | (42,677) | | | $ | (50,943) | |
+Net loss per share, basic and diluted | $ | (0.13) | | | $ | (0.23) | |
+Weighted-average number of shares used in computing net loss per share, basic and diluted | 328,930,269 | | | 218,929,548 | |
+
+
+
+
+SELECTED BALANCE SHEET DATA | | | | | | | | | | | |
+| As of June 30, 2026 | | As of December 31, 2025 |
+Cash, cash equivalents and investments | $ | 423,590 | | | $ | 258,253 | |
+Total assets | 550,091 | | | 415,905 | |
+Total liabilities | 113,916 | | | 123,363 | |
+Total stockholders’ equity | 436,175 | | | 292,542 | |
+
+
+
+
+
+Allogene Media/Investor Contact:
+Christine Cassiano
+EVP, Chief Corporate Affairs & Brand Strategy Officer
+Christine.Cassiano@allogene.com\n

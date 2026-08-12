@@ -1,0 +1,2492 @@
+EX-99.1
+2
+cbrsannouncesfinancialresu.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Cerebras Systems Fast Inference Cloud Business Nearly Quadruples in Second Quarter 2026
+• GAAP cloud revenue grew 281%, core cloud revenue grew 287% from a year ago
+• 600 MW of data center capacity now under contract
+• Manufacturing capacity to scale more than 10x in 2026
+• OpenAI launch partner for frontier model GPT-5.6 Sol
+• Partnerships with AMD and AWS establish Cerebras as the leader in disaggregated inference
+SUNNYVALE, Calif. — August 12, 2026 — Cerebras Systems (NASDAQ: CBRS), maker of the world’s fastest AI infrastructure, today announced financial results for the second quarter ended June 30, 2026.
+“This was an outstanding quarter for Cerebras. Core revenue more than doubled to $210 million, and our cloud business nearly quadrupled year-over-year,” said Andrew Feldman, Cerebras co-founder and CEO. “Speed changes what AI can do. It makes AI more useful, more productive, and opens entirely new markets. As a result, the demand for fast inference is enormous and Cerebras is scaling to meet it, securing more data center capacity, expanding manufacturing, and growing with customers and partners including OpenAI, AWS, AMD, and CrowdStrike.”
+“Our quarterly results exceeded our guidance across all core business metrics. The market has responded strongly to the value of fast inference. We significantly improved core gross and operating margins compared to a year ago,” said Bob Komin, Chief Financial Officer of Cerebras. “We have made rapid progress in key areas required to deliver exceptional growth against our remaining performance obligations of $25.4 billion, and plan to more than triple revenue in 2027.”
+Q2 2026 Financial Highlights
+Core Financial Results are all non-GAAP metrics (and exclude the impacts of non-cash amortization of customer warrants and stock-based compensation, data center pass-through revenues and costs, and certain other items):
+• Record GAAP cloud and other services revenue of $126.0 million, up 281% year-over-year; Record core cloud and other services revenue of $127.7 million, up 287% year-over-year.
+• GAAP total revenue of $180.1 million, up 74% year-over-year; Core total revenue of $209.9 million, up 103% year-over-year.
+• GAAP gross margin of 14%; Core gross margin of 41%, an improvement of approximately 940 basis points from Q2’25.
+• GAAP operating margin of (265%); Core operating margin of (16%), an improvement of approximately 2,600 basis points from Q2’25.
+• Strong liquidity with cash, cash equivalents, restricted cash, and short-term investments of $8.6 billion and debt capacity of $850 million.
+
+
+
+
+
+
+
+Business Highlights: General
+• Successfully raised $6.4 billion in gross proceeds through our IPO and closed a revolving credit facility for up to $850 million to accelerate the pace of our data center acquisitions.
+• $25.4 billion in remaining performance obligations as of June 30, 2026.
+Business Highlights: Capacity
+• Data Center Capacity Expansion: Increased data center capacity, live and under contract for delivery by the end of 2027 to more than 600 MW. Increased pipeline of data center opportunities to gigawatts.
+• Manufacturing Capacity Expansion: New factory lines added at contract manufacturers Flex, Sanmina, and Rocket EMS. Manufacturing capacity to increase more than 10x in 2026.
+• Supply Chain Capacity Expansion: Secured TSMC wafer supply needed for continued growth. Well positioned with other component vendors to meet the rapid growth forecasted in 2027 and beyond.
+• Supply Chain Advantages: Through our wafer-scale architecture, we avoid many of the components that are currently in short supply. We do not use HBM memory, CoWoS packaging or 3nm fabrication technology, all of which are currently supply limited.
+Business Highlights: Capabilities
+• Enabled support for OpenAI GPT-5.6 Sol at 750 tokens per second.
+• Stood up pioneering disaggregated inference solutions with AMD to deliver Cerebras speed while increasing throughput by up to 5x, which will be in production in Q4 2026.
+• Deepened our partnership with AWS and expect to bring Cerebras’s disaggregated inference and the same 5x throughput benefits to Amazon Bedrock in the first quarter of 2027.
+Business Highlights: Customers
+• Signed new cloud capacity agreements with leading AI coding companies including Cognition and Lovable.
+• Cerebras fast inference serves as the foundation for agentic flows in industries ranging from finance to life sciences with customers including Block, Figma, AlphaSense, and GSK.
+• Pioneered a new segment of the security market with CrowdStrike. Cerebras fast inference enables inline security using LLMs for a large portion of enterprise traffic.
+Third Quarter 2026 Financial Outlook
+Core Non-GAAP Financial Outlook:
+• Core revenue of approximately $214 to $216 million
+• Core gross margin in the range of 38% - 40%
+• Core operating margins in the range of (25%) to (23%)
+
+
+
+
+
+
+
+Full Year 2026 Financial Outlook
+Core Non-GAAP Financial Outlook has been raised for all metrics:
+• Core revenue of $880 to $890 million
+• Core gross margin in the range of 41% - 43%
+• Core operating margins in the range of (19%) to (17%)
+Earnings Webcast and Conference Call
+Cerebras Systems will host a conference call to review its financial results for the second quarter of 2026 and to discuss our financial outlook today at 2 p.m. PT (5 p.m. ET). Interested parties may join the conference call via the webcast and can be accessed at the Cerebras website at https://investors.cerebras.ai/. The webcast will be recorded and available for replay on the same website following the conclusion of the conference call.
+About Cerebras Systems
+Cerebras Systems (NASDAQ: CBRS) builds the world’s fastest AI infrastructure. The Cerebras team of pioneering computer architects, computer scientists, AI researchers, and engineers of all types came together to make AI blisteringly fast through innovation and invention. Cerebras believes that when AI is fast, it will change the world. Leading global corporations, research institutes, and governments choose Cerebras to run their AI workloads. Cerebras solutions are available on premises and in the cloud.
+Investor Relations
+Sean Dorsey
+investors@cerebras.ai
+Media Relations
+Kriselle Laran
+pr@cerebras.ai
+
+
+
+
+
+
+
+
+Forward-Looking Statements
+This press release contains “forward-looking statements” within the meaning of applicable securities laws. All statements other than statements of historical fact could be deemed to be forward-looking, including, but not limited to, statements regarding Cerebras’s expectations regarding growth in its revenue, customer demand, outlook for Q3, full year 2026 and 2027, the timing, execution and anticipated benefits of customer and partner arrangements, deployments and capacity expansion initiatives, ability to secure and deliver increased data center capacity, maintain and increase manufacturing capacity and supply chain capacity, realize remaining performance obligations, provide disaggregated inference architecture with industry leading speed and increasing throughput, growing with customers and partners such as AMD and AWS, winning new customers and partners, and expanding into new industries and markets, and any assumptions relating to the foregoing. The words “may,” “will,” “shall,” “should,” “expects,” “plans,” “anticipates,” “could,” “intends,” “target,” “projects,” “contemplates,” “believes,” “estimates,” “predicts,” “potential,” “objective,” or “continue,” or the negative of these words or other similar terms or expressions that concern our expectations, strategy, plans, or intentions are intended to identify forward-looking statements, although not all forward-looking statements contain these identifying words. These forward-looking statements are subject to a number of risks and uncertainties, many of which involve factors or circumstances that are beyond Cerebras’s control. These risks and uncertainties include, but are not limited to: Cerebras’s ability to sustain and manage its growth, access borrowings and other sources of capital on acceptable terms, and deploy available capital to support growth; its history of net losses and ability to achieve and maintain profitability; its limited operating history at its current scale and ability to accurately forecast revenue and appropriately budget and manage expenses; its dependence on a limited number of significant customers, including OpenAI, Group 42 Holding Ltd, Mohamed bin Zayed University of Artificial Intelligence, and AWS, and the potential impact of any reduction in demand from, material adverse development in its relationships with, or failure to meet its obligations to, such customers, including under its Master Relationship Agreement with OpenAI; the timing, execution and expected benefits of its strategic customer, partner and financing arrangements; its historical reliance on sales of hardware systems and the early-stage, rapidly evolving market for its cloud-based offerings and AI infrastructure; its ability to secure sufficient data center capacity and capital to support its cloud-based offerings; its ability to launch new offerings and add new product capabilities; and its ability to compete effectively in the rapidly evolving and competitive market for AI computing solutions.
+Cerebras’s actual results could differ materially from those stated or implied in forward-looking statements due to a number of factors. Accordingly, undue reliance should not be placed on such statements. These forward-looking statements are made as of the date they were first issued and are based on information available to Cerebras together with Cerebras’s expectations, estimates, forecasts, projections, beliefs, and assumptions as of such date. These forward-looking statements should not be relied upon as representing Cerebras’s views as of any date subsequent to the date of this press release. Past performance is not necessarily indicative of future results. Cerebras undertakes no intention or obligation to update or revise any forward-looking statements, whether as a result of new information, future events, or otherwise, except as required by law.
+
+
+
+
+
+
+
+Further information on potential risks that could affect actual results is included in Cerebras’s most recent filings with the Securities and Exchange Commission (the “SEC”), including in Cerebras’s most recent Quarterly Report on Form 10-Q, copies of which may be obtained by visiting Cerebras’s Investor Relations website at investors.cerebras.ai or the SEC’s website at www.sec.gov.
+
+
+
+
+
+
+
+
+CEREBRAS SYSTEMS INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(unaudited)
+(in thousands, except per share amounts)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30,
+| | Six Months Ended June 30,
+|
+| 2026
+|
+| 2025
+| | 2026
+|
+| 2025
+|
+Revenue
+| | | | | | | |
+Hardware
+| $
+| 54,119
+|
+| | $
+| 70,295
+|
+| | $
+| 164,712
+|
+| | $
+| 139,969
+|
+|
+Cloud and other services
+| 125,991
+|
+| | 33,027
+|
+| | 208,804
+|
+| | 62,865
+|
+|
+Total revenue
+| 180,110
+|
+| | 103,322
+|
+| | 373,516
+|
+|
+| 202,834
+|
+|
+Cost of revenue
+| | | | | | | |
+Hardware
+| 53,141
+|
+| | 46,649
+|
+| | 118,072
+|
+| | 95,059
+|
+|
+Cloud and other services
+| 101,410
+|
+| | 24,574
+|
+| | 143,709
+|
+| | 34,072
+|
+|
+Total cost of revenue
+| 154,551
+|
+| | 71,223
+|
+| | 261,781
+|
+| | 129,131
+|
+|
+Gross profit
+| 25,559
+|
+| | 32,099
+|
+| | 111,735
+|
+| | 73,703
+|
+|
+Operating expenses
+| | | | | | | |
+Research and development
+| 320,151
+|
+| | 60,768
+|
+| | 395,646
+|
+| | 113,519
+|
+|
+Sales and marketing
+| 86,969
+|
+| | 18,228
+|
+| | 101,670
+|
+| | 28,554
+|
+|
+General and administrative
+| 95,672
+|
+| | 10,285
+|
+| | 106,689
+|
+| | 17,282
+|
+|
+Total operating expenses
+| 502,792
+|
+| | 89,281
+|
+| | 604,005
+|
+| | 159,355
+|
+|
+Loss from operations
+| (477,233)
+|
+| | (57,182)
+|
+| | (492,270)
+|
+| | (85,652)
+|
+|
+Other income, net
+| 26,979
+|
+| | 368,358
+|
+| | 29,507
+|
+| | 374,644
+|
+|
+Income (loss) before income taxes
+| (450,254)
+|
+| | 311,176
+|
+| | (462,763)
+|
+| | 288,992
+|
+|
+Income tax expense
+| 274
+|
+| | 1,664
+|
+| | 1,771
+|
+| | 3,347
+|
+|
+Net income (loss)
+| $
+| (450,528)
+|
+| | $
+| 309,512
+|
+| | $
+| (464,534)
+|
+| | $
+| 285,645
+|
+|
+
+|
+| |
+| | | | |
+Net income (loss) attributable to common shareholders
+|
+|
+|
+|
+|
+|
+|
+|
+Basic
+| $
+| (450,528)
+|
+|
+| $
+| 120,318
+|
+|
+| $
+| (464,534)
+|
+|
+| $
+| 110,580
+|
+|
+Diluted
+| $
+| (450,528)
+|
+|
+| $
+| 309,512
+|
+|
+| $
+| (464,534)
+|
+|
+| $
+| 285,645
+|
+|
+Net income (loss) per share attributable to common shareholders
+|
+|
+|
+|
+|
+|
+|
+|
+Basic
+| $
+| (2.98)
+|
+|
+| $
+| 2.28
+|
+|
+| $
+| (4.34)
+|
+|
+| $
+| 2.11
+|
+|
+Diluted
+| $
+| (2.98)
+|
+|
+| $
+| 1.91
+|
+|
+| $
+| (4.34)
+|
+|
+| $
+| 1.76
+|
+|
+Weighted average shares outstanding
+|
+|
+|
+|
+|
+|
+|
+|
+Basic
+| 150,968
+|
+|
+| 52,720
+|
+|
+| 107,132
+|
+|
+| 52,363
+|
+|
+Diluted
+| 150,968
+|
+|
+| 161,822
+|
+|
+| 107,132
+|
+|
+| 162,276
+|
+|
+
+
+
+
+
+
+
+
+
+
+CEREBRAS SYSTEMS INC.
+CONDENSED CONSOLIDATED STATEMENTS OF COMPREHENSIVE INCOME (LOSS)
+(unaudited)
+(in thousands)
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30,
+| | Six Months Ended June 30,
+|
+| 2026
+| | 2025
+| | 2026
+| | 2025
+|
+Net income (loss)
+| $
+| (450,528)
+|
+| | $
+| 309,512
+|
+| | $
+| (464,534)
+|
+| | $
+| 285,645
+|
+|
+Change in foreign currency translation adjustments, net of tax
+| (274)
+|
+| | 732
+|
+| | 638
+|
+| | 912
+|
+|
+Available-for-sale investments:
+|
+| |
+| |
+| |
+|
+Change in net unrealized gain (loss) on debt securities, net of tax
+| 2,645
+|
+| | (735)
+|
+| | 3,828
+|
+| | (807)
+|
+|
+Comprehensive income (loss)
+| $
+| (448,157)
+|
+| | $
+| 309,509
+|
+| | $
+| (460,068)
+|
+| | $
+| 285,750
+|
+|
+
+
+
+
+
+
+
+
+
+
+
+
+
+CEREBRAS SYSTEMS INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(unaudited)
+(in thousands)
+
+| | | | | | | | | | | |
+| June 30, 2026
+| | December 31, 2025
+|
+ASSETS
+| | | |
+Current assets:
+| | | |
+Cash and cash equivalents
+| $
+| 6,742,157
+|
+|
+| $
+| 701,706
+|
+|
+Restricted cash
+| 684,680
+|
+|
+| 228,672
+|
+|
+Investments
+| 1,179,390
+|
+|
+| 406,531
+|
+|
+Accounts receivable, net
+| 123,361
+|
+|
+| 50,423
+|
+|
+Inventories
+| 32,666
+|
+|
+| 63,626
+|
+|
+Customer warrants
+| 167,762
+|
+|
+| 60,906
+|
+|
+Prepaid expenses and other current assets
+| 191,698
+|
+|
+| 31,782
+|
+|
+Total current assets
+| 9,121,714
+|
+|
+| 1,543,646
+|
+|
+Property and equipment, net
+| 986,808
+|
+|
+| 437,396
+|
+|
+Customer warrants, net of current portion
+| 960,635
+|
+|
+| 91,447
+|
+|
+Operating lease right-of-use assets
+| 528,275
+|
+|
+| 248,950
+|
+|
+Other non-current assets
+| 30,440
+|
+|
+| 4,598
+|
+|
+Total assets
+| $
+| 11,627,872
+|
+|
+| $
+| 2,326,037
+|
+|
+| | | |
+LIABILITIES, REDEEMABLE CONVERTIBLE PREFERRED STOCK, AND STOCKHOLDERS’ EQUITY (DEFICIT)
+| | | |
+Current liabilities:
+| | | |
+Accounts payable
+| $
+| 88,313
+|
+|
+| $
+| 48,630
+|
+|
+Deferred revenue
+| 173,735
+|
+|
+| 131,049
+|
+|
+Operating lease liability
+| 88,422
+|
+|
+| 45,865
+|
+|
+Customer deposits
+| 242,672
+|
+|
+| 354,460
+|
+|
+Working capital loan
+| 736,036
+|
+|
+| —
+|
+|
+Accrued and other current liabilities
+| 236,910
+|
+|
+| 139,536
+|
+|
+Total current liabilities
+| 1,566,088
+|
+|
+| 719,540
+|
+|
+Deferred revenue, net of current portion
+| 244,529
+|
+|
+| 35,847
+|
+|
+Operating lease liability, net of current portion
+| 480,405
+|
+|
+| 215,957
+|
+|
+Working capital loan, net of current portion
+| 182,208
+|
+|
+| —
+|
+|
+Total liabilities
+| 2,473,230
+|
+|
+| 971,344
+|
+|
+| | | |
+Redeemable convertible preferred stock
+| —
+|
+|
+| 1,933,348
+|
+|
+Stockholders’ equity (deficit)
+| | | |
+Class A common stock
+| 1
+|
+|
+| 1
+|
+Class B common stock
+| 1
+|
+|
+| —
+|
+|
+Class N common stock
+| —
+|
+|
+| —
+|
+|
+Treasury stock
+| (21,456)
+|
+|
+| (21,456)
+|
+|
+Additional paid-in capital
+| 10,540,193
+|
+|
+| 346,829
+|
+|
+Accumulated other comprehensive income
+| 5,767
+|
+|
+| 1,301
+|
+|
+Accumulated deficit
+| (1,369,864)
+|
+|
+| (905,330)
+|
+|
+Total stockholders’ equity (deficit)
+| 9,154,642
+|
+|
+| (578,655)
+|
+|
+Total liabilities, redeemable convertible preferred stock, and stockholders’ equity (deficit)
+| $
+| 11,627,872
+|
+|
+| $
+| 2,326,037
+|
+|
+
+
+
+
+
+
+
+
+
+CEREBRAS SYSTEMS INC.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(unaudited)
+(in thousands) | | | | | | | | | | | |
+
+
+| Six Months Ended June 30,
+|
+
+
+| 2026
+| | 2025
+|
+Cash flows from operating activities:
+| | | |
+Net income (loss)
+| $
+| (464,534)
+|
+| | $
+| 285,645
+|
+|
+Adjustments to reconcile net income (loss) to net cash flows used in operating activities:
+| | | |
+Stock-based compensation
+| 386,601
+|
+| | 22,435
+|
+|
+Amortization of customer warrants
+| 46,315
+|
+| | —
+|
+|
+Depreciation and amortization
+| 42,551
+|
+| | 9,315
+|
+|
+Non-cash lease expense
+| 39,104
+|
+| | 5,872
+|
+|
+Non-cash interest expense
+| 38,602
+|
+| | —
+|
+|
+Provision for product warranties
+| 8,430
+|
+| | 9,000
+|
+|
+Extinguishment of forward contract liability
+| —
+|
+|
+| (363,336)
+|
+|
+Other
+| (2,110)
+|
+| | (835)
+|
+|
+Changes in operating assets and liabilities:
+| | | |
+Accounts receivable
+| (72,938)
+|
+| | 125,508
+|
+|
+Inventories
+| 31,116
+|
+| | 74,929
+|
+|
+Prepaid expenses and other assets
+| (182,311)
+|
+| | (3,003)
+|
+|
+Accounts payable
+| 565
+|
+| | 6,314
+|
+|
+Deferred revenue
+| 126,440
+|
+| | 16,525
+|
+|
+Customer deposits
+| (111,788)
+|
+| | (320,558)
+|
+|
+Other liabilities
+| 66,469
+|
+| | 8,346
+|
+|
+Net cash flows used in operating activities
+| $
+| (47,488)
+|
+| | $
+| (123,843)
+|
+|
+Cash flows from investing activities:
+| | | |
+Purchases of property and equipment
+| $
+| (548,873)
+|
+| | $
+| (185,094)
+|
+|
+Purchases of investments
+| (1,275,515)
+|
+| | (20,175)
+|
+|
+Maturities and sales of investments
+| 514,455
+|
+| | 117,973
+|
+|
+Net cash flows used in investing activities
+| $
+| (1,309,933)
+|
+| | $
+| (87,296)
+|
+|
+Cash flows from financing activities:
+| | | |
+Proceeds from initial public offering, net of underwriting discounts and commissions
+| $
+| 6,232,511
+|
+| | $
+| —
+|
+|
+Proceeds from sale of shares of Series H redeemable convertible preferred stock
+| 1,014,249
+|
+| | —
+|
+|
+Costs incurred in connection with the sale of shares of Series H redeemable convertible preferred stock
+| (218)
+|
+|
+| —
+|
+|
+Proceeds from Working Capital Loan
+| 1,004,571
+|
+| | —
+|
+|
+Proceeds from exercise of stock options
+| 20,221
+|
+| | 5,176
+|
+|
+Proceeds from issuance of shares of Class N common stock
+| 15,036
+|
+|
+| —
+|
+|
+Fees paid for revolving credit facility
+| (3,801)
+|
+|
+| —
+|
+|
+Repurchases of early exercised stock options
+| —
+|
+|
+| (28)
+|
+|
+Tax withholding from tender offer and initial public offering
+| (416,660)
+|
+| | —
+|
+|
+Payments of deferred offering costs and other financing activities
+| (12,667)
+|
+| | —
+|
+|
+Net cash flows provided by financing activities
+| $
+| 7,853,242
+|
+| | $
+| 5,148
+|
+|
+Effect of exchange rate on cash
+| 638
+|
+| | 912
+|
+|
+Increase (decrease) in cash, cash equivalents, and restricted cash
+| $
+| 6,496,459
+|
+| | $
+| (205,079)
+|
+|
+Cash, cash equivalents, and restricted cash beginning of period
+| 930,378
+|
+| | 581,965
+|
+|
+Cash, cash equivalents, and restricted cash end of period
+| $
+| 7,426,837
+|
+| | $
+| 376,886
+|
+|
+
+
+
+
+
+
+
+
+
+CEREBRAS SYSTEMS INC.
+RECONCILIATION OF GAAP TO NON-GAAP MEASURES
+(unaudited)
+(in thousands)
+
+Reconciliation of GAAP Revenue to Core Revenue:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30,
+|
+| | 2026
+|
+| 2025
+|
+| | Total
+|
+| Hardware
+|
+| Cloud and Other Services
+|
+| Total
+|
+| Hardware
+|
+| Cloud and Other Services
+|
+GAAP revenue
+| | $
+| 180,110
+|
+|
+| $
+| 54,119
+|
+|
+| $
+| 125,991
+|
+|
+| $
+| 103,322
+|
+|
+| $
+| 70,295
+|
+|
+| $
+| 33,027
+|
+|
+Less: Pass-through revenue
+| | (14,503)
+|
+|
+| —
+|
+|
+| (14,503)
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+Add: Amortization of customer warrant assets
+| | 44,262
+|
+|
+| 28,022
+|
+|
+| 16,240
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+Core revenue
+| | $
+| 209,869
+|
+|
+| $
+| 82,141
+|
+|
+| $
+| 127,728
+|
+|
+| $
+| 103,322
+|
+|
+| $
+| 70,295
+|
+|
+| $
+| 33,027
+|
+|
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Six Months Ended June 30,
+|
+| | 2026
+|
+| 2025
+|
+| | Total
+|
+| Hardware
+|
+| Cloud and Other Services
+|
+| Total
+|
+| Hardware
+|
+| Cloud and Other Services
+|
+GAAP revenue
+| | $
+| 373,516
+|
+|
+| $
+| 164,712
+|
+|
+| $
+| 208,804
+|
+|
+| $
+| 202,834
+|
+|
+| $
+| 139,969
+|
+|
+| $
+| 62,865
+|
+|
+Less: Pass-through revenue
+| | (18,614)
+|
+|
+| —
+|
+|
+| (18,614)
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+Add: Amortization of customer warrant assets
+| | 46,315
+|
+|
+| 28,991
+|
+|
+| 17,324
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+Core revenue
+| | $
+| 401,217
+|
+|
+| $
+| 193,703
+|
+|
+| $
+| 207,514
+|
+|
+| $
+| 202,834
+|
+|
+| $
+| 139,969
+|
+|
+| $
+| 62,865
+|
+|
+
+Reconciliation of GAAP Gross Profit to Core Gross Profit:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30,
+|
+| | 2026
+|
+| 2025
+|
+| | Total
+|
+| Hardware
+|
+| Cloud and Other Services
+|
+| Total
+|
+| Hardware
+|
+| Cloud and Other Services
+|
+GAAP gross profit
+| | $
+| 25,559
+|
+|
+| $
+| 978
+|
+|
+| $
+| 24,581
+|
+|
+| $
+| 32,099
+|
+|
+| $
+| 23,646
+|
+|
+| $
+| 8,453
+|
+|
+Less: Pass-through revenue
+| | (14,503)
+|
+|
+| —
+|
+|
+| (14,503)
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+Add: Pass-through costs
+| | 14,075
+|
+|
+| —
+|
+|
+| 14,075
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+Add: Amortization of customer warrant assets
+| | 44,262
+|
+|
+| 28,022
+|
+|
+| 16,240
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+Add: Stock-based compensation expense
+| | 15,353
+|
+|
+| 2,760
+|
+|
+| 12,593
+|
+|
+| 187
+|
+|
+| 47
+|
+|
+| 140
+|
+|
+Add: Employer payroll tax related to stock-based compensation from IPO
+| | 471
+|
+|
+| 118
+|
+|
+| 353
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+Core gross profit
+| | $
+| 85,217
+|
+|
+| $
+| 31,878
+|
+|
+| $
+| 53,339
+|
+|
+| $
+| 32,286
+|
+|
+| $
+| 23,693
+|
+|
+| $
+| 8,593
+|
+|
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Six Months Ended June 30,
+|
+| | 2026
+|
+| 2025
+|
+| | Total
+|
+| Hardware
+|
+| Cloud and Other Services
+|
+| Total
+|
+| Hardware
+|
+| Cloud and Other Services
+|
+GAAP gross profit
+| | $
+| 111,735
+|
+|
+| $
+| 46,640
+|
+|
+| $
+| 65,095
+|
+|
+| $
+| 73,703
+|
+|
+| $
+| 44,910
+|
+|
+| $
+| 28,793
+|
+|
+Less: Pass-through revenue
+| | (18,614)
+|
+|
+| —
+|
+|
+| (18,614)
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+Add: Pass-through costs
+| | 18,065
+|
+|
+| —
+|
+|
+| 18,065
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+Add: Amortization of customer warrant assets
+| | 46,315
+|
+|
+| 28,991
+|
+|
+| 17,324
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+Add: Stock-based compensation expense
+| | 16,303
+|
+|
+| 2,998
+|
+|
+| 13,305
+|
+|
+| 513
+|
+|
+| 129
+|
+|
+| 384
+|
+|
+Add: Employer payroll tax related to stock-based compensation from IPO
+| | 471
+|
+|
+| 118
+|
+|
+| 353
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+Core gross profit
+| | $
+| 174,275
+|
+|
+| $
+| 78,747
+|
+|
+| $
+| 95,528
+|
+|
+| $
+| 74,216
+|
+|
+| $
+| 45,039
+|
+|
+| $
+| 29,177
+|
+|
+
+Reconciliation of GAAP Gross Margin to Core Gross Margin:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30,
+|
+| | 2026
+|
+| 2025
+|
+| | Total
+|
+| Hardware
+|
+| Cloud and Other Services
+|
+| Total
+|
+| Hardware
+|
+| Cloud and Other Services
+|
+GAAP gross margin
+| | 14.2
+| %
+|
+| 1.8
+| %
+|
+| 19.5
+| %
+|
+| 31.1
+| %
+|
+| 33.6
+| %
+|
+| 25.6
+| %
+|
+Non-GAAP adjustments
+| | 26.4
+|
+|
+| 37.0
+|
+|
+| 22.2
+|
+|
+| 0.2
+|
+|
+| 0.1
+|
+|
+| 0.4
+|
+|
+Core gross margin
+| | 40.6
+| %
+|
+| 38.8
+| %
+|
+| 41.8
+| %
+|
+| 31.2
+| %
+|
+| 33.7
+| %
+|
+| 26.0
+| %
+|
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Six Months Ended June 30,
+|
+| | 2026
+|
+| 2025
+|
+| | Total
+|
+| Hardware
+|
+| Cloud and Other Services
+|
+| Total
+|
+| Hardware
+|
+| Cloud and Other Services
+|
+GAAP gross margin
+| | 29.9
+| %
+|
+| 28.3
+| %
+|
+| 31.2
+| %
+|
+| 36.3
+| %
+|
+| 32.1
+| %
+|
+| 45.8
+| %
+|
+Non-GAAP adjustments
+| | 13.5
+|
+|
+| 12.3
+|
+|
+| 14.9
+|
+|
+| 0.3
+|
+|
+| 0.1
+|
+|
+| 0.6
+|
+|
+Core gross margin
+| | 43.4
+| %
+|
+| 40.7
+| %
+|
+| 46.0
+| %
+|
+| 36.6
+| %
+|
+| 32.2
+| %
+|
+| 46.4
+| %
+|
+
+Reconciliation of GAAP Operating Expenses to Core Operating Expenses:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30,
+|
+| | 2026
+|
+| 2025
+|
+| | Total
+|
+| Research and Development
+|
+| Sales and Marketing
+|
+| General and Administrative
+|
+| Total
+|
+| Research and Development
+|
+| Sales and Marketing
+|
+| General and Administrative
+|
+GAAP operating expenses
+| | $
+| 502,792
+|
+|
+| $
+| 320,151
+|
+|
+| $
+| 86,969
+|
+|
+| $
+| 95,672
+|
+|
+| $
+| 89,281
+|
+|
+| $
+| 60,768
+|
+|
+| $
+| 18,228
+|
+|
+| $
+| 10,285
+|
+|
+Less: Stock-based compensation expense
+| | (361,655)
+|
+|
+| (222,147)
+|
+|
+| (71,055)
+|
+|
+| (68,453)
+|
+|
+| (13,094)
+|
+|
+| (9,301)
+|
+|
+| (1,533)
+|
+|
+| (2,260)
+|
+|
+Less: Employer payroll tax related to stock-based compensation from IPO
+| | (22,307)
+|
+|
+| (16,491)
+|
+|
+| (3,907)
+|
+|
+| (1,909)
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+Core operating expenses
+| | $
+| 118,830
+|
+|
+| $
+| 81,513
+|
+|
+| $
+| 12,007
+|
+|
+| $
+| 25,310
+|
+|
+| $
+| 76,187
+|
+|
+| $
+| 51,467
+|
+|
+| $
+| 16,695
+|
+|
+| $
+| 8,025
+|
+|
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Six Months Ended June 30,
+|
+| | 2026
+|
+| 2025
+|
+| | Total
+|
+| Research and Development
+|
+| Sales and Marketing
+|
+| General and Administrative
+|
+| Total
+|
+| Research and Development
+|
+| Sales and Marketing
+|
+| General and Administrative
+|
+GAAP operating expenses
+| | $
+| 604,005
+|
+|
+| $
+| 395,646
+|
+|
+| $
+| 101,670
+|
+|
+| $
+| 106,689
+|
+|
+| $
+| 159,355
+|
+|
+| $
+| 113,519
+|
+|
+| $
+| 28,554
+|
+|
+| $
+| 17,282
+|
+|
+Less: Stock-based compensation expense
+| | (370,298)
+|
+|
+| (227,846)
+|
+|
+| (72,847)
+|
+|
+| (69,605)
+|
+|
+| (21,922)
+|
+|
+| (15,013)
+|
+|
+| (3,482)
+|
+|
+| (3,427)
+|
+|
+Less: Employer payroll tax related to stock-based compensation from IPO
+| | (22,307)
+|
+|
+| (16,491)
+|
+|
+| (3,907)
+|
+|
+| (1,909)
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+| —
+|
+|
+Core operating expenses
+| | $
+| 211,400
+|
+|
+| $
+| 151,309
+|
+|
+| $
+| 24,916
+|
+|
+| $
+| 35,175
+|
+|
+| $
+| 137,433
+|
+|
+| $
+| 98,506
+|
+|
+| $
+| 25,072
+|
+|
+| $
+| 13,855
+|
+|
+
+Reconciliation of GAAP Loss from Operations to Core Operating Loss:
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30,
+|
+| Six Months Ended June 30,
+|
+| 2026
+|
+| 2025
+|
+| 2026
+|
+| 2025
+|
+GAAP loss from operations
+| $
+| (477,233)
+|
+|
+| $
+| (57,182)
+|
+|
+| $
+| (492,270)
+|
+|
+| $
+| (85,652)
+|
+|
+Less: Pass-through revenue
+| (14,503)
+|
+|
+| —
+|
+|
+| (18,614)
+|
+|
+| —
+|
+|
+Add: Stock-based compensation expense
+| 377,008
+|
+|
+| 13,281
+|
+|
+| 386,601
+|
+|
+| 22,435
+|
+|
+Add: Pass-through costs
+| 14,075
+|
+|
+| —
+|
+|
+| 18,065
+|
+|
+| —
+|
+|
+Add: Amortization of customer warrant assets
+| 44,262
+|
+|
+| —
+|
+|
+| 46,315
+|
+|
+| —
+|
+|
+Add: Employer payroll tax related to stock-based compensation from IPO
+| 22,778
+|
+|
+| —
+|
+|
+| 22,778
+|
+|
+| —
+|
+|
+Core operating loss
+| $
+| (33,613)
+|
+|
+| $
+| (43,901)
+|
+|
+| $
+| (37,125)
+|
+|
+| $
+| (63,217)
+|
+|
+
+Reconciliation of GAAP Operating Margin to Core Operating Margin:
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30,
+|
+| Six Months Ended June 30,
+|
+| 2026
+|
+| 2025
+|
+| 2026
+|
+| 2025
+|
+GAAP operating margin
+| (265
+| %)
+|
+| (55
+| %)
+|
+| (132
+| %)
+|
+| (42
+| %)
+|
+Non-GAAP adjustments
+| (249)
+|
+|
+| (13)
+|
+|
+| (123)
+|
+|
+| (11)
+|
+|
+Core operating margin
+| (16
+| %)
+|
+| (42
+| %)
+|
+| (9
+| %)
+|
+| (31
+| %)
+|
+
+Reconciliation of GAAP Loss from Operations to Adjusted EBITDA:
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30,
+|
+| Six Months Ended June 30,
+|
+| 2026
+|
+| 2025
+|
+| 2026
+|
+| 2025
+|
+GAAP loss from operations
+| $
+| (477,233)
+|
+|
+| $
+| (57,182)
+|
+|
+| $
+| (492,270)
+|
+|
+| $
+| (85,652)
+|
+|
+Add: Depreciation and amortization
+| 24,377
+|
+|
+| 5,600
+|
+|
+| 42,551
+|
+|
+| 9,315
+|
+|
+Add: Stock-based compensation
+| 377,008
+|
+|
+| 13,281
+|
+|
+| 386,601
+|
+|
+| 22,435
+|
+|
+Add: Employer payroll tax related to stock-based compensation from IPO
+| 22,778
+|
+|
+| —
+|
+|
+| 22,778
+|
+|
+| —
+|
+|
+Adjusted EBITDA
+| $
+| (53,070)
+|
+|
+| $
+| (38,301)
+|
+|
+| $
+| (40,340)
+|
+|
+| $
+| (53,902)
+|
+|
+
+
+
+
+
+
+
+
+
+
+
+
+Reconciliation of GAAP Net Income (Loss) to Core Net Loss:
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30,
+|
+| Six Months Ended June 30,
+|
+| 2026
+|
+| 2025
+|
+| 2026
+|
+| 2025
+|
+GAAP net income (loss)
+| $
+| (450,528)
+|
+|
+| $
+| 309,512
+|
+|
+| $
+| (464,534)
+|
+|
+| $
+| 285,645
+|
+|
+Less: Pass-through revenue
+| (14,503)
+|
+|
+| —
+|
+|
+| (18,614)
+|
+|
+| —
+|
+|
+Less: Change in fair value (extinguishment) of forward contract liability
+| —
+|
+|
+| (363,336)
+|
+|
+| —
+|
+|
+| (363,336)
+|
+|
+Add: Stock-based compensation expense
+| 377,008
+|
+|
+| 13,281
+|
+|
+| 386,601
+|
+|
+| 22,435
+|
+|
+Add: Pass-through costs
+| 14,075
+|
+|
+| —
+|
+|
+| 18,065
+|
+|
+| —
+|
+|
+Add: Amortization of customer warrant assets
+| 44,262
+|
+|
+| —
+|
+|
+| 46,315
+|
+|
+| —
+|
+|
+Add: Employer payroll tax related to stock-based compensation from IPO
+| 22,778
+|
+|
+| —
+|
+|
+| 22,778
+|
+|
+| —
+|
+|
+Core net loss
+| $
+| (6,908)
+|
+|
+| $
+| (40,543)
+|
+|
+| $
+| (9,389)
+|
+|
+| $
+| (55,256)
+|
+|
+
+
+
+
+
+
+
+
+
+Discussion of Non-GAAP Financial Measures
+Use of non-GAAP financial measures
+We use certain non-GAAP financial measures to supplement the performance measures in our consolidated financial statements, which are presented in accordance with GAAP. These non-GAAP financial measures include core total revenue, core hardware revenue, core cloud and other services revenue, core gross profit, core hardware gross profit, core cloud and other services gross profit, core gross margin, core hardware gross margin, core cloud and other services gross margin, core operating loss, core operating margin, core net loss, and adjusted earnings before interest, income tax, depreciation and amortization (“Adjusted EBITDA”). We use these non-GAAP financial measures for financial and operational decision-making and as a means to assist us in evaluating period-to-period comparisons.
+Reconciliations of each of these non-GAAP financial measures to their most directly comparable GAAP measures for this quarter and prior periods are included in the tables below or elsewhere in the materials accompanying this press release.
+Usefulness of non-GAAP financial measures to investors
+By excluding certain items that may not be indicative of our recurring operating results from our core technology and service offerings and stock-based compensation from grants of equity awards, we believe that the non-GAAP metrics described below provide meaningful supplemental information regarding our performance. Accordingly, we believe these non-GAAP financial measures are useful to investors and others because they allow additional information with respect to financial measures used by management in its financial and operational decision-making and may be useful to our institutional investors and the analyst community to help them analyze the health of our business. Disclosure of these non-GAAP financial measures also facilitates the comparisons of Cerebras’s operating performance with the performance of other companies in the same industry that supplement their GAAP results with non-GAAP financial measures that may be calculated in a manner comparable to their core operations.
+Economic substance of and material limitations associated with non-GAAP financial measures used by Cerebras
+Core revenue, core hardware revenue, core cloud and other services revenue, core gross profit, core hardware gross profit, core cloud and other services gross profit, core gross margin, core hardware gross margin, core cloud and other services gross margin, core operating loss, core operating margin, Adjusted EBITDA and core net loss are adjusted, as applicable, to: (i) exclude non-cash stock-based compensation; (ii) exclude pass-through revenues and costs that are not part of our core technology and services offering; and (iii) add back non-cash amortization from customer warrants that is recorded as a reduction in revenues; (iv) exclude from core net loss the effect of the change in fair value (extinguishment) of the forward contract liability; and (v) present employer payroll tax related to stock-based compensation from IPO as an offset to the stock-based compensation adjustment in calculating core net loss. Non-GAAP adjusted EBITDA excludes the impacts of depreciation and amortization and stock-based compensation.
+
+
+
+
+
+
+
+Core gross margin, core hardware margin, and core cloud and other services margin represent core gross profit, core hardware gross profit, and core cloud and other services gross profit, respectively, expressed as a percentage of their corresponding core revenue.
+More specifically, Cerebras makes the adjustments described above for the following reasons:
+• Stock-based compensation expense consists of equity awards granted based on the estimated fair value of those awards at the grant date. Although stock-based compensation is a key incentive offered to employees, Cerebras excludes these charges for the purpose of calculating these non-GAAP measures, primarily because they are non-cash expenses, and the Company’s internal benchmarking analyses evidence that many industry participants and peers present non-GAAP financial measures excluding stock-based compensation expense.
+• Amortization of customer warrants consists of equity granted to customers and recorded as contra-revenue. We exclude the impact of amortization of customer warrant assets recorded as contra‑revenue from our non‑GAAP results because it represents a non‑cash, valuation‑driven adjustment associated with equity instruments issued to customers.The amount and timing of this amortization may be influenced by factors outside our operational performance, including the timing of customer capacity deployment decisions and product delivery schedules, which are at the discretion of the customer. This adjustment does not reflect the underlying economics of our core revenue‑generating activities, including pricing, volume, or cost of delivering our products and services, and therefore may not be indicative of our ongoing operating performance.
+• Pass-through revenue and associated pass-through cost of revenue relate to non-recurring data center start-up and recurring data center costs that are incurred on behalf of specific customers. We exclude pass‑through revenue and the associated pass-through cost of revenue from our non‑GAAP financial measures because such amounts are incurred on behalf of specific customers and do not reflect the underlying economics of our core hardware technology and services offerings and generally generate fixed minimal gross margins. These pass-through revenues and costs are dependent on the pace of customer data center build-outs, deployment schedules, and customer deployment choices and approval of associated billings. Accordingly, these amounts may fluctuate significantly between reporting periods and can obscure comparisons of our operating performance results and trends in our core business.
+• The change in fair value (extinguishment) of the forward contract liability reflects the impact recognized in connection with the forward contract liability. We exclude this item from core net loss because it arose from the forward contract liability rather than from the operating performance of our core technology and services offerings.
+• Employer payroll tax related to stock-based compensation from IPO is presented as an adjustment in calculating core net loss. This treatment presents the employer payroll tax separately from the non-cash stock-based compensation excluded from core net loss.
+
+
+
+
+
+
+
+There are a number of limitations related to the use of non-GAAP financial measures, and these non-GAAP measures should be considered in addition to, not as a substitute for or in isolation from, our financial results prepared in accordance with GAAP. Other companies, including companies in our industry, may calculate these non-GAAP financial measures differently or not at all, which reduces their usefulness as comparative measures. No reconciliation is provided with respect to certain forward-looking non-GAAP financial measures as the GAAP measures are not accessible on a forward-looking basis. We cannot reliably predict all necessary components or their impact to reconcile such financial measures without unreasonable effort. The events necessitating a non-GAAP adjustment are inherently unpredictable and may have a significant impact on our future GAAP financial results. Cerebras compensates for these limitations on the use of non-GAAP financial measures by relying primarily on its GAAP results and using non-GAAP financial measures only as a supplement. Cerebras also provides a reconciliation of each non-GAAP financial measure to its most directly comparable GAAP financial measure for this quarter and prior periods within this press release, and Cerebras encourages investors to review those reconciliations carefully.\n

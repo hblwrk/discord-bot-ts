@@ -5,6 +5,7 @@ import {
   findNumericValue,
   formatEps,
   formatUsdCompact,
+  getExplicitMoneyScale,
   parseNumber,
 } from "./earnings-results-money.ts";
 import {type EarningsEvent} from "./earnings.ts";
@@ -535,5 +536,12 @@ describe("earnings result money parsing", () => {
     test("still skips a bare year in a column header", () => {
       expect(findNumericValue(" 2026 | 2025", scanOptions)).toBeNull();
     });
+  });
+
+  test("keeps an explicit money scale across SEC table separators", () => {
+    const row = "Revenue | | $ | 17.3 | billion |";
+    const valueEndIndex = row.indexOf("17.3") + "17.3".length;
+
+    expect(getExplicitMoneyScale(row, valueEndIndex)).toBe(1_000_000_000);
   });
 });

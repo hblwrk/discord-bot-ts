@@ -131,6 +131,15 @@ export function getMetricCandidateScore({
     } else if (/\b(?:net\s+)?product\s+sales\b|\bservice\s+revenues?\b/i.test(metricCaptionText)) {
       score -= 80;
     }
+
+    // Some companies publish a bespoke "Core revenue" measure alongside the
+    // consolidated GAAP total. Generic Revenue is the filed GAAP total; a core
+    // measure remains useful only when it is explicitly labelled as such.
+    if (/\bgaap\s+total\s+revenues?\b/i.test(metricLine)) {
+      score += 100;
+    } else if (/\bcore\s+(?:total\s+)?revenues?\b/i.test(metricCaptionText)) {
+      score -= 100;
+    }
   }
 
   // A company may publish its standard adjusted EPS and then an additional figure that
