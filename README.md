@@ -224,6 +224,8 @@ Calendar reminder assets are matched against the current day and sent at `08:30 
   roleIdReference: "hblwrk_role_special_alerts_ID"
 ```
 
+Calendar result follow-ups reconcile at startup and every 30 minutes from `08:00` through `23:30 Europe/Berlin` on weekdays. The reconciliation reloads configured reminder events from the previous 24 hours, reconstructs release polling after a restart, follows provider event IDs when release times change, and recovers results published while the bot is offline. Aggressive polling continues for 15 minutes after each scheduled release; periodic reconciliation handles later provider updates within the recovery window. Recent bot-authored Discord messages act as the delivery record, so restarts suppress duplicate updates without a database or writable filesystem. If message history is unavailable, the bot favours delivering a validated result and logs the degraded duplicate protection.
+
 Earnings reminders use same-day ticker heads-ups at `08:00 Europe/Berlin` on weekdays:
 
 ```yaml

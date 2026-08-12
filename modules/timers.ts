@@ -10,13 +10,12 @@ import {
 import {
   CALENDAR_MAX_MESSAGE_LENGTH,
   CALENDAR_MAX_MESSAGES_TIMER,
-  getCalendarEventDateTime,
   getCalendarEvents,
   getCalendarMessages,
   type CalendarEvent,
   type CalendarMessageBatch,
 } from "./calendar.ts";
-import {getCalendarOfficialSummary} from "./calendar-economic-summary.ts";
+import {createCalendarReminderFollowUpCoordinator} from "./calendar-reminder-follow-ups.ts";
 import {
   EARNINGS_MAX_MESSAGE_LENGTH,
   EARNINGS_MAX_MESSAGES_TIMER,
@@ -43,8 +42,6 @@ import {
   getMatchedCalendarReminderEventGroups,
   getMatchedEarningsReminderEvents,
   getNormalizedRoleId,
-  hasCalendarReminderActualValues,
-  hasCalendarReminderClearMetrics,
 } from "./timer-reminders.ts";
 
 const logger = getLogger();
@@ -59,7 +56,6 @@ type FileAnnouncementAsset = {
 const calendarReminderAnnouncementSource = "calendar-reminder";
 const earningsReminderSource = "earnings-reminder";
 const calendarMessageDelayMs = 500;
-const calendarReminderFollowUpDelaySeconds = [5, 10, 20, 30, 60, 120, 180, 300, 600, 900];
 const usEasternTimezone = "US/Eastern";
 const dailyEarningsHeadline = "**Earnings**";
 const weeklyEarningsHeadline = "💸 **Earnings der nächsten Handelswoche**";
@@ -82,6 +78,9 @@ type TimerClient = {
     };
     fetch?: (channelId: string) => Promise<unknown> | unknown;
   };
+  user?: {
+    id?: string | undefined;
+  } | null | undefined;
 };
 type NyseSentimentPollMessage = {
   channel?: {
@@ -113,10 +112,6 @@ type EarningsAnnouncementConfig = {
   headlinePlacement?: "merged" | "standalone";
   source: string;
   when: "all" | "before_open" | "during_session" | "after_close" | string;
-};
-type CalendarReminderGroup = {
-  asset: CalendarReminderAsset;
-  events: CalendarEvent[];
 };
 const nyseSentimentPollAnswers = [
   {emoji: "🟢", text: "Risk-on"},
@@ -885,6 +880,13 @@ export function startOtherTimers(
   // summaries) post to the main channel for visibility; the daily/weekly
   // calendar agenda batches stay in the optional trading-calendar thread.
   const resolvedMacroAlertChannelID = macroAlertChannelID ?? channelID;
+  const calendarFollowUps = createCalendarReminderFollowUpCoordinator({
+    assets: calendarReminderAssets,
+    channelId: resolvedMacroAlertChannelID,
+    client,
+    logger,
+  });
+  calendarFollowUps.start();
   const ruleFriday = createRecurrenceRule({
     hour: 8,
     minute: 0,
@@ -1088,7 +1090,7 @@ export function startOtherTimers(
         calendarReminderAnnouncementSource,
       );
     }
-    scheduleCalendarReminderFollowUpJobs(client, resolvedMacroAlertChannelID, matchedReminderGroups);
+    calendarFollowUps.scheduleGroups(matchedReminderGroups);
   });
 
   const ruleEventsWeekly = createRecurrenceRule({
@@ -1135,133 +1137,6 @@ function dedupeCalendarEvents(calendarEvents: CalendarEvent[]): CalendarEvent[] 
   }
 
   return dedupedEvents;
-}
-
-function scheduleCalendarReminderFollowUpJobs(
-  client: TimerClient,
-  macroAlertChannelID: string,
-  matchedReminderGroups: CalendarReminderGroup[],
-) {
-  const sentFollowUpKeys = new Set<string>();
-  // Follow-up jobs fire at staggered delays; once actuals are out, two jobs can
-  // overlap because sendCalendarReminderFollowUp awaits a network fetch. Claim the
-  // key synchronously (before any await) so an overlapping job skips instead of
-  // posting a duplicate. Released on failure so a later job can still retry.
-  const inFlightFollowUpKeys = new Set<string>();
-
-  for (const matchedReminderGroup of matchedReminderGroups) {
-    if (false === shouldScheduleCalendarReminderFollowUp(matchedReminderGroup)) {
-      continue;
-    }
-
-    const primaryEvent = matchedReminderGroup.events[0];
-    if (undefined === primaryEvent) {
-      continue;
-    }
-
-    const eventDateTime = getCalendarEventDateTime(primaryEvent);
-    if (false === eventDateTime.isValid()) {
-      continue;
-    }
-
-    const followUpKey = getCalendarReminderFollowUpKey(matchedReminderGroup);
-    for (const delaySeconds of calendarReminderFollowUpDelaySeconds) {
-      const scheduledDateTime = eventDateTime.clone().add(delaySeconds, "seconds");
-      if (true === scheduledDateTime.isSameOrBefore(moment())) {
-        continue;
-      }
-
-      Schedule.scheduleJob(scheduledDateTime.toDate(), async () => {
-        if (true === sentFollowUpKeys.has(followUpKey) || true === inFlightFollowUpKeys.has(followUpKey)) {
-          return;
-        }
-
-        inFlightFollowUpKeys.add(followUpKey);
-        try {
-          const sent = await sendCalendarReminderFollowUp(client, macroAlertChannelID, matchedReminderGroup);
-          if (true === sent) {
-            sentFollowUpKeys.add(followUpKey);
-          }
-        } finally {
-          inFlightFollowUpKeys.delete(followUpKey);
-        }
-      });
-    }
-  }
-}
-
-function shouldScheduleCalendarReminderFollowUp(matchedReminderGroup: CalendarReminderGroup): boolean {
-  return false === hasCalendarReminderActualValues(matchedReminderGroup.events);
-}
-
-function getCalendarReminderFollowUpKey(matchedReminderGroup: CalendarReminderGroup): string {
-  const primaryEvent = matchedReminderGroup.events[0];
-  const roleId = getNormalizedRoleId(matchedReminderGroup.asset.roleId) ?? "missing-role";
-  const assetName = matchedReminderGroup.asset.name?.trim() || "calendar-reminder";
-  if (undefined === primaryEvent) {
-    return `${assetName}|${roleId}|missing-event`;
-  }
-
-  return `${assetName}|${roleId}|${primaryEvent.date}|${primaryEvent.time}|${primaryEvent.country}`;
-}
-
-async function sendCalendarReminderFollowUp(
-  client: TimerClient,
-  macroAlertChannelID: string,
-  matchedReminderGroup: CalendarReminderGroup,
-): Promise<boolean> {
-  const roleId = getNormalizedRoleId(matchedReminderGroup.asset.roleId);
-  const primaryEvent = matchedReminderGroup.events[0];
-  if (!roleId || undefined === primaryEvent) {
-    return false;
-  }
-
-  const refreshedEvents = await getCalendarEvents(primaryEvent.date, 0);
-  const refreshedReminderGroup = findMatchingCalendarReminderGroup(matchedReminderGroup, refreshedEvents);
-  const calendarEvents = refreshedReminderGroup?.events ?? matchedReminderGroup.events;
-
-  if (true === hasCalendarReminderActualValues(calendarEvents)) {
-    await sendToChannel(
-      getSendableChannel(client, macroAlertChannelID, calendarReminderAnnouncementSource),
-      {
-        content: getCalendarReminderContent(roleId, "update"),
-        embeds: [buildCalendarReminderEmbed("update", calendarEvents)],
-        allowedMentions: getAllowedRoleMentions(roleId),
-      },
-      calendarReminderAnnouncementSource,
-    );
-    return true;
-  }
-
-  if (false === hasCalendarReminderClearMetrics(calendarEvents)) {
-    const officialSummary = await getCalendarOfficialSummary(calendarEvents, {logger});
-    if (undefined !== officialSummary) {
-      await sendToChannel(
-        getSendableChannel(client, macroAlertChannelID, calendarReminderAnnouncementSource),
-        {
-          content: getCalendarReminderContent(roleId, "summary"),
-          embeds: [buildCalendarReminderEmbed("summary", calendarEvents, {
-            sourceName: officialSummary.name,
-            summaryMarkdown: officialSummary.summaryMarkdown,
-          })],
-          allowedMentions: getAllowedRoleMentions(roleId),
-        },
-        calendarReminderAnnouncementSource,
-      );
-      return true;
-    }
-  }
-
-  return false;
-}
-
-function findMatchingCalendarReminderGroup(
-  matchedReminderGroup: CalendarReminderGroup,
-  calendarEvents: CalendarEvent[],
-): CalendarReminderGroup | undefined {
-  const followUpKey = getCalendarReminderFollowUpKey(matchedReminderGroup);
-  return getMatchedCalendarReminderEventGroups([matchedReminderGroup.asset], calendarEvents)
-    .find(candidate => getCalendarReminderFollowUpKey(candidate) === followUpKey);
 }
 
 function prependHeadlineToFirstMessage(

@@ -92,7 +92,7 @@ describe("timer-reminders", () => {
     expect(getCalendarReminderContent("role-1", "reminder")).toBe("<@&role-1> Heute wichtig");
     expect(reminderEmbed.data.title).toBe("🇺🇸 ISM Manufacturing PMI");
     expect(reminderEmbed.data.description).toBe("**ISM Manufacturing PMI**\n**ISM Manufacturing PMI Final**");
-    expect(reminderEmbed.data.footer?.text).toBe("🕒 14:30");
+    expect(reminderEmbed.data.footer?.text).toBe("🕒 14:30 · 📅 2026-05-04");
     expect(reminderEmbed.data.color).toBe(0x0099ff);
 
     const emptyEmbed = buildCalendarReminderEmbed("reminder", []);
@@ -125,7 +125,7 @@ describe("timer-reminders", () => {
     expect(getCalendarReminderContent("role-1", "update")).toBe("<@&role-1> Update");
     expect(updateEmbed.data.title).toBe("🇺🇸 Consumer Price Index (CPI) y/y");
     expect(updateEmbed.data.description).toBe("**Consumer Price Index (CPI) y/y** — `3.4%` ▲ exp. `3.2%` · prev. `3.1%`");
-    expect(updateEmbed.data.footer?.text).toBe("🕒 14:30");
+    expect(updateEmbed.data.footer?.text).toBe("🕒 14:30 · 📅 2026-05-04");
   });
 
   test("renders forecast-only and actual-only embed lines", () => {
@@ -162,7 +162,7 @@ describe("timer-reminders", () => {
     expect(getCalendarReminderContent("role-1", "summary")).toBe("<@&role-1> Update");
     expect(summaryEmbed.data.title).toBe("🇺🇸 FOMC Statement");
     expect(summaryEmbed.data.description).toBe("**FOMC Statement**\n\nPolicy remains data dependent.");
-    expect(summaryEmbed.data.footer?.text).toBe("🕒 14:30 · Quelle: Federal Reserve");
+    expect(summaryEmbed.data.footer?.text).toBe("🕒 14:30 · 📅 2026-05-04 · Quelle: Federal Reserve");
   });
 
   test("matches earnings reminder tickers, removes duplicates and formats by time bucket", () => {

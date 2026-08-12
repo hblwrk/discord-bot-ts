@@ -244,6 +244,7 @@ function getEarningsReminderJob(): RecurringScheduledJob {
 
 export function resetTimerMocks() {
   vi.useFakeTimers();
+  vi.stubEnv("NODE_ENV", "test");
   vi.setSystemTime(new Date("2025-02-18T10:00:00-05:00"));
   vi.clearAllMocks();
   scheduledJobs.length = 0;
@@ -305,6 +306,7 @@ export function resetTimerMocks() {
 
 export function restoreTimerMocks() {
   vi.useRealTimers();
+  vi.unstubAllEnvs();
 }
 
 export {
