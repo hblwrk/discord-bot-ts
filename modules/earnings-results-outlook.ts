@@ -50,7 +50,11 @@ type OutlookSection = {
   revisedColumns: boolean;
 };
 
-const moneyTokenPatternSource = String.raw`(?<![\d.])\(?\s*(?:(?:C\s*\$|[$€£¥])\s*|(?:(?:USD|CAD|EUR|GBP|JPY|CHF)\s+))?-?\d+(?:,\d{3})*(?:\.\d+)?\s*(?:(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b)?\)?`;
+const moneyUnitPatternSource = String.raw`(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b`;
+// Some releases close accounting parentheses before the scale word — "($400) million" —
+// while others put the scale inside them — "($400 million)". Treat both forms as one
+// token so the scale and negative sign survive range parsing.
+const moneyTokenPatternSource = String.raw`(?<![\d.])\(?\s*(?:(?:C\s*\$|[$€£¥])\s*|(?:(?:USD|CAD|EUR|GBP|JPY|CHF)\s+))?-?\d+(?:,\d{3})*(?:\.\d+)?\s*\)?\s*(?:${moneyUnitPatternSource})?\)?`;
 const moneyRangePattern = new RegExp(`(${moneyTokenPatternSource})\\s*(?:to|through|-|–|and)\\s*(${moneyTokenPatternSource})`, "gi");
 const singleMoneyPattern = new RegExp(moneyTokenPatternSource, "gi");
 
@@ -310,7 +314,7 @@ function isOutlookSectionEnd(line: string): boolean {
   }
 
   return line.length <= 90 &&
-    /^(?:results|balance\s+sheets?|cash\s+flows?|appendix|contacts?|media|webcast)$/i.test(line);
+    /^(?:results|key\s+financials?|balance\s+sheets?|cash\s+flows?|appendix|contacts?|media|webcast)$/i.test(line);
 }
 
 function isNextSectionHeading(line: string): boolean {
@@ -893,6 +897,12 @@ function parseNumber(value: unknown): number | null {
   }
 
   const normalizedValue = value
+    // A scale outside accounting parentheses carries the same sign as the value inside.
+    // Normalize it before the general parenthetical conversion below.
+    .replace(
+      new RegExp(String.raw`^\(([^)]+)\)\s*(${moneyUnitPatternSource})$`, "i"),
+      "-$1 $2",
+    )
     .replace(/^\((.*)\)$/, "-$1")
     .replace(/C\s*\$/g, "")
     .replace(/[€£¥$]/g, "")

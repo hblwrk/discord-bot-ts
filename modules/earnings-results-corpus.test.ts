@@ -932,6 +932,54 @@ const filingCorpus: {
     source: "1633978/000162828026055726/lite_ex991xq4fy26.htm",
     ticker: "lite",
   },
+  {
+    // Accounting parentheses close before the unit in both ends of the adjusted EBITDA
+    // range: "($400) million to ($445) million". The unit and sign apply together.
+    company: "Beta Technologies",
+    metrics: [
+      ["gaap_eps", "-$0.64"],
+      ["revenue", "$14.7M"],
+      ["net_income", "-$148.8M"],
+    ],
+    outlook: [
+      ["Revenue", "$42M to $50M"],
+      ["Adj EBITDA", "-$400M to -$445M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1784570/000162828026055933/a2026q2earningsrelease.htm",
+    ticker: "beta",
+  },
+  {
+    // The fiscal quarter number is in the release title, while the year is in the next
+    // highlights heading. The short outlook ends at "Key Financials" before Q4 tables.
+    company: "Amcor",
+    metrics: [
+      ["adjusted_eps", "$1.23"],
+      ["gaap_eps", "$0.83"],
+      ["revenue", "$6.4B"],
+      ["net_income", "$389M"],
+    ],
+    outlook: [
+      ["Adj EPS", "$1.8 to $1.9"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "1748790/000174879026000020/amcor4q2026ex991-june302026.htm",
+    ticker: "amcr",
+  },
+  {
+    // Product and service revenue are separate components above the consolidated total.
+    // The headline repeats only product sales, which must not outrank the total row.
+    company: "Liquidia",
+    metrics: [
+      ["gaap_eps", "$0.74"],
+      ["revenue", "$171.68M"],
+      ["net_income", "$74.7M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1819576/000110465926094411/tm2622888d1_ex99-1.htm",
+    ticker: "lqda",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -952,6 +1000,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(60);
+    expect(filingCorpus).toHaveLength(63);
   });
 });

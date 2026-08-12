@@ -1,0 +1,281 @@
+EX-99.1
+2
+a2026q2earningsrelease.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+BETA Technologies, Inc. Announces Second Quarter 2026 Results
+
+
+Delivered strong revenue growth and continued momentum across its commercial, defense and integrated aerospace platform.
+SOUTH BURLINGTON, Vt. – August 12, 2026 – BETA Technologies, Inc. (NYSE: BETA) (“BETA” or the “Company”), an aerospace and defense company, today announced its financial and operating results for the second quarter ended June 30, 2026.
+“This quarter showed that the investments made across the business continue to translate into real-world operations and delivered tangible results,” said Kyle Clark, founder and chief executive officer of BETA. “We became the first company to launch operations under the eVTOL Integration Pilot Program, demonstrated hybrid-electric flight at commercial altitude with GE Aerospace, unveiled the MV250 for defense applications, and continued to grow our backlog. Each of these milestones builds on the same integrated foundation: certification, operational experience, infrastructure, and vertically integration. Progress in one program strengthens the others, accelerating our ability to serve commercial and defense customers as we scale.”
+Business Highlights
+• Unveiled the MV250 Aircraft: Launched BETA’s first hybrid-electric autonomous vertical takeoff and landing aircraft at the Farnborough International Airshow. Built on BETA’s common platform, the MV250 combines autonomous operations with hybrid-electric propulsion developed alongside GE Aerospace, accelerating technologies that will benefit both defense and commercial aircraft maximizing the total addressable market.
+• Achieved World’s First High-Altitude Hybrid-Electric Flight: Collaborated with GE Aerospace, NASA, and Boeing through NASA’s Electrified Powertrain Flight Demonstration program to complete the first hybrid-electric flight above 30,000 feet, reaching the altitudes at which commercial passenger aircraft operate. In addition to supporting flight testing in the U.S., the aircraft was flown by BETA pilots to Farnborough and in the airshow, showing the viability of hybrid-electric propulsion for aviation.
+• Completed Industry’s First eIPP Flights: Launched the first operations under the U.S. Department of Transportation and Federal Aviation Administration’s (“FAA”) eVTOL Integration Pilot Program, with BETA operating its conventional takeoff and landing ALIA aircraft to transport manufactured organs with United Therapeutics utilizing the Company’s existing airport charging network. This milestone reinforces BETA’s leadership in Advanced Air Mobility through proven operational experience and close collaboration with the FAA.
+• Expanded Charging Infrastructure: Grew BETA’s network to 138 charging sites, while announcing the deployment of up to 250 charging sites, including airports and vertiports in California, Texas, Florida, and New York under the America’s Consortium for Electric Skyways (“ACES”) with Archer Aviation and Macquarie Capital. ACES reinforces BETA’s strategy of building the industry’s leading interoperable charging network while generating infrastructure revenue today.
+• Advanced Certification Across BETA’s Common Platform: Reached agreement with the FAA on the H500A’s continued-rotation compliance approach, completed durability and lightning-strike teardowns with strong results and substantially completed software requirements-based testing, with formal FAA testing underway. For the CX300, BETA closed the Requirements Definition phase, receiving FAA acceptance of the aircraft’s complete set of compliance requirements and creating meaningful carryover to the A250 program.
+1
+
+
+
+
+
+• Strengthened Commercial Backlog: Following successful cargo flight demonstrations completed across Scotland, Loganair signed a term sheet for five CX300 aircraft, with options for five additional aircraft. The order demonstrates BETA’s strategy of proving aircraft performance through real-world operations that convert directly into commercial demand.
+Financial Highlights
+• Q2 Revenues of $14.7 million
+• Q2 Net loss of ($148.8) million
+• Q2 Adjusted EBITDA of ($109.8) million
+Second Quarter 2026 Key Financial Metrics
+(in thousands)
+| | | | | | | | | |
+| Three Months Ended
+June 30, |
+| 2026 | | 2025 |
+Revenues | $ | 14,658 | | | $ | 5,966 | |
+Cost of revenues | 6,637 | | | 1,190 | |
+Gross margin | 8,021 | | | 4,776 | |
+Research and development | 122,365 | | | 58,035 | |
+General and administrative | 43,774 | | | 26,061 | |
+Total operating expenses | 166,139 | | | 84,096 | |
+Loss from operations | (158,118) | | | (79,320) | |
+Net loss
+| (148,753) | | | (80,416) | |
+Adjusted EBITDA (1)
+| (109,810) | | | (68,394) | |
+Capital expenditures (2)
+| 41,113 | | | 6,025 | |
+Cash and cash equivalents
+| 1,479,470 | | | 174,531 | |
+
+(1) In addition to results determined in accordance with U.S. generally accepted accounting principles (“GAAP”), this press release contains financial measures that are not calculated and presented in accordance with GAAP. See “Non-GAAP Financial Measures” for definitions of these non-GAAP financial measures. A reconciliation of the non-GAAP measures to their related GAAP measures can be found in the supplemental tables later in this press release.
+(2) Represents purchases of property and equipment.
+Revenues for the quarter ended June 30, 2026 were $14.7 million, compared to $6.0 million for the quarter ended June 30, 2025. Product revenues and service revenues were $3.3 million and $11.4 million, respectively.
+Operating expenses for the quarter ended June 30, 2026 were $166.1 million, including research and development expenses of $122.4 million. Non-cash warrant expense related to the collaborative arrangement with GE Aerospace of $5.7 million and in-process research and development (“IPR&D”) expense of $16.1 million related to an acquisition, were both embedded in research and development expenses in the quarter. Investments in research and development enable our certification programs and the further advancement of our enabling technologies.
+Net loss and Adjusted EBITDA for the quarter ended June 30, 2026 were ($148.8) million and ($109.8) million, respectively.
+Capital expenditures for the quarter ended June 30, 2026 were $41.1 million, compared to $6.0 million for the quarter ended June 30, 2025. Cash and cash equivalents totaled $1,479.5 million as of June 30, 2026,
+2
+
+
+
+
+
+compared to $174.5 million as of June 30, 2025, as a result of successful private financings and the proceeds from our IPO.
+Financial Outlook
+BETA increases our full year 2026 revenues to be in the range o f $42 million to $50 million and updates full year 2026 Adjusted EBITDA to be in the range of ($400) million to ($445) million.
+BETA has not reconciled our forward-looking Adjusted EBITDA guidance because certain items that impact this non-GAAP metric are uncertain or out of BETA’s control and cannot be reasonably predicted. In particular, stock-based compensation expense is impacted by the future fair market value of BETA’s Class A common stock, BETA’s future hiring needs, and other factors, all of which are difficult to predict, subject to frequent change, or not within BETA’s control. The actual amount of these expenses during 2026 could materially affect BETA’s future GAAP financial results. Accordingly, a reconciliation of this forward-looking non-GAAP metric is not available without unreasonable effort.
+Webcast and Conference Call Details
+BETA will host a live webcast and conference call at 8:30 am ET today to discuss the quarter’s financial and operating results. A link to the live webcast and supporting materials can be accessed on the Company’s Investor Relations website and a replay webcast will be available following the call. Participants may also join the conference call by registering on our Investors Relations website.
+Investors should note that BETA may use our website (investors.beta.team) and BETA’s company account on Instagram and LinkedIn as a means of disclosing information and for complying with BETA’s disclosure obligations under Regulation FD. The information BETA provides through these channels may be deemed material. Investors should monitor these channels in addition to reviewing BETA’s press releases, SEC filings, and public conference calls.
+About BETA Technologies, Inc.
+BETA (NYSE: BETA) is an aerospace and defense company designing, manufacturing and selling high-performance electric aircraft, advanced electric propulsion systems, components and charging systems to top operators worldwide. BETA has built and flown its family of ALIA aircraft, consisting of both conventional fixed-wing electric aircraft (the “ALIA CTOL”) and electric vertical takeoff and landing aircraft (the “ALIA VTOL”), more than 190,000 nautical miles, including multiple trips across the United States. BETA is deploying a network of charging infrastructure to enable the growing industry with more than 130 sites across the United States and internationally. BETA’s intentional approach to developing the enabling technologies necessary to electrify aviation unlocks lucrative aftermarket revenue opportunity over the life of each aircraft. These highly scalable enabling technologies allow BETA to serve a customer base across cargo and logistics, defense, passenger and medical end markets and unlock cost-effective and safe missions. Visit www.beta.team for more information about BETA and its products.
+Contacts
+Media:
+Nat Bol, external communications
+press@beta.team
+3
+
+
+
+
+
+Investor Relations:
+Devon Rothman, head of investor relations and FP&A
+investors@beta.team
+4
+
+
+
+
+
+Forward Looking Statements
+This press release and the accompanying earnings call contain forward-looking statements within the meaning of federal securities laws. Forward-looking statements are neither historical facts nor assurances of future performance. Instead, they are based only on our current beliefs, expectations and assumptions regarding the future of our business, future plans and strategies, projections, anticipated events and trends, the economy and other future conditions. Forward-looking statements can be identified by words such as: “anticipate,” “intend,” plan,” “goal,” “seek,” “believe,” “project,” “estimate,” “expect,” “strategy,” “future,” “likely,” “may,” “should,” “will” and similar references to future periods. Examples of forward-looking statements include, among others, statements we make regarding our future financial and operating performance, including our outlook and guidance; our regulatory outlook, progress and timing; our business strategy, plan, objectives, and goals; capital needs and the growth of our operations, manufacturing capabilities, and supporting infrastructure for aircraft development and deployment; plans and anticipated benefits with respect to our collaborations with third parties, and projected demand for our aircraft, other products, and services.
+Because forward-looking statements relate to the future, they are subject to inherent uncertainties, risks and changes in circumstances that are difficult to predict and many of which are outside of our control. Our actual results and financial condition may differ materially from those indicated in the forward-looking statements. Therefore, you should not rely on any of these forward-looking statements. Important factors that could cause our actual results and financial condition to differ materially from those indicated in the forward-looking statements include, among others, factors described throughout the “Risk Factors” and “Management’s Discussion and Analysis of Financial Condition and Results of Operations” sections of our Annual Report on Form 10-K for the year ended December 31, 2025 filed with the Securities and Exchange Commission (the “SEC”) on March 9, 2026, as such descriptions may be updated or amended by the factors that will be included in the future reports we file with the SEC. Moreover, we operate in a very competitive and rapidly changing environment, and new risks and uncertainties may emerge that could have an impact on the forward-looking statements contained in this press release and the accompanying earnings call.
+Any forward-looking statement made by us in this press release and the accompanying earnings call is based only on information currently available to us and speaks only as of the date on which it is made. We undertake no obligation to publicly update any forward-looking statement whether as a result of new information, future developments or otherwise.
+Non-GAAP Financial Measures
+In addition to traditional financial metrics, we use EBITDA and Adjusted EBITDA to help us evaluate our business.
+We define EBITDA as net loss adjusted for interest income, interest expense, provision for income taxes, and depreciation and amortization. We define Adjusted EBITDA as EBITDA adjusted for stock-based compensation, warrant expense, acquisition-related expense, loss on disposal of property and equipment, and IPO costs.
+We believe that these non-GAAP measures provide useful information to investors because they allow for greater transparency into what measures we use in operating our business and measuring our performance and enable comparison of financial trends and results between periods where items may vary independent of business performance. These non-GAAP measures are presented for supplemental informational purposes and should not be considered as substitutes for or superior to financial information presented in accordance with GAAP. The principal limitation of these non-GAAP financial measures is that they
+5
+
+
+
+
+
+exclude certain expenses that are required by GAAP to be recorded in our financial statements and they are subject to inherent limitations as they reflect the exercise of judgment by our management about which expenses are excluded or included in determining these non-GAAP financial measures. Further, non-GAAP financial measures are not standardized. It may not be possible to compare these financial measures with other companies’ non-GAAP financial measures having the same or similar names. Investors are encouraged to review the related GAAP financial measures and the reconciliation of these non-GAAP financial measures to their most directly comparable GAAP financial measures. In addition, investors are encouraged to review our consolidated financial statements included in our filings with the SEC in their entirety and not rely solely on any single financial measure.
+We caution readers that our definitions of these non-GAAP financial measures may not be calculated in the same manner as similar measures used by other companies. Reconciliations of the non-GAAP financial measures to their most comparable GAAP financial measures are included in the supplemental tables attached to this press release.
+
+
+6
+
+
+
+
+
+
+BETA Technologies, Inc.
+Condensed Consolidated Statements of Operations
+(in thousands, except per share amounts)
+| | | | | | | | | | | | | | | | | |
+| Three Months Ended
+June 30, | Six Months Ended
+June 30, |
+| 2026 | | 2025 | 2026 | 2025 |
+Revenues: | | | | | |
+Product
+| $ | 3,280 | | | $ | 2,544 | | $ | 4,243 | | $ | 5,032 | |
+Service
+| 11,378 | | | 3,422 | | 20,548 | | 10,533 | |
+| 14,658 | | | 5,966 | | 24,791 | | 15,565 | |
+Cost of revenues: | | | | | |
+Product
+| 1,661 | | | 62 | | 2,257 | | 595 | |
+Service
+| 4,976 | | | 1,128 | | 8,681 | | 2,333 | |
+| 6,637 | | | 1,190 | | 10,938 | | 2,928 | |
+Gross margin:
+| | | | | |
+Product
+| 1,619 | | | 2,482 | | 1,986 | | 4,437 | |
+Service
+| 6,402 | | | 2,294 | | 11,867 | | 8,200 | |
+| 8,021 | | | 4,776 | | 13,853 | | 12,637 | |
+Operating expenses:
+| | | | | |
+Research and development
+| 122,365 | | | 58,035 | | 214,104 | | 115,899 | |
+General and administrative
+| 43,774 | | | 26,061 | | 90,824 | | 54,075 | |
+Total operating expenses
+| 166,139 | | | 84,096 | | 304,928 | | 169,974 | |
+Loss from operations
+| (158,118) | | | (79,320) | | (291,075) | | (157,337) | |
+Other (income) expense:
+| | | | | |
+Interest income
+| (13,293) | | | (2,023) | | (27,774) | | (4,720) | |
+Interest expense
+| 3,661 | | | 2,890 | | 7,278 | | 5,750 | |
+| | | | | |
+Total other (income) expense
+| (9,632) | | | 867 | | (20,496) | | 1,030 | |
+Loss before income taxes
+| (148,486) | | | (80,187) | | (270,579) | | (158,367) | |
+Provision for income taxes
+| 267 | | | 229 | | 483 | | 327 | |
+Net loss
+| (148,753) | | | (80,416) | | (271,062) | | (158,694) | |
+Convertible preferred stock paid-in-kind dividend
+| — | | | 12,376 | | - | | 24,540 | |
+Net loss attributable to common stockholders
+| $ | (148,753) | | | $ | (92,792) | | $ | (271,062) | | $ | (183,234) | |
+Net loss per share attributable to common stockholders, basic and diluted | $ | (0.64) | | | $ | (2.02) | | $ | (1.17) | | $ | (4.01) | |
+
+7
+
+
+
+
+
+
+BETA Technologies, Inc.
+Condensed Consolidated Balance Sheets
+(in thousands)
+| | | | | | | | | |
+| June 30, 2026 | | December 31, 2025 |
+Assets
+| | | |
+Current assets:
+| | | |
+Cash and cash equivalents
+| $ | 1,479,470 | | | $ | 1,710,227 | |
+Accounts receivable
+| 3,609 | | | 5,747 | |
+Prepaid expenses and other current assets
+| 20,545 | | | 23,494 | |
+Total current assets
+| 1,503,624 | | | 1,739,468 | |
+Property and equipment, net
+| 402,753 | | | 348,540 | |
+Operating lease right-of-use assets
+| 20,675 | | | 16,417 | |
+Other assets
+| 6,400 | | | 1,840 | |
+Total assets
+| $ | 1,933,452 | | | $ | 2,106,265 | |
+Liabilities and stockholders’ equity
+| | | |
+Current liabilities:
+| | | |
+Accounts payable
+| $ | 22,808 | | | $ | 24,503 | |
+Accrued expenses | 43,606 | | | 35,109 | |
+Payroll liabilities | 16,344 | | | 3,334 | |
+Deferred revenue
+| 7,015 | | | 3,704 | |
+Operating lease liabilities
+| 1,859 | | | 1,551 | |
+Notes payable
+| 8,547 | | | 5,711 | |
+Other current liabilities
+| 3,728 | | | 2,483 | |
+Total current liabilities
+| 103,907 | | | 76,395 | |
+Deferred revenue, non-current
+| 14,879 | | | 12,550 | |
+Operating lease liabilities, non-current
+| 20,885 | | | 16,838 | |
+Notes payable, non-current
+| 175,405 | | | 179,799 | |
+Other liabilities
+| 3,199 | | | 2,847 | |
+Total liabilities
+| 318,275 | | | 288,429 | |
+Total stockholders’ equity (1)
+| 1,615,177 | | | 1,817,836 | |
+Total liabilities and stockholders’ equity
+| $ | 1,933,452 | | | $ | 2,106,265 | |
+
+(1) Includes all components of stockholders’ equity, as presented in the Company’s Quarterly Report on Form 10-Q for the three months ended June 30, 2026.
+8
+
+
+
+
+
+
+BETA Technologies, Inc.
+Non-GAAP EBITDA and Adjusted EBITDA Reconciliation
+(in thousands)
+| | | | | | | | | | | | | | | | | |
+| Three Months Ended
+June 30, | Six Months Ended
+June 30, |
+| 2026 | | 2025 | 2026 | 2025 |
+Net loss | $ | (148,753) | | | $ | (80,416) | | $ | (271,062) | | $ | (158,694) | |
+Increase (decrease) as adjusted for: | | | | | |
+Interest income | (13,293) | | | (2,023) | | (27,774) | | (4,720) | |
+Interest expense | 3,661 | | | 2,890 | | 7,278 | | 5,750 | |
+Provision for income taxes | 267 | | | 229 | | 483 | | 327 | |
+Depreciation and amortization | 6,322 | | | 5,399 | | 12,473 | | 10,520 | |
+EBITDA | $ | (151,796) | | | $ | (73,921) | | $ | (278,602) | | $ | (146,817) | |
+| | | | | |
+Stock-based compensation | 14,674 | | | 4,307 | | 38,090 | | 11,614 | |
+Warrant expense | 5,697 | | | — | | 11,331 | | — | |
+Acquisition-related expense (1)
+| 16,147 | | | — | | 16,147 | | — | |
+Loss on disposal of property and equipment | 5,411 | | | 670 | | 5,742 | | 1,541 | |
+IPO costs (2)
+| 57 | | | 550 | | 236 | | 550 | |
+Adjusted EBITDA | $ | (109,810) | | | $ | (68,394) | | $ | (207,056) | | $ | (133,112) | |
+
+(1) Includes acquired IPR&D expense of $15.0 million and direct transaction costs of $1.1 million.
+(2) Represents accounting and advisory expenses incurred in connection with becoming and operating as a public company.
+9

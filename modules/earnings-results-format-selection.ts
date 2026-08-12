@@ -110,6 +110,29 @@ export function getMetricCandidateScore({
     score -= 150;
   }
 
+  if ("revenue" === metricKey) {
+    // Biotech statements often list product and service revenue components above an explicit
+    // total. Prefer that total only when the nearby rows establish this component layout:
+    // a generic "Total revenues" can itself be a segment subtotal and must not outrank the
+    // consolidated headline.
+    const precedingRevenueRows = lines
+      .slice(Math.max(0, lineIndex - 16), lineIndex)
+      .join(" ");
+    const metricCaptionText = null === patternMatch
+      ? ""
+      : metricLine.slice(
+        Math.max(0, patternMatch.index - 30),
+        patternMatch.index + patternMatch[0].length,
+      );
+    if (/\btotal\s+revenues?\b/i.test(patternMatch?.[0] ?? "") &&
+        /\b(?:net\s+)?product\s+sales\b/i.test(precedingRevenueRows) &&
+        /\bservice\s+revenues?\b/i.test(precedingRevenueRows)) {
+      score += 100;
+    } else if (/\b(?:net\s+)?product\s+sales\b|\bservice\s+revenues?\b/i.test(metricCaptionText)) {
+      score -= 80;
+    }
+  }
+
   // A company may publish its standard adjusted EPS and then an additional figure that
   // removes a one-off item from that adjusted result. The plain "Adj EPS" label refers to
   // the company-reported non-GAAP measure; an "excluding ..." variant needs a distinct

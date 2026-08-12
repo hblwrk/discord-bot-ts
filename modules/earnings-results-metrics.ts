@@ -212,12 +212,14 @@ function isQuarterSpecificSectionLine(line: string): boolean {
   }
 
   return /^\s*(?:for\s+)?Q[1-4]\s+(?:(?:fiscal\s+year|FY|FYE)\s*)?(?:20\d{2}|\d{2})(?:\s+(?:financial\s+overview|results?(?:\s+summary)?|earnings))?\s*:?$/i.test(line) ||
-    /^\s*(?:for\s+)?(?:the\s+)?(?:first|second|third|fourth)[\s–—-]+quarter(?:\s+(?:of\s+)?(?:(?:fiscal\s+year|FY)\s*)?(?:20\d{2}|\d{2}))?(?:\s+(?:financial\s+overview|results?(?:\s+summary)?|earnings))?\s*:?$/i.test(line);
+    /^\s*(?:for\s+)?(?:the\s+)?(?:first|second|third|fourth)[\s–—-]+quarter(?:\s+(?:of\s+)?(?:(?:fiscal\s+year|FY)\s*)?(?:20\d{2}|\d{2}))?(?:\s+(?:financial\s+overview|results?(?:\s+summary)?|earnings))?\s*:?$/i.test(line) ||
+    /^\s*highlights?\s*[-:]\s*three\s+months\s+ended\s+[A-Z][a-z]+\s+\d{1,2},\s+20\d{2}\s*:?$/i.test(line);
 }
 
 function isQuarterSpecificSectionBoundary(line: string): boolean {
   return /^\s*(?:outlook|guidance|financial\s+outlook|business\s+outlook|use\s+of\s+non-gaap|forward-looking|supplemental\s+financial\s+information)\b/i.test(line) ||
     /^\s*(?:the\s+)?company\s+(?:raises?|updates?|reaffirms?|provides?|issues?)\b.*\b(?:guidance|outlook)\b/i.test(line) ||
+    /^\s*highlights?\s*[-:]\s*(?:fiscal\s+year|twelve\s+months\s+ended)\b/i.test(line) ||
     /^\s*(?:fiscal\s+year|FY|FYE)\s*(?:20\d{2}|\d{2})\b/i.test(line) ||
     /^\s*for\s+fiscal\s+year\s+(?:20\d{2}|\d{2})\s*:?$/i.test(line);
 }

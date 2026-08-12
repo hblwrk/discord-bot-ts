@@ -81,6 +81,34 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("keeps scale words outside accounting parentheses in negative ranges", () => {
+    expect(extractOutlookMetrics([
+      "Financial Outlook",
+      "Adjusted EBITDA to be in the range of ($400) million to ($445) million.",
+    ])).toEqual([
+      {
+        key: "adjusted_ebitda",
+        label: "Adj EBITDA",
+        value: "-$400M to -$445M",
+      },
+    ]);
+  });
+
+  test("stops a short outlook section before key financial results", () => {
+    expect(extractOutlookMetrics([
+      "Outlook - Six Months Ended December 31, 2026",
+      "Adjusted EPS is expected to be $1.80 to $1.90.",
+      "Key Financials",
+      "Net sales | 5,082 | 6,398 | 15,009 | 23,506",
+    ])).toEqual([
+      {
+        key: "adjusted_eps",
+        label: "Adj EPS",
+        value: "$1.8 to $1.9",
+      },
+    ]);
+  });
+
   test("applies an explicit loss caption to an unsigned guidance range", () => {
     expect(extractOutlookMetrics([
       "Business Outlook",
