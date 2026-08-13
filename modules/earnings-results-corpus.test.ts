@@ -1207,6 +1207,39 @@ const filingCorpus: {
     source: "1508478/000095010326012286/dp251668_6k.htm",
     ticker: "arco",
   },
+  {
+    // Legacy &#128; entities carry euros under HTML's Windows-1252 numeric-reference rules.
+    // Product and branded-drug revenue precede the consolidated total, while the prior-year
+    // net loss follows the current net profit in the same sentence.
+    company: "Ascendis Pharma",
+    metrics: [
+      ["gaap_eps", "€2.83"],
+      ["revenue", "€339M"],
+      ["net_income", "€207M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1612042/000119312526348046/d31437dex991.htm",
+    ticker: "asnd",
+  },
+  {
+    // Guidance is expressed as midpoint +/- variance. The following explanatory sentence
+    // lists per-share exclusions that are adjustments, not the outlook itself.
+    company: "Applied Materials",
+    metrics: [
+      ["adjusted_eps", "$3.50"],
+      ["gaap_eps", "$3.17"],
+      ["revenue", "$9.12B"],
+      ["net_income", "$2.54B"],
+    ],
+    outlook: [
+      ["Revenue", "$9.75B to $10.75B"],
+      ["Adj EPS", "$3.82 to $4.22"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "6951/000162828026056699/exhibit991q32026earningsre.htm",
+    ticker: "amat",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1227,6 +1260,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(77);
+    expect(filingCorpus).toHaveLength(79);
   });
 });

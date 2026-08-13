@@ -29,6 +29,11 @@ describe("earnings result document text", () => {
     );
   });
 
+  test("decodes legacy Windows-1252 numeric entities used by SEC exhibits", () => {
+    expect(decodeHtmlEntities("Revenue &#128;339 million &#x96; up year over year"))
+      .toBe("Revenue €339 million – up year over year");
+  });
+
   test("removes zero-width placeholders from otherwise-empty table cells", () => {
     expect(htmlToText("<tr><td>Loss per share</td><td>\u200B</td><td>$(0.10)</td></tr>"))
       .toBe("Loss per share | | $(0.10) |");

@@ -566,6 +566,27 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("converts midpoint-plus-minus rows to ranges and ignores adjustment footnotes", () => {
+    expect(extractOutlookMetrics([
+      "Business Outlook",
+      "Q4 FY2026",
+      "(In millions, except per share amounts)",
+      "Total revenue | | | $ | 10,250 | | +/- | $ | 500 | | | | | | | | | | | | | |",
+      "Non-GAAP diluted EPS | | | $ | 4.02 | | +/- | $ | 0.20 | | | | | | | | | | | | | |",
+      "This outlook for non-GAAP diluted EPS excludes known acquisition charges of $0.01 per share, includes a normalized tax benefit of $0.01 per share, and includes other tax benefits of $0.05 per share.",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", value: "$9.75B to $10.75B"},
+      {key: "adjusted_eps", label: "Adj EPS", value: "$3.82 to $4.22"},
+    ]);
+  });
+
+  test("does not publish per-share adjustments from an outlook explanation", () => {
+    expect(extractOutlookMetrics([
+      "Business Outlook",
+      "This outlook for non-GAAP diluted EPS excludes known acquisition charges of $0.01 per share, includes a normalized tax benefit of $0.01 per share, and includes other tax benefits of $0.05 per share.",
+    ])).toEqual([]);
+  });
+
   test("keeps core guidance separated across quarter and full-year sections", () => {
     expect(extractOutlookMetrics([
       "Third Quarter 2026 Financial Outlook",
