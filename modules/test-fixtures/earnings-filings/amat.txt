@@ -1,0 +1,771 @@
+EX-99.1
+2
+exhibit991q32026earningsre.htm
+EX-99.1 EARNINGS RELEASE
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+
+
+
+Investor Relations Contact:
+Mike Sullivan (408) 986-7977
+mike_sullivan@amat.com
+
+
+Media Contact:
+Ricky Gradwohl (408) 235-4676
+ricky_gradwohl@amat.com
+
+
+
+
+
+
+APPLIED MATERIALS ANNOUNCES THIRD QUARTER 2026 RESULTS
+
+• Record revenue $9.12 billion, up 25 percent year over year
+• GAAP gross margin 50.3 percent and non-GAAP gross margin 50.4 percent
+• GAAP EPS $3.17 and record non-GAAP EPS $3.50, up 43 percent and 41 percent year over year, respectively
+• EPIC Center R&D partnerships expand to 11 engagements with leading chipmakers, universities and innovation partners
+SANTA CLARA, Calif., Aug. 13, 2026 — Applied Materials, Inc. (NASDAQ: AMAT) today reported results for its third quarter ended July 26, 2026.
+Third Quarter Results
+Applied generated record revenue of $9.12 billion. On a GAAP basis, the company reported gross margin of 50.3 percent, record operating income of $3.08 billion or 33.7 percent of revenue, and earnings per share (EPS) of $3.17.
+On a non-GAAP basis, the company reported gross margin of 50.4 percent, record operating income of $3.10 billion or 34.0 percent of revenue, and record EPS of $3.50.
+The company generated record cash from operations of $3.04 billion and distributed $860 million to shareholders through $440 million in share repurchases and $420 million in dividends.
+“Applied Materials delivered another record-breaking quarter, including the highest sequential revenue growth in the company’s history,” said Gary Dickerson, President and CEO. “As the rapid global adoption of AI drives unprecedented demand for our materials engineering solutions, we are further raising our Semiconductor Systems revenue expectations for calendar 2026 and are confident we will grow faster than the market this year. Based on the increased demand visibility we are receiving from our customers, we expect another strong growth year for Applied Materials in 2027.”
+“Applied Materials achieved its 13th consecutive quarter of year-over-year gross margin expansion, demonstrating the increasing value we create by enabling better chips, systems and fab returns,” said Brice Hill, Senior Vice President and CFO. “We expect continued strong revenue growth in the second half of the calendar year, particularly in DRAM as well as leading-edge foundry-logic and advanced packaging. Looking further ahead, we are making additional manufacturing capacity investments to support projected demand through the end of the decade.”
+
+
+
+
+Applied Materials, Inc.
+Page 2 of 14
+
+
+
+Results Summary
+| | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | |
+| Q3 FY2026 | | | | Q3 FY2025 | | | | | | Change |
+| | | | | | | | | | | | | | | |
+| (In millions, except per share amounts and percentages) |
+| | | | | | | | | | | | | | | |
+Revenue | $ | 9,115 | | | | | $ | 7,302 | | | | | | | 25% | | | | |
+| | | | | | | | | | | | | | | |
+Gross margin | 50.3 | % | | | | 48.8 | % | | | | | | 1.5 points | | | | |
+| | | | | | | | | | | | | | | |
+Operating margin | 33.7 | % | | | | 30.6 | % | | | | | | 3.1 points | | | | |
+Net income | $ | 2,538 | | | | | $ | 1,779 | | | | | | | 43% | | | | |
+Diluted earnings per share | $ | 3.17 | | | | | $ | 2.22 | | | | | | | 43% | | | | |
+Non-GAAP Results | | | | | | | | | | | | | | | |
+Non-GAAP gross margin | 50.4 | % | | | | 48.9 | % | | | | | | 1.5 points | | | | |
+Non-GAAP operating margin | 34.0 | % | | | | 30.7 | % | | | | | | 3.3 points | | | | |
+Non-GAAP net income | $ | 2,795 | | | | | $ | 1,989 | | | | | | | 41% | | | | |
+Non-GAAP diluted EPS | $ | 3.50 | | | | | $ | 2.48 | | | | | | | 41% | | | | |
+Non-GAAP free cash flow | $ | 2,330 | | | | | $ | 2,050 | | | | | | | 14% | | | | |
+
+A reconciliation of the GAAP and non-GAAP results is provided in the financial tables included in this release. See also “Use of Non-GAAP Financial Measures” section.
+
+Recent Highlights
+New Products and Technologies
+• Introduced six new chipmaking systems for DRAM and advanced packaging.
+• Enhanced Centura™ Prime™ Epi: selectively grows doped silicon germanium and silicon phosphorous in transistor source/drain regions, combining advanced strain engineering with precise doping control. The result is higher drive current and transistor efficiency, enabling faster, more power-efficient DRAM and high bandwidth memory (HBM).
+• Opta™ Quad CMP: engineered specifically for advanced packaging, the Opta Quad continuously monitors wafer conditions during polish and dynamically adjusts in real time, improving within-wafer uniformity and total thickness variation control, which is particularly critical for hybrid bonding.
+• Nokota™ VMax™ 2 ECD: high-precision copper plating across a broad range of applications for next-generation packaging, from TSV fill for 3D stacking to fine-pitch interconnects such as microbump formation. Nokota VMax 2 introduces Adaptive Pattern Tuning (APT), which dynamically shapes the electric field to correct for layout-driven variation and improve plating uniformity across the wafer.
+• Producer™ Avila™ 2 PECVD: improves the mechanical stability of ultra-thin DRAM dies by depositing stress-balanced dielectric films around TSVs, enabling reliable stacking of 12, 16 and future high-layer-count HBM designs.
+• VeritySEM™ 7AP Metrology: critical dimension eBeam metrology enables precise measurement of features on thick, heterogeneous and highly warped substrates common in HBM and chiplet architectures. VeritySEM AP systems automatically reconfigure to support a range of sizes and materials, while delivering sub-10nm sensitivity—orders of magnitude better than optical tools.
+• SEMVision™ G7AP Defect Analysis: extends Applied’s leadership in eBeam defect analysis into advanced packaging, enabling high-resolution defect review and automated classification across silicon, organic and glass substrates. The system can accelerate yield learning by helping customers quickly distinguish critical defects from nuisance signals.
+
+
+
+
+Applied Materials, Inc.
+Page 3 of 14
+
+• Introduced new deposition and etch systems that help chipmakers extend scaling in logic and memory to deliver higher performance, improved energy efficiency and better manufacturing yield for next-generation AI chips.
+• Centris™ Spectral™ SiN ALD: leverages innovative microwave plasma technology to deliver uniform silicon nitride deposition in challenging 3D structures.
+• Producer™ Selectra™ Mo Etch: selectively removes molybdenum for wordline separation to enable 3D NAND scaling.
+• Unveiled SENZ™, an integrated ambient visual platform that combines waveguide optics, light engine, sensing, vision correction and electronic dimming technology in a single system designed for AI-powered next-generation display smart glasses.
+Corporate Initiatives
+• Announced three additional EPIC Center partnerships. The EPIC Center is designed to dramatically reduce the time it takes to commercialize breakthrough technologies from early-stage research to full-scale manufacturing.
+• Broadcom Inc. will join EPIC as an innovation partner to accelerate development of advanced chip packaging technologies critical to next-generation AI systems.
+• The University of California, Berkeley will join the EPIC Center as a research collaborator. Working side by side with Applied’s scientists and engineers, UC Berkeley faculty and students will pursue high-impact research programs to accelerate the material and process innovations that are foundational to AI computing.
+• SCREEN Semiconductor Solutions Co., Ltd. (SCREEN SPE) will join the EPIC Center as an innovation partner, bringing together SCREEN SPE’s expertise in wafer cleaning technology with Applied's leadership in materials engineering to develop co-optimized process solutions for the world’s most advanced chips.
+• Expanded our manufacturing and R&D operations in Singapore to support the global build-out of AI infrastructure. The new US$500 million Tampines Campus more than doubles Applied’s advanced cleanroom capacity in Singapore and strengthens the company’s global manufacturing footprint.
+• Announced a long-term joint development agreement with EssilorLuxottica to accelerate the commercialization of next-generation intelligent optical systems for augmented reality and AI-powered smart eyewear.
+• Published our latest Impact Report highlighting how Applied is progressing toward its sustainability goals and helping reduce the resources required to manufacture the semiconductors and technologies that support more energy-efficient computing in use.
+
+
+
+
+
+Applied Materials, Inc.
+Page 4 of 14
+
+Business Outlook
+Applied’s total revenue and non-GAAP diluted EPS for the fourth quarter of fiscal 2026 are expected to be as follows:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | Q4 FY2026 | | | | | | | | | | | | |
+(In millions, except per share amounts) | | | | | | | | | | | | | |
+Total revenue | | | $ | 10,250 | | +/- | $ | 500 | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+Non-GAAP diluted EPS | | | $ | 4.02 | | +/- | $ | 0.20 | | | | | | | | | | | | | |
+
+This outlook for non-GAAP diluted EPS excludes known charges related to completed acquisitions of $0.01 per share, includes the normalized tax benefit of share-based compensation of $0.01 per share and includes a net income tax benefit related to intra-entity intangible asset transfers of $0.05 per share, but does not reflect any items that are unknown at this time, such as any additional charges related to acquisitions or other non-operational or unusual items, as well as other tax-related items, which we are not able to predict without unreasonable efforts due to their inherent uncertainty.
+
+Third Quarter Reportable Segment Information
+Effective in the first quarter of fiscal 2026, management moved our 200-millimeter equipment business to Semiconductor Systems. The business was previously included in Applied Global Services. Additionally, effective in the first quarter of fiscal 2026, management began fully allocating corporate support costs to our operating segments. Prior-period numbers have been recast to conform to the current-year presentation. Display operating segment financial results are included in the Other category balances below.
+| | | | | | | | | | | | | | | | | | | | | | | | | |
+Semiconductor Systems | Q3 FY2026 | | | | Q3 FY2025 | | | | | | | | |
+(in millions, except percentages) | | | | | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+Revenue | $ | 7,040 | | | | | $ | 5,564 | | | | | | | | | | | | | |
+Foundry, logic and other | 67 | % | | | | 69 | % | | | | | | | | | | | | |
+DRAM | 26 | % | | | | 22 | % | | | | | | | | | | | | |
+Flash memory | 7 | % | | | | 9 | % | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+Gross margin | 55.3 | % | | | | 53.4 | % | | | | | | | | | | | | |
+Operating income | $ | 2,657 | | | | | $ | 1,837 | | | | | | | | | | | | | |
+Operating margin | 37.7 | % | | | | 33.0 | % | | | | | | | | | | | | |
+Non-GAAP Results | | | | | | | | | | | | | | | | |
+Non-GAAP gross margin | 55.4 | % | | | | 53.5 | % | | | | | | | | | | | | |
+Non-GAAP operating income | $ | 2,673 | | | | | $ | 1,849 | | | | | | | | | | | | | |
+Non-GAAP operating margin | 38.0 | % | | | | 33.2 | % | | | | | | | | | | | | |
+
+| | | | | | | | | | | | | | | | | | | | | | | | | |
+Applied Global Services | Q3 FY2026 | | | | Q3 FY2025 | | | | | | | | |
+(in millions, except percentages) | | | | | |
+| | | | | | | | | | | | | | | | | |
+Revenue | $ | 1,781 | | | | | $ | 1,463 | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | | |
+Gross margin | 35.6 | % | | | | 33.8 | % | | | | | | | | | | | | |
+Operating income | $ | 536 | | | | | $ | 400 | | | | | | | | | | | | | |
+Operating margin | 30.1 | % | | | | 27.3 | % | | | | | | | | | | | | |
+Non-GAAP Results | | | | | | | | | | | | | | | | |
+Non-GAAP gross margin | 35.6 | % | | | | 33.8 | % | | | | | | | | | | | | |
+Non-GAAP operating income | $ | 536 | | | | | $ | 400 | | | | | | | | | | | | | |
+Non-GAAP operating margin | 30.1 | % | | | | 27.3 | % | | | | | | | | | | | | |
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+Other | Q3 FY2026 | | | | Q3 FY2025 | | | | | | | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+(in millions) | | | | | | | | | | | | | | | |
+Revenue | $ | 294 | | | | | $ | 275 | | | | | | | | | | | |
+Cost of products sold and expenses | (412) | | | | | (279) | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | |
+Operating income (loss) | $ | (118) | | | | | $ | (4) | | | | | | | | | | | |
+
+
+
+
+
+
+Applied Materials, Inc.
+Page 5 of 14
+
+Use of Non-GAAP Financial Measures
+Applied provides investors with certain non-GAAP financial measures, which are adjusted for the impact of certain costs, expenses, gains and losses, including, as applicable, certain items related to mergers and acquisitions; restructuring and severance charges and any associated adjustments; legal settlement charges; impairments of assets; gain or loss, dividends and impairments on strategic investments; certain income tax items; and other discrete adjustments. On a non-GAAP basis, the tax effect related to share-based compensation is recognized ratably over the fiscal year. Reconciliations of these non-GAAP measures to the most directly comparable financial measures calculated and presented in accordance with GAAP are provided in the financial tables included in this release.
+Management uses these non-GAAP financial measures to evaluate the company’s operating and financial performance and for planning purposes, and as performance measures in its executive compensation program. Applied believes these measures enhance an overall understanding of its performance and investors’ ability to review the company’s business from the same perspective as the company’s management, and facilitate comparisons of this period’s results with prior periods on a consistent basis by excluding items that management does not believe are indicative of Applied's ongoing operating performance. There are limitations in using non-GAAP financial measures because the non-GAAP financial measures are not prepared in accordance with generally accepted accounting principles, may be different from non-GAAP financial measures used by other companies, and may exclude certain items that may have a material impact upon our reported financial results. The presentation of this additional information is not meant to be considered in isolation or as a substitute for the directly comparable financial measures prepared in accordance with GAAP.
+Webcast Information
+Applied Materials will discuss these results during an earnings call that begins at 1:30 p.m. Pacific Time today. A live webcast and related slide presentation will be available at https://ir.appliedmaterials.com . A replay will be available on the website beginning at 5:00 p.m. Pacific Time today.
+
+
+
+
+
+Applied Materials, Inc.
+Page 6 of 14
+
+
+
+Forward-Looking Statements
+This press release contains forward-looking statements, including those regarding anticipated growth and trends in our businesses and markets, industry outlooks and demand drivers, technology transitions, our business and financial performance and market share positions, our capital allocation and cash deployment strategies, our investment and growth strategies, our development of new products and technologies, the plans and expectations for the EPIC Center, legal matters, our business outlook for the fourth quarter of fiscal 2026 and beyond, and other statements that are not historical facts. These statements and their underlying assumptions are subject to risks and uncertainties and are not guarantees of future performance. Factors that could cause actual results to differ materially from those expressed or implied by such statements include, without limitation: the level of demand for our products; global economic, political and industry conditions, including changes in interest rates and prices for goods and services; global trade issues, changes in trade and export regulations, license requirements, and their interpretation, and our ability to obtain licenses or authorizations on a timely basis, if at all; changes in tariffs, any retaliatory measures, and our ability to mitigate the impact of tariffs; the effects of geopolitical turmoil or conflicts; demand for semiconductor chips and electronic devices; customers’ technology and capacity requirements; the introduction of new and innovative technologies, and the timing of technology transitions; our ability to develop, deliver and support new products and technologies; our ability to meet customer demand, and our suppliers’ ability to meet our demand requirements; the concentrated nature of our customer base; our ability to expand our current markets, increase market share and develop new markets; market acceptance of existing and newly developed products; our ability to obtain and protect intellectual property rights in key technologies; cybersecurity incidents affecting us or our suppliers, customers or vendors; our ability to achieve the objectives of operational and strategic initiatives, align our resources and cost structure with business conditions, and attract, motivate and retain key employees; acquisitions, investments and divestitures; changes in income tax laws; the variability of operating expenses and results among products and segments, and our ability to accurately forecast future results, market conditions, customer requirements and business needs; our ability to ensure compliance with applicable law, rules and regulations; and other risks and uncertainties described in our filings with the Securities and Exchange Commission, including our most recent Forms 10-K, 10-Q and 8-K. All forward-looking statements are based on management’s current estimates, projections and assumptions, and we assume no obligation to update them.
+About Applied Materials
+Applied Materials, Inc. (Nasdaq: AMAT) is the leader in materials engineering solutions that are at the foundation of virtually every new semiconductor and advanced display in the world. The technology we create is essential to advancing AI and accelerating the commercialization of next-generation chips. At Applied, we push the boundaries of science and engineering to deliver material innovation that changes the world. Learn more at www.appliedmaterials.com .
+
+
+
+
+
+Applied Materials, Inc.
+Page 7 of 14
+
+
+
+
+APPLIED MATERIALS, INC.
+UNAUDITED CONSOLIDATED CONDENSED STATEMENTS OF OPERATIONS
+| | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Nine Months Ended |
+(In millions, except per share amounts) | July 26,
+2026 | | | | July 27,
+2025 | | July 26,
+2026 | | July 27,
+2025 |
+Revenue | $ | 9,115 | | | | | $ | 7,302 | | | $ | 24,037 | | | $ | 21,568 | |
+Cost of products sold | 4,529 | | | | | 3,740 | | | 12,069 | | | 11,025 | |
+Gross profit | 4,586 | | | | | 3,562 | | | 11,968 | | | 10,543 | |
+Operating expenses: | | | | | | | | | |
+Research, development and engineering | 1,100 | | | | | 901 | | | 3,055 | | | 2,653 | |
+Marketing and selling | 249 | | | | | 224 | | | 704 | | | 646 | |
+General and administrative | 162 | | | | | 204 | | | 515 | | | 667 | |
+| | | | | | | | | |
+| | | | | | | | | |
+Legal settlement | — | | | | | — | | | 253 | | | — | |
+Restructuring charges | — | | | | | — | | | 12 | | | — | |
+| | | | | | | | | |
+Total operating expenses | 1,511 | | | | | 1,329 | | | 4,539 | | | 3,966 | |
+Income from operations | 3,075 | | | | | 2,233 | | | 7,429 | | | 6,577 | |
+| | | | | | | | | |
+Interest expense | 68 | | | | | 66 | | | 206 | | | 198 | |
+Interest and other income (expense), net | (100) | | | | | 396 | | | 1,237 | | | 625 | |
+Income before income taxes | 2,907 | | | | | 2,563 | | | 8,460 | | | 7,004 | |
+Provision for income taxes | 369 | | | | | 784 | | | 1,090 | | | 1,903 | |
+Net income | $ | 2,538 | | | | | $ | 1,779 | | | $ | 7,370 | | | $ | 5,101 | |
+Earnings per share: | | | | | | | | | |
+Basic | $ | 3.20 | | | | | $ | 2.23 | | | $ | 9.29 | | | $ | 6.32 | |
+Diluted | $ | 3.17 | | | | | $ | 2.22 | | | $ | 9.22 | | | $ | 6.29 | |
+Weighted average number of shares: | | | | | | | | | |
+Basic | 794 | | | | | 798 | | | 794 | | | 807 | |
+Diluted | 800 | | | | | 802 | | | 799 | | | 811 | |
+
+
+
+
+
+
+
+
+
+
+Applied Materials, Inc.
+Page 8 of 14
+
+
+
+APPLIED MATERIALS, INC.
+UNAUDITED CONSOLIDATED CONDENSED BALANCE SHEETS
+| | | | | | | | | | | | | |
+(In millions) | July 26,
+2026 | | | | October 26,
+2025 |
+ASSETS | | | | | |
+Current assets: | | | | | |
+Cash and cash equivalents | $ | 7,037 | | | | | $ | 7,241 | |
+Short-term investments | 2,196 | | | | | 1,332 | |
+Accounts receivable, net | 7,691 | | | | | 5,185 | |
+Inventories | 6,564 | | | | | 5,915 | |
+Other current assets | 1,607 | | | | | 1,208 | |
+| | | | | |
+Total current assets | 25,095 | | | | | 20,881 | |
+Long-term investments | 5,268 | | | | | 4,327 | |
+Property, plant and equipment, net | 5,606 | | | | | 4,610 | |
+Goodwill | 3,873 | | | | | 3,707 | |
+Purchased technology and other intangible assets, net | 315 | | | | | 226 | |
+Deferred income taxes and other assets | 3,365 | | | | | 2,548 | |
+Total assets | $ | 43,522 | | | | | $ | 36,299 | |
+LIABILITIES AND STOCKHOLDERS’ EQUITY | | | | | |
+Current liabilities: | | | | | |
+Short-term debt | $ | 1,299 | | | | | $ | 100 | |
+Accounts payable and accrued expenses | 5,787 | | | | | 5,333 | |
+Contract liabilities | 3,271 | | | | | 2,566 | |
+| | | | | |
+Total current liabilities | 10,357 | | | | | 7,999 | |
+Long-term debt | 5,245 | | | | | 6,455 | |
+Income taxes payable | 880 | | | | | 356 | |
+Other liabilities | 1,414 | | | | | 1,074 | |
+| | | | | |
+Total liabilities | 17,896 | | | | | 15,884 | |
+Total stockholders’ equity | 25,626 | | | | | 20,415 | |
+Total liabilities and stockholders’ equity | $ | 43,522 | | | | | $ | 36,299 | |
+
+
+
+
+
+
+
+
+
+
+
+
+Applied Materials, Inc.
+Page 9 of 14
+
+
+
+APPLIED MATERIALS, INC.
+UNAUDITED CONSOLIDATED CONDENSED STATEMENTS OF CASH FLOWS
+| | | | | | | | | | | | | | | | | | | | | | | | | |
+(In millions) | Three Months Ended | | Nine Months Ended |
+July 26,
+2026 | | | | July 27,
+2025 | July 26,
+2026 | | July 27,
+2025 |
+Cash flows from operating activities: | | | | | | | | | |
+Net income | $ | 2,538 | | | | | $ | 1,779 | | | $ | 7,370 | | | $ | 5,101 | |
+Adjustments required to reconcile net income to cash provided by operating activities: | | | | | | | | | |
+Depreciation and amortization | 151 | | | | | 113 | | | 413 | | | 321 | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Restructuring charges | — | | | | | — | | | 12 | | | — | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+(Gain) / loss and impairment on investments | 229 | | | | | (294) | | | (909) | | | (270) | |
+| | | | | | | | | |
+Share-based compensation | 169 | | | | | 158 | | | 545 | | | 512 | |
+Deferred income taxes | (49) | | | | | 280 | | | 25 | | | 952 | |
+Other | (15) | | | | | 10 | | | (11) | | | (28) | |
+Net change in operating assets and liabilities | 14 | | | | | 588 | | | (1,877) | | | (1,458) | |
+Cash provided by operating activities | 3,037 | | | | | 2,634 | | | 5,568 | | | 5,130 | |
+Cash flows from investing activities: | | | | | | | | | |
+Capital expenditures | (707) | | | | | (584) | | | (1,988) | | | (1,475) | |
+Cash paid for acquisitions, net of cash acquired | (87) | | | | | — | | | (262) | | | (29) | |
+Proceeds from asset sale | — | | | | | — | | | 6 | | | 33 | |
+Proceeds from sales and maturities of investments | 1,351 | | | | | 793 | | | 4,585 | | | 3,937 | |
+Purchases of investments | (1,970) | | | | | (2,176) | | | (5,493) | | | (5,109) | |
+Cash provided by (used in) investing activities | (1,413) | | | | | (1,967) | | | (3,152) | | | (2,643) | |
+Cash flows from financing activities: | | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Proceeds from issuance of commercial paper | 99 | | | | | 100 | | | 399 | | | 400 | |
+Repayments of commercial paper | — | | | | | (100) | | | (400) | | | (400) | |
+Proceeds from common stock issuances | — | | | | | — | | | 131 | | | 129 | |
+Common stock repurchases | (440) | | | | | (1,056) | | | (1,177) | | | (4,044) | |
+| | | | | | | | | |
+Tax withholding payments for vested equity awards | (128) | | | | | (33) | | | (437) | | | (210) | |
+Payments of dividends to stockholders | (420) | | | | | (368) | | | (1,150) | | | (1,019) | |
+Payments of debt issuance costs | — | | | | | — | | | — | | | (2) | |
+| | | | | | | | | |
+Cash used in financing activities | (889) | | | | | (1,457) | | | (2,634) | | | (5,146) | |
+| | | | | | | | | |
+Increase (decrease) in cash, cash equivalents and restricted cash equivalents | 735 | | | | | (790) | | | (218) | | | (2,659) | |
+Cash, cash equivalents and restricted cash equivalents—beginning of period | 6,359 | | | | | 6,244 | | | 7,312 | | | 8,113 | |
+Cash, cash equivalents and restricted cash equivalents — end of period | $ | 7,094 | | | | | $ | 5,454 | | | $ | 7,094 | | | $ | 5,454 | |
+| | | | | | | | | |
+Reconciliation of cash, cash equivalents, and restricted cash equivalents | | | | | | | | | |
+Cash and cash equivalents | $ | 7,037 | | | | | $ | 5,384 | | | $ | 7,037 | | | $ | 5,384 | |
+Restricted cash equivalents included in deferred income taxes and other assets | 57 | | | | | 70 | | | 57 | | | 70 | |
+Total cash, cash equivalents, and restricted cash equivalents | $ | 7,094 | | | | | $ | 5,454 | | | $ | 7,094 | | | $ | 5,454 | |
+| | | | | | | | | |
+Supplemental cash flow information: | | | | | | | | | |
+Cash payments for income taxes | $ | 169 | | | | | $ | 436 | | | $ | 819 | | | $ | 1,269 | |
+Cash refunds from income taxes | $ | 6 | | | | | $ | 4 | | | $ | 22 | | | $ | 79 | |
+Cash payments for interest | $ | 73 | | | | | $ | 51 | | | $ | 192 | | | $ | 171 | |
+
+
+
+
+
+
+Applied Materials, Inc.
+Page 10 of 14
+
+Additional Information | | | | | | | | | | | | | | | | | |
+| Q3 FY2026 | | | | Q3 FY2025 | | | | |
+Revenue by Geography ( In millions )
+| | | | | |
+| | | | | | | | | |
+United States | $ | 1,367 | | | | | $ | 683 | | | | | |
+% of Total | 15 | % | | | | 9 | % | | | | |
+Europe | $ | 483 | | | | | $ | 160 | | | | | |
+% of Total | 5 | % | | | | 2 | % | | | | |
+Japan | $ | 839 | | | | | $ | 713 | | | | | |
+% of Total | 9 | % | | | | 10 | % | | | | |
+Korea | $ | 1,521 | | | | | $ | 1,160 | | | | | |
+% of Total | 17 | % | | | | 16 | % | | | | |
+Taiwan | $ | 2,025 | | | | | $ | 1,843 | | | | | |
+% of Total | 22 | % | | | | 25 | % | | | | |
+Southeast Asia | $ | 374 | | | | | $ | 195 | | | | | |
+% of Total | 4 | % | | | | 3 | % | | | | |
+China | $ | 2,506 | | | | | $ | 2,548 | | | | | |
+% of Total | 28 | % | | | | 35 | % | | | | |
+| | | | | | | | | |
+Employees (In thousands)
+| | | | | | | | | |
+Regular Full Time | 38.9 | | | | | 36.1 | | | | | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Applied Materials, Inc.
+Page 11 of 14
+
+
+
+APPLIED MATERIALS, INC.
+UNAUDITED RECONCILIATION OF GAAP TO NON-GAAP RESULTS
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Nine Months Ended |
+(In millions, except percentages) | July 26,
+2026 | | | | July 27,
+2025 | | July 26,
+2026 | | July 27,
+2025 |
+Non-GAAP Gross Profit | | | | | | | | | |
+GAAP reported gross profit | $ | 4,586 | | | | | $ | 3,562 | | | $ | 11,968 | | | $ | 10,543 | |
+Certain items associated with acquisitions 1
+| 11 | | | | | 7 | | | 24 | | | 20 | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Non-GAAP gross profit | $ | 4,597 | | | | | $ | 3,569 | | | $ | 11,992 | | | $ | 10,563 | |
+Non-GAAP gross margin | 50.4 | % | | | | 48.9 | % | | 49.9 | % | | 49.0 | % |
+Non-GAAP Operating Income | | | | | | | | | |
+GAAP reported operating income | $ | 3,075 | | | | | $ | 2,233 | | | $ | 7,429 | | | $ | 6,577 | |
+Certain items associated with acquisitions 1
+| 16 | | | | | 11 | | | 37 | | | 34 | |
+Acquisition integration and deal costs | 5 | | | | | 1 | | | 8 | | | 4 | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Legal settlement 2
+| — | | | | | — | | | 253 | | | — | |
+Restructuring charges 3
+| — | | | | | — | | | 12 | | | — | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Non-GAAP operating income | $ | 3,096 | | | | | $ | 2,245 | | | $ | 7,739 | | | $ | 6,615 | |
+Non-GAAP operating margin | 34.0 | % | | | | 30.7 | % | | 32.2 | % | | 30.7 | % |
+Non-GAAP Net Income | | | | | | | | | |
+GAAP reported net income | $ | 2,538 | | | | | $ | 1,779 | | | $ | 7,370 | | | $ | 5,101 | |
+Certain items associated with acquisitions 1
+| 16 | | | | | 11 | | | 37 | | | 34 | |
+Acquisition integration and deal costs | 5 | | | | | 1 | | | 8 | | | 4 | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Legal settlement 2
+| — | | | | | — | | | 253 | | | — | |
+Restructuring charges 3
+| — | | | | | — | | | 12 | | | — | |
+| | | | | | | | | |
+| | | | | | | | | |
+Realized loss (gain), dividends and impairments on strategic investments, net | (7) | | | | | 16 | | | 22 | | | (11) | |
+Unrealized loss (gain) on strategic investments, net | 220 | | | | | (314) | | | (949) | | | (288) | |
+Foreign exchange loss (gain) related to purchase of strategic investment | — | | | | | — | | | — | | | 23 | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Loss (gain) on asset sale | — | | | | | — | | | — | | | (44) | |
+Income tax effect of share-based compensation 4
+| 10 | | | | | 7 | | | (4) | | | 1 | |
+| | | | | | | | | |
+Income tax effects related to intra-entity intangible asset transfers 5
+| 33 | | | | | 32 | | | 96 | | | 738 | |
+Resolution of prior years’ income tax filings and other tax items 6
+| (46) | | | | | 460 | | | 3 | | | 320 | |
+Income tax effect of non-GAAP adjustments 7
+| 26 | | | | | (3) | | | 132 | | | (3) | |
+Non-GAAP net income | $ | 2,795 | | | | | $ | 1,989 | | | $ | 6,980 | | | $ | 5,875 | |
+
+
+
+| | | | | |
+1 | These items are incremental charges attributable to completed acquisitions, consisting of amortization of purchased intangible assets. |
+| |
+| |
+| |
+2 | Charge of $253 million for settlement with the U.S. Commerce Department Bureau of Industry and Security to resolve a previously disclosed export controls compliance matter. |
+| |
+3 | The restructuring charges related to a workforce reduction plan announced in the fourth quarter of fiscal 2025. |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+4 | GAAP basis tax benefit related to share-based compensation is recognized ratably over the fiscal year on a non-GAAP basis. |
+| |
+| |
+| |
+5 | Amount for the nine months ended July 27, 2025, included changes to the income tax provision of $94 million from amortization of intangibles and a $644 million remeasurement of deferred tax assets resulting from new tax incentive agreements in Singapore in the first quarter of fiscal 2025. |
+| |
+6 | Amounts for the three and nine months ended July 27, 2025 included the impact of the recognition of a $410 million valuation allowance against deferred tax assets related to corporate alternative minimum tax credits. |
+| |
+| |
+| |
+7 | Adjustment to provision for income taxes related to non-GAAP adjustments reflected in income before income taxes. |
+| |
+| |
+
+
+
+
+
+
+
+Applied Materials, Inc.
+Page 12 of 14
+
+
+
+APPLIED MATERIALS, INC.
+UNAUDITED RECONCILIATION OF GAAP TO NON-GAAP RESULTS
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Nine Months Ended |
+(In millions, except per share amounts) | July 26,
+2026 | | | | July 27,
+2025 | | July 26,
+2026 | | July 27,
+2025 |
+Non-GAAP Earnings Per Diluted Share | | | | | | | | | |
+GAAP reported earnings per diluted share | $ | 3.17 | | | | | $ | 2.22 | | | $ | 9.22 | | | $ | 6.29 | |
+Certain items associated with acquisitions | 0.02 | | | | | 0.01 | | | 0.04 | | | 0.04 | |
+Acquisition integration and deal costs | 0.01 | | | | | — | | | 0.01 | | | — | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Legal settlement | — | | | | | — | | | 0.32 | | | — | |
+Restructuring charges | — | | | | | — | | | 0.01 | | | — | |
+| | | | | | | | | |
+Realized loss (gain), dividends and impairments on strategic investments, net | (0.01) | | | | | 0.02 | | | 0.02 | | | (0.02) | |
+| | | | | | | | | |
+Unrealized loss (gain) on strategic investments, net | 0.31 | | | | | (0.39) | | | (1.01) | | | (0.36) | |
+Foreign exchange loss (gain) related to purchase of strategic investment | — | | | | | — | | | — | | | 0.03 | |
+Loss (gain) on asset sale | — | | | | | — | | | — | | | (0.04) | |
+| | | | | | | | | |
+| | | | | | | | | |
+Income tax effect of share-based compensation | 0.02 | | | | | 0.01 | | | — | | | — | |
+| | | | | | | | | |
+Income tax effects related to intra-entity intangible asset transfers 1
+| 0.04 | | | | | 0.04 | | | 0.12 | | | 0.91 | |
+Resolution of prior years’ income tax filings and other tax items 2
+| (0.06) | | | | | 0.57 | | | — | | | 0.40 | |
+| | | | | | | | | |
+| | | | | | | | | |
+Non-GAAP earnings per diluted share | $ | 3.50 | | | | | $ | 2.48 | | | $ | 8.73 | | | $ | 7.25 | |
+Weighted average number of diluted shares | 800 | | | | | 802 | | | 799 | | | 811 | |
+
+| | | | | |
+| |
+1 | Amount for the nine months ended July 27, 2025, included changes to the income tax provision of $0.12 per diluted share from amortization of intangibles and $0.79 per diluted share from a remeasurement of deferred tax assets resulting from new tax incentive agreements in Singapore in the first quarter of fiscal 2025. |
+| |
+2 | Amounts for the three and nine months ended July 27, 2025 included a $0.51 per diluted share impact of the recognition of a valuation allowance against deferred tax assets related to corporate alternative minimum tax credits. |
+| |
+| |
+| |
+| |
+| |
+
+
+
+
+
+
+
+
+
+
+Applied Materials, Inc.
+Page 13 of 14
+
+
+
+
+APPLIED MATERIALS, INC.
+UNAUDITED RECONCILIATION OF GAAP TO NON-GAAP RESULTS
+| | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Nine Months Ended |
+(In millions, except percentages) | July 26,
+2026 | | | | July 27,
+2025 | | July 26,
+2026 | | July 27,
+2025 |
+Semiconductor Systems Non-GAAP Gross Profit | | | | | | | | | |
+GAAP reported gross profit | $ | 3,892 | | | | | $ | 2,970 | | | $ | 9,950 | | | $ | 8,845 | |
+Certain items associated with acquisitions 1
+| 11 | | | | | 7 | | | 24 | | | 20 | |
+Non-GAAP gross profit | $ | 3,903 | | | | | $ | 2,977 | | | $ | 9,974 | | | $ | 8,865 | |
+Non-GAAP gross margin | 55.4 | % | | | | 53.5 | % | | 55.0 | % | | 53.5 | % |
+Applied Global Services Non-GAAP Gross Profit | | | | | | | | | |
+GAAP reported gross profit | $ | 634 | | | | | $ | 494 | | | $ | 1,748 | | | $ | 1,407 | |
+| | | | | | | | | |
+Non-GAAP gross profit | $ | 634 | | | | | $ | 494 | | | $ | 1,748 | | | $ | 1,407 | |
+Non-GAAP gross margin | 35.6 | % | | | | 33.8 | % | | 34.9 | % | | 33.2 | % |
+Semiconductor Systems Non-GAAP Operating Income | | | | | | | | | |
+GAAP reported operating income | $ | 2,657 | | | | | $ | 1,837 | | | $ | 6,176 | | | $ | 5,479 | |
+Certain items associated with acquisitions 1
+| 16 | | | | | 11 | | | 37 | | | 34 | |
+Acquisition integration and deal costs | — | | | | | 1 | | | — | | | 3 | |
+Legal settlement 2
+| — | | | | | — | | | 253 | | | — | |
+| | | | | | | | | |
+| | | | | | | | | |
+Non-GAAP operating income | $ | 2,673 | | | | | $ | 1,849 | | | $ | 6,466 | | | $ | 5,516 | |
+Non-GAAP operating margin | 38.0 | % | | | | 33.2 | % | | 35.6 | % | | 33.3 | % |
+Applied Global Services Non-GAAP Operating Income | | | | | | | | | |
+GAAP reported operating income | $ | 536 | | | | | $ | 400 | | | $ | 1,461 | | | $ | 1,114 | |
+| | | | | | | | | |
+Acquisition integration and deal costs | — | | | | | — | | | — | | | 1 | |
+| | | | | | | | | |
+| | | | | | | | | |
+Non-GAAP operating income | $ | 536 | | | | | $ | 400 | | | $ | 1,461 | | | $ | 1,115 | |
+Non-GAAP operating margin | 30.1 | % | | | | 27.3 | % | | 29.2 | % | | 26.3 | % |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+
+| | | | | |
+1 | These items are incremental charges attributable to completed acquisitions, consisting of amortization of purchased intangible assets. |
+| |
+2 | Charge of $253 million for settlement with the U.S. Commerce Department Bureau of Industry and Security to resolve a previously disclosed export controls compliance matter. |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+| |
+
+
+
+Note: The reconciliation of GAAP and non-GAAP segment results above does not include certain revenues, costs of products sold and operating expenses that are reported within other and included in consolidated operating income.
+
+
+
+
+Applied Materials, Inc.
+Page 14 of 14
+
+
+
+
+
+
+
+
+APPLIED MATERIALS, INC.
+UNAUDITED RECONCILIATION OF GAAP TO NON-GAAP EFFECTIVE INCOME TAX RATE
+| | | | | |
+| Three Months Ended |
+(In millions, except percentages) | July 26, 2026 |
+| |
+GAAP provision for income taxes (a)
+| $ | 369 | |
+Income tax effect of share-based compensation | (10) | |
+| |
+Income tax effects related to intra-entity intangible asset transfers | (33) | |
+Resolutions of prior years’ income tax filings and other tax items | 46 | |
+Income tax effect of non-GAAP adjustments | (26) | |
+Non-GAAP provision for income taxes (b)
+| $ | 346 | |
+| |
+GAAP income before income taxes (c)
+| $ | 2,907 | |
+Certain items associated with acquisitions | 16 | |
+Acquisition integration and deal costs | 5 | |
+| |
+| |
+| |
+| |
+| |
+Realized loss (gain), dividends and impairments on strategic investments, net | (7) | |
+Unrealized loss (gain) on strategic investments, net | 220 | |
+| |
+| |
+| |
+| |
+| |
+Non-GAAP income before income taxes (d)
+| $ | 3,141 | |
+| |
+GAAP effective income tax rate (a/c)
+| 12.7 | % |
+| |
+Non-GAAP effective income tax rate (b/d)
+| 11.0 | % |
+
+
+
+
+
+
+
+
+UNAUDITED RECONCILIATION OF NON-GAAP FREE CASH FLOW
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Nine Months Ended |
+(In millions) | July 26,
+2026 | | | | July 27,
+2025 | | July 26,
+2026 | | July 27,
+2025 |
+| | | | | | | | | |
+Cash provided by operating activities | $ | 3,037 | | | | | $ | 2,634 | | | $ | 5,568 | | | $ | 5,130 | |
+Capital expenditures | (707) | | | | | (584) | | | (1,988) | | | (1,475) | |
+Non-GAAP free cash flow | $ | 2,330 | | | | | $ | 2,050 | | | $ | 3,580 | | | $ | 3,655 | |

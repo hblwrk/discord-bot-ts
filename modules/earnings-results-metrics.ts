@@ -130,6 +130,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /\bnet\s+earnings(?!\s+per\s+(?:common\s+)?share)\b/i,
       /\bnet\s+\(loss(?:es)?\)\s+income\b/i,
       /\bnet\s+income\s*\/\s*\(loss(?:es)?\)(?!\s+per\s+(?:common\s+)?share)/i,
+      /\bnet\s+profit(?!\s+per\s+(?:common\s+)?share)\b/i,
       // Singular only: "net losses of a customer portfolio" is risk-factor prose, not the
       // income-statement row a loss-making filer labels "Net loss".
       /\bnet\s+loss(?!\s*(?:es\b|\s+per\s+(?:common\s+)?share))\b/i,

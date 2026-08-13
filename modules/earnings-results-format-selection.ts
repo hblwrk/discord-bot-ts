@@ -135,6 +135,11 @@ export function getMetricCandidateScore({
     } else if (/\btotal\s+revenues?\b/i.test(patternMatch?.[0] ?? "") &&
         2 <= revenueComponentKinds) {
       score += 100;
+    } else if (/\btotal\s+revenues?\s+for\s+(?:the\s+)?(?:q[1-4]|first|second|third|fourth|three[-\s]+months?)\b/i.test(metricLine)) {
+      // A current-period headline that explicitly says "Total revenue" is consolidated;
+      // individual products in the same release can each carry an equally specific quarter
+      // label and otherwise tie it on score merely because they appear first.
+      score += 40;
     } else if (/\b(?:net\s+)?product\s+sales\b|\bservice\s+revenues?\b/i.test(metricCaptionText)) {
       score -= 80;
     }

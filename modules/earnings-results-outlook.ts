@@ -60,6 +60,7 @@ const moneyUnitPatternSource = String.raw`(?:trillions?|billions?|millions?|thou
 // token so the scale and negative sign survive range parsing.
 const moneyTokenPatternSource = String.raw`(?<![\d.])\(?\s*(?:(?:C\s*\$|[$€£¥])\s*|(?:(?:USD|CAD|EUR|GBP|JPY|CHF)\s+))?-?\d+(?:,\d{3})*(?:\.\d+)?\s*\)?\s*(?:${moneyUnitPatternSource})?\)?`;
 const moneyRangePattern = new RegExp(`(${moneyTokenPatternSource})\\s*(?:to|through|-|–|and)\\s*(${moneyTokenPatternSource})`, "gi");
+const moneyPlusMinusPattern = new RegExp(`(${moneyTokenPatternSource})\\s*(?:\\+\\s*\\/\\s*-|±|plus\\s+or\\s+minus)\\s*(${moneyTokenPatternSource})`, "i");
 const singleMoneyPattern = new RegExp(moneyTokenPatternSource, "gi");
 
 // Held separately because a plainly captioned per-share row is relabelled to it when the
@@ -679,6 +680,12 @@ function isHistoricalOutlookMetricLine(line: string): boolean {
 }
 
 function isNoisyOutlookLine(line: string): boolean {
+  // An explanatory footnote states the size of adjustments excluded from guidance. Its
+  // per-share amounts are not themselves the guided measure.
+  if (/^\s*(?:this\s+)?(?:outlook|guidance)\b.{0,160}\b(?:excludes?|includes?)\b.{0,160}\b(?:charges?|benefits?|expenses?|items?|tax)\b/i.test(line)) {
+    return true;
+  }
+
   const pipeCount = line.match(/\|/g)?.length ?? 0;
   // SEC inline-XBRL tables often render a two-column row with empty spacer cells:
   // "Adjusted EBITDA | | $181M to $191M | |". Count populated numeric cells rather
@@ -689,7 +696,10 @@ function isNoisyOutlookLine(line: string): boolean {
     .filter(cell => /\d/.test(cell))
     .length;
   const isSparseTwoColumnRow = 4 === pipeCount && 1 === populatedNumericCells;
-  return (pipeCount >= 4 && false === isSparseTwoColumnRow) ||
+  const isPlusMinusGuidanceRow = 4 <= pipeCount &&
+    2 === populatedNumericCells &&
+    /\+\s*\/\s*-|±|plus\s+or\s+minus/i.test(line);
+  return (pipeCount >= 4 && false === isSparseTwoColumnRow && false === isPlusMinusGuidanceRow) ||
     /\bpost[-\s]?20\d{2}\b.*\bcompound\s+annual\s+growth\s+rate\b/i.test(line);
 }
 
@@ -722,6 +732,7 @@ function extractOutlookValue(
     const value = ("tax_rate" === metricKey
       ? getBasisSpecificTaxRateValue(line, valueText)
       : null) ??
+      getPlusMinusOutlookValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit) ??
       ("eps" === valueType
         ? getOutlookRangeValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit)
         : null) ??
@@ -739,6 +750,62 @@ function extractOutlookValue(
   }
 
   return null;
+}
+
+function getPlusMinusOutlookValue(
+  value: string,
+  valueType: OutlookValueType,
+  documentCurrencyCode: string,
+  sectionMoneyUnit?: string,
+): string | null {
+  const flattenedValue = value.replace(/\s*\|\s*/g, " ").replace(/\s+/g, " ");
+  if ("percent" === valueType) {
+    const percentMatch = flattenedValue.match(
+      /(\(?-?\d+(?:\.\d+)?\s*%\)?)\s*(?:\+\s*\/\s*-|±|plus\s+or\s+minus)\s*(\(?-?\d+(?:\.\d+)?\s*%\)?)/i,
+    );
+    const midpoint = parseNumber(percentMatch?.[1]);
+    const variance = parseNumber(percentMatch?.[2]);
+    return null !== midpoint && null !== variance
+      ? `${formatPercent(midpoint - Math.abs(variance))} to ${formatPercent(midpoint + Math.abs(variance))}`
+      : null;
+  }
+
+  const plusMinusMatch = moneyPlusMinusPattern.exec(flattenedValue);
+  const midpointToken = plusMinusMatch?.[1];
+  const varianceToken = plusMinusMatch?.[2];
+  if (undefined === midpointToken || undefined === varianceToken) {
+    return null;
+  }
+
+  if ("eps" === valueType) {
+    const midpoint = parseNumber(midpointToken);
+    const variance = parseNumber(varianceToken);
+    return null !== midpoint && null !== variance
+      ? `${formatEps(midpoint - Math.abs(variance), documentCurrencyCode)} to ${formatEps(midpoint + Math.abs(variance), documentCurrencyCode)}`
+      : null;
+  }
+
+  if (false === ("money" === valueType || "text" === valueType)) {
+    return null;
+  }
+
+  const inferredUnit = getMoneyUnit(varianceToken) ??
+    getMoneyUnit(midpointToken) ??
+    sectionMoneyUnit;
+  if (undefined === inferredUnit &&
+      false === hasMoneyValueCue(midpointToken) &&
+      false === hasMoneyValueCue(varianceToken)) {
+    return null;
+  }
+
+  const inferredCurrencyCode = getCurrencyCodeFromText(varianceToken, documentCurrencyCode) ??
+    getCurrencyCodeFromText(midpointToken, documentCurrencyCode) ??
+    documentCurrencyCode;
+  const midpoint = parseMoneyWithOptionalUnit(midpointToken, inferredUnit, inferredCurrencyCode);
+  const variance = parseMoneyWithOptionalUnit(varianceToken, inferredUnit, inferredCurrencyCode);
+  return null !== midpoint && null !== variance
+    ? `${formatMoneyCompact(midpoint.value - Math.abs(variance.value), midpoint.currencyCode)} to ${formatMoneyCompact(midpoint.value + Math.abs(variance.value), midpoint.currencyCode)}`
+    : null;
 }
 
 function applyOutlookLossSign(
