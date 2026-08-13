@@ -25,6 +25,10 @@ export function htmlToText(html: string): string {
   return decodeHtmlEntities(html)
     .replace(/<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi, " ")
     .replace(/<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/gi, " ")
+    // Numeric superscripts in SEC exhibits are footnote references. Removing only their
+    // tags leaves the marker inside the adjacent value ("US$<sup>1</sup>51.1" becomes
+    // "US$ 1 51.1"), where it can be selected as a one-dollar result.
+    .replace(/<sup\b[^>]*>\s*\(?\d{1,2}\)?\s*<\/sup\s*>/gi, "")
     .replace(/<br\s*\/?>/gi, "\n")
     .replace(/<\/(?:p|div|tr|h[1-6])>/gi, "\n")
     .replace(/<\/t[dh]>/gi, " | ")

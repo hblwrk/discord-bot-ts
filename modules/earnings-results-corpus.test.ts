@@ -1119,6 +1119,94 @@ const filingCorpus: {
     source: "2007825/000162828026056222/infq-20260630xex991.htm",
     ticker: "infq",
   },
+  {
+    company: "BioStem Technologies",
+    metrics: [
+      ["gaap_eps", "-$0.52"],
+      ["revenue", "$7.9M"],
+      ["net_income", "-$9M"],
+    ],
+    outlook: [
+      ["Revenue", "$26M to $29M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1658678/000119312526347211/bsem-ex99_1.htm",
+    ticker: "bsem",
+  },
+  {
+    company: "X-Energy",
+    metrics: [
+      ["gaap_eps", "-$0.21"],
+      ["revenue", "$54.6M"],
+      ["net_income", "-$59.09M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "2088896/000119312526347740/xe-ex99_1.htm",
+    ticker: "xe",
+  },
+  {
+    company: "JD.com",
+    metrics: [
+      ["adjusted_eps", "$0.93"],
+      ["gaap_eps", "$0.74"],
+      ["revenue", "$51.05B"],
+      ["net_income", "$1.05B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1549802/000119312526347753/d143720dex991.htm",
+    ticker: "jd",
+  },
+  {
+    company: "Figure Technology Solutions",
+    metrics: [
+      ["gaap_eps", "$0.35"],
+      ["revenue", "$225.59M"],
+      ["net_income", "$87.44M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "2064124/000206412426000031/ex991-pressrelease2q26.htm",
+    ticker: "figr",
+  },
+  {
+    company: "Fermi",
+    metrics: [
+      ["gaap_eps", "-$0.04"],
+      ["net_income", "-$25.8M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "2071778/000207177826000046/fermiq22026erex_991.htm",
+    ticker: "frmi",
+  },
+  {
+    company: "Intuitive Machines",
+    metrics: [
+      ["gaap_eps", "-$0.29"],
+      ["revenue", "$206.17M"],
+      ["net_income", "-$62.84M"],
+    ],
+    outlook: [
+      ["Revenue", "$900M to $1B"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1844452/000162828026056476/lunr-20260630xexx991.htm",
+    ticker: "lunr",
+  },
+  {
+    company: "Arcos Dorados Holdings",
+    metrics: [
+      ["gaap_eps", "$0.22"],
+      ["revenue", "$1.3B"],
+      ["net_income", "$45M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1508478/000095010326012286/dp251668_6k.htm",
+    ticker: "arco",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1139,6 +1227,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(70);
+    expect(filingCorpus).toHaveLength(77);
   });
 });

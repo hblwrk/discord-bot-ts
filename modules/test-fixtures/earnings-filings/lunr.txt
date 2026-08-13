@@ -1,0 +1,525 @@
+EX-99.1
+2
+lunr-20260630xexx991.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+
+
+Intuitive Machines Reports Second Quarter 2026 Financial Results; Continues Record Backlog Expansion With Quarter-end Backlog of $1.8 Billion
+
+
+
+
+Houston, TX, August 13, 2026 -- Intuitive Machines, Inc. (Nasdaq: LUNR, “Intuitive Machines,” or the “Company”), a
+leading space technology and infrastructure services company, today announced its financial results for the second quarter ended June 30, 2026.
+
+
+Intuitive Machines CEO Steve Altemus said, “We delivered a strong quarter, highlighted by revenue over four times Q2 2025 as we executed across our programs, recorded unprecedented bookings and backlog, and positioned the Company for the next phase of growth.”
+
+
+
+
+Highlights
+
+
+• Closed Goonhilly Earth Station and COMSAT acquisition in August to expand our space‑to‑ground data services network configured to support missions across LEO, MEO, GEO, cislunar, and deep space environments
+
+
+• Booked $920 million of awards in Q2 with an additional $300 million of awards in Q3 QTD across commercial, civil, and national security space customers
+
+
+• Signed $600+ million contract for three commercial GEO satellites as commercial demand strength continues
+
+
+• Awarded additional CLPS lander contract under NASA’s Moonbase program, Intuitive Machines’ sixth CLPS mission, for a standardized production lander
+
+
+• Expanded YoY National Security revenue from 3% to 30% in Q2 2026; expect continued growth driven by an award in July for 18 spacecraft to support Accelerated Missile Defense Tranche 3 ("AMDT3") Golden Dome constellation
+
+
+• Contracted with NASA for two prime lunar reconnaissance awards (Lunar Reconnaissance Orbiter Camera “LROC” and ShadowCam) to lead lunar imaging operations, data storage, data processing, and analytics in support of NASA’s Artemis Program / Moonbase Initiatives and commercial lunar missions
+
+
+
+
+Financial Highlights
+
+
+• Achieved record quarterly revenue of $206 million driven by spacecraft production, CLPS, OMES, and NSNS execution
+
+
+• Ended Q2 with a strong cash balance of $367 million; Q2 included strategic growth investments through the procurement of advanced inventory that directly resulted in new awards during the quarter; additional investments were made across our ground station network, along with long-lead material purchases for satellites two through five of our lunar constellation, as we look to accelerate NSNS recurring service revenues
+
+
+• Ended Q2 with record backlog of $1.8 billion, an increase of $1.5 billion from year-end 2025 as Intuitive Machines booked record levels of diverse awards across commercial, civil, and national security space customers
+
+
+
+
+Mr. Altemus continued, “We believe the next era of space will require a next-generation space prime, capable of building spacecraft, connecting them through resilient networks, and operating the resulting infrastructure across civil, commercial, and national security markets. Over the past eighteen months, every strategic decision we have made has been focused on building that next-generation space prime.”
+
+
+
+
+Outlook
+
+
+• Full-year 2026 revenue of $900 million - $1 billion
+
+
+• Full-year 2026 Adjusted EBITDA positive
+
+
+
+
+
+
+
+
+
+
+
+
+
+Conference Call Information
+
+
+Intuitive Machines will host a conference call today, August 13, 2026, at 8:30 am Eastern Time to discuss these results. A link to the live webcast of the earnings conference call will be made available on the investors portion of the Intuitive Machines’ website at https://investors.intuitivemachines.com.
+
+
+Following the conference call, a webcast replay will be available through the same link on the investors portion of the Intuitive Machines’ website at https://investors.intuitivemachines.com .
+
+
+
+Key Business Metrics and Non-GAAP Financial Measures
+
+
+In addition to the GAAP financial measures set forth in this press release, the Company has included certain financial measures that have not been prepared in accordance with generally accepted accounting principles (“GAAP”) and constitute “non-GAAP financial measures” as defined by the SEC. This includes adjusted EBITDA (“Adjusted EBITDA”).
+
+
+Adjusted EBITDA is a key performance measure that our management team uses to assess the Company’s operating performance and is calculated as net income (loss) excluding results from non-operating sources including interest income or interest expense from cash deposits, loans, or investments, transaction and integration costs related to acquisitions, gain on extinguishing of debt, share-based compensation, change in fair value instruments, gain or loss on issuance of securities, other income/expense, depreciation, impairment of property and equipment, and provision for income taxes. Intuitive Machines has included Adjusted EBITDA because we believe it is helpful in highlighting trends in the Company’s operating results and because it is frequently used by analysts, investors, and other interested parties to evaluate companies in our industry.
+
+
+Adjusted EBITDA has limitations as an analytical measure, and investors should not consider it in isolation or as a substitute for analysis of the Company’s results as reported under GAAP. Other companies, including companies in Intuitive Machines’ industry, may calculate Adjusted EBITDA differently, which reduces its usefulness as a comparative measure. Because of these limitations, you should consider Adjusted EBITDA alongside other financial performance measures, including various cash flow metrics, net income (loss) and our other GAAP results. A reconciliation of Adjusted EBITDA to the most directly comparable GAAP financial measure is included below under the heading “Reconciliation of GAAP to Non-GAAP Financial Measure.”
+
+
+We define free cash flow as net cash (used in) provided by operating activities less purchases of property and equipment. We believe that free cash flow is a meaningful indicator of liquidity that provides information to management and investors about the amount of cash generated from operations that, after purchases of property and equipment, can be used for strategic initiatives, including continuous investment in our business and strengthening our balance sheet. Free Cash Flow has limitations as a liquidity measure, and you should not consider it in isolation or as a substitute for analysis of our cash flows as reported under GAAP. Some of these limitations are: Free Cash Flow is not a measure calculated in accordance with GAAP and should not be considered in isolation from, or as a substitute for financial information prepared in accordance with GAAP; Free Cash Flow may not be comparable to similarly titled metrics of other companies due to differences among methods of calculation; and Free Cash Flow may be affected in the near to medium term by the timing of capital investments, fluctuations in our growth and the effect of such fluctuations on working capital and changes in our cash conversion cycle. A reconciliation of Free Cash Flow to the most directly comparable GAAP financial measure is included below under the heading “Reconciliation of GAAP to Non-GAAP Financial Measure.”
+
+
+The Company has also included contracted backlog, which is defined as the total estimate of the revenue the Company expects to realize in the future as a result of performing work on awarded contracts, less the amount of revenue the Company has previously recognized. Intuitive Machines monitors its backlog because we believe it is a forward-looking indicator of potential sales which can be helpful to investors in evaluating the performance of its business and identifying trends over time.
+
+
+
+About Intuitive Machines
+
+
+Intuitive Machines is a next-generation space infrastructure company delivering integrated capabilities across spacecraft manufacturing, communications, networks, mission operations, and ground infrastructure to build, connect, and operate systems across Earth orbit, cislunar space, and deep space. Serving commercial, civil, and national security customers, Intuitive Machines is focused on enabling resilient, scalable infrastructure for sustained operations in space.
+
+
+
+
+
+
+
+Forward-Looking Statements
+
+
+This press release includes “forward-looking statements” within the meaning of the Private Securities Litigation Reform Act of 1995, as amended. These statements that do not relate to matters of historical fact should be considered forward looking. These forward-looking statements generally are identified by the words such as “anticipate,” “believe,” “continue,” “could,” “estimate,” “expect,” “intend,” “may,” “might,” “plan,” “possible,” “potential,” “predict,” “project,” “should,” “strive,” “would,” “strategy,” “outlook,” the negative of these words or other similar expressions, but the absence of these words does not mean that a statement is not forward-looking. These forward-looking statements include but are not limited to statements regarding: our expectations and plans related to any proposed business combination; our expectations and plans relating to our missions to the Moon, including the expected timing of launch and our progress in preparation thereof; our expectations with respect to, among other things, demand for our product portfolio, our submission of bids for contracts; our expectations regarding revenue for government contracts awarded to us; our expectations regarding changes to government contracts or programs; our operations, our financial performance and our industry; our business strategy, business plan, and plans to drive long-term sustainable shareholder value; information under “Outlook,” or “Guidance” including, our expectations on revenue generation, backlog and cash. These forward-looking statements reflect the Company’s predictions, projections, or expectations based upon currently available information and data. Our actual results, performance or achievements may differ materially from those expressed or implied by the forward-looking statements, and you are cautioned not to place undue reliance on these forward looking statements. The following important factors and uncertainties, among others, could cause actual outcomes or results to differ materially from those indicated by the forward-looking statements in this presentation: our reliance upon the efforts of our Board and key personnel to be successful; our limited operating history; our failure to manage our growth effectively; competition from existing or new companies; unsatisfactory safety performance of our spaceflight systems or security incidents at our facilities; cyber incidents; failure of the market for commercial spaceflight to achieve the growth potential we expect; any delayed launches, launch failures, failure of our satellites or lunar landers to reach their planned orbital locations, significant increases in the costs related to launches of satellites and lunar landers, and insufficient capacity available from satellite and lunar lander launch providers; our customer concentration; risks associated with commercial spaceflight, including any accident on launch or during the journey into space; risks associated with the handling, production and disposition of potentially explosive and ignitable energetic materials and other dangerous chemicals in our operations; our reliance on a limited number of suppliers for certain materials and supplied components; failure of our products to operate in the expected manner or defects in our products; counterparty risks on contracts entered into with our customers and failure of our prime contractors to maintain their relationships with their counterparties and fulfill their contractual obligations; failure to successfully defend protest from other bidders for government contracts; failure to comply with various laws and regulations relating to various aspects of our business and any changes in the funding levels of various governmental entities with which we do business; our failure to protect the confidentiality of our trade secrets and know how; our failure to comply with the terms of third-party open source software our systems utilize; our ability to maintain an effective system of internal control over financial reporting, and to address and remediate material weaknesses in our internal control over financial reporting; the U.S. government’s budget deficit and the national debt, as well as any inability of the U.S. government to complete its budget process for any government fiscal year, and our dependence on U.S. government contracts and funding by the government for the government contracts; our failure to comply with U.S. export and import control laws and regulations and U.S. economic sanctions and trade control laws and regulations; uncertain global macro-economic and political conditions and rising inflation; our history of losses and failure to achieve profitability and our need for substantial additional capital to fund our operations; the fact that our financial results may fluctuate significantly from quarter to quarter; our holding company status; the risk that our business and operations could be significantly affected if it becomes subject to any litigation, including securities litigation or stockholder activism; our public securities’ potential liquidity and trading; and other public filings and press releases other factors detailed under the section titled Part I, Item 1A. Risk Factors of our Annual Report on Form 10-K for the fiscal year ended December 31, 2025 filed with the Securities and Exchange Commission (the “SEC”), the section titled Part I, Item 2, Management’s Discussion and Analysis of Financial Condition and Results of Operations and the section titled Part II. Item 1A. “Risk Factors” in our most recently filed Quarterly Report on Form 10-Q, and in our subsequent filings with the SEC, which are accessible on the SEC's website at www.sec.gov.
+
+
+These forward-looking statements are based on information available as of the date of this presentation and current expectations, forecasts, and assumptions, and involve a number of judgments, risks, and uncertainties. Accordingly, forward-looking statements should not be relied upon as representing our views as of any subsequent date, and we do not undertake any obligation to update forward-looking statements to reflect events or circumstances after the date they were made, whether as a result of new information, future events, or otherwise, except as may be required under applicable securities laws.
+
+
+Contacts
+
+
+For investor inquiries:
+investors@intuitivemachines.com
+For media inquiries:
+press@intuitivemachines.com
+
+
+
+
+
+
+
+
+INTUITIVE MACHINES, INC.
+Condensed Consolidated Balance Sheets
+(In thousands)
+(Unaudited) | | | | | | | | | | | |
+| June 30,
+2026 | | December 31, 2025 |
+| | | |
+ASSETS
+| | | |
+Current assets
+| | | |
+Cash and cash equivalents
+| $ | 367,354 | | | $ | 582,606 | |
+Restricted cash
+| 11,668 | | | 2,733 | |
+Trade accounts receivable | 119,670 | | | 12,193 | |
+| | | |
+Contract assets
+| 50,992 | | | 12,236 | |
+Inventory, net | 59,941 | | | — | |
+Advances to suppliers
+| 32,558 | | | 3,353 | |
+Prepaid and other current assets
+| 20,637 | | | 5,693 | |
+Total current assets
+| 662,820 | | | 618,814 | |
+Orbital receivables, non-current | 209,833 | | | — | |
+Property and equipment, net
+| 264,626 | | | 68,550 | |
+Intangible assets, net | 297,069 | | | 12,968 | |
+Goodwill | 379,216 | | | 18,697 | |
+Operating lease right-of-use assets
+| 72,704 | | | 36,755 | |
+Finance lease right-of-use assets | 78 | | | 94 | |
+| | | |
+Other assets
+| 935 | | | 1,276 | |
+Total assets
+| $ | 1,887,281 | | | $ | 757,154 | |
+LIABILITIES, MEZZANINE EQUITY AND SHAREHOLDERS’ DEFICIT
+| | | |
+Current liabilities
+| | | |
+Accounts payable and accrued expenses | $ | 64,603 | | | $ | 22,199 | |
+Accounts payable - affiliated companies | 2,870 | | | 1,723 | |
+| | | |
+Contract liabilities, current
+| 215,518 | | | 57,368 | |
+Operating lease liabilities, current
+| 25,104 | | | 10,466 | |
+Finance lease liabilities, current | 27 | | | 48 | |
+Other current liabilities
+| 91,709 | | | 33,028 | |
+Total current liabilities
+| 399,831 | | | 124,832 | |
+Long-term debt, net
+| 336,352 | | | 335,335 | |
+Contract liabilities, non-current
+| 4,065 | | | 6,341 | |
+Pension and other postretirement benefits | 48,739 | | | — | |
+Operating lease liabilities, non-current
+| 68,298 | | | 26,290 | |
+Finance lease liabilities, non-current | 19 | | | 20 | |
+| | | |
+| | | |
+Warrant liabilities | 81,438 | | | 60,394 | |
+Other non-current liabilities
+| 37,023 | | | 240 | |
+Total liabilities
+| 975,765 | | | 553,452 | |
+Commitments and contingencies | | | |
+MEZZANINE EQUITY | | | |
+Series A preferred stock subject to possible redemption | 6,945 | | | 6,613 | |
+Redeemable noncontrolling interests | 1,194,653 | | | 951,536 | |
+SHAREHOLDERS’ DEFICIT | | | |
+| | | |
+Class A common stock
+| 17 | | | 12 | |
+| | | |
+Class C common stock | 6 | | | 6 | |
+Treasury Stock | (33,525) | | | (33,525) | |
+Paid-in capital
+| — | | | — | |
+Accumulated deficit
+| (257,147) | | | (721,457) | |
+| | | |
+Total shareholders’ deficit attributable to the Company
+| (290,649) | | | (754,964) | |
+Noncontrolling interests
+| 567 | | | 517 | |
+Total shareholders’ deficit
+| (290,082) | | | (754,447) | |
+Total liabilities, mezzanine equity and shareholders’ deficit
+| $ | 1,887,281 | | | $ | 757,154 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+INTUITIVE MACHINES, INC.
+Condensed Consolidated Statements of Operations
+(In thousands)
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Revenues: | | | | | | | |
+Product revenue
+| $ | 166,735 | | | $ | — | | | $ | 308,289 | | | $ | — | |
+| | | | | | | |
+Service revenue
+| 36,677 | | | 50,313 | | | 78,753 | | | 112,837 | |
+Grant revenue
+| 2,756 | | | — | | | 5,856 | | | — | |
+Total revenues
+| 206,168 | | | 50,313 | | | 392,898 | | | 112,837 | |
+Operating expenses:
+| | | | | | | |
+Cost of product revenue (excluding depreciation and amortization) | 119,328 | | | — | | | 233,241 | | | — | |
+Cost of service revenue (excluding depreciation and amortization)
+| 41,126 | | | 56,047 | | | 74,786 | | | 104,972 | |
+Cost of grant revenue (excluding depreciation and amortization) | 2,760 | | | — | | | 5,861 | | | — | |
+Cost of service revenue (excluding depreciation and amortization) - affiliated companies
+| 7,088 | | | 6,109 | | | 13,037 | | | 13,031 | |
+Total cost of revenues
+| 170,302 | | | 62,156 | | | 326,925 | | | 118,003 | |
+Depreciation and amortization
+| 14,927 | | | 752 | | | 27,975 | | | 1,375 | |
+| | | | | | | |
+Research and development | 7,729 | | | 461 | | | 13,318 | | | 1,372 | |
+General and administrative expense (excluding depreciation and amortization)
+| 60,346 | | | 15,584 | | | 111,017 | | | 30,804 | |
+Total operating expenses
+| 253,304 | | | 78,953 | | | 479,235 | | | 151,554 | |
+Operating loss
+| (47,136) | | | (28,640) | | | (86,337) | | | (38,717) | |
+Other income (expense), net:
+| | | | | | | |
+Interest income
+| 1,476 | | | 3,500 | | | 2,907 | | | 4,919 | |
+Interest expense
+| (4,483) | | | (72) | | | (9,368) | | | (97) | |
+Change in fair value of earn-out liabilities | — | | | — | | | — | | | (33,369) | |
+Change in fair value of warrant liabilities | (11,622) | | | (13,033) | | | (21,044) | | | 29,969 | |
+Change in fair value of contingent consideration liabilities | (890) | | | — | | | (1,411) | | | — | |
+| | | | | | | |
+| | | | | | | |
+Other income (expense), net
+| (178) | | | 39 | | | (106) | | | 65 | |
+Total other income (expense), net
+| (15,697) | | | (9,566) | | | (29,022) | | | 1,486 | |
+Loss before income taxes
+| (62,833) | | | (38,206) | | | (115,359) | | | (37,231) | |
+Income tax expense
+| (8) | | | — | | | (10) | | | — | |
+Net loss
+| (62,841) | | | (38,206) | | | (115,369) | | | (37,231) | |
+Net loss attributable to redeemable noncontrolling interest | (16,781) | | | (13,408) | | | (32,265) | | | (1,499) | |
+Net income attributable to noncontrolling interest | 385 | | | 383 | | | 728 | | | 845 | |
+Net loss attributable to the Company | (46,445) | | | (25,181) | | | (83,832) | | | (36,577) | |
+Less: Preferred dividends | (167) | | | (151) | | | (329) | | | (298) | |
+Net loss attributable to Class A common shareholders | $ | (46,612) | | | $ | (25,332) | | | $ | (84,161) | | | $ | (36,875) | |
+| | | | | | | |
+Net loss per share
+| | | | | | | |
+Net loss per share of Class A common stock - basic and diluted
+| $ | (0.29) | | | $ | (0.22) | | | $ | (0.54) | | | $ | (0.33) | |
+| | | | | | | |
+Weighted-average common shares outstanding
+| | | | | | | |
+Weighted average shares outstanding - basic and diluted | 162,172,470 | | 117,434,775 | | 155,064,726 | | 112,286,945 |
+
+
+
+
+
+
+
+
+
+
+
+
+
+INTUITIVE MACHINES, INC.
+Condensed Consolidated Statements of Cash Flows
+(In thousands)
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+
+
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Cash flows from operating activities:
+| | | | | | | |
+Net loss
+| $ | (62,841) | | | $ | (38,206) | | | $ | (115,369) | | | $ | (37,231) | |
+Adjustments to reconcile net loss to net cash used in operating activities:
+| | | | | | | |
+Depreciation and amortization
+| 14,927 | | | 752 | | | 27,975 | | | 1,375 | |
+Provision for credit losses
+| — | | | 135 | | | 357 | | | 135 | |
+| | | | | | | |
+| | | | | | | |
+Amortization of debt discount and issuance costs
+| 509 | | | — | | | 786 | | | — | |
+Share-based compensation expense
+| 10,491 | | | 2,520 | | | 19,333 | | | 5,364 | |
+| | | | | | | |
+Change in fair value of earn-out liabilities
+| — | | | — | | | — | | | 33,369 | |
+Change in fair value of warrant liabilities
+| 11,622 | | | 13,033 | | | 21,044 | | | (29,969) | |
+Change in fair value of contingent consideration liabilities | 890 | | | — | | | 1,411 | | | — | |
+| | | | | | | |
+| | | | | | | |
+Other
+| (1,884) | | | (17) | | | (3,811) | | | 177 | |
+Changes in operating assets and liabilities:
+| | | | | | | |
+Trade and other receivables, net
+| (14,654) | | | (7,365) | | | (13,379) | | | 8,053 | |
+| | | | | | | |
+Inventory, net
+| (2,068) | | | — | | | (3,794) | | | — | |
+Contract assets
+| (2,971) | | | 13,077 | | | (15,613) | | | 26,154 | |
+Prepaid expenses
+| (2,993) | | | 445 | | | (20,678) | | | (1,131) | |
+Orbital receivables, net | 8,457 | | | — | | | 16,146 | | | — | |
+Other assets, net
+| (6,665) | | | 544 | | | (3,653) | | | 1,091 | |
+Accounts payable and accrued expenses
+| (26,086) | | | (5,551) | | | 397 | | | 305 | |
+Accounts payable – affiliated companies
+| 465 | | | (231) | | | 1,147 | | | 1,558 | |
+Contract liabilities – current and long-term
+| 11,277 | | | 750 | | | (5,842) | | | (7,876) | |
+| | | | | | | |
+Pension and other postretirement benefits | (3,291) | | | — | | | (6,054) | | | — | |
+Other liabilities
+| 5,013 | | | 851 | | | (12,281) | | | (1,218) | |
+Net cash provided by (used in) operating activities
+| (59,802) | | | (19,263) | | | (111,878) | | | 156 | |
+Cash flows from investing activities:
+| | | | | | | |
+Purchase of property and equipment
+| (24,065) | | | (8,054) | | | (33,941) | | | (14,176) | |
+| | | | | | | |
+Acquisition of businesses, net of cash acquired | (2,283) | | | — | | | (447,062) | | | — | |
+Net cash used in investing activities
+| (26,348) | | | (8,054) | | | (481,003) | | | (14,176) | |
+Cash flows from financing activities:
+| | | | | | | |
+| | | | | | | |
+Proceeds from issuance of securities | 238,772 | | | — | | | 413,772 | | | — | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Warrants exercised | — | | | — | | | — | | | 176,620 | |
+Redemption of warrants | — | | | — | | | — | | | (66) | |
+| | | | | | | |
+Transaction costs related to the issuance of securities | (4,159) | | | — | | | (11,709) | | | — | |
+| | | | | | | |
+Repurchase of Class A Common Stock | — | | | — | | | — | | | (20,700) | |
+| | | | | | | |
+Settlement of securitization facility
+| (10,896) | | | — | | | (13,588) | | | — | |
+| | | | | | | |
+| | | | | | | |
+Payment of withholding taxes from share-based awards | (1,232) | | | (1,035) | | | (1,233) | | | (4,540) | |
+| | | | | | | |
+| | | | | | | |
+Distributions to noncontrolling interests | (678) | | | — | | | (678) | | | — | |
+Net cash provided by financing activities
+| 221,807 | | | (1,035) | | | 386,564 | | | 151,314 | |
+Net increase (decrease) in cash, cash equivalents and restricted cash
+| 135,657 | | | (28,352) | | | (206,317) | | | 137,294 | |
+Cash, cash equivalents and restricted cash at beginning of the period
+| 243,365 | | | 375,295 | | | 585,339 | | | 209,649 | |
+Cash, cash equivalents and restricted cash at end of the period
+| 379,022 | | | 346,943 | | | 379,022 | | | 346,943 | |
+Less: restricted cash
+| 11,668 | | | 2,042 | | | 11,668 | | | 2,042 | |
+Cash and cash equivalents at end of the period
+| $ | 367,354 | | | $ | 344,901 | | | $ | 367,354 | | | $ | 344,901 | |
+
+
+
+
+
+
+
+
+
+INTUITIVE MACHINES, INC.
+Reconciliation of GAAP to Non-GAAP Financial Measure
+Adjusted EBITDA
+The following table presents a reconciliation of net loss, the most directly comparable financial measure presented in accordance with GAAP, to Adjusted EBITDA.
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+(in thousands)
+| 2026 | | 2025 | | 2026 | | 2025 |
+Net loss | $ | (62,841) | | | $ | (38,206) | | | $ | (115,369) | | | $ | (37,231) | |
+Adjusted to exclude the following: | | | | | | | |
+Income tax expense | 8 | | | — | | | 10 | | | — | |
+Depreciation and amortization | 14,927 | | | 752 | | | 27,975 | | | 1,375 | |
+Impairment of property and equipment | — | | | — | | | — | | | — | |
+Interest income | (1,476) | | | (3,500) | | | (2,907) | | | (4,919) | |
+Interest expense | 4,483 | | | 72 | | | 9,368 | | | 97 | |
+Transaction and integration costs related to acquisitions
+| 7,919 | | | — | | | 27,897 | | | — | |
+Share-based compensation expense | 10,491 | | | 2,520 | | | 19,333 | | | 5,364 | |
+Change in fair value of earn-out liabilities | — | | | — | | | — | | | 33,369 | |
+Change in fair value of warrant liabilities | 11,622 | | | 13,033 | | | 21,044 | | | (29,969) | |
+Change in fair value of contingent consideration liabilities | 890 | | | — | | | 1,411 | | | — | |
+| | | | | | | |
+| | | | | | | |
+Other income, net | 178 | | | (39) | | | 106 | | | (65) | |
+Adjusted EBITDA | $ | (13,799) | | | $ | (25,368) | | | $ | (11,132) | | | $ | (31,978) | |
+
+
+Free Cash Flow
+We define free cash flow as net cash (used in) provided by operating activities less purchases of property and equipment. We believe that free cash flow is a meaningful indicator of liquidity that provides information to management and investors about the amount of cash generated from operations that, after purchases of property and equipment, can be used for strategic initiatives, including continuous investment in our business and strengthening our balance sheet.
+Free Cash Flow has limitations as a liquidity measure, and you should not consider it in isolation or as a substitute for analysis of our cash flows as reported under GAAP. Some of these limitations are:
+• Free Cash Flow is not a measure calculated in accordance with GAAP and should not be considered in isolation from, or as a substitute for financial information prepared in accordance with GAAP.
+• Free Cash Flow may not be comparable to similarly titled metrics of other companies due to differences among methods of calculation.
+• Free Cash Flow may be affected in the near to medium term by the timing of capital investments, fluctuations in our growth and the effect of such fluctuations on working capital and changes in our cash conversion cycle.
+The following table presents a reconciliation of net cash used in operating activities, the most directly comparable financial measure presented in accordance with GAAP, to free cash flow:
+| | | | | | | | | | | |
+| Six Months Ended June 30, |
+(in thousands)
+| 2026 | | 2025 |
+Net cash provided by (used in) operating activities | $ | (111,878) | | | $ | 156 | |
+Purchases of property and equipment
+| (33,941) | | | (14,176) | |
+Free cash flow
+| $ | (145,819) | | | $ | (14,020) | |
+
+
+
+
+
+
+
+
+
+Backlog
+
+The following table presents our backlog as of the periods indicated:
+| | | | | | | | | | | | | | |
+(in thousands)
+| | June 30,
+2026 | | December 31,
+2025 |
+Backlog
+| | $ | 1,761,950 | | | $ | 213,070 | |
+
+
+
+Backlog increased by $1.55 billion as of June 30, 2026 compared to December 31, 2025, which includes $612.8 million of acquired backlog associated with the Lanteris acquisition in January 2026, new awards of $1.34 billion primarily associated with a multi-satellite program in support of three commercial satellites, for which we received a $45.0 million authority to proceed and recorded backlog reflecting an estimated total program value of more than $600.0 million. Additionally, we recognized new awards or expanded contract values for the IM-5 and IM-6 missions, the NSN contract, a government defense contract, and various other contract award. These increases were partially offset by continued performance on existing contracts of $392.9 million, and several adjustments of $15.5 million mostly related to the descoping of a rideshare contract associated with the IM-4 mission.

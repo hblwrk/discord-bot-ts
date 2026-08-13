@@ -692,6 +692,56 @@ describe("AI earnings summaries", () => {
     expect(postWithRetryFn).not.toHaveBeenCalled();
   });
 
+  test("drops forward-looking legal boilerplate from a grounded partial summary", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                sentences: [
+                  {
+                    text: "Revenue reached $1.3 billion in the second quarter.",
+                    sourceSnippet: "Revenue reached $1.3 billion in the second quarter.",
+                  },
+                  {
+                    text: "Comparable sales rose 15.3% during the period.",
+                    sourceSnippet: "Comparable sales rose 15.3% during the period.",
+                  },
+                  {
+                    text: "The forward-looking statements include expectations for revenue generation and guidance for 2026.",
+                    sourceSnippet: "The forward-looking statements include expectations for revenue generation and guidance for 2026.",
+                  },
+                ],
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await summarizeEarningsWithAi({
+      companyName: "Example Corp",
+      filingForm: "6-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: `
+        <p>Revenue reached $1.3 billion in the second quarter.</p>
+        <p>Comparable sales rose 15.3% during the period.</p>
+        <p>The forward-looking statements include expectations for revenue generation and guidance for 2026.</p>
+      `,
+      ticker: "EXM",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result).toBe(
+      "Revenue reached `$1.3 billion` in the second quarter. Comparable sales rose `15.3%` during the period.",
+    );
+  });
+
   test("logs invalid summary JSON", async () => {
     const postWithRetryFn = vi.fn().mockResolvedValue({
       data: {

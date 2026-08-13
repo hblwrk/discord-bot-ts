@@ -47,6 +47,10 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     key: "adjusted_eps",
     label: "Adj EPS",
     patterns: [
+      // A translated ADS value can follow the local-currency amount in parentheses.
+      // Capture the US-dollar figure explicitly so the ordinary-share amount before it
+      // cannot win merely because it appears first.
+      /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?(?:earnings|net\s+income|net\s+loss|loss)\s+per\s+(?:diluted\s+)?ADS\b.{0,80}?\(\s*(?<metricValue>US\s*\$\s*\d+(?:\.\d+)?)\s*\)/i,
       // Some releases state non-GAAP net income and then introduce its per-share
       // equivalent with "or", without ever spelling out EPS as a caption.
       /\b(?:reported|for)\s+(?:the\s+)?(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b(?:(?![.!?]\s)[^!?\n]){0,360}?\bnon-gaap\s+(?:net\s+)?(?:income|earnings|loss)\b(?:(?![.!?]\s)[^!?\n]){0,180}?\bor\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
@@ -60,6 +64,10 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       // far side of "per" — "non-GAAP net income per diluted share" — and without that
       // spelling the measure's only remaining source in a release is a guidance range.
       /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?(?:earnings|net\s+income|net\s+loss|loss)(?:\s*\/?\s*\(loss(?:es)?\))?\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
+      // Foreign private issuers commonly report both an ordinary-share figure in their
+      // local currency and a US-dollar ADS figure. The ADS measure is the comparable
+      // adjusted EPS for the US-listed security.
+      /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?(?:earnings|net\s+income|net\s+loss|loss)\s+per\s+(?:diluted\s+)?ADS\b/i,
       // A reconciliation table can name the measure after the caption instead of before
       // it ("Earnings per share - Non-GAAP").
       /\b(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\s*[–—-]\s*non-gaap\b/i,
@@ -301,6 +309,12 @@ export function getMetricLineWithContinuation(
       continue;
     }
 
+    if ("money" === definition.valueType &&
+        true === isNarrativeMoneyScaleContinuationLine(metricLines.at(-1) ?? "", nextLine)) {
+      metricLines.push(nextLine);
+      continue;
+    }
+
     if (false === isSummaryHeading || true === isSummaryMetricHeadingLine(nextLine)) {
       break;
     }
@@ -377,6 +391,11 @@ function isSummaryMetricHeadingLine(line: string): boolean {
 function isNarrativeMoneyDetailLine(line: string): boolean {
   return /^\s*(?:[•◦▪–—-]\s*)?(?:\(?\s*)?(?:[$€£¥]\s*)?-?\d/i.test(line) &&
     /[$€£¥]|\b(?:trillion|billion|million|thousand)s?\b|\b(?:tn|bn|mm|[tbmk])\b/i.test(line);
+}
+
+function isNarrativeMoneyScaleContinuationLine(previousLine: string, line: string): boolean {
+  return /\d\s*$/i.test(previousLine) &&
+    /^\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm)\b/i.test(line);
 }
 
 function isNarrativePerShareDetailLine(line: string): boolean {

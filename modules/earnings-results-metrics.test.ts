@@ -446,4 +446,71 @@ describe("earnings result metric selection", () => {
       },
     ]);
   });
+
+  test("uses translated ADS and currency columns from a foreign issuer statement", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example announces second quarter 2026 results</h1>
+      <p>Amounts are translated into U.S. dollars.</p>
+      <p>Non-GAAP diluted net income per ADS was RMB6.29 (US$0.93) for the second quarter of 2026.</p>
+      <p>Unaudited statements of operations</p>
+      <p>(In millions, except per share data)</p>
+      <p>For the three months ended | For the six months ended |</p>
+      <p>June 30,</p><p>2025</p><p>June 30,</p><p>2026</p><p>June 30,</p><p>2026</p>
+      <p>June 30,</p><p>2025</p><p>June 30,</p><p>2026</p><p>June 30,</p><p>2026</p>
+      <p>RMB</p><p>RMB</p><p>US$</p><p>RMB</p><p>RMB</p><p>US$</p>
+      <table>
+        <tr><td>Total net revenues</td><td>356,660</td><td>346,401</td><td>51,053</td><td>657,742</td><td>662,095</td><td>97,581</td></tr>
+        <tr><td>Net income attributable to Example</td><td>6,178</td><td>7,129</td><td>1,051</td><td>17,068</td><td>12,231</td><td>1,803</td></tr>
+      </table>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "adjusted_eps", value: "$0.93"}),
+      expect.objectContaining({key: "revenue", value: "$51.05B"}),
+      expect.objectContaining({key: "net_income", value: "$1.05B"}),
+    ]));
+  });
+
+  test("keeps a translated revenue scale wrapped onto the next source line", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example announces second quarter 2026 results</h1>
+      <p>Amounts are translated into U.S. dollars.</p>
+      <p>Net revenues were RMB346.4 billion (US$<sup>1</sup>51.1
+      billion) for the second quarter of 2026.</p>
+    `);
+
+    expect(parsedDocument.metrics).toEqual([
+      expect.objectContaining({key: "revenue", value: "$51.1B"}),
+    ]);
+  });
+
+  test("prefers total revenue over product, service, and grant components", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example reports second quarter 2026 results</h1>
+      <p>Condensed consolidated statements of operations</p>
+      <p>(in thousands)</p>
+      <table>
+        <tr><td>Product revenue</td><td>$166,735</td></tr>
+        <tr><td>Service revenue</td><td>$36,677</td></tr>
+        <tr><td>Grant revenue</td><td>$2,756</td></tr>
+        <tr><td>Total revenues</td><td>$206,168</td></tr>
+      </table>
+    `);
+
+    expect(parsedDocument.metrics).toEqual([
+      expect.objectContaining({key: "revenue", value: "$206.17M"}),
+    ]);
+  });
+
+  test("reads an aggregate net loss placed before its caption", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example reports second quarter 2026 results</h1>
+      <h2>Second Quarter 2026 Financial Highlights</h2>
+      <p>$25.8 million net loss, or $0.04 per basic and diluted share.</p>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "net_income", value: "-$25.8M"}),
+    ]));
+  });
 });

@@ -307,7 +307,7 @@ function extractMetric(
       getContextMoney(lines, lineIndex, documentCurrencyCode),
       isNearTableNoteColumn(lines, lineIndex),
       undefined !== quarterLabel && hasMixedMonthQuarterColumns(lines, lineIndex),
-      getCurrentPeriodColumnIndex(lines, lineIndex, quarterLabel),
+      getCurrentPeriodColumnIndex(lines, lineIndex, quarterLabel, documentCurrencyCode),
     );
     if (null === metricValue) {
       continue;
@@ -480,14 +480,17 @@ function extractMetricValue(
       skipTableNoteRefs,
       skipPercentages: true,
     }, columnIndex);
-    const fallbackValueMatch = true === isMetricValuePrefix(fallbackSearchText) ? findNumericValueMatch(fallbackSearchText, {
+    const hasLeadingMoneyValue = true === isLeadingMoneyValuePrefix(fallbackSearchText);
+    const fallbackValueMatch = (true === isMetricValuePrefix(fallbackSearchText) || hasLeadingMoneyValue)
+      ? findNumericValueMatch(fallbackSearchText, {
       minUncuedAbsValue: 10,
       requireMoneyCue: 1 === contextMoney.scale,
       skipTableNoteRefs,
       skipPercentages: true,
-    }) : null;
+    })
+      : null;
     const useFallbackValue = null !== fallbackValueMatch &&
-      (null === searchValueMatch || true === hasMetricLabelSuffixTableNote);
+      (hasLeadingMoneyValue || null === searchValueMatch || true === hasMetricLabelSuffixTableNote);
     const parsedValueMatch = true === useFallbackValue
       ? fallbackValueMatch
       : searchValueMatch ?? fallbackValueMatch;
@@ -618,6 +621,11 @@ function getContextMoney(
 function isMetricValuePrefix(text: string): boolean {
   const valuePrefix = text.replace(/\b(?:basic|diluted)\s*$/i, "");
   return "" !== valuePrefix.trim() && false === /[A-Za-z]/.test(valuePrefix);
+}
+
+function isLeadingMoneyValuePrefix(text: string): boolean {
+  return /^\s*[•◦▪–—-]?\s*\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\)?\s*,?\s*$/i
+    .test(text);
 }
 
 export function normalizeTickerSymbol(value: string): string {
