@@ -34,6 +34,11 @@ describe("earnings result document text", () => {
       .toBe("Loss per share | | $(0.10) |");
   });
 
+  test("removes numeric superscript references embedded inside money values", () => {
+    expect(htmlToText("<p>Net revenues were RMB346.4 billion (US$<sup>1</sup>51.1 billion).</p>"))
+      .toBe("Net revenues were RMB346.4 billion (US$51.1 billion).");
+  });
+
   test("uses a three-month period end before a later-quarter outlook", () => {
     expect(getQuarterLabel([
       "Results for the three-month period ended June 30, 2026.",

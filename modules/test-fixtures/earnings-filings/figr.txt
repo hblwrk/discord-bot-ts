@@ -1,0 +1,337 @@
+EX-99.1
+2
+ex991-pressrelease2q26.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+FIGURE TECHNOLOGY SOLUTIONS REPORTS STRONG SECOND QUARTER 2026 RESULTS
+NEW YORK, August 13, 2026 /Globe/ — Figure Technology Solutions (Nasdaq: FIGR; OPEN: FGRS), the leading blockchain-native capital marketplace for the origination, funding, sale and trading of tokenized assets, today announced financial results for the three and six months ended June 30, 2026.
+“We delivered our strongest quarter yet, headlined by 132% year-over-year volume growth in our Consumer Loan Marketplace, the addition of over 100 origination partners, and the scaling of our capital-light marketplace, with 65% of our volumes now on Figure Connect. With weekly applications now surpassing $1 billion as of July and the pending completion of our Kiavi acquisition, which we expect will significantly grow our platform into adjacent asset classes, we are accelerating our growth flywheel and our first-mover advantage in bringing the capital markets on-chain.”
+- Michael Tannenbaum, CEO
+Q2 2026 Quarterly Financial Highlights
+• Consumer Loan Marketplace volume was $4.3 billion in the quarter, a 132% increase from the prior year. This included Figure Connect Volume of $2.8 billion.
+
+
+• Net revenue was $226 million, an increase of 113% year-over-year. Adjusted Net Revenue was $218 million, an increase of 95% from the second quarter of 2025.
+
+
+• Net income increased 192% to $87 million; net income margin reached 38.8%, an increase of 11 percentage points year-over-year.
+
+
+• Adjusted EBITDA increased 126% year-over-year to $119 million; Adjusted EBITDA margin reached 54.6%, an increase of 7 percentage points year-over-year.
+
+
+• Cash and cash equivalents, excluding restricted cash, totaled $1.4 billion, an increase of $239.4 million, or 20.0% compared to December 31, 2025.
+
+
+• Loans held for sale totaled $597 million, an increase of $193.1 million, or 47.7%, compared to December 31, 2025.
+
+
+
+
+Financial Highlights
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+$ in thousands, except per share or otherwise noted | Q2 | | Q2 | | 6M YTD | | 6M YTD | | Q2 | | 6M YTD |
+(Unaudited) | 2026 | | 2025 | | 2026 | | 2025 | | YoY % | | YoY% |
+GAAP Results: | | | | | | | | | | | |
+Net Revenue | $ | 225,588 | | | $ | 106,077 | | | $ | 392,595 | | | $ | 190,587 | | | 113 | % | | 106 | % |
+Net Income | 87,436 | | | 29,994 | | | 132,483 | | | 29,381 | | | 192 | % | | 351 | % |
+Net Income margin | 38.8 | % | | 28.3 | % | | 33.7 | % | | 15.4 | % | | +10.5 | p.p. | | +18.3 | p.p. |
+Earnings per Share - Basic | $ | 0.39 | | | $ | 0.11 | | | $ | 0.60 | | | $ | 0.04 | | | 255 | % | | 1400 | % |
+Earnings per Share - Diluted | 0.35 | | | 0.08 | | | 0.53 | | | 0.04 | | | 338 | % | | 1225 | % |
+| | | | | | | | | | | |
+Non-GAAP Results (1) :
+| | | | | | | | | | | |
+Adjusted Net Revenue | $ | 218,445 | | | $ | 111,895 | | | $ | 385,288 | | | $ | 198,877 | | | 95 | % | | 94 | % |
+Adjusted EBITDA | 119,379 | | | 52,866 | | | 201,992 | | | 81,210 | | | 126 | % | | 149 | % |
+Adjusted EBITDA margin | 54.6 | % | | 47.2 | % | | 52.4 | % | | 40.8 | % | | +7.4 | p.p. | | +11.6 | p.p. |
+
+(1) See “Non-GAAP Financial Measures” at the end of this earnings release for details regarding these measures, including reconciliations of the Non-GAAP Financial Measures to their most directly comparable GAAP measures.
+
+
+
+
+
+
+
+Selected Metrics
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+$ in millions unless noted
+| Q2 | | Q2 | | 6M YTD | | 6M YTD | | Q2 | | 6M YTD |
+(Unaudited) | 2026 | | 2025 | | 2026 | | 2025 | | YoY % | | YoY% |
+Consumer Loan Marketplace Volume | 4,259 | | | 1,838 | | | 7,161 | | | 3,203 | | | 132 | % | | 124 | % |
+Figure Connect Volume | 2,773 | | | 767 | | | 4,385 | | | 1,245 | | | 262 | % | | 252 | % |
+Net Take Rate | 3.6 | % | | 4.0 | % | | 3.7 | % | | 3.9 | % | | -0.4 | p.p. | | -0.2 | p.p. |
+
+| | | | | | | | | | | |
+$ in millions unless noted
+| As of |
+(Unaudited) | June 30, 2026 | | December 31, 2025 |
+$YLDS in Circulation | $ | 556 | | | $ | 328 | |
+Democratized Prime: | | | |
+Matched Offers | 392 | | | 206 | |
+Borrower Demand | 414 | | | 246 | |
+Available Lender Supply | 522 | | | 213 | |
+
+Recent Business Highlights
+
+• Figure Connect reached 65% of Consumer Loan Marketplace volume in the quarter. Figure Connect was launched in June 2024.
+
+
+• Added 102 origination partners in the quarter, reaching 489 total active partners across mortgage banks, depositories, servicers, and fintechs.
+
+
+• New product categories continued to accelerate, with Small/Medium Business (“SMB”) loan volume increasing 57% quarter-over-quarter.
+
+
+• Third-party borrowing activity on Democratized Prime reached approximately $170 million as of August 6, 2026, a ~23x increase since December 31, 2025.
+
+
+• Launched SMB pools on Democratized Prime, adding another diversified asset class to the Figure funding ecosystem along with Auto and Home Equity.
+
+
+• Demonstrated strong operational efficiency as operations and processing costs declined to approximately 67 basis points of Consumer Loan Marketplace volume, down from 79 basis points in Q2 2025.
+
+
+• Kiavi, inc. transaction remains on track to close in the second half of 2026.
+
+
+Operating Outlook
+
+
+The guidance for Consumer Loan Marketplace volume provided below constitutes forward-looking information within the meaning of applicable securities laws and is based on a number of assumptions and subject to a number of risks. See cautionary note regarding “Forward-looking Statements” in this press release.
+
+
+| | | | | |
+Q3 2026 Guidance | $ in billions
+|
+Consumer Loan Marketplace Volume
+| $4.8 - $5.2 |
+
+
+
+
+
+Webcast Information
+Figure will host a conference call and webca st at 8:30 a.m. Eastern Time, August 13, 2026 to discuss its results and outlook. A link to the live discussion and accompanying presentation will be made available on the
+
+
+
+
+
+
+
+Company’s investor relations website at https://investors.figure.com/ . A replay will also be made available following the discussion at the same website.
+Forward-Looking Statements Disclosure
+This press release contains forward-looking statements intended to be covered by the safe harbor provisions of Section 27A of the Securities Act of 1933, as amended, and Section 21E of the Securities Exchange Act of 1934, as amended. All statements other than statements of historical fact contained in this press release, including without limitation statements regarding our pending Kiavi acquisition and the related anticipated benefits, future financial performance and guidance, including our expectations regarding our Consumer Loan Marketplace Volume; our ability to determine reserves, and ability to remain profitable; our ability to maintain, expand, and enter into new relationships with partners and loan purchasers on the secondary market; our ability to broaden our network of partners; and our ability to successfully execute our business and growth strategy; marketplace volume, adoption, and liquidity, including the growth and performance of our Consumer Loan Marketplace, Figure Connect, and Democratized Prime platforms; our blockchain ecosystem and infrastructure initiatives, including our ability to expand the adoption of our blockchain-native products and services and the development and performance of our digital asset offerings; and our share repurchase program, including the timing, number of shares, and prices at which repurchases may occur. These statements involve known and unknown risks, uncertainties, and other important factors that may cause actual results to differ materially from those expressed or implied by the forward-looking statements. In some cases, you can identify forward-looking statements by terms such as “may,” “will,” “should,” “expect,” “plan,” “anticipate,” “could,” “intend,” “target,” “project,” “contemplate,” “believe,” “estimate,” “predict,” “potential,” or “continue,” or the negative of these terms, and similar expressions. Forward-looking statements are predictions based largely on our current expectations and projections about future events and financial trends that we believe may affect our business, financial condition, and results of operations. These statements speak only as of the date of this press release.
+Important factors that could cause actual results to differ materially include, among others: our history of losses and the risk that we may not maintain profitability; our reliance on HELOCs and exposure to fluctuations in the HELOC market and housing values; our ability to attract and retain borrowers, partners, and loan purchasers and to drive adoption of Figure-branded and Partner-branded channels including Figure Connect; loan performance and default rates and the effect of credit performance on access to and pricing of warehouse facilities, whole-loan sales, and securitizations; changes in interest rates and U.S. monetary policy that impact originations, funding costs, and investor demand; legal and regulatory risks affecting lending and mortgage-related activities and the evolving framework for digital assets, including potential changes in the characterization or regulation of certain digital assets and related products; dependence on key third-party providers including cloud, custodial, valuation, and data vendors and risks from outages or service disruptions; technology failures, cybersecurity incidents, or other operational disruptions; protection and enforcement of intellectual property; compliance with licensing, consumer protection, privacy, data security, and sanctions/AML laws, and shifting enforcement priorities at the federal and state levels; our ability to remediate previously identified material weaknesses and meet our public company reporting and internal control obligations; competition; macroeconomic and geopolitical conditions; our dual-class structure and concentrated voting control and related impacts on corporate governance; equity market volatility affecting our Class A common stock; and the other risks described in “Risk Factors” in our Annual Report on Form 10-K for the period ended December 31, 2025, filed with the SEC on March 16, 2026, and in our other filings with the SEC.
+You should read this press release and the documents we reference in it with the understanding that actual future results may differ materially from our expectations. We qualify all forward-looking statements in this press release by these cautionary statements. Except as required by law, we undertake no obligation to publicly update or revise any forward-looking statements contained herein, whether as a result of new information, future events, changed circumstances, or otherwise.
+
+
+
+
+
+
+
+About Non-GAAP Financial Measures and Key Operating Metrics
+Financial Measures
+To help understand our financial performance, we use several key performance metrics that should be viewed independently of GAAP items, as these metrics are not intended to be combined with those items. Our determination and presentation of these metrics may differ from that of other companies. The presentation of these metrics is meant to be considered in addition to, not as a substitute for or in isolation from, our financial measures prepared in accordance with GAAP.
+Key Operating Metrics
+Ecosystem Volume
+We define Ecosystem Volume as the total of Consumer Loan Marketplace Volume and Digital Asset Marketplace Volume.
+Consumer Loan Marketplace Volume
+We define Consumer Loan Marketplace Volume as the total U.S. dollar equivalent value of originations of HELOCs, DSCR, and personal loans on our loan origination system, as well as the volume of third-party loans traded on Figure Connect. We believe this measure is an indication of our scale and represents a potential revenue opportunity from the technology used for consumer credit loan originations.
+Net Take Rate
+Net Take Rate is derived from the sum of ecosystem and technology fees, origination fees, gain on sale of loans, net and gain on servicing asset, net from our consolidated statement of operations. These items represent revenue generated from Figure-branded and Partner-branded volume. Valuation changes in fair value of mortgage servicing rights, which we believe are not indicative of operating performance, and marketing expenses in our operating expenses are deducted. This net amount is divided by overall Consumer Loan Marketplace Volume for that period.
+$YLDS In Circulation
+We define $YLDS in Circulation as the total U.S. dollar equivalent value of unsecured face-amount certificates solely backed by the assets of Figure Certificate Company (FCC), which is the issuer of the certificates. This is reported as an end of period outstanding balance.
+Matched Offers
+We define Matched Offers as the U.S. dollar equivalent value of offers matched between borrower and lenders on the Democratized Prime platform. This is reported as an end of period outstanding balance.
+Borrower Demand
+We define Borrower Demand as the U.S. dollar equivalent value that borrowers seek to borrow from the lending pool on the Democratized Prime platform. This is reported as an end of period outstanding balance.
+Available Lender Supply
+We define Lender Supply as the U.S. dollar equivalent value that lenders have made available in the lending pool on the Democratized Prime platform. This is reported as an end of period outstanding balance.
+
+
+
+
+
+
+
+
+
+
+Non-GAAP Financial Measures
+Adjusted Net Revenue
+Adjusted Net Revenue is a non-GAAP financial measure used by our management to evaluate operating performance. Accordingly, we believe this measure provides useful information to investors and others in understanding and evaluating our operating results in the same manner as our management and board of directors. In addition, Adjusted Net Revenue provides a useful measure for period-to-period comparisons of our business, as it removes the effect of a non-cash, non-realized adjustment that is included in net revenue. Adjusted Net Revenue is defined as net revenue excluding the change in fair value of MSR and change in fair value of marketable securities associated with changes in our estimates that management has determined are not reflective of our operating performance, and net of interest paid to holders of YLDS.
+Adjusted EBITDA and Adjusted EBITDA Margin
+Adjusted EBITDA and Adjusted EBITDA Margin are non-GAAP financial measures used by our management to evaluate operating performance, generate future operating plans, and make strategic decisions, including those relating to operating expenses and the allocation of internal resources. Accordingly, we believe these measures provide useful information to investors and others in understanding and evaluating our operating results in the same manner as our management and board of directors. In addition, these measures provide useful information for period-to-period comparisons of our business, as it removes the effect of certain non-cash items, variable charges, non-recurring items, unrealized gains or losses or other similar non-cash items that are included in net income or expenses associated with the early stages of the business that are expected to ultimately terminate, pursuant to the terms of certain existing contractual arrangements or expected to continue at levels materially below the historical level, or that otherwise do not contribute directly to management’s evaluation of its operating results. Adjusted EBITDA is defined as net income excluding interest expense incurred in connection with our debt obligations other than debt associated with our funding of loans held for sale, income taxes, amortization and depreciation expense, stock-based compensation expense, non-cash changes in certain financial instruments, and other items that management has determined are not reflective of our ongoing operating performance. Adjusted EBITDA Margin is calculated as Adjusted EBITDA divided by adjusted net revenue. The most directly comparable GAAP measure is net income margin (calculated as net income divided by total net revenue).
+The Company added valuation changes in the fair value of marketable securities and YLDS funding costs to its definition of Adjusted Net Revenue, and valuation changes in the fair value of marketable securities, to its definition of Adjusted EBITDA effective March 31, 2026. Additionally, the Company added acquisition-related costs to its definition of Adjusted EBITDA effective June 30, 2026. Prior period amounts presented in the reconciliation table below have been recast to reflect the current methodology to facilitate period-over-period comparability.
+Management excludes period-to-period changes in the fair value of marketable securities from Adjusted Net Revenue and Adjusted EBITDA because they reflect non-cash, unrealized mark-to-market fluctuations driven by external market factors, including changes in discount rates, prepayment speeds, and credit spreads, that are not reflective of the Company's underlying operating performance.
+The Company’s economic benefit from YLDS is the 35 basis point spread it retains on outstanding balances, regardless of the total amount of YLDS in circulation. Management therefore presents YLDS-related interest expense net of associated interest income within Adjusted Net Revenue, as it believes this net spread is the most meaningful measure of the YLDS's contribution to operating performance.
+
+
+
+
+
+
+
+The following table presents a reconciliation of Total Net Revenue to Adjusted Net Revenue, Net Income to Adjusted EBITDA and Net Income margin to Adjusted EBITDA margin for the three and six months ended June 30, 2026 and 2025:
+| | | | | | | | | | | | | | | | | | | | | | | |
+$ in thousands | Three Months Ended June 30, | | Six Months Ended June 30, |
+(Unaudited) | 2026 | | 2025 | | 2026 | | 2025 |
+Total net revenue | $ | 225,588 | | | $ | 106,077 | | | $ | 392,595 | | | $ | 190,587 | |
+Adjusted for: | | | | | | | |
+Valuation changes in fair value of MSRs | (8,395) | | | 5,848 | | | (9,579) | | | 10,551 | |
+Valuation changes in fair value of marketable securities (A)
+| 2,195 | | | — | | | 4,663 | | | (2,231) | |
+YLDS funding costs (A)
+| (943) | | | (30) | | | (2,391) | | | (30) | |
+Adjusted net revenue | $ | 218,445 | | | $ | 111,895 | | | $ | 385,288 | | | $ | 198,877 | |
+| | | | | | | |
+Net income | $ | 87,436 | | | $ | 29,994 | | | $ | 132,483 | | | $ | 29,381 | |
+Adjusted for: | | | | | | | |
+Valuation changes in fair value of MSRs | (8,395) | | | 5,848 | | | (9,579) | | | 10,551 | |
+Valuation changes in fair value of marketable securities (A)
+| 2,195 | | | — | | | 4,663 | | | (2,231) | |
+Change in fair value of digital assets and related investments | 1,068 | | | (2,671) | | | 5,851 | | | 7,291 | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Services exchanged for issuance of warrants | — | | | 2,477 | | | — | | | 5,404 | |
+Registration costs | 842 | | | 328 | | | 3,160 | | | 1,847 | |
+Acquisition-related costs (A)
+| 4,676 | | | — | | | 4,676 | | | — | |
+Restructuring costs | 2 | | | 2,225 | | | 28 | | | 2,983 | |
+Stock-based compensation expense | 26,098 | | | 2,847 | | | 51,976 | | | 5,261 | |
+| | | | | | | |
+Amortization of internally developed software costs | 4,352 | | | 4,134 | | | 8,981 | | | 8,077 | |
+Non-funding interest expense | 5,553 | | | 4,327 | | | 11,146 | | | 8,059 | |
+Income tax (benefit) provision | (4,448) | | | 3,357 | | | (11,393) | | | 4,587 | |
+Adjusted EBITDA | $ | 119,379 | | | $ | 52,866 | | | $ | 201,992 | | | $ | 81,210 | |
+Net income margin | 38.8 | % | | 28.3 | % | | 33.7 | % | | 15.4 | % |
+Adjusted EBITDA margin | 54.6 | % | | 47.2 | % | | 52.4 | % | | 40.8 | % |
+
+(A) The Company added valuation changes in the fair value of marketable securities and YLDS funding costs to its definition of Adjusted Net Revenue, and valuation changes in the fair value of marketable securities to its definition of Adjusted EBITDA effective March 31, 2026. Additionally, the Company added acquisition-related costs to its definition of Adjusted EBITDA effective June 30, 2026. These adjustments have been applied retrospectively to all periods presented.
+
+
+About Figure
+Figure Technology Solutions, Inc. (Nasdaq: FIGR; OPEN: FGRS) is the leading blockchain-native capital marketplace for the origination, funding, sale and trading of tokenized assets. More than 480 partners use its loan origination system and capital marketplace. Collectively, Figure and its partners have originated over $30 billion of loans to date, among other products. The fastest growing components are Figure Connect, its consumer credit marketplace, and Democratized Prime, Figure’s on-chain lend-borrow marketplace. Figure’s ecosystem also includes DART (Digital Asset Registry Technology) for asset custody and lien perfection, and $YLDS, an SEC-registered yield-bearing stablecoin security that operates as a tokenized money market fund.
+Figure is the market leader in real-world asset (RWA) tokenization. The company has received AAA ratings from S&P and Moody’s on multiple loan securitizations, the first of its kind for blockchain finance. For more information, visit https://figure.com or follow Figure on LinkedIn.
+
+
+
+
+
+
+
+
+FIGURE TECHNOLOGY SOLUTIONS, INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS (UNAUDITED)
+(in thousands, except share and per share data)
+| | | | | | | | | | | |
+| June 30,
+2026 | | December 31,
+2025 |
+ASSETS | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 1,437,511 | | | $ | 1,198,141 | |
+Restricted cash | 95,887 | | | 68,637 | |
+Loans held for sale, at fair value | 597,400 | | | 404,337 | |
+Digital assets ($50,353 and $84,867 at fair value)
+| 62,185 | | | 96,558 | |
+Accounts receivable, net | 88,527 | | | 52,016 | |
+Other current assets | 110,466 | | | 41,518 | |
+Total current assets | 2,391,976 | | | 1,861,207 | |
+Loan servicing asset, at fair value | 155,024 | | | 113,064 | |
+Marketable securities, at fair value | 354,007 | | | 273,151 | |
+Digital assets, non-current | 1,311 | | | 3,644 | |
+Deferred income taxes, net | 56,823 | | | 26,037 | |
+Other non-current assets | 58,547 | | | 40,420 | |
+Total assets | $ | 3,017,688 | | | $ | 2,317,523 | |
+LIABILITIES AND STOCKHOLDERS' EQUITY | | | |
+Current liabilities: | | | |
+Accounts payable and accrued liabilities | $ | 58,215 | | | $ | 29,501 | |
+Payables to third-party loan owners | 506,686 | | | 383,772 | |
+Debt, current ($120,105 and $100,519 at fair value)
+| 222,505 | | | 160,959 | |
+Debt, current to related parties ($424,640 and $166,135 at fair value)
+| 424,640 | | | 166,135 | |
+Other current liabilities | 73,078 | | | 105,642 | |
+Total current liabilities | 1,285,124 | | | 846,009 | |
+Debt, non-current | 315,850 | | | 230,143 | |
+Lease liability, non-current | 3,604 | | | 4,173 | |
+Total liabilities | 1,604,578 | | | 1,080,325 | |
+Commitments and Contingencies | | | |
+Stockholders' equity: | | | |
+Preferred stock — $0.0001 par value per share: 100,000,000 shares authorized, no shares issued and outstanding at June 30, 2026 and December 31, 2025
+| — | | | — | |
+Class A common stock — $0.0001 par value per share: 1,000,000,000 shares authorized, 178,794,505 shares issued and outstanding at June 30, 2026; 1,000,000,000 shares authorized, 178,485,407 issued and outstanding at December 31, 2025
+| 18 | | | 19 | |
+Class B common stock — $0.0001 par value per share: 200,000,000 shares authorized, 37,893,047 shares issued and outstanding at June 30, 2026; 200,000,000 shares authorized, 37,893,047 issued and outstanding at December 31, 2025
+| 4 | | | 4 | |
+Blockchain common stock — $0.0001 par value per share: 500,000,000 shares authorized, 6,941,715 and no shares issued and outstanding at June 30, 2026 and December 31, 2025
+| 1 | | | — | |
+Treasury stock, at cost | (27,775) | | | — | |
+Additional paid-in capital | 1,495,236 | | | 1,415,804 | |
+Accumulated deficit | (54,347) | | | (186,993) | |
+Total Figure Technology Solutions, Inc. stockholders' equity
+| 1,413,137 | | | 1,228,834 | |
+Noncontrolling interests in consolidated subsidiaries | (27) | | | 8,364 | |
+Total stockholders' equity | 1,413,110 | | | 1,237,198 | |
+Total liabilities and stockholders' equity | $ | 3,017,688 | | | $ | 2,317,523 | |
+
+
+
+
+
+
+
+
+
+FIGURE TECHNOLOGY SOLUTIONS, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS (UNAUDITED)
+(in thousands, except share and per share data)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | Six Months Ended June 30, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Net revenue: | | | | | | | |
+Ecosystem and technology fees | $ | 72,865 | | | $ | 28,141 | | | $ | 120,171 | | | $ | 43,754 | |
+Servicing fees | 11,303 | | | 7,464 | | | 21,128 | | | 14,655 | |
+Interest income | 22,809 | | | 11,966 | | | 42,185 | | | 23,190 | |
+Origination fees | 26,346 | | | 16,250 | | | 49,476 | | | 28,727 | |
+Gain on sale of loans, net | 57,572 | | | 36,312 | | | 106,928 | | | 66,104 | |
+Gain on servicing asset, net | 29,093 | | | 1,844 | | | 41,960 | | | 2,170 | |
+Marketable securities income, net | 3,971 | | | 4,066 | | | 7,631 | | | 11,679 | |
+Other revenue | 1,629 | | | 34 | | | 3,116 | | | 308 | |
+Total net revenue | 225,588 | | | 106,077 | | | 392,595 | | | 190,587 | |
+Expenses: | | | | | | | |
+General and administrative | 51,428 | | | 16,397 | | | 97,023 | | | 35,237 | |
+Technology and product development | 15,551 | | | 16,018 | | | 31,156 | | | 33,434 | |
+Operations and processing | 28,914 | | | 14,448 | | | 50,361 | | | 27,126 | |
+Sales and marketing | 30,738 | | | 16,966 | | | 56,221 | | | 31,933 | |
+Interest expense | 19,670 | | | 12,376 | | | 36,559 | | | 23,348 | |
+Other expense | 1,550 | | | 2,148 | | | 1,597 | | | 3,713 | |
+Total expenses | 147,851 | | | 78,353 | | | 272,917 | | | 154,791 | |
+Operating income | 77,737 | | | 27,724 | | | 119,678 | | | 35,796 | |
+Other income (expense), net | 5,251 | | | 5,627 | | | 1,412 | | | (1,828) | |
+Income before income taxes | 82,988 | | | 33,351 | | | 121,090 | | | 33,968 | |
+Income tax (benefit) provision | (4,448) | | | 3,357 | | | (11,393) | | | 4,587 | |
+Net income | 87,436 | | | 29,994 | | | 132,483 | | | 29,381 | |
+Net (loss) income attributable to noncontrolling interests in consolidated subsidiaries | (10) | | | 52 | | | 92 | | | 259 | |
+Net income attributable to Figure Technology Solutions, Inc. | $ | 87,446 | | | $ | 29,942 | | | $ | 132,391 | | | $ | 29,122 | |
+| | | | | | | |
+Net income per share of Class A, Class B, and Blockchain common stock
+| | | | | | | |
+Basic | $ | 0.39 | | | $ | 0.11 | | | $ | 0.60 | | | $ | 0.04 | |
+Diluted | $ | 0.35 | | | $ | 0.08 | | | $ | 0.53 | | | $ | 0.04 | |
+Weighted-average Class A, Class B, and Blockchain common shares outstanding | | | | | | | |
+Basic | 221,514,237 | | 69,718,087 | | 219,395,921 | | 69,558,368 |
+Diluted | 246,969,949 | | 87,771,893 | | 247,926,321 | | 86,763,570 |

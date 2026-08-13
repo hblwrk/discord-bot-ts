@@ -124,9 +124,16 @@ export function getMetricCandidateScore({
         Math.max(0, patternMatch.index - 30),
         patternMatch.index + patternMatch[0].length,
       );
-    if (/\btotal\s+revenues?\b/i.test(patternMatch?.[0] ?? "") &&
-        /\b(?:net\s+)?product\s+sales\b/i.test(precedingRevenueRows) &&
-        /\bservice\s+revenues?\b/i.test(precedingRevenueRows)) {
+    const revenueComponentKinds = [
+      /\b(?:net\s+)?product\s+(?:sales|revenues?)\b/i,
+      /\bservice\s+revenues?\b/i,
+      /\bgrant\s+revenues?\b/i,
+    ].filter(componentPattern => componentPattern.test(precedingRevenueRows)).length;
+    if (/\btotal\s+net\s+revenues?\b/i.test(metricLine) &&
+        true === hasMultiCurrencyColumnHeader(lines, lineIndex)) {
+      score += 100;
+    } else if (/\btotal\s+revenues?\b/i.test(patternMatch?.[0] ?? "") &&
+        2 <= revenueComponentKinds) {
       score += 100;
     } else if (/\b(?:net\s+)?product\s+sales\b|\bservice\s+revenues?\b/i.test(metricCaptionText)) {
       score -= 80;
@@ -299,10 +306,16 @@ export function getCurrentPeriodColumnIndex(
   lines: string[],
   lineIndex: number,
   quarterLabel: string | undefined,
+  currencyCode?: string,
 ): number {
   const reportedYear = /\bQ[1-4]\s+(20\d{2})\b/.exec(quarterLabel ?? "")?.[1];
   if (undefined === reportedYear) {
     return 0;
+  }
+
+  const currencyColumnIndex = getReportedCurrencyColumnIndex(lines, lineIndex, currencyCode);
+  if (null !== currencyColumnIndex) {
+    return currencyColumnIndex;
   }
 
   // An income statement puts twenty or more rows between its year header and the per-share
@@ -336,6 +349,75 @@ export function getCurrentPeriodColumnIndex(
   }
 
   return 0;
+}
+
+// Foreign private issuers often repeat each period in local currency and US dollars. When
+// that currency row is split into one line per cell, the year alone identifies the local-
+// currency column but not the translated one used by the alert. Combined statements put the
+// quarter group first, so the first matching currency cell is the reported-quarter column.
+function getReportedCurrencyColumnIndex(
+  lines: string[],
+  lineIndex: number,
+  currencyCode: string | undefined,
+): number | null {
+  if (undefined === currencyCode) {
+    return null;
+  }
+
+  for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 240; index--, examined++) {
+    if (currencyCode !== getCurrencyColumnCode(lines[index] ?? "")) {
+      continue;
+    }
+
+    let runStartIndex = index;
+    while (runStartIndex > 0 && null !== getCurrencyColumnCode(lines[runStartIndex - 1] ?? "")) {
+      runStartIndex--;
+    }
+
+    const currencyColumns: string[] = [];
+    for (let columnIndex = runStartIndex; columnIndex < lines.length; columnIndex++) {
+      const columnCode = getCurrencyColumnCode(lines[columnIndex] ?? "");
+      if (null === columnCode) {
+        break;
+      }
+
+      currencyColumns.push(columnCode);
+    }
+
+    const matchingColumnIndex = currencyColumns.indexOf(currencyCode);
+    return -1 === matchingColumnIndex ? null : matchingColumnIndex;
+  }
+
+  return null;
+}
+
+const currencyColumnCodeByLabel = new Map<string, string>([
+  ["US$", "USD"],
+  ["USD", "USD"],
+  ["RMB", "CNY"],
+  ["CNY", "CNY"],
+  ["EUR", "EUR"],
+  ["GBP", "GBP"],
+  ["JPY", "JPY"],
+  ["CHF", "CHF"],
+  ["CAD", "CAD"],
+]);
+
+function getCurrencyColumnCode(line: string): string | null {
+  const normalizedLine = line.replace(/[\s|]/g, "").toUpperCase();
+  return currencyColumnCodeByLabel.get(normalizedLine) ?? null;
+}
+
+function hasMultiCurrencyColumnHeader(lines: string[], lineIndex: number): boolean {
+  const currencyCodes = new Set<string>();
+  for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 240; index--, examined++) {
+    const currencyCode = getCurrencyColumnCode(lines[index] ?? "");
+    if (null !== currencyCode) {
+      currencyCodes.add(currencyCode);
+    }
+  }
+
+  return 2 <= currencyCodes.size;
 }
 
 // A column header ends in a run of year cells ("... Three Months Ended March 31 2025

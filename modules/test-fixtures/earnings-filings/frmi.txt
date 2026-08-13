@@ -1,0 +1,654 @@
+EX-99.1
+2
+fermiq22026erex_991.htm
+EX-99.1 FRMI Q2 2026 EARNINGS RELEASE
+
+
+
+
+Document
+Exhibit 99.1
+
+
+Fermi Announces Second Quarter 2026 Results and Delivers on All Five 90-day Objectives
+Company signed its first anchor customer, named a CEO, added a strategic alliance and premier contractors, received three F-series turbines, and raised more than $431 million of shareholder-friendly capital
+DALLAS, August 13, 2026 -- Fermi Inc. (NASDAQ/LSE: FRMI), operating as Fermi America™ (“Fermi” or the “Company”), today announced full execution of the 90-day plan provided in May. The Company established significant momentum and took a major step toward delivering its large-scale, reliable private power grid for AI and advanced computing. The Company also reported second quarter 2026 financial results. A conference call is scheduled for 9 a.m. Eastern Time / 2 p.m. British Time today, August 13, 2026. Accompanying slides and prepared remarks can be found at https://investor.fermiamerica.com. Participation details are included in this release.
+Delivering on Commitments
+“Roughly 90 days ago, we put ourselves on the clock with a clear set of aggressive objectives, and the team delivered on all five,” said Marius Haas, Chairman of the Board of Directors of Fermi Inc. “We signed a binding agreement with TensorWave, our first anchor customer. We appointed a proven and respected CEO in Lee McIntire, who has all the right skills and experience to lead Fermi 2.0 into its next phase of power delivery. We established a strategic alliance with Hillcore, a world-class power company, and deepened our relationships with premier contractors. We received three Siemens F-class turbines to bring our total landed power to 1.5 gigawatts, maintaining our speed-to-power advantage. Lastly, we strengthened our balance sheet through an upsized convertible note offering at a very attractive cost of capital, while protecting shareholders against dilution. The momentum we’ve built is real, and we’re doing it with focus, discipline, and execution.”
+Anchor Customer Agreement Affirms Commercial Strategy
+Customers need large-scale, reliable power on an AI timeline. That need defines the market today and is the challenge Fermi was built to solve. Over recent months, Fermi has been engaged with multiple prospective customers and potential strategic and joint-venture partners.
+Earlier this week, the Company announced that it has signed a 15-year turnkey binding lease agreement with TensorWave, a premier Neocloud provider positioned in the heart of the AI infrastructure ecosystem, to become the first customer at the Project Matador campus. Phase one of the agreement includes 222 MW of total facility power, with total revenue of approximately $6.5 billion over the life of the contract. The agreement also includes two expansion options for TensorWave to triple the size of its footprint on the site over time.
+Leadership for the Next Phase of Power Delivery
+The Board of Directors also appointed Lee McIntire as Chief Executive Officer to lead Fermi’s transition from development into construction and first power. With more than 40 years of experience across Bechtel, CH2M Hill, and TerraPower, McIntire has built large-scale natural gas generation projects, nuclear programs from advanced reactor development through commercial execution, and civil mega-projects on the scale of the Panama Canal expansion. Having served on Fermi's Board as an independent director since September 2025,
+
+
+
+
+
+
+
+he combines this strong track record of execution with his direct knowledge of the Company's assets, partners, and strategy.
+Deepening Strategic Partnerships and Relationships with Proven Contractors
+On August 11, the Company announced a build-own-operate-transfer strategic alliance with Hillcore Energy Capital Corporation (“Hillcore”) for approximately 2.6 GW of incremental power generation at Project Matador. The framework agreement would double planned on-site generation to 4.8 GW within approximately 30 months when combined with Fermi's own power generation program.
+Under the agreement, Hillcore and its partners will finance, construct, own, and operate their facility under a long-term ground sublease at the Project Matador site, with Fermi committing no capital and issuing no debt for the plant. First power of approximately 350 MW is targeted within 24 months of notice to proceed, with subsequent blocks triggered only by contracted end-user demand and each power purchase agreement term matched to the corresponding customer lease – linking generation buildout to signed commercial demand rather than forecasts. Fermi will serve as anchor offtaker under a 20-year power-purchase agreement and holds an option to acquire the facility at fair market value after year 10. Fermi also recently signed strategic partnerships with leading EPC firms Primoris Services Corporation (“Primoris”) for balance of plant work and TSK for engineering on the Siemens SGT6-5000F turbines.
+Power Progress
+Project Matador continues to advance from plan to physical infrastructure. Fermi is developing one of the world’s largest advanced private power and AI campus sites, with approximately 8,400 acres secured or under long-term lease in the Texas Panhandle and more than $1.5 billion invested in site buildout to date. With critical infrastructure already in place, the Company is closely pacing future outlays of capital with commercial commitments.
+• Phase One: six Siemens SGT-800 turbines capable of delivering nearly 300 megawatts. Fermi has completed bathtub excavation for all six power islands, engaged Primoris to build the balance of plant, and continues to work toward a final EPC agreement.
+• Phase Two: three Siemens SGT6-5000F turbines rated at up to 728 megawatts in simple-cycle mode. TSK, Spain's largest power-focused EPC firm, is delivering early works and fast-start engineering. The units arrived at the Port of Houston in July, bringing Fermi’s landed power assets to 1.5 GW, adding to the Company’s speed-to-power competitive advantage.
+• Proven iron: the Siemens SGT6-5000F turbines rank among the most widely used heavy-duty turbines in the 60-hertz market. They ramp at up to 40 megawatts a minute, reach full speed in about five minutes, and carry global fleet reliability near 99%. AI workloads demand exactly that profile.
+• Site infrastructure: Fermi has installed more than 11 miles of perimeter fencing, nearly five miles of high-pressure natural gas pipeline, and seven miles of water distribution lines providing 2.5 million gallons per day to support closed loop cooling systems that will use 80% less water than traditional methods. This is backed by a two-million-gallon storage tank. Work with Xcel Energy continues toward 200 megawatts of power on site.
+
+
+• Path to first power: about 200 megawatts of initial commercial power over the next six months, and about 1.5 GW over the next 18 to 24 months, excluding the Hillcore alliance and subject to binding customer agreements and approvals.
+The site is now ready to shift to vertical construction on customer timelines. The supply chain is secured, EPC relationships are in place, and skilled labor remains available across the region.
+
+
+
+
+
+
+
+Strengthened Liquidity to Enhance Execution
+In July, Fermi strengthened its liquidity position by issuing convertible notes, which created operational flexibility, assured a longer runway, and improved its strategic options.
+• Subsequent to quarter end, the Company issued more than $431 million of 5.00% Convertible Senior Notes due 2031, including the full exercise of the initial purchasers’ option for an additional $56.3 million.
+• Net proceeds were $416.8 million, before the approximately $34.5 million cost of capped call transactions.
+• Initial conversion price of approximately $9.52 per share.
+• Capped call transactions eliminate shareholder dilution up to an effective strike price of $14.64 per share - representing a 100% premium to the July 9, 2026, closing price.
+◦ In plain terms, existing shareholders face no dilution unless the stock more than doubles from the reference point. Even a tripling of the stock price would only dilute shareholders by about 2%.
+• The notes carry no scheduled amortization and no financial maintenance covenants, which preserves operating and financial flexibility.
+Second Quarter Financial Highlights (as of and for the three months ended June 30, 2026)
+• $91.7 million of total cash and restricted cash on hand.
+• $185.0 million of capital invested in Property, Plant, and Equipment, bringing the gross balance to approximately $1.55 billion. Fermi remains focused on disciplined capital deployment matched to commercial progress.
+• $520.1 million of outstanding debt, reflecting a $98.8 million net increase in borrowings under equipment financing facilities.
+• $25.8 million net loss, or $0.04 per basic and diluted share. General and administrative expenses of $26.8 million drove most of that result. Fermi remains pre-revenue and in its development phase, so spending tracks buildout rather than operations.
+
+Conference Call Information
+Fermi plans to host a conference call and webcast at 9 a.m. Eastern Time / 2 p.m. British Time today, August 13, 2026, to discuss its second quarter results and recent milestone execution.
+To participate, dial (888) 506-0062 in the U.S. or +1 973-528-0011 internationally approximately 15 minutes prior to the scheduled start time and refer to conference code 587288. The call will also be webcast in a listen-only mode and can be accessed through the Investor Relations Events & Presentations page of Fermi’s website . A replay of the webcast will be available for a period of one year.
+Financial Results and SEC Filings
+Fermi's report on Form 10-Q for the quarter ended June 30, 2026, will be filed with the U.S. Securities and Exchange Commission and made available through the SEC's website and the Investor Relations section of Fermi’s website .
+
+
+
+
+
+
+
+Investor Contact
+Barry Sievert | IR@fermiamerica.com
+Media Contact
+Fermi Inc. Communications | press@fermiamerica.com
+About Fermi’s Project Matador
+Fermi America is where AI gets power. The Company is developing one of the world’s largest advanced energy and AI ecosystems, on an area in the Texas Panhandle that’s more than half the size of Manhattan. The site, called Project Matador, is secured or under long-term lease with more than $1.5 billion invested in buildout to date. Fermi designed the project to solve the single biggest constraint in AI infrastructure: access to large-scale, reliable power on a timeline that meets customer demand – delivered behind the meter and on a private grid built and operated on site. Subject to entering into binding customer agreements, the project is expected to ramp to approximately 17 GW, with capital deployment matched to commercial progress.
+About Fermi America™
+Fermi America™ (Nasdaq/LSE: FRMI) develops next-generation private electric grids that deliver highly redundant power at gigawatt scale to support next-generation intelligence and AI compute. Fermi America™ combines cutting-edge technology with a deep bench of proven world-class multi-disciplinary leaders with a combined 25 GW of experience, to create one of the world's largest, 17 GW next-gen private grid, helping ensure America’s energy and AI dominance. The behind-the-meter Project Matador campus is expected to integrate the nation's biggest combined-cycle natural gas project, one of the largest clean, new nuclear power complexes in America, utility grid power, solar power, and battery energy storage, to support hyperscale AI and advanced computing. For additional information visit www.fermiamerica.com .
+
+
+
+
+
+
+
+
+Forward-Looking Statements
+This press release contains forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995. All statements that do not relate to matters of historical fact should be considered forward-looking statements, including, without limitation, statements regarding our development plans, construction timelines, permitting and regulatory approvals, customer agreements, strategic partnerships and alliances, joint ventures, financing activities, generation capacity, future expansion of Project Matador, equipment delivery and installation, first power timing, leadership transition, and anticipated operational milestones.
+These statements are based on current expectations and assumptions and are subject to known and unknown risks, uncertainties, and other important factors that could cause actual results to differ materially from those expressed or implied by such forward-looking statements. These factors include, among others: our ability to obtain and maintain required permits and regulatory approvals, including from the NRC and TCEQ; our ability to secure and maintain binding customer agreements and creditworthy counterparties; our ability to complete strategic partnerships and joint ventures on acceptable terms; the availability of project financing and capital on acceptable terms; risks associated with large-scale construction and infrastructure development; interconnection availability and grid constraints; supply chain and equipment procurement risks; commodity availability and pricing, including natural gas and water; risks associated with nuclear development and licensing; counterparty performance; leadership transition risks; litigation and governance matters; and broader economic, regulatory, and market conditions.
+Statements regarding potential generation capacity in excess of currently permitted levels, including any reference to expansion beyond approximately 6 GW or up to 11 GW or 17 GW, are subject to the successful receipt of additional permits and approvals, financing, interconnection capacity, land acquisition, and other factors, and there can be no assurance that such capacity will be developed or achieved.
+Statements regarding total site acreage, including any reference to expansion beyond currently controlled or leased land, are subject to the closing of pending acquisitions, land availability, and other factors, and there can be no assurance that such acreage will be realized.
+These forward-looking statements represent management’s expectations as of the date of this release. Except as required by law, the Company undertakes no obligation to update or revise these statements. Additional information regarding these and other risks is included in the Company’s Form 10-K and other filings with the Securities and Exchange Commission.
+
+
+
+
+
+
+
+
+
+
+Fermi Inc.
+Condensed Consolidated Balance Sheets
+(in thousands, except par value amounts and share numbers)
+(unaudited)
+
+
+| | | | | | | | |
+
+| As of
+June 30, 2026
+| As of
+December 31, 2025
+|
+Assets
+| |
+|
+Property, plant, and equipment, net
+| $
+| 1,547,856
+|
+| $
+| 935,295
+|
+|
+Cash and cash equivalents
+| 62,536
+|
+| 408,529
+|
+|
+Restricted cash
+| 29,195
+|
+| —
+|
+|
+Prepaid expenses and other assets
+| 75,804
+|
+| 47,753
+|
+|
+Operating lease right-of-use assets
+| 47,745
+|
+| 21,737
+|
+|
+Total assets
+| $
+| 1,763,136
+|
+| $
+| 1,413,314
+|
+|
+Liabilities and stockholders’ equity
+| |
+|
+Debt, net
+| $
+| 520,091
+|
+| $
+| 109,799
+|
+|
+Accounts payable and accrued liabilities
+| 149,691
+|
+| 176,572
+|
+|
+Operating lease liabilities
+| 56,297
+|
+| 21,320
+|
+|
+Other liabilities
+| 5,400
+|
+| 9,751
+|
+|
+Total liabilities
+| 731,479
+|
+| 317,442
+|
+|
+Commitments and contingencies
+| |
+|
+Stockholders’ equity
+| |
+|
+Common stock, $0.001 par value; 2,400,000,000 shares authorized, 638,115,075 and 629,839,790 shares issued and outstanding as of June 30, 2026 and December 31, 2025, respectively
+| 638
+|
+| 628
+|
+|
+Preferred stock, $0.001 par value; 10,000,000 shares authorized, and no shares issued or outstanding as of June 30, 2026 and December 31, 2025
+| —
+|
+| —
+|
+|
+Additional paid-in capital
+| 1,378,717
+|
+| 1,228,443
+|
+|
+Accumulated deficit
+| (347,698)
+|
+| (133,199)
+|
+|
+Total stockholders’ equity
+| 1,031,657
+|
+| 1,095,872
+|
+|
+Total liabilities and stockholders’ equity
+| $
+| 1,763,136
+|
+| $
+| 1,413,314
+|
+|
+
+
+
+
+
+
+
+
+
+
+
+Fermi Inc.
+Condensed Consolidated Statements of Operations
+(in thousands, except share and per share numbers)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+
+| Three Months Ended June 30,
+|
+| Six Months Ended June 30, 2026
+|
+| For the period from
+January 10, 2025
+(Inception) through
+June 30, 2025
+|
+
+| 2026
+|
+| 2025
+|
+|
+|
+Expenses:
+|
+|
+|
+|
+|
+|
+|
+|
+| | | | | | | |
+General and administrative
+| $
+| 26,759
+|
+|
+| $
+| 5,609
+|
+|
+| $
+| 193,003
+|
+|
+| $
+| 5,687
+|
+|
+Total expenses
+| 26,759
+|
+|
+| 5,609
+|
+|
+| 193,003
+|
+|
+| 5,687
+|
+|
+Loss from operations
+| (26,759)
+|
+|
+| (5,609)
+|
+|
+| (193,003)
+|
+|
+| (5,687)
+|
+|
+Other income (expense):
+|
+|
+|
+|
+|
+|
+|
+|
+Interest income (expense)
+| 953
+|
+|
+| (680)
+|
+|
+| 3,302
+|
+|
+| (680)
+|
+|
+Other income (expense), net
+| —
+|
+|
+| —
+|
+|
+| (24,798)
+|
+|
+| —
+|
+|
+Total other income (expense)
+| 953
+|
+|
+| (680)
+|
+|
+| (21,496)
+|
+|
+| (680)
+|
+|
+Net loss
+| $
+| (25,806)
+|
+|
+| $
+| (6,289)
+|
+|
+| $
+| (214,499)
+|
+|
+| $
+| (6,367)
+|
+|
+Net loss per share – basic and diluted
+| $
+| (0.04)
+|
+|
+| $
+| (0.02)
+|
+|
+| $
+| (0.34)
+|
+|
+| $
+| (0.02)
+|
+|
+Weighted average shares outstanding – basic and diluted
+| 637,325,436
+|
+|
+| 408,977,385
+|
+|
+| 633,603,292
+|
+|
+| 389,091,954
+|
+|
+
+
+
+
+
+
+
+
+
+
+
+Fermi Inc.
+Condensed Consolidated Statements of Cash Flows
+(in thousands)
+(unaudited)
+| | | | | | | | | |
+
+| Six Months Ended June 30, 2026
+| For the period from
+January 10, 2025
+(Inception) through
+June 30, 2025
+| |
+Cash flows used in operating activities:
+|
+|
+| |
+Net loss
+| $
+| (214,499)
+|
+| $
+| (6,367)
+|
+| |
+Adjustments to reconcile net loss to net cash used in operating activities:
+|
+|
+| |
+| | | |
+Share-based compensation
+| 118,724
+|
+| —
+|
+| |
+| | | |
+Loss on extinguishment of debt
+| 24,753
+|
+| —
+|
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+Share-based compensation expense, related party
+| —
+|
+| 3,616
+|
+| |
+Non-cash interest expense paid-in-kind
+| —
+|
+| 680
+|
+| |
+Other
+| 1,494
+|
+| 68
+|
+| |
+Changes in operating assets and liabilities:
+|
+|
+| |
+Accounts payable and accrued liabilities
+| 35,489
+|
+| 1,343
+|
+| |
+Prepaid expenses and other assets
+| (21,977)
+|
+| (1,958)
+|
+| |
+Net cash used in operating activities
+| $
+| (56,016)
+|
+| $
+| (2,618)
+|
+| |
+Cash flows used in investing activities:
+|
+|
+| |
+Investments in property, plant, and equipment
+| (626,157)
+|
+| (40,313)
+|
+| |
+Capitalized preacquisition costs
+| —
+|
+| (2,559)
+|
+| |
+| | | |
+Net cash used in investing activities
+| $
+| (626,157)
+|
+| $
+| (42,872)
+|
+| |
+Cash flows from financing activities:
+|
+|
+| |
+| | | |
+| | | |
+| | | |
+Proceeds from issuance of debt, net of debt discount
+| 513,493
+|
+| —
+|
+| |
+Repayment of Macquarie Term Loan
+| (144,294)
+|
+| —
+|
+| |
+| | | |
+| | | |
+Payment of debt issuance costs
+| (3,824)
+|
+| (78)
+|
+| |
+Proceeds from issuance of Series A Convertible Notes
+| —
+|
+| 58,900
+|
+| |
+Proceeds from issuance of Seed Convertible Notes
+| —
+|
+| 26,123
+|
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+Other financing activities
+| —
+|
+| 877
+|
+| |
+| | | |
+Net cash provided by financing activities
+| $
+| 365,375
+|
+| $
+| 85,822
+|
+| |
+| | | |
+Change in cash, cash equivalents and restricted cash
+| (316,798)
+|
+| 40,332
+|
+| |
+Cash, cash equivalents and restricted cash, at beginning of period
+| 408,529
+|
+| —
+|
+| |
+Cash, cash equivalents and restricted cash, at end of period
+| $
+| 91,731
+|
+| $
+| 40,332
+|
+| |
+
+|
+|
+| |
+Cash, cash equivalents and restricted cash, at end of period:
+|
+|
+| |
+Cash and cash equivalents
+| $
+| 62,536
+|
+| $
+| 40,332
+|
+| |
+Restricted cash
+| 29,195
+|
+| —
+|
+| |
+| | | |

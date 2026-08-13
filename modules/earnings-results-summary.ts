@@ -140,6 +140,7 @@ function getSummaryPrompt(input: EarningsAiSummaryInput, filingText: string): st
     "- If you mention any displayed result metric, use exactly the displayed value and do not mention a different value for the same metric.",
     "- Do not mention revenue unless the filing text explicitly reports revenue, revenues, net sales, or third-party revenue as a result metric.",
     "- Never infer revenue from adjusted earnings, EBITDA, cash flow, deferred revenue, table-note markers, or project spending.",
+    "- Do not summarize forward-looking-statements disclaimers, safe-harbor language, or other legal boilerplate.",
     "- Use only the provided filing text and do not mention the SEC filing, source text, or any AI provider.",
     `Company: ${input.companyName}`,
     `Ticker: ${input.ticker}`,
@@ -339,6 +340,7 @@ function getValidatedSummarySentence(
       true === hasUnexpectedMarkdown(normalizedSentence) ||
       true === hasCorrectionArtifact(normalizedSentence) ||
       true === hasUnexpectedCjkCharacters(normalizedSentence) ||
+      true === hasForwardLookingBoilerplate(normalizedSentence) ||
       false === isSupportedSummarySentence(
         normalizedSentence,
         item.sourceSnippet,
@@ -403,6 +405,7 @@ function getValidatedSourceSnippet(
       true === hasUnexpectedMarkdown(normalizedSnippet) ||
       true === hasCorrectionArtifact(normalizedSnippet) ||
       true === hasUnexpectedCjkCharacters(normalizedSnippet) ||
+      true === hasForwardLookingBoilerplate(normalizedSnippet) ||
       true === hasDisplayedMetricConflict(normalizedSnippet, input.metrics ?? [])) {
     return null;
   }
@@ -411,6 +414,11 @@ function getValidatedSourceSnippet(
 }
 
 const summaryMaterialEvidencePattern = /\b(?:bookings?|cash\s+flow|demand|earnings?|eps|expects?|growth|guidance|income|loss|margin|orders?|outlook|production|profit|revenue|sales|segments?|volume)\b/i;
+
+function hasForwardLookingBoilerplate(value: string): boolean {
+  return /\bforward-looking statements?\b|\bsafe[-\s]harbor\b|\bactual (?:results|performance|events)\b[^.!?]{0,100}\bdiffer materially\b/i
+    .test(value);
+}
 
 function getBoundedPartialSummary(parts: string[]): string | null {
   if (parts.length < 2) {
