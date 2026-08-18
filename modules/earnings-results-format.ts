@@ -278,10 +278,13 @@ function extractMetric(
     const hasReportedGaapNetIncome = "net_income" === definition.key &&
       false === isForwardLooking &&
       true === hasMetricValueBeforeAdjustment(line, definition.patterns);
+    const hasReportedRevenueBeforeGuidance = "revenue" === definition.key &&
+      true === hasMetricValueBeforeGuidance(line, definition.patterns);
     if (true === isSkippedMetricLine(line, definition) &&
         false === hasExplicitGaapEps &&
         false === hasReportedGaapEps &&
-        false === hasReportedGaapNetIncome) {
+        false === hasReportedGaapNetIncome &&
+        false === hasReportedRevenueBeforeGuidance) {
       continue;
     }
 
@@ -344,12 +347,32 @@ function extractMetric(
 }
 
 function hasMetricValueBeforeAdjustment(line: string, patterns: RegExp[]): boolean {
-  const adjustedIndex = line.search(/\badjusted\b|\bnon-gaap\b/i);
-  if (0 >= adjustedIndex) {
+  return hasMetricValueBeforeQualifier(line, patterns, /\badjusted\b|\bnon-gaap\b/i);
+}
+
+// A results bullet can compare an already stated actual with guidance on the same line:
+// "Total revenue of $46.5 million ... within guidance of $46-48 million". The guidance
+// skip applies only to the trailing comparison, while a line whose first value follows the
+// guidance label remains forward-looking and must still be discarded.
+function hasMetricValueBeforeGuidance(line: string, patterns: RegExp[]): boolean {
+  return hasMetricValueBeforeQualifier(
+    line,
+    patterns,
+    /\b(?:guidance|outlook|forecast)\b/i,
+  );
+}
+
+function hasMetricValueBeforeQualifier(
+  line: string,
+  patterns: RegExp[],
+  qualifierPattern: RegExp,
+): boolean {
+  const qualifierIndex = line.search(qualifierPattern);
+  if (0 >= qualifierIndex) {
     return false;
   }
 
-  const reportedText = line.slice(0, adjustedIndex);
+  const reportedText = line.slice(0, qualifierIndex);
   return patterns.some(pattern => {
     pattern.lastIndex = 0;
     const patternMatch = pattern.exec(reportedText);

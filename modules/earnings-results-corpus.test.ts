@@ -1240,6 +1240,18 @@ const filingCorpus: {
     source: "6951/000162828026056699/exhibit991q32026earningsre.htm",
     ticker: "amat",
   },
+  {
+    // The reported total and its comparison to guidance share one bullet. The guidance
+    // qualifier applies only to the trailing range, not the $46.5 million result before it.
+    company: "Prenetics Global",
+    metrics: [
+      ["revenue", "$46.5M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1876431/000162828026057534/ex991pressrelease.htm",
+    ticker: "pre",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1260,6 +1272,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(79);
+    expect(filingCorpus).toHaveLength(80);
   });
 });
