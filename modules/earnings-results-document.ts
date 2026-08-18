@@ -94,6 +94,20 @@ export function getDocumentHeadline(lines: string[]): string | undefined {
 
 export function getDocumentCurrencyCode(lines: string[]): string | undefined {
   const headerLines = lines.slice(0, 60);
+  // A filing can define every currency symbol it uses before stating its reporting
+  // currency ("all references to EUR ... are euros" followed by "we report our
+  // consolidated financial results in U.S. dollars"). The reporting declaration is
+  // authoritative; passing the glossary line to the generic currency reader otherwise
+  // picks whichever non-dollar symbol it happens to check first.
+  const reportingCurrencyDeclaration = headerLines
+    .map(line => line.match(
+      /\b(?:report|present)(?:ed|ing)?\s+(?:our\s+)?(?:consolidated\s+)?financial\s+(?:results|statements|information)\s+in\s+(U\.S\.\s+dollars?|Canadian\s+dollars?|New\s+Taiwan\s+dollars?|(?:USD|CAD|TWD|NTD|EUR|GBP|JPY|CHF))\b/i,
+    )?.[1])
+    .find((declaration): declaration is string => undefined !== declaration);
+  if (undefined !== reportingCurrencyDeclaration) {
+    return getCurrencyCodeFromText(reportingCurrencyDeclaration);
+  }
+
   const currencyDeclaration = headerLines
     .find(line => /\b(?:Canadian|New Taiwan|U\.S\.)\s+dollars?\b/i.test(line) ||
       hasDeclaredIsoCode(line, ["CAD", "TWD", "NTD", "USD", "EUR", "GBP", "JPY", "CHF"]) ||

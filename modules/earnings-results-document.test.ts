@@ -65,4 +65,11 @@ describe("earnings result document text", () => {
       "Net sales increased to CHF 850.3 million.",
     ])).toBe("CHF");
   });
+
+  test("prefers an explicit reporting currency over a multi-currency glossary", () => {
+    expect(getDocumentCurrencyCode([
+      "All references to U.S. dollars are to USD, all references to EUR are to euros, and all references to CNY are to yuan.",
+      "We report our consolidated financial results in U.S. dollars but have significant non-U.S. operations.",
+    ])).toBe("USD");
+  });
 });

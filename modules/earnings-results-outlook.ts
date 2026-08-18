@@ -291,7 +291,13 @@ function isInlineOutlookMetricLine(line: string): boolean {
     /\b(?:expects?|expected|forecast|projected)\b/i.test(line);
   const isInlineOutlookHeading = /\b(?:20\d{2}|fy\s*\d{2})\s+outlook\s*:/i.test(line) &&
     /\b(?:raises?|raised|updates?|provides?|expects?|reiterates?|reaffirms?)\b/i.test(line);
-  return (isGuidanceSentence || isInlineOutlookHeading) &&
+  // MD&A prose does not always put a one-line annual forecast under an Outlook heading.
+  // Keep this to the company's or management's own annual expectation so a project-level
+  // amount ("our share of the project capex is expected ...") is not promoted to guidance.
+  const isDirectCompanyAnnualForecast = /\b(?:our\s+(?:total\s+)?(?:capex|capital\s+expenditures?)|management\b.{0,60}\b(?:capex|capital\s+expenditures?)|the\s+company(?:'s)?\s+(?:total\s+)?(?:capex|capital\s+expenditures?))\b/i.test(line) &&
+    /\b(?:20\d{2}|fy\s*\d{2}|fiscal(?:\s+year)?|full[-\s]+year)\b/i.test(line) &&
+    /\b(?:expects?|expected|forecast|projected)\b/i.test(line);
+  return (isGuidanceSentence || isInlineOutlookHeading || isDirectCompanyAnnualForecast) &&
     true === hasInlineOutlookMetricValue(line);
 }
 
@@ -860,7 +866,32 @@ function getOutlookValueSegments(
     patternMatch[0].replace(/[.*+?^${}()|[\]\\]/g, "\\$&"),
     "i",
   );
-  const nextMetricMatch = [...rawValueText.matchAll(nextMetricPattern)]
+  const followingMetricMatches = [...rawValueText.matchAll(nextMetricPattern)];
+  // A sentence can contrast an actual year with the forecast by repeating the caption:
+  // "capital expenditures for 2025 were $283.7 million, and our capital expenditures for
+  // 2026 are expected to be $400 million." Read the forward-looking occurrence first;
+  // otherwise the first, historical amount wins before the repeated caption is reached.
+  const currentCaptionQualifier = getOutlookCaptionQualifier(
+    line.slice(0, patternMatch.index),
+  );
+  const forwardLookingRepeatedCaptionSegments = followingMetricMatches
+    .filter(candidateMatch =>
+      true === currentCaptionPattern.test(candidateMatch[0]) &&
+      /\b20\d{2}\b.{0,80}\b(?:was|were|totaled|amounted)\b/i.test(
+        rawValueText.slice(0, candidateMatch.index),
+      ) &&
+      currentCaptionQualifier === getOutlookCaptionQualifier(
+        rawValueText.slice(0, candidateMatch.index),
+      ))
+    .map(candidateMatch => {
+      const candidateStart = (candidateMatch.index ?? 0) + candidateMatch[0].length;
+      const nextCaption = followingMetricMatches.find(followingMatch =>
+        (followingMatch.index ?? 0) > (candidateMatch.index ?? 0));
+      return rawValueText.slice(candidateStart, nextCaption?.index ?? rawValueText.length);
+    })
+    .filter(candidateText =>
+      /\b(?:expects?|expected|forecast|projected|guidance|outlook)\b/i.test(candidateText));
+  const nextMetricMatch = followingMetricMatches
     .find(candidateMatch => {
       if (false === currentCaptionPattern.test(candidateMatch[0])) {
         return true;
@@ -875,9 +906,14 @@ function getOutlookValueSegments(
   const endIndex = nextMetricMatch?.index ?? rawValueText.length;
   const previousValueText = getPreviousOutlookValueSegment(line, patternMatch.index);
   return [
+    ...forwardLookingRepeatedCaptionSegments,
     rawValueText.slice(0, endIndex),
     previousValueText,
   ];
+}
+
+function getOutlookCaptionQualifier(text: string): string {
+  return text.match(/\b(gaap|adjusted|non-gaap)\s*$/i)?.[1]?.toLowerCase() ?? "";
 }
 
 function getPreviousOutlookValueSegment(line: string, metricStartIndex: number): string {
