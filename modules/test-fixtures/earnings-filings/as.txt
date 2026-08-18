@@ -1,0 +1,658 @@
+Document
+
+
+
+Exhibit 99.1
+MANAGEMENT’S DISCUSSION AND ANALYSIS OF FINANCIAL CONDITION AND RESULTS OF OPERATIONS
+The following discussion of our financial condition and results of operations should be read in conjunction with our unaudited condensed consolidated interim financial statements and the notes thereto, as of and for the three and six months ended June 30, 2026 included as Exhibit 99.2 to the Report on Form 6-K to which this discussion and analysis is included as Exhibit 99.1, together with our audited financial statements and the notes thereto, and the section titled “Item 3. Key Information—D. Risk Factors,” each of which appear in our annual report on Form 20-F for the year ended December 31, 2025 filed with the SEC on February 26, 2026 (“Annual Report”) and available at www.sec.gov. As discussed in the section titled “Special Note Regarding Forward Looking Statements,” the following discussion and analysis includes forward-looking statements. These forward-looking statements are subject to risks, uncertainties and other factors that could cause our actual results to differ materially from those expressed or implied by the forward-looking statements. Factors that could cause or contribute to these differences include, but are not limited to, those identified below in such section and “Item 3. Key Information—D. Risk Factors” in our Annual Report.
+Unless otherwise indicated or the context otherwise requires, all references herein to “Amer Sports, Inc.,” the “Company,” “we,” “our,” “ours,” “us” or similar terms refer to Amer Sports, Inc., together with its subsidiaries. All references to “U.S. dollars,” “dollars” or “$” are to the U.S. dollar, all references to “EUR” or “€” are to the euro and all references to “CNY” are to the Chinese yuan. Unless otherwise indicated or the context otherwise requires, all references to “Americas” refers to the United States, Canada, and certain countries in Latin America, “EMEA” refers to Europe, the Middle East and Africa, “Greater China” refers to Mainland China, Hong Kong, Macau and Taiwan and “Asia Pacific” excludes Greater China. The presented figures and percentages are subject to rounding adjustments, which may cause discrepancies between the sum of the individual figures and the presented aggregated column and row totals.
+Unless otherwise indicated, all financial information contained herein is prepared and presented in accordance with IFRS Accounting Standards (“IFRS”), specifically International Accounting Standard (“IAS”) 34, Interim Financial Reporting, as issued by the International Accounting Standards Board (“IASB”).
+
+Overview
+Amer Sports is a global group of iconic sports and outdoor brands, including Arc’teryx, Salomon, Wilson, Peak Performance, and Atomic. Our brands are known for their detailed craftsmanship, unwavering authenticity, and premium market positioning. As creators of exceptional apparel, footwear, and equipment, we pride ourselves on cutting-edge innovation, performance, and designs that allow elite athletes and everyday consumers to perform their best.
+We operate our business through the following three reportable business segments, which reflect how we cluster our brands on the basis of similar consumer, product, marketing and operating factors:
+• Technical Apparel. Technical Apparel includes outdoor apparel, footwear and accessories and consists of our Arc’teryx and Peak Performance brands.
+• Outdoor Performance. Outdoor Performance includes outdoor apparel, footwear, accessories and winter sports equipment and consists of our Salomon, Atomic, and Armada brands.
+• Ball & Racquet Sports. Ball & Racquet Sports includes sports equipment, apparel, footwear and accessories and consists of our Wilson, Louisville Slugger, DeMarini, EvoShield and ATEC brands, all of which we refer to as the Wilson Sporting Goods portfolio.
+While Arc’teryx, Salomon and Wilson stand tall and lead our three segments, our other brands appropriately fit our sports-oriented portfolio. Peak Performance enhances our scale, competitive positioning and diversification across sports categories. Atomic and Armada give us a leading position in winter sports equipment, globally. Our baseball brands, which include Louisville Slugger, DeMarini, EvoShield, and ATEC, are market leaders in their respective category. Together, our brands enable us to lead and compete in various sports segments and drive the continued success of our portfolio.
+
+
+
+
+
+
+
+For additional information about our three reportable business segments, see Note 3. “Segment Reporting,” to our unaudited condensed consolidated interim financial statements included as Exhibit 99.2 to the Report on Form 6-K to which this discussion and analysis is included as Exhibit 99.1.
+We generate revenue from the sale of our products through direct-to-consumer and wholesale channels:
+• Direct-to-Consumer includes sales of our brands’ products through (i) owned e-commerce websites and (ii) owned retail stores, which include elevated brand stores that drive consumer engagement and factory outlet stores which serve as a liquidation channel for us.
+• Wholesale includes sales of our brands’ products through general sporting goods retailers, specialty stores, independently-operated partner stores, distributors, retailer-owned and third-party e-commerce websites as well as revenue from certain licensing arrangements.
+
+Seasonality
+We experience some seasonal fluctuations in our revenue and operating results. Historically, we have realized a slightly higher portion of our revenue and earnings in the fourth quarter of the fiscal year, primarily due to higher sales through our direct-to-consumer (“DTC”) channel compared to the rest of the year and a higher share of fall and winter collections in our Technical Apparel and Outdoor Performance segments. Our Ball & Racquet Sports segment is generally more consistent across fiscal quarters. Working capital requirements typically increase throughout our second and third fiscal quarters as inventory builds to support our peak shipping and selling period which typically occurs from August to December. Cash provided by operating activities is typically highest in our first fiscal quarter due to the significant inflows associated with our peak selling season. We believe our strategy to broaden our assortment within the softgoods categories across all our brands could lead to increasingly balanced revenue and results of operations throughout the fiscal year.
+
+Foreign Currency Exposure
+We report our consolidated financial results in U.S. dollars but have significant non-U.S. operations. A large portion of our business is conducted in currencies other than U.S. dollars, in particular the euro, the Canadian dollar and Renminbi (“RMB”), and generally the applicable local currency is our functional currency in that locality. As a result, we face foreign currency exposure that impacts our profitability due to the translation of net income, assets and liabilities of our operations in numerous jurisdictions into U.S. dollars, including on our outstanding indebtedness and available credit facilities denominated in currencies other than U.S. dollars.
+Where possible, we manage foreign currency exposure through a variety of methods, including by financing each business unit in its functional currency and concentrating cash flows through centralized entities to limit the number of foreign currencies being utilized for purchases. Additionally, we enter into hedging arrangements to limit our exposure to foreign currency fluctuations for a significant portion of our cash flows, in particular with our most commonly used foreign currencies, including euros, Canadian dollars and RMB. Such hedging arrangements may include foreign exchange forward contracts and options as well as cross-currency swaps. The majority of our hedging arrangements are short-term and are usually rolled forward within the standard business cycle. Nonetheless, it is not practical for us to mitigate all of our foreign currency exposure, nor are we able to accurately predict the possible impact of future foreign currency exchange rate fluctuations on our results of operations, due to our constantly changing exposure to various foreign currencies, difficulty in predicting fluctuations in foreign currency exchange rates relative to the U.S. dollar and the significant number of foreign currencies involved. As we continue to expand our global operations, our exposure to foreign currency risk could become more significant.
+2
+
+
+
+
+
+
+Key Financial Metrics
+The following table summarizes certain key financial measures for the three and six months ended June 30, 2026, and 2025. Management regularly reviews a number of metrics, including the following key financial metrics, to evaluate our business, measure our performance, identify trends in our business, prepare financial projections and make strategic decisions. Management believes the non-IFRS financial measures presented below are useful in evaluating our performance, in addition to our financial results prepared in accordance with IFRS. See “Results of Operations” for additional information and for the comparison discussion between the three and six months ended June 30, 2026, and 2025, and “Non-IFRS Financial Measures” for additional information on the non-IFRS financial measures and a reconciliation to the most comparable IFRS financial measures.
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three months ended June 30, | | For the six months ended June 30, |
+In millions | | 2026 | | 2025 | | 2026 | | 2025 |
+Revenue | | $ | 1,632.6 | | | $ | 1,236.3 | | | $ | 3,578.1 | | | $ | 2,708.8 | |
+Constant Currency Revenue (1)
+| | 1,604.5 | | | 1,236.3 | | | 3,462.2 | | | 2,708.8 | |
+Net income attributable to equity holders of the Company | | 107.2 | | | 18.2 | | | 271.8 | | | 152.8 | |
+Net income margin | | 6.6% | | 1.5% | | 7.6% | | 5.6% |
+Adjusted EBITDA (2)
+| | $ | 311.9 | | | $ | 137.8 | | | $ | 744.3 | | | $ | 437.1 | |
+Adjusted EBITDA Margin (2)
+| | 19.1% | | 11.1% | | 20.8% | | 16.1% |
+Adjusted net income attributable to equity holders of the Company (2)
+| | $ | 126.8 | | | $ | 36.0 | | | $ | 344.8 | | | $ | 184.0 | |
+Segment Revenue
+| | | | | | | | |
+Technical Apparel | | $ | 674.2 | | | $ | 508.9 | | | $ | 1,559.2 | | | $ | 1,172.7 | |
+Outdoor Performance | | 568.5 | | | 413.7 | | | 1,282.1 | | | 916.1 | |
+Ball & Racquet Sports | | 389.9 | | | 313.7 | | | 736.8 | | | 620.0 | |
+Segment Adjusted Operating Profit
+| | | | | | | | |
+Technical Apparel | | $ | 126.5 | | | $ | 71.8 | | | $ | 359.8 | | | $ | 230.4 | |
+Outdoor Performance | | 83.0 | | | 27.5 | | | 228.3 | | | 106.0 | |
+Ball & Racquet Sports | | 67.2 | | | 13.2 | | | 79.6 | | | 35.6 | |
+____________________________________________
+(1) This is a non-IFRS financial measure. For more information regarding our use of this measure and its usefulness to investors, see “Non-IFRS Financial Measures” below.
+(2) This is a non-IFRS financial measure. For more information regarding our use of this measure and its usefulness to investors, as well as a reconciliation to the most comparable IFRS financial measure, see “Non-IFRS Financial Measures” below.
+Constant Currency Revenue
+As we are a global company, the comparability of our revenue reported in U.S. dollars is also affected by foreign-currency exchange rate fluctuations because the underlying currencies in which we transact change in value over time compared to the U.S. dollar. These rate fluctuations can have a significant effect on our reported results. As a result, in addition to financial measures prepared in accordance with IFRS, our revenue discussions often contain references to constant currency measures, which are calculated by translating the current period reported amounts using the actual exchange rates in use during the comparative prior period, in place of the exchange rates in use during the current period. For a further discussion of how we utilize, and limitations of, this non-IFRS financial measure, see “Non-IFRS Financial Measures.”
+3
+
+
+
+
+
+Adjusted EBITDA and Adjusted EBITDA Margin
+We define Adjusted EBITDA as net income attributable to equity holders of the Company, plus net income attributable to non-controlling interests, income tax (expense)/benefit, foreign currency exchange (losses)/gains, net & other finance costs, interest expense, loss on debt extinguishment, and depreciation and amortization, less interest income, with adjustments to exclude restructuring expenses, impairment losses on goodwill and intangible assets, expenses related to transaction activities, expenses related to certain legal proceedings and certain share-based payments. We define Adjusted EBITDA Margin as Adjusted EBITDA divided by revenue. Adjusted EBITDA and Adjusted EBITDA Margin may not be comparable to similarly titled metrics of other companies due to differences in methods of calculation. For a reconciliation of Adjusted EBITDA to net income attributable to equity holders of the Company and a reconciliation of Adjusted EBITDA Margin to net income margin and for a further discussion of how we utilize, and limitations of, these non-IFRS measures see “Non-IFRS Financial Measures.”
+Adjusted Net Income attributable to equity holders of the Company
+We define Adjusted Net Income attributable to equity holders as net income attributable to equity holders of the Company with adjustments to exclude depreciation and amortization on the purchase price allocation (“PPA”) fair value step up resulting from the acquisition and delisting of Amer Sports in 2019 (“the Acquisition”), restructuring expenses, impairment losses on goodwill and intangible assets, expenses related to transaction activities, expenses related to certain legal proceedings, certain share-based payments, derivative contract loss, loss on debt extinguishment, and the related income tax expense on these adjustments and deferred tax expense or benefit arising from tax rate changes on PPA balances.
+Adjusted net income attributable to equity holders may not be comparable to similarly titled metrics of other companies due to differences in methods of calculation. For a reconciliation of Adjusted net income attributable to equity holders of the Company to net income attributable to equity holders of the Company and for a further discussion of how we utilize, and the limitations of, this non-IFRS measure see “Non-IFRS Financial Measures.”
+Segment Adjusted Operating Profit and Segment Adjusted Operating Profit Margin
+We define Segment Adjusted Operating Profit as income before tax for the segment with adjustments to exclude depreciation and amortization on PPA fair value step up resulting from the Acquisition, restructuring expenses, impairment losses on goodwill and intangible assets, expenses related to transaction activities, expenses related to certain legal proceedings, expenses related to certain share-based payments, interest expense, foreign currency exchange (losses)/gains, net & other finance costs, loss on debt extinguishment, and interest income. Segment Adjusted Operating Profit is a measure of operating performance of our reportable segments and may not be comparable to similar measures reported by other companies. We define Segment Adjusted Operating Profit Margin as Segment Adjusted Operating Profit divided by segment revenue.
+Segment Adjusted Operating Profit is a performance metric utilized by the Company’s Chief Operating Decision Maker to allocate resources to and assess performance of the Company’s segments. See Note 3. “Segment Reporting,” to our unaudited condensed consolidated interim financial statements included elsewhere in Exhibit 99.2 to the Report on Form 6-K to which this discussion and analysis is included as Exhibit 99.1.
+4
+
+
+
+
+
+
+Results of Operations
+The following table sets forth our results of operations for the periods presented.
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three months ended June 30, | | For the six months ended June 30, |
+In millions | | 2026 | | 2025 | | 2026 | | 2025 |
+Revenue | | $ | 1,632.6 | | | $ | 1,236.3 | | | $ | 3,578.1 | | | $ | 2,708.8 | |
+Cost of goods sold | | (561.0) | | | (513.4) | | | (1,341.2) | | | (1,134.8) | |
+Gross profit | | 1,071.6 | | | 722.9 | | | 2,236.9 | | | 1,574.0 | |
+Selling, general and administrative expenses | | (909.2) | | | (697.8) | | | (1,765.4) | | | (1,339.7) | |
+Impairment losses | | (2.3) | | | (2.6) | | | (3.0) | | | (2.9) | |
+Other operating income | | 31.6 | | | 21.2 | | | 44.2 | | | 26.5 | |
+Operating profit | | 191.7 | | | 43.7 | | | 512.7 | | | 257.9 | |
+Interest expense | | (20.0) | | | (30.0) | | | (44.9) | | | (52.0) | |
+Foreign currency exchange (losses)/gains, net & other finance costs | | (16.3) | | | 6.7 | | | (24.1) | | | 10.6 | |
+Loss on debt extinguishment | | — | | | — | | | (50.5) | | | — | |
+Interest income | | 5.4 | | | 1.4 | | | 8.1 | | | 2.9 | |
+Net finance cost | | (30.9) | | | (21.9) | | | (111.4) | | | (38.5) | |
+Income before tax | | 160.8 | | | 21.8 | | | 401.3 | | | 219.4 | |
+Income tax (expense)/benefit | | (43.0) | | | 0.6 | | | (113.5) | | | (58.9) | |
+Net income | | $ | 117.8 | | | $ | 22.4 | | | $ | 287.8 | | | $ | 160.5 | |
+Net income attributable to: | | | | | | | | |
+Equity holders of the Company | | 107.2 | | | 18.2 | | | 271.8 | | | 152.8 | |
+Non-controlling interests | | 10.6 | | | 4.2 | | | 16.0 | | | 7.7 | |
+
+Revenue
+The following tables set forth our consolidated revenues, and revenues disaggregated by channel, and geography.
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three
+months ended
+June 30, | | Change | | For the six
+months ended
+June 30, | | Change |
+In millions | | 2026 | | 2025 | | $ | | % | | 2026 | | 2025 | | $ | | % |
+Revenue | | $ | 1,632.6 | | | $ | 1,236.3 | | | $ | 396.3 | | | 32.1 | % | | $ | 3,578.1 | | | $ | 2,708.8 | | | $ | 869.3 | | | 32.1 | % |
+| | | | | | | | | | | | | | | | |
+Channel Revenues
+| | | | | | | | | | | | | | | | |
+DTC | | $ | 896.8 | | | $ | 640.9 | | | $ | 255.9 | | | 39.9 | % | | $ | 1,898.3 | | | $ | 1,333.5 | | | $ | 564.8 | | | 42.4 | % |
+Wholesale | | 735.8 | | | 595.4 | | | 140.4 | | | 23.6 | % | | 1,679.8 | | | 1,375.3 | | | 304.5 | | | 22.1 | % |
+Total | | $ | 1,632.6 | | | $ | 1,236.3 | | | $ | 396.3 | | | 32.1 | % | | $ | 3,578.1 | | | $ | 2,708.8 | | | $ | 869.3 | | | 32.1 | % |
+| | | | | | | | | | | | | | | | |
+Geographic Revenues
+| | | | | | | | | | | | | | |
+Greater China (1)
+| | $ | 556.0 | | | $ | 410.2 | | | $ | 145.8 | | | 35.5 | % | | $ | 1,200.5 | | | $ | 856.2 | | | $ | 344.3 | | | 40.2 | % |
+Americas | | 496.7 | | | 395.4 | | | 101.3 | | | 25.6 | % | | 1,045.5 | | | 860.1 | | | 185.4 | | | 21.6 | % |
+EMEA | | 332.3 | | | 276.2 | | | 56.1 | | | 20.3 | % | | 845.1 | | | 681.1 | | | 164.0 | | | 24.1 | % |
+Asia Pacific (2)
+| | 247.6 | | | 154.5 | | | 93.1 | | | 60.3 | % | | 487.0 | | | 311.4 | | | 175.6 | | | 56.4 | % |
+Total | | $ | 1,632.6 | | | $ | 1,236.3 | | | $ | 396.3 | | | 32.1 | % | | $ | 3,578.1 | | | $ | 2,708.8 | | | $ | 869.3 | | | 32.1 | % |
+
+__________________________________________________
+5
+
+
+
+
+
+(1) Consists of mainland China, Hong Kong, Macau and Taiwan.
+(2) Excludes Greater China.
+Revenue increased by $396.3 million, or 32.1%, for the three months ended June 30, 2026 compared to the three months ended June 30, 2025. Revenue increased by $869.3 million, or 32.1%, for the six months ended June 30, 2026 compared to the six months ended June 30, 2025. Revenue increased across all segments, primarily driven by an increase in sales volume from the Technical Apparel and Outdoor Performance segments. Channel revenues were driven by DTC, which increased 39.9% and 42.4% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025. Regional growth was led by Greater China and Americas, which increased 35.5% and 25.6%, respectively, for the three months ended June 30, 2026, and 40.2% and 21.6%, respectively, for the six months ended June 30, 2026, compared to the three and six months ended June 30, 2025. Asia Pacific increased by 60.3% and 56.4%, for the three and six months ended June 30, 2026, respectively, compared to the three and six months ended June 30, 2025. EMEA increased by 20.3% and 24.1%, for the three and six months ended June 30, 2026, respectively, compared to the three and six months ended June 30, 2025.
+
+
+Revenue on a constant currency basis increased 29.8% and 27.8% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025.
+
+Gross Profit
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three
+months ended
+June 30, | | Change | | For the six
+months ended
+June 30, | | Change |
+In millions | | 2026 | | 2025 | | $ | | % | | 2026 | | 2025 | | $ | | % |
+Gross profit | | $ | 1,071.6 | | | $ | 722.9 | | | $ | 348.7 | | | 48.2 | % | | $ | 2,236.9 | | | $ | 1,574.0 | | | $ | 662.9 | | | 42.1 | % |
+
+Gross profit increased by $348.7 million, or 48.2%, for the three months ended June 30, 2026 compared to the three months ended June 30, 2025. Gross profit increased by $662.9 million, or 42.1%, for the six months ended June 30, 2026 compared to the six months ended June 30, 2025. Gross margin was 65.6% and 58.5% for the three months ended June 30, 2026 and 2025, respectively and 62.5% and 58.1% for the six months ended June 30, 2026 and 2025, respectively. The current year margins included benefits of 3.9% and 1.8% for the three and six months ended June 30, 2026, respectively, for tariff refunds, net of the release of capitalized tariff costs, specific inventory reserves, and estimated reimbursements to vendors. These increases were further driven by favorable pricing, product, channel and region mix, as well as favorable transportation and duties costs, partially offset by increased tariff costs.
+Selling, General and Administrative Expenses
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three
+months ended
+June 30, | | Change | | For the six
+months ended
+June 30, | | Change |
+In millions | | 2026 | | 2025 | | $ | | % | | 2026 | | 2025 | | $ | | % |
+Selling, general and administrative expenses | | $ | (909.2) | | | $ | (697.8) | | | $ | (211.4) | | | 30.3 | % | | $ | (1,765.4) | | | $ | (1,339.7) | | | $ | (425.7) | | | 31.8 | % |
+
+Selling, general and administrative expenses increased by $211.4 million, or 30.3%, for the three months ended June 30, 2026 and by $425.7 million, or 31.8%, for the six months ended June 30, 2026, compared to the respective prior-year periods. As a percentage of revenues, selling, general and administrative expenses decreased to 55.7% from 56.4% for the three months ended June 30, 2025 and decreased to 49.3% from 49.5% for the six months ended June 30, 2025.
+The increase in selling, general and administrative expenses for the three months ended June 30, 2026 compared to the three months ended June 30, 2025 was primarily due to higher personnel related expenses of $76.7 million, higher advertising, promotional, and sales expenses of $67.1 million, higher depreciation and amortization expenses of $28.3 million, and higher rent and facilities expenses of $22.7 million.
+6
+
+
+
+
+
+The increase in selling, general and administrative expenses for the six months ended June 30, 2026 compared to the six months ended June 30, 2025 was primarily due to higher personnel related expenses of $172.3 million, higher advertising, promotional, and sales expenses of $116.7 million, higher depreciation and amortization expenses of $55.3 million, and higher rent and facilities expenses of $50.1 million.
+The increases in both periods were primarily due to DTC investments and investments in Greater China and Asia Pacific, resulting in higher retail personnel costs and advertising and promotion expenses, and store rent expense related to new store openings.
+
+Other operating income
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three
+months ended
+June 30, | | Change | | For the six
+months ended
+June 30, | | Change |
+In millions | | 2026 | | 2025 | | $ | | % | | 2026 | | 2025 | | $ | | % |
+Other operating income | | $ | 31.6 | | | $ | 21.2 | | | $ | 10.4 | | | 49.1 | % | | $ | 44.2 | | | $ | 26.5 | | | $ | 17.7 | | | 66.8 | % |
+
+Other operating income increased $10.4 million for the three months ended June 30, 2026 compared to the three months ended June 30, 2025. Other operating income increased $17.7 million for the six months ended June 30, 2026 compared to the six months ended June 30, 2025. These increases were primarily driven by higher government grants received in the three and six months ended June 30, 2026 compared to the three and six months ended June 30, 2025.
+Interest expense
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three
+months ended
+June 30, | | Change | | For the six
+months ended
+June 30, | | Change |
+In millions | | 2026 | | 2025 | | $ | | % | | 2026 | | 2025 | | $ | | % |
+Interest expense | | $ | (20.0) | | | $ | (30.0) | | | $ | 10.0 | | | (33.3 | %) | | $ | (44.9) | | | $ | (52.0) | | | $ | 7.1 | | | (13.7 | %) |
+
+Interest expense decreased by $10.0 million, or 33.3%, for the three months ended June 30, 2026 compared to the three months ended June 30, 2025. Interest expense decreased by $7.1 million, or 13.7%, for the six months ended June 30, 2026 compared to the six months ended June 30, 2025.
+The decreases were primarily a result of lower outstanding debt for the three and six months ended June 30, 2026 compared to the three and six months ended June 30, 2025, partially offset by higher interest expense on derivative instruments, and higher interest expense on lease liabilities due to an increase in owned retail store leases.
+Foreign currency exchange (losses)/gains, net & other finance costs
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three
+months ended
+June 30, | | Change | | For the six
+months ended
+June 30, | | Change |
+In millions | | 2026 | | 2025 | | $ | | % | | 2026 | | 2025 | | $ | | % |
+Foreign currency exchange (losses)/gains, net & other finance costs | | $ | (16.3) | | | $ | 6.7 | | | $ | (23.0) | | | (343.3 | %) | | $ | (24.1) | | | $ | 10.6 | | | $ | (34.7) | | | (327.4 | %) |
+
+Foreign currency exchange (losses)/gains, net & other finance costs was a loss of $16.3 million for the three months ended June 30, 2026, compared to a gain of $6.7 million for the three months ended June 30, 2025. Foreign currency exchange (losses)/gains, net & other finance costs was a loss of $24.1 million for the six months ended June 30, 2026, compared to a gain of $10.6 million for the six months ended June 30, 2025. The change in both periods was primarily due to fluctuations in foreign exchange rates, specifically strengthening of the U.S. dollar in relation to the Euro and Canadian dollar, and derivative contract losses.
+7
+
+
+
+
+
+Loss on debt extinguishment
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three
+months ended
+June 30, | | Change | | For the six
+months ended
+June 30, | | Change |
+In millions | | 2026 | | 2025 | | $ | | % | | 2026 | | 2025 | | $ | | % |
+Loss on debt extinguishment | | $ | — | | | $ | — | | | $ | — | | | — | % | | $ | (50.5) | | | $ | — | | | $ | (50.5) | | | NM |
+
+Loss on debt extinguishment was nil and $50.5 million for the three and six months ended June 30, 2026, due to the redemptions of all of the outstanding 6.750% senior secured notes (the “Notes”) during the three months ended March 31, 2026. No loss on debt extinguishment was incurred for the three and six months ended June 30, 2025.
+Income tax expense
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three
+months ended
+June 30, | | Change | | For the six
+months ended
+June 30, | | Change |
+In millions | | 2026 | | 2025 | | $ | | % | | 2026 | | 2025 | | $ | | % |
+Income tax (expense)/benefit | | $ | (43.0) | | | $ | 0.6 | | | $ | (43.6) | | | (7,266.7) | % | | $ | (113.5) | | | $ | (58.9) | | | $ | (54.6) | | | 92.7 | % |
+
+Income tax expense increased by $43.6 million, or 7,266.7%, for the three months ended June 30, 2026 compared to the three months ended June 30, 2025. The effective tax rate was 26.7% compared to a benefit of 2.8% for the three months ended June 30, 2026, and 2025, respectively. Income tax expense increased by $54.6 million, or 92.7%, for the six months ended June 30, 2026 compared to the six months ended June 30, 2025.
+The increases in the effective tax rates for the three and six month periods ended June 30, 2026, compared with the prior-year periods, were primarily driven by higher deferred taxes on net operating losses and temporary differences for which tax benefits were not recognized and changes in uncertain tax positions, partially offset by a more favorable jurisdictional mix of earnings.
+
+Segment Results of Operations
+Our management evaluates operating performance and makes investment and other decisions based on segment revenue and Segment Adjusted Operating Profit. Costs allocated to the Company's segments include certain centralized functions provided and administered by the Amer Sports Group, such as costs related to sourcing, warehousing, distribution and transportation, our global business services center and certain information technology ("IT") activities, based on appropriate metrics such as headcount, activity, usage or proportion of revenue.
+Unallocated costs include costs related to supply chain management, general executive management, cybersecurity and group information technology, and other group functions such as finance, internal audit, tax, legal and human resources.
+Effective January 1, 2026, the Company revised its methodology for allocating certain expenses, primarily IT costs, not directly attributable to the operating performance of its reportable segments. This change is reflective of how the Chief Operating Decision Maker (“CODM”) analyzes the business, with these expenses now reported within the centralized corporate function. Prior period amounts have been recast to conform to the current period presentation. This change did not impact the consolidated statements of financial position, income and other comprehensive income, changes in shareholders’ equity, or cash flows.
+8
+
+
+
+
+
+The following tables set forth certain financial information for our reportable segments for the periods presented.
+Segment Revenue
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three
+months ended
+June 30, | | Change | | For the six
+months ended
+June 30, | | Change |
+In millions | | 2026 | | 2025 | | $ | | % | | 2026 | | 2025 | | $ | | % |
+Technical Apparel | | $ | 674.2 | | | $ | 508.9 | | | $ | 165.3 | | | 32.5 | % | | $ | 1,559.2 | | | $ | 1,172.7 | | | $ | 386.5 | | | 33.0 | % |
+Outdoor Performance | | 568.5 | | | 413.7 | | | 154.8 | | | 37.4 | % | | 1,282.1 | | | 916.1 | | | 366.0 | | | 40.0 | % |
+Ball & Racquet Sports | | 389.9 | | | 313.7 | | | 76.2 | | | 24.3 | % | | 736.8 | | | 620.0 | | | 116.8 | | | 18.8 | % |
+Total | | $ | 1,632.6 | | | $ | 1,236.3 | | | $ | 396.3 | | | 32.1 | % | | $ | 3,578.1 | | | $ | 2,708.8 | | | $ | 869.3 | | | 32.1 | % |
+
+Segment Adjusted Operating Profit (1)
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three
+months ended
+June 30, | | Change | | For the six
+months ended
+June 30, | | Change |
+In millions | | 2026 | | 2025 | | $ | | % | | 2026 | | 2025 | | $ | | % |
+Technical Apparel | | $ | 126.5 | | | $ | 71.8 | | | $ | 54.7 | | | 76.2 | % | | $ | 359.8 | | | $ | 230.4 | | | $ | 129.4 | | | 56.2 | % |
+Outdoor Performance | | 83.0 | | | 27.5 | | | 55.5 | | | 201.8 | % | | 228.3 | | | 106.0 | | | 122.3 | | | 115.4 | % |
+Ball & Racquet Sports | | 67.2 | | | 13.2 | | | 54.0 | | | 409.1 | % | | 79.6 | | | 35.6 | | | 44.0 | | | 123.6 | % |
+
+__________________________________________________
+(1) Segment Adjusted Operating Profit for all periods presented excludes depreciation and amortization expense associated with PPA in connection with the Acquisition.
+The following table summarizes depreciation and amortization expense for the three and six months ended June 30, 2026, and 2025.
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three
+months ended
+June 30, | | Change | | For the six
+months ended
+June 30, | | Change |
+In millions | | 2026 | | 2025 | | $ | | % | | 2026 | | 2025 | | $ | | % |
+Technical Apparel | | $ | 53.3 | | | $ | 38.9 | | | $ | 14.4 | | | 37.0 | % | | $ | 103.1 | | | $ | 74.6 | | | $ | 28.5 | | | 38.2 | % |
+Outdoor Performance | | 40.4 | | | 28.8 | | | 11.6 | | | 40.3 | % | | 77.3 | | | 59.7 | | | 17.6 | | | 29.5 | % |
+Ball & Racquet Sports | | 11.3 | | | 10.4 | | | 0.9 | | | 8.7 | % | | 21.8 | | | 20.1 | | | 1.7 | | | 8.5 | % |
+Total | | $ | 105.0 | | | $ | 78.1 | | | $ | 26.9 | | | 34.4 | % | | $ | 202.2 | | | $ | 154.4 | | | $ | 47.8 | | | 31.0 | % |
+
+The following table summarizes depreciation and amortization expense on the PPA fair value step up of intangible and tangible assets for the three and six months ended June 30, 2026, and 2025.
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three
+months ended
+June 30, | | Change | | For the six
+months ended
+June 30, | | Change |
+In millions | | 2026 | | 2025 | | $ | | % | | 2026 | | 2025 | | $ | | % |
+Technical Apparel | | $ | 2.3 | | | $ | 2.3 | | | $ | — | | | — | % | | $ | 4.7 | | | $ | 4.7 | | | $ | — | | | — | % |
+Outdoor Performance | | 6.5 | | | 8.4 | | | (1.9) | | | (22.6 | %) | | 13.1 | | | 16.2 | | | (3.1) | | | (19.1 | %) |
+Ball & Racquet Sports | | 0.2 | | | 0.3 | | | (0.1) | | | (33.3 | %) | | 0.4 | | | 0.6 | | | (0.2) | | | (33.3 | %) |
+Total | | $ | 9.0 | | | $ | 11.0 | | | $ | (2.0) | | | (18.2 | %) | | $ | 18.2 | | | $ | 21.5 | | | $ | (3.3) | | | (15.3 | %) |
+
+9
+
+
+
+
+
+
+Technical Apparel
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three
+months ended
+June 30, | | Change | | For the six
+months ended
+June 30, | | Change |
+In millions | | 2026 | | 2025 | | $ | | % | | 2026 | | 2025 | | $ | | % |
+Channel Revenues | | | | | | | | | | | | | | | | |
+DTC | | $ | 519.2 | | | $ | 387.3 | | | $ | 131.9 | | | 34.1 | % | | $ | 1,167.7 | | | $ | 847.8 | | | $ | 319.9 | | | 37.7 | % |
+Wholesale | | 155.0 | | | 121.6 | | | 33.4 | | | 27.5 | % | | 391.5 | | | 324.9 | | | 66.6 | | | 20.5 | % |
+Total | | $ | 674.2 | | | $ | 508.9 | | | $ | 165.3 | | | 32.5 | % | | $ | 1,559.2 | | | $ | 1,172.7 | | | $ | 386.5 | | | 33.0 | % |
+
+The following table sets forth certain operating data for our Technical Apparel segment.
+| | | | | | | | | | | | | | | | | | | | |
+| | As of June 30, | | Change |
+| | 2026 | | 2025 | | % |
+Store Count (1) | | | | | | |
+Arc’teryx | | 265 | | 183 | | 44.8 | % |
+Peak Performance | | 40 | | 44 | | (9.1 | %) |
+Total | | 305 | | 227 | | 34.4 | % |
+Omni-comp (2)
+| | 16.5 | % | | 15.1 | % | | |
+
+__________________________________________________
+(1) Reflects the number of Technical Apparel owned retail stores open at the end of the fiscal period. Management reviews the number of new and closed stores to assess revenue growth and drivers of trends in revenue.
+(2) Omni-comp reflects revenue growth on a constant currency basis from owned retail stores that have been open for at least 13 full fiscal months and from owned e-commerce websites. Remodeled stores are excluded from the comparable sales growth calculation for 13 months if a store: (i) changes its square footage by more than 20% or (ii) is closed for more than 60 days for the refit. Stores closed 60 days or less are excluded from the comparable sales growth calculation only for the months they are closed.
+Technical Apparel revenue increased by 32.5% for the three months ended June 30, 2026, compared to the three months ended June 30, 2025. Technical Apparel revenue increased by 33.0% for the six months ended June 30, 2026, compared to the six months ended June 30, 2025. The increases in both periods were primarily driven by Arc’teryx volume growth within the DTC channel. DTC revenues increased by 34.1% and 37.7% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025. The increase was driven by volume growth in our existing retail stores and e-commerce platforms, and an expanded retail store network with a net increase of 78 owned retail stores, of which 46 owned retail stores in Korea were acquired during the three months ended September 30, 2025 as part of an asset purchase agreement. Wholesale revenues increased 27.5% and 20.5% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025, driven by an increase in volumes. By geography, Technical Apparel revenue increased across all regions, primarily in Greater China, Americas, and Asia Pacific for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025.
+Technical Apparel revenue on a constant currency basis increased 30.2% and 29.2% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025.
+Segment Adjusted Operating Profit in our Technical Apparel segment increased by 76.2% and 56.2% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025. The increase for both periods was primarily driven by higher gross profit, partially offset by an increase in selling, general and administrative expenses.
+10
+
+
+
+
+
+Segment adjusted operating profit margin was 18.8% and 23.1% for the three and six months ended June 30, 2026, compared to 14.1% and 19.6% for the three and six months ended June 30, 2025, respectively. The current year margins included benefits of 1.7% and 0.7% for the three and six months ended June 30, 2026, respectively, for tariff refunds, net of estimated reimbursements to vendors, specific inventory reserves, and the release of capitalized tariff costs. The increase for the three months ended June 30, 2026 was further driven by higher gross margins, primarily due to favorable transportation and duties costs associated with reduced usage of air freight, and by lower selling, general and administrative expenses as a percentage of revenue, primarily related to personnel expenses. The increase for the six months ended June 30, 2026 was further driven by higher gross margins, primarily due to channel and region mix, due to growth in DTC and Asia Pacific, and by lower selling, general and administrative expenses as a percentage of revenue, primarily related to personnel expenses.
+
+Outdoor Performance
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three
+months ended
+June 30, | | Change | | For the six
+months ended
+June 30, | | Change |
+In millions | | 2026 | | 2025 | | $ | | % | | 2026 | | 2025 | | $ | | % |
+Channel Revenues | | | | | | | | | | | | | | | | |
+Wholesale | | $ | 276.1 | | | $ | 221.4 | | | $ | 54.7 | | | 24.7 | % | | $ | 704.0 | | | $ | 541.7 | | | $ | 162.3 | | | 30.0 | % |
+DTC | | 292.4 | | | 192.3 | | | 100.1 | | | 52.1 | % | | 578.1 | | | 374.4 | | | 203.7 | | | 54.4 | % |
+Total | | $ | 568.5 | | | $ | 413.7 | | | $ | 154.8 | | | 37.4 | % | | $ | 1,282.1 | | | $ | 916.1 | | | $ | 366.0 | | | 40.0 | % |
+
+The following table sets forth certain operating data for our Outdoor Performance segment.
+| | | | | | | | | | | | | | | | | | | | |
+| | As of June 30, | | Change |
+| | 2026 | | 2025 | | % |
+Store Count (1) | | | | | | |
+Salomon | | 353 | | 254 | | 39.0 | % |
+Atomic | | 2 | | 2 | | — | % |
+Total | | 355 | | 256 | | 38.7 | % |
+Omni-comp (2)
+| | 27.5 | % | | 28.1 | % | | |
+
+__________________________________________________
+(1) Reflects the number of Outdoor Performance owned retail stores open at the end of the fiscal period. Management reviews the number of new and closed stores to assess revenue growth and drivers of trends in revenue.
+(2) Omni-comp reflects revenue growth on a constant currency basis from owned retail stores that have been open for at least 13 full fiscal months and from owned e-commerce websites. Remodeled stores are excluded from the comparable sales growth calculation for 13 months if a store: (i) changes its square footage by more than 20% or (ii) is closed for more than 60 days for the refit. Stores closed 60 days or less are excluded from the comparable sales growth calculation only for the months they are closed.
+Outdoor Performance revenue increased by 37.4% and 40.0% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025. The increase was primarily driven by growth in Salomon footwear and apparel revenues for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025. DTC revenues increased by 52.1% and 54.4% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025, due to an expanded owned retail store network with a net increase of 99 owned retail stores. Wholesale revenues increased 24.7% and 30.0% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025, driven by higher unit sales for Salomon softgoods. By geography, Outdoor Performance revenue increased across all regions, primarily in Greater China and Asia Pacific for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025.
+Outdoor Performance revenue on a constant currency basis increased 34.6% and 33.8% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025, respectively.
+11
+
+
+
+
+
+Segment Adjusted Operating Profit in our Outdoor Performance segment increased by 201.8% and 115.4% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025, respectively. This was primarily driven by higher gross profit and partially offset by an increase in selling, general and administrative expenses.
+Segment adjusted operating profit margin was 14.6% and 17.8% for the three and six months ended June 30, 2026 compared to 6.6% and 11.6% for the three and six months ended June 30, 2025, respectively. The current year margins included benefits of 2.7% and 1.2% for the three and six months ended June 30, 2026, respectively, for tariff refunds, net of the release of capitalized tariff costs. The increase in both periods was further driven by higher gross margins, primarily due to favorable channel and region mix due to a higher proportion of DTC revenues and expansion in Greater China and Asia Pacific, and lower selling, general and administrative expenses as a percentage of revenue, primarily related to personnel expenses, and partially offset by higher advertising and promotional expenses as a percentage of revenue.
+
+Ball & Racquet Sports
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three
+months ended
+June 30, | | Change | | For the six
+months ended
+June 30, | | Change |
+In millions | | 2026 | | 2025 | | $ | | % | | 2026 | | 2025 | | $ | | % |
+Channel Revenues | | | | | | | | | | | | | | | | |
+Wholesale | | $ | 304.7 | | | $ | 252.4 | | | $ | 52.3 | | | 20.7 | % | | $ | 584.3 | | | $ | 508.7 | | | $ | 75.6 | | | 14.9 | % |
+DTC | | 85.2 | | | 61.3 | | | 23.9 | | | 39.0 | % | | 152.5 | | | 111.3 | | | 41.2 | | | 37.0 | % |
+Total | | $ | 389.9 | | | $ | 313.7 | | | $ | 76.2 | | | 24.3 | % | | $ | 736.8 | | | $ | 620.0 | | | $ | 116.8 | | | 18.8 | % |
+
+The following table sets forth certain operating data for our Ball & Racquet Sports segment.
+| | | | | | | | | | | | | | | | | | | | |
+| | As of June 30, | | Change |
+| | 2026 | | 2025 | | % |
+Store Count (1) | | | | | | |
+Wilson | | 97 | | 63 | | 54.0 | % |
+Total | | 97 | | 63 | | 54.0 | % |
+Omni-comp (2)
+| | 22.4 | % | | 18.9 | % | | |
+
+__________________________________________________
+(1) Reflects the number of Ball & Racquet owned retail stores open at the end of the fiscal period. Management reviews the number of new and closed stores to assess revenue growth and drivers of trends in revenue.
+(2) Omni-comp reflects revenue growth on a constant currency basis from owned retail stores that have been open for at least 13 full fiscal months and from owned e-commerce websites. Remodeled stores are excluded from the comparable sales growth calculation for 13 months if a store: (i) changes its square footage by more than 20% or (ii) is closed for more than 60 days for the refit. Stores closed 60 days or less are excluded from the comparable sales growth calculation only for the months they are closed.
+Ball & Racquet segment revenue increased by 24.3% and 18.8% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025. The increase in both periods was driven by Wilson apparel, racquet, and footwear product categories. DTC revenues increased by 39.0% and 37.0% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025, due to an expanded retail store network with a net increase of 34 owned retail stores. Wholesale revenues increased 20.7% and 14.9% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025, driven by an increase in prices and volumes globally. By geography, Ball & Racquet revenue increased across all regions, primarily in the Americas, Greater China, and EMEA for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025.
+Ball & Racquet revenue on a constant currency basis increased 22.8% and 16.4% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025, respectively.
+12
+
+
+
+
+
+Segment Adjusted Operating Profit in our Ball & Racquet segment increased by 409.1% and 123.6% for the three and six months ended June 30, 2026, compared to the three and six months ended June 30, 2025, respectively. This increase was primarily driven by higher gross profit partially offset by higher selling, general and administrative expenses.
+Segment adjusted operating profit margin was 17.2% and 10.8% for the three and six months ended June 30, 2026 compared to 4.2% and 5.7% for the three and six months ended June 30, 2025, respectively. The current year margins included benefits of 9.7% and 5.1% for the three and six months ended June 30, 2026, respectively, for tariff refunds, net of specific inventory reserves and the release of capitalized tariff costs. The increase in both periods was further driven by higher gross margins due to favorable pricing, product, channel and region mix, partially offset by higher selling, general and administrative expenses as a percentage of revenue, primarily due to higher advertising and promotional expenses as a percentage of revenue.
+
+Non-IFRS Financial Measures
+Management uses certain non-IFRS financial measures to supplement the financial measures prepared in accordance with IFRS, which include constant currency revenue, Adjusted EBITDA, Adjusted EBITDA Margin and Adjusted Net Income attributable to equity holders of the Company. We use constant currency revenue information to provide a framework to assess how our business segments performed excluding the effects of foreign currency exchange rate fluctuations. Management believes that Adjusted EBITDA and Adjusted EBITDA Margin are helpful to investors as they provide useful information to understand our core financial and operating performance from period to period because they exclude certain material items relating to income tax expense, finance cost and depreciation and amortization which are not reflective of our ongoing operations and performance. Management believes Adjusted Net Income attributable to equity holders of the Company enhances an investor’s understanding of our financial and operating performance because it excludes certain material items relating to expenses or income on PPA fair value step up and impairment losses on goodwill and intangible assets which are not reflective of our ongoing operations and underlying performance. In addition, management believes constant currency revenue, Adjusted EBITDA, Adjusted EBITDA Margin and Adjusted Net Income attributable to equity holders of the Company are measures commonly used by investors to evaluate companies in the apparel, footwear, sports equipment, protective gear and accessories industries, which commonly disclose similar metrics.
+However, there are limitations to the use of these non-IFRS financial measures as analytical tools and they should not be considered in isolation or as a substitute for other financial measures calculated and presented in accordance with IFRS and may not be comparable to similarly titled non-IFRS measures used by other companies. Constant currency revenue is limited as a metric to review the Company’s financial results as it does not reflect impacts of foreign currency on revenue. Some of the limitations of Adjusted EBITDA and Adjusted EBITDA Margin include: excluding certain tax payments that may reduce cash available to us; not reflecting any cash capital expenditure requirements for the assets being depreciated and amortized that may have to be replaced in the future; not reflecting changes in, or cash requirements for, our working capital needs; and not reflecting the interest expense, or the cash requirements necessary to service interest or principal payments, on our debt. Some of the limitations of Adjusted Net Income include: excluding the impact of non-recurring or non-operational items such as expenses or income on PPA fair value step up, restructuring expenses, expenses related to transaction activities, expenses related to certain legal proceedings, and derivative contract losses.
+In the three months ended June 30, 2026, the Company updated its definition of Adjusted Net Income to exclude the impact of non-recurring losses related to derivative contracts, which are not indicative of our ongoing performance. Where applicable, prior period amounts have been recast to conform with current period presentation.
+13
+
+
+
+
+
+The tables below reconcile each of the following non-IFRS financial measures to their respective most directly comparable IFRS measure for the periods presented.
+Adjusted EBITDA and Adjusted EBITDA Margin
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three months ended June 30, | | For the six months ended June 30, |
+In millions | | 2026 | | 2025 | | 2026 | | 2025 |
+Revenue | | $ | 1,632.6 | | | $ | 1,236.3 | | | $ | 3,578.1 | | | $ | 2,708.8 | |
+Net income attributable to equity holders of the Company | | $ | 107.2 | | | $ | 18.2 | | | $ | 271.8 | | | $ | 152.8 | |
+Net income attributable to non-controlling interests | | 10.6 | | | 4.2 | | | 16.0 | | | 7.7 | |
+Depreciation and amortization (1) | | 112.5 | | | 81.4 | | | 215.1 | | | 159.1 | |
+Interest expense (2) | | 20.0 | | | 30.0 | | | 44.9 | | | 52.0 | |
+Foreign currency exchange losses/(gains), net & other finance costs | | 16.3 | | | (6.7) | | | 24.1 | | | (10.6) | |
+Loss on debt extinguishment | | — | | | — | | | 50.5 | | | — | |
+Interest income | | (5.4) | | | (1.4) | | | (8.1) | | | (2.9) | |
+Income tax expense/(benefit) | | 43.0 | | | (0.6) | | | 113.5 | | | 58.9 | |
+Restructuring expenses (3) | | 6.8 | | | 6.0 | | | 11.0 | | | 8.9 | |
+Impairment of goodwill and intangible assets (4)
+| | 1.8 | | | — | | | 1.8 | | | — | |
+Expenses related to transaction activities (5)
+| | 0.6 | | | 2.0 | | | 0.5 | | | 2.3 | |
+Expenses related to certain legal proceedings (6)
+| | 0.2 | | | (1.2) | | | 0.2 | | | (2.0) | |
+Share-based payments (7)
+| | (1.7) | | | 5.9 | | | 3.0 | | | 10.9 | |
+Adjusted EBITDA | | $ | 311.9 | | | $ | 137.8 | | | $ | 744.3 | | | $ | 437.1 | |
+Net income margin | | 6.6% | | 1.5% | | 7.6% | | 5.6% |
+Adjusted EBITDA Margin | | 19.1% | | 11.1% | | 20.8% | | 16.1% |
+
+__________________________________________________
+(1) Total amortization expense for right-of-use assets capitalized under IFRS 16, Leases was $55.2 million and $39.4 million for the three months ended June 30, 2026 and 2025, respectively, and $104.8 million and $75.2 million for the six months ended June 30, 2026 and 2025, respectively.
+(2) Total interest expense on lease liabilities under IFRS 16, Leases was $11.9 million and $7.9 million for the three months ended June 30, 2026 and 2025, respectively, and $21.5 million and $15.2 million for the six months ended June 30, 2026 and 2025, respectively.
+(3) Includes expenses related to restructuring activities, such as severance, exit and termination costs, and non-recurring third-party consulting expenses associated with discrete transformation projects.
+(4) Includes impairment losses on goodwill and intangible assets, primarily due to the impairment of finite-lived intangible assets.
+(5) Includes advisory fees in connection with M&A activities and non-recurring costs associated with our IPO and disposal of businesses.
+(6) Includes legal fees and judgments, and associated inventory write-offs, in connection with non-recurring legal actions, including a certain patent infringement litigation and certain litigation in connection with the divestiture of a business unit. While we face such patent litigation from time to time, the magnitude of costs is rarely significant and the litigation expenses related to a certain recent patent litigation are substantially higher than the expenses related to any other patent litigation in the last 10 years. We view expenses related to these matters as outside our normal course of operations and not representative of our expected and recurring expenses. Legal expenses for other normal, recurring legal proceedings and other legal matters are not included in this adjustment.
+14
+
+
+
+
+
+(7) Includes expenses for share-based payments and for fixed cash compensation that is contingent upon the vesting of stock options under the 2019 and 2023 ESOP plans. We granted share-based compensation to employees under these equity compensation plans beginning in 2019, but did not incur any expenses related to share-based payments in periods prior to the fourth quarter of fiscal year 2023. No further awards will be granted under the 2019 and 2023 ESOP plans, and thus, the related expenses are not considered indicative of our ongoing performance.
+Adjusted Net Income
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three months ended June 30, | | For the six months ended June 30, |
+In millions | | 2026 | | 2025 | | 2026 | | 2025 |
+Net income attributable to equity holders of the Company | | $ | 107.2 | | | $ | 18.2 | | | $ | 271.8 | | | $ | 152.8 | |
+Depreciation and amortization on PPA fair value step up (1)
+| | 9.0 | | | 11.0 | | | 18.2 | | | 21.5 | |
+Restructuring expenses (2) | | 6.8 | | | 6.0 | | | 11.0 | | | 8.9 | |
+Impairment of goodwill and intangible assets (3)
+| | 1.8 | | | — | | | 1.8 | | | — | |
+Expenses related to transaction activities (4)
+| | 0.6 | | | 2.0 | | | 0.5 | | | 2.3 | |
+Expenses related to certain legal proceedings (5)
+| | 0.2 | | | (1.2) | | | 0.2 | | | (2.0) | |
+Share-based payments (6)
+| | (1.7) | | | 5.9 | | | 3.0 | | | 10.9 | |
+Derivative contract loss (7) | | 9.6 | | | — | | | 9.6 | | | — | |
+Loss on debt extinguishment
+| | — | | | — | | | 50.5 | | | — | |
+Income tax expense on adjustments (8) | | (6.7) | | | (5.9) | | | (21.8) | | | (10.4) | |
+Adjusted net income attributable to equity holders of the Company | | $ | 126.8 | | | $ | 36.0 | | | $ | 344.8 | | | $ | 184.0 | |
+
+__________________________________________________
+(1) Consists of depreciation and amortization on PPA fair value step up of intangible and tangible assets in connection with the Acquisition.
+(2) Includes expenses related to restructuring activities, such as severance, exit and termination costs, and non-recurring third-party consulting expenses associated with discrete transformation projects.
+(3) Includes impairment losses on goodwill and intangible assets, primarily due to the impairment of finite-lived intangible assets.
+(4) Includes advisory fees in connection with M&A activities and non-recurring costs associated with our IPO and disposal of businesses.
+(5) Includes legal fees and judgments, and associated inventory write-offs, in connection with non-recurring legal actions, including a certain patent infringement litigation and certain litigation in connection with the divestiture of a business unit. While we face such patent litigation from time to time, the magnitude of costs is rarely significant and the litigation expenses related to a certain recent patent litigation are substantially higher than the expenses related to any other patent litigation in the last 10 years. We view expenses related to these matters as outside our normal course of operations and not representative of our expected and recurring expenses. Legal expenses for other normal, recurring legal proceedings and other legal matters are not included in this adjustment.
+(6) Includes expenses for share-based payments and for fixed cash compensation that is contingent upon the vesting of stock options under the 2019 and 2023 ESOP plans. We granted share-based compensation to employees under these equity compensation plans beginning in 2019, but did not incur any expenses related to share-based payments in periods prior to the fourth quarter of fiscal year 2023. No further awards will be granted under the 2019 and 2023 ESOP plans, and thus, the related expenses are not considered indicative of our ongoing performance.
+(7) Includes non-recurring losses related to derivative contracts which are not indicative of our ongoing performance.
+15
+
+
+
+
+
+(8) Includes income tax expense as follows:
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | For the three months ended June 30, | | For the six months ended June 30, |
+In millions | | 2026 | | 2025 | | 2026 | | 2025 |
+Deferred tax on PPA fair value step up | | $ | (2.1) | | | $ | (2.8) | | | $ | (4.4) | | | $ | (5.4) | |
+Restructuring expenses | | (1.7) | | | (1.5) | | | (2.7) | | | (2.2) | |
+Expenses related to transaction activities | | (0.2) | | | (0.5) | | | (0.2) | | | (0.6) | |
+Expenses related to certain legal proceedings | | — | | | 0.3 | | | — | | | 0.5 | |
+Share-based payments | | 0.4 | | | (1.4) | | | (0.8) | | | (2.7) | |
+Impairment of goodwill and intangible assets | | (0.4) | | | — | | | (0.4) | | | — | |
+Derivative contract loss | | (2.7) | | | — | | | (2.7) | | | — | |
+Loss on debt extinguishment | | — | | | — | | | (10.6) | | | — | |
+Total tax expense on adjustments | | $ | (6.7) | | | $ | (5.9) | | | $ | (21.8) | | | $ | (10.4) | |
+
+
+Liquidity and Capital Resources
+Our primary need for liquidity is to fund working capital requirements, capital expenditures, debt service, lease obligations and for general corporate purposes. Typically, the highest level of working capital has been reached in the third quarter when inventory and accounts receivable are at a peak during the fall and winter shopping season.
+Historically, our main sources of liquidity have been cash flow from operating activities, shareholder loans, share issuances and borrowings under our existing credit facilities. See “Indebtedness” below.
+The Company had $720.4 million and $303.4 million of cash and cash equivalents as of June 30, 2026, and 2025, respectively. The $417.0 million increase in cash and cash equivalents as of June 30, 2026, as compared to June 30, 2025, was primarily due to higher net cash flows from operating activities over the last twelve months.
+Management believes the existing cash and cash equivalent balances, cash flow from operations and credit facilities will be sufficient to meet our working capital and capital expenditure needs for at least the next 12 months. Our long-term capital requirements may vary materially from those currently planned and will depend on many factors, including the rate of revenue growth, the timing and extent of spending on research and development efforts, new owned retail store openings and other growth initiatives, the expansion of sales and marketing activities, the timing of new products, and overall economic conditions. Management also expects increased capital expenditures related to the upgrade of our global SAP enterprise resource planning (“ERP”) system over the next several years, which the Company is in the process of implementing across each of our brands, and the expansion of our warehousing facilities. Our capital expenditures for 2025 were approximately $283.7 million, and our capital expenditures for 2026 are expected to be approximately $400.0 million.
+To the extent that current and anticipated future sources of liquidity are insufficient to fund our future business activities and requirements, we may be required to seek additional equity or debt financing. The sale of additional equity would result in additional dilution to shareholders. The incurrence of debt financing would result in debt service obligations and the instruments governing such debt could provide for operating and financing covenants that may restrict our operations. We also regularly evaluate market conditions, our liquidity profile, and various financing alternatives for opportunities to enhance our capital structure. If market conditions are favorable, we may refinance our existing debt or issue additional securities. There can be no assurances that we will be able to raise additional capital on terms that are attractive to us or at all. The inability to raise capital may adversely affect our ability to achieve our business objectives.
+16
+
+
+
+
+
+
+Cash Flow Information
+The following table sets forth our consolidated cash flow information for the periods presented:
+| | | | | | | | | | | | | | |
+| | For the six months ended June 30, |
+In millions | | 2026 | | 2025 |
+Net cash flows from operating activities | | $ | 338.5 | | | $ | 107.5 | |
+Net cash flows used in investing activities | | (182.7) | | | (135.2) | |
+Net cash flows used in financing activities | | (88.0) | | | (38.3) | |
+
+Operating Activities
+Net cash flows from operating activities were $338.5 million for the six months ended June 30, 2026, compared to $107.5 million for the six months ended June 30, 2025. The increase of $231.0 million was primarily driven by an increase in net income of $127.3 million and an increase in adjustments for non-cash and other items of $197.7 million, which includes an increase in depreciation and amortization of $56.0 million, an increase in income tax expense of $54.6 million, and a loss on debt extinguishment of $50.5 million. The increase was further driven by an increase in cash flows from changes in accounts receivable of $57.4 million due to timing of collections and an increase in cash flows from changes in inventories of $9.7 million. These amounts were partially offset by an increase in income taxes paid of $59.7 million, a decrease in cash flows from changes in prepaid expenses and other assets of $50.0 million, and a decrease in cash flows from changes in accounts payable and other liabilities of $48.0 million.
+Investing Activities
+Net cash flows used in investing activities were $182.7 million for the six months ended June 30, 2026, compared to $135.2 million for the six months ended June 30, 2025. The increase of $47.5 million was primarily due to an increase in cash paid for the acquisition of property, plant and equipment of $49.6 million, primarily due to the expansion of our owned retail stores and warehouses, as well as cash paid of $10.0 million related to the acquisition of a business in the prior year, offset by a decrease in cash paid for the acquisition of intangible assets of $7.3 million, largely related to higher cash outflows for the six months ended June 30, 2025 for the implementation of a SAP ERP system.
+Our capital expenditures (which we define herein to refer to the acquisition of property, plant and equipment and the acquisition of intangible assets, as presented in our consolidated statement of cash flows) for the six months ended June 30, 2026 and 2025, totaled $171.5 million and $129.2 million, respectively.
+Financing Activities
+Net cash flows used in financing activities were $88.0 million for the six months ended June 30, 2026, compared to $38.3 million for the six months ended June 30, 2025. The increase of $49.7 million was primarily driven by an outflow of $843.1 million for the redemption of the Notes, an increase in payments for lease liabilities of $41.7 million due to an increase in owned retail store leases, an increase of $6.7 million related to the payment of dividends to non-controlling interests, and a decrease in cash received from the exercise of share options of $6.5 million. This was partially offset by an increase in net cash inflows related to share issuance proceeds of $836.1 million, and an increase in proceeds from settlement of derivative contracts and balance sheet hedges of $15.1 million.
+
+Indebtedness
+6.750% Senior Secured Notes
+On February 16, 2024, Amer Sports Company (the “Issuer”), our wholly owned subsidiary, entered into an indenture (the “Indenture”) with The Bank of New York Mellon, as trustee, Wilmington Trust (London) Limited, as notes collateral agent, and the guarantors party thereto, pursuant to which the Issuer issued $800 million principal amount of the Notes. Pursuant to the Indenture, the Notes were to mature on February 16, 2031. Interest on the Notes was payable semi-annually in arrears on each March 1 and September 1, beginning on September 1, 2024.
+17
+
+
+
+
+
+On February 6, 2026, the Company voluntarily redeemed $80.0 million aggregate principal amount of the Notes at a redemption price equal to 103.00% of the principal amount, plus accrued interest. The repayment was financed from existing cash resources of the Company.
+In addition, on March 16, 2026, the Company voluntarily redeemed the remaining $720.0 million aggregate principal amount of the Notes at a redemption price equal to 105.65% of the principal amount, plus accrued interest. The repayment was financed by proceeds from the public offering completed on March 4, 2026.
+Senior Secured Credit Facilities
+On February 16, 2024, the Company entered into a Credit Agreement (the “Credit Agreement”) with certain subsidiaries of the Company as borrowers, the financial institutions party thereto as lenders and issuing banks, JPMorgan Chase Bank, N.A., as administrative agent, J.P. Morgan SE as swingline lender, and Wilmington Trust (London) Limited as collateral agent.
+The Credit Agreement provides for a five-year revolving credit facility in an aggregate principal amount of $710 million (the “Revolving Credit Facility”), a seven-year $500 million U.S. dollar denominated term loan facility (the “USD Term Loan Facility”) and a seven-year €700 million Euro denominated term loan facility (the “EUR Term Loan Facility,” and together with the USD Term Loan Facility, the “Term Loan Facilities,” which were terminated in 2024, and collectively with the Revolving Credit Facility, the “Senior Secured Credit Facilities”).
+Revolving Credit Facility
+Borrowings under the Revolving Credit Facility are available in U.S. dollars or Euros and bear interest, at the Company’s option, (i) in the case of U.S. dollar borrowings, at either a term SOFR-based rate or a U.S. dollar base rate, and (ii) in the case of Euro borrowings, at EURIBOR, in each case plus an applicable margin. The term SOFR-based rate and EURIBOR are subject to a floor of 0.00% per annum and the U.S. dollar base rate is subject to a floor of 1.00% per annum.
+The Company is required to pay quarterly commitment fees on unutilized commitments of between 25 to 40 basis points, payable quarterly in arrears, and letter of credit fees equal to the applicable margin for SOFR borrowings on the maximum amount available to be drawn under outstanding letters of credit, as well as customary fronting and agency fees. The Company may voluntarily reduce unutilized commitments and repay outstanding borrowings at any time without premium or penalty, other than customary breakage costs with respect to SOFR and EURIBOR loans.
+As of June 30, 2026, no amounts were outstanding under the Revolving Credit Facility and $710 million was available.
+Collateral, Guarantees and Other Terms
+The Senior Secured Credit Facilities are secured by substantially all of the assets of the Company and certain wholly-owned subsidiaries organized in the United States, Austria, Canada, Switzerland, Cayman Islands, Finland, France, Hong Kong and Sweden, subject to customary exceptions and agreed security principles for subsidiaries not organized in the United States or Canada, and are guaranteed by certain of the Company’s subsidiaries. The obligations under the Senior Secured Credit Facilities and certain hedging and cash management arrangements with lenders (or their affiliates) are secured by first-priority security interests in the collateral, subject to certain exclusions set forth in the credit documentation governing the Senior Secured Credit Facilities.
+The Credit Agreement contains a number of covenants that, among other things and subject to certain exceptions, restrict the Company’s and its subsidiaries’ ability to incur additional indebtedness; create liens; enter into agreements and other arrangements that include negative pledge clauses; pay dividends on capital stock or redeem, repurchase or retire capital stock or subordinated indebtedness; make investments, loans, advances and acquisitions; merge, amalgamate or sell assets, including equity interests of subsidiaries; enter into sale and leaseback transactions; engage in transactions with affiliates; and enter into amendments of or waivers under subordinated indebtedness. The Credit Agreement contains certain customary affirmative covenants.
+18
+
+
+
+
+
+The Revolving Credit Facility includes financial covenants requiring the Company to maintain a maximum first lien net leverage ratio of 5.00:1.00 and a minimum interest coverage ratio of 2.00:1.00, increasing to 2.25:1.00 for the fiscal quarter ending December 31, 2025 and to 2.50:1.00 for the fiscal quarter ending December 31, 2026, in each case subject to customary standstill and cure rights. The Credit Agreement contains certain customary events of default. If an event of default, as specified in the Credit Agreement, shall occur and be continuing, the borrowers thereunder may be required to repay all amounts outstanding under the Credit Facilities.
+China Facilities
+On August 4, 2025, Amer Sports (Shanghai) Trading Ltd., our wholly owned subsidiary, entered into a CNY 540 million facility with Standard Chartered Bank (China) Limited (the “August 2025 China Facility”), which includes bonds and guarantees of up to CNY 540 million and, at the option of the Company, either a CNY 500 million unsecured working capital line of credit or CNY 500 million synthetic loan. Borrowings under the working capital line of credit bear interest at a rate per annum equal to the one-year China Loan Prime Rate adjusted by an agreed upon spread equivalent to 2.15% at the date of withdrawal on August 21, 2025. The line of credit expires in August 2026. As of June 30, 2026, $73.7 million (based on the CNY/USD exchange rate on June 30, 2026), the full amount of the line of credit under the August 2025 China Facility was outstanding and included in Other Borrowings on the unaudited condensed consolidated interim statement of financial position.
+On October 20, 2025, Amer Sports (Shanghai) Trading Ltd., our wholly owned subsidiary, entered into a CNY 500 million facility with Bank of China Limited (the “November 2025 China Facility”), which bears interest at the one-year China Loan Prime Rate less 80 basis points, equivalent to 2.20% at the time of withdrawal on November 24, 2025. The line of credit expires in November 2026. As of June 30, 2026, $73.7 million (based on the CNY/USD exchange rate on June 30, 2026), the full amount of the line of credit under the November 2025 China Facility was outstanding and included in Other Borrowings on the unaudited condensed consolidated interim statement of financial position.
+
+Off-Balance Sheet Arrangements
+See Note 15. “Commitments and Contingencies,” to our unaudited condensed consolidated interim financial statements included as Exhibit 99.2 to the Report on Form 6-K, for details regarding off-balance sheet arrangements. The Company uses off-balance sheet arrangements including letters of credit and guarantees in connection with certain obligations, including leases. Other than those items disclosed here and elsewhere in this MD&A and our financial statements, we did not have any material off-balance sheet arrangements or commitments as of June 30, 2026.
+
+New Accounting Pronouncements
+See Note 2. “Summary of Material Accounting Policies,” to our unaudited condensed consolidated interim financial statements included as Exhibit 99.2 to the Report on Form 6-K, for details regarding recent accounting pronouncements.
+
+Critical Accounting Policies
+See Note 2. “Summary of Material Accounting Policies,” to our audited consolidated financial statements in our Annual Report on Form 20-F. During the six months ended June 30, 2026, there were no significant changes to our critical accounting policies.
+
+Special Note Regarding Forward-Looking Statements
+This discussion contains statements that constitute forward-looking statements, within the meaning of the Private Securities Litigation Reform Act of 1995, Section 27A of the Securities Act of 1933, as amended, and Section 21E of the Securities Exchange Act of 1934, as amended. Many of the forward-looking statements contained herein can be identified by the use of forward-looking words such as “anticipate,” “believe,” “may,” “will,” “expect,” “could,” “target,” “predict,” “should,” “plan,” “intend,” “estimate” and “potential,” and similar expressions.
+19
+
+
+
+
+
+Forward-looking statements appear in a number of places herein and include, but are not limited to, statements regarding our intent, belief or current expectations. Forward-looking statements are based on our management’s beliefs and assumptions and on information currently available to our management. Such statements are subject to risks and uncertainties, and actual results may differ materially from those expressed or implied in the forward-looking statements due to various factors, including, but not limited to, those identified under the section titled “Item 3. Key Information—D. Risk Factors” in our Annual Report on Form 20-F. These risks and uncertainties include factors relating to:
+• the strength of our brands;
+• changes in market trends and consumer preferences;
+• intense competition that our products, services and experiences face;
+• harm to our reputation that could adversely impact our ability to attract and retain consumers and wholesale partners, employees, brand ambassadors, partners, and other stakeholders;
+• reliance on technical innovation and high-quality products;
+• general economic and business conditions worldwide, including due to inflationary pressures;
+• the strength of our relationships with and the financial condition of our third-party suppliers, manufacturers, wholesale partners and consumers;
+• ability to expand our DTC channel, including the expansion and success of our retail stores and e-commerce platforms;
+• our plans to innovate, expand our product offerings and successfully implement our growth strategies that may not be successful, and implementation of these plans that may divert our operational, managerial and administrative resources;
+• our international operations, including any related to political uncertainty and geopolitical tensions;
+• changes in trade policies, including tariffs and other trade restrictions;
+• our and our wholesale partners’ ability to accurately forecast demand for our products and our ability to manage manufacturing decisions;
+• our third-party suppliers, manufacturers and other partners, including their financial stability and our ability to find suitable partners to implement our growth strategy;
+• the cost of raw materials and our reliance on third-party manufacturers;
+• our distribution system and ability to deliver our brands’ products to our wholesale partners and consumers;
+• climate change and sustainability-related matters, or legal, regulatory or market responses thereto;
+• current and further changes to trade policies, tariffs, import/export regulations and anti-competition regulations in the United States, European Union (“EU”), People’s Republic of China (“PRC”) and other jurisdictions, or our failure to comply with such regulations;
+• the use and reliance on artificial intelligence can potentially cause intellectual property rights issues, security vulnerabilities, harm our business reputation, negatively impact our operations and impact our financial results;
+• ability to obtain approvals from PRC authorities to remain listed on the U.S. exchanges and offer securities in the future;
+• ability to obtain, maintain, protect and enforce our intellectual property rights in our brands, designs, technologies and proprietary information and processes;
+20
+
+
+
+
+
+• ability to defend against claims of intellectual property infringement, misappropriation, dilution or other violations made by third parties against us;
+• security breaches or other disruptions to our information technology (“IT”) systems;
+• our reliance on a large number of complex IT systems;
+• changes in government regulation and tax matters;
+• our ability to remediate our material weakness in our internal control over financial reporting;
+• our relationship with ANTA Sports Products Limited (“ANTA Sports”);
+• our expectations regarding the time during which we will be a foreign private issuer; and
+• other risk factors discussed under “Item 3. Key Information—D. Risk Factors.” in our Annual Report on Form 20-F.
+Forward-looking statements speak only as of the date they are made, and we do not undertake any obligation to update them in light of new information or future developments or to release publicly any revisions to these statements in order to reflect later events or circumstances or to reflect the occurrence of an unanticipated event.
+There have been no material changes to the Company’s risk factors as set forth in section “Item 3. Key Information—D. Risk Factors.” in the Company’s Annual Report on Form 20-F for the fiscal year ended December 31, 2025.
+21

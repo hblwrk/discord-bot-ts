@@ -1252,6 +1252,22 @@ const filingCorpus: {
     source: "1876431/000162828026057534/ex991pressrelease.htm",
     ticker: "pre",
   },
+  {
+    // The MD&A defines several transaction currencies before declaring U.S. dollars as
+    // the reporting currency. Its annual capex forecast follows the prior-year actual in
+    // the same sentence and is not grouped under a dedicated outlook heading.
+    company: "Amer Sports",
+    metrics: [
+      ["revenue", "$1.63B"],
+      ["net_income", "$117.8M"],
+    ],
+    outlook: [
+      ["Capex", "$400M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1988894/000198889426000085/as-2026q2xexx991.htm",
+    ticker: "as",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1272,6 +1288,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(80);
+    expect(filingCorpus).toHaveLength(81);
   });
 });

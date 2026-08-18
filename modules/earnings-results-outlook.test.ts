@@ -640,6 +640,14 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("extracts a direct annual capex forecast after the prior-year actual", () => {
+    expect(extractOutlookMetrics([
+      "Our capital expenditures for 2025 were approximately $283.7 million, and our capital expenditures for 2026 are expected to be approximately $400.0 million.",
+    ])).toEqual([
+      {key: "capex", label: "Capex", value: "$400M"},
+    ]);
+  });
+
   test("keeps the metric on an inline annual outlook heading", () => {
     expect(extractOutlookMetrics([
       "2026 Outlook: Raised full-year revenue outlook to approximately $43 million and reiterated the target of 30 logical qubits in 2026",
