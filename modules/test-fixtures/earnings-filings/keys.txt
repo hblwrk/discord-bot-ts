@@ -1,0 +1,579 @@
+EX-99.1
+2
+exhibit991-q326pressrelease.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+
+
+Keysight Technologies Reports Third Quarter 2026 Results
+
+
+Second consecutive record quarter with orders over $2 billion; full-year outlook improved
+
+
+
+
+SANTA ROSA, Calif., August 18, 2026 - Keysight Technologies, Inc. (NYSE: KEYS) today reported financial results for the third fiscal quarter ended July 31, 2026.
+
+
+"Keysight’s record Q3 results and outlook reflect the growing relevance of our strategy and portfolio, which is enabling customers to solve complex engineering challenges across our end markets,” said Satish Dhanasekaran, Keysight’s President and CEO. “We remain confident in our ability to sustain our momentum and deliver long-term value creation.”
+
+
+Third Quarter Financial Summary
+• Revenue was $1.85 billion, compared with $1.35 billion in the third quarter of 2025.
+• GAAP net income was $397 million, or $2.30 per share, compared with $191 million, or $1.10 per share, in the third quarter of 2025.
+• Non-GAAP net income was $531 million, or $3.07 per share, compared with $297 million, or $1.72 per share in the third quarter of 2025.
+• Cash flow from operations was $437 million, compared to $322 million last year. Free cash flow was $403 million, compared to $291 million in the third quarter of 2025.
+• As of July 31, 2026, cash, cash equivalents, and restricted cash totaled $2.62 billion.
+
+
+Reporting Segments
+• Communications Solutions Group (CSG)
+CSG reported revenue of $1,345 million in the third quarter, up 43 percent from the prior year, reflecting 56 percent growth in commercial communications and 14 percent growth in aerospace, defense, and government.
+
+
+• Electronic Industrial Solutions Group (EISG)
+EISG reported revenue of $501 million in the third quarter, up 21 percent from the prior year, reflecting growth across the semiconductor, general electronics and automotive and energy markets.
+
+
+Outlook
+Keysight’s fourth fiscal quarter of 2026 revenue is expected to be in the range of $1.930 billion to $1.950 billion. The mid-point of the revenue range represents year-over-year growth of approximately 37%. Non-GAAP earnings per share for the fourth fiscal quarter of 2026 are expected to be in the range of $3.34 to $3.40, based on a weighted diluted share count of approximately 172 million shares. Certain items impacting the GAAP tax rate pertain to future events and are not currently estimable with a reasonable degree of accuracy; therefore, no reconciliation of GAAP earnings per share to non-GAAP has been provided. Further information is discussed in the section titled “Use of Non-GAAP Financial Measures” below.
+
+
+Webcast
+Keysight’s management will present more details about its third quarter FY2026 financial results and its fourth quarter FY2026 outlook on a conference call with investors today at 1:30 p.m. PT. This event will be webcast in listen-only mode. Listeners may log on to the call at www.investor.keysight.com under the “Upcoming Events” section and select “Q3 FY26 Keysight Technologies Inc. Earnings Conference Call” to participate. The call can also be accessed by dialing 1-585-542-9983 or 1-833-461-5787 toll-free (meeting ID 521 932 188). The webcast will remain on the company site for 90 days.
+
+
+1
+
+
+
+
+
+Forward-Looking Statements
+This communication contains forward-looking statements as defined in the Securities Exchange Act of 1934 and is subject to the safe harbors created therein. The words “assume,” “expect,” “intend,” “will,” “should,” “outlook” and similar expressions, as they relate to the company, are intended to identify forward-looking statements. These forward-looking statements involve risks and uncertainties that could significantly affect the expected results and are based on certain key assumptions of Keysight’s management and on currently available information. Due to such uncertainties and risks, no assurances can be given that such expectations or assumptions will prove to have been correct, and readers are cautioned not to place undue reliance on such forward-looking statements, which speak only as of the date hereof. Keysight undertakes no responsibility to publicly update or revise any forward-looking statement. The forward-looking statements contained herein include, but are not limited to, predictions, future guidance, projections, beliefs, and expectations about the company’s goals, revenues, financial condition, earnings, and operations that involve risks and uncertainties that could cause Keysight’s results to differ materially from management’s current expectations. Such risks and uncertainties include, but are not limited to, impacts of global economic conditions such as inflation or recession, slowing demand for products or services, volatility in financial markets, reduced access to credit, increased interest rates, impacts of geopolitical tension and conflict outside of the U.S., export control regulations and compliance, net zero emissions commitments, customer purchasing decisions and timing, tariff and trade policy impacts and order cancellations.
+
+
+In addition to the risks above, other risks that Keysight faces include those detailed in Keysight’s filings with the Securities and Exchange Commission on Keysight’s annual report on Form 10-K for the period ended October 31, 2025 and Keysight’s quarterly report on Form 10-Q for the period ended April 30, 2026 .
+
+
+Segment Data
+Segment data reflect the results of our reportable segments under our management reporting system. Segment data are provided on page 5 of the attached tables.
+
+
+Use of Non-GAAP Financial Measures
+In addition to financial information prepared in accordance with U.S. GAAP (“GAAP”), this document also contains certain non-GAAP financial measures based on management’s view of performance, including:
+• Non-GAAP Net Income/Earnings
+• Non-GAAP Net Income per share/Earnings per share
+• Free Cash Flow
+Net Income per share is based on weighted average diluted share count. See the attached supplemental schedules for reconciliations of each non-GAAP financial measure to its most directly comparable GAAP financial measure for the three and nine months ended July 31, 2026. Following the reconciliations is a discussion of the items adjusted from our non-GAAP financial measures and the company’s reasons for including or excluding certain categories of income or expenses from our non-GAAP results.
+
+
+About Keysight Technologies
+Keysight (NYSE: KEYS) serves technology innovators as a mission-critical design enablement partner for the world's most complex engineering challenges. By connecting market-leading design, emulation, and test solutions across the full lifecycle, Keysight helps engineering teams accelerate innovation, reduce risk, and bring new technologies to market faster. Customers across AI infrastructure, communications, industrial automation, aerospace and defense, automotive, semiconductor, and general electronics rely on Keysight to bridge virtual design and physical reality, enabling confident decisions earlier. Learn more at www.keysight.com .
+
+
+
+# # #
+
+
+
+
+2
+
+
+
+
+
+
+
+
+
+
+
+INVESTOR CONTACT :
+Liz Morali
++1 707 577 2880
+liz.morali@keysight.com
+
+
+
+
+MEDIA CONTACT :
+Mark Price
++44 1803 546317
+mark.price@keysight.com
+
+
+
+
+Source: IR-KEYS
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+3
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+KEYSIGHT TECHNOLOGIES, INC. |
+CONDENSED CONSOLIDATED STATEMENT OF OPERATIONS |
+(In millions, except per share data) |
+(Unaudited) |
+PRELIMINARY |
+| | | | | | | |
+| | | | | | | |
+| Three months ended | | Nine months ended |
+| July 31, | | July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | | | |
+Orders | $ | 2,091 | | | $ | 1,340 | | | $ | 5,787 | | | $ | 3,919 | |
+| | | | | | | |
+Revenue | $ | 1,846 | | | $ | 1,352 | | | $ | 5,163 | | | $ | 3,956 | |
+| | | | | | | |
+Costs and expenses: | | | | | | | |
+Cost of products and services | 630 | | | 518 | | | 1,774 | | | 1,488 | |
+Research and development | 312 | | | 250 | | | 935 | | | 749 | |
+Selling, general and administrative | 446 | | | 354 | | | 1,349 | | | 1,075 | |
+Other operating expense (income), net | (3) | | | (4) | | | (11) | | | (15) | |
+Total costs and expenses | 1,385 | | | 1,118 | | | 4,047 | | | 3,297 | |
+| | | | | | | |
+Income from operations | 461 | | | 234 | | | 1,116 | | | 659 | |
+| | | | | | | |
+Interest income | 20 | | | 31 | | | 54 | | | 71 | |
+Interest expense | (26) | | | (28) | | | (80) | | | (68) | |
+Other income (expense), net | 22 | | | 4 | | | 3 | | | 98 | |
+| | | | | | | |
+Income before taxes | 477 | | | 241 | | | 1,093 | | | 760 | |
+| | | | | | | |
+Provision for income taxes | 80 | | | 50 | | | 66 | | | 143 | |
+| | | | | | | |
+Net income | $ | 397 | | | $ | 191 | | | $ | 1,027 | | | $ | 617 | |
+| | | | | | | |
+| | | | | | | |
+Net income per share: | | | | | | | |
+Basic | $ | 2.33 | | | $ | 1.11 | | | $ | 6.00 | | | $ | 3.58 | |
+Diluted | $ | 2.30 | | | $ | 1.10 | | | $ | 5.93 | | | $ | 3.56 | |
+| | | | | | | |
+Weighted average shares used in computing net income per share: |
+Basic | 171 | | | 172 | | | 171 | | | 172 | |
+Diluted | 173 | | | 173 | | | 173 | | | 173 | |
+
+1
+
+
+
+
+
+
+| | | | | | | | | | | |
+KEYSIGHT TECHNOLOGIES, INC. |
+CONDENSED CONSOLIDATED BALANCE SHEET |
+(In millions, except par value and share data) |
+(Unaudited) |
+PRELIMINARY |
+| | | |
+| | | |
+| July 31, 2026 | | October 31, 2025 |
+| | | |
+ASSETS | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 2,605 | | | $ | 1,873 | |
+Accounts receivable, net | 1,067 | | | 939 | |
+Inventory | 1,047 | | | 1,050 | |
+Other current assets | 567 | | | 486 | |
+Total current assets | 5,286 | | | 4,348 | |
+| | | |
+Property, plant and equipment, net | 735 | | | 795 | |
+Operating lease right-of-use assets | 221 | | | 236 | |
+Goodwill | 3,462 | | | 3,424 | |
+Other intangible assets, net | 1,113 | | | 1,304 | |
+Long-term investments | 188 | | | 211 | |
+Long-term deferred tax assets | 327 | | | 373 | |
+Other assets | 589 | | | 610 | |
+Total assets | $ | 11,921 | | | $ | 11,301 | |
+| | | |
+LIABILITIES AND EQUITY | | | |
+Current liabilities: | | | |
+Current portion of long-term debt | $ | 700 | | | $ | — | |
+Accounts payable | 424 | | | 355 | |
+Employee compensation and benefits | 379 | | | 399 | |
+Deferred revenue | 707 | | | 652 | |
+Income and other taxes payable | 163 | | | 207 | |
+Operating lease liabilities | 53 | | | 51 | |
+Other accrued liabilities | 186 | | | 186 | |
+Total current liabilities | 2,612 | | | 1,850 | |
+| | | |
+Long-term debt | 1,817 | | | 2,534 | |
+Retirement and post-retirement benefits | 76 | | | 75 | |
+Long-term deferred revenue | 250 | | | 232 | |
+Long-term operating lease liabilities | 176 | | | 193 | |
+Other long-term liabilities | 419 | | | 536 | |
+Total liabilities | 5,350 | | | 5,420 | |
+| | | |
+Stockholders' equity: | | | |
+Preferred stock; $0.01 par value; 100 million shares authorized; none issued and outstanding | — | | | — | |
+Common stock; $0.01 par value; 1 billion shares authorized; 203 million and 202 million shares issued, respectively | 2 | | | 2 | |
+Treasury stock, at cost; 32.7 million shares and 30.8 million shares, respectively | (4,319) | | | (3,799) | |
+Additional paid-in-capital | 3,058 | | | 2,851 | |
+Retained earnings | 8,102 | | | 7,075 | |
+Accumulated other comprehensive loss | (272) | | | (248) | |
+Total stockholders' equity | 6,571 | | | 5,881 | |
+Total liabilities and equity | $ | 11,921 | | | $ | 11,301 | |
+
+2
+
+
+
+
+
+
+| | | | | | | | | | | |
+KEYSIGHT TECHNOLOGIES, INC. |
+CONDENSED CONSOLIDATED STATEMENT OF CASH FLOWS |
+(In millions) |
+(Unaudited) |
+PRELIMINARY |
+| | | |
+| Nine months ended |
+| July 31, |
+| 2026 | | 2025 |
+| | | |
+Cash flows from operating activities: | | | |
+Net income | $ | 1,027 | | | $ | 617 | |
+Adjustments to reconcile net income to net cash provided by operating activities: | | | |
+Depreciation | 116 | | | 97 | |
+Amortization | 202 | | | 104 | |
+Share-based compensation | 181 | | | 129 | |
+Deferred tax expense (benefit) | (28) | | | (58) | |
+Excess and obsolete inventory-related charges | 29 | | | 30 | |
+Gain on sale of investments | (6) | | | — | |
+Unrealized loss (gain) on investments | 38 | | | (39) | |
+Other non-cash expenses (income), net | 13 | | | 5 | |
+Changes in assets and liabilities, net of effects of businesses acquired: | | | |
+Accounts receivable | (138) | | | 173 | |
+Inventory | (26) | | | (21) | |
+Accounts payable | 72 | | | 29 | |
+Employee compensation and benefits | (20) | | | (8) | |
+Deferred revenue | 64 | | | (12) | |
+Income taxes payable | (63) | | | 42 | |
+| | | |
+| | | |
+| | | |
+| | | |
+Other assets and liabilities | (82) | | | 96 | |
+Net cash provided by operating activities (a)
+| 1,379 | | | 1,184 | |
+| | | |
+Cash flows from investing activities: | | | |
+Investments in property, plant and equipment | (97) | | | (90) | |
+| | | |
+Acquisitions of businesses and intangible assets, net of cash acquired | (33) | | | (3) | |
+Purchase of investments | (27) | | | (4) | |
+Proceeds from sale of investments | 22 | | | — | |
+| | | |
+Net cash used in investing activities | (135) | | | (97) | |
+| | | |
+Cash flows from financing activities: | | | |
+Proceeds from issuance of common stock under employee stock plans | 68 | | | 63 | |
+Payment of taxes related to net share settlement of equity awards | (41) | | | (38) | |
+| | | |
+Treasury stock repurchases, including excise tax payments | (520) | | | (278) | |
+Proceeds from issuance of long-term debt | — | | | 748 | |
+Payment of acquisition-related consideration | (21) | | | — | |
+| | | |
+Debt issuance costs | (1) | | | (8) | |
+Net cash provided by (used in) financing activities | (515) | | | 487 | |
+| | | |
+Effect of exchange rate movements | 3 | | | 9 | |
+| | | |
+Net increase in cash, cash equivalents, and restricted cash | 732 | | | 1,583 | |
+Cash, cash equivalents, and restricted cash at beginning of period | 1,890 | | | 1,814 | |
+Cash, cash equivalents, and restricted cash at end of period | $ | 2,622 | | | $ | 3,397 | |
+
+
+
+
+
+(a) Cash payments included in operating activities:
+| | | | | | | | | | | |
+Interest payments | $ | 90 | | | $ | 39 | |
+Income tax paid, net | $ | 127 | | | $ | 74 | |
+
+3
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+KEYSIGHT TECHNOLOGIES, INC. |
+NET INCOME AND DILUTED EPS RECONCILIATION |
+(In millions, except per share data) |
+(Unaudited) |
+PRELIMINARY |
+|
+| Three months ended | | Nine months ended |
+| July 31, | | July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+| Net Income | Diluted EPS | | Net Income | Diluted EPS | | Net Income | Diluted EPS | | Net Income | Diluted EPS |
+| | | | | | | | | | | |
+GAAP Net income | $ | 397 | | $ | 2.30 | | | $ | 191 | | $ | 1.10 | | | $ | 1,027 | | $ | 5.93 | | | $ | 617 | | $ | 3.56 | |
+Non-GAAP adjustments: | | | | | | | | | | | |
+Amortization of acquisition-related balances | 72 | | 0.42 | | | 33 | | 0.19 | | | 218 | | 1.26 | | | 100 | | 0.58 | |
+Share-based compensation | 47 | | 0.27 | | | 32 | | 0.18 | | | 182 | | 1.05 | | | 131 | | 0.75 | |
+Acquisition and integration costs | 28 | | 0.16 | | | 46 | | 0.27 | | | 88 | | 0.51 | | | 70 | | 0.40 | |
+Restructuring and others | 4 | | 0.03 | | | 10 | | 0.05 | | | 20 | | 0.12 | | | 35 | | 0.20 | |
+Net loss (gain) on investments | (11) | | (0.06) | | | (16) | | (0.09) | | | 31 | | 0.18 | | | (39) | | (0.22) | |
+Adjustment for taxes (a)
+| (6) | | (0.05) | | | 1 | | 0.02 | | | (162) | | (0.94) | | | (5) | | (0.03) | |
+Non-GAAP Net income | $ | 531 | | $ | 3.07 | | | $ | 297 | | $ | 1.72 | | | $ | 1,404 | | $ | 8.11 | | | $ | 909 | | $ | 5.24 | |
+| | | | | | | | | | | |
+Weighted average shares outstanding - diluted | 173 | | | | 173 | | | | 173 | | | 173 | |
+
+
+
+(a) For both the three and nine months ended July 31, 2026 and 2025, management used a non-GAAP effective tax rate of 14%.
+
+
+Please refer to the last page for details on the use of non-GAAP financial measures.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+4
+
+
+
+
+
+| | | | | | | | | | | | | | | | | |
+KEYSIGHT TECHNOLOGIES, INC. |
+SEGMENT RESULTS INFORMATION |
+(In millions, except where noted) |
+(Unaudited) |
+PRELIMINARY |
+| | | | | |
+| | | | | |
+| | | | | |
+Communications Solutions Group | | | | | Percent |
+| Q3'26 | | Q3'25 | | Inc/(Dec) |
+Revenue | $ | 1,345 | | | $ | 940 | | | 43% |
+Gross margin, % | 71 | % | | 67 | % | | |
+Income from operations | $ | 458 | | | $ | 246 | | | |
+Operating margin, % | 34 | % | | 26 | % | | |
+| | | | | |
+| | | | | |
+Electronic Industrial Solutions Group | | | | | Percent |
+| Q3'26 | | Q3'25 | | Inc/(Dec) |
+Revenue | $ | 501 | | | $ | 412 | | | 21% |
+Gross margin, % | 64 | % | | 57 | % | | |
+Income from operations | $ | 155 | | | $ | 92 | | | |
+Operating margin, % | 31 | % | | 22 | % | | |
+
+
+
+Segment revenue and income from operations are consistent with the respective non-GAAP financial measures as discussed on last page.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+5
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+KEYSIGHT TECHNOLOGIES, INC. |
+FREE CASH FLOW |
+(In millions) |
+(Unaudited) |
+PRELIMINARY |
+| | | | | | | |
+| Three months ended | | Nine months ended |
+| July 31, | | July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | | | |
+Net cash provided by operating activities | $ | 437 | | | $ | 322 | | | $ | 1,379 | | | $ | 1,184 | |
+Adjustments: | | | | | | | |
+Investments in property, plant and equipment | (34) | | | (31) | | | (97) | | | (90) | |
+| | | | | | | |
+Free cash flow | $ | 403 | | | $ | 291 | | | $ | 1,282 | | | $ | 1,094 | |
+
+
+
+Please refer to the last page for details on the use of non-GAAP financial measures.
+6
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | |
+KEYSIGHT TECHNOLOGIES, INC. |
+REVENUE BY END MARKETS |
+(In millions) |
+(Unaudited) |
+PRELIMINARY |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | Percent |
+| Q3'26 | | Q3'25 | | Inc/(Dec) |
+| | | | | |
+Aerospace, Defense and Government | $ | 339 | | | $ | 296 | | | 14% |
+Commercial Communications | 1,006 | | | 644 | | | 56% |
+Electronic Industrial | 501 | | | 412 | | | 21% |
+Total Revenue | $ | 1,846 | | | $ | 1,352 | | | 36% |
+
+
+
+
+
+
+
+
+
+7
+
+
+
+
+
+
+KEYSIGHT TECHNOLOGIES, INC.
+Non-GAAP Financial Measures
+Our financial results are prepared in accordance with generally accepted accounting principles in the U.S. (“GAAP”). To provide investors with additional insight, management uses both GAAP and non-GAAP financial measures to analyze and assess the overall performance of the business, to make operating decisions and to forecast and plan for future periods. We believe that our investors benefit from seeing our results “through the eyes of management” in addition to seeing our GAAP results. This information enhances investors’ understanding of the continuing performance of our business and facilitates comparison of performance to our historical and future periods. .
+Our non-GAAP financial measures may not be comparable to similarly titled measures used by other companies, including industry peer companies, limiting the usefulness of these measures for comparative purposes.
+These non-GAAP measures should be considered supplemental to and not a substitute for financial information prepared in accordance with GAAP. The discussion below presents information about each of the non-GAAP financial measures and the company’s reasons for including or excluding certain categories of income or expenses from our non-GAAP results. In future periods, we may exclude such items and may incur income and expenses similar to these excluded items. Accordingly, adjustments for these items and other similar items in our non-GAAP presentation should not be interpreted as implying that these items are non-recurring, infrequent or unusual.
+The following items are excluded from our non-GAAP financial measures:
+• Acquisition-related items: We exclude the impact of certain items recorded in connection with business combinations from our non-GAAP financial measures that are either non-cash or not normal, recurring operating expenses due to their nature, variability of amounts and lack of predictability as to occurrence or timing. These amounts may include non-cash items such as the amortization of acquired intangible assets and amortization of items associated with fair value purchase accounting adjustments. We also exclude other acquisition and integration costs associated with business acquisitions that are not normal recurring operating expenses, including gains/losses on foreign exchange contracts and legal, accounting and due diligence costs. While we have a history of acquisition activity, we do not acquire businesses on a predictable cycle, and the amount of an acquisition’s purchase price allocated to intangible assets and the related amortization term are unique to each acquisition and can vary significantly from acquisition to acquisition.
+• Share-based compensation expense: We exclude share-based compensation expense from our non-GAAP financial measures as it is primarily a non-cash charge and can vary significantly from period to period based on the company’s share price, as well as the timing, size and nature of equity awards granted. Share-based compensation expenses will recur in future periods. Management believes the exclusion of this expense facilitates the ability of investors to compare the company’s operating results with those of other companies, many of which also exclude share-based compensation expense in determining their non-GAAP financial measures.
+• Restructuring and others: We exclude incremental expenses associated with restructuring initiatives, including those of acquired entities, that are usually aimed at material changes in the business or cost structure. Such costs may include employee separation costs, facility-related costs, contract termination fees, and costs to move operations from one location to another. These activities can vary significantly from period to period based on the timing, size and nature of restructuring plans; therefore, we do not consider such costs to be normal, recurring operating expenses.
+We also exclude “others,” not normal, recurring, cash operating income/expenses from our non-GAAP financial measures. Such items are evaluated on an individual basis, based on both quantitative and qualitative factors and generally represent items that we do not anticipate occurring as part of our normal business. While not all-inclusive, examples of such items would include significant non-recurring events like realized gains or losses associated with our employee benefit plans, asset impairments, costs and recoveries related to unusual events, gains/losses on sale of assets/divestitures, adjustment attributable to non-controlling interest, etc. We believe that these costs do not reflect expected future operating expenses and do not contribute to a meaningful evaluation of the company’s current operating performance or comparisons to our operating performance in other periods.
+• Net gains/losses on investments: We also exclude net gains and losses on investments, which primarily represent profits or losses recognized from changes in the fair value and/or sale of securities. Such fluctuations are driven by market conditions and factors beyond our control and are not indicative of the Company’s core operating results.
+• Estimated tax rate: We utilize a consistent methodology for long-term projected non-GAAP tax rate. When projecting this long-term rate, we exclude any tax benefits or expenses that are not directly related to ongoing operations and which are either isolated or cannot be expected to occur again with any regularity or predictability. Additionally, we evaluate our current long-term projections, current tax structure and other factors, such as existing tax positions in various jurisdictions and key tax holidays in major jurisdictions where Keysight operates. This tax rate could change in the future for a variety of reasons, including but not limited to significant changes in geographic earnings mix including acquisition activity, or fundamental tax law changes in major jurisdictions where Keysight operates. The above reasons also limit our ability to reasonably estimate the future GAAP tax rate and provide a reconciliation of the expected non-GAAP earnings per share for the fourth quarter of fiscal 2026 to the GAAP equivalent.
+Management recognizes that these items can have a material impact on our cash flows and/or our net income. Our GAAP financial statements, including our Condensed Consolidated Statement of Cash Flows, portray those effects. Although we believe it is useful for investors to see core performance free of special items, investors should understand that the excluded costs are actual expenses that may impact the cash available to us for other uses. To gain a complete picture of all effects on the company’s profit and loss from any and all events, management does (and investors should) rely upon the Condensed Consolidated Statement of Operations prepared in accordance with GAAP. The non-GAAP measures focus instead upon the core business of the company, which is only a subset, albeit a critical one, of the company’s performance.
+Core Revenue/Margin excludes the impact of a) foreign currency changes and b) revenue/expenses associated with acquisitions or divestitures completed within the last twelve months. We exclude from the current period the impact of foreign currency changes as currency rates can fluctuate based on factors outside our control and may obscure underlying growth trends. To determine this impact, current period results for entities reporting in currencies other than United States dollars are converted into United States dollars at the actual exchange rates in effect during the respective prior periods. Given the nature, size and number of acquisitions can vary significantly from period to period and as compared to our peers, we also exclude revenue/expenses associated with recently acquired businesses to facilitate comparisons of growth and analysis of underlying business trends.
+Free cash flow includes cash provided by operating activities calculated according to GAAP less net investments in property, plant and equipment. Management believes free cash flow provides useful supplemental information regarding the company's ability to generate cash after investments required to support ongoing business operations and facilitates an evaluation of the company's liquidity, financial flexibility, and capital allocation priorities.
+Percentages and period-over-period changes are calculated using underlying unrounded values and may not precisely reconcile to the rounded figures presented.
+8
+
+
+
+
+
+
+
+
+
+
+
+9
