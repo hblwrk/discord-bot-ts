@@ -494,11 +494,15 @@ function extractMetricValue(
   }
 
   if ("money" === valueType) {
+    const minUncuedAbsValue = line.length > collapsedStatementLineLength &&
+        /\b(?:USD|CAD|TWD|NTD|EUR|GBP|JPY|CHF)\s+millions\b.*\bNote\b/i.test(line)
+      ? 0
+      : 10;
     const labelSearchText = getMetricValueSentenceText(preferredSearchText);
     const sentenceSearchText = getBreakdownTotalText(labelSearchText) ?? labelSearchText;
     const hasMetricLabelSuffixTableNote = isMetricLabelSuffixTableNote(sentenceSearchText);
     const searchValueMatch = true === hasMetricLabelSuffixTableNote ? null : findColumnValueMatch(sentenceSearchText, {
-      minUncuedAbsValue: 10,
+      minUncuedAbsValue,
       requireMoneyCue: 1 === contextMoney.scale,
       skipTableNoteRefs,
       skipPercentages: true,
@@ -506,11 +510,11 @@ function extractMetricValue(
     const hasLeadingMoneyValue = true === isLeadingMoneyValuePrefix(fallbackSearchText);
     const fallbackValueMatch = (true === isMetricValuePrefix(fallbackSearchText) || hasLeadingMoneyValue)
       ? findNumericValueMatch(fallbackSearchText, {
-      minUncuedAbsValue: 10,
-      requireMoneyCue: 1 === contextMoney.scale,
-      skipTableNoteRefs,
-      skipPercentages: true,
-    })
+        minUncuedAbsValue,
+        requireMoneyCue: 1 === contextMoney.scale,
+        skipTableNoteRefs,
+        skipPercentages: true,
+      })
       : null;
     const useFallbackValue = null !== fallbackValueMatch &&
       (hasLeadingMoneyValue || null === searchValueMatch || true === hasMetricLabelSuffixTableNote);
