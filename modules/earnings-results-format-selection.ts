@@ -129,8 +129,17 @@ export function getMetricCandidateScore({
       /\bservice\s+revenues?\b/i,
       /\bgrant\s+revenues?\b/i,
     ].filter(componentPattern => componentPattern.test(precedingRevenueRows)).length;
+    if (true === isUnderSegmentResultsHeading(lines, lineIndex)) {
+      score -= 120;
+    }
+
     if (/\btotal\s+net\s+revenues?\b/i.test(metricLine) &&
         true === hasMultiCurrencyColumnHeader(lines, lineIndex)) {
+      score += 100;
+    } else if (/^\s*total\s*\|?\s*$/i.test(lines[lineIndex - 1] ?? "") &&
+        true === isUnderIncomeStatementHeading(lines, lineIndex)) {
+      // SEC table conversion can split "Total Revenue" across two lines. Keep the orphaned
+      // qualifier load-bearing so a segment row above it cannot win on table position.
       score += 100;
     } else if (/\btotal\s+revenues?\b/i.test(patternMatch?.[0] ?? "") &&
         2 <= revenueComponentKinds) {
@@ -195,6 +204,24 @@ export function getMetricCandidateScore({
   }
 
   return score;
+}
+
+function isUnderIncomeStatementHeading(lines: string[], lineIndex: number): boolean {
+  for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 120; index--, examined++) {
+    const heading = (lines[index] ?? "").replace(/[\s|:]+$/, "").trim();
+    if (/^(?:income\s+statement|(?:condensed\s+)?consolidated\s+statements?\s+of\s+(?:income|operations))$/i.test(heading)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function isUnderSegmentResultsHeading(lines: string[], lineIndex: number): boolean {
+  return lines
+    .slice(Math.max(0, lineIndex - 12), lineIndex)
+    .some(line => line.length <= 140 &&
+      /\b(?:reporting\s+segments?|solutions\s+group)\b/i.test(line));
 }
 
 export function hasStandaloneFullYearPeriod(text: string): boolean {
@@ -501,6 +528,16 @@ function getPeriodScope(
 // Only the header block directly above counts. A line carrying figures ends the block, so a
 // quarter heading further up a narrative section cannot rescue a full-year one below it.
 function hasQuarterScopeInHeaderBlock(lines: string[], scopeLineIndex: number): boolean {
+  const headerBlock = lines
+    .slice(Math.max(0, scopeLineIndex - 4), scopeLineIndex + 1)
+    .join(" ");
+  // Foreign-issuer translation tables commonly label their first current-quarter column
+  // "2Q'26 (USD)" before a local-currency quarter and YTD columns. This reverse notation is
+  // scoped here because treating it as a universal section heading changes unrelated tables.
+  if (/\b[1-4]Q['’]?(?:\d{2}|20\d{2})\b/i.test(headerBlock) && /\(USD\)/i.test(headerBlock)) {
+    return true;
+  }
+
   for (let index = scopeLineIndex - 1; index >= 0 && index >= scopeLineIndex - 3; index--) {
     const line = lines[index];
     if (undefined === line ||

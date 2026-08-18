@@ -1,0 +1,6173 @@
+EX-99.1
+2
+dp251949_ex9901.htm
+EXHIBIT 99.1
+
+
+
+
+
+
+
+
+Exhibit
+99.1
+
+
+
+
+
+Auna
+Announces 2Q26 Financial Results
+
+
+
+
+
+A
+consecutive quarter of strong top-line growth and cash flow performance;
+
+
+
+
+
+Consolidated
+Adjusted EBITDA impacted by service mix across the segments
+
+
+
+
+
+
+
+
+Luxembourg, August 18, 2026 &ndash; Auna (NYSE:
+AUNA) (&ldquo;Auna&rdquo; or the &ldquo;Company&rdquo;) , a leading healthcare platform in Latin America with operations in Mexico,
+Peru, and Colombia, announced today financial results for the second quarter ended June 30, 2026 (&ldquo;Second quarter 2026&rdquo; or
+&ldquo;2Q26&rdquo;). Financial results are expressed in Peruvian Soles (&ldquo;S/&rdquo; or &ldquo;PEN&rdquo; or &ldquo;Soles&rdquo;)
+and are presented in accordance with International Financial Reporting Standards (&ldquo;IFRS&rdquo;), unless otherwise noted.
+
+
+
+
+
+2Q&rsquo;26 Consolidated Highlights
+
+
+
+
+
+
+| ● | Revenue increased 9% FXN, or 13% YoY on a reported basis, to S/1,238 million |
+
+
+
+
+
+
+| ● | Adjusted EBITDA was S/227 million, a decrease of 9% YoY FXN or 6% YoY on a reported basis, and an increase
+of 3% FXN from 1Q26 |
+
+
+
+
+
+
+| ● | Adjusted EBITDA Margin of 18.4%, slightly up from 1Q26 |
+
+
+
+
+
+
+| ● | Operating Cash Flow and Free Cash Flow increased 45% YoY and 181% YoY, respectively |
+
+
+
+
+
+
+| ● | Leverage Ratio improved to 3.6x |
+
+
+
+
+
+
+| ● | Oncology MLR remained stable at 50.1% |
+
+
+
+
+
+
+| ● | Number of surgeries increased 5.2% YoY to 21,912 |
+
+
+
+
+
+
+| ● | Number of days hospitalized increased 5% YoY to 135,107 |
+
+
+
+
+
+
+| ● | Number of chemotherapy and radiotherapy sessions increased 15% YoY |
+
+
+
+
+
+
+
+
+Recent Developments
+
+
+
+
+
+
+| 1. | Capacity expansion
+in Colombia |
+
+
+
+
+
+
+Colombia&rsquo;s new administration has defined
+and begun implementing an Emergency Stabilization Plan aimed at improving liquidity throughout the healthcare system, including across
+EPSs and hospitals, by addressing near-term debt and cash-flow bottlenecks. The plan also prioritizes supply-chain continuity, the delivery
+of delayed prescription drugs, and reducing backlogs in medical appointments and surgeries. We view these measures as a constructive development
+that could support greater stability across the sector.
+
+
+
+
+
+Against this backdrop, Auna has expanded capacity
+at its IMAT Oncomedica facilities in Monter&iacute;a to meet growing demand for high-complexity care. In July, we reactivated
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+18 adult ICU beds and added 24 hospitalization
+beds. In August, we opened an operating room dedicated to private-segment oncology, orthopedic and neurological procedures. In September,
+we expect to add 18 hospitalization beds and a 12-stretcher VIP emergency area for private and out-of-pocket patients.
+
+
+
+
+
+Much of this capacity was already available for
+operation and required minimal incremental CapEx. We expect the expansion to be accretive through the remainder of the year and see additional
+opportunities to grow through similarly capital-efficient initiatives.
+
+
+
+
+
+
+| 2. | Linear accelerator
+in Monterrey |
+
+
+
+
+
+
+As part of our commitment to expand Auna&rsquo;s
+radiation-treatment capabilities and providing state-of-the-art, high-complexity care, we are enhancing our high-precision, AI-powered
+adaptive radiotherapy (ART) offering within existing treatment slots. The Elekta EVO linear accelerator is expected to become operational
+in Monterrey in September. It represents the most advanced radiation-treatment technology and will strengthen our clinical capabilities,
+support operating efficiency and help redefine our standard of care.
+
+
+
+
+
+
+| 3. | Lima Sur Expansion
+and Technology Update in Peru |
+
+
+
+
+
+
+In July 2026, Auna took possession of the site
+and began mobilization for a new clinical facility in Lima, to be named Auna Lima Sur. The project will expand capacity through an asset-light,
+cost-efficient model and is expected to become operational between late 2027 and early 2028. Auna Lima Sur will include an operating room,
+chemotherapy bays and capacity for 30 inpatient beds.
+
+
+
+
+
+Also in Peru, Auna acquired a Versius SP4 robotic
+system from CMR Surgical. The modular platform is designed to support minimally invasive procedures through independent robotic arms and
+a laparoscopic approach, with enhanced precision enabled by 3D 4K visualization. The system is expected to become operational at Cl&iacute;nica
+Delgado in August, further strengthening Auna&rsquo;s high-complexity surgical capabilities and commitment to high-quality, value-based
+care.
+
+
+
+
+
+
+| 4. | Management update |
+
+
+
+
+
+
+On August 3, 2026, Abraham Gal&aacute;n joined
+Auna as Chief Technology Officer. He brings extensive experience in technology across the healthcare and insurance sectors and will be
+based in Monterrey.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Message
+from Auna&rsquo;s Executive Chairman and President
+
+
+
+
+
+The second quarter of
+2026 demonstrated sustained commercial momentum across our markets and progress in the operational initiatives that support our growth
+strategy. Revenue increased by 9% FXN, while Adjusted EBITDA declined 9% FXN. This reflects service mix and temporary margin pressure
+in Mexico and Colombia, as well as pharmacy and payroll costs, along with the impact of accepted penalties primarily related to billing
+matters in the reconciliation of prior years' receivables in Peru.
+
+
+
+
+
+In Peru, our integrated
+model continues to deliver strong results, Peru achieved an 8% revenue growth, driven by new B2B memberships at Oncosalud and increased
+volumes in high-complexity procedures within our healthcare network. Oncosalud expanded its B2B membership base, while higher occupancy
+in the healthcare network underscored our focus on growing in high complexity. Adjusted EBITDA reflects increased pharmacy, physician
+and payroll expenses required to accommodate the surge in patient volumes, as well as accepted penalties primarily attributable to previous
+years&rsquo; billing matters.
+
+
+
+
+
+In Mexico, patient volume
+recovery continued throughout the quarter. Improved tier classifications with key payors, improved pricing for high-complexity services,
+and the ongoing expansion of our oncology offering contributed to stronger volumes, particularly in June. This momentum drove 4% year-over-year
+revenue growth in local currency, while revenue and Adjusted EBITDA increased by 5% and 3%, respectively, compared to the first quarter
+of 2026, in local currency. Although service mix and talent investments continued to affect margins year over year, both Adjusted EBITDA
+and margin improved sequentially, indicating progress in the initiatives underway in Monterrey and positioning the network for sustained
+volume growth in the second half.
+
+
+
+
+
+In Colombia, revenue increased
+by 13% in local currency, primarily due to the sustained expansion of risk-sharing (&ldquo;PGP&rdquo;) contracts, which accounted for
+24% of segment revenue. Additionally, reduced exposure to intervened payors, which constituted 12% of revenue, and enhanced payment agreements
+contributed to the strengthening of the quality and predictability of our payor mix. First-half margins reflected the variable costs of
+stabilizing our new PGP contracts, alongside statutory wage increases and planned SG&A investments. Contractual price adjustments
+scheduled for the second half of the year are expected to drive improved profitability in the coming quarters.
+
+
+
+
+
+Consolidated Cash flow
+generation continued to be a key highlight in the second quarter of 2026. Operating cash flow increased by 45% year-over-year, while free
+cash flow grew by 181%, driven by disciplined working capital management and improved payor collections. Despite initial margin pressure,
+our leverage ratio improved to 3.6x, underscoring the resilience of our business model and supporting our progress toward a medium-term
+target of below 3.0x.
+
+
+
+
+
+The recent elections in
+Peru and Colombia have so far generally been viewed as a positive development for private-sector participation and long-term healthcare
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+investment. This
+could create a more favorable environment for our industry and provides greater visibility into our strategic path forward.
+
+
+
+
+
+Looking ahead, given the
+recovery in volumes in Mexico and our projected performance for the remainder of the year, we reaffirm our full-year 2026 revenue guidance.
+We anticipate revenue growth near the midpoint of our 10% to 14% FX-neutral range, or approximately 12%. We expect Adjusted EBITDA growth
+toward the low end of that range, reflecting temporary cost pressures across our three geographies as the business scales. The Adjusted
+EBITDA outlook excludes the impacts of accepted penalties primarily related to billing matters in the reconciliation of prior years'
+receivables in Peru.
+
+
+
+
+
+Capital expenditures guidance
+remains unchanged at approximately 4% of revenues. Although we did not provide formal free cash flow guidance, we expect it to exceed
+our original internal expectations, supported by strong working capital management and improved collections, further supporting our deleveraging
+path.
+
+
+
+
+
+
+
+
+Overview of 2Q26 Consolidated Results
+
+
+
+
+
+Revenues in 2Q26 increased 9%
+FXN and 13% YoY on a reported basis to S/1,238 million, with revenues in local currency (&ldquo;LC&rdquo;) increasing across all segments:
+4% in Mexico, 8% in Peru and 13% in Colombia. In Mexico, the Healthcare network sustained higher surgery and oncology volumes, reflecting
+the continued benefits of the improved tier classifications with key payors implemented in prior periods, as well as growth in packages
+and out-of-pocket revenues. In Peru, Oncosalud increased revenues through additional B2B memberships, while the healthcare network benefited
+from higher volumes of high-complexity surgeries. In Colombia, volumes continued to grow across PGP services in cardiovascular, ambulatory
+and oncology care, supported by the ongoing scaling of risk-sharing models and diversification away from intervened payors.
+
+
+
+
+
+Adjusted EBITDA in 2Q26 decreased
+9% FXN, or 6% YoY on a reported basis, to S/227 million, with an Adjusted EBITDA Margin of 18.4%. In LC, Segment Adjusted EBITDA decreased
+16% in Mexico and 12% in Colombia, while remaining flat in Peru. In Mexico, Segment Adjusted EBITDA decreased versus 2Q25, due to a lower
+contribution margin from the current mix of services and specialties, as well as higher SG&A expenses related to talent investments
+that impacted payroll. On a sequential basis, however, Segment Adjusted EBITDA grew 3% versus 1Q26 mostly from improved gross profit.
+Consolidated Peru Adjusted EBITDA growth was impacted by accepted penalties primarily related to billing matters in the reconciliation
+of prior years' receivables and by pharmacy and medical talent costs related to supporting increased patient volumes at the healthcare
+network and Oncosalud. In Colombia, Segment Adjusted EBITDA sustained a strong top line, partially offset by lower margins from a higher
+proportion of PGP contracts and from increased oncology services.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Reported results were impacted by foreign
+exchange fluctuations, specifically, a 5% appreciation of the Mexican Peso (&ldquo;MXN&rdquo;) and a 9% appreciation of the Colombian
+Peso (&ldquo;COP&rdquo;) against the PEN.
+
+
+
+
+
+Net finance costs for 2Q26 were
+S/105 million, compared to S/46 million in 2Q25. Excluding foreign exchange effects, net finance costs totaled S/113 million in 2Q26,
+compared to S/115 million in 2Q25, reflecting a YoY decrease of S/2 million, or 1%. When also excluding the non-cash impact related to
+the future purchase obligation for IMAT Oncomedica, which began affecting finance expenses in 3Q25, net finance costs decreased by S/4
+million. The increase in reported net finance costs primarily reflected lower non-cash FX gain of S/8 million, compared to a non-cash
+gain of S/68 million in 2Q25.
+
+
+
+
+
+Net Income for 2Q26 was S/33 million
+compared to S/84 million in 2Q25. The decline was primarily driven by a S/61 million decrease in positive non-cash FX impact on net finance
+costs compared to the prior-year period. On a per-share basis, Net Income was S/0.40, based on a weighted average of 74,237,368 basic
+and diluted shares.
+
+
+
+
+
+Adjusted Net Income for 2Q26 was
+S/40 million, compared to S/89 million in 2Q25. The decline reflects the same FX-driven variance on the net finance costs described above.
+As mentioned in previous quarters, the FX volatility has been reduced by resetting the levels on USD PEN hedges after the refinancing
+exercise at the end of 2025. On a per-share basis, Adjusted Net Income was S/0.50, based on a weighted average of 74,237,368 basic and
+diluted shares.
+
+
+
+
+
+
+
+
+Business performance
+
+
+
+
+
+HEALTHCARE SERVICES
+MEXICO
+
+
+
+
+
+(Explanations of variances are
+in local currency unless expressed otherwise)
+
+
+
+
+
+Auna&rsquo;s Healthcare Services and Auna Seguros&rsquo;
+operations in Mexico accounted for 24% of consolidated revenues and 34% of consolidated Adjusted EBITDA in the quarter.
+
+
+
+
+
+(Figures in millions of Soles
+and millions of US Dollars, unless expressed otherwise)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|
+|
+|
+|
+|
+|
+|
+&Delta;
+2Q'26 vs
+
+2Q'25 |
+&Delta;
+2Q'26 vs
+
+1Q'26 |
+&Delta;
+YTD 26 vs
+
+YTD 25 |
+
+
+Healthcare Services Mexico
+
+Key Operating Metrics |
+|
+|
+2Q'26 (USD) |
+2Q'26 |
+YTD 26 |
+|
+As Reported |
+L.C. |
+As Reported |
+L.C. |
+As Reported |
+L.C. |
+
+
+Beds |
+# |
+|
+|
+708 |
+708 |
+|
+0% |
+|
+0% |
+|
+0% |
+|
+
+
+Surgeries |
+# (000) |
+|
+|
+5 |
+10 |
+|
+6% |
+|
+7% |
+|
+5% |
+|
+
+
+Emergency treatments |
+# (000) |
+|
+|
+8 |
+16 |
+|
+-3% |
+|
+0% |
+|
+-3% |
+|
+
+
+Radiotherapy & Chemotherapy |
+# (000) |
+|
+|
+5 |
+9 |
+|
+86% |
+|
+20% |
+|
+82% |
+|
+
+
+Total number of days hospitalized |
+# (000) |
+|
+|
+25 |
+50 |
+|
+1% |
+|
+0% |
+|
+0% |
+|
+
+
+Operating capacity utilization |
+% |
+|
+|
+49.9% |
+50.1% |
+|
+6.0 p.p. |
+|
+1.5 p.p. |
+|
+5.5 p.p. |
+|
+
+
+Total capacity utilization |
+% |
+|
+|
+39.0% |
+39.2% |
+|
+0.6 p.p. |
+|
+-0.4 p.p. |
+|
+0.1 p.p. |
+|
+
+
+Key Financial Metrics |
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Segment Revenue |
+|
+|
+88 |
+300 |
+579 |
+|
+10% |
+4% |
+8% |
+5% |
+12% |
+6% |
+
+
+Segment Adjusted EBITDA |
+|
+|
+23 |
+78 |
+151 |
+|
+-11% |
+-16% |
+6% |
+3% |
+-10% |
+-15% |
+
+
+Segment Adjusted EBITDA margin |
+% |
+|
+|
+25.9% |
+26.1% |
+|
+-6.1 p.p. |
+|
+-0.5 p.p. |
+|
+-6.5 p.p. |
+|
+
+
+
+
+
+
+
+
+
+
+
+
+
+Segment revenue from Mexico increased 4%,
+with the Mexico Healthcare Services Network increasing 7%, partially offset with Auna Seguro&rsquo;s non-recurring revenues from 2Q25.
+Sequentially, Segment revenue from Mexico increased 5% from 1Q26, with Healthcare Services driving the growth. The Mexico Healthcare Services
+growth was driven by higher surgery volumes, oncology services and out-of-pocket payments, despite significantly lower activity in April
+due to the Easter holidays.
+
+
+
+
+
+Auna continued to benefit from the more favorable
+tier classifications with two payors at Doctors Hospital (&ldquo;DH&rdquo;), our largest healthcare facility, with patient volumes increasing
+20% and revenues increasing 33% YoY. The renewal of the ISSSTELEON B2B agreement, at pricing that better reflects the complexity of services
+provided, drove a 9% YoY increase in related revenues. Packages and out-of-pocket revenues represented 9% of Mexico segment revenues.
+
+
+
+
+
+Surgery revenues increased 5% on higher volumes
+at DH. In oncology services, revenues from radiotherapy and chemotherapy increased 6% from 1Q26 and 2.1x from 2Q25, representing 11% of
+Mexico&rsquo;s network revenues in 2Q26, up from 6% in 2Q25, while the number of oncology patients increased 2.2x since 2Q25. In addition,
+private revenues from out-of-pocket payments increased 21% versus 2Q25 and surgical and hemodynamic packages increased 4.2x since 2Q25.
+
+
+
+
+
+During the quarter, approximately 59% of the network&rsquo;s
+productive physicians increased their service volumes, while nursing staffing coverage and retention improved compared with 2025. The
+network also implemented more stringent physician-onboarding criteria focused on productivity. Under these criteria, Auna onboarded 22
+additional physicians who treated patients for at least two months during the quarter and met a defined minimum billing threshold. These
+physicians were recruited in key specialties, including traumatology, cardiology and general medicine.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Higher volumes in surgeries, hospitalization and
+ICU services resulted in total capacity utilization increasing 0.6 p.p. from 2Q25 to 39.0%. The capacity utilization in April was low
+given the Easter holidays, finishing in June with 42% capacity utilization.
+
+
+
+
+
+Auna Seguros contributed 11% of revenues in 2Q26
+compared to 12% in 2Q25.
+
+
+
+
+
+Segment Adjusted EBITDA decreased 16% YoY
+in 2Q26, with a Segment Adjusted EBITDA Margin of 25.9%. Within the segment, Healthcare Services was more resilient, recording a smaller
+Adjusted EBITDA decline while maintaining a strong margin. The Healthcare Network&rsquo;s contribution margin was primarily affected by
+higher pharmacy costs associated with the period&rsquo;s service mix, while talent investments increased payroll within SG&A. Sequentially,
+Segment Adjusted EBITDA increased 3% versus 1Q26, led by a 7% increase in Healthcare Services Adjusted EBITDA.
+
+
+
+
+
+
+
+
+PERU OPERATIONS: HEALTHCARE
+SERVICES PERU AND ONCOSALUD PERU
+
+
+
+
+
+Auna&rsquo;s Healthcare Services and Oncosalud
+Peru accounted for 41% of consolidated revenues and 45% of consolidated Adjusted EBITDA in the quarter.
+
+
+
+
+
+(Figures in millions of Soles
+and millions of US Dollars, unless expressed otherwise)
+
+
+
+
+
+
+
+
+
+
+
+Healthcare Services Peru and
+
+Oncosalud Peru
+
+Key Financial Metrics |
+|
+|
+2Q'26 (USD) |
+2Q'26 |
+YTD 26 |
+|
+&Delta; 2Q'26 vs 2Q'25 |
+&Delta; 2Q'26 vs 1Q'26 |
+&Delta; YTD 26 vs YTD 25 |
+
+
+Consolidated Revenue |
+|
+|
+150 |
+512 |
+1,012 |
+|
+8% |
+2% |
+8% |
+
+
+Healthcare Services Peru |
+|
+|
+87 |
+296 |
+578 |
+|
+10% |
+5% |
+8% |
+
+
+Oncosalud Peru |
+|
+|
+93 |
+317 |
+631 |
+|
+11% |
+1% |
+11% |
+
+
+Holding and Eliminations (*) |
+|
+|
+|
+(101) |
+(196) |
+|
+25% |
+6% |
+19% |
+
+
+Consolidated Peru Adjusted EBITDA |
+|
+|
+30 |
+101 |
+200 |
+|
+0% |
+2% |
+-1% |
+
+
+Healthcare Services Peru |
+|
+|
+10 |
+35 |
+65 |
+|
+2% |
+13% |
+-14% |
+
+
+Oncosalud Peru |
+|
+|
+20 |
+67 |
+135 |
+|
+0% |
+-2% |
+6% |
+
+
+Consolidated Peru Adj. EBITDA margin |
+% |
+|
+|
+19.8% |
+19.8% |
+|
+-1.5 p.p. |
+0.0 p.p. |
+-1.9 p.p. |
+
+
+Healthcare Services Peru |
+|
+|
+|
+11.7% |
+11.3% |
+|
+-0.9 p.p. |
+0.8 p.p. |
+-2.9 p.p. |
+
+
+Oncosalud Peru |
+|
+|
+|
+21.0% |
+21.4% |
+|
+-2.4 p.p. |
+-0.8 p.p. |
+-1.0 p.p. |
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+(*) Relates to intersegment revenue elimination. |
+|
+|
+|
+|
+|
+|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Healthcare Services Peru
+
+Key Operating Metrics |
+|
+|
+2Q'26 (USD) |
+2Q'26 |
+YTD 26 |
+|
+&Delta; 2Q'26 vs 2Q'25 |
+&Delta; 2Q'26 vs 1Q'26 |
+&Delta; YTD 26 vs YTD 25 |
+
+
+Beds |
+# |
+|
+|
+389 |
+389 |
+|
+1% |
+0% |
+1% |
+
+
+Surgeries |
+# (000) |
+|
+|
+6 |
+11 |
+|
+2% |
+-5% |
+6% |
+
+
+Emergency treatments |
+# (000) |
+|
+|
+52 |
+97 |
+|
+9% |
+14% |
+14% |
+
+
+Chemotherapies & Radiotherapies |
+# (000) |
+|
+|
+13 |
+26 |
+|
+-4% |
+-3% |
+0% |
+
+
+Total number of days hospitalized |
+# (000) |
+|
+|
+28 |
+55 |
+|
+10% |
+7% |
+8% |
+
+
+Operating capacity utilization |
+% |
+|
+|
+83.2% |
+80.8% |
+|
+7.6 p.p. |
+4.9 p.p. |
+6.0 p.p. |
+
+
+Total capacity utilization |
+% |
+|
+|
+80.2% |
+77.9% |
+|
+6.6 p.p. |
+4.7 p.p. |
+5.0 p.p. |
+
+
+Key Financial Metrics |
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Revenue |
+|
+|
+87 |
+296 |
+578 |
+|
+10% |
+5% |
+8% |
+
+
+External revenues |
+|
+|
+61 |
+208 |
+409 |
+|
+4% |
+4% |
+5% |
+
+
+Intercompany revenue |
+|
+|
+26 |
+88 |
+169 |
+|
+27% |
+9% |
+16% |
+
+
+Segment Adjusted EBITDA |
+|
+|
+10 |
+35 |
+65 |
+|
+2% |
+13% |
+-14% |
+
+
+Segment Adjusted EBITDA margin |
+% |
+|
+|
+11.7% |
+11.3% |
+|
+-0.9 p.p. |
+0.8 p.p. |
+-2.9 p.p. |
+
+
+
+
+
+
+
+
+
+
+
+Oncosalud Peru
+
+Key Operating Metrics |
+|
+|
+2Q'26 (USD) |
+2Q'26 |
+YTD 26 |
+|
+&Delta; 2Q'26 vs 2Q'25 |
+&Delta; 2Q'26 vs 1Q'26 |
+&Delta; YTD 26 vs YTD 25 |
+
+
+Plan memberships |
+# (000) |
+|
+|
+1,472 |
+1,472 |
+|
+6% |
+2% |
+6% |
+
+
+Oncological Plans |
+# (000) |
+|
+|
+1,005 |
+1,005 |
+|
+1% |
+1% |
+1% |
+
+
+Average monthly revenue per plan membership |
+|
+|
+18.58 |
+63.35 |
+62.79 |
+|
+4% |
+1% |
+4% |
+
+
+Preventive check-ups |
+# (000) |
+|
+|
+26 |
+57 |
+|
+-16% |
+-15% |
+-12% |
+
+
+Patients treated |
+# (000) |
+|
+|
+51 |
+97 |
+|
+27% |
+10% |
+25% |
+
+
+MLR |
+% |
+|
+|
+|
+55.9% |
+|
+|
+|
+1.0 p.p. |
+
+
+Oncological Plans |
+% |
+|
+|
+|
+50.1% |
+|
+|
+|
+0.3 p.p. |
+
+
+Key Financial Metrics |
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Revenue |
+|
+|
+93 |
+317 |
+631 |
+|
+11% |
+1% |
+11% |
+
+
+External revenues |
+|
+|
+89 |
+304 |
+604 |
+|
+11% |
+2% |
+10% |
+
+
+Intercompany revenue |
+|
+|
+4 |
+13 |
+27 |
+|
+10% |
+-7% |
+37% |
+
+
+Segment Adjusted EBITDA |
+|
+|
+20 |
+67 |
+135 |
+|
+0% |
+-2% |
+6% |
+
+
+Segment Adjusted EBITDA margin |
+% |
+|
+|
+21.0% |
+21.4% |
+|
+-2.4 p.p. |
+-0.8 p.p. |
+-1.0 p.p. |
+
+
+
+
+
+
+
+
+
+Total revenue from Peru increased 8% YoY
+to S/512 million in 2Q26.
+
+
+
+
+
+The Healthcare Services segment increased revenues
+by 10% YoY, resulting from an increase in emergency visits and surgery volumes.
+
+
+
+
+
+Emergencies increased 9% as a result of commercial
+initiatives with corporate accounts, while surgeries increased 2% as a result of ticket increases to prioritize high complexity procedures
+in the network. In addition, total bed capacity increased from 2Q25 adding 4 ICU beds. Accordingly, hospitalization days increased 10%
+from 2Q25 and operating capacity utilization in 2Q26 was 83.2%, while total capacity utilization was 80.2%, both increasing versus 2Q25
+and 1Q26.
+
+
+
+
+
+The 11% YoY increase in revenues at the Oncosalud
+Peru segment reflects annual pricing updates and a 6% increase in total plan memberships, including approximately seven
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+thousand new members as part of a new B2B group
+policy for Lima&rsquo;s water and sewer utility company (SEDAPAL) awarded in 2Q26.
+
+
+
+
+
+Preventive check-ups declined 16% YoY and 15% QoQ
+as the segment continues to deliver more targeted screenings focused on members
+with a high risk of developing breast, colorectal, cervical and prostate cancer.
+
+
+
+
+
+Commercial initiatives to grow the B2B segments
+and value-added initiatives, which deliver tangible value to plan members, continue being implemented to strengthen sales quality and
+retention in the segment.
+
+
+
+
+
+Oncosalud&rsquo;s MLR remained stable increasing
+1.0 p.p. to 55.9%, while the Oncology MLR increased 0.3 p.p. to 50.1%. The MLR increase was driven by higher patient treatments from Oncosalud&rsquo;s
+Oncology and Healthcare plans reflecting the initial higher average MLR from newly onboarded B2B accounts.
+
+
+
+
+
+
+
+
+Consolidated Adjusted EBITDA in 2Q26 was
+S/101 million, remaining flat YoY. Higher pharmacy costs associated with the onboarding of new B2B contracts affected results as these
+members continue transitioning into the Auna Network. Adjusted EBITDA also reflected higher nursing-staffing and overtime costs required
+to support growing hospitalization and emergency volumes across the healthcare network, including patients treated through Oncosalud.
+In addition, the Adjusted EBITDA also included the impacts of accepted penalties primarily related to billing matters in the reconciliation
+of prior years' receivables.
+
+
+
+
+
+
+
+
+HEALTHCARE SERVICES COLOMBIA
+
+
+
+
+
+(Explanations of variances are
+in local currency unless expressed otherwise)
+
+
+
+
+
+Auna&rsquo;s Healthcare services operations in
+Colombia accounted for 34% of consolidated revenues and 25% of consolidated Adjusted EBITDA in the quarter.
+
+
+
+
+
+(Figures in millions of Soles
+and millions of US Dollars, unless expressed otherwise)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|
+|
+|
+|
+|
+|
+|
+&Delta; 2Q'26 vs 2Q'25 |
+&Delta; 2Q'26 vs 1Q'26 |
+&Delta; YTD 26 vs YTD 25 |
+
+
+Healthcare Services Colombia
+
+Key Operating Metrics |
+|
+|
+2Q'26 (USD) |
+2Q'26 |
+YTD 26 |
+|
+As Reported |
+L.C. |
+As Reported |
+L.C. |
+As Reported |
+L.C. |
+
+
+Beds |
+# |
+|
+|
+1,131 |
+1,131 |
+|
+0% |
+|
+0% |
+|
+0% |
+|
+
+
+Protected Lives |
+# (000) |
+|
+|
+3,144 |
+3,144 |
+|
+26% |
+|
+3% |
+|
+26% |
+|
+
+
+Surgeries |
+# (000) |
+|
+|
+11 |
+22 |
+|
+7% |
+|
+2% |
+|
+4% |
+|
+
+
+Emergency treatments |
+# (000) |
+|
+|
+38 |
+76 |
+|
+6% |
+|
+0% |
+|
+5% |
+|
+
+
+Chemotherapies & Radiotherapies |
+# (000) |
+|
+|
+40 |
+76 |
+|
+17% |
+|
+8% |
+|
+8% |
+|
+
+
+Total number of days hospitalized |
+# (000) |
+|
+|
+82 |
+162 |
+|
+4% |
+|
+1% |
+|
+3% |
+|
+
+
+Operating capacity utilization |
+% |
+|
+|
+88.8% |
+88.9% |
+|
+3.0 p.p |
+|
+-0.1 p.p |
+|
+3.1 p.p |
+|
+
+
+Total capacity utilization |
+% |
+|
+|
+79.2% |
+79.3% |
+|
+2.9 p.p |
+|
+-0.1 p.p |
+|
+2.7 p.p |
+|
+
+
+Key Financial Metrics |
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Revenue |
+|
+|
+125 |
+427 |
+827 |
+|
+23% |
+13% |
+7% |
+3% |
+21% |
+13% |
+
+
+Segment Adjusted EBITDA |
+|
+|
+16 |
+56 |
+101 |
+|
+-4% |
+-12% |
+22% |
+18% |
+2% |
+-4% |
+
+
+Segment Adjusted EBITDA margin |
+% |
+|
+|
+13.1% |
+12.3% |
+|
+-3.7 p.p |
+|
+1.7 p.p |
+|
+-2.2 p.p. |
+|
+
+
+
+
+
+
+
+
+Segment revenue from Colombia in 2Q26 grew
+13% YoY, due to a higher proportion of revenues from PGP contracts in Antioquia for cardiovascular, ambulatory, and oncology services.
+Total PGP revenues accounted for 24% of Colombia&rsquo;s total revenues in 2Q26, increasing from 14% in 2Q25, and covering 3.1 million
+lives through risk-sharing agreements by quarter-end 2Q26, benefitting cash conversion and cash predictability of these models. In addition,
+total revenues from private payors also contributed to revenue growth, increasing 17% from 2Q25 and contributing 18% of total segment
+revenues.
+
+
+
+
+
+Auna continued to diversify its payor base in Colombia,
+further reducing its exposure to government-intervened payors. In 2Q26, revenues from intervened payors represented 12% of Colombia revenues,
+down from 18% in 2Q25. Revenues from a payor relationship established in 2025 doubled compared with 2Q25 and represented 14% of Colombia
+revenues, up from 5% in 2Q25, more than offsetting the reduction in revenues from the largest intervened payor. Nueva EPS revenues continued
+to decline, representing 11% of Colombia revenues in 2Q26, compared with 14% in 2Q25 and 21% in 1Q24, when the interventions began. Revenues
+in Barranquilla and Monter&iacute;a also increased significantly from 2Q25, with key payors representing 23% of revenues during this quarter.
+
+
+
+
+
+Chemotherapy and radiotherapy volumes increased
+8% from 1Q26 on services provided in Antioquia.
+
+
+
+
+
+In 2Q26 total capacity utilization increased 2.9
+p.p. versus 2Q25, returning to 2024 levels prior to Nueva EPS&rsquo;s intervention.
+
+
+
+
+
+
+
+
+Segment Adjusted EBITDA decreased 12% in
+2Q26, with a Segment Adjusted EBITDA Margin of 13.1%. The decline reflected costs associated with increased surgery and chemotherapy volumes
+and, to a lesser extent, higher salary and minimum-wage costs. Sequentially, Adjusted EBITDA increased 18%, while the margin improved
+1.7 p.p. We
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+expect Adjusted EBITDA growth to resume during
+the remainder of the year as newly implemented risk-sharing models mature and contractual price increases take full effect.
+
+
+
+
+
+
+
+
+
+
+
+Balance Sheet & Cash Flow
+
+
+
+
+
+
+
+
+Consolidated Debt
+
+
+
+
+
+
+(Figures in millions of Soles
+and millions of US Dollars, unless expressed otherwise)
+
+
+
+
+
+
+
+|
+|
+Jun-26 (USD) |
+Jun-26 |
+Dec-25 |
+Jun-25 |
+|
+&Delta; Jun-26 vs |
+
+
+|
+|
+|
+Jun-25 |
+Dec-25 |
+
+
+(+) Loans and borrowings |
+|
+1,058 |
+3,606 |
+3,533 |
+3,574 |
+|
+1% |
+2% |
+
+
+Short term debt |
+|
+117 |
+399 |
+316 |
+598 |
+|
+-33% |
+26% |
+
+
+Long term debt |
+|
+941 |
+3,207 |
+3,216 |
+2,976 |
+|
+8% |
+0% |
+
+
+(+) Lease Liabilities |
+|
+36 |
+124 |
+124 |
+129 |
+|
+-4% |
+0% |
+
+
+Gross Debt |
+|
+1,094 |
+3,730 |
+3,656 |
+3,702 |
+|
+1% |
+2% |
+
+
+(-) Cash and cash equivalents / marketable securities |
+|
+140 |
+478 |
+335 |
+175 |
+|
+174% |
+42% |
+
+
+Net Debt |
+|
+954 |
+3,252 |
+3,321 |
+3,528 |
+|
+-7.8% |
+-2.1% |
+
+
+Leverage Ratio |
+|
+|
+3.6x |
+3.6x |
+3.6x |
+|
+0.0x |
+0.0x |
+
+
+
+
+
+
+
+
+Gross Debt at the close of 2Q26 increased
+2%, or S/74 million, versus 4Q25, to S/3,730 million, mainly driven by: (i) a negative non-cash effect of S/117 million associated with
+the depreciation of the PEN against the MXN and USD of 4% and 1%, respectively; and (ii) higher accrued interest of S/10 million related
+to the Term Loan maturing 2030. These effects were partially offset by (iii) a S/31 million reduction in short-term debt; (iv) an S/18
+million decrease in long-term debt; and (v) a S/5 million net decrease in financial and operating leases.
+
+
+
+
+
+Leverage Ratio was 3.6x at the end of 2Q26.
+This reflects an increase in cash at the end of the period, offset by higher gross debt and lower Adjusted LTM EBITDA. The leverage ratio
+improved from 1Q26 due to an increase in cash and lower gross debt. Auna remains committed to a medium-term leverage target of less than
+3.0x.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Consolidated Debt
+Amortization Profile
+
+
+
+
+
+(Figures in millions of Soles,
+unless expressed otherwise)
+
+
+
+
+
+
+
+
+
+
+|
+Total |
+Leases |
+Y1 |
+Y2 |
+Y3 |
+Y4 |
+Y5 |
+Y6+ |
+
+
+Loans and Borrowings |
+3,606 |
+|
+399 |
+262 |
+323 |
+761 |
+578 |
+1,284 |
+
+
+Financial Leases |
+48 |
+|
+16 |
+10 |
+6 |
+9 |
+3 |
+4 |
+
+
+Operating Leases |
+75 |
+75 |
+|
+|
+|
+|
+|
+|
+
+
+Gross Debt |
+3,730 |
+75 |
+415 |
+271 |
+329 |
+770 |
+581 |
+1,288 |
+
+
+
+
+
+
+
+
+As of 2Q26. Excludes interest. Reflects figures post-refinancing.
+Y1 = July 2026 to June 2027, Y2 = July 2027 to June 2028, Y3 = July 2028 to June 2029, Y4 = July 2029 to June 2030, Y5 = July 2030 to
+June 2031, and Y6+ = July 2031 to September 2035.
+
+
+
+
+
+
+
+
+Cashflow and Cash
+Conversion Cycle
+
+
+
+
+
+(Figures in millions of Soles
+and millions of US Dollars, unless expressed otherwise)
+
+
+
+
+
+
+
+|
+|
+YTD 26 (USD) |
+YTD 26 |
+YTD 25 |
+|
+&Delta; YTD 26 vs YTD 25 |
+
+
+Net cash from operating activities |
+|
+129 |
+441 |
+251 |
+|
+76% |
+
+
+Net cash used in investing activities |
+|
+(12) |
+(41) |
+(109) |
+|
+-63% |
+
+
+Net cash used in financing activities |
+|
+(80) |
+(271) |
+(209) |
+|
+30% |
+
+
+Cash and cash equivalents at the end of the period |
+|
+140 |
+478 |
+175 |
+|
+174% |
+
+
+
+
+
+
+
+
+|
+|
+LTM Jun-25 |
+LTM Mar-26 |
+LTM Jun-26 |
+
+
+Days Sales Outstanding |
+|
+89 |
+90 |
+89 |
+
+
+Days Inventory Outstanding |
+41 |
+43 |
+41 |
+
+
+Days Payable Outstanding |
+|
+142 |
+140 |
+141 |
+
+
+Cash Conversion Cycle |
+|
+-13 |
+-7 |
+-10 |
+
+
+*Measured on an average basis according to last twelve months results. |
+
+
+
+
+
+
+
+
+
+Net cash from operating activities was S/441 million
+for the six months ended June 30, 2026 versus S/251 million in the six months ended June 30, 2025, and included a S/156 million increase
+in cash generated from operating activities and S/34 million in lower tax payments in Peru, Colombia and Mexico.
+
+
+
+
+
+Net cash used in investing activities for the six
+months ended June 30, 2026 was S/41 million, a decrease of 63% YoY, or S/68 million versus the comparable period last year.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Organic maintenance CapEx remained relatively flat
+year-over-year, as finance leases in YTD 2026 funded a larger share of acquisitions than in YTD 2025. In YTD 2026 organic maintenance
+CapEx was S/65 million and included (i) S/37 million in investments for infrastructure refurbishments and acquisition of medical equipment;
+(ii) S/25 million in Hospital Information systems and ERP implementations, and (iii) a S/2 million payment to the Opci&oacute;n Oncolog&iacute;a
+doctors for the brand acquisition. Other cash used in investing activities during YTD 2026 also included (iv) S/29 million in cash and
+cash equivalent inflows from Auna Seguros portfolio rebalancing of investments toward liquid securities, and (v) a S/ 6 million earnout
+payment to IMAT Oncomedica shareholders.
+
+
+
+
+
+In the six months ended June 30, 2025, investing
+activities included: S/82 million in organic maintenance CapEx, including (i) S/48 million in investments for infrastructure refurbishments
+and acquisition of medical equipment; (ii) S/27 million in Hospital Information systems and ERP implementations; and (iii) S/8 million
+payment to the Opci&oacute;n Oncolog&iacute;a doctors for the brand acquisition. Other cash from investing activities included (iv) S/8
+million in cash and cash equivalent outflows from Auna Seguros portfolio rebalancing of investments toward liquid securities, (v) a S/15
+million payment to former OCA shareholders for holdback obligations, and (vi) a S/6 million earnout payment to IMAT Oncomedica shareholders.
+
+
+
+
+
+Net cash used in financing activities
+was S/271 million, an increase of 30% or S/63 million, for the six months ended June 30, 2026 versus the comparable period last year.
+Cash used in financing activities during the period included: (i) S/179 million in interest payments and hedge premium payments, (ii)
+S/22 million in interest payments for working capital facilities, and (iii) a S/70 million decrease in working capital borrowings. For
+the comparable six months ended June 30, 2025, cash used in financing included: (i) S/193 million in interest and hedge premium payments,
+(ii) S/30 million in interest payments for working capital facilities, and (iii) a S/14 million increase in working capital borrowings.
+
+
+
+
+
+
+
+
+About AUNA
+
+
+
+
+
+Auna is a leading healthcare platform in Latin
+America with operations in Mexico, Peru, and Colombia, prioritizing prevention and concentrating on high-complexity diseases that contribute
+the most to healthcare expenditures. Our mission is to transform healthcare by providing access to a highly integrated healthcare offering
+in the underpenetrated markets of Spanish-Speaking Americas. Founded in 1989, Auna has built one of Latin America′s largest modern
+healthcare platforms that consists of a horizontally integrated network of healthcare facilities and a vertically integrated portfolio
+of oncological plans and selected general healthcare plans. As of June 30, 2026, Auna&rsquo;s network included 31 healthcare network facilities,
+consisting of hospitals, outpatient, prevention and wellness facilities with a total of 2,337 beds, and 1.5 million healthcare plans.
+
+
+
+
+
+For more information visit www.aunainvestors.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Conference Call Details
+
+
+
+
+
+When: 8:00 a.m. Eastern time, August 19,
+2026
+
+
+
+
+
+Who: Mr. Suso Zamora, Executive Chairman
+of the Board and President; Mrs. Gisele Remy, Chief Financial Officer and Executive Vice President; Mr. Lorenzo Massart, Executive Vice
+President of Strategy and Equity Capital Markets.
+
+
+
+
+
+Dial-in: +1 888 596 4144 (U.S. domestic),
++1 646 968 2525 (International)
+
+Passcode: 3884034
+
+
+
+
+
+To access Auna′s financial results call via
+telephone, callers need to press # to be connected to an operator.
+
+
+
+
+
+Webcast: click here
+
+
+
+
+
+
+
+
+Definitions and Concepts
+
+
+
+
+
+Figures in US dollars (US$ or USD) for 2Q26 are
+presented for indicative purposes and were calculated using an FX rate of US$1= S/3.4100. All comparisons in this announcement are year-over-year
+(&ldquo;YoY&rdquo;), unless otherwise noted; additionally, results are presented in an FX neutral basis (&ldquo;FXN&rdquo;) for consolidated
+revenues, consolidated cost of sales and services, consolidated selling and administrative expenses and consolidated adjusted EBITDA,
+as well as, in local currency for the Mexico and Colombia segments, to eliminate the effect of foreign exchange, or &ldquo;FX,&rdquo;
+volatility between the comparison periods.
+
+
+
+
+
+Financial results are preliminary and subject to
+year-end audit.
+
+
+
+
+
+
+
+
+Use of Non-IFRS Financial Measures
+
+
+
+
+
+This release includes &ldquo;non-IFRS financial
+measures&rdquo;, including: EBITDA, EBITDA Margin, Adjusted EBITDA, Adjusted EBITDA Margin, Adjusted LTM EBITDA, Segment EBITDA, Segment
+EBITDA Margin, Segment Adjusted EBITDA, Segment Adjusted EBITDA Margin, Consolidated Peru Adjusted EBITDA, Consolidated Peru Adjusted
+EBITDA Margin, Adjusted Net Income, Adjusted Basic and Diluted EPS, Leverage Ratio, Free Cash Flow, and FX Neutral because we believe
+they assist investors and analysts in comparing our operating performance across reporting periods on a consistent basis by excluding
+items that we do not believe are indicative of our core operating performance.
+
+
+
+
+
+In addition, management and our board of directors
+use these non-IFRS financial measures to assess our financial performance and believe they are helpful in highlighting trends in our core
+operating performance, while other measures can differ significantly depending on long-term strategic decisions regarding the growth of
+our business. These are not measurements of operating performance under IFRS and have limitations as analytical tools. You should not
+consider such measures either in isolation or as substitutes for analyzing our results as reported under IFRS. Additionally, our calculations
+of EBITDA, Segment EBITDA, Adjusted EBITDA, Adjusted Net Income, EBITDA Margin, Adjusted EBITDA Margin, Adjusted Net Income Margin, FX
+Neutral and Leverage Ratio may be different
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+from the calculations used by other companies for
+similarly titled measures, including our competitors, and therefore may not be comparable to those of other companies.
+
+
+
+
+
+EBITDA: is calculated as profit (loss) before
+tax for the period plus net finance cost and depreciation and amortization. EBITDA is a key metric used by management and our board of
+directors to assess our financial performance.
+
+
+
+
+
+EBITDA Margin: is calculated as EBITDA divided
+by total revenue from contracts with customers.
+
+
+
+
+
+Adjusted EBITDA: is calculated as profit
+(loss) before tax for the period plus net finance cost, depreciation and amortization, pre-operating expenses for projects under construction,
+business development (income) expenses for expansion into new markets, change in fair value of earn-out liabilities, stock-based consideration
+and personnel non-recurring compensation.
+
+
+
+
+
+Adjusted EBITDA Margin: is calculated as
+Adjusted EBITDA divided by total revenue from contracts with customers.
+
+
+
+
+
+Adjusted Last Twelve Month (&ldquo;LTM&rdquo;)
+EBITDA : is calculated by adding the last four quarters beginning with the corresponding period.
+
+
+
+
+
+Segment EBITDA: is calculated as segment
+profit before tax plus net finance cost and depreciation and amortization.
+
+
+
+
+
+Segment EBITDA Margin: is calculated as
+segment EBITDA divided by total segment revenue from contracts with customers.
+
+
+
+
+
+Segment Adjusted EBITDA: is calculated as
+segment profit (loss) before tax for the period plus net finance cost, depreciation and amortization, pre-operating expenses for projects
+under construction, business development (income) expenses for expansion into new markets, change in fair value of earn-out liabilities,
+stock-based consideration and personnel non-recurring compensation.
+
+
+
+
+
+Segment Adjusted EBITDA Margin : is calculated
+as segment Adjusted EBITDA divided by total Segment revenue from contracts with customers.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(Figures in millions of Soles
+and millions of US Dollars, unless expressed otherwise)
+
+
+
+
+
+
+
+Segment Adjusted EBITDA Margin |
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+|
+|
+2Q'26 (USD) |
+|
+|
+|
+|
+&Delta; 2Q'26 vs |
+|
+&Delta; YTD 26 vs |
+
+
+|
+|
+2Q'26 |
+|
+YTD 26 |
+|
+2Q'25 |
+1Q'26 |
+|
+YTD 25 |
+
+
+Revenues |
+|
+363 |
+1,238 |
+|
+2,416 |
+|
+13% |
+5% |
+|
+13% |
+
+
+Profit (Loss) before Tax |
+|
+17 |
+59 |
+|
+76 |
+|
+-55% |
+259% |
+|
+-61% |
+
+
+(+) Net Finance Cost |
+|
+31 |
+105 |
+|
+246 |
+|
+127% |
+-25% |
+|
+94% |
+
+
+(+) Depreciation and Amortization |
+|
+17 |
+59 |
+|
+116 |
+|
+6% |
+2% |
+|
+7% |
+
+
+(=) EBITDA |
+|
+65 |
+223 |
+|
+438 |
+|
+-5% |
+4% |
+|
+2% |
+
+
+(+) Adjustments |
+|
+1.2 |
+4.0 |
+|
+6.1 |
+|
+|
+|
+|
+|
+
+
+(a) Pre-operating expenses |
+|
+0.0 |
+0.2 |
+|
+0.4 |
+|
+|
+|
+|
+|
+
+
+(b) Business development expenses |
+|
+0.3 |
+0.9 |
+|
+0.9 |
+|
+|
+|
+|
+|
+
+
+(c) Stock-based consideration |
+|
+0.9 |
+2.9 |
+|
+4.9 |
+|
+|
+|
+|
+|
+
+
+(d) Personnel non-recurring compensation |
+|
+0.0 |
+0.0 |
+|
+0.0 |
+|
+|
+|
+|
+|
+
+
+(=) Adjusted EBITDA |
+|
+67 |
+227 |
+|
+444 |
+|
+-6% |
+5% |
+|
+-4% |
+
+
+Adjusted EBITDA Margin |
+|
+|
+18.4% |
+|
+18.4% |
+|
+-3.7 p.p. |
+-0.1 p.p. |
+|
+-3.3 p.p. |
+
+
+
+
+
+
+
+
+(a) Pre-operating expenses consist of legal and
+administrative expenses incurred in connection with medical facilities under construction, such as Cl&iacute;nica Chiclayo, costs relating
+to the Centro Ambulatorio Trecca PPP, and legal and administrative expenses incurred in connection with the acquisition of land banks
+for future facilities.
+
+
+
+
+
+(b) Business development expenses consist of expenses
+incurred in connection with projects and payments to sellers to expand into new markets, including through greenfield projects and M&A
+activity.
+
+
+
+
+
+(c) Stock-based consideration includes share-based
+payments plans for non-executive members of the Board of Directors and other Auna management including executives and employees.
+
+
+
+
+
+(d) Personnel non-recurring compensation related
+to the implementation of an efficiency program across business units aimed at streamlining processes and capturing synergies on the local
+and regional levels.
+
+
+
+
+
+
+
+For the three months ended June 30, 2026 |
+|
+|
+|
+|
+|
+
+
+|
+|
+Healthcare Services Mexico |
+Healthcare Services Peru |
+Oncosalud Peru |
+Healthcare Services Colombia |
+Holding and eliminations |
+Consolidated Reportable Segments |
+
+
+Revenues |
+|
+300 |
+296 |
+317 |
+427 |
+(103) |
+1,238 |
+
+
+Profit (Loss) before Tax |
+|
+7 |
+20 |
+53 |
+46 |
+(66) |
+59 |
+
+
+(+) Net Finance Cost |
+|
+45 |
+4 |
+3 |
+(2) |
+56 |
+105 |
+
+
+(+) Depreciation and Amortization |
+|
+23 |
+11 |
+10 |
+12 |
+3 |
+59 |
+
+
+(=) Segment EBITDA |
+|
+75 |
+34 |
+66 |
+56 |
+(8) |
+223 |
+
+
+(+) Adjustments |
+|
+2.8 |
+0.2 |
+0.2 |
+0.1 |
+0.7 |
+4.0 |
+
+
+Pre-operating expenses |
+|
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+0.2 |
+0.2 |
+
+
+Business development expenses |
+|
+0.9 |
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+0.9 |
+
+
+Stock-based consideration |
+|
+1.9 |
+0.2 |
+0.2 |
+0.1 |
+0.6 |
+2.9 |
+
+
+Personnel non-recurring compensation |
+|
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+
+
+(=) Segment Adjusted EBITDA |
+|
+78 |
+35 |
+67 |
+56 |
+-8 |
+227 |
+
+
+Adjusted EBITDA Margin |
+|
+25.9% |
+11.7% |
+21.0% |
+13.1% |
+|
+18.4% |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+For the three months ended June 30, 2025 |
+|
+|
+|
+|
+|
+
+
+|
+|
+Healthcare Services Mexico |
+Healthcare Services Peru |
+Oncosalud Peru |
+Healthcare Services Colombia |
+Holding and eliminations |
+Consolidated Reportable Segments |
+
+
+Revenues |
+|
+274 |
+269 |
+286 |
+346 |
+(81) |
+1,094 |
+
+
+Profit (Loss) before Tax |
+|
+34 |
+12 |
+54 |
+40 |
+(8) |
+132 |
+
+
+(+) Net Finance Cost |
+|
+26 |
+10 |
+4 |
+8 |
+(1) |
+46 |
+
+
+(+) Depreciation and Amortization |
+|
+22 |
+12 |
+9 |
+10 |
+3 |
+55 |
+
+
+(=) Segment EBITDA |
+|
+82 |
+34 |
+67 |
+58 |
+(6) |
+234 |
+
+
+(+) Adjustments |
+|
+5.7 |
+0.2 |
+0.2 |
+0.0 |
+1.0 |
+7.2 |
+
+
+Pre-operating expenses |
+|
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+0.5 |
+0.5 |
+
+
+Business development expenses |
+|
+3.9 |
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+3.9 |
+
+
+Stock-based consideration |
+|
+1.7 |
+0.2 |
+0.2 |
+0.0 |
+0.6 |
+2.6 |
+
+
+Personnel non-recurring compensation |
+|
+0.1 |
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+0.1 |
+
+
+(=) Segment Adjusted EBITDA |
+|
+88 |
+34 |
+67 |
+58 |
+(5) |
+241 |
+
+
+Adjusted EBITDA Margin |
+|
+32.0% |
+12.6% |
+23.4% |
+16.7% |
+|
+22.1% |
+
+
+
+
+
+
+
+
+
+
+
+Year to date June 30, 2026 |
+|
+|
+|
+|
+|
+|
+|
+
+
+|
+|
+Healthcare Services Mexico |
+Healthcare Services Peru |
+Oncosalud Peru |
+Healthcare Services Colombia |
+Holding and eliminations |
+Consolidated Reportable Segments |
+
+
+Revenues |
+|
+579 |
+578 |
+631 |
+827 |
+(199) |
+2,416 |
+
+
+Profit (Loss) before Tax |
+|
+11 |
+33 |
+101 |
+65 |
+(135) |
+76 |
+
+
+(+) Net Finance Cost |
+|
+90 |
+11 |
+13 |
+14 |
+120 |
+246 |
+
+
+(+) Depreciation and Amortization |
+|
+46 |
+21 |
+21 |
+23 |
+5 |
+116 |
+
+
+(=) Segment EBITDA |
+|
+147 |
+65 |
+135 |
+101 |
+(10) |
+438 |
+
+
+(+) Adjustments |
+|
+4.4 |
+0.0 |
+0.2 |
+0.1 |
+1.5 |
+6.1 |
+
+
+Pre-operating expenses |
+|
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+0.4 |
+0.4 |
+
+
+Business development expenses |
+|
+0.9 |
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+0.9 |
+
+
+Stock-based consideration |
+|
+3.5 |
+0.0 |
+0.2 |
+0.1 |
+1.2 |
+4.9 |
+
+
+Personnel non-recurring compensation |
+|
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+
+
+(=) Segment Adjusted EBITDA |
+|
+151 |
+65 |
+135 |
+101 |
+-9 |
+444 |
+
+
+Adjusted EBITDA Margin |
+|
+26.1% |
+11.3% |
+21.4% |
+12.3% |
+|
+18.4% |
+
+
+
+
+
+
+
+
+
+
+
+Year to date June 30, 2025 |
+|
+|
+|
+|
+|
+|
+|
+
+
+|
+|
+Healthcare Services Mexico |
+Healthcare Services Peru |
+Oncosalud Peru |
+Healthcare Services Colombia |
+Holding and eliminations |
+Consolidated Reportable Segments |
+
+
+Revenues |
+|
+517 |
+532 |
+567 |
+685 |
+(165) |
+2,136 |
+
+
+Profit (Loss) before Tax |
+|
+21 |
+34 |
+99 |
+72 |
+(32) |
+194 |
+
+
+(+) Net Finance Cost |
+|
+73 |
+18 |
+11 |
+7 |
+18 |
+127 |
+
+
+(+) Depreciation and Amortization |
+|
+43 |
+24 |
+17 |
+20 |
+5 |
+109 |
+
+
+(=) Segment EBITDA |
+|
+137 |
+75 |
+127 |
+99 |
+(8) |
+429 |
+
+
+(+) Adjustments |
+|
+31.6 |
+0.3 |
+0.3 |
+0.1 |
+1.9 |
+34.3 |
+
+
+Pre-operating expenses |
+|
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+0.7 |
+0.7 |
+
+
+Business development expenses |
+|
+27.6 |
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+27.6 |
+
+
+Stock-based consideration |
+|
+3.4 |
+0.3 |
+0.3 |
+0.1 |
+1.2 |
+5.3 |
+
+
+Personnel non-recurring compensation |
+|
+0.6 |
+0.0 |
+0.0 |
+0.0 |
+0.0 |
+0.6 |
+
+
+(=) Segment Adjusted EBITDA |
+|
+168 |
+76 |
+127 |
+99 |
+-6 |
+464 |
+
+
+Adjusted EBITDA Margin |
+|
+32.6% |
+14.2% |
+22.4% |
+14.5% |
+|
+21.7% |
+
+
+
+
+
+
+Consolidated Peru Adjusted EBITDA: is calculated
+by adding Healthcare Services Peru segment Adjusted EBITDA plus Oncosalud Peru segment Adjusted EBITDA.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Consolidated Peru Adjusted EBITDA Margin :
+is calculated as Healthcare Services Peru segment Adjusted EBITDA plus Oncosalud Peru segment Adjusted EBITDA, divided by total revenues
+from Healthcare Services Peru Segment plus total revenues from Oncosalud Peru segment.
+
+
+
+
+
+Adjusted Net Income: is calculated as profit
+(loss) for the period plus adjustments as described below.
+
+
+
+
+
+(Figures in millions of Soles
+and millions of US Dollars, unless expressed otherwise)
+
+
+
+
+
+
+
+
+
+
+|
+|
+2Q'26 (USD) |
+2Q'26 |
+2Q'25 |
+YTD 26 |
+YTD 25 |
+
+
+Net Income (Loss) |
+|
+10 |
+33 |
+84 |
+42 |
+122 |
+
+
+(a) Pre-operating expenses |
+|
+0.0 |
+0.2 |
+0.5 |
+0.4 |
+0.7 |
+
+
+(b) Business development expenses |
+|
+0.3 |
+0.9 |
+3.9 |
+0.9 |
+27.6 |
+
+
+(c) Stock-based consideration |
+|
+0.9 |
+2.9 |
+2.6 |
+4.9 |
+5.3 |
+
+
+(d) Personnel non-recurring compensation |
+|
+0.0 |
+0.0 |
+0.1 |
+0.0 |
+0.6 |
+
+
+(e) Non-cash and non-recurring financial costs |
+|
+1.6 |
+5.5 |
+0.0 |
+10.8 |
+0.0 |
+
+
+(f) Allocated tax effects |
+|
+(0.5) |
+(1.8) |
+(2.6) |
+(2.7) |
+(13.0) |
+
+
+(=) Adjusted Net Income |
+|
+12 |
+40 |
+89 |
+56 |
+143 |
+
+
+
+
+
+
+
+
+(a) Pre-operating expenses consist of legal and
+administrative expenses incurred in connection with medical facilities under construction, such as Cl&iacute;nica Chiclayo, costs relating
+to the Centro Ambulatorio Trecca PPP, and legal and administrative expenses incurred in connection with the acquisition of land banks
+for future facilities.
+
+
+
+
+
+(b) Business development expenses consist of expenses
+incurred in connection with projects and payments to sellers to expand into new markets, including through greenfield projects and M&A
+activity.
+
+
+
+
+
+(c) Stock-based consideration includes share-based
+payments plans for non-executive members of the Board of Directors and other Auna management including executives and employees.
+
+
+
+
+
+(d) Personnel non-recurring compensation related
+to the implementation of an efficiency program across business units aimed at streamlining processes and capturing synergies on the local
+and regional levels.
+
+
+
+
+
+(e) Non-cash and non-recurring financial costs
+include: 1) non-cash effects related to the accounting impact of changes in the fair value of the liability for mandatory purchase of
+shares from IMAT; and 2) withholding tax expenses associated with financing and refinancing activities.
+
+
+
+
+
+(f) Allocated tax effects neutralize the tax shield
+that the items considered as adjustment have generated in the taxable profit.
+
+
+
+
+
+Basic and Diluted Earnings per Share: Basic
+and Diluted Earnings per Share is calculated by dividing the profit attributable to owners of the Company by the weighted average number
+of basic and diluted shares outstanding during the period, which excludes treasury shares.
+
+
+
+
+
+Adjusted Basic and Diluted Earnings per Share:
+Adjusted Basic and Diluted Earnings per Share is calculated by dividing profit attributable to owners of Adjusted Net Income of the
+Company by the weighted average number of basic and diluted shares outstanding during the period, which excludes treasury shares.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(Figures in millions of Soles
+and millions of US Dollars, unless expressed otherwise)
+
+
+
+
+
+
+
+
+
+
+|
+2Q'26 (USD) |
+2Q'26 |
+2Q'25 |
+YTD 26 |
+YTD 25 |
+
+
+Net Income (Loss) |
+10 |
+33 |
+84 |
+42 |
+122 |
+
+
+Income (Loss) attributable to Owner of the company |
+9 |
+29 |
+82 |
+36 |
+117 |
+
+
+Weighted average number of basic and diluted shares at June 30 |
+|
+74.2 |
+74.2 |
+74.2 |
+74.2 |
+
+
+Basic and diluted earnings per share |
+0.12 |
+0.40 |
+1.10 |
+0.48 |
+1.58 |
+
+
+Adjusted Net Income (Loss) |
+12 |
+40 |
+89 |
+56 |
+143 |
+
+
+Income (Loss) attributable to owners of Adjusted Net Income |
+11 |
+37 |
+87 |
+50 |
+139 |
+
+
+Weighted average number of basic and diluted shares at June 30 |
+|
+74.2 |
+74.2 |
+74.2 |
+74.2 |
+
+
+Adjusted Basic and Diluted Earnings per Share |
+0.15 |
+0.50 |
+1.17 |
+0.68 |
+1.87 |
+
+
+
+
+
+
+
+
+Leverage Ratio: We calculate Leverage Ratio
+as (i) current and non-current loans and borrowings plus current and non-current lease liabilities minus (ii) cash and cash equivalents,
+divided by (iii) Adjusted Last Twelve Months EBITDA.
+
+
+
+
+
+(Figures in millions of Soles,
+unless expressed otherwise)
+
+
+
+
+
+
+
+
+
+
+|
+Jun-25 |
+Dec-25 |
+Jun-26 |
+
+
+|
+
+
+Current and non-current loans & borrowings |
+3,574 |
+3,533 |
+3,606 |
+
+
+Current and non-current lease liabilities |
+129 |
+124 |
+124 |
+
+
+Cash and cash equivalents |
+175 |
+335 |
+478 |
+
+
+Net Debt |
+3,528 |
+3,321 |
+3,252 |
+
+
+Adjusted LTM EBITDA |
+968 |
+917 |
+897 |
+
+
+Leverage Ratio |
+3.6x |
+3.6x |
+3.6x |
+
+
+
+
+
+
+
+
+Net Debt: We calculate Net Debt as Gross
+Debt minus Cash and cash equivalents.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(Figures in millions of Soles,
+unless expressed otherwise)
+
+
+
+
+
+
+
+
+
+
+|
+|
+Jun-25 |
+Dec-25 |
+Jun-26 |
+
+
+|
+|
+
+
+(+) Loans and borrowings |
+|
+3,574 |
+3,533 |
+3,606 |
+
+
+Short term debt |
+|
+598 |
+316 |
+399 |
+
+
+Long term debt |
+|
+2,976 |
+3,216 |
+3,207 |
+
+
+(+) Lease Liabilities |
+|
+129 |
+124 |
+124 |
+
+
+Gross Debt |
+|
+3,702 |
+3,656 |
+3,730 |
+
+
+(-) Cash and cash equivalents |
+|
+175 |
+335 |
+478 |
+
+
+Net Debt |
+|
+3,528 |
+3,321 |
+3,252 |
+
+
+
+
+
+
+
+
+Free Cash Flow : is calculated by adding
+Net Cash Flows from Operations and Net Cash Flows used in Investing activities.
+
+
+
+
+
+(Figures in millions of Soles,
+unless expressed otherwise)
+
+
+
+
+
+
+
+|
+|
+Jun-25 |
+Jun-26 |
+
+
+|
+|
+
+
+Cash generated from operating
+activities |
+|
+351 |
+507 |
+
+
+(-) Income tax |
+|
+109 |
+75 |
+
+
+(+) Interest received |
+|
+9 |
+8 |
+
+
+Net cash from operating activities |
+|
+251 |
+441 |
+
+
+Net cash used in investing
+activities |
+|
+(109) |
+(41) |
+
+
+Free
+Cash Flow |
+|
+143 |
+400 |
+
+
+
+
+
+
+FX Neutral: FX Neutral (&ldquo;FXN&rdquo;)
+measures are prepared and presented to eliminate the effect of foreign exchange, or &ldquo;FX,&rdquo; volatility between the comparison
+periods, allowing management and investors to evaluate financial performance despite variations in foreign currency exchange rates, which
+may not be indicative of core operating results and business outlook.
+
+
+
+
+
+FX Neutral measures are
+presented because management believes that these non-IFRS financial measures can provide useful information to investors, securities analysts
+and the public in their review of operating and financial performance, although they are not calculated in accordance with IFRS or any
+other generally accepted accounting principles and should not be considered as a measure of performance in isolation.
+
+
+
+
+
+The FX Neutral measures
+were calculated to present what such measures in preceding periods would have been had exchange rates remained stable from these preceding
+periods until the date of the Company's most recent financial information.
+
+
+
+
+
+The FX Neutral measures for the three months ended
+June 30, 2025 were calculated by multiplying the as reported amounts of Revenue, Adjusted EBITDA and the key business metrics for such
+period by the average Mexican pesos / Peruvian soles exchange rate
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+for the three months ended June 30, 2025 (MXN 5.3316
+to PEN 1.00) and the average Colombian pesos / Peruvian soles exchange rate for the three months ended June 30, 2025 (COP 1,146.7466 to
+PEN 1.00); then using such results to re-translate the corresponding amounts back to Peruvian soles by dividing them by the average Mexican
+pesos / Peruvian soles and Colombian pesos / Peruvian soles exchange rate for the three months ended June 30, 2026 (MXN 5.0668 to PEN
+1.00 / COP 1,050.8726 to PEN 1.00), so as to present what certain of statement of profit and loss amounts and key business metrics would
+have been had exchange rates remained stable from this past period until the three months ended June 30, 2026.
+
+
+
+
+
+Safe Harbor Statement
+
+
+
+
+
+This press release contains forward-looking statements.
+Forward-looking statements convey our current expectations or forecasts of future events. These statements involve known and unknown risks,
+uncertainties and other factors which may cause our actual results, performance or achievements to differ materially from the forward-looking
+statements that we make. Forward-looking statements typically are identified by words or phrases such as &ldquo;may,&rdquo; &ldquo;will,&rdquo;
+&ldquo;expect,&rdquo; &ldquo;anticipate,&rdquo; &ldquo;aim,&rdquo; &ldquo;estimate,&rdquo; &ldquo;intend,&rdquo; &ldquo;project,&rdquo;
+&ldquo;plan,&rdquo; &ldquo;believe,&rdquo; &ldquo;potential,&rdquo; &ldquo;continue,&rdquo; &ldquo;is/are likely to,&rdquo; or other similar
+expressions. Forward-looking statements that appear in a number of places in this press release include, but are not limited to, statements
+regarding the intent, belief or current expectations, regarding various matters, including, our target Leverage Ratio, the results of
+the key initiatives we are implementing in Mexico, Colombia and Peru, the execution of our strategic plan, including the recovery of our
+growth levels and the roll-out of the AunaWay in Mexico, our planned investments, our revenue, Adjusted EBITDA and capital expenditure
+guidance, our expectation for revenue and Adjusted EBITDA growth, policy expectations regarding the newly elected administrations in Colombia
+and Peru, expectations for the Elekta EVO linear accelerator to become operational, mobilization of Auna Lima Sur and the creation of
+further growth and sustainable value for all stakeholders. Any or all of our forward-looking statements in this press release may turn
+out to be inaccurate. Our actual results could differ materially from those contained in forward-looking statements due to a number of
+factors.
+
+
+
+
+
+The forward-looking statements in this press release
+represent our expectations and forecasts as of the date of this press release. Except as required by law, we undertake no obligation to
+update or revise publicly any forward-looking statements, whether as a result of new information, future events or otherwise, after the
+date of this press release. For a discussion of the risks facing the Company which could affect whether these forward-looking statements
+are realized, see our Form 20-F filing with the U.S. Securities and Exchange Commission (the &ldquo;SEC&rdquo;).
+
+
+
+
+
+Financial Guidance Disclaimer
+
+
+
+
+
+Auna′s guidance is based on management&rsquo;s
+current performance outlook and expected macroeconomic and regulatory conditions in the three countries where the Company operates. Any
+changes in these conditions could have an impact on the guidance provided.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Auna&rsquo;s financial guidance reflects
+management&rsquo;s current assumptions regarding numerous evolving factors that are difficult to accurately predict, including those discussed
+in the Risk Factors set forth in the Company&rsquo;s Form 20-F filed with the SEC. Reconciliations of forward-looking non-IFRS measures,
+specifically the Leverage Ratio target and Adjusted EBITDA guidance, to the relevant forward-looking IFRS measures are not being provided,
+as the Company does not currently have sufficient data to accurately estimate the variables and individual adjustments for such guidance
+and reconciliations. Due to this uncertainty, the Company cannot reconcile projected Adjusted EBITDA to projected net income without unreasonable
+effort. The financial guidance constitutes forward-looking statements. For more information, see the &ldquo;Safe Harbor Statement&rdquo;
+section in this release.
+
+
+
+
+
+IR Contact
+
+
+
+
+
+Email: contact@aunainvestors.com
+
+
+
+
+
+
+
+
+-
+Financial Tables Follow &ndash;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Balance Sheet (1/2)
+
+
+
+
+
+(Figures in millions of Soles
+and millions of US Dollars, unless expressed otherwise)
+
+
+
+
+
+
+
+
+
+
+|
+Jun-26
+(USD) |
+Jun-26 |
+Dec-25 |
+|
+&Delta;
+Jun-26 vs Dec-25 |
+
+
+Assets |
+|
+|
+|
+|
+|
+
+
+Current assets |
+|
+|
+|
+|
+|
+
+
+Cash and cash equivalents |
+140 |
+478 |
+335 |
+|
+142 |
+
+
+Trade accounts receivable |
+333 |
+1,137 |
+1,043 |
+|
+94 |
+
+
+Other assets |
+78 |
+266 |
+259 |
+|
+8 |
+
+
+Inventories |
+44 |
+149 |
+165 |
+|
+(16) |
+
+
+Insurance contract assets |
+2 |
+8 |
+13 |
+|
+(5) |
+
+
+Other investments |
+1 |
+3 |
+30 |
+|
+(27) |
+
+
+Total current
+assets |
+599 |
+2,042 |
+1,845 |
+|
+197 |
+
+
+Non-current assets |
+|
+|
+|
+|
+|
+
+
+Trade accounts receivable |
+0 |
+0 |
+0 |
+|
+(0) |
+
+
+Other assets |
+8 |
+28 |
+27 |
+|
+1 |
+
+
+Investments in associates and joint venture |
+10 |
+34 |
+30 |
+|
+4 |
+
+
+Property furniture and equipment |
+702 |
+2,394 |
+2,287 |
+|
+107 |
+
+
+Intangible assets |
+837 |
+2,855 |
+2,704 |
+|
+151 |
+
+
+Right-of-use assets |
+33 |
+114 |
+113 |
+|
+0 |
+
+
+Investment properties |
+2 |
+7 |
+6 |
+|
+0 |
+
+
+Derivative financial instruments |
+16 |
+54 |
+54 |
+|
+(0) |
+
+
+Deferred tax assets |
+79 |
+268 |
+231 |
+|
+37 |
+
+
+Other investments |
+0 |
+0 |
+1 |
+|
+(0) |
+
+
+Total non-current
+assets |
+1,687 |
+5,754 |
+5,454 |
+|
+300 |
+
+
+Total
+assets |
+2,286 |
+7,796 |
+7,298 |
+|
+498 |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Balance Sheet (2/2)
+
+
+
+
+
+(Figures in millions of Soles
+and millions of US Dollars, unless expressed otherwise)
+
+
+
+
+
+
+
+
+
+
+|
+Jun-26
+(USD) |
+Jun-26 |
+Dec-25 |
+|
+&Delta;
+Jun-26 vs Dec-25 |
+
+
+|
+|
+|
+|
+|
+|
+
+
+Liabilities |
+|
+|
+|
+|
+|
+
+
+Current liabilities |
+|
+|
+|
+|
+|
+
+
+Loans and borrowings |
+117 |
+399 |
+316 |
+|
+83 |
+
+
+Lease liabilities |
+9 |
+31 |
+29 |
+|
+2 |
+
+
+Trade accounts payable |
+336 |
+1,147 |
+1,053 |
+|
+94 |
+
+
+Other accounts payable |
+76 |
+259 |
+225 |
+|
+33 |
+
+
+Provisions |
+3 |
+12 |
+10 |
+|
+1 |
+
+
+Derivative financial instruments |
+10 |
+35 |
+23 |
+|
+12 |
+
+
+Insurance contract liabilities |
+5 |
+15 |
+9 |
+|
+6 |
+
+
+Deferred income |
+0 |
+0 |
+0 |
+|
+0 |
+
+
+Total current
+liabilities |
+557 |
+1,898 |
+1,667 |
+|
+231 |
+
+
+Non-current liabilities |
+|
+|
+|
+|
+|
+
+
+Loans and borrowings |
+941 |
+3,207 |
+3,216 |
+|
+(9) |
+
+
+Lease liabilities |
+27 |
+92 |
+94 |
+|
+(2) |
+
+
+Trade accounts payable |
+0 |
+1 |
+1 |
+|
+(1) |
+
+
+Other accounts payable |
+67 |
+230 |
+222 |
+|
+8 |
+
+
+Derivative financial instruments |
+9 |
+31 |
+40 |
+|
+(9) |
+
+
+Deferred tax liabilities |
+83 |
+284 |
+291 |
+|
+(7) |
+
+
+Deferred income |
+0 |
+0 |
+0 |
+|
+(0) |
+
+
+Total non-current
+liabilities |
+1,128 |
+3,846 |
+3,865 |
+|
+(19) |
+
+
+Total
+liabilities |
+1,684 |
+5,744 |
+5,532 |
+|
+212 |
+
+
+|
+|
+|
+|
+|
+|
+
+
+Total equity |
+602 |
+2,052 |
+1,766 |
+|
+286 |
+
+
+Total
+liabilities and equity |
+2,286 |
+7,796 |
+7,298 |
+|
+498 |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Income Statement
+
+
+
+
+
+(Figures in millions of Soles
+and millions of US Dollars, unless expressed otherwise)
+
+
+
+
+
+
+
+
+
+
+|
+2Q'26
+(USD) |
+2Q'26 |
+YTD
+26 |
+|
+&Delta;
+2Q'26 vs |
+&Delta;
+YTD 26 vs |
+
+
+|
+|
+2Q'25 |
+YTD
+25 |
+
+
+Revenue |
+|
+|
+|
+|
+|
+|
+
+
+Healthcare Services Mexico |
+88 |
+300 |
+579 |
+|
+10% |
+12% |
+
+
+Healthcare Services Colombia |
+125 |
+426 |
+824 |
+|
+23% |
+20% |
+
+
+-
+Healthcare Services Colombia |
+125 |
+427 |
+827 |
+|
+23% |
+21% |
+
+
+-
+Holding and eliminations |
+(0) |
+(1) |
+(3) |
+|
+- |
+- |
+
+
+Healthcare Services
+Peru & Oncosalud Peru |
+150 |
+512 |
+1,012 |
+|
+8% |
+8% |
+
+
+-
+Healthcare Services Peru |
+87 |
+296 |
+578 |
+|
+10% |
+8% |
+
+
+-
+Oncosalud Peru |
+93 |
+317 |
+631 |
+|
+11% |
+11% |
+
+
+-
+Holding and eliminations |
+(30) |
+(101) |
+(196) |
+|
+25% |
+19% |
+
+
+Total
+Revenue |
+363 |
+1,238 |
+2,416 |
+|
+13% |
+13% |
+
+
+Cost of sales and services |
+(233) |
+(796) |
+(1,542) |
+|
+21% |
+17% |
+
+
+Gross profit |
+130 |
+442 |
+873 |
+|
+2% |
+7% |
+
+
+Gross
+margin |
+|
+35.7% |
+36.2% |
+|
+-4.0
+p.p. |
+-2.1
+p.p. |
+
+
+Selling expenses |
+(18) |
+(62) |
+(124) |
+|
+14% |
+15% |
+
+
+Administrative expenses |
+(68) |
+(232) |
+(446) |
+|
+11% |
+14% |
+
+
+(Loss) reversal for impairment of trade receivables |
+0 |
+0 |
+(8) |
+|
+-1.1x |
+-66% |
+
+
+Other income and expenses, net |
+4 |
+13 |
+21 |
+|
+5% |
+0% |
+
+
+Operating
+profit |
+48 |
+162 |
+317 |
+|
+-8% |
+0% |
+
+
+Finance income |
+1 |
+5 |
+8 |
+|
+-16% |
+-25% |
+
+
+Finance income from exchange difference |
+- |
+- |
+- |
+|
+-100% |
+-100% |
+
+
+Finance costs |
+(35) |
+(118) |
+(236) |
+|
+-2% |
+-3% |
+
+
+Finance costs from exchange difference |
+2 |
+8 |
+(19) |
+|
+- |
+- |
+
+
+Net
+finance cost |
+(31) |
+(105) |
+(246) |
+|
+1.3x |
+94% |
+
+
+Share of profit of equity accounted
+investees |
+1 |
+2 |
+5 |
+|
+3% |
+-3% |
+
+
+Profit
+(loss) before tax |
+17 |
+59 |
+76 |
+|
+-55% |
+-61% |
+
+
+Income tax expense (benefit) |
+(8) |
+(26) |
+(33) |
+|
+-45% |
+-54% |
+
+
+Net
+Income (Loss) |
+10 |
+33 |
+42 |
+|
+-61% |
+-65% |
+
+
+EBITDA |
+|
+|
+|
+|
+|
+|
+
+
+Healthcare Services Mexico |
+22 |
+75 |
+147 |
+|
+-8% |
+7% |
+
+
+Healthcare Services Colombia |
+16 |
+56 |
+101 |
+|
+-4% |
+2% |
+
+
+Healthcare Services
+Peru & Oncosalud Peru |
+30 |
+101 |
+200 |
+|
+0% |
+-1% |
+
+
+-
+Healthcare Services Peru |
+10 |
+34 |
+65 |
+|
+2% |
+-13% |
+
+
+-
+Oncosalud Peru |
+19 |
+66 |
+135 |
+|
+0% |
+6% |
+
+
+Holding and eliminations |
+(2) |
+(8) |
+(10) |
+|
+|
+|
+
+
+Total
+EBITDA |
+65 |
+223 |
+438 |
+|
+-5% |
+2% |
+
+
+Adjusted EBITDA |
+|
+|
+|
+|
+|
+|
+
+
+Healthcare Services Mexico |
+23 |
+78 |
+151 |
+|
+-11% |
+-10% |
+
+
+Healthcare Services Colombia |
+16 |
+56 |
+101 |
+|
+-4% |
+2% |
+
+
+Healthcare Services
+Peru & Oncosalud Peru |
+30 |
+101 |
+200 |
+|
+0% |
+-1% |
+
+
+-
+Healthcare Services Peru |
+10 |
+35 |
+65 |
+|
+2% |
+-14% |
+
+
+-
+Oncosalud Peru |
+20 |
+67 |
+135 |
+|
+0% |
+6% |
+
+
+Holding and eliminations |
+(2) |
+(8) |
+(9) |
+|
+|
+|
+
+
+Total
+Adjusted EBITDA |
+67 |
+227 |
+444 |
+|
+-6% |
+-4% |
+
+
+Adjusted EBITDA
+Margin |
+|
+|
+|
+|
+|
+|
+
+
+Healthcare Services Mexico |
+|
+25.9% |
+26.1% |
+|
+-6.1 p.p. |
+-6.5 p.p. |
+
+
+Healthcare Services Colombia |
+|
+13.1% |
+12.3% |
+|
+-3.7 p.p. |
+-2.2 p.p. |
+
+
+Healthcare Services
+Peru & Oncosalud Peru |
+|
+19.8% |
+19.8% |
+|
+-1.5 p.p. |
+-1.9 p.p. |
+
+
+-
+Healthcare Services Peru |
+|
+11.7% |
+11.3% |
+|
+-0.9 p.p. |
+-2.9 p.p. |
+
+
+-
+Oncosalud Peru |
+|
+21.0% |
+21.4% |
+|
+-2.4 p.p. |
+-1.0 p.p. |
+
+
+Adjusted
+EBITDA Margin |
+|
+18.4% |
+18.4% |
+|
+-3.7
+p.p. |
+-3.3
+p.p. |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Statement of Cash Flows (1/2)
+
+
+
+
+
+(Figures in millions of Soles and
+millions of US Dollars, unless expressed otherwise)
+
+
+
+
+
+
+
+
+
+
+|
+YTD
+26 (USD) |
+YTD
+26 |
+YTD
+25 |
+|
+&Delta;
+YTD 26 vs YTD 25 |
+
+
+Cash flows from operating
+activities |
+|
+|
+|
+|
+|
+
+
+(Loss) profit for the
+period |
+12 |
+42 |
+122 |
+|
+(80) |
+
+
+Adjustments for: |
+|
+|
+|
+|
+|
+
+
+Depreciation |
+18 |
+60 |
+57 |
+|
+3 |
+
+
+Depreciation of right-of-use assets |
+4 |
+14 |
+14 |
+|
+0 |
+
+
+Amortization |
+12 |
+42 |
+38 |
+|
+4 |
+
+
+(Reversal) Impairment of inventories |
+0 |
+0 |
+0 |
+|
+0 |
+
+
+Equity-settled share-based payment transactions |
+1 |
+5 |
+5 |
+|
+(1) |
+
+
+Gain (loss) on disposal of property furniture
+and equipment |
+0 |
+0 |
+0 |
+|
+(0) |
+
+
+(Reversal) loss for impairment of trade receivables |
+2 |
+8 |
+23 |
+|
+(15) |
+
+
+Share of profit of equity-accounted investees |
+(1) |
+(5) |
+(5) |
+|
+0 |
+
+
+Technical provisions and other provisions |
+1 |
+2 |
+1 |
+|
+1 |
+
+
+Finance income |
+(2) |
+(8) |
+(117) |
+|
+108 |
+
+
+Finance costs |
+75 |
+255 |
+244 |
+|
+11 |
+
+
+Tax expense |
+10 |
+33 |
+72 |
+|
+(38) |
+
+
+Net changes in assets and
+liabilities |
+|
+|
+|
+|
+|
+
+
+Trade accounts receivable and other assets |
+(8) |
+(29) |
+(83) |
+|
+55 |
+
+
+Inventories |
+7 |
+25 |
+7 |
+|
+19 |
+
+
+Trade accounts payable and other accounts payable |
+15 |
+52 |
+(24) |
+|
+77 |
+
+
+Provisions and employee benefits |
+(0) |
+(1) |
+(3) |
+|
+2 |
+
+
+Insurance contract liabilities |
+3 |
+11 |
+1 |
+|
+10 |
+
+
+Cash generated from operating
+activities |
+149 |
+507 |
+351 |
+|
+156 |
+
+
+Income tax paid |
+(22) |
+(75) |
+(109) |
+|
+34 |
+
+
+Interest received |
+2 |
+8 |
+9 |
+|
+(1) |
+
+
+Net cash from operating
+activities |
+129 |
+441 |
+251 |
+|
+190 |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Statement of Cash Flows (2/2)
+
+
+
+
+
+(Figures in millions of Soles and
+millions of US Dollars, unless expressed otherwise)
+
+
+
+
+
+
+
+
+
+
+|
+YTD
+26 (USD) |
+YTD
+26 |
+YTD
+25 |
+|
+&Delta;
+YTD 26 vs YTD 25 |
+
+
+Cash flows from investing
+activities |
+|
+|
+|
+|
+|
+
+
+Payment for accounts payables to former shareholder |
+(2) |
+(6) |
+(21) |
+|
+15 |
+
+
+Purchase of properties furniture and equipment |
+(11) |
+(37) |
+(48) |
+|
+11 |
+
+
+Purchase of intangibles |
+(8) |
+(27) |
+(34) |
+|
+7 |
+
+
+Dividends from equity-accounted investees |
+0 |
+2 |
+2 |
+|
+(1) |
+
+
+Purchase of other investments, net of sales |
+8 |
+29 |
+(8) |
+|
+37 |
+
+
+Proceeds from sale of property furniture and
+equipment |
+0 |
+0 |
+0 |
+|
+(0) |
+
+
+Net cash used in
+investing activities |
+(12) |
+(41) |
+(109) |
+|
+68 |
+
+
+Cash flows from financing
+activities |
+|
+|
+|
+|
+|
+
+
+Proceeds from settlement of derivatives - interest rate swaps |
+(3) |
+(11) |
+(3) |
+|
+(8) |
+
+
+Proceeds from loans and borrowings |
+59 |
+201 |
+822 |
+|
+(621) |
+
+
+Payment for loans and borrowings |
+(73) |
+(250) |
+(785) |
+|
+535 |
+
+
+Payment for lease liabilities |
+(6) |
+(21) |
+(22) |
+|
+1 |
+
+
+Penalty paid for debt prepayment |
+(0) |
+(0) |
+(0) |
+|
+(0) |
+
+
+Payment for derivatives premiums |
+(4) |
+(15) |
+(15) |
+|
+(0) |
+
+
+Interest paid |
+(51) |
+(175) |
+(205) |
+|
+30 |
+
+
+Net
+cash used in financing activities |
+(80) |
+(271) |
+(209) |
+|
+(63) |
+
+
+Net (decrease) increase
+in cash and cash equivalents |
+38 |
+129 |
+(66) |
+|
+195 |
+
+
+Cash and cash equivalents
+at January 1 |
+98 |
+335 |
+236 |
+|
+100 |
+
+
+Effect
+of movements in exchange rates on cash held |
+4 |
+13 |
+5 |
+|
+8 |
+
+
+Cash and cash
+equivalents at the end of the period |
+140 |
+478 |
+175 |
+|
+303 |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Historical Financial Metrics
+
+
+
+
+
+
+(Figures in millions of Soles
+and millions of US Dollars, unless expressed otherwise)
+
+
+
+
+
+
+
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+|
+3Q'24 |
+4Q'24 |
+1Q'25 |
+2Q'25 |
+3Q'25 |
+4Q'25 |
+1Q'26 |
+2Q'26 |
+
+
+Revenue |
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Oncosalud Peru |
+273 |
+276 |
+281 |
+286 |
+294 |
+304 |
+314 |
+317 |
+
+
+Healthcare Services Peru |
+255 |
+245 |
+263 |
+269 |
+279 |
+273 |
+281 |
+296 |
+
+
+Healthcare Services Colombia |
+363 |
+353 |
+339 |
+346 |
+369 |
+387 |
+400 |
+427 |
+
+
+Healthcare Services Mexico |
+316 |
+268 |
+243 |
+274 |
+264 |
+258 |
+279 |
+300 |
+
+
+Holding and eliminations |
+(80) |
+(79) |
+(84) |
+(81) |
+(88) |
+(89) |
+(96) |
+(103) |
+
+
+Total revenue from contracts with customers |
+1,127 |
+1,063 |
+1,042 |
+1,094 |
+1,117 |
+1,133 |
+1,178 |
+1,238 |
+
+
+Cost of sales and services |
+(677) |
+(629) |
+(660) |
+(660) |
+(698) |
+(704) |
+(747) |
+(796) |
+
+
+Gross profit |
+449 |
+434 |
+382 |
+434 |
+419 |
+429 |
+431 |
+442 |
+
+
+Selling expenses |
+(55) |
+(42) |
+(54) |
+(54) |
+(59) |
+(54) |
+(62) |
+(62) |
+
+
+Administrative expenses |
+(195) |
+(201) |
+(182) |
+(208) |
+(200) |
+(222) |
+(214) |
+(232) |
+
+
+Impairment losses on trade receivables |
+(25) |
+(13) |
+(16) |
+(8) |
+(5) |
+(19) |
+(9) |
+0 |
+
+
+Other expenses |
+0 |
+(2) |
+0 |
+0 |
+0 |
+0 |
+0 |
+0 |
+
+
+Other income |
+54 |
+14 |
+9 |
+12 |
+11 |
+11 |
+9 |
+13 |
+
+
+Operating profit |
+229 |
+190 |
+139 |
+176 |
+166 |
+144 |
+155 |
+162 |
+
+
+Finance income |
+6 |
+7 |
+6 |
+5 |
+4 |
+6 |
+4 |
+5 |
+
+
+Finance income from exchange difference |
+28 |
+(31) |
+37 |
+68 |
+40 |
+48 |
+0 |
+0 |
+
+
+Finance costs |
+(138) |
+(138) |
+(123) |
+(120) |
+(116) |
+(292) |
+(118) |
+(118) |
+
+
+Finance costs from exchange difference |
+0 |
+8 |
+0 |
+0 |
+0 |
+0 |
+(26) |
+8 |
+
+
+Net finance cost |
+(103) |
+(155) |
+(80) |
+(46) |
+(72) |
+(238) |
+(141) |
+(105) |
+
+
+Share of profit of equity-accounted investees |
+2 |
+2 |
+3 |
+2 |
+3 |
+2 |
+3 |
+2 |
+
+
+Profit (loss) before tax |
+127 |
+37 |
+62 |
+132 |
+97 |
+(91) |
+16 |
+59 |
+
+
+Income tax (expense) benefit |
+(27) |
+(13) |
+(24) |
+(48) |
+(44) |
+27 |
+(7) |
+(26) |
+
+
+Net Income |
+101 |
+24 |
+38 |
+84 |
+53 |
+(64) |
+9 |
+33 |
+
+
+EBITDA |
+286 |
+244 |
+195 |
+234 |
+226 |
+203 |
+215 |
+223 |
+
+
+EBITDA Adjustments |
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Net Income |
+101 |
+24 |
+38 |
+84 |
+53 |
+(64) |
+9 |
+33 |
+
+
+Income tax expense |
+27 |
+13 |
+24 |
+48 |
+44 |
+(27) |
+7 |
+26 |
+
+
+Net finance cost |
+103 |
+155 |
+80 |
+46 |
+72 |
+238 |
+141 |
+105 |
+
+
+Depreciation and amortization |
+55 |
+52 |
+53 |
+55 |
+57 |
+56 |
+57 |
+59 |
+
+
+(a) Pre-operating expenses |
+0 |
+0 |
+0 |
+0 |
+(0) |
+0 |
+0 |
+0 |
+
+
+(b) Business development expenses |
+(44) |
+3 |
+24 |
+4 |
+4 |
+10 |
+0 |
+1 |
+
+
+(c) Change in fair value of
+earn-out liabilities |
+0 |
+0 |
+0 |
+0 |
+0 |
+0 |
+0 |
+0 |
+
+
+(d) Stock-based consideration |
+6 |
+3 |
+3 |
+3 |
+3 |
+3 |
+2 |
+3 |
+
+
+(e) Personnel non-recurring
+compensation |
+2 |
+5 |
+0 |
+0 |
+0 |
+5 |
+0 |
+0 |
+
+
+(f) Change in fair value of
+investment properties |
+0 |
+0 |
+0 |
+0 |
+0 |
+0 |
+0 |
+0 |
+
+
+Adjusted EBITDA |
+250 |
+254 |
+222 |
+241 |
+232 |
+220 |
+217 |
+227 |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Key Operating Metrics
+
+
+
+
+
+
+
+|
+|
+|
+|
+|
+
+
+|
+2Q'26 |
+YTD 26 |
+&Delta; 2Q'26 vs 2Q'25 |
+&Delta; YTD 26 vs YTD 25 |
+
+
+Oncosalud Peru |
+|
+|
+|
+|
+
+
+Plan memberships (1) (2) |
+1,472,019 |
+1,472,019 |
+6% |
+6% |
+
+
+Average monthly revenue per plan member |
+S/ 63.35 |
+S/ 62.79 |
+4% |
+4% |
+
+
+Preventive check-ups |
+26,105 |
+56,799 |
+-16% |
+-12% |
+
+
+Patients treated |
+50,991 |
+97,498 |
+27% |
+25% |
+
+
+Medical loss ratio |
+55.9% |
+55.9% |
+1.0 p.p |
+1.0 p.p |
+
+
+|
+|
+|
+|
+|
+
+
+Healthcare Services |
+|
+|
+|
+|
+
+
+Total bed capacity (1)(7) |
+2,228 |
+2,228 |
+0% |
+0% |
+
+
+Protected Lives |
+3,143,694 |
+3,143,694 |
+26% |
+26% |
+
+
+Surgeries |
+21,912 |
+43,522 |
+5% |
+5% |
+
+
+Emergency treatments |
+97,857 |
+189,283 |
+7% |
+9% |
+
+
+Chemotherapies & Radiotherapies |
+57,579 |
+111,731 |
+15% |
+9% |
+
+
+Total number of days hospitalized |
+135,107 |
+267,373 |
+5% |
+4% |
+
+
+Operating capacity utilization |
+76.6% |
+76.2% |
+5.8 p.p |
+5.2 p.p |
+
+
+Total capacity utilization |
+66.6% |
+66.3% |
+2.8 p.p |
+2.3 p.p |
+
+
+
+
+
+
+
+
+
+| 1) | As of period end. |
+
+
+
+
+
+
+| 2) | As reported to the National Superintendence of Health Susalud. Includes Oncology plans and Health plans.
+Includes active plan members and inactive members. Inactive members are defined as those plan members that have not paid monthly fees
+due for up to three months. As of June, 30, 2026, we had 1,362,625 active members and 109,394 inactive members. |
+
+
+
+
+
+
+| 3) | Total revenue for the period corresponding to insurance revenue in the Oncosalud Peru segment divided
+by the average number of plan members during the period, divided by the number of months in the period. |
+
+
+
+
+
+
+| 4) | Preventive check-ups consider Oncosalud and Healthcare plan check-ups, including for Auna Corporate plans,
+receiving check-ups at the Centro de Bienestar Ambulatorio &ndash; CBA (Wellness Center) in Lima and at other facilities in Peru. |
+
+
+
+
+
+
+| 5) | Number of individual plan members in Oncosalud and Healthcare plans, including Auna Corporate plans, receiving
+treatment during the period in Peru. Each plan member is counted once for a trimester, however, might have received multiple instances
+of treatment throughout the year. |
+
+
+
+
+
+
+| 6) | MLR is calculated as (i) claims for medical treatment generated by our prepaid oncology and general healthcare
+plans plus (ii) technical reserves relating to plan members treated pursuant to such plans, whether at our facilities or third-party facilities,
+divided by revenue generated by our prepaid oncology and general healthcare plans. |
+
+
+
+
+
+
+| 7) | Includes all beds within the Healthcare Network and excludes 109 Oncology beds. |
+
+
+
+
+
+
+| 8) | Insured population assigned to Auna under risk-sharing agreements in Colombia. |
+
+
+
+
+
+
+| 9) | Number of surgeries includes surgeries, outpatient surgeries and cesarean sections. |
+
+
+
+
+
+
+| 10) | Emergency care includes the number of visits in the emergency room and may include several visits per
+patient. |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| 11) | Intravenous chemotherapy and radiotherapy infusions in both inpatient and outpatient care; excludes oral
+treatments. In Peru, includes sessions across the Healthcare Services Network and Oncosalud Segments. |
+
+
+
+
+
+
+| 12) | Total number of days during which any of Auna's beds were occupied by a hospitalized patient during the
+period, including ICU. |
+
+
+
+
+
+
+| 13) | Operating capacity utilization (Occupancy) is calculated as (i) (x) total number of days in which any
+of our beds had a hospitalized patient during the period divided by (y) total number of operating beds, times (ii) total number of days
+during the period. |
+
+
+
+
+
+
+| 14) | Total capacity utilization (Occupancy) is calculated as (i) (x) total number of days in which any of our
+beds had a hospitalized patient during the period divided by (y) total number of beds, times (ii) total number of days during the period. |

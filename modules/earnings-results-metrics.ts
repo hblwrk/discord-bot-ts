@@ -54,6 +54,10 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       // Some releases state non-GAAP net income and then introduce its per-share
       // equivalent with "or", without ever spelling out EPS as a caption.
       /\b(?:reported|for)\s+(?:the\s+)?(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b(?:(?![.!?]\s)[^!?\n]){0,360}?\bnon-gaap\s+(?:net\s+)?(?:income|earnings|loss)\b(?:(?![.!?]\s)[^!?\n]){0,180}?\bor\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
+      // The period can be established by the surrounding results section rather than
+      // repeated in the sentence: "Non-GAAP net income was $531 million, or $3.07 per
+      // share." The aggregate amount before "or" must not be mistaken for EPS.
+      /\bnon-gaap\s+(?:net\s+)?(?:income|earnings|loss)\b(?:(?![.!?]\s)[^!?\n]){0,180}?\bor\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
       /\badjusted\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
       /\bnon-gaap\s+(?:net\s+)?(?:income|earnings|loss)\s+for\s+(?:the\s+)?(?:q[1-4]|(?:first|second|third|fourth)[\s–—-]+quarter)\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
       /\badjusted\s+(?:\d{1,2}\s+)?(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?(?:earnings\s+per\s+(?:common\s+)?share|eps)\b/i,
@@ -71,6 +75,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       // A reconciliation table can name the measure after the caption instead of before
       // it ("Earnings per share - Non-GAAP").
       /\b(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\s*[–—-]\s*non-gaap\b/i,
+      /\badjusted\s+basic\s+and\s+diluted\s+earnings\s+per\s+(?:common\s+)?share\b/i,
       /\badjusted\s+profit\s+per\s+(?:common\s+)?share\b/i,
       // Some filers name the measure by what it leaves out — "diluted EPS excluding certain
       // items" — which their own footnote then defines as adjusted EPS.
@@ -78,7 +83,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     ],
     // Guidance restates the same non-GAAP measure as a forward range, so without this
     // the low end of a full-year outlook is posted as the reported quarter.
-    skipPattern: /\bguidance\b|\boutlook\b|\bforecast(?:s|ed|ing)?\b|\bexpects?\s+(?:non-gaap\s+)?(?:eps|adjusted)\b|\bto\s+be\s+(?:between|in\s+(?:a\s+)?range)\b/i,
+    skipPattern: /\bguidance\b|\boutlook\b|\bforecast(?:s|ed|ing)?\b|\bexpects?\s+(?:non-gaap\s+)?(?:eps|adjusted)\b|\bto\s+be\s+(?:between|in\s+(?:(?:a|the)\s+)?range)\b/i,
     valueType: "eps",
   },
   {
@@ -233,6 +238,7 @@ function isQuarterSpecificSectionLine(line: string): boolean {
 
 function isQuarterSpecificSectionBoundary(line: string): boolean {
   return /^\s*(?:outlook|guidance|financial\s+outlook|business\s+outlook|use\s+of\s+non-gaap|forward-looking|supplemental\s+financial\s+information)\b/i.test(line) ||
+    /^\s*reporting\s+segments?\b/i.test(line) ||
     /^\s*(?:the\s+)?company\s+(?:raises?|updates?|reaffirms?|provides?|issues?)\b.*\b(?:guidance|outlook)\b/i.test(line) ||
     /^\s*highlights?\s*[-:]\s*(?:fiscal\s+year|twelve\s+months\s+ended)\b/i.test(line) ||
     /^\s*(?:fiscal\s+year|FY|FYE)\s*(?:20\d{2}|\d{2})\b/i.test(line) ||

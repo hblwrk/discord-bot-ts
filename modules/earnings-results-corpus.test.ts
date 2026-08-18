@@ -369,7 +369,9 @@ const filingCorpus: {
       ["revenue", "$1.92B"],
       ["net_income", "$1.27B"],
     ],
-    outlook: [],
+    outlook: [
+      ["Revenue", "$2.055B to $2.085B"],
+    ],
     quarterLabel: "Q2 2026",
     source: "1751008/000175100826000057/exhibit991-2q26earningspre.htm",
     ticker: "app",
@@ -429,6 +431,7 @@ const filingCorpus: {
     // "Diluted | $ | 0.36" and with $29.4M over 82.5M shares.
     company: "Axon Enterprise",
     metrics: [
+      ["adjusted_eps", "$1.88"],
       ["gaap_eps", "$0.36"],
       ["revenue", "$904M"],
       ["net_income", "$29.43M"],
@@ -624,6 +627,7 @@ const filingCorpus: {
   {
     company: "Applied Optoelectronics",
     metrics: [
+      ["adjusted_eps", "$0.06"],
       ["gaap_eps", "-$0.28"],
       ["revenue", "$191.9M"],
       ["net_income", "-$22.8M"],
@@ -1283,6 +1287,59 @@ const filingCorpus: {
     source: "2003292/000162828026057573/h126exno994klarnagrouppl.htm",
     ticker: "klar",
   },
+  {
+    // The quarter summary is followed immediately by segment results. The first segment's
+    // $1.345 billion of revenue must not displace consolidated revenue, and Q4 guidance must
+    // not be posted as Q3 adjusted EPS.
+    company: "Keysight Technologies",
+    metrics: [
+      ["adjusted_eps", "$3.07"],
+      ["gaap_eps", "$2.30"],
+      ["revenue", "$1.85B"],
+      ["net_income", "$397M"],
+    ],
+    outlook: [
+      ["Revenue", "$1.93B to $1.95B"],
+      ["Adj EPS", "$3.34 to $3.4"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "1601046/000160104626000029/exhibit991-q326pressrelease.htm",
+    ticker: "keys",
+  },
+  {
+    // A fiscal Q4 release reports quarter and annual results in the same tables, then gives
+    // FY2027 guidance as low/high columns whose scale is declared in the section heading.
+    company: "Jack Henry & Associates",
+    metrics: [
+      ["gaap_eps", "$1.57"],
+      ["revenue", "$644.02M"],
+      ["net_income", "$111.23M"],
+    ],
+    outlook: [
+      ["Revenue", "$2.684B to $2.709B"],
+      ["EPS", "$7.33 to $7.38"],
+      ["Operating margin", "24.5% to 24.7%"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "779152/000077915226000057/jkhy-20260630xex99pressrel.htm",
+    ticker: "jkhy",
+  },
+  {
+    // The filing translates its PEN results into USD in the first current-quarter column.
+    // Segment and historical tables repeat generic Revenue and Net Income captions, while
+    // the consolidated rows report $363 million and $10 million respectively.
+    company: "Auna",
+    metrics: [
+      ["adjusted_eps", "$0.15"],
+      ["gaap_eps", "$0.12"],
+      ["revenue", "$363M"],
+      ["net_income", "$10M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1799207/000095010326012579/dp251949_ex9901.htm",
+    ticker: "auna",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1303,6 +1360,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(82);
+    expect(filingCorpus).toHaveLength(85);
   });
 });

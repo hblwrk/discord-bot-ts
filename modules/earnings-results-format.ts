@@ -399,7 +399,13 @@ function isSkippedMetricLine(line: string, definition: MetricDefinition): boolea
     return false;
   }
 
-  if (line.length <= collapsedStatementLineLength) {
+  // A long prose paragraph is not a collapsed statement. Judge its forward-looking or
+  // adjusted qualifier against the whole sentence; the per-caption window below exists only
+  // for dense table text where many unrelated rows were flattened together.
+  const isUnseparatedStatement = /\b(?:consolidated\s+)?statements?\s+of\s+(?:income|operations)\b/i
+    .test(line);
+  if (line.length <= collapsedStatementLineLength ||
+      (4 > (line.match(/\|/g)?.length ?? 0) && false === isUnseparatedStatement)) {
     return skipPattern.test(line);
   }
 
@@ -428,7 +434,7 @@ const explicitGaapEpsPattern = new RegExp(String.raw`${gaapTermSource}\s+(?:dilu
 function isForwardLookingLine(line: string): boolean {
   return /\b(?:guidance|outlook|forecast)\b/i.test(line) ||
     /\b(?:expects?|expecting|anticipates?)\b/i.test(line) ||
-    /\bto\s+be\s+(?:between|in\s+(?:a\s+)?range)\b/i.test(line);
+    /\bto\s+be\s+(?:between|in\s+(?:(?:a|the)\s+)?range)\b/i.test(line);
 }
 
 function extractMetricValue(

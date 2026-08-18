@@ -52,6 +52,9 @@ type OutlookSection = {
   // after it. Those rows are safe to read, but only the first populated financial cell is
   // forward-looking.
   guidanceFirstColumns: boolean;
+  // A low/high table places the two endpoints in separate cells without an inline range
+  // separator. Both cells together are the guidance value.
+  guidanceRangeColumns: boolean;
 };
 
 const moneyUnitPatternSource = String.raw`(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b`;
@@ -202,6 +205,7 @@ export function extractOutlookMetrics(
       section.moneyUnit,
       section.nonGaapMeasures,
       section.guidanceFirstColumns,
+      section.guidanceRangeColumns,
     );
     for (const metric of definitionMetrics) {
       const identity = `${metric.periodLabel ?? ""}:${metric.key}`;
@@ -258,8 +262,9 @@ function getOutlookSection(lines: string[]): OutlookSection {
 
   return {
     guidanceFirstColumns: hasGuidanceFirstColumnHeader(sectionLines),
+    guidanceRangeColumns: hasGuidanceRangeColumnHeader(sectionLines),
     heading,
-    moneyUnit: getSectionMoneyUnit(sectionLines),
+    moneyUnit: getSectionMoneyUnit([heading ?? "", ...sectionLines]),
     lines: sectionLines,
     mixedPeriods: mixedPeriods ||
       hasMixedOutlookPeriods(sectionLines) ||
@@ -349,6 +354,13 @@ function hasGuidanceFirstColumnHeader(lines: string[]): boolean {
   return false;
 }
 
+function hasGuidanceRangeColumnHeader(lines: string[]): boolean {
+  return lines.some((line, lineIndex) =>
+    /\blow\b[\s\S]*\bhigh\b/i.test(
+      [line, lines[lineIndex + 1] ?? ""].join(" "),
+    ));
+}
+
 function hasMixedOutlookPeriods(lines: string[]): boolean {
   const sectionText = lines.join(" ");
   const hasQuarter = /\b(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b/i.test(sectionText) ||
@@ -370,7 +382,8 @@ function isOutlookHeading(line: string): boolean {
 
   return /^(?:forward[\s–—-]+looking\s+)?(?:business\s+|financial\s+)?(?:outlook|guidance)\b/i.test(normalizedLine) ||
     /^(?:the\s+)?company\s+(?:raises?|updates?|reaffirms?|provides?|issues?)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine) ||
-    /^(?:(?:(?:fiscal(?:\s+year)?|fiscal\s+full[\s–—-]+year)\s+)?(?:20\d{2}|fy\s?\d{2}|q[1-4]\s+20\d{2}|quarter)|(?:first|second|third|fourth)[\s–—-]+quarter)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine);
+    /^(?:(?:(?:fiscal(?:\s+year)?|fiscal\s+full[\s–—-]+year)\s+)?(?:20\d{2}|fy\s?\d{2}|q[1-4]\s+20\d{2}|quarter)|(?:first|second|third|fourth)[\s–—-]+quarter)\b.*\b(?:outlook|guidance)\b/i.test(normalizedLine) ||
+    /^full[\s–—-]+year\s+fiscal(?:\s+year)?\s+(?:20\d{2}|\d{2})\b.*\bguidance\b/i.test(normalizedLine);
 }
 
 function isMixedPeriodOutlookHeading(line: string): boolean {
@@ -431,10 +444,13 @@ function extractOutlookMetricsForDefinition(
   sectionMoneyUnit: string | undefined,
   nonGaapMeasures: boolean,
   guidanceFirstColumns: boolean,
+  guidanceRangeColumns: boolean,
 ): EarningsOutlookMetric[] {
   const bestCandidateByPeriod = new Map<string, OutlookMetricCandidate>();
   for (const [lineIndex, line] of lines.entries()) {
-    if (false === revisedColumns && false === guidanceFirstColumns && true === isNoisyOutlookLine(line)) {
+    if (false === revisedColumns &&
+        false === guidanceFirstColumns &&
+        true === isNoisyOutlookLine(line, guidanceRangeColumns)) {
       continue;
     }
 
@@ -457,6 +473,7 @@ function extractOutlookMetricsForDefinition(
         lineIndex,
         revisedColumns,
         guidanceFirstColumns,
+        guidanceRangeColumns,
       );
       const value = extractOutlookValue(
         valueLine,
@@ -467,6 +484,7 @@ function extractOutlookMetricsForDefinition(
         revisedColumns,
         sectionMoneyUnit,
         guidanceFirstColumns,
+        guidanceRangeColumns,
       );
       if (null === value) {
         continue;
@@ -535,10 +553,13 @@ function getOutlookMetricValueLine(
   lineIndex: number,
   revisedColumns: boolean,
   guidanceFirstColumns: boolean,
+  guidanceRangeColumns: boolean,
 ): string {
   const line = lines[lineIndex] ?? "";
   const nextLine = lines[lineIndex + 1] ?? "";
-  const needsTableValueContinuation = (true === revisedColumns || true === guidanceFirstColumns) &&
+  const needsTableValueContinuation = (true === revisedColumns ||
+      true === guidanceFirstColumns ||
+      true === guidanceRangeColumns) &&
     false === /[$€£¥]|\d+\.\d+|\d+\s*%/.test(line) &&
     /[$€£¥]|\d+\.\d+|\d+\s*%/.test(nextLine);
   const needsWrappedRangeContinuation = /\b(?:between|range)\b/i.test(line) &&
@@ -685,7 +706,7 @@ function isHistoricalOutlookMetricLine(line: string): boolean {
     false === /\b(?:expects?|expected|guidance|outlook|forecast|projected|targets?|targeting|anticipates?|anticipated|reaffirms?|reiterates?|maintains?|raises?|raised)\b/i.test(line);
 }
 
-function isNoisyOutlookLine(line: string): boolean {
+function isNoisyOutlookLine(line: string, guidanceRangeColumns = false): boolean {
   // An explanatory footnote states the size of adjustments excluded from guidance. Its
   // per-share amounts are not themselves the guided measure.
   if (/^\s*(?:this\s+)?(?:outlook|guidance)\b.{0,160}\b(?:excludes?|includes?)\b.{0,160}\b(?:charges?|benefits?|expenses?|items?|tax)\b/i.test(line)) {
@@ -705,7 +726,11 @@ function isNoisyOutlookLine(line: string): boolean {
   const isPlusMinusGuidanceRow = 4 <= pipeCount &&
     2 === populatedNumericCells &&
     /\+\s*\/\s*-|±|plus\s+or\s+minus/i.test(line);
-  return (pipeCount >= 4 && false === isSparseTwoColumnRow && false === isPlusMinusGuidanceRow) ||
+  const isLowHighGuidanceRow = true === guidanceRangeColumns && 2 === populatedNumericCells;
+  return (pipeCount >= 4 &&
+      false === isSparseTwoColumnRow &&
+      false === isPlusMinusGuidanceRow &&
+      false === isLowHighGuidanceRow) ||
     /\bpost[-\s]?20\d{2}\b.*\bcompound\s+annual\s+growth\s+rate\b/i.test(line);
 }
 
@@ -718,6 +743,7 @@ function extractOutlookValue(
   revisedColumns = false,
   sectionMoneyUnit?: string,
   guidanceFirstColumns = false,
+  guidanceRangeColumns = false,
 ): string | null {
   pattern.lastIndex = 0;
   const patternMatch = pattern.exec(line);
@@ -726,6 +752,7 @@ function extractOutlookValue(
     patternMatch,
     revisedColumns,
     guidanceFirstColumns,
+    guidanceRangeColumns,
   )) {
     const valueText = normalizeOutlookValueText(rawValueText);
     if ("" === valueText) {
@@ -836,6 +863,7 @@ function getOutlookValueSegments(
   patternMatch: RegExpExecArray | null,
   revisedColumns: boolean,
   guidanceFirstColumns: boolean,
+  guidanceRangeColumns: boolean,
 ): string[] {
   if (null === patternMatch) {
     return [line];
@@ -848,6 +876,16 @@ function getOutlookValueSegments(
     const populatedCells = cells.filter(cell => /\d/.test(cell)).reverse();
     if (0 < populatedCells.length) {
       return populatedCells;
+    }
+  }
+
+  if (true === guidanceRangeColumns) {
+    const populatedCells = line
+      .slice(patternMatch.index + patternMatch[0].length)
+      .split("|")
+      .filter(cell => /\d/.test(cell));
+    if (2 <= populatedCells.length) {
+      return [`${populatedCells[0]} to ${populatedCells[1]}`];
     }
   }
 
