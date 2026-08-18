@@ -3,14 +3,26 @@ import {getMessageMetrics, parseEarningsDocument} from "./earnings-results-forma
 import {
   findEpsValue,
   findNumericValue,
+  findPerShareTableValue,
   formatEps,
   formatUsdCompact,
   getExplicitMoneyScale,
+  getMoneyScaleFromContextText,
   parseNumber,
 } from "./earnings-results-money.ts";
 import {type EarningsEvent} from "./earnings.ts";
 
 describe("earnings result money parsing", () => {
+  test("skips a collapsed per-share note column and recognizes ISO-code table units", () => {
+    const perShareRows =
+      "Basic | 17 $ 0.01 $ (0.14) $ 0.00 $ (0.42) " +
+      "Diluted | 17 $ 0.01 $ (0.14) $ 0.00 $ (0.42)";
+
+    expect(findPerShareTableValue(perShareRows, 0)).toBe(0.01);
+    expect(getMoneyScaleFromContextText("USD millions, except per share amounts"))
+      .toBe(1_000_000);
+  });
+
   test("ignores an EPS footnote marker and prefers the reported currency value", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>

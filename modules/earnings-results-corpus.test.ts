@@ -1268,6 +1268,21 @@ const filingCorpus: {
     source: "1988894/000198889426000085/as-2026q2xexx991.htm",
     ticker: "as",
   },
+  {
+    // The image-backed statement collapses every row onto one line. Its Note 17 column sits
+    // directly before the currency-cued EPS, while the governing scale is written as
+    // "USD millions" rather than "in millions".
+    company: "Klarna Group",
+    metrics: [
+      ["gaap_eps", "$0.01"],
+      ["revenue", "$1.04B"],
+      ["net_income", "$9M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "2003292/000162828026057573/h126exno994klarnagrouppl.htm",
+    ticker: "klar",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1288,6 +1303,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(81);
+    expect(filingCorpus).toHaveLength(82);
   });
 });

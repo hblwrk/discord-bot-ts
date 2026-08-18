@@ -161,6 +161,27 @@ function isLikelyTableNoteReference(text: string, startIndex: number, endIndex: 
 
   const beforeToken = text.slice(Math.max(0, startIndex - 16), startIndex);
   const afterToken = text.slice(endIndex, endIndex + 80);
+  // Image-backed SEC statements can collapse an entire table into one text line and omit
+  // cell separators. In a per-share row, the bare note column then sits between the row
+  // label and the currency-cued value ("Diluted 17 $ 0.01"). It is still a reference,
+  // even though the pipe-based table heuristic below cannot see it.
+  if (/\b(?:basic|diluted)\s*$/i.test(beforeToken) &&
+      /^\s*[$€£¥]\s*\(?-?\d/.test(afterToken)) {
+    return true;
+  }
+
+  // On a collapsed statement row, the dotted leader is preserved as the opening pipe,
+  // while the next pipe follows the caption of the subsequent row. A populated note
+  // column creates one extra number ahead of the four period values.
+  if (/\|\s*$/.test(beforeToken) && /^\s*(?:[$€£¥]\s*)?\(?-?\d/.test(afterToken)) {
+    const nextCellBoundary = text.indexOf("|", endIndex);
+    const rowTail = text.slice(startIndex, -1 === nextCellBoundary ? undefined : nextCellBoundary);
+    const rowValueCount = [...rowTail.matchAll(/\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?/g)].length;
+    if (5 <= rowValueCount) {
+      return true;
+    }
+  }
+
   return /\|[\s|()–-]*$/.test(beforeToken) &&
     /^\s*(?:\||$)/.test(afterToken) &&
     /\d/.test(afterToken);
@@ -248,7 +269,7 @@ function getPerShareSegmentValue(
 ): number | null {
   const segmentMatch = new RegExp(`\\b${label}\\b([\\s\\S]*?)(?:\\b(?:Basic|Diluted|Weighted-average)\\b|$)`, "i")
     .exec(text);
-  const segment = segmentMatch?.[1];
+  const segment = segmentMatch?.[0];
   if (undefined === segment) {
     return null;
   }
@@ -257,6 +278,7 @@ function getPerShareSegmentValue(
     maxAbsValue: 100,
     parseCents: true,
     skipPercentages: true,
+    skipTableNoteRefs: true,
   });
   return values[columnIndex] ?? values[0] ?? null;
 }
@@ -272,7 +294,7 @@ export function getMoneyScaleFromContextText(text: string): number | null {
   // the unit, and that figure belongs to one line, not the whole table. Treating
   // inline magnitudes as a table scale mis-scales unrelated rows.
   const declarationMatch =
-    /(?:\bin\s+|[$€£¥]\s*,?\s*)(thousand|million|billion)s?\b/i.exec(text) ??
+    /(?:\bin\s+|[$€£¥]\s*,?\s*|\b(?:USD|CAD|TWD|NTD|EUR|GBP|JPY|CHF)\s*,?\s*)(thousand|million|billion)s?\b/i.exec(text) ??
     /\b(thousand|million|billion)s?\s+of\s+dollars\b/i.exec(text) ??
     /\(\s*(thousand|million|billion)s?\b/i.exec(text);
   const unit = declarationMatch?.[1]?.toLowerCase();

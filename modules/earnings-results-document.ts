@@ -80,8 +80,15 @@ export function getMeaningfulLines(text: string): string[] {
     .map(line => stripReferenceMarkers(line)
       // Dotted leaders align a caption with its value cell ("Revenue ....... $ 7,814").
       // Left in place, the final dot reads as a sentence boundary and the row is cut off
-      // before any of its figures.
-      .replace(/\.{2,}|…+/g, " ")
+      // before any of its figures. Image-backed statements sometimes collapse every row
+      // onto one long line; preserve those leaders as cell boundaries so each row's value
+      // run can be distinguished from the next caption.
+      .replace(/\.{2,}|…+/g, () =>
+        line.length > 600 &&
+          4 <= (line.match(/\.{2,}|…+/g)?.length ?? 0) &&
+          /\b(?:USD|CAD|TWD|NTD|EUR|GBP|JPY|CHF)\s+millions\b.*\bNote\b/i.test(line)
+          ? " | "
+          : " ")
       .replace(/\s*\|\s*/g, " | ")
       .replace(/\s+/g, " ")
       .trim())
