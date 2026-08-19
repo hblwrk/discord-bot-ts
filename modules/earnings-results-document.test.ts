@@ -44,6 +44,19 @@ describe("earnings result document text", () => {
       .toBe("Net revenues were RMB346.4 billion (US$51.1 billion).");
   });
 
+  test("does not split words across presentational font tags", () => {
+    expect(htmlToText("<p>today reporte</font><font>d net earnings</p>"))
+      .toBe("today reported net earnings");
+  });
+
+  test("removes raised-font references and normalizes leading decimal values", () => {
+    expect(htmlToText([
+      "<p>Adjusted</font>",
+      "<font style=\"font-size:7pt;position:relative;top:-3.85pt\">1</font>",
+      "<font> EPS was $.39 and GAAP EPS was (.32).</font></p>",
+    ].join(""))).toBe("Adjusted EPS was $0.39 and GAAP EPS was (0.32).");
+  });
+
   test("uses a three-month period end before a later-quarter outlook", () => {
     expect(getQuarterLabel([
       "Results for the three-month period ended June 30, 2026.",
@@ -64,6 +77,14 @@ describe("earnings result document text", () => {
       "Amcor Reports Strong Fourth Quarter and Full-Year Results",
       "Highlights - Three Months Ended June 30, 2026",
       "Highlights - Fiscal Year Ended June 30, 2026",
+    ].join("\n"))).toBe("Q4 2026");
+  });
+
+  test("uses Q4 for fiscal-year results whose following highlights name the fourth quarter", () => {
+    expect(getQuarterLabel([
+      "ExampleCo Reports Fiscal 2026 Results",
+      "As Reported Net Sales Growth of 6% in the Fourth Quarter and 5% for the Full Year",
+      "The fiscal year ended June 30, 2026.",
     ].join("\n"))).toBe("Q4 2026");
   });
 

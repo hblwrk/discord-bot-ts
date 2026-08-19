@@ -96,6 +96,37 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("uses updated point guidance instead of parenthetical previous ranges", () => {
+    expect(extractOutlookMetrics([
+      "Fiscal Year 2026 Outlook",
+      "Total sales of $92.0 billion (previously $92.0 to 94.0 billion)",
+      "Operating income as a percentage of sales (operating margin) of 11.2% (previously 11.2% to 11.4%)",
+      "Diluted earnings per share of approximately $11.75 (previously $11.75 to $12.25)",
+      "Adjusted 1 diluted earnings per share of approximately $12.25 (previously $12.25 to $12.75)",
+    ])).toEqual([
+      {
+        key: "revenue",
+        label: "Revenue",
+        value: "$92B",
+      },
+      {
+        key: "adjusted_eps",
+        label: "Adj EPS",
+        value: "$12.25",
+      },
+      {
+        key: "eps",
+        label: "EPS",
+        value: "$11.75",
+      },
+      {
+        key: "operating_margin",
+        label: "Operating margin",
+        value: "11.2%",
+      },
+    ]);
+  });
+
   test("handles qualified growth language and negative money ranges", () => {
     const metrics = extractOutlookMetrics([
       "Fiscal 2026 Outlook",

@@ -29,10 +29,20 @@ export function htmlToText(html: string): string {
     // tags leaves the marker inside the adjacent value ("US$<sup>1</sup>51.1" becomes
     // "US$ 1 51.1"), where it can be selected as a one-dollar result.
     .replace(/<sup\b[^>]*>\s*\(?\d{1,2}\)?\s*<\/sup\s*>/gi, "")
+    // Workiva represents superscripts as raised, small font elements rather than <sup>.
+    // Remove those numeric references before stripping the presentational font tags.
+    .replace(/<font\b[^>]*\btop:\s*-\d+(?:\.\d+)?pt[^>]*>\s*\(?\d{1,2}\)?\s*<\/font\s*>/gi, "")
     .replace(/<br\s*\/?>/gi, "\n")
     .replace(/<\/(?:p|div|tr|h[1-6])>/gi, "\n")
     .replace(/<\/t[dh]>/gi, " | ")
+    // Workiva can change font styling in the middle of a word ("reporte</font><font>d").
+    // Treating those presentational tags as whitespace corrupts the filing prose and any
+    // grounded summary copied from it. The text itself already carries word separators.
+    .replace(/<\/?font\b[^>]*>/gi, "")
     .replace(/<[^>]+>/g, " ")
+    // SEC financial statements commonly omit the zero before a decimal ("$.32" or
+    // "(.32)"). The numeric reader expects a digit before the decimal point.
+    .replace(/(?<![\dA-Za-z])\.(\d+)/g, "0.$1")
     .replace(/\u00a0/g, " ")
     // SEC exhibits sometimes use zero-width characters as otherwise-empty table cells.
     // Left intact, a row between a metric caption and its values is not recognised as a
@@ -174,6 +184,16 @@ export function getQuarterLabel(text: string): string | undefined {
     if (quarter) {
       return `${quarter} ${normalizeFiscalYear(leadingFiscalQuarterMatch[2])}`;
     }
+  }
+
+  // A fiscal-year release can headline only the annual period, then identify its reported
+  // quarter in the immediately following highlights. It is the Q4 release even though a
+  // June period end would map to calendar Q2.
+  const fiscalYearResultsMatch = text.match(
+    /\breports?\s+fiscal\s+(20\d{2}|\d{2})\s+results\b[\s\S]{0,800}?\bfourth[\s–—-]+quarter\b/i,
+  );
+  if (undefined !== fiscalYearResultsMatch?.[1]) {
+    return `Q4 ${normalizeFiscalYear(fiscalYearResultsMatch[1])}`;
   }
 
   const fiscalQuarterMatch = text.match(/\b(Q[1-4])\s+(?:fiscal\s+year|FY|FYE)\s*(20\d{2}|\d{2})\b/i);

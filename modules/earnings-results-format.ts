@@ -319,6 +319,13 @@ function extractMetric(
       continue;
     }
 
+    // Restructuring and other adjustment commentary often translates a charge into its
+    // per-share impact. That amount is neither GAAP nor adjusted EPS, even when the phrase
+    // between "impact" and the value repeats the full per-share metric caption.
+    if ("eps" === definition.valueType && true === isPerShareImpactOnlyLine(metricLine)) {
+      continue;
+    }
+
     const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(metricLine));
     if (!pattern) {
       continue;
@@ -365,6 +372,23 @@ function extractMetric(
   }
 
   return bestCandidate?.metric ?? null;
+}
+
+function isPerShareImpactOnlyLine(line: string): boolean {
+  const impactIndex = line.search(/\b(?:accretive|dilutive|favorable|unfavorable)?\s*impact\b/i);
+  if (-1 === impactIndex) {
+    return false;
+  }
+
+  const textBeforeImpact = line.slice(0, impactIndex);
+  const hasReportedEpsBeforeImpact = /\b(?:eps|(?:earnings|income|loss)\s+per\s+(?:fully\s+)?(?:common\s+)?(?:diluted\s+)?share)\b[^.!?]{0,40}\b(?:was|were|of)\s+\(?-?[$€£¥]?\s*\d/i
+    .test(textBeforeImpact);
+  if (true === hasReportedEpsBeforeImpact) {
+    return false;
+  }
+
+  const perShareIndex = line.search(/\bper\s+(?:fully\s+)?(?:common\s+)?(?:diluted\s+)?share\b/i);
+  return -1 !== perShareIndex && impactIndex < perShareIndex;
 }
 
 function hasMetricValueBeforeAdjustment(line: string, patterns: RegExp[]): boolean {

@@ -1414,6 +1414,44 @@ const filingCorpus: {
     source: "1654126/000117891326004191/exhibit_99-1.htm",
     ticker: "zim",
   },
+  {
+    // The annual release headlines the fiscal year but reports Q4 in a later narrative
+    // block. Per-share restructuring impacts and the preceding full-year table are not
+    // quarter results, while leading-decimal values such as "$.32" are.
+    company: "The Estée Lauder Companies",
+    metrics: [
+      ["adjusted_eps", "$0.39"],
+      ["gaap_eps", "-$0.32"],
+      ["revenue", "$3.63B"],
+      ["net_income", "-$116M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q4 2026",
+    source: "1001250/000100125026000038/elq4fy2026exhibit991.htm",
+    ticker: "el",
+  },
+  {
+    // Updated full-year point guidance is followed by superseded ranges in parenthetical
+    // "previously" clauses. The raised-font footnote marker on adjusted EPS is not text.
+    company: "Lowe's Companies",
+    metrics: [
+      ["adjusted_eps", "$4.40"],
+      ["gaap_eps", "$4.27"],
+      ["revenue", "$25.96B"],
+      ["net_income", "$2.4B"],
+    ],
+    outlook: [
+      ["Revenue", "$92B"],
+      ["Adj EPS", "$12.25"],
+      ["EPS", "$11.75"],
+      ["Operating margin", "11.2%"],
+      ["Tax rate", "24.5%"],
+      ["Capex", "$2.5B"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "60667/000006066726000113/exhibit991-07312026.htm",
+    ticker: "low",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1434,6 +1472,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(90);
+    expect(filingCorpus).toHaveLength(92);
   });
 });
