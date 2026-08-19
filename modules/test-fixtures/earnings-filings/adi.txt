@@ -1,0 +1,626 @@
+EX-99.1
+2
+adi3q26exhibit991earnings.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+
+
+Analog Devices Reports Record Fiscal Third Quarter 2026 Financial Results
+• Revenue of $4.02 billion, with year-over-year growth led by Data Center and Industrial
+• Operating cash flow of $5.5 billion and free cash flow of $4.9 billion on a trailing twelve-month basis or 40% and 36% of revenue, respectively
+• Returned $1.7 billion to shareholders via dividends and share repurchases in the third quarter
+WILMINGTON, Mass.--August 19, 2026 --Analog Devices, Inc. (Nasdaq: ADI), a global semiconductor leader, today announced financial results for its fiscal third quarter 2026, which ended August 1, 2026.
+“ADI delivered a strong third quarter, exceeding the midpoint of our revenue, margin, and earnings outlook as we capitalized on broad-based demand,” said Vincent Roche, CEO and Chair. “We continue to extend our leadership through a powerful combination of innovation, deep customer collaboration, and manufacturing agility. Our investments in these foundational areas, combined with the trust we have built over decades, provide a unique advantage to create, deliver, and capture value in the AI era – for customers and investors alike.”
+“Demand continued to strengthen across our product portfolio and regions throughout the third quarter, which is reflected in our record fourth quarter outlook” said Richard Puccio, CFO. “We believe our balance of disciplined execution and targeted growth investments will enable us to finish the year strongly and carry that momentum into fiscal 2027.”
+
+
+
+
+
+
+
+
+Performance for the Third Quarter of Fiscal 2026
+| | | | | | | | | | | | | | | | | |
+Results Summary (1)
+| | | | | |
+(in millions, except per-share amounts and percentages) | | | | | |
+| | | | | |
+| Three Months Ended |
+| Aug. 1, 2026 | | Aug. 2, 2025 | | Change |
+Revenue | $ | 4,022 | | | $ | 2,880 | | | 40 | % |
+| | | | | |
+| | | | | |
+| | | | | |
+Gross margin | $ | 2,708 | | | $ | 1,790 | | | 51 | % |
+Gross margin percentage | 67.3 | % | | 62.1 | % | | 520 bps |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+Operating income | $ | 1,613 | | | $ | 818 | | | 97 | % |
+Operating margin | 40.1 | % | | 28.4 | % | | 1,170 bps |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+Diluted earnings per share | $ | 2.74 | | | $ | 1.04 | | | 163 | % |
+| | | | | |
+Adjusted Results (2)
+| | | | | |
+Adjusted gross margin | $ | 2,917 | | | $ | 1,995 | | | 46 | % |
+Adjusted gross margin percentage | 72.5 | % | | 69.2 | % | | 330 bps |
+Adjusted operating income | $ | 2,010 | | | $ | 1,215 | | | 65 | % |
+Adjusted operating margin | 50.0 | % | | 42.2 | % | | 780 bps |
+Adjusted diluted earnings per share | $ | 3.45 | | | $ | 2.05 | | | 68 | % |
+| | | | | |
+| | | Three Months Ended | | Trailing Twelve Months |
+Cash Generation | | | Aug. 1, 2026 | | Aug. 1, 2026 |
+Net cash provided by operating activities | | | $ | 1,604 | | | $ | 5,545 | |
+% of revenue | | | 40 | % | | 40 | % |
+Capital expenditures | | | $ | (146) | | | $ | (608) | |
+Free cash flow (2)
+| | | $ | 1,458 | | | $ | 4,937 | |
+% of revenue | | | 36 | % | | 36 | % |
+| | | | | |
+| | | Three Months Ended | | Trailing Twelve Months |
+Cash Return | | | Aug. 1, 2026 | | Aug. 1, 2026 |
+Dividend paid | | | $ | (535) | | | $ | (2,043) | |
+Stock repurchases | | | (1,157) | | | (3,127) | |
+Total cash returned | | | $ | (1,692) | | | $ | (5,170) | |
+| | | | | |
+(1) The sum and/or computation of the individual amounts may not equal the total due to rounding. |
+(2) Reconciliations of non-GAAP financial measures to their most directly comparable GAAP financial measures are provided in the financial tables included in this press release. See also the “Non-GAAP Financial Information” section for additional information.
+|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Outlook for the Fourth Quarter of Fiscal Year 2026
+
+
+For the fourth quarter of fiscal 2026, we are forecasting revenue of $4.3 billion, +/- $100 million. At the midpoint of this revenue outlook, we expect reported operating margin of approximately 42.6%, +/-150 bps, and adjusted operating margin of approximately 52.0%, +/-100 bps. We are planning for reported EPS to be $3.14, +/-$0.15, and adjusted EPS to be $3.86, +/-$0.15.
+
+
+Our fourth quarter fiscal 2026 outlook is based on current expectations and actual results may differ materially as a result of, among other things, the important factors discussed at the end of this release. The statements about our fourth quarter fiscal 2026 outlook supersede all prior statements regarding our business outlook set forth in prior ADI news releases, and ADI disclaims any obligation to update these forward-looking statements.
+
+
+The adjusted results and adjusted anticipated results above are financial measures presented on a non-GAAP basis. Reconciliations of these non-GAAP financial measures to their most directly comparable GAAP financial measures are provided in the financial tables included in this release. See also the “Non-GAAP Financial Information” section for additional information.
+
+
+
+Dividend Payment
+
+
+The ADI Board of Directors has declared a quarterly cash dividend of $1.10 per outstanding share of common stock. The dividend will be paid on September 15, 2026 to all shareholders of record at the close of business on September 1, 2026.
+
+
+
+Conference Call Scheduled for Today, Wednesday, August 19, 2026 at 10:00 am ET
+
+
+ADI will host a conference call to discuss our third quarter fiscal 2026 results and short-term outlook today, beginning at 10:00 am ET. Investors may join via webcast, accessible at investor.analog.com.
+
+
+
+Non-GAAP Financial Information
+
+
+This release includes non-GAAP financial measures that are not in accordance with, nor an alternative to, U.S. generally accepted accounting principles (GAAP) and may be different from non-GAAP measures presented by other companies. In addition, these non-GAAP measures are not based on any comprehensive set of accounting rules or principles. These non-GAAP measures have material limitations in that they do not reflect all of the amounts associated with the Company’s results of operations as determined in accordance with GAAP and should not be considered in isolation from, or as a substitute for, the Company’s financial results presented in accordance with GAAP. The Company’s use of non-GAAP measures, and the underlying methodology when including or excluding certain items, is not necessarily an indication of the results of operations that may be expected in the future, or that the Company will not, in fact, record such items in future periods. You are cautioned not to place undue reliance on these non-GAAP measures. Reconciliations of these non-GAAP financial measures to their most directly comparable GAAP financial measures are provided in the financial tables included in this release.
+Management uses non-GAAP measures internally to evaluate the Company’s operating performance from continuing operations against past periods and to budget and allocate resources in future periods. These non-GAAP measures also assist management in evaluating the Company’s core business and trends across different reporting periods on a consistent basis. Management also uses these non-GAAP measures as primary performance measurements when communicating with analysts and investors regarding the Company’s earnings results and outlook and believes that the presentation of these non-GAAP measures is
+
+
+
+
+
+
+
+useful to investors because it provides investors with the operating results that management uses to manage the Company and enables investors and analysts to evaluate the Company’s core business. Management also believes that free cash flow, a non-GAAP liquidity measure, is useful both internally and to investors because it is indicative of the Company's ability to pay dividends, purchase common stock, make investments and fund acquisitions and, in the absence of refinancings, to repay its debt obligations.
+The non-GAAP financial measures referenced by ADI in this release include: adjusted gross margin, adjusted gross margin percentage, adjusted operating expenses, adjusted operating expenses percentage, adjusted operating income, adjusted operating margin, adjusted nonoperating expense (income), adjusted income before income taxes, adjusted provision for income taxes, adjusted tax rate, adjusted diluted earnings per share (EPS), free cash flow, and free cash flow revenue percentage.
+Adjusted gross margin is defined as gross margin, determined in accordance with GAAP, excluding: certain acquisition related expenses 1 , which are described further below . Adjusted gross margin percentage represents adjusted gross margin divided by revenue.
+Adjusted operating expenses is defined as operating expenses, determined in accordance with GAAP, excluding: certain acquisition related expenses 1 , acquisition related transaction costs 2 , and special charges, net 3 , which are described further below. Adjusted operating expenses percentage represents adjusted operating expenses divided by revenue.
+Adjusted operating income is defined as operating income, determined in accordance with GAAP, excluding: acquisition related expenses 1 , acquisition related transaction costs 2 , and special charges, net 3 , which are described further below. Adjusted operating margin represents adjusted operating income divided by revenue.
+Adjusted nonoperating expense (income) is defined as nonoperating expense (income), determined in accordance with GAAP, excluding: certain acquisition related expenses 1 , which is described further below.
+Adjusted income before income taxes is defined as income before income taxes, determined in accordance with GAAP, excluding: acquisition related expenses 1 , acquisition related transaction costs 2 , and s pecial charges, net 3 , which are described further below.
+Adjusted provision for income taxes is defined as provision for income taxes, determined in accordance with GAAP, excluding tax related items 4 , which are described further below. Adjusted tax rate represents adjusted provision for income taxes divided by adjusted income before income taxes.
+Adjusted diluted EPS is defined as diluted EPS, determined in accordance with GAAP, excluding: acquisition related expenses 1 , acquisition related transaction costs 2 , special charges, net 3 , and tax related items 4 , which are described further below.
+Free cash flow is defined as net cash provided by operating activities, determined in accordance with GAAP, less additions to property, plant and equipment, net. Free cash flow revenue percentage represents free cash flow divided by revenue.
+1 Acquisition Related Expenses : Expenses incurred as a result of current and prior period acquisitions and primarily include expenses associated with the fair value adjustments to debt, property, plant and equipment and amortization of acquisition related intangibles, which include acquired intangibles such as purchased technology and customer relationships. We excluded these costs from our non-GAAP measures because they relate to specific transactions and are not reflective of our ongoing financial performance.
+2 Acquisition Related Transaction Costs: Costs directly related to the acquisition of Empower Semiconductor, Inc., including legal, accounting and other professional fees as well as integration-
+
+
+
+
+
+
+
+related costs. We exclude these costs from our non-GAAP measures because they relate to a specific transaction and are not reflective of our ongoing financial performance.
+3 Special Charges, Net : Expenses, net, incurred in connection with facility closures, consolidation of manufacturing facilities, severance, other accelerated stock-based compensation expense and other cost reduction efforts or reorganizational initiatives. We excluded these expenses from our non-GAAP measures because apart from ongoing expense savings as a result of such items, these expenses have no direct correlation to the operation of our business in the future.
+4 Tax Related Items: Income tax effect of the non-GAAP items discussed above. We excluded the income tax effect of these tax related items from our non-GAAP measures because they are not associated with the tax expense on our current operating results.
+
+
+
+About Analog Devices, Inc.
+Analog Devices, Inc. (NASDAQ: ADI) is a global semiconductor leader that bridges the physical and digital worlds to enable breakthroughs at the Intelligent Edge. ADI combines analog, digital, AI, and software technologies into solutions that combat climate change, reliably connect humans and the world, and help drive advancements in automation and robotics, mobility, healthcare, energy and data centers. With revenue of more than $11 billion in FY25, ADI ensures today’s innovators stay Ahead of What’s Possible. Learn more at www.analog.com and on LinkedIn and X.
+
+
+
+Forward-Looking Statements
+This press release contains forward-looking statements, which address a variety of subjects including, for example, our statements regarding future financial performance; economic uncertainty; macroeconomic, geopolitical, demand and other market conditions, business cycles, and supply chains; our capital allocation strategy, including future dividends, share repurchases, capital expenditures, investments, and free cash flow returns; expected revenue, operating margin, nonoperating expenses, tax rate, earnings per share, and other financial results; expected market and technology trends and acceleration of those trends; markets, market position, addressable markets, and growth opportunities; expected product solutions, offerings, technologies, capabilities, and applications; the value and importance of, and other benefits related to, our product solutions, offerings, and technologies to our customers; benefits related to our hybrid manufacturing model; benefits related to acquisitions; statements related to seasonality; and other future events. Statements that are not historical facts, including statements about our beliefs, plans and expectations, are forward-looking statements. Such statements are based on our current expectations and are subject to a number of factors and uncertainties, which could cause actual results to differ materially from those described in the forward-looking statements. The following important factors and uncertainties, among others, could cause actual results to differ materially from those described in these forward-looking statements: economic, political, legal and regulatory uncertainty or conflicts; recently announced and future tariffs and other trade restrictions; changes in export classifications, import and export regulations or duties and tariffs; changes in demand for semiconductor products; performance of independent distributors; manufacturing delays, product and raw materials availability and supply chain disruptions; products may be diverted from our authorized distribution channels; our development of technologies and research and development investments; our ability to compete successfully in the markets in which we operate; our future liquidity, capital needs and capital expenditures; our ability to recruit and retain key personnel; risks related to acquisitions or other strategic transactions; security breaches or other cyber incidents; risks related to the use of artificial intelligence in our business operations, products, and services; adverse results in litigation matters; reputational damage; changes in our estimates of our expected tax rates based on current tax law; risks related to our indebtedness; the discretion of our Board of Directors to declare dividends and our ability to pay dividends in the future;
+
+
+
+
+
+
+
+factors impacting our ability to repurchase shares; and uncertainty as to the long-term value of our common stock. For additional information about factors that could cause actual results to differ materially from those described in the forward-looking statements, please refer to our filings with the Securities and Exchange Commission, including the risk factors contained in our most recent Annual Report on Form 10-K. Forward-looking statements represent management’s current expectations and are inherently uncertain. Except as required by law, we do not undertake any obligation to update forward-looking statements made by us to reflect subsequent events or circumstances.
+Analog Devices and the Analog Devices logo are registered trademarks or trademarks of Analog Devices, Inc. All other trademarks mentioned in this document are the property of their respective owners.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ANALOG DEVICES, INC.
+CONSOLIDATED STATEMENTS OF INCOME
+(Unaudited)
+(In thousands, except per share amounts)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Nine Months Ended |
+| Aug. 1, 2026 | | | | Aug. 2, 2025 | | Aug. 1, 2026 | | Aug. 2, 2025 |
+Revenue | $ | 4,021,899 | | | | | $ | 2,880,348 | | | $ | 10,805,627 | | | $ | 7,943,590 | |
+| | | | | | | | | |
+| | | | | | | | | |
+Cost of sales | 1,314,355 | | | | | 1,090,600 | | | 3,613,309 | | | 3,111,929 | |
+Gross margin | 2,707,544 | | | | | 1,789,748 | | | 7,192,318 | | | 4,831,661 | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Operating expenses: | | | | | | | | | |
+Research and development | 533,480 | | | | | 454,251 | | | 1,510,203 | | | 1,298,980 | |
+Selling, marketing, general and administrative | 397,326 | | | | | 325,706 | | | 1,105,389 | | | 913,171 | |
+Amortization of intangibles | 187,985 | | | | | 187,415 | | | 563,285 | | | 562,245 | |
+Special charges, net | (24,216) | | | | | 4,348 | | | 23,766 | | | 69,980 | |
+Total operating expenses | 1,094,575 | | | | | 971,720 | | | 3,202,643 | | | 2,844,376 | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Operating income | 1,612,969 | | | | | 818,028 | | | 3,989,675 | | | 1,987,285 | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Nonoperating expense (income): | | | | | | | | | |
+Interest expense | 88,728 | | | | | 79,592 | | | 262,692 | | | 229,559 | |
+Interest income | (25,377) | | | | | (27,083) | | | (86,199) | | | (72,295) | |
+Other, net | 3,749 | | | | | 2,110 | | | (3,386) | | | 5,108 | |
+Total nonoperating expense (income) | 67,100 | | | | | 54,619 | | | 173,107 | | | 162,372 | |
+Income before income taxes | 1,545,869 | | | | | 763,409 | | | 3,816,568 | | | 1,824,913 | |
+Provision for income taxes | 205,779 | | | | | 244,891 | | | 469,302 | | | 345,309 | |
+| | | | | | | | | |
+Net income | $ | 1,340,090 | | | | | $ | 518,518 | | | $ | 3,347,266 | | | $ | 1,479,604 | |
+| | | | | | | | | |
+Shares used to compute earnings per common share - basic | 486,021 | | | | | 494,390 | | | 487,500 | | | 495,560 | |
+Shares used to compute earnings per common share - diluted | 488,837 | | | | | 496,726 | | | 490,317 | | | 497,865 | |
+| | | | | | | | | |
+Basic earnings per common share | $ | 2.76 | | | | | $ | 1.05 | | | $ | 6.87 | | | $ | 2.99 | |
+Diluted earnings per common share | $ | 2.74 | | | | | $ | 1.04 | | | $ | 6.83 | | | $ | 2.97 | |
+| | | | | | | | | |
+| | | | | | | | | |
+|
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+|
+
+
+
+
+
+
+
+
+
+
+
+ANALOG DEVICES, INC.
+CONSOLIDATED BALANCE SHEETS
+(Unaudited)
+(In thousands, except share and per share amounts)
+
+
+| | | | | | | | | | | |
+| Aug. 1, 2026 | | Nov. 1, 2025 |
+ASSETS | | | |
+Current Assets | | | |
+Cash and cash equivalents | $ | 2,165,870 | | | $ | 2,499,406 | |
+Short-term investments | 159,064 | | | 1,152,915 | |
+Accounts receivable | 2,389,577 | | | 1,436,075 | |
+Inventories | 1,931,496 | | | 1,656,323 | |
+| | | |
+| | | |
+| | | |
+Prepaid expenses and other current assets | 426,523 | | | 363,342 | |
+Total current assets | 7,072,530 | | | 7,108,061 | |
+Non-current Assets | | | |
+| | | |
+Net property, plant and equipment | 3,351,981 | | | 3,315,696 | |
+Goodwill | 27,988,737 | | | 26,945,180 | |
+Intangible assets, net | 7,468,220 | | | 8,013,815 | |
+Deferred tax assets | 1,689,972 | | | 1,867,102 | |
+| | | |
+Other assets | 852,977 | | | 742,858 | |
+Total non-current assets | 41,351,887 | | | 40,884,651 | |
+TOTAL ASSETS | $ | 48,424,417 | | | $ | 47,992,712 | |
+LIABILITIES AND SHAREHOLDERS’ EQUITY | | | |
+Current Liabilities | | | |
+Accounts payable | $ | 682,167 | | | $ | 543,760 | |
+| | | |
+| | | |
+Income taxes payable | 461,804 | | | 610,370 | |
+Debt, current | 1,344,855 | | | — | |
+Commercial paper notes | 1,005,104 | | | 446,639 | |
+| | | |
+Accrued liabilities | 2,162,324 | | | 1,645,032 | |
+Total current liabilities | 5,656,254 | | | 3,245,801 | |
+Non-current Liabilities | | | |
+Long-term debt | 6,771,624 | | | 8,145,066 | |
+Deferred income taxes | 1,837,959 | | | 2,163,281 | |
+| | | |
+Income taxes payable | 90,723 | | | 100,963 | |
+| | | |
+Other non-current liabilities | 516,960 | | | 521,846 | |
+Total non-current liabilities | 9,217,266 | | | 10,931,156 | |
+| | | |
+Shareholders’ Equity | | | |
+Preferred stock, $1.00 par value, 471,934 shares authorized, none outstanding
+| — | | | — | |
+Common stock, $0.16 2/3 par value, 1,200,000,000 shares authorized, 484,565,465 shares outstanding (489,654,097 on November 1, 2025)
+| 80,762 | | | 81,611 | |
+Capital in excess of par value | 21,288,447 | | | 23,349,185 | |
+Retained earnings | 12,330,779 | | | 10,539,541 | |
+Accumulated other comprehensive loss | (149,091) | | | (154,582) | |
+Total shareholders’ equity | 33,550,897 | | | 33,815,755 | |
+TOTAL LIABILITIES AND SHAREHOLDERS’ EQUITY | $ | 48,424,417 | | | $ | 47,992,712 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ANALOG DEVICES, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(Unaudited)
+(In thousands)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Nine Months Ended |
+| Aug. 1, 2026 | | Aug. 2, 2025 | | Aug. 1, 2026 | | | | Aug. 2, 2025 |
+| | | | | | | | | |
+Cash flows from operating activities: | | | | | | | | | |
+Net income | $ | 1,340,090 | | | $ | 518,518 | | | $ | 3,347,266 | | | | | $ | 1,479,604 | |
+Adjustments to reconcile net income to net cash provided by operations: | | | | | | | | | |
+Depreciation | 104,455 | | | 102,542 | | | 315,298 | | | | | 301,323 | |
+Amortization of intangibles | 389,765 | | | 384,750 | | | 1,160,358 | | | | | 1,202,179 | |
+Stock-based compensation expense | 96,255 | | | 84,703 | | | 263,651 | | | | | 235,108 | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Deferred income taxes | (161,011) | | | 52,052 | | | (281,941) | | | | | (97,318) | |
+| | | | | | | | | |
+Other | (24,104) | | | (5,699) | | | (19,377) | | | | | (1,496) | |
+Changes in operating assets and liabilities | (141,491) | | | 28,239 | | | (940,740) | | | | | (8,008) | |
+Total adjustments | 263,869 | | | 646,587 | | | 497,249 | | | | | 1,631,788 | |
+Net cash provided by operating activities | 1,603,959 | | | 1,165,105 | | | 3,844,515 | | | | | 3,111,392 | |
+| | | | | | | | | |
+Cash flows from investing activities: | | | | | | | | | |
+Purchases of short-term available-for-sale investments
+| — | | | (1,150,240) | | | — | | | | | (1,150,240) | |
+Maturities of short-term available-for-sale investments
+| 842,840 | | | — | | | 990,657 | | | | | 372,778 | |
+Additions to property, plant and equipment, net | (145,662) | | | (79,153) | | | (392,677) | | | | | (318,399) | |
+| | | | | | | | | |
+| | | | | | | | | |
+Proceeds from sale of property, plant and equipment, net
+| — | | | — | | | — | | | | | 58,892 | |
+Proceeds from sale of a subsidiary, net | 96,592 | | | — | | | 96,592 | | | | | — | |
+Payments for acquisitions, net of cash acquired | (1,500,174) | | | — | | | (1,536,049) | | | | | (45,652) | |
+Other | (8,543) | | | (715) | | | (32,425) | | | | | (13,595) | |
+Net cash used for investing activities | (714,947) | | | (1,230,108) | | | (873,902) | | | | | (1,096,216) | |
+Cash flows from financing activities: | | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Proceeds from debt | — | | | 1,490,785 | | | — | | | | | 1,490,785 | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Debt repayments | — | | | — | | | — | | | | | (399,998) | |
+Proceeds from commercial paper notes | 5,906,409 | | | 2,551,168 | | | 13,061,198 | | | | | 6,867,508 | |
+Payments of commercial paper notes | (5,451,502) | | | (2,551,223) | | | (12,502,732) | | | | | (6,866,581) | |
+Repurchase of common stock | (1,157,008) | | | (1,075,152) | | | (2,446,409) | | | | | (1,484,166) | |
+Dividend payments to shareholders | (535,309) | | | (490,161) | | | (1,556,028) | | | | | (1,437,521) | |
+Proceeds from employee stock plans | 61,684 | | | 42,767 | | | 121,171 | | | | | 104,329 | |
+| | | | | | | | | |
+Other | 15,668 | | | 41,775 | | | 18,651 | | | | | 40,317 | |
+Net cash (used for) provided by financing activities | (1,160,058) | | | 9,959 | | | (3,304,149) | | | | | (1,685,327) | |
+| | | | | | | | | |
+Net (decrease) increase in cash and cash equivalents | (271,046) | | | (55,044) | | | (333,536) | | | | | 329,849 | |
+Cash and cash equivalents at beginning of period | 2,436,916 | | | 2,376,235 | | | 2,499,406 | | | | | 1,991,342 | |
+Cash and cash equivalents at end of period | $ | 2,165,870 | | | $ | 2,321,191 | | | $ | 2,165,870 | | | | | $ | 2,321,191 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ANALOG DEVICES, INC.
+REVENUE TRENDS BY END MARKET
+(Unaudited)
+(In thousands)
+
+
+The categorization of revenue by end market is determined using a variety of data points including the technical characteristics of the product, the “sold to” customer information, the “ship to” customer information and the end customer product or application into which our product will be incorporated. The assignment of products to end markets may change over time. When this occurs, we reclassify revenue by end market for prior periods. Such reclassifications typically do not materially change the sizing of, or the underlying trends of results within, each end market.
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended |
+| August 1, 2026 | | August 2, 2025 |
+| Revenue | | % of Revenue 1
+| | Y/Y% | | Revenue | | % of Revenue 1
+|
+Industrial | $ | 1,971,926 | | | 49% | | 53% | | $ | 1,292,988 | | | 45% |
+Automotive
+| 998,227 | | | 25% | | 16% | | 857,146 | | | 30% |
+Communications | 654,515 | | | 16% | | 84% | | 354,768 | | | 12% |
+Consumer | 397,231 | | | 10% | | 6% | | 375,446 | | | 13% |
+Total revenue | $ | 4,021,899 | | | 100% | | 40% | | $ | 2,880,348 | | | 100% |
+| | | | | | | | | |
+| Nine Months Ended |
+| August 1, 2026 | | August 2, 2025 |
+| Revenue | | % of Revenue 1
+| | Y/Y% | | Revenue | | % of Revenue 1
+|
+Industrial | $ | 5,269,825 | | | 49% | | 50% | | $ | 3,512,896 | | | 44% |
+Automotive
+| 2,685,246 | | | 25% | | 9% | | 2,454,845 | | | 31% |
+Communications | 1,659,553 | | | 15% | | 72% | | 965,036 | | | 12% |
+Consumer | 1,191,003 | | | 11% | | 18% | | 1,010,813 | | | 13% |
+Total revenue | $ | 10,805,627 | | | 100% | | 36% | | $ | 7,943,590 | | | 100% |
+| | | | | | | | | |
+1) The sum of the individual percentages may not equal the total due to rounding. |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ANALOG DEVICES, INC.
+RECONCILIATION OF GAAP TO NON-GAAP RESULTS
+(Unaudited)
+(In thousands, except per share amounts)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Nine Months Ended |
+| Aug. 1, 2026 | | Aug. 2, 2025 | | Aug. 1, 2026 | | Aug. 2, 2025 |
+| | | | | | | |
+| | | | | | | |
+Gross margin | $ | 2,707,544 | | | $ | 1,789,748 | | | $ | 7,192,318 | | | $ | 4,831,661 | |
+Gross margin percentage | 67.3 | % | | 62.1 | % | | 66.6 | % | | 60.8 | % |
+Acquisition related expenses | 209,192 | | | 204,756 | | | 619,404 | | | 662,865 | |
+Adjusted gross margin | $ | 2,916,736 | | | $ | 1,994,504 | | | $ | 7,811,722 | | | $ | 5,494,526 | |
+Adjusted gross margin percentage | 72.5 | % | | 69.2 | % | | 72.3 | % | | 69.2 | % |
+| | | | | | | |
+Operating expenses | $ | 1,094,575 | | | $ | 971,720 | | | $ | 3,202,643 | | | $ | 2,844,376 | |
+Percent of revenue | 27.2 | % | | 33.7 | % | | 29.6 | % | | 35.8 | % |
+Acquisition related expenses | (188,594) | | | (188,015) | | | (565,089) | | | (564,045) | |
+Acquisition related transaction costs | (23,391) | | | — | | | (23,391) | | | — | |
+| | | | | | | |
+Special charges, net | 24,216 | | | (4,348) | | | (23,766) | | | (69,980) | |
+Adjusted operating expenses | $ | 906,806 | | | $ | 779,357 | | | $ | 2,590,397 | | | $ | 2,210,351 | |
+Adjusted operating expenses percentage | 22.5 | % | | 27.1 | % | | 24.0 | % | | 27.8 | % |
+| | | | | | | |
+Operating income | $ | 1,612,969 | | | $ | 818,028 | | | $ | 3,989,675 | | | $ | 1,987,285 | |
+Operating margin | 40.1 | % | | 28.4 | % | | 36.9 | % | | 25.0 | % |
+Acquisition related expenses | 397,786 | | | 392,771 | | | 1,184,493 | | | 1,226,910 | |
+Acquisition related transaction costs | 23,391 | | | — | | | 23,391 | | | — | |
+| | | | | | | |
+Special charges, net | (24,216) | | | 4,348 | | | 23,766 | | | 69,980 | |
+Adjusted operating income | $ | 2,009,930 | | | $ | 1,215,147 | | | $ | 5,221,325 | | | $ | 3,284,175 | |
+Adjusted operating margin | 50.0 | % | | 42.2 | % | | 48.3 | % | | 41.3 | % |
+| | | | | | | |
+Nonoperating expense (income) | $ | 67,100 | | | $ | 54,619 | | | $ | 173,107 | | | $ | 162,372 | |
+Acquisition related expenses | 2,150 | | | 2,150 | | | 6,450 | | | 6,450 | |
+| | | | | | | |
+Adjusted nonoperating expense (income) | $ | 69,250 | | | $ | 56,769 | | | $ | 179,557 | | | $ | 168,822 | |
+| | | | | | | |
+Income before income taxes | $ | 1,545,869 | | | $ | 763,409 | | | $ | 3,816,568 | | | $ | 1,824,913 | |
+Acquisition related expenses | 395,636 | | | 390,621 | | | 1,178,043 | | | 1,220,460 | |
+Acquisition related transaction costs | 23,391 | | | — | | | 23,391 | | | — | |
+Special charges, net | (24,216) | | | 4,348 | | | 23,766 | | | 69,980 | |
+| | | | | | | |
+Adjusted income before income taxes | $ | 1,940,680 | | | $ | 1,158,378 | | | $ | 5,041,768 | | | $ | 3,115,353 | |
+| | | | | | | |
+Provision for income taxes | $ | 205,779 | | | $ | 244,891 | | | $ | 469,302 | | | $ | 345,309 | |
+Effective income tax rate | 13.3 | % | | 32.1 | % | | 12.3 | % | | 18.9 | % |
+Tax related items | 48,270 | | | (106,855) | | | 162,938 | | | 15,780 | |
+| | | | | | | |
+Adjusted provision for income taxes | $ | 254,049 | | | $ | 138,036 | | | $ | 632,240 | | | $ | 361,089 | |
+Adjusted tax rate | 13.1 | % | | 11.9 | % | | 12.5 | % | | 11.6 | % |
+| | | | | | | |
+Diluted EPS | $ | 2.74 | | | $ | 1.04 | | | $ | 6.83 | | | $ | 2.97 | |
+Acquisition related expenses | 0.81 | | | 0.79 | | | 2.40 | | | 2.45 | |
+Acquisition related transaction costs | 0.05 | | | — | | | 0.05 | | | — | |
+Special charges, net | (0.05) | | | 0.01 | | | 0.05 | | | 0.14 | |
+| | | | | | | |
+Tax related items | (0.10) | | | 0.22 | | | (0.33) | | | (0.03) | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Adjusted diluted EPS* | $ | 3.45 | | | $ | 2.05 | | | $ | 8.99 | | | $ | 5.53 | |
+
+* The sum of the individual per share amounts may not equal the total due to rounding.
+
+
+
+
+
+
+
+
+ANALOG DEVICES, INC.
+RECONCILIATION OF NET CASH PROVIDED BY OPERATING ACTIVITIES TO FREE CASH FLOW
+(Unaudited)
+(In thousands)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Trailing Twelve Months | | Three Months Ended |
+| Aug. 1, 2026 | | Aug. 1, 2026 | | May 2, 2026 | | Jan. 31, 2026 | | Nov. 1, 2025 |
+Revenue | $ | 13,881,544 | | | $ | 4,021,899 | | | $ | 3,623,465 | | | $ | 3,160,063 | | | $ | 3,076,117 | |
+Net cash provided by operating activities | $ | 5,545,325 | | | $ | 1,603,959 | | | $ | 872,041 | | | $ | 1,368,515 | | | $ | 1,700,810 | |
+% of Revenue | 40 | % | | 40 | % | | 24 | % | | 43 | % | | 55 | % |
+Capital expenditures | $ | (607,830) | | | $ | (145,662) | | | $ | (137,702) | | | $ | (109,313) | | | $ | (215,153) | |
+Free cash flow | $ | 4,937,495 | | | $ | 1,458,297 | | | $ | 734,339 | | | $ | 1,259,202 | | | $ | 1,485,657 | |
+% of Revenue | 36 | % | | 36 | % | | 20 | % | | 40 | % | | 48 | % |
+| | | | | | | | | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+ANALOG DEVICES, INC.
+RECONCILIATION OF PROJECTED GAAP TO NON-GAAP RESULTS
+(Unaudited)
+
+
+| | | | | | | | | | | |
+| Three Months Ending October 31, 2026
+|
+| Reported | | Adjusted |
+Revenue | $4.3 Billion | | $4.3 Billion |
+| (+/- $100 Million) | | (+/- $100 Million) |
+Operating margin | 42.6% | | 52.0% (1) |
+| (+/-150 bps) | | (+/-100 bps) |
+Nonoperating expense | ~$80 Million | | ~$80 Million |
+Tax rate | 12% - 14% | | 12% - 14% (2) |
+Earnings per share | $3.14 | | $3.86 (3) |
+| (+/- $0.15) | | (+/- $0.15) |
+
+
+
+(1) Includes $405 million of adjustments related to acquisition related expenses as previously defined in the Non-GAAP Financial Information section of this press release.
+(2) Includes $53 million of tax effects associated with the adjustment for acquisition related expenses noted above.
+(3) Includes $0.72 of adjustments related to the net impact of acquisition related expenses and the tax effects on those items.
+
+
+
+For more information, please contact:
+
+
+Jeff Ambrosi
+Senior Director, Investor Relations
+Analog Devices, Inc.
+781-461-3282
+investor.relations@analog.com

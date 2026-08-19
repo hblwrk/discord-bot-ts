@@ -163,6 +163,19 @@ function getDominantCurrencyCode(text: string): string | undefined {
 }
 
 export function getQuarterLabel(text: string): string | undefined {
+  // A fiscal filer's release title commonly names the reported period as "Fiscal Third
+  // Quarter 2026", while a later outlook uses the compact "Q4 Fiscal Year 2026" form.
+  // Resolve the title form first so the guidance period cannot become the result label.
+  const leadingFiscalQuarterMatch = text.match(
+    /\bfiscal\s+(first|second|third|fourth)[\s–—-]+quarter\s+(20\d{2}|\d{2})\b/i,
+  );
+  if (undefined !== leadingFiscalQuarterMatch?.[1] && undefined !== leadingFiscalQuarterMatch[2]) {
+    const quarter = getQuarterFromName(leadingFiscalQuarterMatch[1]);
+    if (quarter) {
+      return `${quarter} ${normalizeFiscalYear(leadingFiscalQuarterMatch[2])}`;
+    }
+  }
+
   const fiscalQuarterMatch = text.match(/\b(Q[1-4])\s+(?:fiscal\s+year|FY|FYE)\s*(20\d{2}|\d{2})\b/i);
   if (undefined !== fiscalQuarterMatch?.[1] && undefined !== fiscalQuarterMatch[2]) {
     return `${fiscalQuarterMatch[1].toUpperCase()} ${normalizeFiscalYear(fiscalQuarterMatch[2])}`;

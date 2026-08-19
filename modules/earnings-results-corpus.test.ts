@@ -1364,6 +1364,41 @@ const filingCorpus: {
     source: "1799207/000095010326012579/dp251949_ex9901.htm",
     ticker: "auna",
   },
+  {
+    // The fiscal Q3 result title precedes Q4 guidance expressed in the compact
+    // "Q4 Fiscal Year 2026" form. That later period must not become the result label.
+    company: "Analog Devices",
+    metrics: [
+      ["adjusted_eps", "$3.45"],
+      ["gaap_eps", "$2.74"],
+      ["revenue", "$4.02B"],
+      ["net_income", "$1.34B"],
+    ],
+    outlook: [
+      ["Revenue", "$4.3B"],
+      ["Adj EPS", "$3.86"],
+      ["EPS", "$3.14"],
+      ["Operating margin", "42.6%"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "6281/000000628126000072/adi3q26exhibit991earnings.htm",
+    ticker: "adi",
+  },
+  {
+    // Adjusted net income differs from IFRS net income by only $0.3 million, and the
+    // release explicitly reports both diluted EPS and adjusted EPS as the same $1.31.
+    company: "Viking Holdings",
+    metrics: [
+      ["adjusted_eps", "$1.31"],
+      ["gaap_eps", "$1.31"],
+      ["revenue", "$2.19B"],
+      ["net_income", "$587.7M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1745201/000174520126000020/vik-ex99_1.htm",
+    ticker: "vik",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1384,6 +1419,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(87);
+    expect(filingCorpus).toHaveLength(89);
   });
 });

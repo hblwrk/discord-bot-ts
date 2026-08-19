@@ -51,6 +51,14 @@ describe("earnings result document text", () => {
     ].join(" "))).toBe("Q2 2026");
   });
 
+  test("uses a named fiscal result quarter before compact next-quarter guidance", () => {
+    expect(getQuarterLabel([
+      "Analog Devices Reports Record Fiscal Third Quarter 2026 Financial Results",
+      "Outlook for the Fourth Quarter of Fiscal Year 2026",
+      "Our Q4 Fiscal Year 2026 outlook reflects current expectations.",
+    ].join("\n"))).toBe("Q3 2026");
+  });
+
   test("joins a fiscal Q4 title to the year in its following highlights heading", () => {
     expect(getQuarterLabel([
       "Amcor Reports Strong Fourth Quarter and Full-Year Results",
