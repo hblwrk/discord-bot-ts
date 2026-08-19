@@ -550,6 +550,13 @@ describe("earnings result money parsing", () => {
     });
   });
 
+  test("keeps compact two-letter money scales attached to a value", () => {
+    expect(findNumericValue(
+      " Up +9% to $1.8bn, and Net Income Up +170% to $64m",
+      {minUncuedAbsValue: 10, skipPercentages: true},
+    )).toBe(1.8);
+  });
+
   test("keeps an explicit money scale across SEC table separators", () => {
     const row = "Revenue | | $ | 17.3 | billion |";
     const valueEndIndex = row.indexOf("17.3") + "17.3".length;

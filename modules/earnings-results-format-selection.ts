@@ -67,8 +67,16 @@ export function getMetricCandidateScore({
     score -= 60;
   }
 
-  if (/\b(?:increase|decrease|improve|improvement|decline|worsen|change)(?:d)?\s+(?:by|of)\b/i.test(metricLine) ||
-      /\b(?:rose|fell|grew|up|down)\s+by\b/i.test(metricLine)) {
+  const changeMatch =
+    /\b(?:increase|decrease|improve|improvement|decline|worsen|change)(?:d)?\s+(?:by|of)\b/i.exec(metricLine) ??
+    /\b(?:rose|fell|grew|up|down)\s+by\b/i.exec(metricLine);
+  // A pattern that captures the reported value before later change commentary is
+  // unambiguous. Keep penalizing lines where the captured value follows the change phrase
+  // ("decreased by $0.8 billion, or $0.36 per share") or no value is captured at all.
+  const hasCapturedValueBeforeChange = null !== changeMatch &&
+    undefined !== patternMatch?.groups?.["metricValue"] &&
+    patternMatch.index + patternMatch[0].length <= changeMatch.index;
+  if (null !== changeMatch && false === hasCapturedValueBeforeChange) {
     score -= 140;
   }
 
@@ -303,7 +311,8 @@ export function isEmbeddedAlphaNumericValue(
   }
 
   const textAfter = text.slice(endIndex, endIndex + 12);
-  return /^[A-Za-z]/.test(textAfter) && false === /^(?:cents?|[kmbt])\b/i.test(textAfter);
+  return /^[A-Za-z]/.test(textAfter) &&
+    false === /^(?:cents?|tn|bn|mm|[kmbt])\b/i.test(textAfter);
 }
 
 // Superscript footnote markers survive HTML-to-text conversion glued to their label
