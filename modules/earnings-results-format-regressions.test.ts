@@ -583,4 +583,21 @@ describe("earnings result filing regressions", () => {
     expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$2.60");
   });
 
+  test("keeps reported EPS stated before a separate per-share impact", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>ExampleCo Announces Second Quarter 2026 Results</h1>
+          <p>Three Months Ended June 30, 2026</p>
+          <p>GAAP diluted EPS was $1.20, including an unfavorable impact of $0.20 per diluted share.</p>
+        </body>
+      </html>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "gaap_eps", numericValue: 1.2, value: "$1.20"}),
+    ]));
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toContain("$0.20");
+  });
+
 });

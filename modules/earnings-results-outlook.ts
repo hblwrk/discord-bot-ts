@@ -74,8 +74,8 @@ const adjustedEpsDefinition: OutlookMetricDefinition = {
   patterns: [
     /\badjusted\s+continuing(?:\s+operations?)?\s+(?:diluted\s+)?eps\b/i,
     /\badjusted\s+continuing(?:\s+operations?)?\s+earnings\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
-    /\badjusted\s+(?:diluted\s+)?eps\b/i,
-    /\badjusted\s+(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
+    /\badjusted\s+(?:\d{1,2}\s+)?(?:diluted\s+)?eps\b/i,
+    /\badjusted\s+(?:\d{1,2}\s+)?(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
     /\bnon-gaap\s+(?:diluted\s+)?(?:eps|(?:earnings|net\s+income)\s+per\s+(?:common\s+)?(?:diluted\s+)?share)\b/i,
     /\bnon-gaap\s+net\s+loss\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
   ],
@@ -86,7 +86,7 @@ const outlookMetricDefinitions: OutlookMetricDefinition[] = [
   {
     key: "revenue",
     label: "Revenue",
-    patterns: [/\brevenues?\b/i, /\bnet\s+sales\b/i],
+    patterns: [/\brevenues?\b/i, /\bnet\s+sales\b/i, /\btotal\s+sales\b/i],
     valueType: "text",
   },
   adjustedEpsDefinition,
@@ -965,6 +965,10 @@ function getPreviousOutlookValueSegment(line: string, metricStartIndex: number):
 
 function normalizeOutlookValueText(value: string): string {
   return value
+    // Updated narrative guidance states the applicable point first and puts the superseded
+    // range in a parenthetical "previously ..." clause. Remove that comparison before
+    // range parsing so the stale endpoints cannot replace the updated figure.
+    .replace(/\(\s*previously\b[^)]*\)/gi, " ")
     // A table can wrap one accounting parenthesis around a complete range,
     // "($29.0 - 32.0)". Both endpoints are losses, so make each sign explicit
     // before the normal range parser sees them.
