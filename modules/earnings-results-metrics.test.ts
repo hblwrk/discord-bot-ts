@@ -2,6 +2,48 @@ import {describe, expect, test} from "vitest";
 import {parseEarningsDocument} from "./earnings-results-format.ts";
 
 describe("earnings result metric selection", () => {
+  test("keeps GAAP totals across wrapped qualifiers and prior-year-first column headings", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example Announces Second Quarter 2026 Results</h1>
+      <p>For the second quarter of 2026, total net revenues were</p>
+      <p>US$453.8 million.</p>
+      <p>VAS revenues for the second quarter of 2026 were US$72.9 million.</p>
+      <p>Net income was US$67.4 million. Non-GAAP</p>
+      <p>net income for the second quarter of 2026 was US$102.7 million.</p>
+      <p>UNAUDITED CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS</p>
+      <p>(In thousands of U.S. dollars, except per share data)</p>
+      <p>Three months ended | Six months ended</p>
+      <p>2025</p><p>2026</p><p>2025</p><p>2026</p>
+      <p>Net revenues | 444,798 | 453,826 | 841,653 | 875,151</p>
+      <p>Net income | 125,685 | 67,377 | 232,649 | 102,092</p>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "revenue", numericValue: 453_826_000, value: "$453.83M"}),
+      expect.objectContaining({key: "net_income", numericValue: 67_400_000, value: "$67.4M"}),
+    ]));
+    expect(parsedDocument.metrics.map(metric => metric.value)).not.toEqual(expect.arrayContaining([
+      "$72.9M",
+      "$102.7M",
+      "$444.8M",
+      "$125.69M",
+    ]));
+  });
+
+  test("omits ordinary-share EPS when the watched US security is an ADS", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example Announces Second Quarter 2026 Results</h1>
+      <p>Basic and diluted net loss per share was RMB0.02 (US$0.00).</p>
+      <p>Outstanding ordinary shares were 4,501,784,337, equivalent to about 300,118,956 ADSs.</p>
+      <p>Net loss was RMB93.0 million (US$13.7 million).</p>
+    `);
+
+    expect(parsedDocument.metrics.map(metric => metric.key)).not.toContain("gaap_eps");
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "net_income", numericValue: -13_700_000, value: "-$13.7M"}),
+    ]));
+  });
+
   test("uses a reported diluted loss rather than a forecasted EPS table", () => {
     const parsedDocument = parseEarningsDocument(`
       <h1>Example Announces Second Quarter 2026 Results</h1>

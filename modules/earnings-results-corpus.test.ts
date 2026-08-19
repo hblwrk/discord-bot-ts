@@ -22,6 +22,30 @@ const filingCorpus: {
   ticker: string;
 }[] = [
   {
+    company: "Kingsoft Cloud Holdings",
+    metrics: [
+      ["revenue", "$452.75M"],
+      ["net_income", "-$13.7M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1795589/000110465926098490/tm2623439d2_ex99-1.htm",
+    ticker: "kc",
+  },
+  {
+    company: "Weibo",
+    metrics: [
+      ["adjusted_eps", "$0.38"],
+      ["gaap_eps", "$0.26"],
+      ["revenue", "$453.83M"],
+      ["net_income", "$67.38M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1595761/000110465926098504/tm2623262d1_ex99-1.htm",
+    ticker: "wb",
+  },
+  {
     company: "Sterling Infrastructure",
     metrics: [
       ["adjusted_eps", "$5.80"],
@@ -1360,6 +1384,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(85);
+    expect(filingCorpus).toHaveLength(87);
   });
 });

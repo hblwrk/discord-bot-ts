@@ -124,7 +124,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /\brevenues?\b/i,
       /\bsales\b/i,
     ],
-    skipPattern: new RegExp(String.raw`\bcosts?\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsystemwide\s+sales\b|\bsubscription\s+and\s+services?\s+revenues?\b|\blicensing\s+and\s+related\s+revenues?\b|\broyalty\s+revenues?\b|\bsales\s+of\s+equipment\b|\b(?:${unitedStatesSource}|U\.K\.|US|international|domestic|non-US|segment)\s+(?:commercial\s+|government\s+)?revenues?\b|\b(?:${unitedStatesSource}|US|international|worldwide|non-US)\s+(?:[A-Z][A-Za-z]+\s+){1,2}revenues?\b|\brevenues?\s+(?:in|outside)\s+the\s+${unitedStatesSource}|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b`, "i"),
+    skipPattern: new RegExp(String.raw`\bcosts?\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bsystemwide\s+sales\b|\bsubscription\s+and\s+services?\s+revenues?\b|\b(?:value[-\s]*added\s+services?|VAS)\s+revenues?\b|\badvertising\s+and\s+marketing\s+revenues?\b|\blicensing\s+and\s+related\s+revenues?\b|\broyalty\s+revenues?\b|\bsales\s+of\s+equipment\b|\b(?:${unitedStatesSource}|U\.K\.|US|international|domestic|non-US|segment)\s+(?:commercial\s+|government\s+)?revenues?\b|\b(?:${unitedStatesSource}|US|international|worldwide|non-US)\s+(?:[A-Z][A-Za-z]+\s+){1,2}revenues?\b|\brevenues?\s+(?:in|outside)\s+the\s+${unitedStatesSource}|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b`, "i"),
     valueType: "money",
   },
   {
@@ -276,10 +276,10 @@ export function getMetricLineWithContinuation(
   // Inline tables can wrap a qualifier into its own cell ("Adjusted" / "EPS was ...").
   // Reattach that orphaned qualifier so the current value is read from the first caption,
   // instead of the prior-year "adjusted EPS" comparison later on the line.
-  const baseLine = precedingLine.length <= 60 &&
-      /\b(?:adjusted|non-gaap|gaap)\s*$/i.test(precedingLine) &&
+  const orphanedQualifier = /\b(adjusted|non-gaap|gaap)\s*$/i.exec(precedingLine)?.[1];
+  const baseLine = undefined !== orphanedQualifier &&
       /^\s*(?:diluted\s+)?(?:eps|earnings|net\s+(?:income|loss))\b/i.test(line)
-    ? `${precedingLine} ${line}`
+    ? `${orphanedQualifier} ${line}`
     : line;
   const periodScopedBaseLine = getCurrentQuarterNarrativeSegments(baseLine, quarterLabel);
   const positionedQuarterValues = getPositionedQuarterValues(

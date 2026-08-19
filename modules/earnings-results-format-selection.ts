@@ -369,6 +369,12 @@ export function getCurrentPeriodColumnIndex(
       return 0;
     }
 
+    const splitHeaderYears = getSplitColumnHeaderYears(lines, index);
+    if (2 <= splitHeaderYears.length) {
+      const columnIndex = splitHeaderYears.indexOf(reportedYear);
+      return -1 === columnIndex ? 0 : columnIndex;
+    }
+
     const headerYears = getColumnHeaderYears(line);
     if (0 === headerYears.length) {
       continue;
@@ -381,6 +387,36 @@ export function getCurrentPeriodColumnIndex(
   }
 
   return 0;
+}
+
+// SEC table conversion often emits each year heading as its own line rather than keeping
+// the column run together ("2025", "2026", "2025", "2026"). Reconstruct that adjacent
+// run so a prior-year-first statement still resolves to the reported-period column.
+function getSplitColumnHeaderYears(lines: string[], lineIndex: number): string[] {
+  if (null === getBareColumnHeaderYear(lines[lineIndex] ?? "")) {
+    return [];
+  }
+
+  let runStartIndex = lineIndex;
+  while (0 < runStartIndex && null !== getBareColumnHeaderYear(lines[runStartIndex - 1] ?? "")) {
+    runStartIndex--;
+  }
+
+  const years: string[] = [];
+  for (let index = runStartIndex; index < lines.length; index++) {
+    const year = getBareColumnHeaderYear(lines[index] ?? "");
+    if (null === year) {
+      break;
+    }
+
+    years.push(year);
+  }
+
+  return years;
+}
+
+function getBareColumnHeaderYear(line: string): string | null {
+  return /^\s*(20\d{2})\s*(?:\|\s*)*$/.exec(line)?.[1] ?? null;
 }
 
 // Foreign private issuers often repeat each period in local currency and US dollars. When

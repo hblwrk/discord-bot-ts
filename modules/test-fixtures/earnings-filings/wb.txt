@@ -1,0 +1,1415 @@
+EX-99.1
+2
+tm2623262d1_ex99-1.htm
+EXHIBIT 99.1
+
+
+
+
+
+
+
+Exhibit 99.1
+
+
+
+
+
+Weibo Announces Second Quarter 2026 Unaudited Financial Results
+
+
+
+
+
+Hong Kong, China &ndash; August 19, 2026 &ndash; Weibo Corporation (&ldquo;Weibo&rdquo;
+or the &ldquo;Company&rdquo;) (Nasdaq: WB and HKEX: 9898), a leading social media in China, today announced its unaudited financial results
+for the second quarter ended June 30, 2026.
+
+
+
+
+
+&ldquo;We delivered a solid quarter,&rdquo; said Gaofei Wang, CEO of
+Weibo. &ldquo;On the user front, with our continued efforts to improve user quality and drive user retention through information feed
+revamp, we saw solid engagement among our core users and increased consumption in the information feeds. Video consumption continued to
+improve, supported by better content distribution within our revamped feed and increased supply of high quality contents. On the monetization
+front, we focused on bringing Weibo&rsquo;s unique value on content marketing to more advertisers and enhancing advertising performance
+through AI integration. We saw solid performance of certain pillar industries and good momentum of celebrity marketing. On the AI front,
+we made solid progress in the integration of AI to enhance our product, content and monetization systems.&rdquo;
+
+
+
+
+
+Second Quarter 2026 Highlights
+
+
+
+
+
+
+| &middot; | Net revenues
+were US$453.8 million, an increase of 2% year-over-year or a decrease of 4% year-over-year on a constant currency basis [1] . |
+
+
+
+
+| &middot; | Advertising
+and marketing revenues were US$381.0 million, a decrease of 1% year-over-year or a decrease of 6% year-over-year on a constant currency
+basis [1] . |
+
+
+
+
+| &middot; | Value-added
+services ("VAS") revenues were US$72.9 million, an increase of 19% year-over-year or an increase of 12% year-over-year on a
+constant currency basis [1] . |
+
+
+
+
+| &middot; | Income
+from operations was US$118.9 million, representing an operating margin of 26%. |
+
+
+
+
+| &middot; | Net income
+attributable to Weibo&rsquo;s shareholders was US$67.4 million and diluted net income per share was US$0.26. |
+
+
+
+
+| &middot; | Non-GAAP
+income from operations was US$125.4 million, representing a non-GAAP operating margin of 28%. |
+
+
+
+
+| &middot; | Non-GAAP
+net income attributable to Weibo&rsquo;s shareholders was US$102.7 million and non-GAAP diluted net income per share was US$0.38. |
+
+
+
+
+| &middot; | Monthly
+active users ("MAUs") were 561 million in June 2026. |
+
+
+
+
+| &middot; | Average
+daily active users ("DAUs") were 254 million in June 2026. |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1]
+We define constant currency (non-GAAP) by assuming that the average exchange rate in the second quarter of 2026 was the same as it was
+in the second quarter of 2025, or RMB7.23=US$1.00.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Second Quarter 2026 Financial Results
+
+
+
+
+
+For the second quarter of 2026, Weibo&rsquo;s total net revenues were
+US$453.8 million , an increase of 2% compared to US$444.8 million for the same period last year.
+
+
+
+
+
+Advertising and marketing revenues for the second quarter of 2026 were
+US$381.0 million, a decrease of 1% compared to US$383.4 million for the same period last year. Advertising and marketing revenues excluding
+advertising revenues from Alibaba were US$341.8 million, a decrease of 2% compared to US$347.6 million for the same period last year.
+The decrease was primarily due to the descending trend of advertising demands from handset and online game sectors year-over-year, and
+was partially offset by increase of advertising revenues from internet service and automobile sectors as well as favorable foreign exchange
+impact on the reported numbers from the overall appreciation of RMB against the U.S. dollar (&ldquo;foreign exchange impact&rdquo;) on
+a year-over-year basis. Advertising and marketing revenues from Alibaba were US$39.2 million, an increase of 10% compared to US$35.7 million
+for the same period last year. The increase was primarily attributable to the favorable foreign exchange impact on the reported numbers
+on a year-over-year basis and a modest increase in advertising demands from Alibaba mainly due to its AI application promotion.
+
+
+
+
+
+VAS revenues for the second quarter of 2026 were US$72.9 million, an
+increase of 19% compared to US$61.4 million for the same period last year, primarily attributable to additional revenues of one-off ticket
+proceeds from off-line activities held by Weibo, and solid growth from membership service as well as favorable foreign exchange impact
+on the reported numbers on a year-over-year basis.
+
+
+
+
+
+Costs and expenses for the second quarter of 2026 totaled US$335.0
+million, an increase of 12% compared to US$299.2 million for the same period last year, mainly due to the increases in ad production costs
+and marketing expenses.
+
+
+
+
+
+Income from operations for the second quarter of 2026 was US$118.9
+million, compared to US$145.6 million for the same period last year. Operating margin was 26%, compared to 33% last year. Non-GAAP income
+from operations was US$125.4 million, compared to US$161.8 million for the same period last year. Non-GAAP operating margin was 28%, compared
+to 36% last year.
+
+
+
+
+
+Non-operating loss for the second quarter of 2026 was US$27.8 million,
+compared to non-operating income of US$12.8 million for the same period last year. Non-operating loss for the second quarter of 2026 mainly
+included (i) loss from fair value change of investments of US$22.8 million, which was excluded under non-GAAP measures; and (ii) net
+interest and other loss of US$5.1 million.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Income tax expenses for the second quarter of 2026 were US$23.0 million,
+compared to US$31.7 million for the same period last year. The decrease in tax expenses was mainly due to lower income before tax in the
+second quarter of 2026 compared to the same period last year.
+
+
+
+
+
+Net income attributable to Weibo&rsquo;s shareholders for the second
+quarter of 2026 was US$67.4 million, compared to US$125.7 million for the same period last year. Diluted net income per share attributable
+to Weibo&rsquo;s shareholders for the second quarter of 2026 was US$0.26, compared to US$0.48 for the same period last year. Non-GAAP
+net income attributable to Weibo&rsquo;s shareholders for the second quarter of 2026 was US$102.7 million, compared to US$143.2 million
+for the same period last year. Non-GAAP diluted net income per share attributable to Weibo&rsquo;s shareholders for the second quarter
+of 2026 was US$0.38, compared to US$0.54 for the same period last year.
+
+
+
+
+
+As of June 30, 2026, Weibo&rsquo;s cash, cash equivalents and
+short-term investments totaled US$2.64 billion. For the second quarter of 2026, cash provided by operating activities was US$50.5 million,
+capital expenditures totaled US$3.1 million, and depreciation and amortization expenses amounted to US$15.7 million.
+
+
+
+
+
+Conference Call
+
+
+
+
+
+Weibo's management team will host a conference call from 7:00 AM to
+8:00 AM Eastern Time on August 19, 2026 (or 7:00 PM to 8:00 PM Hong Kong Time on August 19, 2026) to present an overview of
+the Company's financial performance and business operations.
+
+
+
+
+
+Participants who wish to dial in to the teleconference must register
+through the below public participant link. Dial-in and instructions will be provided in the confirmation email upon registering.
+
+
+
+
+
+Participants Registration Link:
+
+
+https://register-conf.media-server.com/register/BI4542e6edec00491e9198327b87da5adb
+
+
+
+
+
+Additionally, a live and archived webcast of this conference call
+will be available at http://ir.weibo.com .
+
+
+
+
+
+Non-GAAP Financial Measures
+
+
+
+
+
+This release contains the following non-GAAP financial measures: non-GAAP
+income from operations, non-GAAP net income attributable to Weibo&rsquo;s shareholders, non-GAAP diluted net income per share attributable
+to Weibo&rsquo;s shareholders and adjusted EBITDA. These non-GAAP financial measures should be considered in addition to, not as a substitute
+for, measures of the Company&rsquo;s financial performance prepared in accordance with U.S. GAAP.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The Company&rsquo;s non-GAAP financial measures exclude
+stock-based compensation, amortization of intangible assets resulting from business acquisitions, net results of impairment and
+provision on investments, gain/loss on sale of investments and fair value change of investments, non-GAAP to GAAP reconciling items
+on the share of equity method investments, non-GAAP to GAAP reconciling items for the income/loss attributable to non-controlling
+interests, income tax effects related to the amortization of intangible assets resulting from business acquisitions and fair value
+change of investments (other non-GAAP to GAAP reconciling items have no tax effect), and amortization of issuance cost of
+convertible senior notes, unsecured senior notes and long-term loans. Adjusted EBITDA represents non-GAAP net income attributable to
+Weibo&rsquo;s shareholders before interest income/expense, net, income tax expenses/benefits, and depreciation expenses.
+
+
+
+
+
+The Company&rsquo;s management uses these non-GAAP financial measures
+in their financial and operating decision-making, because management believes these measures reflect the Company&rsquo;s ongoing operating
+performance in a manner that allows more meaningful period-to-period comparisons. The Company believes that these non-GAAP financial measures
+provide useful information to investors and others in the following ways: (i) in comparing the Company&rsquo;s current financial
+results with the Company&rsquo;s past financial results in a consistent manner, and (ii) in understanding and evaluating the Company&rsquo;s
+current operating performance and future prospects in the same manner as management does. The Company also believes that the non-GAAP
+financial measures provide useful information to both management and investors by excluding certain expenses, gains/losses and other items
+(i) that are not expected to result in future cash payments or (ii) that are non-recurring in nature or may not be indicative
+of the Company&rsquo;s core operating results and business outlook.
+
+
+
+
+
+Use of non-GAAP financial measures has limitations. The Company&rsquo;s
+non-GAAP financial measures do not include all income and expense items that affect the Company&rsquo;s operations. They may not be comparable
+to non-GAAP financial measures used by other companies. Accordingly, care should be exercised in understanding how the Company defines
+its non-GAAP financial measures. Reconciliations of the Company&rsquo;s non-GAAP financial measures to the nearest comparable GAAP measures
+are set forth in the section below titled &ldquo;Unaudited Reconciliation of Non-GAAP to GAAP Results.&rdquo;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+About Weibo
+
+
+
+
+
+Weibo is a leading social media for people to create, share and
+discover content online. Weibo combines the means of public self-expression in real time with a powerful platform for social interaction,
+content aggregation and content distribution. Any user can create and post a feed and attach multi-media and long-form content. User relationships
+on Weibo may be asymmetric; any user can follow any other user and add comments to a feed while reposting. This simple, asymmetric
+and distributed nature of Weibo allows an original feed to become a live viral conversation stream.
+
+
+
+
+
+Weibo enables its advertising and marketing customers to promote
+their brands, products and services to users. Weibo offers a wide range of advertising and marketing solutions to companies
+of all sizes. Weibo generates a substantial majority of its revenues from the sale of advertising and marketing services, including the
+sale of social display advertisement and promoted marketing offerings. Weibo displays content in a simple information feed format and
+offers native advertisement that conforms to the information feed on our platform. We are continuously refining our social interest
+graph recommendation engine, which enables our customers to perform people marketing and target audiences based on user demographics,
+social relationships, interests and behaviors, to achieve greater relevance, engagement and marketing effectiveness.
+
+
+
+
+
+Safe Harbor Statement
+
+
+
+
+
+This press release contains forward-looking statements. These statements
+are made under the &ldquo;safe harbor&rdquo; provisions of the U.S. Private Securities Litigation Reform Act of 1995. These forward-looking
+statements can be identified by terminology, such as &ldquo;will,&rdquo; &ldquo;expects,&rdquo; &ldquo;anticipates,&rdquo; &ldquo;future,&rdquo;
+&ldquo;intends,&rdquo; &ldquo;plans,&rdquo; &ldquo;believes,&rdquo; &ldquo;confidence,&rdquo; &ldquo;estimates&rdquo; and similar statements.
+Among other things, Weibo&rsquo;s expected financial performance and strategic and operational plans, as described, without limitation,
+in quotations from management in this press release, contain forward-looking statements. Weibo may also make written or oral forward-looking
+statements in the Company&rsquo;s periodic reports to the U.S. Securities and Exchange Commission (&ldquo;SEC&rdquo;), in announcements,
+circulars or other publications made on the website of The Stock Exchange of Hong Kong Limited (the &ldquo;Hong Kong Stock Exchange&rdquo;),
+in press releases and other written materials and in oral statements made by its officers, directors or employees to third parties. Statements
+that are not historical facts, including statements about the Company&rsquo;s beliefs and expectations, are forward-looking statements.
+Forward-looking statements involve inherent risks and uncertainties. A number of important factors could cause actual results to differ
+materially from those contained in any forward-looking statement. Potential risks and uncertainties include, but are not limited to, Weibo&rsquo;s
+limited operating history in certain new businesses; failure to sustain or grow active user base and the level of user engagement; the
+uncertain regulatory landscape in China; fluctuations in the Company&rsquo;s quarterly operating results; the Company&rsquo;s reliance
+on advertising and marketing sales for a majority of its revenues; failure to successfully develop, introduce, drive adoption of or monetize
+new features and products; failure to compete effectively for advertising and marketing spending; failure to successfully integrate acquired
+businesses; risks associated with the Company&rsquo;s investments, including equity pick-up and impairment; failure to compete successfully
+against new entrants and established industry competitors; changes in the macro-economic environment, including the depreciation of the
+Renminbi; and adverse changes in economic and political policies of the PRC government and its impact on the Chinese economy. Further
+information regarding these and other risks is included in Weibo&rsquo;s annual reports on Form 20-F and other filings with the SEC
+and the Hong Kong Stock Exchange. All information provided in this press release is current as of the date hereof, and Weibo assumes no
+obligation to update such information, except as required under applicable law.
+
+
+
+
+
+Contact:
+
+
+Investor Relations
+
+
+Weibo Corporation
+
+
+Email: ir@staff.weibo.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+WEIBO CORPORATION
+
+
+UNAUDITED CONDENSED CONSOLIDATED STATEMENTS
+OF OPERATIONS
+
+
+(In thousands of U.S. dollars and
+in thousands for shares, except per share data)
+
+
+
+
+
+
+
+| |
+Three months ended | | |
+Six months ended | |
+
+
+| |
+June 30, | | |
+June 30, | | |
+June 30, | | |
+June 30, | |
+
+
+| |
+2025 | | |
+2026 | | |
+2025 | | |
+2026 | |
+
+
+Net revenues: | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Advertising and marketing | |
+$ | 383,352 | | |
+$ | 380,974 | | |
+$ | 722,458 | | |
+$ | 750,729 | |
+
+
+Value-added services | |
+| 61,446 | | |
+| 72,852 | | |
+| 119,195 | | |
+| 124,422 | |
+
+
+Net revenues | |
+| 444,798 | | |
+| 453,826 | | |
+| 841,653 | | |
+| 875,151 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Costs and expenses: | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Cost of revenues | |
+| 103,451 | | |
+| 129,804 | | |
+| 192,253 | | |
+| 247,547 | |
+
+
+Sales and marketing | |
+| 109,747 | | |
+| 118,752 | | |
+| 205,557 | | |
+| 231,049 | |
+
+
+Product development | |
+| 78,068 | | |
+| 75,425 | | |
+| 154,089 | | |
+| 148,922 | |
+
+
+General and administrative | |
+| 7,962 | | |
+| 10,986 | | |
+| 33,874 | | |
+| 17,853 | |
+
+
+Total costs and expenses | |
+| 299,228 | | |
+| 334,967 | | |
+| 585,773 | | |
+| 645,371 | |
+
+
+Income from operations | |
+| 145,570 | | |
+| 118,859 | | |
+| 255,880 | | |
+| 229,780 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Non-operating income (loss): | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Investment related income (loss), net | |
+| (3,112 | ) | |
+| (22,755 | ) | |
+| 5,245 | | |
+| (57,786 | ) |
+
+
+Interest and other income (loss), net | |
+| 15,945 | | |
+| (5,088 | ) | |
+| 29,691 | | |
+| (29,972 | ) |
+
+
+| |
+| 12,833 | | |
+| (27,843 | ) | |
+| 34,936 | | |
+| (87,758 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Income before income tax expenses | |
+| 158,403 | | |
+| 91,016 | | |
+| 290,816 | | |
+| 142,022 | |
+
+
+Less: Income tax expenses | |
+| 31,705 | | |
+| 22,958 | | |
+| 55,996 | | |
+| 38,630 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net income | |
+| 126,698 | | |
+| 68,058 | | |
+| 234,820 | | |
+| 103,392 | |
+
+
+Less: Net income attributable to non-controlling interests | |
+| 429 | | |
+| 391 | | |
+| 763 | | |
+| 815 | |
+
+
+Accretion to redeemable non-controlling interests | |
+| 584 | | |
+| 290 | | |
+| 1,408 | | |
+| 485 | |
+
+
+Net income attributable to Weibo&rsquo;s shareholders | |
+$ | 125,685 | | |
+$ | 67,377 | | |
+$ | 232,649 | | |
+$ | 102,092 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Basic net income per share attributable to Weibo&rsquo;s shareholders | |
+$ | 0.53 | | |
+$ | 0.28 | | |
+$ | 0.98 | | |
+$ | 0.43 | |
+
+
+Diluted net income per share attributable to Weibo&rsquo;s shareholders | |
+$ | 0.48 | | |
+$ | 0.26 | | |
+$ | 0.88 | | |
+$ | 0.39 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Shares used in computing basic net income per share attributable to Weibo&rsquo;s shareholders | |
+| 238,632 | | |
+| 239,462 | | |
+| 238,459 | | |
+| 239,414 | |
+
+
+Shares used in computing diluted net income per share attributable to Weibo&rsquo;s shareholders | |
+| 268,346 | | |
+| 271,550 | | |
+| 267,429 | | |
+| 270,841 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+(1) Stock-based compensation in each category: | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Cost of revenues | |
+$ | 980 | | |
+$ | 184 | | |
+$ | 2,219 | | |
+$ | 630 | |
+
+
+Sales and marketing | |
+| 2,234 | | |
+| 351 | | |
+| 5,163 | | |
+| 1,138 | |
+
+
+Product development | |
+| 5,340 | | |
+| 792 | | |
+| 12,180 | | |
+| 2,712 | |
+
+
+General and administrative | |
+| 3,465 | | |
+| 784 | | |
+| 7,504 | | |
+| 2,167 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+WEIBO CORPORATION
+
+
+UNAUDITED CONDENSED CONSOLIDATED BALANCE
+SHEETS
+
+
+(In thousands of U.S. dollars)
+
+
+
+
+
+
+
+| |
+As of | |
+
+
+| |
+December 31, | | |
+June 30, | |
+
+
+| |
+2025 | | |
+2026 | |
+
+
+Assets | |
+| | | |
+| | |
+
+
+Current assets: | |
+| | | |
+| | |
+
+
+Cash and cash equivalents | |
+$ | 2,298,941 | | |
+$ | 1,639,148 | |
+
+
+Restricted cash | |
+| - | | |
+| 2,413 | |
+
+
+Short-term investments | |
+| 106,139 | | |
+| 997,443 | |
+
+
+Accounts receivable, net | |
+| 400,209 | | |
+| 337,565 | |
+
+
+Prepaid expenses and other current assets | |
+| 330,356 | | |
+| 338,480 | |
+
+
+Amount due from SINA | |
+| 441,143 | | |
+| 440,269 | |
+
+
+Current assets subtotal | |
+| 3,576,788 | | |
+| 3,755,318 | |
+
+
+| |
+| | | |
+| | |
+
+
+Property and equipment, net | |
+| 282,442 | | |
+| 278,021 | |
+
+
+Goodwill and intangible assets, net | |
+| 265,573 | | |
+| 264,019 | |
+
+
+Long-term investments | |
+| 1,663,346 | | |
+| 1,602,826 | |
+
+
+Other non-current assets | |
+| 1,303,037 | | |
+| 1,245,549 | |
+
+
+Total assets | |
+$ | 7,091,186 | | |
+$ | 7,145,733 | |
+
+
+| |
+| | | |
+| | |
+
+
+Liabilities, Redeemable Non-controlling Interests and Shareholders&rsquo; Equity | |
+| | | |
+| | |
+
+
+Liabilities: | |
+| | | |
+| | |
+
+
+Current liabilities: | |
+| | | |
+| | |
+
+
+Accounts payable | |
+$ | 248,977 | | |
+$ | 257,954 | |
+
+
+Accrued expenses and other current liabilities | |
+| 648,492 | | |
+| 629,964 | |
+
+
+Income taxes payable | |
+| 80,049 | | |
+| 58,565 | |
+
+
+Deferred revenues | |
+| 78,315 | | |
+| 100,160 | |
+
+
+Current liabilities subtotal | |
+| 1,055,833 | | |
+| 1,046,643 | |
+
+
+| |
+| | | |
+| | |
+
+
+Long-term liabilities: | |
+| | | |
+| | |
+
+
+Convertible senior notes | |
+| 323,944 | | |
+| 325,515 | |
+
+
+Unsecured senior notes | |
+| 745,630 | | |
+| 746,114 | |
+
+
+Long-term loans | |
+| 793,976 | | |
+| 795,808 | |
+
+
+Other long-term liabilities | |
+| 164,240 | | |
+| 166,215 | |
+
+
+Total liabilities | |
+| 3,083,623 | | |
+| 3,080,295 | |
+
+
+| |
+| | | |
+| | |
+
+
+Redeemable non-controlling interests | |
+| 32,828 | | |
+| 17,791 | |
+
+
+| |
+| | | |
+| | |
+
+
+Shareholders&rsquo; equity: | |
+| | | |
+| | |
+
+
+Weibo shareholders&rsquo; equity | |
+| 3,920,729 | | |
+| 3,991,172 | |
+
+
+Non-controlling interests | |
+| 54,006 | | |
+| 56,475 | |
+
+
+Total shareholders&rsquo; equity | |
+| 3,974,735 | | |
+| 4,047,647 | |
+
+
+Total liabilities, redeemable non-controlling interests and shareholders&rsquo; equity | |
+$ | 7,091,186 | | |
+$ | 7,145,733 | |
+
+
+
+
+
+
+(1) Included
+short-term loans to and interest receivable from SINA of US$401.9 million as of December 31, 2025 and US$397.0 million as of June 30,
+2026.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+WEIBO CORPORATION
+
+
+UNAUDITED RECONCILIATION OF NON-GAAP
+TO GAAP RESULTS
+
+
+(In thousands of U.S. dollars and
+in thousands for shares, except per share data)
+
+
+
+
+
+
+
+| |
+Three months ended | | |
+Six months ended | |
+
+
+| |
+June 30, | | |
+June 30, | | |
+June 30, | | |
+June 30, | |
+
+
+| |
+2025 | | |
+2026 | | |
+2025 | | |
+2026 | |
+
+
+Income from operations | |
+$ | 145,570 | | |
+$ | 118,859 | | |
+$ | 255,880 | | |
+$ | 229,780 | |
+
+
+Add:
+Stock-based compensation | |
+| 12,019 | | |
+| 2,111 | | |
+| 27,066 | | |
+| 6,647 | |
+
+
+Amortization of intangible assets resulting from business acquisitions | |
+| 4,161 | | |
+| 4,410 | | |
+| 8,283 | | |
+| 8,755 | |
+
+
+Non-GAAP income from operations | |
+$ | 161,750 | | |
+$ | 125,380 | | |
+$ | 291,229 | | |
+$ | 245,182 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net income attributable to Weibo&rsquo;s shareholders | |
+$ | 125,685 | | |
+$ | 67,377 | | |
+$ | 232,649 | | |
+$ | 102,092 | |
+
+
+Add:
+Stock-based compensation | |
+| 12,019 | | |
+| 2,111 | | |
+| 27,066 | | |
+| 6,647 | |
+
+
+Amortization of intangible assets resulting from business acquisitions | |
+| 4,161 | | |
+| 4,410 | | |
+| 8,283 | | |
+| 8,755 | |
+
+
+Investment related gain/loss, net | |
+| 3,112 | | |
+| 22,755 | | |
+| (5,245 | ) | |
+| 57,786 | |
+
+
+Non-GAAP to GAAP reconciling items on the share of equity method investments | |
+| (2,642 | ) | |
+| 6,489 | | |
+| (1,603 | ) | |
+| 24,265 | |
+
+
+Non-GAAP to GAAP reconciling items for the income/loss attributable to non-controlling interests | |
+| (578 | ) | |
+| (530 | ) | |
+| (1,070 | ) | |
+| (1,054 | ) |
+
+
+Tax effects on non-GAAP adjustments | |
+| (485 | ) | |
+| (1,893 | ) | |
+| (1,219 | ) | |
+| (7,787 | ) |
+
+
+Amortization of issuance cost of convertible senior notes, unsecured senior notes and long-term loans | |
+| 1,943 | | |
+| 1,943 | | |
+| 3,886 | | |
+| 3,886 | |
+
+
+Non-GAAP net income attributable to Weibo&rsquo;s shareholders | |
+$ | 143,215 | | |
+$ | 102,662 | | |
+$ | 262,747 | | |
+$ | 194,590 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Non-GAAP diluted net income per share attributable to Weibo&rsquo;s shareholders | |
+$ | 0.54 | * | |
+$ | 0.38 | * | |
+$ | 0.99 | * | |
+$ | 0.73 | * |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Shares used in computing GAAP diluted net income per share attributable to Weibo&rsquo;s shareholders | |
+| 268,346 | | |
+| 271,550 | | |
+| 267,429 | | |
+| 270,841 | |
+
+
+Shares used in computing non-GAAP diluted net income per share attributable to Weibo&rsquo;s shareholders | |
+| 268,346 | | |
+| 271,550 | | |
+| 267,429 | | |
+| 270,841 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Adjusted EBITDA: | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net income attributable to Weibo&rsquo;s shareholders | |
+$ | 125,685 | | |
+$ | 67,377 | | |
+$ | 232,649 | | |
+$ | 102,092 | |
+
+
+Non-GAAP adjustments | |
+| 17,530 | | |
+| 35,285 | | |
+| 30,098 | | |
+| 92,498 | |
+
+
+Non-GAAP net income attributable to Weibo&rsquo;s shareholders | |
+| 143,215 | | |
+| 102,662 | | |
+| 262,747 | | |
+| 194,590 | |
+
+
+Interest income, net | |
+| (10,098 | ) | |
+| (5,396 | ) | |
+| (24,084 | ) | |
+| (3,002 | ) |
+
+
+Income tax expenses | |
+| 32,190 | | |
+| 24,851 | | |
+| 57,215 | | |
+| 46,417 | |
+
+
+Depreciation expenses | |
+| 10,363 | | |
+| 11,049 | | |
+| 19,512 | | |
+| 21,914 | |
+
+
+Adjusted EBITDA | |
+$ | 175,670 | | |
+$ | 133,166 | | |
+$ | 315,390 | | |
+$ | 259,919 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net revenues | |
+$ | 444,798 | | |
+$ | 453,826 | | |
+$ | 841,653 | | |
+$ | 875,151 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Non-GAAP operating margin | |
+| 36 | % | |
+| 28 | % | |
+| 35 | % | |
+| 28 | % |
+
+
+
+
+
+
+
+| (1) | To adjust impairment and provision on investments, gain/loss on
+sale of investments and fair value change of investments. |
+
+
+
+
+
+
+
+| (2) | To adjust the income tax effects of non-GAAP adjustments, which
+primarily related to amortization of intangible assets resulting from business acquisitions and fair value change of investments. Other
+non-GAAP adjustment items have no tax effect, because (i) they were recorded in entities established in tax free jurisdictions,
+or (ii) full valuation allowances were provided for related deferred tax assets as it is more-likely-than-not they will not be realized. |
+
+
+
+
+
+
+
+| * | Net income attributable to Weibo&rsquo;s shareholders is adjusted
+for interest expense of convertible senior notes for calculating diluted EPS. |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+WEIBO CORPORATION
+
+
+UNAUDITED ADDITIONAL INFORMATION
+
+
+(In thousands of U.S. dollars)
+
+
+
+
+
+
+
+| |
+Three months ended | | |
+Six months ended | |
+
+
+| |
+June 30, | | |
+June 30, | | |
+June 30, | | |
+June 30, | |
+
+
+| |
+2025 | | |
+2026 | | |
+2025 | | |
+2026 | |
+
+
+Net revenues | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Advertising and marketing | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Non-Ali advertisers | |
+$ | 347,610 | | |
+$ | 341,815 | | |
+$ | 644,104 | | |
+$ | 668,318 | |
+
+
+Alibaba | |
+| 35,742 | | |
+| 39,159 | | |
+| 78,354 | | |
+| 82,411 | |
+
+
+Subtotal | |
+| 383,352 | | |
+| 380,974 | | |
+| 722,458 | | |
+| 750,729 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Value-added services | |
+| 61,446 | | |
+| 72,852 | | |
+| 119,195 | | |
+| 124,422 | |
+
+
+| |
+$ | 444,798 | | |
+$ | 453,826 | | |
+$ | 841,653 | | |
+$ | 875,151 | |
