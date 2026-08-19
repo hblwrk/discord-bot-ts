@@ -1399,6 +1399,21 @@ const filingCorpus: {
     source: "1745201/000174520126000020/vik-ex99_1.htm",
     ticker: "vik",
   },
+  {
+    // The headline uses compact "bn" and "m" suffixes for revenue and net income on one
+    // line. The more precise results bullet states revenue before a trailing percentage
+    // change, which must not make the actual value score as though it were a change amount.
+    company: "ZIM Integrated Shipping Services",
+    metrics: [
+      ["gaap_eps", "$0.53"],
+      ["revenue", "$1.78B"],
+      ["net_income", "$64M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1654126/000117891326004191/exhibit_99-1.htm",
+    ticker: "zim",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1419,6 +1434,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(89);
+    expect(filingCorpus).toHaveLength(90);
   });
 });
