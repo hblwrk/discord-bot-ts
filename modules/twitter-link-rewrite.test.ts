@@ -25,6 +25,9 @@ type TwitterTestMessage = {
   delete: ReturnType<typeof vi.fn>;
   embeds: unknown[];
   id: string;
+  reference?: {
+    messageId?: string;
+  } | null;
   reply: ReturnType<typeof vi.fn>;
   suppressEmbeds: ReturnType<typeof vi.fn>;
   webhookId?: string | null;
@@ -274,6 +277,31 @@ describe("addTwitterLinkRewrites", () => {
     });
     expect(message.reply).not.toHaveBeenCalled();
     expect(message.suppressEmbeds).not.toHaveBeenCalled();
+  });
+
+  test("preserves the reply context when replacing a link-only reply", async () => {
+    const {client, getHandler} = createEventClient();
+    addTwitterLinkRewrites(client);
+
+    const handler = getHandler("messageCreate");
+    const message = createTwitterMessage("https://x.com/example/status/123");
+    message.author = {id: "111222333"};
+    message.reference = {messageId: "original-message-id"};
+
+    await handler(message);
+
+    expect(message.delete).toHaveBeenCalledTimes(1);
+    expect(message.channel.send).toHaveBeenCalledWith({
+      allowedMentions: {
+        parse: [],
+        repliedUser: false,
+      },
+      content: "From <@111222333>: https://fxtwitter.com/example/status/123",
+      reply: {
+        failIfNotExists: false,
+        messageReference: "original-message-id",
+      },
+    });
   });
 
   test("treats a link wrapped in brackets and punctuation as link-only", async () => {
