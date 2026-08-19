@@ -1,0 +1,1892 @@
+EX-99.1
+2
+tm2623439d2_ex99-1.htm
+EXHIBIT 99.1
+
+
+
+
+
+
+
+Exhibit 99.1
+
+
+
+
+
+Kingsoft Cloud Announces Unaudited
+Second Quarter 2026 Financial Results
+
+
+
+
+
+Kingsoft Cloud Holdings Limited
+(&ldquo;Kingsoft Cloud&rdquo; or the &ldquo;Company&rdquo;) (NASDAQ: KC and HKEX: 3896), a leading cloud service provider in China, today
+announced its unaudited financial results for the quarter ended June 30, 2026.
+
+
+
+
+
+Mr.
+Tao Zou, Chief Executive Officer of Kingsoft Cloud, commented: &ldquo;We are excited to deliver a quarter of both strong growth and profitability.
+Gross billings from our AI cloud business grew 82% year-over-year, representing 56% of public cloud revenue, driven by incremental contributions
+from our AI cloud infrastructure services as well as Model-as-a-Service (MaaS) offerings. Profitability-wise, we recorded positive operating
+margin (GAAP) for the first time, and our adjusted operating profit margin increased significantly to reach 4.0%, thanks to
+our improved gross margin and operating efficiency. We remain committed to pursuing high-quality, sustainable growth strategy, deepening
+collaboration with customers both within and beyond our ecosystem, and strengthening our market position.&rdquo;
+
+
+
+
+
+Ms.
+Yi Li, Chief Financial Officer of Kingsoft Cloud, added, &ldquo;We delivered a strong quarter, with total revenue reaching a record high
+of RMB3,072.0 million, representing an increase of 30.8% year-over-year. Adjusted gross profit increased by 34.6% year-over-year to RMB471.7
+million, with an adjusted gross margin of 15.4%, an improvement from last quarter. We also reached breakeven on operating
+profit (GAAP), with adjusted operating profit margin reaching 4.0%, demonstrating improving profitability thanks to AI demand tailwinds
+and operational optimization. We remain committed to investing for sustainable long-term growth, with capital expenditures (including
+capitalized assets through leasing arrangements) amounting to RMB3.3 billion in Q2, an increase from Q1.&rdquo;
+
+
+
+
+
+Second Quarter 2026 Financial
+Results
+
+
+
+
+
+Total Revenues reached
+RMB3,072.0 million (US$452.8 million), increased by 30.8% year-over-year from RMB2,349.2 million in the same quarter of 2025,
+and increased by 13.6% quarter-over-quarter from RMB2,703.7 million in the first quarter of 2026. The increase was mainly due to revenue
+growth from AI-related customers, supported by continued upgrades to our AI infrastructure and product offerings.
+
+
+
+
+
+Revenues from
+public cloud services were RMB2,357.6 million (US$347.5 million), increased by 45.1% year-over-year from RMB1,625.3 million in the
+same quarter of 2025 and increased by 18.1% quarter-over-quarter from RMB1,996.3 million last quarter. The increase was mainly
+driven by growing demand for AI cloud services. AI cloud gross billings reached RMB1,327 million (US$195.6 million), while our other
+public cloud services also maintained solid growth.
+
+
+
+
+
+Revenues from enterprise
+cloud services were RMB714.3 million (US$105.3 million), representing a year-over-year decrease of 1.3% from RMB723.9 million in the same
+quarter of 2025 and a quarter-over-quarter increase of 1.0% from RMB707.4 million last quarter.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Our
+operating profit margin was 0.7%.
+
+
+Our
+gross profit was RMB466.2 million, representing a year-over-year increase of 37.6%, with a gross margin of 15.2%.
+
+
+This announcement contains translations of certain
+Renminbi (RMB) amounts into U.S. dollars (US$) at a specified rate solely for the convenience of the reader. Unless otherwise noted,
+the translation of RMB into US$ has been made at RMB6.7851 to US$1.00, the noon buying rate in effect on June 30, 2026 as certified
+for customs purposes by the Federal Reserve Bank of New York.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Cost of revenues was
+RMB2,605.8 million (US$384.0 million), representing an increase of 29.6% from RMB2,010.4 million in the same quarter of 2025, which
+was mainly due to our continued investment in AI computing resources. IDC costs increased by 23.3% year-over-year from RMB803.1
+million to RMB990.1 million (US$146.0 million) this quarter, largely in line with our revenue expansion. Depreciation and
+amortization costs increased from RMB552.0 million in the same quarter of 2025 to RMB963.8 million (US$142.0 million) this quarter.
+The increase was mainly due to the depreciation of newly acquired and leased servers, and network equipment which were mainly
+related to AI cloud business. Solution development and services costs increased by 3.9% year-over-year from RMB563.7 million in the
+same quarter of 2025 to RMB585.7 million (US$86.3 million) this quarter. The increase was mainly due to the solution personnel
+expansion. Fulfillment costs and other costs were RMB15.1 million (US$2.2 million) and RMB51.1 million (US$7.5 million) this
+quarter.
+
+
+
+
+
+Gross profit was
+RMB466.2 million (US$68.7 million), representing an increase of 37.6% from RMB338.9 million in the same quarter of 2025. The
+increase was mainly due to the expansion of our revenue scale, especially the intelligent computing services. Gross margin
+was 15.2% in this quarter, compared with 14.4% in the same quarter of 2025 and 12.8% last quarter. The increase was mainly due to
+higher profit contribution from our AI cloud business. Non-GAAP gross profit was RMB471.7 million (US$69.5
+million), compared with RMB350.6 million in the same period in 2025. Non-GAAP gross margin was 15.4%, compared
+with 14.9% in the same period in 2025.
+
+
+
+
+
+Total operating expenses
+were RMB443.2 million (US$65.3 million), decreased by 33.4% from RMB665.8 million in the same quarter of 2025 and decreased by 13.4% from
+RMB511.9 million last quarter. Among which:
+
+
+
+
+
+Selling and marketing expenses
+were RMB113.1 million (US$16.7 million), decreased by 14.3% from RMB132.0 million in the same period in 2025 and decreased by 8.6% from
+RMB123.8 million last quarter. The decrease was mainly due to the decrease of share-based compensation and personnel costs.
+
+
+
+
+
+General and administrative
+expenses were RMB140.2 million (US$20.6 million), decreased by 58.7% from RMB339.6 million in the same period in 2025 and decreased
+by 28.0% from RMB194.8 million last quarter. The decrease was mainly due to the decrease of credit loss expenses and share-based compensation.
+
+
+
+
+
+Research and development expenses
+were RMB189.9 million (US$28.0 million), decreased by 2.3% from RMB194.3 million in the same period in 2025 and decreased by 1.8% from
+RMB193.3 million last quarter. The year-over-year decrease was mainly due to the decrease of personnel costs and share-based compensation.
+
+
+
+
+
+Operating profit was RMB23.0
+million (US$3.4 million), compared with operating loss of RMB327.0 million in the same period in 2025 and operating loss of RMB166.1 million
+last quarter. The year-over-year improvement was mainly due to the increase of revenue, while the sequential improvement was mainly due
+to the impact of increase in gross profit. Non-GAAP operating profit was RMB124.0 million (US$18.3 million), compared
+with operating loss of RMB166.4 million in the same period last year and operating loss of RMB59.8 million last quarter.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Non-GAAP gross profit is defined as gross profit
+excluding share-based compensation expenses allocated in the cost of revenues and we define Non-GAAP gross margin as Non-GAAP gross
+profit as a percentage of revenues. See &ldquo;Use of Non-GAAP Financial Measures&rdquo; set forth at the end of this press
+release.
+
+
+Non-GAAP operating (loss) profit is defined as operating
+(loss) profit excluding share-based compensation expenses and amortization of intangible assets and we define Non-GAAP operating (loss) profit
+margin as Non-GAAP operating (loss) profit as a percentage of revenues. See &ldquo;Use of Non-GAAP Financial Measures&rdquo; set forth
+at the end of this press release.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Net loss was RMB93.0 million
+(US$13.7 million), narrowed by 79.6% from RMB456.9 million in the same quarter of 2025 and narrowed by 72.9% from RMB343.7 million last
+quarter. Non-GAAP net loss was RMB59.8 million (US$8.8 million), compared with RMB300.5 million in the same quarter
+of 2025 and RMB237.1 million last quarter.
+
+
+
+
+
+Non-GAAP EBITDA
+was RMB1,100.5 million (US$162.2 million), compared with RMB406.0 million in the same quarter of 2025 and RMB747.5 million last quarter.
+Non-GAAP EBITDA margin was 35.8%, compared with 17.3% in the same quarter of 2025 and 27.6% last quarter.
+
+
+
+
+
+Basic and diluted net loss
+per share was RMB0.02 (US$0.00), compared with RMB0.11 in the same quarter of 2025 and RMB0.08 last quarter.
+
+
+
+
+
+Cash and cash equivalents were
+RMB4,674.3 million (US$688.9 million) as of June 30, 2026, compared with RMB6,018.0 million as of December 31, 2025. The decrease
+was mainly due to the investment into the procurement of computing power equipment.
+
+
+
+
+
+Outstanding ordinary shares
+were 4,501,784,337 as of June 30, 2026, equivalent to about 300,118,956 ADSs.
+
+
+
+
+
+Conference Call Information
+
+
+
+
+
+Kingsoft Cloud&rsquo;s management will host an
+earnings conference call on Wednesday, August 19, 2026 at 8:15 am, U.S. Eastern Time (8:15 pm, Beijing/Hong Kong Time on the same
+day).
+
+
+
+
+
+Participants can register for the conference call
+by navigating to https://register-conf.media-server.com/register/BIf61186884fdb445fabf9794d01884399. Once preregistration has been completed,
+participants will receive dial-in numbers, direct event passcode, and a unique access PIN.
+
+
+
+
+
+To join the conference, simply dial the number
+in the calendar invite you receive after preregistering, enter the passcode followed by your PIN, and you will join the conference instantly.
+
+
+
+
+
+Additionally, a live and archived webcast of the
+conference call will also be available on the Company&rsquo;s investor relations website at http://ir.ksyun.com.
+
+
+
+
+
+Use of Non-GAAP Financial Measures
+
+
+
+
+
+The unaudited condensed consolidated
+financial information is prepared in conformity with accounting principles generally accepted in the United States of America
+(&ldquo;U.S. GAAP&rdquo;). In evaluating our business, we consider and use certain non-GAAP measures, Non-GAAP gross profit,
+Non-GAAP gross margin, Non-GAAP operating (loss) profit, Non-GAAP operating (loss) profit margin, Non-GAAP EBITDA, Non-GAAP EBITDA
+margin, Non-GAAP net loss and Non-GAAP net loss margin, as supplemental measures to review and assess our operating performance. The
+presentation of these non-GAAP financial measures is not intended to be considered in isolation or as a substitute for the financial
+information prepared and presented in accordance with U.S. GAAP. We define Non-GAAP gross profit as gross profit excluding
+share-based compensation expenses allocated in the cost of revenues, and we define Non-GAAP gross margin as Non-GAAP gross profit as
+a percentage of revenues. We define Non-GAAP operating (loss) profit as operating (loss) profit excluding share-based compensation
+expenses and amortization of intangible assets and we define Non-GAAP operating (loss) profit margin as Non-GAAP operating (loss)
+profit as a percentage of revenues. We define Non-GAAP net loss as net loss excluding share-based compensation expenses and foreign
+exchange loss (gain), and we define Non-GAAP net loss margin as Non-GAAP net loss as a percentage of revenues. We define Non-GAAP
+EBITDA as Non-GAAP net loss excluding interest income, interest expense, income tax expense and depreciation and amortization, and
+we define Non-GAAP EBITDA margin as Non-GAAP EBITDA as a percentage of revenues. We present these non-GAAP financial measures
+because they are used by our management to evaluate our operating performance and formulate business plans. We also believe that the
+use of these non-GAAP measures facilitates investors&rsquo; assessment of our operating performance.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Non-GAAP net loss is defined as net loss excluding share-based
+compensation expenses and foreign exchange loss (gain), and we define Non-GAAP net loss margin as Non-GAAP net loss as a percentage of
+revenues. See &ldquo;Use of Non-GAAP Financial Measures&rdquo; set forth at the end of this press release.
+
+
+Non-GAAP EBITDA is defined as Non-GAAP net loss excluding
+interest income, interest expense, income tax expense and depreciation and amortization, and we define Non-GAAP EBITDA margin as Non-GAAP
+EBITDA as a percentage of revenues. See &ldquo;Use of Non-GAAP Financial Measures&rdquo; set forth at the end of this press release.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+These non-GAAP financial measures are not defined
+under U.S. GAAP and are not presented in accordance with U.S. GAAP. These non-GAAP financial measures have limitations as analytical tools.
+One of the key limitations of using these non-GAAP financial measures is that they do not reflect all items of income and expense that
+affect our operations. Further, these non-GAAP measures may differ from the non-GAAP information used by other companies, including peer
+companies, and therefore their comparability may be limited.
+
+
+
+
+
+We compensate for these limitations by reconciling
+these non-GAAP financial measures to the nearest U.S. GAAP performance measure, all of which should be considered when evaluating our
+performance. We encourage you to review our financial information in its entirety and not rely on a single financial measure.
+
+
+
+
+
+Exchange Rate Information
+
+
+
+
+
+This press release contains translations of certain
+RMB amounts into U.S. dollars at specified rates solely for the convenience of readers. Unless otherwise noted, all translations from
+RMB to U.S. dollars, in this press release, were made at a rate of RMB6.7851 to US$1.00, the noon buying rate in effect on June 30,
+2026 as certified for customs purposes by the Federal Reserve Bank of New York.
+
+
+
+
+
+Safe Harbor Statement
+
+
+
+
+
+This announcement contains forward-looking statements.
+These statements are made under the &ldquo;safe harbor&rdquo; provisions of the U.S. Private Securities Litigation Reform Act of 1995.
+These forward-looking statements can be identified by terminology such as &ldquo;will,&rdquo; &ldquo;expects,&rdquo; &ldquo;anticipates,&rdquo;
+&ldquo;future,&rdquo; &ldquo;intends,&rdquo; &ldquo;plans,&rdquo; &ldquo;believes,&rdquo; &ldquo;estimates&rdquo; and similar statements.
+Among other things, the Business Outlook, and quotations from management in this announcement, as well as Kingsoft Cloud&rsquo;s strategic
+and operational plans, contain forward-looking statements. Kingsoft Cloud may also make written or oral forward-looking statements in
+its periodic reports to the U.S. Securities and Exchange Commission (&ldquo;SEC&rdquo;), in its annual report to shareholders, in press
+releases and other written materials and in oral statements made by its officers, directors or employees to third parties. Statements
+that are not historical facts, including but not limited to statements about Kingsoft Cloud&rsquo;s beliefs and expectations, are forward-looking
+statements. Forward-looking statements involve inherent risks and uncertainties. A number of factors could cause actual results to differ
+materially from those contained in any forward-looking statement, including but not limited to the following: Kingsoft Cloud&rsquo;s goals
+and strategies; Kingsoft Cloud&rsquo;s future business development, results of operations and financial condition; relevant government
+policies and regulations relating to Kingsoft Cloud&rsquo; s business and industry; the expected growth of the cloud service market in
+China; the expectation regarding the rate at which to gain customers, especially Premium Customers; Kingsoft Cloud&rsquo;s ability to
+monetize the customer base; fluctuations in general economic and business conditions in China; and the economy in China and elsewhere
+generally; China&rsquo;s political or social conditions and assumptions underlying or related to any of the foregoing. Further information
+regarding these and other risks is included in Kingsoft Cloud&rsquo;s filings with the SEC. All information provided in this press release
+and in the attachments is as of the date of this press release, and Kingsoft Cloud does not undertake any obligation to update any forward-looking
+statement, except as required under applicable law.
+
+
+
+
+
+About Kingsoft Cloud Holdings Limited
+
+
+
+
+
+Kingsoft Cloud Holdings Limited (NASDAQ: KC and
+HKEX:3896) is a leading cloud service provider in China. With extensive cloud infrastructure, cutting-edge cloud-native products based
+on vigorous cloud technology research and development capabilities, well-architected industry-specific solutions and end-to-end fulfillment
+and deployment, Kingsoft Cloud offers comprehensive, reliable and trusted cloud service to customers in strategically selected verticals.
+
+
+
+
+
+For more information, please visit: http://ir.ksyun.com .
+
+
+
+
+
+For investor and media inquiries, please contact:
+
+
+
+
+
+Kingsoft Cloud Holdings Limited
+
+
+Investor Relations
+
+
+Email: ksc-ir@kingsoft.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+KINGSOFT CLOUD HOLDINGS LIMITED
+
+
+UNAUDITED CONDENSED CONSOLIDATED BALANCE SHEETS
+
+
+(All amounts in thousands)
+
+
+
+
+
+
+
+
+
+| |
+Dec 31,
+2025 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2026 | |
+
+
+| |
+RMB | | |
+RMB | | |
+US$ | |
+
+
+ASSETS | |
+| | |
+| | |
+| |
+
+
+Current assets: | |
+| | | |
+| | | |
+| | |
+
+
+Cash and cash equivalents | |
+| 6,018,043 | | |
+| 4,674,330 | | |
+| 688,911 | |
+
+
+Restricted cash | |
+| 99,194 | | |
+| 54,963 | | |
+| 8,101 | |
+
+
+Accounts receivable, net | |
+| 1,740,472 | | |
+| 2,433,175 | | |
+| 358,606 | |
+
+
+Prepayments and other assets | |
+| 2,592,314 | | |
+| 3,116,516 | | |
+| 459,317 | |
+
+
+Amounts due from related parties | |
+| 573,396 | | |
+| 702,453 | | |
+| 103,529 | |
+
+
+Total current assets | |
+| 11,023,419 | | |
+| 10,981,437 | | |
+| 1,618,464 | |
+
+
+Non-current assets: | |
+| | | |
+| | | |
+| | |
+
+
+Property and equipment, net | |
+| 10,094,870 | | |
+| 13,725,293 | | |
+| 2,022,858 | |
+
+
+Intangible assets, net | |
+| 532,769 | | |
+| 445,819 | | |
+| 65,706 | |
+
+
+Goodwill | |
+| 4,605,724 | | |
+| 4,605,724 | | |
+| 678,800 | |
+
+
+Prepayments and other assets | |
+| 139,836 | | |
+| 419,048 | | |
+| 61,760 | |
+
+
+Equity investments | |
+| 234,166 | | |
+| 336,495 | | |
+| 49,593 | |
+
+
+Operating lease right-of-use assets | |
+| 98,405 | | |
+| 189,754 | | |
+| 27,966 | |
+
+
+Total non-current assets | |
+| 15,705,770 | | |
+| 19,722,133 | | |
+| 2,906,683 | |
+
+
+Total assets | |
+| 26,729,189 | | |
+| 30,703,570 | | |
+| 4,525,147 | |
+
+
+| |
+| | | |
+| | | |
+| | |
+
+
+LIABILITIES, NON-CONTROLLING INTERESTS AND SHAREHOLDERS' EQUITY | |
+| | | |
+| | | |
+| | |
+
+
+Current liabilities: | |
+| | | |
+| | | |
+| | |
+
+
+Accounts payable | |
+| 2,014,453 | | |
+| 2,425,273 | | |
+| 357,441 | |
+
+
+Accrued expenses and other current liabilities | |
+| 3,222,429 | | |
+| 3,792,735 | | |
+| 558,981 | |
+
+
+Short-term borrowings | |
+| 3,348,279 | | |
+| 3,256,926 | | |
+| 480,011 | |
+
+
+Income tax payable | |
+| 73,310 | | |
+| 67,751 | | |
+| 9,985 | |
+
+
+Amounts due to related parties | |
+| 721,932 | | |
+| 1,221,055 | | |
+| 179,961 | |
+
+
+Current operating lease liabilities | |
+| 40,941 | | |
+| 96,996 | | |
+| 14,295 | |
+
+
+Total current liabilities | |
+| 9,421,344 | | |
+| 10,860,736 | | |
+| 1,600,674 | |
+
+
+Non-current liabilities: | |
+| | | |
+| | | |
+| | |
+
+
+Long-term borrowings | |
+| 3,023,538 | | |
+| 3,424,480 | | |
+| 504,706 | |
+
+
+Amounts due to related parties | |
+| 2,212,325 | | |
+| 3,217,952 | | |
+| 474,267 | |
+
+
+Deferred tax liabilities | |
+| 61,914 | | |
+| 61,273 | | |
+| 9,031 | |
+
+
+Other liabilities | |
+| 2,645,895 | | |
+| 4,161,172 | | |
+| 613,282 | |
+
+
+Non-current operating lease liabilities | |
+| 51,139 | | |
+| 83,245 | | |
+| 12,269 | |
+
+
+Total non-current liabilities | |
+| 7,994,811 | | |
+| 10,948,122 | | |
+| 1,613,555 | |
+
+
+Total liabilities | |
+| 17,416,155 | | |
+| 21,808,858 | | |
+| 3,214,229 | |
+
+
+Shareholders&rsquo; equity: | |
+| | | |
+| | | |
+| | |
+
+
+Ordinary shares | |
+| 30,888 | | |
+| 30,888 | | |
+| 4,552 | |
+
+
+Treasury shares | |
+| (31,068 | ) | |
+| (6,222 | ) | |
+| (917 | ) |
+
+
+Additional paid-in capital | |
+| 24,073,006 | | |
+| 24,170,141 | | |
+| 3,562,238 | |
+
+
+Statutory reserves funds | |
+| 51,661 | | |
+| 51,661 | | |
+| 7,614 | |
+
+
+Accumulated deficit | |
+| (15,247,868 | ) | |
+| (15,684,766 | ) | |
+| (2,311,648 | ) |
+
+
+Accumulated other comprehensive income | |
+| 440,407 | | |
+| 336,801 | | |
+| 49,638 | |
+
+
+Total Kingsoft Cloud Holdings Limited shareholders&rsquo; equity | |
+| 9,317,026 | | |
+| 8,898,503 | | |
+| 1,311,477 | |
+
+
+Non-controlling interests | |
+| (3,992 | ) | |
+| (3,791 | ) | |
+| (559 | ) |
+
+
+Total equity | |
+| 9,313,034 | | |
+| 8,894,712 | | |
+| 1,310,918 | |
+
+
+Total liabilities, non-controlling interests and shareholders&rsquo; equity | |
+| 26,729,189 | | |
+| 30,703,570 | | |
+| 4,525,147 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+KINGSOFT CLOUD HOLDINGS LIMITED
+
+
+UNAUDITED CONDENSED CONSOLIDATED STATEMENTS OF COMPREHENSIVE LOSS
+
+
+(All amounts in thousands, except for share and per share data)
+
+
+
+
+
+
+
+
+
+| |
+Three Months Ended | | |
+Six Months Ended | |
+
+
+| |
+Jun 30,
+2025 | | |
+Mar 31,
+2026 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2025 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2026 | |
+
+
+| |
+RMB | | |
+RMB | | |
+RMB | | |
+US$ | | |
+RMB | | |
+RMB | | |
+US$ | |
+
+
+Revenues: | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| |
+
+
+Public cloud services | |
+| 1,625,309 | | |
+| 1,996,301 | | |
+| 2,357,617 | | |
+| 347,470 | | |
+| 2,978,788 | | |
+| 4,353,918 | | |
+| 641,688 | |
+
+
+Enterprise cloud services | |
+| 723,918 | | |
+| 707,431 | | |
+| 714,349 | | |
+| 105,282 | | |
+| 1,340,416 | | |
+| 1,421,780 | | |
+| 209,544 | |
+
+
+Total revenues | |
+| 2,349,227 | | |
+| 2,703,732 | | |
+| 3,071,966 | | |
+| 452,752 | | |
+| 4,319,204 | | |
+| 5,775,698 | | |
+| 851,232 | |
+
+
+Cost of revenues | |
+| (2,010,370 | ) | |
+| (2,357,984 | ) | |
+| (2,605,757 | ) | |
+| (384,041 | ) | |
+| (3,662,041 | ) | |
+| (4,963,741 | ) | |
+| (731,565 | ) |
+
+
+Gross profit | |
+| 338,857 | | |
+| 345,748 | | |
+| 466,209 | | |
+| 68,711 | | |
+| 657,163 | | |
+| 811,957 | | |
+| 119,667 | |
+
+
+Operating expenses: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Selling and marketing expenses | |
+| (131,996 | ) | |
+| (123,776 | ) | |
+| (113,130 | ) | |
+| (16,673 | ) | |
+| (276,334 | ) | |
+| (236,906 | ) | |
+| (34,916 | ) |
+
+
+General and administrative expenses | |
+| (339,563 | ) | |
+| (194,765 | ) | |
+| (140,169 | ) | |
+| (20,658 | ) | |
+| (521,562 | ) | |
+| (334,934 | ) | |
+| (49,363 | ) |
+
+
+Research and development expenses | |
+| (194,285 | ) | |
+| (193,315 | ) | |
+| (189,911 | ) | |
+| (27,989 | ) | |
+| (420,455 | ) | |
+| (383,226 | ) | |
+| (56,481 | ) |
+
+
+Total operating expenses | |
+| (665,844 | ) | |
+| (511,856 | ) | |
+| (443,210 | ) | |
+| (65,320 | ) | |
+| (1,218,351 | ) | |
+| (955,066 | ) | |
+| (140,760 | ) |
+
+
+Operating (loss) profit | |
+| (326,987 | ) | |
+| (166,108 | ) | |
+| 22,999 | | |
+| 3,391 | | |
+| (561,188 | ) | |
+| (143,109 | ) | |
+| (21,093 | ) |
+
+
+Interest income | |
+| 11,520 | | |
+| 32,030 | | |
+| 25,920 | | |
+| 3,820 | | |
+| 16,466 | | |
+| 57,950 | | |
+| 8,541 | |
+
+
+Interest expense | |
+| (124,669 | ) | |
+| (153,595 | ) | |
+| (166,766 | ) | |
+| (24,578 | ) | |
+| (207,566 | ) | |
+| (320,361 | ) | |
+| (47,215 | ) |
+
+
+Foreign exchange (loss) gain | |
+| (39,526 | ) | |
+| (44,006 | ) | |
+| 24,106 | | |
+| 3,553 | | |
+| (30,475 | ) | |
+| (19,900 | ) | |
+| (2,933 | ) |
+
+
+Other gain (loss), net | |
+| 1,620 | | |
+| (6,588 | ) | |
+| 17,521 | | |
+| 2,582 | | |
+| 4,864 | | |
+| 10,933 | | |
+| 1,611 | |
+
+
+Other income (expense), net | |
+| 23,522 | | |
+| (372 | ) | |
+| (250 | ) | |
+| (37 | ) | |
+| 16,510 | | |
+| (622 | ) | |
+| (92 | ) |
+
+
+Loss before income taxes | |
+| (454,520 | ) | |
+| (338,639 | ) | |
+| (76,470 | ) | |
+| (11,269 | ) | |
+| (761,389 | ) | |
+| (415,109 | ) | |
+| (61,181 | ) |
+
+
+Income tax expense | |
+| (2,343 | ) | |
+| (5,081 | ) | |
+| (16,507 | ) | |
+| (2,433 | ) | |
+| (11,584 | ) | |
+| (21,588 | ) | |
+| (3,182 | ) |
+
+
+Net loss | |
+| (456,863 | ) | |
+| (343,720 | ) | |
+| (92,977 | ) | |
+| (13,702 | ) | |
+| (772,973 | ) | |
+| (436,697 | ) | |
+| (64,363 | ) |
+
+
+Less: net income (loss) attributable to non-controlling interests | |
+| 602 | | |
+| 100 | | |
+| 101 | | |
+| 15 | | |
+| (1,582 | ) | |
+| 201 | | |
+| 30 | |
+
+
+Net loss attributable to Kingsoft Cloud Holdings Limited | |
+| (457,465 | ) | |
+| (343,820 | ) | |
+| (93,078 | ) | |
+| (13,717 | ) | |
+| (771,391 | ) | |
+| (436,898 | ) | |
+| (64,393 | ) |
+
+
+Net loss per share: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Basic and diluted | |
+| (0.11 | ) | |
+| (0.08 | ) | |
+| (0.02 | ) | |
+| (0.00 | ) | |
+| (0.20 | ) | |
+| (0.10 | ) | |
+| (0.01 | ) |
+
+
+Shares used in the net loss per share computation: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Basic and diluted | |
+| 4,009,119,198 | | |
+| 4,555,310,453 | | |
+| 4,562,509,396 | | |
+| 4,562,509,396 | | |
+| 3,869,381,978 | | |
+| 4,558,929,811 | | |
+| 4,558,929,811 | |
+
+
+Other comprehensive income (loss), net of tax of nil: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Foreign currency translation adjustments | |
+| 43,174 | | |
+| (34,472 | ) | |
+| (69,134 | ) | |
+| (10,189 | ) | |
+| 50,918 | | |
+| (103,606 | ) | |
+| (15,270 | ) |
+
+
+Comprehensive loss | |
+| (413,689 | ) | |
+| (378,192 | ) | |
+| (162,111 | ) | |
+| (23,891 | ) | |
+| (722,055 | ) | |
+| (540,303 | ) | |
+| (79,633 | ) |
+
+
+Less: Comprehensive income (loss) attributable to non-controlling interests | |
+| 606 | | |
+| 100 | | |
+| 101 | | |
+| 15 | | |
+| (1,594 | ) | |
+| 201 | | |
+| 30 | |
+
+
+Comprehensive loss attributable to Kingsoft Cloud Holdings Limited | |
+| (414,295 | ) | |
+| (378,292 | ) | |
+| (162,212 | ) | |
+| (23,906 | ) | |
+| (720,461 | ) | |
+| (540,504 | ) | |
+| (79,663 | ) |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+KINGSOFT CLOUD HOLDINGS LIMITED
+
+
+RECONCILIATION OF GAAP AND NON-GAAP RESULTS
+
+
+(All amounts in thousands, except for percentage)
+
+
+
+
+
+
+
+
+
+| |
+Three Months Ended | | |
+Six Months Ended | |
+
+
+| |
+Jun 30,
+2025 | | |
+Mar 31,
+2026 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2025 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2026 | |
+
+
+| |
+RMB | | |
+RMB | | |
+RMB | | |
+US$ | | |
+RMB | | |
+RMB | | |
+US$ | |
+
+
+Gross profit | |
+338,857 | | |
+345,748 | | |
+466,209 | | |
+68,711 | | |
+657,163 | | |
+811,957 | | |
+119,667 | |
+
+
+Adjustments: | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| |
+
+
+&ndash; Share-based compensation expenses (allocated in cost of revenues) | |
+11,712 | | |
+5,658 | | |
+5,503 | | |
+811 | | |
+21,077 | | |
+11,161 | | |
+1,645 | |
+
+
+Adjusted gross profit (Non-GAAP Financial Measure) | |
+350,569 | | |
+351,406 | | |
+471,712 | | |
+69,522 | | |
+678,240 | | |
+823,118 | | |
+121,312 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+KINGSOFT CLOUD HOLDINGS LIMITED
+
+
+RECONCILIATION OF GAAP AND NON-GAAP RESULTS
+
+
+(All amounts in thousands, except for percentage)
+
+
+
+
+
+
+
+
+
+| |
+Three Months Ended | | |
+Six Months Ended | |
+
+
+| |
+Jun 30,
+2025 | | |
+Mar 31,
+2026 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2025 | | |
+Jun 30,
+2026 | |
+
+
+Gross margin | |
+14.4 | % | |
+12.8 | % | |
+15.2 | % | |
+15.2 | % | |
+14.1 | % |
+
+
+Adjusted gross margin (Non-GAAP Financial Measure) | |
+14.9 | % | |
+13.0 | % | |
+15.4 | % | |
+15.7 | % | |
+14.3 | % |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+KINGSOFT CLOUD HOLDINGS LIMITED
+
+
+RECONCILIATION OF GAAP AND NON-GAAP RESULTS
+
+
+(All amounts in thousands, except for percentage)
+
+
+
+
+
+
+
+
+
+| |
+Three Months Ended | | |
+Six Months Ended | |
+
+
+| |
+Jun 30,
+2025 | | |
+Mar 31,
+2026 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2025 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2026 | |
+
+
+| |
+RMB | | |
+RMB | | |
+RMB | | |
+US$ | | |
+RMB | | |
+RMB | | |
+US$ | |
+
+
+Net Loss | |
+(456,863 | ) | |
+(343,720 | ) | |
+(92,977 | ) | |
+(13,702 | ) | |
+(772,973 | ) | |
+(436,697 | ) | |
+(64,363 | ) |
+
+
+Adjustments: | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| |
+
+
+&ndash; Share-based compensation expenses | |
+116,856 | | |
+62,571 | | |
+57,260 | | |
+8,439 | | |
+251,467 | | |
+119,831 | | |
+17,661 | |
+
+
+&ndash; Foreign exchange loss (gain) | |
+39,526 | | |
+44,006 | | |
+(24,106 | ) | |
+(3,553 | ) | |
+30,475 | | |
+19,900 | | |
+2,933 | |
+
+
+Adjusted net loss (Non-GAAP Financial Measure) | |
+(300,481 | ) | |
+(237,143 | ) | |
+(59,823 | ) | |
+(8,816 | ) | |
+(491,031 | ) | |
+(296,966 | ) | |
+(43,769 | ) |
+
+
+Adjustments: | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| |
+
+
+&ndash; Interest income | |
+(11,520 | ) | |
+(32,030 | ) | |
+(25,920 | ) | |
+(3,820 | ) | |
+(16,466 | ) | |
+(57,950 | ) | |
+(8,541 | ) |
+
+
+&ndash; Interest expense | |
+124,669 | | |
+153,595 | | |
+166,766 | | |
+24,578 | | |
+207,566 | | |
+320,361 | | |
+47,215 | |
+
+
+&ndash; Income tax expense | |
+2,343 | | |
+5,081 | | |
+16,507 | | |
+2,433 | | |
+11,584 | | |
+21,588 | | |
+3,182 | |
+
+
+&ndash; Depreciation and amortization | |
+591,021 | | |
+858,003 | | |
+1,002,924 | | |
+147,813 | | |
+1,012,922 | | |
+1,860,927 | | |
+274,267 | |
+
+
+Adjusted EBITDA (Non-GAAP Financial Measure) | |
+406,032 | | |
+747,506 | | |
+1,100,454 | | |
+162,188 | | |
+724,575 | | |
+1,847,960 | | |
+272,354 | |
+
+
+&ndash; Gain on disposal of property and equipment | |
+(5,708 | ) | |
+- | | |
+(35,024 | ) | |
+(5,162 | ) | |
+(7,818 | ) | |
+(35,024 | ) | |
+(5,162 | ) |
+
+
+Excluding gain on disposal of property and equipment, normalized Adjusted EBITDA | |
+400,324 | | |
+747,506 | | |
+1,065,430 | | |
+157,026 | | |
+716,757 | | |
+1,812,936 | | |
+267,192 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+KINGSOFT CLOUD HOLDINGS LIMITED
+
+
+RECONCILIATION OF GAAP AND NON-GAAP RESULTS
+
+
+(All amounts in thousands, except for percentage)
+
+
+
+
+
+
+
+
+
+| |
+Three Months Ended | | |
+Six Months Ended | |
+
+
+| |
+Jun 30,
+2025 | | |
+Mar 31,
+2026 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2025 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2026 | |
+
+
+| |
+RMB | | |
+RMB | | |
+RMB | | |
+US$ | | |
+RMB | | |
+RMB | | |
+US$ | |
+
+
+Operating (loss) profit | |
+(326,987 | ) | |
+(166,108 | ) | |
+22,999 | | |
+3,391 | | |
+(561,188 | ) | |
+(143,109 | ) | |
+(21,093 | ) |
+
+
+Adjustments: | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| |
+
+
+&ndash; Share-based compensation expenses | |
+116,856 | | |
+62,571 | | |
+57,260 | | |
+8,439 | | |
+251,467 | | |
+119,831 | | |
+17,661 | |
+
+
+&ndash; Amortization of intangible assets | |
+43,751 | | |
+43,720 | | |
+43,702 | | |
+6,441 | | |
+87,532 | | |
+87,422 | | |
+12,884 | |
+
+
+Adjusted operating (loss) profit (Non-GAAP Financial Measure) | |
+(166,380 | ) | |
+(59,817 | ) | |
+123,961 | | |
+18,271 | | |
+(222,189 | ) | |
+64,144 | | |
+9,452 | |
+
+
+&ndash; Gain on disposal of property and equipment | |
+(5,708 | ) | |
+- | | |
+(35,024 | ) | |
+(5,162 | ) | |
+(7,818 | ) | |
+(35,024 | ) | |
+(5,162 | ) |
+
+
+Excluding gain on disposal of property and equipment, normalized Adjusted operating (loss) profit | |
+(172,088 | ) | |
+(59,817 | ) | |
+88,937 | | |
+13,109 | | |
+(230,007 | ) | |
+29,120 | | |
+4,290 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+KINGSOFT CLOUD HOLDINGS LIMITED
+
+
+RECONCILIATION OF GAAP AND NON-GAAP RESULTS
+
+
+(All amounts in thousands, except for percentage)
+
+
+
+
+
+
+
+
+
+| |
+Three Months Ended | | |
+Six Months Ended | |
+
+
+| |
+Jun 30,
+2025 | | |
+Mar 31,
+2026 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2025 | | |
+Jun 30,
+2026 | |
+
+
+Net loss margin | |
+-19.4 | % | |
+-12.7 | % | |
+-3.0 | % | |
+-17.9 | % | |
+-7.6 | % |
+
+
+Adjusted net loss margin (Non-GAAP Financial Measure) | |
+-12.8 | % | |
+-8.8 | % | |
+-1.9 | % | |
+-11.4 | % | |
+-5.1 | % |
+
+
+Adjusted EBITDA margin (Non-GAAP Financial Measure) | |
+17.3 | % | |
+27.6 | % | |
+35.8 | % | |
+16.8 | % | |
+32.0 | % |
+
+
+Normalized Adjusted EBITDA margin | |
+17.0 | % | |
+27.6 | % | |
+34.7 | % | |
+16.6 | % | |
+31.4 | % |
+
+
+Adjusted operating (loss) profit margin (Non-GAAP Financial Measure) | |
+-7.1 | % | |
+-2.2 | % | |
+4.0 | % | |
+-5.1 | % | |
+1.1 | % |
+
+
+Normalized Adjusted operating (loss) profit margin | |
+-7.3 | % | |
+-2.2 | % | |
+2.9 | % | |
+-5.3 | % | |
+0.5 | % |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+KINGSOFT CLOUD HOLDINGS LIMITED |
+
+
+UNAUDITED CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS |
+
+
+(All amounts in thousands) |
+
+
+| |
+Three Months Ended | |
+
+
+| |
+Jun 30,
+2025 | | |
+Mar 31,
+2026 | | |
+Jun 30,
+2026 | | |
+Jun 30,
+2026 | |
+
+
+| |
+RMB | | |
+RMB | | |
+RMB | | |
+US$ | |
+
+
+Net cash generated from operating activities | |
+1,460,134 | | |
+533,978 | | |
+2,850,866 | | |
+420,166 | |
+
+
+Net cash used in investing activities | |
+(887,832 | ) | |
+(1,630,049 | ) | |
+(2,912,812 | ) | |
+(429,295 | ) |
+
+
+Net cash generated from (used in) financing activities | |
+2,552,561 | | |
+7,606 | | |
+(109,637 | ) | |
+(16,158 | ) |
+
+
+Effect of exchange rate changes on cash, cash equivalents and restricted cash | |
+5,921 | | |
+(78,078 | ) | |
+(49,818 | ) | |
+(7,343 | ) |
+
+
+Net increase (decrease) in cash, cash equivalents and restricted cash | |
+3,130,784 | | |
+(1,166,543 | ) | |
+(221,401 | ) | |
+(32,630 | ) |
+
+
+Cash, cash equivalents and restricted cash at beginning of period | |
+2,386,344 | | |
+6,117,237 | | |
+4,950,694 | | |
+729,642 | |
+
+
+Cash, cash equivalents and restricted cash at end of period | |
+5,517,128 | | |
+4,950,694 | | |
+4,729,293 | | |
+697,012 | |

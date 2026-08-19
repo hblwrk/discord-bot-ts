@@ -66,13 +66,33 @@ export function parseEarningsDocument(html: string): ParsedEarningsDocument {
   const lines = getMeaningfulLines(text);
   const quarterLabel = getQuarterLabel(text);
   const documentCurrencyCode = getDocumentCurrencyCode(lines);
+  const metrics = extractEarningsMetrics(lines, quarterLabel, documentCurrencyCode);
   return {
     dilutedShareMantissa: getDilutedShareMantissa(lines),
     headline: getDocumentHeadline(lines),
-    metrics: extractEarningsMetrics(lines, quarterLabel, documentCurrencyCode),
+    metrics: dropOrdinaryShareEpsForAdsIssuer(metrics, lines),
     outlook: extractOutlookMetrics(lines, documentCurrencyCode),
     quarterLabel,
   };
+}
+
+// An ADS-listed foreign issuer can report earnings only per ordinary share even though the
+// security watched in the US represents several of those shares. Posting that unconverted
+// figure as EPS is misleading (and can turn a real ADS loss into "$0.00"). Unless the filing
+// states an ADS value explicitly, omit the per-share metric rather than inventing a conversion.
+function dropOrdinaryShareEpsForAdsIssuer(
+  metrics: EarningsResultMetric[],
+  lines: string[],
+): EarningsResultMetric[] {
+  const hasAdsEquivalence = lines.some(line =>
+    /\bequivalent\s+to\s+(?:about\s+)?[\d,]+\s+ADSs?\b/i.test(line) ||
+    /\bone\s+ADS\s+(?:is\s+equivalent\s+to|represents)\s+[\d,]+\s+ordinary\s+shares?\b/i.test(line));
+  if (false === hasAdsEquivalence) {
+    return metrics;
+  }
+
+  return metrics.filter(metric =>
+    false === isEpsMetricKey(metric.key) || /\bper\s+ADS\b/i.test(metric.sourceSnippet ?? ""));
 }
 
 export function getMessageMetrics(
@@ -264,23 +284,30 @@ function extractMetric(
       continue;
     }
 
+    const hasMetricLabel = definition.patterns.some(pattern => pattern.test(line));
+    if (false === hasMetricLabel) {
+      continue;
+    }
+
+    const metricLine = getMetricLineWithContinuation(lines, lineIndex, definition, quarterLabel);
+
     // An explicitly GAAP-labelled line overrides the "adjusted" skip, but must never
     // override a forward-looking one: "Increasing full year GAAP EPS guidance to a range
     // of $0.09 to $0.11" would otherwise post the low end of an annual outlook as the
     // reported quarter.
-    const isForwardLooking = isForwardLookingLine(line);
+    const isForwardLooking = isForwardLookingLine(metricLine);
     const hasExplicitGaapEps = "gaap_eps" === definition.key &&
       false === isForwardLooking &&
-      explicitGaapEpsPattern.test(line);
+      explicitGaapEpsPattern.test(metricLine);
     const hasReportedGaapEps = "gaap_eps" === definition.key &&
       false === isForwardLooking &&
-      true === hasGaapNarrativeBeforeAdjustment(line, definition.patterns);
+      true === hasGaapNarrativeBeforeAdjustment(metricLine, definition.patterns);
     const hasReportedGaapNetIncome = "net_income" === definition.key &&
       false === isForwardLooking &&
-      true === hasMetricValueBeforeAdjustment(line, definition.patterns);
+      true === hasMetricValueBeforeAdjustment(metricLine, definition.patterns);
     const hasReportedRevenueBeforeGuidance = "revenue" === definition.key &&
-      true === hasMetricValueBeforeGuidance(line, definition.patterns);
-    if (true === isSkippedMetricLine(line, definition) &&
+      true === hasMetricValueBeforeGuidance(metricLine, definition.patterns);
+    if (true === isSkippedMetricLine(metricLine, definition) &&
         false === hasExplicitGaapEps &&
         false === hasReportedGaapEps &&
         false === hasReportedGaapNetIncome &&
@@ -288,16 +315,10 @@ function extractMetric(
       continue;
     }
 
-    if ("net_income" === definition.key && true === isPerShareOnlyNetIncomeLine(line)) {
+    if ("net_income" === definition.key && true === isPerShareOnlyNetIncomeLine(metricLine)) {
       continue;
     }
 
-    const hasMetricLabel = definition.patterns.some(pattern => pattern.test(line));
-    if (false === hasMetricLabel) {
-      continue;
-    }
-
-    const metricLine = getMetricLineWithContinuation(lines, lineIndex, definition, quarterLabel);
     const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(metricLine));
     if (!pattern) {
       continue;
