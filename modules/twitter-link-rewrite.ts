@@ -23,14 +23,22 @@ type TwitterLinkRewriteMessage = {
     send: (payload: {
       allowedMentions: {
         parse: string[];
+        repliedUser?: boolean;
       };
       content: string;
+      reply?: {
+        failIfNotExists: boolean;
+        messageReference: string;
+      };
     }) => Promise<unknown> | unknown;
   };
   content: string;
   delete: () => Promise<unknown>;
   embeds?: readonly unknown[];
   id: string;
+  reference?: {
+    messageId?: string;
+  } | null;
   reply: (payload: {
     allowedMentions: {
       parse: string[];
@@ -184,12 +192,15 @@ async function replyWithFixedLinks(message: TwitterLinkRewriteMessage, content: 
 }
 
 // Delete a link-only message and repost the fixed link in the bot's name,
-// crediting the original poster by mention ("From <@id>: <link>"). Returns true
-// when the original was removed so the caller skips the reply-and-suppress path;
-// returns false (e.g. the bot lacks delete permission) to fall back to that path.
+// crediting the original poster by mention ("From <@id>: <link>"). When the
+// deleted message was a reply, the replacement replies to the same message.
+// Returns true when the original was removed so the caller skips the
+// reply-and-suppress path; returns false (e.g. the bot lacks delete permission)
+// to fall back to that path.
 async function replaceLinkOnlyMessage(message: TwitterLinkRewriteMessage, fixedLinks: string[]): Promise<boolean> {
   const prefix = `From ${resolvePosterCredit(message)}: `;
   const content = getMessageContentWithinDiscordLimit(fixedLinks, discordMaxMessageLength - prefix.length);
+  const referencedMessageId = message.reference?.messageId;
   if ("" === content) {
     return false;
   }
@@ -208,8 +219,17 @@ async function replaceLinkOnlyMessage(message: TwitterLinkRewriteMessage, fixedL
     await message.channel.send({
       allowedMentions: {
         parse: [],
+        ...(undefined === referencedMessageId ? {} : {repliedUser: false}),
       },
       content: `${prefix}${content}`,
+      ...(undefined === referencedMessageId
+        ? {}
+        : {
+            reply: {
+              failIfNotExists: false,
+              messageReference: referencedMessageId,
+            },
+          }),
     });
   } catch (error: unknown) {
     logger.log(
