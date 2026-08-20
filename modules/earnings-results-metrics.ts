@@ -47,6 +47,9 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     key: "adjusted_eps",
     label: "Adj EPS",
     patterns: [
+      // A reported/adjusted reconciliation table can leave its row plainly captioned. The
+      // line reader synthesizes this qualified form from the governing column headers.
+      /\badjusted\s+diluted\s+eps\s+(?<metricValue>(?:C\s*\$|[$€£¥])?\s*\(?-?\d+(?:\.\d+)?\)?)/i,
       // A translated ADS value can follow the local-currency amount in parentheses.
       // Capture the US-dollar figure explicitly so the ordinary-share amount before it
       // cannot win merely because it appears first.
@@ -277,14 +280,17 @@ export function getMetricLineWithContinuation(
 ): string {
   const line = lines[lineIndex] ?? "";
   const precedingLine = lines[lineIndex - 1] ?? "";
+  const adjustedEpsReconciliationLine = "adjusted_eps" === definition.key
+    ? getAdjustedEpsReconciliationLine(lines, lineIndex)
+    : undefined;
   // Inline tables can wrap a qualifier into its own cell ("Adjusted" / "EPS was ...").
   // Reattach that orphaned qualifier so the current value is read from the first caption,
   // instead of the prior-year "adjusted EPS" comparison later on the line.
   const orphanedQualifier = /\b(adjusted|non-gaap|gaap)\s*$/i.exec(precedingLine)?.[1];
-  const baseLine = undefined !== orphanedQualifier &&
+  const baseLine = adjustedEpsReconciliationLine ?? (undefined !== orphanedQualifier &&
       /^\s*(?:diluted\s+)?(?:eps|earnings|net\s+(?:income|loss))\b/i.test(line)
     ? `${orphanedQualifier} ${line}`
-    : line;
+    : line);
   const periodScopedBaseLine = getCurrentQuarterNarrativeSegments(baseLine, quarterLabel);
   const positionedQuarterValues = getPositionedQuarterValues(
     lines,
@@ -350,6 +356,49 @@ export function getMetricLineWithContinuation(
   }
 
   return metricLines.join(" ");
+}
+
+// Some reconciliation tables label their columns "Reported (GAAP) | Adjustments |
+// Adjusted (Non-GAAP)" but leave the EPS row itself plainly captioned. Reattach that
+// governing adjusted basis and retain only the final, adjusted result cell; otherwise the
+// row is invisible to the adjusted-EPS reader and an explanatory per-share impact below it
+// can be posted as the result.
+function getAdjustedEpsReconciliationLine(
+  lines: string[],
+  lineIndex: number,
+): string | undefined {
+  const line = lines[lineIndex] ?? "";
+  if (false === /^\s*(?:eps\s*\(\s*diluted\s*\)|diluted\s+eps)(?=\s|\|)/i.test(line) ||
+      2 > (line.match(/\|/g)?.length ?? 0)) {
+    return undefined;
+  }
+
+  const headerText = lines
+    .slice(Math.max(0, lineIndex - 20), lineIndex)
+    .join(" ");
+  if (false === /\breported\b[\s\S]*\bgaap\b[\s\S]*\badjustments?\b[\s\S]*\badjusted\b[\s\S]*\bnon-gaap\b/i
+    .test(headerText)) {
+    return undefined;
+  }
+
+  const valueCells = line
+    .split("|")
+    .map(cell => cell.trim())
+    .filter(cell => /^\(?-?\d+(?:,\d{3})*(?:\.\d+)?\)?$/.test(cell));
+  const adjustedValue = valueCells.at(-1);
+  if (undefined === adjustedValue) {
+    return undefined;
+  }
+
+  const currency = line.match(/C\s*\$|[$€£¥]/)?.[0] ?? "";
+  return `Adjusted diluted EPS ${currency} ${adjustedValue}`;
+}
+
+export function isAdjustedEpsReconciliationRow(
+  lines: string[],
+  lineIndex: number,
+): boolean {
+  return undefined !== getAdjustedEpsReconciliationLine(lines, lineIndex);
 }
 
 function getCurrentQuarterNarrativeSegments(

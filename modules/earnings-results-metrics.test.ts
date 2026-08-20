@@ -2,6 +2,28 @@ import {describe, expect, test} from "vitest";
 import {parseEarningsDocument} from "./earnings-results-format.ts";
 
 describe("earnings result metric selection", () => {
+  test("ignores empty adjusted-EPS reconciliation rows", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example Reports Fourth Quarter and Fiscal Year 2026 Financial Results</h1>
+      <p>Reported (GAAP) | Adjustments | Adjusted (Non-GAAP)</p>
+      <p>EPS (diluted) | $ | — | | $ | —</p>
+    `);
+
+    expect(parsedDocument.metrics).toEqual([]);
+  });
+
+  test("reads adjusted-EPS reconciliation rows without repeated currency symbols", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example Reports Fourth Quarter and Fiscal Year 2026 Financial Results</h1>
+      <p>Reported (GAAP) | Adjustments | Adjusted (Non-GAAP)</p>
+      <p>EPS (diluted) | (0.16) | | (0.02)</p>
+    `);
+
+    expect(parsedDocument.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "adjusted_eps", value: "-$0.02"}),
+    ]));
+  });
+
   test("keeps GAAP totals across wrapped qualifiers and prior-year-first column headings", () => {
     const parsedDocument = parseEarningsDocument(`
       <h1>Example Announces Second Quarter 2026 Results</h1>

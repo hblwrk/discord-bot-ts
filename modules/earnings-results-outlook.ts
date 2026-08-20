@@ -364,7 +364,8 @@ function hasGuidanceRangeColumnHeader(lines: string[]): boolean {
 function hasMixedOutlookPeriods(lines: string[]): boolean {
   const sectionText = lines.join(" ");
   const hasQuarter = /\b(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b/i.test(sectionText) ||
-    /\bq[1-4]\b/i.test(sectionText);
+    /\bq[1-4]\b/i.test(sectionText) ||
+    /\b[1-4]q(?:20)?\d{2}\b/i.test(sectionText);
   return hasQuarter && hasStandaloneFullYearPeriod(sectionText);
 }
 
@@ -634,6 +635,16 @@ function isStandaloneOutlookPeriodCaption(line: string): boolean {
 
 function getLineOutlookPeriodLabel(line: string): string | undefined {
   const periodCandidates: {index: number; label: string;}[] = [];
+  // Beauty and retail filers commonly write fiscal quarters in the inverted compact form
+  // "1Q27". Recognise it before a historical FY26 comparison later in the same sentence.
+  const invertedQuarterMatch = /\b([1-4])q(?:\s*)?(?:20)?\d{2}\b/i.exec(line);
+  if (undefined !== invertedQuarterMatch?.[1]) {
+    periodCandidates.push({
+      index: invertedQuarterMatch.index,
+      label: `Q${invertedQuarterMatch[1]}`,
+    });
+  }
+
   const directQuarterMatch = /\bq([1-4])(?:\s+20\d{2})?\b/i.exec(line);
   if (undefined !== directQuarterMatch?.[1]) {
     periodCandidates.push({

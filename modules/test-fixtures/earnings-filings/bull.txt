@@ -1,0 +1,1602 @@
+EX-99.1
+2
+ea030257601ex99-1.htm
+PRESS RELEASE DATED AUGUST 19, 2026
+
+
+
+
+
+
+
+Exhibit 99.1
+
+
+
+
+
+
+
+
+
+
+
+Webull Reports Second Quarter 2026 Financial
+Results
+
+
+
+
+
+Webull reports another strong quarter of growth,
+marked by record trading volumes, increased customer assets, and strong net deposits. Webull continues to invest in strategic priorities,
+including enhanced offerings for its active traders, international expansion, and building its institutional business.
+
+
+
+
+
+ST. PETERSBURG, Fla., August 19, 2026 /PRNewswire/
+&ndash; Webull Corporation (NASDAQ: BULL) (&ldquo;Webull&rdquo; or the &ldquo;Company&rdquo;) today announced financial and operating
+results for the second quarter ended June 30, 2026.
+
+
+
+
+
+&ldquo;I&rsquo;m proud to report a record second quarter for Webull,
+highlighted by our successful implementation of updated active trader functionality following the June 4 elimination of the Pattern Day
+Trader Rule,&rdquo; said Anthony Denier, Group President and U.S. CEO. &ldquo;Webull&rsquo;s advanced technology platform enabled
+eligible customers to fully leverage the new trading environment from day one, contributing to record trading volumes and strong customer
+engagement. We also made significant progress in executing on our 2026 roadmap, including expanding our AI capabilities with the launch
+of Vega Analyst, extending our global footprint, and scaling our institutional business. We believe these investments are strengthening
+Webull&rsquo;s position as a leading platform for active traders seeking access to investment opportunities across global markets and
+asset classes.&rdquo;
+
+
+
+
+
+&ldquo;Q2 was the best quarter in Webull&rsquo;s history, with record
+revenue of $198.8 million, up 51% year-over-year and 24% sequentially,&rdquo; said H.C. Wang, Chief Financial Officer of Webull.
+&ldquo;Adjusted operating profit reached $62.6 million, representing a 31.5% operating margin, while adjusted net income was $43.2 million.
+These results demonstrate the operating leverage inherent in our platform and the potential for further margin expansion.&rdquo;
+
+
+
+
+
+Second Quarter Results
+
+
+
+
+
+Financial Results
+
+
+
+
+
+
+| ● | Total revenues increased 51% year-over-year
+to $198.8 million. |
+
+
+
+
+
+
+| ● | Trading-related revenue increased 66%
+year-over-year to $147.7 million. |
+
+
+
+
+
+
+| ● | Total operating expenses increased 13%
+year-over-year, primarily driven by higher brokerage and transaction costs associated with rapid growth in trading volumes as well as
+product expansion, offset by lower share-based compensation expense. |
+
+
+
+
+
+
+| ● | Adjusted operating expenses increased
+26% year-over-year to $136.2 million. |
+
+
+
+
+
+
+| ● | Income before income taxes totaled $34.7
+million for the quarter, compared to a loss before taxes of $21.4 million for the prior year comparative quarter. The increase of $56.1
+million in income was primarily due to total revenues growing 51%, which outpaced the 13% increase in total operating expenses. |
+
+
+
+
+
+
+| ● | Adjusted operating profit totaled $62.6
+million for the quarter, compared to $23.3 million for the prior year comparative quarter. |
+
+
+
+
+
+
+| ● | Adjusted operating profit per share &ndash;
+basic and diluted was $0.12, compared with a basic and diluted adjusted operating profit per share of $0.05 in the prior year comparative
+quarter. |
+
+
+
+
+
+
+| ● | Net income attributable to the Company
+was $24.4 million for the quarter, compared to a net loss of $28.3 million for the prior year comparative quarter. |
+
+
+
+
+
+
+| ● | Adjusted net income increased to $43.2
+million for the quarter, compared to $15.4 million for the prior year comparative quarter. |
+
+
+
+
+
+
+| ● | Net income per ordinary share &ndash; basic
+and diluted was $0.05 and $0.04 per share, respectively, compared to basic and diluted loss per ordinary share of $1.20 per share
+for the prior year comparative quarter. |
+
+
+
+
+
+
+| ● | Share Repurchase Program &ndash; During
+the quarter, the Company repurchased and cancelled 1,820,788 Class A ordinary shares at an average repurchase price of $6.03. |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Operating Results
+
+
+
+
+
+
+| ● | Customer assets (AUM) totaled $28.5 billion,
+representing 79% year-over-year growth, driven by net deposits which grew 7% year-over-year. |
+
+
+
+
+
+
+| ● | Registered users increased 13% year-over-year
+to 28.2 million users. |
+
+
+
+
+
+
+| ● | Funded accounts increased to 5.13 million,
+representing 8% year-over-year growth. |
+
+| | |
+
+
+
+
+| ● | Equity notional volume grew to $279 billion,
+representing a 73% year-over-year increase and an increase of 7% from the previous quarter. |
+
+| | |
+
+
+
+
+| ● | Options contracts volume grew to 213 million,
+a 68% year-over-year increase and an increase of 34% from the previous quarter. |
+
+| | |
+
+
+
+
+| ● | DARTs increased to 1.6 million, representing
+62% year-over-year growth. |
+
+
+
+
+
+Company Highlights
+
+
+
+
+
+
+| ● | Successfully implemented updated active trader
+functionality for all eligible customers following the elimination of the Pattern Day Trader Rule, contributing to record quarterly trading
+volumes. |
+
+
+
+
+
+
+| ● | Vega AI added approximately 160,000 new users
+during the quarter, bringing total active users to approximately 480,000. |
+
+
+
+
+
+
+| ● | Expanded Model Context Protocol (&ldquo;MCP&rdquo;)
+to support natural-language research, tool-building and trade execution through leading AI models. |
+
+
+
+
+
+
+| ● | Introduced paper trading capabilities to achieve
+parity with live trading across asset classes, providing users with the ability to test and refine trading strategies. |
+
+
+
+
+
+
+| ● | Continued international expansion with the launch
+of Webull in Spain, Argentina, and Colombia. Webull is now licensed across 35 markets globally and operates trading activities in 18 markets.
+|
+
+
+
+
+
+
+| ● | International funded accounts grew to approximately
+810,000. |
+
+
+
+
+
+
+| ● | Announced the acquisition of Pi Securities in
+Thailand, expanding Webull&rsquo;s presence in Asia-Pacific where customer assets now exceed $5 billion. |
+
+
+
+
+
+
+| ● | Expanded Webull&rsquo;s B2B offering with access
+to futures and prediction markets, and partnered with Monark Markets to provide accredited investors access to late-stage private companies
+through special purpose vehicles. |
+
+
+
+
+
+
+
+
+
+2
+
+
+
+
+
+
+
+
+
+
+Conference Call Information
+
+
+
+
+
+Webull will host a conference call to
+discuss its results at 5:00 p.m. E.T. today, August 19, 2026. The conference call can be accessed at
+https://event.choruscall.com/mediaframe/webcast.html?webcastid=y93ulpXT or participants may dial 1-844-744-1431 (U.S.) or
+1-412-564-6518 (international).
+
+
+
+
+
+Following the call, a replay and transcript will
+be available on the Company&rsquo;s website at www.webullcorp.com/investor-relations, as well as the earnings press release and accompanying
+slide presentation.
+
+
+
+
+
+About Webull Corporation
+
+
+
+
+
+Webull Corporation (NASDAQ: BULL) owns and operates
+Webull, a leading digital investment platform built on next-generation global infrastructure and AI technologies. Through its global network
+of licensed brokerages, Webull offers investment services in 18 markets across North America, Asia Pacific, Europe, Africa, and Latin
+America. Webull serves more than 28 million registered users globally, providing retail and institutional investors with 24/7 access to
+global financial markets. Users can put investment strategies to work by trading global stocks, ETFs, options, futures, fractional shares,
+and digital assets through Webull&rsquo;s trading platform, which seamlessly integrates market data and information, its user community, and
+investor education resources. Learn more at www.webullcorp.com. You may also access certain information on Webull and its securities on
+the website of the U.S. Securities and Exchange Commission (the &ldquo;SEC&rdquo;) at http://www.sec.gov, where Webull will, among others,
+be filing reports, such as Reports on Form 6-K and its Annual Report on Form 20-F.
+
+
+
+
+
+Contacts
+
+
+
+
+
+For Investors
+
+
+ir@webullcorp.com
+
+
+
+
+
+For Media
+
+5W Public Relations
+
+
+Nicholas Koulermos
+
+Webull@5wpr.com
+
+(212) 999-5585
+
+
+
+
+
+Use of Non-GAAP Financial Measures
+
+
+
+
+
+We use adjusted operating profit, adjusted operating
+profit per share, adjusted net income, and adjusted operating expenses, all of which are non-GAAP financial measures, to evaluate our
+operating results and for financial and operational decision-making purposes. Adjusted operating profit represents income from continuing
+operations, before income taxes, excluding share-based compensation expenses, one-time transactions, and other expense (income), net.
+Adjusted operating profit per share represents adjusted operating profit divided by our weighted average shares outstanding on a basic
+and diluted basis. Adjusted net income represents net income attributable to the Company, excluding share-based compensation expenses,
+foreign currency transaction gains and losses, and one-time transactions. Adjusted operating expenses represent total operating expenses,
+excluding share-based compensation expenses and one-time transactions.
+
+
+
+
+
+We believe that adjusted operating profit, adjusted
+operating profit per share, adjusted net income, and adjusted operating expenses help identify underlying trends in our business that
+could otherwise be distorted by the effect of certain expenses that we include in income before income taxes, net income, and total operating
+expenses. We believe that adjusted operating profit, adjusted net income, and adjusted operating expenses provide useful information about
+our operating results, enhances the overall understanding of our past performance and future prospects and allows for greater visibility
+with respect to key metrics used by our management in its financial and operational decision-making.
+
+
+
+
+
+
+
+
+
+3
+
+
+
+
+
+
+
+
+
+
+Adjusted operating profit, adjusted operating
+profit per share, adjusted net income, and adjusted operating expenses should not be considered in isolation or construed as an alternative
+to income before income taxes, earnings per share, net income attributable to the Company, and total operating expenses or any other measure
+of performance or as an indicator of our operating performance. Investors are encouraged to compare the historical non-GAAP financial
+measures to the most directly comparable GAAP measures. Adjusted operating profit, adjusted operating profit per share, adjusted net income,
+and adjusted operating expenses presented here may not be comparable to similarly titled measures presented by other companies. Other
+companies may calculate similarly titled measures differently, limiting their usefulness as comparative measures to our data. We encourage
+investors and others to review our financial information in its entirety and not rely on a single financial measure.
+
+
+
+
+
+For more information on these non-GAAP financial
+measures, please see the table captioned &ldquo;Unaudited Quarterly Reconciliations of Non-GAAP and GAAP Financial Measures&rdquo; set
+forth at the end of this press release.
+
+
+
+
+
+Definitions
+
+
+
+
+
+&ldquo;Customer assets&rdquo; refer to the sum
+of the fair value of all equities, ETFs, options, warrants, futures, digital assets and cash held by customers in their Webull brokerage
+accounts, net of customer margin balances, as of the record date. While customer assets are significantly impacted by mark-to-market valuations
+of customers&rsquo; investments and digital holdings, we consider customer assets an important metric as growth in customer assets generally
+leads to an increase in trading volumes and revenue.
+
+
+
+
+
+&ldquo;DARTs&rdquo; refer to daily average revenue
+trades, which is the number of customer trades executed during a given period divided by the number of trading days in that period. DARTs
+provide us information on how active our customers trade. A limitation of this metric is that it does not capture the size of the trade
+and revenue per trade varies significantly depending on size and type of trades.
+
+
+
+
+
+&ldquo;Equity notional volume&rdquo; refers to
+the aggregate dollar value (purchase price or sale price as applicable) of trades executed over a specified period of time. Equity notional
+volume directly drives our equities trading revenue, as we earn payment for order flow or commissions for customers&rsquo; equities trades
+based on a percentage of notional value. However, equity notional volume is highly sensitive to market conditions in the short-term which
+makes predicting our equity trading revenue with precision difficult.
+
+
+
+
+
+&ldquo;Funded accounts&rdquo; refer to Webull
+brokerage accounts into which the customer has made an initial deposit or money transfer, of any amount, whose account balance (which
+is measured as the fair value of assets in the customer&rsquo;s account less the amount due from the customer) has not dropped to or below
+zero for 45 consecutive calendar days as of the record date. Funded accounts reflect unique customers, and multiple funded accounts
+by a single customer are counted as one funded account. Growth in our funded accounts provides insight as to the effectiveness of our
+marketing efforts and our ability to acquire monetizable customers. Funded accounts are positively correlated with, but are not determinative,
+of customer assets, trading volumes, and revenue.
+
+
+
+
+
+&ldquo;Options contracts volume&rdquo; refers
+to the total number of options contracts bought or sold over a specified period of time. Options contracts volume directly drives our
+options trading revenue, as we earn payment for order flow or commissions for customers&rsquo; options trades on a per contract basis.
+However, options contracts volume is highly sensitive to market conditions in the short-term, which makes predicting our options trading
+revenue with precision difficult.
+
+
+
+
+
+&ldquo;Registered users&rdquo; refer to those
+users who have registered on our platform but not necessarily have opened a brokerage account with one of our licensed broker-dealers.
+Growth in our registered users provides insight as to the popularity of the Webull App. While we do not generate revenue from registered
+users who do not have brokerage accounts with us, registering an account on the Webull App is the first step toward opening and funding
+a brokerage account with us.
+
+
+
+
+
+
+
+4
+
+
+
+
+
+
+
+
+
+
+Webull Corporation
+
+Condensed Consolidated Statements of Financial Position
+
+
+
+
+
+
+
+
+
+
+| |
+June 30,
+
+2026 | | |
+December 31, 2025 | |
+
+
+| |
+(Unaudited) | | |
+| |
+
+
+Assets | |
+| | |
+| |
+
+
+Cash and cash equivalents | |
+$ | 701,621,304 | | |
+$ | 653,188,906 | |
+
+
+Cash and cash equivalents segregated under federal and foreign requirements | |
+| 1,224,069,199 | | |
+| 1,537,119,275 | |
+
+
+Receivables from brokers, dealers, and clearing organizations | |
+| 701,369,826 | | |
+| 562,961,145 | |
+
+
+Receivables from customers, net | |
+| 1,011,784,680 | | |
+| 708,785,550 | |
+
+
+Prepaid expenses and other current assets | |
+| 60,814,415 | | |
+| 50,208,272 | |
+
+
+Customer-held fractional shares | |
+| 223,802,727 | | |
+| 172,309,953 | |
+
+
+Total current assets | |
+| 3,923,462,151 | | |
+| 3,684,573,101 | |
+
+
+| |
+| | | |
+| | |
+
+
+Right-of-use assets | |
+| 64,014,634 | | |
+| 64,357,655 | |
+
+
+Property and equipment, net | |
+| 41,473,511 | | |
+| 35,894,855 | |
+
+
+Intangible assets, net | |
+| 54,269,690 | | |
+| 55,434,567 | |
+
+
+Goodwill | |
+| 25,066,700 | | |
+| 30,264,138 | |
+
+
+Deferred tax assets | |
+| 3,450,909 | | |
+| 9,346,987 | |
+
+
+Other non-current assets | |
+| 1,000,000 | | |
+| 1,000,000 | |
+
+
+Total non-current assets | |
+| 189,275,444 | | |
+| 196,298,202 | |
+
+
+Total assets | |
+$ | 4,112,737,595 | | |
+$ | 3,880,871,303 | |
+
+
+Liabilities and shareholders&rsquo; equity | |
+| | | |
+| | |
+
+
+Payables due to customers | |
+$ | 2,877,895,236 | | |
+$ | 2,667,837,626 | |
+
+
+Payables due to brokers, dealers, and clearing organizations | |
+| 1,632,515 | | |
+| 3,481,115 | |
+
+
+Lease liabilities - current portion | |
+| 3,497,320 | | |
+| 3,611,195 | |
+
+
+Accounts payable and other accrued expenses | |
+| 97,610,615 | | |
+| 102,183,377 | |
+
+
+Revolving credit facility | |
+| 17,611,040 | | |
+| &ndash; | |
+
+
+Unsecured promissory notes | |
+| 50,000,000 | | |
+| &ndash; | |
+
+
+Total current liabilities | |
+| 3,048,246,726 | | |
+| 2,777,113,313 | |
+
+
+| |
+| | | |
+| | |
+
+
+Lease liabilities - non-current portion | |
+| 7,624,608 | | |
+| 8,911,821 | |
+
+
+Unsecured promissory notes | |
+| &ndash; | | |
+| 65,000,000 | |
+
+
+Deferred tax liabilities | |
+| 13,193,834 | | |
+| 13,366,222 | |
+
+
+Total non-current liabilities | |
+| 20,818,442 | | |
+| 87,278,043 | |
+
+
+Total liabilities | |
+| 3,069,065,168 | | |
+| 2,864,391,356 | |
+
+
+| |
+| | | |
+| | |
+
+
+Commitments and Contingencies | |
+| &ndash; | | |
+| &ndash; | |
+
+
+| |
+| | | |
+| | |
+
+
+Shareholders&rsquo; equity | |
+| | | |
+| | |
+
+
+Class A ordinary shares ($0.00001 par value; 4,000,000,000 shares authorized, 446,769,891 and 445,905,406 shares issued and outstanding as of June 30, 2026, respectively; and 440,715,769 and 439,591,284 shares issued and outstanding as of December 31, 2025, respectively) | |
+| 4,459 | | |
+| 4,396 | |
+
+
+Class B ordinary shares ($0.00001 par value, 1,000,000,000 shares authorized, 83,859,005 shares issued and outstanding as of June 30, 2026 and December 31, 2025) | |
+| 839 | | |
+| 839 | |
+
+
+Treasury shares (864,485 and 1,124,485 shares as of June 30, 2026 and December 31, 2025, respectively) | |
+| &ndash; | | |
+| &ndash; | |
+
+
+Additional paid in capital | |
+| 3,207,257,664 | | |
+| 3,192,952,827 | |
+
+
+Accumulated deficit | |
+| (2,175,548,251 | ) | |
+| (2,178,189,845 | ) |
+
+
+Accumulated other comprehensive income | |
+| 11,817,455 | | |
+| 1,524,496 | |
+
+
+Total shareholders&rsquo; equity | |
+| 1,043,532,166 | | |
+| 1,016,292,713 | |
+
+
+Noncontrolling interest | |
+| 140,261 | | |
+| 187,234 | |
+
+
+Total equity | |
+| 1,043,672,427 | | |
+| 1,016,479,947 | |
+
+
+Total liabilities and total equity | |
+$ | 4,112,737,595 | | |
+$ | 3,880,871,303 | |
+
+
+
+
+
+
+
+
+
+5
+
+
+
+
+
+
+
+
+
+
+Webull Corporation
+
+Unaudited Condensed Consolidated Statements of Operations and Comprehensive Income (Loss)
+
+
+
+
+
+
+
+| |
+For the Three Months
+
+Ended June 30, | | |
+For the Six Months
+
+Ended June 30, | |
+
+
+| |
+2026 | | |
+2025 | | |
+2026 | | |
+2025 | |
+
+
+Revenues | |
+| | |
+| | |
+| | |
+| |
+
+
+Equity and option order flow rebates | |
+$ | 112,961,852 | | |
+$ | 68,688,838 | | |
+$ | 197,354,691 | | |
+$ | 132,800,020 | |
+
+
+Interest related income | |
+| 42,752,379 | | |
+| 36,286,533 | | |
+| 82,802,757 | | |
+| 67,426,597 | |
+
+
+Handling charge income | |
+| 34,780,092 | | |
+| 20,105,503 | | |
+| 61,192,834 | | |
+| 37,652,513 | |
+
+
+Other revenues | |
+| 8,336,757 | | |
+| 6,412,476 | | |
+| 17,408,814 | | |
+| 10,983,055 | |
+
+
+Total revenues | |
+| 198,831,080 | | |
+| 131,493,350 | | |
+| 358,759,096 | | |
+| 248,862,185 | |
+
+
+Operating expenses | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Brokerage and transaction | |
+| 44,348,662 | | |
+| 34,800,716 | | |
+| 82,741,802 | | |
+| 58,046,172 | |
+
+
+Technology and development | |
+| 22,157,376 | | |
+| 19,140,449 | | |
+| 46,018,198 | | |
+| 36,065,341 | |
+
+
+Marketing and branding | |
+| 35,046,209 | | |
+| 30,300,834 | | |
+| 84,457,375 | | |
+| 53,291,872 | |
+
+
+General and administrative | |
+| 51,823,929 | | |
+| 50,976,724 | | |
+| 102,465,372 | | |
+| 84,597,444 | |
+
+
+Total operating expenses | |
+| 153,376,176 | | |
+| 135,218,723 | | |
+| 315,682,747 | | |
+| 232,000,829 | |
+
+
+Other expense, net | |
+| 10,768,430 | | |
+| 17,659,796 | | |
+| 21,200,591 | | |
+| 18,749,213 | |
+
+
+Income (loss) before income taxes | |
+| 34,686,474 | | |
+| (21,385,169 | ) | |
+| 21,875,758 | | |
+| (1,887,857 | ) |
+
+
+Provision for income taxes | |
+| 10,343,085 | | |
+| 6,999,777 | | |
+| 19,270,241 | | |
+| 13,558,002 | |
+
+
+Net income (loss) | |
+| 24,343,389 | | |
+| (28,384,946 | ) | |
+| 2,605,517 | | |
+| (15,445,859 | ) |
+
+
+Less net loss attributable to noncontrolling interest | |
+| (20,935 | ) | |
+| (110,919 | ) | |
+| (36,077 | ) | |
+| (257,639 | ) |
+
+
+Net income (loss) attributable to the Company | |
+| 24,364,324 | | |
+| (28,274,027 | ) | |
+| 2,641,594 | | |
+| (15,188,220 | ) |
+
+
+Preferred shares redemption value accretion | |
+| &ndash; | | |
+| &ndash; | | |
+| &ndash; | | |
+| (21,702,737 | ) |
+
+
+Fair value of ordinary shares issued to preferred shareholders | |
+| &ndash; | | |
+| (513,080,828 | ) | |
+| &ndash; | | |
+| (513,080,828 | ) |
+
+
+Fair value of ordinary share warrants issued to preferred shareholders | |
+| &ndash; | | |
+| (15,600,000 | ) | |
+| &ndash; | | |
+| (15,600,000 | ) |
+
+
+Excess carrying value of preferred shares repurchased | |
+| &ndash; | | |
+| 38,093,537 | | |
+| &ndash; | | |
+| 38,093,537 | |
+
+
+Net income (loss) attributable to ordinary shareholders | |
+$ | 24,364,324 | | |
+$ | (518,861,318 | ) | |
+$ | 2,641,594 | | |
+$ | (527,478,248 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net income (loss) per share attributable to ordinary shareholders | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Basic | |
+$ | 0.05 | | |
+$ | (1.20 | ) | |
+$ | 0.00 | | |
+$ | (1.84 | ) |
+
+
+Diluted | |
+$ | 0.04 | | |
+$ | (1.20 | ) | |
+$ | 0.00 | | |
+$ | (1.84 | ) |
+
+
+Weighted-average shares outstanding | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Basic | |
+| 530,642,516 | | |
+| 431,390,035 | | |
+| 528,397,409 | | |
+| 286,155,488 | |
+
+
+Diluted | |
+| 542,622,870 | | |
+| 431,390,035 | | |
+| 543,513,592 | | |
+| 286,155,488 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net income (loss) | |
+$ | 24,343,389 | | |
+$ | (28,384,946 | ) | |
+$ | 2,605,517 | | |
+$ | (15,445,859 | ) |
+
+
+Other comprehensive income, net of tax: | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Change in cumulative foreign currency translation adjustment | |
+| 4,603,428 | | |
+| 9,212,371 | | |
+| 10,282,063 | | |
+| 10,954,020 | |
+
+
+Other comprehensive income | |
+| 4,603,428 | | |
+| 9,212,371 | | |
+| 10,282,063 | | |
+| 10,954,020 | |
+
+
+Comprehensive income (loss) | |
+| 28,946,817 | | |
+| (19,172,575 | ) | |
+| 12,887,580 | | |
+| (4,491,839 | ) |
+
+
+Less comprehensive loss attributable to noncontrolling interest | |
+| (20,935 | ) | |
+| (110,919 | ) | |
+| (36,077 | ) | |
+| (257,639 | ) |
+
+
+Less foreign currency translation adjustment attributable to noncontrolling interest | |
+| (6,894 | ) | |
+| 12,414 | | |
+| (10,896 | ) | |
+| (15,713 | ) |
+
+
+Preferred shares redemption value accretion | |
+| &ndash; | | |
+| &ndash; | | |
+| &ndash; | | |
+| (21,702,737 | ) |
+
+
+Fair value of ordinary shares issued to preferred shareholders | |
+| &ndash; | | |
+| (513,080,828 | ) | |
+| &ndash; | | |
+| (513,080,828 | ) |
+
+
+Fair value of ordinary share warrants issued to preferred shareholders | |
+| &ndash; | | |
+| (15,600,000 | ) | |
+| &ndash; | | |
+| (15,600,000 | ) |
+
+
+Excess carrying value of preferred shares repurchased | |
+| &ndash; | | |
+| 38,093,537 | | |
+| &ndash; | | |
+| 38,093,537 | |
+
+
+Comprehensive income (loss) attributable to ordinary shareholders | |
+$ | 28,974,646 | | |
+$ | (509,661,361 | ) | |
+$ | 12,934,553 | | |
+$ | (516,508,515 | ) |
+
+
+
+
+
+
+
+
+
+
+6
+
+
+
+
+
+
+
+
+
+
+Webull Corporation
+
+Unaudited Quarterly Reconciliation of Non-GAAP and GAAP Financial Measures
+
+
+
+
+
+Adjusted Operating Expenses Reconciliation
+
+
+(Unaudited)
+
+
+
+
+
+
+
+| |
+For the Three Months
+
+Ended June 30, | | |
+For the Six Months
+
+Ended June 30, | |
+
+
+| |
+2025 | | |
+2026 | | |
+2025 | | |
+2026 | |
+
+
+Total operating expenses (GAAP) | |
+$ | 135,218,723 | | |
+$ | 153,376,176 | | |
+$ | 232,000,829 | | |
+$ | 315,682,747 | |
+
+
+Less: Share-based compensation | |
+| 26,969,402 | | |
+| 17,135,196 | | |
+| 35,038,447 | | |
+| 34,336,772 | |
+
+
+Adjusted operating expenses (Non-GAAP) | |
+$ | 108,249,321 | | |
+$ | 136,240,980 | | |
+$ | 196,962,382 | | |
+$ | 281,345,975 | |
+
+
+
+
+
+
+
+Adjusted Operating Profit Reconciliation
+
+
+(Unaudited)
+
+
+
+
+
+
+
+| |
+For the Three Months
+
+Ended June
+30, | | |
+For the Six Months
+
+Ended June 30, | |
+
+
+| |
+2025 | | |
+2026 | | |
+2025 | | |
+2026 | |
+
+
+Income (loss) before income taxes | |
+$ | (21,385,169 | ) | |
+$ | 34,686,474 | | |
+$ | (1,887,857 | ) | |
+$ | 21,875,758 | |
+
+
+Add: Other expense (income), net | |
+| 17,659,796 | | |
+| 10,768,430 | | |
+| 18,749,213 | | |
+| 21,200,591 | |
+
+
+Add: Share-based compensation | |
+| 26,969,402 | | |
+| 17,135,196 | | |
+| 35,038,447 | | |
+| 34,336,772 | |
+
+
+Adjusted operating profit (Non-GAAP) | |
+$ | 23,244,029 | | |
+$ | 62,590,100 | | |
+$ | 51,899,803 | | |
+$ | 77,413,121 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Adjusted operating profit per share (Non-GAAP) - basic | |
+$ | 0.05 | | |
+$ | 0.12 | | |
+$ | 0.18 | | |
+$ | 0.15 | |
+
+
+Adjusted operating profit per share (Non-GAAP) - diluted | |
+$ | 0.05 | | |
+$ | 0.12 | | |
+$ | 0.16 | | |
+$ | 0.14 | |
+
+
+Weighted-average shares outstanding - basic | |
+| 431,390,035 | | |
+| 530,642,516 | | |
+| 286,155,488 | | |
+| 528,397,409 | |
+
+
+Weighted-average shares outstanding - diluted | |
+| 473,431,087 | | |
+| 542,622,870 | | |
+| 325,521,525 | | |
+| 543,513,592 | |
+
+
+
+
+
+
+Adjusted Net Income Reconciliation
+
+
+(Unaudited)
+
+
+
+
+
+
+
+| |
+For the Three Months
+Ended June 30, | | |
+For the Six Months
+Ended June 30, | |
+
+
+| |
+2025 | | |
+2026 | | |
+2025 | | |
+2026 | |
+
+
+Net income (loss) attributable to the Company (GAAP) | |
+$ | (28,274,027 | ) | |
+$ | 24,364,324 | | |
+$ | (15,188,220 | ) | |
+$ | 2,641,594 | |
+
+
+Add: Share-based compensation | |
+| 26,969,402 | | |
+| 17,135,196 | | |
+| 35,038,447 | | |
+| 34,336,772 | |
+
+
+Add: Deferred tax impact of officer stock compensation and other items | |
+| &ndash; | | |
+| (2,192,461 | ) | |
+| &ndash; | | |
+| 5,845,761 | |
+
+
+Add: Foreign currency transaction losses (gains) | |
+| 5,740,232 | | |
+| 3,854,895 | | |
+| 5,843,939 | | |
+| 9,573,592 | |
+
+
+Add: Equity Offering Costs | |
+| 10,976,693 | | |
+| &ndash; | | |
+| 10,976,693 | | |
+| &ndash; | |
+
+
+Adjusted net income (Non-GAAP) | |
+$ | 15,412,300 | | |
+$ | 43,161,954 | | |
+$ | 36,670,859 | | |
+$ | 52,397,719 | |
+
+
+
+
+
+
+
+
+
+
+
+7
+
+
+
+
+
+
+
+
+
+
+Contra Revenue Impact
+
+
+
+
+
+Most of our platform users are not considered customers under ASC 606, Revenues
+from Contracts with Customers (&ldquo;ASC 606&rdquo;), and promotional payments made to these platform users are accounted for
+as a marketing and branding expense . Conversely, for our platform users who have been determined to be customers under ASC
+606, we account for these promotional payments as a reduction in revenue (i.e., &ldquo;contra revenue&rdquo;). The following presents
+how contra revenue impacted our revenues.
+
+
+
+
+
+Quarterly Impact:
+
+
+
+
+
+
+
+| |
+For the Three Months
+
+Ended June 30, | | |
+For the Six Months
+
+Ended June 30,
+| |
+
+
+| |
+2025 | | |
+2026 | | |
+2025 | | |
+2026 | |
+
+
+Contra revenue impact on: | |
+| | |
+| | |
+| | |
+| |
+
+
+Option handling fees | |
+$ | (1,440,872 | ) | |
+$ | (4,196,056 | ) | |
+$ | (1,559,413 | ) | |
+$ | (8,189,029 | ) |
+
+
+Platform and trading fees | |
+| (3,219,590 | ) | |
+| (7,670,054 | ) | |
+| (5,925,705 | ) | |
+| (16,355,583 | ) |
+
+
+Other income | |
+| (427,442 | ) | |
+| (549,824 | ) | |
+| (427,442 | ) | |
+| (1,516,700 | ) |
+
+
+Total contra revenue | |
+$ | (5,087,904 | ) | |
+$ | (12,415,934 | ) | |
+$ | (7,912,560 | ) | |
+$ | (26,061,312 | ) |
+
+
+
+
+
+
+Statement Regarding Unaudited Financial and
+Operational Information
+
+
+
+
+
+The unaudited financial and operational information
+included in this press release is subject to potential adjustments and is based on the information available to management at this time.
+Potential adjustments to operational and consolidated financial information may be identified from work performed during Webull&rsquo;s
+preparation of financial statements subsequent hereto or its year-end audit. Information may also be presented differently from the information
+included herein in the future. This could result in significant differences from the unaudited or other historical operational and financial
+information included herein.
+
+
+
+
+
+Cautionary
+Note Regarding Forward-Looking Statements
+
+
+
+
+
+
+This press release includes &ldquo;forward-looking
+statements&rdquo; within the meaning of the &ldquo;safe harbor&rdquo; provisions of the United States Private Securities Litigation Reform
+Act of 1995. All statements other than statements of historical fact contained in this press release or other statements of the Company
+made in connection herewith, including, for instance, statements as to business strategy and plans, future results of operations and financial
+position, planned products and services, objectives of management for future operations or strategies of the Company, market size and
+growth opportunities, competitive position and technological and market trends, are forward-looking statements. Some of these forward-looking
+statements can be identified by the use of forward-looking words, including &ldquo;anticipate,&rdquo; &ldquo;expect,&rdquo; &ldquo;suggests,&rdquo;
+&ldquo;plan,&rdquo; &ldquo;believe,&rdquo; &ldquo;predict,&rdquo; &ldquo;potential,&rdquo; &ldquo;seek,&rdquo; &ldquo;future,&rdquo; &ldquo;propose,&rdquo;
+&ldquo;continue,&rdquo; &ldquo;intend,&rdquo; &ldquo;estimates,&rdquo; &ldquo;targets,&rdquo; &ldquo;projects,&rdquo; &ldquo;should,&rdquo;
+&ldquo;could,&rdquo; &ldquo;would,&rdquo; &ldquo;may,&rdquo; &ldquo;will,&rdquo; &ldquo;forecast&rdquo; or the negatives of these terms
+or variations of them or similar terminology although not all forward-looking statements contain such terminology.
+
+
+
+
+
+
+
+
+
+8
+
+
+
+
+
+
+
+
+
+
+All forward-looking statements are based upon
+current estimates and forecasts and reflect the reasonable views, assumptions, expectations, and opinions of the Company and its management
+as of the date of this press release, and are therefore subject to a number of factors, risks and uncertainties, some of which are not
+currently known to the Company and its management and could cause actual results to differ materially from those expressed or implied
+by such forward-looking statements. Some of these factors include, but are not limited to: (1) the ability of the Company to grow and
+manage growth profitably, maintain relationships and deepen engagement with users, customers and suppliers, and retain its management
+and key employees; (2) the reliance of key functions of the Company&rsquo;s business on third-parties and the risk that the Company&rsquo;s
+platform and systems rely on software and applications that are highly technical and may contain undetected errors that could result in
+unexpected network interruptions, failures, security breaches, or computer virus attacks; (3) the risks associated with the Company&rsquo;s
+global operations and continued global expansion, including, but not limited to, the risks related to complex or constantly evolving political
+or regulatory environments that may result in substantial costs or require adverse changes to the Company&rsquo;s business practices;
+(4) the Company&rsquo;s estimates of expenses and costs, of profitability or of other operational and financial metrics as well as the
+Company&rsquo;s expectations regarding demand for and market acceptance of its products and service; (5) the Company&rsquo;s reliance
+on trading related income, including payment for order flow (&ldquo;PFOF&rdquo;), and the risk of new regulation or bans on PFOF and similar
+practices; (6) the Company&rsquo;s exposure to fluctuations in interest rates, rapidly changing interest rate environments, volatile prices
+of securities and digital assets and their respective trading volumes; (7) the Company&rsquo;s reliance on a limited number of market
+makers and liquidity providers to generate a large portion of its revenues, and the negative impact of the loss of any of those market
+makers or liquidity providers; (8) the effects of competition in the Company&rsquo;s industry and the Company&rsquo;s need to constantly
+innovate and invest in new markets, products, technologies or services to retain, attract and deepen engagement with users; (9) changes
+in international trade policies and trade disputes that could result in tariffs, taxes or other protectionist measures adversely affecting
+our business; (10) risks related to general political, economic and business conditions globally and in jurisdictions where the Company
+operates; (11) risk of further actions taken by various government bodies in the United States that have made the Company the subject
+of inquiries and investigations relating to concerns about our connections to China; (12) the risk that the failure to protect customer
+data and privacy or to prevent security breaches relating to the Company&rsquo;s platform could result in economic loss, damage to its
+reputation, deter customers from using its products and services, and expose it to legal penalties and liability; (13) the risks associated
+with incorporating artificial intelligence technologies into certain of our products and processes, including potential regulatory, operational,
+reputational, or compliance challenges; (14) risks related to the Company&rsquo;s need as a regulated financial services company to develop
+and maintain effective compliance and risk management infrastructures as well as to maintain capital levels required by regulators and
+self-regulatory organizations; (15) the ability to meet, or continue to meet, stock exchange listing standards; (16) the possibility of
+adverse developments in pending or new litigation and regulatory investigations; (17) risks relating to our offering of event contracts
+or prediction market products in the United States, including potential changes in regulatory interpretations or enforcement priorities;
+(18) risks related to significant disruptions in the cryptocurrency market that negatively impacts user engagement with cryptocurrency
+trading on our platform; (19) political, regulatory or economic changes that affect cryptocurrencies, including changes in the governance
+of a cryptocurrency; (20) risks related to the offer and resale of our securities, such as dilution from the issuance of additional Class
+A ordinary shares upon the exercise of warrants, and increased volatility, or significant declines, in the price of our securities based
+on increased trading activity and the perception that sales of our securities may occur; (21) risks relating to the Company&rsquo;s share
+repurchase program under which the Company may repurchase up to $100 million of its Class A ordinary shares, including that the program
+may be suspended, modified or discontinued at any time, and that the actual amount, timing and manner of any repurchases will depend on
+market conditions, share price, applicable legal requirements, contractual restrictions and other factors; and (22) other risks and uncertainties
+that are more fully described in filings made, or to be made, by the Company with the SEC, including in the sections entitled &ldquo;Risk
+Factors&rdquo; and &ldquo;Cautionary Note Regarding Forward-Looking Statements&rdquo; in the Company&rsquo;s filings with the SEC, such
+as the Company&rsquo;s Annual Report on Form 20-F filed with the SEC on April 9, 2026. The foregoing list of factors is not exhaustive.
+Reported results should not be considered an indication of future performance. There may be additional risks that the Company and its
+management presently do not know about or that the Company and its management currently believe are immaterial that could also cause actual
+results to differ materially from those contained in the forward-looking statements. In light of these factors, risks and uncertainties,
+the forward-looking events and circumstances discussed in this press release may not occur, and any estimates, assumptions, expectations,
+forecasts, views or opinions set forth in this press release should be regarded as preliminary and for illustrative purposes only and
+accordingly, undue reliance should not be placed upon the forward-looking statements. The Company assumes no obligation and does not intend
+to update or revise these forward-looking statements, whether as a result of new information, future events, or otherwise, except as required
+by law.
+
+
+
+
+
+
+
+
+
+9

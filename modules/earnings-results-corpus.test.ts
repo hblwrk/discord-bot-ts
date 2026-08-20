@@ -1452,6 +1452,56 @@ const filingCorpus: {
     source: "60667/000006066726000113/exhibit991-07312026.htm",
     ticker: "low",
   },
+  {
+    // The title puts the fiscal year after "Fourth Quarter and Fiscal Year", while Q1 FY27
+    // appears in guidance below. The statement also lists bespoke subscription/transaction
+    // and float components before authoritative total revenue.
+    company: "BILL Holdings",
+    metrics: [
+      ["adjusted_eps", "$0.84"],
+      ["gaap_eps", "-$0.19"],
+      ["revenue", "$436.19M"],
+      ["net_income", "-$18.48M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q4 2026",
+    source: "1786352/000162828026057932/bill-20260630xexx991.htm",
+    ticker: "bill",
+  },
+  {
+    // This foreign issuer's ordinary shares are listed directly rather than represented by
+    // ADSs. Its diluted EPS, consolidated revenue, and attributable net income are valid
+    // control figures and must remain unchanged by the adjacent parser fixes.
+    company: "Webull Corporation",
+    metrics: [
+      ["gaap_eps", "$0.04"],
+      ["revenue", "$198.8M"],
+      ["net_income", "$24.36M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1866364/000121390026091702/ea030257601ex99-1.htm",
+    ticker: "bull",
+  },
+  {
+    // The reconciliation gives adjusted EPS only through Reported/Adjustments/Adjusted
+    // columns; the prose below states a $0.02 headwind, not positive adjusted EPS. Guidance
+    // uses compact "1Q27" before comparing against the second half of FY26.
+    company: "Coty",
+    metrics: [
+      ["adjusted_eps", "-$0.02"],
+      ["gaap_eps", "-$0.16"],
+      ["revenue", "$1.27B"],
+      ["net_income", "-$141M"],
+    ],
+    outlook: [
+      ["Q1 Adj EPS", "$0.11 to $0.13"],
+      ["FY2027 Free cash flow", "$300M"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "1024305/000102430526000045/exhibit991-earningsrelease.htm",
+    ticker: "coty",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1472,6 +1522,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(92);
+    expect(filingCorpus).toHaveLength(95);
   });
 });

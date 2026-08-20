@@ -1,0 +1,1272 @@
+EX-99.1
+2
+exhibit991-earningsrelease.htm
+EX-99.1
+
+
+
+
+Document
+
+
+COTY ANNOUNCES FOURTH QUARTER FISCAL YEAR 2026 RESULTS
+
+
+Q4 Results Ahead of Expectations, Including Sales Growth of 1%
+Growth in FY26 Operating Cash Flow to $538 million and Free Cash Flow to $348 million, Despite Lower Profit
+Coty.Curated Sets Clear Strategic Framework to Strengthen Business Fundamentals
+
+NEW YORK -- August 19, 2026 -- Coty Inc. (NYSE: COTY) (Paris: COTY) ("Coty" or "the Company") today announced its results for the fourth quarter of fiscal year 2026, ended June 30, 2026. Coty delivered Q4 and FY26 sales, profit, and cash flow ahead of expectations, supported by cost control and the convergence of sales and sell-out.
+
+
+"We closed FY26 on a stronger note, delivering sales and profit ahead of our targets, growing free cash flow even in the face of business headwinds, all while establishing a clear strategic framework and taking decisive action to steadily strengthen our core business in FY27 and beyond," said Markus Strobel, Executive Chairman and Interim Chief Executive Officer.
+
+
+"We were pleased to return to reported sales growth, with Q4 sales up 1% year-over-year and a significant sequential improvement in our like-for-like (LFL) trends to down 1%, despite incurring an estimated 1% headwind to sales from the Middle East conflict. It's encouraging to see closer alignment between our sell-in and sell-out. However, we are not content with our sell-out performance, which remains below market levels in both divisions, and steadily closing that gap remains a clear priority across the organization.
+
+
+"Our Coty.Curated strategic framework has entered the execution phase, with tangible actions already taken and further progress ahead. We began rightsizing our commercial organization and Consumer Beauty R&D and global brand marketing functions to enhance agility and accountability. We have also incorporated concrete market share targets into our global incentive program. Our FY27 big bets have been identified, and we will support them with amplified advocacy and consumer engagement programs, while also optimizing the visibility and recommendation of our brands across AI platforms. In Consumer Beauty color cosmetics, we are simplifying the innovation calendar and SKU base, and shifting resources toward fewer, higher-impact launches and proven hero products. We will execute these actions with discipline to minimize the impact on sales.
+
+
+"Over the last three quarters, we have advanced our strategic objectives of simplifying our portfolio, sharpening our focus on the core of our business, and reducing our debt balance. In December 2025, we monetized our remaining stake in Wella for $750 million. In July 2026, we announced an agreement to sell the Gucci Beauty license back to Kering approximately one year ahead of its expiration for $400 million, plus additional proceeds from inventory. These favorable outcomes are fully consistent with our objectives, as we deploy the proceeds toward debt reduction, reinvestment in Coty's core prestige fragrance and beauty brands, and optimization of our organizational structure.
+
+
+"While the Gucci Beauty license exit will result in a step-down in sales and profit in FY28, we are developing plans to help moderate the impact. These plans include accelerating our core brands; maximizing the contribution from new portfolio additions, including makeup under Marc Jacobs Beauty and fragrances under Swarovski, Etro, and Marni; and lowering our cost structure through a significant fixed cost reduction program. These actions are designed to mitigate the FY28 impact and position Coty to accelerate growth across our core portfolio and drive profit expansion in FY29 and beyond.
+
+
+"In sum, our Q4 results provide early signs of stabilization, although the recovery will not be linear. FY27 will be a transition year as we strengthen our core business and continue shaping a simpler, more focused Coty, factoring in both the Gucci exit by FY28 and final portfolio decisions related to our strategic review of Consumer Beauty by the end of CY26. We have important strengths to build on, including leading brands, strong category positions, solid cash generation, and a differentiated end-to-end global platform. We are confident that our focused Coty.Curated framework will unlock Coty's significant potential and steadily translate into shareholder value in the years ahead."
+
+
+
+
+1
+
+
+
+
+
+
+RESULTS AT A GLANCE
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, 2026 | Year Ended June 30, 2026 |
+(in millions, except per share data) | | | | Change YoY | | | Change YoY |
+COTY INC. | | | | Reported Basis | | (LFL)(a)
+| | | Reported Basis | | (LFL)(a)
+|
+Net revenues | | $ | 1,269.2 | | | 1 | % | | (1 | %) | $ | 5,806.6 | | | (2 | %) | | (5 | %) |
+Gross Margin - reported | | 61 | % | | | | | 63 | % | | | | |
+Gross Margin - adjusted* | | 61 | % | | | | | 63 | % | | | | |
+Operating income - reported | | (42.7) | | | | | (81.5) | | | | |
+Net loss attributable to common shareholders - reported** | | (144.3) | | | | | (618.0) | | | (62 | %) | | |
+Operating income - adjusted* | | 39.5 | | | (42 | %) | | | 626.7 | | | (27) | % | | |
+| | | | | | | | | | | |
+Net (loss) income attributable to common shareholders - adjusted* ** | | (13.4) | | | 70 | % | | | 185.1 | | | (2) | % | | |
+EBITDA - adjusted | | 93.6 | | | (26 | %) | | | 846.9 | | | (22) | % | | |
+EPS attributable to common shareholders (diluted) - reported | | $ | (0.16) | | | (100 | %) | | | $ | (0.70) | | | (59 | %) | | |
+EPS attributable to common shareholders (diluted) - adjusted* | | $ | (0.02) | | | 60 | % | | | $ | 0.21 | | | (5) | % | | |
+Cash flow from operations | | 116.0 | | | | | | 537.8 | | | | | |
+Free cash flow* | | 72.6 | | | | | | 348.2 | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+
+(a) LFL results for the three months ended and year ended June 30, 2026 include immaterial help, respectively from Argentina resulting from significant price increases due to hyperinflation.
+* These measures, as well as “free cash flow,” “adjusted earnings before interest, taxes, depreciation and amortization (adjusted EBITDA),” and “financial net debt,” are Non-GAAP Financial Measures. Refer to “Non-GAAP Financial Measures” for discussion of these measures. Reconciliations from reported to adjusted results can be found at the end of this release.
+** Net income for Coty Inc. is net of the Convertible Series B Preferred Stock dividends.
+
+
+
+
+Three Months Ended June 30, 2026, Summary Results
+
+
+For the three months ended June 30, 2026, compared to the three months ended June 30, 2025:
+
+
+•Net revenues of $1,269.2 million increased 1% on a reported basis and included a 3% benefit from foreign exchange (FX). On a LFL basis, net revenues declined 1%, which included an estimated 1% headwind from the conflict in the Middle East.
+
+
+•Prestige net revenues of $771.8 million, representing 61% of the Company's total sales, increased 1% on a reported basis and included a 2% benefit from FX. On a LFL basis, Prestige net revenues declined 0.5%, which included an estimated 1.5% headwind from the conflict in the Middle East.
+
+
+•Consumer Beauty net revenues of $497.4 million, representing 39% of the Company's total sales, increased 1% on a reported basis and included a 4% benefit from FX. On a LFL basis, Consumer Beauty net revenues declined 3%, which included an estimated 1% headwind from the conflict in the Middle East.
+
+
+•Reported gross margin of 60.9% decreased 140 basis points year-over-year, driven by lower cost absorption due to reduced volumes, elevated excess and obsolescence charges in both divisions and the impact from tariffs. Adjusted gross margin of 60.9% decreased 140 basis points year-over-year.
+
+
+•Reported operating loss of $42.7 million deteriorated from reported operating income of $15.5 million in the prior year. Reported operating loss margin of 3.4% compared to reported operating margin of 1.2% in the prior year. Adjusted operating income of $39.5 million decreased from $67.7 million in the prior year. Adjusted operating margin of 3.1% contracted by 230 basis points year-over-year.
+
+
+•Reported net loss of $144.3 million compared to reported net loss of $72.1 million in the prior year. Reported net loss margin of 11.4% compared to reported net loss margin of 5.8% in the prior year. Adjusted net loss of $13.4 million improved from adjusted net loss of $44.9 million in the prior year.
+2
+
+
+
+
+
+
+Adjusted net loss margin of 1.1% compared to adjusted net loss margin of 3.6% in the prior year. Reported and adjusted net loss included a $10.0 million negative impact from the mark-to-market on the equity swap, compared to a $59.6 million negative impact from the mark-to-market on the equity swap in the prior year quarter.
+
+
+•Adjusted EBITDA of $93.6 million decreased 26% from $126.7 million in the prior year primarily reflecting lower gross profit. Adjusted EBITDA margin of 7.4% decreased by 270 basis points.
+
+
+•Reported loss per share of $0.16 compared to reported loss per share of $0.08 in the prior year. Adjusted loss per share of $0.02 improved from adjusted loss per share of $0.05 in the prior year. Reported and adjusted loss per share included a $0.02 negative impact from the mark-to-market on the equity swap, compared to a $0.07 negative impact from the mark-to-market on the equity swap in the prior year quarter.
+
+
+•Cash flow from operating activities of $116.0 million compared to $83.2 million in the prior year period. Free cash flow totaled $72.6 million, compared to $34.9 million in the prior year period.
+
+
+•Total debt of $3,088.2 million as of June 30, 2026 decreased from $3,216.2 million as of March 31, 2026, yielding a total debt to net loss ratio of 5.2x. Financial net debt of $2,912.1 million as of June 30, 2026 decreased from $2,959.1 million as of March 31, 2026, resulting in a financial leverage ratio (net debt to adjusted EBITDA) of 3.4x.
+
+
+
+
+Twelve Months Ended June 30, 2026, Summary Results
+
+
+For the twelve months ended June 30, 2026, compared to the twelve months ended June 30, 2025:
+
+
+•Net revenues of $5,806.6 million decreased 2% and included a 4% benefit from FX. On a LFL basis, net revenues decreased 5%.
+
+
+•Prestige net revenues of $3,805.8 million, representing 66% of the Company's total sales, decreased slightly on a reported basis and decreased 4% on a LFL basis.
+
+
+•Consumer Beauty net revenues of $2,000.8 million, representing 34% of the Company's total sales, decreased 3% on a reported basis and 7% on a LFL basis.
+
+
+•Reported gross margin of 62.9% decreased 190 basis points year-over-year, reflecting supply chain cost under-absorption due to lower sales, particularly in Consumer Beauty; the impact from tariffs; a more promotional environment in the first half of the year; and elevated excess and obsolescence charges. Adjusted gross margin of 63.0% decreased 190 basis points year-over-year.
+
+
+•Reported operating loss of $81.5 million compared to reported operating income of $241.1 million in the prior year. Reported operating loss margin of 1.4% declined from reported operating margin of 4.1% in the prior year. Adjusted operating income of $626.7 million declined 27% from $852.9 million in the prior year. Adjusted operating margin of 10.8% reflected a 370 basis point decline.
+
+
+•Reported net loss of $618.0 million compared to reported net loss of $381.1 million in the prior year. Reported net loss margin of 10.6% deteriorated from reported net loss margin of 6.5% in the prior year. Adjusted net income of $185.1 million decreased slightly from $188.8 million in the prior year. Adjusted net income margin of 3.2% was flat year-over-year. Reported net loss and adjusted net income included a
+3
+
+
+
+
+
+
+$115.8 million negative impact from the mark-to-market on the equity swap, compared to a $248.1 million negative impact from the mark-to-market on the equity swap in the prior year.
+
+
+•Adjusted EBITDA of $846.9 million decreased 22% year-over-year from $1,081.7 million primarily driven by lower sales and gross profit. Adjusted EBITDA margin of 14.6% reflected a 380 basis point decline.
+
+
+•Reported loss per share of $0.70 compared to reported loss per share of $0.44 in the prior year. Adjusted earnings per share (EPS) of $0.21 compared to $0.22 in the prior year. Reported loss per share and adjusted EPS included a $0.13 negative impact from the mark-to-market on the equity swap, compared to an $0.28 negative impact from the mark-to-market on the equity swap in the prior year.
+
+
+•Cash flow from operating activities of $537.8 million compared to $492.6 million in the prior year period. Free cash flow totaled $348.2 million, compared to $277.6 million in the prior year period.
+
+
+
+
+Noteworthy Developments
+
+
+•Coty announced an agreement with Kering for the early transition of the Gucci Beauty license. As part of the agreement, Coty received $250 million in cash at signing and will receive an additional $150 million no later than September 30, 2027, of which up to $30 million is contingent on certain criteria. Coty has also agreed to sell to Kering an amount of Gucci Beauty inventory sufficient to support the transition. Under the terms of the agreement, Coty will continue to operate the Gucci Beauty brand through at least June 30, 2027, ending the license approximately one year ahead of the original license term.
+•Coty continues to implement its Coty.Curated framework to support sharper focus and stronger execution
+across the portfolio.
+•Coty's Prestige strategy continues to be anchored by key brands such as Burberry, Hugo Boss, Calvin
+Klein, Marc Jacobs, Chloé, Davidoff, and Kylie Cosmetics. Major FY26 launches continued to perform well, including BOSS Bottled Beyond, Cosmic by Kylie Jenner Intense, and Calvin Klein Euphoria Elixirs.
+•Coty's online launch of makeup under Marc Jacobs Beauty is off to a strong start, with an exceptional consumer response and online sell-out at Sephora ahead of targets.
+•Coty continues to see early progress in Consumer Beauty, with sell-out performance in the U.S. improving for CoverGirl and Sally Hansen. In the U.S., Sally Hansen is now outperforming the category in units, while CoverGirl has narrowed the gap versus the category significantly in both value and units.
+
+
+
+
+Pipeline for FY27 and Beyond
+
+
+Prestige Plans
+•Building on the success of BOSS Bottled Beyond with the FY27 launch of BOSS Bottled Beyond for Her, designed to extend the franchise into the female fragrance segment and support the core franchise
+•Strengthening the iconic Burberry Goddess franchise following the recent launch of Goddess Amber Vanilla, as well as relaunching a brand new, impactful campaign and incremental innovation behind one of Burberry's core franchises
+•Expanding Marc Jacobs Beauty makeup beyond online distribution into hundreds of Sephora stores across the U.S. and in Travel Retail beginning in September
+•Building on Kylie Cosmetics' strong multi-category growth through the launch of the Mood Stones fragrance collection and new lip kits
+•Elevating Calvin Klein fragrances by amplifying the Euphoria Elixirs launch and leaning into renewed interest in 1990s nostalgia, leveraging CK One's position as one of the era's defining fragrances
+•Advancing additional key launches across several core brands, alongside the planned debut of Etro fragrances in the second half of FY27 and Swarovski fragrances in CY27
+4
+
+
+
+
+
+
+
+
+Consumer Beauty Plans
+•Advancing Color the Future through fewer, higher-impact launches in FY27 including CoverGirl's TruBlend Sun & Sculpt Bronzing Glow Serum, Rimmel's Oh My Gloss! Slip Stick, Max Factor's Lasting Blur and Sally Hansen's Miracle Gel and INSTA-DRI seasonal shade stories
+•Introducing Future of Scenting to sharpen focus across the mass-fragrance portfolio and drive more consistent performance, including continuing to scale adidas fragrances globally
+
+
+
+
+Outlook
+Consumer demand for beauty remains resilient, with continued growth in fragrances and cosmetics, although consumers are becoming increasingly selective in their purchasing decisions. Coty continues to advance its Coty.Curated strategic framework, focusing on core brands and markets, reducing portfolio complexity, increasing agility through organizational simplification, and identifying savings opportunities across the P&L to support increased investment in consumer engagement while also protecting profitability.
+Coty expects 1Q27 LFL revenue to decline by a low- to mid-single-digit percentage. While sell-out trends for both divisions are expected to be broadly consistent with the trends in the second half of FY26, the timing of customer orders and prior year comparisons are expected to contribute to fluctuations in year-over-year sales trends. On a reported basis, Coty expects FX to have a neutral impact on revenue in the quarter.
+Adjusted gross margin in 1Q27 is expected to decline by approximately 50 to 100 basis points year-over-year, reflecting cost absorption headwinds from lower shipments, partially offset by productivity initiatives and procurement actions. Coty anticipates 1Q27 adjusted EBITDA to decline by a low-teens percentage, representing a sequential improvement from the more significant declines in the second half of FY26. This is expected to result in adjusted EPS, excluding the equity swap, of $0.11 to $0.13 per share.
+Supported by the seasonally strong business dynamics in the first half, as well as continued disciplined capital expenditure and working capital management, Coty expects free cash flow for the first half of FY27 of over $300 million.
+FY27 is expected to be a transition year as Coty completes its strategic review and advances the early-stage implementation of Coty.Curated. Accordingly, at this stage Coty is providing guidance for Q1 and visibility into first-half free cash flow. Coty's Q1 EBITDA outlook reflects sequential improvement from year-over-year trends in the second half of FY26. The Company expects performance to strengthen progressively throughout FY27, supported by innovation, disciplined execution, cost savings, and strong cash flow generation. Overall, year-over-year EBITDA trends are expected to improve over the course of FY27, supported by ongoing productivity initiatives and cost discipline. Following the expected completion of the Company's strategic review by the end of CY26, and as implementation of Coty.Curated progresses, Coty expects to provide a broader outlook supported by greater visibility into Coty's growth and profitability trajectory.
+5
+
+
+
+
+
+
+
+Fourth Quarter Fiscal 2026 Business Review by Segment
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Year ended June 30, |
+(in millions) | | 2026 | | 2025 | | Change YoY | | LFL(a) Change YoY
+| | Margin (b)
+| | 2026 | | 2025 | | Change YoY | | LFL(a) Change YoY
+| | Margin (b)
+|
+Net Revenue: | | | | | | | | | | | | | | | | | | | | |
+Prestige | | $ | 771.8 | | | $ | 760.6 | | | 1 | % | | (0.5 | %) | | | | $ | 3,805.8 | | | $ | 3,820.2 | | | 0 | % | | (4 | %) | | |
+Consumer Beauty | | 497.4 | | | 491.8 | | | 1 | % | | (3 | %) | | | | 2,000.8 | | | 2,072.7 | | | (3 | %) | | (7 | %) | | |
+Total Net Revenue | | $ | 1,269.2 | | | $ | 1,252.4 | | | 1 | % | | (1 | %) | | | | $ | 5,806.6 | | | $ | 5,892.9 | | | (2 | %) | | (5 | %) | | |
+| | | | | | | | | | | | | | | | | | | | |
+Reported Operating Income (Loss): | | | | | | | | | | | | | | | | | | | | |
+Prestige | | $ | (4.7) | | | $ | 38.1 | | | | | | (0.6) | % | | $ | 444.5 | | | $ | 580.6 | | | (23 | %) | | | | 11.7 | % |
+Consumer Beauty | | (29.9) | | | (16.0) | | | (87 | %) | | | | (6.0) | % | | (442.6) | | | (127.4) | | | | | | (22.1) | % |
+Corporate | | (8.1) | | | (6.6) | | | (23 | %) | | | | N/A | | (83.4) | | | (212.1) | | | 61 | % | | | | N/A |
+Total Reported Operating (Loss) Income | | $ | (42.7) | | | $ | 15.5 | | | | | | (3.4) | % | | $ | (81.5) | | | $ | 241.1 | | | | | | (1.4) | % |
+| | | | | | | | | | | | | | | | | | | | |
+Adjusted Operating Income (Loss): | | | | | | | | | | | | | | | | | | | | |
+Prestige | | $ | 60.2 | | | $ | 74.7 | | | (19 | %) | | | | 7.8 | % | | 669.9 | | | $ | 773.2 | | | (13 | %) | | | | 17.6 | % |
+Consumer Beauty | | (20.7) | | | (7.0) | | | | | | (4.2) | % | | (43.2) | | | 79.7 | | | | | | (2.2) | % |
+Total Adjusted Operating Income | | $ | 39.5 | | | $ | 67.7 | | | (42 | %) | | | | 3.1 | % | | $ | 626.7 | | | $ | 852.9 | | | (27 | %) | | | | 10.8 | % |
+| | | | | | | | | | | | | | | | | | | | |
+Adjusted EBITDA: | | | | | | | | | | | | | | | | | | | | |
+Prestige | | $ | 85.8 | | | $ | 102.9 | | | (17 | %) | | | | 11.1 | % | | $ | 779.1 | | | $ | 884.6 | | | (12 | %) | | | | 20.5 | % |
+Consumer Beauty | | 7.8 | | | 23.8 | | | (67 | %) | | | | 1.6 | % | | 67.8 | | | 197.1 | | | (66 | %) | | | | 3.4 | % |
+Total Adjusted EBITDA | | $ | 93.6 | | | $ | 126.7 | | | (26 | %) | | | | 7.4 | % | | $ | 846.9 | | | $ | 1,081.7 | | | (22 | %) | | | | 14.6 | % |
+
+(a) Consolidated, Prestige, and Consumer Beauty LFL results for the three months and year ended June 30, 2026 include immaterial help from Argentina resulting from significant price increases due to hyperinflation.
+(b) The margin of each of the items included for each segment is calculated as a percentage of the divisional net revenues.
+
+
+Prestige
+•Reported net revenues in the fourth quarter increased by $11.2 million year-over-year, primarily driven by an increase in Prestige cosmetics and fragrance sales, partially offset by lower skincare sales.
+•Reported operating loss in the fourth quarter represented a year-over-year deterioration from reported operating income in the prior-year period, primarily due to top-line pressure from lower fragrance shipments, gross margin pressure from higher tariff costs and the resulting cost of goods sold (COGS) absorption headwinds from lower shipment volumes, and higher fixed costs compared to a prior year period that benefited from lower variable compensation.
+
+
+Consumer Beauty
+•Reported net revenues in the fourth quarter increased by $5.6 million year-over-year, primarily driven by an increase in mass body and skincare sales, partially offset by lower mass color cosmetics sales.
+•Reported operating loss in the fourth quarter widened year-over-year, primarily reflecting supply chain cost under-absorption from lower sales, increased excess and obsolescence, and higher tariff-related costs.
+
+
+
+
+6
+
+
+
+
+
+
+Fourth Quarter Fiscal 2026 Business Review by Region
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, | | Year Ended June 30, | | | | | | | | |
+| | Net Revenues | | Change | | Net Revenues | | Change | | | | |
+(in millions) | | 2026 | | 2025 | | Reported Basis | | LFL(a)
+| | 2026 | | 2025 | | Reported Basis | | LFL(a)
+| | | | | | | | |
+Americas | | $ | 554.7 | | | $ | 511.2 | | | 9 | % | | 6 | % | | $ | 2,339.2 | | | $ | 2,373.0 | | | (1) | % | | (3) | % | | | | | | | | |
+EMEA | | 528.9 | | | 574.2 | | | (8) | % | | (10) | % | | 2,745.5 | | | 2,811.8 | | | (2) | % | | (8) | % | | | | | | | | |
+Asia Pacific | | 185.6 | | | 167.0 | | | 11 | % | | 7 | % | | 721.9 | | | 708.1 | | | 2 | % | | — | % | | | | | | | | |
+Total | | $ | 1,269.2 | | | $ | 1,252.4 | | | 1 | % | | (1) | % | | $ | 5,806.6 | | | $ | 5,892.9 | | | (2) | % | | (5) | % | | | | | | | | |
+
+(a) Americas LFL results for the three months ended and year ended June 30, 2026 include immaterial help, respectively from Argentina resulting from significant price increases due to hyperinflation.
+
+
+Americas
+•Reported net revenues in the fourth quarter increased by $43.5 million year-over-year, primarily driven by higher sales in the U.S., Brazil, and the regional Travel Retail channel, partially offset by lower sales in Canada.
+
+
+EMEA
+•Reported net revenues in the fourth quarter decreased by $45.3 million year-over-year, primarily driven by lower sales in the Middle East, Germany, and Central and Eastern Europe.
+
+
+Asia Pacific
+•Reported net revenues in the fourth quarter increased by $18.6 million year-over-year, primarily driven by higher sales in China, Southeast Asia, Australia and New Zealand, and the regional Travel Retail channel.
+
+
+
+
+
+Conference Call
+Coty Inc. will issue pre-recorded remarks on August 19, 2026, at approximately 4:45 PM (ET) / 10:45 PM (CET) and will hold a live question-and-answer session on August 20, 2026, beginning at 8:00 AM (ET) / 2:00 PM (CET). The pre-recorded remarks and live question-and-answer session will be available at http://investors.coty.com. The dial-in number for the live question-and-answer session is 1-800-343-5172 in the U.S. or 1-203-518-9856 internationally (conference passcode: COTY4Q26).
+
+
+For more information:
+Investor Relations
+Olga Levinzon, +1 212 389-7733
+olga_levinzon@cotyinc.com
+
+
+Media
+Antonia Werther, +31 621 394495
+antonia_werther@cotyinc.com
+
+
+About Coty Inc.
+Founded in Paris in 1904, Coty is one of the world's largest beauty companies with a portfolio of iconic brands
+across fragrance, color cosmetics, and skin and body care. Coty serves consumers around the world, selling
+prestige and mass market products in over 120 countries and territories. Coty and our brands empower people to
+express themselves freely, creating their own visions of beauty; and we are committed to protecting the planet.
+Learn more at coty.com or on LinkedIn and Instagram.
+7
+
+
+
+
+
+
+
+
+8
+
+
+
+
+
+
+
+Forward Looking Statements
+Certain statements in this Earnings Release are “forward-looking statements” within the meaning of the Private Securities Litigation Reform Act of 1995. These forward-looking statements reflect the Company's current views with respect to, among other things, strategic planning, targets and outlook for future reporting periods (including the extent and timing of revenue, expense and profit trends and changes in operating cash flows and cash flows from operating activities and investing activities, as well as the Company's expectations for the timing, scope and impact of the exit from the Gucci Beauty license), the Company's future operations and strategy (including the ongoing refinement and implementation and related impact of its global business strategies), the Company's plans to evaluate its central organization, manufacturing and asset base, and certain market structures to adjust its scope and size for its future business, the Company's ongoing and future cost efficiency, optimization and restructuring initiatives and programs (including plans to develop a significant fixed-cost savings plan in connection with the exit from the Gucci Beauty license), the ongoing strategic review of the Company's consumer beauty business, including its mass color cosmetics business and associated brands and the Company's distinct Brazil business comprised of local Brazilian brands, the timing and outcome of such strategic review and any transactions related thereto and use of proceeds of any such transactions, expectations and/or plans with respect to joint ventures (including the timing and size of any distribution related to the Wella distribution rights), the Company's capital allocation strategy and payment of dividends (including suspension of dividend payments and the duration thereof and any plans to resume cash dividends on common stock or to continue to pay dividends in cash on preferred stock) and expectations for stock repurchases or investments, expectations with respect to licenses and/or portfolio changes, product launches, relaunches or rebranding (including the expected timing or impact thereof), plans for strengthening presence in certain categories, markets and channels, expectations for the impact, cost, timing and outcome of any future divestitures, expectations for synergies, savings, performance, cost, timing and integration of any future acquisitions, expectations for future cash flows, liquidity and borrowing capacity (including any refinancing or deleveraging activities), timing and size of cash outflows and debt deleveraging, the timing and magnitude of any "true-up" payments in connection with our forward repurchase contracts and plans for the settlement of such contracts, the timing and extent of any future impairments, expected synergies, savings, impact, cost and timing of the Company’s ongoing refinement and implementation of its global business strategies (including operational and organizational structure changes, operational execution and simplification initiatives, fixed cost reduction plans, continued process improvements and supply chain changes), the expected impact of geopolitical risks including the ongoing war in Ukraine and/or war in the Middle East on our business operations, sales outlook and strategy, expectations regarding the impact of tariffs (including magnitude, scope and timing) and plans to manage such impact, expectations of the impact of inflationary pressures and the timing, magnitude and impact of pricing actions to offset inflationary costs, expectations regarding economic conditions in Asia, consumer purchasing trends including in travel retail channels in the region and the related impact on sales, the expected impact of global supply chain challenges and/or inflationary pressures (including as a result of the war in Ukraine and/or the war in the Middle East (including the expected impact of elevated Brent crude oil prices), or due to a change in tariffs or trade policy impacting raw materials), and expectations regarding future service levels, inventory levels and excess and obsolescence trends (including as a result of our Coty.Curated framework), the expected impact, cost, timing and implementation of e-commerce and digital initiatives, expectations regarding the expanded use of artificial intelligence and advanced analytics in the Company's operations and the timing and impact thereof, the expected impact, cost, timing and implementation of sustainability initiatives (including progress, plans and goals), and the priorities of senior management. These forward-looking statements are generally identified by words or phrases, such as “anticipate”, “are going to”, “estimate”, “plan”, “project”, “expect”, “believe”, “intend”, “foresee”, “forecast”, “will”, “may”, “should”, “outlook”, “continue”, “temporary”, “target”, “aim”, “potential”, “goal” and similar words or phrases. These statements are based on certain assumptions and estimates that we consider reasonable, but are subject to a number of risks and uncertainties, many of which are beyond our control, which could cause actual events or results (including our financial condition, results of operations, cash flows and prospects) to differ materially from such statements, including risks and uncertainties relating to:
+•the Company's ability to successfully implement its strategic priorities (including leveraging its leadership position and capabilities in global fragrances to fuel expansion and strengthen its presence in a limited number of structurally profitable and growing beauty categories and geographic markets at scale), achieve the benefits contemplated by its long-term objectives (including value creation, growth, profitability and debt deleveraging), and compete effectively in the beauty industry, in each case within the expected time frame or at all;
+•the Company's ability to anticipate, gauge and respond to market trends and consumer preferences, which may change rapidly, and the market acceptance of new products, including new products related to the Company's prestige fragrance and prestige cosmetics portfolios, any relaunched or rebranded products and the anticipated costs and discounting associated with such relaunches and rebrands, and consumer receptiveness to the Company's current and future marketing philosophy and consumer engagement activities (including digital marketing and media), and the Company's ability to effectively manage its production and inventory levels in response to demand;
+9
+
+
+
+
+
+
+•use of estimates and assumptions in preparing the Company's financial statements, including with regard to revenue recognition, income taxes (including the expected timing and amount of the release of any tax valuation allowance), the assessment of goodwill, other intangible and long-lived assets for impairments, and the market value of inventory;
+•the impact of any future impairments;
+•managerial, transformational, operational, regulatory, legal and financial risks, including diversion of management attention to and management of cash flows, expenses and costs associated with the Company's transformation agenda, the Company's global business strategies, the management of its strategic partnerships, and the strategic review of the Company's consumer beauty business, and future strategic initiatives, and, in particular, the Company's ability to manage and execute many initiatives simultaneously including any resulting complexity, employee attrition or diversion of resources;
+•the timing, costs and impacts of divestitures and the amount and use of proceeds from any such transactions;
+•future divestitures and the impact thereof on, and future acquisitions, new licenses and joint ventures and the integration thereof with, our business, operations, systems, financial data and culture and the ability to realize synergies, manage supply chain challenges and other business disruptions, reduce costs (including through the Company's cash efficiency initiatives), avoid liabilities and realize potential efficiencies and benefits (including through the Company's restructuring initiatives or current or future fixed-cost savings plans) at the levels and at the costs and within the time frames contemplated or at all;
+•increased competition, consolidation among retailers, shifts in consumers' preferred distribution and marketing channels (including to digital and prestige channels), distribution and shelf-space resets or reductions, compression of go-to-market cycles, changes in product and marketing requirements by retailers, reductions in retailer inventory levels and order lead-times or changes in purchasing patterns, impact from public health events on retail revenues, and other changes in the retail, e-commerce and wholesale environment in which the Company does business and sells its products and the Company's ability to respond to such changes (including its ability to expand its digital, direct-to-consumer and e-commerce capabilities within contemplated timeframes or at all);
+•the Company and its joint ventures', business partners' and licensors' abilities to obtain, maintain and protect the intellectual property used in its and their respective businesses, protect its and their respective reputations (including those of its and their executives or influencers), and public goodwill, and defend claims by third parties for infringement of intellectual property rights;
+•any change to the Company's capital allocation and/or cash management priorities, including any change in the Company's dividend policy and any change in the Company's stock repurchase plans;
+•any unanticipated problems, liabilities or integration or other challenges associated with a past or future acquired business, joint ventures or strategic partnerships which could result in increased risk or new, unanticipated or unknown liabilities, including with respect to environmental, competition and other regulatory, compliance or legal matters, and specifically in connection with its strategic partnerships, risks related to the entry into a new distribution channel, the potential for channel conflict, risks of retaining customers and key employees, difficulties of integration (or the risks associated with limiting integration) and management of the partnerships, the Company's relationships with its strategic partners, the Company's ability to protect trademarks and brand names, litigation, investigations by governmental authorities, and changes in law, regulations and policies that affect the business or products of its strategic partnerships, including the risk that direct selling laws and regulations may be modified, interpreted or enforced in a manner that results in a negative impact to the business model, revenue, sales force or business of any of its strategic partnerships;
+•the Company's international operations and joint ventures, including enforceability and effectiveness of its joint venture agreements and reputational, compliance, regulatory, economic and foreign political risks, including difficulties and costs associated with maintaining compliance with a broad variety of complex local and international regulations;
+•the Company's dependence on certain licenses (especially in the fragrance category) and the Company’s ability to renew expiring licenses on favorable terms or at all;
+•the Company's dependence on entities performing outsourced functions, including outsourcing of distribution functions, and third-party manufacturers, logistics and supply chain suppliers, and other suppliers, including third-party software providers, web-hosting and e-commerce providers;
+•administrative, product development and other difficulties in meeting the expected timing of market expansions, product launches and re-launches and marketing efforts, including in connection with new products in the Company's skincare and prestige cosmetics portfolios;
+•changes in the demand for the Company's products due to declining or depressed global or regional economic conditions, and declines in consumer confidence or spending, whether related to the economy (such as austerity measures, tax increases, high fuel costs, or higher unemployment), wars and other
+10
+
+
+
+
+
+
+hostilities and armed conflicts, natural or other disasters, weather, pandemics, security concerns, terrorist attacks or other factors;
+•global political and/or economic uncertainties, disruptions or major regulatory or policy changes, and/or the enforcement thereof that affect the Company's business, financial performance, operations or products, including the impact of the war in Ukraine and any escalation or expansion thereof, war in the Middle East and any escalation or expansion thereof, the current administration in the U.S. and related changes to regulatory and trade policies, changes in the U.S. tax code and/or regulations in other jurisdictions where we operate (including recent and pending implementation of the global minimum corporate tax (part of the "Pillar Two Model Rules") that may impact our tax liability in the European Union, and recent changes and future changes in tariffs, retaliatory or trade protection measures, trade policies and other international trade regulations in the U.S., the European Union and Asia and in other regions where the Company operates (and the Company's ability to manage the impact of such changes), potential regulatory limits on payment terms in the European Union, recent and future changes in sanctions regulations, and recent and future changes in regulations impacting the beauty industry, including regulatory measures addressing products, formulations, raw materials and packaging, and recent and future regulatory measures restricting or otherwise impacting the use of web sites, mobile applications or social media platforms that the Company uses in connection with its digital marketing and e-commerce activities;
+•currency exchange rate volatility and currency devaluation and/or inflation, including the impact of elevated oil prices;
+•the impact of ongoing wars and geopolitical uncertainty on capital markets and the related impact on the Company's ability to refinance outstanding debt at favorable rates;
+•the Company's ability to implement and maintain pricing actions to effectively mitigate increased costs and inflationary pressures, and the reaction of customers or consumers to such pricing actions;
+•the number, type, outcomes (by judgment, order or settlement) and costs of current or future legal, compliance, tax, regulatory or administrative proceedings, investigations and/or litigation, including product liability cases (including asbestos and talc-related litigation for which indemnities and/or insurance may not be available), distributor or licensor litigation, and compliance, litigation or investigations relating to our joint ventures and strategic partnerships;
+•the Company's ability to manage seasonal factors and other variability and to anticipate future business trends and needs;
+•disruptions in the availability and distribution of raw materials and components needed to manufacture the Company's products, and its ability to effectively manage its production and inventory levels in response to supply challenges;
+•disruptions in operations, sales and in other areas, including due to disruptions in our supply chain, restructurings and other business alignment activities, manufacturing or information technology systems, labor disputes, extreme weather and natural disasters, impact from public health events, the outbreak of war or hostilities (including the war in Ukraine and the war in the Middle East, and any escalation or expansion thereof), the impact of global supply chain challenges or other disruptions in the international flow of goods (including disruptions arising from the closure of strategic airspaces or critical maritime routes or from changing tariff scenarios), and the impact of such disruptions on the Company's ability to generate profits, stabilize or grow revenues or cash flows, comply with its contractual obligations and accurately forecast demand and supply needs and/or future results;
+•the Company's ability to adapt its business to address climate change concerns, including through the implementation of new or unproven technologies or processes, and to respond to increasing governmental and regulatory measures relating to environmental, social and governance matters, including expanding mandatory and voluntary reporting, diligence and disclosure, as well as new taxes (including on energy and plastic), new diligence requirements and the impact of such measures or processes on the Company's costs, business operations and strategy;
+•restrictions imposed on the Company through its license agreements, credit facilities and senior unsecured bonds or other material contracts, its ability to generate cash flow to repay, refinance or recapitalize debt and otherwise comply with its debt instruments, and changes in the manner in which the Company finances its debt and future capital needs;
+•increasing dependency on information technology, including as a result of expanded use of AI and advanced analytics in the Company's operations as well as remote working practices, and the Company's ability, or the ability of any of the third-party service providers used by the Company to support its business, to protect against service interruptions, data corruption, cyber-based attacks or network security breaches, including ransomware attacks, costs and timing of implementation and effectiveness of any upgrades or other changes to information technology systems, and the cost of compliance or the Company's failure to comply with any privacy or data security laws (including the European Union General Data Protection Regulation, the California Consumer Privacy Act and similar state laws, the Brazil General Data Protection Law and the China Data Security Law and Personal Information Protection Law) or to protect against theft of customer, employee and corporate sensitive information;
+•the Company's ability to attract and retain key personnel and the impact of senior management transitions;
+11
+
+
+
+
+
+
+•the distribution and sale by third parties of counterfeit and/or gray market versions of the Company's products;
+•the impact of the Company's ongoing strategic transformation agenda and continued process improvements on the Company's relationships with key customers and suppliers and certain material contracts;
+•the Company's relationship with JAB Beauty B.V., as the Company's majority stockholder, and its affiliates, and any related conflicts of interest or litigation;
+•the Company's relationship with KKR, whose affiliates are investors in the Wella Company following the sale of the Company's remaining stake in Wella, and any related conflicts of interest or litigation, and the timing and terms of any future sale or initial public offering impacting the Company's Wella Distribution Rights;
+•future sales of a significant number of shares by the Company's majority stockholder or the perception that such sales could occur; and
+•other factors described elsewhere in this document and in documents that the Company files with the SEC from time to time.
+When used herein, the term “includes” and “including” means, unless the context otherwise indicates, “including without limitation”. More information about potential risks and uncertainties that could affect the Company's business and financial results is included under the heading “Risk Factors” and “Management's Discussion and Analysis of Financial Condition and Results of Operations” in the Company's Quarterly Report on Form 10-Q for the period ended March 31, 2025 and annual report on Form 10-K for the year ended June 30, 2026 and other periodic reports the Company has filed and may file with the SEC from time to time.
+All forward-looking statements made in this release are qualified by these cautionary statements. These forward-looking statements are made only as of the date of this release, and the Company does not undertake any obligation, other than as may be required by applicable law, to update or revise any forward-looking or cautionary statements to reflect changes in assumptions, the occurrence of events, unanticipated or otherwise, or changes in future operating results over time or otherwise.
+Comparisons of results for current and any prior periods are not intended to express any future trends or indications of future performance unless expressed as such, and should only be viewed as historical data.
+
+Non-GAAP Financial Measures
+To supplement the financial measures prepared in accordance with GAAP, we use non-GAAP financial measures for Coty Inc. including Adjusted operating income (loss), Adjusted EBITDA, Adjusted net income (loss), and Adjusted net income (loss) attributable to Coty Inc. to common stockholders (collectively, the “Adjusted Performance Measures”). The reconciliations of these non-GAAP financial measures to the most directly comparable financial measures calculated and presented in accordance with GAAP are shown in tables below. These non-GAAP financial measures should not be considered in isolation from, or as a substitute for or superior to, financial measures reported in accordance with GAAP. Moreover, these non-GAAP financial measures have limitations in that they do not reflect all the items associated with the operations of the business as determined in accordance with GAAP. Other companies, including companies in the beauty industry, may calculate similarly titled non-GAAP financial measures differently than we do, limiting the usefulness of those measures for comparative purposes.
+Despite the limitations of these non-GAAP financial measures, our management uses the Adjusted Performance Measures as key metrics in the evaluation of our performance and annual budgets and to benchmark performance of our business against our competitors. The following are examples of how these Adjusted Performance Measures are utilized by our management:
+•strategic plans and annual budgets are prepared using the Adjusted Performance Measures;
+•senior management receives a monthly analysis comparing budget to actual operating results that is prepared using the Adjusted Performance Measures; and
+•senior management's annual compensation is calculated, in part, by using some of the Adjusted Performance Measures.
+In addition, our financial covenant compliance calculations under our debt agreements are substantially derived from these Adjusted Performance Measures.
+Our management believes that Adjusted Performance Measures are useful to investors in their assessment of our operating performance and the valuation of the Company. In addition, these non-GAAP financial measures address questions we routinely receive from analysts and investors and, in order to ensure that all investors have access to the same data, our management has determined that it is appropriate to make this data available to all investors. The Adjusted Performance Measures exclude the impact of certain items (as further described below) and provide
+12
+
+
+
+
+
+
+supplemental information regarding our operating performance. By disclosing these non-GAAP financial measures, our management intends to provide investors with a supplemental comparison of our operating results and trends for the periods presented. Our management believes these measures are also useful to investors as such measures allow investors to evaluate our performance using the same metrics that our management uses to evaluate past performance and prospects for future performance. We provide disclosure of the effects of these non-GAAP financial measures by presenting the corresponding measure prepared in conformity with GAAP in our financial statements, and by providing a reconciliation to the corresponding GAAP measure so that investors may understand the adjustments made in arriving at the non-GAAP financial measures and use the information to perform their own analyses.
+Adjusted operating income/Adjusted EBITDA excludes restructuring costs and business structure realignment programs, amortization, acquisition- and divestiture-related costs and acquisition accounting impacts, stock-based compensation, and asset impairment charges and other adjustments as described below. For adjusted EBITDA, in addition to the preceding, we exclude adjusted depreciation as defined below. We do not consider these items to be reflective of our core operating performance due to the variability of such items from period-to-period in terms of size, nature and significance. They are primarily incurred to realign our operating structure and integrate new acquisitions, and implement divestitures of components of our business, and fluctuate based on specific facts and circumstances. Additionally, Adjusted net income attributable to Coty Inc. and Adjusted net income attributable to Coty Inc. per common share are adjusted for certain interest and other (income) expense items, as described below, and the related tax effects of each of the items used to derive Adjusted net income as such charges are not used by our management in assessing our operating performance period-to-period.
+Adjusted Performance Measures reflect adjustments based on the following items:
+•Costs related to acquisition and divestiture activities: The Company has excluded acquisition- and divestiture-related costs and the accounting impacts such as those related to transaction costs and costs associated with the revaluation of acquired inventory in connection with business combinations because these costs are unique to each transaction. Additionally, for divestitures, the Company excludes write-offs of assets that are no longer recoverable and contract related costs due to the divestiture. The nature and amount of such costs vary significantly based on the size and timing of the acquisitions and divestitures, and the maturities of the businesses being acquired or divested. Also, the size, complexity and/or volume of past transactions, which often drives the magnitude of such expenses, may not be indicative of the size, complexity and/or volume of any future acquisitions or divestitures.
+•Restructuring and other business realignment costs: The Company has excluded costs associated with restructuring and business structure realignment programs to allow for comparable financial results to historical operations and forward-looking guidance. In addition, the nature and amount of such charges vary significantly based on the size and timing of the programs. By excluding the referenced expenses from the non-GAAP financial measures, management is able to further evaluate the Company's ability to utilize existing assets and estimate their long-term value. Furthermore, our management believes that the adjustment of these items supplements the GAAP information with a measure that can be used to assess the sustainability of our operating performance.
+•Asset impairment charges: The Company has excluded the impact of asset impairments as such non-cash amounts are inconsistent in amount and frequency and are significantly impacted by the timing and/or size of acquisitions. Our management believes that the adjustment of these items supplements the GAAP information with a measure that can be used to assess the sustainability of our operating performance.
+•Amortization expense: The Company has excluded the impact of amortization of finite-lived intangible assets, as such non-cash amounts are inconsistent in amount and frequency and are significantly impacted by the timing and/or size of acquisitions. Our management believes that the adjustment of these items supplements the GAAP information with a measure that can be used to assess the sustainability of our operating performance. Although we exclude amortization of intangible assets from our non-GAAP expenses, our management believes that it is important for investors to understand that such intangible assets contribute to revenue generation. Amortization of intangible assets that relate to past acquisitions will recur in future periods until such intangible assets have been fully amortized. Any future acquisitions may result in the amortization of additional intangible assets.
+•Gain or loss on sale and early license termination: The Company has excluded the impact of gain or loss on sale and early license termination as such amounts are inconsistent in amount and frequency and are significantly impacted by the size of the sale and early license termination.
+13
+
+
+
+
+
+
+•Costs related to market exit: The Company has excluded the impact of direct incremental costs related to our decision to wind down our business operations in Russia. We believe that these direct and incremental costs are inconsistent and infrequent in nature. Consequently, our management believes that the adjustment of these items supplements the GAAP information with a measure that can be used to assess the sustainability of our operating performance.
+•Gains on sale of real estate: The Company has excluded the impact of gains on sale of real estate as such amounts are inconsistent in amount and frequency and are significantly impacted by the size of the sale. Our management believes that the adjustment of these items supplements the GAAP information with a measure that can be used to assess the sustainability of our operating performance.
+•Stock-based compensation: Although stock-based compensation is a key incentive offered to our employees, we have excluded the effect of these expenses from the calculation of adjusted operating income and adjusted EBITDA. This is due to their primarily non-cash nature; in addition, the amount and timing of these expenses may be highly variable and unpredictable, which may negatively affect comparability between periods.
+•Depreciation and Adjusted depreciation: Our adjusted operating income excludes the impact of accelerated depreciation for certain restructuring projects that affect the expected useful lives of Property, Plant and Equipment, as such charges vary significantly based on the size and timing of the programs. Further, we have excluded adjusted depreciation, which represents depreciation expense net of accelerated depreciation charges, from our adjusted EBITDA. Our management believes that the adjustment of these items supplements the GAAP information with a measure that can be used to assess the sustainability of our operating performance.
+•Other (income) expense: The Company has excluded the impact of pension curtailment (gains) and losses and pension settlements as such events are triggered by our restructuring and other business realignment activities and the amount of such charges vary significantly based on the size and timing of the programs. Further, we have excluded the change in fair value of the investment in Wella and the Wella Distribution Rights, as well as expenses related to potential or actual sales transactions reducing equity investments, as our management believes these unrealized (gains) and losses do not reflect our underlying ongoing business, and the adjustment of such impact helps investors and others compare and analyze performance from period to period. Such transactions do not reflect our operating results and we have excluded the impact as our management believes that the adjustment of these items supplements the GAAP information with a measure that can be used to assess the sustainability of our operating performance.
+
+•Noncontrolling interest: This adjustment represents the after-tax impact of the non-GAAP adjustments included in Net income attributable to noncontrolling interests based on the relevant noncontrolling interest percentage.
+•Tax: This adjustment represents the impact of the tax effect of the pretax items excluded from Adjusted net income. The tax impact of the non-GAAP adjustments is based on the tax rates related to the jurisdiction in which the adjusted items are received or incurred. Additionally, adjustments are made for the tax impact of any intra-entity transfer of assets and liabilities. Also, in connection with our market exit in Russia, we have adjusted for the release of tax charges previously taken related to certain direct incremental impacts of the decision.
+The Company has provided a quantitative reconciliation of the difference between the non-GAAP financial measures and the financial measures calculated and reported in accordance with GAAP. For a reconciliation of adjusted gross profit to gross profit, adjusted EPS (diluted) to EPS (diluted), and adjusted net revenues to net revenues, see the table entitled “Reconciliation of Reported to Adjusted Results for the Consolidated Statements of Operations.” For a reconciliation of adjusted operating income to operating income and adjusted operating income margin to operating income margin, see the tables entitled “Reconciliation of Reported Operating Income (Loss) to Adjusted Operating Income” and "Reconciliation of Reported Operating Income (Loss) to Adjusted Operating Income by Segment." For a reconciliation of adjusted effective tax rate to effective tax rate, see the table entitled “Reconciliation of Reported Income (Loss) Before Income Taxes and Effective Tax Rates to Adjusted Income Before Income Taxes and Adjusted Effective Tax Rates.” For a reconciliation of adjusted net income and adjusted net income margin to net income (loss), see the table entitled “Reconciliation of Reported Net Income (Loss) to Adjusted Net Income.”
+The Company also presents free cash flow, adjusted earnings before interest, taxes, depreciation and amortization ("adjusted EBITDA"), immediate liquidity, Financial Net Debt and Economic Net Debt. Management believes that
+14
+
+
+
+
+
+
+these measures are useful for investors because it provides them with an important perspective on the cash available for debt repayment and other strategic measures and provides them with the same measures that management uses as the basis for making resource allocation decisions. Free cash flow is defined as net cash provided by operating activities less capital expenditures; adjusted EBITDA is defined as adjusted operating income, excluding adjusted depreciation and non-cash stock-based compensation. Net debt or Financial Net Debt (which the Company referred to as "net debt" in prior reporting periods) is defined as total debt less cash and cash equivalents. For a reconciliation of Free Cash Flow, see the table entitled “Reconciliation of Net Cash Provided by Operating Activities to Free Cash Flow,” for adjusted EBITDA, see the table entitled “Reconciliation of Adjusted Operating Income to Adjusted EBITDA” and for Financial Net Debt, see the tables entitled “Reconciliation of Total Debt to Financial Net Debt.” Further, our immediate liquidity is defined as the sum of available cash and cash equivalents and available borrowings under our Revolving Credit Facility (please see table "Immediate Liquidity").
+
+
+We operate on a global basis, with the majority of our net revenues generated outside of the U.S. Accordingly, fluctuations in foreign currency exchange rates can affect our results of operations. Therefore, to supplement financial results presented in accordance with GAAP, certain financial information is presented in “constant currency”, excluding the impact of foreign currency exchange translations to provide a framework for assessing how our underlying businesses performed excluding the impact of foreign currency exchange translations. Constant currency information compares results between periods as if exchange rates had remained constant period-over-period. We calculate constant currency information by translating current and prior-period results for entities reporting in currencies other than U.S. dollars into U.S. dollars using prior year foreign currency exchange rates. The constant currency calculations do not adjust for the impact of revaluing specific transactions denominated in a currency that is different to the functional currency of that entity when exchange rates fluctuate, or for the impacts of hyperinflation. The constant currency information we present may not be comparable to similarly titled measures reported by other companies.
+These non-GAAP measures should not be considered in isolation, or as a substitute for, or superior to, financial measures calculated in accordance with GAAP.
+To the extent that the Company provides guidance, it does so only on a non-GAAP basis and does not provide reconciliations of such forward-looking non-GAAP measures to GAAP due to the inherent difficulty in forecasting and quantifying certain amounts that are necessary for such reconciliation, including adjustments that could be made for restructuring, integration and acquisition-related expenses, amortization expenses, non-cash stock-based compensation, adjustments to inventory, and other charges reflected in our reconciliation of historic numbers, the amount of which, based on historical experience, could be significant.
+
+
+- Tables Follow -
+
+
+15
+
+
+
+
+
+
+
+COTY INC. & SUBSIDIARIES
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+| | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended
+June 30, | Year Ended
+June 30, |
+(in millions, except per share data) | 2026 | | 2025 | 2026 | | 2025 |
+Net revenues | $ | 1,269.2 | | | $ | 1,252.4 | | $ | 5,806.6 | | | $ | 5,892.9 | |
+Cost of sales | 496.5 | | | 472.7 | | 2,154.6 | | | 2,072.0 | |
+as % of Net revenues | 39.1 | % | | 37.7 | % | 37.1 | % | | 35.2 | % |
+Gross profit | 772.7 | | | 779.7 | | 3,652.0 | | | 3,820.9 | |
+Gross margin | 60.9 | % | | 62.3 | % | 62.9 | % | | 64.8 | % |
+| | | | | | |
+Selling, general and administrative expenses | 744.9 | | | 720.6 | | 3,107.9 | | | 3,103.4 | |
+as % of Net revenues | 58.7 | % | | 57.5 | % | 53.5 | % | | 52.7 | % |
+Amortization expense | 74.1 | | | 45.6 | | 262.0 | | | 186.9 | |
+Restructuring costs | (3.6) | | | (2.0) | | 0.8 | | | 76.7 | |
+| | | | | | |
+Asset impairment charges | — | | | — | | 362.8 | | | 212.8 | |
+| | | | | | |
+Operating (loss) income | (42.7) | | | 15.5 | | (81.5) | | | 241.1 | |
+as % of Net revenues | (3.4 | %) | | 1.2 | % | (1.4 | %) | | 4.1 | % |
+Interest expense, net | 33.5 | | | 50.1 | | 155.2 | | | 214.2 | |
+| | | | | | |
+Other expense, net | 13.6 | | | 38.9 | | 373.5 | | | 371.7 | |
+Loss before income taxes | (89.8) | | | (73.5) | | (610.2) | | | (344.8) | |
+as % of Net revenues | (7.1 | %) | | (5.9 | %) | (10.5 | %) | | (5.9 | %) |
+(Benefit) provision for income taxes | 52.5 | | | (4.2) | | (20.0) | | | 5.4 | |
+Net loss | (142.3) | | | (69.3) | | (590.2) | | | (350.2) | |
+as % of Net revenues | (11.2 | %) | | (5.5 | %) | (10.2 | %) | | (5.9 | %) |
+| | | | | | |
+| | | | | | |
+Net (loss) income attributable to noncontrolling interests | (0.3) | | | (0.4) | | 7.5 | | | 5.3 | |
+Net (loss) income attributable to redeemable noncontrolling interests | (1.0) | | | (0.1) | | 7.1 | | | 12.4 | |
+Net loss attributable to Coty Inc. | $ | (141.0) | | | $ | (68.8) | | $ | (604.8) | | | $ | (367.9) | |
+| | | | | | |
+Amounts attributable to Coty Inc. | | | | | | |
+Net loss | $ | (141.0) | | | $ | (68.8) | | $ | (604.8) | | | $ | (367.9) | |
+Convertible Series B Preferred Stock dividends | (3.3) | | | (3.3) | | (13.2) | | | (13.2) | |
+| | | | | | |
+| | | | | | |
+| | | | | | |
+Net loss attributable to common stockholders | $ | (144.3) | | | $ | (72.1) | | $ | (618.0) | | | $ | (381.1) | |
+| | | | | | |
+Earnings per common share: | | | | | | |
+| | | | | | |
+| | | | | | |
+| | | | | | |
+| | | | | | |
+Basic for Coty Inc. | $ | (0.16) | | | $ | (0.08) | | $ | (0.70) | | | $ | (0.44) | |
+Diluted for Coty Inc.(a)(b)
+| $ | (0.16) | | | $ | (0.08) | | $ | (0.70) | | | $ | (0.44) | |
+| | | | | | |
+Weighted-average common shares outstanding: | | | | | | |
+Basic | 880.4 | | | 872.3 | | 877.4 | | | 870.9 | |
+Diluted(a)(b)
+| 880.4 | | | 872.3 | | 877.4 | | | 870.9 | |
+| | | | | | |
+Depreciation - Coty Inc. | $ | 54.1 | | | $ | 59.0 | | $ | 220.2 | | | $ | 233.1 | |
+
+(a)Diluted EPS is adjusted by the effect of dilutive securities, including awards under the Company's equity compensation plans, the convertible Series B Preferred Stock, and the Forward Repurchase Contracts. When calculating any potential dilutive effect of stock options, Series A Preferred Stock, restricted stock, PRSUs and RSUs, the Company uses the treasury method and the if-converted method for the Convertible Series B Preferred Stock and the Forward Repurchase Contracts. The treasury method typically does not adjust the net income attributable to Coty Inc., while the if-converted method requires an adjustment to reverse the impact of the preferred stock dividends of $13.2 and to reverse the impact of fair market value losses/(gains) for contracts with the option to settle in shares or cash of $115.8 and $248.1, respectively, if dilutive, for the twelve months ended June 30, 2026 and 2025 on net income applicable to common stockholders during the period. The if-converted method requires an adjustment to reverse the impact of the preferred stock dividends of $3.3, and to reverse the impact of fair market value losses/(gains) for contracts with the option to settle in shares or cash of $10.0 and $59.6, respectively, if dilutive, for the three months ended June 30, 2026 and 2025 on net income applicable to common stockholders during the period.
+(b)For the three months ended June 30, 2026 and 2025, outstanding stock options and Series A Preferred Stock with purchase or conversion rights were excluded from the computation of diluted EPS due to the net loss incurred during the period. For the twelve months ended June 30, 2026 and 2025, outstanding stock options and Series A Preferred Stock with purchase or conversion rights to purchase 3.2 million and 3.5 million weighted average anti-dilutive shares of Common Stock, respectively, were excluded from the computation of diluted EPS.
+16
+
+
+
+
+
+
+
+RECONCILIATION OF REPORTED TO ADJUSTED RESULTS FOR THE CONSOLIDATED STATEMENTS OF OPERATIONS
+
+
+These supplemental schedules provide adjusted Non-GAAP financial information and a quantitative reconciliation of the difference between the Non-GAAP financial measure and the financial measure calculated and reported in accordance with GAAP. | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, 2026 | | |
+| COTY INC. | | |
+(in millions) | Reported
+(GAAP) | | Adjustments(a)
+| | Adjusted
+(Non-GAAP) | | |
+Net revenues | $ | 1,269.2 | | | $ | — | | | $ | 1,269.2 | | | |
+Gross profit | 772.7 | | | — | | | 772.7 | | | |
+Gross margin | 60.9 | % | | | | 60.9 | % | | |
+Operating income | (42.7) | | | 82.2 | | | 39.5 | | | |
+as % of Net revenues | (3.4 | %) | | | | 3.1 | % | | |
+Net loss attributable to common stockholders | (144.3) | | | 130.9 | | | (13.4) | | | |
+as % of Net revenues | (11.4 | %) | | | | (1.1 | %) | | |
+Adjusted EBITDA | | | | | 93.6 | | | |
+as % of Net revenues | | | | | 7.4 | % | | |
+| | | |
+| | | | | | | |
+| | | | | | | |
+EPS (diluted) | $ | (0.16) | | | | | $ | (0.02) | | | |
+| | | | | | | |
+Adjusted diluted EPS includes $0.02 hurt related to the net impact of the Total Return Swaps in the three months ended June 30, 2026.
+| | |
+| | | | | | | |
+| Three Months Ended June 30, 2025 | | |
+| COTY INC. | | |
+(in millions) | Reported
+(GAAP)
+| | Adjustments(a)
+| | Adjusted
+(Non-GAAP)
+| | |
+Net revenues | $ | 1,252.4 | | | $ | — | | | $ | 1,252.4 | | | |
+Gross profit | 779.7 | | | — | | | 779.7 | | | |
+Gross margin | 62.3 | % | | | | 62.3 | % | | |
+Operating income | 15.5 | | | 52.2 | | | 67.7 | | | |
+as % of Net revenues | 1.2 | % | | | | 5.4 | % | | |
+Net loss attributable to common stockholders | (72.1) | | | 27.2 | | | (44.9) | | | |
+as % of Net revenues | (5.8 | %) | | | | (3.6 | %) | | |
+Adjusted EBITDA | | | | | 126.7 | | | |
+as % of Net revenues | | | | | 10.1 | % | | |
+| | | |
+| | | | | | | |
+| | | | | | | |
+EPS (diluted) | $ | (0.08) | | | | | $ | (0.05) | | | |
+| | | | | | | |
+Adjusted diluted EPS includes $0.07 hurt related to the net impact of the Total Return Swaps in the three months ended June 30, 2025.
+| | |
+
+
+
+(a) See “Reconciliation of Reported Net Income, Adjusted Operating Income and Adjusted EBITDA for Coty Inc” and “Reconciliation of Reported Net Income to Adjusted Net Income” for a detailed description of adjusted items.
+
+
+
+
+
+
+
+
+
+
+
+17
+
+
+
+
+
+
+RECONCILIATION OF REPORTED TO ADJUSTED RESULTS FOR THE CONSOLIDATED STATEMENTS OF OPERATIONS
+
+
+These supplemental schedules provide adjusted Non-GAAP financial information and a quantitative reconciliation of the difference between the Non-GAAP financial measure and the financial measure calculated and reported in accordance with GAAP.
+| | | | | | | | | | | | | | | | | | | |
+| Year Ended June 30, 2026 | | |
+| COTY INC. | | |
+(in millions) | Reported
+(GAAP) | | Adjustments(a)
+| | Adjusted
+(Non-GAAP) | | |
+Net revenues | $ | 5,806.6 | | | $ | — | | | $ | 5,806.6 | | | |
+Gross profit | 3,652.0 | | | 6.5 | | | 3,658.5 | | | |
+Gross margin | 62.9 | % | | | | 63.0 | % | | |
+Operating income | (81.5) | | | 708.2 | | | 626.7 | | | |
+as % of Net revenues | (1.4 | %) | | | | 10.8 | % | | |
+Net income attributable to common stockholders | (618.0) | | | 803.1 | | | 185.1 | | | |
+as % of Net revenues | (10.6 | %) | | | | 3.2 | % | | |
+Adjusted EBITDA | | | | | 846.9 | | | |
+as % of Net revenues | | | | | 14.6 | % | | |
+| | | |
+| | | | | | | |
+| | | | | | | |
+EPS (diluted) | $ | (0.70) | | | | | $ | 0.21 | | | |
+| | | | | | | |
+Adjusted diluted EPS includes $0.13 hurt related to the net impact of the Total Return Swaps in the year ended June 30, 2026.
+| | |
+| | | | | | | |
+| Year Ended June 30, 2025 | | |
+| COTY INC. | | |
+(in millions) | Reported
+(GAAP) | | Adjustments(a)
+| | Adjusted
+(Non-GAAP)
+| | |
+Net revenues | $ | 5,892.9 | | | $ | — | | | $ | 5,892.9 | | | |
+Gross profit | 3,820.9 | | | 4.3 | | | 3,825.2 | | | |
+Gross margin | 64.8 | % | | | | 64.9 | % | | |
+Operating income | 241.1 | | | 611.8 | | | 852.9 | | | |
+as % of Net revenues | 4.1 | % | | | | 14.5 | % | | |
+Net income attributable to common stockholders | (381.1) | | | 569.9 | | | 188.8 | | | |
+as % of Net revenues | (6.5 | %) | | | | 3.2 | % | | |
+Adjusted EBITDA | | | | | 1,081.7 | | | |
+as % of Net revenues | | | | | 18.4 | % | | |
+| | | |
+| | | | | | | |
+| | | | | | | |
+EPS (diluted) | $ | (0.44) | | | | | $ | 0.22 | | | |
+| | | | | | | |
+Adjusted diluted EPS includes $0.28 hurt related to the net impact of the Total Return Swaps in the year ended June 30, 2025.
+| | |
+
+
+
+(a) See “Reconciliation of Reported Net Income to Adjusted Operating Income, and Adjusted EBITDA” and “Reconciliation of Reported Net Income to Adjusted Net Income” for a detailed description of adjusted items.
+
+
+18
+
+
+
+
+
+
+
+RECONCILIATION OF REPORTED NET INCOME TO ADJUSTED OPERATING INCOME AND ADJUSTED EBITDA
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+COTY INC. | | Three Months Ended June 30, | Year Ended June 30, |
+(in millions) | | 2026 | | 2025 | | Change | 2026 | | 2025 | | Change |
+Net (loss) income | | $ | (142.3) | | | $ | (69.3) | | | $ | (590.2) | | | $ | (350.2) | | | (69 | %) |
+Net (loss) income margin | | (11.2) | % | | (5.5) | % | | | (10.2) | % | | (5.9) | % | | |
+(Benefit) Provision for income taxes | | 52.5 | | | (4.2) | | | >100% | (20.0) | | | 5.4 | | | (Loss) Income before income taxes | | (89.8) | | | (73.5) | | | (22 | %) | (610.2) | | | (344.8) | | | (77 | %) |
+Interest expense, net | | 33.5 | | | 50.1 | | | (33 | %) | 155.2 | | | 214.2 | | | (28 | %) |
+Other expense (income), net | | 13.6 | | | 38.9 | | | (65 | %) | 373.5 | | | 371.7 | | | 0 | % |
+Reported Operating (loss) income | | $ | (42.7) | | | $ | 15.5 | | | $ | (81.5) | | | $ | 241.1 | | | Reported operating (loss) income margin | | (3.4 | %) | | 1.2 | % | | | (1.4 | %) | | 4.1 | % | | |
+Asset impairment charges | | — | | | — | | | N/A | 362.8 | | | 212.8 | | | 70 | % |
+Amortization expense | | 74.1 | | | 45.6 | | | 63 | % | 262.0 | | | 186.9 | | | 40 | % |
+Restructuring and other business realignment costs | | 3.1 | | | 1.2 | | | >100% | 19.7 | | | 91.8 | | | (79 | %) |
+Stock-based compensation | | 6.8 | | | 5.4 | | | 26 | % | 46.1 | | | 50.0 | | | (8 | %) |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+License termination and market exit costs | | (1.8) | | | — | | | N/A | 17.6 | | | 70.3 | | | (75 | %) |
+| | | | | | | | | | | |
+Total adjustments to reported operating income (loss) | | 82.2 | | | 52.2 | | | 57 | % | 708.2 | | | 611.8 | | | 16 | % |
+Adjusted Operating income | | $ | 39.5 | | | $ | 67.7 | | | (42 | %) | $ | 626.7 | | | $ | 852.9 | | | (27 | %) |
+Adjusted operating income margin | | 3.1 | % | | 5.4 | % | | | 10.8 | % | | 14.5 | % | | |
+Adjusted depreciation | | 54.1 | | | 59.0 | | | (8 | %) | 220.2 | | | 228.8 | | | (4 | %) |
+Adjusted EBITDA | | $ | 93.6 | | | $ | 126.7 | | | (26 | %) | $ | 846.9 | | | $ | 1,081.7 | | | (22 | %) |
+Adjusted EBITDA margin | | 7.4 | % | | 10.1 | % | | | 14.6 | % | | 18.4 | % | | |
+
+
+
+19
+
+
+
+
+
+
+
+
+
+SEGMENT OPERATING INCOME (LOSS), SEGMENT ADJUSTED OPERATING INCOME (LOSS) AND SEGMENT ADJUSTED EBITDA
+
+
+OPERATING INCOME, ADJUSTED OPERATING INCOME AND ADJUSTED EBITDA - PRESTIGE SEGMENT
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | | Year Ended
+June 30, | | |
+(in millions) | 2026 | | 2025 | | Change % | 2026 | | 2025 | | Change % |
+Reported operating (loss) income | $ | (4.7) | | | $ | 38.1 | | | $ | 444.5 | | | $ | 580.6 | | | (23) | % |
+Reported operating (loss) income margin | (0.6) | % | | 5.0 | % | | | 11.7 | % | | 15.2 | % | | |
+Amortization expense | 64.9 | | | 36.6 | | | 77 | % | 225.4 | | | 149.7 | | | 51 | % |
+Asset impairment charges | — | | | — | | | N/A | — | | | 42.9 | | | (100) | % |
+Total adjustments to reported operating income | $ | 64.9 | | | $ | 36.6 | | | 77 | % | $ | 225.4 | | | $ | 192.6 | | | 17 | % |
+Adjusted operating income | $ | 60.2 | | | $ | 74.7 | | | (19) | % | $ | 669.9 | | | $ | 773.2 | | | (13) | % |
+Adjusted operating income margin | 7.8 | % | | 9.8 | % | | | 17.6 | % | | 20.2 | % | | |
+Adjusted depreciation | 25.6 | | | 28.2 | | | (9) | % | $ | 109.2 | | | $ | 111.4 | | | (2) | % |
+Adjusted EBITDA | $ | 85.8 | | | $ | 102.9 | | | (17) | % | $ | 779.1 | | | $ | 884.6 | | | (12) | % |
+Adjusted EBITDA margin | 11.1 | % | | 13.5 | % | | | 20.5 | % | | 23.2 | % | | |
+
+
+
+OPERATING (LOSS) INCOME, ADJUSTED OPERATING INCOME AND ADJUSTED EBITDA - CONSUMER BEAUTY SEGMENT | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | | Year Ended
+June 30, | | |
+(in millions) | 2026 | | 2025 | | Change % | 2026 | | 2025 | | Change % |
+Reported operating loss | $ | (29.9) | | | $ | (16.0) | | | (87) | % | $ | (442.6) | | | $ | (127.4) | | | Reported operating loss margin | (6.0) | % | | (3.3) | % | | | (22.1) | % | | (6.1) | % | | |
+Amortization expense | 9.2 | | | 9.0 | | | 2 | % | 36.6 | | | 37.2 | | | (2) | % |
+Asset impairment charges | — | | | — | | | N/A | 362.8 | | | 169.9 | | | >100% |
+Total adjustments to reported operating income | $ | 9.2 | | | $ | 9.0 | | | 2 | % | $ | 399.4 | | | $ | 207.1 | | | 93 | % |
+Adjusted operating (loss) income | $ | (20.7) | | | $ | (7.0) | | | $ | (43.2) | | | $ | 79.7 | | | Adjusted operating (loss) income margin | (4.2) | % | | (1.4) | % | | | (2.2) | % | | 3.8 | % | | |
+Adjusted depreciation | 28.5 | | | 30.8 | | | (7) | % | 111.0 | | | $ | 117.4 | | | (5) | % |
+Adjusted EBITDA | $ | 7.8 | | | $ | 23.8 | | | (67) | % | $ | 67.8 | | | $ | 197.1 | | | (66) | % |
+Adjusted EBITDA margin | 1.6 | % | | 4.8 | % | | | 3.4 | % | | 9.5 | % | | |
+
+
+
+OPERATING (LOSS) INCOME, ADJUSTED OPERATING INCOME AND ADJUSTED EBITDA - CORPORATE SEGMENT | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | | | Year Ended
+June 30, | | |
+(in millions) | 2026 | | 2025 | | Change % | 2026 | | 2025 | | Change % |
+Reported operating loss | $ | (8.1) | | | $ | (6.6) | | | (23) | % | $ | (83.4) | | | $ | (212.1) | | | 61 | % |
+Reported operating loss margin | N/A | | N/A | | | N/A | | N/A | | |
+Restructuring and other business realignment costs | 3.1 | | | 1.2 | | | >100% | 19.7 | | | $ | 91.8 | | | (79) | % |
+Stock-based compensation | 6.8 | | | 5.4 | | | 26 | % | 46.1 | | | $ | 50.0 | | | (8) | % |
+| | | | | | | | | | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+License termination and market exit costs | $ | (1.8) | | | — | | | N/A | 17.6 | | | $ | 70.3 | | | (75) | % |
+| | | | | | | | | | |
+Total adjustments to reported operating income | $ | 8.1 | | | $ | 6.6 | | | 23 | % | $ | 83.4 | | | $ | 212.1 | | | (61) | % |
+Adjusted operating loss | $ | — | | | $ | — | | | N/A | $ | — | | | $ | — | | | N/A |
+Adjusted operating income margin | N/A | | N/A | | | N/A | | N/A | | |
+Adjusted depreciation | — | | | — | | | N/A | — | | | — | | | N/A |
+Adjusted EBITDA | $ | — | | | $ | — | | | N/A | $ | — | | | $ | — | | | N/A |
+Adjusted EBITDA margin | — | % | | — | % | | | — | % | | — | % | | |
+
+20
+
+
+
+
+
+
+
+
+
+
+RECONCILIATION OF REPORTED INCOME (LOSS) BEFORE INCOME TAXES AND EFFECTIVE TAX RATES TO ADJUSTED INCOME BEFORE INCOME TAXES AND ADJUSTED EFFECTIVE TAX RATES FOR COTY INC
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, 2026 | | Three months ended June 30, 2025 |
+(in millions) | | (Loss) income before income taxes | | (Benefit) Provision for income taxes | | Effective tax rate | | (Loss) income before income taxes | | (Benefit) Provision for income taxes | | Effective tax rate |
+Reported (Loss) Income before income taxes | | $ | (89.8) | | | $ | 52.5 | | | (58.5) | % | | $ | (73.5) | | | $ | (4.2) | | | 5.7 | % |
+Adjustments to Reported Operating Income (a)
+| | 82.2 | | | | | | | 52.2 | | | | | |
+| | | | | | | | | | | | |
+| | | | | | | | | | | | |
+Realized/unrealized loss on investment in Wella Company (c)
+| | — | | | | | | | (2.0) | | | | | |
+| | | | | | | | | | | | |
+Unrealized loss on Wella Distribution Rights (d)
+| | 19.0 | | | | | | | — | | | | | |
+Other adjustments (e)
+| | (0.7) | | | | | | | (1.0) | | | | | |
+Total Adjustments (b)
+| | 100.5 | | | (31.9) | | | | | 49.2 | | | 20.2 | | | |
+Adjusted Income (loss) before income taxes | | $ | 10.7 | | | $ | 20.6 | | | 192.5 | % | | $ | (24.3) | | | $ | 16.0 | | | (65.8 | %) |
+
+
+
+The adjusted effective tax rate was 192.5% for the three months ended June 30, 2026 compared to (65.8%) for the three months ended June 30, 2025. The differences were primarily due to an increase in valuation allowances recorded in the prior year on interest expense carryforwards.
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Year Ended June 30, 2026 | | Year Ended June 30, 2025 |
+(in millions) | | Income before income taxes | | (Benefit) Provision for income taxes | | Effective tax rate | | (Loss) income before income taxes | | Provision for income taxes | | Effective tax rate |
+Reported Loss before income taxes | | $ | (610.2) | | | $ | (20.0) | | | 3.3 | % | | $ | (344.8) | | | $ | 5.4 | | | (1.6) | % |
+Adjustments to Reported Operating Income (a)
+| | 708.2 | | | | | | | 611.8 | | | | | |
+| | | | | | | | | | | | |
+| | | | | | | | | | | | |
+Realized/unrealized loss on investment in Wella Company (c)
+| | 200.9 | | | | | | | 83.0 | | | | | |
+| | | | | | | | | | | | |
+Unrealized loss on Wella Distribution Rights(d)
+| | 19.0 | | | | | | | — | | | | | |
+Other adjustments (e)
+| | (2.5) | | | | | | | (0.6) | | | | | |
+Total Adjustments (b)
+| | 925.6 | | | 115.7 | | | | | 694.2 | | | 117.4 | | | |
+Adjusted Income before income taxes | | $ | 315.4 | | | $ | 95.7 | | | 30.3 | % | | $ | 349.4 | | | $ | 122.8 | | | 35.1 | % |
+
+
+
+The adjusted effective tax rate was 30.3% for the fiscal year ended June 30, 2026 compared to 35.1% in the fiscal year ended June 30, 2025. The differences were primarily due to an increase in valuation allowances recorded in the prior year on interest expense carryforwards.
+(a)See a description of adjustments under “Reconciliation of Reported Net Income to Adjusted Operating Income and Adjusted EBITDA.”
+(b)The tax effects of each of the items included in adjusted income are calculated in a manner that results in a corresponding income tax benefit/provision for adjusted income. In preparing the calculation, each adjustment to reported income is first analyzed to determine if the adjustment has an income tax consequence. The provision for taxes is then calculated based on the jurisdiction in which the adjusted items are incurred, multiplied by the respective statutory rates and offset by the increase or reversal of any valuation allowances commensurate with the non-GAAP measure of profitability. The total tax impact on adjustments includes a tax expense of $0.5 and a tax benefit of $10.0 for fiscal year ended June 30, 2026 and fiscal year ended June 30, 2025, respectively, recorded as the result of the Company’s exit from Russia in fiscal 2022.
+(c)For the three months ended June 30, 2025, the amount represents the unrealized (gain) loss recognized for the change in the fair value of the investment in Wella.
+
+For the year ended June 30, 2026, this primarily represents the realized loss on the sale of the investment in Wella. For the year ended June 30, 2025, this primarily represents unrealized loss recognized for the change in fair value of the investment in Wella.
+(d)For three months ended June 30, 2026, this primarily represents the unrealized loss on Wella Distribution Rights.
+
+For the year ended June 30, 2026, this primarily represents the unrealized loss on Wella Distribution Rights.
+(e)For the three months ended June 30, 2026, this primarily represents recovery of previously written-off non-income tax credits. For the three months ended June 30, 2025, this primarily represents a recovery of previously written-off non-income tax credits.
+For the year ended June 30, 2026, this primarily represents recovery of previously written-off non-income tax credits. For the year ended June 30, 2025, this primarily represents a recovery of previously written-off non-income tax credits, the amortization of basis differences in certain equity method investments, and net loss on the sale of an equity investment.
+
+
+
+
+
+
+21
+
+
+
+
+
+
+
+
+22
+
+
+
+
+
+
+
+
+
+RECONCILIATION OF REPORTED NET INCOME TO ADJUSTED NET INCOME FOR COTY INC.
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended June 30, | Year Ended June 30, |
+(in millions) | 2026 | | 2025 | | Change | 2026 | | 2025 | | Change |
+Net loss from Coty Inc., net of noncontrolling interests | $ | (141.0) | | | $ | (68.8) | | | $ | (604.8) | | | $ | (367.9) | | | (64) | % |
+Convertible Series B Preferred Stock dividends (c)
+| (3.3) | | | (3.3) | | | — | % | (13.2) | | | (13.2) | | | — | % |
+| | | | | | | | | | |
+Reported Net loss attributable to Coty Inc | $ | (144.3) | | | $ | (72.1) | | | $ | (618.0) | | | $ | (381.1) | | | (62 | %) |
+% of Net revenues | (11.4 | %) | | (5.8 | %) | | | (10.6) | % | | (6.5) | % | | |
+Adjustments to Reported Operating Income (a)
+| 82.2 | | | 52.2 | | | 57 | % | 708.2 | | | 611.8 | | | 16 | % |
+Realized/unrealized loss on investment in Wella Company (d)
+| — | | | (2.0) | | | 100 | % | 200.9 | | | 83.0 | | | >100% |
+Unrealized loss on Wella Distribution Rights (f)
+| 19.0 | | | — | | | N/A | 19.0 | | | — | | | N/A |
+Adjustments to other expense (e)
+| (0.7) | | | (1.0) | | | 30 | % | (2.5) | | | (0.6) | | | | | | | | | | | | | |
+| | | | | | | | | | |
+Adjustments to noncontrolling interests (b)
+| (1.5) | | | (1.8) | | | 17 | % | (6.8) | | | (6.9) | | | 1 | % |
+Change in tax provision due to adjustments to Reported Net income attributable to Coty Inc | 31.9 | | | (20.2) | | | >100% | (115.7) | | | (117.4) | | | 1 | % |
+| | | | | | | | | | |
+Adjusted Net (loss) income attributable to Coty Inc. | $ | (13.4) | | | $ | (44.9) | | | 70 | % | $ | 185.1 | | | $ | 188.8 | | | (2 | %) |
+% of Net revenues | (1.1 | %) | | (3.6 | %) | | | 3.2 | % | | 3.2 | % | | |
+| | | | | | | | | | |
+Per Share Data | | | | | | | | | | |
+Adjusted weighted-average common shares | | | | | | | | | | |
+Basic | 880.4 | | | 872.3 | | | | 877.4 | | | 870.9 | | | |
+Diluted (c) (g)
+| 880.4 | | | 872.3 | | | | 879.2 | | | 875.6 | | | |
+Adjusted Net (loss) Income attributable to Coty Inc. per Common Share | | | | | | | | | | |
+Basic | $ | (0.02) | | | $ | (0.05) | | | | $ | 0.21 | | | $ | 0.22 | | | |
+Diluted (c)
+| $ | (0.02) | | | $ | (0.05) | | | | $ | 0.21 | | | $ | 0.22 | | | |
+
+
+
+(a)See a description of adjustments under “Net Income, Adjusted Operating Income and Adjusted EBITDA for Coty Inc.”
+(b)The amounts represent the after-tax impact of the non-GAAP adjustments included in Net income attributable to noncontrolling interest based on the relevant noncontrolling interest percentage in the Condensed Consolidated Statements of Operations.
+(c)Diluted EPS is adjusted by the effect of dilutive securities, including awards under the Company's equity compensation plans, the convertible Series B Preferred Stock and the Forward Repurchase Contracts, if applicable. When calculating any potential dilutive effect of stock options, Series A Preferred Stock, restricted stock, PRSUs and RSUs, the Company uses the treasury method and the if-converted method for the Convertible Series B Preferred Stock and the Forward Repurchase Contracts. The treasury method typically does not adjust the net income attributable to Coty Inc. while the if-converted method requires an adjustment to reverse the impact of the preferred stock dividends and the impact of fair market value (gains)/losses for contracts with the option to settle in shares or cash, if dilutive, on net income applicable to common stockholders during the period.
+(d)The amount represents the unrealized gain recognized for the change in the fair value of the investment in Wella Company.
+(e)For the three months ended June 30, 2026, this primarily represents a recovery of previously written-off non-income tax credits. For the three months ended June 30, 2025, this primarily represents a recovery of previously written-off non-income tax credits
+For the twelve months ended June 30, 2026, this primarily represents a recovery of previously written-off non-income tax credits. For the twelve months ended June 30, 2025, this primarily represents a recovery of previously written-off non-income tax credits, the amortization of basis differences in certain equity method investments, and net loss on the sale of an equity investment.
+(f)For the three months ended June 30, 2026, this primarily represents the unrealized loss on Wella Distribution Rights.
+For the twelve months ended June 30, 2026, this primarily represents the unrealized loss on Wella Distribution Rights.
+(g)Adjusted Diluted EPS is adjusted by the effect of dilutive securities. For the three months ended June 30, 2026 and 2025, no dilutive shares of the Forward Repurchase Contracts were included in the computation of adjusted diluted EPS as their inclusion would be anti-dilutive. Accordingly, we did not reverse the impact of the fair market value losses for contracts with the option to settle in shares or cash of $10.0 and $59.6, respectively. For the three months ended June 30, 2026, Convertible Series B Preferred Stock (23.7 million weighted average dilutive shares) was anti-dilutive. Accordingly, we excluded these shares from the diluted shares and did not adjust the earnings for the related dividend of $3.3. For the three months ended June 30, 2025, Convertible Series B Preferred Stock (23.7 million weighted average dilutive shares) was anti-dilutive. Accordingly, we excluded these shares from the diluted shares and did not adjust the earnings for the related dividend of $3.3.
+
+Adjusted Diluted EPS is adjusted by the effect of dilutive securities. For the years ended June 30, 2026 and 2025, no dilutive shares of the Forward Repurchase Contracts were included in the computation of adjusted diluted EPS as their inclusion would be anti-dilutive. Accordingly, we did not reverse the impact of the fair market value losses/(gains) for contracts with the option to settle in shares or cash of $115.8 and $248.1, respectively. For the year ended June 30, 2026, convertible Series B Preferred Stock (23.7 million weighted average dilutive shares) were anti-dilutive. Accordingly, we excluded these shares from the diluted shares and did not adjust the earnings for the related dividend of $13.2. For the year ended June 30, 2025, convertible Series B Preferred Stock (23.7 million weighted average dilutive shares) were anti-dilutive. Accordingly, we excluded these shares from the diluted shares and did not adjust the earnings for the related dividend of $13.2.
+
+
+23
+
+
+
+
+
+
+
+
+
+
+
+RECONCILIATION OF NET CASH PROVIDED BY OPERATING ACTIVITIES TO FREE CASH FLOW | | | | | | | | | | | | | | | | | | | | | | | | | | |
+COTY INC. | | Three Months Ended June 30, | | Year Ended June 30, |
+(in millions) | | 2026 | | 2025 | | 2026 | | 2025 |
+Net cash provided by operating activities | | $ | 116.0 | | | $ | 83.2 | | | $ | 537.8 | | | $ | 492.6 | |
+Capital expenditures | | (43.4) | | | (48.3) | | | (189.6) | | | (215.0) | |
+| | | | | | | | |
+Free cash flow | | $ | 72.6 | | | $ | 34.9 | | | $ | 348.2 | | | $ | 277.6 | |
+
+
+
+
+
+RECONCILIATION OF TOTAL DEBT TO FINANCIAL NET DEBT
+| | | | | | | | |
+COTY INC.
+| | As of |
+(in millions)
+| | June 30, 2026 |
+Total debt
+| | $ | 3,088.2 | |
+Less: Cash and cash equivalents
+| | 176.1 | |
+Financial Net debt
+| | $ | 2,912.1 | |
+| | |
+| | |
+
+
+
+Total debt is derived from Footnote 13 from the Form 10-K for the fiscal year ended June 30, 2026 and includes both the Company's short-term and long-term debt (including the current portion of long-term debt).
+
+
+
+
+
+
+
+
+24
+
+
+
+
+
+
+RECONCILIATION OF TTM(a) NET INCOME TO TTM ADJUSTED EBITDA | | | | | | | | | | | | | | | | | |
+| Three months ended | Twelve months ended |
+| September 30, 2025
+| December 31, 2025
+| March 31, 2026
+| June 30, 2026
+| June 30, 2026
+|
+(in millions) | | | | | |
+Net (loss) income | $74.0 | $(116.2) | $(405.7) | $(142.3) | $(590.2) |
+(Benefit) Provision for income taxes | $33.1 | $(52.4) | $(53.2) | $52.5 | $(20.0) |
+(Loss) Income before income taxes | $107.1 | $(168.6) | $(458.9) | $(89.8) | $(610.2) |
+Interest expense, net | $46.6 | $41.4 | $33.7 | $33.5 | $155.2 |
+Other expense, net | $31.3 | $275.4 | $53.2 | $13.6 | $373.5 |
+Reported operating (loss) income | $185.0 | $148.2 | $(372.0) | $(42.7) | $(81.5) |
+Amortization expense | $39.3 | $74.1 | $74.5 | $74.1 | $262.0 |
+Restructuring and other business realignment costs | $1.7 | $14.3 | $0.5 | $3.1 | $19.6 |
+Stock-based compensation | $14.5 | $18.0 | $6.9 | $6.8 | $46.2 |
+| | | | | |
+Asset impairment charges | $— | $— | $362.8 | $— | $362.8 |
+License termination and market exit costs | $— | $19.7 | $(0.3) | $(1.8) | $17.6 |
+| | | | | |
+Total adjustments to reported operating (loss) income | $55.5 | $126.1 | $444.4 | $82.2 | $708.2 |
+Adjusted operating income | $240.5 | $274.3 | $72.4 | $39.5 | $626.7 |
+Add: Adjusted depreciation(b)
+| $55.6 | $55.9 | $54.6 | $54.1 | $220.2 |
+Adjusted EBITDA | $296.1 | $330.2 | $127.0 | $93.6 | $846.9 |
+
+(a)Trailing twelve months (TTM) net income (loss), reported operating income, adjusted operating income, and adjusted EBITDA represents the summation of each of these financial metrics for the quarters ended June 30, 2026, March 31, 2026, December 31, 2025 and September 30, 2025.
+(b) Adjusted depreciation for the twelve months ended June 30, 2026 represents depreciation expense for Coty Inc for the period, excluding accelerated depreciation.
+
+
+COMPARISON OF TOTAL DEBT/NET INCOME TO FINANCIAL NET DEBT/ADJUSTED EBITDA
+| | | | | | | | | | | | | | |
+| | | Numerator |
+| | | Total Debt | Financial Net Debt(c)
+|
+| | | $ | 3,088.2 | | $ | 2,912.1 | |
+Denominator | TTM Net loss(b)
+| $ | (590.2) | | -5.2 | N/R(d)
+|
+TTM Adjusted EBITDA(a)
+| $ | 846.9 | | N/R(d)
+| 3.4 |
+
+(a)TTM adjusted operating income for the twelve months ended June 30, 2026 represents the summation of adjusted operating income for Coty Inc for each of the quarters ended June 30, 2026, March 31, 2026, December 31, 2025 and September 30, 2025. For a reconciliation of adjusted operating income to operating income for Coty Inc. for each of those periods, see the table entitled "Reconciliation of TTM of Net Income to Adjusted Operating Income to Adjusted EBITDA" for each of those periods.
+(b)TTM Net (loss) for the twelve months ended June 30, 2026 represents the summation of the Net income (loss) for each of the quarters ended June 30, 2026, March 31, 2026, December 31, 2025 and September 30, 2025.
+(c)Financial Net Debt equals Total Debt minus Cash and cash equivalents as of June 30, 2026. See table titled "Reconciliation of Total Debt to Financial Net Debt and Economic Net Debt".
+(d)Not relevant.
+
+
+
+
+
+25
+
+
+
+
+
+
+RECONCILIATION OF REPORTED NET REVENUES TO LIKE-FOR-LIKE NET REVENUES
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended June 30, 2026 vs. Three Months Ended June 30, 2025
+Net Revenue Change
+|
+Net Revenues Change YoY | | Reported Basis | | Constant Currency | | Impact from Acquisitions and Divestitures (a)
+| | LFL(b)
+|
+Prestige | | 1 | % | | (0.5) | % | | — | % | | (0.5) | % |
+Consumer Beauty | | 1 | % | | (3) | % | | — | % | | (3) | % |
+| | | | | | | | |
+Total | | 1 | % | | (1) | % | | — | % | | (1) | % |
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Year Ended June 30, 2026 vs. Year Ended June 30, 2025
+Net Revenue Change
+|
+Net Revenues Change YoY | | Reported Basis | | Constant Currency | | Impact from Acquisitions and Divestitures (a)
+| | | | LFL (b)
+|
+Prestige | | — | % | | (4) | % | | — | % | | | | (4) | % |
+Consumer Beauty | | (3) | % | | (7) | % | | — | % | | | | (7) | % |
+| | | | | | | | | | |
+Total | | (2) | % | | (5) | % | | — | % | | | | (5) | % |
+
+(a)There are no acquisitions, divestitures, license terminations or market exits that would impact the comparability of financial results presented above.
+(b)Consolidated, Prestige, and Consumer Beauty LFL results for the three months and year ended June 30, 2026 include immaterial help from Argentina resulting from significant price increases due to hyperinflation.
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | | | |
+| | |
+| | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+
+26
+
+
+
+
+
+
+
+COTY INC. & SUBSIDIARIES
+CONDENSED CONSOLIDATED BALANCE SHEETS
+| | | | | | | | | | | | | | | |
+(in millions) | | June 30,
+2026 | | June 30,
+2025 | |
+ASSETS | | | | | |
+Current assets: | | | | | |
+Cash and cash equivalents | | $ | 176.1 | | | $ | 257.1 | | |
+Restricted cash | | 12.8 | | | 13.3 | | |
+Trade receivables, net | | 525.8 | | | 526.4 | | |
+Inventories | | 838.7 | | | 794.5 | | |
+Prepaid expenses and other current assets | | 364.3 | | | 362.0 | | |
+| | | | | |
+| | | | | |
+Total current assets | | 1,917.7 | | | 1,953.3 | | |
+Property and equipment, net | | 650.0 | | | 709.2 | | |
+Goodwill | | 3,809.7 | | | 4,062.2 | | |
+Other intangible assets, net | | 2,775.6 | | | 3,214.8 | | |
+Equity investments | | — | | | 1,002.0 | | |
+Operating lease right-of-use assets | | 226.9 | | | 265.7 | | |
+| | | | | |
+| | | | | |
+Other noncurrent assets | | 820.5 | | | 700.5 | | |
+| | | | | |
+TOTAL ASSETS | | $ | 10,200.4 | | | $ | 11,907.7 | | |
+| | | | | |
+LIABILITIES, MEZZANINE EQUITY AND STOCKHOLDERS’ EQUITY | | | | | |
+Current liabilities: | | | | | |
+Accounts payable and accrued expenses | | $ | 1,875.0 | | | $ | 1,890.0 | | |
+| | | | | |
+| | | | | |
+Short-term debt and current portion of long-term debt | | 14.4 | | | 3.5 | | |
+| | | | | |
+| | | | | |
+Other current liabilities | | 651.1 | | | 644.8 | | |
+| | | | | |
+Total current liabilities | | 2,540.5 | | | 2,538.3 | | |
+Long-term debt, net | | 3,033.4 | | | 3,955.5 | | |
+Long-term operating lease liabilities | | 182.9 | | | 221.8 | | |
+| | | | | |
+| | | | | |
+| | | | | |
+Other noncurrent liabilities | | 1,064.5 | | | 1,236.5 | | |
+TOTAL LIABILITIES | | 6,821.3 | | | 7,952.1 | | |
+| | | | | |
+CONVERTIBLE SERIES B PREFERRED STOCK | | 142.4 | | | 142.4 | | |
+REDEEMABLE NONCONTROLLING INTERESTS | | 74.7 | | | 94.2 | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+Total Coty Inc. stockholders’ equity | | 2,989.7 | | | 3,542.7 | | |
+Noncontrolling interests | | 172.3 | | | 176.3 | | |
+Total equity | | 3,162.0 | | | 3,719.0 | | |
+TOTAL LIABILITIES, MEZZANINE EQUITY AND STOCKHOLDERS’ EQUITY | | $ | 10,200.4 | | | $ | 11,907.7 | | |
+
+
+
+
+
+27
+
+
+
+
+
+
+
+COTY INC. & SUBSIDIARIES
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS | | | | | | | | | | | | | |
+| Year Ended June 30, | | |
+| 2026 | | 2025 | | |
+CASH FLOWS FROM OPERATING ACTIVITIES: | | | | | |
+Net (loss) income | $ | (590.2) | | | (350.2) | | | |
+| | | | | |
+Adjustments to reconcile net income (loss) to net cash provided by operating activities: | | | | | |
+Depreciation and amortization | 482.2 | | | 420.0 | | | |
+Non-cash lease expense | 62.8 | | | 62.3 | | | |
+Goodwill and intangible asset impairment charges | 362.8 | | | 212.8 | | | |
+Deferred income taxes | (154.9) | | | (87.5) | | | |
+Provision for bad debts | 8.8 | | | 6.3 | | | |
+Provision for pension and other post-employment benefits | 9.9 | | | 10.2 | | | |
+Share-based compensation | 46.3 | | | 50.0 | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+Losses on forward repurchase contracts, net | 117.3 | | | 255.2 | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+Other | 266.1 | | | 226.3 | | | |
+Change in operating assets and liabilities | | | | | |
+Trade receivables | (5.4) | | | (81.1) | | | |
+Inventories | (50.5) | | | 4.8 | | | |
+Prepaid expenses and other current assets | 21.2 | | | 64.1 | | | |
+Accounts payable and accrued expenses | 13.6 | | | (167.9) | | | |
+Other current liabilities | 41.9 | | | (61.7) | | | |
+Operating lease liabilities | (59.6) | | | (57.4) | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+Other assets and liabilities, net | (34.5) | | | (13.6) | | | |
+Net cash provided by operating activities | 537.8 | | | 492.6 | | | |
+CASH FLOWS FROM INVESTING ACTIVITIES: | | | | | |
+Capital expenditures | (189.6) | | | (215.0) | | | |
+Proceeds from contingent consideration, license agreements, and sale of other long-lived assets, net | 9.3 | | | 12.6 | | | |
+Proceeds from sale of equity investments and related assets | 750.0 | | | 74.0 | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+Purchases of short-term investments | (30.7) | | | — | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+Net cash provided by (used in) investing activities | 539.0 | | | (128.4) | | | |
+CASH FLOWS FROM FINANCING ACTIVITIES: | | | | | |
+Net proceeds from short-term debt | 12.5 | | | — | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+Proceeds from revolving loan facilities | 2,056.8 | | | 2,492.5 | | | |
+Repayments of revolving loan facilities | (2,096.8) | | | (2,122.6) | | | |
+Proceeds from issuance of other long-term debt | 899.2 | | | — | | | |
+Repayments of other long term debt | (1,760.4) | | | (490.6) | | | |
+| | | | | |
+Dividend payment on Common Stock and Convertible Series B Preferred Stock | (13.2) | | | (13.3) | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+Net proceeds from (payments for) foreign currency contracts | 21.3 | | | (22.0) | | | |
+Payments related to forward repurchase contracts and settlement, including hedge valuation adjustment | (210.1) | | | (288.4) | | | |
+| | | | | |
+Refunds related to hedge valuation adjustment | — | | | 61.8 | | | |
+| | | | | |
+Payments of deferred financing fees and premium on bond extinguishment | (31.6) | | | (2.0) | | | |
+| | | | | |
+Other financing activities | (38.9) | | | (42.2) | | | |
+Net cash used in financing activities | (1,161.2) | | | (426.8) | | | |
+EFFECT OF EXCHANGE RATES ON CASH, CASH EQUIVALENTS AND RESTRICTED CASH | 2.9 | | | 12.4 | | | |
+NET (DECREASE) INCREASE IN CASH, CASH EQUIVALENTS AND RESTRICTED CASH | (81.5) | | | (50.2) | | | |
+CASH, CASH EQUIVALENTS AND RESTRICTED CASH—Beginning of period | 270.4 | | | 320.6 | | | |
+CASH, CASH EQUIVALENTS AND RESTRICTED CASH—End of period | $ | 188.9 | | | $ | 270.4 | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+
+
+
+
+
+28
