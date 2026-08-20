@@ -102,7 +102,11 @@ export function getMeaningfulLines(text: string): string[] {
       .replace(/\s*\|\s*/g, " | ")
       .replace(/\s+/g, " ")
       .trim())
-    .filter(line => line.length >= 3);
+    // SEC table conversion can put every value in its own text node. Keep short numeric
+    // cells ("55", "(1") even though equally short presentational fragments are noise;
+    // otherwise a statement row whose values all have one or two digits loses every cell.
+    .filter(line => line.length >= 3 ||
+      (/^[$€£¥()\d.,-]+$/.test(line) && /\d/.test(line)));
 }
 
 export function getDocumentHeadline(lines: string[]): string | undefined {

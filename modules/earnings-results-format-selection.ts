@@ -620,6 +620,10 @@ function hasFigureCell(line: string): boolean {
 }
 
 function getPeriodEndedScope(line: string): PeriodScope {
+  if (/\b(?:four|4)\s+quarters?\s+ended\b/i.test(line)) {
+    return "annual";
+  }
+
   if (/\b(?:three|3)\s+months?\s+ended\b/i.test(line) || /\bquarters?\s+ended\b/i.test(line)) {
     return "quarter";
   }

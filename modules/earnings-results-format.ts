@@ -560,8 +560,12 @@ function extractMetricValue(
       : 10;
     const labelSearchText = getMetricValueSentenceText(preferredSearchText);
     const sentenceSearchText = getBreakdownTotalText(labelSearchText) ?? labelSearchText;
-    const hasMetricLabelSuffixTableNote = isMetricLabelSuffixTableNote(sentenceSearchText);
-    const searchValueMatch = true === hasMetricLabelSuffixTableNote ? null : findColumnValueMatch(sentenceSearchText, {
+    const currencySearchText = getExplicitReportingCurrencyText(
+      sentenceSearchText,
+      contextMoney.currencyCode,
+    ) ?? sentenceSearchText;
+    const hasMetricLabelSuffixTableNote = isMetricLabelSuffixTableNote(currencySearchText);
+    const searchValueMatch = true === hasMetricLabelSuffixTableNote ? null : findColumnValueMatch(currencySearchText, {
       minUncuedAbsValue,
       requireMoneyCue: 1 === contextMoney.scale,
       skipTableNoteRefs,
@@ -585,7 +589,7 @@ function extractMetricValue(
       return null;
     }
 
-    const metricText = true === useFallbackValue ? fallbackSearchText : sentenceSearchText;
+    const metricText = true === useFallbackValue ? fallbackSearchText : currencySearchText;
     const explicitScale = getExplicitMoneyScale(metricText, parsedValueMatch.endIndex);
     const currencyCode = getCurrencyCodeFromText(metricText, contextMoney.currencyCode) ?? contextMoney.currencyCode;
     const amount = signedValue(parsedValueMatch.value) * (explicitScale ?? contextMoney.scale);
@@ -616,6 +620,33 @@ function extractMetricValue(
     numericValue: value,
     value: formatPlainNumber(value, trailingUnit),
   };
+}
+
+// Foreign issuers commonly state a local-currency result followed by its translation in
+// the filing's reporting currency ("HK$7,200.2 million (US$918.2 million)"). The generic
+// dollar reader otherwise takes the local amount and then labels it USD because the line
+// also contains "US$". Start at the explicit reporting-currency marker when one exists.
+function getExplicitReportingCurrencyText(
+  text: string,
+  currencyCode: string | undefined,
+): string | null {
+  const markerByCurrency = new Map<string, RegExp>([
+    ["USD", /\b(?:US\s*\$|USD)\s*/i],
+    ["CAD", /(?:^|[^A-Za-z])(?:C\s*\$|CAD)\s*/i],
+    ["TWD", /(?:^|[^A-Za-z])(?:NT\s*\$|NTD|TWD)\s*/i],
+    ["EUR", /(?:€|\bEUR\b)\s*/i],
+    ["GBP", /(?:£|\bGBP\b)\s*/i],
+    ["JPY", /(?:¥|\bJPY\b)\s*/i],
+    ["CHF", /\bCHF\s*/i],
+  ]);
+  // An exhibit may not declare one document-wide currency because it presents every
+  // result in local currency and USD side by side. An explicit US-dollar translation is
+  // still the comparable amount for the US-listed security.
+  const resolvedCurrencyCode = currencyCode ?? (/\bUS\s*\$/i.test(text) ? "USD" : undefined);
+  const marker = undefined === resolvedCurrencyCode
+    ? undefined
+    : markerByCurrency.get(resolvedCurrencyCode)?.exec(text);
+  return undefined === marker?.index ? null : text.slice(marker.index);
 }
 
 // A metric value must be in the same sentence as its label. Otherwise prose such

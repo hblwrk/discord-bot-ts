@@ -1502,6 +1502,34 @@ const filingCorpus: {
     source: "1024305/000102430526000045/exhibit991-earningsrelease.htm",
     ticker: "coty",
   },
+  {
+    // Every headline result is stated first in Hong Kong dollars and then translated to
+    // US dollars. The alert uses the explicit translation for the US-listed ADS.
+    company: "Futu Holdings Limited",
+    metrics: [
+      ["revenue", "$918.2M"],
+      ["net_income", "$464.4M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1754581/000110465926098911/tm2623384d1_ex99-1.htm",
+    ticker: "futu",
+  },
+  {
+    // The statement's quarterly and year-to-date net-income values are all one or two
+    // digits. A later four-quarter leverage reconciliation reports $109 million.
+    company: "Advance Auto Parts",
+    metrics: [
+      ["adjusted_eps", "$1.03"],
+      ["gaap_eps", "$0.90"],
+      ["revenue", "$2B"],
+      ["net_income", "$55M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1158449/000119312526357755/aap-ex99_1.htm",
+    ticker: "aap",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1522,6 +1550,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(95);
+    expect(filingCorpus).toHaveLength(97);
   });
 });
