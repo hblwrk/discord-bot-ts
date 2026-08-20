@@ -1,0 +1,1952 @@
+EX-99.1
+2
+tm2623384d1_ex99-1.htm
+EXHIBIT 99.1
+
+
+
+
+
+
+
+
+
+
+Exhibit 99.1
+
+
+
+
+
+Futu Announces Second Quarter 2026 Unaudited
+Financial Results
+
+
+
+
+
+HONG KONG, August 20, 2026 (GLOBE NEWSWIRE) -- Futu
+Holdings Limited (&ldquo;Futu&rdquo; or the &ldquo;Company&rdquo;) (Nasdaq: FUTU), a leading tech-driven online brokerage and wealth
+management platform, today announced its unaudited financial results for the second quarter ended June 30, 2026.
+
+
+
+
+
+Second Quarter 2026 Operational Highlights
+
+
+
+
+
+
+| &middot; | Total
+number of funded accounts increased 33.6% year-over-year to 3,842,667 as
+of June 30, 2026. |
+
+
+
+| &middot; | Total
+number of brokerage accounts increased 26.6% year-over-year to 6,639,583
+as of June 30, 2026. |
+
+
+
+| &middot; | Total number of users increased 15.2% year-over-year
+to 31.3 million as of June 30, 2026. |
+
+
+
+| &middot; | Total client assets increased 43.6% year-over-year to HK$1.40 trillion as of June 30, 2026. |
+
+
+
+| &middot; | Daily average client assets were HK$1.39 trillion in the second quarter of 2026, an increase of
+55.6% from the same period in 2025. |
+
+| &middot;
+| Total trading volume in the second quarter of 2026
+increased by 78.8% year-over-year to HK$6.42 trillion, in which trading volume for U.S. stocks was HK$5.02 trillion, and trading
+volume for Hong Kong stocks was HK$1.17 trillion. |
+
+
+| &middot; | Margin
+financing and securities lending balance increased 85.1% year-over-year to HK$95.1 billion as of June 30, 2026. |
+
+
+
+
+
+
+
+
+
+
+
+
+Second Quarter 2026
+Financial Highlights
+
+
+
+
+
+
+
+
+
+| &middot; | Total revenues increased 35.6% year-over-year to HK$7,200.2 million (US$918.2 million). |
+
+
+
+| &middot; | Total gross profit increased 33.9% year-over-year to HK$6,214.8 million (US$792.5 million). |
+
+
+
+| &middot; | Net income increased 41.6% year-over-year to HK$3,641.9 million (US$464.4 million). |
+
+
+
+| &middot; | Non-GAAP adjusted net income⁴ increased 40.1% year-over-year to HK$3,725.1 million (US$475.0
+million). |
+
+
+
+
+
+Mr. Leaf
+Hua Li, Futu&rsquo;s Chairman and Chief Executive Officer, said, &ldquo;In the second quarter, we added 252 thousand net new funded accounts,
+bringing total funded accounts to 3.8 million, up 33.6% year-over-year. Growth in funded accounts this quarter was supported by continued
+momentum across our international markets, reinforcing the diversification of our client base. Malaysia led new funded account additions
+for the third consecutive quarter. Hong Kong and Singapore followed as key contributors, with new client cohorts in both markets demonstrating
+stronger initial monetization compared with prior periods, a signal of ongoing quality improvement in our more established markets.&rdquo;
+
+
+
+
+
+&ldquo;Total
+client assets were HK$1.40 trillion as of quarter end, up 43.6% year-over-year and 14.5% quarter-over-quarter. The growth was mainly attributable
+to higher market valuation of clients&rsquo; stock holdings, and to a lesser extent, net asset inflow. Margin financing and securities
+lending balance rose 30.5% quarter-over-quarter to HK$95.1 billion, driven by an active Hong Kong IPO market, alongside upbeat sentiment
+that fueled higher utilization of leverage.&rdquo;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The number of funded accounts refers
+to the number of brokerage accounts with Futu that have a positive account balance. Multiple funded accounts by one client are counted
+as one funded account.
+
+
+Multiple brokerage accounts by one
+client are counted as one brokerage account.
+
+
+The number of users refers to the
+number of user accounts registered with Futu.
+
+
+Non-GAAP adjusted net income is defined
+as net income excluding share-based compensation expenses.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&ldquo;Total
+trading volume reached a record HK$6.42 trillion, up 78.8% year-over-year and 54.6% quarter-over-quarter, supported by a meaningful
+acceleration in U.S. stock trading activity. U.S. stock trading volume rose 67.2% sequentially to HK$5.02 trillion, driven by
+heightened client interest in semiconductor and other AI value chain names. Hong Kong stock trading volume grew 15.9%
+quarter-over-quarter to HK$1.17 trillion, reflecting client engagement in semiconductor, China internet, and newly listed AI
+names.&rdquo;
+
+
+
+
+
+&ldquo;Total client assets
+in wealth management increased 10.4% year-over-year and 1.0% quarter-over-quarter to HK$180.2 billion, primarily supported by growth in
+equity fund holdings amid strong global equity market performance. In Hong Kong, we added new global equity mutual funds to our platform
+and expanded thematic investor engagement around frontier areas such as the space economy. In Singapore, we further broadened our fund
+shelf with new local equity strategies aligned with the country's capital markets development priorities.&rdquo;
+
+
+
+
+
+&ldquo;As
+of quarter end, we cumulatively served 683 IPO distribution and IR clients, up 32.1% year-over-year. Against a robust Hong Kong IPO
+backdrop, we provided investment banking services to nearly 60% of new listings during the quarter, including those of Star
+Sports Medicine, Lightelligence, and Metis TechBio.&rdquo;
+
+
+
+
+
+&ldquo;In
+recent months, we made meaningful progress across our global franchise. In June, Moomoo launched Prediction Markets in the U.S., broadening
+the ways our clients can engage with financial markets and real-world developments, driving active client participation. Futu Securities
+also received SFC approval to launch a virtual asset financing service through our proprietary trading platform PantherTrade, further
+expanding our product runway within Hong Kong's evolving virtual asset framework. In July, we obtained a Type A license from the Thailand
+Securities and Exchange Commission, positioning us to launch Moomoo Thailand and further extend our footprint across Southeast Asia. Together,
+these developments deepen the product breadth and expand the geographic reach of our platform for global investors.&rdquo;
+
+
+
+
+
+Mr. Arthur
+Yu Chen, Futu&rsquo;s Chief Financial Officer, added, &ldquo;As of June 30, 2026, we have repurchased approximately 3.8 million ADSs for
+an aggregate consideration of approximately US$418 million in open market transactions in accordance with the authorization under the
+current share repurchase program.&rdquo;
+
+
+
+
+
+Second Quarter 2026 Financial Results
+
+
+
+
+
+Revenues
+
+
+
+
+
+Total revenues were HK$7,200.2 million (US$918.2 million), an increase
+of 35.6% from HK$5,310.9 million in the second quarter of 2025.
+
+
+
+
+
+Brokerage commission and handling charge income
+was HK$3,360.6 million (US$428.5 million), an increase of 30.3% from the second quarter of 2025. This was mainly due to higher trading
+volume, partially offset by a decline in blended commission rate.
+
+
+
+
+
+Interest income was HK$3,123.8 million (US$398.3
+million), an increase of 36.5% from the second quarter of 2025. The increase was mainly driven by higher interest income from margin financing
+and bank deposit.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Other income was HK$715.8 million (US$91.3 million),
+an increase of 61.2% from the second quarter of 2025. The increase was primarily attributable to higher currency exchange income and IPO
+financing service income.
+
+
+
+
+
+Costs
+
+
+
+
+
+Total costs were HK$985.4 million (US$125.7 million),
+an increase of 46.9% compared to HK$670.9 million in the second quarter of 2025.
+
+
+
+
+
+Brokerage commission and handling charge expenses
+were HK$247.5 million (US$31.6 million), an increase of 54.1% from the second quarter of 2025. The increase was primarily due to higher
+trading volume.
+
+
+
+
+
+Interest expenses were HK$512.9 million (US$65.4
+million), an increase of 35.8% from the second quarter of 2025. The increase was primarily due to higher expenses associated with our
+margin financing.
+
+
+
+
+
+Processing and servicing costs were HK$225.0 million
+(US$28.7 million), an increase of 69.6% from the second quarter of 2025. The increase was primarily due to increasing cloud service fees
+in AI capabilities.
+
+
+
+
+
+Gross Profit
+
+
+
+
+
+Total gross profit was HK$6,214.8 million (US$792.5
+million), an increase of 33.9% from HK$4,639.9 million in the second quarter of 2025. Gross margin was 86.3%, as compared to 87.4% in
+the second quarter of 2025.
+
+
+
+
+
+Operating Expenses
+
+
+
+
+
+Total operating expenses were HK$1,751.3 million
+(US$223.3 million), an increase of 35.1% from HK$1,296.0 million in the second quarter of 2025.
+
+
+
+
+
+Research and development expenses were HK$501.0
+million (US$63.9 million), an increase of 13.4% from the second quarter of 2025. This was primarily driven by increased investment in
+strategic initiatives.
+
+
+
+
+
+Selling and marketing expenses were HK$657.1 million
+(US$83.8 million), an increase of 53.1% from HK$429.1 million in the second quarter of 2025. This was driven by the increase of new funded
+accounts.
+
+
+
+
+
+General and administrative expenses were HK$593.1
+million (US$75.6 million), an increase of 39.6% from the second quarter of 2025. The increase was primarily due to an increase in general
+and administrative personnel to support business development.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Income from Operations
+
+
+
+
+
+Income from operations increased by 33.5% to HK$4,463.5
+million (US$569.2 million) from HK$3,344.0 million in the second quarter of 2025. Operating margin declined to 62.0% from 63.0% in the
+second quarter of 2025.
+
+
+
+
+
+Net Income
+
+
+
+
+
+Net income increased by 41.6% to HK$3,641.9 million
+(US$464.4 million) from HK$2,572.6 million in the second quarter of 2025. Net income margin for the second quarter of 2026 increased to
+50.6% from 48.4% in the year-ago quarter.
+
+
+
+
+
+Non-GAAP adjusted net income increased by 40.1%
+to HK$3,725.1million (US$475.0 million) from the second quarter of 2025. Non-GAAP adjusted net income is defined as net income excluding
+share-based compensation expenses. For further information, see "Use of Non-GAAP Financial Measures" at the bottom of this press
+release.
+
+
+
+
+
+Net Income per ADS
+
+
+
+
+
+Basic net income per American Depositary Share
+("ADS") was HK$26.32 (US$3.36), compared with HK$18.48 in the second quarter of 2025. Diluted net income per ADS was HK$26.08
+(US$3.33), compared with HK$18.24 in the second quarter of 2025. Each ADS represents eight Class A ordinary shares.
+
+
+
+
+
+Conference Call and Webcast
+
+
+
+
+
+Futu's management will hold an earnings conference
+call on Thursday, August 20, 2026, at 7:30 AM U.S. Eastern Time (7:30 PM on the same day, Beijing/Hong Kong Time).
+
+
+
+
+
+Please note that all participants will need to
+pre-register for the conference call, using the link
+
+
+
+
+
+https://register-conf.media-server.com/register/BIc3f2e0e4bf004756b6d281e81ca215dd
+
+
+
+
+
+It will automatically lead to the registration
+page of "Futu Holdings Ltd First Quarter 2026 Earnings Conference Call", where details for RSVP are needed.
+
+
+
+
+
+Upon registering, all participants will be provided
+in confirmation emails with participant dial-in numbers and personal PINs to access the conference call. Please dial in 10 minutes prior
+to the call start time using the conference access information.
+
+
+
+
+
+Additionally, a live and archived webcast of this
+conference call will be available at https://ir.futuholdings.com/.
+
+
+
+
+
+About Futu Holdings Limited
+
+
+
+
+
+Futu Holdings Limited (Nasdaq: FUTU) is an advanced
+technology company transforming the investing experience by offering fully digitalized financial services. Through its proprietary digital
+platforms, Futubull and Moomoo , the Company provides a full range of investment services, including trade execution and
+clearing, margin financing and securities lending, and wealth management. The Company has embedded social media tools to create a network
+centered around its users and provide connectivity to users, investors, companies, analysts, media and key opinion leaders. The Company
+also provides corporate services, including IPO distribution, investor relations and ESOP solution services.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Use of Non-GAAP Financial Measures
+
+
+
+
+
+In evaluating the business, the Company considers
+and uses non-GAAP adjusted net income, a non-GAAP measure, as a supplemental measure to review and assess its operating performance. The
+presentation of the non-GAAP financial measure is not intended to be considered in isolation or as a substitute for the financial information
+prepared and presented in accordance with U.S. GAAP. The Company defines non-GAAP adjusted net income as net income excluding share-based
+compensation expenses. The Company presents the non-GAAP financial measure because it is used by the management to evaluate the operating
+performance and formulate business plans. Non-GAAP adjusted net income enables the management to assess the Company's operating results
+without considering the impact of share-based compensation expenses, which are non-cash charges. The Company also believes that the use
+of the non-GAAP measure facilitates investors' assessment of its operating performance.
+
+
+
+
+
+Non-GAAP adjusted net income is not defined under
+U.S. GAAP and is not presented in accordance with U.S. GAAP. This non-GAAP financial measure has limitations as analytical tools. One
+of the key limitations of using non-GAAP adjusted net income is that it does not reflect all items of expense that affect the Company's
+operations. Share-based compensation expenses have been and may continue to be incurred in the business and is not reflected in the presentation
+of non-GAAP adjusted net income. Further, the non-GAAP measure may differ from the non-GAAP information used by other companies, including
+peer companies, and therefore their comparability may be limited.
+
+
+
+
+
+The Company compensates for these limitations
+by reconciling the non-GAAP financial measure to the nearest U.S. GAAP performance measure, all of which should be considered when evaluating
+the Company's performance.
+
+
+
+
+
+For more information on this non-GAAP financial
+measure, please see the table captioned "Unaudited Reconciliations of Non-GAAP and GAAP Results" set forth at the end of this
+press release.
+
+
+
+
+
+Exchange Rate Information
+
+
+
+
+
+This announcement contains translations of certain
+HK dollars ("HK$") amounts into U.S. dollars ("US$") at specified rates solely for the convenience of the reader.
+Unless otherwise stated, all translations from HK$ to US$ were made at the rate of HK$7.8420 to US$1.00, the noon buying rate in effect
+on June 30, 2026 in the H.10 statistical release of the Federal Reserve Board. The Company makes no representation that the HK$ or US$
+amounts referred could be converted into US$ or HK$, as the case may be, at any particular rate or at all.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Safe Harbor Statement
+
+
+
+
+
+This announcement contains forward-looking statements.
+These statements are made under the "safe harbor" provisions of the United States Private Securities Litigation Reform Act of
+1995. These forward-looking statements can be identified by terminology such as "will," "expects," "anticipates,"
+"future," "intends," "plans," "believes," "estimates" and similar statements. Among
+other things, the quotations from the management team of the Company, contain forward-looking statements. Futu may also make written or
+oral forward-looking statements in its periodic reports to the SEC, in its annual report to shareholders, in press releases and other
+written materials and in oral statements made by its officers, directors or employees to third parties. Statements that are not historical
+facts, including statements about Futu's beliefs and expectations, are forward-looking statements. Forward-looking statements involve
+inherent risks and uncertainties. A number of factors could cause actual results to differ materially from those contained in any forward-looking
+statement, including but not limited to the following: Futu's goal and strategies; Futu's expansion plans; Futu's future business development,
+financial condition and results of operations; Futu's expectations regarding demand for, and market acceptance of, its credit products;
+Futu's expectations regarding keeping and strengthening its relationships with borrowers, institutional funding partners, merchandise
+suppliers and other parties it collaborates with; general economic and business conditions; and assumptions underlying or related to any
+of the foregoing. Further information regarding these and other risks is included in Futu's filings with the SEC. All information provided
+in this press release and in the attachments is as of the date of this press release, and Futu does not undertake any obligation to update
+any forward-looking statement, except as required under applicable law.
+
+
+
+
+
+For investor inquiries, please contact:
+
+
+
+
+
+Investor Relations
+
+
+Futu Holdings Limited
+
+
+ir@futuholdings.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FUTU HOLDINGS LIMITED
+
+
+
+
+
+UNAUDITED CONDENSED CONSOLIDATED BALANCE SHEETS
+
+
+
+
+
+(In thousands, except for share and per share
+data)
+
+
+
+
+
+
+
+| |
+As of December 31, | | |
+As of June 30, | |
+
+
+| |
+2025 | | |
+2026 | | |
+2026 | |
+
+
+| |
+HK$ | | |
+HK$ | | |
+US$ | |
+
+
+ASSETS | |
+| | |
+| | |
+| |
+
+
+Cash and cash equivalents | |
+| 10,465,888 | | |
+| 18,380,950 | | |
+| 2,343,911 | |
+
+
+Cash held on behalf of clients | |
+| 113,398,356 | | |
+| 135,824,565 | | |
+| 17,320,143 | |
+
+
+Restricted cash | |
+| 2,510 | | |
+| 110,479 | | |
+| 14,088 | |
+
+
+Term deposit | |
+| - | | |
+| 202,212 | | |
+| 25,786 | |
+
+
+Short-term investments | |
+| 6,688,871 | | |
+| 6,612,010 | | |
+| 843,154 | |
+
+
+Securities purchased under agreements to resell | |
+| 507,767 | | |
+| 451,189 | | |
+| 57,535 | |
+
+
+Loans and advances-current (net of allowance of HK$374,604 thousand and HK$1,212,916 thousand as of December 31, 2025 and June 30, 2026, respectively) | |
+| 64,607,370 | | |
+| 91,875,630 | | |
+| 11,715,842 | |
+
+
+Receivables: | |
+| | | |
+| | | |
+| | |
+
+
+Clients | |
+| 838,521 | | |
+| 817,675 | | |
+| 104,269 | |
+
+
+Brokers | |
+| 18,459,373 | | |
+| 22,416,500 | | |
+| 2,858,518 | |
+
+
+Clearing organizations | |
+| 5,522,472 | | |
+| 6,455,474 | | |
+| 823,192 | |
+
+
+Fund management companies and fund distributors | |
+| 1,997,086 | | |
+| 514,423 | | |
+| 65,598 | |
+
+
+Interest | |
+| 852,186 | | |
+| 950,861 | | |
+| 121,252 | |
+
+
+Amounts due from related parties | |
+| 6,780 | | |
+| 5,100 | | |
+| 650 | |
+
+
+Prepaid assets | |
+| 77,960 | | |
+| 151,625 | | |
+| 19,335 | |
+
+
+Other current assets | |
+| 225,478 | | |
+| 450,466 | | |
+| 57,445 | |
+
+
+Total current assets | |
+| 223,650,618 | | |
+| 285,219,159 | | |
+| 36,370,718 | |
+
+
+| |
+| | | |
+| | | |
+| | |
+
+
+Operating lease right-of-use assets | |
+| 569,939 | | |
+| 698,407 | | |
+| 89,060 | |
+
+
+Long-term investments | |
+| 615,220 | | |
+| 921,141 | | |
+| 117,463 | |
+
+
+Loans and advances-non-current | |
+| 139,668 | | |
+| 67,002 | | |
+| 8,544 | |
+
+
+Other non-current assets | |
+| 3,461,431 | | |
+| 5,701,904 | | |
+| 727,096 | |
+
+
+Total non-current assets | |
+| 4,786,258 | | |
+| 7,388,454 | | |
+| 942,163 | |
+
+
+Total assets | |
+| 228,436,876 | | |
+| 292,607,613 | | |
+| 37,312,881 | |
+
+
+
+
+
+
+
+
+
+
+1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FUTU HOLDINGS LIMITED
+
+
+
+
+
+UNAUDITED CONDENSED CONSOLIDATED BALANCE SHEETS
+(Continued)
+
+
+
+
+
+(In thousands, except for share and per share
+data)
+
+
+
+
+
+
+
+| |
+As of December 31, | | |
+As of June 30, | |
+
+
+| |
+2025 | | |
+2026 | | |
+2026 | |
+
+
+| |
+HK$ | | |
+HK$ | | |
+US$ | |
+
+
+LIABILITIES | |
+| | | |
+| | | |
+| | |
+
+
+Amounts due to related parties | |
+| 67,143 | | |
+| 130,170 | | |
+| 16,599 | |
+
+
+Payables: | |
+| | | |
+| | | |
+| | |
+
+
+Clients | |
+| 125,249,957 | | |
+| 145,416,920 | | |
+| 18,543,345 | |
+
+
+Brokers | |
+| 38,678,396 | | |
+| 66,150,701 | | |
+| 8,435,438 | |
+
+
+Clearing organizations | |
+| 750,964 | | |
+| 5,119,024 | | |
+| 652,770 | |
+
+
+Fund management companies and fund distributors | |
+| 1,277,467 | | |
+| 165,342 | | |
+| 21,084 | |
+
+
+Interest | |
+| 62,527 | | |
+| 103,922 | | |
+| 13,252 | |
+
+
+Borrowings | |
+| 12,143,237 | | |
+| 15,735,475 | | |
+| 2,006,564 | |
+
+
+Securities sold under agreements to repurchase | |
+| 4,743,096 | | |
+| 11,844,449 | | |
+| 1,510,386 | |
+
+
+Lease liabilities-current | |
+| 200,089 | | |
+| 211,910 | | |
+| 27,022 | |
+
+
+Accrued expenses and other current liabilities | |
+| 4,527,129 | | |
+| 7,842,828 | | |
+| 1,000,105 | |
+
+
+Total current liabilities | |
+| 187,700,005 | | |
+| 252,720,741 | | |
+| 32,226,565 | |
+
+
+| |
+| | | |
+| | | |
+| | |
+
+
+Lease liabilities-non-current | |
+| 393,843 | | |
+| 527,530 | | |
+| 67,272 | |
+
+
+Other non-current liabilities | |
+| 21,906 | | |
+| 154,873 | | |
+| 19,749 | |
+
+
+Total non-current liabilities | |
+| 415,749 | | |
+| 682,403 | | |
+| 87,021 | |
+
+
+Total liabilities | |
+| 188,115,754 | | |
+| 253,403,144 | | |
+| 32,313,586 | |
+
+
+| |
+| | | |
+| | | |
+| | |
+
+
+SHAREHOLDERS&rsquo; EQUITY | |
+| | | |
+| | | |
+| | |
+
+
+Class A ordinary shares | |
+| 73 | | |
+| 61 | | |
+| 8 | |
+
+
+Class B ordinary shares | |
+| 27 | | |
+| 27 | | |
+| 3 | |
+
+
+Additional paid-in capital | |
+| 19,158,175 | | |
+| 14,096,984 | | |
+| 1,797,626 | |
+
+
+Treasury Stock | |
+| (5,199,257 | ) | |
+| (3,275,796 | ) | |
+| (417,725 | ) |
+
+
+Accumulated other comprehensive income | |
+| 51,503 | | |
+| 426,150 | | |
+| 54,342 | |
+
+
+Retained earnings | |
+| 25,990,667 | | |
+| 27,629,264 | | |
+| 3,523,243 | |
+
+
+Total shareholders' equity | |
+| 40,001,188 | | |
+| 38,876,690 | | |
+| 4,957,497 | |
+
+
+| |
+| | | |
+| | | |
+| | |
+
+
+Non-controlling interests | |
+| 319,934 | | |
+| 327,779 | | |
+| 41,798 | |
+
+
+Total equity | |
+| 40,321,122 | | |
+| 39,204,469 | | |
+| 4,999,295 | |
+
+
+Total liabilities and equity | |
+| 228,436,876 | | |
+| 292,607,613 | | |
+| 37,312,881 | |
+
+
+
+
+
+
+
+
+
+
+2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FUTU HOLDINGS LIMITED
+
+
+
+
+
+UNAUDITED CONDENSED CONSOLIDATED STATEMENTS
+OF COMPREHENSIVE INCOME
+
+
+
+
+
+(In thousands, except for share and per share
+data)
+
+
+
+
+
+
+
+| |
+For
+the Three Months Ended | | |
+For
+the Six Months Ended | |
+
+
+| |
+June
+30,
+2025
+| | |
+June
+30,
+2026
+| | |
+June
+30,
+2026
+| | |
+June
+30,
+2025
+| | |
+June
+30,
+2026
+| | |
+June
+30,
+2026
+| |
+
+
+| |
+HK$ | | |
+HK$ | | |
+US$ | | |
+HK$ | | |
+HK$ | | |
+US$ | |
+
+
+Revenues | |
+| | |
+| | |
+| | |
+| | |
+| | |
+| |
+
+
+Brokerage
+commission and handling charge income | |
+| 2,578,602 | | |
+| 3,360,646 | | |
+| 428,545 | | |
+| 4,888,822 | | |
+| 6,002,080 | | |
+| 765,376 | |
+
+
+Interest
+income | |
+| 2,288,156 | | |
+| 3,123,775 | | |
+| 398,339 | | |
+| 4,358,625 | | |
+| 5,774,009 | | |
+| 736,293 | |
+
+
+Other
+income | |
+| 444,132 | | |
+| 715,793 | | |
+| 91,276 | | |
+| 758,080 | | |
+| 1,280,115 | | |
+| 163,238 | |
+
+
+Total
+revenues | |
+| 5,310,890 | | |
+| 7,200,214 | | |
+| 918,160 | | |
+| 10,005,527 | | |
+| 13,056,204 | | |
+| 1,664,907 | |
+
+
+Costs | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Brokerage
+commission and handling charge expenses | |
+| (160,597 | ) | |
+| (247,503 | ) | |
+| (31,561 | ) | |
+| (304,102 | ) | |
+| (411,977 | ) | |
+| (52,535 | ) |
+
+
+Interest
+expenses | |
+| (377,629 | ) | |
+| (512,877 | ) | |
+| (65,401 | ) | |
+| (846,962 | ) | |
+| (927,564 | ) | |
+| (118,282 | ) |
+
+
+Processing
+and servicing costs | |
+| (132,716 | ) | |
+| (225,033 | ) | |
+| (28,696 | ) | |
+| (268,831 | ) | |
+| (395,153 | ) | |
+| (50,389 | ) |
+
+
+Total
+costs | |
+| (670,942 | ) | |
+| (985,413 | ) | |
+| (125,658 | ) | |
+| (1,419,895 | ) | |
+| (1,734,694 | ) | |
+| (221,206 | ) |
+
+
+Total
+gross profit | |
+| 4,639,948 | | |
+| 6,214,801 | | |
+| 792,502 | | |
+| 8,585,632 | | |
+| 11,321,510 | | |
+| 1,443,701 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Operating
+expenses | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Research
+and development expenses | |
+| (441,925 | ) | |
+| (501,021 | ) | |
+| (63,889 | ) | |
+| (827,904 | ) | |
+| (979,901 | ) | |
+| (124,955 | ) |
+
+
+Selling
+and marketing expenses | |
+| (429,132 | ) | |
+| (657,127 | ) | |
+| (83,796 | ) | |
+| (888,334 | ) | |
+| (1,213,878 | ) | |
+| (154,792 | ) |
+
+
+General
+and administrative expenses | |
+| (424,908 | ) | |
+| (593,112 | ) | |
+| (75,633 | ) | |
+| (840,153 | ) | |
+| (1,134,029 | ) | |
+| (144,610 | ) |
+
+
+Total
+operating expenses | |
+| (1,295,965 | ) | |
+| (1,751,260 | ) | |
+| (223,318 | ) | |
+| (2,556,391 | ) | |
+| (3,327,808 | ) | |
+| (424,357 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Income
+from operations | |
+| 3,343,983 | | |
+| 4,463,541 | | |
+| 569,184 | | |
+| 6,029,241 | | |
+| 7,993,702 | | |
+| 1,019,344 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Others,
+net | |
+| (168,114 | ) | |
+| (188,648 | ) | |
+| (24,056 | ) | |
+| (188,712 | ) | |
+| (2,322,072 | ) | |
+| (296,107 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Income
+before income tax expense and share of (loss)/gain from equity method investments | |
+| 3,175,869 | | |
+| 4,274,893 | | |
+| 545,128 | | |
+| 5,840,529 | | |
+| 5,671,630 | | |
+| 723,237 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Income
+tax expense | |
+| (579,809 | ) | |
+| (698,375 | ) | |
+| (89,056 | ) | |
+| (1,070,768 | ) | |
+| (1,305,359 | ) | |
+| (166,457 | ) |
+
+
+Share
+of (loss)/gain from equity method investments | |
+| (23,500 | ) | |
+| 65,338 | | |
+| 8,332 | | |
+| (54,497 | ) | |
+| 106,570 | | |
+| 13,590 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net
+income | |
+| 2,572,560 | | |
+| 3,641,856 | | |
+| 464,404 | | |
+| 4,715,264 | | |
+| 4,472,841 | | |
+| 570,370 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Attributable
+to: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Ordinary
+shareholders of the Company | |
+| 2,574,209 | | |
+| 3,646,775 | | |
+| 465,031 | | |
+| 4,719,532 | | |
+| 4,497,325 | | |
+| 573,492 | |
+
+
+Non-controlling
+interests | |
+| (1,649 | ) | |
+| (4,919 | ) | |
+| (627 | ) | |
+| (4,268 | ) | |
+| (24,484 | ) | |
+| (3,122 | ) |
+
+
+| |
+| 2,572,560 | | |
+| 3,641,856 | | |
+| 464,404 | | |
+| 4,715,264 | | |
+| 4,472,841 | | |
+| 570,370 | |
+
+
+
+
+
+
+
+
+
+
+3
+
+
+
+
+
+
+
+
+
+
+FUTU HOLDINGS LIMITED
+
+
+
+
+
+UNAUDITED CONDENSED CONSOLIDATED STATEMENTS
+OF COMPREHENSIVE INCOME (Continued)
+
+
+
+
+
+(In thousands, except for share and per share
+data)
+
+
+
+
+
+
+
+| |
+For
+the Three Months Ended | | |
+For
+the Six Months Ended | |
+
+
+| |
+June
+30,
+2025
+| | |
+June
+30,
+2026
+| | |
+June
+30,
+2026
+| | |
+June
+30,
+2025
+| | |
+June
+30,
+2026
+| | |
+June
+30,
+2026
+| |
+
+
+| |
+HK$ | | |
+HK$ | | |
+US$ | | |
+HK$ | | |
+HK$ | | |
+US$ | |
+
+
+Net
+income per share attributable to ordinary shareholders of the Company
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Basic | |
+| 2.31 | | |
+| 3.29 | | |
+| 0.42 | | |
+| 4.24 | | |
+| 4.03 | | |
+| 0.51 | |
+
+
+Diluted | |
+| 2.28 | | |
+| 3.26 | | |
+| 0.42 | | |
+| 4.19 | | |
+| 3.99 | | |
+| 0.51 | |
+
+
+| |
+| | | |
+| 　 | | |
+| 　 | | |
+| | | |
+| | | |
+| | |
+
+
+Net income per ADS | |
+| | | |
+| 　 | | |
+| 　 | | |
+| | | |
+| | | |
+| | |
+
+
+Basic | |
+| 18.48 | | |
+| 26.32 | | |
+| 3.36 | | |
+| 33.92 | | |
+| 32.24 | | |
+| 4.11 | |
+
+
+Diluted | |
+| 18.24 | | |
+| 26.08 | | |
+| 3.33 | | |
+| 33.52 | | |
+| 31.92 | | |
+| 4.07 | |
+
+
+| |
+| | | |
+| 　 | | |
+| 　 | | |
+| | | |
+| 　 | | |
+| 　 | |
+
+
+Weighted
+average number of ordinary shares used in computing net income per share
+| |
+| | | |
+| 　 | | |
+| 　 | | |
+| | | |
+| | | |
+| | |
+
+
+Basic | |
+| 1,114,047,038 | | |
+| 1,109,913,839 | | |
+| 1,109,913,839 | | |
+| 1,113,738,611 | | |
+| 1,115,651,677 | | |
+| 1,115,651,677 | |
+
+
+Diluted | |
+| 1,128,991,818 | | |
+| 1,120,132,347 | | |
+| 1,120,132,347 | | |
+| 1,127,802,882 | | |
+| 1,126,861,434 | | |
+| 1,126,861,434 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net income | |
+| 2,572,560 | | |
+| 3,641,856 | | |
+| 464,404 | | |
+| 4,715,264 | | |
+| 4,472,841 | | |
+| 570,370 | |
+
+
+Other comprehensive income/(loss),
+net of tax | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Changes in the fair value of
+financial assets | |
+| - | | |
+| (3,233 | ) | |
+| (412 | ) | |
+| - | | |
+| (15,392 | ) | |
+| (1,963 | ) |
+
+
+Foreign currency translation
+adjustment | |
+| 327,589 | | |
+| 125,697 | | |
+| 16,029 | | |
+| 392,804 | | |
+| 386,179 | | |
+| 49,245 | |
+
+
+Total comprehensive income | |
+| 2,900,149 | | |
+| 3,764,320 | | |
+| 480,021 | | |
+| 5,108,068 | | |
+| 4,843,628 | | |
+| 617,652 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Attributable to: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Ordinary shareholders of the
+Company | |
+| 2,902,320 | | |
+| 3,769,417 | | |
+| 480,671 | | |
+| 5,112,872 | | |
+| 4,871,972 | | |
+| 621,266 | |
+
+
+Non-controlling interests | |
+| (2,171 | ) | |
+| (5,097 | ) | |
+| (650 | ) | |
+| (4,804 | ) | |
+| (28,344 | ) | |
+| (3,614 | ) |
+
+
+| |
+| 2,900,149 | | |
+| 3,764,320 | | |
+| 480,021 | | |
+| 5,108,068 | | |
+| 4,843,628 | | |
+| 617,652 | |
+
+
+
+
+
+
+
+
+
+
+4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FUTU HOLDINGS LIMITED
+
+
+
+
+
+UNAUDITED RECONCILIATIONS OF NON-GAAP
+AND GAAP RESULTS
+
+
+
+
+
+(In thousands)
+
+
+
+
+
+
+
+| |
+For
+the Three Months Ended | | |
+For
+the Six Months Ended | |
+
+
+| |
+June
+30,
+2025
+| | |
+June
+30,
+2026
+| | |
+June
+30,
+2026
+| | |
+June
+30,
+2025
+| | |
+June
+30,
+2026
+| | |
+June
+30,
+2026
+| |
+
+
+| |
+HK$ | | |
+HK$ | | |
+US$ | | |
+HK$ | | |
+HK$ | | |
+US$ | |
+
+
+| |
+| | |
+| | |
+| | |
+| | |
+| | |
+| |
+
+
+Net income | |
+| 2,572,560 | | |
+| 3,641,856 | | |
+| 464,404 | | |
+| 4,715,264 | | |
+| 4,472,841 | | |
+| 570,370 | |
+
+
+Add: Share-based
+compensation expenses | |
+| 87,254 | | |
+| 83,253 | | |
+| 10,616 | | |
+| 161,453 | | |
+| 171,799 | | |
+| 21,908 | |
+
+
+Adjusted
+net income | |
+| 2,659,814 | | |
+| 3,725,109 | | |
+| 475,020 | | |
+| 4,876,717 | | |
+| 4,644,640 | | |
+| 592,278 | |
+
+
+
+
+
+
+Non-GAAP to GAAP reconciling items have no income tax effect.
+
+
+
+
+
+
+
+
+
+5

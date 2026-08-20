@@ -548,6 +548,36 @@ describe("earnings result metric selection", () => {
     ]);
   });
 
+  test("uses explicit US-dollar translations after Hong Kong dollar results", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example announces second quarter 2026 results</h1>
+      <p>Total revenues increased to HK$7,200.2 million (US$918.2 million).</p>
+      <p>Net income increased to HK$3,641.9 million (US$464.4 million).</p>
+    `);
+
+    expect(parsedDocument.metrics).toEqual([
+      expect.objectContaining({key: "revenue", value: "$918.2M"}),
+      expect.objectContaining({key: "net_income", value: "$464.4M"}),
+    ]);
+  });
+
+  test("prefers quarterly net income over a four-quarter leverage reconciliation", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example reports second quarter 2026 results</h1>
+      <p>Condensed consolidated statements of operations</p>
+      <p>(in millions)</p>
+      <p>Twelve Weeks Ended</p>
+      <table><tr><td>Net income</td><td>55</td><td>15</td></tr></table>
+      <p>Reconciliation of Adjusted Net Debt to Adjusted EBITDAR</p>
+      <p>Four Quarters Ended</p>
+      <table><tr><td>Net income (GAAP)</td><td>109</td></tr></table>
+    `);
+
+    expect(parsedDocument.metrics).toEqual([
+      expect.objectContaining({key: "net_income", value: "$55M"}),
+    ]);
+  });
+
   test("prefers total revenue over product, service, and grant components", () => {
     const parsedDocument = parseEarningsDocument(`
       <h1>Example reports second quarter 2026 results</h1>

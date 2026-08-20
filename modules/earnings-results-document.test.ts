@@ -2,6 +2,7 @@ import {describe, expect, test} from "vitest";
 import {
   decodeHtmlEntities,
   getDocumentCurrencyCode,
+  getMeaningfulLines,
   getQuarterLabel,
   htmlToText,
 } from "./earnings-results-document.ts";
@@ -37,6 +38,14 @@ describe("earnings result document text", () => {
   test("removes zero-width placeholders from otherwise-empty table cells", () => {
     expect(htmlToText("<tr><td>Loss per share</td><td>\u200B</td><td>$(0.10)</td></tr>"))
       .toBe("Loss per share | | $(0.10) |");
+  });
+
+  test("keeps short numeric table cells while dropping presentational fragments", () => {
+    expect(getMeaningfulLines("Net income\n55\nx\n$\n(1")).toEqual([
+      "Net income",
+      "55",
+      "(1",
+    ]);
   });
 
   test("removes numeric superscript references embedded inside money values", () => {
