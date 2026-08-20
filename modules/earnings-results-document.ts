@@ -186,6 +186,19 @@ export function getQuarterLabel(text: string): string | undefined {
     }
   }
 
+  // A fiscal Q4 release can put the year after a combined title rather than directly
+  // after the quarter: "Reports Fourth Quarter and Fiscal Year 2026 Financial Results".
+  // Resolve that title before a later Q1 FY27 outlook can be mistaken for the result.
+  const combinedFiscalResultsMatch = text.match(
+    /\breports?\s+(first|second|third|fourth)[\s–—-]+quarter\s+and\s+(?:fiscal\s+year|full[\s–—-]+year)\s+(20\d{2}|\d{2})\b/i,
+  );
+  if (undefined !== combinedFiscalResultsMatch?.[1] && undefined !== combinedFiscalResultsMatch[2]) {
+    const quarter = getQuarterFromName(combinedFiscalResultsMatch[1]);
+    if (quarter) {
+      return `${quarter} ${normalizeFiscalYear(combinedFiscalResultsMatch[2])}`;
+    }
+  }
+
   // A fiscal-year release can headline only the annual period, then identify its reported
   // quarter in the immediately following highlights. It is the Q4 release even though a
   // June period end would map to calendar Q2.

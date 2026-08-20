@@ -719,6 +719,16 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("recognises inverted compact fiscal-quarter labels before historical comparisons", () => {
+    expect(extractOutlookMetrics([
+      "Outlook",
+      "Adjusted gross margin in 1Q27 is expected to decline. Coty anticipates 1Q27 adjusted EBITDA to decline compared with the second half of FY26. This is expected to result in adjusted EPS of $0.11 to $0.13 per share.",
+      "FY27 free cash flow is expected to exceed $300 million.",
+    ])).toEqual(expect.arrayContaining([
+      {key: "adjusted_eps", label: "Adj EPS", periodLabel: "Q1", value: "$0.11 to $0.13"},
+    ]));
+  });
+
   test("limits outlook scanning and ignores unusable fallback values", () => {
     const lines = [
       "Business Outlook",

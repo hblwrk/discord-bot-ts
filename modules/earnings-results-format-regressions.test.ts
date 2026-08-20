@@ -2,6 +2,17 @@ import {describe, expect, test} from "vitest";
 import {parseEarningsDocument} from "./earnings-results-format.ts";
 
 describe("earnings result filing regressions", () => {
+  test("reads reported net loss before non-GAAP net income on the same line", () => {
+    const document = parseEarningsDocument(`
+      <h1>Example Reports Fourth Quarter and Fiscal Year 2026 Financial Results</h1>
+      <p>Net loss was $18.5 million, or $0.19 per diluted share. Non-GAAP net income was $94.0 million, or $0.84 per diluted share.</p>
+    `);
+
+    expect(document.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "net_income", value: "-$18.5M"}),
+    ]));
+  });
+
   test("uses Chevron current-quarter narrative values instead of footnotes and YTD table columns", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>

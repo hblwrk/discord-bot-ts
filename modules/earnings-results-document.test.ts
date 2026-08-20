@@ -72,6 +72,13 @@ describe("earnings result document text", () => {
     ].join("\n"))).toBe("Q3 2026");
   });
 
+  test("reads the quarter year from a combined fiscal-results title", () => {
+    expect(getQuarterLabel([
+      "BILL Reports Fourth Quarter and Fiscal Year 2026 Financial Results",
+      "We are providing guidance for Q1 FY27.",
+    ].join("\n"))).toBe("Q4 2026");
+  });
+
   test("joins a fiscal Q4 title to the year in its following highlights heading", () => {
     expect(getQuarterLabel([
       "Amcor Reports Strong Fourth Quarter and Full-Year Results",

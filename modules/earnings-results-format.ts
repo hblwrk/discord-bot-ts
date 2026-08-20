@@ -21,6 +21,7 @@ import {
   getMetricLineWithContinuation,
   getQuarterSpecificMetricLines,
   hasMixedMonthQuarterColumns,
+  isAdjustedEpsReconciliationRow,
   isNearTableNoteColumn,
   isPerShareOnlyNetIncomeLine,
   type EarningsResultMetric,
@@ -284,7 +285,9 @@ function extractMetric(
       continue;
     }
 
-    const hasMetricLabel = definition.patterns.some(pattern => pattern.test(line));
+    const hasMetricLabel = definition.patterns.some(pattern => pattern.test(line)) ||
+      ("adjusted_eps" === definition.key &&
+        true === isAdjustedEpsReconciliationRow(lines, lineIndex));
     if (false === hasMetricLabel) {
       continue;
     }
@@ -326,13 +329,19 @@ function extractMetric(
       continue;
     }
 
-    const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(metricLine));
+    // A sentence can state the GAAP loss and then its non-GAAP counterpart. Once the
+    // leading reported value has made the line eligible, read only that leading clause;
+    // otherwise an earlier pattern in the definition can match the later non-GAAP income.
+    const valueMetricLine = true === hasReportedGaapNetIncome
+      ? metricLine.slice(0, metricLine.search(/\badjusted\b|\bnon-gaap\b/i))
+      : metricLine;
+    const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(valueMetricLine));
     if (!pattern) {
       continue;
     }
 
     const metricValue = extractMetricValue(
-      metricLine,
+      valueMetricLine,
       pattern,
       definition.valueType,
       getContextMoney(lines, lineIndex, documentCurrencyCode),

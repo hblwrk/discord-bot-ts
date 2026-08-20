@@ -132,10 +132,14 @@ export function getMetricCandidateScore({
         Math.max(0, patternMatch.index - 30),
         patternMatch.index + patternMatch[0].length,
       );
-    const revenueComponentKinds = [
+    const standardRevenueComponentKinds = [
       /\b(?:net\s+)?product\s+(?:sales|revenues?)\b/i,
       /\bservice\s+revenues?\b/i,
       /\bgrant\s+revenues?\b/i,
+    ].filter(componentPattern => componentPattern.test(precedingRevenueRows)).length;
+    const bespokeRevenueComponentKinds = [
+      /\bsubscription\s+(?:and\s+transaction\s+fees|fees)\b/i,
+      /\b(?:transaction\s+fees|interest\s+on\s+funds\s+held\s+for\s+customers)\b/i,
     ].filter(componentPattern => componentPattern.test(precedingRevenueRows)).length;
     if (true === isUnderSegmentResultsHeading(lines, lineIndex)) {
       score -= 120;
@@ -150,7 +154,9 @@ export function getMetricCandidateScore({
       // qualifier load-bearing so a segment row above it cannot win on table position.
       score += 100;
     } else if (/\btotal\s+revenues?\b/i.test(patternMatch?.[0] ?? "") &&
-        2 <= revenueComponentKinds) {
+        (2 <= standardRevenueComponentKinds ||
+          (2 <= bespokeRevenueComponentKinds &&
+            true === isUnderIncomeStatementHeading(lines, lineIndex)))) {
       score += 100;
     } else if (/\btotal\s+revenues?\s+for\s+(?:the\s+)?(?:q[1-4]|first|second|third|fourth|three[-\s]+months?)\b/i.test(metricLine)) {
       // A current-period headline that explicitly says "Total revenue" is consolidated;
@@ -183,6 +189,14 @@ export function getMetricCandidateScore({
         patternMatch.index + patternMatch[0].length,
       )) {
     score -= 130;
+  }
+
+  // When one sentence states both reported and non-GAAP net income, its rounded headline
+  // value remains a valid fallback but should not outrank an available statement row.
+  if ("net_income" === metricKey &&
+      /\bnon-gaap\s+net\s+(?:income|loss)\b/i.test(metricLine) &&
+      false === /(?<!non-)\bgaap\b/i.test(metricLine)) {
+    score -= 20;
   }
 
   if (("eps" === valueType || "money" === valueType) && /[$€£¥]/.test(metricLine)) {
