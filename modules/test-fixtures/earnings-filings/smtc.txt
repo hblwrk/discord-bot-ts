@@ -1,0 +1,689 @@
+EX-99.1
+2
+smtc-07262026x8k991.htm
+EX-99.1
+
+
+
+
+Document
+
+
+Exhibit 99.1
+
+
+
+
+
+
+FOR IMMEDIATE RELEASE
+Contact:
+Mitch Haws
+Semtech Corporation
+webir@semtech.com
+
+
+Semtech Announces Second Quarter of Fiscal Year 2027 Results
+•Record net sales of $341.9 million, up 17% sequentially and up 33% year-over-year
+•GAAP gross margin of 53.8% and Non-GAAP adjusted gross margin of 54.5%
+•GAAP operating margin of 16.3% and Non-GAAP adjusted operating margin of 24.4%
+•GAAP diluted earnings per share of $1.59 and Non-GAAP adjusted diluted earnings per share of $0.71
+CAMARILLO, Calif., August 25, 2026—Semtech Corporation (Nasdaq: SMTC), a leading provider of high-performance semiconductors powering AI data center networking and intelligent, connected Internet of Things ("IoT") devices worldwide, announced today unaudited financial results for its second quarter of fiscal year 2027, which ended July 26, 2026.
+"The Semtech team executed exceptionally well, delivering record revenue across our key focus areas, earnings leverage that continued to outpace revenue growth and significant progress on portfolio optimization," said Hong Hou, president and CEO. "Accelerating bookings and record backlog point to a strong inflection in growth with new revenue drivers and visibility expected to extend well into next fiscal year. Growing our focus areas and expanding margins all serve the same goal: building a predictable, high-margin and high-return business."
+"This was another quarter of disciplined execution, converting record revenue, margin expansion and diluted earnings per share growth into strong operating and free cash flow," said Mark Lin, executive vice president and chief financial officer. "We enter the third quarter with conviction, expecting broad-based bookings strength to translate into sustained revenue, margin and earnings growth."
+
+
+
+
+
+
+
+
+| | | | | |
+2
+| Semtech Announces Second Quarter of Fiscal Year 2027 Results
+|
+
+
+
+Second Quarter of Fiscal Year 2027 Results
+| | | | | | | | | | | | | | | | | | | | | | | |
+(in millions, except per share data) | Q2'27 | | Q1'27 | | Q2'26 | | | | | | |
+GAAP Financial Results | | | | | | | | | | | |
+Net sales | $ | 341.9 | | | $ | 291.0 | | | $ | 257.6 | | | | | | | |
+Gross margin | 53.8 | % | | 52.0 | % | | 52.1 | % | | | | | | |
+Operating expenses, net | $ | 128.0 | | | $ | 125.7 | | | $ | 150.3 | | | | | | | |
+Operating income (loss) | $ | 55.8 | | | $ | 25.8 | | | $ | (16.2) | | | | | | | |
+Operating margin | 16.3 | % | | 8.9 | % | | (6.3) | % | | | | | | |
+Interest expense, net | $ | 1.0 | | | $ | 1.0 | | | $ | 4.7 | | | | | | | |
+Goodwill impairment | $ | — | | | $ | — | | | $ | 42.0 | | | | | | | |
+Net income (loss) | $ | 160.1 | | | $ | 26.6 | | | $ | (27.1) | | | | | | | |
+Diluted earnings (loss) per share | $ | 1.59 | | | $ | 0.27 | | | $ | (0.31) | | | | | | | |
+| | | | | | | | | | | |
+(in millions, except per share data) | Q2'27 | | Q1'27 | | Q2'26 | | | | | | |
+Net sales | $ | 341.9 | | | $ | 291.0 | | | $ | 257.6 | | | | | | | |
+Non-GAAP Financial Results | | | | | | | | | | | |
+Adjusted gross margin* | 54.5 | % | | 53.0 | % | | 53.2 | % | | | | | | |
+Adjusted operating expenses, net* | $ | 102.8 | | | $ | 95.1 | | | $ | 88.4 | | | | | | | |
+Adjusted operating income* | $ | 83.6 | | | $ | 59.3 | | | $ | 48.6 | | | | | | | |
+Adjusted operating margin* | 24.4 | % | | 20.4 | % | | 18.8 | % | | | | | | |
+Adjusted interest (income) expense, net* | $ | (0.2) | | | $ | (0.1) | | | $ | 4.1 | | | | | | | |
+Adjusted net income* | $ | 69.5 | | | $ | 49.4 | | | $ | 36.7 | | | | | | | |
+Adjusted diluted earnings per share* | $ | 0.71 | | | $ | 0.51 | | | $ | 0.41 | | | | | | | |
+Adjusted EBITDA* | $ | 91.1 | | | $ | 66.4 | | | $ | 56.5 | | | | | | | |
+Adjusted EBITDA margin* | 26.6 | % | | 22.8 | % | | 21.9 | % | | | | | | |
+
+*See "Non-GAAP Financial Measures" below for additional information about our non-GAAP financial results.
+Third Quarter of Fiscal Year 2027 Outlook
+| | | | | | | | | | | | | | | | | |
+(in millions, except per share data) | |
+| | | | | |
+Net sales | $ | 410.0 | | | +/- | | $5.0 |
+Non-GAAP Financial Measures | | | | | |
+Adjusted gross margin* | 58.3% | | +/- | | 100 bps |
+Adjusted gross margin, excluding business held for sale* | 63.9% | | +/- | | 100 bps |
+Adjusted operating expenses, net* | $ | 112.0 | | | +/- | | $3.0 |
+Adjusted operating income* | $ | 127.0 | | | +/- | | $4.0 |
+Adjusted operating margin* | 31.0% | | +/- | | 60 bps |
+Adjusted interest and other expense, net* | $ | 0.5 | | | | | |
+Adjusted normalized tax rate* | 18% | | | | |
+| | | | | |
+Adjusted diluted earnings per share* | $ | 1.05 | | | +/- | | $0.03 |
+Adjusted EBITDA* | $ | 134.3 | | | +/- | | $4.0 |
+Adjusted EBITDA margin* | 32.8% | | +/- | | 60 bps |
+| | | | | |
+Non-GAAP diluted share count* | 99.0 | | | | |
+| | | | | |
+|
+
+
+
+
+
+
+
+
+
+| | | | | |
+3
+| Semtech Announces Second Quarter of Fiscal Year 2027 Results
+|
+
+
+
+*See "Non-GAAP Financial Measures" below for additional information about our non-GAAP financial results.
+The Company is unable to include a reconciliation of forward-looking non-GAAP results to the corresponding GAAP measures as they are not available without unreasonable efforts due to the high variability and low visibility with respect to the impact of transaction, integration and restructuring expenses, share-based awards, amortization of acquisition-related intangible assets and other items that are excluded from these non-GAAP measures. The Company expects the variability of the above charges to have a potentially significant impact on its GAAP financial results.
+Webcast and Conference Call
+Semtech will be hosting a conference call today to discuss its second fiscal quarter 2027 results at 1:30 p.m. Pacific time. The dial-in number for the call is (877) 407-0312. Please use conference ID 13761388. An audio webcast and supplemental earnings materials for the quarter will be available on the Investor Relations section of Semtech's website at investors.semtech.com under "News & Events." A replay of the call will be available through September 22, 2026 at the same website or by calling (877) 660-6853 and entering conference ID 13761388.
+Non-GAAP Financial Measures
+To supplement the Company's consolidated financial statements prepared in accordance with GAAP, this release includes a presentation of select non-GAAP financial measures. The Company's non-GAAP measures of adjusted gross margin, total semiconductor products gross margin, adjusted gross margin, excluding business held for sale, adjusted product development and engineering expense, adjusted selling, general and administrative expense, adjusted operating expenses, net, adjusted operating income, adjusted operating margin, adjusted interest (income) expense, net, adjusted net income, adjusted diluted earnings per share, adjusted normalized tax rate, adjusted EBITDA and adjusted EBITDA margin exclude the following items, if any and as applicable, as set forth in the reconciliations in the tables below under "Supplemental Information: Reconciliation of GAAP to Non-GAAP Results."
+•Share-based compensation
+•Intangible amortization
+•Transaction and integration related costs or recoveries
+•Restructuring and other reserves, including cumulative other reserves associated with historical activity including environmental, pension, deferred compensation and right-of-use asset impairments
+•Litigation costs or dispute settlement charges or recoveries
+
+
+
+
+
+
+
+
+| | | | | |
+4
+| Semtech Announces Second Quarter of Fiscal Year 2027 Results
+|
+
+
+
+•Equity method income or loss
+•Investment gains, losses, reserves and impairments, including interest income from debt investments
+•Write-off and amortization of deferred financing costs
+•Interest rate swap termination
+•Induced conversion expense
+•Loss on extinguishment of debt
+•Debt commitment fee
+•Goodwill and intangible impairment
+•Amortization of inventory step-up
+In this release, the Company is providing a total semiconductor products gross margin metric, defined as the combined segment gross margin for the Signal Integrity and Analog Mixed Signal and Wireless reportable segments. For further information, please see the Segment Information footnote of the Company's Form 10-Q for the quarter ended July 26, 2026. The Company is also providing an adjusted gross margin, excluding business held for sale metric, defined as adjusted gross margin excluding the results of the Company's cellular module business, classified as held for sale as of period end. The Company also presents adjusted EBITDA, adjusted EBITDA margin and free cash flow. Adjusted EBITDA is defined as net income (loss) plus interest expense, interest income, (benefit) provision for income taxes, depreciation and amortization, and share-based compensation, and adjusted to exclude certain expenses, gains and losses that the Company believes are not indicative of its core results over time. Adjusted EBITDA margin is defined as adjusted EBITDA as a percentage of net sales. The Company considers free cash flow, which may be positive or negative, a non-GAAP financial measure defined as cash flows provided by operating activities less net capital expenditures. Management believes that the presentation of these non-GAAP measures provides useful information to investors regarding the Company's financial condition and results of operations. These non-GAAP financial measures are adjusted to exclude the items identified above because such items are either operating expenses that would not otherwise have been incurred by the Company in the normal course of the Company's business operations, or are not reflective of the Company's core results over time. These excluded items may include recurring as well as non-recurring items, and no inference should be made that all of these adjustments, charges, costs or expenses are unusual, infrequent or non-recurring. For example: certain restructuring and integration-related expenses (which consist of employee termination costs, facility closure or lease termination costs, and contract termination costs) may be considered recurring given the Company's ongoing efforts to be more cost effective and efficient; certain acquisition and disposition-related adjustments or expenses may be deemed recurring given the Company's regular evaluation of potential transactions and investments;
+
+
+
+
+
+
+
+
+| | | | | |
+5
+| Semtech Announces Second Quarter of Fiscal Year 2027 Results
+|
+
+
+
+and certain litigation expenses or dispute settlement charges or gains (which may include estimated losses for which the Company may have established a reserve, as well as any actual settlements, judgments, or other resolutions against, or in favor of, the Company related to litigation, arbitration, disputes or similar matters, and insurance recoveries received by the Company related to such matters) may be viewed as recurring given that the Company may from time to time be involved in, and may resolve, litigation, arbitration, disputes, and similar matters.
+Notwithstanding that certain adjustments, charges, costs or expenses may be considered recurring, in order to provide meaningful comparisons, the Company believes that it is appropriate to exclude such items because they are not reflective of the Company's core results and tend to vary based on timing, frequency and magnitude.
+These non-GAAP financial measures are provided to enhance the user's overall understanding of the Company's comparable financial performance between periods. In addition, the Company's management generally excludes the items noted above when managing and evaluating the performance of the business. Certain non-GAAP financial measures are also used in the Company's compensation programs. The financial statements provided with this release include reconciliations of these non-GAAP financial measures to their most comparable GAAP measures for the first and second quarters of fiscal year 2027 and the second quarter of fiscal year 2026.
+The Company adopted a full-year, normalized tax rate for the computation of the non-GAAP income tax provision in order to provide better comparability across the interim reporting periods by reducing the quarterly variability in non-GAAP tax rates that can occur throughout the year. In estimating the full-year non-GAAP normalized tax rate, the Company utilized a full-year financial projection that considers multiple factors such as changes to the Company's current operating structure, existing positions in various tax jurisdictions, the effect of key tax law changes, and other significant tax matters to the extent they are applicable to the full fiscal year financial projection. In addition to the adjustments described above, this normalized tax rate excludes the impact of share-based awards and the amortization of acquisition-related intangible assets. For the first two quarters of fiscal year 2027, the Company applied a non-GAAP normalized tax rate of 17%. For the remaining quarters of fiscal year 2027, the Company's projected non-GAAP normalized tax rate is 18%. The Company's non-GAAP normalized tax rate on non-GAAP net income may be adjusted during the year to account for events or trends that the Company believes materially impact the original annual non-GAAP normalized tax rate including, but not limited to, significant changes resulting from tax legislation, acquisitions, entity structures or operational changes and other significant events. These additional non-GAAP financial measures should not be considered substitutes for any measures derived in accordance with GAAP and may be inconsistent with similar measures presented by
+
+
+
+
+
+
+
+
+| | | | | |
+6
+| Semtech Announces Second Quarter of Fiscal Year 2027 Results
+|
+
+
+
+other companies.
+To provide additional insight into the Company's third quarter outlook, this release also includes a presentation of forward-looking non-GAAP financial measures. See "Third Quarter of Fiscal Year 2027 Outlook" above for further information.
+Forward-Looking and Cautionary Statements
+This press release contains "forward-looking statements" within the meaning of the "safe harbor" provisions of the Private Securities Litigation Reform Act of 1995, as amended, based on the Company's current expectations, estimates and projections about its operations, industry, financial condition, performance, results of operations, and liquidity. Forward-looking statements are statements other than historical information or statements of current condition and relate to matters such as future financial performance including the third quarter of fiscal year 2027 outlook; future operational performance; the anticipated impact of specific items on future earnings; the Company's expectations regarding near term growth trends and market position; and the Company's plans, objectives and expectations. Statements containing words such as "may," "believes," "see," "anticipates," "expects," "intends," "positions," "plans," "targets," "projects," "objectives," "estimates," "develops," "should," "could," "will," "designed to," "projections," or "outlook," or other similar expressions constitute forward-looking statements.
+Forward-looking statements involve known and unknown risks and uncertainties that could cause actual results and events to differ materially from those projected. Potential factors that could cause actual results to differ materially from those in the forward-looking statements include, but are not limited to: the volatility of our financial results or impact of the cyclical nature of our industry, including due to a growing concentration of demand in artificial intelligence-related semiconductors, during industry downturns or due to periodic economic uncertainty; the historical rapid decrease of the average selling prices of certain products; disruptions in U.S. or foreign government operations, funding or incentives; changes in export restrictions and laws affecting the Company's trade and investments, including tariffs or retaliatory tariffs; interruption or loss of supplies or services from the limited number of suppliers and subcontractors we rely upon; our suppliers' manufacturing capacity constraints or other supply chain disruptions; failure to successfully develop and sell new products, meet new industry standards or requirements or anticipate changes in projected or end market users; failure to adequately protect our intellectual property rights; failure to make the substantial investments in research and development that are required to remain competitive in our business or to properly anticipate competitive changes in the marketplace; the likelihood of our products being found defective or risk of liability claims asserted against us; business interruptions, such as natural disasters, acts of violence and the outbreak of contagious diseases; adverse changes to general economic conditions in China; the loss of any one of our small number of
+
+
+
+
+
+
+
+
+| | | | | |
+7
+| Semtech Announces Second Quarter of Fiscal Year 2027 Results
+|
+
+
+
+customers or failure to collect a receivable from them; competition from new or established IoT, cloud services and wireless service companies or from those with greater resources; the difficulties associated with integrating ours and Sierra Wireless, Inc.'s businesses and operations successfully as well as difficulties executing other acquisitions or divestitures, including the pending divestiture of our cellular module business and attendant risks; discovery of additional material weaknesses in our internal control over financial reporting in the future or otherwise failing to achieve and maintain effective disclosure controls, procedures and internal control over financial reporting; changes in our effective tax rates, the adoption of new U.S. or foreign tax legislation or exposure to additional tax liabilities, or material differences between our forecasted annual effective tax rates and actual tax rates; the Company's ability to comply with, or pursue business strategies due to, our level of indebtedness or the covenants under the agreements governing our indebtedness; and adverse developments affecting the financial services industry. Additionally, forward-looking statements should be considered in conjunction with the cautionary statements contained in the risk factors disclosed in the Company's filings with the Securities and Exchange Commission (the "SEC"), including the Company's Annual Report on Form 10-K for the fiscal year ended January 25, 2026, filed with the SEC on March 23, 2026 as such risk factors may be amended, supplemented or superseded from time to time by other reports the Company files with the SEC. In light of the significant risks and uncertainties inherent in the forward-looking information included herein that may cause actual performance and results to differ materially from those predicted, any such forward-looking information should not be regarded as representations or guarantees by the Company of future performance or results, or that its objectives or plans will be achieved or that any of its operating expectations or financial forecasts will be realized. Reported results should not be considered an indication of future performance. Investors are cautioned not to place undue reliance on any forward-looking information contained herein, which reflect management's analysis only as of the date hereof. These forward-looking statements speak only as of the date hereof. Except as required by law, the Company assumes no obligation to publicly release the results of any update or revision to any forward-looking statement that may be made to reflect new information, events or circumstances after the date hereof or to reflect the occurrence of unanticipated or future events, or otherwise.
+Amounts reported in this press release are preliminary and subject to the finalization and filing of our unaudited financial results on Form 10-Q for the three months ended July 26, 2026. In the reported results, Q2'27 refers to the quarter ended July 26, 2026, Q1'27 refers to the quarter ended April 26, 2026 and Q2'26 refers to the quarter ended July 27, 2025. Reported amounts may not foot precisely due to rounding.
+
+
+
+
+
+
+
+
+
+
+| | | | | |
+8
+| Semtech Announces Second Quarter of Fiscal Year 2027 Results
+|
+
+
+
+About Semtech
+Semtech Corporation (Nasdaq: SMTC) is a leading provider of high-performance semiconductors powering AI data center networking and intelligent, connected IoT devices worldwide. Our global teams are committed to empowering solution architects and application developers to develop breakthrough products for the infrastructure, industrial and consumer markets. To learn more about Semtech technology, visit us at Semtech.com.
+| | | | | | | | | | | | | | |
+| | | | |
+
+Semtech and the Semtech logo are registered trademarks or service marks of Semtech Corporation or its subsidiaries.
+SMTC-F
+
+
+
+
+
+
+
+
+SEMTECH CORPORATION
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(in millions, except per share data)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | |
+| | | |
+| | | | | | | | | |
+| Q2'27 | | Q1'27 | | Q2'26 | | | | |
+Net sales | $ | 341.9 | | | $ | 291.0 | | | $ | 257.6 | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Cost of sales | 158.1 | | | 139.6 | | | 123.5 | | | | | |
+Gross profit | 183.8 | | | 151.5 | | | 134.1 | | | | | |
+Operating expenses, net: | | | | | | | | | |
+Product development and engineering | 60.6 | | | 57.6 | | | 48.2 | | | | | |
+Selling, general and administrative | 67.3 | | | 66.6 | | | 58.5 | | | | | |
+Intangible amortization | 0.4 | | | 0.3 | | | 0.1 | | | | | |
+| | | | | | | | | |
+Restructuring | (0.3) | | | 1.2 | | | 1.5 | | | | | |
+| | | | | | | | | |
+Goodwill impairment | — | | | — | | | 42.0 | | | | | |
+| | | | | | | | | |
+Total operating expenses, net | 128.0 | | | 125.7 | | | 150.3 | | | | | |
+Operating income (loss) | 55.8 | | | 25.8 | | | (16.2) | | | | | |
+Interest expense | (2.0) | | | (1.9) | | | (5.2) | | | | | |
+Interest income | 0.9 | | | 0.9 | | | 0.5 | | | | | |
+| | | | | | | | | |
+Non-operating (expense) income | (0.1) | | | 0.2 | | | (1.3) | | | | | |
+| | | | | | | | | |
+Income (loss) before taxes and equity method income (loss) | 54.7 | | | 25.1 | | | (22.2) | | | | | |
+(Benefit) provision for income taxes | (101.4) | | | 0.1 | | | 4.8 | | | | | |
+Net income (loss) before equity method income (loss) | 156.0 | | | 24.9 | | | (27.0) | | | | | |
+Equity method income (loss) | 4.1 | | | 1.6 | | | (0.1) | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Net income (loss) | $ | 160.1 | | | $ | 26.6 | | | $ | (27.1) | | | | | |
+| | | | | | | | | |
+Earnings (loss) per share: | | | | | | | | | |
+Basic | $ | 1.72 | | | $ | 0.29 | | | $ | (0.31) | | | | | |
+Diluted | $ | 1.59 | | | $ | 0.27 | | | $ | (0.31) | | | | | |
+| | | | | | | | | |
+Weighted average number of shares used in computing earnings (loss) per share: | | | | | | | | | |
+Basic | 93.3 | | | 92.9 | | | 86.7 | | | | | |
+Diluted | 100.8 | | | 98.0 | | | 86.7 | | | | | |
+
+
+
+
+
+
+
+
+
+
+
+SEMTECH CORPORATION
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(in millions)
+(unaudited)
+| | | | | | | | | | | |
+| July 26, 2026 | | January 25, 2026 |
+ASSETS | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 204.1 | | | $ | 195.2 | |
+Accounts receivable, net | 169.9 | | | 160.6 | |
+Inventories | 170.8 | | | 195.7 | |
+Prepaid taxes | 21.4 | | | 15.4 | |
+Assets held for sale | 132.2 | | | — | |
+Other current assets | 44.5 | | | 88.2 | |
+Total current assets | 742.8 | | | 655.1 | |
+Non-current assets: | | | |
+Property, plant and equipment, net | 105.2 | | | 109.3 | |
+Deferred tax assets | 139.6 | | | 34.2 | |
+Goodwill | 478.2 | | | 457.9 | |
+Other intangible assets, net | 44.6 | | | 40.0 | |
+Other assets | 136.5 | | | 113.7 | |
+Total assets | $ | 1,647.0 | | | $ | 1,410.3 | |
+| | | |
+LIABILITIES AND EQUITY | | | |
+Current liabilities: | | | |
+Accounts payable | $ | 68.2 | | | $ | 84.1 | |
+Accrued liabilities | 155.2 | | | 191.8 | |
+Current portion of long-term debt | 143.4 | | | — | |
+Liabilities held for sale | 70.7 | | | — | |
+Total current liabilities | 437.4 | | | 275.9 | |
+Non-current liabilities: | | | |
+Deferred tax liabilities | — | | | 0.1 | |
+Long-term debt | 349.4 | | | 491.2 | |
+Other long-term liabilities | 111.4 | | | 93.3 | |
+Stockholders' equity | 748.9 | | | 549.7 | |
+| | | |
+Total liabilities & equity | $ | 1,647.0 | | | $ | 1,410.3 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SEMTECH CORPORATION
+SUPPLEMENTAL CASH FLOW INFORMATION
+(in millions)
+(unaudited)
+| | | | | | | | | | | | | | | | | |
+| | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| |
+| | | | | |
+| Q2'27 | | Q1'27 | | Q2'26 |
+| | | | | |
+Net cash provided by operating activities | $ | 68.9 | | | $ | 36.2 | | | $ | 44.4 | |
+Net capital expenditures | (7.5) | | | (8.2) | | | (2.9) | |
+Free cash flow | $ | 61.4 | | | $ | 28.0 | | | $ | 41.5 | |
+
+
+
+
+
+
+
+
+
+
+
+SEMTECH CORPORATION
+SUPPLEMENTAL INFORMATION: RECONCILIATION OF GAAP TO NON-GAAP RESULTS
+(in millions)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Q2'27 |
+| | | | | | | |
+(in millions) | Signal Integrity | | Analog Mixed Signal and Wireless | | Total Semiconductor Products | | IoT Systems and Connectivity | | Unallocated
+| | Total |
+Net sales | $ | 126.2 | | | $ | 117.4 | | | $ | 243.5 | | $ | 98.3 | | | $ | — | | | $ | 341.9 | |
+Segment cost of sales | 43.8 | | | 46.8 | | | 90.6 | | 64.9 | | | 2.6 | | | 158.1 | |
+Segment gross profit | $ | 82.4 | | | $ | 70.5 | | | $ | 153.0 | | | $ | 33.4 | | | $ | (2.6) | | | $ | 183.8 | |
+| | | | | | | | | | | |
+Segment gross margin | 65.3 | % | | 60.1 | % | | 62.8 | % | | 34.0 | % | | NM
+| | |
+Gross margin (GAAP) | | | | | | | | | | | 53.8 | % |
+Share-based compensation | | | | | | | | | | 0.2 | % |
+Amortization of acquired technology | | | | | | | | | | 0.5 | % |
+Adjusted gross margin (Non-GAAP) | | | | | | | | | | 54.5 | % |
+Business held for sale
+| | | | | | | | | | 5.2 | % |
+Adjusted gross margin, excluding business held for sale (Non-GAAP) | | | | | | 59.7 | % |
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Q1'27 |
+| | | | | | | |
+(in millions) | Signal Integrity | | Analog Mixed Signal and Wireless | | Total Semiconductor Products | | IoT Systems and Connectivity | | Unallocated
+| | Total |
+Net sales | $ | 102.0 | | | $ | 100.8 | | | $ | 202.8 | | | $ | 88.3 | | | $ | — | | | $ | 291.0 | |
+Segment cost of sales | 38.0 | | | 41.6 | | | 79.6 | | | 56.7 | | | 3.3 | | | 139.6 | |
+Segment gross profit | $ | 64.0 | | | $ | 59.2 | | | $ | 123.1 | | | $ | 31.6 | | | $ | (3.3) | | | $ | 151.5 | |
+| | | | | | | | | | | |
+Segment gross margin | 62.7 | % | | 58.7 | % | | 60.7 | % | | 35.8 | % | | NM
+| | |
+Gross margin (GAAP) | | | | | | | | | | | 52.0 | % |
+Share-based compensation | | | | | | | | | | 0.4 | % |
+Amortization of acquired technology | | | | | | | | | | 0.6 | % |
+Adjusted gross margin (Non-GAAP) | | | | | | | | | | 53.0 | % |
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Q2'26 |
+| | | | | | | |
+(in millions) | Signal Integrity | | Analog Mixed Signal and Wireless | | Total Semiconductor Products | | IoT Systems and Connectivity | | Unallocated
+| | Total |
+Net sales | $ | 76.8 | | | $ | 92.0 | | | $ | 168.8 | | | $ | 88.8 | | | $ | — | | | $ | 257.6 | |
+Segment cost of sales | 28.9 | | | 37.5 | | | 66.4 | | | 53.7 | | | 3.4 | | | 123.5 | |
+Segment gross profit | $ | 47.9 | | | $ | 54.6 | | | $ | 102.4 | | | $ | 35.1 | | | $ | (3.4) | | | $ | 134.1 | |
+| | | | | | | | | | | |
+Segment gross margin | 62.4 | % | | 59.3 | % | | 60.7 | % | | 39.5 | % | | NM
+| | |
+Gross margin (GAAP) | | | | | | | | | | | 52.1 | % |
+Share-based compensation | | | | | | | | | | 0.2 | % |
+Amortization of acquired technology | | | | | | | | | | 0.9 | % |
+Adjusted gross margin (Non-GAAP) | | | | | | | | | | 53.2 | % |
+
+
+
+Unallocated includes share-based compensation and amortization of acquired technology
+Not meaningful
+Adjustment for net sales of $48.1 million and adjusted gross profit of $10.9 million related to business held for sale as of Q2'27
+
+
+
+
+
+
+
+SEMTECH CORPORATION
+SUPPLEMENTAL INFORMATION: RECONCILIATION OF GAAP TO NON-GAAP RESULTS (CONTINUED)
+(in millions)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | |
+| | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | |
+| | | | | | | | | |
+| Q2'27 | | Q1'27 | | Q2'26 | | | | |
+Product development and engineering (GAAP) | $ | 60.6 | | | $ | 57.6 | | | $ | 48.2 | | | | | |
+Share-based compensation | (4.5) | | | (6.4) | | | (3.4) | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Adjusted product development and engineering (Non-GAAP) | $ | 56.1 | | | $ | 51.1 | | | $ | 44.8 | | | | | |
+| | | | | | | | | |
+| | | |
+| | | | | | | | | |
+| Q2'27 | | Q1'27 | | Q2'26 | | | | |
+Selling, general and administrative (GAAP) | $ | 67.3 | | | $ | 66.6 | | | $ | 58.5 | | | | | |
+Share-based compensation | (18.7) | | | (18.9) | | | (13.3) | | | | | |
+Transaction and integration related costs, net | (0.7) | | | (2.8) | | | (1.2) | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Litigation costs, net | (1.3) | | | (1.1) | | | (0.4) | | | | | |
+Adjusted selling, general and administrative (Non-GAAP) | $ | 46.7 | | | $ | 43.9 | | | $ | 43.6 | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | | | | | | | | | | | | | |
+| | | |
+| | | | | | | | | |
+| Q2'27 | | Q1'27 | | Q2'26 | | | | |
+Operating expenses, net (GAAP) | $ | 128.0 | | | $ | 125.7 | | | $ | 150.3 | | | | | |
+Share-based compensation | (23.1) | | | (25.3) | | | (16.7) | | | | | |
+Intangible amortization | (0.4) | | | (0.3) | | | (0.1) | | | | | |
+Transaction and integration related costs, net | (0.7) | | | (2.8) | | | (1.2) | | | | | |
+| | | | | | | | | |
+Restructuring and other reserves, net | 0.3 | | | (1.2) | | | (1.5) | | | | | |
+Litigation costs, net | (1.3) | | | (1.1) | | | (0.4) | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Goodwill impairment | — | | | — | | | (42.0) | | | | | |
+Adjusted operating expenses, net (Non-GAAP) | $ | 102.8 | | | $ | 95.1 | | | $ | 88.4 | | | | | |
+
+| | | | | | | | | | | | | | | | | | | | | |
+| | | |
+| | | | | | | | | |
+| Q2'27 | | Q1'27 | | Q2'26 | | | | |
+Operating income (loss) (GAAP) | $ | 55.8 | | | $ | 25.8 | | | $ | (16.2) | | | | | |
+Share-based compensation | 23.8 | | | 26.4 | | | 17.3 | | | | | |
+Intangible amortization | 2.3 | | | 2.1 | | | 2.4 | | | | | |
+Transaction and integration related costs, net | 0.7 | | | 2.8 | | | 1.2 | | | | | |
+| | | | | | | | | |
+Restructuring and other reserves, net | (0.3) | | | 1.2 | | | 1.5 | | | | | |
+Litigation costs, net | 1.3 | | | 1.1 | | | 0.4 | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Goodwill impairment | — | | | — | | | 42.0 | | | | | |
+| | | | | | | | | |
+Adjusted operating income (Non-GAAP) | $ | 83.6 | | | $ | 59.3 | | | $ | 48.6 | | | | | |
+
+| | | | | | | | | | | | | | | | | | | | | |
+| | | |
+| | | | | | | | | |
+| Q2'27 | | Q1'27 | | Q2'26 | | | | |
+Operating margin (GAAP) | 16.3 | % | | 8.9 | % | | (6.3) | % | | | | |
+Share-based compensation | 7.0 | % | | 9.1 | % | | 6.7 | % | | | | |
+Intangible amortization | 0.7 | % | | 0.7 | % | | 0.9 | % | | | | |
+Transaction and integration related costs, net | 0.2 | % | | 0.9 | % | | 0.5 | % | | | | |
+| | | | | | | | | |
+Restructuring and other reserves, net | (0.1) | % | | 0.4 | % | | 0.6 | % | | | | |
+Litigation costs, net | 0.3 | % | | 0.4 | % | | 0.1 | % | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Goodwill impairment | — | % | | — | % | | 16.3 | % | | | | |
+| | | | | | | | | |
+Adjusted operating margin (Non-GAAP) | 24.4 | % | | 20.4 | % | | 18.8 | % | | | | |
+
+
+
+
+
+
+
+
+
+
+
+
+SEMTECH CORPORATION
+SUPPLEMENTAL INFORMATION: RECONCILIATION OF GAAP TO NON-GAAP RESULTS (CONTINUED)
+(in millions, except per share data)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | |
+| | | |
+| | | | | | | | | |
+| Q2'27 | | Q1'27 | | Q2'26 | | | | |
+Interest expense, net (GAAP) | $ | 1.0 | | | $ | 1.0 | | | $ | 4.7 | | | | | |
+Amortization of deferred financing costs | (1.1) | | | (1.1) | | | (1.3) | | | | | |
+Write-off of deferred financing costs | (0.2) | | | — | | | (0.4) | | | | | |
+Interest rate swap termination | — | | | — | | | 1.0 | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Adjusted interest (income) expense, net (Non-GAAP) | $ | (0.2) | | | $ | (0.1) | | | $ | 4.1 | | | | | |
+| | | | | | | | | |
+
+| | | | | | | | | | | | | | | | | | | | | |
+| | | |
+| | | | | | | | | |
+| Q2'27 | | Q1'27 | | Q2'26 | | | | |
+Net income (loss) (GAAP) | $ | 160.1 | | | $ | 26.6 | | | $ | (27.1) | | | | | |
+Adjustments to GAAP net income (loss): | | | | | | | | | |
+Share-based compensation | 23.8 | | | 26.4 | | | 17.3 | | | | | |
+Intangible amortization | 2.3 | | | 2.1 | | | 2.4 | | | | | |
+Transaction and integration related costs, net | 0.7 | | | 2.8 | | | 1.2 | | | | | |
+| | | | | | | | | |
+Restructuring and other reserves, net | (0.3) | | | 1.2 | | | 1.5 | | | | | |
+Litigation costs, net | 1.3 | | | 1.1 | | | 0.4 | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Investment gains, net | — | | | (0.1) | | | — | | | | | |
+Amortization of deferred financing costs | 1.1 | | | 1.1 | | | 1.3 | | | | | |
+Write-off of deferred financing costs | 0.2 | | | — | | | 0.4 | | | | | |
+Interest rate swap termination | — | | | — | | | (1.0) | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Goodwill impairment | — | | | — | | | 42.0 | | | | | |
+| | | | | | | | | |
+Total Non-GAAP adjustments before taxes | 29.0 | | | 34.5 | | | 65.3 | | | | | |
+Associated tax effect | (115.6) | | | (10.0) | | | (1.7) | | | | | |
+Equity method (income) loss | (4.1) | | | (1.6) | | | 0.1 | | | | | |
+Total of supplemental information, net of taxes | (90.6) | | | 22.9 | | | 63.7 | | | | | |
+Adjusted net income (Non-GAAP) | $ | 69.5 | | | $ | 49.4 | | | $ | 36.7 | | | | | |
+| | | | | | | | | |
+Diluted earnings (loss) per share (GAAP) | $ | 1.59 | | | $ | 0.27 | | | $ | (0.31) | | | | | |
+Adjustments per above | (0.88) | | | 0.24 | | | 0.72 | | | | | |
+Adjusted diluted earnings per share (Non-GAAP) | $ | 0.71 | | | $ | 0.51 | | | $ | 0.41 | | | | | |
+| | | | | | | | | |
+Weighted-average number of shares used in computing diluted earnings (loss) per share: | | | | | | | | | |
+GAAP | 100.8 | | 98.0 | | 86.7 | | | | |
+Non-GAAP | 97.7 | | 96.5 | | 90.0 | | | | |
+
+
+
+
+
+
+
+
+
+
+
+
+SEMTECH CORPORATION
+SUPPLEMENTAL INFORMATION: RECONCILIATION OF GAAP TO NON-GAAP RESULTS (CONTINUED)
+(in millions)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | |
+| | | | | | | | | | | | | |
+| Q2'27 | | Q1'27 | | | | | | Q2'26 | | | | |
+Net income (loss) (GAAP) | $ | 160.1 | | | $ | 26.6 | | | | | | | $ | (27.1) | | | | | |
+Interest expense | 2.0 | | | 1.9 | | | | | | | 5.2 | | | | | |
+Interest income | (0.9) | | | (0.9) | | | | | | | (0.5) | | | | | |
+| | | | | | | | | | | | | |
+Non-operating expense (income), net | 0.1 | | | (0.2) | | | | | | | 1.3 | | | | | |
+| | | | | | | | | | | | | |
+(Benefit) provision for income taxes | (101.4) | | | 0.1 | | | | | | | 4.8 | | | | | |
+Equity method (income) loss | (4.1) | | | (1.6) | | | | | | | 0.1 | | | | | |
+| | | | | | | | | | | | | |
+| | | | | | | | | | | | | |
+Share-based compensation | 23.8 | | | 26.4 | | | | | | | 17.3 | | | | | |
+Depreciation and amortization | 9.8 | | | 9.2 | | | | | | | 10.3 | | | | | |
+Transaction and integration related costs, net | 0.7 | | | 2.8 | | | | | | | 1.2 | | | | | |
+| | | | | | | | | | | | | |
+Restructuring and other reserves, net | (0.3) | | | 1.2 | | | | | | | 1.5 | | | | | |
+Litigation costs, net | 1.3 | | | 1.1 | | | | | | | 0.4 | | | | | |
+| | | | | | | | | | | | | |
+| | | | | | | | | | | | | |
+| | | | | | | | | | | | | |
+Goodwill impairment | — | | | — | | | | | | | 42.0 | | | | | |
+| | | | | | | | | | | | | |
+Adjusted EBITDA (Non-GAAP) | $ | 91.1 | | | $ | 66.4 | | | | | | | $ | 56.5 | | | | | |
+
+| | | | | | | | | | | | | | | | | | | | | |
+| | | |
+| | | | | | | | | |
+| Q2'27 | | Q1'27 | | Q2'26 | | | | |
+Operating margin (GAAP) | 16.3 | % | | 8.9 | % | | (6.3) | % | | | | |
+Share-based compensation | 7.0 | % | | 9.1 | % | | 6.7 | % | | | | |
+Depreciation and amortization | 2.9 | % | | 3.1 | % | | 4.0 | % | | | | |
+Transaction and integration related costs, net | 0.2 | % | | 0.9 | % | | 0.5 | % | | | | |
+| | | | | | | | | |
+Restructuring and other reserves, net | (0.1) | % | | 0.4 | % | | 0.6 | % | | | | |
+Litigation costs, net | 0.3 | % | | 0.4 | % | | 0.1 | % | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+| | | | | | | | | |
+Goodwill impairment | — | % | | — | % | | 16.3 | % | | | | |
+| | | | | | | | | |
+Adjusted EBITDA margin (Non-GAAP) | 26.6 | % | | 22.8 | % | | 21.9 | % | | | | |
+
+
+
+
+
+CONTACT:
+Mitch Haws
+Semtech Corporation
+webir@semtech.com

@@ -55,10 +55,19 @@ export function htmlToText(html: string): string {
 
 export function decodeHtmlEntities(value: string): string {
   return value
+    // SEC exhibits sometimes double-escape typographic entities while leaving structural
+    // entities intentionally literal. Decode the known typography one layer before the
+    // regular entity pass, without turning "&amp;lt;" into markup.
+    .replace(/&amp;(nbsp|quot|apos|rsquo|lsquo|rdquo|ldquo|ndash|mdash);/gi, "&$1;")
     .replace(/&nbsp;/gi, " ")
     .replace(/&lt;/gi, "<")
     .replace(/&gt;/gi, ">")
     .replace(/&quot;/gi, "\"")
+    .replace(/&apos;/gi, "'")
+    .replace(/&rsquo;|&lsquo;/gi, "'")
+    .replace(/&rdquo;|&ldquo;/gi, "\"")
+    .replace(/&ndash;/gi, "–")
+    .replace(/&mdash;/gi, "—")
     .replace(/&#39;/gi, "'")
     .replace(/&#x([0-9a-f]+);/gi, (_match, hexValue: string) => decodeNumericHtmlEntity(hexValue, 16))
     .replace(/&#([0-9]+);/g, (_match, numericValue: string) => decodeNumericHtmlEntity(numericValue, 10))
@@ -177,10 +186,34 @@ function getDominantCurrencyCode(text: string): string | undefined {
 }
 
 export function getQuarterLabel(text: string): string | undefined {
+  const leadingText = text.slice(0, 2_000);
+
+  // Retail and technology filers often title a release "Reports Second Quarter 2026"
+  // or "Second Quarter Fiscal 2027". Resolve that title before the calendar period-end
+  // fallback or a later third-quarter outlook can relabel the actual results.
+  const leadingWrittenQuarterMatch = leadingText.match(
+    /\b(?:(?:reports?|announces?)\s+|(?:financial\s+)?results\s+for\s+(?:the\s+)?|announcement\s+of\s+the\s+)(first|second|third|fourth)[\s–—-]+quarter\s+(?:(?:of\s+)?fiscal(?:\s+year)?\s+)?(20\d{2}|\d{2})\b/i,
+  ) ?? leadingText.match(
+    /\breports?\s+(?:strong\s+)?(first|second|third|fourth)[\s–—-]+quarter\b.{0,80}\bresults\b[\s\S]{0,800}?\b\1[\s–—-]+quarter\s+of\s+fiscal\s+(20\d{2}|\d{2})\b/i,
+  );
+  if (undefined !== leadingWrittenQuarterMatch?.[1] && undefined !== leadingWrittenQuarterMatch[2]) {
+    const quarter = getQuarterFromName(leadingWrittenQuarterMatch[1]);
+    if (quarter) {
+      return `${quarter} ${normalizeFiscalYear(leadingWrittenQuarterMatch[2])}`;
+    }
+  }
+
+  // A half-year release is not a quarterly result. Do not infer Q3 from the first guidance
+  // sentence merely because no quarter appears in the H1 title.
+  if (/\b(?:H1|first\s+half|six\s+months)\b.{0,120}\b(?:20\d{2}\s+)?(?:financial\s+)?results\b/i.test(leadingText) ||
+      /\bresults\s+for\s+the\s+six\s+months\s+ended\b/i.test(leadingText)) {
+    return undefined;
+  }
+
   // A fiscal filer's release title commonly names the reported period as "Fiscal Third
   // Quarter 2026", while a later outlook uses the compact "Q4 Fiscal Year 2026" form.
   // Resolve the title form first so the guidance period cannot become the result label.
-  const leadingFiscalQuarterMatch = text.match(
+  const leadingFiscalQuarterMatch = leadingText.match(
     /\bfiscal\s+(first|second|third|fourth)[\s–—-]+quarter\s+(20\d{2}|\d{2})\b/i,
   );
   if (undefined !== leadingFiscalQuarterMatch?.[1] && undefined !== leadingFiscalQuarterMatch[2]) {

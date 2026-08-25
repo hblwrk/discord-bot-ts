@@ -1,0 +1,4362 @@
+EX-99.1
+2
+d404747dex991.htm
+EX-99.1
+
+
+EX-99.1
+
+
+
+
+
+Exhibit 99.1
+
+
+
+
+
+
+
+
+
+Autohome Inc. Announces Unaudited Second Quarter and Interim 2026 Financial Results
+
+BEIJING, August 20, 2026 – Autohome Inc. (NYSE: ATHM; HKEX: 2518) (“Autohome” or the “Company”), the leading online
+destination for automobile consumers in China, today announced its unaudited financial results for the three months and six months ended June 30, 2026.
+
+Second Quarter 2026 Highlights
+
+
+
+
+
+|
+• |
+|
+Net revenues in the second quarter of 2026 were RMB1,198.0 million (US$176.6 million), compared to
+RMB1,758.1 million in the corresponding period of 2025.
+|
+
+
+
+
+|
+• |
+|
+Net income attributable to Autohome in the second quarter of 2026 was RMB247.8 million
+(US$36.5 million), compared to RMB415.7 million in the corresponding period of 2025, while net income attributable to ordinary shareholders in the second quarter of 2026 was RMB247.8 million (US$36.5 million), compared to
+RMB398.9 million in the corresponding period of 2025.
+|
+
+
+
+
+|
+• |
+|
+Adjusted net income attributable to Autohome (Non-GAAP) in the second quarter of 2026 was RMB277.3 million (US$40.9 million), compared to RMB475.7 million in the corresponding period of
+2025.
+|
+
+
+
+
+|
+• |
+|
+Share repurchase:
+|
+
+The US$200 million share repurchase program effective from March 5, 2026 was completed as of July 30, 2026, with a total of
+10,627,269 American depositary shares (“ADSs”) repurchased.
+On July 28, 2026, Autohome’s Board of Directors
+authorized a new share repurchase program under which the Company may repurchase up to US$400 million of its ADSs over the next 12 months. As of August 14, 2026, the Company had repurchased 1,895,093 ADSs for a total cost of approximately
+US$43.6 million.
+Mr. Chi Liu, Chairman of the Board of Directors and Chief Executive Officer of Autohome, stated, “During the quarter,
+our innovative business continued to make steady progress, driving Autohome’s upgrade towards a comprehensive automotive service ecosystem. For our new retail business, with the authorized dealer model now in pilot operation and expanding to
+more cities, we launched the offline franchised chain brand, Autohome Good Car , further extending our offline service network. In addition, our
+used-car-trading global expansion is advancing steadily — our cross-border export platform completed its first transaction in July, providing valuable experience
+for further expanding our service capabilities.”
+
+
+
+
+|
+The reporting currency of the Company is Renminbi (“RMB”). For readers’ convenience, certain
+amounts throughout the release are presented in US dollars (“US$”). Unless otherwise noted, all conversions from RMB to US$ are translated at the noon buying rate of US$1.00 to RMB6.7851 on June 30, 2026, in the City of New York for
+cable transfers of RMB as certified for customs purposes by the Federal Reserve Bank of New York. No representation is made that the RMB amounts could have been, or could be, converted into US$ at such rate.
+|
+
+
+
+|
+For more information on this and other non-GAAP financial measures,
+please see the section captioned “Use of Non-GAAP Financial Measures” and the tables captioned “Unaudited Reconciliations of Non-GAAP and GAAP
+Results” set forth at the end of this release.
+|
+
+
+1
+
+
+
+
+
+
+
+
+
+
+
+
+“We also made major strides in AI, particularly in cutting-edge AI agent technologies. In early July,
+we unveiled our proprietary intelligent agent product, Cheese Car Butler , and opened it for public beta. As the first standalone agent product in the automotive industry, it represents both a pioneering exploration of intelligent applications
+and a key milestone in enriching our product portfolio and establishing a differentiated competitive edge.”
+Mr. Craig Yan Zeng, Chief
+Financial Officer of Autohome, added, “We made significant progress during the quarter and maintain our unwavering commitment to delivering sustainable shareholder returns. The US$200 million buyback program announced in early March 2026
+was completed ahead of schedule, in less than six months. In late July, we announced a new US$400 million buyback plan, demonstrating our strong confidence in the Company’s long-term value and deep commitment to shareholder
+interests.”
+Unaudited Second Quarter 2026 Financial Results
+
+Net Revenues
+Net revenues in the second quarter of 2026
+were RMB1,198.0 million (US$176.6 million), compared to RMB1,758.1 million in the corresponding period of 2025.
+
+
+
+
+|
+• |
+|
+Media services revenues were RMB280.4 million (US$41.3 million) in the second quarter of 2026,
+compared to RMB279.4 million in the corresponding period of 2025.
+|
+
+
+
+
+|
+• |
+|
+Leads generation services revenues were RMB560.4 million (US$82.6 million) in the second
+quarter of 2026, compared to RMB732.6 million in the corresponding period of 2025. The decline was primarily driven by reduced spending from dealers amid shrinking sales volumes, along with a decrease in the number of paying dealers.
+
+|
+
+
+
+
+|
+• |
+|
+Online marketplace and others revenues were RMB357.3 million (US$52.7 million) in the second quarter
+of 2026, compared to RMB746.1 million in the corresponding period of 2025. The decline was primarily driven by reduced revenue associated with the Company’s vehicle sales business.
+|
+
+Cost of Revenues
+Cost of revenues was
+RMB274.0 million (US$40.4 million) in the second quarter of 2026, compared to RMB503.4 million in the corresponding period of 2025, primarily due to a decline in revenue, which correspondingly reduced the associated costs. Share-based
+compensation expenses included in cost of revenues in the second quarter of 2026 were RMB3.0 million (US$0.4 million), compared to RMB3.4 million in the corresponding period of 2025.
+
+Operating Expenses
+Operating expenses were
+RMB870.8 million (US$128.3 million) in the second quarter of 2026, compared to RMB1,015.7 million in the corresponding period of 2025.
+
+
+2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|
+• |
+|
+Sales and marketing expenses were RMB552.2 million (US$81.4 million) in the second quarter of 2026,
+compared to RMB630.0 million in the corresponding period of 2025, primarily due to a decrease in marketing and promotional expenses. Share-based compensation expenses included in sales and marketing expenses in the second quarter of 2026 were
+RMB7.1 million (US$1.0 million), compared to RMB13.3 million in the corresponding period of 2025.
+|
+
+
+
+
+|
+• |
+|
+General and administrative expenses were RMB95.5 million (US$14.1 million) in the second quarter of
+2026, compared to RMB132.7 million in the corresponding period of 2025. Share-based compensation expenses included in general and administrative expenses in the second quarter of 2026 were RMB3.9 million (US$0.6 million), compared to
+RMB15.8 million in the corresponding period of 2025.
+|
+
+
+
+
+|
+• |
+|
+Product development expenses were RMB223.1 million (US$32.9 million) in the second quarter of 2026,
+compared to RMB253.0 million in the corresponding period of 2025. Share-based compensation expenses included in product development expenses in the second quarter of 2026 were RMB15.2 million (US$2.2 million), compared to
+RMB19.9 million in the corresponding period of 2025.
+|
+Operating Profit
+
+Operating profit was RMB130.0 million (US$19.2 million) in the second quarter of 2026, compared to RMB296.6 million in the corresponding period of
+2025.
+Income Tax Expense
+Income tax expense was
+RMB33.6 million (US$4.9 million) in the second quarter of 2026, compared to RMB60.6 million in the corresponding period of 2025.
+Net Income
+Attributable to Autohome
+Net income attributable to Autohome was RMB247.8 million (US$36.5 million) in the second quarter of 2026, compared to
+RMB415.7 million in the corresponding period of 2025.
+Net Income Attributable to Ordinary Shareholders and Earnings per Share/ADS
+
+Net income attributable to ordinary shareholders was RMB247.8 million (US$36.5 million) in the second quarter of 2026, compared to RMB398.9 million
+in the corresponding period of 2025. Basic and diluted earnings per share (“EPS”) were RMB0.55 (US$0.08) and RMB0.55 (US$0.08), respectively, in the second quarter of 2026, compared to basic and diluted EPS of RMB0.85 and RMB0.85,
+respectively, in the corresponding period of 2025. Basic and diluted earnings per ADS were RMB2.20 (US$0.32) and RMB2.19 (US$0.32), respectively, in the second quarter of 2026, compared to basic and diluted earnings per ADS of RMB3.40 and RMB3.38,
+respectively, in the corresponding period of 2025.
+Adjusted Net Income Attributable to Autohome (Non-GAAP) and
+Non-GAAP EPS/ADS
+Adjusted net income attributable to Autohome
+(Non-GAAP) was RMB277.3 million (US$40.9 million) in the second quarter of 2026, compared to RMB475.7 million in the corresponding period of 2025. Non-GAAP
+basic and diluted EPS were RMB0.62 (US$0.09) and RMB0.61 (US$0.09), respectively, in the second quarter of 2026, compared to non-GAAP basic and diluted EPS of RMB1.01 and RMB1.01, respectively, in the
+corresponding period of 2025. Non-GAAP basic and diluted earnings per ADS were RMB2.46 (US$0.36) and RMB2.46 (US$0.36), respectively, in the second quarter of 2026, compared to
+non-GAAP basic and diluted earnings per ADS of RMB4.06 and RMB4.04, respectively, in the corresponding period of 2025.
+
+
+3
+
+
+
+
+
+
+
+
+
+
+
+
+Balance Sheet and Cash Flow
+
+As of June 30, 2026, the Company had cash and cash equivalents, short-term investments and other long-term investments of RMB19.36 billion (US$2.85
+billion). Net cash provided by operating activities in the second quarter of 2026 was RMB261.2 million (US$38.5 million).
+Employees
+
+The Company had 3,839 employees as of June 30, 2026, including 1,163 employees from TTP Car, Inc.
+
+Conference Call Information
+The Company will host an
+earnings conference call at 8:00 a.m. U.S. Eastern Time on Thursday, August 20, 2026 (8:00 p.m. Beijing Time on the same day).
+Please register in
+advance of the conference call using the registration link provided below. Upon registering, each participant will receive a set of dial-in numbers and a personal PIN, which will be used to join the conference
+call.
+Registration Link:
+
+https://register-conf.media-server.com/register/BI296b7d951b7846ef99ed79972fbe1931
+
+Please use the conference access information to join the call 10 minutes before the call is scheduled to begin.
+
+Additionally, a live and archived webcast of the conference call will be available at https://ir.autohome.com.cn and a replay of the webcast will be
+available following the session.
+About Autohome
+
+Autohome Inc. (NYSE: ATHM; HKEX: 2518) is the leading online destination for automobile consumers in China. Its mission is to relentlessly reduce auto industry
+decision-making and transaction costs driven by advanced technology. Autohome provides occupationally generated content, professionally generated content, user-generated content, and AI-generated content, a
+comprehensive automobile library, and extensive automobile listing information to automobile consumers, covering the entire car purchase and ownership cycle. The ability to reach a large and engaged user base of automobile consumers has made
+Autohome a preferred platform for automakers and dealers to conduct their advertising campaigns. Further, the Company’s dealer subscription and advertising services allow dealers to market their inventory and services through Autohome’s
+platform, extending the reach of their physical showrooms to potentially millions of internet users in China and generating sales leads for them. The Company offers sales leads, data analysis, and marketing services to assist automakers and dealers
+with improving their efficiency and facilitating transactions. Further, through its websites and mobile applications, it also provides other value-added services, including auto financing, auto insurance, used car transactions, and aftermarket
+services. For further information, please visit https://www.autohome.com.cn/ .
+
+
+4
+
+
+
+
+
+
+
+
+
+
+
+
+Safe Harbor Statement
+
+This press release contains statements that may constitute “forward-looking” statements pursuant to the “safe harbor” provisions of the
+U.S. Private Securities Litigation Reform Act of 1995. These forward-looking statements can be identified by terminology such as “will”, “expects”, “anticipates”, “future”, “intends”,
+“plans”, “believes”, “estimates” and similar statements. Among other things, Autohome’s business outlook, Autohome’s strategic and operational plans and quotations from management in this announcement
+contain forward-looking statements. Autohome may also make written or oral forward-looking statements in its periodic reports to the Securities and Exchange Commission (“SEC”), in announcements made on the website of The Stock Exchange
+of Hong Kong Limited (the “Hong Kong Stock Exchange”), in its annual report to shareholders, in press releases and other written materials and in oral statements made by its officers, directors or employees to third parties. Statements
+that are not historical facts, including statements about Autohome’s beliefs and expectations, are forward-looking statements. Forward-looking statements involve inherent risks and uncertainties. A number of factors could cause actual results
+to differ materially from those contained in any forward-looking statement, including but not limited to the following: Autohome’s goals and strategies; Autohome’s future business development, results of operations and financial
+condition; the expected growth of the online automobile advertising market in China; Autohome’s ability to attract and retain users and advertisers and further enhance its brand recognition; Autohome’s expectations regarding demand for
+and market acceptance of its products and services; competition in the online automobile advertising industry; relevant government policies and regulatory environment of China; fluctuations in general economic and business conditions in China and
+assumptions underlying or related to any of the foregoing. Further information regarding these and other risks is included in Autohome’s filings with the SEC and announcements on the website of the Hong Kong Stock Exchange. All information
+provided in this press release is as of the date of this press release, and Autohome does not undertake any obligation to update any forward-looking statement, except as required under applicable law.
+
+Use of Non-GAAP Financial Measures
+
+To supplement net income presented in accordance with U.S. GAAP, we use Adjusted Net Income attributable to Autohome,
+Non-GAAP basic and diluted EPS and earnings per ADS, Adjusted net margin and Adjusted EBITDA as non-GAAP financial measures. We define Adjusted Net Income attributable
+to Autohome as net income attributable to Autohome excluding share-based compensation expenses, amortization of intangible assets resulting from business acquisition, share of results of equity method investments, and
+non-recurring employee severance costs, with all the reconciliation items adjusted for related income tax effects. We define non-GAAP basic and diluted EPS as Adjusted
+Net Income attributable to Autohome divided by the basic and diluted weighted average number of ordinary shares. We define non-GAAP basic and diluted earnings per ADS as Adjusted Net Income attributable to
+Autohome divided by the basic and diluted weighted average number of ADSs. We define Adjusted net margin as Adjusted Net Income attributable to Autohome divided by total net revenues. We define Adjusted EBITDA as net income attributable to Autohome
+before income tax expense, depreciation expenses of property and equipment, amortization expenses of intangible assets and share-based compensation expenses. We present these non-GAAP financial measures
+because they are used by our management to evaluate our operating performance, in addition to net income prepared in accordance with U.S. GAAP. We believe these non-GAAP financial measures are important to
+help investors understand our operating and financial performance, compare business trends among different reporting periods on a consistent basis and assess our core operating results, as they exclude certain
+non-cash charges or items that are non-operating in nature. The use of the above non-GAAP financial measures has certain
+limitations as they excluded certain items that have been and will continue to be incurred in the future, but such items should be considered in the overall evaluation of our results. These non-GAAP financial
+measures should be considered in addition to financial measures prepared in accordance with GAAP, but should not be considered a substitute for, or superior to, financial measures prepared in accordance with GAAP. For more information on these non-GAAP financial measures, please see the table captioned “Unaudited Reconciliation of non-GAAP and GAAP Results” set fourth at the end of this press release.
+
+
+
+5
+
+
+
+
+
+
+
+
+
+
+
+
+For investor and media inquiries, please contact:
+
+Autohome Inc.
+Sterling Song
+
+Investor Relations Director
+Tel:
++86-10-5985-7483
+E-mail:
+ir@autohome.com.cn
+Christensen China Limited
+
+Suri Cheng
+Tel: +86-10-5900-1548
+E-mail: autohome@christensencomms.com
+
+
+6
+
+
+
+
+
+
+
+
+
+
+
+
+AUTOHOME INC.
+
+UNAUDITED CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS DATA
+
+(Amount in thousands, except share and per share / per ADS data)
+
+
+
+
+
+
+
+|
+
+|
+|
+|
+|
+
+|
+|
+|
+|
+
+|
+|
+|
+|
+
+|
+|
+|
+|
+
+|
+|
+|
+|
+
+|
+|
+|
+|
+
+
+|
+|
+For three months ended June 30, |
+|
+|
+For six months ended June 30, |
+|
+
+
+|
+|
+2025 |
+|
+|
+2026 |
+|
+|
+2025 |
+|
+|
+2026 |
+|
+
+
+|
+|
+RMB |
+|
+|
+RMB |
+|
+|
+US$ |
+|
+|
+RMB |
+|
+|
+RMB |
+|
+|
+US$ |
+|
+
+
+
+
+Net revenues:
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Media services
+|
+|
+|
+279,399 |
+|
+|
+|
+280,386 |
+|
+|
+|
+41,324 |
+|
+|
+|
+521,578 |
+|
+|
+|
+443,069 |
+|
+|
+|
+65,300 |
+|
+
+
+Leads generation services
+|
+|
+|
+732,581 |
+|
+|
+|
+560,357 |
+|
+|
+|
+82,586 |
+|
+|
+|
+1,377,724 |
+|
+|
+|
+1,063,812 |
+|
+|
+|
+156,786 |
+|
+
+
+Online marketplace and others
+|
+|
+|
+746,140 |
+|
+|
+|
+357,267 |
+|
+|
+|
+52,655 |
+|
+|
+|
+1,312,636 |
+|
+|
+|
+739,568 |
+|
+|
+|
+108,999 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Total net revenues
+|
+|
+|
+1,758,120 |
+|
+|
+|
+1,198,010 |
+|
+|
+|
+176,565 |
+|
+|
+|
+3,211,938 |
+|
+|
+|
+2,246,449 |
+|
+|
+|
+331,085 |
+|
+
+
+Cost of revenues
+|
+|
+|
+(503,424 |
+) |
+|
+|
+(273,997 |
+) |
+|
+|
+(40,382 |
+) |
+|
+|
+(818,944 |
+) |
+|
+|
+(531,025 |
+) |
+|
+|
+(78,263 |
+) |
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Gross profit
+|
+|
+|
+1,254,696 |
+|
+|
+|
+924,013 |
+|
+|
+|
+136,183 |
+|
+|
+|
+2,392,994 |
+|
+|
+|
+1,715,424 |
+|
+|
+|
+252,822 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Operating expenses:
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Sales and marketing expenses
+|
+|
+|
+(629,982 |
+) |
+|
+|
+(552,168 |
+) |
+|
+|
+(81,379 |
+) |
+|
+|
+(1,173,621 |
+) |
+|
+|
+(1,058,517 |
+) |
+|
+|
+(156,006 |
+) |
+
+
+General and administrative expenses
+|
+|
+|
+(132,665 |
+) |
+|
+|
+(95,518 |
+) |
+|
+|
+(14,078 |
+) |
+|
+|
+(263,688 |
+) |
+|
+|
+(215,377 |
+) |
+|
+|
+(31,743 |
+) |
+
+
+Product development expenses
+|
+|
+|
+(253,017 |
+) |
+|
+|
+(223,112 |
+) |
+|
+|
+(32,883 |
+) |
+|
+|
+(527,158 |
+) |
+|
+|
+(496,972 |
+) |
+|
+|
+(73,245 |
+) |
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Total operating expenses
+|
+|
+|
+(1,015,664 |
+) |
+|
+|
+(870,798 |
+) |
+|
+|
+(128,340 |
+) |
+|
+|
+(1,964,467 |
+) |
+|
+|
+(1,770,866 |
+) |
+|
+|
+(260,994 |
+) |
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Other operating income, net
+|
+|
+|
+57,611 |
+|
+|
+|
+76,765 |
+|
+|
+|
+11,314 |
+|
+|
+|
+101,471 |
+|
+|
+|
+151,015 |
+|
+|
+|
+22,257 |
+|
+
+
+Operating profit
+|
+|
+|
+296,643 |
+|
+|
+|
+129,980 |
+|
+|
+|
+19,157 |
+|
+|
+|
+529,998 |
+|
+|
+|
+95,573 |
+|
+|
+|
+14,085 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Interest and investment income, net
+|
+|
+|
+165,123 |
+|
+|
+|
+132,868 |
+|
+|
+|
+19,582 |
+|
+|
+|
+342,194 |
+|
+|
+|
+275,005 |
+|
+|
+|
+40,531 |
+|
+
+
+Share of results of equity method investments
+|
+|
+|
+(322 |
+) |
+|
+|
+42 |
+|
+|
+|
+6 |
+|
+|
+|
+(11,958 |
+) |
+|
+|
+(55,506 |
+) |
+|
+|
+(8,181 |
+) |
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Income before income taxes
+|
+|
+|
+461,444 |
+|
+|
+|
+262,890 |
+|
+|
+|
+38,745 |
+|
+|
+|
+860,234 |
+|
+|
+|
+315,072 |
+|
+|
+|
+46,435 |
+|
+
+
+Income tax expense
+|
+|
+|
+(60,596 |
+) |
+|
+|
+(33,567 |
+) |
+|
+|
+(4,947 |
+) |
+|
+|
+(116,925 |
+) |
+|
+|
+(58,786 |
+) |
+|
+|
+(8,664 |
+) |
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Net income
+|
+|
+|
+400,848 |
+|
+|
+|
+229,323 |
+|
+|
+|
+33,798 |
+|
+|
+|
+743,309 |
+|
+|
+|
+256,286 |
+|
+|
+|
+37,771 |
+|
+
+
+Net loss attributable to noncontrolling interest
+|
+|
+|
+14,810 |
+|
+|
+|
+18,487 |
+|
+|
+|
+2,725 |
+|
+|
+|
+28,984 |
+|
+|
+|
+35,775 |
+|
+|
+|
+5,273 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Net income attributable to Autohome
+|
+|
+|
+415,658 |
+|
+|
+|
+247,810 |
+|
+|
+|
+36,523 |
+|
+|
+|
+772,293 |
+|
+|
+|
+292,061 |
+|
+|
+|
+43,044 |
+|
+
+
+Accretion of mezzanine equity
+|
+|
+|
+(47,355 |
+) |
+|
+|
+(49,446 |
+) |
+|
+|
+(7,287 |
+) |
+|
+|
+(93,009 |
+) |
+|
+|
+(98,879 |
+) |
+|
+|
+(14,573 |
+) |
+
+
+Accretion attributable to noncontrolling interests
+|
+|
+|
+30,563 |
+|
+|
+|
+49,446 |
+|
+|
+|
+7,287 |
+|
+|
+|
+60,032 |
+|
+|
+|
+98,879 |
+|
+|
+|
+14,573 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Net income attributable to ordinary shareholders
+|
+|
+|
+398,866 |
+|
+|
+|
+247,810 |
+|
+|
+|
+36,523 |
+|
+|
+|
+739,316 |
+|
+|
+|
+292,061 |
+|
+|
+|
+43,044 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Earnings per share attributable to ordinary shareholders
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Basic
+|
+|
+|
+0.85 |
+|
+|
+|
+0.55 |
+|
+|
+|
+0.08 |
+|
+|
+|
+1.57 |
+|
+|
+|
+0.64 |
+|
+|
+|
+0.09 |
+|
+
+
+Diluted
+|
+|
+|
+0.85 |
+|
+|
+|
+0.55 |
+|
+|
+|
+0.08 |
+|
+|
+|
+1.56 |
+|
+|
+|
+0.64 |
+|
+|
+|
+0.09 |
+|
+
+
+Earnings per ADS attributable to ordinary shareholders (one ADS equals four ordinary
+shares)
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Basic
+|
+|
+|
+3.40 |
+|
+|
+|
+2.20 |
+|
+|
+|
+0.32 |
+|
+|
+|
+6.26 |
+|
+|
+|
+2.56 |
+|
+|
+|
+0.38 |
+|
+
+
+Diluted
+|
+|
+|
+3.38 |
+|
+|
+|
+2.19 |
+|
+|
+|
+0.32 |
+|
+|
+|
+6.23 |
+|
+|
+|
+2.55 |
+|
+|
+|
+0.38 |
+|
+
+
+Weighted average shares used to compute earnings per share attributable to ordinary
+shareholders:
+|
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Basic
+|
+|
+|
+469,269,006 |
+|
+|
+|
+450,522,052 |
+|
+|
+|
+450,522,052 |
+|
+|
+|
+472,358,950 |
+|
+|
+|
+456,714,843 |
+|
+|
+|
+456,714,843 |
+|
+
+
+Diluted
+|
+|
+|
+471,358,186 |
+|
+|
+|
+451,619,208 |
+|
+|
+|
+451,619,208 |
+|
+|
+|
+474,595,274 |
+|
+|
+|
+457,973,579 |
+|
+|
+|
+457,973,579 |
+|
+
+
+
+7
+
+
+
+
+
+
+
+
+
+
+
+
+AUTOHOME INC.
+
+UNAUDITED RECONCILIATIONS OF NON-GAAP AND GAAP RESULTS
+
+(Amount in thousands, except share and per share / per ADS data)
+
+
+
+
+
+
+
+|
+
+|
+|
+|
+|
+
+|
+|
+|
+|
+
+|
+|
+|
+|
+
+|
+|
+|
+|
+
+|
+|
+|
+|
+
+|
+|
+|
+|
+
+
+|
+|
+For three months ended June 30, |
+|
+|
+For six months ended June 30, |
+|
+
+
+|
+|
+2025 |
+|
+|
+2026 |
+|
+|
+2025 |
+|
+|
+2026 |
+|
+
+
+|
+|
+RMB |
+|
+|
+RMB |
+|
+|
+US$ |
+|
+|
+RMB |
+|
+|
+RMB |
+|
+|
+US$ |
+|
+
+
+
+
+Net income attributable to Autohome
+|
+|
+|
+415,658 |
+|
+|
+|
+247,810 |
+|
+|
+|
+36,523 |
+|
+|
+|
+772,293 |
+|
+|
+|
+292,061 |
+|
+|
+|
+43,044 |
+|
+
+
+Plus: income tax expense
+|
+|
+|
+61,936 |
+|
+|
+|
+33,903 |
+|
+|
+|
+4,997 |
+|
+|
+|
+119,605 |
+|
+|
+|
+59,459 |
+|
+|
+|
+8,763 |
+|
+
+
+Plus: depreciation of property and equipment
+|
+|
+|
+25,846 |
+|
+|
+|
+31,202 |
+|
+|
+|
+4,599 |
+|
+|
+|
+53,216 |
+|
+|
+|
+59,002 |
+|
+|
+|
+8,696 |
+|
+
+
+Plus: amortization of intangible assets
+|
+|
+|
+9,595 |
+|
+|
+|
+444 |
+|
+|
+|
+65 |
+|
+|
+|
+19,216 |
+|
+|
+|
+888 |
+|
+|
+|
+131 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+EBITDA
+|
+|
+|
+513,035 |
+|
+|
+|
+313,359 |
+|
+|
+|
+46,184 |
+|
+|
+|
+964,330 |
+|
+|
+|
+411,410 |
+|
+|
+|
+60,634 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Plus: share-based compensation expenses
+|
+|
+|
+52,311 |
+|
+|
+|
+29,104 |
+|
+|
+|
+4,289 |
+|
+|
+|
+97,801 |
+|
+|
+|
+65,133 |
+|
+|
+|
+9,599 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Adjusted EBITDA
+|
+|
+|
+565,346 |
+|
+|
+|
+342,463 |
+|
+|
+|
+50,473 |
+|
+|
+|
+1,062,131 |
+|
+|
+|
+476,543 |
+|
+|
+|
+70,233 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Net income attributable to Autohome
+|
+|
+|
+415,658 |
+|
+|
+|
+247,810 |
+|
+|
+|
+36,523 |
+|
+|
+|
+772,293 |
+|
+|
+|
+292,061 |
+|
+|
+|
+43,044 |
+|
+
+
+Plus: amortization of intangible assets resulting from business acquisition
+|
+|
+|
+9,583 |
+|
+|
+|
+432 |
+|
+|
+|
+64 |
+|
+|
+|
+19,166 |
+|
+|
+|
+864 |
+|
+|
+|
+127 |
+|
+
+
+Plus: share-based compensation expenses
+|
+|
+|
+52,311 |
+|
+|
+|
+29,104 |
+|
+|
+|
+4,289 |
+|
+|
+|
+97,801 |
+|
+|
+|
+65,133 |
+|
+|
+|
+9,599 |
+|
+
+
+Plus: share of results of equity method investments
+|
+|
+|
+322 |
+|
+|
+|
+(42 |
+) |
+|
+|
+(6 |
+) |
+|
+|
+11,958 |
+|
+|
+|
+55,506 |
+|
+|
+|
+8,181 |
+|
+
+
+Plus: Non-recurring employee severance costs
+|
+|
+|
+—  |
+|
+|
+|
+—  |
+|
+|
+|
+—  |
+|
+|
+|
+—  |
+|
+|
+|
+61,794 |
+|
+|
+|
+9,107 |
+|
+
+
+Plus: tax effects of the adjustments
+|
+|
+|
+(2,147 |
+) |
+|
+|
+(39 |
+) |
+|
+|
+(6 |
+) |
+|
+|
+(4,721 |
+) |
+|
+|
+(18,880 |
+) |
+|
+|
+(2,783 |
+) |
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Adjusted net income attributable to Autohome
+|
+|
+|
+475,727 |
+|
+|
+|
+277,265 |
+|
+|
+|
+40,864 |
+|
+|
+|
+896,497 |
+|
+|
+|
+456,478 |
+|
+|
+|
+67,275 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Net income attributable to Autohome
+|
+|
+|
+415,658 |
+|
+|
+|
+247,810 |
+|
+|
+|
+36,523 |
+|
+|
+|
+772,293 |
+|
+|
+|
+292,061 |
+|
+|
+|
+43,044 |
+|
+
+
+Net margin
+|
+|
+|
+23.6 |
+% |
+|
+|
+20.7 |
+% |
+|
+|
+20.7 |
+% |
+|
+|
+24.0 |
+% |
+|
+|
+13.0 |
+% |
+|
+|
+13.0 |
+% |
+
+
+Adjusted net income attributable to Autohome
+|
+|
+|
+475,727 |
+|
+|
+|
+277,265 |
+|
+|
+|
+40,864 |
+|
+|
+|
+896,497 |
+|
+|
+|
+456,478 |
+|
+|
+|
+67,275 |
+|
+
+
+Adjusted net margin
+|
+|
+|
+27.1 |
+% |
+|
+|
+23.1 |
+% |
+|
+|
+23.1 |
+% |
+|
+|
+27.9 |
+% |
+|
+|
+20.3 |
+% |
+|
+|
+20.3 |
+% |
+
+
+Non-GAAP earnings per share
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Basic
+|
+|
+|
+1.01 |
+|
+|
+|
+0.62 |
+|
+|
+|
+0.09 |
+|
+|
+|
+1.90 |
+|
+|
+|
+1.00 |
+|
+|
+|
+0.15 |
+|
+
+
+Diluted
+|
+|
+|
+1.01 |
+|
+|
+|
+0.61 |
+|
+|
+|
+0.09 |
+|
+|
+|
+1.89 |
+|
+|
+|
+1.00 |
+|
+|
+|
+0.15 |
+|
+
+
+Non-GAAP earnings per ADS (one ADS equals four ordinary
+shares)
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Basic
+|
+|
+|
+4.06 |
+|
+|
+|
+2.46 |
+|
+|
+|
+0.36 |
+|
+|
+|
+7.59 |
+|
+|
+|
+4.00 |
+|
+|
+|
+0.59 |
+|
+
+
+Diluted
+|
+|
+|
+4.04 |
+|
+|
+|
+2.46 |
+|
+|
+|
+0.36 |
+|
+|
+|
+7.56 |
+|
+|
+|
+3.99 |
+|
+|
+|
+0.59 |
+|
+
+
+Weighted average shares used to compute non-GAAP
+earnings per share:
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Basic
+|
+|
+|
+469,269,006 |
+|
+|
+|
+450,522,052 |
+|
+|
+|
+450,522,052 |
+|
+|
+|
+472,358,950 |
+|
+|
+|
+456,714,843 |
+|
+|
+|
+456,714,843 |
+|
+
+
+Diluted
+|
+|
+|
+471,358,186 |
+|
+|
+|
+451,619,208 |
+|
+|
+|
+451,619,208 |
+|
+|
+|
+474,595,274 |
+|
+|
+|
+457,973,579 |
+|
+|
+|
+457,973,579 |
+|
+
+
+
+8
+
+
+
+
+
+
+
+
+
+
+
+
+AUTOHOME INC.
+
+UNAUDITED CONDENSED CONSOLIDATED BALANCE SHEET
+
+(Amount in thousands, except as noted)
+
+
+
+
+
+
+
+|
+
+|
+|
+|
+|
+
+|
+|
+|
+|
+
+|
+|
+|
+|
+
+
+|
+|
+As of
+December 31, |
+|
+|
+As of June 30, |
+|
+
+
+|
+|
+2025 |
+|
+|
+2026 |
+|
+
+
+|
+|
+RMB |
+|
+|
+RMB |
+|
+|
+US$ |
+|
+
+
+
+
+ASSETS
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Current assets
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Cash and cash equivalents
+|
+|
+|
+2,175,493 |
+|
+|
+|
+2,495,814 |
+|
+|
+|
+367,837 |
+|
+
+
+Restricted cash
+|
+|
+|
+74,424 |
+|
+|
+|
+76,276 |
+|
+|
+|
+11,242 |
+|
+
+
+Short-term investments
+|
+|
+|
+17,063,633 |
+|
+|
+|
+15,659,096 |
+|
+|
+|
+2,307,865 |
+|
+
+
+Accounts receivables, net
+|
+|
+|
+1,521,347 |
+|
+|
+|
+1,399,181 |
+|
+|
+|
+206,214 |
+|
+
+
+Amounts due from related parties, current
+|
+|
+|
+43,599 |
+|
+|
+|
+32,411 |
+|
+|
+|
+4,777 |
+|
+
+
+Prepaid expenses and other current assets
+|
+|
+|
+308,733 |
+|
+|
+|
+666,788 |
+|
+|
+|
+98,272 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Total current assets
+|
+|
+|
+21,187,229 |
+|
+|
+|
+20,329,566 |
+|
+|
+|
+2,996,207 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Non-current assets
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Restricted cash, non-current
+|
+|
+|
+5,000 |
+|
+|
+|
+5,000 |
+|
+|
+|
+737 |
+|
+
+
+Property and equipment, net
+|
+|
+|
+191,063 |
+|
+|
+|
+210,542 |
+|
+|
+|
+31,030 |
+|
+
+
+Goodwill and intangible assets, net
+|
+|
+|
+3,995,489 |
+|
+|
+|
+3,990,117 |
+|
+|
+|
+588,070 |
+|
+
+
+Long-term equity investments
+|
+|
+|
+442,017 |
+|
+|
+|
+386,511 |
+|
+|
+|
+56,965 |
+|
+
+
+Other long-term investments
+|
+|
+|
+2,124,783 |
+|
+|
+|
+1,209,698 |
+|
+|
+|
+178,287 |
+|
+
+
+Deferred tax assets
+|
+|
+|
+262,622 |
+|
+|
+|
+270,872 |
+|
+|
+|
+39,922 |
+|
+
+
+Amounts due from related parties, non-current
+|
+|
+|
+9,709 |
+|
+|
+|
+9,709 |
+|
+|
+|
+1,431 |
+|
+
+
+Other non-current assets
+|
+|
+|
+90,612 |
+|
+|
+|
+154,528 |
+|
+|
+|
+22,775 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Total non-current assets
+|
+|
+|
+7,121,295 |
+|
+|
+|
+6,236,977 |
+|
+|
+|
+919,217 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Total assets
+|
+|
+|
+28,308,524 |
+|
+|
+|
+26,566,543 |
+|
+|
+|
+3,915,424 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+LIABILITIES AND EQUITY
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Current liabilities
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Accrued expenses and other payables
+|
+|
+|
+2,192,496 |
+|
+|
+|
+1,589,658 |
+|
+|
+|
+234,286 |
+|
+
+
+Advance from customers
+|
+|
+|
+98,083 |
+|
+|
+|
+107,332 |
+|
+|
+|
+15,819 |
+|
+
+
+Deferred revenue
+|
+|
+|
+170,836 |
+|
+|
+|
+698,629 |
+|
+|
+|
+102,965 |
+|
+
+
+Income tax payable
+|
+|
+|
+82,000 |
+|
+|
+|
+119,770 |
+|
+|
+|
+17,652 |
+|
+
+
+Amounts due to related parties
+|
+|
+|
+13,739 |
+|
+|
+|
+4,383 |
+|
+|
+|
+646 |
+|
+
+
+Dividends payable
+|
+|
+|
+976,382 |
+|
+|
+|
+489,821 |
+|
+|
+|
+72,191 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Total current liabilities
+|
+|
+|
+3,533,536 |
+|
+|
+|
+3,009,593 |
+|
+|
+|
+443,559 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Non-current liabilities
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Other liabilities
+|
+|
+|
+21,544 |
+|
+|
+|
+45,710 |
+|
+|
+|
+6,738 |
+|
+
+
+Deferred tax liabilities
+|
+|
+|
+458,266 |
+|
+|
+|
+457,224 |
+|
+|
+|
+67,386 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Total non-current liabilities
+|
+|
+|
+479,810 |
+|
+|
+|
+502,934 |
+|
+|
+|
+74,124 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Total liabilities
+|
+|
+|
+4,013,346 |
+|
+|
+|
+3,512,527 |
+|
+|
+|
+517,683 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+MEZZANINE EQUITY
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Convertible redeemable noncontrolling interests
+|
+|
+|
+2,121,191 |
+|
+|
+|
+2,220,070 |
+|
+|
+|
+327,198 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+EQUITY
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Total Autohome shareholders’ equity
+|
+|
+|
+23,041,328 |
+|
+|
+|
+21,836,008 |
+|
+|
+|
+3,218,229 |
+|
+
+
+Noncontrolling interests
+|
+|
+|
+(867,341 |
+) |
+|
+|
+(1,002,062 |
+) |
+|
+|
+(147,686 |
+) |
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Total equity
+|
+|
+|
+22,173,987 |
+|
+|
+|
+20,833,946 |
+|
+|
+|
+3,070,543 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Total liabilities, mezzanine equity and equity
+|
+|
+|
+28,308,524 |
+|
+|
+|
+26,566,543 |
+|
+|
+|
+3,915,424 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+
+9
+
+
+
+
+
+
+
+
+
+
+
+
+UNAUDITED RECONCILIATION BETWEEN U.S. GAAP AND IFRS Accounting Standards
+
+The unaudited condensed consolidated statements of income for the six months ended June 30, 2026 and the unaudited condensed consolidated balance sheets as of
+June 30, 2026 (collectively, the “Unaudited Interim Financial Statements”) of Autohome Inc., its subsidiaries, the variable interest entities, and the subsidiaries of the variable interest entities (collectively, the
+“Company”) are prepared in accordance with the accounting principles generally accepted in the United States of America (the “U.S. GAAP”), and the differences between U.S. GAAP and IFRS Accounting Standards issued by the
+International Accounting Standards Board (together, the “Reconciliation Statement”) have been disclosed in the Appendix — Unaudited Reconciliation Between U.S. GAAP and IFRS Accounting Standards attached herein.
+
+PricewaterhouseCoopers, the auditor of the Company in Hong Kong, has performed a limited assurance engagement on the Reconciliation Statement in accordance
+with International Standards on Assurance Engagements 3000 (Revised) “Assurance Engagements Other Than Audits or Reviews of Historical Financial Information” issued by the International Auditing and Assurance Standards Board.
+
+Appendix
+The Unaudited Interim Financial Statements of
+the Company are prepared in accordance with U.S. GAAP, which differ in certain respects from IFRS Accounting Standards. The effects of material differences between the Unaudited Interim Financial Statements prepared under U.S. GAAP and IFRS
+Accounting Standards are as follows:
+Reconciliation of unaudited condensed consolidated statements of income:
+
+
+
+
+
+
+
+
+|
+
+|
+|
+|
+|
+
+|
+|
+|
+|
+
+
+|
+|
+For six months ended
+June 30, |
+|
+
+
+|
+2025 |
+|
+|
+2026 |
+|
+
+
+|
+RMB |
+|
+|
+RMB |
+|
+
+
+
+
+Reconciliation of net income in the consolidated statements of income
+|
+|
+|
+(in thousands) |
+|
+
+
+Net income as reported under U.S. GAAP
+|
+|
+|
+743,309 |
+|
+|
+|
+256,286 |
+|
+
+
+IFRS Accounting Standards adjustments:
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Preferred shares (Note a)
+|
+|
+|
+64,042 |
+|
+|
+|
+12,411 |
+|
+
+
+Leases (Note b)
+|
+|
+|
+1,253 |
+|
+|
+|
+(134 |
+) |
+
+
+Share-based compensation (Note c)
+|
+|
+|
+(8,625 |
+) |
+|
+|
+11,011 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Net income as reported under IFRS Accounting Standards
+|
+|
+|
+799,979 |
+|
+|
+|
+279,574 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+Reconciliation of unaudited condensed consolidated balance sheets:
+
+
+
+
+
+
+
+
+|
+
+|
+|
+|
+|
+
+|
+|
+|
+|
+
+
+|
+|
+As of
+December 31, |
+|
+|
+As of
+June 30, |
+|
+
+
+
+
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+|
+2025 |
+|
+|
+2026 |
+|
+
+
+|
+|
+RMB |
+|
+|
+RMB |
+|
+
+
+Reconciliation of total equity in the consolidated balance sheets
+|
+|
+|
+(in thousands) |
+|
+
+
+Total equity as reported under U.S. GAAP
+|
+|
+|
+22,173,987 |
+|
+|
+|
+20,833,946 |
+|
+
+
+IFRS Accounting Standards adjustments:
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+Preferred shares (Note a)
+|
+|
+|
+2,067,762 |
+|
+|
+|
+2,193,156 |
+|
+
+
+Leases (Note b)
+|
+|
+|
+(5,534 |
+) |
+|
+|
+(5,668 |
+) |
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+Total equity as reported under IFRS Accounting Standards
+|
+|
+|
+24,236,215 |
+|
+|
+|
+23,021,434 |
+|
+
+
+|
+|
+
+|
+
+|
+|
+|
+
+|
+
+|
+|
+
+
+
+10
+
+
+
+
+
+
+
+
+
+
+
+
+Notes:
+
+Basis of Preparation
+The Directors of the Company are
+responsible for preparation of the Reconciliation Statement in accordance with the relevant requirements of the Hong Kong Listing Rules. The Reconciliation Statement was prepared based on the Company’s unaudited interim condensed consolidated
+financial information for the six months ended June 30, 2026 prepared under U.S. GAAP, with adjustments made (if any) thereto in arriving at the unaudited financial information of the Company prepared under IFRS Accounting Standards. The adjustments
+reflect the differences between the Company’s accounting policies under U.S. GAAP and IFRS Accounting Standards.
+
+
+
+
+(a) |
+Preferred Shares
+|
+
+Under U.S. GAAP, the preferred shares of the Company are accounted for as mezzanine equity, which is subsequently accreted to the amount
+which equals to redemption value of each series of preferred shares.
+Under IFRS Accounting Standards, the preferred shares, which
+are redeemable at the option of the holder, represent a financial liability. And the financial liability is measured at fair value and changes in the fair value are reflected in the consolidated statements of comprehensive income. The amount of
+change in the fair value of the financial liability that is attributable to changes in the credit risk of the liability shall be recognized in other comprehensive income/(loss); the remaining amount of change in the fair value of the liability shall
+be recognized in profit or loss.
+Accordingly, the reconciliation includes a fair value profit change of RMB64.04 million and
+RMB12.41 million recognized in the consolidated statements of comprehensive income for each of the six months ended June 30, 2025 and 2026, respectively. The reconciliation also includes the difference between mezzanine equity under U.S. GAAP
+and financial liabilities under IFRS Accounting Standards of RMB2,067.76 million and RMB2,193.16 million as at December 31, 2025 and June 30, 2026, respectively.
+
+
+
+
+
+(b) |
+Leases
+|
+
+For operating leases under U.S. GAAP, the subsequent measurement of the lease liability is based on the present value of the remaining lease
+payments using the discount rate determined at lease commencement, while the right-of-use asset is measured at the amount of the lease liability, adjusted for the
+remaining balance of any lease incentives received, cumulative prepaid or accrued rents, unamortized initial direct costs and any impairment. This treatment under U.S. GAAP results in straight-line expense being incurred over the lease term, as
+opposed to IFRS Accounting Standards which generally yields a “front-loaded” expense with more expense recognized in earlier years of the lease.
+
+Accordingly, the reconciliation includes an expenses difference recognized in the consolidated statements of comprehensive income of
+RMB1.25 million and RMB0.13 million (negative) for each of the six months ended June 30, 2025 and 2026, respectively. The reconciliation also includes a difference in total equity of RMB5.53 million (negative) and RMB5.67 million
+(negative) as at December 31, 2025 and June 30, 2026, respectively.
+
+
+
+
+(c) |
+Share-based Compensation
+|
+
+Under U.S. GAAP, the Company has elected to recognize compensation expense using the straight-line
+method for all share-based awards granted with service conditions that have a graded vesting schedule. For awards with performance conditions and multiple service dates, if the performance conditions are all set at inception and independent for each
+year, each tranche is accounted for as a separate award with its own requisite service period. Compensation cost is recognized over the respective requisite service period separately for each separately-vesting tranche as though each tranche of the
+award is, in substance, a separate award.
+Under IFRS Accounting Standards, the accelerated method is required to recognize
+compensation expense for all employee equity awards granted with graded vesting.
+Accordingly, the reconciliation includes an
+expense recognition difference in the consolidated statements of comprehensive income of RMB8.63 million (negative) and RMB11.01 million for each of the six months ended June 30, 2025 and 2026, respectively.
+
+
+11

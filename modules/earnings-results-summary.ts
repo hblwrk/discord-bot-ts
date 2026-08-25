@@ -135,6 +135,7 @@ function getSummaryPrompt(input: EarningsAiSummaryInput, filingText: string): st
     "- Sentence 3 covers outlook, guidance, or management expectations when present; otherwise cover another material filing-supported business detail.",
     "- Never claim that guidance or outlook is absent; an omission cannot be supported by a source snippet.",
     "- Return plain text only; do not include markdown, backticks, bullets, headings, or labels.",
+    "- Do not return raw table rows or pipe-delimited cell text; express supported facts as prose.",
     "- The Discord bot formats ticker symbols and concrete metrics after validation.",
     "- Do not mention the company name in the summary; the Discord alert title already identifies the company.",
     "- If you mention any displayed result metric, use exactly the displayed value and do not mention a different value for the same metric.",
@@ -337,6 +338,7 @@ function getValidatedSummarySentence(
   const normalizedSentence = normalizeSummaryText(item.text);
   if ("" === normalizedSentence ||
       normalizedSentence.length > maxSummarySentenceLength ||
+      true === hasRawTableFragment(normalizedSentence) ||
       true === hasUnexpectedMarkdown(normalizedSentence) ||
       true === hasCorrectionArtifact(normalizedSentence) ||
       true === hasUnexpectedCjkCharacters(normalizedSentence) ||
@@ -400,6 +402,7 @@ function getValidatedSourceSnippet(
   const normalizedSnippet = normalizeSummaryText(sourceSnippet);
   if (normalizedSnippet.length < 3 ||
       normalizedSnippet.length > maxSummarySourceSnippetLength ||
+      true === hasRawTableFragment(normalizedSnippet) ||
       false === summaryMaterialEvidencePattern.test(normalizedSnippet) ||
       false === normalizeEvidenceText(filingText).includes(normalizeEvidenceText(normalizedSnippet)) ||
       true === hasUnexpectedMarkdown(normalizedSnippet) ||
@@ -414,6 +417,10 @@ function getValidatedSourceSnippet(
 }
 
 const summaryMaterialEvidencePattern = /\b(?:bookings?|cash\s+flow|demand|earnings?|eps|expects?|growth|guidance|income|loss|margin|orders?|outlook|production|profit|revenue|sales|segments?|volume)\b/i;
+
+function hasRawTableFragment(value: string): boolean {
+  return 2 <= (value.match(/\|/g)?.length ?? 0);
+}
 
 function hasForwardLookingBoilerplate(value: string): boolean {
   return /\bforward-looking statements?\b|\bsafe[-\s]harbor\b|\bactual (?:results|performance|events)\b[^.!?]{0,100}\bdiffer materially\b/i

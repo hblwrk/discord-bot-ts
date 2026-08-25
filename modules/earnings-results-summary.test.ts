@@ -101,6 +101,7 @@ describe("AI earnings summaries", () => {
     expect(prompt).toContain("Return exactly three sentence objects in order");
     expect(prompt).toContain("Never claim that guidance or outlook is absent");
     expect(prompt).toContain("Return plain text only; do not include markdown, backticks, bullets, headings, or labels.");
+    expect(prompt).toContain("Do not return raw table rows or pipe-delimited cell text");
     expect(prompt).toContain("Do not mention the company name in the summary");
     expect(prompt).toContain("Displayed result metrics:\n- Revenue: $10.2B");
     expect(requestBody.generationConfig?.responseJsonSchema?.properties?.sentences).toEqual(
@@ -740,6 +741,56 @@ describe("AI earnings summaries", () => {
     expect(result).toBe(
       "Revenue reached `$1.3 billion` in the second quarter. Comparable sales rose `15.3%` during the period.",
     );
+  });
+
+  test("drops raw table rows from a grounded partial summary", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({
+      data: {
+        candidates: [{
+          content: {
+            parts: [{
+              text: JSON.stringify({
+                sentences: [
+                  {
+                    text: "Net sales | $ | 6,090,975 | 15.9% | $ | 5,256,907.",
+                    sourceSnippet: "Net sales | $ | 6,090,975 | 15.9% | $ | 5,256,907.",
+                  },
+                  {
+                    text: "Comparable club sales increased 11.9% year over year.",
+                    sourceSnippet: "Comparable club sales increased 11.9% year over year.",
+                  },
+                  {
+                    text: "Adjusted EPS is expected to range from $4.60 to $4.80.",
+                    sourceSnippet: "Adjusted EPS is expected to range from $4.60 to $4.80.",
+                  },
+                ],
+              }),
+            }],
+          },
+        }],
+      },
+    });
+
+    const result = await summarizeEarningsWithAi({
+      companyName: "Example Corp",
+      filingForm: "8-K",
+      filingUrl: "https://www.sec.gov/example",
+      html: `
+        <p>Net sales | $ | 6,090,975 | 15.9% | $ | 5,256,907.</p>
+        <p>Comparable club sales increased 11.9% year over year.</p>
+        <p>Adjusted EPS is expected to range from $4.60 to $4.80.</p>
+      `,
+      ticker: "EXM",
+    }, {
+      logger,
+      nowMs: () => 1_000,
+      postWithRetryFn,
+      readSecretFn,
+    });
+
+    expect(result).not.toContain("|");
+    expect(result).toContain("Comparable club sales increased `11.9%` year over year.");
+    expect(result).toContain("Adjusted EPS is expected to range from `$4.60` to `$4.80`.");
   });
 
   test("logs invalid summary JSON", async () => {

@@ -1,0 +1,335 @@
+EX-99.1
+2
+zm-20260731ex991.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+
+
+Exhibit 99.1
+Zoom Communications Reports Financial Results for the Second Quarter of Fiscal Year 2027
+•Second quarter total revenue of $1,277.2 million, up 4.9% year over year as reported and 4.7% in constant currency
+•Second quarter Enterprise revenue of $787.5 million, up 7.8% year over year
+•Second quarter GAAP operating margin of 24.6% and non-GAAP operating margin of 40.0%
+•Trailing 12-month net dollar expansion rate for Enterprise customers increased to 99% from 98% as of the same quarter last fiscal year
+•Repurchased approximately 3.7 million shares of common stock in second quarter, bringing the total shares repurchased under the current plan to 44.2 million
+•Number of customers contributing more than $100,000 in trailing 12 months revenue up 8.2% year over year
+San Jose, California – August 25, 2026 – Zoom Communications, Inc. (NASDAQ: ZM), today announced financial results for the second fiscal quarter ended July 31, 2026.
+“FY27 continues to progress well, reflecting focused execution against our three priorities and clear Enterprise business momentum. Total revenue grew 4.9% year over year, anchored by 7.8% growth in Enterprise revenue, its strongest growth rate in three years,” said Eric S. Yuan, Zoom’s founder and CEO. “Our AI-first Customer Experience portfolio continues to scale, delivering high-double-digit ARR expansion, driven in part by strong adoption of Zoom Virtual Agent, whose customer count increased 256% year over year. With innovations including ZoomMate, My Notes, AI Productivity Suite, ZVA Receptionist, and Workvivo HQ Agent, and acquisitions like Common Room and BrightHire, we are embedding AI into the flow of work across collaboration, customer experience, revenue orchestration, recruiting, and employee experience. The breadth of that AI adoption reflects how Zoom is differentiating as a system of action for modern work, moving enterprise operations from conversation to completion.”
+Second Quarter Fiscal Year 2027 Financial Highlights:
+•Revenue: Total revenue for the second quarter was $1,277.2 million, up 4.9% year over year. Adjusting for foreign currency impact, revenue in constant currency was $1,274.5 million, up 4.7% year over year. Enterprise revenue was $787.5 million, up 7.8% year over year, and Online revenue was $489.7 million, up 0.6% year over year.
+•Income from Operations and Operating Margin: GAAP income from operations for the second quarter was $314.3 million, compared to GAAP income from operations of $321.7 million in the second quarter of fiscal year 2026. Non-GAAP income from operations, which adjusts for stock-based compensation expense and related payroll taxes, acquisition-related expenses, and litigation settlements, net, was $510.3 million for the second quarter, compared to non-GAAP income from operations of $503.2 million in the second quarter of fiscal year 2026. For the second quarter, GAAP operating margin was 24.6% and non-GAAP operating margin was 40.0%.
+•Net Income and Diluted Net Income Per Share: GAAP net income for the second quarter was $1,542.4 million, or $5.15 per share, compared to GAAP net income of $358.6 million, or $1.16 per share, in the second quarter of fiscal year 2026. Non-GAAP net income for the second quarter, which adjusts for stock-based compensation expense and related payroll taxes, gains on strategic investments, net, acquisition-related expenses, litigation settlements, net, and the tax effects on non-GAAP adjustments, was $464.0 million, or $1.55 per share. In the second quarter of fiscal year 2026, non-GAAP net income was $471.3 million, or $1.53 per share.
+•Cash and Marketable Securities: Total cash, cash equivalents, and marketable securities, excluding restricted cash, as of July 31, 2026 was $7.2 billion.
+•Cash Flow: Net cash provided by operating activities was $494.8 million for the second quarter, compared to $515.9 million in the second quarter of fiscal year 2026. Free cash flow, which is net cash provided by operating activities less purchases of property and equipment, was $472.4 million, compared to $508.0 million in the second quarter of fiscal year 2026.
+
+
+
+
+
+
+
+Customer Metrics: Drivers of total revenue included acquiring new customers. At the end of the second quarter of fiscal year 2027:
+•The number of customers contributing more than $100,000 in trailing 12 months revenue was 4,625, up 8.2% from the same quarter last fiscal year.
+•The trailing 12-month net dollar expansion rate for Enterprise customers was 99%, up from 98% as of the same quarter last fiscal year.
+•Online average monthly churn was 2.9%, consistent with the same quarter last fiscal year.
+•Online customers with at least 16 months of continual service represented 75.6% of total Online MRR, up 70 bps year over year.
+Financial Outlook: Zoom is providing the following guidance for its third quarter of fiscal year 2027 and updating its guidance for full fiscal year 2027.
+•Third Quarter Fiscal Year 2027: Total revenue is expected to be between $1.275 billion and $1.280 billion and revenue in constant currency is expected to be between $1.275 billion and $1.280 billion. Non-GAAP income from operations is expected to be between $510.0 million and $515.0 million. Non-GAAP diluted EPS is expected to be between $1.46 and $1.48 with approximately 301 million weighted average shares outstanding.
+•Full Fiscal Year 2027: Total revenue is expected to be between $5.085 billion and $5.095 billion and revenue in constant currency is expected to be between $5.071 billion and $5.081 billion. Non-GAAP income from operations is expected to be between $2.065 billion and $2.075 billion. Non-GAAP diluted EPS is expected to be between $6.08 and $6.12 with approximately 301 million weighted average shares outstanding. Full fiscal year free cash flow is expected to be between $1.780 billion and $1.820 billion.
+The EPS and share count figures do not include the impact from approximately $1.3 billion of authorized share repurchase remaining as of July 31, 2026.
+Additional information on Zoom's reported results, including a reconciliation of the non-GAAP results to their most comparable GAAP measures, is included in the financial tables below. A reconciliation of non-GAAP guidance measures to corresponding GAAP measures is not available on a forward-looking basis without unreasonable effort due to the uncertainty of expenses that may be incurred in the future, although it is important to note that these factors could be material to Zoom's results computed in accordance with GAAP.
+A supplemental financial presentation and other information can be accessed through Zoom’s investor relations website at investors.zoom.com.
+Zoom Video Earnings Call
+Zoom will host a Zoom Video Webinar for investors on August 25, 2026 at 2:00 p.m. Pacific Time / 5:00 p.m. Eastern Time to discuss the company’s financial results, business highlights and financial outlook. Investors are invited to join the Zoom Video Webinar by visiting: https://investors.zoom.com/
+About Zoom
+Zoom (NASDAQ:ZM) is a system of action for modern work, turning live collaboration into completed results. From entrepreneurs to global enterprises, customers choose Zoom to seamlessly collaborate, communicate, and drive outcomes across meetings, phone, contact center, and more — all with the built-in assistance of Zoom AI. Founded in 2011, Zoom is headquartered in San Jose, CA. For more information, visit zoom.com.
+
+Forward-Looking Statements
+This press release contains express and implied “forward-looking statements” within the meaning of the Private Securities Litigation Reform Act of 1995, including statements regarding Zoom's financial outlook for the third quarter of fiscal year 2027 and full fiscal year 2027, Zoom’s market position, opportunities, and growth strategy, product initiatives, including future product and feature releases, and go-to-market motions and the expected benefits resulting from the same, market trends, and Zoom's stock repurchase program. In some cases, you can identify forward-looking statements by terms such as “anticipate,” “believe,” “estimate,” “expect,” “intend,” “may,” “might,” “plan,” “project,” “will,” “would,” “should,” “could,” “can,” “predict,” “potential,” “target,” “explore,” “continue,” or the negative of these terms, and similar expressions intended to identify forward-looking statements. By their nature, these statements are subject to numerous uncertainties and risks, including
+
+
+
+
+
+
+
+factors beyond our control, that could cause actual results, performance or achievement to differ materially and adversely from those anticipated or implied in the statements, including: declines in new customers, renewals or upgrades, or decline in demand for our platform, difficulties in evaluating our prospects and future results of operations given our continuing growth in scale, complexity and scope, the pace of development, adoption, or performance of our AI capabilities, competition from other providers of communications platforms, the effect of macroeconomic conditions on our business, including geopolitical tensions, tariffs and escalating trade tensions, interest rate fluctuations, inflationary pressures and market and foreign currency exchange rate volatility, lengthened sales cycles with large organizations, delays or outages in services from our co-located data centers, failures in internet infrastructure or interference with broadband access, compromised security measures, including ours and those of the third parties upon which we rely, and global security concerns and their potential impact on regional and global economies and supply chains. Additional risks and uncertainties that could cause actual outcomes and results to differ materially from those contemplated by the forward-looking statements are included under the caption “Risk Factors” and elsewhere in our most recent filings with the Securities and Exchange Commission (the “SEC”), including our quarterly report on Form 10-Q for the fiscal quarter ended April 30, 2026. Forward-looking statements speak only as of the date the statements are made and are based on information available to Zoom at the time those statements are made and/or management's good faith belief as of that time with respect to future events. Zoom assumes no obligation to update forward-looking statements to reflect events or circumstances after the date they were made, except as required by law.
+
+Non-GAAP Financial Measures
+Zoom has provided in this press release financial information that has not been prepared in accordance with generally accepted accounting principles in the United States (“GAAP”). Zoom uses these non-GAAP financial measures internally in analyzing its financial results and believes that use of these non-GAAP financial measures is useful to investors as an additional tool to evaluate ongoing operating results and trends and in comparing Zoom’s financial results with other companies in its industry, many of which present similar non-GAAP financial measures.
+Non-GAAP financial measures are not meant to be considered in isolation or as a substitute for comparable GAAP financial measures and should be read only in conjunction with Zoom’s condensed consolidated financial statements prepared in accordance with GAAP. A reconciliation of Zoom’s historical non-GAAP financial measures to the most directly comparable GAAP measures has been provided in the financial statement tables included in this press release, and investors are encouraged to review the reconciliation.
+Non-GAAP Income from Operations and Non-GAAP Operating Margin. Zoom defines non-GAAP income from operations as income from operations excluding stock-based compensation expense and related payroll taxes, acquisition-related expenses, and litigation settlements, net. Zoom excludes stock-based compensation expense because it is non-cash in nature and excluding this expense provides meaningful supplemental information regarding Zoom’s operational performance and allows investors the ability to make more meaningful comparisons between Zoom’s operating results and those of other companies. Zoom excludes the amount of employer payroll taxes related to employee stock plans, which is a cash expense, in order for investors to see the full effect that excluding stock-based compensation expense had on Zoom's operating results. In particular, this expense is dependent on the price of our common stock and other factors that are beyond our control and do not correlate to the operation of the business. Zoom views acquisition-related expenses when applicable, such as amortization of acquired intangible assets, transaction costs, and acquisition-related retention payments that are directly related to business combinations as events that are not necessarily reflective of operational performance during a period. Zoom excludes significant litigation settlements, net of amounts covered by insurance, that we deem not to be in the ordinary course of our business. In fact, Zoom believes the consideration of measures that exclude such expenses can assist in the comparison of operational performance in different periods that may or may not include such expenses and assist in the comparison with the results of other companies in the industry. Zoom defines non-GAAP operating margin as non-GAAP income from operations divided by GAAP revenue.
+Non-GAAP Net Income and Non-GAAP Net Income Per Share, Basic and Diluted. Zoom defines non-GAAP net income as GAAP net income adjusted to exclude stock-based compensation expense and related payroll taxes, acquisition-related expenses, gains/losses on strategic investments, net, litigation settlements, net, and the tax effects of all non-GAAP adjustments. Zoom excludes these items because they are considered by management to be outside of Zoom’s core operating results. These adjustments are intended to provide investors and management with greater visibility to the underlying performance of Zoom’s business operations, facilitate comparison of its results with other periods, and may also facilitate comparison with the results of other companies in the industry. Zoom defines non-GAAP net income per share, basic and diluted, as non-GAAP net income divided by the number of shares outstanding, basic and diluted, calculated in accordance with GAAP.
+Free Cash Flow and Free Cash Flow Margin. Zoom defines free cash flow as GAAP net cash provided by operating activities less purchases of property and equipment. Zoom considers free cash flow to be a liquidity measure that provides useful information to management and investors regarding net cash provided by operating activities and cash used for investments in property and equipment required to maintain and grow the business. Zoom defines free cash flow margin as free cash flow divided by GAAP revenue.
+
+
+
+
+
+
+
+Revenue in Constant Currency. Zoom defines revenue in constant currency as GAAP revenue adjusted for revenue reported in currencies other than United States dollars as if they were converted into United States dollars using the average exchange rates from the comparative period rather than the actual exchange rates in effect during the respective periods. Zoom provides revenue in constant currency information as a framework for assessing how Zoom's underlying businesses performed period to period, excluding the effects of foreign currency fluctuations.
+
+Customer Metrics
+Zoom defines a customer as a separate and distinct buying entity, which can be a single paid user or an organization of any size (including a distinct unit of an organization) that has multiple users. Zoom defines Enterprise customers as distinct business units that have been engaged by either our direct sales team, resellers, or strategic partners. All other customers that subscribe to our services directly through our website are referred to as Online customers.
+Zoom calculates net dollar expansion rate as of a period end by starting with the annual recurring revenue (“ARR”) from Enterprise customers as of 12 months prior (“Prior Period ARR”). Zoom defines ARR as the annualized revenue run rate of subscription agreements from all customers at a point in time. Zoom calculates ARR by taking the monthly recurring revenue (“MRR”) and multiplying it by 12. MRR is defined as the recurring revenue run-rate of subscription agreements from all Enterprise customers for the last month of the period, including revenue from monthly subscribers who have not provided any indication that they intend to cancel their subscriptions. Zoom then calculates the ARR from these Enterprise customers as of the current period end (“Current Period ARR”), which includes any upsells, contraction, and attrition. Zoom divides the Current Period ARR by the Prior Period ARR to arrive at the net dollar expansion rate. For the trailing 12 months calculation, Zoom takes an average of the net dollar expansion rate over the trailing 12 months.
+Zoom calculates online average monthly churn by starting with the Online customer MRR as of the beginning of the applicable quarter (“Entry MRR”). Zoom defines Entry MRR as the recurring revenue run-rate of subscription agreements from all Online customers except for subscriptions that Zoom recorded as churn in a previous quarter based on the customers' earlier indication to us of their intention to cancel that subscription. Zoom then determines the MRR related to customers who canceled or downgraded their subscription or notified us of that intention during the applicable quarter (“Applicable Quarter MRR Churn”) and divides the Applicable Quarter MRR Churn by the applicable quarter Entry MRR to arrive at the MRR churn rate for Online Customers for the applicable quarter. Zoom then divides that amount by three to calculate the online average monthly churn.
+Public Relations
+Karen Modlin
+Head of Corporate Communications
+press@zoom.us
+
+
+Investor Relations
+Charles Eveslage
+Head of Investor Relations
+investors@zoom.us
+
+
+
+
+
+
+
+
+Zoom Communications, Inc.
+Condensed Consolidated Balance Sheets
+(In thousands) | | | | | | | | | | | | | | |
+| | As of |
+| | July 31,
+2026 | | January 31,
+2026 |
+Assets | | (unaudited) | | |
+Current assets: | | | | |
+Cash and cash equivalents | | $ | 931,992 | | | $ | 1,272,877 | |
+Marketable securities | | 6,317,729 | | | 6,544,031 | |
+Accounts receivable, net | | 532,958 | | | 497,339 | |
+Deferred contract acquisition costs, current | | 139,034 | | | 108,856 | |
+Prepaid expenses and other current assets | | 193,688 | | | 234,856 | |
+Total current assets | | 8,115,401 | | | 8,657,959 | |
+Deferred contract acquisition costs, noncurrent | | 264,361 | | | 215,533 | |
+Property and equipment, net | | 254,705 | | | 264,525 | |
+Operating lease right-of-use assets | | 56,402 | | | 52,423 | |
+Strategic investments | | 3,785,876 | | | 1,578,611 | |
+Goodwill | | 599,181 | | | 400,392 | |
+Deferred tax assets | | 328,894 | | | 646,640 | |
+Other assets, noncurrent | | 180,576 | | | 144,333 | |
+Total assets | | $ | 13,585,396 | | | $ | 11,960,416 | |
+Liabilities and stockholders’ equity | | | | |
+Current liabilities: | | | | |
+Accounts payable | | $ | 14,364 | | | $ | 6,268 | |
+Accrued expenses and other current liabilities | | 557,561 | | | 581,773 | |
+Deferred revenue, current | | 1,549,428 | | | 1,411,149 | |
+Total current liabilities | | 2,121,353 | | | 1,999,190 | |
+Deferred revenue, noncurrent | | 12,735 | | | 13,195 | |
+Operating lease liabilities, noncurrent | | 33,340 | | | 30,710 | |
+Other liabilities, noncurrent | | 114,357 | | | 109,063 | |
+Total liabilities | | 2,281,785 | | | 2,152,158 | |
+| | | | |
+| | | | |
+| | | | |
+Stockholders’ equity: | | | | |
+| | | | |
+Common stock | | 292 | | | 295 | |
+Additional paid-in capital | | 3,666,536 | | | 4,099,753 | |
+Accumulated other comprehensive income | | (31,005) | | | 8,544 | |
+Retained earnings | | 7,667,788 | | | 5,699,666 | |
+Total stockholders’ equity | | 11,303,611 | | | 9,808,258 | |
+Total liabilities and stockholders’ equity | | $ | 13,585,396 | | | $ | 11,960,416 | |
+
+
+
+Note: The amount of unbilled accounts receivable included within accounts receivable, net on the condensed consolidated balance sheets was $88.4 million and $84.9 million as of July 31, 2026 and January 31, 2026, respectively.
+
+
+
+
+
+
+
+
+Zoom Communications, Inc.
+Condensed Consolidated Statements of Operations
+(Unaudited, in thousands, except share and per share amounts)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended July 31, | | Six Months Ended July 31, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+Revenue | | $ | 1,277,217 | | | $ | 1,217,227 | | | $ | 2,516,223 | | | $ | 2,391,942 | |
+Cost of revenue | | 291,722 | | | 273,165 | | | 566,009 | | | 551,567 | |
+Gross profit | | 985,495 | | | 944,062 | | | 1,950,214 | | | 1,840,375 | |
+Operating expenses: | | | | | | | | |
+Research and development | | 242,497 | | | 206,447 | | | 470,423 | | | 411,863 | |
+Sales and marketing | | 330,521 | | | 338,995 | | | 660,571 | | | 685,965 | |
+General and administrative | | 98,161 | | | 76,885 | | | 194,431 | | | 179,220 | |
+Total operating expenses | | 671,179 | | | 622,327 | | | 1,325,425 | | | 1,277,048 | |
+Income from operations | | 314,316 | | | 321,735 | | | 624,789 | | | 563,327 | |
+Gains on strategic investments, net | | 1,614,203 | | | 45,056 | | | 1,766,500 | | | 31,437 | |
+Other income, net | | 66,448 | | | 81,371 | | | 135,298 | | | 169,163 | |
+| | | | | | | | |
+Income before provision for income taxes | | 1,994,967 | | | 448,162 | | | 2,526,587 | | | 763,927 | |
+Provision for income taxes | | 452,522 | | | 89,570 | | | 558,465 | | | 150,732 | |
+Net income | | 1,542,445 | | | 358,592 | | | 1,968,122 | | | 613,195 | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+Net income per share: | | | | | | | | |
+Basic | | $ | 5.27 | | | $ | 1.19 | | | $ | 6.70 | | | $ | 2.02 | |
+Diluted | | $ | 5.15 | | | $ | 1.16 | | | $ | 6.56 | | | $ | 1.97 | |
+Weighted-average shares used in computing net income per share: | | | | | | | | |
+Basic | | 292,879,238 | | | 301,779,114 | | | 293,688,378 | | | 303,354,835 | |
+Diluted | | 299,746,342 | | | 308,224,372 | | | 300,021,287 | | | 310,515,069 | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+
+
+
+
+
+
+
+
+
+
+
+Zoom Communications, Inc.
+Condensed Consolidated Statements of Cash Flows
+(Unaudited, in thousands)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended July 31, | | Six Months Ended July 31, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+Cash flows from operating activities: | | | | | | | | |
+Net income | | $ | 1,542,445 | | | $ | 358,592 | | | $ | 1,968,122 | | | $ | 613,195 | |
+Adjustments to reconcile net income to net cash provided by operating activities: | | | | | | | | |
+Stock-based compensation expense | | 179,784 | | | 188,699 | | | 358,737 | | | 390,268 | |
+Amortization of deferred contract acquisition costs | | 55,640 | | | 70,006 | | | 107,155 | | | 139,563 | |
+Depreciation and amortization | | 32,331 | | | 32,163 | | | 65,112 | | | 67,479 | |
+Deferred income taxes | | 318,171 | | | (28,581) | | | 341,465 | | | (53,271) | |
+Gains on strategic investments, net | | (1,614,203) | | | (45,056) | | | (1,766,500) | | | (31,437) | |
+Provision for accounts receivable allowances | | 2,300 | | | 4,265 | | | 5,326 | | | 10,120 | |
+Unrealized foreign exchange losses (gains) | | 2,337 | | | (913) | | | 3,001 | | | (8,539) | |
+Non-cash operating lease cost | | 6,164 | | | 6,386 | | | 12,048 | | | 12,494 | |
+| | | | | | | | |
+Amortization of discount/premium on marketable securities | | (4,964) | | | (8,790) | | | (6,257) | | | (21,635) | |
+Other | | (6,363) | | | (330) | | | 987 | | | 3,812 | |
+Changes in operating assets and liabilities: | | | | | | | | |
+Accounts receivable | | (64,940) | | | (36,093) | | | (40,250) | | | (23,608) | |
+Prepaid expenses and other assets | | 42,790 | | | 15,453 | | | 45,906 | | | 3,160 | |
+Deferred contract acquisition costs | | (99,420) | | | (81,404) | | | (186,162) | | | (129,552) | |
+Accounts payable | | (4,379) | | | (2,458) | | | 5,948 | | | 4,794 | |
+Accrued expenses and other liabilities | | 53,788 | | | (1,602) | | | (13,960) | | | (81,985) | |
+Deferred revenue | | 60,169 | | | 52,874 | | | 129,774 | | | 125,015 | |
+Operating lease liabilities, net | | (6,899) | | | (7,271) | | | (14,091) | | | (14,672) | |
+| | | | | | | | |
+Net cash provided by operating activities | | 494,751 | | | 515,940 | | | 1,016,361 | | | 1,005,201 | |
+Cash flows from investing activities: | | | | | | | | |
+Purchases of marketable securities | | (3,315,905) | | | (1,092,019) | | | (4,488,122) | | | (2,227,043) | |
+Maturities of marketable securities | | 380,476 | | | 1,054,802 | | | 1,238,601 | | | 2,088,081 | |
+Sales of marketable securities | | 3,428,694 | | | 10,000 | | | 3,428,694 | | | 12,525 | |
+Purchases of property and equipment | | (22,353) | | | (7,966) | | | (43,466) | | | (33,876) | |
+Purchases of strategic investments | | (295,379) | | | (27,495) | | | (441,074) | | | (27,495) | |
+Proceeds from strategic investments | | 125 | | | 2,505 | | | 309 | | | 2,505 | |
+| | | | | | | | |
+Cash paid for acquisition, net of cash acquired | | (248,655) | | | — | | | (248,655) | | | — | |
+| | | | | | | | |
+| | | | | | | | |
+Purchases of intangible assets | | (524) | | | (500) | | | (524) | | | (500) | |
+Net cash used in investing activities | | (73,521) | | | (60,673) | | | (554,237) | | | (185,803) | |
+Cash flows from financing activities: | | | | | | | | |
+Proceeds from exercise of stock options | | 1,048 | | | 421 | | | 1,552 | | | 1,375 | |
+Proceeds from issuance of common stock for employee stock purchase plan | | 40,892 | | | 36,057 | | | 40,892 | | | 36,057 | |
+Proceeds from employee equity transactions (remitted) to be remitted to employees and tax authorities, net | | (22,952) | | | (10,773) | | | 6,285 | | | (2,083) | |
+Cash paid for repurchases of common stock, including excise taxes | | (360,506) | | | (465,263) | | | (722,189) | | | (883,284) | |
+Taxes paid related to net share settlement of equity awards | | (59,593) | | | (55,304) | | | (121,761) | | | (137,457) | |
+| | | | | | | | |
+Net cash used in financing activities | | (401,111) | | | (494,862) | | | (795,221) | | | (985,392) | |
+Effect of exchange rate changes on cash, cash equivalents, and restricted cash | | (2,450) | | | 1,422 | | | (2,136) | | | 13,276 | |
+Net increase (decrease) in cash, cash equivalents, and restricted cash | | 17,669 | | | (38,173) | | | (335,233) | | | (152,718) | |
+Cash, cash equivalents, and restricted cash – beginning of period | | 930,879 | | | 1,246,872 | | | 1,283,781 | | | 1,361,417 | |
+Cash, cash equivalents, and restricted cash – end of period | | $ | 948,548 | | | $ | 1,208,699 | | | $ | 948,548 | | | $ | 1,208,699 | |
+
+
+
+
+
+
+
+
+
+
+
+Zoom Communications, Inc.
+Reconciliation of GAAP to Non-GAAP Measures
+(Unaudited, in thousands, except share and per share amounts)
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended July 31, | | Six Months Ended July 31, |
+| | 2026 | | 2025 | | 2026 | | 2025 |
+GAAP income from operations | | $ | 314,316 | | | $ | 321,735 | | | $ | 624,789 | | | $ | 563,327 | |
+Add: | | | | | | | | |
+Stock-based compensation expense and related payroll taxes | | 186,663 | | | 195,782 | | | 375,835 | | | 412,512 | |
+Litigation settlements, net | | — | | | (18,000) | | | — | | | (18,000) | |
+Acquisition-related expenses | | 9,298 | | | 3,709 | | | 18,372 | | | 12,713 | |
+| | | | | | | | |
+| | | | | | | | |
+Non-GAAP income from operations | | $ | 510,277 | | | $ | 503,226 | | | $ | 1,018,996 | | | $ | 970,552 | |
+GAAP operating margin | | 24.6 | % | | 26.4 | % | | 24.8 | % | | 23.6 | % |
+Non-GAAP operating margin | | 40.0 | % | | 41.3 | % | | 40.5 | % | | 40.6 | % |
+| | | | | | | | |
+GAAP net income | | $ | 1,542,445 | | | $ | 358,592 | | | $ | 1,968,122 | | | $ | 613,195 | |
+Add: | | | | | | | | |
+Stock-based compensation expense and related payroll taxes | | 186,663 | | | 195,782 | | | 375,835 | | | 412,512 | |
+Litigation settlements, net | | — | | | (18,000) | | | — | | | (18,000) | |
+Gains on strategic investments, net | | (1,614,203) | | | (45,056) | | | (1,766,500) | | | (31,437) | |
+Acquisition-related expenses | | 9,298 | | | 3,709 | | | 18,372 | | | 12,713 | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+Tax effects on non-GAAP adjustments | | 339,811 | | | (23,708) | | | 333,225 | | | (69,371) | |
+Non-GAAP net income | | $ | 464,014 | | | $ | 471,319 | | | $ | 929,054 | | | $ | 919,612 | |
+| | | | | | | | |
+Net income per share - basic and diluted: | | | | | | | | |
+GAAP net income per share - basic | | $ | 5.27 | | | $ | 1.19 | | | $ | 6.70 | | | $ | 2.02 | |
+Non-GAAP net income per share - basic | | $ | 1.58 | | | $ | 1.56 | | | $ | 3.16 | | | $ | 3.03 | |
+GAAP net income per share - diluted | | $ | 5.15 | | | $ | 1.16 | | | $ | 6.56 | | | $ | 1.97 | |
+Non-GAAP net income per share - diluted | | $ | 1.55 | | | $ | 1.53 | | | $ | 3.10 | | | $ | 2.96 | |
+| | | | | | | | |
+GAAP and non-GAAP weighted-average shares used to compute net income per share - basic | | 292,879,238 | | | 301,779,114 | | | 293,688,378 | | | 303,354,835 | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+GAAP and non-GAAP weighted-average shares used to compute net income per share - diluted | | 299,746,342 | | | 308,224,372 | | | 300,021,287 | | | 310,515,069 | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+| | | | | | | | |
+Net cash provided by operating activities | | $ | 494,751 | | | $ | 515,940 | | | $ | 1,016,361 | | | $ | 1,005,201 | |
+| | | | | | | | |
+Less: Purchases of property and equipment | | (22,353) | | | (7,966) | | | (43,466) | | | (33,876) | |
+| | | | | | | | |
+Free cash flow (non-GAAP) | | $ | 472,398 | | | $ | 507,974 | | | $ | 972,895 | | | $ | 971,325 | |
+| | | | | | | | |
+| | | | | | | | |
+Net cash used in investing activities | | $ | (73,521) | | | $ | (60,673) | | | $ | (554,237) | | | $ | (185,803) | |
+Net cash used in financing activities | | $ | (401,111) | | | $ | (494,862) | | | $ | (795,221) | | | $ | (985,392) | |
+Operating cash flow margin (GAAP) | | 38.7 | % | | 42.4 | % | | 40.4 | % | | 42.0 | % |
+Free cash flow margin (non-GAAP) | | 37.0 | % | | 41.7 | % | | 38.7 | % | | 40.6 | % |
+| | | | | | | | |
+| | Three Months Ended July 31, | | Six Months Ended July 31, |
+| | 2026 | | 2026 |
+| | Revenue | | YoY Revenue Growth (%) | | Revenue | | YoY Revenue Growth (%) |
+GAAP revenue | | $ | 1,277,217 | | | 4.9 | % | | $ | 2,516,223 | | | 5.2 | % |
+Add: Constant currency impact | | (2,751) | | | (0.2) | % | | (12,936) | | | (0.5) | % |
+Revenue in constant currency (non-GAAP) | | $ | 1,274,466 | | | 4.7 | % | | $ | 2,503,287 | | | 4.7 | % |

@@ -1,0 +1,4033 @@
+EX-99.1
+2
+tm2623482d1_ex99-1.htm
+EXHIBIT 99.1
+
+
+
+
+
+
+
+
+
+
+Exhibit 99.1
+
+
+
+
+
+Hong Kong Exchanges and Clearing Limited and
+The Stock Exchange of Hong Kong Limited take no responsibility for the contents of this announcement, make no representation as to its
+accuracy or completeness and expressly disclaim any liability whatsoever for any loss howsoever arising from or in reliance upon the whole
+or any part of the contents of this announcement.
+
+
+
+
+
+
+
+
+
+
+
+NETEASE, INC.
+
+
+網易股份有限公司
+
+
+(incorporated in the Cayman Islands with limited
+liability)
+
+
+(Stock Code: 9999)
+
+
+
+
+
+ANNOUNCEMENT OF THE SECOND QUARTER 2026 RESULTS
+AND
+
+
+INTERIM RESULTS FOR THE SIX MONTHS ENDED JUNE
+30, 2026
+
+
+
+
+
+The Board is pleased
+to announce the unaudited consolidated results of the Group for the three months and six months ended June 30, 2026. The Group&rsquo;s
+unaudited consolidated financial information has been prepared in accordance with U.S. GAAP and reviewed by the audit committee
+of the Board.
+
+
+
+
+
+In this results
+announcement, &ldquo;we&rdquo;, &ldquo;us&rdquo;, and &ldquo;our&rdquo; refer to the Company and where the context otherwise requires,
+the Group.
+
+
+
+
+
+
+1
+
+
+
+
+
+
+
+
+
+
+&ldquo;Our
+robust performance in the first half of 2026 reflects players&rsquo; growing enthusiasm for both our newly launched and established games,
+underscoring our ability to create distinctive and refreshing experiences with lasting appeal,&rdquo; said Mr. William Ding, Chief
+Executive Officer and Director of NetEase. &ldquo;As we continue to strengthen both our live game operations and new title pipeline, we
+are sharpening our focus on original gameplay, cutting-edge technology and deeper global reach to support our enduring growth.
+
+
+
+
+
+&ldquo;Looking
+ahead, we will remain committed to creating original content that shapes industry trends, building evergreen franchises, and cultivating
+vibrant communities that sustain player engagement. Backed by disciplined execution and an expanding global presence, we aim to keep pushing
+creative boundaries, delivering exceptional gaming experiences and creating long-term value for our players, partners and shareholders,&rdquo;
+Mr. Ding concluded.
+
+
+
+
+
+FINANCIAL HIGHLIGHTS
+
+
+
+
+
+Second Quarter 2026 Financial Highlights
+
+
+
+
+
+
+| &middot;
+| Net revenues were RMB30.1 billion (US$4.4 billion),
+an increase of 7.9% compared with the same quarter of 2025. |
+
+
+
+
+
+
+| &middot;
+| Games and related value-added services net revenues
+were RMB25.0 billion (US$3.7 billion), an increase of 9.7% compared with the same quarter of 2025. |
+
+
+
+
+
+
+| &middot;
+| Youdao net revenues were RMB1.5 billion (US$216.2
+million), an increase of 3.5% compared with the same quarter of 2025. |
+
+
+
+
+
+
+| &middot;
+| NetEase Cloud Music net revenues were RMB2.0
+billion (US$291.4 million), which was relatively stable compared with the same quarter of 2025. |
+
+
+
+
+
+
+| &middot;
+| Innovative businesses and others net revenues
+were RMB1.6 billion (US$241.6 million), a decrease of 3.5% compared with the same quarter of 2025. |
+
+
+
+
+
+
+| &middot;
+| Gross profit was RMB21.2 billion (US$3.1 billion),
+an increase of 17.5% compared with the same quarter of 2025. |
+
+
+
+
+
+
+| &middot;
+| Total operating expenses were RMB9.1 billion
+(US$1.3 billion), an increase of 1.5% compared with the same quarter of 2025. |
+
+
+
+
+
+
+| &middot;
+| Net income attributable to the Company&rsquo;s
+shareholders was RMB7.0 billion (US$1.0 billion). Non-GAAP net income attributable to the Company&rsquo;s shareholders was RMB7.7 billion
+(US$1.1 billion). [1] |
+
+
+
+
+
+
+| &middot;
+| Basic net income per share was US$0.32 (US$1.61
+per ADS). Non-GAAP basic net income per share was US$0.36 (US$1.78 per ADS). [1] |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+[1] As used in this announcement, non-GAAP net income attributable
+to the Company&rsquo;s shareholders and non-GAAP basic and diluted net income per share and per ADS are defined to exclude share-based
+compensation expenses. See the unaudited reconciliation of GAAP and non-GAAP results within this announcement.
+
+
+
+
+
+
+
+
+
+2
+
+
+
+
+
+
+
+
+
+
+Six Months Ended June 30,
+2026 Financial Highlights
+
+
+
+
+
+
+| &middot;
+| Net revenues were RMB60.7 billion (US$8.9 billion),
+an increase of 7.0% compared with the same period of 2025. |
+
+
+
+
+
+
+| &middot;
+| Games and related value-added services net revenues
+were RMB50.7 billion (US$7.5 billion), an increase of 8.3% compared with the same period of 2025. |
+
+
+
+
+
+
+| &middot;
+| Youdao net revenues were RMB2.8 billion (US$414.9
+million), an increase of 3.6% compared with the same period of 2025. |
+
+
+
+
+
+
+| &middot;
+| NetEase Cloud Music net revenues were RMB4.0
+billion (US$583.4 million), an increase of 3.4% compared with the same period of 2025. |
+
+
+
+
+
+
+| &middot;
+| Innovative businesses and others net revenues
+were RMB3.2 billion (US$469.9 million), a decrease of 4.0% compared with the same period of 2025. |
+
+
+
+
+
+
+| &middot;
+| Gross profit was RMB42.4 billion (US$6.3 billion),
+an increase of 16.2% compared with the same period of 2025. |
+
+
+
+
+
+
+| &middot;
+| Total operating expenses were RMB17.7 billion
+(US$2.6 billion), an increase of 3.9% compared with the same period of 2025. |
+
+
+
+
+
+
+| &middot;
+| Net income attributable to the Company&rsquo;s
+shareholders was RMB17.7 billion (US$2.6 billion). Non-GAAP net income attributable to the Company&rsquo;s shareholders was RMB19.0 billion
+(US$2.8 billion). [1] |
+
+
+
+
+
+
+| &middot;
+| Basic net income per share was US$0.81 (US$4.06
+per ADS). Non-GAAP basic net income per share was US$0.88 (US$4.38 per ADS). [1] |
+
+
+
+
+
+BUSINESS OVERVIEW
+
+
+
+
+
+We continue to drive innovation across both newly
+launched and established titles, while further advancing our pipeline of titles in development.
+
+
+
+
+
+Below are some recent highlights from our key
+products and services:
+
+
+
+
+
+Games and related value-added services
+
+
+
+
+
+The Fantasy Westward
+Journey franchise, Identity V , Eggy Party , Sword of Justice and Where Winds Meet sustained
+solid momentum through ongoing content updates, gameplay innovation and vibrant community activities.
+
+
+
+
+
+
+
+
+
+
+
+
+[1] As used in this announcement,
+non-GAAP net income attributable to the Company&rsquo;s shareholders and non- GAAP basic and diluted net income per share and per ADS
+are defined to exclude share-based compensation expenses. See the unaudited reconciliation of GAAP and non-GAAP results within this announcement.
+
+
+
+
+
+
+
+
+
+3
+
+
+
+
+
+
+
+
+
+
+We also advanced
+our global strategy and enhanced player engagement through strong live operations. For example, Where Winds Meet and Marvel
+Rivals further broadened their international reach with a steady stream of fresh content and community-focused initiatives in various
+markets including North America and Europe.
+
+
+
+
+
+With respect to
+our pipeline of new titles, Sea of Remnants launched in China in July 2026, while development of Ananta and
+Blood Message remained on track, strengthening our innovative pipeline across diverse genres, gameplay and markets.
+
+
+
+
+
+Y oudao
+
+
+
+
+
+Youdao advanced
+its AI-native strategy and deepened AI-driven innovation across its ecosystem. In the second quarter, it launched the large language model,
+Confucius 4, which delivers leading mathematical reasoning capabilities at lower inference costs compared to its previous version. Youdao
+also advanced its AI agent capabilities toward the autonomous execution of complex work and learning tasks.
+
+
+
+
+
+NetEase Cloud Music
+
+
+
+
+
+NetEase Cloud Music
+further developed its music-centric ecosystem by nurturing its distinctive community and enriching its differentiated content offering
+with original music, thereby driving stronger community engagement. It also further improved music-oriented monetization through continued
+growth in subscription-based memberships.
+
+
+
+
+
+Innovative businesses and others
+
+
+
+
+
+Innovative businesses
+and others remained focused on sustainable development and efficient operations, with Yanxuan maintaining leading positions on
+major e-commerce platforms in China across its key categories, including pet food, home scents and home goods.
+
+
+
+
+
+FINANCIAL REVIEW
+
+
+
+
+
+Second Quarter 2026 Financial Results
+
+
+
+
+
+Net Revenues
+
+
+
+
+
+Net revenues for
+the second quarter of 2026 were RMB30.1 billion (US$4.4 billion), compared with RMB30.6 billion and RMB27.9 billion for the preceding
+quarter and the same quarter of 2025, respectively.
+
+
+
+
+
+Net revenues from games and related value-added
+services were RMB25.0 billion (US$3.7 billion) for the second quarter of 2026, compared with RMB25.7 billion and RMB22.8 billion for the
+preceding quarter and the same quarter of 2025, respectively. Net revenues from the operation of online games accounted for approximately
+97.7% of the segment&rsquo;s net revenues for the second quarter of 2026, compared with 97.5% and 97.1% for the preceding quarter and
+the same quarter of 2025, respectively. The quarter-over-quarter decrease was mainly due to a slight decline in net revenues from certain
+self-developed and licensed games. The year-over-year increase was attributable to higher net revenues from self-developed games, such
+as the Fantasy Westward Journey franchise and Where Winds Meet .
+
+
+
+
+
+
+
+
+
+4
+
+
+
+
+
+
+
+
+
+
+Net revenues from Youdao were RMB1.5 billion (US$216.2
+million) for the second quarter of 2026, compared with RMB1.3 billion and RMB1.4 billion for the preceding quarter and the same quarter
+of 2025, respectively. The quarter-over-quarter and year-over-year increases were mainly attributable to higher net revenues from its
+learning services.
+
+
+
+
+
+Net revenues from NetEase Cloud Music were RMB2.0
+billion (US$291.4 million) for the second quarter of 2026, remaining stable compared with the preceding quarter and the same quarter of
+2025.
+
+
+
+
+
+Net revenues from innovative businesses and others
+were RMB1.6 billion (US$241.6 million) for the second quarter of 2026, compared with RMB1.5 billion and RMB1.7 billion for the preceding
+quarter and the same quarter of 2025, respectively. The quarter-over-quarter increase was mainly attributable to higher net revenues from
+e-commerce business and several other businesses included within the segment. The year-over-year decrease was mainly due to decreased
+net revenues from the e-commerce business.
+
+
+
+
+
+Cost of Revenues
+
+
+
+
+
+Cost of revenues
+for the second quarter of 2026 was RMB8.9 billion (US$1.3 billion), compared with RMB9.4 billion and RMB9.8 billion for the preceding
+quarter and the same quarter of 2025, respectively. The quarter-over-quarter decrease was mainly due to lower revenue-sharing costs.
+The year-over-year decrease was mainly due to lower revenue-sharing and product costs.
+
+
+
+
+
+Gross Profit
+
+
+
+
+
+Gross profit for the second quarter of 2026 was
+RMB21.2 billion (US$3.1 billion), compared with RMB21.2 billion and RMB18.1 billion for the preceding quarter and the same quarter of
+2025, respectively.
+
+
+
+
+
+Operating Expenses
+
+
+
+
+
+Total operating expenses for the second quarter
+of 2026 were RMB9.1 billion (US$1.3 billion), compared with RMB8.6 billion and RMB9.0 billion for the preceding quarter and the same quarter
+of 2025, respectively. The quarter-over-quarter increase was primarily due to increased marketing expenditures, staff-related costs and
+research and development expenditures. The year-over-year increase was primarily due to increased research and development expenditures.
+
+
+
+
+
+Other Income/(Expenses)
+
+
+
+
+
+Other income/(expenses)
+consisted of net investment income/(loss), interest income, net exchange gains/(losses) and others. The quarter-over-quarter and year-over-year
+fluctuations in other income/(expenses) were mainly due to a decline in the fair value of equity security investments and impairment
+provisions made during the second quarter of 2026.
+
+
+
+
+
+Income Tax
+
+
+
+
+
+The Group recorded a net income tax charge of
+RMB2.5 billion (US$362.4 million) for the second quarter of 2026, compared with RMB2.5 billion and RMB1.6 billion for the preceding quarter
+and the same quarter of 2025, respectively. The effective tax rate for the second quarter of 2026 was 25.5%, compared with 18.9% and 14.7%
+for the preceding quarter and the same quarter of 2025, respectively. The effective tax rate represents certain estimates by the Group
+as to the tax obligations and benefits applicable to it in each quarter.
+
+
+
+
+
+
+
+
+
+5
+
+
+
+
+
+
+
+
+
+
+Net Income and Non-GAAP Net Income
+
+
+
+
+
+Net income attributable to the Company&rsquo;s
+shareholders totaled RMB7.0 billion (US$1.0 billion) for the second quarter of 2026, compared with RMB10.7 billion and RMB8.6 billion
+for the preceding quarter and the same quarter of 2025, respectively.
+
+
+
+
+
+Basic net income was US$0.32 per share (US$1.61
+per ADS) for the second quarter of 2026, compared with US$0.49 per share (US$2.46 per ADS) and US$0.40 per share (US$1.99 per ADS) for
+the preceding quarter and the same quarter of 2025, respectively.
+
+
+
+
+
+Non-GAAP net income attributable to the Company&rsquo;s
+shareholders totaled RMB7.7 billion (US$1.1 billion) for the second quarter of 2026, compared with RMB11.3 billion and RMB9.5 billion
+for the preceding quarter and the same quarter of 2025, respectively.
+
+
+
+
+
+Non-GAAP basic net income was US$0.36 per share
+(US$1.78 per ADS) for the second quarter of 2026, compared with US$0.52 per share (US$2.60 per ADS) and US$0.44 per share (US$2.20 per
+ADS) for the preceding quarter and the same quarter of 2025, respectively.
+
+
+
+
+
+Six Months Ended June 30, 2026 Financial
+Results
+
+
+
+
+
+Net Revenues
+
+
+
+
+
+Net revenues for the six months ended June 30,
+2026 were RMB60.7 billion (US$8.9 billion), compared with RMB56.7 billion for the same period of 2025.
+
+
+
+
+
+Net revenues from games and related value-added
+services were RMB50.7 billion (US$7.5 billion) for the six months ended June 30, 2026, compared with RMB46.9 billion for the same
+period of 2025. Net revenues from the operation of online games accounted for approximately 97.6% of the segment&rsquo;s net revenues
+for the six months ended June 30, 2026, compared with approximately 97.3% for the same period of 2025. The increase was attributable
+to higher net revenues from self-developed games, such as the Fantasy Westward Journey franchise, Where Winds Meet and Eggy
+Party .
+
+
+
+
+
+Net revenues from
+Youdao were RMB2.8 billion (US$414.9 million) for the six months ended June 30, 2026, compared with RMB2.7 billion for the same period
+of 2025. The increase was mainly attributable to higher net revenues from its learning services and online marketing services, partially
+offset by a decrease in net revenues from smart devices.
+
+
+
+
+
+Net revenues from NetEase Cloud Music were RMB4.0
+billion (US$583.4 million) for the six months ended June 30, 2026, compared with RMB3.8 billion for the same period of 2025. The
+increase was mainly attributable to higher net revenues from online music services, driven by growth in sales of membership subscriptions.
+
+
+
+
+
+Net revenues from
+innovative businesses and others were RMB3.2 billion (US$469.9 million) for the six months ended June 30, 2026, compared with RMB3.3
+billion for the same period of 2025. The decrease was mainly due to a decline in net revenues from the e-commerce business.
+
+
+
+
+
+Cost of Revenues
+
+
+
+
+
+Cost of revenues
+for the six months ended June 30, 2026 was RMB18.3 billion (US$2.7 billion), compared with RMB20.2 billion for the same period of
+2025. The decrease was mainly due to lower revenue-sharing and product costs.
+
+
+
+
+
+
+
+
+
+6
+
+
+
+
+
+
+
+
+
+
+Gross Profit
+
+
+
+
+
+Gross profit for the six months ended June 30,
+2026 was RMB42.4 billion (US$6.3 billion), compared with RMB36.5 billion for the same period of 2025.
+
+
+
+
+
+Operating Expenses
+
+
+
+
+
+Total operating expenses for the six months ended
+June 30, 2026 were RMB17.7 billion (US$2.6 billion), compared with RMB17.0 billion for the same period of 2025. The increase was
+primarily attributable to higher marketing and research and development expenditures for games and related value-added services.
+
+
+
+
+
+Other Income/(Expenses)
+
+
+
+
+
+Other income/(expenses) consisted of net investment
+income/(loss), interest income, net exchange gains/(losses) and others. The fluctuation in other income/(expenses) was mainly due to a
+decline in the fair value of equity security investments, increased net exchange losses, and impairment provisions made during the six
+months ended June 30, 2026.
+
+
+
+
+
+Income Tax
+
+
+
+
+
+The Group recorded
+a net income tax charge of RMB5.0 billion (US$734.3 million) for the six months ended June 30, 2026, compared with RMB3.5 billion
+for the same period of 2025. The effective tax rate for the six months ended June 30, 2026 was 21.7%, compared with 15.0% for the
+same period of 2025. The effective tax rate represents certain estimates by the Group as to the tax obligations and benefits applicable
+to it in each period.
+
+
+
+
+
+Net Income and Non-GAAP Net Income
+
+
+
+
+
+Net income attributable to the Company&rsquo;s
+shareholders totaled RMB17.7 billion (US$2.6 billion) for the six months ended June 30, 2026, compared with RMB18.9 billion for the
+same period of 2025.
+
+
+
+
+
+Basic net income was US$0.81 per share (US$4.06
+per ADS) for the six months ended June 30, 2026, compared with US$0.88 per share (US$4.38 per ADS) for the same period of 2025.
+
+
+
+
+
+Non-GAAP net income attributable to the Company&rsquo;s
+shareholders totaled RMB19.0 billion (US$2.8 billion) for the six months ended June 30, 2026, compared with RMB20.8 billion for the
+same period of 2025.
+
+
+
+
+
+Non-GAAP basic net income was US$0.88 per share
+(US$4.38 per ADS) for the six months ended June 30, 2026, compared with US$0.96 per share (US$4.81 per ADS) for the same period of
+2025.
+
+
+
+
+
+OTHER FINANCIAL INFORMATION
+
+
+
+
+
+As of June 30, 2026, the Company&rsquo;s
+net cash (total cash and cash equivalents, current and non-current time deposits and restricted cash, as well as short-term investments
+balance, minus loans) totaled RMB167.5 billion (US$24.7 billion), compared with RMB163.5 billion as of December 31, 2025. Net cash
+provided by operating activities was RMB10.0 billion (US$1.5 billion) for the second quarter of 2026, compared with RMB13.7 billion and
+RMB10.9 billion for the preceding quarter and the second quarter of 2025, respectively.
+
+
+
+
+
+
+
+
+
+7
+
+
+
+
+
+
+
+
+
+
+EXCHANGE RATE INFORMATION
+
+
+
+
+
+The United States dollar (US$) amounts disclosed
+in this announcement are presented solely for the convenience of the reader. The percentages stated are calculated based on RMB.
+
+
+
+
+
+The conversion of
+Renminbi (RMB) into US$ is based on the noon buying rate of US$1.00 = RMB6.7851 on the last trading day of June 2026 (June 30,
+2026) as set forth in the H.10 statistical release of the U.S. Federal Reserve Board. No representation is made that the RMB amounts could
+have been, or could be, converted into US$ at that rate on June 30, 2026, or at any other certain date.
+
+
+
+
+
+CONFERENCE CALL
+
+
+
+
+
+NetEase&rsquo;s management team will host a teleconference
+call with a simultaneous webcast at 8:00 a.m. Eastern Time on Thursday, August 20, 2026 (Beijing/Hong Kong Time: 8:00 p.m.,
+Thursday, August 20, 2026). NetEase&rsquo;s management will be on the call to discuss the results and answer questions.
+
+
+
+
+
+Interested parties may participate in the conference
+call by dialing 1-914-202-3258 and providing conference ID: 10056362, 15 minutes prior to the initiation of the call. A replay of the
+call will be available by dialing 1-855-883-1031 and entering PIN: 10056362. The replay will be available through August 27, 2026.
+
+
+
+
+
+This call will
+be webcast live, and the replay will be available for 12 months. Both will be available on NetEase&rsquo;s Investor Relations website
+at http://ir.netease.com /.
+
+
+
+
+
+ABOUT NETEASE, INC.
+
+
+
+
+
+NetEase, Inc. (NASDAQ: NTES and HKEX: 9999,
+&ldquo;NetEase&rdquo;) is a leading internet and game services provider centered around premium content. With extensive offerings across
+its expanding gaming ecosystem, the Company develops and operates some of the most popular and longest-running mobile and PC games available
+in China and globally.
+
+
+
+
+
+Powered by one of the largest in-house game R&D
+teams focused on mobile, PC and console, NetEase creates superior gaming experiences, inspires players, and passionately delivers value
+for its thriving community worldwide. By infusing play with culture, and education with technology, NetEase transforms gaming into a meaningful
+vehicle to build a more entertaining and enlightened world.
+
+
+
+
+
+Beyond games, NetEase service offerings include
+its majority-controlled subsidiaries Youdao (NYSE: DAO), an intelligent learning and advertising solutions provider, and NetEase
+Cloud Music (HKEX: 9899), a well-known online music platform featuring a vibrant content community, as well as Yanxuan , NetEase&rsquo;s
+private-label consumer lifestyle brand.
+
+
+
+
+
+For more information,
+please visit: http://ir.netease.com/ .
+
+
+
+
+
+Contact for Media and Investors:
+
+
+
+
+
+Email: ir@service.netease.com
+
+
+
+
+
+
+
+
+
+8
+
+
+
+
+
+
+
+
+
+
+FORWARD-LOOKING STATEMENTS
+
+
+
+
+
+This announcement contains statements of a forward-looking
+nature. These statements are made under the &ldquo;safe harbor&rdquo; provisions of the U.S. Private Securities Litigation Reform Act
+of 1995. You can identify these forward-looking statements by terminology such as &ldquo;will,&rdquo; &ldquo;expects,&rdquo; &ldquo;anticipates,&rdquo;
+&ldquo;future,&rdquo; &ldquo;intends,&rdquo; &ldquo;plans,&rdquo; &ldquo;believes,&rdquo; &ldquo;estimates&rdquo; and similar expressions.
+In addition, statements that are not historical facts, including statements about NetEase&rsquo;s strategies and business plans, its expectations
+regarding the growth of its business and its revenue and the quotations from management in this announcement are or contain forward-looking
+statements. NetEase may also make forward-looking statements in its periodic reports to the U.S. Securities and Exchange Commission (the
+&ldquo;SEC&rdquo;), in announcements made on the website of The Stock Exchange of Hong Kong Limited (the &ldquo;Hong Kong Stock Exchange&rdquo;),
+in press releases and other written materials and in oral statements made by its officers, directors or employees to third parties. The
+accuracy of these statements may be impacted by a number of business risks and uncertainties that could cause actual results to differ
+materially from those projected or anticipated, including risks related to: the risk that the online games market will not continue to
+grow or that NetEase will not be able to maintain its position in that market in China or globally; risks associated with NetEase&rsquo;s
+business and operating strategies and its ability to implement such strategies; NetEase&rsquo;s ability to develop and manage its operations
+and business; competition for, among other things, capital, technology and skilled personnel; potential changes in regulatory environment
+in the markets where NetEase operates, including policy or rule changes on taxation; the risk that NetEase may not be able to continuously
+develop new and creative online services or that NetEase will not be able to set, or follow in a timely manner, trends in the market;
+risks related to evolving economic cycles and geopolitical tensions, including the direct or indirect impacts of national trade, investment,
+protectionist, tax or other laws or policies as well as export controls and economic or trade sanctions; risks related to the expansion
+of NetEase&rsquo;s businesses and operations internationally; risks associated with cybersecurity threats or incidents; and fluctuations
+in foreign currency exchange rates that could adversely affect NetEase&rsquo;s business and financial results. Further information regarding
+these and other risks is included in NetEase&rsquo;s filings with the SEC and announcements on the website of the Hong Kong Stock Exchange.
+NetEase does not undertake any obligation to update this forward-looking information, except as required under applicable law.
+
+
+
+
+
+
+
+
+
+9
+
+
+
+
+
+
+
+
+
+
+NON-GAAP FINANCIAL MEASURES
+
+
+
+
+
+NetEase considers and uses non-GAAP financial
+measures, such as non-GAAP net income attributable to the Company&rsquo;s shareholders and non-GAAP basic and diluted net income per ADS
+and per share, as supplemental metrics in reviewing and assessing its operating performance and formulating its business plan. The presentation
+of non-GAAP financial measures is not intended to be considered in isolation or as a substitute for the financial information prepared
+and presented in accordance with U.S. GAAP.
+
+
+
+
+
+NetEase defines non-GAAP net income attributable
+to the Company&rsquo;s shareholders as net income attributable to the Company&rsquo;s shareholders excluding share-based compensation
+expenses. Non-GAAP net income attributable to the Company&rsquo;s shareholders enables NetEase&rsquo;s management to assess its operating
+results without considering the impact of share-based compensation expenses. NetEase believes that this non-GAAP financial measure provides
+useful information to investors in understanding and evaluating the Company&rsquo;s current operating performance and prospects in the
+same manner as management does, if they so choose. NetEase also believes that the use of this non-GAAP financial measure facilitates investors&rsquo;
+assessment of its operating performance.
+
+
+
+
+
+Non-GAAP financial measures are not defined under
+U.S. GAAP and are not presented in accordance with U.S. GAAP. Non-GAAP financial measures have limitations as analytical tools. One of
+the key limitations of using non-GAAP net income attributable to the Company&rsquo;s shareholders is that it does not reflect all items
+of expense/income that affect the Company&rsquo;s operations. Share-based compensation expenses have been and may continue to be incurred
+in NetEase&rsquo;s business and are not reflected in the presentation of non-GAAP net income attributable to the Company&rsquo;s shareholders.
+In addition, the non-GAAP financial measures NetEase uses may differ from the non-GAAP measures used by other companies, including peer
+companies, and therefore their comparability may be limited.
+
+
+
+
+
+NetEase compensates for these limitations by reconciling
+non-GAAP net income attributable to the Company&rsquo;s shareholders to the nearest U.S. GAAP performance measure, all of which should
+be considered when evaluating the Company&rsquo;s performance. NetEase encourages you to review its financial information in its entirety
+and not rely on a single financial measure.
+
+
+
+
+
+The unaudited reconciliation of GAAP and non-GAAP
+results is set out as follows in RMB and US$ (in thousands, except per share data or per ADS data):
+
+
+
+
+
+
+
+| |
+Three Months Ended | | |
+Six Months Ended | |
+
+
+| |
+June 30, | | |
+March 31, | | |
+June 30, | | |
+June 30, | | |
+June 30, | | |
+June 30, | | |
+June 30, | |
+
+
+| |
+2025 | | |
+2026 | | |
+2026 | | |
+2026 | | |
+2025 | | |
+2026 | | |
+2026 | |
+
+
+| |
+RMB | | |
+RMB | | |
+RMB | | |
+US$ | | |
+RMB | | |
+RMB | | |
+US$ | |
+
+
+Net income attributable to the Company&rsquo;s shareholders | |
+| 8,601,010 | | |
+| 10,674,106 | | |
+| 6,980,656 | | |
+| 1,028,821 | | |
+| 18,902,167 | | |
+| 17,654,762 | | |
+| 2,601,989 | |
+
+
+Add: Share-based compensation | |
+| 930,921 | | |
+| 600,718 | | |
+| 766,058 | | |
+| 112,903 | | |
+| 1,866,491 | | |
+| 1,366,776 | | |
+| 201,438 | |
+
+
+Non-GAAP net income attributable to the Company&rsquo;s shareholders | |
+| 9,531,931 | | |
+| 11,274,824 | | |
+| 7,746,714 | | |
+| 1,141,724 | | |
+| 20,768,658 | | |
+| 19,021,538 | | |
+| 2,803,427 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Non-GAAP net income per share | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Basic | |
+| 2.99 | | |
+| 3.53 | | |
+| 2.42 | | |
+| 0.36 | | |
+| 6.53 | | |
+| 5.94 | | |
+| 0.88 | |
+
+
+Diluted | |
+| 2.96 | | |
+| 3.49 | | |
+| 2.40 | | |
+| 0.35 | | |
+| 6.46 | | |
+| 5.90 | | |
+| 0.87 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Non-GAAP net income per ADS | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Basic | |
+| 14.95 | | |
+| 17.63 | | |
+| 12.09 | | |
+| 1.78 | | |
+| 32.64 | | |
+| 29.72 | | |
+| 4.38 | |
+
+
+Diluted | |
+| 14.81 | | |
+| 17.46 | | |
+| 12.02 | | |
+| 1.77 | | |
+| 32.32 | | |
+| 29.49 | | |
+| 4.35 | |
+
+
+
+
+
+
+
+
+
+
+10
+
+
+
+
+
+
+
+
+
+
+NETEASE, INC.
+
+
+UNAUDITED CONDENSED CONSOLIDATED BALANCE SHEETS
+
+
+(in thousands)
+
+
+
+
+
+
+
+| |
+December 31, | | |
+June 30, | | |
+June 30, | |
+
+
+| |
+2025 | | |
+2026 | | |
+2026 | |
+
+
+| |
+| RMB | | |
+| RMB | | |
+| US$ | |
+
+
+Assets | |
+| | | |
+| | | |
+| | |
+
+
+Current assets: | |
+| | | |
+| | | |
+| | |
+
+
+Cash and cash equivalents | |
+| 47,167,904 | | |
+| 22,814,542 | | |
+| 3,362,447 | |
+
+
+Time deposits | |
+| 92,639,378 | | |
+| 101,978,645 | | |
+| 15,029,792 | |
+
+
+Restricted cash | |
+| 4,319,344 | | |
+| 4,447,483 | | |
+| 655,478 | |
+
+
+Accounts receivable, net | |
+| 5,337,819 | | |
+| 5,746,080 | | |
+| 846,867 | |
+
+
+Inventories | |
+| 689,183 | | |
+| 511,896 | | |
+| 75,444 | |
+
+
+Prepayments and other current assets, net | |
+| 7,658,346 | | |
+| 5,965,371 | | |
+| 879,188 | |
+
+
+Short-term investments | |
+| 22,803,503 | | |
+| 50,599,638 | | |
+| 7,457,464 | |
+
+
+Total current assets | |
+| 180,615,477 | | |
+| 192,063,655 | | |
+| 28,306,680 | |
+
+
+| |
+| | | |
+| | | |
+| | |
+
+
+Non-current assets: | |
+| | | |
+| | | |
+| | |
+
+
+Property, equipment and software, net | |
+| 8,425,327 | | |
+| 8,180,276 | | |
+| 1,205,623 | |
+
+
+Land use rights, net | |
+| 4,047,355 | | |
+| 3,982,017 | | |
+| 586,877 | |
+
+
+Deferred tax assets | |
+| 2,831,423 | | |
+| 2,695,809 | | |
+| 397,313 | |
+
+
+Time deposits | |
+| 2,995,000 | | |
+| 260,000 | | |
+| 38,319 | |
+
+
+Restricted cash | |
+| 3,893 | | |
+| 3,775 | | |
+| 556 | |
+
+
+Long-term investments | |
+| 18,462,883 | | |
+| 21,336,343 | | |
+| 3,144,588 | |
+
+
+Other long-term assets | |
+| 4,033,702 | | |
+| 3,686,261 | | |
+| 543,287 | |
+
+
+Total non-current assets | |
+| 40,799,583 | | |
+| 40,144,481 | | |
+| 5,916,563 | |
+
+
+| |
+| | | |
+| | | |
+| | |
+
+
+Total assets | |
+| 221,415,060 | | |
+| 232,208,136 | | |
+| 34,223,243 | |
+
+
+| |
+| | | |
+| | | |
+| | |
+
+
+Liabilities, Redeemable noncontrolling interests and Shareholders&rsquo; equity | |
+| | | |
+| | | |
+| | |
+
+
+Current liabilities: | |
+| | | |
+| | | |
+| | |
+
+
+Accounts payable | |
+| 643,164 | | |
+| 702,263 | | |
+| 103,501 | |
+
+
+Salary and welfare payables | |
+| 4,889,708 | | |
+| 3,764,789 | | |
+| 554,861 | |
+
+
+Taxes payable | |
+| 3,874,143 | | |
+| 3,720,498 | | |
+| 548,334 | |
+
+
+Short-term loans | |
+| 6,384,417 | | |
+| 12,604,170 | | |
+| 1,857,625 | |
+
+
+Contract liabilities | |
+| 20,514,540 | | |
+| 19,297,191 | | |
+| 2,844,054 | |
+
+
+Accrued liabilities and other payables | |
+| 16,062,984 | | |
+| 15,529,221 | | |
+| 2,288,724 | |
+
+
+Total current liabilities | |
+| 52,368,956 | | |
+| 55,618,132 | | |
+| 8,197,099 | |
+
+
+| |
+| | | |
+| | | |
+| | |
+
+
+Non-current liabilities: | |
+| | | |
+| | | |
+| | |
+
+
+Deferred tax liabilities | |
+| 2,637,258 | | |
+| 3,727,316 | | |
+| 549,338 | |
+
+
+Other long-term liabilities | |
+| 1,304,837 | | |
+| 1,300,994 | | |
+| 191,742 | |
+
+
+Total non-current liabilities | |
+| 3,942,095 | | |
+| 5,028,310 | | |
+| 741,080 | |
+
+
+| |
+| | | |
+| | | |
+| | |
+
+
+Total liabilities | |
+| 56,311,051 | | |
+| 60,646,442 | | |
+| 8,938,179 | |
+
+
+| |
+| | | |
+| | | |
+| | |
+
+
+Redeemable noncontrolling interests | |
+| 91,319 | | |
+| 94,938 | | |
+| 13,992 | |
+
+
+| |
+| | | |
+| | | |
+| | |
+
+
+Shareholders&rsquo; equity: | |
+| | | |
+| | | |
+| | |
+
+
+Ordinary shares | |
+| 2,631 | | |
+| 2,632 | | |
+| 388 | |
+
+
+Additional paid-in capital | |
+| 9,837,460 | | |
+| 8,781,946 | | |
+| 1,294,299 | |
+
+
+Treasury stock | |
+| (1,518,573 | ) | |
+| (1,617,961 | ) | |
+| (238,458 | ) |
+
+
+Statutory reserves | |
+| 2,457,371 | | |
+| 2,457,371 | | |
+| 362,172 | |
+
+
+Accumulated other comprehensive loss | |
+| (237,770 | ) | |
+| (1,644,123 | ) | |
+| (242,314 | ) |
+
+
+Retained earnings | |
+| 149,755,000 | | |
+| 159,110,675 | | |
+| 23,450,011 | |
+
+
+NetEase, Inc.&rsquo;s shareholders&rsquo; equity | |
+| 160,296,119 | | |
+| 167,090,540 | | |
+| 24,626,098 | |
+
+
+Noncontrolling interests | |
+| 4,716,571 | | |
+| 4,376,216 | | |
+| 644,974 | |
+
+
+Total equity | |
+| 165,012,690 | | |
+| 171,466,756 | | |
+| 25,271,072 | |
+
+
+| |
+| | | |
+| | | |
+| | |
+
+
+Total liabilities, redeemable noncontrolling interests and shareholders&rsquo; equity | |
+| 221,415,060 | | |
+| 232,208,136 | | |
+| 34,223,243 | |
+
+
+
+
+
+
+
+
+
+
+11
+
+
+
+
+
+
+
+
+
+
+NETEASE, INC.
+
+
+UNAUDITED CONDENSED CONSOLIDATED
+STATEMENTS OF OPERATIONS AND COMPREHENSIVE INCOME
+
+
+(in thousands except per share data or per
+ADS data)
+
+
+
+
+
+
+
+| |
+Three
+Months Ended | | |
+Six
+Months Ended | |
+
+
+| |
+June 30, | | |
+March 31, | | |
+June 30, | | |
+June 30, | | |
+June 30, | | |
+June 30, | | |
+June 30, | |
+
+
+| |
+2025 | | |
+2026 | | |
+2026 | | |
+2026 | | |
+2025 | | |
+2026 | | |
+2026 | |
+
+
+| |
+RMB | | |
+RMB | | |
+RMB | | |
+US$ | | |
+RMB | | |
+RMB | | |
+US$ | |
+
+
+Net
+revenues | |
+| 27,891,664 | | |
+| 30,591,281 | | |
+| 30,106,546 | | |
+| 4,437,156 | | |
+| 56,720,209 | | |
+| 60,697,827 | | |
+| 8,945,753 | |
+
+
+Cost
+of revenues | |
+| (9,839,182 | ) | |
+| (9,374,209 | ) | |
+| (8,889,221 | ) | |
+| (1,310,109 | ) | |
+| (20,188,321 | ) | |
+| (18,263,430 | ) | |
+| (2,691,697 | ) |
+
+
+Gross
+profit | |
+| 18,052,482 | | |
+| 21,217,072 | | |
+| 21,217,325 | | |
+| 3,127,047 | | |
+| 36,531,888 | | |
+| 42,434,397 | | |
+| 6,254,056 | |
+
+
+Operating
+expenses: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Selling
+and marketing expenses | |
+| (3,578,174 | ) | |
+| (3,441,485 | ) | |
+| (3,678,809 | ) | |
+| (542,189 | ) | |
+| (6,273,771 | ) | |
+| (7,120,294 | ) | |
+| (1,049,401 | ) |
+
+
+General
+and administrative expenses | |
+| (1,056,578 | ) | |
+| (636,597 | ) | |
+| (805,268 | ) | |
+| (118,682 | ) | |
+| (2,012,915 | ) | |
+| (1,441,865 | ) | |
+| (212,505 | ) |
+
+
+Research
+and development expenses | |
+| (4,356,646 | ) | |
+| (4,482,157 | ) | |
+| (4,643,910 | ) | |
+| (684,428 | ) | |
+| (8,742,959 | ) | |
+| (9,126,067 | ) | |
+| (1,345,016 | ) |
+
+
+Total
+operating expenses | |
+| (8,991,398 | ) | |
+| (8,560,239 | ) | |
+| (9,127,987 | ) | |
+| (1,345,299 | ) | |
+| (17,029,645 | ) | |
+| (17,688,226 | ) | |
+| (2,606,922 | ) |
+
+
+Operating
+profit | |
+| 9,061,084 | | |
+| 12,656,833 | | |
+| 12,089,338 | | |
+| 1,781,748 | | |
+| 19,502,243 | | |
+| 24,746,171 | | |
+| 3,647,134 | |
+
+
+Other
+income/(expenses): | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Investment
+income/(loss), net | |
+| 328,444 | | |
+| 5,472 | | |
+| (2,953,671 | ) | |
+| (435,317 | ) | |
+| 1,021,195 | | |
+| (2,948,199 | ) | |
+| (434,511 | ) |
+
+
+Interest
+income, net | |
+| 953,490 | | |
+| 890,267 | | |
+| 863,201 | | |
+| 127,220 | | |
+| 2,014,376 | | |
+| 1,753,468 | | |
+| 258,429 | |
+
+
+Exchange
+gains/(losses), net | |
+| 114,037 | | |
+| (622,108 | ) | |
+| (436,492 | ) | |
+| (64,331 | ) | |
+| 115,840 | | |
+| (1,058,600 | ) | |
+| (156,018 | ) |
+
+
+Other,
+net | |
+| 192,167 | | |
+| 438,978 | | |
+| 62,858 | | |
+| 9,264 | | |
+| 447,482 | | |
+| 501,836 | | |
+| 73,961 | |
+
+
+Income
+before tax | |
+| 10,649,222 | | |
+| 13,369,442 | | |
+| 9,625,234 | | |
+| 1,418,584 | | |
+| 23,101,136 | | |
+| 22,994,676 | | |
+| 3,388,995 | |
+
+
+Income
+tax | |
+| (1,560,757 | ) | |
+| (2,523,838 | ) | |
+| (2,458,674 | ) | |
+| (362,364 | ) | |
+| (3,465,900 | ) | |
+| (4,982,512 | ) | |
+| (734,331 | ) |
+
+
+Net
+income | |
+| 9,088,465 | | |
+| 10,845,604 | | |
+| 7,166,560 | | |
+| 1,056,220 | | |
+| 19,635,236 | | |
+| 18,012,164 | | |
+| 2,654,664 | |
+
+
+Accretion
+of redeemable noncontrolling interests | |
+| (1,051 | ) | |
+| (1,104 | ) | |
+| (1,087 | ) | |
+| (160 | ) | |
+| (2,100 | ) | |
+| (2,191 | ) | |
+| (323 | ) |
+
+
+Net
+income attributable to noncontrolling interests | |
+| (486,404 | ) | |
+| (170,394 | ) | |
+| (184,817 | ) | |
+| (27,239 | ) | |
+| (730,969 | ) | |
+| (355,211 | ) | |
+| (52,352 | ) |
+
+
+Net
+income attributable to the Company&rsquo;s shareholders | |
+| 8,601,010 | | |
+| 10,674,106 | | |
+| 6,980,656 | | |
+| 1,028,821 | | |
+| 18,902,167 | | |
+| 17,654,762 | | |
+| 2,601,989 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net
+income | |
+| 9,088,465 | | |
+| 10,845,604 | | |
+| 7,166,560 | | |
+| 1,056,220 | | |
+| 19,635,236 | | |
+| 18,012,164 | | |
+| 2,654,664 | |
+
+
+Other
+comprehensive income | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Foreign
+currency translation adjustment | |
+| (389,857 | ) | |
+| (728,683 | ) | |
+| (770,419 | ) | |
+| (113,546 | ) | |
+| (628,819 | ) | |
+| (1,499,102 | ) | |
+| (220,940 | ) |
+
+
+Total
+comprehensive income | |
+| 8,698,608 | | |
+| 10,116,921 | | |
+| 6,396,141 | | |
+| 942,674 | | |
+| 19,006,417 | | |
+| 16,513,062 | | |
+| 2,433,724 | |
+
+
+Comprehensive
+income attributable to noncontrolling interests | |
+| (470,857 | ) | |
+| (121,843 | ) | |
+| (140,619 | ) | |
+| (20,725 | ) | |
+| (690,158 | ) | |
+| (262,462 | ) | |
+| (38,682 | ) |
+
+
+Comprehensive
+income attributable to the Company&rsquo;s shareholders | |
+| 8,227,751 | | |
+| 9,995,078 | | |
+| 6,255,522 | | |
+| 921,949 | | |
+| 18,316,259 | | |
+| 16,250,600 | | |
+| 2,395,042 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net
+income per share | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Basic | |
+| 2.70 | | |
+| 3.34 | | |
+| 2.18 | | |
+| 0.32 | | |
+| 5.94 | | |
+| 5.52 | | |
+| 0.81 | |
+
+
+Diluted | |
+| 2.67 | | |
+| 3.31 | | |
+| 2.17 | | |
+| 0.32 | | |
+| 5.88 | | |
+| 5.47 | | |
+| 0.81 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net
+income per ADS | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Basic | |
+| 13.49 | | |
+| 16.69 | | |
+| 10.90 | | |
+| 1.61 | | |
+| 29.71 | | |
+| 27.58 | | |
+| 4.06 | |
+
+
+Diluted | |
+| 13.36 | | |
+| 16.53 | | |
+| 10.83 | | |
+| 1.60 | | |
+| 29.41 | | |
+| 27.37 | | |
+| 4.03 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Weighted
+average number of ordinary shares used in calculating net income per share | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Basic | |
+| 3,188,634 | | |
+| 3,198,123 | | |
+| 3,203,046 | | |
+| 3,203,046 | | |
+| 3,181,307 | | |
+| 3,200,598 | | |
+| 3,200,598 | |
+
+
+Diluted | |
+| 3,214,681 | | |
+| 3,227,325 | | |
+| 3,221,637 | | |
+| 3,221,637 | | |
+| 3,210,563 | | |
+| 3,224,495 | | |
+| 3,224,495 | |
+
+
+
+
+
+
+
+
+
+
+12
+
+
+
+
+
+
+
+
+
+
+NETEASE, INC.
+
+
+UNAUDITED CONDENSED
+CONSOLIDATED STATEMENTS OF CASH FLOWS
+
+
+(in thousands)
+
+
+
+
+
+
+
+| |
+Three
+Months Ended | | |
+Six
+Months Ended | |
+
+
+| |
+June 30, | | |
+March 31, | | |
+June 30, | | |
+June 30, | | |
+June 30, | | |
+June 30, | | |
+June 30, | |
+
+
+| |
+2025 | | |
+2026 | | |
+2026 | | |
+2026 | | |
+2025 | | |
+2026 | | |
+2026 | |
+
+
+| |
+RMB | | |
+RMB | | |
+RMB | | |
+US$ | | |
+RMB | | |
+RMB | | |
+US$ | |
+
+
+Cash
+flows from operating activities: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net
+income | |
+| 9,088,465 | | |
+| 10,845,604 | | |
+| 7,166,560 | | |
+| 1,056,220 | | |
+| 19,635,236 | | |
+| 18,012,164 | | |
+| 2,654,664 | |
+
+
+Adjustments
+to reconcile net income to net cash provided by operating activities: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Depreciation
+and amortization | |
+| 428,427 | | |
+| 430,583 | | |
+| 439,439 | | |
+| 64,765 | | |
+| 909,188 | | |
+| 870,022 | | |
+| 128,225 | |
+
+
+Fair
+value changes of equity security, other investments and financial instruments | |
+| 55,715 | | |
+| 1,117,717 | | |
+| 2,023,477 | | |
+| 298,224 | | |
+| (502,784 | ) | |
+| 3,141,194 | | |
+| 462,955 | |
+
+
+Impairment
+losses on investments | |
+| 161,463 | | |
+| 344,871 | | |
+| 1,281,917 | | |
+| 188,931 | | |
+| 250,534 | | |
+| 1,626,788 | | |
+| 239,759 | |
+
+
+Share-based
+compensation cost | |
+| 946,395 | | |
+| 616,180 | | |
+| 781,656 | | |
+| 115,202 | | |
+| 1,898,267 | | |
+| 1,397,836 | | |
+| 206,015 | |
+
+
+Allowance
+for expected credit losses | |
+| 153,179 | | |
+| 6,719 | | |
+| 1,309 | | |
+| 193 | | |
+| 169,950 | | |
+| 8,028 | | |
+| 1,183 | |
+
+
+Gains
+on disposal of property, equipment and software | |
+| (30,920 | ) | |
+| (565 | ) | |
+| (13,983 | ) | |
+| (2,061 | ) | |
+| (10,627 | ) | |
+| (14,548 | ) | |
+| (2,144 | ) |
+
+
+Unrealized
+exchange (gains)/losses | |
+| (165,662 | ) | |
+| 643,942 | | |
+| 487,982 | | |
+| 71,920 | | |
+| (194,115 | ) | |
+| 1,131,924 | | |
+| 166,825 | |
+
+
+(Gains)/losses
+on disposal of long-term investments | |
+| (141,078 | ) | |
+| (1,071,442 | ) | |
+| 5,550 | | |
+| 818 | | |
+| (129,403 | ) | |
+| (1,065,892 | ) | |
+| (157,093 | ) |
+
+
+Deferred
+income taxes | |
+| (853,764 | ) | |
+| 532,257 | | |
+| 693,742 | | |
+| 102,245 | | |
+| (525,492 | ) | |
+| 1,225,999 | | |
+| 180,690 | |
+
+
+Share
+of results on equity method investees | |
+| 13,479 | | |
+| 442,575 | | |
+| 96,645 | | |
+| 14,244 | | |
+| (5,189 | ) | |
+| 539,220 | | |
+| 79,471 | |
+
+
+Fair
+value changes of short-term investments | |
+| (344,604 | ) | |
+| (385,395 | ) | |
+| (372,234 | ) | |
+| (54,861 | ) | |
+| (546,213 | ) | |
+| (757,629 | ) | |
+| (111,661 | ) |
+
+
+Changes
+in operating assets and liabilities: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Accounts
+receivable | |
+| 953,295 | | |
+| (1,188,837 | ) | |
+| 726,762 | | |
+| 107,111 | | |
+| (135,665 | ) | |
+| (462,075 | ) | |
+| (68,101 | ) |
+
+
+Inventories | |
+| (73,944 | ) | |
+| 143,099 | | |
+| 34,048 | | |
+| 5,018 | | |
+| (20,171 | ) | |
+| 177,147 | | |
+| 26,108 | |
+
+
+Prepayments
+and other assets | |
+| 583,484 | | |
+| 116,152 | | |
+| (16,816 | ) | |
+| (2,478 | ) | |
+| 288,306 | | |
+| 99,336 | | |
+| 14,640 | |
+
+
+Accounts
+payable | |
+| 119,644 | | |
+| 134,445 | | |
+| (105,340 | ) | |
+| (15,525 | ) | |
+| (28,432 | ) | |
+| 29,105 | | |
+| 4,290 | |
+
+
+Salary
+and welfare payables | |
+| 920,662 | | |
+| (2,253,559 | ) | |
+| 1,107,729 | | |
+| 163,259 | | |
+| (1,164,449 | ) | |
+| (1,145,830 | ) | |
+| (168,874 | ) |
+
+
+Taxes
+payable | |
+| (764,372 | ) | |
+| 1,895,324 | | |
+| (2,038,642 | ) | |
+| (300,459 | ) | |
+| 1,031,751 | | |
+| (143,318 | ) | |
+| (21,122 | ) |
+
+
+Contract
+liabilities | |
+| (718,719 | ) | |
+| 1,384,445 | | |
+| (2,511,144 | ) | |
+| (370,097 | ) | |
+| 1,807,479 | | |
+| (1,126,699 | ) | |
+| (166,055 | ) |
+
+
+Accrued
+liabilities and other payables | |
+| 530,718 | | |
+| (21,044 | ) | |
+| 184,272 | | |
+| 27,158 | | |
+| 240,344 | | |
+| 163,228 | | |
+| 24,057 | |
+
+
+Net
+cash provided by operating activities | |
+| 10,861,863 | | |
+| 13,733,071 | | |
+| 9,972,929 | | |
+| 1,469,827 | | |
+| 22,968,515 | | |
+| 23,706,000 | | |
+| 3,493,832 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Cash
+flows from investing activities: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Purchase
+of property, equipment and software | |
+| (189,842 | ) | |
+| (312,148 | ) | |
+| (18,785 | ) | |
+| (2,769 | ) | |
+| (643,913 | ) | |
+| (330,933 | ) | |
+| (48,774 | ) |
+
+
+Proceeds
+from sale of property, equipment and software | |
+| 21,499 | | |
+| 1,673 | | |
+| 14,539 | | |
+| 2,143 | | |
+| 22,835 | | |
+| 16,212 | | |
+| 2,389 | |
+
+
+Purchase
+of intangible assets, content and licensed copyrights | |
+| (313,349 | ) | |
+| (290,019 | ) | |
+| (61,554 | ) | |
+| (9,072 | ) | |
+| (612,120 | ) | |
+| (351,573 | ) | |
+| (51,815 | ) |
+
+
+Net
+changes of short-term investments with terms of three months or less | |
+| 776,428 | | |
+| (15,766,308 | ) | |
+| (1,594,496 | ) | |
+| (235,000 | ) | |
+| (5,362,128 | ) | |
+| (17,360,804 | ) | |
+| (2,558,666 | ) |
+
+
+Purchase
+of short-term investments with terms over three months and debt securities | |
+| (5,800,000 | ) | |
+| (5,885,000 | ) | |
+| (12,851,707 | ) | |
+| (1,894,107 | ) | |
+| (8,770,000 | ) | |
+| (18,736,707 | ) | |
+| (2,761,449 | ) |
+
+
+Proceeds
+from maturities of short-term investments with terms over three months | |
+| 5,745,454 | | |
+| 4,861,483 | | |
+| 3,515,814 | | |
+| 518,167 | | |
+| 8,454,055 | | |
+| 8,377,297 | | |
+| 1,234,661 | |
+
+
+Investment
+in equity method investees | |
+| (100,986 | ) | |
+| (94,021 | ) | |
+| (3,040,753 | ) | |
+| (448,152 | ) | |
+| (155,089 | ) | |
+| (3,134,774 | ) | |
+| (462,009 | ) |
+
+
+Investment
+in other equity investments | |
+| (2,640,655 | ) | |
+| (3,110,374 | ) | |
+| (453,871 | ) | |
+| (66,892 | ) | |
+| (2,677,518 | ) | |
+| (3,564,245 | ) | |
+| (525,304 | ) |
+
+
+Proceeds
+from disposal of long-term investments | |
+| 784,855 | | |
+| 1,353,947 | | |
+| 50,733 | | |
+| 7,477 | | |
+| 862,283 | | |
+| 1,404,680 | | |
+| 207,024 | |
+
+
+Placement/rollover
+of matured time deposits | |
+| (27,980,605 | ) | |
+| (30,608,133 | ) | |
+| (50,216,128 | ) | |
+| (7,400,941 | ) | |
+| (77,582,412 | ) | |
+| (80,824,261 | ) | |
+| (11,912,022 | ) |
+
+
+Proceeds
+from maturities of time deposits | |
+| 33,617,510 | | |
+| 42,018,869 | | |
+| 30,056,765 | | |
+| 4,429,819 | | |
+| 77,543,992 | | |
+| 72,075,634 | | |
+| 10,622,634 | |
+
+
+Change
+in other long-term assets | |
+| (27,367 | ) | |
+| 65,909 | | |
+| (58,891 | ) | |
+| (8,679 | ) | |
+| (28,045 | ) | |
+| 7,018 | | |
+| 1,034 | |
+
+
+Net
+cash provided by/(used in) investing activities | |
+| 3,892,942 | | |
+| (7,764,122 | ) | |
+| (34,658,334 | ) | |
+| (5,108,006 | ) | |
+| (8,948,060 | ) | |
+| (42,422,456 | ) | |
+| (6,252,297 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Cash
+flows from financing activities: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net
+changes from loans with terms of three months or less | |
+| 2,017,570 | | |
+| 1,182,383 | | |
+| 420,940 | | |
+| 62,039 | | |
+| (236,845 | ) | |
+| 1,603,323 | | |
+| 236,300 | |
+
+
+Proceeds
+of loans with terms over three months | |
+| 1,231,000 | | |
+| 6,134,520 | | |
+| 1,326,090 | | |
+| 195,441 | | |
+| 3,978,550 | | |
+| 7,460,610 | | |
+| 1,099,558 | |
+
+
+Payment
+of loans with terms over three months | |
+| (1,804,730 | ) | |
+| (2,620,900 | ) | |
+| &mdash; | | |
+| &mdash; | | |
+| (4,740,407 | ) | |
+| (2,620,900 | ) | |
+| (386,273 | ) |
+
+
+Dividends
+paid to shareholders | |
+| (3,082,122 | ) | |
+| (5,156,320 | ) | |
+| (3,138,873 | ) | |
+| (462,613 | ) | |
+| (8,666,654 | ) | |
+| (8,295,193 | ) | |
+| (1,222,560 | ) |
+
+
+Net
+amounts received/(paid) related to capital contribution from or repurchase of noncontrolling interests shareholders | |
+| 42,400 | | |
+| (23,418 | ) | |
+| 4,874 | | |
+| 718 | | |
+| 84,917 | | |
+| (18,544 | ) | |
+| (2,733 | ) |
+
+
+Net
+amounts paid related to repurchase of NetEase&rsquo;s ADSs/purchase of subsidiaries&rsquo; shares | |
+| (355,563 | ) | |
+| (1,314,003 | ) | |
+| (1,795,596 | ) | |
+| (264,638 | ) | |
+| (659,164 | ) | |
+| (3,109,599 | ) | |
+| (458,298 | ) |
+
+
+Net
+cash used in financing activities | |
+| (1,951,445 | ) | |
+| (1,797,738 | ) | |
+| (3,182,565 | ) | |
+| (469,053 | ) | |
+| (10,239,603 | ) | |
+| (4,980,303 | ) | |
+| (734,006 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Effect
+of exchange rate changes on cash, cash equivalents and restricted cash held in foreign currencies | |
+| (31,749 | ) | |
+| (340,829 | ) | |
+| (187,753 | ) | |
+| (27,671 | ) | |
+| (88,681 | ) | |
+| (528,582 | ) | |
+| (77,903 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net
+increase/(decrease) in cash, cash equivalents and restricted cash | |
+| 12,771,611 | | |
+| 3,830,382 | | |
+| (28,055,723 | ) | |
+| (4,134,903 | ) | |
+| 3,692,171 | | |
+| (24,225,341 | ) | |
+| (3,570,374 | ) |
+
+
+Cash,
+cash equivalents and restricted cash, at the beginning of the period | |
+| 45,395,483 | | |
+| 51,491,141 | | |
+| 55,321,523 | | |
+| 8,153,384 | | |
+| 54,474,923 | | |
+| 51,491,141 | | |
+| 7,588,855 | |
+
+
+Cash,
+cash equivalents and restricted cash, at end of the period | |
+| 58,167,094 | | |
+| 55,321,523 | | |
+| 27,265,800 | | |
+| 4,018,481 | | |
+| 58,167,094 | | |
+| 27,265,800 | | |
+| 4,018,481 | |
+
+
+Supplemental
+disclosures of cash flow information: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Cash
+paid for income taxes, net | |
+| 2,184,556 | | |
+| 1,464,650 | | |
+| 2,487,225 | | |
+| 366,572 | | |
+| 3,391,111 | | |
+| 3,951,875 | | |
+| 582,434 | |
+
+
+Cash
+paid for interest expenses | |
+| 64,366 | | |
+| 78,326 | | |
+| 25,374 | | |
+| 3,740 | | |
+| 161,790 | | |
+| 103,700 | | |
+| 15,283 | |
+
+
+Supplemental
+schedule of non-cash investing and financing activities: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Fixed
+asset purchases financed by accounts payable and accrued liabilities | |
+| 744,596 | | |
+| 463,033 | | |
+| 522,371 | | |
+| 76,988 | | |
+| 744,596 | | |
+| 522,371 | | |
+| 76,988 | |
+
+
+
+
+
+
+
+
+
+
+13
+
+
+
+
+
+
+
+
+
+
+NETEASE, INC.
+
+
+UNAUDITED SEGMENT INFORMATION
+
+
+(in thousands)
+
+
+
+
+
+
+
+| |
+Three
+Months Ended | | |
+Six Months Ended | |
+
+
+| |
+June 30, | | |
+March 31, | | |
+June 30, | | |
+June 30, | | |
+June 30, | | |
+June 30, | | |
+June 30, | |
+
+
+| |
+2025 | | |
+2026 | | |
+2026 | | |
+2026 | | |
+2025 | | |
+2026 | | |
+2026 | |
+
+
+| |
+RMB | | |
+RMB | | |
+RMB | | |
+US$ | | |
+RMB | | |
+RMB | | |
+US$ | |
+
+
+Net revenues: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Games and related value-added services | |
+| 22,806,459 | | |
+| 25,712,975 | | |
+| 25,022,788 | | |
+| 3,687,903 | | |
+| 46,854,466 | | |
+| 50,735,763 | | |
+| 7,477,527 | |
+
+
+Youdao | |
+| 1,417,541 | | |
+| 1,348,022 | | |
+| 1,466,861 | | |
+| 216,189 | | |
+| 2,715,803 | | |
+| 2,814,883 | | |
+| 414,862 | |
+
+
+NetEase Cloud Music | |
+| 1,968,729 | | |
+| 1,981,234 | | |
+| 1,977,472 | | |
+| 291,443 | | |
+| 3,827,117 | | |
+| 3,958,706 | | |
+| 583,441 | |
+
+
+Innovative businesses and others | |
+| 1,698,935 | | |
+| 1,549,050 | | |
+| 1,639,425 | | |
+| 241,621 | | |
+| 3,322,823 | | |
+| 3,188,475 | | |
+| 469,923 | |
+
+
+Total net revenues | |
+| 27,891,664 | | |
+| 30,591,281 | | |
+| 30,106,546 | | |
+| 4,437,156 | | |
+| 56,720,209 | | |
+| 60,697,827 | | |
+| 8,945,753 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Cost of revenues: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Games and related value-added services | |
+| (6,792,240 | ) | |
+| (6,482,431 | ) | |
+| (5,973,965 | ) | |
+| (880,453 | ) | |
+| (14,287,502 | ) | |
+| (12,456,396 | ) | |
+| (1,835,846 | ) |
+
+
+Youdao | |
+| (808,181 | ) | |
+| (745,729 | ) | |
+| (749,986 | ) | |
+| (110,534 | ) | |
+| (1,492,216 | ) | |
+| (1,495,715 | ) | |
+| (220,441 | ) |
+
+
+NetEase Cloud Music | |
+| (1,258,855 | ) | |
+| (1,247,066 | ) | |
+| (1,237,231 | ) | |
+| (182,345 | ) | |
+| (2,434,632 | ) | |
+| (2,484,297 | ) | |
+| (366,140 | ) |
+
+
+Innovative businesses and others | |
+| (979,906 | ) | |
+| (898,983 | ) | |
+| (928,039 | ) | |
+| (136,777 | ) | |
+| (1,973,971 | ) | |
+| (1,827,022 | ) | |
+| (269,270 | ) |
+
+
+Total cost of revenues | |
+| (9,839,182 | ) | |
+| (9,374,209 | ) | |
+| (8,889,221 | ) | |
+| (1,310,109 | ) | |
+| (20,188,321 | ) | |
+| (18,263,430 | ) | |
+| (2,691,697 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Gross profit: | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Games and related value-added services | |
+| 16,014,219 | | |
+| 19,230,544 | | |
+| 19,048,823 | | |
+| 2,807,450 | | |
+| 32,566,964 | | |
+| 38,279,367 | | |
+| 5,641,681 | |
+
+
+Youdao | |
+| 609,360 | | |
+| 602,293 | | |
+| 716,875 | | |
+| 105,655 | | |
+| 1,223,587 | | |
+| 1,319,168 | | |
+| 194,421 | |
+
+
+NetEase Cloud Music | |
+| 709,874 | | |
+| 734,168 | | |
+| 740,241 | | |
+| 109,098 | | |
+| 1,392,485 | | |
+| 1,474,409 | | |
+| 217,301 | |
+
+
+Innovative businesses and others | |
+| 719,029 | | |
+| 650,067 | | |
+| 711,386 | | |
+| 104,844 | | |
+| 1,348,852 | | |
+| 1,361,453 | | |
+| 200,653 | |
+
+
+Total gross profit | |
+| 18,052,482 | | |
+| 21,217,072 | | |
+| 21,217,325 | | |
+| 3,127,047 | | |
+| 36,531,888 | | |
+| 42,434,397 | | |
+| 6,254,056 | |
+
+
+
+
+
+
+
+
+
+
+14
+
+
+
+
+
+
+
+
+
+
+NOTES TO THE INTERIM FINANCIAL INFORMATION
+
+
+
+
+
+
+| 1. | Basis of Presentation |
+
+
+
+
+
+The condensed consolidated
+financial information was prepared in accordance with accounting principles generally accepted in the United States of America.
+There were no significant changes to the significant accounting policies from the audited consolidated financial statements for the preceding
+fiscal year.
+
+
+
+
+
+The financial information prepared and presented
+in this announcement might be different from that published and to be published by NetEase&rsquo;s listed subsidiary to meet the disclosure
+requirements under different accounting standards requirements.
+
+
+
+
+
+
+| 2. | Net Revenues |
+
+
+
+
+
+The following table
+sets forth the net revenues by type for the six months ended June 30, 2025 and 2026 (in thousands):
+
+
+
+
+
+
+
+| |
+For the six months ended June 30, | |
+
+
+| |
+2025 | | |
+2026 | |
+
+
+| |
+RMB | | |
+RMB | |
+
+
+Games and related value-added services | |
+| 46,854,466 | | |
+| 50,735,763 | |
+
+
+Online music services | |
+| 2,967,269 | | |
+| 3,067,428 | |
+
+
+Learning services | |
+| 1,260,252 | | |
+| 1,423,084 | |
+
+
+Social entertainment services and others | |
+| 859,848 | | |
+| 891,278 | |
+
+
+Others | |
+| 4,778,374 | | |
+| 4,580,274 | |
+
+
+| |
+| 56,720,209 | | |
+| 60,697,827 | |
+
+
+
+
+
+
+
+| 3. | Income Tax |
+
+
+
+
+
+The following table
+sets forth the components of income tax expenses for the six months ended June 30, 2025 and 2026 (in thousands):
+
+
+
+
+
+
+
+| |
+For the six months ended June 30, | |
+
+
+| |
+2025 | | |
+2026 | |
+
+
+| |
+RMB | | |
+RMB | |
+
+
+Current income tax | |
+| 3,994,278 | | |
+| 3,756,513 | |
+
+
+Deferred taxation | |
+| (528,378 | ) | |
+| 1,225,999 | |
+
+
+| |
+| 3,465,900 | | |
+| 4,982,512 | |
+
+
+
+
+
+
+
+
+
+
+15
+
+
+
+
+
+
+
+
+
+
+
+| 4. | Share-based Compensation |
+
+
+
+
+
+The following table
+sets forth the breakdown of share-based compensation cost reported in the unaudited condensed consolidated statements of operations
+and comprehensive income for the six months ended June 30, 2025 and 2026 (in thousands):
+
+
+
+
+
+
+
+| |
+For the six months ended June 30, | |
+
+
+| |
+2025 | | |
+2026 | |
+
+
+| |
+RMB | | |
+RMB | |
+
+
+Cost of revenues | |
+| 525,037 | | |
+| 510,896 | |
+
+
+Operating expenses | |
+| 1,373,230 | | |
+| 886,940 | |
+
+
+| |
+| 1,898,267 | | |
+| 1,397,836 | |
+
+
+
+
+
+
+
+| 5. | Net Income Per Share |
+
+
+
+
+
+The following table sets forth the computation
+of basic and diluted net income per share for the six months ended June 30, 2025 and 2026:
+
+
+
+
+
+
+
+| |
+For the six months ended June 30, | |
+
+
+| |
+2025 | | |
+2026 | |
+
+
+Numerator (RMB in thousands): | |
+| | | |
+| | |
+
+
+Net income attributable to the Company&rsquo;s shareholders for basic net income per share calculation | |
+| 18,902,167 | | |
+| 17,654,762 | |
+
+
+Net income attributable to the Company&rsquo;s shareholders for diluted net income per share calculation | |
+| 18,887,322 | | |
+| 17,650,305 | |
+
+
+| |
+| | | |
+| | |
+
+
+Denominator (number of shares in thousands): | |
+| | | |
+| | |
+
+
+Weighted average number of ordinary shares outstanding, basic | |
+| 3,181,307 | | |
+| 3,200,598 | |
+
+
+Dilutive effect of restricted share units | |
+| 29,256 | | |
+| 23,897 | |
+
+
+Weighted average number of ordinary shares outstanding, diluted | |
+| 3,210,563 | | |
+| 3,224,495 | |
+
+
+| |
+| | | |
+| | |
+
+
+Net income per share, basic (RMB) | |
+| 5.94 | | |
+| 5.52 | |
+
+
+Net income per share, diluted (RMB) | |
+| 5.88 | | |
+| 5.47 | |
+
+
+
+
+
+
+Net income attributable to the Company&rsquo;s
+shareholders for diluted net income per share calculation is calculated as net income attributable to the Company&rsquo;s shareholders
+for basic net income per share calculation minus the impact of subsidiaries&rsquo; diluted earnings. Basic net income per share is computed
+using the weighted average number of ordinary shares outstanding during the period. Diluted net income per share is computed using
+the weighted average number of ordinary shares and potential ordinary shares outstanding during the period.
+
+
+
+
+
+
+
+
+
+16
+
+
+
+
+
+
+
+
+
+
+
+| 6. | Dividends |
+
+
+
+
+
+The Board
+approved a dividend of US$0.144 per share (US$0.720 per ADS) and US$0.096 per share (US$0.480 per ADS) to holders of ordinary shares and
+holders of ADSs for the first and second quarter of 2026, respectively.
+
+
+
+
+
+The Board
+approved a dividend of US$0.135 per share (US$0.675 per ADS) and US$0.114 per share (US$0.570 per ADS) to holders of ordinary shares and
+holders of ADSs for the first and second quarter of 2025, respectively.
+
+
+
+
+
+The dividend for each quarter was paid in the
+following quarter. There was no significant dividend payable as of December 31, 2025 and June 30, 2026, respectively.
+
+
+
+
+
+
+| 7. | Aging Analysis |
+
+
+
+
+
+Accounts receivable
+
+
+
+
+
+The aging analysis
+of the accounts receivable, based on recognition date before allowance, is as follows (in thousands):
+
+
+
+
+
+
+
+| |
+December 31, | | |
+June 30, | |
+
+
+| |
+2025 | | |
+2026 | |
+
+
+| |
+| RMB | | |
+| RMB | |
+
+
+0-3 months | |
+| 4,622,891 | | |
+| 4,916,978 | |
+
+
+3-6 months | |
+| 523,661 | | |
+| 532,298 | |
+
+
+6-12 months | |
+| 224,349 | | |
+| 322,394 | |
+
+
+Over 1 year | |
+| 427,675 | | |
+| 437,601 | |
+
+
+Less: allowance | |
+| (460,757 | ) | |
+| (463,191 | ) |
+
+
+| |
+| 5,337,819 | | |
+| 5,746,080 | |
+
+
+
+
+
+
+Accounts payable
+
+
+
+
+
+The aging analysis
+of the accounts payable, based on recognition date, is as follows (in thousands):
+
+
+
+
+
+
+
+| |
+December 31, | | |
+June 30, | |
+
+
+| |
+2025 | | |
+2026 | |
+
+
+| |
+| RMB | | |
+| RMB | |
+
+
+0-3 months | |
+| 545,058 | | |
+| 580,898 | |
+
+
+3-6 months | |
+| 45,020 | | |
+| 58,431 | |
+
+
+6-12 months | |
+| 19,248 | | |
+| 27,668 | |
+
+
+Over 1 year | |
+| 33,838 | | |
+| 35,266 | |
+
+
+| |
+| 643,164 | | |
+| 702,263 | |
+
+
+
+
+
+
+
+
+
+
+17
+
+
+
+
+
+
+
+
+
+
+EVENTS AFTER
+THE REPORTING PERIOD
+
+
+
+
+
+Save as disclosed in this announcement, there
+were no significant events that might affect the Group since the end of the Reporting Period.
+
+
+
+
+
+CORPORATE GOVERNANCE AND OTHER INFORMATION
+
+
+
+
+
+The Board is committed to achieving high standards
+of corporate governance that it believes are crucial to the Group&rsquo;s development and safeguard the interests of the shareholders.
+
+
+
+
+
+Compliance with the Corporate Governance Code
+
+
+
+
+
+The Company&rsquo;s conversion of its secondary
+listing status to dual-primary listing status on the Main Board of the Hong Kong Stock Exchange became effective on the HK Primary Effective
+Date, since which the Corporate Governance Code set forth in Part 2 of Appendix C1 to the Listing Rules has been applicable
+to the Company.
+
+
+
+
+
+During the period from the HK Primary Effective
+Date up to the date of this announcement, the Company has adopted and complied with all applicable code provisions set out in the Corporate
+Governance Code.
+
+
+
+
+
+The Company will continue to regularly review
+and monitor its corporate governance practices to ensure compliance with the Corporate Governance Code and maintain a high standard of
+corporate governance practices of the Company.
+
+
+
+
+
+REVIEW OF INTERIM RESULTS
+
+
+
+
+
+The audit committee
+comprises three independent directors. The audit committee has reviewed with management the accounting principles and practices adopted
+by the Group and discussed internal control and financial reporting matters, including the review of the unaudited interim financial
+information. There is no disagreement between the Board and the audit committee regarding the accounting treatment adopted by the Company.
+
+
+
+
+
+The interim results
+for the six months ended June 30, 2026 have not been audited but have been reviewed by PricewaterhouseCoopers, the auditor of the
+Company, in accordance with International Standard on Review Engagements 2410, &ldquo;Review of Interim Financial Information Performed
+by the Independent Auditor of the Entity&rdquo;.
+
+
+
+
+
+PURCHASE, SALE OR REDEMPTION OF THE COMPANY&rsquo;S
+LISTED SECURITIES
+
+
+
+
+
+On November 20,
+2025, the Company announced the extension of its previously approved share repurchase program of up to US$5.0 billion of the Company&rsquo;s
+ADSs and ordinary shares in open market or other transactions for an additional 36 months until January 9, 2029. During the Reporting
+Period, approximately 2.8 million ADSs (representing 14.0 million ordinary shares) had been repurchased under this program on the Nasdaq
+for a total cost of US$324.1 million. As of June 30, 2026, approximately 24.9 million ADSs had been repurchased under this
+program for a total cost of US$2.3 billion.
+
+
+
+
+
+The extent to which NetEase repurchases its ADSs
+and its ordinary shares depends upon a variety of factors, including market conditions. These programs may be suspended or discontinued
+at any time.
+
+
+
+
+
+
+
+
+
+18
+
+
+
+
+
+
+
+
+
+
+Details of the repurchase
+information on the Nasdaq during the Reporting Period are as follows:
+
+
+
+
+
+
+
+| |
+Number of ordinary
+
+shares underlying | | |
+Price
+paid per
+
+ordinary share | | |
+Aggregate | |
+
+
+Month of
+
+Repurchase | |
+the repurchased
+
+ADSs | | |
+Highest | | |
+Lowest | | |
+consideration
+
+paid | |
+
+
+| |
+| | |
+(US$) | | |
+(US$) | | |
+(US$, in millions) | |
+
+
+February | |
+| 1,665,725 | | |
+| 24.15 | | |
+| 22.60 | | |
+| 39.0 | |
+
+
+March | |
+| 4,058,600 | | |
+| 23.99 | | |
+| 21.85 | | |
+| 92.9 | |
+
+
+April | |
+| 4,188,930 | | |
+| 23.84 | | |
+| 21.76 | | |
+| 94.9 | |
+
+
+May | |
+| 3,037,365 | | |
+| 25.00 | | |
+| 21.24 | | |
+| 70.9 | |
+
+
+June | |
+| 1,085,310 | | |
+| 25.00 | | |
+| 23.77 | | |
+| 26.4 | |
+
+
+Total | |
+| 14,035,930 | | |
+| | | |
+| | | |
+| 324.1 | |
+
+
+
+
+
+
+
+Save as disclosed above, neither the Company nor
+any of its subsidiaries purchased, sold or redeemed any of the Company&rsquo;s securities listed (including sale of treasury shares) on
+the Hong Kong Stock Exchange or Nasdaq during the Reporting Period.
+
+
+
+
+
+DIVIDEND
+
+
+
+
+
+The Board approved a dividend of US$0.096 per
+share (US$0.480 per ADS) for the second quarter of 2026 to holders of ordinary shares and holders of ADSs as of the close of business
+on September 3, 2026, Beijing/Hong Kong Time and New York Time, respectively, payable in U.S. dollars. For holders of ordinary shares,
+in order to qualify for the dividend, all valid documents for the transfer of shares accompanied by the relevant share certificates must
+be lodged for registration with the Company&rsquo;s Hong Kong branch share registrar, Computershare Hong Kong Investor Services Limited,
+at Shops 1712-1716, 17th Floor, Hopewell Centre, 183 Queen&rsquo;s Road East, Wanchai, Hong Kong, no later than 4:30 p.m. on September 3,
+2026 (Beijing/Hong Kong Time). The payment date is expected to be September 15, 2026 for holders of ordinary shares and on or around
+September 18, 2026, for holders of ADSs.
+
+
+
+
+
+Under the Company&rsquo;s
+current dividend policy, the determination to make dividend distributions and the amount of such distribution in any particular quarter
+will be made at the discretion of its Board and will be based upon the Company&rsquo;s operations and earnings, cash flow, financial
+condition and other relevant factors.
+
+
+
+
+
+PUBLICATION OF THE INTERIM RESULTS ANNOUNCEMENT
+AND INTERIM REPORT
+
+
+
+
+
+This interim results announcement is published
+on the website of the Hong Kong Stock Exchange at www.hkexnews.hk and the website of the Company at http://ir.netease.com .
+The interim report for the Reporting Period will be published on the aforesaid websites of the Hong Kong Stock Exchange and the Company
+and will be dispatched to the shareholders (if requested) in due course.
+
+
+
+
+
+
+
+
+
+19
+
+
+
+
+
+
+
+
+
+
+DEFINITIONS
+
+
+
+
+
+
+
+&ldquo;ADSs&rdquo; |
+American Depositary Shares (each representing five ordinary shares) |
+
+
+|
+|
+
+
+&ldquo;Board&rdquo; |
+the board of directors of the Company |
+
+
+|
+|
+
+
+&ldquo;China&rdquo; or the &ldquo;PRC&rdquo; |
+the People&rsquo;s Republic of China |
+
+
+|
+|
+
+
+&ldquo;Company&rdquo; |
+NetEase, Inc., a company incorporated under Cayman Islands laws, and listed on both the Nasdaq Global Select Market under the symbol &ldquo;NTES&rdquo; and the Main Board of the Hong Kong Stock Exchange under the stock code &ldquo;9999&rdquo; |
+
+
+|
+|
+
+
+&ldquo;Corporate Governance Code&rdquo; |
+the Corporate Governance Code set out in Appendix C1 to the Listing Rules |
+
+
+|
+|
+
+
+&ldquo;GAAP&rdquo; or &ldquo;U.S. GAAP&rdquo; |
+accounting principles generally accepted in the United States of America |
+
+
+|
+|
+
+
+&ldquo;Group&rdquo; |
+the Company and its subsidiaries and consolidated entities from time to time |
+
+
+|
+|
+
+
+&ldquo;HK Primary Effective Date&rdquo; |
+June 30, 2026, the date on which the Company&rsquo;s conversion to &ldquo;dual-primary listing&rdquo; status in Hong Kong became effective |
+
+
+|
+|
+
+
+&ldquo;Hong Kong Stock Exchange&rdquo; |
+The Stock Exchange of Hong Kong Limited |
+
+
+|
+|
+
+
+&ldquo;Listing Rules&rdquo; |
+the Rules Governing
+the Listing of Securities on the Hong Kong Stock Exchange |
+
+
+|
+|
+
+
+&ldquo;NetEase Cloud Music&rdquo; |
+NetEase Cloud Music Inc., a company incorporated under Cayman Islands laws, and listed on the Hong Kong Stock Exchange under the stock code &ldquo;9899&rdquo; in December 2021 and a majority-controlled subsidiary of the Company |
+
+
+|
+|
+
+
+&ldquo;Reporting Period&rdquo; |
+six months ended June 30, 2026 |
+
+
+|
+|
+
+
+&ldquo;Youdao&rdquo; |
+Youdao, Inc., a company incorporated under Cayman Islands laws, and listed on The New York Stock Exchange under the symbol &ldquo;DAO&rdquo; in October 2019 and a majority-controlled subsidiary of the Company |
+
+
+
+
+
+
+
+|
+By Order of the Board |
+
+
+|
+NetEase, Inc. |
+
+
+|
+Mr. William Lei Ding |
+
+
+|
+Director |
+
+
+
+
+
+
+
+Hong Kong, August 20, 2026
+
+
+
+
+
+As at the date of this announcement, the board
+of directors of the Company comprises Mr. William Lei Ding as the director, and Ms. Grace Tang, Ms. Alice Cheng, Mr. Joseph
+Tong, Mr. Michael Leung and Mr. Johnny Chan as the independent directors.
+
+
+
+
+
+
+
+
+
+20
