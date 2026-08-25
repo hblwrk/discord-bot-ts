@@ -442,6 +442,7 @@ function getArray(value: unknown): unknown[] {
 // independently of money in the same table ("in millions, except share amounts which are
 // reflected in thousands").
 const shareCountScales = [1, 1_000, 1_000_000];
+const ordinarySharesPerAdsRatios = [2, 4, 5, 8, 10];
 
 // Below these magnitudes the published figures are rounded so coarsely that the implied count
 // is meaningless: a reported "-$0.01" per share on a "$1 million" loss reconciles to anywhere
@@ -473,8 +474,15 @@ export function getInconsistentPerShareReasons(
   }
 
   const impliedShareCount = Math.abs(netIncome / eps);
-  const closestDeviation = Math.min(...shareCountScales
-    .map(scale => Math.abs(impliedShareCount / (dilutedShareMantissa * scale) - 1)));
+  const isAdsMetric = /\bper\s+ADS\b/i.test(epsMetric.sourceSnippet ?? "") ||
+    /\bbasic\s+net\s+income\s+per\s+share\b.*\(\s*US\s*\$/i.test(epsMetric.sourceSnippet ?? "");
+  const securityRatios = true === isAdsMetric
+    ? [1, ...ordinarySharesPerAdsRatios]
+    : [1];
+  const closestDeviation = Math.min(...shareCountScales.flatMap(scale => securityRatios
+    .map(securityRatio => Math.abs(
+      impliedShareCount / (dilutedShareMantissa * scale / securityRatio) - 1,
+    ))));
   if (closestDeviation <= shareCountTolerance) {
     return [];
   }

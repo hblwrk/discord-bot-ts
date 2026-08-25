@@ -61,7 +61,7 @@ const moneyUnitPatternSource = String.raw`(?:trillions?|billions?|millions?|thou
 // Some releases close accounting parentheses before the scale word — "($400) million" —
 // while others put the scale inside them — "($400 million)". Treat both forms as one
 // token so the scale and negative sign survive range parsing.
-const moneyTokenPatternSource = String.raw`(?<![\d.])\(?\s*(?:(?:C\s*\$|[$€£¥])\s*|(?:(?:USD|CAD|EUR|GBP|JPY|CHF)\s+))?-?\d+(?:,\d{3})*(?:\.\d+)?\s*\)?\s*(?:${moneyUnitPatternSource})?\)?`;
+const moneyTokenPatternSource = String.raw`(?<![\d.])\(?\s*(?:(?:US\s*\$|C\s*\$|[$€£¥])\s*|(?:(?:USD|CAD|EUR|GBP|JPY|CHF)\s+))?-?\d+(?:,\d{3})*(?:\.\d+)?\s*\)?\s*(?:${moneyUnitPatternSource})?\)?`;
 const moneyRangePattern = new RegExp(`(${moneyTokenPatternSource})\\s*(?:to|through|-|–|and)\\s*(${moneyTokenPatternSource})`, "gi");
 const moneyPlusMinusPattern = new RegExp(`(${moneyTokenPatternSource})\\s*(?:\\+\\s*\\/\\s*-|±|plus\\s+or\\s+minus)\\s*(${moneyTokenPatternSource})`, "i");
 const singleMoneyPattern = new RegExp(moneyTokenPatternSource, "gi");
@@ -72,6 +72,7 @@ const adjustedEpsDefinition: OutlookMetricDefinition = {
   key: "adjusted_eps",
   label: "Adj EPS",
   patterns: [
+    /\badj\.?\s+(?:diluted\s+)?eps\b/i,
     /\badjusted\s+continuing(?:\s+operations?)?\s+(?:diluted\s+)?eps\b/i,
     /\badjusted\s+continuing(?:\s+operations?)?\s+earnings\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
     /\badjusted\s+(?:\d{1,2}\s+)?(?:diluted\s+)?eps\b/i,
@@ -94,6 +95,7 @@ const outlookMetricDefinitions: OutlookMetricDefinition[] = [
     key: "eps",
     label: "EPS",
     patterns: [
+      /\bgaap\s+net\s+income\s+per\s+share\b.{0,100}?\bis\s+expected\s+to\s+be\s+approximately\s+(?=[$€£¥])/i,
       new RegExp(String.raw`${gaapTermSource}\s+(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?eps\b`, "i"),
       new RegExp(String.raw`${gaapTermSource}\s+(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b`, "i"),
       new RegExp(String.raw`${gaapTermSource}\s+(?:diluted\s+)?loss\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b`, "i"),
@@ -103,7 +105,7 @@ const outlookMetricDefinitions: OutlookMetricDefinition[] = [
       // $4.25 ... Adjusted EPS is estimated in the range of $4.80 to $5.00"), so this
       // rejects the qualified occurrence rather than the whole line, which would discard
       // the GAAP figure alongside it.
-      /(?<!\b(?:adjusted|non-gaap)\s)(?<!\b(?:adjusted|non-gaap)\s\w{1,14}\s)\b(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?eps\b/i,
+      /(?<!\b(?:adj\.?|adjusted|non-gaap)\s)(?<!\b(?:adjusted|non-gaap)\s\w{1,14}\s)\b(?:continuing(?:\s+operations?)?\s+)?(?:diluted\s+)?eps\b/i,
       /(?<!\b(?:adjusted|non-gaap)\s)(?<!\b(?:adjusted|non-gaap)\s\w{1,14}\s)\bearnings\s+per\s+(?:common\s+)?share\b/i,
     ],
     valueType: "eps",
@@ -196,9 +198,8 @@ export function extractOutlookMetrics(
     const definitionMetrics = extractOutlookMetricsForDefinition(
       section.lines,
       definition,
-      // Every row of a revised-guidance table covers the same period, so the rows are not
-      // asked to name it themselves — which they cannot, and which would discard them all.
-      section.mixedPeriods && false === section.revisedColumns,
+      section.mixedPeriods &&
+        (false === section.revisedColumns || section.lines.some(line => /\boriginal\b.*\bas\s+of\b/i.test(line))),
       section.heading,
       documentCurrencyCode,
       section.revisedColumns,
@@ -226,6 +227,8 @@ function getOutlookSection(lines: string[]): OutlookSection {
   let collecting = false;
   let heading: string | undefined;
   let mixedPeriods = false;
+  const compactSeparators = lines.some(line =>
+    /\boriginal\b.*\bas\s+of\b/i.test(line) || /^\s*20\d{2}\s+guidance\s*$/i.test(line));
 
   for (const line of lines) {
     if (true === isOutlookHeading(line)) {
@@ -254,7 +257,9 @@ function getOutlookSection(lines: string[]): OutlookSection {
       break;
     }
 
-    sectionLines.push(line);
+    if (false === compactSeparators || false === isEmptyOutlookSeparator(line)) {
+      sectionLines.push(line);
+    }
     if (sectionLines.length >= 30) {
       break;
     }
@@ -275,6 +280,10 @@ function getOutlookSection(lines: string[]): OutlookSection {
     nonGaapMeasures: hasNonGaapGuidanceBasis(sectionLines),
     revisedColumns: sectionLines.some(line => hasRevisedColumnHeader(line)),
   };
+}
+
+function isEmptyOutlookSeparator(line: string): boolean {
+  return /^\s*(?:\|\s*)+$/.test(line);
 }
 
 function getStructuredOutlookPeriodLines(lines: string[]): string[] {
@@ -302,7 +311,9 @@ function isInlineOutlookMetricLine(line: string): boolean {
   const isDirectCompanyAnnualForecast = /\b(?:our\s+(?:total\s+)?(?:capex|capital\s+expenditures?)|management\b.{0,60}\b(?:capex|capital\s+expenditures?)|the\s+company(?:'s)?\s+(?:total\s+)?(?:capex|capital\s+expenditures?))\b/i.test(line) &&
     /\b(?:20\d{2}|fy\s*\d{2}|fiscal(?:\s+year)?|full[-\s]+year)\b/i.test(line) &&
     /\b(?:expects?|expected|forecast|projected)\b/i.test(line);
-  return (isGuidanceSentence || isInlineOutlookHeading || isDirectCompanyAnnualForecast) &&
+  const isResultsAnnouncement = /\b(?:announces?|reports?)\b.{0,80}\b(?:quarter|results?)\b/i.test(line);
+  return false === isResultsAnnouncement &&
+    (isGuidanceSentence || isInlineOutlookHeading || isDirectCompanyAnnualForecast) &&
     true === hasInlineOutlookMetricValue(line);
 }
 
@@ -334,9 +345,10 @@ function getSectionMoneyUnit(lines: string[]): string | undefined {
 
 // The header of a revised-guidance table, carrying only the two column captions.
 function hasRevisedColumnHeader(line: string): boolean {
-  return /\bprior\b/i.test(line) &&
-    /\bupdated\b/i.test(line) &&
-    false === /\d/.test(line);
+  return (/\bprior\b/i.test(line) &&
+      /\bupdated\b/i.test(line) &&
+      false === /\d/.test(line)) ||
+    (/\boriginal\b/i.test(line) && 2 <= (line.match(/\bas\s+of\b/gi)?.length ?? 0));
 }
 
 function hasGuidanceFirstColumnHeader(lines: string[]): boolean {
@@ -366,17 +378,22 @@ function hasMixedOutlookPeriods(lines: string[]): boolean {
   const hasQuarter = /\b(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b/i.test(sectionText) ||
     /\bq[1-4]\b/i.test(sectionText) ||
     /\b[1-4]q(?:20)?\d{2}\b/i.test(sectionText);
-  return hasQuarter && hasStandaloneFullYearPeriod(sectionText);
+  return hasQuarter && (hasStandaloneFullYearPeriod(sectionText) ||
+    /(?:^|\|)\s*20\d{2}\s+guidance\b/im.test(sectionText));
 }
 
 function isOutlookHeading(line: string): boolean {
-  if (line.length > 140 ||
+  const isExplicitOutlookTitle = /^\s*(?:financial|business)\s+outlook\b/i.test(line);
+  if (line.length > (isExplicitOutlookTitle ? 240 : 140) ||
+      /^\s*[•▪◦]/.test(line) ||
       /\b(?:announces?|reports?|reported|results?)\b/i.test(line) ||
       /\bforward-looking\s+statements?\b/i.test(line)) {
     return false;
   }
 
-  const normalizedLine = line
+  const wrappedGenericHeading = /^\s*\|\s*((?:financial\s+|business\s+)?(?:outlook|guidance))\s*\|\s*$/i
+    .exec(line)?.[1];
+  const normalizedLine = wrappedGenericHeading ?? line
     .replace(/^[\s•–—-]+/, "")
     .replace(/[\s|–—-]+$/, "")
     .trim();
@@ -607,7 +624,8 @@ function getOutlookPeriodLabel(
     const contextLine = lines[index] ?? "";
     const inheritedPeriodLabel = getLineOutlookPeriodLabel(contextLine);
     if (undefined === inheritedPeriodLabel ||
-        false === isStandaloneOutlookPeriodCaption(contextLine)) {
+        (false === isStandaloneOutlookPeriodCaption(contextLine) &&
+          false === /\bconsolidated\s+metric\b/i.test(contextLine))) {
       continue;
     }
 
@@ -618,7 +636,7 @@ function getOutlookPeriodLabel(
   // a later full-year caption makes the section mixed. Keep this fallback narrow: a generic
   // period heading can sit above historical and target prose whose rows do not inherit it.
   return /^\s*(?:q[1-4]|(?:first|second|third|fourth)[\s–—-]+quarter)\b.*\bfinancial\s+outlook\b/i
-    .test(sectionHeading ?? "")
+    .test(sectionHeading ?? "") || /^\s*fiscal(?:\s+year)?\s+20\d{2}\b.*\bending\b.*\boutlook\b/i.test(sectionHeading ?? "")
     ? getLineOutlookPeriodLabel(sectionHeading ?? "")
     : undefined;
 }
@@ -628,13 +646,18 @@ function isStandaloneOutlookPeriodCaption(line: string): boolean {
     return false;
   }
 
-  return /^\s*for\s+the\s+(?:(?:first|second|third|fourth)\s+quarter|full[\s–—-]+year)\b[^:]{0,40}\b(?:we|the\s+company)\s+expect\s*:\s*$/i.test(line) ||
-    /^\s*(?:q[1-4](?:\s+(?:fy\s*)?20\d{2})?|(?:first|second|third|fourth)[\s–—-]+quarter(?:\s+(?:of\s+)?(?:fiscal\s+year\s+)?20\d{2})?|(?:full[\s–—-]+year|fiscal(?:\s+year)?|fy)\s*(?:20\d{2}|\d{2}))(?:\s+financial\s+(?:outlook|guidance))?(?:\s*[|:])*\s*$/i.test(line) ||
+  return /^\s*\|\s*(?:third[\s–—-]+quarter|fiscal\s+year\s+20\d{2})\s*\|/i.test(line) ||
+    /^\s*for\s+the\s+(?:(?:first|second|third|fourth)\s+quarter|full[\s–—-]+year)\b[^:]{0,40}\b(?:we|the\s+company)\s+expect\s*:\s*$/i.test(line) ||
+    /^\s*.{0,50}\bis\s+providing\s+guidance\s+for\s+(?:its\s+)?(?:first|second|third|fourth)\s+quarter\b[^$€£¥%]*:?\s*$/i.test(line) ||
+    /^\s*.{0,50}\bis\s+providing\s+guidance\s+for\s+(?:its\s+)?(?:full\s+)?fiscal\s+year\s+20\d{2}\b[^$€£¥%]*:?\s*$/i.test(line) ||
+    /^\s*(?:q[1-4](?:\s+(?:fy\s*)?(?:20)?\d{2})?|(?:first|second|third|fourth)[\s–—-]+quarter(?:\s+(?:of\s+)?(?:fiscal\s+year\s+)?20\d{2})?|(?:full[\s–—-]+year|fiscal(?:\s+year)?|fy)\s*(?:20\d{2}|\d{2}))(?:\s+(?:financial\s+)?(?:outlook|guidance))?(?:\s*[|:])*\s*$/i.test(line) ||
+    /^\s*full[\s–—-]+year\s+fy\s*\d{2}\s*$/i.test(line) ||
     true === isOutlookHeading(line);
 }
 
 function getLineOutlookPeriodLabel(line: string): string | undefined {
   const periodCandidates: {index: number; label: string;}[] = [];
+  const forwardMarkerIndex = line.search(/\b(?:outlook|guidance|expects?|forecast|projected|increasing|raises?|targeting)\b/i);
   // Beauty and retail filers commonly write fiscal quarters in the inverted compact form
   // "1Q27". Recognise it before a historical FY26 comparison later in the same sentence.
   const invertedQuarterMatch = /\b([1-4])q(?:\s*)?(?:20)?\d{2}\b/i.exec(line);
@@ -645,16 +668,20 @@ function getLineOutlookPeriodLabel(line: string): string | undefined {
     });
   }
 
-  const directQuarterMatch = /\bq([1-4])(?:\s+20\d{2})?\b/i.exec(line);
-  if (undefined !== directQuarterMatch?.[1]) {
+  for (const directQuarterMatch of line.matchAll(/\bq([1-4])(?:\s+20\d{2})?\b/gi)) {
+    if (undefined === directQuarterMatch[1]) {
+      continue;
+    }
     periodCandidates.push({
       index: directQuarterMatch.index,
       label: `Q${directQuarterMatch[1]}`,
     });
   }
 
-  const writtenQuarterMatch = /\b(first|second|third|fourth)[\s–—-]+quarter\b/i.exec(line);
-  if (undefined !== writtenQuarterMatch?.[1]) {
+  for (const writtenQuarterMatch of line.matchAll(/\b(first|second|third|fourth)[\s–—-]+quarter\b/gi)) {
+    if (undefined === writtenQuarterMatch[1]) {
+      continue;
+    }
     const quarterByName = new Map([
       ["first", "Q1"],
       ["second", "Q2"],
@@ -678,7 +705,47 @@ function getLineOutlookPeriodLabel(line: string): string | undefined {
     });
   }
 
-  return periodCandidates.sort((first, second) => first.index - second.index)[0]?.label;
+  const invertedFiscalYearMatch = /\b(20\d{2})\s+fiscal\s+year\b/i.exec(line);
+  if (undefined !== invertedFiscalYearMatch?.[1]) {
+    periodCandidates.push({
+      index: invertedFiscalYearMatch.index,
+      label: `FY${invertedFiscalYearMatch[1]}`,
+    });
+  }
+
+  const compactFullYearMatch = /\bfull[\s–—-]+year\s+fy\s*(\d{2})\b/i.exec(line);
+  if (undefined !== compactFullYearMatch?.[1]) {
+    periodCandidates.push({
+      index: compactFullYearMatch.index,
+      label: `FY20${compactFullYearMatch[1]}`,
+    });
+  }
+
+  const yearGuidanceMatch = /\b(20\d{2})\s+guidance\b/i.exec(line);
+  if (undefined !== yearGuidanceMatch?.[1]) {
+    periodCandidates.push({
+      index: yearGuidanceMatch.index,
+      label: `FY${yearGuidanceMatch[1]}`,
+    });
+  }
+
+  const trailingForecastYearMatch = /\b(?:expects?|targeting|forecast|projected)\b[\s\S]{0,180}?\bin\s+(20\d{2})\b/i.exec(line);
+  if (undefined !== trailingForecastYearMatch?.[1]) {
+    periodCandidates.push({
+      index: trailingForecastYearMatch.index,
+      label: `FY${trailingForecastYearMatch[1]}`,
+    });
+  }
+
+  const forwardCandidates = 0 <= forwardMarkerIndex
+    ? periodCandidates.filter(candidate => candidate.index >= forwardMarkerIndex)
+    : [];
+  return (0 < forwardCandidates.length ? forwardCandidates : periodCandidates)
+    .sort((first, second) => first.index - second.index)[0]?.label;
+}
+
+function withNullablePercentGrowthDirection(value: string | null, source: string): string | null {
+  return null === value ? null : withPercentGrowthDirection(value, source);
 }
 
 function getOutlookMetricCandidateScore(line: string): number {
@@ -713,6 +780,10 @@ function getOutlookMetricCandidateScore(line: string): number {
 }
 
 function isHistoricalOutlookMetricLine(line: string): boolean {
+  if (/\bguidance\s+is\s+based\s+on\s+the\s+following\b.{0,120}\bfigures?\b/i.test(line)) {
+    return true;
+  }
+
   return /\b(?:reported|generated|was|were|amounted|totaled)\b/i.test(line) &&
     false === /\b(?:expects?|expected|guidance|outlook|forecast|projected|targets?|targeting|anticipates?|anticipated|reaffirms?|reiterates?|maintains?|raises?|raised)\b/i.test(line);
 }
@@ -781,6 +852,9 @@ function extractOutlookValue(
         ? getOutlookRangeValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit)
         : null) ??
       getGrowthOutlookValue(valueText) ??
+      ("text" === valueType && /\b(?:increase|decrease)\b/i.test(valueText)
+        ? withNullablePercentGrowthDirection(getPercentRangeOutlookValue(valueText), valueText)
+        : null) ??
       getOutlookRangeValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit) ??
       ("eps" === valueType ? getEpsPercentOutlookValue(valueText) : null) ??
       ("text" === valueType ? getSingleOutlookValue(valueText, "money", documentCurrencyCode) : null) ??
@@ -980,6 +1054,9 @@ function normalizeOutlookValueText(value: string): string {
     // range in a parenthetical "previously ..." clause. Remove that comparison before
     // range parsing so the stale endpoints cannot replace the updated figure.
     .replace(/\(\s*previously\b[^)]*\)/gi, " ")
+    // The first sentence carries the guided EPS. Later implementation notes repeat smaller
+    // FX and share-count headwinds, which are explanatory amounts rather than the outlook.
+    .replace(/\b(?:GAAP|Non-GAAP)\s+EPS\s+guidance\s+includes\b[\s\S]*$/i, " ")
     // A table can wrap one accounting parenthesis around a complete range,
     // "($29.0 - 32.0)". Both endpoints are losses, so make each sign explicit
     // before the normal range parser sees them.
@@ -1251,6 +1328,7 @@ function parseNumber(value: unknown): number | null {
       "-$1 $2",
     )
     .replace(/^\((.*)\)$/, "-$1")
+    .replace(/US\s*\$/gi, "")
     .replace(/C\s*\$/g, "")
     .replace(/[€£¥$]/g, "")
     .replace(/\b(?:usd|cad|eur|gbp|jpy|chf)\b/gi, "")

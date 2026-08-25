@@ -350,6 +350,7 @@ export function stripReferenceMarkers(line: string): string {
 // number it contains is a footnote marker or a cross-reference.
 export function isDefinitionalLine(line: string): boolean {
   return /\b(?:is|are)\s+defined\s+as\b/i.test(line) ||
+    /\beps\s+represents\s+net\s+(?:income|loss)\s+per\s+diluted\s+share\b/i.test(line) ||
     /\bshould\s+not\s+be\s+(?:viewed|considered)\b/i.test(line) ||
     /^\s*\(\d{1,2}\)\s*[A-Z]/.test(line);
 }
@@ -394,8 +395,7 @@ export function getCurrentPeriodColumnIndex(
 
     const splitHeaderYears = getSplitColumnHeaderYears(lines, index);
     if (2 <= splitHeaderYears.length) {
-      const columnIndex = splitHeaderYears.indexOf(reportedYear);
-      return -1 === columnIndex ? 0 : columnIndex;
+      return getReportedYearColumnIndex(splitHeaderYears, reportedYear);
     }
 
     const headerYears = getColumnHeaderYears(line);
@@ -405,11 +405,23 @@ export function getCurrentPeriodColumnIndex(
 
     // Combined tables repeat the year across the quarter and year-to-date groups; the
     // quarter group is printed first, so its occurrence is the one to read.
-    const columnIndex = headerYears.indexOf(reportedYear);
-    return -1 === columnIndex ? 0 : columnIndex;
+    return getReportedYearColumnIndex(headerYears, reportedYear);
   }
 
   return 0;
+}
+
+function getReportedYearColumnIndex(headerYears: string[], reportedYear: string): number {
+  const exactIndex = headerYears.indexOf(reportedYear);
+  if (-1 !== exactIndex) {
+    return exactIndex;
+  }
+
+  // Fiscal labels can be one year ahead of the calendar dates printed above a statement
+  // (Q2 FY2027 over columns 2025 | 2026). In that layout the newest calendar year is the
+  // reported period, even though the fiscal year itself is absent from the header.
+  const latestYear = Math.max(...headerYears.map(year => Number.parseInt(year, 10)));
+  return headerYears.findIndex(year => Number.parseInt(year, 10) === latestYear);
 }
 
 // SEC table conversion often emits each year heading as its own line rather than keeping
@@ -451,12 +463,8 @@ function getReportedCurrencyColumnIndex(
   lineIndex: number,
   currencyCode: string | undefined,
 ): number | null {
-  if (undefined === currencyCode) {
-    return null;
-  }
-
   for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 240; index--, examined++) {
-    if (currencyCode !== getCurrencyColumnCode(lines[index] ?? "")) {
+    if (null === getCurrencyColumnCode(lines[index] ?? "")) {
       continue;
     }
 
@@ -475,7 +483,13 @@ function getReportedCurrencyColumnIndex(
       currencyColumns.push(columnCode);
     }
 
-    const matchingColumnIndex = currencyColumns.indexOf(currencyCode);
+    const desiredCurrencyCode = currencyCode ??
+      (currencyColumns.includes("USD") && 2 <= new Set(currencyColumns).size ? "USD" : undefined);
+    if (undefined === desiredCurrencyCode) {
+      return null;
+    }
+
+    const matchingColumnIndex = currencyColumns.indexOf(desiredCurrencyCode);
     return -1 === matchingColumnIndex ? null : matchingColumnIndex;
   }
 

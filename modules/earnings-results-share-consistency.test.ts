@@ -47,6 +47,13 @@ describe("per-share consistency gate", () => {
     }
   });
 
+  test("reconciles ADS earnings against an ordinary-share count", () => {
+    const metrics = asMetrics(36_500_000, 0.32);
+    Object.defineProperty(metrics[1], "sourceSnippet", {value: "Diluted earnings per ADS"});
+
+    expect(getInconsistentPerShareReasons(metrics, 456_250_000)).toEqual([]);
+  });
+
   test("says nothing when a figure is too rounded to reconcile", () => {
     // Wayfair's "-$0.01" on a "$1 million" loss reconciles to anywhere from 67M to 200M shares.
     expect(getInconsistentPerShareReasons(asMetrics(-1_000_000, -0.01), 132)).toEqual([]);

@@ -1530,6 +1530,186 @@ const filingCorpus: {
     source: "1158449/000119312526357755/aap-ex99_1.htm",
     ticker: "aap",
   },
+  {
+    company: "Walmart",
+    metrics: [
+      ["adjusted_eps", "$0.81"],
+      ["gaap_eps", "$0.80"],
+      ["revenue", "$187.9B"],
+      ["net_income", "$6.37B"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "3% to 3.75% growth"],
+      ["FY2027 Revenue", "4% to 5% growth"],
+      ["Q3 Adj EPS", "$0.62 to $0.64"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "104169/000010416926000145/earningsreleasefy27q2.htm",
+    ticker: "wmt",
+  },
+  {
+    company: "Autohome",
+    metrics: [
+      ["adjusted_eps", "$0.36"],
+      ["gaap_eps", "$0.32"],
+      ["revenue", "$176.6M"],
+      ["net_income", "$36.5M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1527636/000119312526357963/d404747dex991.htm",
+    ticker: "athm",
+  },
+  {
+    company: "NetEase",
+    metrics: [
+      ["adjusted_eps", "$1.78"],
+      ["gaap_eps", "$1.61"],
+      ["revenue", "$4.44B"],
+      ["net_income", "$1.03B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1110646/000110465926098940/tm2623482d1_ex99-1.htm",
+    ticker: "ntes",
+  },
+  {
+    company: "Ross Stores",
+    metrics: [
+      ["gaap_eps", "$2.66"],
+      ["revenue", "$6.3B"],
+      ["net_income", "$851M"],
+    ],
+    outlook: [
+      ["Q3 EPS", "$1.75 to $1.83"],
+      ["FY2026 EPS", "$8.61 to $8.77"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "745732/000074573226000038/q226exhibit991.htm",
+    ticker: "rost",
+  },
+  {
+    company: "BJ's Wholesale Club",
+    metrics: [
+      ["adjusted_eps", "$1.36"],
+      ["gaap_eps", "$1.36"],
+      ["revenue", "$6.09B"],
+      ["net_income", "$173.87M"],
+    ],
+    outlook: [
+      ["FY2026 Adj EPS", "$4.6 to $4.8"],
+      ["FY2026 Capex", "$800M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1531152/000153115226000053/bj-2026080126x8kex991.htm",
+    ticker: "bj",
+  },
+  {
+    company: "Gorilla Technology Group",
+    metrics: [
+      ["adjusted_eps", "-$0.58"],
+      ["gaap_eps", "-$1.74"],
+      ["revenue", "$78.4M"],
+      ["net_income", "-$46.9M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$48M to $50M"],
+      ["FY2027 Revenue", "$450M to $500M"],
+    ],
+    quarterLabel: undefined,
+    source: "1903145/000143774926028827/ex_974012.htm",
+    ticker: "grrr",
+  },
+  {
+    company: "Bank of Nova Scotia",
+    metrics: [
+      ["adjusted_eps", "C$2.28"],
+      ["gaap_eps", "C$2.27"],
+      ["revenue", "C$10.54B"],
+      ["net_income", "C$2.95B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q3 2026",
+    source: "9631/000119312526364091/d143422dex991.htm",
+    ticker: "bns",
+  },
+  {
+    company: "Zoom Communications",
+    metrics: [
+      ["adjusted_eps", "$1.55"],
+      ["gaap_eps", "$5.15"],
+      ["revenue", "$1.28B"],
+      ["net_income", "$1.54B"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$1.275B to $1.28B"],
+      ["FY2027 Revenue", "$5.085B to $5.095B"],
+      ["Q3 Adj EPS", "$1.46 to $1.48"],
+      ["FY2027 Adj EPS", "$6.08 to $6.12"],
+      ["FY2027 Free cash flow", "$1.78B to $1.82B"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1585521/000158552126000119/zm-20260731ex991.htm",
+    ticker: "zm",
+  },
+  {
+    company: "nCino",
+    metrics: [
+      ["gaap_eps", "$0.05"],
+      ["revenue", "$161M"],
+      ["net_income", "$5.08M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$161.25M to $163.25M"],
+      ["FY2027 Revenue", "$644M to $647M"],
+      ["Q3 Operating income", "$42M to $44M"],
+      ["FY2027 Operating income", "$171M to $174M"],
+      ["FY2027 Free cash flow", "$137M to $142M"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1902733/000190273326000099/secondquarterfy27earningsp.htm",
+    ticker: "ncno",
+  },
+  {
+    company: "Box",
+    metrics: [
+      ["adjusted_eps", "$0.40"],
+      ["gaap_eps", "$0.09"],
+      ["revenue", "$321.1M"],
+      ["net_income", "$19.22M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$329M"],
+      ["FY2027 Revenue", "$1.29B"],
+      ["Q3 Adj EPS", "$0.39"],
+      ["FY2027 Adj EPS", "$1.54"],
+      ["Q3 EPS", "$0.12"],
+      ["FY2027 EPS", "$0.38"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1372612/000119312526365121/box-ex99_1.htm",
+    ticker: "box",
+  },
+  {
+    company: "Semtech",
+    metrics: [
+      ["adjusted_eps", "$0.71"],
+      ["gaap_eps", "$1.59"],
+      ["revenue", "$341.9M"],
+      ["net_income", "$160.1M"],
+    ],
+    outlook: [
+      ["Revenue", "$405M to $415M"],
+      ["Adj EPS", "$1.02 to $1.08"],
+      ["Adj EBITDA", "$130.3M to $138.3M"],
+      ["Gross margin", "58.3%"],
+      ["Operating margin", "31.0%"],
+      ["Operating income", "$123M to $131M"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "88941/000008894126000028/smtc-07262026x8k991.htm",
+    ticker: "smtc",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1550,6 +1730,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(97);
+    expect(filingCorpus).toHaveLength(108);
   });
 });

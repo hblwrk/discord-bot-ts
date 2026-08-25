@@ -297,6 +297,9 @@ export function getMoneyScaleFromContextText(text: string): number | null {
     /(?:\bin\s+|[$€£¥]\s*,?\s*|\b(?:USD|CAD|TWD|NTD|EUR|GBP|JPY|CHF)\s*,?\s*)(thousand|million|billion)s?\b/i.exec(text) ??
     /\b(thousand|million|billion)s?\s+of\s+dollars\b/i.exec(text) ??
     /\(\s*(thousand|million|billion)s?\b/i.exec(text);
+  if (/\(\s*[$€£¥]?\s*0{3}s?\b/i.test(text)) {
+    return 1_000;
+  }
   const unit = declarationMatch?.[1]?.toLowerCase();
   if ("thousand" === unit) {
     return 1_000;
