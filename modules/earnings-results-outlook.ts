@@ -226,15 +226,22 @@ export function extractOutlookMetrics(
 }
 
 function getOutlookSection(lines: string[]): OutlookSection {
+  const joinedLines = joinSplitOutlookLines(lines);
   const sectionLines: string[] = [];
   let collecting = false;
   let heading: string | undefined;
   let mixedPeriods = false;
-  const compactSeparators = lines.some(line =>
+  const compactSeparators = joinedLines.some(line =>
     /\boriginal\b.*\bas\s+of\b/i.test(line) || /^\s*20\d{2}\s+guidance\s*$/i.test(line));
 
-  for (const line of lines) {
+  for (const line of joinedLines) {
     if (true === isOutlookHeading(line)) {
+      // An inline guidance sentence is only a fallback for releases without a dedicated
+      // section. If a real Outlook heading appears later, discard the intervening results
+      // prose so historical actuals cannot be merged into the guidance candidates.
+      if (true === collecting && undefined === heading) {
+        sectionLines.length = 0;
+      }
       if (true === collecting && /\|/.test(line) && /\bfull[\s–—-]+year\s+FY\s*\d{2}\b/i.test(line)) {
         sectionLines.push(line);
       }
@@ -260,6 +267,15 @@ function getOutlookSection(lines: string[]): OutlookSection {
     }
 
     if (true === isOutlookSectionEnd(line)) {
+      // A release deck can repeat an Outlook title on its cover or contents page. If the
+      // next line is already another section heading, abandon that empty occurrence and
+      // keep looking for the populated section later in the document.
+      if (0 === sectionLines.length) {
+        collecting = false;
+        heading = undefined;
+        mixedPeriods = false;
+        continue;
+      }
       break;
     }
 
@@ -287,6 +303,48 @@ function getOutlookSection(lines: string[]): OutlookSection {
     nonGaapMeasures: hasNonGaapGuidanceBasis(expandedSectionLines),
     revisedColumns: expandedSectionLines.some(line => hasRevisedColumnHeader(line)),
   };
+}
+
+// Inline font tags sometimes split a semantic label into separate text lines. Reattach only
+// known Outlook headings, section endings, and metric captions so prose remains line-bounded
+// for the candidate scorer. For example: "Fiscal" / "Year 2026 ... Outlook" and
+// "| · | Net" / "sales growth ...".
+function joinSplitOutlookLines(lines: string[]): string[] {
+  const joinedLines: string[] = [];
+  for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
+    const line = lines[lineIndex] ?? "";
+    const nextLine = lines[lineIndex + 1];
+    if (undefined === nextLine) {
+      joinedLines.push(line);
+      continue;
+    }
+
+    const combinedLine = `${line} ${nextLine}`.replace(/\s+/g, " ").trim();
+    const cleanNextLine = nextLine
+      .replace(/^[\s|•▪◦–—-]+/, "")
+      .trim();
+    const isSplitMetricCaption =
+      /\b(?:net|total|diluted|adjusted|capital)\s*$/i.test(line) &&
+      /^(?:sales|revenues?|eps|earnings\s+per\s+share|expenditures?)\b/i.test(cleanNextLine) &&
+      /[$€£¥]|\d+(?:\.\d+)?\s*%/i.test(nextLine);
+    const isShortLabelFragment = line.length <= 40 &&
+      line.trim().split(/\s+/).length <= 4 &&
+      false === /\d/.test(line);
+    const isSplitHeading =
+      true === isShortLabelFragment &&
+      ((true === isOutlookHeading(combinedLine) && false === isOutlookHeading(line)) ||
+        (true === isOutlookSectionEnd(combinedLine) && false === isOutlookSectionEnd(line)));
+
+    if (false === isSplitMetricCaption && false === isSplitHeading) {
+      joinedLines.push(line);
+      continue;
+    }
+
+    joinedLines.push(combinedLine);
+    lineIndex += 1;
+  }
+
+  return joinedLines;
 }
 
 // Some guidance tables put one quarter and the full year in parallel columns. Convert each
@@ -423,7 +481,13 @@ function hasGuidanceRangeColumnHeader(lines: string[]): boolean {
 }
 
 function hasMixedOutlookPeriods(lines: string[]): boolean {
-  const sectionText = lines.join(" ");
+  const sectionText = lines
+    // Per-share guidance footnotes can mention the quarter in which a tariff or other
+    // adjustment occurred. That is an input to annual guidance, not a second guided period.
+    .filter((_line, lineIndex) => false === /\bguidance\s+includes\b.{0,260}\b(?:impact|benefit)\b/i.test(
+      lines.slice(Math.max(0, lineIndex - 1), lineIndex + 1).join(" "),
+    ))
+    .join(" ");
   const hasQuarter = /\b(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b/i.test(sectionText) ||
     /\bq[1-4]\b/i.test(sectionText) ||
     /\b[1-4]q(?:20)?\d{2}\b/i.test(sectionText);
@@ -647,7 +711,13 @@ function getOutlookMetricValueLine(
   const needsWrappedRangeContinuation = /\b(?:between|range)\b/i.test(line) &&
     /(?:\band|\bto|[-–—])\s*$/.test(line.trim()) &&
     /^\s*(?:[$€£¥]|\(?-?\d)/.test(nextLine);
-  return true === needsTableValueContinuation || true === needsWrappedRangeContinuation
+  const needsNarrativeValueContinuation =
+    /\b(?:expects?|expected|continues?\s+to\s+expect)\b/i.test(line) &&
+    false === /[$€£¥]|\d+\.\d+|\d+\s*%/.test(line) &&
+    /^\s*(?:in\s+the\s+range\s+of\s+|between\s+|approximately\s+)?(?:[$€£¥]|\(?-?\d+(?:\.\d+)?\s*%)/i.test(nextLine);
+  return true === needsTableValueContinuation ||
+      true === needsWrappedRangeContinuation ||
+      true === needsNarrativeValueContinuation
     ? `${line} ${nextLine}`
     : line;
 }
@@ -676,8 +746,15 @@ function getOutlookPeriodLabel(
   lineIndex: number,
   sectionHeading?: string,
 ): string | undefined {
-  const directPeriodLabel = getLineOutlookPeriodLabel(lines[lineIndex] ?? "");
-  if (undefined !== directPeriodLabel) {
+  const line = lines[lineIndex] ?? "";
+  const directPeriodLabel = getLineOutlookPeriodLabel(line);
+  const historicalComparisonIndex = line.search(
+    /\b(?:on\s+top\s+of|(?:as\s+)?compared\s+(?:to|with)|versus|vs\.?)\b/i,
+  );
+  const hasForecastPeriodBeforeComparison = 0 < historicalComparisonIndex &&
+    hasOutlookPeriodReference(line.slice(0, historicalComparisonIndex));
+  if (undefined !== directPeriodLabel &&
+      (-1 === historicalComparisonIndex || true === hasForecastPeriodBeforeComparison)) {
     return directPeriodLabel;
   }
 
@@ -697,13 +774,25 @@ function getOutlookPeriodLabel(
     return inheritedPeriodLabel;
   }
 
+  if (undefined !== directPeriodLabel) {
+    return directPeriodLabel;
+  }
+
   // A period-specific "Financial Outlook" heading governs the first bullet group even when
   // a later full-year caption makes the section mixed. Keep this fallback narrow: a generic
   // period heading can sit above historical and target prose whose rows do not inherit it.
   return /^\s*(?:q[1-4]|(?:first|second|third|fourth)[\s–—-]+quarter)\b.*\bfinancial\s+outlook\b/i
-    .test(sectionHeading ?? "") || /^\s*fiscal(?:\s+year)?\s+20\d{2}\b.*\bending\b.*\boutlook\b/i.test(sectionHeading ?? "")
+    .test(sectionHeading ?? "") ||
+      (/^\s*fy\s*\d{2}\b.*\b(?:outlook|guidance)\b/i.test(sectionHeading ?? "") ||
+        /^\s*fiscal(?:\s+year)?\s+20\d{2}\b.*\bending\b.*\boutlook\b/i
+          .test(sectionHeading ?? ""))
     ? getLineOutlookPeriodLabel(sectionHeading ?? "")
     : undefined;
+}
+
+function hasOutlookPeriodReference(text: string): boolean {
+  return /\b(?:q[1-4](?:\s*(?:FY\s*)?(?:20)?\d{2})?|[1-4]q(?:20)?\d{2}|(?:first|second|third|fourth)[\s–—-]+quarter|(?:full[\s–—-]+year|fiscal(?:\s+year)?|fy)\s*(?:of\s+)?(?:20\d{2}|\d{2}))\b/i
+    .test(text);
 }
 
 function isStandaloneOutlookPeriodCaption(line: string): boolean {
@@ -712,6 +801,7 @@ function isStandaloneOutlookPeriodCaption(line: string): boolean {
   }
 
   return /^\s*\|\s*(?:third[\s–—-]+quarter|fiscal\s+year\s+20\d{2})\s*\|/i.test(line) ||
+    /^\s*for\s+(?:fiscal\s+year\s+20\d{2}|the\s+(?:first|second|third|fourth)[\s–—-]+quarter\s+of\s+fiscal\s+20\d{2})\b[^:]{0,100}\bthe\s+company\s+(?:now\s+)?expects\s*:\s*$/i.test(line) ||
     /^\s*for\s+the\s+(?:(?:first|second|third|fourth)\s+quarter|full[\s–—-]+year)\b[^:]{0,40}\b(?:we|the\s+company)\s+expect\s*:\s*$/i.test(line) ||
     /^\s*.{0,50}\bis\s+providing\s+guidance\s+for\s+(?:its\s+)?(?:first|second|third|fourth)\s+quarter\b[^$€£¥%]*:?\s*$/i.test(line) ||
     /^\s*.{0,60}\bis\s+providing\s+guidance\s+for\s+(?:its\s+)?fiscal\s+(?:first|second|third|fourth)\s+quarter\b[^$€£¥%]*:?\s*$/i.test(line) ||
@@ -948,8 +1038,12 @@ function extractOutlookValue(
         ? getOutlookRangeValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit)
         : null) ??
       getGrowthOutlookValue(valueText) ??
-      ("text" === valueType && /\b(?:increase|decrease)\b/i.test(valueText)
-        ? withNullablePercentGrowthDirection(getPercentRangeOutlookValue(valueText), valueText)
+      ("text" === valueType &&
+        (/\b(?:increase|decrease)\b/i.test(valueText) ||
+          ("revenue" === metricKey &&
+            /\b(?:net\s+sales|total\s+sales)\b/i.test(line) &&
+            /\b(?:growth|increase|decrease)\b/i.test(rawValueText)))
+        ? withNullablePercentGrowthDirection(getPercentRangeOutlookValue(valueText), rawValueText)
         : null) ??
       getOutlookRangeValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit) ??
       ("eps" === valueType ? getEpsPercentOutlookValue(valueText) : null) ??

@@ -1845,6 +1845,78 @@ const filingCorpus: {
     source: "1045520/000119312526369470/d71313dex991.htm",
     ticker: "cm",
   },
+  {
+    company: "Burlington Stores",
+    metrics: [
+      ["adjusted_eps", "$2.37"],
+      ["gaap_eps", "$2.88"],
+      ["revenue", "$3B"],
+      ["net_income", "$184.3M"],
+    ],
+    outlook: [
+      ["FY2026 Revenue", "10% to 11% growth"],
+      ["Q3 Revenue", "9% to 11% growth"],
+      ["FY2026 Adj EPS", "$11.77 to $11.97"],
+      ["Q3 Adj EPS", "$1.6 to $1.7"],
+      ["Q3 Tax rate", "26%"],
+      ["FY2026 Capex", "$875M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1579298/000119312526369502/burl-ex99_1.htm",
+    ticker: "burl",
+  },
+  {
+    company: "Build-A-Bear Workshop",
+    metrics: [
+      ["adjusted_eps", "$0.70"],
+      ["gaap_eps", "$0.70"],
+      ["revenue", "$115.3M"],
+      ["net_income", "$8.76M"],
+    ],
+    outlook: [
+      ["Revenue", "$500M to $525M"],
+      ["Tax rate", "24%"],
+      ["Capex", "$25M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1113809/000143774926029054/ex_1009466.htm",
+    ticker: "bbw",
+  },
+  {
+    company: "Dollar General",
+    metrics: [
+      ["gaap_eps", "$2.48"],
+      ["revenue", "$11.29B"],
+      ["net_income", "$550.32M"],
+    ],
+    outlook: [
+      ["Revenue", "4% to 4.3% growth"],
+      ["EPS", "$7.8 to $8"],
+      ["Tax rate", "24.5%"],
+      ["Capex", "$1.4B to $1.5B"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "29534/000110465926101918/tm2623914d1_ex99.htm",
+    ticker: "dg",
+  },
+  {
+    company: "Best Buy",
+    metrics: [
+      ["adjusted_eps", "$1.47"],
+      ["gaap_eps", "$1.48"],
+      ["revenue", "$9.78B"],
+      ["net_income", "$315M"],
+    ],
+    outlook: [
+      ["FY2027 Revenue", "$42.3B to $42.8B"],
+      ["FY2027 Adj EPS", "$6.7 to $6.9"],
+      ["FY2027 Tax rate", "25.5%"],
+      ["FY2027 Capex", "$750M"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "764478/000076447826000037/bby-fy27q2xexx99.htm",
+    ticker: "bby",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1865,6 +1937,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(116);
+    expect(filingCorpus).toHaveLength(120);
   });
 });

@@ -136,6 +136,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       // Capture the level so "an increase of 9%" cannot make it score like an absolute
       // change amount, while still leaving genuine "revenue decreased by $X" lines alone.
       /\b(?:total\s+)?revenues?\s+for\s+(?:the\s+)?(?:q[1-4]|(?:first|second|third|fourth)[\s–—-]+quarter)\s+(?:was|were)\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\)?)/i,
+      /\btotal\s+sales\s+(?:increased|decreased|grew|rose|fell)\b[^.!?]{0,120}?\bto\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\)?)/i,
       /\btotal\s+revenues?(?:\s+and\s+other\s+income)?\b/i,
       /\bnet\s+sales\b/i,
       /\brevenues?\b/i,

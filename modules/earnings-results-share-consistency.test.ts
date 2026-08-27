@@ -47,6 +47,20 @@ describe("per-share consistency gate", () => {
     }
   });
 
+  test("reads a sub-100 share mantissa with an explicit scale", () => {
+    const document = parseEarningsDocument(`
+      <html>
+        <body>
+          <h1>ExampleCo Reports Second Quarter 2026 Results</h1>
+          <p>Diluted weighted average shares outstanding amounted to 63.9 million during the quarter.</p>
+          <p>Adjusted EBITDA was $324 million.</p>
+        </body>
+      </html>
+    `);
+
+    expect(document.dilutedShareMantissa).toBe(63.9);
+  });
+
   test("reconciles ADS earnings against an ordinary-share count", () => {
     const metrics = asMetrics(36_500_000, 0.32);
     Object.defineProperty(metrics[1], "sourceSnippet", {value: "Diluted earnings per ADS"});
