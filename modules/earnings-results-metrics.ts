@@ -47,6 +47,8 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     key: "adjusted_eps",
     label: "Adj EPS",
     patterns: [
+      /\bwhile\s+non-gaap\s+(?:fully\s+)?(?:diluted\s+)?(?:net\s+)?(?:earnings|income|loss)\s+per\s+(?:common\s+)?(?:diluted\s+)?share\s+was\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?)/i,
+      /\b(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\s+non-gaap\s+(?:fully\s+)?(?:diluted\s+)?net\s+eps\s+(?:was|of)\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?)/i,
       /\bnon-gaap\s+net\s+income\s+for\s+the\s+second\s+quarter\b(?:(?!\bin\s+the\s+second\s+quarter\s+of\s+fiscal\s+year\b)[\s\S]){0,500}?\bor\s+(?<metricValue>[$€£¥]\s*\d+(?:\.\d+)?)\s+per\s+share/i,
       /\bnon-gaap\s+basic\s+net\s+income\s+per\s+share\s+was\s+US\s*\$\s*\d+(?:\.\d+)?\s*\(\s*(?<metricValue>US\s*\$\s*\d+(?:\.\d+)?)\s+per\s+ADS\s*\)/i,
       /\bnon-gaap\s+basic\s+and\s+diluted\s+earnings\s+per\s+ADS\b.{0,100}?\(\s*(?<metricValue>US\s*\$\s*\d+(?:\.\d+)?)\s*\)/i,

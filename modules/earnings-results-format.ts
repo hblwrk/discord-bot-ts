@@ -700,6 +700,14 @@ function getContextMoney(
   documentCurrencyCode: string | undefined,
 ): MoneyContext {
   const currencyCode = documentCurrencyCode;
+  const currentLine = lines[lineIndex] ?? "";
+  if (/\bnet\s+(?:income|earnings)\s*\(\s*[$€£¥]\s*B\s*\)/i.test(currentLine)) {
+    return {
+      currencyCode: getCurrencyCodeFromText(currentLine, currencyCode) ?? currencyCode,
+      scale: 1_000_000_000,
+    };
+  }
+
   // Scan upward for the nearest "in millions / $ in thousands / ..." declaration
   // governing this row. Income statements interleave many empty separator rows
   // ("| |") between the unit header and the figures, so the lookback budget is

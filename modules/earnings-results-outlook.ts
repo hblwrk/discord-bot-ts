@@ -77,7 +77,10 @@ const adjustedEpsDefinition: OutlookMetricDefinition = {
     /\badjusted\s+continuing(?:\s+operations?)?\s+earnings\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
     /\badjusted\s+(?:\d{1,2}\s+)?(?:diluted\s+)?eps\b/i,
     /\badjusted\s+(?:\d{1,2}\s+)?(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
-    /\bnon-gaap\s+(?:diluted\s+)?(?:eps|(?:earnings|net\s+income)\s+per\s+(?:common\s+)?(?:diluted\s+)?share)\b/i,
+    /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?net\s+eps\s+to\s+be\s+in\s+(?:a|the)\s+range\b/i,
+    /\bestimates?\b.{0,60}\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?net\s+eps\b/i,
+    /\bnon-gaap\s+(?:fully\s+)?(?:diluted\s+)?(?:eps|(?:earnings|net\s+income)\s+per\s+(?:common\s+)?(?:diluted\s+)?share)\b/i,
+    /^(?:Q[1-4]|FY20\d{2})?\s*non-gaap\s+(?:fully\s+)?(?:diluted\s+)?net\s+income\s+per\s+share\s+attributable\s+to\b/i,
     /\bnon-gaap\s+net\s+loss\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i,
   ],
   valueType: "eps",
@@ -232,6 +235,9 @@ function getOutlookSection(lines: string[]): OutlookSection {
 
   for (const line of lines) {
     if (true === isOutlookHeading(line)) {
+      if (true === collecting && /\|/.test(line) && /\bfull[\s–—-]+year\s+FY\s*\d{2}\b/i.test(line)) {
+        sectionLines.push(line);
+      }
       collecting = true;
       heading = line;
       mixedPeriods = isMixedPeriodOutlookHeading(line);
@@ -265,21 +271,55 @@ function getOutlookSection(lines: string[]): OutlookSection {
     }
   }
 
+  const expandedSectionLines = expandParallelPeriodGuidanceRows(sectionLines);
   return {
-    guidanceFirstColumns: hasGuidanceFirstColumnHeader(sectionLines),
-    guidanceRangeColumns: hasGuidanceRangeColumnHeader(sectionLines),
+    guidanceFirstColumns: hasGuidanceFirstColumnHeader(expandedSectionLines),
+    guidanceRangeColumns: hasGuidanceRangeColumnHeader(expandedSectionLines),
     heading,
-    moneyUnit: getSectionMoneyUnit([heading ?? "", ...sectionLines]),
-    lines: sectionLines,
+    moneyUnit: getSectionMoneyUnit([heading ?? "", ...expandedSectionLines]),
+    lines: expandedSectionLines,
     mixedPeriods: mixedPeriods ||
-      hasMixedOutlookPeriods(sectionLines) ||
+      hasMixedOutlookPeriods(expandedSectionLines) ||
       hasMixedOutlookPeriods([
         heading ?? "",
-        ...getStructuredOutlookPeriodLines(sectionLines),
+        ...getStructuredOutlookPeriodLines(expandedSectionLines),
       ]),
-    nonGaapMeasures: hasNonGaapGuidanceBasis(sectionLines),
-    revisedColumns: sectionLines.some(line => hasRevisedColumnHeader(line)),
+    nonGaapMeasures: hasNonGaapGuidanceBasis(expandedSectionLines),
+    revisedColumns: expandedSectionLines.some(line => hasRevisedColumnHeader(line)),
   };
+}
+
+// Some guidance tables put one quarter and the full year in parallel columns. Convert each
+// row into two period-qualified rows so the ordinary one-candidate-per-period reader can
+// retain both ranges instead of dropping the dense comparison-shaped row.
+function expandParallelPeriodGuidanceRows(lines: string[]): string[] {
+  const headerText = lines.slice(0, 10).join(" ");
+  if (false === lines.some(line => /\bannual\s+recurring\s+revenue\b/i.test(line))) {
+    return lines;
+  }
+
+  const quarterMatch = /\bQ([1-4])\s+FY\s*(\d{2}|20\d{2})\b/i.exec(headerText);
+  const fullYearMatch = /\bfull[\s–—-]+year\s+FY\s*(\d{2}|20\d{2})\b/i.exec(headerText);
+  if (undefined === quarterMatch?.[1] || undefined === fullYearMatch?.[1]) {
+    return lines;
+  }
+
+  const fiscalYear = 2 === fullYearMatch[1].length
+    ? `20${fullYearMatch[1]}`
+    : fullYearMatch[1];
+  return lines.flatMap(line => {
+    const cells = line.split("|").map(cell => cell.trim());
+    const caption = cells[0] ?? "";
+    const valueCells = cells.slice(1).filter(cell => /\d/.test(cell));
+    if ("" === caption || 2 !== valueCells.length) {
+      return [line];
+    }
+
+    return [
+      `Q${quarterMatch[1]} ${caption} | ${valueCells[0]}`,
+      `FY${fiscalYear} ${caption} | ${valueCells[1]}`,
+    ];
+  });
 }
 
 function isEmptyOutlookSeparator(line: string): boolean {
@@ -352,6 +392,10 @@ function hasRevisedColumnHeader(line: string): boolean {
 }
 
 function hasGuidanceFirstColumnHeader(lines: string[]): boolean {
+  if (true === hasParallelGaapNonGaapColumnHeader(lines)) {
+    return true;
+  }
+
   for (const [lineIndex, line] of lines.entries()) {
     if (false === /\bguidance\b/i.test(line)) {
       continue;
@@ -364,6 +408,11 @@ function hasGuidanceFirstColumnHeader(lines: string[]): boolean {
   }
 
   return false;
+}
+
+function hasParallelGaapNonGaapColumnHeader(lines: string[]): boolean {
+  return lines.some(line =>
+    /^\s*\|\s*GAAP\s*\|\s*Non-GAAP\s*\|?\s*$/i.test(line));
 }
 
 function hasGuidanceRangeColumnHeader(lines: string[]): boolean {
@@ -379,6 +428,7 @@ function hasMixedOutlookPeriods(lines: string[]): boolean {
     /\bq[1-4]\b/i.test(sectionText) ||
     /\b[1-4]q(?:20)?\d{2}\b/i.test(sectionText);
   return hasQuarter && (hasStandaloneFullYearPeriod(sectionText) ||
+    /\bfiscal(?:\s+year)?\s+ending\s+[A-Z][a-z]+\s+\d{1,2},\s+20\d{2}\b/i.test(sectionText) ||
     /(?:^|\|)\s*20\d{2}\s+guidance\b/im.test(sectionText));
 }
 
@@ -420,7 +470,9 @@ function isOutlookSectionEnd(line: string): boolean {
     return true;
   }
 
-  if (/\b(?:conference\s+call|about\s+|press\s+contact|investor\s+relations|condensed\s+consolidated|financial\s+statements?)\b/i.test(line)) {
+  if (/\b(?:conference\s+call|press\s+contact|investor\s+relations|condensed\s+consolidated|financial\s+statements?)\b/i.test(line) ||
+      (/\babout\s+\b/i.test(line) &&
+        false === /\bsee\b.{0,40}\babout\s+non-gaap\s+financial\s+measures\b/i.test(line))) {
     return true;
   }
 
@@ -466,6 +518,18 @@ function extractOutlookMetricsForDefinition(
 ): EarningsOutlookMetric[] {
   const bestCandidateByPeriod = new Map<string, OutlookMetricCandidate>();
   for (const [lineIndex, line] of lines.entries()) {
+    if ("revenue" === definition.key && /\bannual\s+recurring\s+revenues?\b/i.test(line)) {
+      continue;
+    }
+    if ("adjusted_eps" === definition.key &&
+        /^(?:Q[1-4]|FY20\d{2})?\s*weighted[-\s]+average\s+shares\b/i.test(line)) {
+      continue;
+    }
+    if ("adjusted_eps" === definition.key &&
+        /\bguidance\s+includes\b.*\bimpact\b/i.test(line)) {
+      continue;
+    }
+
     if (false === revisedColumns &&
         false === guidanceFirstColumns &&
         true === isNoisyOutlookLine(line, guidanceRangeColumns)) {
@@ -620,7 +684,8 @@ function getOutlookPeriodLabel(
   // Some releases introduce a short group of bullets with a standalone period caption.
   // Only inherit from that caption form: looking back through ordinary metric rows leaks
   // one row's period onto the next otherwise-unlabelled row.
-  for (let index = lineIndex - 1; index >= 0 && index >= lineIndex - 4; index--) {
+  const periodLookback = true === hasParallelGaapNonGaapColumnHeader(lines) ? 16 : 4;
+  for (let index = lineIndex - 1; index >= 0 && index >= lineIndex - periodLookback; index--) {
     const contextLine = lines[index] ?? "";
     const inheritedPeriodLabel = getLineOutlookPeriodLabel(contextLine);
     if (undefined === inheritedPeriodLabel ||
@@ -649,13 +714,36 @@ function isStandaloneOutlookPeriodCaption(line: string): boolean {
   return /^\s*\|\s*(?:third[\s–—-]+quarter|fiscal\s+year\s+20\d{2})\s*\|/i.test(line) ||
     /^\s*for\s+the\s+(?:(?:first|second|third|fourth)\s+quarter|full[\s–—-]+year)\b[^:]{0,40}\b(?:we|the\s+company)\s+expect\s*:\s*$/i.test(line) ||
     /^\s*.{0,50}\bis\s+providing\s+guidance\s+for\s+(?:its\s+)?(?:first|second|third|fourth)\s+quarter\b[^$€£¥%]*:?\s*$/i.test(line) ||
+    /^\s*.{0,60}\bis\s+providing\s+guidance\s+for\s+(?:its\s+)?fiscal\s+(?:first|second|third|fourth)\s+quarter\b[^$€£¥%]*:?\s*$/i.test(line) ||
     /^\s*.{0,50}\bis\s+providing\s+guidance\s+for\s+(?:its\s+)?(?:full\s+)?fiscal\s+year\s+20\d{2}\b[^$€£¥%]*:?\s*$/i.test(line) ||
+    /^\s*.{0,70}\bis\s+providing\s+(?:updated\s+)?guidance\s+for\s+(?:its\s+)?fiscal\s+year\s+ending\b[^$€£¥%]*:?\s*$/i.test(line) ||
+    true === isParallelOutlookPeriodHeader(line) ||
     /^\s*(?:q[1-4](?:\s+(?:fy\s*)?(?:20)?\d{2})?|(?:first|second|third|fourth)[\s–—-]+quarter(?:\s+(?:of\s+)?(?:fiscal\s+year\s+)?20\d{2})?|(?:full[\s–—-]+year|fiscal(?:\s+year)?|fy)\s*(?:20\d{2}|\d{2}))(?:\s+(?:financial\s+)?(?:outlook|guidance))?(?:\s*[|:])*\s*$/i.test(line) ||
     /^\s*full[\s–—-]+year\s+fy\s*\d{2}\s*$/i.test(line) ||
     true === isOutlookHeading(line);
 }
 
+function isParallelOutlookPeriodHeader(line: string): boolean {
+  if (false === /^\s*\|/.test(line)) {
+    return false;
+  }
+
+  const firstCell = line.split("|", 3)[1]?.trim() ?? "";
+  return /^(?:FY\s*\d{2,4}|Q[1-4]\s*(?:FY\s*)?\d{2,4})$/i.test(firstCell);
+}
+
 function getLineOutlookPeriodLabel(line: string): string | undefined {
+  const fiscalQuarterMatch = /\bfiscal(?:\s+year)?\s+(?:20\d{2}|\d{2})\s+(first|second|third|fourth)[\s–—-]+quarter\b/i.exec(line);
+  if (undefined !== fiscalQuarterMatch?.[1]) {
+    const quarterByName = new Map([
+      ["first", "Q1"],
+      ["second", "Q2"],
+      ["third", "Q3"],
+      ["fourth", "Q4"],
+    ]);
+    return quarterByName.get(fiscalQuarterMatch[1].toLowerCase());
+  }
+
   const periodCandidates: {index: number; label: string;}[] = [];
   const forwardMarkerIndex = line.search(/\b(?:outlook|guidance|expects?|forecast|projected|increasing|raises?|targeting)\b/i);
   // Beauty and retail filers commonly write fiscal quarters in the inverted compact form
@@ -668,7 +756,7 @@ function getLineOutlookPeriodLabel(line: string): string | undefined {
     });
   }
 
-  for (const directQuarterMatch of line.matchAll(/\bq([1-4])(?:\s+20\d{2})?\b/gi)) {
+  for (const directQuarterMatch of line.matchAll(/\bq([1-4])(?:\s*(?:FY\s*)?(?:20)?\d{2})?\b/gi)) {
     if (undefined === directQuarterMatch[1]) {
       continue;
     }
@@ -702,6 +790,14 @@ function getLineOutlookPeriodLabel(line: string): string | undefined {
     periodCandidates.push({
       index: fullYearMatch.index,
       label: `FY${2 === fullYearMatch[1].length ? `20${fullYearMatch[1]}` : fullYearMatch[1]}`,
+    });
+  }
+
+  const fiscalYearEndingMatch = /\bfiscal(?:\s+year)?\s+ending\s+[A-Z][a-z]+\s+\d{1,2},\s+(20\d{2})\b/i.exec(line);
+  if (undefined !== fiscalYearEndingMatch?.[1]) {
+    periodCandidates.push({
+      index: fiscalYearEndingMatch.index,
+      label: `FY${fiscalYearEndingMatch[1]}`,
     });
   }
 
