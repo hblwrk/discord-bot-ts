@@ -153,6 +153,16 @@ export function getMetricCandidateScore({
       /\bsubscription\s+(?:and\s+transaction\s+fees|fees)\b/i,
       /\b(?:transaction\s+fees|interest\s+on\s+funds\s+held\s+for\s+customers)\b/i,
     ].filter(componentPattern => componentPattern.test(precedingRevenueRows)).length;
+    // A consolidated statement row is authoritative even when a nearby brand-results
+    // bullet spells out its quarter and captures a rounded value. The generic table bonus
+    // alone is not enough to beat that segment prose, so retain the statement heading as a
+    // separate signal and keep the preference limited to an actual table row.
+    if (2 <= (metricLine.match(/\|/g)?.length ?? 0) &&
+        true === isUnderIncomeStatementHeading(lines, lineIndex) &&
+        true === hasBrandResultsSection(lines)) {
+      score += 60;
+    }
+
     if (true === isUnderSegmentResultsHeading(lines, lineIndex)) {
       score -= 120;
     }
@@ -238,6 +248,10 @@ export function getMetricCandidateScore({
   }
 
   return score;
+}
+
+function hasBrandResultsSection(lines: string[]): boolean {
+  return lines.some(line => line.length <= 140 && /\b(?:global\s+)?brand\s+results?\b/i.test(line));
 }
 
 function isUnderIncomeStatementHeading(lines: string[], lineIndex: number): boolean {

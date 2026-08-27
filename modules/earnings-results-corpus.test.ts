@@ -2022,6 +2022,29 @@ const filingCorpus: {
     source: "1403568/000110465926102438/ulta-20260827xex99d1.htm",
     ticker: "ulta",
   },
+  {
+    // The brand-results section states Old Navy's $2.1 billion segment sales more
+    // specifically than the rounded consolidated headline. The statement row is the
+    // authoritative company total, and the current outlook columns precede prior results.
+    company: "Gap",
+    metrics: [
+      ["adjusted_eps", "$0.52"],
+      ["gaap_eps", "$1.38"],
+      ["revenue", "$3.65B"],
+      ["net_income", "$501M"],
+    ],
+    outlook: [
+      ["FY2026 Revenue", "1% to 1.5% growth"],
+      ["Q3 Revenue", "1.5% to 2.5% growth"],
+      ["FY2026 Adj EPS", "$2.35 to $2.45"],
+      ["FY2026 EPS", "$3.77 to $3.87"],
+      ["FY2026 Operating margin", "7.4% to 7.6%"],
+      ["FY2026 Tax rate", "25% to 26%"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "39911/000162828026059262/q22026eprexhibit991.htm",
+    ticker: "gap",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -2042,6 +2065,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(125);
+    expect(filingCorpus).toHaveLength(126);
   });
 });
