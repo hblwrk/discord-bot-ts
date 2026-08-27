@@ -369,6 +369,25 @@ export function getCurrentPeriodColumnIndex(
     return 0;
   }
 
+  const reportedQuarter = /\b(Q[1-4])\b/.exec(quarterLabel ?? "")?.[1];
+  if (undefined !== reportedQuarter) {
+    for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 60; index--, examined++) {
+      const headerLine = lines[index] ?? "";
+      if (true === isPeriodHeaderLine(headerLine)) {
+        break;
+      }
+
+      const quarterColumns = [...headerLine.matchAll(/\bQ([1-4])\b/gi)]
+        .map(quarterMatch => `Q${quarterMatch[1]}`);
+      if (4 <= quarterColumns.length) {
+        const quarterColumnIndex = quarterColumns.indexOf(reportedQuarter);
+        if (-1 !== quarterColumnIndex) {
+          return quarterColumnIndex;
+        }
+      }
+    }
+  }
+
   const currencyColumnIndex = getReportedCurrencyColumnIndex(lines, lineIndex, currencyCode);
   if (null !== currencyColumnIndex) {
     return currencyColumnIndex;
@@ -576,6 +595,19 @@ function getPeriodScope(
   const ownScope = getPeriodEndedScope(metricLine);
   if (undefined !== ownScope) {
     return ownScope;
+  }
+
+  // A narrative highlights block can repeat the combined release title as page furniture
+  // between a standalone period caption and its rows. The explicit local caption governs
+  // those rows; the repeated "Fourth Quarter and Full Year" title does not reset it.
+  for (let index = lineIndex - 1; index >= 0 && index >= lineIndex - 12; index--) {
+    const line = lines[index] ?? "";
+    if (/^\s*for\s+the\s+full[\s–—-]+year\s*:?\s*$/i.test(line)) {
+      return "annual";
+    }
+    if (/^\s*for\s+the\s+(?:first|second|third|fourth)[\s–—-]+quarter\s*:?\s*$/i.test(line)) {
+      return "quarter";
+    }
   }
 
   for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 40; index--, examined++) {

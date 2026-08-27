@@ -1,0 +1,1032 @@
+EX-99.1
+2
+hp73126exhibit991q326.htm
+EX-99.1
+
+
+
+
+Document
+| | | | | | | | |
+| | |
+
+
+| | | | | |
+1501 Page Mill Road
+Palo Alto, CA 94304
+
+hp.com
+
+
+Editorial contacts
+
+HP Inc. Media Relations
+MediaRelations@hp.com
+
+HP Inc. Investor Relations
+InvestorRelations@hp.com
+| EXHIBIT 99.1 |
+
+|
+News Release | |
+
+
+HP Inc. Reports Fiscal 2026 Third Quarter Results
+|
+
+| | | | | |
+PALO ALTO, Calif. – August 26, 2026 (GLOBE NEWSWIRE) – HP (NYSE: HPQ)
+|
+•Raising fiscal year 2026 earnings per share ("EPS") and free cash flow outlook
+|
+•Third quarter GAAP diluted net EPS of $0.71, inclusive of an $0.11 favorable impact from tariff refunds, and down 11.3% year over year due in part to one-time tax and litigation benefits in the prior year period
+|
+•Third quarter non-GAAP diluted net EPS of $0.83, inclusive of an $0.11 favorable impact from tariff refunds, and up 10.7% from the prior year period
+|
+•Third quarter net revenue of $15.7 billion, up 12.5% from the prior year period
+|
+•Third quarter net cash provided by operating activities of $1.7 billion, free cash flow of $1.6 billion
+|
+•Third quarter returned $0.6 billion to shareholders in the form of share repurchases and dividends
+|
+|
+| |
+| |
+| |
+| |
+|
+
+| | | | | | | | | | | | | | | | | | | | |
+HP Inc.'s fiscal 2026 third quarter financial performance
+|
+| | Q3 FY26 | | Q3 FY25 | | Y/Y |
+GAAP net revenue ($B) | | $ | 15.7 | | | $ | 13.9 | | | 12.5 | % |
+GAAP operating margin | | 5.7 | % | | 5.1 | % | | 0.6 pts
+|
+GAAP net earnings ($B) | | $ | 0.66 | | | $ | 0.76 | | | (13 | %) |
+GAAP diluted net EPS | | $ | 0.71 | | | $ | 0.80 | | | (11 | %) |
+Non-GAAP operating margin | | 6.5 | % | | 7.1 | % | | (0.6) pts
+|
+Non-GAAP net earnings ($B) | | $ | 0.77 | | | $ | 0.71 | | | 8 | % |
+Non-GAAP diluted net EPS | | $ | 0.83 | | | $ | 0.75 | | | 11 | % |
+Net cash provided by operating activities ($B) | | $ | 1.74 | | | $ | 1.66 | | | 4 | % |
+Free cash flow ($B) | | $ | 1.57 | | | $ | 1.47 | | 7 | % |
+
+
+
+Notes to table
+Information about HP Inc.'s use of non-GAAP financial information is provided under "Use of non-GAAP financial information" below.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+Net revenue and EPS results
+HP Inc. and its subsidiaries (“HP”) announced fiscal 2026 third quarter net revenue of $15.7 billion, up 12.5% (up 10.9% in constant currency) from the prior-year period.
+
+
+“In the third quarter we increased both total sales and share in premium products and continued to attract new customers with innovations in WXP, Print, workstations and AI PCs. Our ongoing strategy to address environmental constraints led to meaningful improvements in memory supply and higher fulfillment rates,” said Bruce Broussard, Interim CEO, HP Inc. “The strong foundation we are building as a trusted edge platform positions us well to lead as AI evolves and allows us to help customers improve their AI economics, security, latency and governance.”
+
+
+“We delivered another strong quarter, with record third quarter revenue, EPS above the top of our guidance range, and are raising our guidance for FY26,” said Karen Parkhill, CFO, HP Inc. “With three solid quarters behind us, we've demonstrated our ability to navigate through a challenging cost environment and are building on that momentum to further mitigate near-term cost pressures while continuing to invest for long-term profitable growth.”
+
+
+Third quarter GAAP diluted net EPS was $0.71, down from $0.80 in the prior-year period and above the previously provided outlook of $0.47 to $0.63. Third quarter non-GAAP diluted net EPS was $0.83, up from $0.75 in the prior-year period and above the previously provided outlook of $0.61 to $0.71. Both GAAP and non-GAAP diluted net EPS included an $0.11 favorable impact from tariff refunds. Third quarter non-GAAP net earnings and non-GAAP diluted net EPS exclude certain adjustments. Refer to "Adjustments to GAAP Net earnings" section in the below tables.
+
+
+
+
+
+Asset management
+HP's net cash provided by operating activities in the third quarter of fiscal 2026 was $1.7 billion. Accounts receivable ended the quarter at $7.2 billion, up 3 days quarter over quarter to 41 days. Inventory ended the quarter at $10.3 billion, flat quarter over quarter at 73 days. Accounts payable ended the quarter at $21.4 billion, flat quarter over quarter at 151 days.
+
+
+HP generated $1.6 billion of free cash flow in the third quarter of fiscal 2026. Free cash flow includes net cash provided by operating activities of $1.7 billion adjusted for net investment in leases from integrated financing of $20 million and net investments in property, plant, equipment and purchased intangibles of $187 million.
+
+
+HP’s dividend payment of $0.30 per share in the third quarter resulted in cash usage of $274 million. HP also utilized $300 million of cash during the quarter to repurchase approximately 12.2 million shares of common stock in the open market. HP exited the quarter with $4.2 billion in gross cash, which includes cash and cash equivalents of $4.2 billion and short-term investments of $3 million included in other current assets.
+
+
+
+
+
+Fiscal 2026 third quarter segment results
+•Personal Systems net revenue was $11.8 billion, up 18% year over year (up 17% in constant currency) with a 4.6% operating margin. Consumer PS net revenue was up 10% and Commercial PS net revenue was up 22%. Total units were down 16% with Consumer PS units down 19% and Commercial PS units down 14%.
+•Printing net revenue was $3.9 billion, down 2% year over year (down 4% in constant currency) with an 18.1% operating margin. Consumer Printing net revenue was down 2% and Commercial Printing net revenue was down 1%. Supplies net revenue was down 3% (down 4% in constant currency). Total hardware units were down 7%, with Consumer Printing units down 9% and Commercial Printing units down 2%.
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+Outlook
+For the fiscal 2026 fourth quarter, HP estimates GAAP diluted net EPS to be in the range of $0.74 to $0.84 and non-GAAP diluted net EPS to be in the range of $0.69 to $0.79, with both including an $0.08 favorable impact from estimated tariff refunds. Fiscal 2026 fourth quarter non-GAAP diluted net EPS estimates exclude $(0.05) per diluted share, primarily related to restructuring and other charges, certain litigation (benefits) charges, net, acquisition and divestiture charges, amortization of intangible assets, non-operating retirement-related credits, tax adjustments, and the related tax impact on these items.
+
+
+For fiscal 2026, HP is raising its estimate of GAAP diluted net EPS to be in the range of $2.52 to $2.62 and raising its estimate of non-GAAP diluted net EPS to be in the range of $3.19 to $3.29, with both including a $0.19 favorable impact from estimated tariff refunds. Fiscal 2026 non-GAAP diluted net EPS estimates exclude $0.67 per diluted share, primarily related to restructuring and other charges, acquisition and divestiture charges, amortization of intangible assets, non-operating retirement-related credits, certain litigation (benefits) charges, net, tax adjustments, and the related tax impact on these items.
+
+
+For fiscal 2026, HP is also raising its estimate of free cash flow to be in the range of $3.0 to $3.2 billion.
+
+
+More information on HP's earnings, including additional financial analysis and an earnings overview presentation, is available on HP's Investor Relations website at https://investor.hp.com.
+HP's FY26 Q3 earnings conference call is accessible via audio webcast at www.hp.com/investor/2026Q3Webcast.
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+About HP Inc.
+HP Inc. (NYSE: HPQ) is a global technology leader redefining the Future of Work. Operating in more than 180 countries, HP delivers innovative and AI-powered devices, software, services and subscriptions that drive business growth and professional fulfillment. For more information, please visit https://www.hp.com.
+
+
+
+Forward-looking statements
+This document contains forward-looking statements based on current expectations and assumptions that involve risks and uncertainties. If the risks or uncertainties ever materialize or the assumptions prove incorrect, they could affect the business and results of operations of HP Inc. and its consolidated subsidiaries which may differ materially from those expressed or implied by such forward-looking statements and assumptions.
+
+
+All statements other than statements of historical fact are statements that could be deemed forward-looking statements, including, but not limited to, projections of net revenue, margins, expenses, effective tax rates, net earnings, net earnings per share, cash flows, benefit plan funding, deferred taxes, share repurchases, foreign currency exchange rates or other financial items; any projections of the amount, timing or impact of cost savings or restructuring and other charges, planned structural cost reductions and productivity initiatives; any statements of the plans, strategies and objectives of management for future operations, including, but not limited to, our business model and transformation, our sustainability goals, our go-to-market strategy, the execution of restructuring plans and any resulting cost savings (including the fiscal 2026 plan), net revenue or profitability improvements or other financial impacts; any statements concerning the expected development, demand, performance, market share or competitive performance relating to products or services; any statements concerning potential supply constraints, component shortages, manufacturing disruptions or logistics challenges; any statements regarding current or future macroeconomic trends or events, including global trade policies, and the impact of those trends and events on HP and its financial performance; any statements regarding pending investigations, claims, disputes or other litigation matters; any statements of expectation or belief as to the timing and expected benefits of acquisitions and other business combination and investment transactions; and any statements of assumptions underlying any of the foregoing. Forward-looking statements can also generally be identified by words such as “future,” “anticipates,” “believes,” “estimates,” “expects,” “intends,” “plans,” “predicts,” “projects,” “will,” “would,” “could,” “can,” “may,” and similar terms.
+
+
+Risks, uncertainties and assumptions that could affect our business and results of operations include factors relating to HP’s ability to execute on its strategic plans, including the previously announced initiatives, business model changes and transformation; the development and transition of new products and services and the enhancement of existing products and services to meet evolving customer needs and respond to emerging technological trends, including artificial intelligence; the use of artificial intelligence; the impact of macroeconomic and geopolitical trends, changes and events, including global trade policies, the ongoing military conflict in Ukraine, continued instability in the Middle East or tensions in the Taiwan Strait and South China Sea and the regional and global ramifications of these events; volatility in global capital markets and foreign currency, changes in benchmark interest rates, the effects of inflation and instability of financial institutions; risks associated with HP’s international operations and the effects of business disruption events, including those resulting from climate change; the need to manage (and reliance on) third-party suppliers, including with respect to increasing memory and storage costs, supply constraints and component shortages, and the need to manage HP’s global, multi-tier distribution network and potential misuse of pricing programs by HP’s channel partners, adapt to new or changing marketplaces and effectively deliver HP’s services; the execution and performance of contracts by HP and its suppliers, customers, clients and partners, including logistical challenges with respect to such execution and performance; the competitive pressures faced by HP’s businesses; the impact of third-party claims of IP infringement; successfully innovating, developing and executing HP’s go-to-market strategy, including online, omnichannel and contractual sales, in an evolving distribution, reseller and customer landscape; successfully competing and maintaining the value proposition of HP’s products, including supplies and services; challenges to HP’s ability to accurately forecast inventories, demand and pricing, which may be due to HP’s multi-tiered channel, sales of HP’s products to unauthorized resellers or unauthorized resale of HP’s products or our uneven sales cycle; the hiring and retention of key employees, changes in our management team and execution of succession plans; the results of our restructuring plans (including the fiscal 2026 plan), including estimates and assumptions related to the cost (including any possible disruption of HP’s business) and the anticipated benefits of our restructuring plans; the protection of HP’s intellectual property assets, including intellectual property licensed from third parties; disruptions in operations from system security risks, data protection breaches, or cyberattacks; HP’s ability to maintain its credit rating, satisfy its debt obligations and complete any contemplated share repurchases, other capital return programs or other strategic transactions; changes in estimates and assumptions HP makes in connection with the preparation of its financial statements; the impact of changes to federal, state, local and foreign laws and regulations, including environmental regulations and tax laws; integration and other risks associated with business combination and investment transactions; our aspirations related to environmental and societal matters; potential impacts, liabilities and costs from pending or potential investigations, claims and disputes; the effectiveness of our internal control over financial reporting; and
+
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+other risks that are described in HP’s Annual Report on Form 10-K for the fiscal year ended October 31, 2025 and HP’s other filings with the Securities and Exchange Commission ("SEC"). HP’s fiscal 2026 plan includes HP’s efforts to drive customer satisfaction, product innovation, and productivity primarily through artificial intelligence adoption and enablement, and the resulting efficiencies, including those that enable a reduction in workforce. Anticipated cost savings associated with the fiscal 2026 plan represent expected gross reductions in costs from these measures. These cost savings are net of any new recurring costs resulting from these initiatives and exclude one-time investments to generate such savings. HP’s expectations on the longer-term sustainability of such cost savings are based on its current business operations and market dynamics and could be significantly impacted by various factors, including but not limited to HP’s evolving business models, future investment decisions, market environment and technology landscape.
+
+
+As in prior periods, the financial information set forth in this document, including any tax-related items, reflects estimates based on information available at this time. While HP believes these estimates to be reasonable, these amounts could differ materially from reported amounts in HP’s Annual Report on Form 10-K for the fiscal year ending October 31, 2026 and HP’s other filings with the SEC. The forward-looking statements in this document are made as of the date of this document and HP assumes no obligation and does not intend to update these forward-looking statements.
+
+
+HP’s Investor Relations website at https://investor.hp.com contains a significant amount of information about HP, including financial and other information for investors. HP encourages investors to visit its website from time to time, as information is updated, and new information is posted. The content of HP’s website is not incorporated by reference into this document or in any other report or document HP files with the SEC, and any references to HP’s website are intended to be inactive textual references only.
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+| | | | | | | | |
+
+| HP INC. AND SUBSIDIARIES
+CONDENSED CONSOLIDATED STATEMENTS OF EARNINGS
+(Unaudited)
+(In millions, except per share amounts) | |
+| | | | | | | | | | | | | | | | | |
+| Three months ended |
+| July 31, 2026 | | April 30, 2026 | | July 31, 2025 |
+Net revenue: | | | | | |
+Products | $ | 14,825 | | | $ | 13,563 | | | $ | 13,114 | |
+Services | 852 | | | 845 | | | 818 | |
+Total net revenue | 15,677 | | | 14,408 | | | 13,932 | |
+Cost of net revenue: | | | | | |
+Products | 12,256 | | | 10,918 | | | 10,599 | |
+Services | 476 | | | 474 | | | 482 | |
+Total cost of net revenue | 12,732 | | | 11,392 | | | 11,081 | |
+Gross profit | 2,945 | | | 3,016 | | | 2,851 | |
+Research and development | 389 | | | 432 | | | 406 | |
+Selling, general and administrative | 1,537 | | | 1,514 | | | 1,452 | |
+Restructuring and other charges | 48 | | | 365 | | | 110 | |
+Acquisition and divestiture charges, net | 4 | | | 4 | | | 8 | |
+Amortization of intangible assets | 75 | | | 89 | | | 159 | |
+Total operating expenses | 2,053 | | | 2,404 | | | 2,135 | |
+Earnings from operations | 892 | | | 612 | | | 716 | |
+Interest and other, net | (94) | | | (119) | | | (92) | |
+Earnings before taxes | 798 | | | 493 | | | 624 | |
+(Provision for) benefits from taxes | (137) | | | (43) | | | 139 | |
+Net earnings | $ | 661 | | | $ | 450 | | | $ | 763 | |
+| | | | | |
+Net earnings per share: | | | | | |
+Basic | $ | 0.72 | | | $ | 0.49 | | | $ | 0.81 | |
+Diluted | $ | 0.71 | | | $ | 0.49 | | | $ | 0.80 | |
+| | | | | |
+Cash dividends declared per share | $ | 0.60 | | | $ | — | | | $ | 0.58 | |
+| | | | | |
+Weighted-average shares used to compute net earnings per share: | | | | | |
+Basic | 919 | | | 922 | | | 947 | |
+Diluted | 927 | | | 925 | | | 954 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+| | | | | | | | |
+
+| HP INC. AND SUBSIDIARIES
+CONDENSED CONSOLIDATED STATEMENTS OF EARNINGS
+(Unaudited)
+(In millions, except per share amounts) | |
+
+| | | | | | | | | | | | | |
+| Nine months ended | | |
+| July 31, 2026 | | July 31, 2025 | | |
+Net revenue:
+| | | | | |
+Products | $ | 41,986 | | | $ | 38,232 | | | |
+Services | 2,537 | | | 2,424 | | | |
+Total net revenue | 44,523 | | | 40,656 | | | |
+Cost of net revenue:
+| | | | | |
+Products | 34,312 | | | 30,800 | | | |
+Services | 1,415 | | | 1,426 | | | |
+Total cost of net revenue | 35,727 | | | 32,226 | | | |
+Gross profit | 8,796 | | | 8,430 | | | |
+Research and development | 1,213 | | | 1,204 | | | |
+Selling, general and administrative | 4,555 | | | 4,391 | | | |
+Restructuring and other charges | 539 | | | 302 | | | |
+Acquisition and divestiture charges, net | 6 | | | 31 | | | |
+Amortization of intangible assets | 220 | | | 287 | | | |
+Total operating expenses | 6,533 | | | 6,215 | | | |
+Earnings from operations | 2,263 | | | 2,215 | | | |
+Interest and other, net | (301) | | | (381) | | | |
+Earnings before taxes | 1,962 | | | 1,834 | | | |
+Provision for taxes | (306) | | | (100) | | | |
+Net earnings | $ | 1,656 | | | $ | 1,734 | | | |
+| | | | | |
+Net earnings per share: | | | | | |
+Basic | $ | 1.80 | | | $ | 1.83 | | | |
+Diluted | $ | 1.79 | | | $ | 1.82 | | | |
+| | | | | |
+Cash dividends declared per share | $ | 1.20 | | | $ | 1.16 | | | |
+| | | | | |
+Weighted-average shares used to compute net earnings per share: | | | | | |
+Basic | 922 | | | 948 | | | |
+Diluted | 927 | | | 955 | | | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+| | | | | | | | |
+
+| HP INC. AND SUBSIDIARIES
+ADJUSTMENTS TO GAAP NET EARNINGS, EARNINGS FROM OPERATIONS,
+OPERATING MARGIN AND DILUTED NET EARNINGS PER SHARE
+(Unaudited)
+(In millions, except per share amounts)
+| |
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended |
+| July 31, 2026 | | April 30, 2026 | | July 31, 2025 |
+| Amounts | | Diluted
+net earnings
+per share | | Amounts | | Diluted
+net earnings
+per share | | Amounts | | Diluted
+net earnings
+per share |
+GAAP net earnings | $ | 661 | | $ | 0.71 | | | $ | 450 | | $ | 0.49 | | | $ | 763 | | $ | 0.80 | |
+Non-GAAP adjustments: | | | | | | | | | | | |
+Restructuring and other charges | 48 | | 0.05 | | | 365 | | 0.39 | | | 110 | | 0.12 | |
+Acquisition and divestiture charges, net | 4 | | 0.01 | | | 4 | | — | | | 8 | | — | |
+Amortization of intangible assets | 75 | | 0.08 | | | 89 | | 0.10 | | | 159 | | 0.17 | |
+Certain litigation charges (benefits), net | 2 | | — | | | 5 | | 0.01 | | | (50) | | (0.05) | |
+| | | | | | | | | | | |
+Non-operating retirement-related credits | (7) | | (0.01) | | | (13) | | (0.01) | | | (2) | | — | |
+Tax adjustments(a)
+| (11) | | (0.01) | | | (108) | | (0.12) | | | (275) | | (0.29) | |
+Non-GAAP net earnings | $ | 772 | | $ | 0.83 | | | $ | 792 | | $ | 0.86 | | | $ | 713 | | $ | 0.75 | |
+| | | | | | | | | | | |
+GAAP earnings from operations | $ | 892 | | | | $ | 612 | | | | $ | 716 | | |
+Non-GAAP adjustments: | | | | | | | | | | | |
+Restructuring and other charges | 48 | | | | 365 | | | | 110 | | |
+Acquisition and divestiture charges, net | 4 | | | | 4 | | | | 8 | | |
+Amortization of intangible assets | 75 | | | | 89 | | | | 159 | | |
+Certain litigation charges, net | 2 | | | | 5 | | | | 2 | | |
+Non-GAAP earnings from operations | $ | 1,021 | | | | $ | 1,075 | | | | $ | 995 | | |
+| | | | | | | | | | | |
+GAAP operating margin | 5.7 | % | | | | 4.2 | % | | | | 5.1 | % | | |
+Non-GAAP adjustments | 0.8 | % | | | | 3.3 | % | | | | 2.0 | % | | |
+Non-GAAP operating margin | 6.5 | % | | | | 7.5 | % | | | | 7.1 | % | | |
+
+
+
+(a)Includes tax impact on non-GAAP adjustments.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+
+
+| | | | | | | | |
+
+| HP INC. AND SUBSIDIARIES
+ADJUSTMENTS TO GAAP NET EARNINGS, EARNINGS FROM OPERATIONS,
+OPERATING MARGIN AND DILUTED NET EARNINGS PER SHARE
+(Unaudited)
+(In millions, except per share amounts)
+| |
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Nine months ended | | | | |
+| July 31, 2026 | | July 31, 2025 | | | | |
+| Amounts | | Diluted
+net earnings
+per share | | Amounts | | Diluted
+net earnings
+per share | | | | |
+GAAP net earnings | $ | 1,656 | | $ | 1.79 | | | $ | 1,734 | | $ | 1.82 | | | | | |
+Non-GAAP adjustments: | | | | | | | | | | | |
+Restructuring and other charges | 539 | | 0.58 | | | 302 | | 0.32 | | | | | |
+Acquisition and divestiture charges, net | 6 | | 0.01 | | | 31 | | 0.02 | | | | | |
+Amortization of intangible assets | 220 | | 0.24 | | | 287 | | 0.30 | | | | | |
+Certain litigation charges, net | 63 | | 0.07 | | | 53 | | 0.06 | | | | | |
+| | | | | | | | | | | |
+Non-operating retirement-related credits | (31) | | (0.04) | | | (13) | | (0.01) | | | | | |
+Tax adjustments(a)
+| (136) | | (0.15) | | | (299) | | (0.32) | | | | | |
+Non-GAAP net earnings | $ | 2,317 | | $ | 2.50 | | | $ | 2,095 | | $ | 2.19 | | | | | |
+| | | | | | | | | | | |
+GAAP earnings from operations | $ | 2,263 | | | | $ | 2,215 | | | | | | |
+Non-GAAP adjustments: | | | | | | | | | | | |
+Restructuring and other charges | 539 | | | | 302 | | | | | | |
+Acquisition and divestiture charges, net | 6 | | | | 31 | | | | | | |
+Amortization of intangible assets | 220 | | | | 287 | | | | | | |
+Certain litigation charges, net | 63 | | | | 105 | | | | | | |
+Non-GAAP earnings from operations | $ | 3,091 | | | | $ | 2,940 | | | | | | |
+| | | | | | | | | | | |
+GAAP operating margin | 5.1 | % | | | | 5.4 | % | | | | | | |
+Non-GAAP adjustments | 1.8 | % | | | | 1.8 | % | | | | | | |
+Non-GAAP operating margin | 6.9 | % | | | | 7.2 | % | | | | | | |
+
+
+
+(a)Includes tax impact on non-GAAP adjustments.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+| | | | | | | | |
+
+
+
+| HP INC. AND SUBSIDIARIES
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(Unaudited)
+(In millions) | |
+
+| | | | | | | | | | | |
+| As of |
+| July 31, 2026 | | October 31, 2025 |
+ASSETS | | | |
+Current assets: | | | |
+Cash, cash equivalents and restricted cash | $ | 4,169 | | | $ | 3,705 | |
+Accounts receivable, net | 7,168 | | | 5,692 | |
+Inventory | 10,322 | | | 8,512 | |
+Other current assets | 5,087 | | | 4,544 | |
+Total current assets | 26,746 | | | 22,453 | |
+Property, plant and equipment, net | 3,110 | | | 3,049 | |
+Goodwill | 8,726 | | | 8,706 | |
+Other non-current assets | 7,119 | | | 7,561 | |
+Total assets | $ | 45,701 | | | $ | 41,769 | |
+| | | |
+LIABILITIES AND STOCKHOLDERS' DEFICIT | | | |
+Current liabilities: | | | |
+Notes payable and short-term borrowings | $ | 1,292 | | | $ | 845 | |
+Accounts payable | 21,383 | | | 18,051 | |
+Other current liabilities | 11,288 | | | 10,362 | |
+Total current liabilities | 33,963 | | | 29,258 | |
+Long-term debt | 7,868 | | | 8,821 | |
+Other non-current liabilities | 3,962 | | | 4,036 | |
+Stockholders' deficit | (92) | | | (346) | |
+Total liabilities and stockholders' deficit | $ | 45,701 | | | $ | 41,769 | |
+
+
+
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+| | | | | | | | |
+
+| HP INC. AND SUBSIDIARIES
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(Unaudited)
+(In millions)
+| |
+
+| | | | | | | | | | | |
+| Three months ended |
+| July 31, 2026 | | July 31, 2025 |
+Cash flows from operating activities: | | | |
+Net earnings | $ | 661 | | | $ | 763 | |
+Adjustments to reconcile net earnings to net cash provided by operating activities: | | | |
+Depreciation, amortization and impairment | 244 | | | 306 | |
+Stock-based compensation expense | 95 | | | 100 | |
+Restructuring and other charges | 48 | | | 110 | |
+Deferred taxes on earnings | (42) | | | 16 | |
+Other, net | 104 | | | 31 | |
+Changes in operating assets and liabilities, net of acquisitions: | | | |
+Accounts receivable | (1,065) | | | (797) | |
+Inventory | (1,167) | | | (199) | |
+Accounts payable | 2,186 | | | 1,793 | |
+Net investment in leases from integrated financing | (20) | | | (23) | |
+Taxes on earnings | 85 | | | (239) | |
+Restructuring and other | (65) | | | (89) | |
+Other assets and liabilities | 671 | | | (111) | |
+Net cash provided by operating activities | 1,735 | | | 1,661 | |
+Cash flows from investing activities: | | | |
+Net investments in property, plant, equipment and purchased intangibles | (187) | | | (215) | |
+Purchases of available-for-sale securities and other investments | (2) | | | (17) | |
+Maturities and sales of available-for-sale securities and other investments | 7 | | | 55 | |
+Collateral returned for derivative instruments | — | | | 197 | |
+| | | |
+Net cash (used in) provided by investing activities | (182) | | | 20 | |
+Cash flows from financing activities: | | | |
+| | | |
+Proceeds from debt, net of issuance costs | 100 | | | 90 | |
+Payment of debt | (602) | | | (1,210) | |
+Stock-based award activities and others | (11) | | | 5 | |
+Repurchase of common stock | (300) | | | (150) | |
+Cash dividends paid | (274) | | | (272) | |
+| | | |
+| | | |
+Net cash used in financing activities | (1,087) | | | (1,537) | |
+Increase in cash, cash equivalents and restricted cash | 466 | | | 144 | |
+Cash, cash equivalents and restricted cash at beginning of period | 3,703 | | | 2,730 | |
+Cash, cash equivalents and restricted cash at end of period | $ | 4,169 | | | $ | 2,874 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+| | | | | | | | |
+
+| HP INC. AND SUBSIDIARIES
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(Unaudited)
+(In millions)
+| |
+
+| | | | | | | | | | | |
+| Nine months ended |
+| July 31, 2026 | | July 31, 2025 |
+Cash flows from operating activities: | | | |
+Net earnings | $ | 1,656 | | | $ | 1,734 | |
+Adjustments to reconcile net earnings to net cash provided by operating activities: | | | |
+Depreciation, amortization and impairment | 722 | | | 708 | |
+Stock-based compensation expense | 389 | | | 432 | |
+Restructuring and other charges | 539 | | | 302 | |
+Deferred taxes on earnings | (110) | | | (67) | |
+Other, net | 126 | | | 103 | |
+Changes in operating assets and liabilities, net of acquisition and divestiture: | | | |
+Accounts receivable | (1,531) | | | 54 | |
+Inventory | (1,902) | | | (671) | |
+Accounts payable | 3,323 | | | 94 | |
+Net investment in leases from integrated financing | (69) | | | (71) | |
+Taxes on earnings | (184) | | | (360) | |
+Restructuring and other | (256) | | | (238) | |
+Other assets and liabilities | 341 | | | 53 | |
+Net cash provided by operating activities | 3,044 | | | 2,073 | |
+Cash flows from investing activities: | | | |
+Net investments in property, plant, equipment and purchased intangibles | (590) | | | (700) | |
+| | | |
+Purchases of available-for-sale securities and other investments | (21) | | | (23) | |
+Maturities and sales of available-for-sale securities and other investments | 32 | | | 69 | |
+Collateral returned (posted) for derivative instruments | 98 | | | (343) | |
+Payment made in connection with business acquisition, net of cash acquired | (10) | | | (116) | |
+Proceeds from business divestiture, net | 26 | | | — | |
+Net cash used in investing activities | (465) | | | (1,113) | |
+Cash flows from financing activities: | | | |
+| | | |
+Proceeds from debt, net of issuance costs | 291 | | | 1,248 | |
+Payment of debt | (770) | | | (1,312) | |
+Stock-based award activities and others | (94) | | | (113) | |
+Repurchase of common stock | (725) | | | (350) | |
+Cash dividends paid | (825) | | | (818) | |
+| | | |
+Settlement of cash flow hedges | — | | | 6 | |
+Net cash used in financing activities | (2,123) | | | (1,339) | |
+Increase (decrease) in cash, cash equivalents and restricted cash | 456 | | | (379) | |
+Cash, cash equivalents and restricted cash at beginning of period(a)
+| 3,713 | | | 3,253 | |
+Cash, cash equivalents and restricted cash at end of period | $ | 4,169 | | | $ | 2,874 | |
+
+(a) Includes cash held for sale of $8 million recorded within Other current assets as of October 31, 2025.
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+| | | | | | | | |
+
+| HP INC. AND SUBSIDIARIES
+SEGMENT/BUSINESS UNIT INFORMATION
+(Unaudited)
+(In millions) | |
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended | | Change (%) |
+| July 31, 2026 | | April 30, 2026 | | July 31, 2025 | | Q/Q | | Y/Y |
+Net revenue:(a)
+| | | | | | | | | |
+Commercial PS | $ | 8,579 | | | $ | 7,743 | | | $ | 7,036 | | | 11 | % | | 22 | % |
+Consumer PS | 3,188 | | | 2,470 | | | 2,895 | | | 29 | % | | 10 | % |
+Personal Systems | 11,767 | | | 10,213 | | | 9,931 | | | 15 | % | | 18 | % |
+Supplies | 2,536 | | | 2,754 | | | 2,609 | | | (8) | % | | (3) | % |
+Commercial Printing | 1,101 | | | 1,168 | | | 1,113 | | | (6) | % | | (1) | % |
+Consumer Printing | 275 | | | 273 | | | 280 | | | 1 | % | | (2) | % |
+Printing | 3,912 | | | 4,195 | | | 4,002 | | | (7) | % | | (2) | % |
+Corporate Investments(b)
+| — | | | — | | | — | | | NM | | NM |
+Total segment net revenue | 15,679 | | | 14,408 | | | 13,933 | | | 9 | % | | 13 | % |
+Other(b)
+| (2) | | | — | | | (1) | | | NM | | NM |
+Total net revenue | $ | 15,677 | | | $ | 14,408 | | | $ | 13,932 | | | 9 | % | | 13 | % |
+| | | | | | | | | |
+Earnings before taxes:(a)
+| | | | | | | | | |
+Personal Systems | $ | 537 | | | $ | 530 | | | $ | 541 | | | | | |
+Printing | 709 | | | 767 | | | 681 | | | | | |
+Corporate Investments | (28) | | | (29) | | | (24) | | | | | |
+Total segment earnings from operations | 1,218 | | | 1,268 | | | 1,198 | | | | | |
+Corporate and unallocated cost and other | (102) | | | (81) | | | (103) | | | | | |
+Stock-based compensation expense | (95) | | | (112) | | | (100) | | | | | |
+Restructuring and other charges | (48) | | | (365) | | | (110) | | | | | |
+Acquisition and divestiture charges, net | (4) | | | (4) | | | (8) | | | | | |
+Amortization of intangible assets | (75) | | | (89) | | | (159) | | | | | |
+Certain litigation charges, net | (2) | | | (5) | | | (2) | | | | | |
+Interest and other, net (c)
+| (94) | | | (119) | | | (92) | | | | | |
+Total earnings before taxes | $ | 798 | | | $ | 493 | | | $ | 624 | | | | | |
+
+
+(a)Effective at the beginning of its first quarter of fiscal year 2026, HP realigned its business unit financial reporting to reflect the transition of the Print-as-a-Service business from Corporate Investments to Printing. HP reflected this change to its business unit information in prior reporting periods on an as-if basis which resulted in the reclassification of segment net revenue, cost of net revenue and operating expenses from the Corporate Investments segment to Supplies and Consumer Printing. The reporting change had no impact to previously reported consolidated net revenue, earnings from operations, net earnings or net earnings per share.
+(b)"NM" represents not meaningful either because the amount is too small or large to be meaningful for comparative purposes.
+(c)Three months ended July 31, 2025 includes a gain from a single litigation matter that does not relate to HP's ongoing business operations.
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+
+
+| | | | | | | | |
+
+| HP INC. AND SUBSIDIARIES
+SEGMENT/BUSINESS UNIT INFORMATION
+(Unaudited)
+(In millions) | |
+
+| | | | | | | | | | | | | | | | | |
+| Nine months ended | | Change (%) |
+| July 31, 2026 | | July 31, 2025 | | Y/Y |
+Net revenue:(a)
+| | | | | |
+Commercial PS | $ | 23,575 | | | $ | 20,467 | | | 15 | % |
+Consumer PS | 8,656 | | | 7,712 | | | 12 | % |
+Personal Systems | 32,231 | | | 28,179 | | | 14 | % |
+Supplies | 8,089 | | | 8,166 | | | (1) | % |
+Commercial Printing | 3,374 | | | 3,424 | | | (1) | % |
+Consumer Printing | 831 | | | 889 | | | (7) | % |
+Printing | 12,294 | | | 12,479 | | | (1) | % |
+Corporate Investments(b)
+| — | | | — | | | NM |
+Total segment net revenue | 44,525 | | | 40,658 | | | 10 | % |
+Other(b)
+| (2) | | | (2) | | | NM |
+Total net revenue | $ | 44,523 | | | $ | 40,656 | | | 10 | % |
+| | | | | |
+Earnings before taxes:(a)
+| | | | | |
+Personal Systems | $ | 1,578 | | | $ | 1,457 | | | |
+Printing | 2,241 | | | 2,286 | | | |
+Corporate Investments | (81) | | | (69) | | | |
+Total segment earnings from operations | 3,738 | | | 3,674 | | | |
+Corporate and unallocated cost and other | (258) | | | (302) | | | |
+Stock-based compensation expense | (389) | | | (432) | | | |
+Restructuring and other charges | (539) | | | (302) | | | |
+Acquisition and divestiture charges, net | (6) | | | (31) | | | |
+Amortization of intangible assets | (220) | | | (287) | | | |
+Certain litigation charges, net | (63) | | | (105) | | | |
+Interest and other, net (c)
+| (301) | | | (381) | | | |
+Total earnings before taxes | $ | 1,962 | | | $ | 1,834 | | | |
+| | | | | |
+
+(a)Effective at the beginning of its first quarter of fiscal year 2026, HP realigned its business unit financial reporting to reflect the transition of the Print-as-a-Service business from Corporate Investments to Printing. HP reflected this change to its business unit information in prior reporting periods on an as-if basis which resulted in the reclassification of segment net revenue, cost of net revenue and operating expenses from the Corporate Investments segment to Supplies and Consumer Printing. The reporting change had no impact to previously reported consolidated net revenue, earnings from operations, net earnings or net earnings per share.
+(b)"NM" represents not meaningful either because the amount is too small or large to be meaningful for comparative purposes.
+(c)Nine months ended July 31, 2025 includes a gain from a single litigation matter that does not relate to HP's ongoing business operations.
+
+
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+| | | | | | | | |
+
+| HP INC. AND SUBSIDIARIES
+SEGMENT OPERATING MARGIN SUMMARY
+(Unaudited) | |
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended | | Change (pts) |
+| July 31, 2026 | | April 30, 2026 | | July 31, 2025 | | Q/Q | | Y/Y |
+Segment operating margin:
+| | | | | | | | | |
+Personal Systems
+| 4.6 | % | | 5.2 | % | | 5.4 | % | | (0.6) | pts | | (0.8) | pts |
+Printing(a)
+| 18.1 | % | | 18.3 | % | | 17.0 | % | | (0.2) | pts | | 1.1 | pts |
+Corporate Investments(b)
+| NM | | NM | | NM | | NM | | NM |
+Total segment | 7.8 | % | | 8.8 | % | | 8.6 | % | | (1.0) | pts | | (0.8) | pts |
+
+
+
+| | | | | | | | | | | | | | | | | |
+| Nine months ended | | Change (pts) |
+| July 31, 2026 | | July 31, 2025 | | Y/Y |
+Segment operating margin:
+| | | | | |
+Personal Systems
+| 4.9 | % | | 5.2 | % | | (0.3) | pts |
+Printing(a)
+| 18.2 | % | | 18.3 | % | | (0.1) | pts |
+Corporate Investments(b)
+| NM | | NM | | NM |
+Total segment | 8.4 | % | | 9.0 | % | | (0.6) | pts |
+
+
+
+
+
+(a)Effective at the beginning of its first quarter of fiscal year 2026, HP realigned its business unit financial reporting to reflect the transition of the Print-as-a-Service business from Corporate Investments to Printing. HP reflected this change to its business unit information in prior reporting periods on an as-if basis which resulted in the reclassification of segment net revenue, cost of net revenue and operating expenses from the Corporate Investments segment to Supplies and Consumer Printing. The reporting change had no impact to previously reported consolidated net revenue, earnings from operations, net earnings or net earnings per share.
+(b)"NM" represents not meaningful either because the amount is too small or large to be meaningful for comparative purposes.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+| | | | | | | | |
+
+| HP INC. AND SUBSIDIARIES
+CALCULATION OF DILUTED NET EARNINGS PER SHARE
+(Unaudited)
+(In millions, except per share amounts) | |
+| | | | | | | | | | | | | | | | | |
+| Three months ended |
+| July 31, 2026 | | April 30, 2026 | | July 31, 2025 |
+Numerator: | | | | | |
+GAAP net earnings | $ | 661 | | | $ | 450 | | | $ | 763 | |
+Non-GAAP net earnings | $ | 772 | | | $ | 792 | | | $ | 713 | |
+| | | | | |
+Denominator: | | | | | |
+Weighted-average shares used to compute basic net earnings per share | 919 | | | 922 | | | 947 | |
+Dilutive effect of employee stock plans(a)
+| 8 | | | 3 | | | 7 | |
+Weighted-average shares used to compute diluted net earnings per share | 927 | | | 925 | | | 954 | |
+| | | | | |
+GAAP diluted net earnings per share | $ | 0.71 | | | $ | 0.49 | | | $ | 0.80 | |
+Non-GAAP diluted net earnings per share | $ | 0.83 | | | $ | 0.86 | | | $ | 0.75 | |
+
+
+(a)Includes any dilutive effect of restricted stock units, stock options and performance-based awards.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+
+
+
+
+| | | | | | | | |
+
+| HP INC. AND SUBSIDIARIES
+CALCULATION OF DILUTED NET EARNINGS PER SHARE
+(Unaudited)
+(In millions, except per share amounts) | |
+
+| | | | | | | | | | | |
+| Nine months ended |
+| July 31, 2026 | | July 31, 2025 |
+Numerator: | | | |
+GAAP net earnings | $ | 1,656 | | | $ | 1,734 | |
+Non-GAAP net earnings | $ | 2,317 | | | $ | 2,095 | |
+| | | |
+Denominator: | | | |
+Weighted-average shares used to compute basic net earnings per share | 922 | | | 948 | |
+Dilutive effect of employee stock plans(a)
+| 5 | | | 7 | |
+Weighted-average shares used to compute diluted net earnings per share | 927 | | | 955 | |
+| | | |
+GAAP diluted net earnings per share | $ | 1.79 | | | $ | 1.82 | |
+Non-GAAP diluted net earnings per share | $ | 2.50 | | | $ | 2.19 | |
+
+
+
+(a)Includes any dilutive effect of restricted stock units, stock options and performance-based awards.
+
+
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+Use of non-GAAP financial measures
+To supplement HP’s condensed consolidated financial statements presented in accordance with U.S. generally accepted accounting principles ("GAAP"), HP provides net revenue on a constant currency basis, non-GAAP total operating expenses, non-GAAP operating profit, non-GAAP operating margin, non-GAAP other income and expenses, non-GAAP tax rate, non-GAAP net earnings, non-GAAP diluted net EPS, free cash flow, gross cash and net cash (debt). HP also provides forecasts of non-GAAP diluted net EPS and free cash flow.
+
+
+These non-GAAP financial measures are not computed in accordance with, or as an alternative to, GAAP financial measures. Reconciliations of these non-GAAP financial measures to the most directly comparable GAAP financial measures are included in the tables above or elsewhere in the materials accompanying this news release. HP encourages investors to review those reconciliations carefully.
+
+
+
+Use and economic substance of non-GAAP financial measures
+Net revenue on a constant currency basis excludes the effect of foreign currency exchange fluctuations calculated by translating current period revenues using monthly exchange rates from the comparative period and excluding any hedging impact recognized in the current period. Non-GAAP operating margin is defined to exclude the effects of any amounts relating to restructuring and other charges, acquisition and divestiture (credits) charges, net, amortization of intangible assets and certain litigation (benefits) charges, net. Non-GAAP net earnings and non-GAAP diluted net EPS consist of net earnings or diluted net EPS excluding those same charges, non-operating retirement-related (credits) charges, debt extinguishment (benefits) costs, tax adjustments and the amount of additional taxes or tax benefits associated with each non-GAAP item.
+
+
+HP’s management uses these non-GAAP financial measures to evaluate HP’s historical and prospective financial performance, enhance period-to-period comparability, and assess HP’s performance relative to its competitors. HP’s management excludes the items mentioned above because they do not believe they are reflective of ongoing operating performance.
+
+
+HP believes that providing non-GAAP financial measures in addition to the related GAAP financial measures provide investors with greater insight to the information used by HP’s management in its financial and operational decision making and allows investors to see HP’s results “through the eyes” of management. HP further believes that providing this information better enables HP’s investors to understand HP’s operating performance and financial condition and to evaluate the efficacy of the methodology and information used by HP’s management to evaluate and measure such performance and financial condition. Disclosure of these non-GAAP financial measures also facilitates comparisons of HP’s operating performance with the performance of other companies in HP’s industry that supplement their GAAP results with non-GAAP financial measures that may be calculated in a similar manner.
+
+
+HP excludes each of those items mentioned above, which are described in further detail below:
+
+
+•Restructuring and other charges are (i) costs associated with a formal restructuring plan and are primarily related to employee separation from service and early retirement costs and related benefits, costs of real estate consolidation and other non-labor charges; and (ii) other charges, which are distinct from ongoing operational costs and primarily include: third party professional services and other non-recurring costs, including costs relating to artificial intelligence adoption and enablement and information technology rationalization efforts. Effective second quarter of fiscal 2026, other charges also include CEO transition costs, which comprises of executive hiring and retention costs.
+
+
+•Charges/ (credits) related to its acquisitions and divestitures are gains or losses on divestitures, direct expenses such as third-party professional and legal fees, integration and divestiture-related costs, as well as non-cash adjustments to the fair value of certain acquired assets such as inventory and certain compensation charges related to cash settlement of restricted stock units and performance-based restricted stock units towards acquisitions. These (credits)/ charges related to acquisitions and divestitures are inconsistent in amount and frequency and are significantly impacted by the timing and nature of HP's acquisitions or divestitures.
+
+
+•Charges relating to the amortization of intangible assets are included in HP’s GAAP earnings, operating margin, net earnings and diluted net EPS. Such charges are significantly impacted by the timing and magnitude of HP’s acquisitions and any related impairment charges.
+
+
+•HP recorded certain litigation (benefits) charges, net, that include (1) amounts relating to settlement of backward-looking claims that arise from certain existing or threatened Standard Essential Patent (“SEP”) litigation that is distinctive and substantial when compared to other intellectual property litigation that HP incurs
+
+
+
+
+
+
+| | | | | | | | |
+| | |
+
+
+in the ordinary course of business and (2) a gain from a single litigation matter that does not relate to HP's ongoing business operations for the three and nine months ended July 31, 2025.
+
+
+•Debt extinguishment (benefits) costs include certain (gain)/ loss related to the repurchase of certain of HP’s outstanding U.S. dollar global notes or termination of commitments under revolving credit facilities. This (gain)/loss resulting from debt redemption transactions are partially or more than offset by costs such as bond repurchase premiums, bank fees, unpaid accrued interests, etc.
+
+
+•Non-operating retirement-related (credits) charges include certain market-related factors such as interest cost, expected return on plan assets, amortized actuarial gains or losses, associated with HP’s defined benefit pension and post-retirement benefit plans. The market-driven retirement-related adjustments are primarily due to the changes in the value of pension plan assets and liabilities which are tied to financial market performance. Non-operating retirement-related (credits) charges also include certain plan curtailments, settlements and special termination benefits related to HP’s defined benefit pension and post-retirement benefit plans.
+
+
+•Recorded tax adjustments include tax expenses and benefits from internal reorganizations, realizability of certain deferred tax assets, various tax rate and regulatory changes, and tax settlements across various jurisdictions. The non-GAAP tax rate is designed to reflect the tax effects of HP’s ongoing operations.
+
+
+Free cash flow is a non-GAAP measure that is defined as cash flow from operating activities adjusted for net investment in leases from integrated financing and net investments in property, plant, equipment and purchased intangibles. Gross cash is a non-GAAP measure defined as cash, cash equivalents and restricted cash plus short-term investments. Management uses free cash flow and gross cash to assess the amount of cash available for liquidity, including for investment in the business, share repurchases, and other purposes, and to evaluate HP’s historical and expected liquidity. HP believes gross cash provides a useful view of liquidity because it includes certain liquid assets not included in cash, cash equivalents and restricted cash. HP believes free cash flow provides a useful view of liquidity and capital resources because it adjusts operating cash flow for net investment in leases from integrated financing and net investments in property, plant, equipment and purchased intangibles. Net cash (debt) is defined as gross cash less gross debt, adjusted for the effects of unamortized premium/ discounts on debt issuance, debt issuance costs, and unrealized gains/ losses on interest rate swaps.
+
+
+
+
+
+Material limitations associated with use of non-GAAP financial measures
+
+
+These non-GAAP financial measures are not in accordance with, or an alternative for, measures prepared in accordance with GAAP, and may differ from non-GAAP measures used by other companies. In addition, these non-GAAP measures are not based on any comprehensive set of accounting rules or principles. HP believes non-GAAP measures have inherent limitations in that they do not reflect all of the amounts associated with HP’s results of operations as determined in accordance with GAAP and that these measures should only be used to evaluate HP’s results of operations in conjunction with the corresponding GAAP measures. HP may continue to incur expenses similar to the non-GAAP adjustments described above in future periods.
+
+
+In addition, other companies, including companies in our industry, may calculate non-GAAP financial measures differently than HP, limiting the usefulness of those measures for comparative purposes.
+
+
+
+Compensation for limitations associated with use of non-GAAP financial measures
+HP accounts for the limitations on its use of non-GAAP financial measures by relying primarily on its GAAP results and using non-GAAP financial measures only supplementally.

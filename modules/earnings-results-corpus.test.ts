@@ -1710,6 +1710,115 @@ const filingCorpus: {
     source: "88941/000008894126000028/smtc-07262026x8k991.htm",
     ticker: "smtc",
   },
+  {
+    company: "HEICO",
+    metrics: [
+      ["gaap_eps", "$1.67"],
+      ["revenue", "$1.41B"],
+      ["net_income", "$235.44M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q3 2026",
+    source: "46619/000004661926000018/a07312026ex991earningsrele.htm",
+    ticker: "hei",
+  },
+  {
+    company: "Intuit",
+    metrics: [
+      ["adjusted_eps", "$4.03"],
+      ["gaap_eps", "$1.34"],
+      ["revenue", "$4.4B"],
+      ["net_income", "$363M"],
+    ],
+    outlook: [
+      ["FY2027 Revenue", "$23.279B to $23.512B"],
+      ["Q1 Revenue", "$4.294B to $4.313B"],
+      ["FY2027 EPS", "$20.12 to $20.36"],
+      ["Q1 EPS", "$1.71 to $1.75"],
+      ["FY2027 Operating income", "$7.408B to $7.49B"],
+      ["Q1 Operating income", "$716M to $729M"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "896878/000089687826000029/fy26q4earningspressrelease.htm",
+    ticker: "intu",
+  },
+  {
+    company: "Veeva Systems",
+    metrics: [
+      ["adjusted_eps", "$2.35"],
+      ["gaap_eps", "$1.66"],
+      ["revenue", "$928M"],
+      ["net_income", "$273.43M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$932M to $935M"],
+      ["FY2027 Revenue", "$3.682B to $3.687B"],
+      ["Q3 Adj EPS", "$2.33 to $2.34"],
+      ["FY2027 Adj EPS", "$9.21"],
+      ["Q3 Operating income", "$417M to $420M"],
+      ["FY2027 Operating income", "$1.64B"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1393052/000139305226000032/veev-20260731xex991.htm",
+    ticker: "veev",
+  },
+  {
+    company: "Agilent Technologies",
+    metrics: [
+      ["adjusted_eps", "$1.62"],
+      ["gaap_eps", "$1.28"],
+      ["revenue", "$1.88B"],
+      ["net_income", "$362M"],
+    ],
+    outlook: [
+      ["FY2026 Core revenue", "7.8% to 8.1% growth"],
+      ["Q4 Core revenue", "$1.98B to $2B"],
+      ["Q4 Adj EPS", "$1.71 to $1.74"],
+      ["FY2026 Adj EPS", "$6.18 to $6.21"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "1090872/000109087226000062/exhibit991-q326pressrelease.htm",
+    ticker: "a",
+  },
+  {
+    company: "CrowdStrike Holdings",
+    metrics: [
+      ["adjusted_eps", "$0.31"],
+      ["gaap_eps", "$0.01"],
+      ["revenue", "$1.47B"],
+      ["net_income", "$5.3M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$1.523B to $1.529B"],
+      ["FY2027 Revenue", "$5.991B to $6.011B"],
+      ["Q3 Adj EPS", "$0.31"],
+      ["FY2027 Adj EPS", "$1.25 to $1.26"],
+      ["Q3 Tax rate", "21.0%"],
+      ["FY2027 Tax rate", "21.0%"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1535527/000153552726000029/crwd-20260826xex991.htm",
+    ticker: "crwd",
+  },
+  {
+    company: "HP",
+    metrics: [
+      ["adjusted_eps", "$0.83"],
+      ["gaap_eps", "$0.71"],
+      ["revenue", "$15.7B"],
+      ["net_income", "$660M"],
+    ],
+    outlook: [
+      ["Q4 Adj EPS", "$0.69 to $0.79"],
+      ["FY2026 Adj EPS", "$3.19 to $3.29"],
+      ["Q4 EPS", "$0.74 to $0.84"],
+      ["FY2026 EPS", "$2.52 to $2.62"],
+      ["FY2026 Free cash flow", "$3B to $3.2B"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "47217/000004721726000048/hp73126exhibit991q326.htm",
+    ticker: "hpq",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1730,6 +1839,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(108);
+    expect(filingCorpus).toHaveLength(114);
   });
 });

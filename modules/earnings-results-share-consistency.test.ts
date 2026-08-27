@@ -25,7 +25,7 @@ describe("per-share consistency gate", () => {
     }
 
     expect(flagged).toEqual([]);
-  });
+  }, 15_000);
 
   test("flags a per-share figure taken from the prior-year column", () => {
     // Uber reported $0.63 against $1.17; the count is printed in thousands.

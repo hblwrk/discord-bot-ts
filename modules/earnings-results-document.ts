@@ -195,11 +195,20 @@ export function getQuarterLabel(text: string): string | undefined {
     /\b(?:(?:reports?|announces?)\s+|(?:financial\s+)?results\s+for\s+(?:the\s+)?|announcement\s+of\s+the\s+)(first|second|third|fourth)[\s–—-]+quarter\s+(?:(?:of\s+)?fiscal(?:\s+year)?\s+)?(20\d{2}|\d{2})\b/i,
   ) ?? leadingText.match(
     /\breports?\s+(?:strong\s+)?(first|second|third|fourth)[\s–—-]+quarter\b.{0,80}\bresults\b[\s\S]{0,800}?\b\1[\s–—-]+quarter\s+of\s+fiscal\s+(20\d{2}|\d{2})\b/i,
+  ) ?? leadingText.match(
+    /\bfiscal(?:\s+year)?\s+(20\d{2}|\d{2})\s+(first|second|third|fourth)[\s–—-]+quarter\s+results\b/i,
   );
   if (undefined !== leadingWrittenQuarterMatch?.[1] && undefined !== leadingWrittenQuarterMatch[2]) {
-    const quarter = getQuarterFromName(leadingWrittenQuarterMatch[1]);
+    const invertedFiscalOrder = /^\d/.test(leadingWrittenQuarterMatch[1]);
+    const quarterName = invertedFiscalOrder
+      ? leadingWrittenQuarterMatch[2]
+      : leadingWrittenQuarterMatch[1];
+    const fiscalYear = invertedFiscalOrder
+      ? leadingWrittenQuarterMatch[1]
+      : leadingWrittenQuarterMatch[2];
+    const quarter = getQuarterFromName(quarterName);
     if (quarter) {
-      return `${quarter} ${normalizeFiscalYear(leadingWrittenQuarterMatch[2])}`;
+      return `${quarter} ${normalizeFiscalYear(fiscalYear)}`;
     }
   }
 

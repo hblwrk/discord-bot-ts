@@ -1,0 +1,488 @@
+EX-99.1
+2
+veev-20260731xex991.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+
+
+
+
+Exhibit 99.1
+
+FOR IMMEDIATE RELEASE
+Veeva Announces Fiscal 2027 Second Quarter Results
+Total Revenues of $928.0M, up 18% Year Over Year
+Subscription Revenues of $766.8M, up 16% Year Over Year
+
+
+
+PLEASANTON, CA — August 26, 2026 — Veeva Systems Inc. (NYSE: VEEV), a leading provider of industry cloud solutions for the global life sciences industry, today announced results for its second quarter ended July 31, 2026.
+“AI is opening up the next big chapter for Veeva and life sciences,” said CEO Peter Gassner. “Vault CRM had its best quarter ever and Veeva Falcon accelerated rapidly. By bringing together deep industry applications, agents, data, and consulting, we are helping the industry drive new efficiencies from clinical to commercial and deliver better outcomes for patients.”
+Fiscal 2027 Second Quarter Results:
+•Revenues: Total revenues for the second quarter were $928.0 million, up from $789.1 million one year ago, an increase of 18% year over year. Subscription revenues for the second quarter were $766.8 million, up from $659.2 million one year ago, an increase of 16% year over year.
+•Operating Income and Non-GAAP Operating Income: Second quarter operating income was $275.0 million, compared to $195.9 million one year ago, an increase of 40% year over year. Non-GAAP operating income for the second quarter was $415.9 million, compared to $352.6 million one year ago, an increase of 18% year over year.
+•Net Income and Non-GAAP Net Income: Second quarter net income was $273.4 million, compared to $200.3 million one year ago, an increase of 37% year over year. Non-GAAP net income for the second quarter was $387.4 million, compared to $333.4 million one year ago, an increase of 16% year over year.
+•Net Income per Share and Non-GAAP Net Income per Share: For the second quarter, fully diluted net income per share was $1.66, compared to $1.19 one year ago, while non-GAAP fully diluted net income per share was $2.35, compared to $1.99 one year ago.
+
+“Second quarter results exceeded guidance on all metrics and our view for the full year improved across the board,” said CFO Brian Van Wagener. “We continue to execute well across the business while also accelerating innovation and progress in new growth areas.”
+
+Recent Highlights:
+•Vault CRM Leadership Grows with More Top 20 Wins, Go-lives, and AI Adoption – Vault CRM leadership grew with more than 180 customers live, including five top 20 biopharmas. In August, two top 20 biopharmas and one large enterprise biopharma committed to Vault CRM, bringing total top 20 commitments to 12 globally. As the industry's fastest path to agentic CRM, a top 20 biopharma deployed Vault CRM and the Agentic Call Report across its full U.S. field team in the quarter.
+| | | | | | | | |
+© 2026 Veeva Systems Inc. All rights reserved. Veeva, V, Vault and Crossix are registered trademarks of Veeva Systems Inc. |
+| 1
+|
+| | |
+
+
+
+
+
+
+•Major AI Milestones for Vault AI and Falcon, and Agentic MLR Launches – Veeva AI advanced rapidly across all areas. Development of Veeva Falcon, the agentic labor platform for clinical, regulatory, and safety, is moving quickly with five early adopters and on track for initial go-lives this year. The company also acquired Copli in the quarter and launched Veeva Falcon MLR to automate content reviews. August marked a major milestone for Vault AI with new standard agents, broader capabilities for existing agents, and advanced tools for custom agent development.
+•Delivering the Connected Foundation for R&D and Quality – Development Cloud and Quality Cloud saw broad adoption, deepening relationships with new and existing customers. In clinical, a large enterprise biopharma selected Veeva EDC, building on its existing eTMF, CTMS, and Study Startup foundation. Veeva Safety surpassed 100 total customers while securing its second top 20 biopharma win for Safety Workbench. In Quality, Veeva added more than 30 new customers, driven by 20 or more wins each across QualityDocs, QMS, and Training.
+Financial Outlook:
+Veeva is providing guidance for its fiscal third quarter ending October 31, 2026 as follows:
+•Total revenues between $932 and $935 million.
+•Non-GAAP operating income between $417 and $420 million.
+•Non-GAAP fully diluted net income per share between $2.33 and $2.34.
+Veeva is providing updated guidance for its fiscal year ending January 31, 2027 as follows:
+•Total revenues between $3,682 and $3,687 million.
+•Non-GAAP operating income of about $1,640 million.
+•Non-GAAP fully diluted net income per share of approximately $9.21.
+Conference Call Information
+Prepared remarks and an investor presentation providing additional information and analysis can be found on Veeva's investor relations website at ir.veeva.com. Veeva will host a Q&A conference call at 2:00 p.m. PT today, August 26, 2026, and a replay of the call will be available on Veeva's investor relations website.
+| | | | | |
+What: | Veeva Systems Fiscal 2027 Second Quarter Results Conference Call
+|
+When: | Wednesday, August 26, 2026 |
+Time: | 2:00 p.m. PT (5:00 p.m. ET) |
+Online Registration: | https://events.q4inc.com/analyst/883220744?pwd=7dXQ6ZuG |
+Webcast: | ir.veeva.com |
+| |
+| |
+
+___________
+This press release uses non-GAAP financial metrics that are adjusted for the impact of various GAAP items. See the section titled “Non-GAAP Financial Measures” and the tables entitled “Reconciliation of GAAP to Non-GAAP Financial Measures” below for details.
+Veeva is not able, at this time, to provide GAAP targets for operating income and fully diluted net income per share for the third fiscal quarter ending October 31, 2026 or the fiscal year ending January 31, 2027 because of the difficulty of estimating certain items excluded from non-GAAP operating income and non-GAAP fully diluted net income per share that cannot be reasonably predicted, such as charges related to stock-based compensation expense. The effect of these excluded items may be significant.
+| | | | | | | | |
+© 2026 Veeva Systems Inc. All rights reserved. Veeva, V, Vault and Crossix are registered trademarks of Veeva Systems Inc.
+|
+| 2
+|
+
+
+
+
+
+
+About Veeva Systems
+Veeva delivers the industry cloud for life sciences with applications, agents, data, and consulting. Committed to innovation, product excellence, and customer success, Veeva serves more than 1,500 customers, ranging from the world’s largest pharmaceutical companies to emerging biotechs. As a Public Benefit Corporation, Veeva is committed to balancing the interests of all stakeholders, including customers, employees, shareholders and the industries it serves. For more information, visit veeva.com.
+Veeva uses its ir.veeva.com website as a means of disclosing material non-public information, announcing upcoming investor conferences, and for complying with its disclosure obligations under Regulation FD. Accordingly, you should monitor our investor relations website in addition to following our press releases, SEC filings, and public conference calls and webcasts.
+Forward-looking Statements
+This release contains forward-looking statements regarding Veeva’s expected future performance and, in particular, includes quotes from management and guidance, provided as of August 26, 2026, about Veeva’s expected future financial results. Estimating guidance accurately for future periods is difficult. It involves assumptions and internal estimates that may prove to be incorrect and is based on plans that may change. Hence, there is a significant risk that actual results could differ materially from the guidance we have provided in this release and we have no obligation to update such guidance. There are also numerous risks that have the potential to negatively impact our financial performance, including issues related to the performance, availability, security, or privacy of our products, competitive factors, customer decisions and priorities, developments that impact the life sciences industry (including regulatory, funding, or policy changes), general macroeconomic and geopolitical events (including changes in trade policy or practices, inflationary pressures, currency exchange fluctuations, changes in interest rates, and geopolitical conflicts), and issues that impact our ability to hire, retain and adequately compensate talented employees. We have summarized what we believe are the principal risks to our business in a section titled “Summary of Risk Factors” on pages 33 and 34 in our filing on Form 10-Q for the period ended April 30, 2026 which you can find here . Additional details on the risks and uncertainties that may impact our business can be found in the same filing on Form 10-Q and in our subsequent SEC filings, which you can access at sec.gov. We recommend that you familiarize yourself with these risks and uncertainties before making an investment decision.
+
+
+###
+| | | | | | | | |
+Investor Relations Contact:
+| | Media Contact:
+|
+Gunnar Hansen
+| | Maria Scurry
+|
+Veeva Systems Inc.
+| | Veeva Systems Inc.
+|
+267-460-5839
+| | 781-366-7617
+|
+ir@veeva.com
+| | pr@veeva.com
+|
+
+| | | | | | | | |
+© 2026 Veeva Systems Inc. All rights reserved. Veeva, V, Vault and Crossix are registered trademarks of Veeva Systems Inc.
+|
+| 3
+|
+
+
+
+
+
+
+
+VEEVA SYSTEMS INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(In thousands)
+(Unaudited)
+| | | | | | | | | | | |
+| July 31,
+2026 | | January 31,
+2026 |
+Assets | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 1,812,012 | | | $ | 1,421,233 | |
+Short-term investments | 5,430,935 | | | 5,139,581 | |
+Accounts receivable, net | 496,677 | | | 1,259,737 | |
+Unbilled accounts receivable | 68,970 | | | 50,609 | |
+Prepaid expenses and other current assets | 137,633 | | | 126,470 | |
+Total current assets | 7,946,227 | | | 7,997,630 | |
+Property and equipment, net | 79,483 | | | 70,261 | |
+Deferred costs, net | 27,835 | | | 29,961 | |
+Lease right-of-use assets | 129,320 | | | 75,626 | |
+Goodwill | 492,991 | | | 439,877 | |
+Intangible assets, net | 55,647 | | | 30,314 | |
+Deferred income taxes | 268,250 | | | 273,417 | |
+Other long-term assets | 60,470 | | | 62,257 | |
+Total assets | $ | 9,060,223 | | | $ | 8,979,343 | |
+| | | |
+Liabilities and stockholders’ equity
+| | | |
+Current liabilities: | | | |
+Accounts payable | $ | 35,977 | | | $ | 37,644 | |
+Accrued compensation and benefits | 42,188 | | | 45,857 | |
+Accrued expenses and other current liabilities | 49,634 | | | 45,885 | |
+Income tax payable | 3,018 | | | 6,698 | |
+Deferred revenue | 1,310,498 | | | 1,488,819 | |
+Lease liabilities | 14,635 | | | 12,153 | |
+Total current liabilities | 1,455,950 | | | 1,637,056 | |
+Deferred income taxes | 2,056 | | | 558 | |
+Long-term lease liabilities
+| 137,060 | | | 83,706 | |
+Other long-term liabilities | 33,708 | | | 43,271 | |
+Total liabilities | 1,628,774 | | | 1,764,591 | |
+Stockholders’ equity: | | | |
+Common stock
+| 2 | | | 2 | |
+Additional paid-in capital | 2,579,728 | | | 2,843,089 | |
+Accumulated other comprehensive (loss) income | (46,147) | | | 8,160 | |
+Retained earnings | 4,897,866 | | | 4,363,501 | |
+Total stockholders’ equity | 7,431,449 | | | 7,214,752 | |
+Total liabilities and stockholders’ equity
+| $ | 9,060,223 | | | $ | 8,979,343 | |
+
+
+
+
+
+| | | | | | | | |
+© 2026 Veeva Systems Inc. All rights reserved. Veeva, V, Vault and Crossix are registered trademarks of Veeva Systems Inc.
+|
+| 4
+|
+
+
+
+
+
+
+
+VEEVA SYSTEMS INC.
+CONDENSED CONSOLIDATED STATEMENTS OF COMPREHENSIVE INCOME
+(In thousands, except per share data)
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended July 31, | | Six months ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Revenues: | | | | | | | |
+Subscription
+| $ | 766,764 | | | $ | 659,183 | | | $ | 1,496,939 | | | $ | 1,293,951 | |
+Professional services and other
+| 161,199 | | | 129,898 | | | 313,972 | | | 254,173 | |
+Total revenues | 927,963 | | | 789,081 | | | 1,810,911 | | | 1,548,124 | |
+Cost of revenues:
+| | | | | | | |
+Cost of subscription
+| 105,677 | | | 93,830 | | | 204,780 | | | 172,176 | |
+Cost of professional services and other | 126,335 | | | 101,423 | | | 248,156 | | | 196,901 | |
+Total cost of revenues | 232,012 | | | 195,253 | | | 452,936 | | | 369,077 | |
+Gross profit | 695,951 | | | 593,828 | | | 1,357,975 | | | 1,179,047 | |
+Operating expenses:
+| | | | | | | |
+Research and development | 222,918 | | | 192,677 | | | 431,241 | | | 376,710 | |
+Sales and marketing | 126,701 | | | 109,439 | | | 237,818 | | | 208,067 | |
+General and administrative | 71,314 | | | 95,804 | | | 140,786 | | | 164,630 | |
+Total operating expenses | 420,933 | | | 397,920 | | | 809,845 | | | 749,407 | |
+Operating income | 275,018 | | | 195,908 | | | 548,130 | | | 429,640 | |
+Other income, net | 74,512 | | | 69,456 | | | 148,930 | | | 134,545 | |
+Income before income taxes | 349,530 | | | 265,364 | | | 697,060 | | | 564,185 | |
+Income tax provision
+| 76,101 | | | 65,055 | | | 162,695 | | | 135,686 | |
+Net income | $ | 273,429 | | | $ | 200,309 | | | $ | 534,365 | | | $ | 428,499 | |
+Net income per share: | | | | | | | |
+Basic | $ | 1.68 | | | $ | 1.23 | | | $ | 3.28 | | | $ | 2.63 | |
+Diluted | $ | 1.66 | | | $ | 1.19 | | | $ | 3.22 | | | $ | 2.56 | |
+Weighted-average shares used to compute net income per share:
+| | | | | | | |
+Basic | 162,344 | | | 163,496 | | | 162,836 | | | 163,129 | |
+Diluted | 165,057 | | | 167,685 | | | 166,072 | | | 167,272 | |
+Other comprehensive income: | | | | | | | |
+Net change in unrealized (loss) gain on available-for-sale investments
+| $ | (26,490) | | | $ | (11,300) | | | $ | (53,941) | | | $ | 6,067 | |
+Net change in cumulative foreign currency translation gain (loss) | 135 | | | 390 | | | (366) | | | 352 | |
+Comprehensive income | $ | 247,074 | | | $ | 189,399 | | | $ | 480,058 | | | $ | 434,918 | |
+| | | | | | | |
+Includes subscription revenues from the following product areas:
+| | | | | | | |
+Veeva Commercial Solutions | $ | 347,389 | | | $ | 307,523 | | | $ | 685,255 | | | $ | 612,934 | |
+Veeva R&D and Quality Solutions
+| 419,375 | | | 351,660 | | | 811,684 | | | 681,017 | |
+Total subscription
+| $ | 766,764 | | | $ | 659,183 | | | $ | 1,496,939 | | | $ | 1,293,951 | |
+| | | | | | | |
+Includes professional services and other revenues from the following product areas:
+| | | | | | | |
+Veeva Commercial Solutions | $ | 59,742 | | | $ | 47,703 | | | $ | 117,315 | | | $ | 94,270 | |
+Veeva R&D and Quality Solutions
+| 101,457 | | | 82,195 | | | 196,657 | | | 159,903 | |
+Total professional services and other | $ | 161,199 | | | $ | 129,898 | | | $ | 313,972 | | | $ | 254,173 | |
+| | | | | | | |
+Includes stock-based compensation as follows:
+| | | | | | | |
+Cost of revenues: | | | | | | | |
+Cost of subscription
+| $ | 2,224 | | | $ | 1,941 | | | $ | 3,985 | | | $ | 3,656 | |
+Cost of professional services and other | 15,939 | | | 14,804 | | | 30,090 | | | 27,573 | |
+Research and development | 62,220 | | | 53,388 | | | 113,783 | | | 101,337 | |
+Sales and marketing | 27,886 | | | 25,392 | | | 52,480 | | | 47,713 | |
+General and administrative | 28,534 | | | 26,441 | | | 55,724 | | | 53,897 | |
+Total stock-based compensation | $ | 136,803 | | | $ | 121,966 | | | $ | 256,062 | | | $ | 234,176 | |
+
+| | | | | | | | |
+© 2026 Veeva Systems Inc. All rights reserved. Veeva, V, Vault and Crossix are registered trademarks of Veeva Systems Inc.
+|
+| 5
+|
+
+
+
+
+
+
+
+VEEVA SYSTEMS INC.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(In thousands)
+(Unaudited)
+| | | | | | | | | | | | | | | |
+| | | Six months ended July 31, |
+| | | | | 2026 | | 2025 |
+Cash flows from operating activities | | | | | | | |
+Net income | | | | | $ | 534,365 | | | $ | 428,499 | |
+Adjustments to reconcile net income to net cash provided by operating activities: | | | | | | | |
+Depreciation and amortization | | | | | 22,458 | | | 19,948 | |
+Reduction of lease right-of-use assets | | | | | 7,038 | | | 6,316 | |
+Accretion of discount on short-term investments | | | | | (2,841) | | | (4,535) | |
+Stock-based compensation | | | | | 256,062 | | | 234,176 | |
+Amortization of deferred costs | | | | | 9,805 | | | 8,205 | |
+Deferred income taxes | | | | | 26,529 | | | 31,699 | |
+Other, net | | | | | (1,127) | | | (1,414) | |
+Changes in operating assets and liabilities: | | | | | | | |
+Accounts receivable | | | | | 768,314 | | | 593,032 | |
+Unbilled accounts receivable | | | | | (18,361) | | | (9,587) | |
+Deferred costs | | | | | (7,679) | | | (7,721) | |
+Prepaid expenses and other current and long-term assets | | | | | (21,394) | | | (21,232) | |
+Accounts payable | | | | | (652) | | | 3,361 | |
+Accrued expenses and other current liabilities | | | | | (1,578) | | | 23,763 | |
+Income tax payable | | | | | (3,945) | | | (5,362) | |
+Deferred revenue | | | | | (200,001) | | | (180,888) | |
+Lease liabilities | | | | | (4,426) | | | (5,300) | |
+Other long-term liabilities | | | | | 3,258 | | | 2,631 | |
+Net cash provided by operating activities | | | | | 1,365,825 | | | 1,115,591 | |
+Cash flows from investing activities | | | | | | | |
+Purchases of short-term investments | | | | | (1,706,632) | | | (1,452,857) | |
+Maturities and sales of short-term investments | | | | | 1,345,987 | | | 1,023,691 | |
+Long-term assets | | | | | (9,773) | | | (12,213) | |
+Acquisitions, net of cash acquired | | | | | (81,833) | | | — | |
+Net cash used in investing activities | | | | | (452,251) | | | (441,379) | |
+Cash flows from financing activities | | | | | | | |
+Proceeds from exercise of common stock options | | | | | 17,143 | | | 182,297 | |
+Repurchases of common stock | | | | | (472,673) | | | — | |
+Taxes paid related to net share settlement of equity awards | | | | | (66,304) | | | (46,228) | |
+Net cash (used in) provided by financing activities | | | | | (521,834) | | | 136,069 | |
+Effect of exchange rate changes on cash, cash equivalents, and restricted cash | | | | | (831) | | | 1,365 | |
+Net change in cash, cash equivalents, and restricted cash | | | | | 390,909 | | | 811,646 | |
+Cash, cash equivalents, and restricted cash at beginning of period | | | | | 1,423,412 | | | 1,120,963 | |
+Cash, cash equivalents, and restricted cash at end of period | | | | | $ | 1,814,321 | | | $ | 1,932,609 | |
+| | | | | | | |
+Supplemental disclosures of other cash flow information: | | | | | | | |
+| | | | | | | |
+Excess tax (deficiency) benefit from employee stock plans | | | | | $ | (824) | | | $ | 15,610 | |
+
+| | | | | | | | |
+© 2026 Veeva Systems Inc. All rights reserved. Veeva, V, Vault and Crossix are registered trademarks of Veeva Systems Inc.
+|
+| 6
+|
+
+
+
+
+
+
+
+Non-GAAP Financial Measures
+In Veeva’s public disclosures, Veeva has provided non-GAAP measures, which it defines as financial information that has not been prepared in accordance with generally accepted accounting principles in the United States, or GAAP. In addition to its GAAP measures, Veeva uses these non-GAAP financial measures internally for budgeting and resource allocation purposes and in analyzing its financial results. For the reasons set forth below, Veeva believes that excluding the following items provides information that is helpful in understanding its operating results, evaluating its future prospects, comparing its financial results across accounting periods, and comparing its financial results to its peers, many of which provide similar non-GAAP financial measures.
+•Excess tax benefit (deficiency). Excess tax benefits (deficiencies) from employee stock plans are dependent on previously agreed-upon equity grants to our employees, vesting of those grants, stock price, and exercise behavior of our employees, which can fluctuate from quarter to quarter. Because these fluctuations are not directly related to our business operations, Veeva finds it useful to exclude excess tax benefits (deficiencies) when assessing the level of cash provided by operating activities. Given the nature of the excess tax benefits (deficiencies), Veeva believes excluding it allows investors to make meaningful comparisons between our operating cash flows from quarter to quarter and those of other companies.
+•Stock-based compensation expenses. Veeva excludes stock-based compensation expenses primarily because they are non-cash expenses that Veeva excludes from its internal management reporting processes. Veeva’s management also finds it useful to exclude these expenses when they assess the appropriate level of various operating expenses and resource allocations when budgeting, planning and forecasting future periods. Moreover, because of varying available valuation methodologies, subjective assumptions and the variety of award types that companies can use, Veeva believes excluding stock-based compensation expenses allows investors to make meaningful comparisons between our recurring core business operating results and those of other companies.
+•Amortization of purchased intangibles. Veeva incurs amortization expense for purchased intangible assets in connection with acquisitions of certain businesses and technologies. Amortization of intangible assets is a non-cash expense and is inconsistent in amount and frequency because it is significantly affected by the timing, size of acquisitions and the inherent subjective nature of purchase price allocations. Because these costs have already been incurred and cannot be recovered, and are non-cash expenses, Veeva excludes these expenses for its internal management reporting processes. Veeva’s management also finds it useful to exclude these charges when assessing the appropriate level of various operating expenses and resource allocations when budgeting, planning and forecasting future periods. Investors should note that the use of intangible assets contributed to Veeva’s revenues earned during the periods presented and will contribute to Veeva’s future period revenues as well.
+•Litigation settlement-related charges. We exclude certain costs related to litigation settlements, including outcome-based payments to the law firms that represented us, because they are non-recurring and outside the ordinary course of business. Because these costs are unrelated to our day-to-day business operations, we believe excluding them enables more consistent evaluation of our operating results.
+•Income tax effects on the difference between GAAP and non-GAAP costs and expenses. The income tax effects that are excluded relate to the imputed tax impact on the difference between GAAP and non-GAAP costs and expenses due to stock-based compensation and purchased intangibles for GAAP and non-GAAP measures.
+There are limitations to using non-GAAP financial measures because non-GAAP financial measures are not prepared in accordance with GAAP and may be different from non-GAAP financial measures provided by other companies. The non-GAAP financial measures are limited in value because they exclude certain items that may have a material impact upon our reported financial results. In addition, they are subject to inherent limitations as they reflect the exercise of judgments by Veeva’s management about which items are adjusted to calculate its non-GAAP financial measures. Veeva compensates for these limitations by analyzing current and future results on a GAAP basis as well as a non-GAAP basis and also by providing GAAP measures in its public disclosures.
+Non-GAAP financial measures should not be considered in isolation from, or as a substitute for, financial information prepared in accordance with GAAP. Veeva encourages its investors and others to review its financial information in its entirety, not to rely on any single financial measure to evaluate its business, and to view its non-GAAP financial measures in conjunction with the most directly comparable GAAP financial measures. A reconciliation of GAAP to the non-GAAP financial measures has been provided in the tables below.
+| | | | | | | | |
+© 2026 Veeva Systems Inc. All rights reserved. Veeva, V, Vault and Crossix are registered trademarks of Veeva Systems Inc.
+|
+| 7
+|
+
+
+
+
+
+
+
+VEEVA SYSTEMS INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL MEASURES
+(Dollars in thousands)
+(Unaudited)
+
+
+The following tables reconcile the specific items excluded from GAAP metrics in the calculation of non-GAAP metrics for the periods shown below:
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+Reconciliation of Net Cash Provided by Operating Activities (GAAP basis to non-GAAP basis) | Three months ended July 31, | | Six months ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Net cash provided by operating activities on a GAAP basis | $ | 238,709 | | | $ | 238,433 | | | $ | 1,365,825 | | | $ | 1,115,591 | |
+Excess tax (benefit) deficiency from employee stock plans
+| (3,268) | | | (13,031) | | | 824 | | | (15,610) | |
+Net cash provided by operating activities on a non-GAAP basis | $ | 235,441 | | | $ | 225,402 | | | $ | 1,366,649 | | | $ | 1,099,981 | |
+Net cash used in investing activities on a GAAP basis | $ | (63,540) | | | $ | (389,272) | | | $ | (452,251) | | | $ | (441,379) | |
+Net cash (used in) provided by financing activities on a GAAP basis | $ | (259,308) | | | $ | 115,689 | | | $ | (521,834) | | | $ | 136,069 | |
+| | | | | | | |
+Reconciliation of Financial Measures (GAAP basis to non-GAAP basis) | Three months ended July 31, | | Six months ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Cost of subscription revenues on a GAAP basis
+| $ | 105,677 | | | $ | 93,830 | | | $ | 204,780 | | | $ | 172,176 | |
+Stock-based compensation expense | (2,224) | | | (1,941) | | | (3,985) | | | (3,656) | |
+Amortization of purchased intangibles | (1,072) | | | (1,046) | | | (1,746) | | | (2,058) | |
+Cost of subscription revenues on a non-GAAP basis
+| $ | 102,381 | | | $ | 90,843 | | | $ | 199,049 | | | $ | 166,462 | |
+| | | | | | | |
+Gross margin on subscription revenues on a GAAP basis
+| 86.2 | % | | 85.8 | % | | 86.3 | % | | 86.7 | % |
+Stock-based compensation expense | 0.3 | | | 0.3 | | | 0.3 | | | 0.3 | |
+Amortization of purchased intangibles | 0.1 | | | 0.1 | | | 0.1 | | | 0.1 | |
+Gross margin on subscription revenues on a non-GAAP basis
+| 86.6 | % | | 86.2 | % | | 86.7 | % | | 87.1 | % |
+| | | | | | | |
+Cost of professional services and other revenues on a GAAP basis | $ | 126,335 | | | $ | 101,423 | | | $ | 248,156 | | | $ | 196,901 | |
+Stock-based compensation expense | (15,939) | | | (14,804) | | | (30,090) | | | (27,573) | |
+Amortization of purchased intangibles | — | | | (139) | | | — | | | (273) | |
+Cost of professional services and other revenues on a non-GAAP basis | $ | 110,396 | | | $ | 86,480 | | | $ | 218,066 | | | $ | 169,055 | |
+| | | | | | | |
+Gross margin on professional services and other revenues on a GAAP basis | 21.6 | % | | 21.9 | % | | 21.0 | % | | 22.5 | % |
+Stock-based compensation expense | 9.9 | | | 11.4 | | | 9.5 | | | 10.8 | |
+Amortization of purchased intangibles | — | | | 0.1 | | | — | | | 0.2 | |
+Gross margin on professional services and other revenues on a non-GAAP basis | 31.5 | % | | 33.4 | % | | 30.5 | % | | 33.5 | % |
+| | | | | | | |
+Gross profit on a GAAP basis | $ | 695,951 | | | $ | 593,828 | | | $ | 1,357,975 | | | $ | 1,179,047 | |
+Stock-based compensation expense | 18,163 | | | 16,745 | | | 34,075 | | | 31,229 | |
+Amortization of purchased intangibles | 1,072 | | | 1,185 | | | 1,746 | | | 2,331 | |
+Gross profit on a non-GAAP basis | $ | 715,186 | | | $ | 611,758 | | | $ | 1,393,796 | | | $ | 1,212,607 | |
+| | | | | | | |
+Gross margin on total revenues on a GAAP basis | 75.0 | % | | 75.3 | % | | 75.0 | % | | 76.2 | % |
+Stock-based compensation expense | 2.0 | | | 2.1 | | | 1.9 | | | 2.0 | |
+Amortization of purchased intangibles | 0.1 | | | 0.1 | | | 0.1 | | | 0.1 | |
+Gross margin on total revenues on a non-GAAP basis | 77.1 | % | | 77.5 | % | | 77.0 | % | | 78.3 | % |
+| | | | | | | |
+Research and development expense on a GAAP basis | $ | 222,918 | | | $ | 192,677 | | | $ | 431,241 | | | $ | 376,710 | |
+Stock-based compensation expense | (62,220) | | | (53,388) | | | (113,783) | | | (101,337) | |
+Amortization of purchased intangibles | (270) | | | — | | | (270) | | | — | |
+Research and development expense on a non-GAAP basis | $ | 160,428 | | | $ | 139,289 | | | $ | 317,188 | | | $ | 275,373 | |
+
+| | | | | | | | |
+© 2026 Veeva Systems Inc. All rights reserved. Veeva, V, Vault and Crossix are registered trademarks of Veeva Systems Inc.
+|
+| 8
+|
+
+
+
+
+
+
+
+VEEVA SYSTEMS INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL MEASURES (continued)
+(Dollars in thousands, except per share data)
+(Unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended July 31, | | Six months ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | | | |
+Sales and marketing expense on a GAAP basis | $ | 126,701 | | | $ | 109,439 | | | $ | 237,818 | | | $ | 208,067 | |
+Stock-based compensation expense | (27,886) | | | (25,392) | | | (52,480) | | | (47,713) | |
+Amortization of purchased intangibles | (2,720) | | | (2,890) | | | (5,051) | | | (5,685) | |
+Sales and marketing expense on a non-GAAP basis | $ | 96,095 | | | $ | 81,157 | | | $ | 180,287 | | | $ | 154,669 | |
+| | | | | | | |
+General and administrative expense on a GAAP basis | $ | 71,314 | | | $ | 95,804 | | | $ | 140,786 | | | $ | 164,630 | |
+Stock-based compensation expense | (28,534) | | | (26,441) | | | (55,724) | | | (53,897) | |
+| | | | | | | |
+Litigation settlement-related charges | — | | | (30,627) | | | — | | | (30,627) | |
+General and administrative expense on a non-GAAP basis | $ | 42,780 | | | $ | 38,736 | | | $ | 85,062 | | | $ | 80,106 | |
+| | | | | | | |
+Operating expense on a GAAP basis | $ | 420,933 | | | $ | 397,920 | | | $ | 809,845 | | | $ | 749,407 | |
+Stock-based compensation expense | (118,640) | | | (105,221) | | | (221,987) | | | (202,947) | |
+Amortization of purchased intangibles | (2,990) | | | (2,890) | | | (5,321) | | | (5,685) | |
+Litigation settlement-related charges | — | | | (30,627) | | | — | | | (30,627) | |
+Operating expense on a non-GAAP basis | $ | 299,303 | | | $ | 259,182 | | | $ | 582,537 | | | $ | 510,148 | |
+| | | | | | | |
+Operating income on a GAAP basis | $ | 275,018 | | | $ | 195,908 | | | $ | 548,130 | | | $ | 429,640 | |
+Stock-based compensation expense | 136,803 | | | 121,966 | | | 256,062 | | | 234,176 | |
+Amortization of purchased intangibles | 4,062 | | | 4,075 | | | 7,067 | | | 8,016 | |
+Litigation settlement-related charges | — | | | 30,627 | | | — | | | 30,627 | |
+Operating income on a non-GAAP basis | $ | 415,883 | | | $ | 352,576 | | | $ | 811,259 | | | $ | 702,459 | |
+| | | | | | | |
+Operating margin on a GAAP basis | 29.6 | % | | 24.8 | % | | 30.3 | % | | 27.8 | % |
+Stock-based compensation expense | 14.7 | | | 15.5 | | | 14.1 | | | 15.1 | |
+Amortization of purchased intangibles | 0.5 | | | 0.5 | | | 0.4 | | | 0.5 | |
+Litigation settlement-related charges | — | | | 3.9 | | | — | | | 2.0 | |
+Operating margin on a non-GAAP basis | 44.8 | % | | 44.7 | % | | 44.8 | % | | 45.4 | % |
+| | | | | | | |
+Net income on a GAAP basis | $ | 273,429 | | | $ | 200,309 | | | $ | 534,365 | | | $ | 428,499 | |
+Stock-based compensation expense | 136,803 | | | 121,966 | | | 256,062 | | | 234,176 | |
+Amortization of purchased intangibles | 4,062 | | | 4,075 | | | 7,067 | | | 8,016 | |
+Litigation settlement-related charges | — | | | 30,627 | | | — | | | 30,627 | |
+Income tax effect on non-GAAP adjustments
+| (26,882) | | | (23,572) | | | (38,945) | | | (40,085) | |
+Net income on a non-GAAP basis | $ | 387,412 | | | $ | 333,406 | | | $ | 758,549 | | | $ | 661,234 | |
+| | | | | | | |
+Diluted net income per share on a GAAP basis | $ | 1.66 | | | $ | 1.19 | | | $ | 3.22 | | | $ | 2.56 | |
+Stock-based compensation expense | 0.83 | | | 0.73 | | | 1.54 | | | 1.40 | |
+Amortization of purchased intangibles | 0.02 | | | 0.02 | | | 0.04 | | | 0.05 | |
+Litigation settlement-related charges | — | | | 0.18 | | | — | | | 0.18 | |
+Income tax effect on non-GAAP adjustments
+| (0.16) | | | (0.13) | | | (0.23) | | | (0.24) | |
+Diluted net income per share on a non-GAAP basis | $ | 2.35 | | | $ | 1.99 | | | $ | 4.57 | | | $ | 3.95 | |
+
+________________________
+For the three and six months ended July 31, 2026 and 2025, management used an estimated annual effective non-GAAP
+tax rate of 21.0%.
+| | | | | | | | |
+© 2026 Veeva Systems Inc. All rights reserved. Veeva, V, Vault and Crossix are registered trademarks of Veeva Systems Inc.
+|
+| 9
+|
