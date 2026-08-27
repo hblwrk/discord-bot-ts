@@ -18,18 +18,16 @@ COPY --chown=node:node . .
 # libssl3t64 3.5.7-1~deb13u2 or newer.
 FROM debian:13-slim AS openssl-patch
 
-ARG OPENSSL_VERSION=3.5.7-1~deb13u2
 WORKDIR /tmp
 
 RUN apt-get update \
-    && apt-get download "libssl3t64=${OPENSSL_VERSION}" \
-    && package_file="libssl3t64_${OPENSSL_VERSION}_amd64.deb" \
+    && apt-get download "libssl3t64=3.5.7-1~deb13u2" \
     && mkdir -p /patch/var/lib/dpkg/status.d /tmp/libssl-control \
-    && dpkg-deb --extract "${package_file}" /patch \
-    && dpkg-deb --field "${package_file}" > /patch/var/lib/dpkg/status.d/libssl3t64 \
-    && dpkg-deb --ctrl "${package_file}" /tmp/libssl-control \
+    && dpkg-deb --extract libssl3t64_3.5.7-1~deb13u2_amd64.deb /patch \
+    && dpkg-deb --field libssl3t64_3.5.7-1~deb13u2_amd64.deb > /patch/var/lib/dpkg/status.d/libssl3t64 \
+    && dpkg-deb --control libssl3t64_3.5.7-1~deb13u2_amd64.deb /tmp/libssl-control \
     && cp /tmp/libssl-control/md5sums /patch/var/lib/dpkg/status.d/libssl3t64.md5sums \
-    && rm -rf /var/lib/apt/lists/* "${package_file}" /tmp/libssl-control
+    && rm -rf /var/lib/apt/lists/* libssl3t64_3.5.7-1~deb13u2_amd64.deb /tmp/libssl-control
 
 FROM gcr.io/distroless/nodejs24:nonroot
 
