@@ -834,6 +834,40 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("reads current FY and quarter outlook columns after qualitative values", () => {
+    expect(extractOutlookMetrics([
+      "Fiscal 2026 Outlook",
+      "The Company's updated full-year net sales outlook of up 1% to 1.5% now assumes Old Navy comparable sales of flat to down 1%, compared with the prior range of flat to up 1%, reflecting the brand's second-quarter performance. Comparable sales at the Gap brand are now expected to grow in the high-single to low double-digit range, compared with prior expectations of up high-single digits, while expectations for the balance of the portfolio remain unchanged.",
+      "On a reported basis, the Company now expects full year diluted earnings per share to be approximately $3.77 to $3.87.",
+      "The Company's outlook below is provided on an adjusted, non-GAAP basis.",
+      "Full Year Fiscal 2026",
+      "| Current FY 2026 Outlook",
+      "| | Prior FY 2026 Outlook",
+      "| | FY 2025 Results",
+      "Net sales | Up 1% to 1.5% year-over-year | | Up 1% to 2% year-over-year | | $15.4 billion |",
+      "Adjusted gross margin | Up slightly year-over-year | | Flat to up slightly year-over-year | | 40.8% |",
+      "Adjusted operating expense (% of net sales)",
+      "| About flat year-over-year | | About flat year-over-year | | 33.5% |",
+      "Adjusted operating margin",
+      "| About 7.4% to 7.6% | | About 7.3% to 7.5% | | 7.3% |",
+      "Adjusted effective tax rate | Approximately 25% to 26% | | Approximately 25% | | 27.9% |",
+      "Adjusted diluted earnings per share",
+      "| Approximately $2.35 to $2.45 | | Approximately $2.30 to $2.40 | | $2.13 |",
+      "Third Quarter Fiscal 2026",
+      "| | Third Quarter Fiscal 2026 Outlook",
+      "| | Q3 2025 Results",
+      "Net sales | | Up 1.5% to 2.5% year-over-year | | $3.9 billion |",
+      "Gross margin | | Up about 25 to 75 basis points | | 42.4% |",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", periodLabel: "FY2026", value: "1% to 1.5% growth"},
+      {key: "revenue", label: "Revenue", periodLabel: "Q3", value: "1.5% to 2.5% growth"},
+      {key: "adjusted_eps", label: "Adj EPS", periodLabel: "FY2026", value: "$2.35 to $2.45"},
+      {key: "eps", label: "EPS", periodLabel: "FY2026", value: "$3.77 to $3.87"},
+      {key: "operating_margin", label: "Operating margin", periodLabel: "FY2026", value: "7.4% to 7.6%"},
+      {key: "tax_rate", label: "Tax rate", periodLabel: "FY2026", value: "25% to 26%"},
+    ]);
+  });
+
   test("limits outlook scanning and ignores unusable fallback values", () => {
     const lines = [
       "Business Outlook",

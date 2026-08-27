@@ -518,7 +518,7 @@ function hasGuidanceFirstColumnHeader(lines: string[]): boolean {
   }
 
   for (const [lineIndex, line] of lines.entries()) {
-    if (false === /\bguidance\b/i.test(line)) {
+    if (false === /\b(?:guidance|outlook)\b/i.test(line)) {
       continue;
     }
 
@@ -537,10 +537,10 @@ function hasParallelGaapNonGaapColumnHeader(lines: string[]): boolean {
 }
 
 function hasGuidanceRangeColumnHeader(lines: string[]): boolean {
-  return lines.some((line, lineIndex) =>
-    /\blow\b[\s\S]*\bhigh\b/i.test(
-      [line, lines[lineIndex + 1] ?? ""].join(" "),
-    ));
+  return lines.some((line, lineIndex) => {
+    const headerText = [line, lines[lineIndex + 1] ?? ""].join(" ");
+    return /\|/.test(headerText) && /\blow\b[\s\S]*\bhigh\b/i.test(headerText);
+  });
 }
 
 function hasMixedOutlookPeriods(lines: string[]): boolean {
@@ -599,6 +599,7 @@ function isOutlookSectionEnd(line: string): boolean {
 
   if (/\b(?:conference\s+call|press\s+contact|investor\s+relations|condensed\s+consolidated|financial\s+statements?)\b/i.test(line) ||
       (/\babout\s+\b/i.test(line) &&
+        false === /\|/.test(line) &&
         false === /\bsee\b.{0,40}\babout\s+non-gaap\s+financial\s+measures\b/i.test(line))) {
     return true;
   }
@@ -825,12 +826,19 @@ function getOutlookPeriodLabel(
   // Only inherit from that caption form: looking back through ordinary metric rows leaks
   // one row's period onto the next otherwise-unlabelled row.
   const hasParallelGaapNonGaapHeader = hasParallelGaapNonGaapColumnHeader(lines);
-  const periodLookback = true === hasParallelGaapNonGaapHeader ? 16 : 8;
+  const hasSplitCurrentOutlookHeader = lines.some(contextLine =>
+    /\bcurrent\s+FY\s*20\d{2}\s+(?:outlook|guidance)\b/i.test(contextLine));
+  const periodLookback = true === hasParallelGaapNonGaapHeader ||
+      true === hasSplitCurrentOutlookHeader
+    ? 16
+    : 8;
   for (let index = lineIndex - 1; index >= 0 && index >= lineIndex - periodLookback; index--) {
     const contextLine = lines[index] ?? "";
     const inheritedPeriodLabel = getLineOutlookPeriodLabel(contextLine);
     const isCompactGuidancePeriodHeader = contextLine.length <= 140 &&
-      /\bguidance\s+metrics\b/i.test(contextLine) &&
+      (/\bguidance\s+metrics\b/i.test(contextLine) ||
+        /\b(?:current\s+FY\s*20\d{2}|(?:first|second|third|fourth)\s+quarter\s+fiscal\s+20\d{2})\s+(?:outlook|guidance)\b/i
+          .test(contextLine)) &&
       false === /[$€£¥]|\d+(?:\.\d+)?\s*%/.test(contextLine);
     const isLongRangeProseCaption = true === isLongRangeOutlookPeriodCaption(contextLine);
     if (false === hasParallelGaapNonGaapHeader &&
@@ -850,6 +858,13 @@ function getOutlookPeriodLabel(
   }
 
   if (undefined !== directPeriodLabel) {
+    const sectionPeriodLabel = getLineOutlookPeriodLabel(sectionHeading ?? "");
+    if (0 < historicalComparisonIndex &&
+        false === hasForecastPeriodBeforeComparison &&
+        undefined !== sectionPeriodLabel) {
+      return sectionPeriodLabel;
+    }
+
     return directPeriodLabel;
   }
 
@@ -859,6 +874,8 @@ function getOutlookPeriodLabel(
   return /^\s*(?:q[1-4]|(?:first|second|third|fourth)[\s–—-]+quarter)\b.*\bfinancial\s+outlook\b/i
     .test(sectionHeading ?? "") ||
       (/^\s*fy\s*\d{2}\b.*\b(?:outlook|guidance)\b/i.test(sectionHeading ?? "") ||
+        (true === hasSplitCurrentOutlookHeader &&
+          /^\s*fiscal\s+20\d{2}\b.*\b(?:outlook|guidance)\b/i.test(sectionHeading ?? "")) ||
         /^\s*fiscal(?:\s+year)?\s+20\d{2}\b.*\bending\b.*\boutlook\b/i
           .test(sectionHeading ?? ""))
     ? getLineOutlookPeriodLabel(sectionHeading ?? "")
@@ -1123,7 +1140,7 @@ function extractOutlookValue(
           (true === revisedColumns && /\bgrowth\b/i.test(line)) ||
           ("revenue" === metricKey &&
             /\b(?:net\s+sales|total\s+sales)\b/i.test(line) &&
-            /\b(?:growth|increase|decrease)\b/i.test(rawValueText)))
+            /\b(?:growth|increase|decrease|up|down)\b/i.test(rawValueText)))
         ? withNullablePercentGrowthDirection(getPercentRangeOutlookValue(valueText), line)
         : null) ??
       getOutlookRangeValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit) ??
@@ -1268,6 +1285,13 @@ function getOutlookValueSegments(
 
   if (true === guidanceFirstColumns) {
     const cells = line.slice(patternMatch.index + patternMatch[0].length).split("|");
+    const firstPopulatedCellIndex = cells.findIndex(cell => "" !== cell.trim());
+    const firstPopulatedCell = cells[firstPopulatedCellIndex];
+    if (undefined !== firstPopulatedCell &&
+        /\b(?:up|down|flat|leverage|basis\s+points?)\b/i.test(firstPopulatedCell)) {
+      return [firstPopulatedCell];
+    }
+
     const guidanceCell = cells.find(cell =>
       /[$€£¥]|\b(?:USD|CAD|EUR|GBP|JPY|CHF)\b|\d+\.\d+|\d+\s*%/i.test(cell));
     if (undefined !== guidanceCell) {
