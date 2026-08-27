@@ -76,7 +76,18 @@ export function getMetricCandidateScore({
   const hasCapturedValueBeforeChange = null !== changeMatch &&
     undefined !== patternMatch?.groups?.["metricValue"] &&
     patternMatch.index + patternMatch[0].length <= changeMatch.index;
-  if (null !== changeMatch && false === hasCapturedValueBeforeChange) {
+  const capturedMetricValue = patternMatch?.groups?.["metricValue"];
+  const capturedMetricValueIndex = undefined === capturedMetricValue || null === changeMatch
+    ? -1
+    : metricLine.indexOf(capturedMetricValue, changeMatch.index);
+  const hasCapturedResultLevelAfterChange = -1 !== capturedMetricValueIndex &&
+    /\bto\s*$/i.test(metricLine.slice(
+      (changeMatch?.index ?? 0) + (changeMatch?.[0].length ?? 0),
+      capturedMetricValueIndex,
+    ));
+  if (null !== changeMatch &&
+      false === hasCapturedValueBeforeChange &&
+      false === hasCapturedResultLevelAfterChange) {
     score -= 140;
   }
 
@@ -104,7 +115,8 @@ export function getMetricCandidateScore({
     score -= 120;
   }
 
-  if (true === hasForeignPeriodAttribution(metricLine, quarterLabel)) {
+  if (true === hasForeignPeriodAttribution(metricLine, quarterLabel) &&
+      false === hasCapturedResultLevelAfterChange) {
     score -= 150;
   }
 

@@ -416,12 +416,27 @@ export function getDilutedShareMantissa(lines: string[]): number | undefined {
     // before the count it rests on ("per share of approximately $0.87 to $0.92 on
     // weighted-average diluted shares outstanding of approximately 185 million"), and
     // reading the whole line would take the per-share figure as the count.
+    const captionLineSuffix = line.slice(captionMatch.index + captionMatch[0].length);
     const blockText = [
-      line.slice(captionMatch.index + captionMatch[0].length),
+      captionLineSuffix,
       ...lines.slice(lineIndex + 1, lineIndex + 4),
     ].join(" ");
     const dilutedMatch = /\bdiluted\b([\s\S]*)$/i.exec(blockText);
-    const counts = findNumericValues(dilutedMatch?.[1] ?? blockText, {minUncuedAbsValue: 10})
+    const countText = dilutedMatch?.[1] ?? blockText;
+    // A prose caption can state the count as "63.9 million". The generic reader requires
+    // an unscaled mantissa of at least 100 to avoid percentages and per-share values, which
+    // skips that valid count and then consumes a larger dollar figure from the next line.
+    // An explicit share scale makes the smaller mantissa unambiguous.
+    const captionSentence = captionLineSuffix.split(/[.!?]\s/, 1)[0] ?? "";
+    const scaledCountMatch = /[$€£¥]/.test(captionSentence)
+      ? null
+      : /(\d+(?:,\d{3})*(?:\.\d+)?)\s+(?:billions?|millions?|thousands?)\b/i
+        .exec(captionSentence);
+    if (undefined !== scaledCountMatch?.[1]) {
+      return Number.parseFloat(scaledCountMatch[1].replaceAll(",", ""));
+    }
+
+    const counts = findNumericValues(countText, {minUncuedAbsValue: 10})
       .filter(count => count >= 100);
     if (0 < counts.length) {
       return counts[0];
