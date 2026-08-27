@@ -1917,6 +1917,111 @@ const filingCorpus: {
     source: "764478/000076447826000037/bby-fy27q2xexx99.htm",
     ticker: "bby",
   },
+  {
+    // Separate quarter and full-year prose captions govern bullet groups whose final EPS
+    // row sits several lines below the caption. Both periods must survive the six-item cap.
+    company: "Elastic",
+    metrics: [
+      ["adjusted_eps", "$0.70"],
+      ["gaap_eps", "-$0.16"],
+      ["revenue", "$478.11M"],
+      ["net_income", "-$16.73M"],
+    ],
+    outlook: [
+      ["Q2 Revenue", "$486M to $487M"],
+      ["FY2027 Revenue", "$1.998B to $2.01B"],
+      ["Q2 Adj EPS", "$0.8 to $0.82"],
+      ["FY2027 Adj EPS", "$3.29 to $3.37"],
+      ["Q2 Operating margin", "19.0%"],
+      ["FY2027 Operating margin", "19.4%"],
+    ],
+    quarterLabel: "Q1 2027",
+    source: "1707753/000170775326000035/a27q1erex991.htm",
+    ticker: "estc",
+  },
+  {
+    // Revenue is a money midpoint with a percentage variance. The 5% is relative to
+    // $3.150 billion, not an absolute $5 billion variance.
+    company: "Marvell Technology",
+    metrics: [
+      ["adjusted_eps", "$0.94"],
+      ["gaap_eps", "$0.33"],
+      ["revenue", "$2.739B"],
+      ["net_income", "$308M"],
+    ],
+    outlook: [
+      ["Revenue", "$2.993B to $3.308B"],
+      ["Adj EPS", "$1.05 to $1.15"],
+      ["EPS", "$0.48 to $0.58"],
+      ["Gross margin", "52.9% to 53.9%"],
+      ["Operating expenses", "$1.015B"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1835632/000183563226000022/q227_8kx812026ex-991.htm",
+    ticker: "mrvl",
+  },
+  {
+    // Q3 and FY2027 tables use nested headings under one Business Outlook section. The
+    // final FY heading must not relabel the preceding Q3 values.
+    company: "Autodesk",
+    metrics: [
+      ["adjusted_eps", "$3.30"],
+      ["gaap_eps", "$2.33"],
+      ["revenue", "$2.05B"],
+      ["net_income", "$492M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$2.125B to $2.14B"],
+      ["FY2027 Revenue", "$8.295B to $8.345B"],
+      ["Q3 Adj EPS", "$3.04 to $3.09"],
+      ["FY2027 Adj EPS", "$12.52 to $12.6"],
+      ["Q3 EPS", "$1.57 to $1.87"],
+      ["FY2027 EPS", "$7.89 to $8.72"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "769397/000076939726000059/q227pressrelease.htm",
+    ticker: "adsk",
+  },
+  {
+    // Quarter and full-year guidance occupy parallel columns whose period headers split
+    // across lines. The headline result is stated as $292 million.
+    company: "SentinelOne",
+    metrics: [
+      ["adjusted_eps", "$0.08"],
+      ["gaap_eps", "-$0.27"],
+      ["revenue", "$292M"],
+      ["net_income", "-$93.4M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$309M to $311M"],
+      ["FY2027 Revenue", "$1.202B to $1.207B"],
+      ["Q3 Adj EPS", "$0.08 to $0.09"],
+      ["FY2027 Adj EPS", "$0.3 to $0.32"],
+      ["Q3 Operating income", "$38M to $40M"],
+      ["FY2027 Operating income", "$124M to $128M"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1583708/000158370826000052/sentineloneq227exhibit991.htm",
+    ticker: "s",
+  },
+  {
+    // The updated outlook table renders each caption, prior value and updated value on
+    // separate lines. "No change" keeps the prior capex range as the applicable value.
+    company: "Ulta Beauty",
+    metrics: [
+      ["gaap_eps", "$6.55"],
+      ["revenue", "$3B"],
+      ["net_income", "$282.01M"],
+    ],
+    outlook: [
+      ["Revenue", "6.7% to 7.2% growth"],
+      ["EPS", "$28.7 to $29"],
+      ["Capex", "$400M to $450M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1403568/000110465926102438/ulta-20260827xex99d1.htm",
+    ticker: "ulta",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1937,6 +2042,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(120);
+    expect(filingCorpus).toHaveLength(125);
   });
 });

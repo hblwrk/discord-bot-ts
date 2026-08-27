@@ -1,0 +1,622 @@
+EX-99.1
+2
+q227_8kx812026ex-991.htm
+EXHIBIT 99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+
+
+
+
+
+
+
+
+Marvell Technology, Inc. Reports Second Quarter of Fiscal Year 2027
+Financial Results
+
+
+•Q2 Net Revenue: $2.739 billion, a new record, grew by 37% year-on-year
+•Q2 Gross Margin: 53.1% GAAP gross margin; 58.9% non-GAAP gross margin
+•Q2 Diluted income per share: $0.33 GAAP diluted income per share; $0.94 non-GAAP diluted income per share
+
+
+Santa Clara, Calif. (August 27, 2026) - Marvell Technology, Inc. (NASDAQ: MRVL), a leader in data infrastructure semiconductor solutions, today reported financial results for the second quarter of fiscal year 2027.
+
+
+Net revenue for the second quarter of fiscal 2027 was $2.739 billion, $39.0 million above the mid-point of the Company’s guidance provided on May 27, 2026.
+
+
+GAAP net income for the second quarter of fiscal 2027 was $308.0 million, or $0.33 per diluted share. Non-GAAP net income for the second quarter of fiscal 2027 was $865.9 million, or $0.94 per diluted share. Cash flow from operations for the second quarter was $605.5 million.
+
+
+“Marvell delivered record second-quarter fiscal 2027 revenue of $2.739 billion, up 37% year over year, driven by continued strong demand across our Data Center portfolio, where revenue growth accelerated to 46% year over year,” said Matt Murphy, Marvell’s Chairman and CEO. “AI-related bookings remain exceptionally robust, and we expect our revenue growth to accelerate further through the remainder of fiscal 2027. Given this strength, we are again raising our revenue outlook for both fiscal 2027 and fiscal 2028 compared with the guidance we provided last quarter. We are seeing broad-based strength across our Data Center portfolio, including strong demand in Connectivity and a significant acceleration in our Custom business beginning in the second half of fiscal 2027. We look forward to showcasing these growth drivers and sharing Marvell’s long-term strategy for enabling the continued expansion of AI infrastructure at our Investor Day on October 6th, 2026.”
+
+
+
+Third Quarter of Fiscal 2027 Financial Outlook
+
+
+•Net revenue is expected to be $3.150 billion +/- 5%.
+•GAAP gross margin is expected to be 52.9% to 53.9%.
+•Non-GAAP gross margin is expected to be 57.5% to 58.5%.
+•GAAP operating expenses are expected to be approximately $1.015 billion.
+•Non-GAAP operating expenses are expected to be approximately $655 million.
+•Basic weighted-average shares outstanding are expected to be 900 million.
+•Diluted weighted-average shares outstanding are expected to be 921 million.
+•GAAP diluted net income per share is expected to be $0.53 +/- $0.05 per share.
+•Non-GAAP diluted net income per share is expected to be $1.10 +/- $0.05 per share.
+
+
+GAAP diluted EPS is calculated using basic weighted-average shares outstanding when there is a GAAP net loss, and calculated using diluted weighted-average shares outstanding when there is a GAAP net income. Non-GAAP diluted EPS is calculated using diluted weighted-average shares outstanding. The Company calculated EPS under the two-class method as a result of the issuance of the Series A Convertible Preferred Stock on March 31, 2026.
+
+
+
+
+
+
+
+
+Conference Call
+
+
+Marvell will conduct a conference call on Thursday, August 27, 2026 at 1:45 p.m. Pacific Time to discuss results for the second quarter of fiscal year 2027. The call will be webcast and can be accessed at the Marvell Investor Relations website at http://investor.marvell.com/. Interested parties may also join the live conference call via telephone by using the ‘Call me TM’ link provided in the press release on August 3, 2026, and on the Quarterly Earnings section of the Marvell Investor Relations website, to receive an instant automated call back. To join the call via telephone with operator assistance, please dial 1-877-407-8291 or 1-201-689-8345. A replay of the call can be accessed by dialing 1-877-660-6853 or 1-201-612-7415, passcode 13762036 until Thursday, September 3, 2026.
+
+
+
+
+
+
+
+
+Discussion of Non-GAAP Financial Measures
+
+
+Non-GAAP financial measures exclude the effect of stock-based compensation expense, amortization of acquired intangible assets, acquisition and divestiture related costs, restructuring and other related charges (gains), (including, but not limited to, changes in contractual obligations, employee severance costs, and facility exit related charges), change in fair value of contingent consideration liability and forward stock purchase contract, resolution of legal matters, and certain expenses and benefits that are driven primarily by discrete events that management does not consider to be directly related to Marvell’s core business. Although Marvell excludes the amortization of all acquired intangible assets from these non-GAAP financial measures, management believes that it is important for investors to understand that such intangible assets were recorded as part of purchase price accounting arising from acquisitions, and that such amortization of intangible assets that relate to past acquisitions will recur in future periods until such intangible assets have been fully amortized. Investors should note that the use of intangible assets contributed to Marvell’s revenues earned during the periods presented and are expected to contribute to Marvell’s future period revenues as well.
+
+
+Marvell uses a non-GAAP tax rate to compute the non-GAAP tax provision. This non-GAAP tax rate is based on Marvell’s estimated annual GAAP income tax forecast, adjusted to account for items excluded from Marvell’s non-GAAP income, as well as the effects of significant non-recurring and period specific tax items which vary in size and frequency, and excludes tax deductions and benefits from acquired tax loss and credit carryforwards and changes in valuation allowance on acquired deferred tax assets. Marvell’s non-GAAP tax rate is determined on an annual basis and may be adjusted during the year to take into account events that may materially affect the non-GAAP tax rate such as tax law changes; acquisitions; significant changes in Marvell’s geographic mix of revenue and expenses; or changes to Marvell’s corporate structure. For the second quarter of fiscal 2027, a non-GAAP tax rate of 11.0% has been applied to the non-GAAP financial results.
+
+
+Marvell believes that the presentation of non-GAAP financial measures provides important supplemental information to management and investors regarding financial and business trends relating to Marvell’s financial condition and results of operations. While Marvell uses non-GAAP financial measures as a tool to enhance its understanding of certain aspects of its financial performance, Marvell does not consider these measures to be a substitute for, or superior to, financial measures calculated in accordance with GAAP. Consistent with this approach, Marvell believes that disclosing non-GAAP financial measures to the readers of its financial statements provides such readers with useful supplemental data that, while not a substitute for GAAP financial measures, allows for greater transparency in the review of its financial and operational performance.
+
+
+Externally, management believes that investors may find Marvell’s non-GAAP financial measures useful in their assessment of Marvell’s operating performance and the valuation of Marvell. Internally, Marvell’s non-GAAP financial measures are used in the following areas:
+
+
+•Management’s evaluation of Marvell’s operating performance;
+•Management’s establishment of internal operating budgets;
+•Management’s performance comparisons with internal forecasts and targeted business models; and
+•Management’s determination of the achievement and measurement of certain types of compensation including Marvell’s annual incentive plan and certain performance-based equity awards (adjustments may vary from award to award).
+
+
+Non-GAAP financial measures have limitations in that they do not reflect all of the costs associated with the operations of Marvell’s business as determined in accordance with GAAP. As a result, you should not consider these measures in isolation or as a substitute for analysis of Marvell’s results as reported under GAAP. The exclusion of the above items from our GAAP financial metrics does not necessarily mean that these costs are unusual or infrequent.
+
+
+Marvell does not provide a reconciliation of its forward-looking non-GAAP measures to the most directly comparable GAAP measures for periods after the third quarter of fiscal 2027 because certain items that impact those GAAP measures are uncertain, depend on various factors, could be material to Marvell’s results computed in accordance with GAAP, and cannot be provided without unreasonable effort. These items include, but are not limited to, restructuring and other related charges, asset impairments, stock-based compensation expense and other nonrecurring expenses that cannot reasonably be estimated in advance.
+
+
+
+
+
+
+
+
+Forward-Looking Statements under the Private Securities Litigation Reform Act of 1995
+
+
+This press release contains forward-looking statements within the meaning of Section 27A of the Securities Act of 1933, as amended (the “Securities Act”), and Section 21E of the Securities Exchange Act of 1934, as amended (the “Exchange Act”), which are subject to the “safe harbor” created by those sections. These statements involve known and unknown risks, uncertainties and other factors, which may cause our actual results to differ materially from those implied by the forward-looking statements. Words such as “anticipates,” “expects,” “intends,” “plans,” “projects,” “believes,” “seeks,” “estimates,” “forecasts,” “targets,” “may,” “can,” “will,” “would” and similar expressions identify such forward-looking statements. Forward-looking statements contained in this press release include, but are not limited to, the statements describing our financial outlook and future period revenues. These statements are not guarantees of results and should not be considered as an indication of future activity or future performance. Forward-looking statements are predictions, projections and other statements about future events that are based on current expectations and assumptions and, as a result, are subject to risks and uncertainties. Actual events or results may differ materially from those described in this press release due to a number of risks and uncertainties, including, but not limited to: risks related to our ability to estimate customer demand and future sales accurately; our ability to define, design, develop and market products for the data center and communications markets; risks related to our dependence on a few customers for a significant portion of our revenue, particularly as our major customers comprise an increasing percentage of our revenue, as well as risks related to a significant portion of our sales being concentrated in the data center end market; constrained supply or limited availability of advanced semiconductor wafers, substrates, outsourced test services, and other electronic components, for which there are a limited number of qualified suppliers, and for which increased industry-wide demand, capacity limitations, or other supply chain constraints could result in extended lead times, allocation of supply to our competitors, inability to obtain sufficient quantities on commercially acceptable terms, or impairment of our customers' ability to manufacture and ship their end products, any of which could delay our production, increase our costs, or reduce customer demand for our products and adversely affect our revenue; risks related to the potential impact of AI on our business model and products; risks related to the rapid growth of the Company; risks that our customers develop their own solutions, vertically integrate which may reduce the need for our products, or acquire fully developed solutions from third parties; our ability to secure design wins from our customers and prospective customers; our ability to complete and realize the anticipated benefits of any acquisitions, divestitures and investments; the impact of international conflict (such as the current armed conflicts in the Ukraine and in Israel and the Middle East) and economic volatility in either domestic or foreign markets including risks related to trade conflicts or tensions, regulations, and tariffs, including but not limited to, trade restrictions imposed on our Chinese customers; risks related to changes in general macroeconomic conditions, or expectations of such conditions, such as high or rising interest rates, macroeconomic slowdowns, recessions, inflation, and stagflation; risks related to higher inventory levels; risks related to cancellations, rescheduling or deferrals of significant customer orders or shipments, as well as the ability of our customers to manage inventory; our ability to realize the expected benefits from restructuring activities; the risk of downturns in the semiconductor industry or our customer end markets; our ability to retain and hire key personnel; risks related to our return to working full time in the office; cybersecurity risks; our ability to limit costs related to defective products; risks related to our debt obligations; delays or increased costs related to completing the design, development, production and introduction of our new products due to a variety of issues, including supply chain cross-dependencies, dependencies on EDA and similar tools, dependencies on the use of third-party, business partner or customer intellectual property, collaboration and synchronization requirements with business partners and customers, requirements to establish new manufacturing, testing, assembly and packing processes, and other issues; our reliance on our manufacturing partners for the manufacture, assembly, testing and packaging of our products; risks related to the ASIC business model which requires us to use third-party IP including the risk that we may lose business or experience reputational harm if third parties, including customers, lose confidence in our ability to protect their IP rights; the risks associated with manufacturing and selling products and customers’ products outside of the United States; decreases in gross margin and results of operations in the future due to a number of factors, including high or increasing interest rates and volatility in foreign exchange rates; severe financial hardship or bankruptcy of one or more of our major customers; the effects of transitioning to smaller geometry process technologies; the impact of any change in the income tax laws in jurisdictions where we operate and the loss of any beneficial tax treatment that we currently enjoy; the outcome of pending or future litigation and legal and regulatory proceedings; risk related to our Sustainability program; the impact and costs associated with changes in international financial and regulatory conditions; our ability and the ability of our customers to successfully compete in the markets in which we serve; our ability and our customers’ ability to develop new and enhanced products and the adoption of those products in the market; our ability to scale our operations in response to changes in demand for existing or new products and services; risks associated with acquisition and consolidation activity in the semiconductor industry, including any consolidation of our manufacturing partners; our ability to protect our intellectual property; risks related to the issuance of preferred stock; risks related to the impact of future pandemics; our maintenance of an effective system of internal controls; financial institution instability; and other risks detailed in our SEC filings from time to time. The foregoing list of factors is not exhaustive. You should carefully consider the foregoing factors and the other risks and uncertainties that affect our business described in the “Risk Factors” section of our Annual Reports on Form 10-K, Quarterly Reports on Form 10-Q and other documents filed by us from time to time with the SEC. Forward-looking statements speak only as of the date they are made. Readers are cautioned not to put undue reliance on forward-looking statements, and we assume no obligation and do not intend to update or revise these forward-looking statements, whether as a result of new information, future events or otherwise.
+
+
+
+
+
+
+
+
+About Marvell
+
+
+To deliver the data infrastructure technology that connects the world, we’re building solutions on the most powerful foundation: our partnerships with our customers. Trusted by the world’s leading technology companies for over 30 years, we move, store, process and secure the world’s data with semiconductor solutions designed for our customers’ current needs and future ambitions. Through a process of deep collaboration and transparency, we’re ultimately changing the way tomorrow’s enterprise, cloud and carrier architectures transform—for the better.
+Marvell® and the Marvell logo are registered trademarks of Marvell and/or its affiliates.
+
+
+
+
+
+
+
+
+Marvell Technology, Inc.
+Condensed Consolidated Statements of Operations (Unaudited)
+(In millions, except per share amounts)
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | | | | | |
+| | Three Months Ended | | Six Months Ended |
+| | August 1,
+2026 | | May 2,
+2026 | | August 2,
+2025 | | August 1,
+2026 | | August 2,
+2025 |
+Net revenue | | $ | 2,739.3 | | | $ | 2,417.8 | | | $ | 2,006.1 | | | $ | 5,157.1 | | | $ | 3,901.4 | |
+Cost of goods sold | | 1,283.7 | | | 1,157.0 | | | 995.5 | | | 2,440.7 | | | 1,938.4 | |
+Gross profit | | 1,455.6 | | | 1,260.8 | | | 1,010.6 | | | 2,716.4 | | | 1,963.0 | |
+| | | | | | | | | | |
+Operating expenses: | | | | | | | | | | |
+Research and development | | 741.1 | | | 652.3 | | | 519.0 | | | 1,393.4 | | | 1,026.7 | |
+Selling, general and administrative | | 257.6 | | | 258.4 | | | 192.8 | | | 516.0 | | | 379.2 | |
+Restructuring related charges (gains), net
+| | (2.8) | | | 10.7 | | | 8.7 | | | 7.9 | | | (3.6) | |
+Total operating expenses | | 995.9 | | | 921.4 | | | 720.5 | | | 1,917.3 | | | 1,402.3 | |
+Operating income | | 459.7 | | | 339.4 | | | 290.1 | | | 799.1 | | | 560.7 | |
+Interest expense | | (61.6) | | | (52.8) | | | (51.9) | | | (114.4) | | | (100.6) | |
+Other expense, net | | (19.8) | | | (203.3) | | | (4.5) | | | (223.1) | | | (10.5) | |
+Interest and other loss, net | | (81.4) | | | (256.1) | | | (56.4) | | | (337.5) | | | (111.1) | |
+Income before income taxes | | 378.3 | | | 83.3 | | | 233.7 | | | 461.6 | | | 449.6 | |
+Provision for income taxes | | 70.3 | | | 48.8 | | | 38.9 | | | 119.1 | | | 76.9 | |
+Net income | | $ | 308.0 | | | $ | 34.5 | | | $ | 194.8 | | | $ | 342.5 | | | $ | 372.7 | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+Net income per share — basic | | $ | 0.34 | | | $ | 0.04 | | | $ | 0.23 | | | $ | 0.39 | | | $ | 0.43 | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+Net income per share — diluted | | $ | 0.33 | | | $ | 0.04 | | | $ | 0.22 | | | $ | 0.38 | | | $ | 0.43 | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+Weighted-average shares outstanding - common stock and preferred stock assuming conversion: |
+Basic | | 897.4 | | | 882.0 | | | 862.6 | | | 889.6 | | | 863.7 | |
+Diluted | | 921.2 | | | 893.3 | | | 870.4 | | | 907.1 | | | 873.0 | |
+| | | | | | | | | | |
+
+
+
+
+
+
+
+
+
+
+
+Marvell Technology, Inc.
+Condensed Consolidated Balance Sheets (Unaudited)
+(In millions)
+
+
+| | | | | | | | | | | | | | |
+| | August 1,
+2026 | | January 31,
+2026 |
+Assets | | | | |
+Current assets: | | | | |
+Cash and cash equivalents | | $ | 3,932.8 | | | $ | 2,638.8 | |
+Accounts receivable, net | | 2,218.4 | | | 2,186.6 | |
+Inventories | | 1,360.6 | | | 1,388.0 | |
+Prepaid expenses and other current assets | | 407.5 | | | 247.2 | |
+| | | | |
+Total current assets | | 7,919.3 | | | 6,460.6 | |
+Property and equipment, net | | 1,071.0 | | | 935.0 | |
+Goodwill | | 13,873.9 | | | 11,062.2 | |
+Acquired intangible assets, net | | 2,346.6 | | | 1,754.7 | |
+Deferred tax assets | | 322.3 | | | 345.9 | |
+Other non-current assets | | 2,021.5 | | | 1,726.9 | |
+Total assets | | $ | 27,554.6 | | | $ | 22,285.3 | |
+| | | | |
+Liabilities and Stockholders’ Equity | | | | |
+Current liabilities: | | | | |
+Accounts payable | | $ | 797.9 | | | $ | 1,073.8 | |
+Accrued liabilities | | 1,425.8 | | | 1,337.1 | |
+Accrued employee compensation | | 275.8 | | | 309.8 | |
+Short-term debt | | — | | | 499.8 | |
+Total current liabilities | | 2,499.5 | | | 3,220.5 | |
+| | | | |
+Long-term debt | | 4,962.9 | | | 3,970.8 | |
+Other non-current liabilities | | 1,560.6 | | | 785.6 | |
+Total liabilities | | 9,023.0 | | | 7,976.9 | |
+| | | | |
+Stockholders’ equity: | | | | |
+Preferred stock | | — | | | — | |
+Common stock | | 1.8 | | | 1.7 | |
+Additional paid-in capital | | 16,939.2 | | | 12,950.9 | |
+| | | | |
+Retained earnings | | 1,590.6 | | | 1,355.8 | |
+Total stockholders’ equity | | 18,531.6 | | | 14,308.4 | |
+Total liabilities and stockholders’ equity | | $ | 27,554.6 | | | $ | 22,285.3 | |
+
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+Marvell Technology, Inc. |
+Condensed Consolidated Statements of Cash Flows (Unaudited) |
+(In millions) |
+| | | | | | | | |
+| | Three Months Ended | | Six Months Ended |
+| | August 1,
+2026 | | August 2,
+2025 | | August 1,
+2026 | | August 2,
+2025 |
+Cash flows from operating activities: | | | | | | | | |
+Net income | | $ | 308.0 | | | $ | 194.8 | | | $ | 342.5 | | | $ | 372.7 | |
+Adjustments to reconcile net income to net cash provided by operating activities: | | | | | | | | |
+Depreciation and amortization | | 93.1 | | | 84.1 | | | 188.5 | | | 168.3 | |
+Stock-based compensation | | 326.2 | | | 153.6 | | | 533.8 | | | 295.7 | |
+Amortization of acquired intangible assets | | 214.9 | | | 243.7 | | | 440.1 | | | 489.4 | |
+Change in fair value of contingent consideration liability | | 101.9 | | | — | | | 433.7 | | | — | |
+Change in fair value of forward stock purchase contract | | (49.9) | | | — | | | (131.0) | | | — | |
+Restructuring related charges (gains), net | | — | | | — | | | — | | | (14.0) | |
+Deferred income taxes | | 24.9 | | | (4.9) | | | 38.7 | | | (9.2) | |
+| | | | | | | | |
+Other expense, net | | 35.1 | | | 36.7 | | | 58.3 | | | 80.8 | |
+Changes in assets and liabilities, net of acquisitions: | | | | | | | | |
+Accounts receivable | | (346.6) | | | (307.7) | | | (31.7) | | | (423.3) | |
+Prepaid expenses and other assets | | (305.2) | | | (117.5) | | | (333.7) | | | (93.4) | |
+Inventories | | 48.3 | | | 15.4 | | | 36.9 | | | (54.5) | |
+Accounts payable | | 22.3 | | | (30.7) | | | (333.6) | | | (68.1) | |
+Accrued employee compensation | | 44.3 | | | 26.8 | | | (40.1) | | | (90.8) | |
+Accrued liabilities and other non-current liabilities | | 88.2 | | | 167.3 | | | 41.9 | | | 140.9 | |
+Net cash provided by operating activities | | 605.5 | | | 461.6 | | | 1,244.3 | | | 794.5 | |
+Cash flows from investing activities: | | | | | | | | |
+Purchases of technology licenses | | (4.5) | | | (1.1) | | | (5.0) | | | (2.2) | |
+Purchases of property and equipment | | (126.7) | | | (47.5) | | | (282.4) | | | (166.3) | |
+| | | | | | | | |
+Proceeds from sales of property and equipment | | — | | | 1.4 | | | — | | | 27.3 | |
+Acquisitions, net of cash acquired | | — | | | — | | | (1,270.9) | | | — | |
+| | | | | | | | |
+Other, net | | 0.9 | | | (30.0) | | | 6.6 | | | (30.1) | |
+Net cash used in investing activities | | (130.3) | | | (77.2) | | | (1,551.7) | | | (171.3) | |
+Cash flows from financing activities: | | | | | | | | |
+Repurchases of common stock | | (200.0) | | | (200.0) | | | (400.0) | | | (540.0) | |
+Proceeds from employee stock plans | | 54.2 | | | 50.5 | | | 57.5 | | | 51.1 | |
+Proceeds from issuance of preferred stock | | — | | | — | | | 2,000.0 | | | — | |
+Tax withholding paid on behalf of employees for net share settlement | | (138.0) | | | (50.7) | | | (365.2) | | | (100.9) | |
+Dividend payments to stockholders | | (53.9) | | | (51.7) | | | (107.7) | | | (103.5) | |
+Payments on technology license obligations | | (29.4) | | | (27.5) | | | (56.6) | | | (54.3) | |
+Proceeds from borrowings | | — | | | 998.6 | | | 998.9 | | | 1,198.6 | |
+Principal payments of debt | | — | | | (757.8) | | | (500.0) | | | (790.6) | |
+Other, net | | (18.9) | | | (7.3) | | | (25.5) | | | (7.5) | |
+Net cash provided by (used in) financing activities | | (386.0) | | | (45.9) | | | 1,601.4 | | | (347.1) | |
+Net increase in cash and cash equivalents | | 89.2 | | | 338.5 | | | 1,294.0 | | | 276.1 | |
+Cash and cash equivalents at beginning of period | | 3,843.6 | | | 885.9 | | | 2,638.8 | | | 948.3 | |
+Cash and cash equivalents at end of period | | $ | 3,932.8 | | | $ | 1,224.4 | | | $ | 3,932.8 | | | $ | 1,224.4 | |
+| | | | | | | | |
+
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Marvell Technology, Inc. | |
+Reconciliations from GAAP to Non-GAAP (Unaudited) | |
+(In millions, except per share amounts) | |
+| | | | | | | | | | | |
+| | Three Months Ended | | Six Months Ended | |
+| | August 1,
+2026 | | May 2,
+2026 | | August 2,
+2025 | | August 1,
+2026 | | August 2,
+2025 | |
+GAAP gross profit | | $ | 1,455.6 | | | $ | 1,260.8 | | | $ | 1,010.6 | | | $ | 2,716.4 | | | $ | 1,963.0 | | |
+Special items - expenses (income): | | | | | | | | | | | |
+Stock-based compensation | | 15.9 | | | 14.2 | | | 13.4 | | | 30.1 | | | 24.6 | | |
+Amortization of acquired intangible assets | | 142.7 | | | 150.8 | | | 167.4 | | | 293.5 | | | 336.8 | | |
+Restructuring related charges (gains) (a) | | (0.2) | | | (2.0) | | | — | | | (2.2) | | | — | | |
+Other cost of goods sold | | — | | | — | | | — | | | — | | | 0.5 | | |
+Total special items | | 158.4 | | | 163.0 | | | 180.8 | | | 321.4 | | | 361.9 | | |
+Non-GAAP gross profit | | $ | 1,614.0 | | | $ | 1,423.8 | | | $ | 1,191.4 | | | $ | 3,037.8 | | | $ | 2,324.9 | | |
+| | | | | | | | | | | |
+GAAP gross margin | | 53.1 | % | | 52.1 | % | | 50.4 | % | | 52.7 | % | | 50.3 | % | |
+Stock-based compensation | | 0.6 | % | | 0.6 | % | | 0.7 | % | | 0.6 | % | | 0.6 | % | |
+Amortization of acquired intangible assets | | 5.2 | % | | 6.3 | % | | 8.3 | % | | 5.7 | % | | 8.7 | % | |
+Restructuring related charges (gains) (a) | | — | % | | (0.1) | % | | — | % | | — | % | | — | % | |
+Other cost of goods sold | | — | % | | — | % | | — | % | | — | % | | — | % | |
+Non-GAAP gross margin | | 58.9 | % | | 58.9 | % | | 59.4 | % | | 59.0 | % | | 59.6 | % | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Marvell Technology, Inc. | |
+Reconciliations from GAAP to Non-GAAP (Unaudited) | |
+(In millions, except per share amounts) | |
+| | | | | | | | | | | |
+| | Three Months Ended | | Six Months Ended | |
+| | August 1,
+2026 | | May 2,
+2026 | | August 2,
+2025 | | August 1,
+2026 | | August 2,
+2025 | |
+GAAP operating expenses | | $ | 995.9 | | | $ | 921.4 | | | $ | 720.5 | | | $ | 1,917.3 | | | $ | 1,402.3 | | |
+Special items - (expenses) income: | | | | | | | | | | | |
+Stock-based compensation | | (310.3) | | | (193.4) | | | (140.2) | | | (503.7) | | | (271.1) | | |
+Amortization of acquired intangible assets | | (72.2) | | | (74.4) | | | (76.3) | | | (146.6) | | | (152.6) | | |
+Restructuring related (charges) gains (a) | | 2.8 | | | (10.7) | | | (8.7) | | | (7.9) | | | 3.6 | | |
+Other (b) | | (5.4) | | | (66.0) | | | (2.7) | | | (71.4) | | | (3.4) | | |
+Total special items | | (385.1) | | | (344.5) | | | (227.9) | | | (729.6) | | | (423.5) | | |
+Non-GAAP operating expenses | | $ | 610.8 | | | $ | 576.9 | | | $ | 492.6 | | | $ | 1,187.7 | | | $ | 978.8 | | |
+| | | | | | | | | | | |
+GAAP operating income | | $ | 459.7 | | | $ | 339.4 | | | $ | 290.1 | | | $ | 799.1 | | | $ | 560.7 | | |
+Special items - expenses (income): | | | | | | | | | | | |
+Stock-based compensation | | 326.2 | | | 207.6 | | | 153.6 | | | 533.8 | | | 295.7 | | |
+Amortization of acquired intangible assets | | 214.9 | | | 225.2 | | | 243.7 | | | 440.1 | | | 489.4 | | |
+Restructuring related charges (gains) (a)
+| | (3.0) | | | 8.7 | | | 8.7 | | | 5.7 | | | (3.6) | | |
+Other cost of goods sold
+| | — | | | — | | | — | | | — | | | 0.5 | | |
+Other (b)
+| | 5.4 | | | 66.0 | | | 2.7 | | | 71.4 | | | 3.4 | | |
+Total special items
+| | 543.5 | | | 507.5 | | | 408.7 | | | 1,051.0 | | | 785.4 | | |
+Non-GAAP operating income | | $ | 1,003.2 | | | $ | 846.9 | | | $ | 698.8 | | | $ | 1,850.1 | | | $ | 1,346.1 | | |
+| | | | | | | | | | | |
+GAAP operating margin | | 16.8 | % | | 14.0 | % | | 14.5 | % | | 15.5 | % | | 14.4 | % | |
+Stock-based compensation | | 11.9 | % | | 8.6 | % | | 7.7 | % | | 10.4 | % | | 7.6 | % | |
+Amortization of acquired intangible assets | | 7.8 | % | | 9.3 | % | | 12.1 | % | | 8.5 | % | | 12.5 | % | |
+Restructuring related charges (gains) (a) | | (0.1) | % | | 0.4 | % | | 0.4 | % | | 0.1 | % | | (0.1) | % | |
+Other cost of goods sold | | — | % | | — | % | | — | % | | — | % | | — | % | |
+Other (b) | | 0.2 | % | | 2.7 | % | | 0.1 | % | | 1.4 | % | | 0.1 | % | |
+Non-GAAP operating margin | | 36.6 | % | | 35.0 | % | | 34.8 | % | | 35.9 | % | | 34.5 | % | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+GAAP interest and other loss, net | | $ | (81.4) | | | $ | (256.1) | | | $ | (56.4) | | | $ | (337.5) | | | $ | (111.1) | | |
+Special items - expenses (income): | | | | | | | | | | | |
+| | | | | | | | | | | |
+Change in fair value of contingent consideration liability, net of forward stock purchase contract | | 52.0 | | | 250.7 | | | — | | | $ | 302.7 | | | $ | — | | |
+Other (b) | | (0.9) | | | (34.7) | | | 8.2 | | | $ | (35.6) | | | $ | 15.6 | | |
+Total special items | | 51.1 | | | 216.0 | | | 8.2 | | | 267.1 | | | 15.6 | | |
+Non-GAAP interest and other loss, net | | $ | (30.3) | | | $ | (40.1) | | | $ | (48.2) | | | $ | (70.4) | | | $ | (95.5) | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Marvell Technology, Inc. | |
+Reconciliations from GAAP to Non-GAAP (Unaudited) | |
+(In millions, except per share amounts) | |
+| | | | | | | | | | | |
+| | Three Months Ended | | Six Months Ended | |
+| | August 1,
+2026 | | May 2,
+2026 | | August 2,
+2025 | | August 1,
+2026 | | August 2,
+2025 | |
+GAAP net income | | $ | 308.0 | | | $ | 34.5 | | | $ | 194.8 | | | $ | 342.5 | | | $ | 372.7 | | |
+Special items - expenses (income): | | | | | | | | | | | |
+Stock-based compensation | | 326.2 | | | 207.6 | | | 153.6 | | | 533.8 | | | 295.7 | | |
+Amortization of acquired intangible assets | | 214.9 | | | 225.2 | | | 243.7 | | | 440.1 | | | 489.4 | | |
+Restructuring related charges (gains) (a) | | (3.0) | | | 8.7 | | | 8.7 | | | 5.7 | | | (3.6) | | |
+Other cost of goods sold | | — | | | — | | | — | | | — | | | 0.5 | | |
+| | | | | | | | | | | |
+Change in fair value of contingent consideration liability, net of forward stock purchase contract | | 52.0 | | | 250.7 | | | — | | | 302.7 | | | — | | |
+Other (b) | | 4.5 | | | 31.3 | | | 10.9 | | | 35.8 | | | 19.0 | | |
+Pre-tax total special items | | 594.6 | | | 723.5 | | | 416.9 | | | 1,318.1 | | | 801.0 | | |
+| | | | | | | | | | | |
+Other income tax effects and adjustments (c) | | (36.7) | | | (40.0) | | | (26.2) | | | (76.7) | | | (48.2) | | |
+Non-GAAP net income | | $ | 865.9 | | | $ | 718.0 | | | $ | 585.5 | | | $ | 1,583.9 | | | $ | 1,125.5 | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+GAAP weighted-average shares outstanding — basic | | 897.4 | | | 882.0 | | | 862.6 | | | 889.6 | | | 863.7 | | |
+GAAP weighted-average shares outstanding — diluted | | 921.2 | | | 893.3 | | | 870.4 | | | 907.1 | | | 873.0 | | |
+| | | | | | | | | | | |
+Non-GAAP weighted-average shares outstanding — diluted | | 921.2 | | | 893.3 | | | 870.4 | | | 907.1 | | | 873.0 | | |
+| | | | | | | | | | | |
+GAAP diluted net income per share | | $ | 0.33 | | | $ | 0.04 | | | $ | 0.22 | | | $ | 0.38 | | | $ | 0.43 | | |
+Non-GAAP diluted net income per share | | $ | 0.94 | | | $ | 0.80 | | | $ | 0.67 | | | $ | 1.75 | | | $ | 1.29 | | |
+
+
+
+
+
+
+
+
+
+
+
+
+| | | | | |
+(a)
+| Restructuring and other related items include gain on sale of property, changes in contractual obligations, employee severance costs, facility exit related charges, and other. |
+| |
+(b) | Other costs in operating expenses, operating income and interest and other loss, net include acquisition and divestiture related costs, gain or loss on investments, gain on sale of intellectual property, and legal contingency matters. |
+| |
+(c) | Other income tax effects and adjustments relate to tax provision based on a non-GAAP income tax rate of 11.0% for the three and six months ended August 1, 2026 and three months ended May 2, 2026. Other income tax effects and adjustments relate to tax provision based on a non-GAAP income tax rate of 10.0% for the three and six months ended August 2, 2025.
+|
+| |
+| |
+| |
+
+
+
+
+
+
+
+
+
+| | | | | |
+Marvell Technology, Inc. |
+Outlook for the Third Quarter of Fiscal Year 2027 |
+Reconciliations from GAAP to Non-GAAP (Unaudited) |
+(In millions, except per share amounts) |
+| |
+| |
+| Outlook for Three Months Ended
+October 31, 2026 |
+GAAP net revenue | $3,150 +/- 5% |
+Special items: | — |
+Non-GAAP net revenue | $3,150 +/- 5% |
+| |
+GAAP gross margin | 52.9% - 53.9% |
+Special items: | |
+Stock-based compensation | ~0.8% |
+Amortization of acquired intangible assets | ~3.9% |
+| |
+Non-GAAP gross margin | 57.5% - 58.5% |
+| |
+| |
+Total GAAP operating expenses | ~$1,015 |
+Special items: | |
+Stock-based compensation | 285 |
+Amortization of acquired intangible assets | 72 |
+Restructuring related charges | 1 |
+Other | 2 |
+| |
+| |
+Total non-GAAP operating expenses | ~$655 |
+| |
+| |
+| |
+GAAP diluted net income per share | $0.53 +/- $0.05 |
+Special items: | |
+Stock-based compensation | 0.34 |
+| |
+Amortization of acquired intangible assets | 0.21 |
+| |
+Other income tax effects and adjustments | (0.03) |
+Other | 0.05 |
+Non-GAAP diluted net income per share | $1.10 +/- $0.05 |
+
+
+
+
+
+
+
+
+
+Quarterly Revenue Trend (Unaudited)
+
+
+Our product solutions serve two end markets: (i) data center and (ii) communications and other. These markets and their corresponding customer products and applications are noted in the table below:
+
+
+| | | | | |
+End market
+| Customer products and applications
+|
+Data center
+| •Cloud and on-premise Artificial intelligence (“AI”) systems
+•Cloud and on-premise ethernet switching
+•Cloud and on-premise network-attached storage (“NAS”)
+•Cloud and on-premise AI servers
+•Cloud and on-premise general-purpose servers
+•Cloud and on-premise storage area networks
+•Cloud and on-premise storage systems
+•Data center interconnect (“DCI”)
+|
+Communications and other | Enterprise networking
+•Campus and small medium enterprise routers
+•Campus and small medium enterprise ethernet switches
+•Campus and small medium enterprise wireless access points (“WAPs”)
+•Network appliances (firewalls, and load balancers)
+•Workstations
+|
+Carrier infrastructure
+•Broadband access systems
+•Ethernet switches
+•Optical transport systems
+•Routers
+•Wireless radio access network (“RAN”) systems
+|
+Consumer
+•Broadband gateways and routers
+•Gaming consoles
+•Home data storage
+•Home wireless access points (“WAPs”)
+•Personal Computers (“PCs”)
+•Printers
+•Set-top boxes
+|
+Automotive/industrial
+•Advanced driver-assistance systems (“ADAS”)*
+•Autonomous vehicles (“AV”)*
+•In-vehicle networking*
+•Industrial ethernet switches
+•United States military and government solutions
+•Video surveillance
+|
+* These customer products and applications were divested as part of the automotive ethernet business sale on August 14, 2025.
+
+
+
+
+
+
+
+Quarterly Revenue Trend (Unaudited) (Continued)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | % Change |
+Revenue by End Market
+(In millions) | August 1,
+2026 | | May 2,
+2026 | | August 2,
+2025 | | YoY | | QoQ |
+Data center | $ | 2,171.5 | | | $ | 1,832.7 | | | $ | 1,490.5 | | | 46 | % | | 18 | % |
+Communications and other
+| 567.8 | | | 585.1 | | | 515.6 | | | 10 | % | | (3) | % |
+Total Net Revenue | $ | 2,739.3 | | | $ | 2,417.8 | | | $ | 2,006.1 | | | 37 | % | | 13 | % |
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | Three Months Ended |
+Revenue by End Market
+% of Total | | | | | August 1,
+2026 | | May 2,
+2026 | | August 2,
+2025 |
+Data center | | | | | 79 | % | | 76 | % | | 74 | % |
+Communications and other
+| | | | | 21 | % | | 24 | % | | 26 | % |
+Total Net Revenue | | | | | 100 | % | | 100 | % | | 100 | % |
+
+
+
+For further information, contact:
+Ross Seymore
+Senior Vice President, Investor Relations
+408-222-0777
+ir@marvell.com

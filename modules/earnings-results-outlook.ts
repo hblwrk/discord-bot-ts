@@ -64,6 +64,7 @@ const moneyUnitPatternSource = String.raw`(?:trillions?|billions?|millions?|thou
 const moneyTokenPatternSource = String.raw`(?<![\d.])\(?\s*(?:(?:US\s*\$|C\s*\$|[$€£¥])\s*|(?:(?:USD|CAD|EUR|GBP|JPY|CHF)\s+))?-?\d+(?:,\d{3})*(?:\.\d+)?\s*\)?\s*(?:${moneyUnitPatternSource})?\)?`;
 const moneyRangePattern = new RegExp(`(${moneyTokenPatternSource})\\s*(?:to|through|-|–|and)\\s*(${moneyTokenPatternSource})`, "gi");
 const moneyPlusMinusPattern = new RegExp(`(${moneyTokenPatternSource})\\s*(?:\\+\\s*\\/\\s*-|±|plus\\s+or\\s+minus)\\s*(${moneyTokenPatternSource})`, "i");
+const moneyPercentPlusMinusPattern = new RegExp(`(${moneyTokenPatternSource})\\s*(?:\\+\\s*\\/\\s*-|±|plus\\s+or\\s+minus)\\s*(\\d+(?:\\.\\d+)?)\\s*%`, "i");
 const singleMoneyPattern = new RegExp(moneyTokenPatternSource, "gi");
 
 // Held separately because a plainly captioned per-share row is relabelled to it when the
@@ -236,6 +237,18 @@ function getOutlookSection(lines: string[]): OutlookSection {
 
   for (const line of joinedLines) {
     if (true === isOutlookHeading(line)) {
+      const nestedPeriodLabel = true === collecting && /\bguidance\s+metrics\b/i.test(line)
+        ? getLineOutlookPeriodLabel(line)
+        : undefined;
+      // A generic section can contain period-specific table headings for the quarter and
+      // full year. Keep those headings in the body so their rows inherit the right period;
+      // replacing the section heading with the last one labels every earlier row as FY.
+      if (undefined !== nestedPeriodLabel) {
+        sectionLines.push(line);
+        mixedPeriods = true;
+        continue;
+      }
+
       // An inline guidance sentence is only a fallback for releases without a dedicated
       // section. If a real Outlook heading appears later, discard the intervening results
       // prose so historical actuals cannot be merged into the guidance candidates.
@@ -287,7 +300,9 @@ function getOutlookSection(lines: string[]): OutlookSection {
     }
   }
 
-  const expandedSectionLines = expandParallelPeriodGuidanceRows(sectionLines);
+  const expandedSectionLines = expandParallelPeriodGuidanceRows(
+    joinVerticalRevisedGuidanceRows(sectionLines),
+  );
   return {
     guidanceFirstColumns: hasGuidanceFirstColumnHeader(expandedSectionLines),
     guidanceRangeColumns: hasGuidanceRangeColumnHeader(expandedSectionLines),
@@ -301,8 +316,37 @@ function getOutlookSection(lines: string[]): OutlookSection {
         ...getStructuredOutlookPeriodLines(expandedSectionLines),
       ]),
     nonGaapMeasures: hasNonGaapGuidanceBasis(expandedSectionLines),
-    revisedColumns: expandedSectionLines.some(line => hasRevisedColumnHeader(line)),
+    revisedColumns: hasRevisedColumnHeaders(expandedSectionLines),
   };
+}
+
+// Inline-XBRL can render a revised table vertically: caption, prior value, updated value.
+// Rejoin those three lines into the same row shape used by ordinary HTML tables so the
+// updated-column selector can read it without treating the prior value as authoritative.
+function joinVerticalRevisedGuidanceRows(lines: string[]): string[] {
+  if (false === hasSplitRevisedColumnHeaders(lines)) {
+    return lines;
+  }
+
+  const joinedLines: string[] = [];
+  for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
+    const line = lines[lineIndex] ?? "";
+    const priorValueLine = lines[lineIndex + 1] ?? "";
+    const updatedValueLine = lines[lineIndex + 2] ?? "";
+    const isMetricCaption = /\b(?:revenues?|net\s+sales|sales|eps|earnings\s+per\s+share|operating\s+(?:income|margin|expenses?)|gross(?:\s+profit)?\s+margin|tax\s+rate|capex|capital\s+expenditures?|free\s+cash\s+flow)\b/i.test(line);
+    const isPriorValue = /^\s*\|/.test(priorValueLine) && /\d/.test(priorValueLine);
+    const isUpdatedValue = /^\s*\|/.test(updatedValueLine) &&
+      (/\d/.test(updatedValueLine) || /\bno\s+change\b/i.test(updatedValueLine));
+    if (true === isMetricCaption && true === isPriorValue && true === isUpdatedValue) {
+      joinedLines.push(`${line} ${priorValueLine} ${updatedValueLine}`);
+      lineIndex += 2;
+      continue;
+    }
+
+    joinedLines.push(line);
+  }
+
+  return joinedLines;
 }
 
 // Inline font tags sometimes split a semantic label into separate text lines. Reattach only
@@ -352,12 +396,20 @@ function joinSplitOutlookLines(lines: string[]): string[] {
 // retain both ranges instead of dropping the dense comparison-shaped row.
 function expandParallelPeriodGuidanceRows(lines: string[]): string[] {
   const headerText = lines.slice(0, 10).join(" ");
-  if (false === lines.some(line => /\bannual\s+recurring\s+revenue\b/i.test(line))) {
+  const hasSplitFiscalYearColumns = lines.some(line =>
+    /^\s*\|\s*Q[1-4]\s+Fiscal\s+Year\s+20\d{2}\s*$/i.test(line)) &&
+    lines.some(line => /^\s*\|\s*\|\s*Fiscal\s+Year\s+20\d{2}\s*$/i.test(line));
+  if (false === hasSplitFiscalYearColumns &&
+      false === lines.some(line => /\bannual\s+recurring\s+revenue\b/i.test(line))) {
     return lines;
   }
 
-  const quarterMatch = /\bQ([1-4])\s+FY\s*(\d{2}|20\d{2})\b/i.exec(headerText);
-  const fullYearMatch = /\bfull[\s–—-]+year\s+FY\s*(\d{2}|20\d{2})\b/i.exec(headerText);
+  const quarterMatch = /\bQ([1-4])\s+(?:(?:fiscal\s+year|FY)\s*)?(\d{2}|20\d{2})\b/i.exec(headerText);
+  const remainingHeaderText = headerText.slice(
+    (quarterMatch?.index ?? 0) + (quarterMatch?.[0].length ?? 0),
+  );
+  const fullYearMatch = /\b(?:full[\s–—-]+year(?:\s+FY)?|fiscal\s+year|FY)\s*(\d{2}|20\d{2})\b/i
+    .exec(remainingHeaderText);
   if (undefined === quarterMatch?.[1] || undefined === fullYearMatch?.[1]) {
     return lines;
   }
@@ -447,6 +499,17 @@ function hasRevisedColumnHeader(line: string): boolean {
       /\bupdated\b/i.test(line) &&
       false === /\d/.test(line)) ||
     (/\boriginal\b/i.test(line) && 2 <= (line.match(/\bas\s+of\b/gi)?.length ?? 0));
+}
+
+function hasRevisedColumnHeaders(lines: string[]): boolean {
+  return lines.some(line => hasRevisedColumnHeader(line)) ||
+    hasSplitRevisedColumnHeaders(lines);
+}
+
+function hasSplitRevisedColumnHeaders(lines: string[]): boolean {
+  return lines.some((line, lineIndex) =>
+    /\bprior\b.*\b(?:outlook|guidance)\b/i.test(line) &&
+    /\bupdated\b.*\b(?:outlook|guidance)\b/i.test(lines[lineIndex + 1] ?? ""));
 }
 
 function hasGuidanceFirstColumnHeader(lines: string[]): boolean {
@@ -761,12 +824,24 @@ function getOutlookPeriodLabel(
   // Some releases introduce a short group of bullets with a standalone period caption.
   // Only inherit from that caption form: looking back through ordinary metric rows leaks
   // one row's period onto the next otherwise-unlabelled row.
-  const periodLookback = true === hasParallelGaapNonGaapColumnHeader(lines) ? 16 : 4;
+  const hasParallelGaapNonGaapHeader = hasParallelGaapNonGaapColumnHeader(lines);
+  const periodLookback = true === hasParallelGaapNonGaapHeader ? 16 : 8;
   for (let index = lineIndex - 1; index >= 0 && index >= lineIndex - periodLookback; index--) {
     const contextLine = lines[index] ?? "";
     const inheritedPeriodLabel = getLineOutlookPeriodLabel(contextLine);
+    const isCompactGuidancePeriodHeader = contextLine.length <= 140 &&
+      /\bguidance\s+metrics\b/i.test(contextLine) &&
+      false === /[$€£¥]|\d+(?:\.\d+)?\s*%/.test(contextLine);
+    const isLongRangeProseCaption = true === isLongRangeOutlookPeriodCaption(contextLine);
+    if (false === hasParallelGaapNonGaapHeader &&
+        4 < lineIndex - index &&
+        false === isCompactGuidancePeriodHeader &&
+        (false === isLongRangeProseCaption || 6 < lineIndex - index)) {
+      continue;
+    }
     if (undefined === inheritedPeriodLabel ||
         (false === isStandaloneOutlookPeriodCaption(contextLine) &&
+          false === isCompactGuidancePeriodHeader &&
           false === /\bconsolidated\s+metric\b/i.test(contextLine))) {
       continue;
     }
@@ -801,6 +876,7 @@ function isStandaloneOutlookPeriodCaption(line: string): boolean {
   }
 
   return /^\s*\|\s*(?:third[\s–—-]+quarter|fiscal\s+year\s+20\d{2})\s*\|/i.test(line) ||
+    true === isLongRangeOutlookPeriodCaption(line) ||
     /^\s*for\s+(?:fiscal\s+year\s+20\d{2}|the\s+(?:first|second|third|fourth)[\s–—-]+quarter\s+of\s+fiscal\s+20\d{2})\b[^:]{0,100}\bthe\s+company\s+(?:now\s+)?expects\s*:\s*$/i.test(line) ||
     /^\s*for\s+the\s+(?:(?:first|second|third|fourth)\s+quarter|full[\s–—-]+year)\b[^:]{0,40}\b(?:we|the\s+company)\s+expect\s*:\s*$/i.test(line) ||
     /^\s*.{0,50}\bis\s+providing\s+guidance\s+for\s+(?:its\s+)?(?:first|second|third|fourth)\s+quarter\b[^$€£¥%]*:?\s*$/i.test(line) ||
@@ -811,6 +887,10 @@ function isStandaloneOutlookPeriodCaption(line: string): boolean {
     /^\s*(?:q[1-4](?:\s+(?:fy\s*)?(?:20)?\d{2})?|(?:first|second|third|fourth)[\s–—-]+quarter(?:\s+(?:of\s+)?(?:fiscal\s+year\s+)?20\d{2})?|(?:full[\s–—-]+year|fiscal(?:\s+year)?|fy)\s*(?:20\d{2}|\d{2}))(?:\s+(?:financial\s+)?(?:outlook|guidance))?(?:\s*[|:])*\s*$/i.test(line) ||
     /^\s*full[\s–—-]+year\s+fy\s*\d{2}\s*$/i.test(line) ||
     true === isOutlookHeading(line);
+}
+
+function isLongRangeOutlookPeriodCaption(line: string): boolean {
+  return /^\s*for\s+(?:the\s+(?:first|second|third|fourth)[\s–—-]+quarter\s+of\s+fiscal(?:\s+year)?\s+20\d{2}|fiscal(?:\s+year)?\s+20\d{2})\b[^$€£¥%]{0,100}:?\s*$/i.test(line);
 }
 
 function isParallelOutlookPeriodHeader(line: string): boolean {
@@ -1040,10 +1120,11 @@ function extractOutlookValue(
       getGrowthOutlookValue(valueText) ??
       ("text" === valueType &&
         (/\b(?:increase|decrease)\b/i.test(valueText) ||
+          (true === revisedColumns && /\bgrowth\b/i.test(line)) ||
           ("revenue" === metricKey &&
             /\b(?:net\s+sales|total\s+sales)\b/i.test(line) &&
             /\b(?:growth|increase|decrease)\b/i.test(rawValueText)))
-        ? withNullablePercentGrowthDirection(getPercentRangeOutlookValue(valueText), rawValueText)
+        ? withNullablePercentGrowthDirection(getPercentRangeOutlookValue(valueText), line)
         : null) ??
       getOutlookRangeValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit) ??
       ("eps" === valueType ? getEpsPercentOutlookValue(valueText) : null) ??
@@ -1076,6 +1157,27 @@ function getPlusMinusOutlookValue(
     return null !== midpoint && null !== variance
       ? `${formatPercent(midpoint - Math.abs(variance))} to ${formatPercent(midpoint + Math.abs(variance))}`
       : null;
+  }
+
+  const percentVarianceMatch = moneyPercentPlusMinusPattern.exec(flattenedValue);
+  const percentMidpointToken = percentVarianceMatch?.[1];
+  const percentVarianceToken = percentVarianceMatch?.[2];
+  if (("money" === valueType || "text" === valueType) &&
+      undefined !== percentMidpointToken &&
+      undefined !== percentVarianceToken) {
+    const inferredUnit = getMoneyUnit(percentMidpointToken) ?? sectionMoneyUnit;
+    const inferredCurrencyCode = getCurrencyCodeFromText(percentMidpointToken, documentCurrencyCode) ??
+      documentCurrencyCode;
+    const midpoint = parseMoneyWithOptionalUnit(
+      percentMidpointToken,
+      inferredUnit,
+      inferredCurrencyCode,
+    );
+    const variancePercent = Number.parseFloat(percentVarianceToken);
+    if (null !== midpoint && Number.isFinite(variancePercent)) {
+      const variance = Math.abs(midpoint.value * variancePercent / 100);
+      return `${formatMoneyCompact(midpoint.value - variance, midpoint.currencyCode)} to ${formatMoneyCompact(midpoint.value + variance, midpoint.currencyCode)}`;
+    }
   }
 
   const plusMinusMatch = moneyPlusMinusPattern.exec(flattenedValue);

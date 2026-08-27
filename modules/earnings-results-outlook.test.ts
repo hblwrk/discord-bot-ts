@@ -729,6 +729,111 @@ describe("extractOutlookMetrics", () => {
     ]));
   });
 
+  test("applies a percentage variance to a money midpoint", () => {
+    expect(extractOutlookMetrics([
+      "Third Quarter of Fiscal 2027 Financial Outlook",
+      "Net revenue is expected to be $3.150 billion +/- 5%.",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", value: "$2.993B to $3.308B"},
+    ]);
+  });
+
+  test("inherits quarter and full-year periods from standalone fiscal captions", () => {
+    expect(extractOutlookMetrics([
+      "Financial Outlook",
+      "The Company is providing the following guidance:",
+      "For the second quarter of fiscal 2027 (ending October 31, 2026):",
+      "Total revenue is expected to be between $486 million and $487 million.",
+      "Sales-led subscription revenue is expected to be between $407.5 million and $408.5 million.",
+      "GAAP operating margin is expected to be positive.",
+      "Non-GAAP operating margin is expected to be approximately 19.0%.",
+      "Non-GAAP diluted earnings per share is expected to be between $0.80 and $0.82.",
+      "For fiscal 2027 (ending April 30, 2027):",
+      "Total revenue is expected to be between $1.998 billion and $2.010 billion.",
+      "Sales-led subscription revenue is expected to be between $1.682 billion and $1.694 billion.",
+      "GAAP operating margin is expected to be positive.",
+      "Non-GAAP operating margin is expected to be approximately 19.4%.",
+      "Non-GAAP diluted earnings per share is expected to be between $3.29 and $3.37.",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", periodLabel: "Q2", value: "$486M to $487M"},
+      {key: "revenue", label: "Revenue", periodLabel: "FY2027", value: "$1.998B to $2.01B"},
+      {key: "adjusted_eps", label: "Adj EPS", periodLabel: "Q2", value: "$0.8 to $0.82"},
+      {key: "adjusted_eps", label: "Adj EPS", periodLabel: "FY2027", value: "$3.29 to $3.37"},
+      {key: "operating_margin", label: "Operating margin", periodLabel: "Q2", value: "19.0%"},
+      {key: "operating_margin", label: "Operating margin", periodLabel: "FY2027", value: "19.4%"},
+    ]);
+  });
+
+  test("keeps nested quarterly and annual guidance table headings", () => {
+    expect(extractOutlookMetrics([
+      "Business Outlook",
+      "Third Quarter Fiscal 2027 | | |",
+      "Q3 FY27 Guidance Metrics | | Q3 FY27",
+      "(ending October 31, 2026) |",
+      "Revenue (in millions) | | $2,125 - $2,140 |",
+      "GAAP EPS | | $1.57 - $1.87 |",
+      "Non-GAAP EPS | | $3.04 - $3.09 |",
+      "Full Year Fiscal 2027 | | |",
+      "FY27 Guidance Metrics | | FY27",
+      "(ending January 31, 2027) |",
+      "Revenue (in millions) | | $8,295 - $8,345 |",
+      "GAAP EPS | | $7.89 - $8.72 |",
+      "Non-GAAP EPS | | $12.52 - $12.60 |",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", periodLabel: "Q3", value: "$2.125B to $2.14B"},
+      {key: "revenue", label: "Revenue", periodLabel: "FY2027", value: "$8.295B to $8.345B"},
+      {key: "adjusted_eps", label: "Adj EPS", periodLabel: "Q3", value: "$3.04 to $3.09"},
+      {key: "adjusted_eps", label: "Adj EPS", periodLabel: "FY2027", value: "$12.52 to $12.6"},
+      {key: "eps", label: "EPS", periodLabel: "Q3", value: "$1.57 to $1.87"},
+      {key: "eps", label: "EPS", periodLabel: "FY2027", value: "$7.89 to $8.72"},
+    ]);
+  });
+
+  test("expands parallel quarter and full-year guidance columns", () => {
+    expect(extractOutlookMetrics([
+      "Financial Outlook",
+      "We are providing guidance for the third quarter of fiscal year 2027 and fiscal year 2027.",
+      "| Q3 Fiscal Year 2027",
+      "Guidance",
+      "| | Fiscal Year 2027",
+      "Guidance |",
+      "Revenue | $309 - 311 million | | $1.202 - 1.207 billion |",
+      "Non-GAAP operating income | $38 - 40 million | | $124 - 128 million |",
+      "Non-GAAP diluted earnings per share (EPS) | $0.08 - 0.09 | | $0.30 - 0.32 |",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", periodLabel: "Q3", value: "$309M to $311M"},
+      {key: "revenue", label: "Revenue", periodLabel: "FY2027", value: "$1.202B to $1.207B"},
+      {key: "adjusted_eps", label: "Adj EPS", periodLabel: "Q3", value: "$0.08 to $0.09"},
+      {key: "adjusted_eps", label: "Adj EPS", periodLabel: "FY2027", value: "$0.3 to $0.32"},
+      {key: "operating_income", label: "Operating income", periodLabel: "Q3", value: "$38M to $40M"},
+      {key: "operating_income", label: "Operating income", periodLabel: "FY2027", value: "$124M to $128M"},
+    ]);
+  });
+
+  test("reads updated values from vertically split revised guidance tables", () => {
+    expect(extractOutlookMetrics([
+      "Fiscal 2026 Outlook",
+      "| Prior Fiscal 2026 Outlook",
+      "| Updated Fiscal 2026 Outlook",
+      "Net sales growth",
+      "| 6% to 7%",
+      "| 6.7% to 7.2%",
+      "Operating income growth",
+      "| 6.5% to 9%",
+      "| 8.3% to 9.3%",
+      "Diluted earnings per share",
+      "| $28.36 to $28.80",
+      "| $28.70 to $29.00",
+      "Capital expenditures",
+      "| $400 million to $450 million",
+      "| no change",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", value: "6.7% to 7.2% growth"},
+      {key: "eps", label: "EPS", value: "$28.7 to $29"},
+      {key: "capex", label: "Capex", value: "$400M to $450M"},
+    ]);
+  });
+
   test("limits outlook scanning and ignores unusable fallback values", () => {
     const lines = [
       "Business Outlook",

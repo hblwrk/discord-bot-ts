@@ -1,0 +1,632 @@
+EX-99.1
+2
+a27q1erex991.htm
+EX-99.1
+
+
+
+
+Document
+Exhibit 99.1
+
+Elastic Reports First Quarter Fiscal 2027 Financial Results
+
+
+cRPO growth of 21% as reported and 20% on a constant currency basis
+Q1 net additions to our >$100K ACV customer cohort reach the highest level to date
+
+
+
+
+
+SAN FRANCISCO, Aug 27, 2026 -- Elastic (NYSE: ESTC), the Search AI Company, announced financial results for its first quarter of fiscal 2027 ended July 31, 2026.
+
+
+First Quarter Fiscal 2027 Financial Highlights
+
+
+•Total revenue was $478 million, an increase of 15% year-over-year, as reported and on a constant currency basis
+•Total subscription revenue was $449 million, an increase of 15% year-over-year, as reported and on a constant currency basis
+•Sales-led subscription revenue (calculated as subscription revenue excluding Monthly Elastic Cloud) was $399 million, an increase of 18% year-over-year, or 17% on a constant currency basis
+•Current remaining performance obligations were $1.153 billion, an increase of 21% year-over-year, or 20% on a constant currency basis
+•Remaining performance obligations were $1.854 billion, an increase of 27% year-over-year, as reported and on a constant currency basis
+•GAAP operating loss was $24 million; GAAP operating margin was -5%
+•Non-GAAP operating income was $77 million; non-GAAP operating margin was 16.2%
+•GAAP net loss per share was $0.16; non-GAAP diluted earnings per share was $0.70
+•Operating cash flow was $132 million with adjusted free cash flow of $143 million
+•Cash, cash equivalents, and marketable securities were $1.461 billion as of July 31, 2026
+
+
+
+“Elastic delivered a strong start to fiscal 2027, beating our guidance across all key metrics,” said Ash Kulkarni, chief executive officer, Elastic. “AI is reshaping the enterprise technology stack, and organizations are making deliberate choices about where to build and how to observe and secure their applications and data. Our record quarter-over-quarter net customer additions to our >$100K ACV cohort and continued strength in cRPO and RPO growth reflect the durability of that demand. We enter the year with growing momentum across Search & AI, Security, and Observability and confidence in the trajectory of our business.”
+
+
+First Quarter Fiscal 2027 Key Metrics and Recent Business Highlights
+
+
+Key Customer Metrics
+•Total customer count with Annual Contract Value (ACV) greater than $100,000 was over 1,800 compared to over 1,720 in Q4 FY26, and over 1,550 in Q1 FY26
+•Net Expansion Rate was approximately 111%
+
+
+Product Innovations and Updates
+•Delivered general availability of native Prometheus and PromQL support, out-of-the-box Kubernetes agentic investigations, and automated migration features in our unified platform for metrics and logs
+
+
+
+
+
+
+
+•Introduced Columnar Mode in technical preview, combining the efficiency of columnar analytics with Elasticsearch’s best-in-class search across all data, with especially significant improvements to the cost and performance of metrics and log analytics
+•Introduced general availability of VectorDB index mode and Auto Calibration for DiskBBQ, enabling instant vector search out of the box, no setup or index tuning required
+•Delivered Jina AI embedding and reranker models for on-premises and air-gapped environments through Jina On-Prem
+•Introduced an agentic Kubernetes investigation workflow and MCP-based observability skills that analyze logs, metrics, anomalies, and cluster events, surfacing root causes and next steps automatically
+•Expanded Attack Discovery, broader endpoint protection, and enhanced native workflow automation with Alert Zero, an AI-driven alert triage and attack investigation for the agentic SOC
+
+
+
+
+Other Business Highlights
+•Acquired Deductive AI, an AI-powered investigation platform that helps engineering teams identify and resolve production issues faster, bringing more AI-powered investigation and automation to Elastic Observability
+•Recognized as a Leader for the Third Consecutive Year in the Gartner® Magic Quadrant™ for Observability Platforms
+•Recognized as a Leader in the IDC MarketScape: Worldwide SIEM 2026
+•Recognized as a Strong Performer in The Forrester Wave™: Extended Detection And Response Platforms, Q2 2026
+•Achieved the industry’s 100% malware protection score in AV-Comparatives 2026 Business Security Test, tied for the highest score in the Real-World Protection Test with a 99.8% protection rate, and earned the AV-Comparatives Approved Business Product Award
+•Announced our collaboration with OpenAI to bring OpenAI’s advanced reasoning models with governed enterprise context in Elasticsearch across AI applications, security operations, and observability
+•Achieved the AI Security distinction in the Amazon Web Services (AWS) Security Competency
+•Engaged with thousands of customers and partners at Black Hat and the RAISE AI Summit in Paris
+
+
+
+
+Share Repurchase Program
+
+
+In October 2025, Elastic announced a share repurchase program pursuant to which the Company may repurchase up to $500 million of the Company’s outstanding ordinary shares. As part of this program, during the first quarter of fiscal 2027, Elastic repurchased approximately 0.8 million ordinary shares at an average price per share of $49.71 on the open market, representing an aggregate value of approximately $40 million.
+
+
+
+
+Financial Outlook
+
+
+The Company is providing the following guidance:
+
+
+
+
+
+
+
+
+
+For the second quarter of fiscal 2027 (ending October 31, 2026):
+
+
+•Total revenue is expected to be between $486 million and $487 million, representing 14.9% year-over-year growth at the midpoint (15.0% year-over-year constant currency growth at the midpoint)
+•Sales-led subscription revenue is expected to be between $407.5 million and $408.5 million, representing 16.9% year-over-year growth at the midpoint (17.1% year-over-year constant currency growth at the midpoint)
+•GAAP operating margin is expected to be positive
+•Non-GAAP operating margin is expected to be approximately 19.0%
+•Non-GAAP diluted earnings per share is expected to be between $0.80 and $0.82, assuming between 108.0 million and 109.0 million diluted weighted average ordinary shares outstanding
+
+
+For fiscal 2027 (ending April 30, 2027):
+
+
+•Total revenue is expected to be between $1.998 billion and $2.010 billion, representing 15.2% year-over-year growth at the midpoint (15.3% year-over-year constant currency growth at the midpoint)
+•Sales-led subscription revenue is expected to be between $1.682 billion and $1.694 billion, representing 17.4% year-over-year growth at the midpoint (17.5% year-over-year constant currency growth at the midpoint)
+•GAAP operating margin is expected to be positive
+•Non-GAAP operating margin is expected to be approximately 19.4%
+•Non-GAAP diluted earnings per share is expected to be between $3.29 and $3.37, assuming between 108.5 million and 109.5 million diluted weighted average ordinary shares outstanding
+•Adjusted free cash flow margin is expected to be approximately 21.5%, excluding any acquisitions or other one-time charges
+
+
+
+
+The diluted weighted average ordinary shares outstanding reflect only share buybacks completed as of July 31, 2026.
+
+
+The guidance assumes, among others, the following exchange rates: 1 Euro = 1.166 US Dollars; and 1 Great British Pound = 1.361 US Dollars.
+
+
+
+
+
+
+
+
+
+See the section titled “Forward-Looking Statements” below for information on the risks and uncertainties that could cause our actual results to differ materially from those expressed or implied in our forward-looking statements. We present historical and forward-looking non-GAAP financial measures in addition to, and not as a substitute for, or superior to, financial measures calculated in accordance with GAAP. See the section entitled “Statement Regarding Use of Non-GAAP Financial Measures” below for an explanation of these non-GAAP measures. A reconciliation of forward-looking non-GAAP measures to the corresponding GAAP measures for sales-led subscription revenue, operating margin, net (loss) earnings per share, and adjusted free cash flow margin is not available without unreasonable effort due to the uncertainty regarding, and the potential variability of, many of the costs and expenses that may be incurred in the future. These items necessary to reconcile such non-GAAP measures could be material and have a significant impact on the Company’s results computed in accordance with GAAP.
+
+
+
+
+Conference Call and Webcast
+
+
+As previously announced, Elastic’s executive management team will host a conference call today at 2:00 p.m. PT / 5:00 p.m. ET to discuss the Company’s financial results and business outlook. A live audio webcast of the conference call will be available through Elastic’s Investor Relations website at ir.elastic.co. A presentation containing financial and operating information will be available at the same website. The replay of the webcast will also be available on the investor relations website.
+
+
+
+
+About Elastic
+
+
+Elastic (NYSE: ESTC) integrates its deep expertise in search technology with artificial intelligence to help everyone transform all of their data into answers, actions, and outcomes. The Elasticsearch Platform, which is the foundation for its search, observability, and security solutions, is used by thousands of companies, including more than 50% of the Fortune 500. Learn more at elastic.co.
+
+
+Elastic and associated marks are trademarks or registered trademarks of Elastic N.V. and its subsidiaries. All other company and product names may be trademarks of their respective owners.
+
+
+
+
+
+
+
+
+
+Forward-Looking Statements
+This press release contains forward-looking statements that involve substantial risks and uncertainties, which include, but are not limited to, statements regarding our expected financial results for the fiscal quarter ending October 31, 2026 and fiscal year ending April 30, 2027, the expected performance or benefits of and demand for our offerings, our product strategy and innovation, and the impacts of AI on enterprise technology, our industry and organizational decision-making. Actual outcomes and results may differ materially from those contemplated by these forward-looking statements due to uncertainties, risks, and changes in circumstances, including but not limited to, those related to: our future financial performance, including our expectations regarding our revenue, cost of revenue, gross profit or gross margin, operating expenses (which include changes in sales and marketing, research and development and general and administrative expenses), and our ability to achieve and maintain profitability; the success of our AI initiatives; competition we face in the AI landscape; market understanding and valuation of AI technologies; the use of AI by our workforce; the impact of the evolving macroeconomic and geopolitical environments on our business, operations, hiring and financial results, and on businesses and spending priorities of our customers and partners; the impact of our pricing model strategies on our business; the impact of foreign currency exchange rate fluctuations, the uncertain inflation and interest rate environment, and tariffs and other international trade policies on our results; our ability to continue to deliver and improve our offerings and develop new offerings; customer acceptance and purchase of our new and existing offerings; the expansion and adoption of our offerings; our ability to realize value from investments in the business, including acquisitions; our ability to maintain and expand our user and customer base; our international expansion strategy; the impact of our licensing model on the use and adoption of our software; our operating results and cash flows; the sufficiency of our capital resources; our ability to successfully execute our go-to-market strategy; our forecasts regarding our business; risks affecting continuation of our share repurchase program; our plan to align our investments more closely with our strategic priorities that we announced earlier this year; and general market, political, economic and business conditions.
+
+
+Any additional or unforeseen effects from the evolving macroeconomic and geopolitical environments may exacerbate these risks. Additional risks and uncertainties that could cause actual outcomes and results to differ materially from those expressed or implied in our forward-looking statements are included in our filings with the Securities and Exchange Commission (the “SEC”), including our Annual Report on Form 10-K for the fiscal year ended April 30, 2026 and subsequent quarterly and current reports filed with the SEC. SEC filings are available on the Investor Relations section of Elastic’s website at ir.elastic.co and the SEC’s website at www.sec.gov. Elastic assumes no obligation to, and does not currently intend to, update any such forward-looking statements, except as required by law.
+
+
+
+
+
+
+
+
+
+
+Statement Regarding Use of Non-GAAP Financial Measures
+
+
+In addition to our results determined in accordance with U.S. generally accepted accounting principles (“GAAP”), we believe the non-GAAP measures discussed below are useful in evaluating our operating performance. We use these non-GAAP financial measures to evaluate our ongoing operations and for internal planning and forecasting purposes. We believe that non-GAAP financial information, when taken collectively, may be helpful to investors because it provides consistency and comparability with past financial performance. However, non-GAAP financial information is presented for supplemental informational purposes only, has limitations as an analytical tool and should not be considered in isolation or as a substitute for financial information presented in accordance with GAAP. In addition, other companies, including companies in our industry, may calculate similarly-titled non-GAAP measures differently or may use other measures to evaluate their performance, all of which could reduce the usefulness of our non-GAAP financial measures as tools for comparison. Investors are cautioned that there are a number of limitations associated with the use of non-GAAP financial measures and key metrics as analytical tools. Investors are encouraged to review the differences between GAAP financial measures and the corresponding non-GAAP financial measures, and not to rely on any single financial measure to evaluate our business and financial results.
+
+
+Reconciliations of historical GAAP financial measures to their respective historical non-GAAP financial measures are included below. In relation to constant currency non-GAAP financial measures, the only reconciling item between GAAP financial measures and non-GAAP financial measures is the effect of foreign currency rate fluctuations. Further details on how we calculate such effects can be found in the definition of “Constant Currency” below.
+
+
+Sales-led Subscription Revenue
+
+
+Sales-led subscription revenue is a non-GAAP financial measure that we calculate as total subscription revenue excluding Monthly Elastic Cloud. We believe sales-led subscription revenue provides management and our investors with a consistent metric with which to measure the health of our business.
+
+
+Non-GAAP Gross Profit and Non-GAAP Gross Margin
+
+
+We define non-GAAP gross profit and non-GAAP gross margin as GAAP gross profit and GAAP gross margin, respectively, excluding stock-based compensation expense and related employer taxes, and amortization of acquired intangible assets. We believe non-GAAP gross profit and non-GAAP gross margin provide our management and investors consistency and comparability with our past financial performance and facilitate period-to-period comparisons of operations, as these metrics generally eliminate the effects of certain variables from period to period for reasons unrelated to overall operating performance.
+
+
+Non-GAAP Operating Income and Non-GAAP Operating Margin
+
+
+We define non-GAAP operating income and non-GAAP operating margin as GAAP operating loss and GAAP operating margin, respectively, excluding stock-based compensation expense and related employer taxes, amortization of acquired intangible assets, acquisition-related expenses, and restructuring and other related charges. We believe non-GAAP operating income and non-GAAP operating margin provide our management and investors consistency and
+
+
+
+
+
+
+
+comparability with our past financial performance and facilitate period-to-period comparisons of operations, as these metrics generally eliminate the effects of certain variables from period to period for reasons unrelated to overall operating performance.
+
+
+Non-GAAP Net Income and Non-GAAP Earnings Per Share
+We define non-GAAP net income as GAAP loss, excluding stock-based compensation expense and related employer taxes, amortization of acquired intangible assets, acquisition-related expenses, restructuring and other related charges, and the income tax benefit from the release of any valuation allowance against deferred tax assets. Additionally, non-GAAP net income and non-GAAP earnings per share are adjusted for an assumed provision for income taxes based on a projected non-GAAP annual effective tax rate in fiscal 2027 and 2026 of 12% and 13%, respectively. We define non-GAAP earnings per share, basic, as non-GAAP net income divided by weighted average shares outstanding and non-GAAP earnings per share, diluted, as non-GAAP net income divided by weighted average diluted shares outstanding, which includes the potentially dilutive effect of the company’s employee equity incentive plan awards. We believe non-GAAP earnings per share provides our management and investors consistency and comparability with our past financial performance and facilitates period-to-period comparisons of operations, as this metric generally eliminates the effects of certain variables from period to period for reasons unrelated to overall operating performance.
+
+
+Adjusted Free Cash Flow and Adjusted Free Cash Flow Margin
+
+
+Adjusted free cash flow is a non-GAAP financial measure that we define as net cash provided by operating activities adjusted for cash paid for interest on long-term debt less cash used for investing activities for purchases of property and equipment. Adjusted free cash flow margin is calculated as adjusted free cash flow divided by total revenue. Adjusted free cash flow does not represent residual cash flow available for discretionary expenditures since, among other things, we have mandatory debt service requirements.
+
+
+Constant Currency
+
+
+We compare the percent change in certain results from one period to another period using constant currency information to provide a framework for assessing how our business performed excluding the effect of foreign currency rate fluctuations. In presenting this information, current and comparative prior period results are converted into United States dollars at the exchange rates in effect on the last day of our prior fiscal year, rather than the actual exchange rates in effect during the respective periods.
+
+
+
+
+
+
+
+
+
+
+Contact Information
+
+
+
+
+Elastic Investor Relations
+ir@elastic.co
+
+
+
+
+Elastic Corporate Communications
+PR-Team@elastic.co
+
+
+
+
+Elastic N.V.
+
+
+
+
+
+
+
+
+Elastic N.V.
+
+Condensed Consolidated Statements of Operations
+(in thousands, except share and per share data)
+(unaudited)
+
+| | | | | | | | | | | | | | | |
+| | | Three Months Ended July 31, |
+| | | | | 2026 | | 2025 |
+Revenue | | | | | | | |
+Subscription | | | | | $ | 448,735 | | | $ | 388,583 | |
+Services | | | | | 29,378 | | | 26,705 | |
+Total revenue | | | | | 478,113 | | | 415,288 | |
+Cost of revenue | | | | | | | |
+Subscription | | | | | 91,931 | | | 69,418 | |
+Services | | | | | 29,994 | | | 27,328 | |
+Total cost of revenue | | | | | 121,925 | | | 96,746 | |
+Gross profit | | | | | 356,188 | | | 318,542 | |
+Operating expenses | | | | | | | |
+Research and development | | | | | 112,493 | | | 109,122 | |
+Sales and marketing | | | | | 198,997 | | | 174,054 | |
+General and administrative | | | | | 48,352 | | | 44,806 | |
+Restructuring and other related charges | | | | | 19,920 | | | — | |
+Total operating expenses | | | | | 379,762 | | | 327,982 | |
+Operating loss | | | | | (23,574) | | | (9,440) | |
+Other income, net | | | | | | | |
+Interest expense | | | | | (6,281) | | | (6,351) | |
+Other income, net | | | | | 12,597 | | | 15,782 | |
+Loss before income taxes | | | | | (17,258) | | | (9) | |
+(Benefit from) provision for income taxes | | | | | (529) | | | 24,594 | |
+Net loss | | | | | $ | (16,729) | | | $ | (24,603) | |
+Net loss per share attributable to ordinary shareholders, basic and diluted | | | | | $ | (0.16) | | | $ | (0.23) | |
+| | | | | | | |
+| | | | | | | |
+Weighted-average shares used to compute net loss per share attributable to ordinary shareholders, basic and diluted | | | | | 104,640,231 | | | 105,961,879 | |
+| | | | | | | |
+| | | | | | | |
+
+
+
+
+
+
+
+
+
+
+
+Elastic N.V.
+Condensed Consolidated Balance Sheets
+(in thousands, except share and per share data)
+(unaudited)
+
+| | | | | | | | | | | |
+| As of
+July 31, 2026 | | As of
+April 30, 2026 |
+Assets | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 879,869 | | | $ | 768,725 | |
+Restricted cash | 1,966 | | | 1,773 | |
+Marketable securities | 581,173 | | | 601,537 | |
+Accounts receivable, net of allowance for credit losses of $5,143 and $6,847 as of July 31, 2026 and April 30, 2026, respectively | 236,433 | | | 464,413 | |
+Deferred contract acquisition costs | 103,055 | | | 106,447 | |
+Prepaid expenses and other current assets | 75,138 | | | 80,368 | |
+Total current assets | 1,877,634 | | | 2,023,263 | |
+Property and equipment, net | 8,172 | | | 8,591 | |
+Goodwill | 356,580 | | | 356,442 | |
+Operating lease right-of-use assets | 23,058 | | | 18,641 | |
+Intangible assets, net | 10,443 | | | 13,059 | |
+Deferred contract acquisition costs, non-current | 146,487 | | | 150,989 | |
+Deferred tax assets | 566,053 | | | 567,278 | |
+Other assets | 13,461 | | | 14,413 | |
+Total assets | $ | 3,001,888 | | | $ | 3,152,676 | |
+Liabilities and Shareholders’ Equity | | | |
+Current liabilities: | | | |
+Accounts payable | $ | 14,185 | | | $ | 8,618 | |
+Accrued expenses and other liabilities | 77,922 | | | 96,713 | |
+Accrued compensation and benefits | 99,612 | | | 119,231 | |
+Operating lease liabilities | 5,709 | | | 6,539 | |
+Deferred revenue | 839,758 | | | 973,820 | |
+Total current liabilities | 1,037,186 | | | 1,204,921 | |
+Deferred revenue, non-current | 44,189 | | | 52,502 | |
+Long-term debt, net | 571,195 | | | 570,895 | |
+Operating lease liabilities, non-current | 18,871 | | | 14,129 | |
+Other liabilities, non-current | 33,604 | | | 33,729 | |
+Total liabilities | 1,705,045 | | | 1,876,176 | |
+Shareholders’ equity: | | | |
+Preference shares, €0.01 par value; 165,000,000 shares authorized; no shares issued or outstanding as of July 31, 2026 and April 30, 2026 | — | | | — | |
+Ordinary shares, €0.01 par value; 165,000,000 shares authorized; 108,605,243 shares issued and 105,120,583 shares outstanding as of July 31, 2026; 108,360,340 shares issued and 104,751,470 shares outstanding as of April 30, 2026 | 1,167 | | | 1,154 | |
+Treasury stock, at cost; 3,484,660 shares held as of July 31, 2026; 3,608,870 shares held as of April 30, 2026
+| (249,270) | | | (275,695) | |
+Additional paid-in capital | 2,322,498 | | | 2,310,866 | |
+Accumulated other comprehensive loss | (28,868) | | | (27,870) | |
+Accumulated deficit | (748,684) | | | (731,955) | |
+Total shareholders’ equity | 1,296,843 | | | 1,276,500 | |
+Total liabilities and shareholders’ equity | $ | 3,001,888 | | | $ | 3,152,676 | |
+
+
+
+
+
+
+
+
+
+
+
+Elastic N.V.
+Condensed Consolidated Statements of Cash Flows
+(in thousands)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | |
+| | | Three Months Ended July 31, |
+| | | | | 2026 | | 2025 |
+Cash flows from operating activities | | | | | | | |
+Net loss | | | | | $ | (16,729) | | | $ | (24,603) | |
+Adjustments to reconcile net loss to cash provided by operating activities: | | | | | | | |
+Depreciation and amortization | | | | | 3,358 | | | 2,316 | |
+Amortization of premium and accretion of discount on marketable securities, net | | | | | (311) | | | (1,393) | |
+Amortization of deferred contract acquisition costs | | | | | 32,467 | | | 26,173 | |
+Amortization of debt issuance costs | | | | | 300 | | | 287 | |
+Non-cash operating lease cost | | | | | 1,768 | | | 2,316 | |
+| | | | | | | |
+Stock-based compensation expense | | | | | 74,782 | | | 69,935 | |
+Deferred income taxes | | | | | 1,061 | | | 21,562 | |
+Unrealized foreign currency transaction loss (gain) | | | | | 472 | | | (364) | |
+Other | | | | | 6 | | | — | |
+Changes in operating assets and liabilities, net of impact of business acquisitions: | | | | | | | |
+Accounts receivable, net | | | | | 227,026 | | | 153,982 | |
+Deferred contract acquisition costs | | | | | (24,872) | | | (22,284) | |
+Prepaid expenses and other current assets | | | | | 5,208 | | | (5,066) | |
+Other assets | | | | | 1,414 | | | (1,075) | |
+Accounts payable | | | | | 5,753 | | | 9,570 | |
+Accrued expenses and other liabilities | | | | | (18,914) | | | (14,892) | |
+Accrued compensation and benefits | | | | | (19,493) | | | (10,987) | |
+Operating lease liabilities | | | | | (2,127) | | | (2,730) | |
+Deferred revenue | | | | | (139,165) | | | (97,912) | |
+Net cash provided by operating activities | | | | | 132,004 | | | 104,835 | |
+Cash flows from investing activities | | | | | | | |
+Purchases of property and equipment | | | | | (590) | | | (656) | |
+Business acquisitions, net of cash acquired | | | | | — | | | (8,489) | |
+Purchases of marketable securities | | | | | (114,760) | | | (248,596) | |
+Sales, maturities, and redemptions of marketable securities | | | | | 133,490 | | | 87,366 | |
+| | | | | | | |
+Net cash provided by (used in) investing activities | | | | | 18,140 | | | (170,375) | |
+Cash flows from financing activities | | | | | | | |
+| | | | | | | |
+Proceeds from issuance of ordinary shares upon exercise of stock options | | | | | 3,304 | | | 326 | |
+Repurchases of ordinary shares | | | | | (40,016) | | | — | |
+Net cash (used in) provided by financing activities | | | | | (36,712) | | | 326 | |
+Effect of exchange rate changes on cash, cash equivalents, and restricted cash | | | | | (2,095) | | | (10) | |
+Net increase (decrease) in cash, cash equivalents, and restricted cash | | | | | 111,337 | | | (65,224) | |
+Cash, cash equivalents, and restricted cash, beginning of period | | | | | 770,498 | | | 731,214 | |
+Cash, cash equivalents, and restricted cash, end of period | | | | | $ | 881,835 | | | $ | 665,990 | |
+
+
+
+
+
+
+
+
+
+
+
+Elastic N.V.
+Revenue by Type
+(in thousands, except percentages)
+(unaudited)
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | Three Months Ended July 31, |
+| | | | | 2026 | | 2025 |
+| | | | | | | | | Amount | | % of
+Total
+Revenue | | Amount | | % of
+Total
+Revenue |
+Annual Elastic Cloud | | | | | | | | | $ | 185,003 | | | 39 | % | | $ | 145,912 | | | 35 | % |
+Monthly Elastic Cloud | | | | | | | | | 50,202 | | | 10 | % | | 49,862 | | | 12 | % |
+Total Elastic Cloud | | | | | | | | | 235,205 | | | 49 | % | | 195,774 | | | 47 | % |
+Other subscription | | | | | | | | | 213,530 | | | 45 | % | | 192,809 | | | 47 | % |
+Total subscription | | | | | | | | | 448,735 | | | 94 | % | | 388,583 | | | 94 | % |
+Services | | | | | | | | | 29,378 | | | 6 | % | | 26,705 | | | 6 | % |
+Total revenue | | | | | | | | | $ | 478,113 | | | 100 | % | | $ | 415,288 | | | 100 | % |
+
+
+
+
+
+
+
+
+
+
+
+
+
+Elastic N.V.
+Reconciliation of GAAP to Non-GAAP Data
+Supplementary Information
+(in thousands, except percentages)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| |
+| Three Months Ended
+July 31, 2026 | | % Change Year Over Year | | % Change
+Year Over Year Excluding Currency Changes | | % Change Quarter Over Quarter | | % Change
+Quarter Over Quarter Excluding Currency Changes |
+Revenue | | | | | | | | | |
+Annual Elastic Cloud | $ | 185,003 | | | 27% | | 27% | | 9% | | 9% |
+Monthly Elastic Cloud | 50,202 | | | 1% | | 1% | | 5% | | 5% |
+Total Elastic Cloud | 235,205 | | | 20% | | 20% | | 8% | | 8% |
+Other subscription | 213,530 | | | 11% | | 10% | | 4% | | 4% |
+Total subscription | $ | 448,735 | | | 15% | | 15% | | 6% | | 6% |
+Total revenue | $ | 478,113 | | | 15% | | 15% | | 6% | | 6% |
+| | | | | | | | | |
+Total sales-led subscription revenue
+| $ | 398,533 | | | 18% | | 17% | | 6% | | 7% |
+| | | | | | | | | |
+Total deferred revenue | $ | 883,947 | | | 17% | | 17% | | (14)% | | (14)% |
+Total remaining performance obligations | $ | 1,854,226 | | | 27% | | 27% | | (6)% | | (6)% |
+Remaining performance obligations due within 12 months | $ | 1,152,670 | | | 21% | | 20% | | (4)% | | (4)% |
+
+
+
+
+
+
+
+
+
+Elastic N.V.
+Reconciliation of GAAP to Non-GAAP Data
+Adjusted Free Cash Flow
+(in thousands, except percentages)
+(unaudited)
+
+| | | | | | | | | | | | | | | |
+| | | Three Months Ended July 31, |
+| | | | | 2026 | | 2025 |
+Net cash provided by operating activities | | | | | $ | 132,004 | | | $ | 104,835 | |
+Less: Purchases of property and equipment | | | | | (590) | | | (656) | |
+Add: Interest paid on long-term debt | | | | | 11,859 | | | 11,859 | |
+Adjusted free cash flow
+| | | | | $ | 143,273 | | | $ | 116,038 | |
+Net cash provided by (used in) investing activities | | | | | $ | 18,140 | | | $ | (170,375) | |
+Net cash (used in) provided by financing activities | | | | | $ | (36,712) | | | $ | 326 | |
+Net cash provided by operating activities (as a percentage of total revenue) | | | | | 28 | % | | 25 | % |
+Less: Purchases of property and equipment (as a percentage of total revenue) | | | | | — | % | | — | % |
+Add: Interest paid on long-term debt (as a percentage of total revenue) | | | | | 2 | % | | 3 | % |
+Adjusted free cash flow margin | | | | | 30 | % | | 28 | % |
+
+Adjusted free cash flow includes cash paid for restructuring and other charges of $13.0 million during the three months ended July 31, 2026. There were no cash payments for restructuring and other charges during the three months ended July 31, 2025.
+
+
+
+
+
+
+
+
+Elastic N.V.
+Reconciliation of GAAP to Non-GAAP Data
+(in thousands, except percentages, share and per share data)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | |
+| | | Three Months Ended July 31, |
+| | | | | 2026 | | 2025 |
+Gross Profit Reconciliation: | | | | | | | |
+GAAP gross profit | | | | | $ | 356,188 | | | $ | 318,542 | |
+Stock-based compensation expense and related employer taxes | | | | | 7,620 | | | 6,843 | |
+Amortization of acquired intangibles | | | | | 2,616 | | | 1,576 | |
+Non-GAAP gross profit | | | | | $ | 366,424 | | | $ | 326,961 | |
+Gross Margin Reconciliation:
+| | | | | | | |
+GAAP gross margin | | | | | 74.5 | % | | 76.7 | % |
+Stock-based compensation expense and related employer taxes | | | | | 1.6 | % | | 1.6 | % |
+Amortization of acquired intangibles | | | | | 0.5 | % | | 0.4 | % |
+Non-GAAP gross margin | | | | | 76.6 | % | | 78.7 | % |
+Operating (Loss) Income Reconciliation: | | | | | | | |
+GAAP operating loss | | | | | $ | (23,574) | | | $ | (9,440) | |
+Stock-based compensation expense and related employer taxes | | | | | 77,545 | | | 72,863 | |
+Amortization of acquired intangibles | | | | | 2,616 | | | 1,576 | |
+Acquisition-related expenses | | | | | 755 | | | 127 | |
+Restructuring and other related charges | | | | | 19,920 | | | — | |
+Non-GAAP operating income | | | | | $ | 77,262 | | | $ | 65,126 | |
+Operating Margin Reconciliation:
+| | | | | | | |
+GAAP operating margin | | | | | (4.9) | % | | (2.3) | % |
+Stock-based compensation expense and related employer taxes | | | | | 16.2 | % | | 17.5 | % |
+Amortization of acquired intangibles | | | | | 0.5 | % | | 0.4 | % |
+Acquisition-related expenses | | | | | 0.2 | % | | — | % |
+Restructuring and other related charges | | | | | 4.2 | % | | — | % |
+Non-GAAP operating margin | | | | | 16.2 | % | | 15.7 | % |
+Net (Loss) Income Reconciliation: | | | | | | | |
+GAAP net loss | | | | | $ | (16,729) | | | $ | (24,603) | |
+Stock-based compensation expense and related employer taxes | | | | | 77,545 | | | 72,863 | |
+Amortization of acquired intangibles | | | | | 2,616 | | | 1,576 | |
+Acquisition-related expenses | | | | | 755 | | | 127 | |
+Restructuring and other related charges | | | | | 19,920 | | | — | |
+| | | | | | | |
+Income tax effects and adjustments
+| | | | | (10,401) | | | 14,902 | |
+Income tax benefit from the release of a valuation allowance against deferred tax assets
+| | | | | (157) | | | — | |
+Non-GAAP net income | | | | | $ | 73,549 | | | $ | 64,865 | |
+Non-GAAP earnings per share attributable to ordinary
+shareholders, basic
+| | | | | $ | 0.70 | | | $ | 0.61 | |
+Non-GAAP earnings per share attributable to ordinary
+shareholders, diluted
+| | | | | $ | 0.70 | | | $ | 0.60 | |
+Weighted-average shares used to compute non-GAAP earnings per share attributable to ordinary shareholders, basic | | | | | 104,640,231 | | | 105,961,879 | |
+Weighted-average shares used to compute non-GAAP earnings per share attributable to ordinary shareholders, diluted | | | | | 105,686,573 | | | 107,891,810 | |
+
+Totals may not sum, due to rounding. Gross margin, operating margin, and earnings per share are calculated based upon the respective underlying, non-rounded data.
+We use a projected non-GAAP annual effective tax rate for the purpose of determining non-GAAP net income and non-GAAP earnings per share, basic and diluted, across the interim period. We believe this approach provides investors with a more consistent view of our underlying operating performance. Our annual projected non-GAAP tax rate excludes the impact from stock-based compensation expense and related employer taxes, amortization of acquired intangible assets, acquisition-related expenses, restructuring and other related charges, discrete tax items, valuation allowances against deferred tax assets, and other non-recurring tax adjustments, which may vary in size and frequency. Our annual projected non-GAAP tax rate for fiscal 2027 and 2026 was 12% and 13%, respectively. Our annual projected non-GAAP tax rate may change due to factors such as new tax legislation, shifts in the geographic mix of earnings, or other significant business developments. We assess this rate as needed to ensure it reflects current conditions. Applying a consistent annual rate improves comparability across reporting periods by excluding the effects of discrete or non-recurring tax items.
+
+
+
+
+
+
+
+
+Elastic N.V.
+Reconciliation of GAAP to Non-GAAP Data
+(in thousands)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | |
+| | | Three Months Ended July 31, |
+| | | | | 2026 | | 2025 |
+Cost of revenue reconciliation: | | | | | | | |
+GAAP subscription | | | | | $ | 91,931 | | | $ | 69,418 | |
+Stock-based compensation expense and related employer taxes | | | | | (2,908) | | | (2,653) | |
+Amortization of acquired intangibles | | | | | (2,616) | | | (1,576) | |
+Non-GAAP subscription | | | | | $ | 86,407 | | | $ | 65,189 | |
+GAAP services | | | | | $ | 29,994 | | | $ | 27,328 | |
+Stock-based compensation expense and related employer taxes | | | | | (4,712) | | | (4,190) | |
+Non-GAAP services | | | | | $ | 25,282 | | | $ | 23,138 | |
+Operating expenses reconciliation: | | | | | | | |
+GAAP research and development expense | | | | | $ | 112,493 | | | $ | 109,122 | |
+Stock-based compensation expense and related employer taxes | | | | | (25,525) | | | (27,773) | |
+Acquisition-related expenses | | | | | (238) | | | (8) | |
+Non-GAAP research and development expense | | | | | $ | 86,730 | | | $ | 81,341 | |
+GAAP sales and marketing expense | | | | | $ | 198,997 | | | $ | 174,054 | |
+Stock-based compensation expense and related employer taxes | | | | | (26,003) | | | (24,069) | |
+| | | | | | | |
+Non-GAAP sales and marketing expenses | | | | | $ | 172,994 | | | $ | 149,985 | |
+GAAP general and administrative expense | | | | | $ | 48,352 | | | $ | 44,806 | |
+Stock-based compensation expense and related employer taxes | | | | | (18,397) | | | (14,178) | |
+Acquisition-related expenses | | | | | (517) | | | (119) | |
+Non-GAAP general and administrative expense | | | | | $ | 29,438 | | | $ | 30,509 | |
+| | | | | | | |
