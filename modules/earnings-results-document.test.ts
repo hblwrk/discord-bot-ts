@@ -117,4 +117,12 @@ describe("earnings result document text", () => {
       "We report our consolidated financial results in U.S. dollars but have significant non-U.S. operations.",
     ])).toBe("USD");
   });
+
+  test("recognizes an all-amounts currency declaration in closing legal notes", () => {
+    expect(getDocumentCurrencyCode([
+      "CIBC Announces Third Quarter 2026 Results",
+      ...Array.from({length: 60}, (_, index) => `Financial table row ${index}`),
+      "All amounts are in Canadian dollars and are based on the financial statements.",
+    ])).toBe("CAD");
+  });
 });

@@ -124,6 +124,19 @@ export function getDocumentHeadline(lines: string[]): string | undefined {
 
 export function getDocumentCurrencyCode(lines: string[]): string | undefined {
   const headerLines = lines.slice(0, 60);
+  // Some Canadian bank releases put this governing declaration in their closing legal
+  // notes, after all of the financial tables. The phrase is document-wide and explicit,
+  // so it remains authoritative even outside the header window used for looser currency
+  // mentions such as customer quotes, segment names, or transaction currencies.
+  const allAmountsCurrencyDeclaration = lines
+    .map(line => line.match(
+      /\ball amounts are in\s+(U\.S\.\s+dollars?|Canadian\s+dollars?|New\s+Taiwan\s+dollars?|(?:USD|CAD|TWD|NTD|EUR|GBP|JPY|CHF))\b/i,
+    )?.[1])
+    .find((declaration): declaration is string => undefined !== declaration);
+  if (undefined !== allAmountsCurrencyDeclaration) {
+    return getCurrencyCodeFromText(allAmountsCurrencyDeclaration);
+  }
+
   // A filing can define every currency symbol it uses before stating its reporting
   // currency ("all references to EUR ... are euros" followed by "we report our
   // consolidated financial results in U.S. dollars"). The reporting declaration is
