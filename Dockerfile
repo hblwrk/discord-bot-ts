@@ -21,13 +21,13 @@ FROM debian:13-slim AS openssl-patch
 WORKDIR /tmp
 
 RUN apt-get update \
-    && apt-get download "libssl3t64=3.5.7-1~deb13u2" \
+    && apt-get install --download-only --no-install-recommends -y "libssl3t64=3.5.7-1~deb13u2" \
     && mkdir -p /patch/var/lib/dpkg/status.d /tmp/libssl-control \
-    && dpkg-deb --extract libssl3t64_3.5.7-1~deb13u2_amd64.deb /patch \
-    && dpkg-deb --field libssl3t64_3.5.7-1~deb13u2_amd64.deb > /patch/var/lib/dpkg/status.d/libssl3t64 \
-    && dpkg-deb --control libssl3t64_3.5.7-1~deb13u2_amd64.deb /tmp/libssl-control \
+    && dpkg-deb --extract /var/cache/apt/archives/libssl3t64_3.5.7-1~deb13u2_amd64.deb /patch \
+    && dpkg-deb --field /var/cache/apt/archives/libssl3t64_3.5.7-1~deb13u2_amd64.deb > /patch/var/lib/dpkg/status.d/libssl3t64 \
+    && dpkg-deb --control /var/cache/apt/archives/libssl3t64_3.5.7-1~deb13u2_amd64.deb /tmp/libssl-control \
     && cp /tmp/libssl-control/md5sums /patch/var/lib/dpkg/status.d/libssl3t64.md5sums \
-    && rm -rf /var/lib/apt/lists/* libssl3t64_3.5.7-1~deb13u2_amd64.deb /tmp/libssl-control
+    && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /tmp/libssl-control
 
 FROM gcr.io/distroless/nodejs24:nonroot
 
