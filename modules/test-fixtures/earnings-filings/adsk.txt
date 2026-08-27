@@ -1,0 +1,525 @@
+EX-99.1
+2
+q227pressrelease.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+AUTODESK, INC. ANNOUNCES FISCAL 2027 SECOND QUARTER RESULTS
+- Second quarter revenue grew 16 percent year over year as reported, 14 percent on a constant currency basis, to $2.05 billion
+
+
+
+
+SAN FRANCISCO, AUGUST 27, 2026-- Autodesk, Inc. (NASDAQ: ADSK) today reported financial results for the second quarter of fiscal 2027, ended July 31, 2026.
+
+
+“AI turns connected data and context into actionable project intelligence that can ease endemic capacity constraints, raise the bar on what’s possible in the physical world, and help our customers do more with scarce resources,” said Andrew Anagnost, CEO of Autodesk. “To realize that promise, customers need AI that is accurate, fast enough to stay in the flow of work, and affordable enough to use every day. The future of AI for the built world will belong to the trusted platform that combines the richest context with the right models to deliver the best outcomes for customers. Autodesk is uniquely positioned because we build project intelligence across the asset lifecycle by converging design, make, and operate through a continuous flow of data, context, and experience.”
+
+
+“We delivered strong second quarter results with consistent execution and momentum. Our sales reorganization is proceeding as expected,” said Janesh Moorjani, Autodesk CFO. “We have increased our fiscal 27 billings and revenue growth guidance to reflect higher underlying growth expectations, as well as the incremental contribution from MaintainX. Our fiscal 27 non-GAAP margin guidance is unchanged, reflecting higher underlying margins from operating leverage and benefits from our go-to-market optimization, offset by margin dilution from the MaintainX acquisition. We’ve narrowed our fiscal 27 free cash flow expectations reflecting stronger underlying expectations offset by the operating and net financing costs for MaintainX and including approximately $45 million of transaction expenses related to the MaintainX acquisition.”
+
+
+
+
+Second Quarter Fiscal 2027
+| | | | | | | | | | | | | | | | |
+(In millions, except percentages and per share amounts) | Q2 FY27 | | | YoY Change | | | | |
+Billings | $ | 1,854 | | | | 10 | % | | | | |
+Revenue | $ | 2,046 | | | | 16 | % | | | | |
+GAAP Operating Margin | 29 | % | | | 4 ppt | | | | |
+Non-GAAP Operating Margin | 41 | % | | | 2 ppt | | | | |
+GAAP EPS | $ | 2.33 | | | | $ | 0.87 | | | | | |
+Non-GAAP EPS | $ | 3.30 | | | | $ | 0.68 | | | | | |
+Cash flow from operating activities | $ | 575 | | | | 25 | % | | | | |
+Free cash flow | $ | 561 | | | | 24 | % | | | | |
+| | | | | | | | |
+| | | | | | | | |
+See GAAP to Non-GAAP reconciliation at the end of this document.
+
+
+Net Revenue by Product Type | | | | | | | | | | | | | | | | | | | |
+| Q2 FY27 | | | | YoY Change | | YoY Change in Constant Currency |
+(In millions, except percentages) | | | % | | % |
+Design | $ | 1,708 | | | | | 16 | % | | 14 | % |
+Make | 244 | | | | | 26 | % | | 24 | % |
+Other | 94 | | | | | (3) | % | | (4) | % |
+Total Net Revenue | $ | 2,046 | | | | | 16 | % | | 14 | % |
+| | | | | | | |
+| | | | | | | |
+
+
+
+Net Revenue by Geographic Area
+1
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | |
+| Q2 FY27 | | | | YoY Change | | YoY Change in Constant Currency |
+(In millions, except percentages) | | | % | | % |
+Americas | $ | 898 | | | | | 14 | % | | 14 | % |
+EMEA | 804 | | | | | 19 | % | | 13 | % |
+APAC | 344 | | | | | 14 | % | | 14 | % |
+Total Net Revenue | $ | 2,046 | | | | | 16 | % | | 14 | % |
+
+
+
+Net Revenue by Product Family
+
+
+Our product offerings are focused in four primary product families: Architecture, Engineering, Construction, and Operations ("AECO"), AutoCAD and AutoCAD LT, Manufacturing ("MFG"), and Media and Entertainment ("M&E"). | | | | | | | | | | | | | | | | | | | |
+| Q2 FY27 | | | | YoY Change | | YoY Change in Constant Currency |
+(In millions, except percentages) | | | % | | % |
+AECO | $ | 1,029 | | | | | 17 | % | | 15 | % |
+AutoCAD and AutoCAD LT | 500 | | | | | 14 | % | | 11 | % |
+MFG | 385 | | | | | 15 | % | | 12 | % |
+M&E | 92 | | | | | 15 | % | | 14 | % |
+Other | 40 | | | | | 29 | % | | 23 | % |
+Total Net Revenue | $ | 2,046 | | | | | 16 | % | | 14 | % |
+
+
+
+
+Remaining Performance Obligations
+| | | | | | | | | | |
+(In millions, except percentages) | Q2 FY27 | | | YoY Change |
+Deferred Revenue | $ | 4,258 | | | | 11 | % |
+Unbilled deferred revenue
+| 3,175 | | | | (8) | % |
+Remaining performance obligations (“RPO”)
+| 7,433 | | | | 2 | % |
+Current RPO
+| 5,245 | | | | 12 | % |
+| | | | |
+| | | | |
+
+(1) Reflects our sustained program reducing multi-year discounts, including winding down multi-year Maintenance-to-Subscription renewals. The reduction of discounting for multi-year contracts benefits price realization over time while temporarily weighing on unbilled deferred revenue and RPO growth.
+All growth rates are compared to the second quarter of fiscal 2026 unless otherwise noted.
+
+
+
+
+
+
+2
+
+
+
+
+
+
+Business Outlook
+
+
+The following are forward-looking statements based on current expectations and assumptions, and involve risks and uncertainties, some of which are set forth below under "Safe Harbor Statement.” A reconciliation between the third quarter and full-year fiscal 2027 GAAP and non-GAAP estimates is provided below or in the tables later in this document.
+
+
+Third Quarter Fiscal 2027 | | | | | | |
+Q3 FY27 Guidance Metrics | | Q3 FY27
+(ending October 31, 2026) |
+Revenue (in millions) | | $2,125 - $2,140 |
+GAAP EPS | | $1.57 - $1.87 |
+Non-GAAP EPS | | $3.04 - $3.09 |
+
+
+
+
+
+Full Year Fiscal 2027 | | | | | | |
+FY27 Guidance Metrics | | FY27
+(ending January 31, 2027) |
+Billings (in millions) | | $8,575 - $8,650 |
+Revenue (in millions) | | $8,295 - $8,345 |
+GAAP operating margin | | 25% - 27% |
+Non-GAAP operating margin | | ~39% |
+GAAP EPS | | $7.89 - $8.72 |
+Non-GAAP EPS | | $12.52 - $12.60 |
+Free cash flow (in millions)
+| | $2,725 - $2,750 |
+
+(1) Includes MaintainX.
+(2) Free cash flow is cash flow from operating activities less approximately $70 million of capital expenditures. Free cash flow includes approximately $45 million of transaction expenses related to the MaintainX acquisition.
+
+
+Earnings Conference Call and Webcast
+
+
+Autodesk will host its second quarter conference call today at 5 p.m. ET. The live broadcast can be accessed at autodesk.com/investor. A transcript of the opening commentary will also be available following the conference call.
+
+
+A replay of the broadcast will be available at 7 p.m. ET at autodesk.com/investor. This replay will be maintained on Autodesk's website for at least 12 months.
+
+
+Investor Presentation Details
+
+
+An investor presentation, Excel financials and other supplemental materials providing additional information can be found at autodesk.com/investor.
+
+
+Contacts
+Investors:
+Simon Mays-Smith
+415-746-0137
+simon.mays-smith@autodesk.com
+
+
+Press:
+Renée Francis
+3
+
+
+
+
+
+628-888-4599
+renee.francis@autodesk.com
+
+
+
+
+
+Safe Harbor Statement
+
+
+This press release contains forward-looking statements that involve risks and uncertainties, including quotations from management, statements in the paragraphs under “Business Outlook” above, statements about the impact of our transaction with MaintainX, statements about our utilization of and strategy regarding artificial intelligence, statements about our new transaction model and sales and marketing optimization, statements about the momentum of our business, statements about our short-term and long-term goals, statements regarding our strategies, market and product positions, performance and results, and all statements that are not historical facts. There are a significant number of factors that could cause actual results to differ materially from statements made in this press release, including: challenges associated with the integration of MaintainX into our business, our strategy to develop and introduce new products and services and to move to platforms and capabilities, exposing us to risks such as limited customer acceptance (both new and existing customers), costs related to product defects, and large expenditures; global economic and political conditions, including changes in monetary and fiscal policy, foreign exchange headwinds, recessionary fears, supply chain disruptions, resulting inflationary pressures and hiring conditions; geopolitical tension and armed conflicts, economic and regulatory uncertainty including tariffs and trade wars, and extreme weather events; costs and challenges associated with strategic acquisitions and investments; our ability to successfully implement and expand our transaction model and our sales and marketing optimization; dependency on international revenue and operations, exposing us to significant international regulatory, economic, intellectual property, collections, currency exchange rate, taxation, political, and other risks, including risks related to the war against Ukraine launched by Russia and the current military conflict in the Middle East; inability to predict subscription renewal rates and their impact on our future revenue and operating results; existing and increased competition and rapidly evolving technological changes; fluctuation of our financial results, key metrics and other operating metrics; our transition from up front to annual billings for multi-year contracts; deriving a substantial portion of our net revenue from a small number of solutions, including our AutoCAD-based software products and collections; any failure to successfully execute and manage initiatives to realign or introduce new business and sales initiatives, including our new transaction model for Flex; net revenue, billings, earnings, cash flow, or new or existing subscriptions shortfalls; social and ethical issues relating to the use of artificial intelligence in our offerings as well as market reaction to disruption from artificial intelligence; our ability to maintain security levels and service performance meeting the expectations of our customers, and the resources and costs required to avoid unanticipated downtime and prevent, detect and remediate performance degradation and security breaches; security incidents or other incidents compromising the integrity of our or our customers’ offerings, services, data, or intellectual property; reliance on third parties to provide us with a number of operational and technical services as well as software; our highly complex software, which may contain undetected errors, defects, or vulnerabilities; increasing regulatory focus on privacy issues and expanding laws; governmental export and import controls that could impair our ability to compete in international markets or subject us to liability if we violate the controls; protection of our intellectual property rights and intellectual property infringement claims from others; the government procurement process; fluctuations in currency exchange rates; our debt service obligations; and our investment portfolio consisting of a variety of investment vehicles that are subject to interest rate trends, market volatility, and other economic factors. Our estimates as to tax rate are based on current expectations and our interpretations of existing tax law and could be affected by a variety of factors, including but not limited to the projected geographic mix of earnings, changing interpretations of current tax law, further guidance, and additional tax legislation. Adjustments for the impact of the New Transaction Model are based on management’s estimate giving effect to current period results or projections as if under the prior model.
+
+
+Further information on potential factors that could affect the financial results of Autodesk are included in Autodesk's Form 10-K and subsequent Forms 10-Q, which are on file with the U.S. Securities and Exchange Commission. Autodesk disclaims any obligation to update the forward-looking statements provided to reflect events that occur or circumstances that exist after the date on which they were made.
+
+
+
+
+
+4
+
+
+
+
+
+About Autodesk
+
+
+The world’s designers, engineers, builders, and creators trust Autodesk to help them design and make anything. From the buildings we live and work in, to the cars we drive and the bridges we drive over. From the products we use and rely on, to the movies and games that inspire us. Autodesk’s Design and Make Platform unlocks the power of data to accelerate insights and automate processes, empowering our customers with the technology to create the world around us and deliver better outcomes for their business and the planet. For more information, visit autodesk.com or follow @autodesk. #MakeAnything
+
+
+Autodesk uses its investors.autodesk.com website as a means of disclosing material non-public information, announcing upcoming investor conferences and for complying with its disclosure obligations under Regulation FD. Accordingly, you should monitor our investor relations website in addition to following our press releases, SEC filings and public conference calls and webcasts.
+
+
+Autodesk, AutoCAD, AutoCAD LT, BIM 360 and Fusion 360 are trademarks of Autodesk, Inc., and/or its subsidiaries and/or affiliates in the USA and/or other countries. All other brand names, product names or trademarks belong to their respective holders. Autodesk reserves the right to alter product and service offerings, and specifications and pricing at any time without notice, and is not responsible for typographical or graphical errors that may appear in this document.
+© 2026 Autodesk, Inc. All rights reserved.
+5
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+Autodesk, Inc. | | | | | | | |
+Condensed Consolidated Statements of Operations | | | | |
+(In millions, except per share data) | | | | | | | |
+| | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+| (Unaudited) | | (Unaudited) |
+Net revenue: | | | | | | | |
+Subscription (1) | $ | 1,952 | | | $ | 1,667 | | | $ | 3,788 | | | $ | 3,207 | |
+Other | 94 | | | 96 | | | 192 | | | 189 | |
+Total net revenue | 2,046 | | | 1,763 | | | 3,980 | | | 3,396 | |
+Cost of revenue: | | | | | | | |
+Cost of subscription revenue (1) | 130 | | | 114 | | | 259 | | | 225 | |
+Cost of other revenue | 22 | | | 22 | | | 43 | | | 46 | |
+Amortization of developed technologies | 24 | | | 23 | | | 49 | | | 48 | |
+Total cost of revenue | 176 | | | 159 | | | 351 | | | 319 | |
+Gross profit | 1,870 | | | 1,604 | | | 3,629 | | | 3,077 | |
+Operating expenses: | | | | | | | |
+Marketing and sales | 616 | | | 559 | | | 1,209 | | | 1,125 | |
+Research and development | 464 | | | 413 | | | 885 | | | 807 | |
+General and administrative | 179 | | | 168 | | | 341 | | | 330 | |
+Amortization of purchased intangibles | 13 | | | 14 | | | 25 | | | 27 | |
+Restructuring, other exit costs, and facility reductions | (1) | | | 6 | | | 29 | | | 111 | |
+| | | | | | | |
+Total operating expenses | 1,271 | | | 1,160 | | | 2,489 | | | 2,400 | |
+Income from operations | 599 | | | 444 | | | 1,140 | | | 677 | |
+Interest and other (loss) income, net | (6) | | | 12 | | | 52 | | | 13 | |
+Income before income taxes | 593 | | | 456 | | | 1,192 | | | 690 | |
+Provision for income taxes | (101) | | | (143) | | | (209) | | | (225) | |
+Net income | $ | 492 | | | $ | 313 | | | $ | 983 | | | $ | 465 | |
+Basic net income per share | $ | 2.34 | | | $ | 1.47 | | | $ | 4.66 | | | $ | 2.17 | |
+Diluted net income per share | $ | 2.33 | | | $ | 1.46 | | | $ | 4.64 | | | $ | 2.15 | |
+Weighted average shares used in computing basic net income per share | 210 | | | 213 | | | 211 | | | 214 | |
+Weighted average shares used in computing diluted net income per share | 211 | | | 215 | | | 212 | | | 216 | |
+
+____________________
+(1) During fiscal year ending 2027, the Company began classifying maintenance revenue within “Subscription revenue”. Prior period amounts have been reclassified to conform to the current period presentation. The reclassification did not impact total net revenue.
+6
+
+
+
+
+
+| | | | | | | | | | | |
+Autodesk, Inc. | | | |
+Condensed Consolidated Balance Sheets | | | |
+(In millions) | | | |
+| | | |
+| July 31, 2026 | | January 31, 2026 |
+| (Unaudited) |
+ASSETS | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 4,098 | | | $ | 2,249 | |
+Marketable securities | 57 | | | 348 | |
+Accounts receivable, net | 684 | | | 1,439 | |
+| | | |
+Prepaid expenses and other current assets | 831 | | | 906 | |
+Total current assets | 5,670 | | | 4,942 | |
+Long-term marketable securities | 202 | | | 376 | |
+Computer equipment, software, furniture and leasehold improvements, net | 124 | | | 121 | |
+Operating lease right-of-use assets | 145 | | | 157 | |
+Intangible assets, net | 423 | | | 467 | |
+Goodwill | 4,331 | | | 4,295 | |
+Deferred income taxes, net | 808 | | | 842 | |
+Long-term other assets | 1,280 | | | 1,267 | |
+Total assets | $ | 12,983 | | | $ | 12,467 | |
+LIABILITIES AND STOCKHOLDERS’ EQUITY | | | |
+Current liabilities: | | | |
+Accounts payable | $ | 457 | | | $ | 422 | |
+Accrued compensation | 354 | | | 659 | |
+Accrued income taxes | 63 | | | 54 | |
+Deferred revenue | 4,036 | | | 4,406 | |
+| | | |
+Short-term debt, net | 994 | | | — | |
+Current portion of long-term notes payable, net | 499 | | | — | |
+Operating lease liabilities | 52 | | | 52 | |
+Other accrued liabilities | 173 | | | 215 | |
+Total current liabilities | 6,628 | | | 5,808 | |
+| | | |
+Long-term deferred revenue | 222 | | | 287 | |
+Long-term operating lease liabilities | 175 | | | 199 | |
+Long-term income taxes payable | 203 | | | 181 | |
+Long-term deferred income taxes | 53 | | | 40 | |
+Long-term notes payable, net | 1,985 | | | 2,483 | |
+Long-term other liabilities | 334 | | | 424 | |
+Stockholders’ equity: | | | |
+| | | |
+Common stock and additional paid-in capital | 4,846 | | | 4,709 | |
+Accumulated other comprehensive loss | (233) | | | (232) | |
+Accumulated deficit | (1,230) | | | (1,432) | |
+Total stockholders’ equity | 3,383 | | | 3,045 | |
+Total liabilities and stockholders' equity | $ | 12,983 | | | $ | 12,467 | |
+
+
+
+7
+
+
+
+
+
+| | | | | | | | | | | |
+Autodesk, Inc. | | | |
+Condensed Consolidated Statements of Cash Flows | | | |
+(In millions) | | | |
+| Six Months Ended July 31, |
+| 2026 | | 2025 |
+| (Unaudited) |
+Operating activities: | | | |
+Net income | $ | 983 | | | $ | 465 | |
+Adjustments to reconcile net income to net cash provided by operating activities: | | | |
+Depreciation, amortization and accretion | 101 | | | 95 | |
+Stock-based compensation expense | 339 | | | 421 | |
+Amortization of costs to obtain a contract with a customer | 347 | | | 219 | |
+| | | |
+Deferred income taxes | 40 | | | 153 | |
+Restructuring-related asset impairments | — | | | 17 | |
+Other operating activities | (32) | | | (20) | |
+Changes in operating assets and liabilities, net of business combinations: | | | |
+Accounts receivable | 753 | | | 476 | |
+Prepaid expenses and other assets | (253) | | | (539) | |
+Accounts payable and other liabilities | (408) | | | 17 | |
+Deferred revenue | (434) | | | (287) | |
+Accrued income taxes | 32 | | | 7 | |
+Net cash provided by operating activities | 1,468 | | | 1,024 | |
+Investing activities: | | | |
+Purchases of marketable securities | (222) | | | (309) | |
+Sales and maturities of marketable securities | 686 | | | 353 | |
+| | | |
+Capital expenditures | (31) | | | (17) | |
+Purchases of intangible assets | (16) | | | (14) | |
+Business combinations, net of cash acquired | (55) | | | — | |
+Purchases of strategic investments (1) | (10) | | | (5) | |
+Other investing activities | 29 | | | — | |
+Net cash provided by investing activities | 381 | | | 8 | |
+Financing activities: | | | |
+Proceeds from issuance of common stock, net of issuance costs | 76 | | | 75 | |
+Taxes paid related to net share settlement of equity awards | (157) | | | (190) | |
+Repurchases of common stock | (901) | | | (712) | |
+Proceeds from debt, net of discount | 993 | | | 499 | |
+Repayment of debt | — | | | (300) | |
+Other financing activities | (7) | | | (6) | |
+Net cash provided by (used in) financing activities | 4 | | | (634) | |
+Effect of exchange rate changes on cash and cash equivalents | (4) | | | 6 | |
+Net increase in cash and cash equivalents | 1,849 | | | 404 | |
+Cash and cash equivalents at beginning of period | 2,249 | | | 1,599 | |
+Cash and cash equivalents at end of period | $ | 4,098 | | | $ | 2,003 | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+
+____________________
+(1) “Purchases of strategic investments” were previously presented in “Other investing activities”. Prior period amounts have been reclassified to conform to the current period presentation. This presentation change did not have any impact to “Net cash provided by investing activities”.
+
+
+8
+
+
+
+
+
+| | | | | |
+Autodesk, Inc. | |
+Reconciliation of GAAP financial measures to non-GAAP financial measures |
+(In millions, except per share data) |
+The following table shows Autodesk's GAAP results reconciled to non-GAAP results included in this release. |
+| Three Months Ended July 31, |
+| 2026 |
+| (Unaudited) |
+| |
+GAAP operating margin | 29 | % |
+Stock-based compensation expense | 9 | % |
+Amortization of purchased intangibles and developed technologies | 2 | % |
+| |
+Acquisition-related costs | 1 | % |
+| |
+Non-GAAP operating margin (1) | 41 | % |
+| |
+GAAP diluted net income per share | $ | 2.33 | |
+Stock-based compensation expense | 0.87 | |
+Amortization of purchased intangibles and developed technologies | 0.16 | |
+| |
+Acquisition-related costs | 0.07 | |
+| |
+(Gains) losses on strategic investments and dispositions, net | 0.07 | |
+Income tax adjustments | (0.20) | |
+Non-GAAP diluted net income per share | $ | 3.30 | |
+| |
+Net cash provided by operating activities | $ | 575 | |
+Capital expenditures | (14) | |
+Free cash flow | $ | 561 | |
+
+____________________
+(1) Total may not sum due to rounding.
+
+
+
+
+The following tables show Autodesk's GAAP business outlook reconciled to non-GAAP business outlook included in this release.
+| | | | | | |
+GAAP to non-GAAP diluted earnings per share reconciliation | | Q3 FY27
+(ending October 31, 2026) |
+GAAP earnings per share | | $1.57 - $1.87 |
+Stock-based compensation expense | | 0.95 - 0.93 |
+Restructuring and facility-related asset impairments and other (gains) losses | | 0.01 |
+Amortization of purchased intangibles and developed technologies | | 0.48 - 0.29 |
+Acquisition-related costs | | 0.26 - 0.21 |
+| | |
+Income tax adjustments | | (0.23) - (0.22) |
+Non-GAAP earnings per share | | $3.04 - $3.09 |
+
+
+
+| | | | | | |
+GAAP to non-GAAP operating margin reconciliation | | FY27
+(ending January 31, 2027) |
+GAAP operating margin | | 25% - 27% |
+Stock-based compensation expense | | 9% |
+Restructuring and facility-related asset impairments and other (gains) losses | | 1% - 0% |
+Amortization of purchased intangibles and developed technologies | | 3% - 2% |
+Acquisition-related costs | | 1% |
+| | |
+Non-GAAP operating margin (1) | | ~39% |
+
+____________________
+(1) Total may not sum due to rounding.
+9
+
+
+
+
+
+
+
+| | | | | | |
+GAAP to non-GAAP diluted earnings per share reconciliation | | FY27
+(ending January 31, 2027) |
+GAAP earnings per share | | $7.89 - $8.72 |
+Stock-based compensation expense | | 3.56 - 3.46 |
+Restructuring and facility-related asset impairments and other (gains) losses | | 0.26 - 0.15 |
+Amortization of purchased intangibles and developed technologies | | 1.19 - 0.80 |
+Acquisition-related costs | | 0.52 - 0.43 |
+(Gains) losses on strategic investments and dispositions, net | | (0.20) |
+Income tax adjustments | | (0.70) - (0.76) |
+Non-GAAP earnings per share | | $12.52 - $12.60 |
+
+
+
+Key Performance Metric
+
+
+In order to help better understand Autodesk’s financial performance, Autodesk uses a billings key performance metric. We define billings as total revenue plus the net change in deferred revenue less the net change in contract assets for the reporting period. Billings exclude deferred revenue acquired from business combinations during the period and the impact of changes in foreign currency exchange rates. This metric is a key performance metric and should be viewed independently of revenue and deferred revenue as this metric is not intended to be combined with those items. Autodesk believes this metric is useful to investors because it can help in monitoring the long-term health of Autodesk’s business. Autodesk’s determination and presentation of this metric may differ from that of other companies. The presentation of this metric is meant to be considered in addition to, not as a substitute for or in isolation from, Autodesk financial measures prepared in accordance with GAAP.
+
+
+Non-GAAP Financial Measures
+
+To supplement our condensed consolidated financial statements presented on a GAAP basis, we provide investors with certain non-GAAP measures including non-GAAP operating margin, non-GAAP income from operations, non-GAAP diluted net income per share, and free cash flow. For our internal budgeting and resource allocation process and as a means to evaluate period-to-period comparisons, we use non-GAAP measures to supplement our condensed consolidated financial statements presented on a GAAP basis. These non-GAAP measures do not include certain items that may have a material impact upon our future reported financial results. We use non-GAAP measures in making operating decisions because we believe those measures provide meaningful supplemental information regarding our earning potential and performance for management by excluding certain expenses and charges that may not be indicative of our core business operating results. For the reasons set forth below, we believe these non-GAAP financial measures are useful to investors both because (1) they allow for greater transparency with respect to key metrics used by management in its financial and operational decision-making and (2) they are used by our institutional investors and the analyst community to help them analyze the health of our business. This allows investors and others to better understand and evaluate our operating results and future prospects in the same manner as management, compare financial results across accounting periods and to those of peer companies and to better understand the long-term performance of our core business. We also use some of these measures for purposes of determining company-wide incentive compensation.
+
+
+There are limitations in using non-GAAP financial measures because non-GAAP financial measures are not prepared in accordance with GAAP and may be different from non-GAAP financial measures used by other companies. The non-GAAP financial measures are limited in value because they exclude certain items that may have a material impact upon our reported financial results. In addition, they are subject to inherent limitations as they reflect the exercise of judgments by management about which charges are excluded from the non-GAAP financial measures. We compensate for these limitations by analyzing current and future results on a GAAP basis as well as a non-GAAP basis and also by providing GAAP measures in our public disclosures. The presentation of non-GAAP financial information is meant to be considered in addition to, not as a substitute for or in isolation from, the directly comparable financial measures prepared in accordance with GAAP. We urge investors to review the reconciliation of our non-GAAP financial measures to the comparable
+10
+
+
+
+
+
+GAAP financial measures included in this presentation, and not to rely on any single financial measure to evaluate our business.
+
+Autodesk may exclude the following items, as applicable, from its non-GAAP measures:
+
+Stock-based compensation expenses. Autodesk excludes stock-based compensation expenses from its non-GAAP measures primarily because they are non-cash expenses and management finds it useful to exclude certain non-cash charges to assess the appropriate level of various operating expenses to assist in budgeting, planning, and forecasting future periods. Moreover, because of varying available valuation methodologies, subjective assumptions and the variety of award types that companies can use under FASB ASC Topic 718, Autodesk believes that excluding stock-based compensation expenses allows investors to make meaningful comparisons between its recurring core business operating results and those of other companies.
+
+Amortization of developed technologies and purchased intangibles. Autodesk incurs amortization of acquisition-related developed technology and purchased intangibles in connection with acquisitions of certain businesses and technologies. Amortization of developed technologies and purchased intangibles is inconsistent in amount and frequency and is significantly affected by the timing and size of Autodesk's acquisitions. Management finds it useful to exclude these variable charges from our cost of revenues to assist in budgeting, planning and forecasting future periods. Investors should note that the use of intangible assets contributed to our revenues earned during the periods presented and will contribute to Autodesk's future period revenues as well. Amortization of developed technologies and purchased intangible assets will recur in future periods.
+
+
+Restructuring and facility-related asset impairments and other (gains) losses. These expenses are associated with realigning Autodesk's business strategies based on current economic conditions. In connection with these restructuring actions or other exit actions, Autodesk recognizes costs related to termination benefits for former employees whose positions were eliminated, the reduction of facilities, and cancellation of certain contracts. Autodesk excludes these charges because these expenses are not reflective of ongoing business and operating results. Autodesk believes it is useful for investors to understand the effects of these items on its total operating expenses. Also included are gains or losses associated with the optimization of our costs related to facilities that we have vacated. In connection with these facilities, we recognize costs related to the impairment or abandonment of property, facilities, operating lease right-of-use assets, computer equipment, furniture, and leasehold improvements, and other gains or losses. We exclude these gains or losses because they are not reflective of ongoing business and operating results. We believe it is useful for investors to understand the effects of these items on our total operating expenses.
+
+
+Acquisition-related costs. Autodesk excludes certain acquisition-related costs, including due diligence costs, professional fees in connection with an acquisition, certain financing costs, and certain integration-related expenses. These expenses are unpredictable, and dependent on factors that may be outside of Autodesk's control and unrelated to the continuing operations of the acquired business or Autodesk. In addition, the size and complexity of an acquisition, which often drives the magnitude of acquisition-related costs, may not be indicative of such future costs. Autodesk believes excluding acquisition-related costs facilitates the comparison of its financial results to the Autodesk's historical operating results and to other companies in its industry.
+
+
+Gains or losses on strategic investments and dispositions. Autodesk excludes gains and losses related to its strategic investments and dispositions of strategic investments, purchased intangibles, and businesses from its non-GAAP measures primarily because management finds it useful to exclude these variable gains and losses on these investments and dispositions in assessing Autodesk's financial results. Included in these amounts are non-cash unrealized gains and losses, dividends received, realized gains and losses on the sales or losses on the impairment of these investments, and gain and loss on dispositions. Autodesk believes excluding these items is useful to investors because these excluded items do not correlate to the underlying performance of its business and these losses or gains were incurred in connection with strategic investments and dispositions which do not occur regularly.
+
+
+11
+
+
+
+
+
+Income tax adjustments. The income tax effects that are excluded from the non-GAAP measures relate to the tax impact on the difference between GAAP and non-GAAP expenses, primarily due to stock-based compensation, amortization of purchased intangibles, and restructuring and facility-related asset impairments and other (gains) losses for GAAP and non-GAAP measures. We remove GAAP discrete tax items, including changes in valuation allowance, from the non-GAAP measure of net income (loss). The non-GAAP tax provision is based on a projected long-term annual non-GAAP effective tax rate. Management believes the income tax adjustments assist investors in understanding the tax provision and the effective tax rate related to ongoing operations. We believe the exclusion of the discrete tax items provides investors with useful supplemental information about our operational performance.
+
+
+
+
+12

@@ -1,0 +1,570 @@
+EX-99.1
+2
+sentineloneq227exhibit991.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+
+SentinelOne Announces Second Quarter Fiscal Year 2027 Financial Results
+Revenue grew 21% year-over-year to $292 million, exceeding guidance
+ARR grew 22% year-over-year to $1.218 billion
+Raising Revenue and Operating Income Outlook for Fiscal Year 2027
+MOUNTAIN VIEW, Calif. – August 27, 2026 – SentinelOne, Inc. (NYSE: S) today announced financial results for the second quarter of fiscal year 2027 ended July 31, 2026.
+“Our Q2 performance demonstrates strong progress across every dimension of our business – a top-tier growth profile, accelerating platform adoption, and undisputed technology leadership for both AI for Security and Security for AI,” said Tomer Weingarten, CEO of SentinelOne. “AI is transforming the way software is built, businesses are operated, and cybersecurity is delivered. With AI-native runtime protection fundamental to the Singularity platform’s architecture, SentinelOne is uniquely positioned to lead the future of AI cybersecurity.”
+“Q2 was an exceptional quarter of execution and demonstrated the power of our platform model. We exceeded all top and bottom line guided metrics, achieved record profitability and are raising our revenue and operating income outlook for fiscal year 2027,” said Sonalee Parekh, CFO of SentinelOne. “We are scaling the business with discipline, investing in key AI growth opportunities while driving substantial operating leverage.”
+Second Quarter Fiscal Year 2027 Highlights
+(All metrics are compared to the second quarter of fiscal year 2026 unless otherwise noted)
+
+
+•Total revenue grew 21% to $292 million, compared to $242 million.
+
+
+•Annualized recurring revenue (ARR) grew 22% to $1,218 million as of July 31, 2026.
+
+
+•Customers with ARR of $100,000 or more grew 13% to 1,715 as of July 31, 2026.
+
+
+•Gross margin: GAAP gross margin was 72%, compared to 75%. Non-GAAP gross margin was 77%, compared to 79%.
+
+
+•Operating margin: GAAP operating margin was (31)%, compared to (33)%. Non-GAAP operating margin was 10%, compared to 2%.
+
+
+•Net income (loss) margin: GAAP net loss margin was (32)%, compared to (30)%. Non-GAAP net income margin was 10%, compared to 5%.
+
+
+•Earnings per share: GAAP diluted earnings per share was $(0.27), compared to $(0.22). Non-GAAP diluted earnings per share was $0.08, compared to $0.04.
+
+
+•Cash, cash equivalents, and investments were $813 million as of July 31, 2026.
+
+
+
+
+
+
+
+
+
+
+
+Financial Outlook
+We are providing the following guidance for the third quarter of fiscal year 2027, and for fiscal year 2027 (ending January 31, 2027).
+| | | | | | | | | | | | | | |
+| Q3 Fiscal Year 2027
+Guidance
+| | Fiscal Year 2027
+Guidance |
+Revenue | $309 - 311 million | | $1.202 - 1.207 billion |
+Non-GAAP operating income | $38 - 40 million | | $124 - 128 million |
+Non-GAAP diluted earnings per share (EPS) | $0.08 - 0.09 | | $0.30 - 0.32 |
+Diluted weighted average shares outstanding | 370 million | | 361 million |
+Non-GAAP tax rate | 17% | | 17% |
+
+These statements are forward-looking and actual results may differ materially as a result of many factors. Refer to the below for information on the factors that could cause our actual results to differ materially from these forward-looking statements.
+
+
+Guidance for non-GAAP financial measures excludes stock-based compensation expense, employer payroll tax on employee stock transactions, amortization of acquired intangible assets, acquisition-related compensation costs, restructuring charges, gains and losses on strategic investments, and certain discrete tax expenses. We have not provided the most directly comparable GAAP measures because certain items are out of our control or cannot be reasonably predicted. Accordingly, a reconciliation of non-GAAP operating income, non-GAAP EPS and diluted weighted average shares outstanding is not available without unreasonable effort.
+Webcast Information
+We will host a live audio webcast for analysts and investors to discuss our earnings results for the second quarter of fiscal year 2027 and outlook for the third quarter of fiscal year 2027 and full fiscal year 2027 today, August 27, 2026, at 2:00 p.m. Pacific Time (5:00 p.m. Eastern Time). The live webcast and a recording of the event will be available on the Investor Relations section of our website at investors.sentinelone.com.
+
+
+We have used, and intend to continue to use, the Investor Relations section of our website at investors.sentinelone.com as a means of disclosing material nonpublic information and for complying with our disclosure obligations under Regulation FD.
+Forward-Looking Statements
+This press release contains forward-looking statements within the meaning of Section 27A of the Securities Act of 1933, as amended, and Section 21E of the Securities Exchange Act of 1934, as amended, which statements involve risks and uncertainties, including but not limited to statements regarding our future growth, execution, product innovation and technological development, competitive position, and future financial and operating performance, including our financial outlook for the third quarter of fiscal year 2027 and our full fiscal year 2027; progress towards our long-term profitability targets; and general market trends. The words “believe,” “may,” “will,” “potentially,” “estimate,” “continue,” “anticipate,” “intend,” “could,” “would,” “project,” “target,” “plan,” “expect,” or the negative of these terms and similar expressions are intended to identify forward-looking statements. However, not all forward-looking statements contain these identifying words.
+There are a significant number of factors that could cause our actual results to differ materially from statements made in this press release, including but not limited to: our limited operating history; our history of losses; intense competition in the market we compete in; fluctuations in our operating results; actual or perceived network or security incidents impacting us; actual or perceived defects, errors or vulnerabilities in our platform; our ability to successfully integrate any acquisitions and strategic investments; risks associated with managing our rapid growth; the growing prevalence of artificial intelligence (AI) and sophistication of AI models; general global, political,
+
+
+
+
+
+
+
+
+
+economic, and macroeconomic climate, including but not limited to, the changes in U.S. federal spending and policies, including government shutdowns, significant political or regulatory developments or changes in trade policy, actual or perceived instability in the banking industry; supply chain disruptions; a potential recession, inflation, and interest rate volatility; geopolitical conflicts around the world; our ability to attract new and retain existing customers, or renew and expand our relationships with them; the ability of our platform to effectively interoperate within our customers’ IT infrastructure; disruptions or other business interruptions that affect the availability of our platform including cybersecurity incidents; the failure to timely develop and achieve market acceptance of new products and subscriptions as well as existing products, subscriptions and support offerings; rapidly evolving technological developments in the market for security products and subscription and support offerings; length of sales cycles; and risks of securities class action litigation.
+Additional risks and uncertainties that could affect our financial results are included under the captions “Risk Factors” and “Management’s Discussion and Analysis of Financial Condition and Results of Operations” set forth in our filings and reports with the Securities and Exchange Commission (SEC), including our most recently filed Annual Report on Form 10-K, dated March 19, 2026, subsequent Quarterly Reports on Form 10-Q and other filings and reports that we may file from time to time with the SEC, copies of which are available on our website at investors.sentinelone.com and on the SEC’s website at www.sec.gov.
+You should not rely on these forward-looking statements, as actual outcomes and results may differ materially from those contemplated by these forward-looking statements as a result of such risks and uncertainties. All forward-looking statements in this press release are based on information and estimates available to us as of the date hereof, and are based on current expectations, estimates, forecasts, and projections as well as the beliefs and assumptions of management. We do not assume any obligation to update the forward-looking statements provided to reflect events that occur or circumstances that exist after the date of this press release or to reflect new information or the occurrence of unexpected events, except as required by law. We may not actually achieve the plans, intentions, or expectations disclosed in our forward-looking statements, and you should not place undue reliance on our forward-looking statements.
+Non-GAAP Financial Measures
+In addition to our results being determined in accordance with GAAP, we believe the following non-GAAP measures are useful in evaluating our operating performance. We use the following non-GAAP financial information to evaluate our ongoing operations and for internal planning and forecasting purposes. We believe that non-GAAP financial information, when taken collectively, with the financial information presented in accordance with GAAP, may be helpful to investors because it provides consistency and comparability with past financial performance. However, non-GAAP financial information is presented for supplemental informational purposes only, has limitations as an analytical tool, and should not be considered in isolation or as a substitute for financial information presented in accordance with GAAP.
+Other companies, including companies in our industry, may calculate similarly titled non-GAAP measures differently or may use other measures to evaluate their performance, all of which could reduce the usefulness of our non-GAAP financial measures as tools for comparison. In addition, the utility of free cash flow and adjusted free cash flow as a measure of our liquidity is limited as it does not represent the total increase or decrease in our cash balance for a given period.
+
+
+Reconciliations between non-GAAP financial measures to the most directly comparable financial measure stated in accordance with GAAP are contained below. Investors are encouraged to review the related GAAP financial measures and the reconciliation of these non-GAAP financial measures to their most directly comparable GAAP financial measures and not rely on any single financial measure to evaluate our business.
+As presented in the “Reconciliation of GAAP to Non-GAAP Financial Information” table below, each of the non-GAAP financial measures excludes one or more of the following items:
+
+
+
+
+
+
+
+
+
+Stock-based compensation expense
+Stock-based compensation expense is a non-cash expense that varies in amount from period to period and is dependent on market forces that are often beyond our control. As a result, management excludes this item from our internal operating forecasts and models. Management believes that non-GAAP measures adjusted for stock-based compensation expense provide investors with a basis to measure our core performance against the performance of other companies without the variability created by stock-based compensation as a result of the variety of equity awards used by other companies and the varying methodologies and assumptions used.
+Employer payroll tax on employee stock transactions
+Employer payroll tax expenses related to employee stock transactions are tied to the vesting or exercise of underlying equity awards and the price of our common stock at the time of vesting, which varies in amount from period to period and is dependent on market forces that are often beyond our control. As a result, management excludes this item from our internal operating forecasts and models. Management believes that non-GAAP measures adjusted for employer payroll taxes on employee stock transactions provide investors with a basis to measure our core performance against the performance of other companies without the variability created by employer payroll taxes on employee stock transactions as a result of the stock price at the time of employee exercise.
+Amortization of acquired intangible assets
+Amortization of acquired intangible assets expense is tied to the intangible assets that were acquired in conjunction with acquisitions, which results in non‑cash expenses that may not otherwise have been incurred. Management believes excluding the expense associated with intangible assets from non-GAAP measures allows for a more accurate assessment of our ongoing operations and provides investors with a better comparison of period-over-period operating results.
+Acquisition-related compensation costs
+Acquisition-related compensation costs include cash-based compensation expenses resulting from the employment retention of certain employees established in accordance with the terms of each acquisition. Acquisition-related cash-based compensation costs have been excluded as they were specifically negotiated as part of the acquisitions in order to retain such employees and relate to cash compensation that was made either in lieu of stock-based compensation or where the grant of stock-based compensation awards was not practicable. In most cases, these acquisition-related compensation costs are not factored into management’s evaluation of potential acquisitions or our performance after completion of acquisitions, because they are not related to our core operating performance. In addition, the frequency and amount of such charges can vary significantly based on the size and timing of acquisitions and the maturities of the businesses being acquired. Excluding acquisition-related compensation costs from non-GAAP measures provides investors with a basis to compare our results against those of other companies without the variability caused by purchase accounting.
+Restructuring charges
+Restructuring charges primarily relate to severance payments, employee benefits, stock-based compensation, contract termination charges, and asset impairment charges related to facilities. These restructuring charges are excluded from non-GAAP financial measures because they are the result of discrete events that are not considered core-operating activities. We believe that it is appropriate to exclude restructuring charges from non-GAAP financial measures because it enables the comparison of period-over-period operating results from continuing operations.
+Gains and losses on strategic investments
+Gains and losses on strategic investments relate to the subsequent changes in the recorded value of our strategic investments. These gains and losses are excluded from non-GAAP financial measures because they are the result of discrete events that are not considered core-operating activities. We believe that it is appropriate to exclude gains
+
+
+
+
+
+
+
+
+
+and losses from strategic investments from non-GAAP financial measures because it enables the comparison of period-over-period net income (loss).
+Provision for income taxes
+Certain discrete tax items that are not indicative of our core operating performance are excluded from our non-GAAP results. During the six months ended July 31, 2026, these items primarily consist of interest expense accrued on our liability under the final Assessment Agreement (the Agreement) entered into with the Israeli Tax Authority (ITA). These exclusions provide investors with a clearer view of our underlying financial results and facilitate meaningful comparisons across reporting periods.
+
+
+Effective in the first quarter of fiscal year 2027, we adopted a 17% non-GAAP tax rate for current and future reporting periods. This rate is subject to change based on shifts in our geographic earnings mix or changes in applicable tax law.
+
+
+Dilutive shares applying the treasury stock method
+During periods in which we incur a net loss under a GAAP basis, we exclude certain potential common stock equivalents from our GAAP diluted shares because their effect would have been anti-dilutive. In periods where we have net income on a non-GAAP basis, these common stock equivalents would have been dilutive. Accordingly, we have included the impact of these common stock equivalents in the calculation of our non-GAAP diluted net income per share applying the treasury stock method.
+Non-GAAP Cost of Revenue, Non-GAAP Gross Profit, Non-GAAP Gross Margin, Non-GAAP Income from Operations, Non-GAAP Operating Margin, Non-GAAP Net Income, Non-GAAP Net Income Margin and Non-GAAP Net Income Per Share
+We define these non-GAAP financial measures as their respective GAAP measures, excluding the expenses referenced above. We use these non-GAAP financial measures as part of our overall assessment of our performance, including the preparation of our annual operating budget and quarterly forecasts, to evaluate the effectiveness of our business strategies, and to communicate with our board of directors concerning our financial performance.
+Free Cash Flow and Adjusted Free Cash Flow
+We define free cash flow as cash (used in) provided by operating activities less purchases of property and equipment and capitalized internal-use software costs. We define adjusted free cash flow as free cash flow, excluding the impact of discrete cash income tax payments relating to the Agreement entered into with the ITA. We believe free cash flow and adjusted free cash flow are useful indicators of liquidity that provide our management, board of directors, and investors with information about our future ability to generate or use cash to enhance the strength of our balance sheet and further invest in our business and pursue potential strategic initiatives.
+Key Business Metrics
+We monitor the following key metrics to help us evaluate our business, identify trends affecting our business, formulate business plans, and make strategic decisions.
+Annualized Recurring Revenue (ARR)
+We believe that ARR is a key operating metric to measure our business because it is driven by our ability to acquire new subscription, consumption, and usage-based customers, and to maintain and expand our relationship with existing customers. ARR represents the annualized revenue run rate of our subscription, consumption and usage-based agreements at the end of a reporting period, assuming contracts are renewed on their existing terms for customers that are under contracts with us. ARR is not a forecast of future revenue, which can be impacted by contract start and end dates, usage, renewal rates, and other contractual terms.
+
+
+
+
+
+
+
+
+
+Customers with ARR of $100,000 or More
+We believe that our ability to increase the number of customers with ARR of $100,000 or more is an indicator of our market penetration and strategic demand for our platform. We define a customer as an entity that has an active subscription for access to our platform. We count Managed Service Providers, Managed Security Service Providers, Managed Detection & Response firms, and Original Equipment Manufacturers, who may purchase our products on behalf of multiple companies, as a single customer. We do not count our reseller or distributor channel partners as customers.
+
+
+Contact:
+Investor Relations:
+Saad Nazir
+investors@sentinelone.com
+
+
+Press:
+Craig VerColen
+press@sentinelone.com
+
+
+Source: SentinelOne
+NYSE: S
+Category: Investors
+
+
+
+
+
+SENTINELONE, INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(in thousands)
+(unaudited)
+
+| | | | | | | | | | | |
+| July 31, | | January 31, |
+| 2026 | | 2026 |
+Assets
+| | | |
+Current assets:
+| | | |
+Cash and cash equivalents | $ | 200,951 | | | $ | 169,627 | |
+Short-term investments
+| 454,297 | | | 459,041 | |
+Accounts receivable, net
+| 219,893 | | | 289,079 | |
+Deferred contract acquisition costs, current
+| 72,549 | | | 70,981 | |
+Prepaid expenses and other current assets
+| 50,641 | | | 61,857 | |
+Total current assets
+| 998,331 | | | 1,050,585 | |
+Property and equipment, net
+| 88,663 | | | 84,008 | |
+Long-term investments | 157,998 | | | 140,898 | |
+Deferred contract acquisition costs, non-current | 86,016 | | | 89,659 | |
+Intangible assets, net | 108,145 | | | 129,548 | |
+Goodwill | 912,671 | | | 912,671 | |
+Other assets | 29,637 | | | 30,733 | |
+Total assets
+| $ | 2,381,461 | | | $ | 2,438,102 | |
+Liabilities and Stockholders’ Equity | | | |
+Current liabilities:
+| | | |
+Accounts payable | $ | 8,933 | | | $ | 10,299 | |
+Accrued payroll and benefits
+| 85,387 | | | 79,006 | |
+Deferred revenue, current
+| 500,547 | | | 549,790 | |
+Accrued expenses and other current liabilities
+| 93,922 | | | 117,260 | |
+Total current liabilities
+| 688,789 | | | 756,355 | |
+Deferred revenue, non-current | 77,014 | | | 83,277 | |
+Other liabilities | 167,154 | | | 161,325 | |
+Total liabilities
+| 932,957 | | | 1,000,957 | |
+Stockholders’ equity: | | | |
+Preferred stock | — | | | — | |
+Class A common stock
+| 34 | | | 33 | |
+Class B common stock | 1 | | | 1 | |
+Additional paid-in capital | 3,695,877 | | | 3,513,017 | |
+Accumulated other comprehensive income | 376 | | | 2,314 | |
+Accumulated deficit | (2,247,784) | | | (2,078,220) | |
+Total stockholders’ equity | 1,448,504 | | | 1,437,145 | |
+Total liabilities and stockholders’ equity | $ | 2,381,461 | | | $ | 2,438,102 | |
+| | | |
+
+
+
+
+
+
+
+
+| | |
+SENTINELONE, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(in thousands, except share and per share data)
+(unaudited)
+|
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31,
+| | Six Months Ended July 31,
+|
+| 2026 | | 2025 | | 2026 | | 2025 |
+Revenue
+| $ | 291,981 | | | $ | 242,183 | | | $ | 568,638 | | | $ | 471,212 | |
+Cost of revenue
+| 81,563 | | | 60,474 | | | 159,528 | | | 117,006 | |
+Gross profit | 210,418 | | | 181,709 | | | 409,110 | | | 354,206 | |
+Operating expenses: | | | | | | | |
+Research and development
+| 96,882 | | | 79,091 | | | 192,652 | | | 151,344 | |
+Sales and marketing
+| 123,545 | | | 127,879 | | | 255,656 | | | 261,760 | |
+General and administrative
+| 56,327 | | | 51,474 | | | 106,824 | | | 100,153 | |
+Restructuring
+| 24,425 | | | 3,883 | | | 24,457 | | | 9,050 | |
+Total operating expenses
+| 301,179 | | | 262,327 | | | 579,589 | | | 522,307 | |
+Loss from operations | (90,761) | | | (80,618) | | | (170,479) | | | (168,101) | |
+Interest income, net | 6,151 | | | 12,196 | | | 12,978 | | | 24,486 | |
+Other income (expense), net | (2,414) | | | (327) | | | 76 | | | 165 | |
+Loss before income taxes | (87,024) | | | (68,749) | | | (157,425) | | | (143,450) | |
+Provision for income taxes | 6,376 | | | 3,270 | | | 12,139 | | | 136,762 | |
+Net loss | $ | (93,400) | | | $ | (72,019) | | | $ | (169,564) | | | $ | (280,212) | |
+Net loss per share attributable to Class A and Class B common stockholders, basic and diluted
+| $ | (0.27) | | | $ | (0.22) | | | $ | (0.50) | | | $ | (0.85) | |
+Weighted-average shares used in computing net loss per share attributable to Class A and Class B common stockholders, basic and diluted | 341,527,623 | | | 330,938,421 | | | 339,301,479 | | | 329,481,933 | |
+| | | | | | | |
+Includes stock-based compensation expense as follows:
+| | | | | | | |
+Cost of revenue | $ | 6,199 | | | $ | 5,399 | | | $ | 12,094 | | | $ | 10,064 | |
+Research and development | 28,401 | | | 24,289 | | | 57,349 | | | 45,230 | |
+Sales and marketing | 21,472 | | | 21,338 | | | 41,757 | | | 44,253 | |
+General and administrative | 25,221 | | | 22,858 | | | 44,982 | | | 43,028 | |
+Restructuring | 10,821 | | | — | | | 10,821 | | | (36) | |
+Total stock-based compensation expense | $ | 92,114 | | | $ | 73,884 | | | $ | 167,003 | | | $ | 142,539 | |
+
+
+
+
+
+
+SENTINELONE, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(in thousands)
+(unaudited)
+
+
+
+
+
+| | | | | | | | | | | |
+| Six Months Ended July 31,
+|
+| 2026 | | 2025 |
+CASH FLOW FROM OPERATING ACTIVITIES:
+| | | |
+Net loss | $ | (169,564) | | | $ | (280,212) | |
+Adjustments to reconcile net loss to net cash provided by operating activities: | | | |
+Depreciation and amortization
+| 35,808 | | | 23,117 | |
+Amortization of deferred contract acquisition costs
+| 41,149 | | | 37,507 | |
+Non-cash operating lease costs
+| 2,178 | | | 2,120 | |
+Stock-based compensation expense | 167,003 | | | 142,539 | |
+Change in fair value of derivative instruments and related foreign currency loss on tax liabilities, net | 2,438 | | | — | |
+Net (gain) loss on strategic investments | (5,058) | | | 3 | |
+Accretion of discounts, and amortization of premiums on investments, net
+| (1,223) | | | (4,856) | |
+Asset impairment charges | 502 | | | 2,176 | |
+Other
+| 361 | | | 277 | |
+Changes in operating assets and liabilities, net of effects of acquisitions: | | | |
+Accounts receivable | 68,823 | | | 56,409 | |
+Prepaid expenses and other assets | (1,259) | | | 3,159 | |
+Deferred contract acquisition costs
+| (39,074) | | | (36,076) | |
+Accounts payable | (1,022) | | | 1,547 | |
+Accrued expenses and other liabilities
+| (16,921) | | | 144,040 | |
+Accrued payroll and benefits | 6,381 | | | (13,063) | |
+Operating lease liabilities | (3,068) | | | (2,119) | |
+Deferred revenue | (55,506) | | | (25,337) | |
+Net cash provided by operating activities | 31,948 | | | 51,231 | |
+CASH FLOW FROM INVESTING ACTIVITIES: | | | |
+Purchases of property and equipment | (494) | | | (410) | |
+Purchases of intangible assets
+| (112) | | | (100) | |
+Capitalization of internal-use software | (13,975) | | | (12,525) | |
+Purchases of investments | (260,446) | | | (208,090) | |
+Proceeds from sales, maturities and return of capital of investments
+| 252,003 | | | 286,767 | |
+Cash paid for acquisitions, net of cash acquired | (952) | | | — | |
+Net cash (used in) provided by investing activities
+| (23,976) | | | 65,642 | |
+CASH FLOW FROM FINANCING ACTIVITIES:
+| | | |
+Repurchases of common stock | — | | | (52,693) | |
+| | | |
+Proceeds from exercise of stock options
+| 3,148 | | | 15,229 | |
+Proceeds from issuance of common stock under the employee stock purchase plan | 7,512 | | | 9,065 | |
+Net cash provided by (used in) financing activities
+| 10,660 | | | (28,399) | |
+NET CHANGE IN CASH, CASH EQUIVALENTS, AND RESTRICTED CASH
+| 18,632 | | | 88,474 | |
+CASH, CASH EQUIVALENTS, AND RESTRICTED CASH–Beginning of period
+| 196,158 | | | 193,302 | |
+CASH, CASH EQUIVALENTS, AND RESTRICTED CASH–End of period
+| $ | 214,790 | | | $ | 281,776 | |
+
+
+
+
+
+
+SENTINELONE, INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL INFORMATION
+(in thousands, except percentages and per share data)
+(unaudited)
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Cost of revenue reconciliation: | | | | | | | |
+GAAP cost of revenue | $ | 81,563 | | | $ | 60,474 | | | $ | 159,528 | | | $ | 117,006 | |
+Stock-based compensation expense | (6,199) | | | (5,399) | | | (12,094) | | | (10,064) | |
+Employer payroll tax on employee stock transactions | (202) | | | (187) | | | (433) | | | (417) | |
+Amortization of acquired intangible assets | (8,227) | | | (4,195) | | | (16,186) | | | (8,254) | |
+Acquisition-related compensation | (5) | | | (17) | | | (10) | | | (37) | |
+| | | | | | | |
+Non-GAAP cost of revenue | $ | 66,930 | | | $ | 50,676 | | | $ | 130,805 | | | $ | 98,234 | |
+| | | | | | | |
+Gross profit reconciliation: | | | | | | | |
+GAAP gross profit | $ | 210,418 | | | $ | 181,709 | | | $ | 409,110 | | | $ | 354,206 | |
+Stock-based compensation expense | 6,199 | | | 5,399 | | | 12,094 | | | 10,064 | |
+Employer payroll tax on employee stock transactions | 202 | | | 187 | | | 433 | | | 417 | |
+Amortization of acquired intangible assets | 8,227 | | | 4,195 | | | 16,186 | | | 8,254 | |
+Acquisition-related compensation | 5 | | | 17 | | | 10 | | | 37 | |
+| | | | | | | |
+Non-GAAP gross profit | $ | 225,051 | | | $ | 191,507 | | | $ | 437,833 | | | $ | 372,978 | |
+| | | | | | | |
+Gross margin reconciliation: | | | | | | | |
+GAAP gross margin | 72 | % | | 75 | % | | 72 | % | | 75 | % |
+Stock-based compensation expense | 2 | % | | 2 | % | | 2 | % | | 2 | % |
+Employer payroll tax on employee stock transactions | — | % | | — | % | | — | % | | — | % |
+Amortization of acquired intangible assets | 3 | % | | 2 | % | | 3 | % | | 2 | % |
+Acquisition-related compensation | — | % | | — | % | | — | % | | — | % |
+| | | | | | | |
+Non-GAAP gross margin | 77 | % | | 79 | % | | 77 | % | | 79 | % |
+| | | | | | | |
+Research and development expense reconciliation: | | | | | | | |
+GAAP research and development expense | $ | 96,882 | | | $ | 79,091 | | | $ | 192,652 | | | $ | 151,344 | |
+Stock-based compensation expense | (28,401) | | | (24,289) | | | (57,349) | | | (45,230) | |
+Employer payroll tax on employee stock transactions | (277) | | | (211) | | | (668) | | | (742) | |
+Acquisition-related compensation | (2,321) | | | (667) | | | (4,560) | | | (1,341) | |
+Non-GAAP research and development expense | $ | 65,883 | | | $ | 53,924 | | | $ | 130,075 | | | $ | 104,031 | |
+| | | | | | | |
+Sales and marketing expense reconciliation: | | | | | | | |
+GAAP sales and marketing expense | $ | 123,545 | | | $ | 127,879 | | | $ | 255,656 | | | $ | 261,760 | |
+Stock-based compensation expense | (21,472) | | | (21,338) | | | (41,757) | | | (44,253) | |
+Employer payroll tax on employee stock transactions | (620) | | | (487) | | | (1,091) | | | (1,179) | |
+Amortization of acquired intangible assets | (2,553) | | | (2,253) | | | (5,022) | | | (4,433) | |
+Acquisition-related compensation | (1,023) | | | (8) | | | (2,102) | | | (25) | |
+Non-GAAP sales and marketing expense | $ | 97,877 | | | $ | 103,793 | | | $ | 205,684 | | | $ | 211,870 | |
+
+
+
+
+
+SENTINELONE, INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL INFORMATION
+(in thousands, except percentages and per share data)
+(unaudited)
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | | |
+General and administrative expense reconciliation: | | | | | | | |
+GAAP general and administrative expense | $ | 56,327 | | | $ | 51,474 | | | $ | 106,824 | | | $ | 100,153 | |
+Stock-based compensation expense | (25,221) | | | (22,858) | | | (44,982) | | | (43,028) | |
+Employer payroll tax on employee stock transactions | (343) | | | (202) | | | (841) | | | (1,497) | |
+| | | | | | | |
+| | | | | | | |
+Non-GAAP general and administrative expense | $ | 30,763 | | | $ | 28,414 | | | $ | 61,001 | | | $ | 55,628 | |
+| | | | | | | |
+Restructuring expense reconciliation: | | | | | | | |
+GAAP restructuring expense | $ | 24,425 | | | $ | 3,883 | | | $ | 24,457 | | | $ | 9,050 | |
+Stock-based compensation expense | (10,821) | | | — | | | (10,821) | | | 36 | |
+Other restructuring charges | (13,604) | | | (3,883) | | | (13,636) | | | (9,086) | |
+Non-GAAP restructuring expense | $ | — | | | $ | — | | | $ | — | | | $ | — | |
+| | | | | | | |
+Operating loss reconciliation: | | | | | | | |
+GAAP operating loss | $ | (90,761) | | | $ | (80,618) | | | $ | (170,479) | | | $ | (168,101) | |
+Stock-based compensation expense | 92,114 | | | 73,884 | | | 167,003 | | | 142,539 | |
+Employer payroll tax on employee stock transactions | 1,442 | | | 1,087 | | | 3,033 | | | 3,835 | |
+Amortization of acquired intangible assets | 10,780 | | | 6,448 | | | 21,208 | | | 12,687 | |
+Acquisition-related compensation | 3,349 | | | 692 | | | 6,672 | | | 1,403 | |
+Other restructuring charges | 13,604 | | | 3,883 | | | 13,636 | | | 9,086 | |
+Non-GAAP operating income | $ | 30,528 | | | $ | 5,376 | | | $ | 41,073 | | | $ | 1,449 | |
+| | | | | | | |
+Operating margin reconciliation: | | | | | | | |
+GAAP operating margin | (31) | % | | (33) | % | | (30) | % | | (36) | % |
+Stock-based compensation expense | 32 | % | | 31 | % | | 29 | % | | 30 | % |
+Employer payroll tax on employee stock transactions | — | % | | — | % | | 1 | % | | 1 | % |
+Amortization of acquired intangible assets | 4 | % | | 3 | % | | 4 | % | | 3 | % |
+Acquisition-related compensation | 1 | % | | — | % | | 1 | % | | — | % |
+Other restructuring charges | 5 | % | | 2 | % | | 2 | % | | 2 | % |
+Non-GAAP operating margin* | 10 | % | | 2 | % | | 7 | % | | — | % |
+| | | | | | | |
+Provision for income taxes reconciliation: | | | | | | | |
+GAAP provision for income taxes | $ | 6,376 | | | $ | 3,270 | | | $ | 12,139 | | | $ | 136,762 | |
+Income tax adjustments | (534) | | | — | | | (3,798) | | | (131,283) | |
+Non-GAAP provision for income taxes
+| $ | 5,842 | | | $ | 3,270 | | | $ | 8,341 | | | $ | 5,479 | |
+| | | | | | | |
+Net income (loss) reconciliation: | | | | | | | |
+GAAP net loss | $ | (93,400) | | | $ | (72,019) | | | $ | (169,564) | | | $ | (280,212) | |
+Stock-based compensation expense | 92,114 | | | 73,884 | | | 167,003 | | | 142,539 | |
+Employer payroll tax on employee stock transactions | 1,442 | | | 1,087 | | | 3,033 | | | 3,835 | |
+
+
+
+
+
+SENTINELONE, INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL INFORMATION (CONTINUED)
+(in thousands, except percentages and per share data)
+(unaudited)
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+Amortization of acquired intangible assets | 10,780 | | | 6,448 | | | 21,208 | | | 12,687 | |
+Acquisition-related compensation | 3,349 | | | 692 | | | 6,672 | | | 1,403 | |
+Other restructuring charges | 13,604 | | | 3,883 | | | 13,636 | | | 9,086 | |
+Net (gain) loss on strategic investments | 50 | | | (795) | | | (5,058) | | | (792) | |
+Provision for income taxes
+| 534 | | | — | | | 3,798 | | | 131,283 | |
+Non-GAAP net income
+| $ | 28,473 | | | $ | 13,180 | | | $ | 40,728 | | | $ | 19,829 | |
+| | | | | | | |
+Net income (loss) margin reconciliation: | | | | | | | |
+GAAP net loss margin
+| (32) | % | | (30) | % | | (30) | % | | (59) | % |
+Stock-based compensation expense | 32 | % | | 31 | % | | 29 | % | | 30 | % |
+Employer payroll tax on employee stock transactions | — | % | | — | % | | 1 | % | | 1 | % |
+Amortization of acquired intangible assets | 4 | % | | 3 | % | | 4 | % | | 3 | % |
+Acquisition-related compensation | 1 | % | | — | % | | 1 | % | | — | % |
+Other restructuring charges | 5 | % | | 2 | % | | 2 | % | | 2 | % |
+Net (gain) loss on strategic investments | — | % | | — | % | | (1) | % | | — | % |
+Provision for income taxes
+| — | % | | — | % | | 1 | % | | 28 | % |
+Non-GAAP net income margin*
+| 10 | % | | 5 | % | | 7 | % | | 4 | % |
+| | | | | | | |
+GAAP basic and diluted shares | 341,527,623 | | 330,938,421 | | 339,301,479 | | | 329,481,933 |
+Dilutive shares under the treasury stock method | 14,370,524 | | 9,074,635 | | 9,685,516 | | | 10,212,588 |
+Non-GAAP diluted shares | 355,898,147 | | 340,013,056 | | 348,986,995 | | | 339,694,521 |
+| | | | | | | |
+Diluted EPS reconciliation: | | | | | | | |
+GAAP net loss per share, basic and diluted | $ | (0.27) | | | $ | (0.22) | | | $ | (0.50) | | | $ | (0.85) | |
+Stock-based compensation expense | 0.26 | | | 0.22 | | | 0.48 | | | 0.42 | |
+Employer payroll tax on employee stock transactions | — | | | — | | | 0.01 | | | 0.01 | |
+Amortization of acquired intangible assets | 0.03 | | | 0.02 | | | 0.06 | | | 0.04 | |
+Acquisition-related compensation | 0.01 | | | — | | | 0.02 | | | — | |
+Other restructuring charges | 0.04 | | | 0.01 | | | 0.04 | | | 0.03 | |
+Net (gain) loss on strategic investments | — | | | — | | | (0.01) | | | — | |
+Provision for income taxes
+| — | | | — | | | 0.01 | | | 0.39 | |
+Adjustment to fully diluted earnings per share
+| 0.01 | | | 0.01 | | | 0.01 | | | 0.02 | |
+Non-GAAP net income per share, diluted | $ | 0.08 | | | $ | 0.04 | | | $ | 0.12 | | | $ | 0.06 | |
+
+
+
+*Certain figures may not sum due to rounding.
+Effective in the first quarter of fiscal year 2027, we adopted a long-term projected non-GAAP tax rate of 17% to calculate non-GAAP net income. The projected rate reflects our expectations of its long-term tax structure and jurisdictional mix of income.
+For periods in which we had diluted non-GAAP net income per share, the sum of the impact of individual reconciling items may not total to diluted non-GAAP net income per share because the basic share counts used to calculate GAAP net loss per share differ from the diluted share counts used to calculate non-GAAP net income per share, and because of rounding differences. The GAAP net loss per share calculation uses a lower share count as it excludes dilutive shares which are included in calculating the non-GAAP net income per share.
+
+
+
+
+
+SENTINELONE, INC.
+SELECTED CASH FLOW INFORMATION
+(in thousands)
+(unaudited)
+
+Reconciliation of cash (used in) provided by operating activities to free cash flow and adjusted free cash flow:
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+GAAP net cash (used in) provided by operating activities | $ | (6,545) | | | $ | (1,043) | | | $ | 31,948 | | | $ | 51,231 | |
+Less: Purchases of property and equipment | (70) | | | (264) | | | (494) | | | (410) | |
+Less: Capitalized internal-use software | (6,621) | | | (5,841) | | | (13,975) | | | (12,525) | |
+Free cash flow | (13,236) | | | (7,148) | | | 17,479 | | | 38,296 | |
+Add: Cash income tax payments relating to the ITA Agreement | — | | | — | | | 30,658 | | | — | |
+Adjusted free cash flow | $ | (13,236) | | | $ | (7,148) | | | $ | 48,137 | | | $ | 38,296 | |
+| | | | | | | |
+Net cash provided by (used in) investing activities | $ | 39,909 | | | $ | 131,234 | | | $ | (23,976) | | | $ | 65,642 | |
+| | | | | | | |
+Net cash provided by (used in) financing activities | $ | 9,778 | | | $ | (40,676) | | | $ | 10,660 | | | $ | (28,399) | |
+| | | | | | | |
+Operating cash flow margin | (2) | % | | 0 | % | | 6 | % | | 11 | % |
+Free cash flow margin | (5) | % | | (3) | % | | 3 | % | | 8 | % |
+Adjusted free cash flow margin | (5) | % | | (3) | % | | 8 | % | | 8 | % |
+| | | | | | | |
