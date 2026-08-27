@@ -1832,6 +1832,19 @@ const filingCorpus: {
     source: "1000275/000119312526369461/d91595dex991.htm",
     ticker: "ry",
   },
+  {
+    company: "Canadian Imperial Bank of Commerce",
+    metrics: [
+      ["adjusted_eps", "C$2.73"],
+      ["gaap_eps", "C$2.47"],
+      ["revenue", "C$8.37B"],
+      ["net_income", "C$2.41B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q3 2026",
+    source: "1045520/000119312526369470/d71313dex991.htm",
+    ticker: "cm",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1852,6 +1865,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(115);
+    expect(filingCorpus).toHaveLength(116);
   });
 });
