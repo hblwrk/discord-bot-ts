@@ -1819,6 +1819,19 @@ const filingCorpus: {
     source: "47217/000004721726000048/hp73126exhibit991q326.htm",
     ticker: "hpq",
   },
+  {
+    company: "Royal Bank of Canada",
+    metrics: [
+      ["adjusted_eps", "C$4.28"],
+      ["gaap_eps", "C$4.23"],
+      ["revenue", "C$18.54B"],
+      ["net_income", "C$6B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q3 2026",
+    source: "1000275/000119312526369461/d91595dex991.htm",
+    ticker: "ry",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -1839,6 +1852,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(114);
+    expect(filingCorpus).toHaveLength(115);
   });
 });
