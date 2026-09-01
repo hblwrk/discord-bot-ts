@@ -1,0 +1,339 @@
+EX-99.1
+2
+credoq12027ex-991.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+
+
+
+
+
+Credo Technology Group Holding Ltd Reports First Quarter of Fiscal Year 2027
+Financial Results
+
+
+
+
+San Jose, Calif. (September 1, 2026) - Credo Technology Group Holding Ltd (Credo) (Nasdaq: CRDO), an innovator in providing connectivity at scale through fast, reliable, and energy-efficient system solutions, today announced financial results for the first quarter of fiscal year 2027, ended August 1, 2026.
+
+
+First Quarter of Fiscal Year 2027 Financial Highlights
+
+
+•Revenue of $479.0 million, grew by 9.6% quarter over quarter and 114.7% year over year
+•GAAP gross margin of 64.5% and non-GAAP gross margin of 68.0%
+•GAAP operating expenses of $188.4 million and non-GAAP operating expenses of $95.2 million
+•GAAP net income of $129.4 million and non-GAAP net income of $236.3 million
+•GAAP diluted net income per share of $0.67 and non-GAAP diluted net income per share of $1.20
+•Ending cash and short-term investment balance of $764.3 million
+
+
+Management Commentary
+
+
+Bill Brennan, Credo’s President and Chief Executive Officer, stated, “During the first quarter of fiscal 2027, Credo delivered revenue of $479.0 million and non-GAAP net income of $236.3 million, representing 115% and 140% year-over-year growth respectively. Our portfolio now spans connectivity from millimeters to kilometers, with solutions across optics and copper. As AI infrastructure scales, we will continue to provide an innovative suite of reliable and energy-efficient connectivity solutions for the data center.”
+
+
+
+
+
+
+
+Second Quarter of Fiscal 2027 Financial Outlook
+
+•Revenue is expected to be between $525 million and $535 million
+•GAAP gross margin is expected to be between 62.9% and 64.9%, and non-GAAP gross margin is expected to be between 67.0% and 69.0%
+•GAAP operating expenses are expected to be between $199 million and $204 million, and non-GAAP operating expenses are expected to be between $100 million and $105 million
+
+
+
+
+
+
+
+
+
+
+Conference Call
+
+
+Credo will conduct a conference call on Tuesday, September 1, 2026, at 2:00 p.m. Pacific Time to discuss its financial results for the first quarter of fiscal year 2027, ended August 1, 2026. Interested parties may join the conference call by dialing 833-461-5787 (toll-free) or +1 585-542-9983 (international). The conference ID for the call is 702097177. It is recommended that participants dial in to the call at least 10 minutes before the start of the call. A live webcast of the conference call will be available on Credo’s Investor Relations website at http://investors.credosemi.com. A replay of the webcast will be available via the web at http://investors.credosemi.com.
+
+
+
+Discussion of Non-GAAP Financial Measures
+
+
+This press release contains references to the non-GAAP financial measures of non-GAAP gross profit, non-GAAP gross margin, non-GAAP operating expenses, non-GAAP operating income (loss), non-GAAP operating income (loss) margin, non-GAAP net income (loss) and non-GAAP diluted net income (loss) per share. Reconciliation of these non-GAAP measures to their comparable GAAP measures is included below. This non-GAAP information should not be construed as an alternative to the reported results determined in accordance with GAAP. The non-GAAP financial measures that Credo presents may not be comparable to similarly titled measures of other companies and other companies may not calculate such measures in the same manner as we do.
+
+
+Non-GAAP financial measures exclude the effect of share-based compensation expenses, acquisition and integration related costs, amortization of acquired intangible assets, asset impairment and related charges (if applicable), and the related tax effect adjustment to the provision for income taxes.
+
+
+Credo uses a full-year non-GAAP tax rate to compute the non-GAAP tax provision. This full-year non-GAAP tax rate is based on Credo’s annual GAAP income, adjusted to exclude non-GAAP items, as well as the effects of significant non-recurring and period-specific tax items which vary in size and frequency. Credo’s non-GAAP tax rate is determined on an annual basis and may be adjusted during the year to take into account events that may materially affect the non-GAAP tax rate, such as tax law changes, significant changes in Credo’s geographic mix of revenue and expenses or changes to Credo’s corporate structure.
+
+
+GAAP diluted net income (loss) per share is calculated using basic weighted average shares outstanding when there is a GAAP net loss, and calculated using diluted weighted average shares outstanding when there is a GAAP net income. Non-GAAP diluted net income (loss) per share is calculated using basic weighted average shares outstanding when there is a non-GAAP net loss, and calculated using non-GAAP diluted weighted average shares outstanding when there is a non-GAAP net income. Non-GAAP adjustment for the number of shares used in the diluted per share calculations excludes the impact of share-based compensation expenses expected to be incurred in future periods and not yet recognized in the financial statements, which would otherwise be assumed to be used to repurchase shares under the GAAP treasury stock method.
+
+
+Credo believes that the presentation of non-GAAP financial measures provides important supplemental information to management and investors regarding financial and business trends relating to Credo’s financial condition and results of operations. While Credo uses non-GAAP financial measures as a tool to enhance its understanding of certain aspects of its financial performance, Credo does not consider these measures to be a substitute for, or superior to, financial measures calculated in accordance with GAAP. Consistent with this approach, Credo believes that disclosing non-GAAP financial measures to the readers of its financial statements provides such readers with useful supplemental data that, while not a substitute for GAAP financial measures, allows for greater transparency in the review of its financial and operational performance.
+
+
+Externally, management believes that investors may find Credo’s non-GAAP financial measures useful in their assessment of Credo's operating performance and the valuation of Credo. Internally, Credo's non-GAAP financial measures are used in the following areas:
+
+
+•Management’s evaluation of Credo’s operating performance;
+•Management’s establishment of internal operating budgets; and
+•Management’s performance comparisons with internal forecasts and targeted business models.
+
+Non-GAAP financial measures have limitations in that they do not reflect all of the costs associated with the operations of Credo’s business as determined in accordance with GAAP. As a result, you should not consider these measures in isolation or as a substitute for analysis of Credo’s results as reported under GAAP. The exclusion of the above items from our GAAP financial metrics does not necessarily mean that these costs are unusual or infrequent.
+
+
+
+
+
+
+
+
+Forward-Looking Statements under the Private Securities Litigation Reform Act of 1995
+
+
+This press release contains forward-looking statements within the meaning of the federal securities laws. All statements other than statements of historical fact could be deemed forward-looking statements, including, but not limited to, any statements regarding: launches of new or expansion of existing products or services; technology developments and innovation; our plans, strategies or objectives with respect to future operations; financial outlook; future financial results; expectations regarding the markets and industries in which Credo conducts business; and assumptions underlying any of the foregoing. Words such as “anticipates,” “expects,” “intends,” “plans,” “projects,” “believes,” “seeks,” “estimates,” “can,” “may,” “will,” “would,” “outlook,” “forecast,” “targets” and similar expressions, or their negatives, may identify such forward-looking statements. These statements are not guarantees of results and should not be considered as an indication of future activity or future performance. Forward-looking statements are predictions, projections and other statements about future events that are based on current expectations and assumptions and, as a result, are subject to risks and uncertainties that may cause actual events or results to differ materially from those described in this press release. Readers are encouraged to review risk factors and all other disclosures appearing in Credo’s Annual Report on Form 10-K as filed with the Securities and Exchange Commission (SEC) on June 15, 2026, as well as Credo’s other filings with the SEC, for further information on risks and uncertainties that could affect Credo’s business, financial condition and results of operations. Copies of these filings are available from the SEC, Credo’s website or Credo’s investor relations department. Forward-looking statements speak only as of the date they are made. Credo assumes no obligation to update or revise any forward-looking statements as a result of new information, future events or otherwise, except as required by law. Readers are cautioned not to place undue reliance on these forward-looking statements that speak only as of the date herein.
+
+
+
+
+
+
+
+
+About Credo
+
+
+Credo’s mission is to transform connectivity at scale through fast, reliable and energy-efficient system solutions. Our high-speed copper and optical interconnect products deliver industry-leading power and performance from chip to cluster to meet the ever-expanding data infrastructure demands of AI.
+
+
+Our vertically integrated connectivity portfolio is comprised of our flagship purple ZeroFlap (ZF) Active Electrical Cables (AECs) and ZF optical transceivers; optical components including silicon photonics-based photonic integrated circuits (SiPho PICs) and DSPs; OmniConnect AI memory and chip-to-chip interconnect; and retimers for Ethernet and PCIe—supported by our PILOT diagnostic and analytics software platform. Credo innovations enable our customers to connect the systems that connect the world.
+
+
+For more information, please visit https://www.credosemi.com.
+
+
+Credo, the Credo logo and the color purple when associated with AECs are registered trademarks of Credo Technology Group Limited in the United States and other jurisdictions. All other trademarks referenced herein are the property of their respective owners.
+
+
+Investor Contact:
+
+
+Dan O’Neil
+IR@credosemi.com
+
+
+
+
+
+
+
+
+Credo Technology Group Holding Ltd
+Condensed Consolidated Statements of Operations (Unaudited)
+(In thousands, except per share amounts)
+
+| | | | | | | | | | | | | | | | | |
+| Three Months Ended |
+| August 1, 2026 | | May 2, 2026 | | August 2, 2025 |
+Revenue
+| $ | 479,003 | | | $ | 437,003 | | | $ | 223,074 | |
+Cost of revenue
+| 169,923 | | | 138,936 | | | 72,706 | |
+Gross profit | 309,080 | | | 298,067 | | | 150,368 | |
+Operating expenses: | | | | | |
+Research and development | 114,524 | | | 90,534 | | | 52,448 | |
+Selling, general and administrative | 73,856 | | | 51,688 | | | 37,178 | |
+Total operating expenses | 188,380 | | | 142,222 | | | 89,626 | |
+Operating income | 120,700 | | | 155,845 | | | 60,742 | |
+Other income, net | 8,140 | | | 12,136 | | | 3,946 | |
+Income before income taxes | 128,840 | | | 167,981 | | | 64,688 | |
+Provision (benefit) for income taxes | (585) | | | (1,121) | | | 1,289 | |
+Net income | $ | 129,425 | | | $ | 169,102 | | | $ | 63,399 | |
+Net income per share: | | | | | |
+Basic
+| $ | 0.70 | | | $ | 0.92 | | | $ | 0.37 | |
+Diluted
+| $ | 0.67 | | | $ | 0.88 | | | $ | 0.34 | |
+Weighted-average shares used in computing net income per share: | | | | | |
+Basic
+| 186,007 | | | 184,683 | | | 171,927 | |
+Diluted
+| 194,378 | | | 192,681 | | | 184,577 | |
+
+
+
+
+
+
+
+
+
+
+
+Credo Technology Group Holding Ltd
+Condensed Consolidated Balance Sheets (Unaudited)
+(In thousands)
+
+| | | | | | | | | | | |
+| August 1, 2026 | | May 2, 2026 |
+Assets |
+Current assets:
+| | | |
+Cash and cash equivalents | $ | 466,869 | | | $ | 1,164,952 | |
+Short-term investments | 297,389 | | | 278,334 | |
+Accounts receivable | 288,798 | | | 233,377 | |
+Inventories | 313,051 | | | 250,831 | |
+Other current assets
+| 100,186 | | | 73,576 | |
+Total current assets | 1,466,293 | | | 2,001,070 | |
+Property and equipment, net | 114,462 | | | 101,605 | |
+Right-of-use assets
+| 25,061 | | | 24,640 | |
+Goodwill
+| 986,447 | | | 92,798 | |
+Intangible assets, net | 378,817 | | | 29,262 | |
+Other non-current assets | 41,647 | | | 46,244 | |
+Total assets | $ | 3,012,727 | | | $ | 2,295,619 | |
+Liabilities and Shareholders' Equity |
+Current liabilities:
+| | | |
+Accounts payable | $ | 101,822 | | | $ | 107,345 | |
+Accrued compensation and benefits | 20,731 | | | 21,626 | |
+Other current liabilities
+| 75,612 | | | 68,120 | |
+Total current liabilities | 198,165 | | | 197,091 | |
+Non-current operating lease liabilities | 20,737 | | | 20,617 | |
+Deferred tax liabilities | 53,659 | | | 5,754 | |
+Other non-current liabilities | 11,676 | | | 8,545 | |
+Total liabilities | 284,237 | | | 232,007 | |
+Shareholders' equity: | | | |
+Ordinary shares
+| 9 | | | 9 | |
+Additional paid in capital | 2,210,077 | | | 1,672,060 | |
+Accumulated other comprehensive income (loss) | (138) | | | 2,426 | |
+Retained earnings | 518,542 | | | 389,117 | |
+Total shareholders' equity | 2,728,490 | | | 2,063,612 | |
+Total liabilities and shareholders' equity | $ | 3,012,727 | | | $ | 2,295,619 | |
+
+
+
+
+
+
+
+
+
+Credo Technology Group Holding Ltd
+Reconciliations from GAAP to Non-GAAP (Unaudited)
+(In thousands, except percentages and per share amounts)
+
+
+| | | | | | | | | | | | | | | | | |
+| Three Months Ended |
+| August 1, 2026 | | May 2, 2026 | | August 2, 2025 |
+GAAP gross profit | $ | 309,080 | | $ | 298,067 | | $ | 150,368 |
+Reconciling item: | | | | | |
+Share-based compensation | 5,715 | | 354 | | 356 |
+Amortization of acquired intangible assets | 11,000 | | — | | — |
+Total reconciling item: | 16,715 | | 354 | | 356 |
+Non-GAAP gross profit (A) | $ | 325,795 | | $ | 298,421 | | $ | 150,724 |
+| | | | | |
+GAAP gross margin | 64.5% | | 68.2% | | 67.4% |
+Non-GAAP gross margin | 68.0% | | 68.3% | | 67.6% |
+| | | | | |
+Total GAAP operating expenses | $ | 188,380 | | $ | 142,222 | | $ | 89,626 |
+Reconciling item: | | | | | |
+Share-based compensation | (82,264) | | (49,344) | | (35,099) |
+Acquisition and integration related costs | (10,362) | | (9,279) | | — |
+Amortization of acquired intangible assets | (600) | | (400) | | — |
+Impairment charges | — | | (1,500) | | — |
+Total reconciling item: | (93,226) | | (60,523) | | (35,099) |
+Total Non-GAAP operating expenses (B) | $ | 95,154 | | $ | 81,699 | | $ | 54,527 |
+| | | | | |
+GAAP operating income | $ | 120,700 | | $ | 155,845 | | $ | 60,742 |
+Non-GAAP operating income (A-B)
+| $ | 230,641 | | $ | 216,722 | | $ | 96,197 |
+| | | | | |
+GAAP operating income margin | 25.2% | | 35.7% | | 27.2% |
+Non-GAAP operating income margin
+| 48.2% | | 49.6% | | 43.1% |
+| | | | | |
+GAAP net income | $ | 129,425 | | $ | 169,102 | | $ | 63,399 |
+Reconciling items: | | | | | |
+Share-based compensation | 87,979 | | 49,698 | | 35,455 |
+Acquisition and integration related costs | 10,362 | | 9,279 | | — |
+Amortization of acquired intangible assets | 11,600 | | 400 | | — |
+Impairment charges | — | | 1,500 | | — |
+Pre-tax total reconciling item | 109,941 | | 60,877 | | 35,455 |
+Other income tax effects and adjustments | (3,104) | | (3,299) | | (573) |
+Non-GAAP net income
+| $ | 236,262 | | $ | 226,680 | | $ | 98,281 |
+| | | | | |
+GAAP net income margin
+| 27.0% | | 38.7% | | 28.4% |
+Non-GAAP net income margin
+| 49.3% | | 51.9% | | 44.1% |
+| | | | | |
+GAAP weighted-average shares - basic
+| 186,007 | | 184,683 | | 171,927 |
+GAAP weighted-average shares - diluted
+| 194,378 | | 192,681 | | 184,577 |
+Non-GAAP adjustment | 3,126 | | 3,255 | | 4,288 |
+Non-GAAP weighted-average shares - diluted
+| 197,505 | | 195,936 | | 188,866 |
+| | | | | |
+GAAP diluted net income per share | $ | 0.67 | | $ | 0.88 | | $ | 0.34 |
+Non-GAAP diluted net income per share
+| $ | 1.20 | | $ | 1.16 | | $ | 0.52 |
+
+
+
+
+
+
+
+
+
+
+
+
+
+Credo Technology Group Holding Ltd
+Reconciliation of GAAP Forward-Looking Estimates to Non-GAAP Forward-Looking Estimates
+(In millions, except percentages)
+
+
+| | | | | | | | | | | |
+| Outlook for Three Months Ending October 31, 2026
+|
+| Low | | High |
+| | | |
+GAAP gross margin | 62.9 | % | | 64.9 | % |
+Reconciling item: | | | |
+Share-based compensation | 1.3 | % | | 1.3 | % |
+Amortization of acquired intangible assets | 2.8 | % | | 2.8 | % |
+Total reconciling item: | 4.1 | % | | 4.1 | % |
+Non-GAAP gross margin | 67.0 | % | | 69.0 | % |
+| | | |
+| | | |
+Total GAAP operating expenses | $ | 199.0 | | | $ | 204.0 | |
+Reconciling item: | | | |
+Share-based compensation | 97.0 | | | 97.0 | |
+Acquisition and integration related costs | 2.0 | | | 2.0 | |
+Total reconciling item: | 99.0 | | | 99.0 | |
+Total Non-GAAP operating expenses | $ | 100.0 | | | $ | 105.0 | |

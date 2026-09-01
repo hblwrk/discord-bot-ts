@@ -419,11 +419,16 @@ export function getCurrentPeriodColumnIndex(
     return currencyColumnIndex;
   }
 
-  // An income statement puts twenty or more rows between its year header and the per-share
-  // rows at the bottom, so a short lookback misses the header entirely and the row is read
-  // as though the reported period came first. The nearest header still wins, which keeps a
-  // row below one table from picking up the header of another.
-  for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 40; index--, examined++) {
+  // Most tables keep their header close to the row. A vertically rendered foreign-issuer
+  // quarter/YTD statement can be much taller; the ADS disclosure distinguishes that shape
+  // from domestic tables where an extended search can cross into another statement.
+  const hasLongAdsStatement = lines.some(line => /\blisting of its ADSs on Nasdaq\b/i.test(line)) &&
+    lines.some(line => /\bthree\s+months\s+ended\b/i.test(line)) &&
+    lines.some(line => /\bsix\s+months\s+ended\b/i.test(line));
+  const lookbackLimit = true === hasLongAdsStatement
+    ? 140
+    : 40;
+  for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < lookbackLimit; index--, examined++) {
     const line = lines[index];
     if (undefined === line) {
       continue;
@@ -696,11 +701,14 @@ function getPeriodEndedScope(line: string): PeriodScope {
     return "annual";
   }
 
-  if (/\b(?:three|3)\s+months?\s+ended\b/i.test(line) || /\bquarters?\s+ended\b/i.test(line)) {
+  if (/\b(?:three|3)\s+months?\s+ended\b/i.test(line) ||
+      /\b(?:thirteen|13)\s+weeks?\s+ended\b/i.test(line) ||
+      /\bquarters?\s+ended\b/i.test(line)) {
     return "quarter";
   }
 
   if (/\b(?:twelve|12|six|6|nine|9)\s+months?\s+ended\b/i.test(line) ||
+      /\b(?:twenty[-\s]+six|26|thirty[-\s]+nine|39|fifty[-\s]+two|52)\s+weeks?\s+ended\b/i.test(line) ||
       /\byear\s+ended\b/i.test(line)) {
     return "annual";
   }

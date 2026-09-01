@@ -1,0 +1,606 @@
+EX-99.1
+2
+mdb-073126xex991xrelease.htm
+EX-99.1
+
+
+
+
+Document
+Exhibit 99.1
+
+
+
+MongoDB, Inc. Announces Second Quarter Fiscal 2027 Financial Results
+Second quarter fiscal 2027 total revenue of $771.8 million, up 30% year-over-year
+Atlas revenue up approximately 29% year-over-year in the second quarter fiscal 2027
+EA & other revenue up approximately 36% year-over-year in the second quarter fiscal 2027
+Raising full year fiscal 2027 guidance, with H2 raise mainly due to Atlas
+
+NEW YORK - September 1, 2026 - MongoDB, Inc. (NASDAQ: MDB) today announced its financial results for the second quarter ended July 31, 2026.
+“We delivered strong second quarter results, highlighted by 30% year-over-year revenue growth—the highest level of growth in several years—and continued strong profitability. This performance reflects the mission-critical role our platform plays for customers, with strength driven by core enterprise workloads and early momentum with AI use cases. That strength spans our run anywhere strategy across both Atlas and Enterprise Advanced, highlighting the power of our data platform. This gives us the confidence to raise our full year fiscal 2027 guidance,” said CJ Desai, President and Chief Executive Officer of MongoDB.
+
+
+“Looking ahead, we're emerging as the intelligent data platform for the AI era—launching powerful retrieval innovations, simplifying how developers connect coding agents to their operational data on MongoDB, and reinforcing our position as the only modern data platform that extends seamlessly from self-managed to any cloud for production applications. These investments sharpen our focus on mission-critical capabilities, giving us high confidence in our ability to drive durable growth.”
+
+
+“Our second quarter results reflect very strong and growing operating leverage in our business,” said Mike Berry, Chief Financial Officer of MongoDB. “We delivered a non-GAAP operating margin of 24%, up significantly from 15% a year ago, while free cash flow nearly doubled year-over-year to $137.6 million. We’re also pleased to report our third consecutive quarter of GAAP EPS profitability, highlighting our disciplined approach to driving long-term shareholder value.”
+
+
+
+
+Second Quarter Fiscal 2027 Financial Highlights
+•Revenue: Total revenue was $771.8 million for the second quarter of fiscal 2027, an increase of 30% year-over-year. Subscription revenue was $747.1 million, an increase of 31% year-over-year, and services revenue was $24.6 million, an increase of 29% year-over-year.
+•Gross Profit: Gross profit was $569.8 million for the second quarter of fiscal 2027, representing a 74% gross margin compared to 71% in the year-ago period. Non-GAAP gross profit was $585.7 million, representing a 76% non-GAAP gross margin, compared to non-GAAP gross margin of 74% in the year-ago period.
+•Income (Loss) from Operations: Income from operations was $28.4 million for the second quarter of fiscal 2027, compared to a loss from operations of $65.3 million in the year-ago period. Non-GAAP income from operations was $185.9 million, compared to non-GAAP income from operations of $86.8 million in the year-ago period.
+•Net Income (Loss): Net income was $40.9 million, or $0.50 per share, based on 82.0 million diluted weighted-average shares outstanding, for the second quarter of fiscal 2027. This compares to a net loss of $47.0 million, or $0.58 per share, based on 81.1 million basic and diluted weighted-average shares outstanding in the year-ago period. Non-GAAP net income was $162.6 million, or $1.90 per share, based on 85.8 million fully diluted weighted-average shares outstanding. This compares to a non-GAAP net income of $87.2 million, or $1.00 per share, based on 87.1 million fully diluted weighted-average shares outstanding in the year-ago period.
+
+
+
+
+
+
+
+•Remaining Performance Obligations (“RPO”): RPO was $1,519.2 million, an increase of 91% year-over-year. Current Remaining Performance Obligations (“cRPO”) was $797.3 million, an increase of 73% year-over-year.
+•Cash Flow: As of July 31, 2026, MongoDB had $2.4 billion in cash, cash equivalents, short-term investments and restricted cash. During the three months ended July 31, 2026, MongoDB generated $141.9 million of cash from operations, compared to $72.1 million in the year-ago period. MongoDB used $2.5 million of cash in capital expenditures and used $1.8 million of cash in principal payments of finance leases, leading to free cash flow of $137.6 million, compared to $69.9 million in the year-ago period.
+A reconciliation of each non-GAAP measure to the most directly comparable GAAP measure has been provided in the financial statement tables included at the end of this press release. An explanation of these measures is also included below under the heading “Non-GAAP Financial Measures.”
+Second Quarter Fiscal 2027 Recent Business Highlights
+•MongoDB Search and Vector Search are now generally available in MongoDB Enterprise Advanced, bringing the retrieval capabilities MongoDB Atlas customers use to build AI applications in the cloud to self-managed, private cloud, and hybrid environments—with the same platform, APIs, and technical skills across deployment models.
+•MongoDB launched the Atlas Managed MCP Server at .local San Francisco Build Fest, a fully hosted service that connects coding agents—including Claude Code, Codex, Grok Build, and Devin by Cognition—to live MongoDB Atlas data without requiring customers to deploy or manage additional infrastructure.
+•MongoDB announced the general availability of four capabilities that improve AI retrieval in MongoDB Atlas: Automated Embeddings powered by Voyage AI, the Atlas Embedding and Reranking API, voyage-code-4, and Vector Search in Atlas Stream Processing. Together, they help developers build AI applications that can retrieve accurate, up-to-date information from operational and streaming data.
+•At MongoDB.local Bengaluru, MongoDB announced plans to upskill two million Indian builders by 2030, expanding the MongoDB for Academia program in India, which has trained more than 650,000 students since 2023. The expansion will help equip the next generation of builders with the cloud, data, and AI skills required to scale India’s digital economy.
+•MongoDB was named a Leader in The Forrester Wave™: Multimodel Data Platforms, Q2 2026. Forrester reiterated that MongoDB’s robust vision is to be the data platform for the AI era, said that the company’s compelling roadmap advances AI-native capabilities, and noted that MongoDB is investing heavily in AI research and strategic acquisitions to ensure its innovations consistently meet the evolving needs of AI.
+2
+
+
+
+
+
+Third Quarter Fiscal 2027 Guidance
+Based on information available to management as of today, September 1, 2026, MongoDB is issuing the following financial guidance for the third quarter fiscal 2027.
+| | | | | | | | | | | |
+Revenues are expected to be in the range of: | $756 million to $761 million |
+| GAAP | | Non-GAAP |
+Income (Loss) from Operations are expected to be in the range of: | $(14.5) million to $(10.5) million | | $152.0 million to $156.0 million |
+Net Income per Share is expected to be in the range of: | $0.00 to $0.05 | | $1.57 to $1.61 |
+
+Full Year Fiscal 2027 Guidance
+Based on information available to management as of today, September 1, 2026, MongoDB is issuing the following financial guidance for the full year fiscal 2027.
+| | | | | | | | | | | |
+Revenues are expected to be in the range of: | $2.99 billion to $3.03 billion |
+| GAAP | | Non-GAAP |
+Income (Loss) from Operations are expected to be in the range of: | $(28.0) million to $(8.0) million | | $616.3 million to $636.3 million |
+Net Income per Share is expected to be in the range of: | $0.53 to $0.77 | | $6.39 to $6.58 |
+
+Conference Call Information
+MongoDB will host a conference call today, September 1, 2026, at 5:00 p.m. (Eastern Time) to discuss its financial results and business outlook. A live webcast of the call will be available on the “Investor Relations” page of MongoDB’s website at https://investors.mongodb.com. To access the call by phone, please go to this link (registration link), and you will be provided with dial in details. To avoid delays, the Company encourages participants to dial into the conference call fifteen minutes ahead of the scheduled start time. A replay of the webcast will also be available for a limited time at https://investors.mongodb.com.
+3
+
+
+
+
+
+Forward-Looking Statements
+This press release includes certain “forward-looking statements” within the meaning of Section 27A of the Securities Act of 1933, as amended, or the Securities Act, and Section 21E of the Securities Exchange Act of 1934, as amended, including statements concerning MongoDB’s financial guidance for the third fiscal quarter and full year fiscal 2027. These forward-looking statements include, but are not limited to, plans, objectives, expectations and intentions and other statements contained in this press release that are not historical facts and statements identified by words such as “anticipate,” “believe,” “continue,” “could,” “estimate,” “expect,” “intend,” “may,” “plan,” “project,” “will,” “would” or the negative or plural of these words or similar expressions or variations. These forward-looking statements reflect our current views about our plans, intentions, expectations, strategies and prospects, which are based on the information currently available to us and on assumptions the Company has made. Although the Company believes that our plans, intentions, expectations, strategies and prospects as reflected in or suggested by those forward-looking statements are reasonable, the Company can give no assurance that the plans, intentions, expectations or strategies will be attained or achieved. Furthermore, actual results may differ materially from those described in the forward-looking statements and are subject to a variety of assumptions, uncertainties, risks and factors that are beyond our control including, without limitation: our customers renewing their subscriptions with us and expanding their usage of software and related services; global political changes; the effects of the ongoing geopolitical instability resulting from the conflict in Iran, the unrest in Mexico, the conflicts between Russia and Ukraine, Israel and Hamas and recent events in Venezuela on our business and future operating results; economic downturns and/or the effects of rising interest rates, inflation and volatility in the global economy and financial markets on our business and future operating results; our ability to remain profitable and grow in a constantly changing market; our potential failure to meet publicly announced guidance or other expectations about our business and future operating results; reputational harm or other adverse consequences resulting from use of artificial intelligence (“AI”) and machine learning (“ML”) in our product offerings and internal operations if they don't produce the desired benefits; our limited operating history; our history of losses; our potential failure to repurchase shares of our common stock at favorable prices, if at all; failure of our platform to satisfy customer demands; the effects of increased competition; our investments in new products and our ability to introduce new features, services or enhancements, including AI and ML, for both traditional and emerging use cases; our ability to effectively expand our sales and marketing organization; our ability to continue to build and maintain credibility with the developer community; our ability to add new customers or increase sales to our existing customers; our ability to maintain, protect, enforce and enhance our intellectual property; our ability to continue to increase revenue from our Atlas platform; the effects of social, ethical, security and regulatory issues relating to the use of new and evolving technologies, such as AI and ML, in our offerings or partnerships; the possibility that the market for AI-related data infrastructure may not develop as we expect or may favor alternative architectures or competitors; the growth and expansion of the market for database products and our ability to penetrate that market; our ability to maintain the security of our software and adequately address privacy concerns; our ability to manage our growth effectively and successfully recruit and retain additional highly-qualified personnel; our ability to integrate acquisitions and work with our strategic partners effectively; and the price volatility of our common stock. These and other risks and uncertainties are more fully described in our filings with the Securities and Exchange Commission (“SEC”), including under the caption “Risk Factors” in our Quarterly Report on Form 10-Q for the quarter ended April 30, 2026, filed with the SEC on May 29, 2026. Additional information will be made available in our Quarterly Report on Form 10-Q for the quarter ended July 31, 2026, and other filings and reports that the Company may file from time to time with the SEC. Except as required by law, the Company undertakes no duty or obligation to update any forward-looking statements contained in this release as a result of new information, future events, changes in expectations or otherwise.
+
+
+Non-GAAP Financial Measures
+This press release includes the following financial measures defined as non-GAAP financial measures by the SEC: non-GAAP gross profit, non-GAAP gross margin, non-GAAP operating expenses, non-GAAP income from operations, non-GAAP operating margin, non-GAAP net income, non-GAAP net income per share, and free cash flow. Non-GAAP gross profit and non-GAAP gross margin exclude expenses associated with stock-based compensation. Non-GAAP operating expenses, non-GAAP income from operations, non-GAAP operating margin,
+4
+
+
+
+
+
+non-GAAP net income and non-GAAP net income per share, exclude:
+•expenses associated with stock-based compensation including employer payroll taxes upon the vesting and exercising of stock-based awards and expenses related to stock appreciation rights previously issued to our employees in China;
+•amortization of intangible assets for the acquired technology and acquired customer relationships associated with prior acquisitions;
+•certain acquisition-related costs and other, including due diligence costs, professional fees in connection with an acquisition and certain integration-related expenses. These expenses are unpredictable, and dependent on factors that may be outside of our control and unrelated to the continuing operations of the acquired business or our Company. In addition, the size and complexity of an acquisition, which often drives the magnitude of acquisition-related costs, may not be indicative of such future costs;
+•legal costs and settlement fees incurred in connection with non-ordinary course litigation, particularly ongoing securities litigation, which are not considered indicative of core operating performance;
+•restructuring costs associated with a formal restructuring plan that are primarily related to workforce reductions. The Company excludes these expenses because they are not reflective of ordinary course ongoing business and operating results; and
+•in the case of non-GAAP net income and non-GAAP net income per share, amortization of the debt issuance costs associated with our convertible senior notes and gains or losses on our financial instruments;
+•additionally, non-GAAP net income and non-GAAP net income per share, are adjusted for an assumed provision for income taxes based on an estimated long-term non-GAAP tax rate as well as the tax charges or benefits resulting from the integration of intellectual property from acquisitions. The non-GAAP tax rate was calculated utilizing a three-year financial projection that excludes the direct impact of the GAAP to non-GAAP adjustments and considers other factors such as operating structure and existing tax positions in various jurisdictions. The Company intends to periodically reevaluate the projected long-term tax rate, as necessary, for significant events and our ongoing analysis of relevant tax law changes.
+
+
+MongoDB uses these non-GAAP financial measures internally in analyzing its financial results and believes they are useful to investors, as a supplement to GAAP measures, in evaluating MongoDB’s ongoing operational performance. MongoDB believes that the use of these non-GAAP financial measures provides an additional tool for investors to use in evaluating ongoing operating results and trends and in comparing its financial results with other companies in MongoDB’s industry, many of which may present similar non-GAAP financial measures to investors.
+Free cash flow represents net cash from/used in operating activities, less capital expenditures, principal payments of finance lease liabilities and capitalized software development costs, if any. MongoDB uses free cash flow to understand and evaluate its liquidity and to generate future operating plans. The exclusion of capital expenditures, principal payments of finance lease liabilities and amounts capitalized for software development facilitates comparisons of MongoDB’s liquidity on a period-to-period basis and excludes items that it does not consider to be indicative of its liquidity. MongoDB believes that free cash flow is a measure of liquidity that provides useful information to investors in understanding and evaluating the strength of its liquidity and future ability to generate cash that can be used for strategic opportunities or investing in its business in the same manner as MongoDB’s management and board of directors.
+Non-GAAP financial measures have limitations as an analytical tool and should not be considered in isolation from, or as a substitute for, financial information prepared in accordance with GAAP. In particular, other companies may report non-GAAP gross profit, non-GAAP gross margin, non-GAAP operating expenses, non-GAAP income from operations, non-GAAP net income, non-GAAP net income per share, free cash flow or similarly titled measures but calculate them differently, which reduces their usefulness as comparative measures. Investors are encouraged to review the reconciliation of these non-GAAP financial measures to their most directly comparable GAAP financial measures, as presented below. This earnings press release and any future releases containing such non-GAAP reconciliations can also be found on the Investor Relations page of MongoDB’s website at https://investors.mongodb.com.
+5
+
+
+
+
+
+Definitions
+Remaining Performance Obligations
+Remaining performance obligations represent the aggregate amount of the transaction price in contracts allocated to performance obligations not delivered, or partially undelivered, as of the end of the reporting period. Remaining performance obligations include unearned revenue, multi-year contracts with future installment payments and certain unfulfilled orders against accepted customer contracts at the end of any given period. The Company applies the practical expedient to omit disclosure with respect to the amount of the transaction price allocated to remaining performance obligations if the related contract has a total duration of 12 months or less.
+About MongoDB
+Headquartered in New York, MongoDB’s mission is to empower innovators to create, transform, and disrupt industries with software and data. MongoDB's unified, intelligent data platform was built to power the next generation of applications, and MongoDB is the most widely available, globally distributed database on the market. With integrated capabilities for operational data, search, real-time analytics, and AI-powered retrieval, MongoDB helps organizations everywhere move faster, innovate more efficiently, and simplify complex architectures. Millions of developers and more than 70,600 customers across almost every industry—including approximately 75% of the Fortune 100—rely on MongoDB for their most important applications. To learn more, visit https://mongodb.com.
+Investor Relations
+Jess Lubert
+jess.lubert@mongodb.com
+
+
+Media Relations
+MongoDB
+press@mongodb.com
+
+
+
+6
+
+
+
+
+
+
+MONGODB, INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(in thousands of U.S. dollars, except share and per share data)
+(unaudited)
+| | | | | | | | | | | |
+| July 31, 2026 | | January 31, 2026 |
+Assets
+| | | |
+Current assets: | | | |
+Cash and cash equivalents
+| $ | 1,002,401 | | | $ | 1,083,540 | |
+Short-term investments | 1,408,853 | | | 1,303,701 | |
+Accounts receivable, net of allowance for doubtful accounts | 458,221 | | | 499,002 | |
+Deferred commissions
+| 130,874 | | | 131,442 | |
+Prepaid expenses and other current assets
+| 125,637 | | | 97,170 | |
+Total current assets
+| 3,125,986 | | | 3,114,855 | |
+| | | |
+Property and equipment, net | 38,988 | | | 39,773 | |
+Operating lease right-of-use assets | 24,790 | | | 28,978 | |
+Goodwill | 204,151 | | | 191,397 | |
+Intangible assets, net | 30,731 | | | 34,502 | |
+Deferred tax assets | 25,096 | | | 26,021 | |
+Other assets
+| 327,946 | | | 323,322 | |
+Total assets
+| $ | 3,777,688 | | | $ | 3,758,848 | |
+Liabilities and Stockholders’ Equity | | | |
+Current liabilities: | | | |
+Accounts payable
+| $ | 17,689 | | | $ | 20,269 | |
+Accrued compensation and benefits
+| 146,031 | | | 143,046 | |
+Operating lease liabilities
+| 9,371 | | | 9,259 | |
+Other accrued liabilities
+| 129,812 | | | 109,803 | |
+Deferred revenue
+| 339,462 | | | 387,119 | |
+| | | |
+Total current liabilities
+| 642,365 | | | 669,496 | |
+Deferred tax liability | 358 | | | 352 | |
+Operating lease liabilities
+| 19,224 | | | 23,600 | |
+Deferred revenue
+| 108,233 | | | 83,588 | |
+| | | |
+Other liabilities
+| 27,527 | | | 29,454 | |
+Total liabilities
+| 797,707 | | | 806,490 | |
+| | | |
+Stockholders’ equity: | | | |
+Common stock | 82 | | | 81 | |
+Additional paid-in capital | 4,846,747 | | | 5,345,494 | |
+Treasury stock | — | | | (494,569) | |
+Accumulated other comprehensive income (loss) | (367) | | | 13,207 | |
+Accumulated deficit
+| (1,866,481) | | | (1,911,855) | |
+Total stockholders’ equity | 2,979,981 | | | 2,952,358 | |
+Total liabilities and stockholders’ equity | $ | 3,777,688 | | | $ | 3,758,848 | |
+
+7
+
+
+
+
+
+
+MONGODB, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(in thousands of U.S. dollars, except share and per share data)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Revenue: | | | | | | | |
+Subscription
+| $ | 747,147 | | | $ | 572,355 | | | $ | 1,413,285 | | | $ | 1,103,810 | |
+Services
+| 24,626 | | | 19,047 | | | 46,104 | | | 36,606 | |
+Total revenue | 771,773 | | | 591,402 | | | 1,459,389 | | | 1,140,416 | |
+Cost of revenue: | | | | | | | |
+Subscription
+| 174,251 | | | 139,949 | | | 339,158 | | | 269,534 | |
+Services
+| 27,757 | | | 31,479 | | | 54,291 | | | 59,935 | |
+Total cost of revenue
+| 202,008 | | | 171,428 | | | 393,449 | | | 329,469 | |
+Gross profit | 569,765 | | | 419,974 | | | 1,065,940 | | | 810,947 | |
+Operating expenses: | | | | | | | |
+Sales and marketing
+| 253,071 | | | 244,065 | | | 502,405 | | | 464,988 | |
+Research and development
+| 213,874 | | | 181,739 | | | 414,283 | | | 350,568 | |
+General and administrative
+| 74,420 | | | 59,464 | | | 145,656 | | | 114,239 | |
+Total operating expenses
+| 541,365 | | | 485,268 | | | 1,062,344 | | | 929,795 | |
+Income (loss) from operations | 28,400 | | | (65,294) | | | 3,596 | | | (118,848) | |
+Other income, net | 17,545 | | | 22,174 | | | 51,143 | | | 42,404 | |
+Income (loss) before provision for income taxes | 45,945 | | | (43,120) | | | 54,739 | | | (76,444) | |
+Provision for income taxes
+| 5,005 | | | 3,928 | | | 9,365 | | | 8,230 | |
+Net income (loss)
+| $ | 40,940 | | | $ | (47,048) | | | $ | 45,374 | | | $ | (84,674) | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Net income (loss) per share
+| | | | | | | |
+Basic | $ | 0.51 | | | $ | (0.58) | | | $ | 0.56 | | | $ | (1.04) | |
+Diluted | $ | 0.50 | | | $ | (0.58) | | | $ | 0.55 | | | $ | (1.04) | |
+Weighted-average shares used to compute net income (loss) per share
+| | | | | | | |
+Basic | 80,497,631 | | | 81,078,234 | | | 80,400,680 | | | 81,304,435 | |
+Diluted | 81,995,492 | | | 81,078,234 | | | 81,850,579 | | | 81,304,435 | |
+
+Includes stock‑based compensation expense as follows:
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Cost of revenue—subscription | $ | 9,205 | | | $ | 8,831 | | | $ | 18,093 | | | $ | 17,226 | |
+Cost of revenue—services | 3,424 | | | 4,273 | | | 6,216 | | | 8,167 | |
+Sales and marketing | 35,722 | | | 36,265 | | | 68,403 | | | 75,367 | |
+Research and development | 74,506 | | | 75,113 | | | 145,214 | | | 141,518 | |
+General and administrative
+| 26,082 | | | 15,918 | | | 48,843 | | | 30,553 | |
+Total stock‑based compensation expense
+| $ | 148,939 | | | $ | 140,400 | | | $ | 286,769 | | | $ | 272,831 | |
+
+
+
+8
+
+
+
+
+
+
+MONGODB, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(in thousands of U.S. dollars)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Cash flows from operating activities | | | | | | | |
+Net income (loss) | $ | 40,940 | | | $ | (47,048) | | | $ | 45,374 | | | $ | (84,674) | |
+Adjustments to reconcile net income (loss) to net cash provided by operating activities: | | | | | | | |
+Depreciation and amortization | 5,940 | | | 5,677 | | | 11,495 | | | 10,986 | |
+Stock-based compensation | 148,939 | | | 140,400 | | | 286,769 | | | 272,831 | |
+| | | | | | | |
+Amortization of finance right-of-use assets | 993 | | | 993 | | | 1,987 | | | 1,986 | |
+Amortization of operating right-of-use assets | 2,600 | | | 2,841 | | | 5,178 | | | 5,599 | |
+Deferred income taxes | (30) | | | (1,159) | | | (11) | | | (1,134) | |
+Amortization of premium and accretion of discount on short-term investments, net | (804) | | | (2,739) | | | (1,888) | | | (6,539) | |
+| | | | | | | |
+Realized and unrealized loss (gain) on financial instruments, net | (196) | | | — | | | (16,616) | | | 272 | |
+Unrealized foreign exchange loss | 519 | | | (759) | | | 667 | | | 1,211 | |
+Change in operating assets and liabilities: | | | | | | | |
+Accounts receivable, net | (69,256) | | | (38,090) | | | 43,695 | | | 41,805 | |
+Prepaid expenses and other current assets | (8,006) | | | 317 | | | (21,394) | | | (4,656) | |
+Deferred commissions | (2,121) | | | 6,728 | | | 10,118 | | | 14,500 | |
+Other long-term assets | (10,222) | | | 1,525 | | | (9,097) | | | (11,068) | |
+Accounts payable | (23,273) | | | 1,040 | | | (2,777) | | | (1,438) | |
+Accrued liabilities | 43,093 | | | 16,751 | | | 20,291 | | | (2,602) | |
+Operating lease liabilities | (2,924) | | | (2,063) | | | (5,400) | | | (4,751) | |
+Deferred revenue
+| 15,681 | | | (9,906) | | | (24,183) | | | (49,530) | |
+Other liabilities, non-current
+| 5 | | | (2,403) | | | (699) | | | (764) | |
+Net cash provided by operating activities | 141,878 | | | 72,105 | | | 343,509 | | | 182,034 | |
+Cash flows from investing activities | | | | | | | |
+Purchases of property, equipment and other assets | (2,472) | | | (537) | | | (4,791) | | | (2,148) | |
+| | | | | | | |
+| | | | | | | |
+Investments in non-marketable securities | — | | | (3,500) | | | (3,000) | | | (8,322) | |
+Business combination, net of cash acquired | (9,237) | | | — | | | (9,237) | | | (2,032) | |
+| | | | | | | |
+Proceeds from maturities of marketable securities | 362,000 | | | 292,310 | | | 621,800 | | | 490,970 | |
+Proceeds from non-marketable securities | — | | | — | | | 10,718 | | | — | |
+Purchases of marketable securities
+| (387,002) | | | (198,668) | | | (739,124) | | | (337,292) | |
+Net cash provided by (used in) investing activities | (36,711) | | | 89,605 | | | (123,634) | | | 141,176 | |
+Cash flows from financing activities | | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Repurchases of common stock | (99,999) | | | (194,446) | | | (200,254) | | | (194,446) | |
+| | | | | | | |
+Proceeds from the issuance of common stock under the Employee Stock Purchase Plan | 23,948 | | | 22,917 | | | 23,948 | | | 22,917 | |
+Proceeds from exercise of stock options | 262 | | | 1,210 | | | 723 | | | 1,789 | |
+| | | | | | | |
+| | | | | | | |
+Taxes paid related to net share settlement of equity awards | (59,356) | | | — | | | (117,673) | | | — | |
+Principal payments of finance leases
+| (1,790) | | | (1,691) | | | (3,554) | | | (4,085) | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Net cash used in financing activities | (136,935) | | | (172,010) | | | (296,810) | | | (173,825) | |
+Effect of exchange rate changes on cash, cash equivalents and restricted cash
+| (2,180) | | | 68 | | | (3,878) | | | 8,068 | |
+Net increase (decrease) in cash, cash equivalents and restricted cash | (33,948) | | | (10,232) | | | (80,813) | | | 157,453 | |
+Cash, cash equivalents and restricted cash, beginning of period
+| 1,039,760 | | | 660,438 | | | 1,086,625 | | | 492,753 | |
+Cash, cash equivalents and restricted cash, end of period
+| $ | 1,005,812 | | | $ | 650,206 | | | $ | 1,005,812 | | | $ | 650,206 | |
+
+9
+
+
+
+
+
+
+MONGODB, INC.
+RECONCILIATION OF GAAP MEASURES TO NON-GAAP MEASURES
+(in thousands of U.S. dollars, except share and per share data)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, | | | |
+| 2026 | | 2025 | | 2026 | | 2025 | | | |
+Reconciliation of GAAP gross profit to non-GAAP gross profit: | | | | | | | | | | |
+Gross profit on a GAAP basis | $ | 569,765 | | | $ | 419,974 | | | $ | 1,065,940 | | | $ | 810,947 | | | | |
+Gross margin (Gross profit/Total revenue) on a GAAP basis | 74 | % | | 71 | % | | 73 | % | | 71 | % | | | |
+Add back: | | | | | | | | | | |
+Expenses associated with stock-based compensation: Cost of Revenue—Subscription | 9,324 | | | 8,900 | | | 18,471 | | | 17,522 | | | | |
+Expenses associated with stock-based compensation: Cost of Revenue—Services | 3,605 | | | 4,438 | | | 7,581 | | | 9,024 | | | | |
+Restructuring | — | | | 89 | | | — | | | 89 | | | | |
+Amortization of intangible assets | 3,025 | | | 3,025 | | | 5,951 | | | 5,392 | | | | |
+Non-GAAP gross profit | $ | 585,719 | | | $ | 436,426 | | | $ | 1,097,943 | | | $ | 842,974 | | | | |
+Non-GAAP gross margin (Non-GAAP gross profit/Total revenue) | 76 | % | | 74 | % | | 75 | % | | 74 | % | | | |
+| | | | | | | | | | |
+Reconciliation of GAAP operating expenses to non-GAAP operating expenses: | | | | | | | | | | |
+Sales and marketing operating expense on a GAAP basis | $ | 253,071 | | | $ | 244,065 | | | $ | 502,405 | | | $ | 464,988 | | | | |
+Less: | | | | | | | | | | |
+Expenses associated with stock-based compensation | 37,146 | | | 37,689 | | | 71,409 | | | 77,593 | | | | |
+Restructuring | — | | | 4,524 | | | 357 | | | 4,524 | | | | |
+Amortization of intangible assets | 185 | | | — | | | 185 | | | — | | | | |
+Non-GAAP sales and marketing operating expense | $ | 215,740 | | | $ | 201,852 | | | $ | 430,454 | | | $ | 382,871 | | | | |
+| | | | | | | | | | |
+Research and development operating expense on a GAAP basis | $ | 213,874 | | | $ | 181,739 | | | $ | 414,283 | | | $ | 350,568 | | | | |
+Less: | | | | | | | | | | |
+Expenses associated with stock-based compensation | 76,505 | | | 76,290 | | | 149,725 | | | 144,467 | | | | |
+Restructuring | — | | | 159 | | | — | | | 159 | | | | |
+Amortization of intangible assets | — | | | 170 | | | 113 | | | 340 | | | | |
+Certain acquisition-related costs and other | — | | | — | | | — | | | 40 | | | | |
+Non-GAAP research and development operating expense | $ | 137,369 | | | $ | 105,120 | | | $ | 264,445 | | | $ | 205,562 | | | | |
+| | | | | | | | | | |
+General and administrative operating expense on a GAAP basis | $ | 74,420 | | | $ | 59,464 | | | $ | 145,656 | | | $ | 114,239 | | | | |
+Less: | | | | | | | | | | |
+Expenses associated with stock-based compensation | 26,831 | | | 16,826 | | | 50,501 | | | 32,056 | | | | |
+Legal fees related to securities litigation | 581 | | | — | | | 581 | | | — | | | | |
+Certain acquisition-related costs and other | 276 | | | — | | | 579 | | | 1,890 | | | | |
+Non-GAAP general and administrative operating expense | $ | 46,732 | | | $ | 42,638 | | | $ | 93,995 | | | $ | 80,293 | | | | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+
+10
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, | | | |
+| 2026 | | 2025 | | 2026 | | 2025 | | | |
+| | | | | | | | | | |
+Reconciliation of GAAP income (loss) from operations to non-GAAP income from operations: | | | | | | | | | | |
+Income (loss) from operations on a GAAP basis | $ | 28,400 | | | $ | (65,294) | | | $ | 3,596 | | | $ | (118,848) | | | | |
+GAAP operating margin (Income (loss) from operations/Total revenue) | 4 | % | | (11) | % | | — | % | | (10) | % | | | |
+Add back: | | | | | | | | | | |
+Expenses associated with stock-based compensation | 153,411 | | | 144,143 | | | 297,687 | | | 280,662 | | | | |
+Restructuring | — | | | 4,772 | | | 357 | | | 4,772 | | | | |
+Amortization of intangible assets | 3,210 | | | 3,195 | | | 6,249 | | | 5,732 | | | | |
+Legal fees related to securities litigation | 581 | | | — | | | 581 | | | — | | | | |
+Certain acquisition-related costs and other | 276 | | | — | | | 579 | | | 1,930 | | | | |
+Non-GAAP income from operations | $ | 185,878 | | | $ | 86,816 | | | $ | 309,049 | | | $ | 174,248 | | | | |
+Non-GAAP operating margin (Non-GAAP income from operations/Total revenue) | 24 | % | | 15 | % | | 21 | % | | 15 | % | | | |
+| | | | | | | | | | |
+Reconciliation of GAAP net income (loss) to non-GAAP net income: | | | | | | | | | | |
+Net income (loss) on a GAAP basis | $ | 40,940 | | | $ | (47,048) | | | $ | 45,374 | | | $ | (84,674) | | | | |
+Add back: | | | | | | | | | | |
+Expenses associated with stock-based compensation | 153,411 | | | 144,143 | | | 297,687 | | | 280,662 | | | | |
+Restructuring | — | | | 4,772 | | | 357 | | | 4,772 | | | | |
+Amortization of intangible assets | 3,210 | | | 3,195 | | | 6,249 | | | 5,732 | | | | |
+Legal fees related to securities litigation | 581 | | | — | | | 581 | | | — | | | | |
+Certain acquisition-related costs and other | 276 | | | — | | | 579 | | | 1,930 | | | | |
+Less: | | | | | | | | | | |
+Gains (loss) on financial instruments, net | 196 | | | — | | | 16,616 | | | (272) | | | | |
+Income tax effects and adjustments *
+| 35,640 | | | 17,870 | | | 59,350 | | | 35,155 | | | | |
+Non-GAAP net income | $ | 162,582 | | | $ | 87,192 | | | $ | 274,861 | | | $ | 173,539 | | | | |
+| | | | | | | | | | |
+Reconciliation of GAAP net income (loss) per share, diluted, to non-GAAP net income per share, fully diluted: | | | | | | | | | | |
+Net income (loss) per share, diluted, on a GAAP basis | $ | 0.50 | | | $ | (0.58) | | | $ | 0.55 | | | $ | (1.04) | | | | |
+Add back: | | | | | | | | | | |
+Expenses associated with stock-based compensation | 1.91 | | | 1.78 | | | 3.70 | | | 3.45 | | | | |
+Restructuring | — | | | 0.06 | | | — | | | 0.06 | | | | |
+Amortization of intangible assets | 0.04 | | | 0.04 | | | 0.08 | | | 0.07 | | | | |
+Legal fees related to securities litigation | 0.01 | | | — | | | 0.01 | | | — | | | | |
+Certain acquisition-related costs and other | 0.01 | | | — | | | 0.01 | | | 0.02 | | | | |
+| | | | | | | | | | |
+Less: | | | | | | | | | | |
+Gains (loss) on financial instruments, net | — | | | — | | | 0.21 | | | — | | | | |
+Income tax effects and adjustments * | 0.44 | | | 0.22 | | | 0.74 | | | 0.43 | | | | |
+Non-GAAP net income per share, diluted | $ | 2.03 | | | $ | 1.08 | | | $ | 3.40 | | | $ | 2.13 | | | | |
+Adjustment for fully diluted earnings per share | (0.13) | | | (0.08) | | | (0.19) | | | (0.13) | | | | |
+Non-GAAP net income per share, fully diluted ** | $ | 1.90 | | | $ | 1.00 | | | $ | 3.21 | | | $ | 2.00 | | | | |
+
+* Non-GAAP financial information is adjusted for an assumed provision for income taxes based on our long-term projected tax rate of 20%. Due to the differences in the tax treatment of items excluded from non-GAAP earnings, our estimated tax rate on non-GAAP income may differ from our GAAP tax rate and from our actual tax liabilities.
+** Fully diluted non-GAAP net income per share is calculated based upon 85.8 million and 85.6 million of fully diluted weighted-average shares of outstanding common stock for the three and six months ended July 31, 2026, respectively, and 87.1 million and 87.0 million of fully diluted weighted-average shares of outstanding common stock for the three and six months ended July 31, 2025, respectively.
+11
+
+
+
+
+
+
+
+The following table presents a reconciliation of free cash flow to net cash provided by operating activities, the most directly comparable GAAP measure, for each of the periods indicated (unaudited, in thousands):
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Net cash provided by operating activities | $ | 141,878 | | | $ | 72,105 | | | $ | 343,509 | | | $ | 182,034 | |
+Capital expenditures | (2,472) | | | (537) | | | (4,791) | | | (2,148) | |
+Principal payments of finance leases | (1,790) | | | (1,691) | | | (3,554) | | | (4,085) | |
+| | | | | | | |
+Free cash flow
+| $ | 137,616 | | | $ | 69,877 | | | $ | 335,164 | | | $ | 175,801 | |
+
+
+
+12
+
+
+
+
+
+MONGODB, INC.
+RECONCILIATION OF GAAP GUIDANCE TO NON-GAAP GUIDANCE
+THIRD QUARTER & FULL YEAR FISCAL 2027
+(in millions of U.S. dollars, except share and per share data)
+(unaudited)
+
+
+| | | | | | | | | | | |
+| Third Quarter
+Fiscal 2027
+| | Full Year
+Fiscal 2027
+|
+Income (loss) from operations - GAAP guidance | $(14.5) to $(10.5) | | $(28.0) to $(8.0) |
+Add back: | | | |
+Expenses associated with stock-based compensation | 162.7 | | 628.9 |
+| | | |
+Restructuring | — | | 0.4 |
+Amortization of intangible assets | 3.2 | | 12.6 |
+Legal fees related to securities litigation | 0.5 | | 1.6 |
+Certain acquisition-related costs and other | 0.1 | | 0.8 |
+Income (loss) from operations - non-GAAP guidance | $152.0 to $156.0 | | $616.3 to $636.3 |
+
+
+
+| | | | | | | | | | | |
+| Third Quarter
+Fiscal 2027
+| | Full Year
+Fiscal 2027
+|
+Net income per share - GAAP guidance | $0.00 to $0.05 | | $0.53 to $0.77 |
+Add back: | | | |
+Expenses associated with stock-based compensation | 1.95 | | 7.60 |
+Restructuring | — | | 0.01 |
+Amortization of intangible assets | 0.04 | | 0.16 |
+Legal fees related to securities litigation | 0.01 | | 0.02 |
+Certain acquisition-related costs and other | — | | 0.01 |
+Less: | | | |
+Gains (loss) on financial instruments, net | — | | 0.21 |
+Income tax effects and adjustments* | 0.36 to 0.37 | | 1.45 to 1.50 |
+Adjustment for fully diluted earnings per share | (0.07) | | (0.28) |
+Net income per share - non-GAAP guidance | $1.57 to $1.61 | | $6.39 to $6.58 |
+| | | |
+
+
+
+* Non-GAAP financial information is adjusted for an assumed provision for income taxes based on our long-term projected tax rate of 20%. Due to the differences in the tax treatment of items excluded from non-GAAP earnings, our estimated tax rate on non-GAAP income may differ from our GAAP tax rate and from our actual tax liabilities.
+13
+
+
+
+
+
+
+MONGODB, INC.
+CUSTOMER COUNT METRICS
+(unaudited)
+The following table presents certain customer count information as of the periods indicated:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| |
+| 7/31/2024 | | 10/31/2024 | | 1/31/2025 | | 4/30/2025 | | 7/31/2025 | | 10/31/2025 | | 1/31/2026 | | 4/30/2026 | | 7/31/2026 |
+Total Customers(a)
+| 50,700+ | | 52,600+ | | 54,500+ | | 57,100+ | | 59,900+ | | 62,500+ | | 65,200+ | | 67,700+ | | 70,600+ |
+| | | | | | | | | | | | | | | | | |
+MongoDB Atlas Customers | 49,200+ | | 51,100+ | | 53,100+ | | 55,800+ | | 58,500+ | | 61,200+ | | 63,900+ | | 66,400+ | | 69,300+ |
+Customers over $100K(b)
+| 2,189 | | 2,314 | | 2,396 | | 2,506 | | 2,564 | | 2,694 | | 2,799 | | 2,895 | | 2,999 |
+| | | | | | | | | | | | | | | | | |
+
+(a) Our definition of “customer” excludes users of our free offerings and all affiliated entities are counted as a single customer.
+(b) Represents the number of customers with $100,000 or greater in annualized recurring revenue (“ARR”). ARR includes the revenue we expect to receive from our customers over the following 12 months based on contractual commitments and, in the case of Direct Sales Customers of Atlas, by annualizing the prior 90 days of their actual consumption of Atlas, assuming no increases or reductions in their subscriptions or usage. For all other customers of our self-serve products, we calculate ARR by annualizing the prior 30 days of their actual consumption of such products, assuming no increases or reductions in usage. ARR excludes professional services.
+
+
+14
+
+
+
+
+
+
+MONGODB, INC.
+SUPPLEMENTAL REVENUE INFORMATION
+(unaudited)
+The following table presents certain supplemental revenue information as of the periods indicated:
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | |
+| | | 7/31/2024 | | 10/31/2024 | | 1/31/2025 | | 4/30/2025 | | 7/31/2025 | | 10/31/2025 | | 1/31/2026 | | 4/30/2026 | | 7/31/2026 |
+MongoDB Enterprise Advanced: % of Subscription Revenue | | | 24 | % | | 25 | % | | 23 | % | | 22 | % | | 21 | % | | 20 | % | | 21 | % | | 21 | % | | 21 | % |
+| | | | | | | | | | | | | | | | | | | |
+
+
+
+The following table presents the Company’s revenues disaggregated by geography, based on address of the Company's customers (in thousands):
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+Primary geographical markets: | 2026 | | 2025 | | 2026 | | 2025 |
+Americas
+| $ | 478,261 | | | $ | 364,245 | | | $ | 890,598 | | | $ | 697,111 | |
+EMEA
+| 210,298 | | | 160,960 | | | 404,976 | | | 311,726 | |
+Asia Pacific
+| 83,214 | | | 66,197 | | | 163,815 | | | 131,579 | |
+Total
+| $ | 771,773 | | | $ | 591,402 | | | $ | 1,459,389 | | | $ | 1,140,416 | |
+
+The following table presents the Company’s revenues disaggregated by subscription product categories and services (in thousands):
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+Subscription product categories and services: | 2026 | | 2025 | | 2026 | | 2025 |
+Atlas-related | $ | 565,916 | | | $ | 438,970 | | | $ | 1,078,382 | | | $ | 834,863 | |
+MongoDB Enterprise Advanced and other | 181,231 | | | 133,385 | | | 334,903 | | | 268,947 | |
+Services
+| 24,626 | | | 19,047 | | | 46,104 | | | 36,606 | |
+Total
+| $ | 771,773 | | | $ | 591,402 | | | $ | 1,459,389 | | | $ | 1,140,416 | |
+
+
+
+
+
+15

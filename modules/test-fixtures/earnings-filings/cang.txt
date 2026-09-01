@@ -1,0 +1,1524 @@
+EX-99.1
+2
+ex99-1.htm
+EX-99.1
+
+
+
+
+
+
+
+
+
+
+Exhibit
+99.1
+
+
+
+
+
+
+
+
+
+
+|
+
+
+|
+
+
+
+
+
+
+Cango
+Inc. Reports Second Quarter 2026 Unaudited Financial Results
+
+
+
+
+
+Dallas,
+Texas, August 31, 2026 - Cango Inc. (NYSE: CANG) ("Cango" or the "Company"), a leading Bitcoin miner leveraging
+its global operations to develop an integrated energy and AI compute platform, today announced its unaudited financial results for the
+second quarter ended June 30, 2026.
+
+
+
+
+
+Second
+Quarter of 2026 Financial and Operational Highlights
+
+
+
+
+
+
+| ● | Financial
+Performance: Even as the broader mining industry weighed on revenue, the Company continued
+to advance its diversification strategy through EcoHash's commercial progress and disciplined
+cost management. In the second quarter of 2026, the Company generated total revenue of US$50.8
+million, primarily driven by US$47.4 million from its Bitcoin mining business. The Company
+reported a net loss of US$81.6 million, primarily driven by non-cash impairment and disposal
+losses on the mining machines. As of the end of the period, the Company held 1,056 Bitcoins
+as digital asset reserves, with long-term debt of US$31.2 million, reflecting an improved
+balance sheet structure. |
+
+
+
+
+
+
+| ● | Mining
+Operations and Costs: To reinforce its disciplined cost management, the Company continued
+to actively right-size its mining operations, disposing of machines with lower marginal efficiency
+and partially executing a leasing model. Total operating hashrate reached 27.58 EH/s, comprising
+19.84 EH/s of self-mining capacity and 7.74 EH/s of leased hashrate capacity as of June 30,
+2026. During the quarter, the Company mined 656 Bitcoins. The improved fleet mix and disciplined
+execution drove an approximately 5% sequential reduction in average cash cost per Bitcoin,
+which declined to US$73,313. The Company also started to selectively execute a hedging strategy
+to mitigate the impact of price volatility on operations. |
+
+
+
+
+
+Mr.
+Paul Yu, Chief Executive Officer of Cango, said, "In our Bitcoin mining business, we continue to focus on unit economics rather
+than scale. At the same time, we continued to deliver on our AI modular build at our LN mining site. The Georgia site completed conversion
+in early July and the infrastructure is now capable of supporting up to 3 megawatts, with scope for future expansion. Container units
+have been delivered and installed on site, and GPU hardware has been procured and is arriving in staged batches to support a phased ramp-up.
+In the future, we intend to pursue two business models. The first is bare-metal GPU hosting, using our infrastructure to offer a standardized
+deployment environment. The second is colocation, intended to enhance overall infrastructure utilization. Our Georgia site is in the
+process of onboarding customers, with revenue expected to be recognized in the third quarter. To support customers who require proximity-based
+deployment, we have begun to operate test nodes in Texas and on the West Coast as part of our phased ramp-up. Looking ahead, we continue
+to evaluate potential new sites and the possibility of self-build facilities."
+
+
+
+
+
+Mr.
+Simon Tang, Chief Financial Officer of Cango, stated, "During the quarter, we recorded a net loss of US$81.6 million, mainly driven
+by non-cash impairment and disposal losses on our mining machines. During the quarter, we also launched a Bitcoin hedging program designed
+to manage our exposure to Bitcoin price volatility and enhance the predictability of operating cash flows. We intend to use hedging strictly
+as a risk management tool, not for speculative purposes. Related short-term positions are reflected on our balance sheet and will be
+adjusted as we continue to execute this program in a disciplined manner."
+
+
+
+
+
+Second
+Quarter 2026 Financial Results from Continuing Operations
+
+
+
+
+
+REVENUES
+
+
+
+
+
+During
+the quarter, total revenues were US$50.8 million, including US$47.4 million from Bitcoin mining and US$3.4 million from other revenues.
+Compared with the first quarter of 2026, total revenue decreased approximately 50%, primarily reflecting the Company's proactive
+reduction of operating hashrate as it phased out older, less efficient S19 series mining machines and transitioned some capacity to a
+hosted leasing model. While this strategic adjustment temporarily impacted top-line revenue, it resulted in lower operating costs and
+an improved overall cash flow profile.
+
+
+
+
+
+
+
+
+
+1 |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|
+
+
+|
+
+
+
+
+
+OPERATING
+COSTS AND EXPENSES
+
+
+
+
+
+During
+the quarter, total operating costs and expenses were US$131.4 million. These costs were primarily associated with the Company's
+Bitcoin mining business and the recognition of impairment loss on mining machines, and included the loss from changes in fair value of
+crypto assets.
+
+
+
+
+
+
+● | Cost
+of revenue (exclusive of depreciation shown below) was US$50.7 million, down from US$99.6
+million in the first quarter of 2026. This was driven by lower electricity and hosting expenses
+following the hashrate reduction. |
+
+
+● | Depreciation
+was US$16.9 million, down from US$29.4 million in the first quarter of 2026. |
+
+
+● | General
+and administrative expenses, including related-party fees, totaled US$8.4 million. |
+
+
+● | Impairment
+loss from mining machines was US$42.9 million. |
+
+
+● | Loss
+on disposal of mining machines was US$8.5 million. |
+
+
+● | Loss
+from changes in fair value of crypto assets was US$4.1 million, compared to a US$151.8 million
+loss from changes in fair value of crypto assets in the first quarter of 2026. This change
+is primarily driven by the stabilization and modest recovery in Bitcoin market prices during
+the quarter and the initial impact of our newly launched Bitcoin hedging program. |
+
+
+
+
+
+LOSS
+FROM OPERATIONS
+
+
+
+
+
+Loss
+from operations in the second quarter of 2026 was US$80.6 million, compared with an operating loss of US$254.4 million in the first quarter
+of 2026.
+
+
+
+
+
+NET
+LOSS FROM CONTINUING OPERATIONS
+
+
+
+
+
+Net
+loss from continuing operations in the second quarter of 2026 was US$81.6 million, compared with a net loss of US$261.1 million in the
+first quarter of 2026. The net loss was mainly driven by non-cash impairment and disposal losses.
+
+
+
+
+
+ADJUSTED
+EBITDA
+
+
+
+
+
+Adjusted
+EBITDA in the second quarter of 2026 was a loss of US$10.7 million, which included a US$4.1 million loss from changes in fair value of
+crypto assets, compared with a loss of US$154.1 million in the first quarter of 2026.
+
+
+
+
+
+BALANCE
+SHEET
+
+
+
+
+
+As
+of June 30, 2026, the Company held:
+
+
+
+
+
+
+● | Cash
+and cash equivalents of US$10.1 million, compared with US$7.2 million as of March 31, 2026.
+|
+
+
+● | 1,056
+BTC in treasury holdings. |
+
+
+● | Mining
+machines with a net value of US$58.7 million. |
+
+
+● | Long-term
+debts (related party) of US$31.2 million, compared with US$30.6 million as of March 31, 2026.
+|
+
+
+
+
+
+
+
+
+
+2 |
+
+
+
+
+
+
+
+
+
+
+
+
+|
+
+
+|
+
+
+
+
+
+
+
+
+
+
+Conference
+Call Information
+
+
+
+
+
+The
+Company's management will hold a conference call on Monday, August 31, 2026, at 9:00 P.M. Eastern Time to discuss the financial
+results. Listeners may access the call by dialing the following numbers:
+
+
+
+
+
+
+
+International: |
+|
++1-412-902-4272 |
+
+
+United
+States Toll Free: |
+|
++1-888-346-8982 |
+
+
+Mainland
+China Toll Free: |
+|
+4001-201-203 |
+
+
+Hong
+Kong, China Toll Free: |
+|
+800-905-945 |
+
+
+Conference
+ID: |
+|
+Cango
+Inc. |
+
+
+
+
+
+The
+replay will be accessible through September 6, 2026, by dialing the following numbers:
+
+
+
+
+
+
+
+International: |
+|
++1-412-317-0088 |
+
+
+United
+States Toll Free: |
+|
++1-855-669-9658 |
+
+
+Access
+Code: |
+|
+8654407 |
+
+
+
+
+
+A
+live and archived webcast of the conference call will also be available at the Company's investor relations website at http://ir.cangoonline.com .
+
+
+
+
+
+About
+Cango Inc.
+
+
+
+
+
+Cango
+Inc. (NYSE: CANG) is a Bitcoin mining company with a vision to establish an integrated, global infrastructure platform capable of powering
+the future digital economy. The Company's mining operations span across North America, the Middle East, South America, and East
+Africa.
+
+
+
+
+
+Since
+entering the digital asset space in November 2024, Cango has activated pilot projects in both integrated energy solutions and distributed
+AI computing. In parallel, Cango continues to operate an online international used car export business through AutoCango.com.
+
+
+
+
+
+For
+more information, please visit: www.cangoonline.com and follow us on: X and LinkedIn .
+
+
+
+
+
+Use
+of Non-GAAP Financial Measure
+
+
+
+
+
+As
+part of our review of business performance, we present adjusted EBITDA as non-GAAP financial measure to help assess our core operating
+results. Adjusted EBITDA is defined as net income or loss before interest, taxes, depreciation, and amortization, impairment, results
+from discontinued operations and further excludes share-based compensation expenses and other non-operating income and expenses. We believe
+adjusted EBITDA can be an important financial measure because it allows management, investors, and our board of directors to evaluate
+and compare our operating results, including our return on capital and operating efficiency from period-to-period by making such adjustments.
+
+
+
+
+
+
+
+
+
+3 |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|
+
+
+|
+
+
+
+
+
+
+
+
+
+
+While
+adjusted EBITDA is not a measure defined under U.S. GAAP, management uses it to evaluate performance, make strategic decisions, and set
+operating plans. Management believes it also helps investors gain a clearer understanding of our underlying performance by excluding
+certain costs and expenses that management believes are not indicative of our core operating results. The presentation of these non-GAAP
+financial measures is not meant to be considered in isolation or as a substitute for results or guidance prepared and presented in accordance
+with U.S. GAAP.
+
+
+
+
+
+The
+Company compensates for these limitations by reconciling the non-GAAP financial measure to the nearest U.S. GAAP performance measure,
+all of which should be considered when evaluating the Company's performance. The Company encourages you to review its financial
+information in its entirety and not rely on a single financial measure.
+
+
+
+
+
+Reconciliations
+of Cango's non-GAAP financial measure to the most comparable U.S. GAAP measure are included at the end of this press release.
+
+
+
+
+
+Safe
+Harbor Statement
+
+
+
+
+
+This
+announcement contains forward-looking statements. These statements are made under the "safe harbor" provisions of the United
+States Private Securities Litigation Reform Act of 1995. These forward-looking statements can be identified by terminology such as "will,"
+"expects," "anticipates," "future," "intends," "plans," "believes,"
+"estimates" and similar statements. Among other things, the quotations from management in this announcement, contain forward-looking
+statements. Cango may also make written or oral forward-looking statements in its periodic reports to the SEC, in its annual report to
+shareholders, in press releases and other written materials and in oral statements made by its officers, directors or employees to third
+parties. Statements that are not historical facts, including statements about Cango's beliefs and expectations, are forward-looking
+statements. Forward-looking statements involve inherent risks and uncertainties. A number of factors could cause actual results to differ
+materially from those contained in any forward-looking statement, including but not limited to the following: Cango's goal and
+strategies; Cango's expansion plans; the development and commercialization of its AI infrastructure business; the performance and
+economics of its Bitcoin mining operations; Bitcoin price volatility; Cango's future business development, financial condition
+and results of operations; Cango's expectations regarding demand for, and market acceptance of, its solutions and services; general
+economic and business conditions; and assumptions underlying or related to any of the foregoing. Further information regarding these
+and other risks is included in Cango's filings with the SEC. All information provided in this press release and in the attachments
+is as of the date of this press release, and Cango does not undertake any obligation to update any forward-looking statement, except
+as required under applicable law.
+
+
+
+
+
+Investor
+Relations Contact
+
+
+
+
+
+Juliet
+Ye, Head of Communications
+
+
+Cango
+Inc.
+
+
+Email:
+ir@ecohash.com
+
+
+
+
+
+Christensen
+Advisory
+
+
+Tel:
++852 2117 0861
+
+
+Email:
+cango@christensencomms.com
+
+
+
+
+
+
+
+4 |
+
+
+
+
+
+
+
+
+
+
+CANGO
+INC.
+
+
+UNAUDITED
+INTERIM CONDENSED CONSOLIDATED BALANCE SHEETS
+
+
+(Amounts
+in US dollar ("US$"), except for number of shares)
+
+
+
+
+
+
+
+| |
+As of December 31, 2025 | | |
+As of June 30, 2026 | |
+
+
+| |
+US$ | | |
+US$ | |
+
+
+| |
+| | |
+| |
+
+
+ASSETS: | |
+| | | |
+| | |
+
+
+Current assets: | |
+| | | |
+| | |
+
+
+Cash and cash equivalents | |
+| 41,243,627 | | |
+| 10,121,719 | |
+
+
+Crypto currencies | |
+| 42,545 | | |
+| 12,892,900 | |
+
+
+Accounts receivable, net | |
+| 1,661,702 | | |
+| 1,818,814 | |
+
+
+Accounts receivable, net - related parties | |
+| 1,064,440 | | |
+| - | |
+
+
+Prepayments and other current assets, net | |
+| 6,835,599 | | |
+| 54,208,544 | |
+
+
+Other current assets, net - related party | |
+| 74,270,770 | | |
+| 42,108,750 | |
+
+
+Total current assets | |
+| 125,118,683 | | |
+| 121,150,727 | |
+
+
+| |
+| | | |
+| | |
+
+
+Non-current assets: | |
+| | | |
+| | |
+
+
+Mining machines, net | |
+| 248,745,505 | | |
+| 58,699,566 | |
+
+
+Property, plant and equipment, net | |
+| 18,797,925 | | |
+| 22,290,496 | |
+
+
+Intangible assets, net | |
+| 292,836 | | |
+| 277,744 | |
+
+
+Operating lease right-of-use assets, net | |
+| 2,079,937 | | |
+| 1,764,239 | |
+
+
+Receivable for bitcoin collateral, net - non-current - related party | |
+| 662,968,814 | | |
+| 61,485,537 | |
+
+
+Other non-current assets, net | |
+| 68,025,983 | | |
+| 21,761,273 | |
+
+
+Other non-current assets, net - related party | |
+| 6,955,650 | | |
+| 6,955,650 | |
+
+
+Total non-current assets | |
+| 1,007,866,650 | | |
+| 173,234,505 | |
+
+
+TOTAL ASSETS | |
+| 1,132,985,333 | | |
+| 294,385,232 | |
+
+
+| |
+| | | |
+| | |
+
+
+LIABILITIES AND SHAREHOLDERS' EQUITY | |
+| | | |
+| | |
+
+
+Current liabilities: | |
+| | | |
+| | |
+
+
+Short-term debts | |
+| - | | |
+| 8,032,711 | |
+
+
+Accrued expenses and other current liabilities | |
+| 82,329,075 | | |
+| 22,954,250 | |
+
+
+Accrued expenses and other current liabilities - related parties | |
+| 5,025,566 | | |
+| 1,184,368 | |
+
+
+Income tax payable | |
+| 88,792,503 | | |
+| 88,361,704 | |
+
+
+Short-term lease liabilities | |
+| 573,959 | | |
+| 559,170 | |
+
+
+Total current liabilities | |
+| 176,721,103 | | |
+| 121,092,203 | |
+
+
+| |
+| | | |
+| | |
+
+
+Non-current liabilities: | |
+| | | |
+| | |
+
+
+Long-term debts - related party | |
+| 557,567,671 | | |
+| 31,227,904 | |
+
+
+Deferred tax liability | |
+| 1 | | |
+| 1 | |
+
+
+Long-term operating lease liabilities | |
+| 1,655,272 | | |
+| 1,336,517 | |
+
+
+Convertible Note | |
+| - | | |
+| 9,984,086 | |
+
+
+Total non-current liabilities | |
+| 559,222,944 | | |
+| 42,548,508 | |
+
+
+Total liabilities | |
+| 735,944,047 | | |
+| 163,640,711 | |
+
+
+| |
+| | | |
+| | |
+
+
+Shareholders' equity | |
+| | | |
+| | |
+
+
+Ordinary shares | |
+| 44,171 | | |
+| 49,796 | |
+
+
+Treasury shares | |
+| (103,424,568 | ) | |
+| (104,429,322 | ) |
+
+
+Additional paid-in capital | |
+| 1,135,958,943 | | |
+| 1,213,346,273 | |
+
+
+Accumulated deficit | |
+| (635,537,260 | ) | |
+| (978,222,226 | ) |
+
+
+Total Cango Inc.'s equity | |
+| 397,041,286 | | |
+| 130,744,521 | |
+
+
+Total shareholders' equity | |
+| 397,041,286 | | |
+| 130,744,521 | |
+
+
+TOTAL LIABILITIES AND SHAREHOLDERS' EQUITY | |
+| 1,132,985,333 | | |
+| 294,385,232 | |
+
+
+
+
+
+
+
+
+5 |
+
+
+
+
+
+
+
+
+
+
+CANGO
+INC.
+
+
+UNAUDITED
+INTERIM CONDENSED CONSOLIDATED STATEMENTS OF
+
+
+COMPREHENSIVE
+INCOME
+
+
+(Amounts
+in US dollar ("US$"), except for number of shares)
+
+
+
+
+
+
+
+| |
+For three months ended June 30 | | |
+For six months ended June 30 | |
+
+
+| |
+2025 | | |
+2026 | | |
+2025 | | |
+2026 | |
+
+
+| |
+US$ | | |
+US$ | | |
+US$ | | |
+US$ | |
+
+
+| |
+| | |
+| | |
+| | |
+| |
+
+
+Revenues | |
+| 139,836,585 | | |
+| 50,780,771 | | |
+| 283,990,631 | | |
+| 152,781,755 | |
+
+
+Bitcoin mining income | |
+| 138,125,669 | | |
+| 47,427,558 | | |
+| 282,269,981 | | |
+| 145,871,438 | |
+
+
+Other revenues | |
+| 1,710,916 | | |
+| 3,353,213 | | |
+| 1,720,650 | | |
+| 6,380,443 | |
+
+
+Other revenues from related parties | |
+| - | | |
+| - | | |
+| - | | |
+| 529,874 | |
+
+
+Operating cost and expenses: | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Cost of revenue (exclusive of depreciation shown below) | |
+| 112,786,283 | | |
+| 50,694,280 | | |
+| 225,447,985 | | |
+| 150,273,065 | |
+
+
+Cost of revenue (depreciation) | |
+| 21,849,482 | | |
+| 16,930,355 | | |
+| 43,194,326 | | |
+| 46,302,554 | |
+
+
+General and administrative | |
+| 2,986,487 | | |
+| 7,788,237 | | |
+| 13,014,756 | | |
+| 14,337,583 | |
+
+
+General and administrative - related parties | |
+| - | | |
+| 647,653 | | |
+| - | | |
+| 1,295,306 | |
+
+
+Provision (Net recovery) for credit losses | |
+| 920,228 | | |
+| (221,528 | ) | |
+| 1,209,459 | | |
+| (1,201,281 | ) |
+
+
+Impairment loss from mining machines | |
+| 256,856,570 | | |
+| 42,861,871 | | |
+| 256,856,570 | | |
+| 91,900,419 | |
+
+
+(Gain) Loss on changes in fair value of crypto assets | |
+| (78,450,881 | ) | |
+| 4,148,957 | | |
+| (51,715,376 | ) | |
+| 155,987,387 | |
+
+
+Loss on disposal of mining machines | |
+| - | | |
+| 8,546,085 | | |
+| - | | |
+| 28,853,297 | |
+
+
+Total operation cost and expense | |
+| 316,948,169 | | |
+| 131,395,910 | | |
+| 488,007,720 | | |
+| 487,748,330 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Loss from operations | |
+| (177,111,584 | ) | |
+| (80,615,139 | ) | |
+| (204,017,089 | ) | |
+| (334,966,575 | ) |
+
+
+Interest income | |
+| 696,981 | | |
+| 11 | | |
+| 991,173 | | |
+| 2,145 | |
+
+
+Interest expense | |
+| (2,053,009 | ) | |
+| - | | |
+| (3,363,606 | ) | |
+| - | |
+
+
+Interest expense - related party | |
+| - | | |
+| (597,032 | ) | |
+| - | | |
+| (7,299,899 | ) |
+
+
+Foreign exchange (loss) gain, net | |
+| 19,702 | | |
+| 120 | | |
+| (7,988 | ) | |
+| (512 | ) |
+
+
+Other income | |
+| 114,123 | | |
+| - | | |
+| 226,993 | | |
+| - | |
+
+
+Other expense | |
+| (78,095 | ) | |
+| - | | |
+| (78,095 | ) | |
+| - | |
+
+
+Net loss before income taxes | |
+| (178,411,882 | ) | |
+| (81,212,040 | ) | |
+| (206,248,612 | ) | |
+| (342,264,841 | ) |
+
+
+Income tax benefit (expenses) | |
+| 1,581,658 | | |
+| (420,125 | ) | |
+| 1,150,475 | | |
+| (420,125 | ) |
+
+
+Net loss from continuing operations | |
+| (176,830,224 | ) | |
+| (81,632,165 | ) | |
+| (205,098,137 | ) | |
+| (342,684,966 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Discontinued operations: | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Loss from discontinued operations | |
+| (125,915,027 | ) | |
+| - | | |
+| (129,822,040 | ) | |
+| - | |
+
+
+Income tax expense | |
+| (32,646,978 | ) | |
+| - | | |
+| (32,646,978 | ) | |
+| - | |
+
+
+Net loss from discontinued operations | |
+| (158,562,005 | ) | |
+| - | | |
+| (162,469,018 | ) | |
+| - | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Net loss attributable to Cango Inc.'s shareholders | |
+| (335,392,229 | ) | |
+| (81,632,165 | ) | |
+| (367,567,155 | ) | |
+| (342,684,966 | ) |
+
+
+Losses per ordinary share: | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Basic | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Discontinued operations | |
+| (7.41 | ) | |
+| - | | |
+| (7.70 | ) | |
+| - | |
+
+
+Continuing operations | |
+| (8.26 | ) | |
+| (1.99 | ) | |
+| (9.73 | ) | |
+| (8.91 | ) |
+
+
+Basic | |
+| (15.67 | ) | |
+| (1.99 | ) | |
+| (17.43 | ) | |
+| (8.91 | ) |
+
+
+Diluted | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Discontinued operations | |
+| (7.41 | ) | |
+| - | | |
+| (7.70 | ) | |
+| - | |
+
+
+Continuing operations | |
+| (8.26 | ) | |
+| (1.99 | ) | |
+| (9.73 | ) | |
+| (8.91 | ) |
+
+
+Diluted | |
+| (15.67 | ) | |
+| (1.99 | ) | |
+| (17.43 | ) | |
+| (8.91 | ) |
+
+
+Weighted average shares used to compute losses per ordinary share: | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Basic | |
+| 21,408,969 | | |
+| 41,021,969 | | |
+| 21,084,595 | | |
+| 38,455,840 | |
+
+
+Diluted | |
+| 21,408,969 | | |
+| 41,021,969 | | |
+| 21,084,595 | | |
+| 38,455,840 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Other comprehensive income, net of tax | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Release accumulated other comprehensive loss | |
+| 44,270,340 | | |
+| - | | |
+| 44,270,340 | | |
+| - | |
+
+
+Foreign currency translation adjustment | |
+| 10,583,883 | | |
+| - | | |
+| 5,304,633 | | |
+| - | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Total comprehensive loss | |
+| (280,538,006 | ) | |
+| (81,632,165 | ) | |
+| (317,992,182 | ) | |
+| (342,684,966 | ) |
+
+
+Total comprehensive loss attributable to Cango Inc.'s shareholders | |
+| (280,538,006 | ) | |
+| (81,632,165 | ) | |
+| (317,992,182 | ) | |
+| (342,684,966 | ) |
+
+
+
+
+
+
+
+
+6 |
+
+
+
+
+
+
+
+
+
+
+CANGO
+INC.
+
+
+RECONCILIATIONS
+OF GAAP AND NON-GAAP RESULTS
+
+
+(Amounts
+in US dollar ("US$")
+
+
+
+
+
+
+
+| |
+For three months ended June 30 | | |
+For six months ended June 30 | |
+
+
+| |
+2025 | | |
+2026 | | |
+2025 | | |
+2026 | |
+
+
+| |
+(Unaudited) | | |
+(Unaudited) | | |
+(Unaudited) | | |
+(Unaudited) | |
+
+
+| |
+US$ | | |
+US$ | | |
+US$ | | |
+US$ | |
+
+
+| |
+| | |
+| | |
+| | |
+| |
+
+
+Net loss | |
+| (335,392,229 | ) | |
+| (81,632,165 | ) | |
+| (367,567,155 | ) | |
+| (342,684,966 | ) |
+
+
+Less: Discontinued operations: | |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Loss from discontinued operations | |
+| (125,915,027 | ) | |
+| - | | |
+| (129,822,040 | ) | |
+| - | |
+
+
+Income tax expense | |
+| (32,646,978 | ) | |
+| - | | |
+| (32,646,978 | ) | |
+| - | |
+
+
+Loss on discontinued operations | |
+| (158,562,005 | ) | |
+| - | | |
+| (162,469,018 | ) | |
+| - | |
+
+
+Net loss from continuing operations | |
+| (176,830,224 | ) | |
+| (81,632,165 | ) | |
+| (205,098,137 | ) | |
+| (342,684,966 | ) |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Add: Interest expense | |
+| 2,053,009 | | |
+| 597,032 | | |
+| 3,363,606 | | |
+| 7,299,899 | |
+
+
+Add: Income tax expenses (benefit) | |
+| (1,581,658 | ) | |
+| 420,125 | | |
+| (1,150,475 | ) | |
+| 420,125 | |
+
+
+Add: Depreciation | |
+| 21,851,200 | | |
+| 16,930,355 | | |
+| 43,201,199 | | |
+| 46,319,358 | |
+
+
+Cost of revenue | |
+| 21,849,482 | | |
+| 16,930,355 | | |
+| 43,194,326 | | |
+| 46,302,554 | |
+
+
+General and administrative | |
+| 1,718 | | |
+| - | | |
+| 6,873 | | |
+| 16,804 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Add: Impairment loss from mining machines | |
+| 256,856,570 | | |
+| 42,861,871 | | |
+| 256,856,570 | | |
+| 91,900,419 | |
+
+
+Add: Loss on disposal of mining machines | |
+| - | | |
+| 8,546,085 | | |
+| - | | |
+| 28,853,297 | |
+
+
+Add: Other expenses | |
+| 78,095 | | |
+| - | | |
+| 78,095 | | |
+| | |
+
+
+Less: Other income | |
+| 114,123 | | |
+| - | | |
+| 226,993 | | |
+| - | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Add: Share-based compensation expenses | |
+| 152,674 | | |
+| 1,553,214 | | |
+| 3,697,862 | | |
+| 3,089,509 | |
+
+
+General and administrative | |
+| 152,674 | | |
+| 1,553,214 | | |
+| 3,697,862 | | |
+| 3,089,509 | |
+
+
+| |
+| | | |
+| | | |
+| | | |
+| | |
+
+
+Non-GAAP adjusted EBITDA | |
+| 102,465,543 | | |
+| (10,723,483 | ) | |
+| 100,721,727 | | |
+| (164,802,359 | ) |
+
+
+Non-GAAP adjusted EBITDA attributable to Cango Inc.'s shareholders | |
+| 102,465,543 | | |
+| (10,723,483 | ) | |
+| 100,721,727 | | |
+| (164,802,359 | ) |
+
+
+
+
+
+
+
+
+
+
+7 |

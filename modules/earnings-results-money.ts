@@ -229,14 +229,20 @@ function findPlausibleEpsValue(
   options: NumericValueOptions,
   columnIndex: number,
 ): number | null {
-  const values = findNumericValueMatches(text, options)
-    .filter(valueMatch => false === isMoneyScaledValue(text, valueMatch.endIndex))
-    .map(valueMatch => valueMatch.value);
-  const columnValue = values[columnIndex];
-  if ("number" === typeof columnValue && false === Number.isInteger(columnValue)) {
+  const valueMatches = findNumericValueMatches(text, options)
+    .filter(valueMatch => false === isMoneyScaledValue(text, valueMatch.endIndex));
+  const columnValueMatch = valueMatches[columnIndex];
+  const columnValue = columnValueMatch?.value;
+  if ("number" === typeof columnValue &&
+      (false === Number.isInteger(columnValue) ||
+        (0 === columnValue &&
+          /(?:^|[^\d])(?:[$€£¥]\s*)?\(?-?0\.0+\)?$/.test(
+            text.slice(0, columnValueMatch?.endIndex ?? 0),
+          )))) {
     return columnValue;
   }
 
+  const values = valueMatches.map(valueMatch => valueMatch.value);
   return values.find(value => false === Number.isInteger(value)) ??
     values.find(value => Math.abs(value) < 20) ??
     null;

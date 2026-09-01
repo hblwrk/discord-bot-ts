@@ -52,6 +52,16 @@ describe("SEC earnings result source", () => {
 
   test("rejects non-earnings 8-K items", () => {
     expect(isLikelyEarningsFiling({
+      accessionNumber: "0000000000-26-000000",
+      cik: "0000000001",
+      filingUrl: "https://www.sec.gov/example",
+      form: "10-K",
+      items: [],
+      title: "10-K",
+      updated: "2026-05-01T10:01:00-04:00",
+    })).toBe(false);
+
+    expect(isLikelyEarningsFiling({
       accessionNumber: "0000000000-26-000001",
       cik: "0000000001",
       filingUrl: "https://www.sec.gov/example",
@@ -305,6 +315,48 @@ describe("SEC earnings result source", () => {
       documentUrl: "https://www.sec.gov/Archives/edgar/data/34088/000003408826000065/livef8k1q26991.htm",
       html: "<html>xom earnings release</html>",
     });
+  });
+
+  test("does not use a complete submission file when an image-only exhibit is unusable", async () => {
+    const filing = createFiling({
+      accessionNumber: "0001628280-26-059271",
+      cik: "0001820953",
+    });
+    getWithRetryFn.mockImplementation(async (url: string) => {
+      if (url.endsWith("/index.json")) {
+        return {
+          data: {
+            directory: {
+              item: [
+                {name: "affirmfq426shareholderle.htm", type: "EX-99.1"},
+                {name: "afrm-20260825.htm", type: "8-K"},
+                {name: "0001628280-26-059271.txt", type: "text.gif"},
+              ],
+            },
+          },
+        };
+      }
+
+      if (url.endsWith(".txt")) {
+        return {data: "Quarterly revenue and unrelated $4.00 compensation metadata"};
+      }
+
+      return {data: "<html><img src='shareholder-letter-page.jpg'></html>"};
+    });
+    const dependencies = {
+      getWithRetryFn,
+      logger,
+    } as Parameters<typeof loadSecFilingDetails>[1];
+
+    const details = await loadSecFilingDetails(filing, dependencies, {
+      isUsableDocument: html => html.includes("Quarterly revenue"),
+    });
+
+    expect(details.documentUrl).toContain("affirmfq426shareholderle.htm");
+    expect(getWithRetryFn).not.toHaveBeenCalledWith(
+      expect.stringContaining("0001628280-26-059271.txt"),
+      expect.anything(),
+    );
   });
 
   test("falls back from an empty 99.1 stub to a usable shareholder letter exhibit", async () => {

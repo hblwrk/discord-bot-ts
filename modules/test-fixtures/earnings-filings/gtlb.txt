@@ -1,0 +1,552 @@
+EX-99.1
+2
+gitlab-ex99120260731fy27.htm
+EX-99.1
+
+
+
+
+Document
+| | | | | | | | |
+
+| | Exhibit 99.1 |
+
+
+GitLab Reports Second Quarter Fiscal Year 2027 Financial Results
+
+
+
+
+Second Quarter Fiscal Year 2027 Highlights:
+•Total revenue of $286.3 million, up 21% year-over-year
+•GAAP operating margin of (20)%; non-GAAP operating margin of 15%
+•Operating cash flow of $(3.1) million and non-GAAP adjusted free cash flow of $9.8 million
+
+
+San Francisco (September 1, 2026) -All-Remote-GitLab Inc. (NASDAQ: GTLB), the intelligent orchestration platform for DevSecOps, today reported financial results for its second quarter fiscal year 2027, ended July 31, 2026.
+
+
+“Q2 was an exceptional quarter, with record gross bookings and net ARR growth exceeding 40% year over year,” said Bill Staples, GitLab Chief Executive Officer. “As AI drives more software creation and more work through the development lifecycle, the context, security, governance and control GitLab provides become increasingly valuable. We believe this creates a significant opportunity for GitLab as humans and agents increasingly build software together.”
+
+
+“I am proud of our team’s performance, which delivered revenue growth of 21% and continued improvement across the business,” said Jessica Ross, GitLab Chief Financial Officer. “We saw sequential acceleration in dollar-based net retention and meaningful operating leverage, reflecting the strength of our execution and the increasing scalability of our model. These results demonstrate the durability of our growth opportunity and our ability to create long-term value.”
+
+
+GitLab posted a letter on the Investor Relations section of its website at https://ir.gitlab.com/ to capture additional information about the company’s strategic investments that are designed to drive durable revenue growth.
+
+
+Business Highlights:
+
+
+•Introduced a new commercial model with GitLab Flex to give customers one annual commitment covering platform seats, GitLab Credits, and new eligible capabilities as they become available, with monthly reservations that can be reshaped as needs change without contract amendments.
+•Launched GitLab Secrets Manager, which is now available as a usage-based add-on for Premium and Ultimate customers on GitLab.com, to make credentials easier to rotate and less likely to leak while bringing them under the same permissions and audit trail as the code that uses them.
+•Expanded context for AI agents with GitLab Orbit, available in public beta, by connecting code, work items, pipelines, deployments, and production signals into a unified context graph, helping agents respond up to 11x faster with up to 45x fewer hallucinations in internal testing.
+•Recognized as a Leader in the Gartner® Magic Quadrant™ for DevSecOps Platforms for the fourth consecutive year, reinforcing the value of a unified platform that gives enterprises speed with control across the software lifecycle.
+•Quantified the potential business value of GitLab Duo Agent Platform through an independent Forrester Consulting Total Economic Impact™ study, which found organizations can achieve a 400% return on investment and $7.5 million in net present value (NPV) over three years, with payback in under six months.
+
+
+Gartner, Magic Quadrant for DevSecOps Platforms, Keith Mann, Thomas Murphy, Bill Holz, June 15, 2026. Gartner and Magic Quadrant are trademarks of Gartner, Inc., and/or its affiliates.
+
+
+
+
+
+
+| | |
+|
+
+
+Second Quarter Fiscal Year 2027 Financial Highlights (in millions, except per share data and percentages):
+| | | | | | | | | | | | | | | | | |
+| Q2 FY 2027
+| | Q2 FY 2026
+| | Y/Y Change |
+Revenue | $ | 286.3 | | | $ | 236.0 | | | 21 | % |
+GAAP Gross margin | 84 | % | | 88 | % | | |
+Non-GAAP Gross margin | 86 | % | | 90 | % | | |
+GAAP Operating margin | (20) | % | | (8) | % | | |
+Non-GAAP Operating margin | 15 | % | | 17 | % | | |
+GAAP Operating loss | $ | (56.9) | | | $ | (18.4) | | | $ | (38.5) | |
+Non-GAAP Operating income | $ | 42.6 | | | $ | 39.6 | | | $ | 3.0 | |
+GAAP Net loss attributable to GitLab | $ | (36.8) | | | $ | (9.2) | | | $ | (27.6) | |
+Non-GAAP Net income attributable to GitLab | $ | 42.1 | | | $ | 40.9 | | | $ | 1.2 | |
+GAAP Net loss per share attributable to GitLab, basic | $ | (0.22) | | | $ | (0.06) | | | $ | (0.16) | |
+GAAP Net loss per share attributable to GitLab, diluted | $ | (0.22) | | | $ | (0.06) | | | $ | (0.16) | |
+Non-GAAP Net income per share attributable to GitLab, basic | $ | 0.25 | | | $ | 0.25 | | | $ | — | |
+Non-GAAP Net income per share attributable to GitLab, diluted | $ | 0.24 | | | $ | 0.24 | | | $ | — | |
+GAAP net cash provided by operating activities | $ | (3.1) | | | $ | 49.4 | | | $ | (52.5) | |
+Non-GAAP adjusted free cash flow | $ | 9.8 | | | $ | 46.5 | | | $ | (36.7) | |
+
+A reconciliation between GAAP and non-GAAP financial measures is contained in this release under the section titled “Non-GAAP Financial Measures.”
+Additional Second Quarter Fiscal Year 2027 Financial Highlights:
+
+
+•First Order growth of more than 100% year on year.
+•Customers with more than $5,000 of ARR reached 11,114, an increase of 8% year-over-year.
+•Customers with more than $100,000 of ARR reached 1,571, an increase of 17% year-over-year.
+•Dollar-Based Net Retention Rate was 117%.
+•Total RPO grew 16% year-over-year to $1.2 billion, while cRPO grew 20% to $744.7 million.
+•In the quarter, GitLab repurchased approximately 3.5 million shares.
+
+
+Third Quarter and Fiscal Year 2027 Financial Outlook
+
+
+For the third quarter and fiscal year 2027, GitLab Inc. expects (in millions, except share and per share data):
+| | | | | | | | | | | |
+| Q3 FY 2027 Guidance | | FY 2027 Guidance |
+Revenue | $281 - $283 | | $1,129 - $1,133 |
+Non-GAAP operating income | $35 - $37 | | $148 - $152 |
+Non-GAAP diluted net income per share assuming approximately 172 million and 172 million weighted average shares outstanding during Q3 FY 2027 and FY 2027, respectively. | $0.19 - $0.20 | | $0.85 - $0.87 |
+| | | |
+| | | |
+| | | |
+| | | |
+
+These statements are forward-looking and actual results may differ materially as a result of many factors. Refer to the Forward-Looking Statements safe harbor below for information on the factors that could cause our actual results to differ materially from these forward-looking statements.
+
+
+A reconciliation of GAAP to non-GAAP financial measures has been provided in the financial statement tables included in this press release. An explanation of these measures is also included below in Non-
+
+
+
+
+| | |
+|
+
+
+GAAP Financial Measures. We have not provided the most directly comparable GAAP financial guidance measures because certain items are out of our control or cannot be reasonably predicted. Accordingly, a reconciliation of non-GAAP guidance for operating income (loss) and net income (loss) per share to the corresponding GAAP measures is not available.
+
+
+Conference Call Information
+
+
+GitLab will host a conference call today, September 1, 2026, at 1:30 p.m. (PT) / 4:30 p.m. (ET) to discuss its second quarter fiscal year 2027 financial results and its guidance for the third quarter and full fiscal year 2027. Interested parties may register for the call in advance by visiting https://bit.ly/4qpW4tl. A live webcast of this conference call will be available on GitLab’s investor relations website (ir.gitlab.com), and a replay will also be archived on the website for one year.
+
+
+About GitLab
+
+
+GitLab is the intelligent orchestration platform for DevSecOps. GitLab enables organizations to increase developer productivity, improve operational efficiency, reduce security and compliance risk, and accelerate digital transformation. More than 50 million registered users and approximately 50% of the Fortune 100* trust GitLab to ship better, more secure software faster.
+
+
+*Fortune 500® is a registered trademark of Fortune Media IP Limited, used under license. Claim based on GitLab data. Fortune 100 refers to the top 20% ranked companies in the 2025 Fortune 500 list, published in June 2025. Fortune and Fortune Media IP Limited are not affiliated with, and do not endorse products or services of GitLab.
+
+
+Non-GAAP Financial Measures
+
+
+GitLab believes non-GAAP measures are useful in evaluating its operating performance. GitLab uses this supplemental information to evaluate its ongoing operations and for internal planning and forecasting purposes. GitLab believes that non-GAAP financial information, when taken collectively with its GAAP financial information, may be helpful to investors because it provides consistency and comparability with past financial performance. However, non-GAAP financial information is presented for supplemental informational purposes only, has limitations as an analytical tool, and should not be considered in isolation or as a substitute for financial information presented in accordance with GAAP. Reconciliations of non-GAAP financial measures to the most directly comparable financial results as determined in accordance with GAAP are included at the end of this press release following the accompanying financial data. We define non-GAAP financial measures as GAAP measures, excluding certain items such as stock-based compensation expense, amortization of acquired intangible assets, foreign exchange (gain) loss, acquisition related expenses, charitable donation of common stock, restructuring charges, a non-recurring income tax adjustment related to bilateral advance pricing agreement (“BAPA”) negotiations, non-recurring charges associated with the formation of our GitLab Information Technology (Hubei) Co., LTD Joint Venture in China (“JiHu”), and other expenses that the Company believes are not indicative of its ongoing operations. In addition to these exclusions, effective Q1 FY26 we utilize a fixed long-term projected tax rate in our computation of the non-GAAP income tax provision which reflects the new location of GitLab’s intellectual property in the U.S. following the conclusion of our bilateral advance pricing agreements. For FY26 and FY27, we have determined the projected non-GAAP tax rate to be 22%. Shares used for net income per share on a non-GAAP basis include incremental dilutive shares related to restricted stock units, options, and shares issuable under GitLab Inc.’s 2021 Employee Stock Purchase Plan that are anti-dilutive on a GAAP basis. A reconciliation of non-GAAP guidance measures to corresponding GAAP measures is not available on a forward-looking basis without unreasonable effort due to the uncertainty of expenses that may be incurred in the future. Investors are encouraged to review the related GAAP financial measures and the reconciliation of these non-GAAP financial measures to
+
+
+
+
+| | |
+|
+
+
+their most directly comparable GAAP financial measures and not rely on any single financial measure to evaluate our business.
+
+
+Adjusted Free Cash Flow
+
+
+Adjusted free cash flow is a non-GAAP financial measure that we calculate as net cash provided by operating activities less cash used for purchases of property and equipment, plus any non-recurring income tax payments related to the BAPA or minus any non-recurring income tax refunds related to the BAPA, plus any non-recurring payments related to the formation of JiHu. We believe that adjusted free cash flow is a useful indicator of liquidity that provides information to management and investors about the amount of cash generated from our operations that, after the investments in property and equipment, any non-recurring income tax payments or refunds related to the BAPA, and any non-recurring payments related to the formation of JiHu, can be used for strategic initiatives, including investing in our business, and strengthening our financial position. One limitation of adjusted free cash flow is that it does not reflect our future contractual commitments. Additionally, adjusted free cash flow does not represent the total increase or decrease in our cash balance for a given period.
+
+
+Forward-Looking Statements
+
+
+This press release and the accompanying earnings call contain “forward-looking statements” within the meaning of Section 27A of the Securities Act of 1933, as amended, and Section 21E of the Securities Exchange Act of 1934. Although we believe that the expectations reflected in the forward-looking statements contained in this release and the accompanying earnings call are reasonable, they are subject to known and unknown risks, uncertainties, assumptions and other factors that may cause actual results or outcomes to be materially different from any future results or outcomes expressed or implied by the forward-looking statements. These risks, uncertainties, assumptions, and other factors include, but are not limited to the following:
+
+
+•our ability to effectively manage our growth;
+•our revenue growth rate in the future;
+•our ability to achieve and sustain profitability, our business, financial condition, and operating results;
+•security and privacy breaches;
+•intense competition in our markets and loss of market share to our competitors;
+•our ability to respond to rapid technological changes;
+•the market for our services may not grow;
+•a decline in our customer renewals and expansions;
+•fluctuations in our operating results;
+•our incorporation of artificial intelligence features into our products;
+•our transparency;
+•our publicly available company Handbook;
+•customers staying on our free self-managed or SaaS product offering;
+•our ability to accurately predict the long-term rate of customer subscription renewals or adoption, or the impact of these renewals and adoption;
+•our hiring model;
+•the effects of ongoing armed conflict in different regions of the world on our business; and
+•general economic conditions (including changes in interest rates, inflation, tariffs, regulatory uncertainty (including with respect to the federal budget and potential government shutdowns), volatile capital markets, and actual or perceived instability in the global banking sector) and slow or negative growth of our markets.
+
+
+
+
+
+
+| | |
+|
+
+
+Further information on these and additional risks, uncertainties, and other factors that could cause actual outcomes and results to differ materially from those included in or contemplated by the forward-looking statements contained in this release are included under the caption “Risk Factors” and elsewhere in the filings and reports we make with the Securities and Exchange Commission. We do not undertake any obligation to update or release any revisions to any forward-looking statement or to report any events or circumstances after the date of this press release or to reflect the occurrence of unanticipated events, except as required by law.
+
+
+Operating Metrics
+
+
+Annual Recurring Revenue (“ARR”): We define annual recurring revenue as the annual run-rate revenue of subscription agreements, including our self-managed and SaaS offerings but excluding professional services, from all customers as measured on the last day of a given month. We calculate ARR by taking the monthly recurring revenue (“MRR”) and multiplying it by 12. MRR for each month is calculated by aggregating, for all customers during that month, monthly revenue from committed contractual amounts of subscriptions, including our self-managed license, self-managed subscription, and SaaS subscription offerings but excluding professional services.
+
+
+Dollar-Based Net Retention Rate: We calculate Dollar-Based Net Retention Rate as of a period end by starting with our customers as of the 12 months prior to such period end (“Prior Period ARR”). We then calculate the ARR from these customers as of the current period end (“Current Period ARR”). The calculation of Current Period ARR includes any upsells, price adjustments, user growth within a customer, contraction, and attrition. We then divide the total Current Period ARR by the total Prior Period ARR to arrive at the Dollar-Based Net Retention Rate.
+
+
+
+
+
+| | |
+|
+
+
+GitLab Inc.
+Condensed Consolidated Balance Sheets
+(in thousands, except per share data)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | |
+| | | July 31, 2026
+| | January 31, 2026
+| | |
+ASSETS | | | | | | | |
+CURRENT ASSETS: | | | | | | | |
+Cash and cash equivalents | | | $ | 226,491 | | | $ | 229,576 | | | |
+Short-term investments | | | 1,030,495 | | | 1,030,327 | | | |
+Accounts receivable, net of allowance for doubtful accounts of $1,018 and $967 as of July 31, 2026 and January 31, 2026, respectively | | | 257,343 | | | 304,301 | | | |
+Deferred contract acquisition costs, current | | | 39,588 | | | 42,676 | | | |
+Prepaid expenses and other current assets | | | 41,138 | | | 48,899 | | | |
+Total current assets | | | 1,595,055 | | | 1,655,779 | | | |
+Property and equipment, net | | | 11,093 | | | 11,815 | | | |
+Goodwill | | | 17,446 | | | 17,379 | | | |
+Intangible assets, net | | | 5,744 | | | 9,774 | | | |
+Deferred contract acquisition costs, non-current | | | 27,431 | | | 23,705 | | | |
+Other non-current assets | | | 5,063 | | | 4,295 | | | |
+TOTAL ASSETS | | | $ | 1,661,832 | | | $ | 1,722,747 | | | |
+LIABILITIES AND STOCKHOLDERS’ EQUITY | | | | | | | |
+CURRENT LIABILITIES: | | | | | | | |
+Accounts payable | | | $ | 9,955 | | | $ | 9,205 | | | |
+Accrued expenses and other current liabilities | | | 51,580 | | | 58,185 | | | |
+Accrued compensation and benefits | | | 46,932 | | | 39,657 | | | |
+Deferred revenue and customer advances, current | | | 553,844 | | | 545,096 | | | |
+Total current liabilities | | | 662,311 | | | 652,143 | | | |
+Deferred revenue, non-current | | | 20,829 | | | 26,994 | | | |
+Other non-current liabilities | | | 7,205 | | | 7,362 | | | |
+TOTAL LIABILITIES | | | 690,345 | | | 686,499 | | | |
+| | | | | | | |
+STOCKHOLDERS’ EQUITY: | | | | | | | |
+Preferred stock, $0.0000025 par value; 50,000 shares authorized; no shares issued and outstanding as of July 31, 2026 and January 31, 2026 | | | — | | | — | | | |
+Class A Common stock, $0.0000025 par value; 1,500,000 shares authorized; 166,166 and 153,336 shares issued and outstanding as of July 31, 2026 and January 31, 2026, respectively | | | — | | | — | | | |
+Class B Common stock, $0.0000025 par value; 250,000 shares authorized; 1,115 and 16,732 shares issued and outstanding as of July 31, 2026 and January 31, 2026, respectively
+| | | — | | | — | | | |
+Additional paid-in capital | | | 2,190,455 | | | 2,207,361 | | | |
+Accumulated deficit | | | (1,265,386) | | | (1,223,570) | | | |
+Accumulated other comprehensive income | | | 460 | | | 6,877 | | | |
+Total GitLab stockholders’ equity | | | 925,529 | | | 990,668 | | | |
+Noncontrolling interests | | | 45,958 | | | 45,580 | | | |
+TOTAL STOCKHOLDERS’ EQUITY | | | 971,487 | | | 1,036,248 | | | |
+TOTAL LIABILITIES AND STOCKHOLDERS’ EQUITY | | | $ | 1,661,832 | | | $ | 1,722,747 | | | |
+
+__________
+As of July 31, 2026 and January 31, 2026, the condensed consolidated balance sheets include assets of the consolidated variable interest entity, GitLab Information Technology (Hubei) Co., LTD (“JiHu”), of $46.1 million and $41.0 million, respectively, and liabilities of $7.6 million and $7.1 million, respectively. The assets of JiHu can be used only to settle obligations of JiHu, and creditors of JiHu do not have recourse against the general credit of GitLab Inc.
+
+
+
+
+| | |
+|
+
+
+GitLab Inc.
+Condensed Consolidated Statements of Operations
+(in thousands, except per share data)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Revenue: | | | | | | | |
+Subscription—self-managed and SaaS | $ | 258,311 | | | $ | 212,684 | | | $ | 497,617 | | | $ | 407,165 | |
+License—self-managed and other | 27,943 | | | 23,276 | | | 52,795 | | | 43,304 | |
+Total revenue | 286,254 | | | 235,960 | | | 550,412 | | | 450,469 | |
+Cost of revenue: | | | | | | | |
+Subscription—self-managed and SaaS | 38,258 | | | 21,753 | | | 68,849 | | | 41,021 | |
+License—self-managed and other | 7,380 | | | 6,752 | | | 14,277 | | | 12,519 | |
+Total cost of revenue | 45,638 | | | 28,505 | | | 83,126 | | | 53,540 | |
+Gross profit | 240,616 | | | 207,455 | | | 467,286 | | | 396,929 | |
+Operating expenses: | | | | | | | |
+Sales and marketing | 134,363 | | | 109,583 | | | 253,721 | | | 217,170 | |
+Research and development | 94,980 | | | 71,488 | | | 166,462 | | | 136,898 | |
+General and administrative | 68,208 | | | 44,735 | | | 119,787 | | | 95,822 | |
+Total operating expenses | 297,551 | | | 225,806 | | | 539,970 | | | 449,890 | |
+Loss from operations | (56,935) | | | (18,351) | | | (72,684) | | | (52,961) | |
+Interest income | 12,202 | | | 11,511 | | | 24,149 | | | 22,373 | |
+Other income (expense), net | 5,406 | | | (911) | | | 5,661 | | | (10,882) | |
+Loss before income taxes | (39,327) | | | (7,751) | | | (42,874) | | | (41,470) | |
+| | | | | | | |
+Provision for (benefit from) income taxes | (3,195) | | | 2,245 | | | (1,163) | | | 4,784 | |
+Net loss | $ | (36,132) | | | $ | (9,996) | | | $ | (41,711) | | | $ | (46,254) | |
+Net income (loss) attributable to noncontrolling interest | 712 | | | (788) | | | 105 | | | (1,171) | |
+Net loss attributable to GitLab | $ | (36,844) | | | $ | (9,208) | | | $ | (41,816) | | | $ | (45,083) | |
+| | | | | | | |
+Net loss per share attributable to GitLab Class A and Class B common stockholders, basic and diluted: | $ | (0.22) | | | $ | (0.06) | | | $ | (0.25) | | | $ | (0.27) | |
+| | | | | | | |
+| | | | | | | |
+Weighted-average shares used to compute net loss per share attributable to GitLab Class A and Class B common stockholders, basic and diluted: | 168,703 | | | 165,953 | | | 169,313 | | | 165,233 | |
+| | | | | | | |
+
+
+
+
+
+| | |
+|
+
+
+GitLab Inc.
+Condensed Consolidated Statements of Cash Flows
+(in thousands)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+CASH FLOWS FROM OPERATING ACTIVITIES: | | | | | | | |
+Net loss, including amounts attributable to noncontrolling interest | $ | (36,132) | | | $ | (9,996) | | | $ | (41,711) | | | $ | (46,254) | |
+Adjustments to reconcile net loss to net cash provided by operating activities: | | | | | | | |
+Stock-based compensation expense, net of amounts capitalized | 75,006 | | | 54,284 | | | 125,067 | | | 110,111 | |
+| | | | | | | |
+| | | | | | | |
+Charitable donation of common stock | 1,166 | | | 1,787 | | | 1,987 | | | 3,526 | |
+Amortization of intangible assets | 2,015 | | | 2,015 | | | 4,030 | | | 4,035 | |
+Depreciation and amortization | 1,345 | | | 759 | | | 2,640 | | | 1,315 | |
+Amortization of deferred contract acquisition costs | 10,580 | | | 13,370 | | | 23,504 | | | 27,269 | |
+Net amortization of premiums or discounts on short-term investments | (364) | | | (2,609) | | | (688) | | | (5,605) | |
+Unrealized foreign exchange loss (gain), net | (2,249) | | | 1,069 | | | (3,260) | | | 10,970 | |
+Other non-cash expense, net | 451 | | | 192 | | | 640 | | | 400 | |
+Changes in assets and liabilities: | | | | | | | |
+Accounts receivable | (57,325) | | | 3,859 | | | 46,031 | | | 69,787 | |
+Prepaid expenses and other current assets | 1,303 | | | 1,219 | | | 7,690 | | | 2,746 | |
+Deferred contract acquisition costs | (15,002) | | | (12,304) | | | (24,747) | | | (20,430) | |
+Other non-current assets | (1,147) | | | (198) | | | (919) | | | 181 | |
+Accounts payable | 1,115 | | | (472) | | | 762 | | | 3,114 | |
+Accrued expenses and other current liabilities | (21,419) | | | (14,257) | | | (6,968) | | | (4,278) | |
+Accrued compensation and benefits | 18,575 | | | 2,021 | | | 7,605 | | | (11,063) | |
+Deferred revenue and customer advances | 18,754 | | | 8,284 | | | 4,466 | | | 9,489 | |
+Other non-current liabilities | 236 | | | 346 | | | (24) | | | 358 | |
+Net cash provided by (used in) operating activities | (3,092) | | | 49,369 | | | 146,105 | | | 155,671 | |
+CASH FLOWS FROM INVESTING ACTIVITIES: | | | | | | | |
+Purchases of short-term investments | (199,621) | | | (237,946) | | | (421,817) | | | (483,898) | |
+Proceeds from maturities of short-term investments | 139,823 | | | 184,280 | | | 358,647 | | | 347,886 | |
+Proceeds from sales of short-term investments | 50,476 | | | — | | | 60,398 | | | 1,367 | |
+Additions to property and equipment | (213) | | | (2,904) | | | (2,606) | | | (3,816) | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Net cash used in investing activities | (9,535) | | | (56,570) | | | (5,378) | | | (138,461) | |
+CASH FLOWS FROM FINANCING ACTIVITIES: | | | | | | | |
+| | | | | | | |
+Proceeds from the issuance of common stock upon exercise of stock options, including early exercises, net of repurchases | 2,988 | | | 3,947 | | | 5,361 | | | 7,275 | |
+Issuance of common stock under employee stock purchase plan | 6,886 | | | 8,404 | | | 6,886 | | | 8,404 | |
+Common stock repurchased | (104,637) | | | — | | | (154,685) | | | — | |
+| | | | | | | |
+Payments for taxes related to net share settlement of equity awards | (748) | | | — | | | (908) | | | — | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Net cash provided by (used in) financing activities | (95,511) | | | 12,351 | | | (143,346) | | | 15,679 | |
+Impact of foreign exchange on cash and cash equivalents | (766) | | | 502 | | | (466) | | | 833 | |
+Net increase (decrease) in cash and cash equivalents | (108,904) | | | 5,652 | | | (3,085) | | | 33,722 | |
+Cash and cash equivalents at beginning of period | 335,395 | | | 255,719 | | | 229,576 | | | 227,649 | |
+Cash and cash equivalents at end of period | $ | 226,491 | | | $ | 261,371 | | | $ | 226,491 | | | $ | 261,371 | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+
+
+
+
+
+| | |
+|
+
+
+GitLab Inc.
+Reconciliation of GAAP to Non-GAAP
+(in thousands, except per share data)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Gross profit on GAAP basis | $ | 240,616 | | | $ | 207,455 | | | $ | 467,286 | | | $ | 396,929 | |
+Gross margin on GAAP basis | 84 | % | | 88 | % | | 85 | % | | 88 | % |
+Stock-based compensation expense | 3,891 | | | 2,261 | | | 6,755 | | | 4,190 | |
+Amortization of acquired intangibles | 2,015 | | | 2,015 | | | 4,030 | | | 4,035 | |
+Restructuring charges | 1,023 | | | — | | | 1,023 | | | — | |
+Gross profit on non-GAAP basis | $ | 247,545 | | | $ | 211,731 | | | $ | 479,094 | | | $ | 405,154 | |
+Gross margin on non-GAAP basis | 86 | % | | 90 | % | | 87 | % | | 90 | % |
+| | | | | | | |
+Sales and marketing on GAAP basis | $ | 134,363 | | | $ | 109,583 | | | $ | 253,721 | | | $ | 217,170 | |
+Stock-based compensation expense | (25,327) | | | (19,950) | | | (42,772) | | | (42,041) | |
+Restructuring charges | (5,220) | | | — | | | (5,220) | | | — | |
+Sales and marketing on non-GAAP basis | $ | 103,816 | | | $ | 89,633 | | | $ | 205,729 | | | $ | 175,129 | |
+| | | | | | | |
+Research and development on GAAP basis | $ | 94,980 | | | $ | 71,488 | | | $ | 166,462 | | | $ | 136,898 | |
+Stock-based compensation expense | (21,803) | | | (19,197) | | | (35,433) | | | (33,469) | |
+Restructuring charges | (8,011) | | | — | | | (8,011) | | | — | |
+Research and development on non-GAAP basis | $ | 65,166 | | | $ | 52,291 | | | $ | 123,018 | | | $ | 103,429 | |
+| | | | | | | |
+General and administrative on GAAP basis | $ | 68,208 | | | $ | 44,735 | | | $ | 119,787 | | | $ | 95,822 | |
+Stock-based compensation expense | (23,985) | | | (12,876) | | | (40,107) | | | (30,411) | |
+| | | | | | | |
+Restructuring charges | (5,168) | | | — | | | (5,168) | | | — | |
+Charitable donation of common stock | (1,166) | | | (1,787) | | | (1,987) | | | (3,526) | |
+| | | | | | | |
+Acquisition related expenses | (607) | | | (157) | | | (917) | | | (340) | |
+Other non-recurring charges | (1,285) | | | 320 | | | (1,361) | | | (643) | |
+General and administrative on non-GAAP basis | $ | 35,997 | | | $ | 30,235 | | | $ | 70,247 | | | $ | 60,902 | |
+| | | | | | | |
+Loss from operations on GAAP basis | $ | (56,935) | | | $ | (18,351) | | | $ | (72,684) | | | $ | (52,961) | |
+Stock-based compensation expense | 75,006 | | | 54,284 | | | 125,067 | | | 110,111 | |
+Amortization of acquired intangibles | 2,015 | | | 2,015 | | | 4,030 | | | 4,035 | |
+Restructuring charges | 19,422 | | | — | | | 19,422 | | | — | |
+Charitable donation of common stock | 1,166 | | | 1,787 | | | 1,987 | | | 3,526 | |
+| | | | | | | |
+Acquisition related expenses | 607 | | | 157 | | | 917 | | | 340 | |
+Other non-recurring charges | 1,285 | | | (320) | | | 1,361 | | | 643 | |
+Income from operations on non-GAAP basis | $ | 42,566 | | | $ | 39,572 | | | $ | 80,100 | | | $ | 65,694 | |
+| | | | | | | |
+Other income (expense), net on GAAP basis
+| $ | 5,406 | | | $ | (911) | | | $ | 5,661 | | | $ | (10,882) | |
+| | | | | | | |
+Foreign exchange gains (losses), net
+| (1,817) | | | 1,117 | | | (2,353) | | | 11,071 | |
+Other non-recurring charges
+| (3,679) | | | 172 | | | (3,497) | | | 342 | |
+Other income (expense), net on non-GAAP basis | $ | (90) | | | $ | 378 | | | $ | (189) | | | $ | 531 | |
+| | | | | | | |
+Net loss attributable to GitLab common stockholders on GAAP basis | $ | (36,844) | | | $ | (9,208) | | | $ | (41,816) | | | $ | (45,083) | |
+Stock-based compensation expense
+| 75,006 | | | 54,284 | | | 125,067 | | | 110,111 | |
+Amortization of acquired intangibles | 2,015 | | | 2,015 | | | 4,030 | | | 4,035 | |
+Restructuring charges
+| 19,422 | | | — | | | 19,422 | | | — | |
+Charitable donation of common stock | 1,166 | | | 1,787 | | | 1,987 | | | 3,526 | |
+| | | | | | | |
+Acquisition related expenses | 607 | | | 157 | | | 917 | | | 340 | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Foreign exchange gains (losses), net
+| (1,817) | | | 1,117 | | | (2,353) | | | 11,071 | |
+Income tax adjustment
+| (15,068) | | | (9,077) | | | (24,034) | | | (14,708) | |
+Other non-recurring charges
+| (2,394) | | | (148) | | | (2,136) | | | 985 | |
+
+
+
+
+
+| | |
+|
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+Net income attributable to GitLab common stockholders on non-GAAP basis | $ | 42,093 | | | $ | 40,927 | | | $ | 81,084 | | | $ | 70,277 | |
+| | | | | | | |
+GAAP net loss per share, basic | $ | (0.22) | | | $ | (0.06) | | | $ | (0.25) | | | $ | (0.27) | |
+GAAP net loss per share, diluted | $ | (0.22) | | | $ | (0.06) | | | $ | (0.25) | | | $ | (0.27) | |
+| | | | | | | |
+Non-GAAP net income per share, basic | $ | 0.25 | | | $ | 0.25 | | | $ | 0.48 | | | $ | 0.43 | |
+Non-GAAP net income per share, diluted | $ | 0.24 | | | $ | 0.24 | | | $ | 0.47 | | | $ | 0.41 | |
+| | | | | | | |
+Shares used in per share calculation - basic on GAAP basis | 168,703 | | | 165,953 | | | 169,313 | | | 165,233 | |
+Effect of dilutive securities | 5,246 | | | 4,535 | | | 3,151 | | | 5,220 | |
+Shares used in per share calculation - diluted on non-GAAP basis | 173,949 | | | 170,488 | | | 172,464 | | | 170,453 | |
+| | | | | | | |
+
+
+
+Restructuring charges primarily consist of severance and related employee benefits, retention costs, and asset write-downs associated with the restructuring announced in May 2026. These charges are not reflective of underlying trends in our business.
+Stock-based compensation expense includes $3.9 million of non-cash charges related to accelerated vesting and award modifications for employees impacted by the restructuring announced in May 2026.
+
+
+Other non-recurring charges for the three and six months ended July 31, 2026 include a $3.5 million indirect tax benefit related to the final settlement of amounts associated with the formation of JiHu.
+
+
+Income tax adjustment for the three months and six months ended July 31, 2026 and 2025 primarily reflects an assumed provision for income taxes based on our long-term projected tax rate of 22%. Income tax adjustment for the three and six months ended July 31, 2026 also includes a $5.9 million benefit related to the final settlement of amounts associated with the formation of JiHu.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| | |
+|
+
+
+GitLab Inc.
+Reconciliation of GAAP Cash Flow from Operating Activities to Adjusted Free Cash Flow
+(in thousands)
+(unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Computation of adjusted free cash flow | | | | | | | |
+GAAP net cash provided by (used in) operating activities | $ | (3,092) | | | $ | 49,369 | | | $ | 146,105 | | | $ | 155,671 | |
+Less: Additions to property and equipment | (213) | | | (2,904) | | | (2,606) | | | (3,816) | |
+Add: Non-recurring payments related to the
+formation of JiHu | 14,036 | | | — | | | 14,036 | | | — | |
+Less: Income tax refunds related to BAPA | (981) | | | (12) | | | (1,058) | | | (1,305) | |
+Non-GAAP adjusted free cash flow | $ | 9,750 | | | $ | 46,453 | | | $ | 156,477 | | | $ | 150,550 | |
+
+
+
+
+
+
+
+| | |
+|
+
+
+Media Contact:
+Jenn Malleo
+Senior Director, Corporate Communications
+GitLab Inc.
+press@gitlab.com
+
+
+Investor Contact:
+Nic Edwards
+Investor Relations
+GitLab Inc.
+ir@gitlab.com

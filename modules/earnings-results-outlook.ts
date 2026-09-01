@@ -775,12 +775,16 @@ function getOutlookMetricValueLine(
   const needsWrappedRangeContinuation = /\b(?:between|range)\b/i.test(line) &&
     /(?:\band|\bto|[-–—])\s*$/.test(line.trim()) &&
     /^\s*(?:[$€£¥]|\(?-?\d)/.test(nextLine);
+  const needsTranslatedRangeContinuation = /\bbetween\b/i.test(line) &&
+    /^\s*\((?:US\s*\$|C\s*\$|€|£|¥|USD|CAD|EUR|GBP|JPY|CHF)\s*\d/i.test(nextLine) &&
+    /\band\b/i.test(nextLine);
   const needsNarrativeValueContinuation =
     /\b(?:expects?|expected|continues?\s+to\s+expect)\b/i.test(line) &&
     false === /[$€£¥]|\d+\.\d+|\d+\s*%/.test(line) &&
     /^\s*(?:in\s+the\s+range\s+of\s+|between\s+|approximately\s+)?(?:[$€£¥]|\(?-?\d+(?:\.\d+)?\s*%)/i.test(nextLine);
   return true === needsTableValueContinuation ||
       true === needsWrappedRangeContinuation ||
+      true === needsTranslatedRangeContinuation ||
       true === needsNarrativeValueContinuation
     ? `${line} ${nextLine}`
     : line;
@@ -844,6 +848,8 @@ function getOutlookPeriodLabel(
     if (false === hasParallelGaapNonGaapHeader &&
         4 < lineIndex - index &&
         false === isCompactGuidancePeriodHeader &&
+        false === isOutlookHeading(contextLine) &&
+        false === isBulletOutlookPeriodHeading(contextLine) &&
         (false === isLongRangeProseCaption || 6 < lineIndex - index)) {
       continue;
     }
@@ -892,7 +898,8 @@ function isStandaloneOutlookPeriodCaption(line: string): boolean {
     return false;
   }
 
-  return /^\s*\|\s*(?:third[\s–—-]+quarter|fiscal\s+year\s+20\d{2})\s*\|/i.test(line) ||
+  return true === isBulletOutlookPeriodHeading(line) ||
+    /^\s*\|\s*(?:third[\s–—-]+quarter|fiscal\s+year\s+20\d{2})\s*\|/i.test(line) ||
     true === isLongRangeOutlookPeriodCaption(line) ||
     /^\s*for\s+(?:fiscal\s+year\s+20\d{2}|the\s+(?:first|second|third|fourth)[\s–—-]+quarter\s+of\s+fiscal\s+20\d{2})\b[^:]{0,100}\bthe\s+company\s+(?:now\s+)?expects\s*:\s*$/i.test(line) ||
     /^\s*for\s+the\s+(?:(?:first|second|third|fourth)\s+quarter|full[\s–—-]+year)\b[^:]{0,40}\b(?:we|the\s+company)\s+expect\s*:\s*$/i.test(line) ||
@@ -904,6 +911,11 @@ function isStandaloneOutlookPeriodCaption(line: string): boolean {
     /^\s*(?:q[1-4](?:\s+(?:fy\s*)?(?:20)?\d{2})?|(?:first|second|third|fourth)[\s–—-]+quarter(?:\s+(?:of\s+)?(?:fiscal\s+year\s+)?20\d{2})?|(?:full[\s–—-]+year|fiscal(?:\s+year)?|fy)\s*(?:20\d{2}|\d{2}))(?:\s+(?:financial\s+)?(?:outlook|guidance))?(?:\s*[|:])*\s*$/i.test(line) ||
     /^\s*full[\s–—-]+year\s+fy\s*\d{2}\s*$/i.test(line) ||
     true === isOutlookHeading(line);
+}
+
+function isBulletOutlookPeriodHeading(line: string): boolean {
+  return /^\s*[•▪◦](?!\s)(?:q[1-4]|(?:first|second|third|fourth)[\s–—-]+quarter|full(?:[\s–—-]+year)?\s+fiscal)\b.*\b(?:outlook|guidance)\s*:?\s*$/i
+    .test(line);
 }
 
 function isLongRangeOutlookPeriodCaption(line: string): boolean {
@@ -1078,6 +1090,14 @@ function isNoisyOutlookLine(line: string, guidanceRangeColumns = false): boolean
     return true;
   }
 
+  // This historical management quote sits inside the outlook section, but its inventory
+  // reduction percentage is not the gross-margin guidance mentioned earlier in the quote.
+  if (/^\s*[“"]/.test(line) &&
+      /\bsaid\b.{0,120}\bchief\s+financial\s+officer\b/i.test(line) &&
+      /\binventory\s+is\s+down\b/i.test(line)) {
+    return true;
+  }
+
   const pipeCount = line.match(/\|/g)?.length ?? 0;
   // SEC inline-XBRL tables often render a two-column row with empty spacer cells:
   // "Adjusted EBITDA | | $181M to $191M | |". Count populated numeric cells rather
@@ -1133,6 +1153,9 @@ function extractOutlookValue(
       getPlusMinusOutlookValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit) ??
       ("eps" === valueType
         ? getOutlookRangeValue(valueText, valueType, documentCurrencyCode, sectionMoneyUnit)
+        : null) ??
+      ("text" === valueType
+        ? getExplicitCurrencyMoneyRangeValue(valueText, documentCurrencyCode)
         : null) ??
       getGrowthOutlookValue(valueText) ??
       ("text" === valueType &&
@@ -1481,6 +1504,13 @@ function getOutlookRangeValue(
       : null;
   }
 
+  if ("money" === valueType || "text" === valueType) {
+    const translatedRange = getExplicitCurrencyMoneyRangeValue(value, documentCurrencyCode);
+    if (null !== translatedRange) {
+      return translatedRange;
+    }
+  }
+
   for (const moneyRangeMatch of value.matchAll(moneyRangePattern)) {
     const firstRangeValue = moneyRangeMatch[1];
     const secondRangeValue = moneyRangeMatch[2];
@@ -1516,6 +1546,60 @@ function getOutlookRangeValue(
   }
 
   return null;
+}
+
+function getExplicitCurrencyMoneyRangeValue(
+  value: string,
+  documentCurrencyCode: string,
+): string | null {
+  const markerByCurrency = new Map<string, string>([
+    ["USD", String.raw`(?:US\s*\$|USD)`],
+    ["CAD", String.raw`(?:C\s*\$|CAD)`],
+    ["EUR", String.raw`(?:€|EUR)`],
+    ["GBP", String.raw`(?:£|GBP)`],
+    ["JPY", String.raw`(?:¥|JPY)`],
+    ["CHF", "CHF"],
+  ]);
+  const marker = markerByCurrency.get(documentCurrencyCode);
+  if (undefined === marker) {
+    return null;
+  }
+
+  const translatedValuePattern = new RegExp(
+    `${marker}\\s*(\\d+(?:,\\d{3})*(?:\\.\\d+)?)\\s*(trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\\b`,
+    "gi",
+  );
+  const translatedValues = [...value.matchAll(translatedValuePattern)];
+  const firstMatch = translatedValues[0];
+  const secondMatch = translatedValues[1];
+  if (undefined === firstMatch?.[1] ||
+      undefined === secondMatch?.[1] ||
+      undefined === firstMatch.index ||
+      undefined === secondMatch.index) {
+    return null;
+  }
+
+  const betweenTranslations = value.slice(
+    firstMatch.index + firstMatch[0].length,
+    secondMatch.index,
+  );
+  if (false === /\b(?:and|to|through)\b|[-–—]/i.test(betweenTranslations)) {
+    return null;
+  }
+
+  const firstValue = parseMoneyWithOptionalUnit(
+    `${firstMatch[1]} ${firstMatch[2] ?? secondMatch[2] ?? ""}`,
+    undefined,
+    documentCurrencyCode,
+  );
+  const secondValue = parseMoneyWithOptionalUnit(
+    `${secondMatch[1]} ${secondMatch[2] ?? firstMatch[2] ?? ""}`,
+    undefined,
+    documentCurrencyCode,
+  );
+  return null !== firstValue && null !== secondValue
+    ? `${formatMoneyCompact(firstValue.value, firstValue.currencyCode)} to ${formatMoneyCompact(secondValue.value, secondValue.currencyCode)}`
+    : null;
 }
 
 function getSingleOutlookValue(

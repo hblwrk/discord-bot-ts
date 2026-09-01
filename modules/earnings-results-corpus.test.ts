@@ -2045,6 +2045,192 @@ const filingCorpus: {
     source: "39911/000162828026059262/q22026eprexhibit991.htm",
     ticker: "gap",
   },
+  {
+    // The headline puts GAAP loss per share before non-GAAP income per share in the same
+    // sentence, and the $14.2 million material-rights figure is not quarterly revenue.
+    company: "Rubrik",
+    metrics: [
+      ["adjusted_eps", "$0.20"],
+      ["gaap_eps", "-$0.30"],
+      ["revenue", "$427.26M"],
+      ["net_income", "-$61.78M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$429M to $431M"],
+      ["FY2027 Revenue", "$1.685B to $1.693B"],
+      ["Q3 Adj EPS", "$0.07 to $0.09"],
+      ["FY2027 Adj EPS", "$0.47 to $0.53"],
+      ["FY2027 Free cash flow", "$323M to $333M"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1943896/000194389626000055/rubrikinc-991pressrelease7.htm",
+    ticker: "rbrk",
+  },
+  {
+    company: "Science Applications International Corporation",
+    metrics: [
+      ["adjusted_eps", "$3.01"],
+      ["gaap_eps", "$2.38"],
+      ["revenue", "$1.88B"],
+      ["net_income", "$102M"],
+    ],
+    outlook: [["Revenue", "$7.2B to $7.3B"]],
+    quarterLabel: "Q2 2027",
+    source: "1571123/000157112326000131/saic08312026ex991earningsr.htm",
+    ticker: "saic",
+  },
+  {
+    // The release presents the prior-year loss first in prose and more than forty lines
+    // separate the statement header from its current-period column. Its zero EPS is stated
+    // only per ordinary share, not per the Nasdaq-listed ADS.
+    company: "BioLineRx",
+    metrics: [
+      ["revenue", "$300K"],
+      ["net_income", "-$4.34M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1498403/000117891326004331/exhibit_1.htm",
+    ticker: "blrx",
+  },
+  {
+    company: "Cango",
+    metrics: [
+      ["revenue", "$50.8M"],
+      ["net_income", "-$81.6M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1725123/000149315226040816/ex99-1.htm",
+    ticker: "cang",
+  },
+  {
+    company: "Medtronic",
+    metrics: [
+      ["adjusted_eps", "$1.45"],
+      ["gaap_eps", "$1.14"],
+      ["revenue", "$9.8B"],
+      ["net_income", "$1.47B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q1 2027",
+    source: "1613103/000162828026059697/exhibit991-fy27q1earningsr.htm",
+    ticker: "mdt",
+  },
+  {
+    // The current statement column contains a decimal zero for EPS and an em dash for net
+    // income; the $0.08 loss and $16 million loss are prior-year comparatives.
+    company: "MiniMed Group",
+    metrics: [
+      ["gaap_eps", "$0.00"],
+      ["revenue", "$843M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q1 2027",
+    source: "2062583/000162828026059699/exhibit991-fy27q1earningsr.htm",
+    ticker: "mmed",
+  },
+  {
+    // Guidance states the RMB range first and wraps its explicit US-dollar translations
+    // onto the next line. The translations are the figures relevant to the US-listed ADS.
+    company: "NIO",
+    metrics: [
+      ["gaap_eps", "-$0.04"],
+      ["revenue", "$4.74B"],
+      ["net_income", "-$77.82M"],
+    ],
+    outlook: [["Revenue", "$4.906B to $5.019B"]],
+    quarterLabel: "Q2 2026",
+    source: "1736541/000110465926104110/tm2624535d3_ex99-1.htm",
+    ticker: "nio",
+  },
+  {
+    company: "Yext",
+    metrics: [
+      ["adjusted_eps", "$0.21"],
+      ["gaap_eps", "$0.13"],
+      ["revenue", "$111.1M"],
+      ["net_income", "$13.15M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2027",
+    source: "1614178/000162828026059706/ex991q2fy27earningsrelease.htm",
+    ticker: "yext",
+  },
+  {
+    company: "Credo Technology Group Holding",
+    metrics: [
+      ["adjusted_eps", "$1.20"],
+      ["gaap_eps", "$0.67"],
+      ["revenue", "$479M"],
+      ["net_income", "$129.43M"],
+    ],
+    outlook: [
+      ["Revenue", "$525M to $535M"],
+      ["Gross margin", "62.9% to 64.9%"],
+      ["Operating expenses", "$199M to $204M"],
+    ],
+    quarterLabel: "Q1 2027",
+    source: "1807794/000162828026059795/credoq12027ex-991.htm",
+    ticker: "crdo",
+  },
+  {
+    company: "MongoDB",
+    metrics: [
+      ["adjusted_eps", "$1.90"],
+      ["gaap_eps", "$0.50"],
+      ["revenue", "$771.8M"],
+      ["net_income", "$40.9M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2027",
+    source: "1441816/000162828026059794/mdb-073126xex991xrelease.htm",
+    ticker: "mdb",
+  },
+  {
+    company: "Dell Technologies",
+    metrics: [
+      ["adjusted_eps", "$7.04"],
+      ["gaap_eps", "$6.34"],
+      ["revenue", "$47B"],
+      ["net_income", "$4.13B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2027",
+    source: "1571996/000157199626000039/exhibit991earnings8kq2fy27.htm",
+    ticker: "dell",
+  },
+  {
+    // The first table is a thirteen-week quarter and the second is a twenty-six-week YTD
+    // period. A management quote's 10% inventory reduction is not gross-margin guidance.
+    company: "Sportsman's Warehouse Holdings",
+    metrics: [
+      ["adjusted_eps", "-$0.08"],
+      ["gaap_eps", "-$0.11"],
+      ["revenue", "$295.58M"],
+      ["net_income", "-$4.43M"],
+    ],
+    outlook: [
+      ["FY2026 Adj EBITDA", "$30M to $36M"],
+      ["FY2026 Capex", "$20M to $25M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1132105/000119312526378410/spwh-ex99_pr120722.htm",
+    ticker: "spwh",
+  },
+  {
+    company: "GitLab",
+    metrics: [
+      ["adjusted_eps", "$0.24"],
+      ["gaap_eps", "-$0.22"],
+      ["revenue", "$286.3M"],
+      ["net_income", "-$36.8M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2027",
+    source: "1653482/000162828026059820/gitlab-ex99120260731fy27.htm",
+    ticker: "gtlb",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -2065,6 +2251,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(126);
+    expect(filingCorpus).toHaveLength(139);
   });
 });
