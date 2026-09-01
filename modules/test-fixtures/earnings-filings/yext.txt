@@ -1,0 +1,416 @@
+EX-99.1
+2
+ex991q2fy27earningsrelease.htm
+EX-99.1
+
+
+
+
+Document
+EXHIBIT 99.1
+
+Yext Announces Second Quarter Fiscal 2027 Results
+–Revenue of $111.1 million
+–Net Income Per Share, basic, of $0.13; non-GAAP Net Income Per Share of $0.21
+–Adjusted EBITDA of $34.0 million; Adjusted EBITDA margin of 31%
+–ARR of $440.8 million
+–Completed acquisition of GoShine, expanding the Yext platform to brand-level visibility optimization for AI search
+–Released working prototype of Corvo AI (askcorvo.com) in August, a conversational platform that brings Yext's marketing agents to small business owners
+
+
+
+
+NEW YORK -- (BUSINESS WIRE) — September 1, 2026 — Yext, Inc. (NYSE: YEXT), the enterprise agentic marketing platform, today announced its results for the three months ended July 31, 2026, or Yext's second quarter, of fiscal year 2027.
+
+
+For more detailed information on Yext's operating and financial results for the three months ended July 31, 2026, please refer to the Letter to Shareholders, which can be found on the Yext Investor Relations website at https://investors.yext.com.
+“Growth in our enterprise ARR customer cohort accelerated again in the second quarter, driven by improvements in both retention and expansion for that cohort, and we are seeing signs that we expect that momentum carry into the third quarter," said Michael Walrath, Yext Chairman and CEO. "The future of discovery is agentic, and that is a tailwind for Yext. AI answers reward brand information that is accurate, consistent, and trusted wherever it appears. Understanding that is the easy part. Acting on it across the internet in near real-time is the hard part, and the platform we have developed over the past fifteen years is what lets our customers and their agents do exactly that. As we build more AI into our own platform, and expand our API and MCP offering, we are making it easier for customers to see and experience the power of our full suite of solutions. Importantly, as we advance our innovation agenda we are simultaneously achieving record Adjusted EBITDA and delivering significant capital returns to shareholders. We believe the opportunity for Yext has never been greater.”
+
+
+
+Readers are encouraged to review the tables labeled "Reconciliation of GAAP to Non-GAAP Financial Measures" at the end of this release.
+About Yext
+Yext is the enterprise agentic marketing platform. Built on the world's most comprehensive structured data platform for local businesses, Yext gives brands and their partners the visibility intelligence to win every moment of discovery — across AI and traditional search. Yext's API-first architecture connects structured data to APIs, MCP servers, and generative interfaces, so partners and developers can build purpose-built experiences on the same infrastructure powering Yext's own products. Thousands of brands and digital marketing partners in financial services, healthcare, retail, hospitality, and food rely on Yext to manage, measure, and optimize visibility at scale. For more information, visit yext.com.
+
+
+Statement Regarding Forward-Looking Statements
+This release and the related shareholder letter includes "forward-looking statements" including, without limitation, statements regarding Yext's expectations, beliefs, intentions, or strategies regarding the future, Yext's expectations regarding its capital allocation strategy, including Yext's expected financial performance, and statements regarding expectations regarding the growth of the company, Yext's market opportunity, product roadmap, cost saving and efficiency actions, and Yext's industry, including search fragmentation and AI trends. You can identify forward-looking statements by the use of terminology such as "believe", "expect", "will", "should", "could", "estimate", "anticipate" or similar forward-looking terms. These statements are based upon current beliefs and are subject to many risks and uncertainties that could cause actual results to differ materially from these statements. The following factors, among others, could cause or contribute to such differences: Yext's recently completed self-tender offer and the effects thereof, including the effects of the increases in costs of capital relative to Yext's share price; Yext's ability to renew and expand subscriptions with existing customers, especially enterprise customers,
+1
+
+
+EXHIBIT 99.1
+
+and attract new customers generally; Yext's ability to successfully expand and compete in new geographies and industry verticals; the quality of Yext's sales pipeline and ability to convert leads; Yext's ability to expand its service and application provider network; Yext's approach to managing dilution, stock-based compensation, and free cash flow; Yext's ability to develop or acquire new product and platform offerings to expand its market opportunity; Yext's ability to release new products and updates that are adopted by its customers; weakened or changing global economic conditions, downturns, or uncertainty, including higher inflation, higher interest rates, and fluctuations or volatility in capital markets or foreign currency exchange rates; and the accuracy of the assumptions and estimates underlying Yext's financial projections. Moreover, Yext operates in a very competitive and rapidly changing environment. New risks and uncertainties emerge from time to time, and it is not possible for Yext to predict all risks and uncertainties that could have an impact on the forward-looking statements contained in this release. Yext cannot assure you that the results, events and circumstances reflected in the forward-looking statements will be achieved or occur, and actual results, events or circumstances could differ materially from those described in the forward-looking statements. All written and oral forward-looking statements attributable to Yext, or persons acting on Yext's behalf, are expressly qualified in their entirety by these cautionary statements as well as other cautionary statements that are made from time to time in Yext's SEC filings and public communications, including, without limitation, in the sections titled, “Special Note Regarding Forward Looking Statements” and “Risk Factors” in Yext's most recent Annual Report on Form 10-K and Quarterly Report on Form 10-Q, which are available at http://investors.yext.com and on the SEC's website at https://www.sec.gov. All forward-looking statements are based on information available to Yext on the date hereof, and Yext assumes no obligation to update or revise any forward-looking statements, whether as a result of new information, future events, or otherwise, except as required by law.
+
+
+Non-GAAP Measurements
+In addition to disclosing financial measures prepared in accordance with U.S. generally accepted accounting principles ("GAAP"), this release and the accompanying tables include non-GAAP net income (loss), non-GAAP net income (loss) per share, and non-GAAP net income (loss) as a percentage of revenue, which are referred to as non-GAAP financial measures.
+These non-GAAP financial measures are not calculated in accordance with GAAP as they have been adjusted to exclude the effects of stock-based compensation expense, acquisition-related costs, amortization of acquired intangibles, asset impairments, strategic transaction costs, and payroll tax contingencies. Acquisition-related costs include transaction and related costs, subsequent fair value movements in contingent consideration, and compensation arrangements. Asset impairments include charges associated with subleasing floors of our corporate offices and capitalized implementation costs of cloud computing arrangements. Strategic transaction costs relate to third-party costs incurred in connection with Michael Walrath’s, Yext’s Chief Executive Officer and Chairman on the Board of Directors, non-binding proposal to acquire all outstanding shares. Payroll tax contingencies are related to a state payroll withholding tax audit that are not expected to recur. Non-GAAP net income (loss) as a percentage of revenue is calculated by dividing the applicable non-GAAP financial measure by revenue. Non-GAAP net income (loss) per share is defined as non-GAAP net income (loss) on a per share basis. We define non-GAAP net income (loss) per share, basic, as non-GAAP net income (loss) divided by weighted average shares outstanding and non-GAAP net income (loss) per share, diluted, as non-GAAP net income (loss) divided by weighted average diluted shares outstanding, which includes the potentially dilutive effect of shares using the treasury stock method or the if-converted method depending on the arrangement.
+We utilize a projected tax rate of 25.5% in our computation of the non-GAAP income tax provision for fiscal 2027. Our estimated tax rate on non-GAAP income is determined annually and may be adjusted during the year to take into account events or trends that we believe materially impact the estimated annual rate including, but not limited to, significant changes resulting from tax legislation, material changes in the geographic mix of revenue and expenses and other significant events. Our estimated tax rate on non-GAAP income may differ from our GAAP tax rate and from our actual tax liabilities.
+We believe these non-GAAP financial measures provide investors and other users of our financial information consistency and comparability with our past financial performance and facilitate period-to-period comparisons of our results of operations. With respect to non-GAAP net income (loss) as a percentage of revenue, we believe this
+2
+
+
+EXHIBIT 99.1
+
+non-GAAP financial measure is useful in evaluating our profitability relative to the amount of revenue generated, excluding the impact of stock-based compensation expense, acquisition-related costs, amortization of acquired intangibles, asset impairments, strategic transaction costs, and payroll tax contingencies. We also believe non-GAAP financial measures are useful in evaluating our operating performance compared to that of other companies in our industry, as these metrics eliminate the effects of the aforementioned items, which may vary for reasons unrelated to overall operating performance.
+We also discuss Adjusted EBITDA and Adjusted EBITDA margin, non-GAAP financial measures that we believe offer a useful view of overall operations used to assess the performance of core business operations and for planning purposes. We define Adjusted EBITDA as GAAP net income (loss) before (1) interest income (expense), net, (2) (provision for) benefit from income taxes, (3) depreciation and amortization, (4) other income (expense), net, (5) stock-based compensation expense, (6) acquisition-related costs, (7) asset impairments, (8) strategic transaction costs, and (9) payroll tax contingencies. The most directly comparable GAAP financial measure to Adjusted EBITDA is GAAP net income (loss). Users should consider the limitations of using Adjusted EBITDA, including the fact that this measure does not provide a complete measure of our operating performance. Adjusted EBITDA is not intended to purport to be an alternate to GAAP net income (loss) as a measure of operating performance. Adjusted EBITDA margin is calculated by dividing Adjusted EBITDA by revenue.
+We use these non-GAAP financial measures in conjunction with traditional GAAP measures as part of our overall assessment of our performance, including the preparation of our annual operating budget and quarterly forecasts, and to evaluate the effectiveness of our business strategies. Our definitions may differ from the definitions used by other companies and therefore comparability may be limited. In addition, other companies may not publish these or similar metrics. Thus, our non-GAAP financial measures should be considered in addition to, not as a substitute for, nor superior to or in isolation from, measures prepared in accordance with GAAP.
+These non-GAAP financial measures may be limited in their usefulness because they do not present the full economic effect of our use of stock-based compensation, certain acquisition-related costs, asset impairments, strategic transaction costs, and payroll tax contingencies. We compensate for these limitations by providing investors and other users of our financial information a reconciliation of the non-GAAP financial measure to the most closely related GAAP financial measure. We encourage investors and others to review our financial information in its entirety, not to rely on any single financial measure and to view non-GAAP net income (loss) and non-GAAP net income (loss) per share in conjunction with GAAP net income (loss) and net income (loss) per share.
+Operating Metrics
+This release also includes certain operating metrics that we believe are useful in providing additional information in assessing the overall performance of our business.
+ARR is defined as the annualized recurring amount of all contracts executed as of the last day of the reporting period. The recurring amount of a contract is determined based upon the terms of a contract and is calculated by dividing the amount of a contract by the term of the contract and then annualizing such amount. The calculation assumes no subsequent changes to the existing subscription, and where relevant, includes the annualized contractual minimum commitment and amounts related to usage above the contractual minimum commitment. We calculate usage by annualizing monthly amounts in excess of contractual minimum commitments in the current month. Contracts include portions of professional services contracts that are recurring in nature.
+ARR is independent of historical revenue, unearned revenue, remaining performance obligations or any other GAAP financial measure over any period. It should be considered in addition to, not as a substitute for, nor superior to or in isolation from, these measures and other measures prepared in accordance with GAAP. We believe ARR-based metrics provide insight into the performance of our recurring revenue business model while mitigating fluctuations in billing and contract terms.
+Dollar-based net retention rate is a metric we use to assess our ability to retain our customers and expand the ARR they generate for us. We calculate dollar-based net retention rate by first determining the ARR generated 12 months prior to the end of the current period for a cohort of customers who had active contracts at that time. We
+3
+
+
+EXHIBIT 99.1
+
+then calculate ARR from the same cohort of customers at the end of the current period, which includes customer expansion, contraction and churn. The current period ARR is then divided by the prior period ARR to arrive at our dollar-based net retention rate. Any ARR obtained through merger and acquisition transactions does not affect the dollar-based net retention rate until one year from the date on which the transaction closed. The cohorts of customers that we present dollar-based net retention rate for include customers with ARR of less than $50,000, customers with ARR of $50,000 or more, and total customers. The cohort designation is based on the designation as of the 12 months prior to the end of the current period and does not reflect changes in cohort designation that may occur through the current period.
+We also present dollar-based gross retention rate, which is a metric we use to assess our ability to retain our customers. We calculate dollar-based gross retention rate by first determining the ARR generated 12 months prior to the end of the current period for a cohort of customers who had active contracts at that time. We then calculate ARR from the same cohort of customers at the end of the current period, which includes customer contraction and churn, and excludes customer expansion. The current period ARR is then divided by the prior period ARR to arrive at our dollar-based gross retention rate. Any ARR obtained through merger and acquisition transactions does not affect the dollar-based gross retention rate until one year from the date on which the transaction closed. The cohort of customers that we present dollar-based gross retention rate for include customers with ARR of less than $50,000, customers with ARR of $50,000 or more, and total customers. The cohort designation is based on the designation as of the 12 months prior to the end of the current period and does not reflect changes in cohort designation that may occur through the current period.
+For Further Information Contact:
+Investor Relations:
+IR@yext.com
+
+
+Public Relations:
+PR@yext.com
+4
+
+
+
+EXHIBIT 99.1
+
+YEXT, INC.
+Consolidated Balance Sheets
+(In thousands, except share and per share data)
+(Unaudited) | | | | | | | | | | | |
+| July 31, 2026 | | January 31, 2026 |
+Assets | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 86,828 | | | $ | 154,123 | |
+| | | |
+Restricted cash, current | — | | | 1,500 | |
+Accounts receivable, net of allowances of $2,159 and $2,345, respectively
+| 68,797 | | | 120,637 | |
+Prepaid expenses and other current assets | 26,071 | | | 21,253 | |
+Costs to obtain revenue contracts, current | 16,917 | | | 20,291 | |
+Total current assets | 198,613 | | | 317,804 | |
+Property and equipment, net | 25,992 | | | 30,088 | |
+Operating lease right-of-use assets | 43,987 | | | 50,908 | |
+Restricted cash, non-current | 13,541 | | | 13,551 | |
+Costs to obtain revenue contracts, non-current | 9,343 | | | 10,663 | |
+Goodwill | 111,235 | | | 110,801 | |
+Intangible assets, net | 77,647 | | | 85,133 | |
+Other long term assets | 3,589 | | | 2,828 | |
+Total assets | $ | 483,947 | | | $ | 621,776 | |
+Liabilities and stockholders’ equity | | | |
+Current liabilities: | | | |
+Accounts payable, accrued expenses and other current liabilities | $ | 34,614 | | | $ | 52,528 | |
+Unearned revenue, current | 179,594 | | | 217,465 | |
+Operating lease liabilities, current | 18,950 | | | 18,590 | |
+Contingent consideration, current | 6,800 | | | 8,200 | |
+Total current liabilities | 239,958 | | | 296,783 | |
+Operating lease liabilities, non-current | 55,020 | | | 61,915 | |
+Long term debt, net | 147,704 | | | 97,959 | |
+Other long term liabilities | 5,603 | | | 5,698 | |
+Total liabilities | 448,285 | | | 462,355 | |
+Commitments and contingencies
+| | | |
+Stockholders’ equity: | | | |
+Preferred stock, $0.001 par value per share; 50,000,000 shares authorized at July 31, 2026 and January 31, 2026; zero shares issued and outstanding at July 31, 2026 and January 31, 2026
+| — | | | — | |
+Common stock, $0.001 par value per share; 500,000,000 shares authorized at July 31, 2026 and January 31, 2026; 136,537,014 and 158,368,658 shares issued at July 31, 2026 and January 31, 2026, respectively; 99,283,687 and 122,933,027 shares outstanding at July 31, 2026 and January 31, 2026, respectively
+| 137 | | | 158 | |
+Additional paid-in capital | 898,016 | | | 1,027,900 | |
+Accumulated other comprehensive loss | (2,385) | | | (1,569) | |
+Accumulated deficit | (653,475) | | | (669,249) | |
+Treasury stock, at cost | (206,631) | | | (197,819) | |
+Total stockholders’ equity | 35,662 | | | 159,421 | |
+Total liabilities and stockholders’ equity | $ | 483,947 | | | $ | 621,776 | |
+
+
+
+5
+
+
+
+EXHIBIT 99.1
+
+YEXT, INC.
+Consolidated Statements of Operations and Comprehensive Income
+(In thousands, except share and per share data)
+(Unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended July 31, | | Six months ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Revenue | $ | 111,103 | | | $ | 113,094 | | | $ | 219,019 | | | $ | 222,577 | |
+Cost of revenue | 27,267 | | | 28,060 | | | 56,462 | | | 55,165 | |
+Gross profit | 83,836 | | | 85,034 | | | 162,557 | | | 167,412 | |
+Operating expenses: | | | | | | | |
+Sales and marketing | 26,309 | | | 32,069 | | | 55,706 | | | 68,278 | |
+Research and development | 19,373 | | | 23,352 | | | 40,854 | | | 45,248 | |
+General and administrative | 20,592 | | | (61) | | | 42,854 | | | 23,094 | |
+Total operating expenses | 66,274 | | | 55,360 | | | 139,414 | | | 136,620 | |
+Income from operations | 17,562 | | | 29,674 | | | 23,143 | | | 30,792 | |
+Interest income | 437 | | | 1,179 | | | 1,180 | | | 1,811 | |
+Interest expense | (3,565) | | | (2,277) | | | (6,667) | | | (2,919) | |
+Other expense, net
+| (230) | | | (45) | | | (395) | | | (400) | |
+Income from operations before income taxes | 14,204 | | | 28,531 | | | 17,261 | | | 29,284 | |
+Provision for income taxes | (1,055) | | | (1,780) | | | (1,487) | | | (1,763) | |
+Net income | $ | 13,149 | | | $ | 26,751 | | | $ | 15,774 | | | $ | 27,521 | |
+| | | | | | | |
+Net income per share attributable to common stockholders, basic | $ | 0.13 | | | $ | 0.22 | | | $ | 0.15 | | | $ | 0.22 | |
+Net income per share attributable to common stockholders, diluted | $ | 0.13 | | | $ | 0.03 | | | $ | 0.15 | | | $ | 0.05 | |
+Weighted-average number of shares used in computing net income per share attributable to common stockholders, basic | 100,094,307 | | | 122,854,629 | | | 105,813,505 | | | 124,229,932 | |
+Weighted-average number of shares used in computing net income per share attributable to common stockholders, diluted | 103,110,326 | | | 130,800,808 | | | 107,165,224 | | | 131,013,284 | |
+| | | | | | | |
+Other comprehensive (loss) income: | | | | | | | |
+Foreign currency translation adjustment | $ | (374) | | | $ | 21 | | | $ | (825) | | | $ | 3,304 | |
+Unrealized (loss) gain on marketable securities, net | — | | | (9) | | | 9 | | | (9) | |
+Total comprehensive income | $ | 12,775 | | | $ | 26,763 | | | $ | 14,958 | | | $ | 30,816 | |
+
+
+
+6
+
+
+
+EXHIBIT 99.1
+
+YEXT, INC.
+Consolidated Statements of Cash Flows
+(In thousands)
+(Unaudited) | | | | | | | | | | | | | |
+| Six months ended July 31, | | |
+| 2026 | | 2025 | | |
+Operating activities: | | | | | |
+Net income | $ | 15,774 | | | $ | 27,521 | | | |
+Adjustments to reconcile net income to net cash provided by operating activities: | | | | | |
+Depreciation and amortization expense | 12,420 | | | 13,643 | | | |
+Impairment of long-lived assets
+| 4,689 | | | — | | | |
+Bad debt expense | 1,163 | | | 953 | | | |
+Stock-based compensation expense | 19,995 | | | 25,621 | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+Amortization of operating lease right-of-use assets | 4,546 | | | 4,683 | | | |
+Adjustments to contingent consideration
+| 10 | | | (21,600) | | | |
+Other, net | 426 | | | 664 | | | |
+Changes in operating assets and liabilities, net of assets acquired and liabilities assumed in business acquisitions: | | | | | |
+Accounts receivable | 50,202 | | | 47,282 | | | |
+Prepaid expenses and other current assets | (5,139) | | | (2,017) | | | |
+Costs to obtain revenue contracts | 4,531 | | | 7,004 | | | |
+Other long term assets | (807) | | | 6,847 | | | |
+Accounts payable, accrued expenses and other current liabilities | (17,712) | | | 65 | | | |
+Unearned revenue | (37,260) | | | (46,452) | | | |
+Operating lease liabilities | (7,380) | | | (7,022) | | | |
+Other long term liabilities | (81) | | | (11,060) | | | |
+Net cash provided by operating activities | 45,377 | | | 46,132 | | | |
+Investing activities: | | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+Capital expenditures | (688) | | | (1,135) | | | |
+| | | | | |
+Cash paid in acquisitions, net of cash acquired
+| (1,068) | | | (18,801) | | | |
+Net cash used in investing activities | (1,756) | | | (19,936) | | | |
+Financing activities: | | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+Proceeds from exercise of stock options | — | | | 439 | | | |
+| | | | | |
+Proceeds from debt issuance | 49,500 | | | 99,000 | | | |
+Repurchase of common stock | (150,906) | | | (45,380) | | | |
+| | | | | |
+Payments for taxes related to net share settlement of stock-based compensation awards | (7,805) | | | (14,002) | | | |
+Payments of deferred financing costs | (298) | | | (877) | | | |
+Deferred acquisition payments | (2,905) | | | — | | | |
+Proceeds, net from employee stock purchase plan withholdings | 1,118 | | | 1,568 | | | |
+Net cash (used in) provided by financing activities | (111,296) | | | 40,748 | | | |
+Effect of exchange rate changes on cash, cash equivalents and restricted cash | (1,130) | | | 3,940 | | | |
+Net (decrease) increase in cash, cash equivalents and restricted cash | (68,805) | | | 70,884 | | | |
+Cash, cash equivalents and restricted cash at beginning of period | 169,174 | | | 138,654 | | | |
+Cash, cash equivalents and restricted cash at end of period | $ | 100,369 | | | $ | 209,538 | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+| | | | | |
+Supplemental reconciliation of cash, cash equivalents and restricted cash reported within the consolidated balance sheets:
+| | | | | | | | | | | |
+| Six months ended July 31, |
+(in thousands) | 2026 | | 2025 |
+Cash and cash equivalents | $ | 86,828 | | | $ | 178,761 | |
+Restricted cash, current and non-current | 13,541 | | | 30,777 | |
+Total cash, cash equivalents and restricted cash | $ | 100,369 | | | $ | 209,538 | |
+
+7
+
+
+
+EXHIBIT 99.1
+
+YEXT, INC.
+Reconciliation of GAAP to Non-GAAP Financial Measures
+(In thousands)
+(Unaudited)
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended July 31, | | Six months ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+GAAP net income to Adjusted EBITDA: | | | | | | | |
+GAAP net income | $ | 13,149 | | | $ | 26,751 | | | $ | 15,774 | | | $ | 27,521 | |
+Interest expense, net | 3,128 | | | 1,098 | | | 5,487 | | | 1,108 | |
+Provision for income taxes | 1,055 | | | 1,780 | | | 1,487 | | | 1,763 | |
+Depreciation and amortization | 6,210 | | | 6,788 | | | 12,420 | | | 13,643 | |
+Other expense, net | 230 | | | 45 | | | 395 | | | 400 | |
+Stock-based compensation expense | 9,961 | | | 12,962 | | | 19,995 | | | 25,621 | |
+Acquisition-related costs | 332 | | | (23,055) | | | 752 | | | (19,007) | |
+Asset impairments
+| — | | | — | | | 4,689 | | | — | |
+Strategic transaction costs
+| (48) | | | — | | | 53 | | | — | |
+Payroll tax contingencies
+| — | | | — | | | (98) | | | — | |
+Adjusted EBITDA | $ | 34,017 | | | $ | 26,369 | | | $ | 60,954 | | | $ | 51,049 | |
+| | | | | | | |
+GAAP net income as a percentage of revenue | 11.8 | % | | 23.7 | % | | 7.2 | % | | 12.4 | % |
+Adjusted EBITDA margin | 30.6 | % | | 23.3 | % | | 27.8 | % | | 22.9 | % |
+
+
+
+
+
+
+Note: Numbers rounded for presentation purposes and may not sum.
+8
+
+
+
+EXHIBIT 99.1
+
+YEXT, INC.
+Reconciliation of GAAP to Non-GAAP Financial Measures
+(In thousands, except share and per share data)
+(Unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended July 31, | | Six months ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+GAAP net income | $ | 13,149 | | | $ | 26,751 | | | $ | 15,774 | | | $ | 27,521 | |
+Plus: Stock-based compensation expense | 9,961 | | | 12,962 | | | 19,995 | | | 25,621 | |
+Plus (Less): Acquisition-related costs | 332 | | | (23,055) | | | 752 | | | (19,007) | |
+Plus: Amortization of acquired intangibles | 4,064 | | | 4,033 | | | 8,096 | | | 8,174 | |
+Less: Tax adjustment
+| (6,218) | | | (4,382) | | | (11,455) | | | (9,475) | |
+Plus: Asset impairments | — | | | — | | | 4,689 | | | — | |
+(Less) Plus: Strategic transaction costs | (48) | | | — | | | 53 | | | — | |
+Less: Payroll tax contingencies | — | | | — | | | (98) | | | — | |
+Non-GAAP net income | $ | 21,240 | | | $ | 16,309 | | | $ | 37,806 | | | $ | 32,834 | |
+GAAP net income as a percentage of revenue | 11.8 | % | | 23.7 | % | | 7.2 | % | | 12.4 | % |
+Non-GAAP net income as a percentage of revenue | 19.1 | % | | 14.4 | % | | 17.3 | % | | 14.8 | % |
+| | | | | | | |
+GAAP net income per share attributable to common stockholders, basic | $ | 0.13 | | | $ | 0.22 | | | $ | 0.15 | | | $ | 0.22 | |
+Non-GAAP net income per share attributable to common stockholders, basic | $ | 0.21 | | | $ | 0.13 | | | $ | 0.36 | | | $ | 0.26 | |
+| | | | | | | |
+GAAP net income per share attributable to common stockholders, diluted | $ | 0.13 | | | $ | 0.03 | | | $ | 0.15 | | | $ | 0.05 | |
+Non-GAAP net income per share attributable to common stockholders, diluted | $ | 0.21 | | | $ | 0.12 | | | $ | 0.35 | | | $ | 0.25 | |
+| | | | | | | |
+Weighted-average number of shares used in computing GAAP net income per share attributable to common stockholders | | | | | | | |
+Basic | 100,094,307 | | | 122,854,629 | | | 105,813,505 | | | 124,229,932 | |
+Diluted | 103,110,326 | | | 130,800,808 | | | 107,165,224 | | | 131,013,284 | |
+Weighted-average number of shares used in computing non-GAAP net income per share attributable to common stockholders | | | | | | | |
+Basic | 100,094,307 | | | 122,854,629 | | | 105,813,505 | | | 124,229,932 | |
+Diluted | 103,110,326 | | | 130,800,808 | | | 108,606,382 | | | 132,104,280 | |
+
+
+
+For fiscal year 2027 we utilize a projected tax rate of 25.5% in our computation of the non-GAAP income tax provision.
+
+Note: Numbers rounded for presentation purposes and may not sum.
+9
+
+
+
+EXHIBIT 99.1
+
+YEXT, INC.
+Supplemental Information
+(In thousands)
+(Unaudited)
+The following tables provide our ARR for the periods presented:
+| | | | | | | | | | | | | | | | | | | | | | | |
+| July 31, | | Variance |
+Annual Recurring Revenue | 2026 | | 2025 | | Dollars | | Percent |
+Customers with less than $50,000
+| $ | 34,935 | | | $ | 45,038 | | | $ | (10,103) | | | (22 | %) |
+Customers with $50,000 or more
+| 405,880 | | | 399,324 | | | 6,556 | | | 2 | % |
+Total ARR
+| $ | 440,815 | | | $ | 444,362 | | | $ | (3,547) | | | (1 | %) |
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | | | | |
+| Jul. 31, 2026 | Apr. 30, 2026 | Jan. 31, 2026 | Oct. 31, 2025 | Jul. 31, 2025 | | | | | | | | |
+Annual Recurring Revenue Trend | | | | | | | | | | | | | |
+Customers with less than $50,000
+| $ | 34,935 | | $ | 37,690 | | $ | 40,622 | | $ | 43,212 | | $ | 45,038 | | | | | | | | | |
+Customers with $50,000 or more
+| 405,880 | | 403,111 | | 403,633 | | 401,148 | | 399,324 | | | | | | | | | |
+Total ARR
+| $ | 440,815 | | $ | 440,801 | | $ | 444,255 | | $ | 444,360 | | $ | 444,362 | | | | | | | | | |
+
+
+
+The following table provides our dollar-based net retention rate for the periods presented:
+| | | | | | | | | | | | | | | | | | |
+| Jul. 31, 2026 | Apr. 30, 2026 | Jan. 31, 2026 | Oct. 31, 2025 | Jul. 31, 2025 | |
+Dollar-Based Net Retention Rate
+| | | | | | |
+Customers with less than $50,000
+| 79% | 86% | 86% | 87% | 91% | |
+Customers with $50,000 or more
+| 98% | 97% | 99% | 98% | 96% | |
+Total Customers
+| 96% | 95% | 97% | 96% | 95% | |
+
+
+
+The following table provides our dollar-based gross retention rate for the periods presented:
+| | | | | | | | | | | | | | | | | |
+| Jul. 31, 2026 | Apr. 30, 2026 | Jan. 31, 2026 | Oct. 31, 2025 | Jul. 31, 2025 |
+Dollar-Based Gross Retention Rate
+| | | | | |
+Customers with less than $50,000
+| 69% | 71% | 71% | 77% | 78% |
+Customers with $50,000 or more
+| 90% | 89% | 89% | 90% | 89% |
+Total Customers | 88% | 88% | 88% | 88% | 88% |
+
+
+Note: Numbers rounded for presentation purposes and may not sum.
+
+
+
+
+
+
+10

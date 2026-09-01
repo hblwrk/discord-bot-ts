@@ -87,7 +87,8 @@ function dropOrdinaryShareEpsForAdsIssuer(
 ): EarningsResultMetric[] {
   const hasAdsEquivalence = lines.some(line =>
     /\bequivalent\s+to\s+(?:about\s+)?[\d,]+\s+ADSs?\b/i.test(line) ||
-    /\bone\s+ADS\s+(?:is\s+equivalent\s+to|represents)\s+[\d,]+\s+ordinary\s+shares?\b/i.test(line));
+    /\bone\s+ADS\s+(?:is\s+equivalent\s+to|represents)\s+[\d,]+\s+ordinary\s+shares?\b/i.test(line) ||
+    /\b(?:listing\s+of\s+(?:its\s+)?|listed\s+or\s+traded\s+)(?:the\s+)?ADSs?\s+(?:on|in)\s+(?:the\s+)?Nasdaq\b/i.test(line));
   if (false === hasAdsEquivalence) {
     return metrics;
   }
@@ -321,6 +322,11 @@ function extractMetric(
     if ("net_income" === definition.key && true === isPerShareOnlyNetIncomeLine(metricLine)) {
       continue;
     }
+    if ("net_income" === definition.key &&
+        /\bnet\s+income(?:\s+\(loss\))?(?:\s+attributable\s+to\s+the\s+company)?\s*\|\s*\$\s*\|\s*—\s*\|/i
+          .test(metricLine)) {
+      continue;
+    }
 
     // Restructuring and other adjustment commentary often translates a charge into its
     // per-share impact. That amount is neither GAAP nor adjusted EPS, even when the phrase
@@ -332,7 +338,8 @@ function extractMetric(
     // A sentence can state the GAAP loss and then its non-GAAP counterpart. Once the
     // leading reported value has made the line eligible, read only that leading clause;
     // otherwise an earlier pattern in the definition can match the later non-GAAP income.
-    const valueMetricLine = true === hasReportedGaapNetIncome
+    const valueMetricLine = true === hasReportedGaapNetIncome ||
+        true === hasReportedGaapEps
       ? metricLine.slice(0, metricLine.search(/\badjusted\b|\bnon-gaap\b/i))
       : metricLine;
     const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(valueMetricLine));

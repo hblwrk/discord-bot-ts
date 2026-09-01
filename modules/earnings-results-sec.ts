@@ -320,6 +320,10 @@ function isPotentialSecFilingDocument(document: SecArchiveDocument): boolean {
 function isSecArchiveWrapperDocument(name: string): boolean {
   return name.endsWith("-index.html") ||
     name.endsWith("-index-headers.html") ||
+    // The complete submission text concatenates the primary form, every exhibit and
+    // image metadata. If an image-only earnings exhibit has no parseable figures, scanning
+    // this wrapper can join unrelated numbers to earnings captions from another document.
+    /^\d{10}-\d{2}-\d{6}\.txt$/i.test(name) ||
     "filingsummary.xml" === name ||
     "metalink.json" === name ||
     /^r\d+\.htm$/i.test(name);

@@ -1,0 +1,696 @@
+EX-99.1
+2
+saic08312026ex991earningsr.htm
+EARNINGS RELEASE
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+
+
+SAIC Announces Second Quarter of Fiscal Year 2027 Results
+
+•Revenues of $1.88 billion, approximately 6.3% growth; 5.3% organic growth
+•Net income of $102 million; Adjusted EBITDA of $193 million or 10.3% of revenues
+•Diluted earnings per share of $2.38; Adjusted diluted earnings per shareof $3.01
+•Cash flows provided by operating activities of $146 million; Free cash flow of $131 million
+•Net bookings of $1.2 billion; quarterly book-to-bill ratio of 0.6; trailing twelve months book-to-bill ratio of 0.8
+•Company increases fiscal year 2027 guidance for revenue, adjusted EBITDA, adjusted EBITDA margin % and adjusted diluted EPS; reiterates free cash flow guidance
+RESTON, VA, August 31, 2026—Science Applications International Corporation (NASDAQ: SAIC), a premier mission integrator driving our nation's digital transformation across the defense, space, intelligence, and civilian markets, today announced results for the second quarter ended July 31, 2026.
+"I am proud of our team’s performance this quarter, delivering solid organic growth and double-digit margins as we continue to execute with discipline," said Jim Reagan, SAIC Chief Executive Officer. "These results reflect our focus on operational excellence and our commitment to the targets we set for the year. We are raising our guidance to reflect our strong year-to-date performance, and we are transforming our enterprise to support our customers’ most critical missions, drive long-term growth and margin expansion, while continuing to invest in strengthening our capabilities."
+
+
+Second Quarter of Fiscal Year 2027: Summary Operating Results
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | |
+| July 31,
+2026 | | Percent
+change | | August 1,
+2025 | | | | | | |
+| (dollars in millions, except per share amounts)
+| | | | | | |
+Revenues | $ | 1,880 | | | 6 | % | | $ | 1,769 | | | | | | | |
+Operating income | 152 | | | 9 | % | | 139 | | | | | | | |
+Operating income as a percentage of revenues | 8.1 | % | | 20bps | | 7.9 | % | | | | | | |
+Adjusted operating income
+| 191 | | | 5 | % | | 182 | | | | | | | |
+Adjusted operating income as a percentage of revenues | 10.2 | % | | -10bps | | 10.3 | % | | | | | | |
+Net income | 102 | | | (20) | % | | 127 | | | | | | | |
+EBITDA
+| 193 | | | 9 | % | | 177 | | | | | | | |
+EBITDA as a percentage of revenues | 10.3 | % | | 30bps | | 10.0 | % | | | | | | |
+Adjusted EBITDA
+| 193 | | | 4 | % | | 185 | | | | | | | |
+Adjusted EBITDA as a percentage of revenues | 10.3 | % | | -20bps | | 10.5 | % | | | | | | |
+Diluted earnings per share | $ | 2.38 | | | (12) | % | | $ | 2.71 | | | | | | | |
+Adjusted diluted earnings per share
+| $ | 3.01 | | | (17) | % | | $ | 3.63 | | | | | | | |
+Net cash provided by operating activities | $ | 146 | | | 20 | % | | $ | 122 | | | | | | | |
+Free cash flow
+| $ | 131 | | | (13) | % | | $ | 150 | | | | | | | |
+
+Non-GAAP measure, see Schedule 6 for information about this measure.
+
+
+
+
+
+
+
+
+
+
+
+Second Quarter Summary Results
+Revenues for the quarter increased $111 million or approximately 6% compared to the same period in the prior year primarily due to ramp up in volume on existing and new contracts and from the acquisition of SilverEdge Government Solutions ("SilverEdge") of $20 million, partially offset by contract completions. Adjusting for the impact of acquisitions, revenues grew by approximately 5.3%.
+Operating income as a percentage of revenues for the quarter increased compared to the same period in the prior year primarily due to improved profitability across our contract portfolio and costs related to the settlement of federal tax audits in the prior year, partially offset by higher selling, general and administrative expenses, including recovery of costs from the settlement of a patent infringement matter in the prior year.
+Adjusted EBITDA as a percentage of revenues for the quarter decreased to 10.3% from 10.5% for the same period in the prior year primarily due to higher selling, general and administrative expenses, including recovery of costs from the settlement of a patent infringement matter in the prior year, partially offset by improved profitability across our contract portfolio.
+Diluted earnings per share for the quarter was $2.38 compared to $2.71 in the prior year quarter. Adjusted diluted earnings per share for the quarter was $3.01 compared to $3.63 in the prior year quarter. The weighted-average diluted shares outstanding during the quarter decreased to 42.8 million from 46.8 million during the prior year quarter.
+Non-GAAP measure, see Schedule 6 for information about this measure.
+Cash Generation and Capital Deployment
+Cash flows provided by operating activities for the second quarter increased $24 million compared to the prior year quarter primarily due to lower cash outflows from the usage of the Master Accounts Receivable Purchase Agreement ("MARPA") Facility, lower cash incentive-based compensation payments, and other changes in working capital, partially offset by timing of customer collections.
+During the quarter, SAIC deployed $106 million of capital, consisting of $90 million of plan share repurchases and $16 million in cash dividends.
+Subsequent to quarter end, on August 14, 2026, SAIC amended the MARPA to increase the aggregate facility limit from $300 million to $400 million.
+Quarterly Dividend Declared
+Subsequent to quarter end, on August 27, 2026, the Company's Board of Directors declared a cash dividend of $0.37 per share of the Company's common stock payable on October 23, 2026 to stockholders of record on October 9, 2026. SAIC intends to continue paying dividends on a quarterly basis, although the declaration of any future dividends will be determined by the Board of Directors each quarter and will depend on earnings, financial condition, capital requirements and other factors.
+
+Backlog and Contract Awards
+Net bookings for the quarter were approximately $1.2 billion which reflects a book-to-bill ratio of 0.6 and a trailing twelve months book-to-bill ratio of 0.8. SAIC’s estimated backlog at the end of the quarter was approximately $22.1 billion. Of the total backlog amount, approximately $3.8 billion was funded.
+Notable New and Recompete Awards:
+U.S. Space and Intelligence Community: During the quarter, SAIC was awarded a five-year (three-year base, plus two, one-year option periods) recompete contract of approximately $400 million supporting a U.S. Intelligence Agency. Under this contract, SAIC will provide advanced systems engineering, technical integration, and mission support services for ground-based Intelligence Community programs that ultimately deliver decisive national advantage.
+U.S. Army: During the quarter, SAIC was awarded a five-year contract (three-year base, plus two, one-year option periods) of approximately $330 million supporting all branches of the Armed Services. Under this contract, SAIC will provide engineering and professional services supporting system-of-systems ("SoS"), systems engineering ("SE"), live/virtual/constructive ("LVC"), and associated M&S and multi-domain operations models, simulations, and
+
+
+
+
+
+
+
+
+
+analysis. The M&S area provides various types of system-of-systems modeling and simulation support development of and improvements of systems.
+U.S. Navy: During the quarter, SAIC was awarded a five-year contract (one-year base, plus four, one-year option periods) of approximately $130 million supporting the U.S Navy. Under this contract, SAIC will provide support with acquisition, development, and operational testing of various airborne electronic warfare systems.
+Notable Awards Subsequent to Period End (not included in current quarter bookings):
+U.S. Department of Homeland Security: Subsequent to the end of the quarter, SAIC was awarded a five-year (one-year base, plus four, one-year option periods) recompete contract of approximately $740 million with the U.S. Department of Homeland Security, in its Civilian business group. Under this task order, SAIC will provide full-scale operations and maintenance support for Customs and Border Protection systems that are essential to assessing security risk from travelers and cargo entering our country.
+U.S. Intelligence Community: Subsequent to the end of the quarter, SAIC was awarded a position on the estimated $14 billion Contract Operations for Missile Evaluation and Testing ("COMET") multiple-award, indefinite-delivery, indefinite-quantity ("IDIQ") contract with the Missile and Space Intelligence Center ("MSIC"). If awarded task orders, SAIC would provide expertise to develop, maintain, and enhance hardware, software, systems, and foundational military intelligence capabilities across five mission task areas. Backlog does not include estimates of revenues to be derived from multiple-award, IDIQ contracts, but rather we record backlog and bookings when task orders are awarded.
+
+Fiscal Year 2027 Guidance
+The table below summarizes fiscal year 2027 guidance and represents the Company's views as of August 31, 2026.
+| | | | | | | | |
+| CURRENT | PRIOR
+|
+| Fiscal Year | Fiscal Year |
+| 2027 Guidance | 2027 Guidance |
+Revenue | $7.2B - $7.3B | $7.0B - $7.2B |
+Organic Growth
+| (2%) - (0%) | (4%) - (2%) |
+Adjusted EBITDA
+| $750M - $755M | $720M - $730M |
+Adjusted EBITDA Margin %
+| 10.3% - 10.5% | 10.1% - 10.3% |
+Adjusted Diluted EPS
+| $10.65 - $10.75 | $9.90 - $10.10 |
+Free Cash Flow
+| >$600M | >$600M |
+
+Non-GAAP measure, see Schedule 6 for information about this measure.
+Webcast Information
+SAIC management will discuss operations and financial results in an earnings conference call beginning at 10:00 a.m. Eastern time on August 31, 2026. The conference call will be webcast simultaneously to the public through a link on the Investor Relations section of the SAIC website (http://investors.saic.com). We will be providing webcast access only – “dial-in” access is no longer available. Additionally, a supplemental presentation will be available to the public through links to the Investor Relations section of the SAIC website. After the call concludes, an on-demand audio replay of the webcast can be accessed on the Investor Relations website.
+About SAIC
+SAIC® is a premier mission integrator focused on advancing the power of technology and innovation to serve and protect our world. Our robust portfolio of offerings across the defense, space, intelligence, and civilian markets includes secure high-end solutions in mission IT, enterprise IT, engineering services and professional services. We integrate emerging technology, rapidly and securely, into mission critical operations that modernize and enable critical national imperatives.
+We are approximately 23,000 strong; driven by mission, united by purpose, and inspired by opportunities. Headquartered in Reston, Virginia, SAIC has annual revenues of approximately $7.3 billion. For more information, visit saic.com. For ongoing news, please visit our newsroom.
+
+
+
+
+
+
+
+Media Contact
+Darryn James
+Director, Media and Brand Reputation
+publicrelations@saic.com
+Investor Relations Contact
+Jon Raviv
+Vice President, Investor Relations
+investorrelations@saic.com
+GAAP to Non-GAAP Guidance Reconciliation
+The Company does not provide a reconciliation of forward-looking adjusted diluted EPS to GAAP diluted EPS, adjusted EBITDA margin to GAAP net income or free cash flow to GAAP net cash flows from operating activities due to the inherent difficulty in forecasting and quantifying certain amounts that are necessary for such reconciliation. Because certain deductions for non-GAAP exclusions used to calculate net income and cash flows from operating activities may vary significantly based on actual events, the Company is not able to forecast GAAP diluted EPS, GAAP net income or GAAP net cash flows from operating activities with reasonable certainty. The variability of the above charges may have an unpredictable and potentially significant impact on our future GAAP financial results.
+Forward-Looking Statements
+Certain statements in this release contain or are based on “forward-looking” information within the meaning of the Private Securities Litigation Reform Act of 1995. In some cases, you can identify forward-looking statements by words such as “expects,” “intends,” “plans,” “anticipates,” “believes,” “estimates,” “guidance,” and similar words or phrases. Forward-looking statements in this release may include, among others, estimates of future revenues, operating income, earnings, earnings per share, charges, total contract value, backlog, outstanding shares and cash flows, as well as statements about future dividends, share repurchases and other capital deployment plans. Such statements are not guarantees of future performance and involve risk, uncertainties and assumptions, and actual results may differ materially from the guidance and other forward-looking statements made in this release as a result of various factors. Risks, uncertainties and assumptions that could cause or contribute to these material differences include those discussed in the “Risk Factors,” “Management’s Discussion and Analysis of Financial Condition and Results of Operations” and “Legal Proceedings” sections of our Annual Report on Form 10-K, as updated in any subsequent Quarterly Reports on Form 10-Q and other filings with the SEC, which may be viewed or obtained through the Investor Relations section of our website at www.saic.com or on the SEC’s website at www.sec.gov. Due to such risks, uncertainties and assumptions you are cautioned not to place undue reliance on such forward-looking statements, which speak only as of the date hereof. SAIC expressly disclaims any duty to update any forward-looking statement provided in this release to reflect subsequent events, actual results or changes in SAIC’s expectations. SAIC also disclaims any duty to comment upon or correct information that may be contained in reports published by investment analysts or others.
+
+
+
+
+
+
+
+
+Schedule 1:
+SCIENCE APPLICATIONS INTERNATIONAL CORPORATION
+CONDENSED CONSOLIDATED STATEMENTS OF INCOME
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| July 31,
+2026 | | August 1,
+2025 | | July 31,
+2026 | | August 1,
+2025 |
+| (in millions, except per share amounts) |
+Revenues | $ | 1,880 | | | $ | 1,769 | | | $ | 3,786 | | | $ | 3,646 | |
+Cost of revenues | 1,641 | | | 1,554 | | | 3,298 | | | 3,222 | |
+Selling, general and administrative expenses | 87 | | | 75 | | | 170 | | | 164 | |
+Other operating (income) expense
+| — | | | 1 | | | (13) | | | — | |
+Operating income | 152 | | | 139 | | | 331 | | | 260 | |
+Interest expense, net
+| 33 | | | 31 | | | 66 | | | 61 | |
+Other (income) expense, net | — | | | — | | | 1 | | | 5 | |
+Income before income taxes | 119 | | | 108 | | | 264 | | | 194 | |
+Income tax (expense) benefit | (17) | | | 19 | | | (47) | | | 1 | |
+Net income | $ | 102 | | | $ | 127 | | | $ | 217 | | | $ | 195 | |
+| | | | | | | |
+Weighted-average number of shares outstanding: | | | | | | | |
+Basic | 42.4 | | | 46.7 | | | 43.1 | | | 47.1 | |
+Diluted | 42.8 | | | 46.8 | | | 43.4 | | | 47.3 | |
+Earnings per share: | | | | | | | |
+Basic | $ | 2.41 | | | $ | 2.72 | | | $ | 5.03 | | | $ | 4.14 | |
+Diluted | $ | 2.38 | | | $ | 2.71 | | | $ | 5.00 | | | $ | 4.12 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Schedule 2:
+SCIENCE APPLICATIONS INTERNATIONAL CORPORATION
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(Unaudited)
+| | | | | | | | | | | |
+| July 31,
+2026 | | January 30,
+2026 |
+| (in millions) |
+ASSETS | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 126 | | | $ | 182 | |
+Receivables, net | 996 | | | 853 | |
+Prepaid expenses
+| 129 | | | 122 | |
+Other current assets
+| 28 | | | 22 | |
+Total current assets | 1,279 | | | 1,179 | |
+Goodwill | 2,943 | | | 2,944 | |
+Intangible assets, net | 697 | | | 761 | |
+Property, plant, and equipment, net | 122 | | | 110 | |
+Operating lease right of use assets | 210 | | | 193 | |
+Other assets | 172 | | | 167 | |
+Total assets | $ | 5,423 | | | $ | 5,354 | |
+LIABILITIES AND EQUITY | | | |
+Current liabilities: | | | |
+Accounts payable
+| $ | 597 | | | $ | 500 | |
+Accrued payroll and employee benefits | 334 | | | 316 | |
+Other accrued liabilities
+| 98 | | | 147 | |
+Debt, current portion
+| 33 | | | 19 | |
+Total current liabilities | 1,062 | | | 982 | |
+Debt, net of current portion
+| 2,452 | | | 2,468 | |
+Operating lease liabilities | 220 | | | 198 | |
+Deferred income taxes
+| 147 | | | 104 | |
+Other long-term liabilities | 106 | | | 102 | |
+Equity: | | | |
+Total stockholders' equity
+| 1,436 | | | 1,500 | |
+Total liabilities and stockholders' equity | $ | 5,423 | | | $ | 5,354 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Schedule 3:
+SCIENCE APPLICATIONS INTERNATIONAL CORPORATION
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| July 31,
+2026 | | August 1,
+2025 | | July 31,
+2026 | | August 1,
+2025 |
+| (in millions) |
+Cash flows from operating activities: | | | | | | | |
+Net income | $ | 102 | | | $ | 127 | | | $ | 217 | | | $ | 195 | |
+Adjustments to reconcile net income to net cash provided by operating activities:
+| | | | | | | |
+Depreciation and amortization | 39 | | | 35 | | | 79 | | | 71 | |
+Stock-based compensation expense | 15 | | | 10 | | | 28 | | | 25 | |
+Deferred income taxes | 22 | | | 110 | | | 43 | | | 109 | |
+Gain on sales of investments
+| — | | | — | | | (12) | | | — | |
+Other | (2) | | | (1) | | | (4) | | | — | |
+Increase (decrease) resulting from changes in operating assets and liabilities:
+| | | | | | | |
+Receivables | (34) | | | 58 | | | (143) | | | 49 | |
+Prepaid expenses and other current assets
+| (29) | | | (113) | | | (14) | | | (107) | |
+Accounts payable and other accrued liabilities
+| (25) | | | (117) | | | 60 | | | (84) | |
+Accrued payroll and employee benefits | 56 | | | 48 | | | 18 | | | (3) | |
+Operating lease assets and liabilities, net | (1) | | | (2) | | | (2) | | | (4) | |
+Other assets and other long-term liabilities, net
+| 3 | | | (33) | | | 3 | | | (29) | |
+Net cash provided by operating activities | 146 | | | 122 | | | 273 | | | 222 | |
+Cash flows from investing activities: | | | | | | | |
+Expenditures for property, plant, and equipment | (15) | | | (7) | | | (24) | | | (15) | |
+Contributions to investments
+| (3) | | | (1) | | | (9) | | | (7) | |
+Purchases of marketable securities | (5) | | | — | | | (9) | | | (4) | |
+Sales of marketable securities | 6 | | | 1 | | | 11 | | | 4 | |
+Proceeds from sales of investments
+| — | | | — | | | 15 | | | — | |
+Other
+| 2 | | | — | | | 2 | | | — | |
+Net cash used in investing activities | (15) | | | (7) | | | (14) | | | (22) | |
+Cash flows from financing activities: | | | | | | | |
+Stock repurchased and retired or withheld for taxes on equity awards | (98) | | | (110) | | | (286) | | | (252) | |
+Dividend payments to stockholders | (16) | | | (17) | | | (33) | | | (36) | |
+Principal payments on borrowings | (1) | | | (546) | | | (2) | | | (1,235) | |
+Proceeds from borrowings | — | | | 557 | | | — | | | 1,307 | |
+Issuances of stock | 5 | | | 6 | | | 10 | | | 12 | |
+Other
+| (4) | | | (4) | | | (4) | | | (4) | |
+Net cash used in financing activities | (114) | | | (114) | | | (315) | | | (208) | |
+Net increase (decrease) in cash, cash equivalents and restricted cash | 17 | | | 1 | | | (56) | | | (8) | |
+Cash, cash equivalents and restricted cash at beginning of period | 117 | | | 55 | | | 190 | | | 64 | |
+Cash, cash equivalents and restricted cash at end of period | $ | 134 | | | $ | 56 | | | $ | 134 | | | $ | 56 | |
+
+
+
+
+
+
+
+
+
+Schedule 4:
+SCIENCE APPLICATIONS INTERNATIONAL CORPORATION
+SEGMENT OPERATING RESULTS
+(Unaudited)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| July 31,
+2026 | | August 1,
+2025 | | July 31,
+2026 | | August 1,
+2025 |
+| (dollars in millions)
+|
+Revenues | | | | | | | |
+Defense and Intelligence
+| $ | 1,449 | | | $ | 1,374 | | | $ | 2,915 | | | $ | 2,807 | |
+Civilian
+| 431 | | | 395 | | | 871 | | | 839 | |
+Total revenues
+| $ | 1,880 | | | $ | 1,769 | | | $ | 3,786 | | | $ | 3,646 | |
+| | | | | | | |
+Adjusted operating income (loss)
+| | | | | | | |
+Defense and Intelligence
+| $ | 138 | | | $ | 124 | | | $ | 284 | | | $ | 239 | |
+Civilian
+| 56 | | | 54 | | | 124 | | | 106 | |
+Corporate
+| (3) | | | 4 | | | 4 | | | (5) | |
+Total adjusted operating income
+| $ | 191 | | | $ | 182 | | | $ | 412 | | | $ | 340 | |
+| | | | | | | |
+Adjusted operating margin
+| | | | | | | |
+Defense and Intelligence
+| 9.5 | % | | 9.0 | % | | 9.7 | % | | 8.5 | % |
+Civilian
+| 13.0 | % | | 13.7 | % | | 14.2 | % | | 12.6 | % |
+Total adjusted operating margin
+| 10.2 | % | | 10.3 | % | | 10.9 | % | | 9.3 | % |
+
+Second Quarter Defense and Intelligence Results
+Revenues for the quarter increased $75 million or 5% compared to the same period in the prior year primarily due to ramp up in volume on existing and new contracts and from the acquisition of SilverEdge of $20 million, partially offset by contract completions.
+Adjusted operating income as a percentage of revenues increased compared to the same period in the prior year primarily due to improved profitability across our contract portfolio.
+Second Quarter Civilian Results
+Revenues for the quarter increased $36 million or 9% compared to the same period in the prior year primarily due to ramp up in volume on existing and new contracts, partially offset by contract completions.
+Adjusted operating income as a percentage of revenues decreased compared to the same period in the prior year primarily due to timing and volume mix in our contract portfolio.
+Second Quarter Corporate Results
+Adjusted operating loss was $3 million for the current quarter compared to an adjusted operating income of $4 million during the same period in the prior year primarily due to higher selling, general and administrative expenses, including recovery of costs from the settlement of a patent infringement matter in the prior year.
+
+
+
+
+
+
+
+
+Schedule 5:
+SCIENCE APPLICATIONS INTERNATIONAL CORPORATION
+BACKLOG
+(Unaudited)
+
+
+The estimated value of our total backlog as of the dates presented was:
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| July 31, 2026 | | January 30, 2026 |
+| Defense and Intelligence | Civilian | Total SAIC | | Defense and Intelligence | Civilian | Total SAIC |
+| (in millions) |
+Funded backlog | $ | 2,883 | | $ | 935 | | $ | 3,818 | | | $ | 2,511 | | $ | 1,061 | | $ | 3,572 | |
+Negotiated unfunded backlog | 15,250 | | 3,068 | | 18,318 | | | 15,869 | | 3,181 | | 19,050 | |
+Total backlog | $ | 18,133 | | $ | 4,003 | | $ | 22,136 | | | $ | 18,380 | | $ | 4,242 | | $ | 22,622 | |
+
+Backlog represents the estimated amount of future revenues to be recognized under negotiated contracts and task orders as work is performed and excludes contract awards which have been protested by competitors until the protest is resolved in our favor. SAIC segregates backlog into two categories, funded backlog and negotiated unfunded backlog. Funded backlog for contracts with government agencies primarily represents contracts for which funding is appropriated less revenues previously recognized on these contracts, and does not include the unfunded portion of contracts where funding is incrementally appropriated or authorized by the U.S. government and other customers even though the contract may call for performance over a number of years. Funded backlog for contracts with non-government agencies represents the estimated value of contracts which may cover multiple future years under which SAIC is obligated to perform, less revenues previously recognized on these contracts. Negotiated unfunded backlog represents the estimated future revenues to be earned from negotiated contracts for which funding has not been appropriated or authorized, and unexercised priced contract options. Negotiated unfunded backlog does not include any estimate of future potential task orders expected to be awarded under indefinite delivery, indefinite quantity (IDIQ), U.S. General Services Administration (GSA) schedules or other master agreement contract vehicles, with the exception of certain IDIQ contracts where task orders are not competitively awarded and separately priced but instead are used as a funding mechanism, and where there is a basis for estimating future revenues and funding on future anticipated task orders.
+
+
+
+
+
+
+
+
+
+
+
+
+Schedule 6:
+SCIENCE APPLICATIONS INTERNATIONAL CORPORATION
+NON-GAAP FINANCIAL MEASURES
+(Unaudited)
+This schedule describes the consolidated non-GAAP financial measures included in this earnings release. While we believe that these non-GAAP financial measures provide management and investors with useful information in assessing trends in our ongoing operating performance and may provide greater visibility in understanding our long-term financial performance, they should be considered as supplemental in nature and not as a substitute for financial information prepared in accordance with GAAP. Reconciliations, definitions, and how we believe these measures are useful to management and investors are provided below. Other companies may define similar measures differently.
+Non-GAAP Definitions
+Organic growth: Organic growth is a performance measure that excludes the impact of acquisitions and divestitures. Organic growth is calculated by taking consolidated revenues and excluding revenues from acquisitions and divestitures during the periods presented, when applicable.
+Adjusted operating income: Adjusted operating income is a performance measure that primarily excludes the impact of non-recurring transactions and activities that we do not consider to be indicative of our ongoing operating performance. Adjusted operating income is calculated by taking operating income and excluding amortization of intangible assets, depreciation of property, plant, and equipment, acquisition, integration, restructuring, and impairment costs, and any other material non-recurring costs. Adjusted operating income excludes amortization of intangible assets because we do not have a history of significant acquisition activity, we do not acquire businesses on a predictable cycle, and the amount of an acquisition's purchase price allocated to intangible assets and the related amortization term are unique to each acquisition.
+EBITDA and Adjusted EBITDA: EBITDA is a performance measure that is calculated by taking net income and excluding interest and loss on sale of receivables, provision for income taxes, and depreciation and amortization. Adjusted EBITDA is a performance measure that excludes the impact of non-recurring transactions and activities that we do not consider to be indicative of our ongoing operating performance. Adjusted EBITDA is calculated by taking EBITDA and excluding acquisition, integration, restructuring and impairment costs, and any other material non-recurring costs.
+Adjusted Diluted Earnings Per Share: Adjusted diluted earnings per share is a performance measure that excludes the impact of non-recurring transactions and activities that we do not consider to be indicative of our ongoing operating performance. Adjusted diluted earnings per share excludes amortization of intangible assets because we do not have a history of significant acquisition activity, we do not acquire businesses on a predictable cycle, and the amount of an acquisition's purchase price allocated to intangible assets and the related amortization term are unique to each acquisition.
+Free Cash Flow: Free cash flow is calculated by taking cash flows provided by operating activities less expenditures for property, plant, and equipment and less cash flows from our Master Accounts Receivable Purchasing Agreement ("MARPA") Facility for the sale of certain designated eligible U.S. government receivables. Under the MARPA Facility, the Company can sell eligible receivables up to a maximum amount of $300 million. We believe that free cash flow provides management and investors with useful information in assessing trends in our cash flows and in comparing them to other peer companies, many of whom present similar non-GAAP liquidity measures. This measure should not be considered as a measure of residual cash flow available for discretionary purposes.
+Acquisition, integration, restructuring and impairment costs: Acquisition and integration costs represent costs incurred related to our acquisitions and subsequent integration with acquired businesses. Restructuring and impairment costs represent costs incurred related to internal reorganizations and initiatives (e.g., Project Orbit), facilities optimization efforts, and impairments of long-lived assets, along with associated depreciation.
+Recovery of acquisition, integration, restructuring and impairment costs: Recovery of acquisition, integration, restructuring and impairment costs represents costs recovered through our indirect rates in accordance with Cost Accounting Standards.
+Costs related to the settlement of federal tax audits: Costs related to the settlement of federal tax audits represent costs related to the IRS audit settlement for fiscal years 2016 through 2019.
+Gain on divestitures, net of transaction costs: The gain on divestitures includes gains recognized related to divestitures, net of transaction costs.
+We believe that these performance measures provide management and investors with useful information in assessing trends in our ongoing operating performance and may provide greater visibility in understanding our long-term financial performance.
+
+
+
+
+
+
+
+
+
+
+Schedule 6 (continued):
+SCIENCE APPLICATIONS INTERNATIONAL CORPORATION
+NON-GAAP FINANCIAL MEASURES
+(Unaudited)
+Adjusted Operating Income
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| July 31,
+2026 | | August 1,
+2025 | | July 31,
+2026 | | August 1,
+2025 |
+| (dollars in millions) |
+Revenues | $ | 1,880 | | | $ | 1,769 | | | $ | 3,786 | | | $ | 3,646 | |
+Operating income | $ | 152 | | | $ | 139 | | | $ | 331 | | | $ | 260 | |
+Operating income as a percentage of revenues | 8.1 | % | | 7.9 | % | | 8.7 | % | | 7.1 | % |
+Depreciation of property, plant and equipment | 7 | | | 6 | | | 15 | | | 13 | |
+Amortization of intangible assets | 32 | | | 29 | | | 64 | | | 58 | |
+Acquisition, integration, restructuring and impairment costs | 2 | | | 1 | | | 4 | | | 4 | |
+Recovery of acquisition, integration, restructuring and impairment costs
+| (1) | | | — | | | (2) | | | (2) | |
+Costs related to the settlement of federal tax audits
+| — | | | 7 | | | 1 | | | 7 | |
+Gain on divestitures, net of transaction costs
+| (1) | | | — | | | (1) | | | — | |
+Adjusted operating income
+| $ | 191 | | | $ | 182 | | | $ | 412 | | | $ | 340 | |
+Adjusted operating income as a percentage of revenues | 10.2 | % | | 10.3 | % | | 10.9 | % | | 9.3 | % |
+
+Non-GAAP measure, see above for definition.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Schedule 6 (continued):
+SCIENCE APPLICATIONS INTERNATIONAL CORPORATION
+NON-GAAP FINANCIAL MEASURES
+(Unaudited)
+EBITDA and Adjusted EBITDA
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| July 31,
+2026 | | August 1,
+2025 | | July 31,
+2026 | | August 1,
+2025 |
+| (dollars in millions)
+|
+Revenues
+| $ | 1,880 | | | $ | 1,769 | | | $ | 3,786 | | | $ | 3,646 | |
+Net income | $ | 102 | | | $ | 127 | | | $ | 217 | | | $ | 195 | |
+Interest expense, net and loss on sale of receivables
+| 35 | | | 34 | | | 70 | | | 68 | |
+Income tax expense (benefit)
+| 17 | | | (19) | | | 47 | | | (1) | |
+Depreciation and amortization | 39 | | | 35 | | | 79 | | | 71 | |
+EBITDA
+| 193 | | | 177 | | | 413 | | | 333 | |
+EBITDA as a percentage of revenues | 10.3 | % | | 10.0 | % | | 10.9 | % | | 9.1 | % |
+Acquisition, integration, restructuring and impairment costs | 2 | | | 1 | | | 4 | | | 4 | |
+Recovery of acquisition, integration, restructuring and impairment costs
+| (1) | | | — | | | (2) | | | (2) | |
+Costs related to the settlement of federal tax audits
+| — | | | 7 | | | 1 | | | 7 | |
+Gain on divestitures, net of transaction costs
+| (1) | | | — | | | (1) | | | — | |
+Adjusted EBITDA
+| $ | 193 | | | $ | 185 | | | $ | 415 | | | $ | 342 | |
+Adjusted EBITDA as a percentage of revenues | 10.3 | % | | 10.5 | % | | 11.0 | % | | 9.4 | % |
+
+Non-GAAP measure, see above for definition.
+
+
+
+
+
+
+
+
+
+
+Schedule 6 (continued):
+SCIENCE APPLICATIONS INTERNATIONAL CORPORATION
+NON-GAAP FINANCIAL MEASURES
+(Unaudited)
+Adjusted Diluted Earnings Per Share
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, 2026
+|
+| (in millions, except per share amounts)
+|
+| As Reported | | Amortization of intangible assets | | Acquisition, integration, restructuring and impairment costs | | Recovery of acquisition, integration, restructuring and impairment costs
+| | Gain on divestitures, net of transaction costs
+| | Non-GAAP results
+|
+Income before income taxes | $ | 119 | | | $ | 32 | | | $ | 2 | | | $ | (1) | | | $ | (1) | | | $ | 151 | |
+Income tax (expense) benefit | (17) | | | (5) | | | — | | | — | | | — | | | (22) | |
+Net income
+| $ | 102 | | | $ | 27 | | | $ | 2 | | | $ | (1) | | | $ | (1) | | | $ | 129 | |
+| | | | | | | | | | | |
+Diluted EPS
+| $ | 2.38 | | | $ | 0.63 | | | $ | 0.04 | | | $ | (0.02) | | | $ | (0.02) | | | $ | 3.01 | |
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended August 1, 2025
+|
+| (in millions, except per share amounts)
+|
+| As Reported | | Amortization of intangible assets | | Acquisition, integration, restructuring and impairment costs | | Costs related to the settlement of federal tax audits
+| | Non-GAAP results
+|
+Income before income taxes | $ | 108 | | | $ | 29 | | | $ | 1 | | | $ | 7 | | | $ | 145 | |
+Income tax (expense) benefit | 19 | | | 6 | | | — | | | — | | | 25 | |
+Net income
+| $ | 127 | | | $ | 35 | | | $ | 1 | | | $ | 7 | | | $ | 170 | |
+| | | | | | | | | |
+Diluted EPS
+| $ | 2.71 | | | $ | 0.75 | | | $ | 0.02 | | | $ | 0.15 | | | $ | 3.63 | |
+
+Non-GAAP measure, see above for definition.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Schedule 6 (continued):
+SCIENCE APPLICATIONS INTERNATIONAL CORPORATION
+NON-GAAP FINANCIAL MEASURES
+(Unaudited)
+Adjusted Diluted Earnings Per Share
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Six Months Ended July 31, 2026 |
+| (in millions, except per share amounts)
+|
+| As Reported | | Amortization of intangible assets | | Acquisition, integration, restructuring and impairment costs | | Recovery of acquisition, integration, restructuring and impairment costs
+| | Costs related to the settlement of federal tax audits
+| | Gain on divestitures, net of transaction costs
+| | Non-GAAP results
+|
+Income before income taxes | $ | 264 | | | $ | 64 | | | $ | 4 | | | $ | (2) | | | $ | 1 | | | $ | (1) | | | $ | 330 | |
+Income tax (expense) benefit | (47) | | | (12) | | | — | | | — | | | — | | | — | | | (59) | |
+Net income
+| $ | 217 | | | $ | 52 | | | $ | 4 | | | $ | (2) | | | $ | 1 | | | $ | (1) | | | $ | 271 | |
+| | | | | | | | | | | | | |
+Diluted EPS
+| $ | 5.00 | | | $ | 1.20 | | | $ | 0.09 | | | $ | (0.05) | | | $ | 0.02 | | | $ | (0.02) | | | $ | 6.24 | |
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Six Months Ended August 1, 2025 |
+| (in millions, except per share amounts)
+|
+| As Reported | | Amortization of intangible assets | | Acquisition, integration, restructuring and impairment costs | | Recovery of acquisition, integration, restructuring and impairment costs
+| | Costs related to the settlement of federal tax audits
+| | Non-GAAP results
+|
+Income before income taxes | $ | 194 | | | $ | 58 | | | $ | 4 | | | $ | (2) | | | $ | 7 | | | $ | 261 | |
+Income tax (expense) benefit | 1 | | | — | | | — | | | — | | | — | | | 1 | |
+Net income
+| $ | 195 | | | $ | 58 | | | $ | 4 | | | $ | (2) | | | $ | 7 | | | $ | 262 | |
+| | | | | | | | | | | |
+Diluted EPS
+| $ | 4.12 | | | $ | 1.23 | | | $ | 0.08 | | | $ | (0.04) | | | $ | 0.15 | | | $ | 5.54 | |
+
+Non-GAAP measure, see above for definition.
+
+
+
+
+
+
+
+
+
+
+Schedule 6 (continued):
+SCIENCE APPLICATIONS INTERNATIONAL CORPORATION
+NON-GAAP FINANCIAL MEASURES
+(Unaudited)
+Free Cash Flow
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| July 31,
+2026 | | August 1,
+2025 | | July 31,
+2026 | | August 1,
+2025 |
+| (in millions) |
+Net cash provided by operating activities | $ | 146 | | | $ | 122 | | | $ | 273 | | | $ | 222 | |
+Expenditures for property, plant, and equipment | (15) | | | (7) | | | (24) | | | (15) | |
+Cash used from (provided by) MARPA Facility | — | | | 35 | | | — | | | (101) | |
+Free cash flow
+| $ | 131 | | | $ | 150 | | | $ | 249 | | | $ | 106 | |
+
+| | | | | |
+| FY27 Guidance |
+Net cash provided by operating activities | >$635M
+|
+Expenditures for property, plant, and equipment | Approximately $35M
+|
+Free cash flow
+| >$600M
+|
+
+Non-GAAP measure, see above for definition.

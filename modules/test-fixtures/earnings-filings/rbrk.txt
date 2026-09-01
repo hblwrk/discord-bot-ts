@@ -1,0 +1,432 @@
+EX-99.1
+2
+rubrikinc-991pressrelease7.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Rubrik Reports Second Quarter Fiscal Year 2027 Financial Results
+•Results exceeded all guided metrics
+•Raising guidance for all guided metrics for fiscal year 2027
+•Second quarter subscription ARR grew 33% year-over-year to $1.66 billion
+•Second quarter revenue grew 38% year-over-year to $427.3 million
+•Operating cash flow margin of 18%; free cash flow margin of 15%
+Palo Alto, California, August 27, 2026 – Rubrik, Inc. (NYSE: RBRK), the Security and AI Operations company, today announced financial results for the second quarter of fiscal year 2027, ended July 31, 2026.
+“Mythos and frontier AI models have fundamentally changed the cybersecurity landscape. This new reality demands not only machine speed cyber recovery but also autonomous runtime AI agent security. Rubrik’s Agentic Cyber Resilience delivers on both to enable trusted AI transformation. We are more confident than ever that we are in the early innings of the AI acceleration opportunity,” said Bipul Sinha, Rubrik’s Chief Executive Officer, Chairman, and Co-Founder.
+Commenting on the company’s financial results, Kiran Choudary, Rubrik’s Chief Financial Officer, added, “Subscription ARR growth of 33%, expanding Subscription ARR contribution margins, and a raised outlook are a testament to our confidence in our solid execution at scale. We are pleased to enter the second half of fiscal year 2027 from a position of strength.”
+Second Quarter Fiscal 2027 Financial Highlights
+•Subscription Annual Recurring Revenue (ARR): Subscription ARR grew 33% year-over-year to $1.66 billion as of July 31, 2026 with net new Subscription ARR up 35% year-over-year. Cloud ARR grew 39% year-over-year to $1.48 billion as of July 31, 2026. Adjusted net new Cloud ARR grew 20% year-over-year in the second quarter of fiscal 2027.
+•Revenue: Subscription revenue was $407.2 million, a 37% increase compared to $297.0 million in the second quarter of fiscal 2026. Total revenue was $427.3 million, a 38% increase compared to $309.9 million in the second quarter of fiscal 2026. This includes $4.7 million in revenue from material rights in the second quarter of fiscal 2027 and $14.2 million in revenue from material rights in the second quarter of fiscal 2026. Revenue normalized for material rights increased 43% year-over-year in the second quarter of fiscal 2027.
+•Gross Margin: GAAP gross margin was 78.4%, compared to 79.5% in the second quarter of fiscal 2026. Non-GAAP gross margin was 81.0%, compared to 81.6% in the second quarter of fiscal 2026.
+•Subscription ARR Contribution Margin: Subscription ARR contribution margin was 14.0% compared to 9.4% in the second quarter of fiscal 2026, reflecting the strong net new subscription ARR in the quarter and an improvement in operating leverage in the business.
+•Net Income/Loss per Share: GAAP net loss per share was $(0.30), compared to $(0.49) in the second quarter of fiscal 2026. Non-GAAP net income per share, diluted, was $0.20, compared to non-GAAP net loss per share, diluted, of $(0.03) in the second quarter of fiscal 2026.
+•Cash Flow from Operations: Cash flow from operations was $76.8 million, compared to $64.7 million in the second quarter of fiscal 2026. Free cash flow was $65.7 million, compared to $57.5 million in the second quarter of fiscal 2026.
+•Cash, Cash Equivalents, and Short-Term Investments: Cash, cash equivalents, and short-term investments were $1.75 billion as of July 31, 2026.
+Recent Business Highlights
+•As of July 31, 2026, Rubrik had 3,084 customers with Subscription ARR of $100,000 or more, up 23% year-over-year.
+•Appointed Rakefet Russak-Aminoach to Rubrik’s Board of Directors. Ms. Russak-Aminoach, a globally recognized financial services leader and venture investor, brings vast digital transformation and enterprise governance experience to Rubrik as organizations face compounding cyber threats.
+
+Adjusted net new Cloud ARR excludes impact related to migrations, including existing non-Cloud ARR customers transitioning into hosted products and maintenance customers buying our cloud subscription products.
+
+
+
+
+
+
+
+
+•Launched Rubrik AI, an agentic-first layer spanning Rubrik Security Cloud and Rubrik Agent Cloud designed to act autonomously, at machine speed, with built-in guardrails. Rubrik AI continuously adapts to each organization’s context and threat landscape, autonomously taking action toward defined business outcomes and orchestrating recovery workflows.
+•Launched Rubrik Agent Cloud for Anthropic’s Claude Code and unveiled Project Hourglass, a GSI alliance with Cognizant, Deloitte, HCLTech, NTT DATA and Wipro to deploy it across enterprises.
+•Introduced Autonomous Business Recovery for cloud applications, powered by the Preemptive Recovery Engine. This solution discovers application dependencies, validates clean recovery points, and rebuilds an organization’s Minimum Viable Business across data, network, identity and configurations following a disruption.
+•Advanced Rubrik Annapurna, creating an AI-ready unstructured data layer for enterprise Data Intelligence platforms. Annapurna is available today for qualified enterprise partners.
+•Unveiled Rubrik Agent Identity, delivered as an expansion to Rubrik Agent Cloud with control access per tool call at speed and scale with AI. This new solution operates alongside Rubrik's established SAGE governance framework, and now provides four distinct Rubrik Agent Cloud pillars: Observability, Identity, Runtime Security, and Rewind.
+•Advanced Rubrik Identity Resilience through the acquisition of Strata.io and the introduction of Identity Roll Forward and Identity Continuity capabilities. Identity Roll Forward reconstructs identity services after an attack while preserving legitimate changes, and Identity Continuity keeps authentication running by automatically failing over to a secondary identity provider when the primary is disrupted.
+•Named a Leader in the 2026 Gartner® Magic Quadrant™ for Backup and Data Protection Platforms for the seventh consecutive year, positioned furthest in Vision.
+•Announced a £375 million ($500 million) UK investment and named London as its EMEA headquarters.
+•Joined the Cloud Security Alliance’s AI Resilience Center of Excellence as Lead Founding Partner.
+
+
+Third Quarter and Fiscal Year 2027 Outlook
+Rubrik is providing the following guidance for the third quarter of fiscal year 2027 and the full fiscal year 2027:
+•Third Quarter Fiscal 2027 Outlook:
+▪Revenue of $429 million to $431 million.
+▪Non-GAAP subscription ARR contribution margin of approximately 14%.
+▪Non-GAAP net income per share of $0.07 to $0.09.
+▪Weighted-average shares outstanding of approximately 230 million.
+•Full Fiscal Year 2027 Outlook:
+▪Subscription ARR between $1,880 million and $1,885 million.
+▪Revenue of $1,685 million to $1,693 million.
+▪Non-GAAP subscription ARR contribution margin of approximately 15.5%.
+▪Non-GAAP net income per share of $0.47 to $0.53.
+▪Weighted-average shares outstanding of approximately 228 million.
+▪Free cash flow of $323 million to $333 million.
+Additional information on Rubrik’s reported results, including a reconciliation of the non-GAAP results to their most comparable GAAP measures, is included in the financial tables below. A reconciliation of non-GAAP guidance measures to corresponding GAAP measures is not available on a forward-looking basis without unreasonable effort due to the uncertainty of expenses that may be incurred in the future, although it is important to note that these factors could be material to Rubrik’s results computed in accordance with GAAP. For example, stock-based compensation-related charges, including employer payroll tax-related items on employee stock transactions, are impacted by the timing of employee stock transactions, the future fair market value of Rubrik’s Class A common stock, and Rubrik’s future hiring and retention needs, all of which are difficult to predict and subject to constant change.
+
+
+
+
+
+
+
+
+Conference Call Information
+Rubrik will host a conference call to discuss results for the second quarter of fiscal year 2027, as well as its financial outlook for the third quarter and full fiscal year 2027 today at 2:00 p.m. Pacific Time / 5:00 p.m. Eastern Time. Open to the public, analysts and investors may access the webcast, results press release, and investor presentation on Rubrik’s investor relations website at https://ir.rubrik.com. A replay of the webcast will also be accessible from Rubrik’s investor relations website a few hours after the conclusion of the live event.
+Rubrik uses its investor relations website and may use certain social media accounts including X (formerly Twitter) (@rubrikInc and @bipulsinha) and LinkedIn (www.linkedin.com/company/rubrik-inc and www.linkedin.com/in/bipulsinha) as a means of disclosing material non-public information and for complying with its disclosure obligations under Regulation FD.
+
+
+
+
+
+
+
+
+Forward-Looking Statements
+This press release and the related conference call contain express and implied “forward-looking statements” within the meaning of the Private Securities Litigation Reform Act of 1995, including statements regarding Rubrik’s financial outlook for the third quarter of fiscal year 2027 and full fiscal year 2027, Rubrik’s market position, market opportunities, including with respect to generative and agentic AI, and growth strategy, Rubrik’s ability to drive operating leverage and profitability, Rubrik’s platform vision and strategic positioning, product initiatives, strategic partnerships and alliances, go-to-market motions and market trends. In some cases, you can identify forward-looking statements by terms such as “anticipate,” “believe,” “estimate,” “expect,” “intend,” “may,” “might,” “plan,” “project,” “will,” “would,” “should,” “could,” “can,” “predict,” “potential,” “target,” “explore,” “continue,” “outlook,” “guidance,” or the negative of these terms, where applicable, and similar expressions intended to identify forward-looking statements. By their nature, these statements are subject to numerous uncertainties and risks, including factors beyond Rubrik’s control, that could cause actual results, performance or achievement to differ materially and adversely from those anticipated or implied in the statements. Risks include but are not limited to Rubrik’s limited operating history, the growth rate of the market in which Rubrik competes, Rubrik’s ability to effectively manage and sustain its growth, Rubrik’s ability to introduce new products on top of its platform, Rubrik’s ability to compete with existing competitors and new market entrants, Rubrik’s ability to effectively manage the leadership transition in its global revenue organization, Rubrik’s ability to expand internationally, its ability to utilize AI successfully in its current and future products, Rubrik’s ability to successfully integrate acquisitions into its business and operations, and international conflict, global security concerns and their potential impact on regional and global economies and supply chains. Additional risks and uncertainties that could cause actual outcomes and results to differ materially from those contemplated by the forward-looking statements are included under the caption “Risk Factors” and elsewhere in our filings with the Securities and Exchange Commission, including in our Annual Report on Form 10-K for the fiscal year ended January 31, 2026 and subsequent filings with the Securities and Exchange Commission. Forward-looking statements speak only as of the date the statements are made and are based on information available to Rubrik at the time those statements are made and/or management’s good faith belief as of that time with respect to future events. Rubrik assumes no obligation to update forward-looking statements to reflect events or circumstances after the date they were made, except as required by law.
+Non-GAAP Financial Measures
+Rubrik has provided in this press release financial information that has not been prepared in accordance with GAAP. Rubrik uses these non-GAAP financial measures internally in analyzing its financial results and believes that use of these non-GAAP financial measures is useful to investors as an additional tool to evaluate ongoing operating results and trends and in comparing Rubrik’s financial results with other companies in its industry, many of which present similar non-GAAP financial measures.
+Non-GAAP financial measures are not meant to be considered in isolation or as a substitute for comparable GAAP financial measures and should be read only in conjunction with Rubrik’s condensed consolidated financial statements prepared in accordance with GAAP. A reconciliation of Rubrik’s historical non-GAAP financial measures to the most directly comparable GAAP measures has been provided in the financial statement tables included in this press release, and investors are encouraged to review the reconciliation.
+Free Cash Flow and Free Cash Flow Margin. Rubrik defines free cash flow as net cash provided by operating activities less cash used for purchases of property and equipment and capitalized internal-use software. Rubrik believes free cash flow is a helpful indicator of liquidity that provides information to management and investors about the amount of cash generated or used by Rubrik’s operations that, after the investments in property and equipment and capitalized internal-use software, can be used for strategic initiatives, including investing in Rubrik’s business and strengthening its financial position. One limitation of free cash flow is that it does not reflect Rubrik’s future contractual commitments. Additionally, free cash flow is not a substitute for cash provided by operating activities and the utility of free cash flow as a measure of Rubrik’s liquidity is further limited as it does not represent the total increase or decrease in Rubrik’s cash balance for a given period. Free cash flow margin is calculated as free cash flow divided by total revenue.
+Non-GAAP Subscription Cost of Revenue. Rubrik defines non-GAAP subscription cost of revenue as subscription cost of revenue, adjusted for amortization of acquired intangibles, stock-based compensation expense, stock-based compensation included in amortization of capitalized internal-use software, and other non-recurring items.
+Non-GAAP Operating Expenses (Research and Development, Sales and Marketing, General and Administrative). Rubrik defines non-GAAP operating expenses as operating expenses (research and development, sales and marketing, general and administrative), adjusted for, as applicable, stock-based compensation expense, and other non-recurring items.
+
+
+
+
+
+
+
+
+Non-GAAP Gross Profit, Non-GAAP Operating Income (Loss), and Non-GAAP Net Income (Loss). Rubrik defines non-GAAP gross profit, non-GAAP operating income (loss), and non-GAAP net income (loss) as the respective GAAP measure, excluding, as applicable, the effect of amortization of acquired intangibles, stock-based compensation expense, stock-based compensation included in amortization of capitalized internal-use software, amortization of debt issuance costs, other non-recurring items, and the related income tax effect of these adjustments.
+Non-GAAP Gross Margin. Rubrik defines non-GAAP gross margin as non-GAAP gross profit as a percentage of total revenue.
+Non-GAAP Net Income (Loss) Per Share, Basic and Diluted. Rubrik defines non-GAAP net income (loss) per share, basic as non-GAAP net income (loss) divided by the weighted-average number of shares of common stock outstanding during the period. Our non-GAAP net income per share, diluted is defined as non-GAAP net income divided by the non-GAAP weighted-average number of diluted shares outstanding, which includes (a) the effect of all potentially dilutive common stock equivalents (stock options, restricted stock units, restricted stocks, employee stock purchase rights under our 2024 Employee Stock Purchase Plan), and (b) the potential dilutive effect of the shares issuable upon conversion of our convertible senior notes using the if-converted method.
+Subscription Annual Recurring Revenue (“ARR”) Contribution Margin. Rubrik defines Subscription ARR Contribution Margin as Subscription ARR contribution divided by Subscription ARR at the end of the period. Rubrik defines Subscription ARR Contribution as Subscription ARR at the end of the period less: (i) non-GAAP subscription cost of revenue and (ii) non-GAAP operating expenses for the prior 12-month period ending on that date. Rubrik believes that Subscription ARR Contribution Margin is a helpful indicator of operating leverage. One limitation of Subscription ARR Contribution Margin is that the factors that impact Subscription ARR will vary from those that impact subscription revenue and, as such, may not provide an accurate indication of Rubrik’s actual or future GAAP results. Additionally, the historical expenses in this calculation may not accurately reflect the costs associated with future commitments.
+Key Business Metrics
+Subscription ARR. Rubrik calculates Subscription ARR as the annualized value of our active subscriptions as of the measurement date, based on our customers’ total contract value, and assuming any contract that expires during the next 12 months is renewed on existing terms. Subscriptions include offerings for our RSC platform and related data security SaaS solutions, term-based licenses for our RSC-Private platform and related products, prior sales of CDM sold as a subscription term-based license with associated support and related SaaS products, subscription service offering and standalone sales of our SaaS subscription offerings like Anomaly Detection and Sensitive Data Monitoring. Net new Subscription ARR refers to the difference between Subscription ARR in the reported period and Subscription ARR in the prior quarter, and captures new logos and expansions, offset by contraction and attrition since the prior quarter.
+Cloud ARR. Rubrik calculates Cloud ARR as the annualized value of our active cloud-based subscriptions as of the measurement date, based on our customers’ total contract value, and assuming any contract that expires during the next 12 months is renewed on existing terms. Our cloud-based subscriptions include RSC and RSC-Government (excluding RSC-Private). Cloud ARR also includes SaaS subscription offerings like Anomaly Detection and Sensitive Data Monitoring, which are sold standalone or with prior sales of term-based license offerings of CDM. Net new Cloud ARR refers to the difference between Cloud ARR in the reported period and Cloud ARR in the prior quarter, and captures new logos and expansions, offset by contraction and attrition since the prior quarter.
+Average Subscription Dollar-Based Net Retention Rate. Rubrik calculates Average Subscription Dollar-Based Net Retention Rate by first identifying subscription customers (“Prior Period Subscription Customers”) which were subscription customers at the end of a particular quarter (the “Prior Period”). Rubrik then calculates the Subscription ARR from these Prior Period Subscription Customers at the end of the same quarter of the subsequent year (the “Current Period”). This calculation captures upsells, contraction, and attrition since the Prior Period. Rubrik then divides total Current Period Subscription ARR by the total Prior Period Subscription ARR for Prior Period Subscription Customers. Rubrik’s Average Subscription Dollar-Based Net Retention Rate in a particular quarter is obtained by averaging the result from that particular quarter with the corresponding results from each of the prior three quarters.
+Customers with $100K or More in Subscription ARR. Customers with $100K or more in Subscription ARR represent the number of customers that contributed $100,000 or more in Subscription ARR as of period end.
+
+
+
+
+
+
+
+
+
+
+
+
+About Rubrik
+Rubrik (NYSE: RBRK), the Security and AI Operations Company, leads at the intersection of data protection, cyber resilience, and enterprise AI acceleration. Rubrik Security Cloud delivers complete cyber resilience by securing, monitoring, and recovering data, identities, and workloads across clouds. Rubrik Agent Cloud accelerates trusted AI agent deployments at scale by monitoring and auditing agentic actions, enforcing real-time guardrails, fine-tuning for accuracy and undoing agentic mistakes.
+Investor Relations Contact
+Melissa Franchi
+VP, Head of Investor Relations, Rubrik
+781.367.0733
+IR@rubrik.com
+
+
+Public Relations Contact
+Jessica Moore
+VP, Global Communications, Rubrik
+415.244.6565
+jessica.moore@rubrik.com
+
+
+
+
+
+
+
+
+
+Rubrik, Inc.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(in thousands, except per share amounts)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended July 31, | Six Months Ended July 31, |
+| | 2026 | | 2025 | 2026 | | 2025 |
+Revenue | | | | | | | |
+Subscription | | $ | 407,156 | | | $ | 296,957 | | $ | 781,309 | | | $ | 562,618 | |
+Other | | 20,104 | | | 12,903 | | 33,019 | | | 25,723 | |
+Total revenue | | 427,260 | | | 309,860 | | 814,328 | | | 588,341 | |
+| | | | | | | |
+Cost of revenue | | | | | | | |
+Subscription | | 74,139 | | | 56,024 | | 140,862 | | | 107,936 | |
+Other | | 17,998 | | | 7,535 | | 26,560 | | | 16,106 | |
+Total cost of revenue | | 92,137 | | | 63,559 | | 167,422 | | | 124,042 | |
+| | | | | | | |
+Gross profit | | 335,123 | | | 246,301 | | 646,906 | | | 464,299 | |
+Operating expenses | | | | | | | |
+Research and development | | 126,863 | | | 92,107 | | 241,204 | | | 173,922 | |
+Sales and marketing | | 224,453 | | | 181,985 | | 417,551 | | | 351,978 | |
+General and administrative | | 55,709 | | | 66,672 | | 112,687 | | | 125,953 | |
+Total operating expenses | | 407,025 | | | 340,764 | | 771,442 | | | 651,853 | |
+| | | | | | | |
+Loss from operations | | (71,902) | | | (94,463) | | (124,536) | | | (187,554) | |
+Interest income | | 16,431 | | | 12,193 | | 32,329 | | | 19,889 | |
+Interest expense | | (1,104) | | | (5,241) | | (2,174) | | | (15,054) | |
+Loss on debt extinguishment | | — | | | (6,653) | | — | | | (6,653) | |
+Other income (expense), net | | 280 | | | 72 | | 870 | | | (5,550) | |
+Loss before income taxes | | (56,295) | | | (94,092) | | (93,511) | | | (194,922) | |
+Income tax expense | | 5,482 | | | 1,837 | | 10,119 | | | 3,111 | |
+Net loss | | $ | (61,777) | | | $ | (95,929) | | $ | (103,630) | | | $ | (198,033) | |
+Net loss per share, basic and diluted | | $ | (0.30) | | | $ | (0.49) | | $ | (0.51) | | | $ | (1.02) | |
+Weighted-average shares used in computing net loss per share, basic and diluted | | 206,097 | | | 194,890 | | 204,903 | | | 193,284 | |
+
+
+
+
+
+
+
+
+
+
+
+
+Rubrik, Inc.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(in thousands)
+(unaudited)
+| | | | | | | | | | | |
+| July 31, | | January 31, |
+| 2026 | | 2026 |
+Assets
+|
+Current assets | | | |
+Cash and cash equivalents | $ | 416,166 | | | $ | 380,196 | |
+Short-term investments | 1,331,483 | | | 1,295,579 | |
+Accounts receivable, net of allowances
+| 269,210 | | | 256,773 | |
+Deferred commissions | 113,534 | | | 110,651 | |
+Prepaid expenses and other current assets | 142,066 | | | 180,365 | |
+Total current assets | 2,272,459 | | | 2,223,564 | |
+Property and equipment, net | 92,767 | | | 83,830 | |
+Deferred commissions, noncurrent | 164,336 | | | 157,592 | |
+Goodwill | 223,197 | | | 199,606 | |
+Other assets, noncurrent | 93,364 | | | 101,944 | |
+Total assets | $ | 2,846,123 | | | $ | 2,766,536 | |
+Liabilities and stockholders’ deficit
+|
+Current liabilities | | | |
+Accounts payable | $ | 22,470 | | | $ | 15,329 | |
+Accrued expenses and other current liabilities | 182,294 | | | 229,976 | |
+Deferred revenue | 1,179,553 | | | 1,068,754 | |
+Total current liabilities | 1,384,317 | | | 1,314,059 | |
+Deferred revenue, noncurrent | 750,223 | | | 776,547 | |
+Other liabilities, noncurrent | 78,110 | | | 64,771 | |
+Convertible senior notes, net | 1,132,895 | | | 1,130,721 | |
+| | | |
+Total liabilities | 3,345,545 | | | 3,286,098 | |
+| | | |
+Stockholders’ deficit | | | |
+| | | |
+Class A common stock | 4 | | | 4 | |
+Class B common stock | 1 | | | 1 | |
+Additional paid-in capital | 2,803,145 | | | 2,662,861 | |
+Accumulated other comprehensive (loss) income | (12,781) | | | 3,733 | |
+Accumulated deficit | (3,289,791) | | | (3,186,161) | |
+Total stockholders’ deficit | (499,422) | | | (519,562) | |
+Total liabilities and stockholders’ deficit | $ | 2,846,123 | | | $ | 2,766,536 | |
+
+
+
+
+
+
+
+
+
+
+
+
+Rubrik, Inc.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(in thousands)
+(unaudited)
+| | | | | | | | | | | |
+| Six Months Ended July 31, |
+| 2026 | | 2025 |
+Cash flows from operating activities: | | | |
+Net loss | $ | (103,630) | | | $ | (198,033) | |
+Adjustments to reconcile net loss to net cash provided by operating activities: | | | |
+Depreciation and amortization | 24,618 | | | 16,494 | |
+Stock-based compensation | 174,386 | | | 161,997 | |
+Amortization of deferred commissions | 59,473 | | | 50,945 | |
+| | | |
+Loss on debt extinguishment | — | | | 6,653 | |
+Deferred income taxes | 1,808 | | | 725 | |
+Other | 1,050 | | | (1,273) | |
+Changes in operating assets and liabilities: | | | |
+Accounts receivable | (12,437) | | | (40,061) | |
+Deferred commissions | (69,100) | | | (49,193) | |
+Prepaid expenses and other assets | 34,333 | | | (4,692) | |
+Accounts payable | 6,722 | | | 2,871 | |
+Accrued expenses and other liabilities | (43,163) | | | (7,982) | |
+Deferred revenue | 84,475 | | | 165,928 | |
+Net cash provided by operating activities | 158,535 | | | 104,379 | |
+Cash flows from investing activities: | | | |
+Purchases of property and equipment | (9,876) | | | (6,348) | |
+Capitalized internal-use software | (9,374) | | | (7,148) | |
+Purchases of investments | (492,913) | | | (997,981) | |
+| | | |
+Maturities of investments | 452,596 | | | 319,918 | |
+Payments for business combinations, net of cash acquired | (24,188) | | | (10,153) | |
+Net cash used in investing activities | (83,755) | | | (701,712) | |
+Cash flows from financing activities: | | | |
+| | | |
+Taxes paid related to net share settlement of equity awards | (53,278) | | | — | |
+Proceeds from exercise of stock options | 1,522 | | | 3,108 | |
+Proceeds from issuance of common stock under employee stock purchase plan | 16,559 | | | 13,492 | |
+| | | |
+Proceeds from issuance of convertible senior notes, net of discount | — | | | 1,129,875 | |
+Repayment of debt and related costs | — | | | (329,646) | |
+Payments for debt issuance and discount costs | — | | | (1,181) | |
+Purchase of capped calls related to convertible senior notes | — | | | (88,550) | |
+Net cash (used in) provided by financing activities | (35,197) | | | 727,098 | |
+Effect of exchange rate on cash, cash equivalents, and restricted cash | (10,123) | | | 6,944 | |
+Net increase in cash, cash equivalents, and restricted cash | 29,460 | | | 136,709 | |
+Cash, cash equivalents, and restricted cash, beginning of period | 392,740 | | | 193,594 | |
+Cash, cash equivalents, and restricted cash, end of period | $ | 422,200 | | | $ | 330,303 | |
+
+
+
+
+
+
+
+
+
+
+
+
+Rubrik, Inc.
+GAAP to Non-GAAP Reconciliations
+(in thousands, except percentages and per share data)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | Six Months Ended July 31, |
+| 2026 | | 2025 | 2026 | | 2025 |
+Reconciliation of GAAP total gross profit to non-GAAP total gross profit: | | | | | | |
+Total gross profit on a GAAP basis | $ | 335,123 | | $ | 246,301 | $ | 646,906 | | $ | 464,299 |
+Add: Stock-based compensation expense | 6,497 | | 4,851 | 11,762 | | 9,676 |
+Add: Stock-based compensation included in amortization of capitalized internal-use software | 1,174 | | 409 | 2,270 | | 758 |
+Add: Amortization of acquired intangibles | 3,193 | | 1,223 | 5,995 | | 2,183 |
+Non-GAAP total gross profit | $ | 345,987 | | $ | 252,784 | $ | 666,933 | | $ | 476,916 |
+GAAP total gross margin | 78.4 | % | | 79.5 | % | 79.4 | % | | 78.9 | % |
+Non-GAAP total gross margin | 81.0 | % | | 81.6 | % | 81.9 | % | | 81.1 | % |
+| | | | | | |
+Reconciliation of GAAP operating expenses to non-GAAP operating expenses: | | | | | | |
+Research and development operating expense on a GAAP basis | $ | 126,863 | | $ | 92,107 | $ | 241,204 | | | $ | 173,922 |
+Less: Stock-based compensation expense | 36,578 | | 24,734 | 69,604 | | 44,546 |
+Non-GAAP research and development operating expense | $ | 90,285 | | $ | 67,373 | $ | 171,600 | | $ | 129,376 |
+| | | | | | |
+Sales and marketing operating expense on a GAAP basis | $ | 224,453 | | $ | 181,985 | $ | 417,551 | | $ | 351,978 |
+Less: Stock-based compensation expense | 36,857 | | 29,638 | 53,188 | | 53,782 |
+Non-GAAP sales and marketing operating expense | $ | 187,596 | | $ | 152,347 | $ | 364,363 | | $ | 298,196 |
+| | | | | | |
+General and administrative operating expense on a GAAP basis | $ | 55,709 | | $ | 66,672 | $ | 112,687 | | $ | 125,953 |
+Less: Stock-based compensation expense | 21,086 | | 29,234 | 39,832 | | 53,993 |
+Non-GAAP general and administrative operating expense | $ | 34,623 | | $ | 37,438 | $ | 72,855 | | $ | 71,960 |
+| | | | | | |
+Reconciliation of GAAP operating loss to non-GAAP operating income (loss): | | | | | | |
+Operating loss on a GAAP basis | $ | (71,902) | | $ | (94,463) | $ | (124,536) | | $ | (187,554) |
+Add: Stock-based compensation expense | 101,018 | | 88,457 | 174,386 | | 161,997 |
+Add: Stock-based compensation included in amortization of capitalized internal-use software | 1,174 | | 409 | 2,270 | | 758 |
+Add: Amortization of acquired intangibles | 3,193 | | 1,223 | 5,995 | | 2,183 |
+Non-GAAP operating income (loss) | $ | 33,483 | | $ | (4,374) | $ | 58,115 | | $ | (22,616) |
+| | | | | | |
+Reconciliation of GAAP net loss to non-GAAP net income (loss): | | | | | | |
+Net loss on a GAAP basis | $ | (61,777) | | $ | (95,929) | $ | (103,630) | | $ | (198,033) |
+Add: Stock-based compensation expense | 101,018 | | 88,457 | 174,386 | | 161,997 |
+Add: Stock-based compensation included in amortization of capitalized internal-use software | 1,174 | | 409 | 2,270 | | 758 |
+Add: Amortization of acquired intangibles | 3,193 | | 1,223 | 5,995 | | 2,183 |
+Add: Amortization of debt issuance costs | 1,104 | | — | 2,174 | | — |
+Income tax expenses effect related to the above adjustments | 10 | | (626) | (311) | | (2,054) |
+Non-GAAP net income (loss) | $ | 44,722 | | $ | (6,466) | $ | 80,884 | | $ | (35,149) |
+| | | | | | |
+| | | | | | |
+
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | |
+| | | | | | |
+| | | | | | |
+| Three Months Ended July 31, | Six Months Ended July 31, |
+| 2026 | | 2025 | 2026 | | 2025 |
+Net income (loss) per share - basic and diluted: | | | | | | |
+GAAP net loss per share, basic and diluted | $ | (0.30) | | $ | (0.49) | $ | (0.51) | | $ | (1.02) |
+Weighted-average shares used to compute GAAP net loss per share, basic and diluted | 206,097 | | 194,890 | 204,903 | | 193,284 |
+| | | | | | |
+| | | | | | |
+| | | | | | |
+Non-GAAP net income (loss) per share, basic | $ | 0.22 | | $ | (0.03) | $ | 0.39 | | $ | (0.18) |
+Weighted-average shares used to compute non-GAAP net income (loss) per share, basic | 206,097 | | 194,890 | 204,903 | | 193,284 |
+| | | | | | |
+| | | | | | |
+| | | | | | |
+Non-GAAP net income (loss) per share, diluted | $ | 0.20 | | $ | (0.03) | $ | 0.36 | | $ | (0.18) |
+| | | | | | |
+Weighted-average shares used to compute GAAP net loss per share, basic and diluted | 206,097 | | 194,890 | 204,903 | | 193,284 |
+Add: Effect of potentially dilutive common stock equivalents | 11,532 | | — | 9,895 | | — |
+Add: Effect of convertible senior notes | 9,218 | | — | 9,218 | | — |
+Weighted-average shares used to compute non-GAAP net income (loss) per share, diluted
+| 226,847 | | 194,890 | 224,016 | | 193,284 |
+
+(1) For the periods in which we had non-GAAP net income, the non-GAAP weighted-average shares used in computing non-GAAP net income per share, diluted included (a) the effect of all potentially dilutive common stock equivalents (stock options, restricted stock units, restricted stocks and employee stock purchase rights under our 2024 Employee Stock Purchase Plan, to the extent they are dilutive) and (b) the potential dilutive effect of shares issuable upon conversion of the convertible senior notes using the if-converted method. The capped call transactions entered into in connection with the convertible senior notes had no dilutive impact for any of the periods presented.
+
+
+
+
+
+
+
+
+
+The following table presents a reconciliation of free cash flow to net cash provided by operating activities, the most directly comparable GAAP measure, for each of the periods indicated (unaudited, in thousands, except percentages):
+| | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | Six Months Ended July 31, |
+| 2026 | | 2025 | 2026 | | 2025 |
+Net cash provided by operating activities | $ | 76,846 | | $ | 64,724 | $ | 158,535 | | $ | 104,379 |
+Less: Purchases of property and equipment
+| (5,599) | | (3,498) | (9,876) | | (6,348) |
+Less: Capitalized internal-use software
+| (5,575) | | (3,683) | (9,374) | | (7,148) |
+Free cash flow | $ | 65,672 | | $ | 57,543 | $ | 139,285 | | $ | 90,883 |
+Operating cash flow margin
+| 18% | | 21% | 19% | | 18% |
+Free cash flow margin | 15% | | 19% | 17% | | 15% |
+Net cash used in investing activities | $ | (47,572) | | $ | (735,877) | $ | (83,755) | | $ | (701,712) |
+Net cash (used in) provided by financing activities | $ | (52,412) | | $ | 711,757 | $ | (35,197) | | $ | 727,098 |
+
+The following table presents the calculation of Subscription ARR Contribution Margin for the periods presented as well as a reconciliation of (i) non-GAAP subscription cost of revenue to subscription cost of revenue and (ii) non-GAAP operating expenses to operating expenses (in thousands, except percentages): | | | | | | | | | | | | | | | |
+| | | Twelve Months Ended July 31, |
+| | | 2026 | | 2025 |
+Subscription cost of revenue | | | $ | 262,667 | | | $ | 203,452 |
+Stock-based compensation expense | | | (18,470) | | | (16,951) |
+Stock-based compensation included in amortization of capitalized internal-use software | | | (3,668) | | | (1,001) |
+Amortization of acquired intangibles | | | (11,300) | | | (4,030) |
+Non-GAAP subscription cost of revenue | | | $ | 229,229 | | | $ | 181,470 | |
+| | | | | |
+Operating expenses | | | $ | 1,519,319 | | | $ | 1,272,432 |
+Stock-based compensation expense | | | (320,747) | | | (319,790) |
+Non-GAAP operating expenses | | | $ | 1,198,572 | | | $ | 952,642 |
+| | | | | |
+Subscription ARR | | | $ | 1,660,903 | | | $ | 1,252,423 |
+Non-GAAP subscription cost of revenue | | | (229,229) | | | (181,470) |
+Non-GAAP operating expenses | | | (1,198,572) | | | (952,642) |
+Subscription ARR Contribution | | | $ | 233,102 | | | $ | 118,311 | |
+Subscription ARR Contribution Margin | | | 14.0 | % | | 9.4 | % |
