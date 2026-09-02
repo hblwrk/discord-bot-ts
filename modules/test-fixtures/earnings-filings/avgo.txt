@@ -1,0 +1,537 @@
+EX-99.1
+2
+avgo-08022026x8kxex99.htm
+EX-99.1
+
+
+
+
+Document
+Exhibit 99.1
+
+
+Broadcom Inc. Announces Third Quarter Fiscal Year 2026 Financial Results and Quarterly Dividend
+
+
+•Revenue of $29.6 billion for the third quarter, up 86 percent from the prior year period
+•GAAP operating income of $16.0 billion for the third quarter; Non-GAAP operating income of $20.1 billion for the third quarter
+•GAAP diluted EPS of $2.68 for the third quarter; Non-GAAP diluted EPS of $3.32 for the third quarter
+•Cash from operations of $14.2 billion for the third quarter, less capital expenditures of $0.5 billion, resulted in $13.7 billion of free cash flow, or 46 percent of revenue
+•Quarterly common stock dividend of $0.65 per share
+•Fourth quarter fiscal year 2026 revenue guidance of approximately $34.8 billion, an increase of 93 percent from the prior year period
+•Fourth quarter fiscal year 2026 Non-GAAP operating income guidance of approximately 66 percent of projected revenue
+
+
+PALO ALTO, Calif. – September 2, 2026 – Broadcom Inc. (Nasdaq: AVGO), a global technology leader that designs, develops and supplies semiconductor and infrastructure software solutions, today reported financial results for its third quarter of fiscal year 2026, ended August 2, 2026, provided guidance for its fourth quarter of fiscal year 2026 and announced its quarterly dividend.
+
+
+“Demand for our custom AI accelerators and networking continues to be very strong. Q3 AI semiconductor revenue of $16.7 billion grew 221% year-over-year, and 54% quarter-over-quarter,” said Hock Tan, President and CEO of Broadcom Inc. “In Q4 the momentum continues, and we expect AI semiconductor revenue to accelerate to $21.7 billion, up 236% year-over-year.”
+
+
+“Broadcom achieved record revenue, operating profit and free cash flow in Q3. We delivered non-GAAP operating income growth of 92% year-over-year, as consolidated revenue grew 86% year-over-year to $29.6 billion,” said Amie Thuener, CFO of Broadcom Inc. “Q4 consolidated revenue growth is forecasted to increase 93% year-over-year to $34.8 billion, and we expect to maintain our non-GAAP operating margin at 66%, flat from a year ago.”
+
+
+
+
+________________________________
+The Company is not readily able to provide a reconciliation of projected non-GAAP financial measures presented to the relevant projected GAAP measures without unreasonable effort.
+
+
+1
+
+
+
+
+
+Third Quarter Fiscal Year 2026 Financial Highlights
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | GAAP | | Non-GAAP |
+(Dollars in millions, except per share data) | | Q3 26 | | Q3 25 | | Change | | Q3 26 | | Q3 25 | | Change |
+Net revenue | | $ | 29,591 | | | $ | 15,952 | | | +86 | % | | $ | 29,591 | | | $ | 15,952 | | | +86 | % |
+Operating income | | $ | 15,955 | | | $ | 5,887 | | | +171 | % | | $ | 20,095 | | | $ | 10,455 | | | +92 | % |
+Net income | | $ | 13,088 | | | $ | 4,140 | | | +216 | % | | $ | 16,372 | | | $ | 8,404 | | | +95 | % |
+Earnings per common share - diluted | | $ | 2.68 | | | $ | 0.85 | | | +215 | % | | $ | 3.32 | | | $ | 1.69 | | | +96 | % |
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | |
+(Dollars in millions) | | Q3 26 | | Q3 25 | | Change | |
+Cash flow from operations | | $ | 14,197 | | | $ | 7,166 | | | +98 | % | |
+| | | | | | | | |
+Free cash flow | | $ | 13,665 | | | $ | 7,024 | | | +95 | % | |
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Net revenue by segment | | | | | | | | | | | | | | | | | | | |
+(Dollars in millions) | | Q3 26 | | | | Q3 25 | | Change | |
+Semiconductor solutions | | $ | 20,839 | | | 70 | % | | | | | | | $ | 9,166 | | | 57 | % | | +127 | % | |
+Infrastructure software | | 8,752 | | | 30 | | | | | | | | 6,786 | | | 43 | | | +29 | % | |
+Total net revenue | | $ | 29,591 | | | 100 | % | | | | | | | $ | 15,952 | | | 100 | % | | | | |
+| | | | | | | | | | | | | | | | | | | |
+
+
+
+The Company’s cash and cash equivalents at the end of the fiscal quarter were $24.0 billion, compared to $19.6 billion at the end of the prior fiscal quarter.
+
+
+During the third fiscal quarter, the Company generated $14.2 billion in cash from operations and spent $0.5 billion on capital expenditures, resulting in $13.7 billion of free cash flow.
+
+
+On June 30, 2026, the Company paid a cash dividend of $0.65 per share, totaling $3.1 billion.
+
+
+The differences between the Company’s GAAP and non-GAAP results are described generally under “Non-GAAP Financial Measures” below and presented in detail in the financial reconciliation tables attached to this release.
+
+
+Fourth Quarter Fiscal Year 2026 Business Outlook
+
+
+Based on current business trends and conditions, the outlook for the fourth quarter of fiscal year 2026, ending November 1, 2026, is expected to be as follows:
+
+
+•Fourth quarter revenue guidance of approximately $34.8 billion;
+•Fourth quarter non-GAAP operating income guidance of approximately 66 percent of projected revenue.
+
+
+The guidance provided above is only an estimate of what the Company believes is realizable as of the date of this release. The Company is not readily able to provide a reconciliation of projected non-GAAP financial measures to the relevant projected GAAP measures without unreasonable effort. Actual results will vary from the guidance and the variations may be material. The Company undertakes no intent or obligation to publicly update or revise any of these projections, whether as a result of new information, future events or otherwise, except as required by law.
+
+
+2
+
+
+
+
+
+Quarterly Dividends
+
+
+The Board of Directors of Broadcom has approved a quarterly cash dividend of $0.65 per share. The dividend is payable on September 30, 2026 to stockholders of record at the close of business (5:00 p.m. Eastern Time) on September 21, 2026.
+
+
+Financial Results Conference Call
+
+
+Broadcom Inc. will host a conference call to review its financial results for the third quarter of fiscal year 2026 and to discuss the business outlook today at 2:00 p.m. Pacific Time.
+
+
+To Listen via Internet: The conference call can be accessed live online in the Investors section of the Broadcom website at https://investors.broadcom.com/.
+
+
+Replay: An audio replay of the conference call can be accessed for one year through the Investors section of Broadcom’s website at https://investors.broadcom.com/.
+
+
+Non-GAAP Financial Measures
+
+
+The non-GAAP measures should not be considered as a substitute for, or superior to, measures of financial performance prepared in accordance with GAAP. When possible, a reconciliation between GAAP and non-GAAP financial data is included in the supplemental financial data attached to this press release. The Company is not readily able to provide a reconciliation of projected non-GAAP measures to the comparable GAAP measures without unreasonable effort. Broadcom believes non-GAAP financial information provides additional insight into the Company’s on-going performance. Therefore, Broadcom provides this information to investors for a more consistent basis of comparison and to help them evaluate the results of the Company’s on-going operations and enable more meaningful period to period comparisons.
+
+
+In addition to GAAP reporting, Broadcom provides investors with net income, operating income, gross margin, operating expenses, cash flow and other data on a non-GAAP basis. This non-GAAP information excludes amortization of acquisition-related intangible assets, stock-based compensation expense, restructuring and other charges, acquisition-related costs, including integration costs, non-GAAP tax reconciling adjustments, and other adjustments. Management does not believe that these items are reflective of the Company’s underlying performance. Internally, these non-GAAP measures are significant measures used by management for purposes of evaluating the core operating performance of the Company, establishing internal budgets, calculating return on investment for development programs and growth initiatives, comparing performance with internal forecasts and targeted business models, strategic planning, evaluating and valuing potential acquisition candidates and how their operations compare to the Company’s operations, and benchmarking performance externally against the Company’s competitors. The exclusion of these and other similar items from Broadcom’s non-GAAP financial results should not be interpreted as implying that these items are non-recurring, infrequent or unusual.
+
+
+Free cash flow measures have limitations as they omit certain components of the overall cash flow statement and do not represent the residual cash flow available for discretionary expenditures. Investors should not consider presentation of free cash flow measures as implying that stockholders have any right
+3
+
+
+
+
+
+to such cash. Broadcom’s free cash flow may not be calculated in a manner comparable to similarly named measures used by other companies.
+
+
+About Broadcom
+
+
+Broadcom Inc. (NASDAQ: AVGO) is a technology leader that designs, develops, and supplies semiconductors and infrastructure software for global organizations’ complex, mission-critical needs. Broadcom combines long-term R&D investment with superb execution to deliver the best technology, at scale. Broadcom is a Delaware corporation headquartered in Palo Alto, CA. For more information, visit www.broadcom.com.
+
+
+Cautionary Note Regarding Forward-Looking Statements
+
+
+This announcement contains forward-looking statements (including within the meaning of Section 21E of the United States Securities Exchange Act of 1934, as amended, and Section 27A of the United States Securities Act of 1933, as amended) concerning Broadcom. These statements include, but are not limited to, statements that address our expected future business and financial performance, our plans and expectations with regard to our share repurchases, and other statements identified by words such as “will,” “expect,” “believe,” “anticipate,” “estimate,” “should,” “intend,” “plan,” “potential,” “predict,” “project,” “aim,” and similar words, phrases or expressions. These forward-looking statements are based on current expectations and beliefs of Broadcom’s management, current information available to Broadcom’s management, and current market trends and market conditions and involve risks and uncertainties that may cause actual results to differ materially from those contained in these forward-looking statements. Accordingly, undue reliance should not be placed on such statements.
+
+
+Particular uncertainties that could materially affect future results include risks associated with: global economic conditions and uncertainty; government regulations, trade restrictions and trade tensions; global political and economic conditions relating to our international operations; cyclicality in the semiconductor industry undergoing profound change due to AI; any loss of our significant customers and fluctuations in the timing and volume of significant customer demand; the slow or unsuccessful return on our research and development investments, expansion of our business strategy or adoption of new business models; our dependence on contract manufacturing and outsourced supply chain; our dependency on a limited number of suppliers; our ability to continue winning business in the semiconductor solutions industry; our ability to accurately estimate customers’ demand and adjust our manufacturing and supply chain accordingly; dependence on senior management and our ability to attract and retain qualified personnel; our ability to maintain or improve gross margin; our ability to protect against cybersecurity threats and a breach of security systems; prolonged disruptions of our, our customers’ or our suppliers’ facilities or other significant operations; our ability to maintain appropriate manufacturing capacity and quality; dependence on and risks associated with distributors and other channel partners of our products; ability of our software portfolio to manage and secure IT infrastructures and environments; demand for our data center virtualization products and customer acceptance of our software, services and business strategy; competitiveness of our software solutions and compatibility of our software with operating environments, platforms or third-party products; our ability to enter into satisfactory software license agreements; use of open source software in our software and services; sales to government customers; our ability to manage our software solutions and services lifecycles; our competitive performance; quarterly and annual fluctuations in operating results; any acquisitions or dispositions we may make, such as delays, challenges and expenses associated with receiving governmental and regulatory approvals and satisfying other closing conditions, and with
+4
+
+
+
+
+
+integrating acquired businesses with our existing businesses and our ability to achieve the benefits, growth prospects and synergies expected by such acquisitions; involvement in legal proceedings; our ability to protect our intellectual property and the unpredictability of any associated litigation expenses; any expenses or reputational damage associated with resolving customer product warranty and indemnification claims, or other undetected defects or bugs; our compliance with privacy and data security laws; corporate responsibility matters; our provision for income taxes and overall cash tax costs; our ability to maintain tax concessions in certain jurisdictions; potential tax liabilities as a result of acquiring VMware; our significant indebtedness and the need to generate sufficient cash flows to service and repay such debt; the amount and frequency of our share repurchase program; and other events and trends on a national, regional, industry-specific and global scale, including those of a political, economic, business, competitive and regulatory nature.
+
+
+Our filings with the SEC, which are available without charge at the SEC’s website at https://www.sec.gov, discuss some of the important risk factors that may affect our business, results of operations and financial condition. Actual results may vary from the estimates provided. We undertake no intent or obligation to publicly update or revise any of the estimates and other forward-looking statements made in this announcement, whether as a result of new information, future events or otherwise, except as required by law.
+
+
+Contact:
+Ji Yoo
+Broadcom Inc.
+Investor Relations
+650-427-6000
+investor.relations@broadcom.com
+
+
+(AVGO-Q)
+
+
+5
+
+
+
+
+
+
+BROADCOM INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS — UNAUDITED
+(IN MILLIONS, EXCEPT PER SHARE DATA) | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Fiscal Quarter Ended | | Three Fiscal Quarters Ended |
+| | August 2,
+2026 | | May 3,
+2026 | | August 3,
+2025 | | August 2,
+2026 | | August 3,
+2025 |
+| | | | | | | | | | |
+| | | | | | | | | | |
+Net revenue | | $ | 29,591 | | | $ | 22,187 | | | $ | 15,952 | | | $ | 71,089 | | | $ | 45,872 | |
+Cost of revenue: | | | | | | | | | | |
+Cost of revenue | | 7,624 | | | 5,301 | | | 3,704 | | | 17,604 | | | 10,273 | |
+| | | | | | | | | | |
+Amortization of acquisition-related intangible assets | | 1,499 | | | 1,461 | | | 1,519 | | | 4,422 | | | 4,486 | |
+Restructuring charges | | 12 | | | 10 | | | 26 | | | 35 | | | 68 | |
+| | | | | | | | | | |
+Total cost of revenue | | 9,135 | | | 6,772 | | | 5,249 | | | 22,061 | | | 14,827 | |
+Gross margin | | 20,456 | | | 15,415 | | | 10,703 | | | 49,028 | | | 31,045 | |
+Research and development | | 2,895 | | | 2,995 | | | 3,050 | | | 8,855 | | | 7,996 | |
+Selling, general and administrative | | 996 | | | 1,055 | | | 1,072 | | | 3,070 | | | 3,104 | |
+Amortization of acquisition-related intangible assets | | 507 | | | 506 | | | 507 | | | 1,520 | | | 1,524 | |
+Restructuring and other charges | | 103 | | | 71 | | | 187 | | | 277 | | | 445 | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+Total operating expenses | | 4,501 | | | 4,627 | | | 4,816 | | | 13,722 | | | 13,069 | |
+Operating income | | 15,955 | | | 10,788 | | | 5,887 | | | 35,306 | | | 17,976 | |
+Interest expense | | (778) | | | (776) | | | (807) | | | (2,355) | | | (2,449) | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+Other income, net | | 98 | | | 118 | | | 205 | | | 649 | | | 333 | |
+Income before income taxes | | 15,275 | | | 10,130 | | | 5,285 | | | 33,600 | | | 15,860 | |
+Provision for income taxes | | 2,187 | | | 820 | | | 1,145 | | | 3,853 | | | 1,252 | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+Net income | | $ | 13,088 | | | $ | 9,310 | | | $ | 4,140 | | | $ | 29,747 | | | $ | 14,608 | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+Net income per share: | | | | | | | | | | |
+Basic | | $ | 2.75 | | | $ | 1.96 | | | $ | 0.88 | | | $ | 6.26 | | | $ | 3.10 | |
+Diluted | | $ | 2.68 | | | $ | 1.91 | | | $ | 0.85 | | | $ | 6.09 | | | $ | 3.02 | |
+| | | | | | | | | | |
+Weighted-average shares used in per share calculations: | | | | | | | | | | |
+Basic | | 4,766 | | | 4,747 | | | 4,714 | | | 4,752 | | | 4,705 | |
+Diluted | | 4,887 | | | 4,876 | | | 4,860 | | | 4,884 | | | 4,841 | |
+| | | | | | | | | | |
+Stock-based compensation expense: | | | | | | | | | | |
+Cost of revenue | | $ | 224 | | | $ | 223 | | | $ | 251 | | | $ | 683 | | | $ | 607 | |
+Research and development | | 1,344 | | | 1,395 | | | 1,573 | | | 4,186 | | | 3,564 | |
+Selling, general and administrative | | 451 | | | 474 | | | 498 | | | 1,418 | | | 1,202 | |
+Total stock-based compensation expense | | $ | 2,019 | | | $ | 2,092 | | | $ | 2,322 | | | $ | 6,287 | | | $ | 5,373 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+BROADCOM INC.
+FINANCIAL RECONCILIATION: GAAP TO NON-GAAP — UNAUDITED
+(IN MILLIONS) | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Fiscal Quarter Ended | | Three Fiscal Quarters Ended | |
+| | August 2,
+2026 | | May 3,
+2026 | | August 3,
+2025 | | August 2,
+2026 | | August 3,
+2025 | |
+| | | | | | | | | | | |
+Gross margin on GAAP basis | | $ | 20,456 | | | $ | 15,415 | | | $ | 10,703 | | | $ | 49,028 | | | $ | 31,045 | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+Amortization of acquisition-related intangible assets | | 1,499 | | | 1,461 | | | 1,519 | | | 4,422 | | | 4,486 | | |
+Stock-based compensation expense | | 224 | | | 223 | | | 251 | | | 683 | | | 607 | | |
+Restructuring charges | | 12 | | | 10 | | | 26 | | | 35 | | | 68 | | |
+| | | | | | | | | | | |
+Gross margin on non-GAAP basis | | $ | 22,191 | | | $ | 17,109 | | | $ | 12,499 | | | $ | 54,168 | | | $ | 36,206 | | |
+| | | | | | | | | | | |
+Research and development on GAAP basis | | $ | 2,895 | | | $ | 2,995 | | | $ | 3,050 | | | $ | 8,855 | | | $ | 7,996 | | |
+Stock-based compensation expense | | 1,344 | | | 1,395 | | | 1,573 | | | 4,186 | | | 3,564 | | |
+| | | | | | | | | | | |
+Research and development on non-GAAP basis | | $ | 1,551 | | | $ | 1,600 | | | $ | 1,477 | | | $ | 4,669 | | | $ | 4,432 | | |
+| | | | | | | | | | | |
+Selling, general and administrative expense on GAAP basis | | $ | 996 | | | $ | 1,055 | | | $ | 1,072 | | | $ | 3,070 | | | $ | 3,104 | | |
+Stock-based compensation expense | | 451 | | | 474 | | | 498 | | | 1,418 | | | 1,202 | | |
+Acquisition-related costs | | — | | | — | | | 7 | | | 2 | | | 204 | | |
+| | | | | | | | | | | |
+Selling, general and administrative expense on non-GAAP basis | | $ | 545 | | | $ | 581 | | | $ | 567 | | | $ | 1,650 | | | $ | 1,698 | | |
+| | | | | | | | | | | |
+Total operating expenses on GAAP basis | | $ | 4,501 | | | $ | 4,627 | | | $ | 4,816 | | | $ | 13,722 | | | $ | 13,069 | | |
+Amortization of acquisition-related intangible assets | | 507 | | | 506 | | | 507 | | | 1,520 | | | 1,524 | | |
+Stock-based compensation expense | | 1,795 | | | 1,869 | | | 2,071 | | | 5,604 | | | 4,766 | | |
+Restructuring and other charges | | 103 | | | 71 | | | 187 | | | 277 | | | 445 | | |
+| | | | | | | | | | | |
+Acquisition-related costs | | — | | | — | | | 7 | | | 2 | | | 204 | | |
+| | | | | | | | | | | |
+Total operating expenses on non-GAAP basis | | $ | 2,096 | | | $ | 2,181 | | | $ | 2,044 | | | $ | 6,319 | | | $ | 6,130 | | |
+| | | | | | | | | | | |
+Operating income on GAAP basis | | $ | 15,955 | | | $ | 10,788 | | | $ | 5,887 | | | $ | 35,306 | | | $ | 17,976 | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+Amortization of acquisition-related intangible assets | | 2,006 | | | 1,967 | | | 2,026 | | | 5,942 | | | 6,010 | | |
+Stock-based compensation expense | | 2,019 | | | 2,092 | | | 2,322 | | | 6,287 | | | 5,373 | | |
+Restructuring and other charges | | 115 | | | 81 | | | 213 | | | 312 | | | 513 | | |
+| | | | | | | | | | | |
+Acquisition-related costs | | — | | | — | | | 7 | | | 2 | | | 204 | | |
+| | | | | | | | | | | |
+Operating income on non-GAAP basis | | $ | 20,095 | | | $ | 14,928 | | | $ | 10,455 | | | $ | 47,849 | | | $ | 30,076 | | |
+| | | | | | | | | | | |
+Interest expense on GAAP basis | | $ | (778) | | | $ | (776) | | | $ | (807) | | | $ | (2,355) | | | $ | (2,449) | | |
+Loss on debt extinguishment | | 75 | | | 31 | | | 53 | | | 161 | | | 118 | | |
+Interest expense on non-GAAP basis | | $ | (703) | | | $ | (745) | | | $ | (754) | | | $ | (2,194) | | | $ | (2,331) | | |
+| | | | | | | | | | | |
+Other income, net on GAAP basis | | $ | 98 | | | $ | 118 | | | $ | 205 | | | $ | 649 | | | $ | 333 | | |
+| | | | | | | | | | | |
+Excise tax benefit | | — | | | — | | | — | | | (315) | | | — | | |
+Gain from sale of business | | — | | | — | | | (163) | | | — | | | (163) | | |
+Other | | — | | | — | | | 29 | | | — | | | 8 | | |
+Other income, net on non-GAAP basis | | $ | 98 | | | $ | 118 | | | $ | 71 | | | $ | 334 | | | $ | 178 | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Fiscal Quarter Ended | | Three Fiscal Quarters Ended | |
+| | August 2,
+2026 | | May 3,
+2026 | | August 3,
+2025 | | August 2,
+2026 | | August 3,
+2025 | |
+Provision for income taxes on GAAP basis | | $ | 2,187 | | | $ | 820 | | | $ | 1,145 | | | $ | 3,853 | | | $ | 1,252 | | |
+Non-GAAP tax reconciling adjustments | | 931 | | | 1,407 | | | 223 | | | 3,505 | | | 2,657 | | |
+Provision for income taxes on non-GAAP basis | | $ | 3,118 | | | $ | 2,227 | | | $ | 1,368 | | | $ | 7,358 | | | $ | 3,909 | | |
+| | | | | | | | | | | |
+Net income on GAAP basis | | $ | 13,088 | | | $ | 9,310 | | | $ | 4,140 | | | $ | 29,747 | | | $ | 14,608 | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+Amortization of acquisition-related intangible assets | | 2,006 | | | 1,967 | | | 2,026 | | | 5,942 | | | 6,010 | | |
+Stock-based compensation expense | | 2,019 | | | 2,092 | | | 2,322 | | | 6,287 | | | 5,373 | | |
+Restructuring and other charges | | 115 | | | 81 | | | 213 | | | 312 | | | 513 | | |
+| | | | | | | | | | | |
+Acquisition-related costs | | — | | | — | | | 7 | | | 2 | | | 204 | | |
+Loss on debt extinguishment | | 75 | | | 31 | | | 53 | | | 161 | | | 118 | | |
+Excise tax benefit | | — | | | — | | | — | | | (315) | | | — | | |
+| | | | | | | | | | | |
+Gain from sale of business | | — | | | — | | | (163) | | | — | | | (163) | | |
+Other | | — | | | — | | | 29 | | | — | | | 8 | | |
+Non-GAAP tax reconciling adjustments | | (931) | | | (1,407) | | | (223) | | | (3,505) | | | (2,657) | | |
+| | | | | | | | | | | |
+Net income on non-GAAP basis | | $ | 16,372 | | | $ | 12,074 | | | $ | 8,404 | | | $ | 38,631 | | | $ | 24,014 | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+| | | | | | | | | | | |
+Weighted-average shares used in per share calculations - diluted on GAAP basis | | 4,887 | | | 4,876 | | | 4,860 | | | 4,884 | | | 4,841 | | |
+Non-GAAP adjustment
+| | 50 | | | 64 | | | 112 | | | 61 | | | 94 | | |
+Weighted-average shares used in per share calculations - diluted on non-GAAP basis | | 4,937 | | | 4,940 | | | 4,972 | | | 4,945 | | | 4,935 | | |
+| | | | | | | | | | | |
+Net cash provided by operating activities | | $ | 14,197 | | | $ | 10,493 | | | $ | 7,166 | | | $ | 32,950 | | | $ | 19,834 | | |
+Purchases of property, plant and equipment | | (532) | | | (231) | | | (142) | | | (1,013) | | | (386) | | |
+Free cash flow | | $ | 13,665 | | | $ | 10,262 | | | $ | 7,024 | | | $ | 31,937 | | | $ | 19,448 | | |
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | | | | | | |
+|
+(1) Non-GAAP adjustment for the number of shares used in the diluted per share calculations excludes the impact of stock-based compensation expense expected to be incurred in future periods and not yet recognized in the financial statements, which would otherwise be assumed to be used to repurchase shares under the GAAP treasury stock method. |
+|
+|
+
+
+
+
+
+
+
+
+
+BROADCOM INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS — UNAUDITED
+(IN MILLIONS) | | | | | | | | | | | | | | |
+| | August 2,
+2026 | | November 2,
+2025 |
+| | | | |
+ASSETS | | | | |
+| | | | |
+Current assets: | | | | |
+Cash and cash equivalents | | $ | 23,975 | | | $ | 16,178 | |
+| | | | |
+Trade accounts receivable, net | | 13,707 | | | 7,145 | |
+Inventory | | 4,523 | | | 2,270 | |
+| | | | |
+Other current assets | | 9,968 | | | 5,980 | |
+Total current assets | | 52,173 | | | 31,573 | |
+Long-term assets: | | | | |
+Property, plant and equipment, net | | 3,144 | | | 2,530 | |
+Goodwill | | 97,801 | | | 97,801 | |
+Intangible assets, net | | 26,325 | | | 32,273 | |
+Other long-term assets | | 8,705 | | | 6,915 | |
+Total assets | | $ | 188,148 | | | $ | 171,092 | |
+| | | | |
+LIABILITIES AND EQUITY | | | | |
+Current liabilities: | | | | |
+Accounts payable | | $ | 4,000 | | | $ | 1,560 | |
+Employee compensation and benefits | | 1,506 | | | 2,129 | |
+Short-term debt | | 2,252 | | | 3,152 | |
+| | | | |
+Other current liabilities | | 13,080 | | | 11,673 | |
+Total current liabilities | | 20,838 | | | 18,514 | |
+Long-term liabilities: | | | | |
+Long-term debt | | 57,167 | | | 61,984 | |
+| | | | |
+| | | | |
+Other long-term liabilities | | 10,453 | | | 9,302 | |
+Total liabilities | | 88,458 | | | 89,800 | |
+| | | | |
+Stockholders’ equity: | | | | |
+Preferred stock | | — | | | — | |
+| | | | |
+Common Stock | | 5 | | | 5 | |
+Additional paid-in capital | | 77,330 | | | 71,308 | |
+Retained earnings | | 22,151 | | | 9,761 | |
+Accumulated other comprehensive income | | 204 | | | 218 | |
+| | | | |
+| | | | |
+Total stockholders' equity | | 99,690 | | | 81,292 | |
+Total liabilities and equity | | $ | 188,148 | | | $ | 171,092 | |
+
+
+
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+BROADCOM INC. |
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS — UNAUDITED |
+(IN MILLIONS) |
+| | | | | | | | | | |
+| | Fiscal Quarter Ended | | Three Fiscal Quarters Ended |
+| | August 2,
+2026 | | May 3,
+2026 | | August 3,
+2025 | | August 2,
+2026 | | August 3,
+2025 |
+| | | | | | | | | | |
+Cash flows from operating activities: | | | | | | | | | | |
+Net income | | $ | 13,088 | | | $ | 9,310 | | | $ | 4,140 | | | $ | 29,747 | | | $ | 14,608 | |
+Adjustments to reconcile net income to net cash provided by operating activities: | | | | | | | | | | |
+Amortization of intangible and right-of-use assets | | 2,042 | | | 2,002 | | | 2,060 | | | 6,047 | | | 6,116 | |
+Depreciation | | 171 | | | 163 | | | 142 | | | 484 | | | 426 | |
+Stock-based compensation | | 2,019 | | | 2,092 | | | 2,322 | | | 6,287 | | | 5,373 | |
+Deferred taxes and other non-cash taxes | | 7 | | | (603) | | | 284 | | | (1,051) | | | (983) | |
+Loss on debt extinguishment | | 75 | | | 31 | | | 53 | | | 161 | | | 118 | |
+| | | | | | | | | | |
+| | | | | | | | | | |
+Non-cash interest expense | | 65 | | | 67 | | | 82 | | | 204 | | | 273 | |
+Other | | 13 | | | 3 | | | (23) | | | 31 | | | 58 | |
+Changes in assets and liabilities, net of acquisitions and disposals: | | | | | | | | | | |
+Trade accounts receivable, net | | (2,859) | | | (2,370) | | | (937) | | | (6,544) | | | (2,066) | |
+Inventory | | (195) | | | (1,366) | | | (163) | | | (2,253) | | | (420) | |
+Accounts payable | | 1,630 | | | 149 | | | 136 | | | 2,313 | | | (236) | |
+Employee compensation and benefits | | 372 | | | 270 | | | 511 | | | (619) | | | (110) | |
+| | | | | | | | | | |
+Other current assets and current liabilities | | (2,675) | | | 474 | | | (999) | | | (2,893) | | | (1,028) | |
+Other long-term assets and long-term liabilities | | 444 | | | 271 | | | (442) | | | 1,036 | | | (2,295) | |
+Net cash provided by operating activities | | 14,197 | | | 10,493 | | | 7,166 | | | 32,950 | | | 19,834 | |
+| | | | | | | | | | |
+Cash flows from investing activities: | | | | | | | | | | |
+| | | | | | | | | | |
+Proceeds from sale of business | | — | | | — | | | 300 | | | — | | | 300 | |
+Purchases of property, plant and equipment | | (532) | | | (231) | | | (142) | | | (1,013) | | | (386) | |
+| | | | | | | | | | |
+Purchases of investments | | (619) | | | (23) | | | (99) | | | (756) | | | (261) | |
+Sales of investments | | 37 | | | 39 | | | 51 | | | 320 | | | 147 | |
+Other | | 1 | | | 7 | | | (16) | | | 13 | | | (13) | |
+Net cash provided by (used in) investing activities | | (1,113) | | | (208) | | | 94 | | | (1,436) | | | (213) | |
+| | | | | | | | | | |
+Cash flows from financing activities: | | | | | | | | | | |
+Proceeds from long-term borrowings | | — | | | — | | | 6,960 | | | 4,474 | | | 10,695 | |
+Payments on debt obligations | | (5,628) | | | (1,250) | | | (6,750) | | | (10,528) | | | (14,840) | |
+Proceeds from (repayments of) commercial paper, net | | — | | | — | | | (3,373) | | | — | | | 488 | |
+Payments of dividends | | (3,103) | | | (3,092) | | | (2,786) | | | (9,281) | | | (8,345) | |
+Repurchases of common stock - repurchase program | | — | | | (600) | | | — | | | (8,450) | | | (2,450) | |
+Shares repurchased for tax withholdings on vesting of equity awards | | — | | | — | | | (58) | | | — | | | (3,860) | |
+| | | | | | | | | | |
+Issuance of common stock | | — | | | 113 | | | — | | | 113 | | | 118 | |
+| | | | | | | | | | |
+Other | | (6) | | | (2) | | | (7) | | | (45) | | | (57) | |
+Net cash used in financing activities | | (8,737) | | | (4,831) | | | (6,014) | | | (23,717) | | | (18,251) | |
+| | | | | | | | | | |
+Net change in cash and cash equivalents | | 4,347 | | | 5,454 | | | 1,246 | | | 7,797 | | | 1,370 | |
+Cash and cash equivalents at beginning of period | | 19,628 | | | 14,174 | | | 9,472 | | | 16,178 | | | 9,348 | |
+Cash and cash equivalents at end of period | | $ | 23,975 | | | $ | 19,628 | | | $ | 10,718 | | | $ | 23,975 | | | $ | 10,718 | |
+| | | | | | | | | | |
+Supplemental disclosure of cash flow information: | | | | | | | | | | |
+Cash paid for interest | | $ | 674 | | | $ | 695 | | | $ | 602 | | | $ | 1,988 | | | $ | 1,973 | |
+Cash paid for income taxes | | $ | 347 | | | $ | 1,099 | | | $ | 822 | | | $ | 2,228 | | | $ | 1,834 | |

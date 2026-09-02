@@ -2231,6 +2231,234 @@ const filingCorpus: {
     source: "1653482/000162828026059820/gitlab-ex99120260731fy27.htm",
     ticker: "gtlb",
   },
+  {
+    company: "Palo Alto Networks",
+    metrics: [
+      ["adjusted_eps", "$1.02"],
+      ["gaap_eps", "-$0.35"],
+      ["revenue", "$3.41B"],
+      ["net_income", "-$282M"],
+    ],
+    outlook: [
+      ["Q1 Revenue", "$3.3B to $3.31B"],
+      ["FY2027 Revenue", "$14.1B to $14.2B"],
+      ["Q1 Adj EPS", "$0.96 to $0.98"],
+      ["FY2027 Adj EPS", "$4.16 to $4.19"],
+      ["FY2027 Operating margin", "29.5%"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "1327567/000132756726000019/ex991q426earningsrelease.htm",
+    ticker: "panw",
+  },
+  {
+    company: "Ollie's Bargain Outlet Holdings",
+    metrics: [
+      ["adjusted_eps", "$1.42"],
+      ["gaap_eps", "$1.42"],
+      ["revenue", "$741.3M"],
+      ["net_income", "$85.45M"],
+    ],
+    outlook: [
+      ["Revenue", "$2.928B to $2.941B"],
+      ["Adj EPS", "$4.57 to $4.65"],
+      ["Gross margin", "41.3%"],
+      ["Operating income", "$345M to $350M"],
+      ["Tax rate", "25%"],
+      ["Capex", "$103M to $113M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1639300/000114036126035406/ef20081496_ex99-1.htm",
+    ticker: "olli",
+  },
+  {
+    company: "Brown-Forman",
+    metrics: [
+      ["gaap_eps", "$0.38"],
+      ["revenue", "$911M"],
+      ["net_income", "$176M"],
+    ],
+    outlook: [
+      ["Tax rate", "20% to 22%"],
+      ["Capex", "$60M to $70M"],
+    ],
+    quarterLabel: "Q1 2027",
+    source: "14693/000001469326000048/fy27_q1xerevergreen.htm",
+    ticker: "bf-b",
+  },
+  {
+    company: "FuelCell Energy",
+    metrics: [
+      ["adjusted_eps", "-$0.64"],
+      ["gaap_eps", "-$0.64"],
+      ["revenue", "$33M"],
+      ["net_income", "-$45.3M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q3 2026",
+    source: "886128/000110465926104498/fcel-20260902xex99d1.htm",
+    ticker: "fcel",
+  },
+  {
+    company: "Snowflake",
+    metrics: [
+      ["adjusted_eps", "$0.62"],
+      ["gaap_eps", "-$0.55"],
+      ["revenue", "$1.55B"],
+      ["net_income", "-$191.72M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$1.588B to $1.593B"],
+      ["FY2027 Revenue", "$6.07B"],
+      ["FY2027 Gross margin", "74.0%"],
+      ["Q3 Operating margin", "15.5%"],
+      ["FY2027 Operating margin", "14.5%"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1640147/000164014726000033/fy2027q2earnings.htm",
+    ticker: "snow",
+  },
+  {
+    company: "Broadcom",
+    metrics: [
+      ["adjusted_eps", "$3.32"],
+      ["gaap_eps", "$2.68"],
+      ["revenue", "$29.6B"],
+      ["net_income", "$13.09B"],
+    ],
+    outlook: [
+      ["Revenue", "$34.8B"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+    ticker: "avgo",
+  },
+  {
+    company: "PVH",
+    metrics: [
+      ["adjusted_eps", "$3.70"],
+      ["gaap_eps", "-$2.23"],
+      ["revenue", "$2.1B"],
+      ["net_income", "-$102.9M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "low single-digit decline"],
+      ["FY2026 Adj EPS", "$11.8 to $12.1"],
+      ["Q3 Adj EPS", "$2.5 to $2.65"],
+      ["FY2026 Operating margin", "8.8%"],
+      ["Q3 Operating margin", "7.5%"],
+      ["Q3 Tax rate", "22.0%"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "78239/000007823926000055/ex99120262q8k.htm",
+    ticker: "pvh",
+  },
+  {
+    company: "Five Below",
+    metrics: [
+      ["adjusted_eps", "$1.68"],
+      ["gaap_eps", "$3.99"],
+      ["revenue", "$1.26B"],
+      ["net_income", "$221.4M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$1.21B to $1.23B"],
+      ["FY2026 Revenue", "$5.63B to $5.71B"],
+      ["FY2026 Adj EPS", "$9.83 to $10.31"],
+      ["Q3 EPS", "$1.01 to $1.13"],
+      ["FY2026 EPS", "$12.1 to $12.58"],
+      ["FY2026 Capex", "$250M to $260M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1177609/000117760926000023/q22026fivebelowexhibit991.htm",
+    ticker: "five",
+  },
+  {
+    company: "C3.ai",
+    metrics: [
+      ["adjusted_eps", "-$0.20"],
+      ["gaap_eps", "-$0.60"],
+      ["revenue", "$52.4M"],
+      ["net_income", "-$92.81M"],
+    ],
+    outlook: [
+      ["Q2 Revenue", "$51M to $55M"],
+      ["FY2027 Revenue", "$210M to $240M"],
+      ["Q2 Adj operating income", "-$34.5M to -$42.5M"],
+      ["FY2027 Adj operating income", "-$123M to -$155M"],
+    ],
+    quarterLabel: "Q1 2027",
+    source: "1577526/000157752626000119/ex991-fy27xq1earnings.htm",
+    ticker: "ai",
+  },
+  {
+    company: "ChargePoint Holdings",
+    metrics: [
+      ["gaap_eps", "-$1.35"],
+      ["revenue", "$116M"],
+      ["net_income", "-$35.62M"],
+    ],
+    outlook: [
+      ["Revenue", "$105M to $115M"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1777393/000177739326000061/chpt8-kerfy2027q2exx991.htm",
+    ticker: "chpt",
+  },
+  {
+    company: "Hewlett Packard Enterprise",
+    metrics: [
+      ["adjusted_eps", "$1.11"],
+      ["gaap_eps", "$1.06"],
+      ["revenue", "$12.2B"],
+      ["net_income", "$1.51B"],
+    ],
+    outlook: [
+      ["Q4 Revenue", "$13.9B to $14.8B"],
+      ["Q4 Adj EPS", "$1.2 to $1.3"],
+      ["FY2026 Adj EPS", "$3.75 to $3.85"],
+      ["Q4 EPS", "$1.12 to $1.22"],
+      ["FY2026 EPS", "$2.93 to $3.03"],
+      ["FY2027 Adj EPS", "16% to 20% growth"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "1645590/000164559026000078/ex-991x922026x8k.htm",
+    ticker: "hpe",
+  },
+  {
+    company: "Phreesia",
+    metrics: [
+      ["gaap_eps", "$0.03"],
+      ["revenue", "$129.5M"],
+      ["net_income", "$1.92M"],
+    ],
+    outlook: [
+      ["Revenue", "$510M to $520M"],
+      ["Adj EBITDA", "$125M to $135M"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1412408/000141240826000213/phr-ex991q2fy27.htm",
+    ticker: "phr",
+  },
+  {
+    company: "NetApp",
+    metrics: [
+      ["adjusted_eps", "$2.58"],
+      ["gaap_eps", "$1.88"],
+      ["revenue", "$2.03B"],
+      ["net_income", "$375M"],
+    ],
+    outlook: [
+      ["Q2 Revenue", "$2.025B to $2.175B"],
+      ["FY2027 Revenue", "$7.975B to $8.225B"],
+      ["Q2 Adj EPS", "$2.54 to $2.64"],
+      ["FY2027 Adj EPS", "$9.73 to $10.03"],
+      ["Q2 EPS", "$1.97 to $2.07"],
+      ["FY2027 EPS", "$7.35 to $7.65"],
+    ],
+    quarterLabel: "Q1 2027",
+    source: "1002047/000100204726000003/ntap-ex99_1.htm",
+    ticker: "ntap",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -2251,6 +2479,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(139);
+    expect(filingCorpus).toHaveLength(152);
   });
 });

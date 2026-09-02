@@ -209,6 +209,8 @@ export function getQuarterLabel(text: string): string | undefined {
   ) ?? leadingText.match(
     /\breports?\s+(?:strong\s+)?(first|second|third|fourth)[\s–—-]+quarter\b.{0,80}\bresults\b[\s\S]{0,800}?\b\1[\s–—-]+quarter\s+of\s+fiscal\s+(20\d{2}|\d{2})\b/i,
   ) ?? leadingText.match(
+    /\breports?\s+(?:fiscal(?:\s+year)?\s+)?(20\d{2}|\d{2})\s+(first|second|third|fourth)[\s–—-]+quarter\s+results\b/i,
+  ) ?? leadingText.match(
     /\bfiscal(?:\s+year)?\s+(20\d{2}|\d{2})\s+(first|second|third|fourth)[\s–—-]+quarter\s+results\b/i,
   );
   if (undefined !== leadingWrittenQuarterMatch?.[1] && undefined !== leadingWrittenQuarterMatch[2]) {
@@ -434,6 +436,24 @@ export function getDilutedShareMantissa(lines: string[]): number | undefined {
         .exec(captionSentence);
     if (undefined !== scaledCountMatch?.[1]) {
       return Number.parseFloat(scaledCountMatch[1].replaceAll(",", ""));
+    }
+
+    // A narrative can mention why the weighted-average share count changed without
+    // stating the count. Do not walk from that prose into the next financial figure.
+    // Real row captions begin the line (or retain table separators after extraction).
+    if (40 < captionMatch.index) {
+      continue;
+    }
+
+    // A table whose scale is declared in its heading can legitimately print a sub-100
+    // mantissa, such as 48.5 million shares. The row separators make that value
+    // unambiguous even though the generic forward reader rejects small bare numbers.
+    if (/\|/.test(captionLineSuffix)) {
+      const rowCounts = findNumericValues(captionLineSuffix, {minUncuedAbsValue: 1})
+        .filter(count => 0 < count);
+      if (0 < rowCounts.length) {
+        return rowCounts[0];
+      }
     }
 
     const counts = findNumericValues(countText, {minUncuedAbsValue: 10})
