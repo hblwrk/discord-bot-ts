@@ -167,6 +167,10 @@ export function getMetricCandidateScore({
       score -= 120;
     }
 
+    if (/\brecord\s+quarterly\s+net\s+revenues?\s+of\b/i.test(metricLine)) {
+      score += 250;
+    }
+
     if (/\btotal\s+net\s+revenues?\b/i.test(metricLine) &&
         true === hasMultiCurrencyColumnHeader(lines, lineIndex)) {
       score += 100;
@@ -185,7 +189,8 @@ export function getMetricCandidateScore({
       // individual products in the same release can each carry an equally specific quarter
       // label and otherwise tie it on score merely because they appear first.
       score += 40;
-    } else if (/\b(?:net\s+)?product\s+sales\b|\bservice\s+revenues?\b/i.test(metricCaptionText)) {
+    } else if (/\b(?:net\s+)?product\s+(?:sales|revenues?)\b|\bservice\s+revenues?\b/i.test(metricCaptionText) &&
+        lines.some(candidateLine => /\btotal\s+revenues?\b|^\s*revenues?\s*\|/i.test(candidateLine))) {
       score -= 80;
     }
 

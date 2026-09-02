@@ -260,9 +260,14 @@ function extractEarningsMetrics(
       quarterLabel,
       documentCurrencyCode,
     );
-    const metric = preferredMetric ?? (true === preferredSelection.exclusive
+    const fullDocumentMetric = true === preferredSelection.exclusive
       ? null
-      : extractMetric(lines, definition, quarterLabel, documentCurrencyCode));
+      : extractMetric(lines, definition, quarterLabel, documentCurrencyCode);
+    const hasAuthoritativeRoundedRevenueHeadline = "revenue" === definition.key &&
+      /\brecord\s+quarterly\s+net\s+revenues?\s+of\b/i.test(fullDocumentMetric?.sourceSnippet ?? "");
+    const metric = true === hasAuthoritativeRoundedRevenueHeadline
+      ? fullDocumentMetric
+      : preferredMetric ?? fullDocumentMetric;
     if (null === metric) {
       continue;
     }
@@ -346,6 +351,10 @@ function extractMetric(
     if (!pattern) {
       continue;
     }
+    if ("net_income" === definition.key &&
+        true === hasDifferentMoneyMetricBeforeValue(valueMetricLine, pattern)) {
+      continue;
+    }
 
     const metricValue = extractMetricValue(
       valueMetricLine,
@@ -388,6 +397,28 @@ function extractMetric(
   }
 
   return bestCandidate?.metric ?? null;
+}
+
+// A narrative can mention that net income helped a different measure and state only that
+// second measure's amount ("an increase in net income ... free cash flow increased $32M").
+// The first currency token after the net-income words does not belong to net income there.
+function hasDifferentMoneyMetricBeforeValue(line: string, pattern: RegExp): boolean {
+  pattern.lastIndex = 0;
+  const patternMatch = pattern.exec(line);
+  if (null === patternMatch || undefined !== patternMatch.groups?.["metricValue"]) {
+    return false;
+  }
+
+  const valueText = line.slice(patternMatch.index + patternMatch[0].length);
+  const firstMoneyValueIndex = valueText.search(
+    /[$€£¥]\s*\(?-?\d|\b\(?-?\d[\d,]*(?:\.\d+)?\)?\s+(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b/i,
+  );
+  if (-1 === firstMoneyValueIndex) {
+    return false;
+  }
+
+  return /\b(?:free\s+cash\s+flow|cash\s+flow\s+from\s+operations|capital\s+expenditures?|revenues?|net\s+sales|operating\s+income)\b/i
+    .test(valueText.slice(0, firstMoneyValueIndex));
 }
 
 function isPerShareImpactOnlyLine(line: string): boolean {

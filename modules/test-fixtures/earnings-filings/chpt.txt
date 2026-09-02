@@ -1,0 +1,338 @@
+EX-99.1
+2
+chpt8-kerfy2027q2exx991.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+
+ChargePoint Reports Second Quarter Fiscal Year 2027 Financial Results
+
+
+
+•Revenue grew 18% year-over-year to $116 million, above the guidance range
+•Subscription revenue grew 10% year-over-year to $44 million
+•GAAP gross margin was 36% and non-GAAP gross margin was 38%
+•Non-GAAP adjusted EBITDA loss was $4.8 million, an improvement from a loss of $22.1 million year-over-year
+Campbell, Calif. – September 2, 2026 – ChargePoint Holdings, Inc. (NYSE:CHPT) (“ChargePoint” or the "Company"), a global leader in intelligent electrification and e-mobility, today reported its financial results for the second quarter of fiscal year 2027, which ended July 31, 2026.
+“The second quarter was an exceptional quarter for ChargePoint as we exceeded the high end of our guidance, delivered record non-GAAP gross margin, and managed our cash with extreme rigor through continued operational discipline,” said Rick Wilmer, President and Chief Executive Officer of ChargePoint. “In the quarter, we began early access shipments of Express Solo, continued expansion of our partnership with Eaton, and fortified our leadership team in Europe with the appointment of John Saffrett as Executive Vice President and Managing Director to lead our growth strategy and market expansion across the continent. As we enter the second half of the year, we remain focused on driving profitable growth through innovation, operational excellence, and disciplined execution against our strategic plan.”
+Second Quarter Fiscal 2027 Financial Overview
+•Revenue. Second quarter revenue was $116.1 million, up 18% from $98.6 million in the prior year’s same quarter. Networked charging systems revenue for the second quarter was $62.9 million, up 25% from $50.4 million in the prior year’s same quarter. Subscription revenue was $43.7 million, up 10% from $39.9 million in the prior year’s same quarter.
+•Gross Margin. Second quarter GAAP gross margin was 36% as compared to 31% in the prior year's same quarter, and non-GAAP gross margin was 38% as compared to 33% in the prior year's same quarter. The current period GAAP and non-GAAP gross margins include a 4 percentage points benefit due to tariffs refunds.
+•Operating Expenses. Second quarter GAAP operating expenses were $76.4 million, down 15% from $89.7 million in the prior year's same quarter. Non-GAAP operating expenses were $52.3 million, down 11% from $58.6 million in the prior year's same quarter.
+•Net Income/Loss. Second quarter GAAP net loss was $35.6 million, down 46% from $66.2 million in the prior year's same quarter. Additionally, non-GAAP net loss was $9.2 million, down 72% from $33.0 million in the prior year's same quarter and non-GAAP adjusted EBITDA loss was $4.8 million, down 78% from $22.1 million in the prior year's same quarter.
+•Liquidity. As of July 31, 2026, cash, cash equivalents and restricted cash on the balance sheet was $95.7 million.
+•Shares Outstanding. As of July 31, 2026, ChargePoint had approximately 27 million shares of common stock outstanding.
+Business Highlights
+•ChargePoint appointed automotive industry veteran John Saffrett as Executive Vice President and Managing Director for Europe, overseeing sales, customer relationships, partnerships, and market expansion across the continent.
+•ChargePoint extended its long-standing partnership with Mercedes-Benz with a new agreement that provides Mercedes-Benz business customers with comprehensive charging solutions for fleet operators in the UK and Germany.
+•ChargePoint announced agreements with Optimus Energy Solutions, a leading U.S.-based charge point operator, and Onvo, a Pennsylvania-based travel plaza brand, that will collectively add hundreds of new charging ports in the eastern U.S.
+1
+
+
+
+
+
+•ChargePoint and Portland International Airport announced a new overhead fast charging deployment featuring retractable cable management that eliminates the traditional trade-offs between space, cost, and equipment durability, delivering a blueprint for airports worldwide.
+Third Quarter of Fiscal 2027 Guidance
+For the third fiscal quarter ending October 31, 2026, ChargePoint expects revenue of $105 million to $115 million.
+Conference Call Information
+ChargePoint will host a conference call to review the Company’s financial results at 1:30 p.m. Pacific (4:30 p.m. Eastern time) today.
+A live webcast of the conference call will be available at https://events.q4inc.com/attendee/486534852. Participants can also access the conference call by dialing +1 (833) 461 5787 (North America) or +1 585 542 9983 (International) and entering Conference ID 486 534 852. A recording will be available after the conclusion of the webcast and archived for one year on ChargePoint’s investor relations website. A copy of the press release with the financial results will be also available on ChargePoint’s investor relations website prior to the commencement of the webcast.
+About ChargePoint Holdings, Inc.
+ChargePoint has established itself as a global leader in intelligent electrification and e-mobility since its inception in 2007, long before EVs became widely available. The company provides comprehensive solutions tailored to the entire EV ecosystem, from the grid to the dashboard of the vehicle. The company serves EV drivers, charging station owners, vehicle manufacturers, and similar types of stakeholders. With a commitment to accessibility and reliability, ChargePoint’s extensive portfolio of software, hardware, and services ensures a seamless charging experience for drivers across North America and Europe. ChargePoint empowers every driver in need of charging access, connecting them to almost 1.5 million public and private charging ports worldwide. ChargePoint has facilitated the powering of more than 25 billion electric miles, underscoring its dedication to reducing greenhouse gas emissions and electrifying the future of transportation. For further information, please visit the ChargePoint pressroom or the ChargePoint Investor Relations site. For media inquiries, contact the ChargePoint press office.
+2
+
+
+
+
+
+Forward-Looking Statements
+This press release contains forward-looking statements that involve risks, uncertainties, and assumptions including statements regarding our projected revenue for the third quarter of fiscal year 2027. There are a significant number of factors that could cause actual results to differ materially from the statements made in this press release, including: macroeconomic trends, such as changes in or sustained inflation, interest rate volatility, increased tariffs or other events beyond our control on the overall economy which may reduce demand for our products and services; geopolitical events and conflicts; adverse impacts to our business and those of our customers and suppliers, including due to supply chain disruptions, component shortages, and associated logistics expense increases; our ability as an organization to successfully acquire, integrate or partner with other companies, products or technologies in a successful manner such as our partnership efforts with Eaton Corporation; our dependence on widespread acceptance and adoption of EVs, including any delays or modifications to auto manufacturers' plans and strategies to transition to predominately manufacture EVs and any corresponding decreased demand for installation of charging stations; our current dependence on sales of charging stations for the majority of our revenues; overall demand for EV charging and the potential for reduced demand for EVs if governmental policies, rebates, tax credits and other financial incentives are reduced, modified or eliminated or governmental mandates to increase the use of EVs or decrease the use of vehicles powered by fossil fuels, either directly or indirectly through mandated limits on carbon emissions, are reduced, modified or eliminated; our ability, and our reliance on our customers, to successfully implement, construct and manage state, federal and local charging infrastructure programs in accordance with the respective terms of such program in order to validly secure and obtain awarded funding and win additional grant opportunities; our reliance on contract manufacturers, including those located outside the United States, may result in supply chain interruptions, delays and expense increases which may adversely affect our sales, revenue and gross margins; our ability to expand our operations and market share in Europe; the need to attract additional fleet operators as customers, especially autonomous EV fleets; potential adverse effects on our revenue and gross margins due to delays and costs associated with new product introductions, such as our new AC and Express DC fast charging product architectures, inventory obsolescence, component shortages and related expense increases; the ability or success of our new AC and Express DC fast charging product architectures to result in an increased demand for charging products by commercial, residential and fleet charging customers; adverse impact to our revenues and gross margins if customers increasingly claim clean energy credits and, as a result, they are no longer available to be claimed by us; the effects of competition; risks related to our dependence on our intellectual property; and the risk that our technology could have undetected defects or errors. Additional risks and uncertainties that could affect our financial results are included under the captions “Risk Factors” and “Management’s Discussion and Analysis of Financial Condition and Results of Operations” in our Form 10-Q filed with the Securities and Exchange Commission (the “SEC”) on June 8, 2026, which is available on our website at investors.chargepoint.com and on the SEC’s website at www.sec.gov. Additional information will also be set forth in other filings that we make with the SEC from time to time. All forward-looking statements in this press release are based on information available to us as of the date hereof, and we do not assume any obligation to update the forward-looking statements provided to reflect events that occur or circumstances that exist after the date on which they were made, except as required by applicable law.
+Use of Non-GAAP Financial Measures
+ChargePoint has provided financial information in this press release that has not been prepared in accordance with generally accepted accounting principles in the United States (“GAAP”). ChargePoint uses these non-GAAP financial measures internally in analyzing its financial results. ChargePoint believes that the use of these non-GAAP financial measures is useful to investors to evaluate ongoing operating results and trends and believes they provide meaningful supplemental information to investors regarding ChargePoint’s underlying operating performance because they exclude items ChargePoint believes are unrelated to, and may not be indicative of, its core operating results.
+The presentation of these non-GAAP financial measures is not meant to be considered in isolation or as a substitute for comparable GAAP financial measures and should be read only in conjunction with ChargePoint’s condensed consolidated financial statements prepared in accordance with GAAP. A reconciliation of ChargePoint’s historical non-GAAP financial measures to their most directly comparable GAAP measures has been provided in the financial statement tables included in this press release, and investors are encouraged to review these reconciliations.
+Non-GAAP Gross Profit (Gross Margin). ChargePoint defines non-GAAP gross profit as gross profit excluding stock-based compensation expense, amortization expense of acquired intangible assets and restructuring costs for severances and employment-related termination costs, and facility and other contract termination costs. Non-GAAP gross margin is non-GAAP gross profit as a percentage of revenue.
+3
+
+
+
+
+
+Non-GAAP Cost of Revenue and Operating Expenses (includes Non-GAAP research and development, Non-GAAP sales and marketing and Non-GAAP general and administrative). ChargePoint defines non-GAAP cost of revenue and operating expenses as cost of revenue and operating expenses excluding stock-based compensation expense, amortization expense of acquired intangible assets, restructuring costs for severances and employment-related termination costs, and facility and other contract termination costs, and non-cash charges related to tax liabilities, litigation settlements and other non-recurring transaction costs, including associated non-recurring legal expenses and professional service fees.
+Non-GAAP Net Loss. ChargePoint defines non-GAAP net loss as net loss excluding stock-based compensation expense, amortization expense of acquired intangible assets, restructuring costs for severances and employment-related termination costs, and facility and other contract termination costs, and non-cash charges related to tax liabilities, litigation settlements and other non-recurring transaction costs, including associated non-recurring legal expenses and professional service fees. These amounts reflect the impact of any related tax effects. Non-GAAP pre-tax net loss is non-GAAP net loss adjusted for provision for income taxes.
+Non-GAAP Adjusted EBITDA Loss. ChargePoint defines non-GAAP adjusted EBITDA loss as net loss excluding stock-based compensation expense, amortization expense of acquired intangible assets, restructuring costs for severances and employment-related termination costs, and facility and other contract termination costs, non-cash charges related to tax liabilities, litigation settlements and other non-recurring transaction costs, including associated non-recurring legal expenses and professional service fees, and further adjusted for provision of income taxes, depreciation, interest income and expense, and other income and (expense), net.
+Investors are cautioned that there are a number of limitations associated with the use of non-GAAP financial measures to analyze financial results and trends. In particular, many of the adjustments to ChargePoint’s GAAP financial measures reflect the exclusion of items that are recurring and will be reflected in its financial results for the foreseeable future, such as stock-based compensation, which is an important part of ChargePoint’s employees’ compensation and impacts hiring, retention and performance. Furthermore, these non-GAAP financial measures are not based on any standardized methodology prescribed by GAAP, and the components that ChargePoint excludes in its calculation of non-GAAP financial measures may differ from the components that other companies exclude when they report their non-GAAP results. In the future, ChargePoint may also exclude other expenses it determines do not reflect the performance of ChargePoint’s operating results.
+CHPT-IR
+Investor Relations
+Audrey Dion
+Head of Investor Relations
+investors@chargepoint.com
+Press
+AJ Gosselin
+Director, Corporate Communications
+AJ.Gosselin@chargepoint.com
+media@chargepoint.com
+4
+
+
+
+
+
+
+ChargePoint Holdings, Inc.
+PRELIMINARY CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(In thousands, except per share amounts; unaudited)
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| July 31, | | July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Revenue | | | | | | | |
+Networked Charging Systems | $ | 62,917 | | | $ | 50,421 | | | $ | 116,224 | | | $ | 102,480 | |
+Subscriptions | 43,698 | | | 39,896 | | | 84,473 | | | 77,916 | |
+Other | 9,460 | | | 8,273 | | | 17,197 | | | 15,834 | |
+Total revenue | 116,075 | | | 98,590 | | | 217,894 | | | 196,230 | |
+Cost of revenue | | | | | | | |
+Networked Charging Systems | 49,495 | | | 46,492 | | | 98,449 | | | 95,130 | |
+Subscriptions | 18,065 | | | 15,534 | | | 35,985 | | | 30,900 | |
+Other | 6,213 | | | 5,836 | | | 11,536 | | | 11,486 | |
+Total cost of revenue | 73,773 | | | 67,862 | | | 145,970 | | | 137,516 | |
+Gross profit | 42,302 | | | 30,728 | | | 71,924 | | | 58,714 | |
+Operating expenses | | | | | | | |
+Research and development | 32,410 | | | 36,479 | | | 68,007 | | | 69,989 | |
+Sales and marketing | 23,459 | | | 25,033 | | | 47,053 | | | 51,225 | |
+General and administrative | 20,492 | | | 28,193 | | | 38,077 | | | 50,317 | |
+Total operating expenses | 76,361 | | | 89,705 | | | 153,137 | | | 171,531 | |
+Loss from operations | (34,059) | | | (58,977) | | | (81,213) | | | (112,817) | |
+| | | | | | | |
+Interest income | 499 | | | 1,132 | | | 835 | | | 2,296 | |
+Interest expense | (279) | | | (6,849) | | | (553) | | | (13,285) | |
+Other income (expense), net | (236) | | | (323) | | | 4,860 | | | 2,290 | |
+Net loss before income taxes | (34,075) | | | (65,017) | | | (76,071) | | | (121,516) | |
+Provision for income taxes | 1,549 | | | 1,162 | | | 2,757 | | | 1,784 | |
+Net loss | $ | (35,624) | | | $ | (66,179) | | | $ | (78,828) | | | $ | (123,300) | |
+Net loss per share, basic and diluted | $ | (1.35) | | | $ | (2.85) | | | $ | (3.09) | | | $ | (5.32) | |
+Weighted average shares outstanding, basic and diluted | 26,322,311 | | | 23,196,534 | | | 25,490,242 | | | 23,196,534 | |
+
+Page 5
+
+
+
+
+
+
+ChargePoint Holdings, Inc.
+PRELIMINARY CONDENSED CONSOLIDATED BALANCE SHEETS
+(In thousands, unaudited)
+
+| | | | | | | | | | | |
+| July 31, 2026 | | January 31, 2026 |
+Assets | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 95,330 | | | $ | 141,564 | |
+Restricted cash | 400 | | | 400 | |
+| | | |
+Accounts receivable, net | 86,695 | | | 86,132 | |
+Inventories | 179,468 | | | 214,903 | |
+Prepaid expenses and other current assets | 24,457 | | | 19,028 | |
+Total current assets | 386,350 | | | 462,027 | |
+Property and equipment, net | 20,142 | | | 24,665 | |
+Intangible assets, net | 52,742 | | | 60,534 | |
+Operating lease right-of-use assets | 8,039 | | | 11,450 | |
+Goodwill | 223,153 | | | 227,938 | |
+Other assets | 5,244 | | | 5,631 | |
+Total assets | $ | 695,670 | | | $ | 792,245 | |
+Liabilities and Stockholders' Equity | | | |
+Current liabilities: | | | |
+Accounts payable | $ | 80,351 | | | $ | 90,094 | |
+Accrued and other current liabilities | 139,810 | | | 141,723 | |
+Deferred revenue | 122,245 | | | 119,381 | |
+Debt, current | 17,476 | | | 32,371 | |
+Total current liabilities | 359,882 | | | 383,569 | |
+Deferred revenue, noncurrent | 126,310 | | | 131,200 | |
+Debt, noncurrent | 219,462 | | | 228,480 | |
+Operating lease liabilities | 8,376 | | | 10,677 | |
+Deferred tax liabilities | 11,671 | | | 13,038 | |
+Other long-term liabilities | 6,061 | | | 3,982 | |
+Total liabilities | 731,762 | | | 770,946 | |
+Stockholders' equity (deficit): | | | |
+Common stock | 2 | | | 2 | |
+Additional paid-in capital | 2,157,728 | | | 2,128,764 | |
+Accumulated other comprehensive income | (3,359) | | | 4,168 | |
+Accumulated deficit | (2,190,463) | | | (2,111,635) | |
+Total stockholders' equity (deficit) | (36,092) | | | 21,299 | |
+Total liabilities and stockholders' equity (deficit) | $ | 695,670 | | | $ | 792,245 | |
+
+
+
+
+Page 6
+
+
+
+
+
+
+ChargePoint Holdings, Inc.
+PRELIMINARY CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(In thousands, unaudited)
+| | | | | | | | | | | |
+| Six Months Ended |
+| July 31, |
+| 2026 | | 2025 |
+Cash flows from operating activities | | | |
+Net loss | $ | (78,828) | | | $ | (123,300) | |
+Adjustments to reconcile net loss to net cash used in operating activities: | | | |
+Depreciation and amortization | 12,440 | | | 13,854 | |
+Non-cash operating lease cost | 1,650 | | | 1,784 | |
+Stock-based compensation | 21,561 | | | 36,079 | |
+Amortization of deferred contract acquisition costs | 1,558 | | | 1,687 | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+Paid-in-kind non-cash interest expense | 387 | | | 9,397 | |
+| | | |
+Foreign currency transaction (gain) loss | 784 | | | (3,922) | |
+Reserves and other | (9,195) | | | 4,281 | |
+Changes in operating assets and liabilities: | | | |
+Accounts receivable, net | (1,784) | | | 2,636 | |
+Inventories | 40,690 | | | 3,338 | |
+Prepaid expenses and other assets | (6,754) | | | 3,374 | |
+Accounts payable, operating lease liabilities, and accrued and other liabilities | (22,329) | | | 3,295 | |
+Deferred revenue | (971) | | | 8,377 | |
+Net cash used in operating activities | (40,791) | | | (39,120) | |
+Cash flows from investing activities | | | |
+Purchases of property and equipment | (2,105) | | | (2,358) | |
+| | | |
+| | | |
+| | | |
+| | | |
+Net cash used in investing activities | (2,105) | | | (2,358) | |
+Cash flows from financing activities | | | |
+Repayment of borrowings | (9,625) | | | — | |
+Proceeds from the issuance of common stock under employee equity plans, net of tax withholding | 365 | | | 1,251 | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+| | | |
+Change in driver funds and amounts due to customers | 6,794 | | | 6,838 | |
+Net cash (used in) provided by financing activities | (2,466) | | | 8,089 | |
+Effect of exchange rate changes on cash, cash equivalents, and restricted cash | (872) | | | 2,941 | |
+Net decrease in cash, cash equivalents, and restricted cash | (46,234) | | | (30,448) | |
+Cash, cash equivalents, and restricted cash at beginning of period | 141,964 | | | 224,971 | |
+Cash, cash equivalents, and restricted cash at end of period | $ | 95,730 | | | $ | 194,523 | |
+
+
+
+
+
+
+Page 7
+
+
+
+
+
+
+ChargePoint Holdings, Inc.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL MEASURES
+(In thousands, unaudited)
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| | Three Months Ended July 31, 2026 | | Three Months Ended July 31, 2025 | | Six
+Months Ended
+July 31, 2026 | | Six
+Months Ended
+July 31, 2025 |
+Cost of Revenue: | | | | | | | | | | | | | | | | |
+GAAP cost of revenue (as a percentage of revenue) | | $ | 73,773 | | | 64% | | $ | 67,862 | | | 69% | | $ | 145,970 | | | 67% | | $ | 137,516 | | | 70% |
+Stock-based compensation expense | | (871) | | | | | (1,251) | | | | | (1,862) | | | | | (2,474) | | | |
+Amortization of intangible assets | | (796) | | | | | (796) | | | | | (1,599) | | | | | (1,562) | | | |
+Restructuring costs (1) | | (624) | | | | | — | | | | | (1,354) | | | | | — | | | |
+| | | | | | | | | | | | | | | | |
+Non-GAAP cost of revenue (as a percentage of revenue) | | $ | 71,482 | | | 62% | | $ | 65,815 | | | 67% | | $ | 141,155 | | | 65% | | $ | 133,480 | | | 68% |
+| | | | | | | | | | | | | | | | |
+Gross Profit: | | | | | | | | | | | | | | | | |
+GAAP gross profit (gross margin as a percentage of revenue) | | $ | 42,302 | | | 36% | | $ | 30,728 | | | 31% | | $ | 71,924 | | | 33% | | $ | 58,714 | | | 30% |
+Stock-based compensation expense | | 871 | | | | | 1,251 | | | | | 1,862 | | | | | 2,474 | | | |
+Amortization of intangible assets | | 796 | | | | | 796 | | | | | 1,599 | | | | | 1,562 | | | |
+Restructuring costs (1) | | 624 | | | | | — | | | | | 1,354 | | | | | — | | | |
+| | | | | | | | | | | | | | | | |
+Non-GAAP gross profit (gross margin as a percentage of revenue) | | $ | 44,593 | | | 38% | | $ | 32,775 | | | 33% | | $ | 76,739 | | | 35% | | $ | 62,750 | | | 32% |
+| | | | | | | | | | | | | | | | |
+Operating Expenses: | | | | | | | | | | | | | | | | |
+GAAP research and development (as a percentage of revenue) | | $ | 32,410 | | | 28% | | $ | 36,479 | | | 37% | | $ | 68,007 | | | 31% | | $ | 69,989 | | | 36% |
+Stock-based compensation expense | | (5,027) | | | | | (9,174) | | | | | (10,459) | | | | | (17,788) | | | |
+Restructuring costs (1) | | (2,210) | | | | | — | | | | | (6,332) | | | | | — | | | |
+| | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | |
+Non-GAAP research and development (as a percentage of revenue) | | $ | 25,173 | | | 22% | | $ | 27,305 | | | 28% | | $ | 51,216 | | | 24% | | $ | 52,201 | | | 27% |
+| | | | | | | | | | | | | | | | |
+GAAP sales and marketing (as a percentage of revenue) | | $ | 23,459 | | | 20% | | $ | 25,033 | | | 25% | | $ | 47,053 | | | 22% | | $ | 51,225 | | | 26% |
+Stock-based compensation expense | | (1,770) | | | | | (2,876) | | | | | (3,652) | | | | | (5,955) | | | |
+Amortization of intangible assets | | (2,385) | | | | | (2,382) | | | | | (4,795) | | | | | (4,657) | | | |
+Restructuring costs (1) | | (1,509) | | | | | — | | | | | (3,190) | | | | | — | | | |
+| | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | |
+Non-GAAP sales and marketing (as a percentage of revenue) | | $ | 17,795 | | | 15% | | $ | 19,775 | | | 20% | | $ | 35,416 | | | 16% | | $ | 40,613 | | | 21% |
+| | | | | | | | | | | | | | | | |
+GAAP general and administrative (as a percentage of revenue) | | $ | 20,492 | | | 18% | | $ | 28,193 | | | 29% | | $ | 38,077 | | | 17% | | $ | 50,317 | | | 26% |
+Stock-based compensation expense | | (3,297) | | | | | (4,915) | | | | | (5,587) | | | | | (9,862) | | | |
+Restructuring costs (1) | | (2,057) | | | | | — | | | | | (3,883) | | | | | — | | | |
+| | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | |
+Other adjustments (2) | | (5,835) | | | | | (11,761) | | | | | (8,526) | | | | | (18,020) | | | |
+Non-GAAP general and administrative (as a percentage of revenue) | | $ | 9,303 | | | 8% | | $ | 11,517 | | | 12% | | $ | 20,081 | | | 9% | | $ | 22,435 | | | 11% |
+| | | | | | | | | | | | | | | | |
+GAAP Operating Expenses (as a percentage of revenue) | | $ | 76,361 | | | 66% | | $ | 89,705 | | | 91% | | $ | 153,137 | | | 70% | | $ | 171,531 | | | 87% |
+Stock-based compensation expense | | (10,094) | | | | | (16,965) | | | | | (19,698) | | | | | (33,605) | | | |
+Amortization of intangible assets | | (2,385) | | | | | (2,382) | | | | | (4,795) | | | | | (4,657) | | | |
+Restructuring costs (1) | | (5,776) | | | | | — | | | | | (13,405) | | | | | — | | | |
+Other adjustments (2) | | (5,835) | | | | | (11,761) | | | | | (8,526) | | | | | (18,020) | | | |
+Non-GAAP Operating Expenses (as a percentage of revenue) | | $ | 52,271 | | | 45% | | $ | 58,597 | | | 59% | | $ | 106,713 | | | 49% | | $ | 115,249 | | | 59% |
+| | | | | | | | | | | | | | | | |
+
+Page 8
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+Net Loss: | | | | | | | | | | | | | | | | |
+GAAP net loss (as a percentage of revenue) | | $ | (35,624) | | | (31)% | | $ | (66,179) | | | (67) | % | | $ | (78,828) | | | (36)% | | $ | (123,300) | | | (63)% |
+Stock-based compensation expense | | 10,965 | | | | | 18,216 | | | | | 21,560 | | | | | 36,079 | | | |
+Amortization of intangible assets | | 3,181 | | | | | 3,178 | | | | | 6,394 | | | | | 6,219 | | | |
+Restructuring costs (1) | | 6,400 | | | | | — | | | | | 14,759 | | | | | — | | | |
+| | | | | | | | | | | | | | | | |
+| | | | | | | | | | | | | | | | |
+Other adjustments (2) | | 5,835 | | | | | 11,761 | | | | | 8,526 | | | | | 18,020 | | | |
+Non-GAAP net loss (as a percentage of revenue) | | $ | (9,243) | | | (8)% | | $ | (33,024) | | | (33) | % | | $ | (27,589) | | | (13)% | | $ | (62,982) | | | (32)% |
+Provision for income taxes | | 1,549 | | | | | 1,162 | | | | | 2,757 | | | | | 1,784 | | | |
+Non-GAAP pre-tax net loss (as a percentage of revenue) | | $ | (7,694) | | | (7)% | | $ | (31,862) | | | (32) | % | | $ | (24,832) | | | (11)% | | $ | (61,198) | | | (31)% |
+Depreciation | | 2,926 | | | | | 3,748 | | | | | 6,045 | | | | | 7,635 | | | |
+| | | | | | | | | | | | | | | | |
+Interest income | | (499) | | | | | (1,132) | | | | | (835) | | | | | (2,296) | | | |
+Interest expense | | 279 | | | | | 6,849 | | | | | 553 | | | | | 13,285 | | | |
+Other expense (income), net | | 236 | | | | | 323 | | | | | (4,860) | | | | | (2,290) | | | |
+Non-GAAP Adjusted EBITDA Loss (as a percentage of revenue) | | $ | (4,752) | | | (4)% | | $ | (22,074) | | | (22) | % | | $ | (23,929) | | | (11)% | | $ | (44,864) | | | (23)% |
+
+
+(1)Consists of restructuring costs for severances and employment-related termination costs, and facility and other contract termination costs.
+(2)Consists of non-cash charges related to tax liabilities, litigation settlements and other non-recurring transaction costs, including associated non-recurring legal expenses and professional service fees.
+Page 9

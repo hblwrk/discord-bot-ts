@@ -1,0 +1,452 @@
+EX-99.1
+2
+ex991-fy27xq1earnings.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+C3 AI Announces Fiscal First Quarter 2027 Results
+Turnaround on track
+Bookings increase 73% quarter over quarter
+
+
+REDWOOD CITY, Calif. — September 2, 2026 — C3.ai, Inc. (“C3 AI,” “C3,” or the “Company”) (NYSE: AI), the Enterprise AI application software company, today announced financial results for its fiscal first quarter ended July 31, 2026.
+“Revenue was $52.4 million, on plan. Free cash flow was positive $2.1 million. Non-GAAP operating loss was $36.2 million, a 33% improvement QoQ. Bookings increased 73% QoQ. Cash balance was $651.1 million, up $76 million QoQ. The Company has done exactly what a disciplined, focused turnaround should do. We restructured Sales. We aligned cash outflows with cash inflows. We instituted rigorous expense control. We installed experienced leadership across the board, and we implemented rigorous management discipline across every line of business.
+Revenue has stabilized, free cash flow is positive, operating loss has narrowed, and Forrester Research named C3 AI a leader in Enterprise AI. The plan is working, we are on track with laser-like management discipline to grow revenue, generate cash, attain non-GAAP profitability, maintain technology leadership, and increase customer satisfaction,” said Thomas M. Siebel, Chairman and Chief Executive Officer, C3 AI.
+The Company closed 22 agreements including with Heidelberg Materials, Ford Motor Company, Johnson & Johnson, Holcim, Seaspan, the U.S. Department of Agriculture, the Defense Logistics Agency, the U.S. Department of War and the U.S. Marine Corps, among others.
+Fiscal First Quarter 2027 Financial Highlights:
+•Total Revenue was $52.4 million.
+•Subscription Revenue was $49.2 million. Subscription revenue constituted 94% of total revenue.
+•GAAP gross profit was $16.7 million, representing a 32% gross margin. Non-GAAP gross profit was $26.1 million, representing a 50% non-GAAP gross margin.
+•GAAP net loss per share was $(0.60). Non-GAAP net loss per share was $(0.20).
+•Net cash provided by operating activities was $2.1 million. Free Cash Flow was $2.1 million.
+•Cash, cash equivalents, and marketable securities was $651.1 million.
+
+
+
+
+
+
+
+
+
+
+
+Financial Outlook:
+
+
+The Company’s guidance includes GAAP and non-GAAP financial measures.
+
+
+The following table summarizes C3 AI’s guidance for the second quarter of fiscal 2027 and full-year fiscal 2027:
+
+
+| | | | | | | | | | | |
+(in millions) | Second Quarter Fiscal 2027
+Guidance
+| | Full Year Fiscal 2027 Guidance
+|
+Total revenue | $51.0 - $55.0 | | $210.0 - $240.0 |
+Non-GAAP loss from operations | $(34.5) - $(42.5) | | $(123.0) - $(155.0) |
+
+
+
+A reconciliation of non-GAAP guidance measures to corresponding GAAP measures is not available on a forward-looking basis without unreasonable effort due to the uncertainty regarding, and the potential variability of, expenses that may be incurred in the future. Stock-based compensation expense-related charges, including employer payroll tax-related items on employee stock transactions, are impacted by the timing of employee stock transactions, the future fair market value of our common stock, and our future hiring and retention needs, all of which are difficult to predict and subject to constant change. We have provided a reconciliation of GAAP to non-GAAP financial measures in the financial statement tables for our historical non-GAAP results included in this press release. Our fiscal year ends April 30, and numbers are rounded for presentation purposes.
+
+
+
+
+
+
+
+
+Conference Call Details
+
+
+| | | | | |
+What: | C3 AI Fiscal First Quarter Earnings Call |
+When: | Wednesday, September 2, 2026 |
+Time: | 2:00 p.m. PT / 5:00 p.m. ET |
+Participant Registration: | https://register-conf.media-server.com/register/BI959e755eb0fa492089431eec477ad911 (live)
+|
+Webcast: | https://edge.media-server.com/mmc/p/5jt6k675/ (live and replay)
+|
+| |
+| |
+
+
+
+
+
+
+
+
+
+Statement Regarding Use of Non-GAAP Financial Measures
+
+
+The Company reports the following non-GAAP financial measures, which have not been prepared in accordance with generally accepted accounting principles in the United States (“GAAP”), in addition to, and not as a substitute for, or superior to, financial measures calculated in accordance with GAAP.
+
+
+•Non-GAAP gross profit, non-GAAP gross margin, non-GAAP loss from operations, non-GAAP net loss, non-GAAP net loss per share and non-GAAP expenses. Our non-GAAP gross profit, non-GAAP gross margin, non-GAAP loss from operations, non-GAAP net loss, non-GAAP net loss per share and non-GAAP expenses excludes the effect of restructuring expenses, stock-based compensation expense-related charges and employer payroll tax expense related to employee stock-based compensation. We believe the presentation of operating results that exclude these items provides useful supplemental information to investors and facilitates the analysis of our operating results and comparison of operating results across reporting periods.
+
+
+•Free cash flow. We believe free cash flow, a non-GAAP financial measure, is useful in evaluating liquidity and provides information to management and investors about our ability to fund future operating needs and strategic initiatives. We calculate free cash flow as net cash provided by (used in) operating activities less purchases of property and equipment and capitalized software development costs. This non-GAAP financial measure may be different than similarly titled measures used by other companies. Additionally, the utility of free cash flow is further limited as it does not represent the total increase or decrease in our cash balances for a given period.
+
+
+We use these non-GAAP financial measures internally for financial and operational decision-making purposes and as a means to evaluate period-to-period comparisons. Non-GAAP financial measures are not meant to be considered in isolation or as a substitute for comparable GAAP financial measures and should be read only in conjunction with our condensed consolidated financial statements prepared in accordance with GAAP. Our presentation of non-GAAP financial measures may not be comparable to similar measures used by other companies. We encourage investors to carefully consider our results under GAAP, as well as our supplemental non-GAAP information and the reconciliation between these presentations, to more fully understand our business. Please see the tables included at the end of this release and in our press release dated June 3, 2026 for the reconciliation of GAAP to non-GAAP financial measures.
+
+
+Other Information
+
+
+Professional Services Revenue
+
+
+Our professional services revenue includes service fees and prioritized engineering services. Service fees include revenue from services such as consulting, training, and paid implementation services.
+
+
+Prioritized engineering services are undertaken when a customer requests that we accelerate the design, development, and delivery of software features and functions that are planned in our future product roadmap. When we agree to this, we negotiate an agreed upon fee to accelerate the development of the software. When the software feature is delivered, it becomes integrated to our core product offering, is available to all subscribers of the underlying software product, and enhances the operation of that product going forward. Such prioritized engineering services result in production-level computer software – compiled code that enhances the functionality of our production products – which is available for our customers to use over the life of their software licenses. Per Accounting Standards Codification (ASC) 606, Prioritized engineering services revenue is recognized as professional services over the period in which the software development is completed.
+
+
+Total professional services revenue consists of:
+
+
+| | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | |
+| 2026 | | 2025 | | | | |
+| (in thousands) | | |
+Prioritized engineering services | $ | 1,760 | | | $ | 8,663 | | | | | |
+Service fees | 1,446 | | | 1,297 | | | | | |
+Total professional services revenue | $ | 3,206 | | | $ | 9,960 | | | | | |
+
+
+
+
+
+
+
+
+
+Use of Forward-Looking Statements
+
+
+This press release contains forward-looking statements within the meaning of the Private Securities Litigation Reform Act of 1995. The words “anticipate,” “believe,” “continue,” “estimate,” “expect,” “intend,” “may,” “on track,” “positioned,” “will” and similar expressions are intended to identify forward-looking statements, although not all forward-looking statements contain these words. Forward-looking statements in this press release include, but are not limited to, statements regarding our restructuring plan and the reorganization of our sales, services, and products organizations, our market leadership position, anticipated benefits from our partnerships, our financial outlook for the second quarter of fiscal 2027 and full 2027 fiscal year, our ability to successfully implement a turnaround in our business, our ability to grow revenue, generate cash, attain Non-GAAP profitability, maintain technology leadership, and increase customer satisfaction, our sales and customer opportunity pipeline, including continued growth in the Federal market, the expected benefits of our offerings, and our business strategies, plans, and objectives for future operations. We have based these forward-looking statements largely on our current expectations and projections about future events and trends that we believe may affect our financial condition, results of operations, business strategy, short-term and long-term business operations and objectives, and financial needs. These forward-looking statements are subject to a number of risks and uncertainties, including our history of losses and ability to achieve and maintain profitability in the future, our historic dependence on a limited number of existing customers that account for a substantial portion of our revenue, our ability to attract new customers and retain existing customers, the ability of our restructured global sales and services organization to achieve desired productivity levels in a reasonable period of time, the impact of return of Tom Siebel as our Chief Executive Officer, and our ability to retain key members of our senior management, market awareness and acceptance of enterprise AI solutions in general and our products in particular, the length and unpredictability of our sales cycles and the time and expense required for our sales efforts. Some of these risks are described in greater detail in our filings with the Securities and Exchange Commission, including our Annual Report on Form 10-K for the fiscal year ended April 30, 2026, and other filings and reports we make with the Securities and Exchange Commission from time to time, including our Quarterly Report on Form 10-Q that will be filed for the fiscal quarter ended July 31, 2026, although new and unanticipated risks may arise. The future events and trends discussed in this press release may not occur and actual results could differ materially and adversely from those anticipated or implied in the forward-looking statements. Although we believe that the expectations reflected in the forward-looking statements are reasonable, we cannot guarantee future results, levels of activity, performance, achievements, or events and circumstances reflected in the forward-looking statements will occur. Except to the extent required by law, we do not undertake to update any of these forward-looking statements after the date of this press release to conform these statements to actual results or revised expectations.
+
+
+
+
+
+
+
+
+About C3.ai, Inc.
+C3.ai, Inc. (NYSE:AI) is the Enterprise AI application software company. C3 AI delivers a family of fully integrated products including the C3 Agentic AI Platform, an end-to-end platform for developing, deploying, and operating enterprise AI applications, C3 AI applications, a portfolio of industry-specific SaaS enterprise AI applications that enable the digital transformation of organizations globally, and C3 Generative AI, a suite of domain-specific generative AI offerings for the enterprise.
+
+
+Investor Contact
+ir@c3.ai
+
+
+C3 AI Public Relations
+Axicom
+Mindy Nelson
+830-214-4823
+pr@c3.ai
+
+
+
+
+
+
+
+
+C3.AI, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(In thousands, except per share data)
+(Unaudited)
+
+
+| | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | |
+| 2026 | | 2025 | | | | |
+Revenue | | | | | | | |
+Subscription | $ | 49,169 | | | $ | 60,301 | | | | | |
+Professional services | 3,206 | | | 9,960 | | | | | |
+Total revenue | 52,375 | | | 70,261 | | | | | |
+Cost of revenue | | | | | | | |
+Subscription | 34,720 | | | 41,481 | | | | | |
+Professional services | 986 | | | 2,336 | | | | | |
+Total cost of revenue | 35,706 | | | 43,817 | | | | | |
+Gross profit | 16,669 | | | 26,444 | | | | | |
+Operating expenses | | | | | | | |
+Sales and marketing | 41,611 | | | 62,513 | | | | | |
+Research and development | 46,549 | | | 64,651 | | | | | |
+General and administrative | 26,079 | | | 24,099 | | | | | |
+Restructuring | 698 | | | — | | | | | |
+Total operating expenses | 114,937 | | | 151,263 | | | | | |
+Loss from operations | (98,268) | | | (124,819) | | | | | |
+Interest income | 5,957 | | | 8,218 | | | | | |
+Other (expense) income, net | (338) | | | 132 | | | | | |
+Loss before provision for income taxes | (92,649) | | | (116,469) | | | | | |
+Provision for income taxes | 163 | | | 300 | | | | | |
+Net loss | $ | (92,812) | | | $ | (116,769) | | | | | |
+Net loss per share attributable to Class A and Class B common stockholders, basic and diluted | $ | (0.60) | | | $ | (0.86) | | | | | |
+Weighted-average shares used in computing net loss per share attributable to Class A and Class B common stockholders, basic and diluted | 154,999 | | | 135,375 | | | | | |
+| | | | | | | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C3.AI, INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(In thousands, except for share and per share data)
+(Unaudited)
+
+
+| | | | | | | | | | | |
+| July 31, 2026 | | April 30, 2026 |
+Assets | | | |
+Current assets | | | |
+Cash and cash equivalents | $ | 136,435 | | | $ | 66,197 | |
+Marketable securities | 514,634 | | | 509,252 | |
+Accounts receivable, net of allowance of $1,099 and $1,065 as of July 31, 2026 and April 30, 2026, respectively
+| 94,568 | | | 100,548 | |
+Prepaid expenses and other current assets | 24,531 | | | 31,965 | |
+Total current assets | 770,168 | | | 707,962 | |
+Property and equipment, net | 63,569 | | | 66,904 | |
+Goodwill | 625 | | | 625 | |
+Other assets, non-current | 40,442 | | | 40,782 | |
+Total assets | $ | 874,804 | | | $ | 816,273 | |
+Liabilities and stockholders’ equity | | | |
+Current liabilities | | | |
+Accounts payable | $ | 8,741 | | | $ | 5,509 | |
+Accrued compensation and employee benefits | 44,038 | | | 48,560 | |
+Deferred revenue, current | 52,568 | | | 34,861 | |
+Accrued and other current liabilities | 19,775 | | | 17,641 | |
+Total current liabilities | 125,122 | | | 106,571 | |
+Deferred revenue, non-current | 1,106 | | | 1,560 | |
+Other long-term liabilities | 53,680 | | | 54,391 | |
+Total liabilities | 179,908 | | | 162,522 | |
+Commitments and contingencies | | | |
+Stockholders’ equity | | | |
+Class A common stock | 156 | | | 145 | |
+Class B common stock | 3 | | | 3 | |
+Additional paid-in capital | 2,637,163 | | | 2,502,657 | |
+Accumulated other comprehensive loss | (610) | | | (50) | |
+Accumulated deficit | (1,941,816) | | | (1,849,004) | |
+Total stockholders’ equity | 694,896 | | | 653,751 | |
+Total liabilities and stockholders’ equity | $ | 874,804 | | | $ | 816,273 | |
+| | | |
+| | | |
+
+
+
+
+
+
+
+
+
+C3.AI, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(In thousands)
+(Unaudited)
+
+
+| | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | | |
+| 2026 | | 2025 | | | |
+Cash flows from operating activities: | | | | | | |
+Net loss | $ | (92,812) | | | $ | (116,769) | | | | |
+Adjustments to reconcile net loss to net cash provided by (used in) operating activities
+| | | | | | |
+Depreciation and amortization | 3,403 | | | 3,415 | | | | |
+Non-cash operating lease cost | 149 | | | 88 | | | | |
+Stock-based compensation expense | 59,233 | | | 64,775 | | | | |
+| | | | | | |
+Accretion of discounts on marketable securities | (1,305) | | | (2,811) | | | | |
+Other | 34 | | | 262 | | | | |
+Changes in operating assets and liabilities | | | | | | |
+Accounts receivable | 5,946 | | | 23,302 | | | | |
+Prepaid expenses, other current assets and other assets | 7,562 | | | (230) | | | | |
+Accounts payable | 3,083 | | | (2,931) | | | | |
+Accrued compensation and employee benefits | (2,048) | | | 3,343 | | | | |
+Operating lease liabilities | (1,300) | | | 2,187 | | | | |
+Other liabilities | 2,874 | | | (1,538) | | | | |
+Deferred revenue | 17,253 | | | (6,628) | | | | |
+Net cash provided by (used in) operating activities | 2,072 | | | (33,535) | | | | |
+Cash flows from investing activities: | | | | | | |
+Purchases of property and equipment | (8) | | | (760) | | | | |
+| | | | | | |
+Purchases of marketable securities | (129,154) | | | (206,492) | | | | |
+Maturities and sales of marketable securities | 124,516 | | | 156,081 | | | | |
+Net cash used in investing activities | (4,646) | | | (51,171) | | | | |
+Cash flows from financing activities: | | | | | | |
+| | | | | | |
+| | | | | | |
+Proceeds from exercise of Class A common stock options | 72,812 | | | 1,289 | | | | |
+Net cash provided by financing activities | 72,812 | | | 1,289 | | | | |
+Net increase (decrease) in cash, cash equivalents and restricted cash
+| 70,238 | | | (83,417) | | | | |
+Cash, cash equivalents and restricted cash at beginning of period | 78,763 | | | 176,924 | | | | |
+Cash, cash equivalents and restricted cash at end of period | $ | 149,001 | | | $ | 93,507 | | | | |
+Cash and cash equivalents | $ | 136,435 | | | $ | 80,941 | | | | |
+Restricted cash included in other assets, non-current | 12,566 | | | 12,566 | | | | |
+| | | | | | |
+Total cash, cash equivalents and restricted cash | $ | 149,001 | | | $ | 93,507 | | | | |
+Supplemental disclosure of cash flow information—cash paid for income taxes | $ | 518 | | | $ | 452 | | | | |
+Supplemental disclosures of non-cash investing and financing activities: | | | | | | |
+Purchases of property and equipment included in accounts payable and accrued liabilities | $ | 149 | | | $ | 201 | | | | |
+Right-of-use assets obtained in exchange for lease obligations (including remeasurement of right-of-use assets and lease liabilities due to changes in the timing of receipt of lease incentives) | $ | — | | | $ | (166) | | | | |
+| | | | | | |
+| | | | | | |
+| | | | | | |
+| | | | | | |
+Vesting of early exercised stock options | $ | — | | | $ | 5 | | | | |
+
+
+
+
+
+
+
+
+
+C3.AI, INC.
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL MEASURES
+(In thousands, except percentages)
+(Unaudited)
+
+
+| | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | |
+| 2026 | | 2025 | | | | |
+Reconciliation of GAAP gross profit to non-GAAP gross profit: | | | | | | | |
+Gross profit on a GAAP basis | $ | 16,669 | | $ | 26,444 | | | | |
+Stock-based compensation expense
+| 8,788 | | 9,290 | | | | |
+Employer payroll tax expense related to employee stock-based compensation
+| 635 | | 586 | | | | |
+Gross profit on a non-GAAP basis | $ | 26,092 | | $ | 36,320 | | | | |
+| | | | | | | |
+| | | | | | | |
+Gross margin on a GAAP basis | 32% | | 38% | | | | |
+Gross margin on a non-GAAP basis | 50% | | 52% | | | | |
+| | | | | | | |
+Reconciliation of GAAP loss from operations to non-GAAP loss from operations: | | | | | | | |
+Loss from operations on a GAAP basis | $ | (98,268) | | $ | (124,819) | | | | |
+Stock-based compensation expense
+| 59,233 | | 64,775 | | | | |
+Employer payroll tax expense related to employee stock-based compensation
+| 2,178 | | 2,220 | | | | |
+Restructuring
+| 698 | | — | | | | |
+Loss from operations on a non-GAAP basis | $ | (36,159) | | $ | (57,824) | | | | |
+| | | | | | | |
+Reconciliation of GAAP net loss per share to non-GAAP net loss per share: | | | | | | | |
+| | | | | | | |
+Net loss on a GAAP basis | $ | (92,812) | | $ | (116,769) | | | | |
+Stock-based compensation expense
+| 59,233 | | 64,775 | | | | |
+Employer payroll tax expense related to employee stock-based compensation
+| 2,178 | | 2,220 | | | | |
+Restructuring
+| 698 | | — | | | | |
+Net loss on a non-GAAP basis | $ | (30,703) | | $ | (49,774) | | | | |
+| | | | | | | |
+GAAP net loss per share attributable to Class A and Class B common shareholders, basic and diluted | $ | (0.60) | | | $ | (0.86) | | | | | |
+Non-GAAP net loss per share attributable to Class A and Class B common shareholders, basic and diluted | $ | (0.20) | | | $ | (0.37) | | | | | |
+Weighted-average shares used in computing net loss per share attributable to Class A and Class B common stockholders, basic and diluted | 154,999 | | | 135,375 | | | | | |
+
+
+
+| | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | |
+| July 31, 2026 | | April 30, 2026 | | July 31, 2025 | | | | |
+Reconciliation of GAAP expenses to non-GAAP expenses:
+| | | | | | | | | |
+Total cost of revenue | $ | 35,706 | | | $ | 40,277 | | | $ | 43,817 | | | | | |
+Total operating expenses | 114,937 | | | 132,481 | | | 151,263 | | | | | |
+GAAP expenses | 150,643 | | | 172,758 | | | 195,080 | | | | | |
+Stock-based compensation expense
+| 59,233 | | | 54,187 | | | 64,775 | | | | | |
+Employer payroll tax expense related to employee stock-based compensation
+| 2,178 | | | 1,785 | | | 2,220 | | | | | |
+Restructuring
+| 698 | | | 10,828 | | | — | | | | | |
+Non-GAAP expenses | $ | 88,534 | | | $ | 105,958 | | | $ | 128,085 | | | | | |
+
+
+
+
+
+
+
+
+
+
+(1)Stock-based compensation expense for gross profits and gross margin includes costs of subscription and cost of professional services as follows. Stock-based compensation expense for loss from operations includes total stock-based compensation expense as follows:
+
+
+| | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | |
+| 2026 | | 2025 | | | | |
+Cost of subscription | $ | 8,524 | | | $ | 8,622 | | | | | |
+Cost of professional services | 264 | | | 668 | | | | | |
+Sales and marketing | 17,592 | | | 24,181 | | | | | |
+Research and development | 20,037 | | | 19,323 | | | | | |
+General and administrative | 12,816 | | | 11,981 | | | | | |
+Total stock-based compensation expense | $ | 59,233 | | | $ | 64,775 | | | | | |
+
+
+
+(2) Employer payroll tax expense related to employee stock-based compensation for gross profits and gross margin includes costs of subscription and cost of professional services as follows. Employer payroll tax expense related to employee stock-based compensation for loss from operations includes total employer payroll tax expense related to employee stock-based compensation as follows:
+
+
+| | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | |
+| 2026 | | 2025 | | | | |
+Cost of subscription | $ | 615 | | | $ | 550 | | | | | |
+Cost of professional services | 20 | | | 36 | | | | | |
+Sales and marketing | 573 | | | 674 | | | | | |
+Research and development | 700 | | | 793 | | | | | |
+General and administrative | 270 | | | 167 | | | | | |
+Total employer payroll tax expense | $ | 2,178 | | | $ | 2,220 | | | | | |
+
+
+
+(3) Non-GAAP Loss from Operations exclude approximately $0.7 million of pre-tax restructuring charges which primarily consists of vendor consolidation costs.
+Reconciliation of free cash flow to the GAAP measure of net cash provided by (used in) operating activities:
+
+
+The following table below provides a reconciliation of free cash flow to the GAAP measure of net cash provided by (used in) operating activities for the periods presented:
+
+
+| | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | |
+| 2026 | | 2025 | | | | |
+Net cash provided by (used in) operating activities | $ | 2,072 | | | $ | (33,535) | | | | | |
+Less: | | | | | | | |
+Purchases of property and equipment | (8) | | | (760) | | | | | |
+| | | | | | | |
+Free cash flow | $ | 2,064 | | | $ | (34,295) | | | | | |
+Net cash used in investing activities | $ | (4,646) | | | $ | (51,171) | | | | | |
+Net cash provided by financing activities | $ | 72,812 | | | $ | 1,289 | | | | | |
+| | | | | | | |

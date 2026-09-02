@@ -1,0 +1,479 @@
+EX-99.1
+2
+phr-ex991q2fy27.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+Phreesia Announces Second Quarter Fiscal 2027 Results
+ALL-REMOTE COMPANY/WILMINGTON, Del., September 2, 2026 – Phreesia, Inc. (NYSE: PHR) (“Phreesia” or the "Company") announced financial results today for the fiscal second quarter ended July 31, 2026.
+“Phreesia delivered a solid fiscal second quarter, with revenue growth and profitability expansion in line with our expectations. We generated positive operating and free cash flow again this quarter, which together with available cash allowed us to reduce debt principal by over $23 million while maintaining a healthy cash balance,” said CEO and Co-Founder Chaim Indig. “We remain enthusiastic about two products that we believe will drive future growth, AccessOne and ProviderConnect, as well as the impact that our artificial intelligence (AI) investments are beginning to have on many aspects of our products and broader organization.”
+Please visit the Phreesia investor relations website at ir.phreesia.com to view the Company's Q2 Fiscal 2027 Stakeholder Letter.
+Fiscal Second Quarter Ended July 31, 2026 Highlights
+•Total revenue was $129.5 million in the quarter, up 10% year-over-year.
+•Average number of healthcare services clients ("AHSCs") was 4,744 in the quarter, up 6% year-over-year.
+•Total revenue per AHSC was $27,289 in the quarter, up 4% year-over-year. See "Key Metrics" below for additional information.
+•Net income was $1.9 million in the quarter, as compared to net income of $0.7 million in the same period in the prior year.
+•Adjusted EBITDA was $32.9 million in the quarter, as compared to $22.1 million in the same period in the prior year.
+•Net cash provided by operating activities was $18.3 million in the quarter, as compared to $14.8 million in the same period in the prior year.
+•Free cash flow was $13.8 million in the quarter, as compared to $9.6 million in the same period in the prior year.
+•Cash, cash equivalents and restricted cash as of July 31, 2026 was $74.6 million, an increase of $0.8 million from January 31, 2026. As of July 31, 2026, cash, cash equivalents and restricted cash included $1.7 million of long-term restricted cash classified within other long-term assets.
+Recent Developments
+Restructuring Plan
+On May 7, 2026, we implemented a restructuring plan (the “Plan”) intended to reduce operating expenses and better align the cost structure with our current business priorities. The Plan includes the elimination of approximately 220 positions, approximately half of which are contractor roles. We expect total restructuring charges in connection with the Plan to be approximately $10 million, substantially all of which are expected to consist of employee transition costs, severance payments and related employee benefits, and taxes. Restructuring charges of
+
+Adjusted EBITDA is a non-GAAP measure. We calculate Adjusted EBITDA as net income (loss) before interest expense, interest income, income tax expense (benefit), depreciation and amortization, stock-based compensation expense, loss on extinguishment of debt, other expense (income), net and certain other items that are not considered to reflect our operating activities and performance within the ordinary course of business, such as acquisition- and restructuring-related costs. The calculation of Adjusted EBITDA was updated beginning in Q3 of Fiscal 2026 to include an adjustment for acquisition-related costs. Prior periods have not been retroactively adjusted. See “Non-GAAP Financial Measures” for more information and a reconciliation of Adjusted EBITDA to the closest GAAP measure.
+Free cash flow is a non-GAAP measure. We calculate free cash flow as net cash provided by operating activities less capitalized internal-use software development costs and purchases of property and equipment. See “Non-GAAP Financial Measures” for a reconciliation of free cash flow to the closest GAAP measure.
+
+
+
+
+
+
+
+approximately $2.8 million were recognized for the Plan during the second quarter of fiscal 2027. We expect the Plan to be substantially completed during fiscal year 2027.
+Fiscal 2027 Outlook
+We are maintaining our revenue outlook for fiscal 2027. We expect revenue to be in the range of $510 million to $520 million. As we noted over the past several quarters, there is now more variability in our network solutions revenue forecasting, particularly in the second half of each fiscal year. Our visibility into revenue across the other parts of our business is generally consistent with our views in our March 2026 earnings disclosure. The revenue range provided for fiscal 2027 assumes approximately $37 million of contribution from AccessOne (as defined below) and no additional revenue from potential future acquisitions completed between now and January 31, 2027.
+We are maintaining our Adjusted EBITDA outlook for fiscal 2027. We expect Adjusted EBITDA to be in the range of $125 million to $135 million. As a reminder, in May 2026, we implemented a restructuring plan intended to reduce operating expenses and better align our cost structure with our current business priorities. The plan is expected to result in meaningful annualized run-rate expense savings, which were reflected in our Adjusted EBITDA outlook provided on March 30, 2026 and reaffirmed on May 27, 2026.
+We are maintaining our expectation for AHSC growth in the mid-single-digit percentage range, and we are maintaining our outlook for total revenue per AHSC to grow in the low-single-digit percentage range in fiscal 2027.
+We believe our cash, cash equivalents, restricted cash and cash generated in our normal operations will be sufficient to reach our fiscal 2027 outlook and meet our obligations for at least the next twelve months. As of July 31, 2026 we had $61 million in borrowings outstanding under our credit facility with Capital One.
+Non-GAAP Financial Measures
+We have not reconciled our Adjusted EBITDA outlook to GAAP net income (loss) because we do not provide an outlook for GAAP net income (loss) due to the uncertainty and potential variability of other expense (income), net and income tax expense (benefit), which are reconciling items between Adjusted EBITDA and GAAP net income (loss). Because we cannot reasonably predict such items, a reconciliation of the non-GAAP financial measure outlook to the corresponding GAAP measure is not available without unreasonable effort. We caution, however, that such items could have a significant impact on the calculation of GAAP net income (loss). For further information regarding the non-GAAP financial measures included in this press release, including a reconciliation of GAAP to non-GAAP financial measures and an explanation of these measures, please see “Non-GAAP Financial Measures” below.
+Available Information
+We intend to use our Company website (including our Investor Relations website) as well as our Facebook, X, LinkedIn and Instagram accounts as a means of disclosing material non-public information and for complying with our disclosure obligations under Regulation FD.
+Forward-Looking Statements
+This press release includes express or implied statements that are not historical facts and are considered forward-looking statements within the meaning of Section 27A of the Securities Act of 1933, as amended and Section 21E of the Securities Exchange Act of 1934, as amended. Forward-looking statements generally relate to future events or our future financial or operating performance and may contain projections of our future results of operations or of our financial information or state other forward-looking information. These statements include, but are not limited to, statements regarding: our future financial and operating performance, including our revenue, operating leverage, Adjusted EBITDA and cash flows; our expectations regarding demand for our solutions and visibility into future revenue; our expectations regarding our restructuring plan, including the anticipated amount, timing and composition of restructuring charges, reductions in operating expenses and resulting expense savings; the expected results of the acquisition of AccessOne Parent Holdings, Inc. and its subsidiaries (collectively, “AccessOne” and such acquisition, the “AccessOne Acquisition”) discussed herein, including anticipated additional revenue; our ability to meet our obligations for the next twelve months and achieve our fiscal 2027 outlook with our current cash, cash equivalents, restricted cash and cash generated in our normal operations; our outlook for fiscal 2027, including our expectations regarding revenue, Adjusted EBITDA, AHSCs and total revenue per AHSC; our ability to continue generating positive net income and free cash flow; our business strategy and operating plans; the factors that drive our revenue growth; our growth expectations and strategies for the AccessOne business and ProviderConnect; our ability to offer the AccessOne solution to additional clients and access to capital; our
+
+GAAP is defined as generally accepted accounting principles in the United States.
+
+
+
+
+
+
+
+expectations regarding new solutions and solutions under development and the use of artificial intelligence in our solutions; and our expectations regarding the impacts of AI across our products and broader organization. In some cases, you can identify forward-looking statements by the following words: “may,” “will,” “could,” “would,” “should,” “expect,” “intend,” “plan,” “anticipate,” “believe,” “estimate,” “predict,” “project,” “potential,” “continue,” “ongoing,” or the negative of these terms or other comparable terminology, although not all forward-looking statements contain these words. Although we believe that the expectations reflected in these forward-looking statements are reasonable, these statements relate to future events or our future operational or financial performance and involve known and unknown risks, uncertainties and other factors that may cause our actual results, performance or achievements to be materially different from any future results, performance or achievements expressed or implied by these forward-looking statements. Furthermore, actual results may differ materially from those described in the forward-looking statements and will be affected by a variety of risks and factors that are beyond our control, including, without limitation, risks associated with: our ability to effectively manage our growth and meet our growth objectives; our focus on the long-term and our investments in growth; the ability to integrate operations or realize any operational or corporate synergies and other benefits from the AccessOne Acquisition; the competitive environment in which we operate; our ability to comply with the covenants in our credit facility with Capital One and the securitization program with PNC Bank; changes in market conditions and receptivity to our products and services; our ability to develop and release new products and services and successful enhancements, features and modifications to our existing products and services; our ability to maintain the security and availability of our platform; the impact of cyberattacks, security incidents or breaches impacting our business; changes in laws and regulations applicable to our business model; our ability to make accurate predictions about our industry and addressable market; our ability to attract, retain and cross-sell to healthcare services clients; our ability to continue to operate effectively with a primarily remote workforce and attract and retain key talent; our ability to realize the intended benefits of our acquisitions and partnerships; difficulties in integrating our acquisitions and investments; artificial intelligence that can impact our business, including by posing security risks to our confidential information, proprietary information and personal data, increasing our regulatory and compliance burden and increasing competition; and other general, market, political, economic and business conditions (including from the U.S. federal government, tariff and trade issues, and the warfare and/or political and economic instability in Ukraine, the Middle East or elsewhere). The forward-looking statements contained in this press release are also subject to other risks and uncertainties, including those listed or described in our filings with the Securities and Exchange Commission (“SEC”), including in our Quarterly Report on Form 10-Q for the fiscal quarter ended July 31, 2026 that will be filed with the SEC following this press release. The forward-looking statements in this press release speak only as of the date on which the statements are made. We undertake no obligation to update, and expressly disclaim the obligation to update, any forward-looking statements made in this press release to reflect events or circumstances after the date of this press release or to reflect new information or the occurrence of unanticipated events, except as required by law.
+This press release includes certain non-GAAP financial measures as defined by SEC rules. We have provided a reconciliation of those measures to the most directly comparable GAAP measures, with the exception of our Adjusted EBITDA outlook for the reasons described above.
+Conference Call Information
+We will hold a conference call on Wednesday, September 2, 2026 at 5:00 p.m. Eastern Time to review our fiscal 2027 second quarter financial results. To participate in our live conference call and webcast, please dial (833) 461-5787 (or (626) 884-3620 for international participants) using conference code number 285419602 or visit the “Events & Presentations” section of our Investor Relations website at ir.phreesia.com. A replay of the call will be available via webcast for on-demand listening shortly after the completion of the call, at the same web link, and will remain available for approximately 90 days.
+About Phreesia
+Phreesia is a trusted leader in patient activation, giving healthcare providers, life sciences companies and other organizations tools to help patients take a more active role in their care. Founded in 2005, Phreesia enabled more than 180 million patient visits in 2025—1 in 6 visits across the U.S. This scale allows Phreesia to make meaningful impact across the healthcare ecosystem. Offering patient-driven digital solutions for intake, outreach, education and
+
+
+
+
+
+
+
+more, Phreesia enhances the patient experience, drives operational efficiency and improves healthcare outcomes. To learn more, visit phreesia.com.
+
+
+Investor Relations Contact:
+Balaji Gandhi
+Phreesia, Inc.
+investors@phreesia.com
+(929) 506-4950
+
+
+
+Media Contact:
+Nicole Gist
+Phreesia, Inc.
+nicole.gist@phreesia.com
+(407) 760-6274
+
+
+
+
+
+
+
+
+
+
+Phreesia, Inc.
+Consolidated Balance Sheets
+(in thousands, except share and per share data)
+| | | | | | | | | | | |
+| July 31, 2026 | | January 31, 2026 |
+| (Unaudited) | | |
+Assets | | | |
+Current: | | | |
+Cash, cash equivalents and restricted cash (including restricted cash of $— and $1,691 as of July 31, 2026 and January 31, 2026, respectively) | $ | 72,945 | | | $ | 73,830 | |
+Settlement assets | 26,746 | | | 32,999 | |
+Accounts receivable, net of allowance for doubtful accounts of $879 and $1,523 as of July 31, 2026 and January 31, 2026, respectively | 89,406 | | | 97,453 | |
+Cardholder receivables | 29,351 | | | 38,330 | |
+Deferred purchase price receivables | 14,799 | | | 18,003 | |
+Accrued interest and fees receivables | 723 | | | 840 | |
+Deferred contract acquisition costs | 394 | | | 410 | |
+Prepaid expenses and other current assets | 19,139 | | | 17,978 | |
+Total current assets | 253,503 | | | 279,843 | |
+Property and equipment, net of accumulated depreciation and amortization of $90,281 and $94,193 as of July 31, 2026 and January 31, 2026, respectively | 18,122 | | | 20,332 | |
+Capitalized internal-use software, net of accumulated amortization of $77,389 and $69,390 as of July 31, 2026 and January 31, 2026, respectively | 54,127 | | | 54,270 | |
+Operating lease right-of-use assets | 1,205 | | | 2,002 | |
+Deferred contract acquisition costs | 130 | | | 338 | |
+Intangible assets, net of accumulated amortization of $18,728 and $13,489 as of July 31, 2026 and January 31, 2026, respectively | 74,522 | | | 79,761 | |
+Goodwill | 171,468 | | | 170,064 | |
+Deferred tax assets | 990 | | | 1,593 | |
+Other assets (includes $1,691 and $— of long-term restricted cash as of July 31, 2026 and January 31, 2026, respectively) | 6,669 | | | 2,442 | |
+Long-term cardholder receivables | 59,587 | | | 47,723 | |
+Long-term deferred purchase price receivables | 6,654 | | | 5,422 | |
+Total Assets | $ | 646,977 | | | $ | 663,790 | |
+Liabilities and Stockholders’ Equity | | | |
+Current: | | | |
+Settlement obligations | $ | 26,746 | | | $ | 32,999 | |
+Current portion of debt and finance lease liabilities | 5,281 | | | 7,971 | |
+Current portion of operating lease liabilities | 824 | | | 1,254 | |
+Accounts payable | 12,237 | | | 11,477 | |
+Accrued expenses | 35,706 | | | 41,257 | |
+Due to healthcare providers | 29,737 | | | 38,056 | |
+Deferred revenue | 32,573 | | | 49,522 | |
+Other current liabilities | 731 | | | 705 | |
+Total current liabilities | 143,835 | | | 183,241 | |
+Long-term debt and finance lease liabilities | 61,165 | | | 92,117 | |
+Operating lease liabilities, non-current | 677 | | | 1,107 | |
+Long-term due to healthcare providers | 59,734 | | | 45,329 | |
+Long-term deferred revenue | 4,687 | | | 244 | |
+Long-term deferred tax liabilities | 4,589 | | | 4,498 | |
+Other long-term liabilities | 439 | | | 47 | |
+Total Liabilities | 275,126 | | | 326,583 | |
+Commitments and contingencies | | | |
+Stockholders’ Equity: | | | |
+Preferred stock, undesignated, $0.01 par value—20,000,000 shares authorized as of both July 31, 2026 and January 31, 2026; no shares issued or outstanding as of both July 31, 2026 and January 31, 2026
+| — | | | — | |
+Common stock, $0.01 par value—500,000,000 shares authorized as of both July 31, 2026 and January 31, 2026; 63,516,793 and 62,020,186 shares issued as of July 31, 2026 and January 31, 2026, respectively | 635 | | | 620 | |
+Additional paid-in capital | 1,212,775 | | | 1,181,679 | |
+Accumulated deficit | (794,309) | | | (799,190) | |
+Accumulated other comprehensive loss | (621) | | | (382) | |
+Treasury stock, at cost, 1,476,215 and 1,355,169 shares as of July 31, 2026 and January 31, 2026, respectively | (46,629) | | | (45,520) | |
+Total Stockholders’ Equity | 371,851 | | | 337,207 | |
+Total Liabilities and Stockholders’ Equity | $ | 646,977 | | | $ | 663,790 | |
+
+
+
+
+
+
+
+
+
+
+
+Phreesia, Inc.
+Unaudited Consolidated Statements of Operations
+(in thousands, except share and per share data)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended
+July 31, | | Six months ended
+July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Revenue: | | | | | | | |
+Subscription and related services | $ | 52,695 | | | $ | 53,702 | | | $ | 105,416 | | | $ | 108,057 | |
+Payment solutions
+| 38,489 | | | 28,392 | | | 80,430 | | | 58,317 | |
+Network solutions | 38,274 | | | 35,161 | | | 74,547 | | | 66,817 | |
+Total revenues | 129,458 | | | 117,255 | | | 260,393 | | | 233,191 | |
+Expenses: | | | | | | | |
+Cost of revenue (excluding depreciation and amortization) | 19,271 | | | 17,398 | | | 36,930 | | | 34,035 | |
+Payment solutions expense
+| 23,914 | | | 20,243 | | | 49,589 | | | 41,671 | |
+Sales and marketing | 24,587 | | | 25,396 | | | 48,796 | | | 51,439 | |
+Research and development | 27,571 | | | 29,274 | | | 55,899 | | | 61,103 | |
+General and administrative | 16,512 | | | 19,042 | | | 34,873 | | | 35,450 | |
+Depreciation | 3,340 | | | 3,279 | | | 6,711 | | | 6,265 | |
+Amortization | 6,655 | | | 4,130 | | | 13,238 | | | 8,022 | |
+Total expenses | 121,850 | | | 118,762 | | | 246,036 | | | 237,985 | |
+Operating income (loss) | 7,608 | | | (1,507) | | | 14,357 | | | (4,794) | |
+Other (expense) income, net | (2,888) | | | 336 | | | (2,895) | | | 674 | |
+Loss on extinguishment of debt | — | | | — | | | (17) | | | — | |
+Interest expense | (1,729) | | | (391) | | | (4,028) | | | (826) | |
+Interest income | 248 | | | 999 | | | 545 | | | 1,204 | |
+Total other (expense) income, net | (4,369) | | | 944 | | | (6,395) | | | 1,052 | |
+Income (loss) before income tax expense | 3,239 | | | (563) | | | 7,962 | | | (3,742) | |
+Income tax (expense) benefit | (1,321) | | | 1,217 | | | (3,081) | | | 482 | |
+Net income (loss) | $ | 1,918 | | | $ | 654 | | | $ | 4,881 | | | $ | (3,260) | |
+Net income (loss) per share attributable to common stockholders:
+| | | | | | | |
+Basic
+| $ | 0.03 | | | $ | 0.01 | | | $ | 0.08 | | | $ | (0.06) | |
+Diluted
+| $ | 0.03 | | | $ | 0.01 | | | $ | 0.08 | | | $ | (0.06) | |
+Weighted-average common shares outstanding: | | | | | | | |
+Basic
+| 61,878,316 | | | 59,591,545 | | | 61,419,374 | | | 59,261,722 | |
+Diluted
+| 62,463,449 | | | 61,685,811 | | | 62,259,892 | | | 59,261,722 | |
+Beginning with the fourth quarter of the fiscal year ended January 31, 2026, the revenue line previously labeled “Payment processing fees” was relabeled “Payment solutions” to reflect the expanded scope of our payments offerings following the AccessOne Acquisition, which closed on November 12, 2025. “Payment solutions” includes all revenue previously presented as “Payment processing fees” and all revenue from the operations acquired in the AccessOne Acquisition. Additionally, “Payment processing expense” was relabeled “Payment solutions expense” and includes all expenses previously presented as “Payment processing expense” and direct costs of revenue related to the operations acquired in the AccessOne Acquisition. Prior period amounts have not been reclassified, as the Company did not own the acquired operations in prior periods and the change in presentation did not affect any previously reported amounts.
+|
+
+
+
+
+
+
+
+
+
+Phreesia, Inc.
+Unaudited Consolidated Statements of Comprehensive Income (Loss)
+(in thousands)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended
+July 31, | | Six months ended
+July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Net income (loss) | $ | 1,918 | | | $ | 654 | | | $ | 4,881 | | | $ | (3,260) | |
+Other comprehensive (loss) income: | | | | | | | |
+Net change in unrealized (loss) gain on cash flow hedges | (37) | | | (199) | | | (118) | | | 208 | |
+Change in foreign currency translation adjustments | (13) | | | (73) | | | (121) | | | (45) | |
+Other comprehensive (loss) income | (50) | | | (272) | | | (239) | | | 163 | |
+Comprehensive income (loss) | $ | 1,868 | | | $ | 382 | | | $ | 4,642 | | | $ | (3,097) | |
+
+
+
+
+
+
+
+
+
+Phreesia, Inc.
+Unaudited Consolidated Statements of Cash Flows
+(in thousands)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended
+July 31, | | Six months ended
+July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Operating activities: | | | | | | | |
+Net income (loss) | $ | 1,918 | | | $ | 654 | | | $ | 4,881 | | | $ | (3,260) | |
+Adjustments to reconcile net income (loss) to net cash provided by operating activities: | | | | | | | |
+Depreciation and amortization | 9,995 | | | 7,409 | | | 19,949 | | | 14,287 | |
+Stock-based compensation expense | 11,875 | | | 16,230 | | | 25,429 | | | 33,455 | |
+Amortization of deferred financing costs | 132 | | | 62 | | | 566 | | | 124 | |
+Loss on extinguishment of debt | — | | | — | | | 17 | | | — | |
+Cost of Phreesia hardware purchased by customers | 245 | | | 157 | | | 433 | | | 593 | |
+Deferred contract acquisition costs amortization | 108 | | | 242 | | | 224 | | | 352 | |
+Non-cash operating lease expense | 564 | | | 218 | | | 797 | | | 433 | |
+Deferred taxes | 1,136 | | | (1,583) | | | 1,813 | | | (1,498) | |
+Gains and losses for fair value option | 2,812 | | | — | | | 2,812 | | | — | |
+Changes in operating assets and liabilities: | | | | | | | |
+Accounts receivable | 185 | | | (1,820) | | | 7,916 | | | (3,310) | |
+Cash received for sale of receivables | 995 | | | — | | | 8,706 | | | — | |
+Accrued interest receivable | (12) | | | — | | | 117 | | | — | |
+Prepaid expenses and other assets | (2,640) | | | (2,660) | | | (1,812) | | | (2,916) | |
+Deferred contract acquisition costs
+| — | | | (351) | | | — | | | (351) | |
+Accounts payable | 489 | | | 2,068 | | | 648 | | | 329 | |
+Accrued expenses and other liabilities | 4,982 | | | (1,289) | | | (2,003) | | | (2,180) | |
+Payment of due to provider for receivables sold to securitization | (8,480) | | | — | | | (13,540) | | | — | |
+Lease liabilities | (452) | | | (238) | | | (862) | | | (490) | |
+Deferred revenue | (5,524) | | | (4,264) | | | (13,841) | | | (5,883) | |
+Net cash provided by operating activities | 18,328 | | | 14,835 | | | 42,250 | | | 29,685 | |
+Investing activities: | | | | | | | |
+Collections of cardholder receivables held for investment and deferred purchase price | 26,672 | | | — | | | 39,024 | | | — | |
+Capitalized internal-use software | (4,012) | | | (3,435) | | | (7,252) | | | (7,323) | |
+Purchases of property and equipment | (492) | | | (1,767) | | | (4,802) | | | (5,271) | |
+Net cash provided by (used in) investing activities | 22,168 | | | (5,202) | | | 26,970 | | | (12,594) | |
+Financing activities: | | | | | | | |
+Proceeds from issuance of common stock upon exercise of stock options | 10 | | | 114 | | | 141 | | | 242 | |
+Treasury stock to satisfy tax withholdings on stock compensation awards | (14) | | | — | | | (1,109) | | | — | |
+Proceeds from employee stock purchase plan | 236 | | | 575 | | | 758 | | | 1,343 | |
+Finance lease payments | (1,188) | | | (2,510) | | | (2,868) | | | (3,886) | |
+Principal payments on financing agreements | (364) | | | (328) | | | (719) | | | (648) | |
+Debt issuance costs and loan facility fee payments | — | | | — | | | (2,259) | | | (38) | |
+Debt extinguishment costs | — | | | — | | | (42) | | | — | |
+Proceeds from debt instruments | — | | | — | | | 92,240 | | | — | |
+Principal payments on debt instruments | (23,500) | | | — | | | (121,500) | | | — | |
+Payments due to provider for unfunded receivables | (17,462) | | | — | | | (33,017) | | | — | |
+Net cash used in financing activities | (42,282) | | | (2,149) | | | (68,375) | | | (2,987) | |
+Effect of exchange rate changes on cash, cash equivalents and restricted cash | 25 | | | (89) | | | (39) | | | (58) | |
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+Net (decrease) increase in cash, cash equivalents and restricted cash | (1,761) | | | 7,395 | | | 806 | | | 14,046 | |
+Cash, cash equivalents and restricted cash – beginning of period | 76,397 | | | 90,871 | | | 73,830 | | | 84,220 | |
+Cash, cash equivalents and restricted cash – end of period | $ | 74,636 | | | $ | 98,266 | | | $ | 74,636 | | | $ | 98,266 | |
+| | | | | | | |
+Supplemental information of non-cash investing and financing information: | | | | | | | |
+Non-cash activity related to credit card receivables and deferred purchase price | $ | 20,992 | | | $ | — | | | $ | 48,709 | | | $ | — | |
+Exchange of right of use asset for property and equipment | $ | — | | | $ | — | | | $ | 57 | | | $ | — | |
+Purchase of property and equipment and capitalized software included in accounts payable and accrued liabilities | $ | 2,140 | | | $ | 2,461 | | | $ | 2,140 | | | $ | 2,461 | |
+Capitalized stock-based compensation | $ | 238 | | | $ | 320 | | | $ | 580 | | | $ | 652 | |
+Issuance of stock to settle liabilities for stock-based compensation | $ | 919 | | | $ | 1,346 | | | $ | 8,972 | | | $ | 7,854 | |
+Cash paid for: | | | | | | | |
+Interest | $ | 703 | | | $ | 330 | | | $ | 4,551 | | | $ | 654 | |
+Income taxes | $ | 2,884 | | | $ | 763 | | | $ | 4,065 | | | $ | 1,314 | |
+| | | | | | | |
+Reconciliation of cash, cash equivalents and restricted cash shown in statements of cash flows | | | | | | | |
+Cash, cash equivalents and restricted cash per balance sheets | $ | 72,945 | | | $ | 98,266 | | | $ | 72,945 | | | $ | 98,266 | |
+Restricted cash included in other long-term assets | 1,691 | | | — | | | 1,691 | | | — | |
+Total cash, cash equivalents and restricted cash shown in statements of cash flows | $ | 74,636 | | | $ | 98,266 | | | $ | 74,636 | | | $ | 98,266 | |
+| | | | | | | |
+
+
+
+
+
+
+
+
+
+Non-GAAP Financial Measures
+This press release and statements made during the above-referenced webcast may include certain non-GAAP financial measures as defined by SEC rules.
+Adjusted EBITDA is a supplemental measure of our performance that is not required by, or presented in accordance with, GAAP. Adjusted EBITDA is not a measurement of our financial performance under GAAP and should not be considered as an alternative to net income or loss or any other performance measure derived in accordance with GAAP, or as an alternative to cash flows from operating activities as a measure of our liquidity. We calculate Adjusted EBITDA as net income (loss) before interest expense, interest income, income tax expense (benefit), depreciation and amortization, stock-based compensation expense, loss on extinguishment of debt, other expense (income), net and certain other items that are not considered to reflect our operating activities and performance within the ordinary course of business, such as acquisition- and restructuring-related costs. The calculation of Adjusted EBITDA was updated beginning in the three months ended October 31, 2025 to include an adjustment for acquisition-related costs, which consist primarily of legal, advisory and other professional fees and integration costs related to acquisitions. Management believes adjusting for these acquisition-related costs provides investors with a more consistent period-to-period comparison of our core operating performance and trends. For periods prior to the three and nine months ended October 31, 2025, the calculation of Adjusted EBITDA did not adjust for acquisition-related costs, and prior periods have not been retroactively adjusted.
+We have provided below a reconciliation of Adjusted EBITDA to net income (loss), the most directly comparable GAAP financial measure. We have presented Adjusted EBITDA in this press release and our Quarterly Report on Form 10-Q to be filed after this press release because it is a key measure used by our management and board of directors to understand and evaluate our core operating performance and trends, to prepare and approve our annual budget, and to develop short and long-term operational plans. In particular, we believe that the exclusion of the amounts eliminated in calculating Adjusted EBITDA can provide a useful measure for period-to-period comparisons of our core business. Accordingly, we believe that Adjusted EBITDA provides useful information to investors and others in understanding and evaluating our operating results in the same manner as our management and board of directors.
+We have not reconciled our Adjusted EBITDA outlook to GAAP net income (loss) because we do not provide an outlook for GAAP net income (loss) due to the uncertainty and potential variability of other expense (income), net and income tax expense (benefit) which are reconciling items between Adjusted EBITDA and GAAP net income (loss). Because we cannot reasonably predict such items, a reconciliation of the non-GAAP financial measure outlook to the corresponding GAAP measure is not available without unreasonable effort. We caution, however, that such items could have a significant impact on the calculation of GAAP net income (loss).
+Our use of Adjusted EBITDA has limitations as an analytical tool and should not be considered in isolation or as a substitute for analysis of our financial results as reported under GAAP. Some of these limitations are as follows:
+•Although depreciation and amortization expense are non-cash charges, the assets being depreciated and amortized may have to be replaced in the future, and Adjusted EBITDA does not reflect cash capital expenditure requirements for such replacements or for new capital expenditure requirements;
+•Adjusted EBITDA does not reflect: (1) changes in, or cash requirements for, our working capital needs; (2) the potentially dilutive impact of non-cash stock-based compensation; (3) tax payments that may represent a reduction in cash available to us; (4) loss on extinguishment of debt; (5) interest expense; (6) interest income; (7) other expense (income), net; or (8) certain other items that are not considered to reflect our operating activities and performance within the ordinary course of business, such as acquisition- and restructuring-related costs; and
+•Other companies, including companies in our industry, may calculate Adjusted EBITDA or similarly titled measures differently, which reduces its usefulness as a comparative measure.
+Because of these and other limitations, you should consider Adjusted EBITDA along with other GAAP-based financial performance measures, including various cash flow metrics, net income (loss), and our GAAP financial results.
+The following table presents a reconciliation of Adjusted EBITDA to net income (loss), the most directly comparable GAAP financial measure, for each of the periods indicated:
+
+
+
+
+
+
+
+
+
+
+Phreesia, Inc.
+Adjusted EBITDA
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended
+July 31, | | Six months ended
+July 31, |
+(in thousands, unaudited)
+| 2026 | | 2025 | | 2026 | | 2025 |
+Net income (loss) | $ | 1,918 | | | $ | 654 | | | $ | 4,881 | | | $ | (3,260) | |
+Interest expense | 1,729 | | | 391 | | | 4,028 | | | 826 | |
+Interest income | (248) | | | (999) | | | (545) | | | (1,204) | |
+Income tax expense (benefit) | 1,321 | | | (1,217) | | | 3,081 | | | (482) | |
+Depreciation and amortization | 9,995 | | | 7,409 | | | 19,949 | | | 14,287 | |
+Stock-based compensation expense | 11,875 | | | 16,230 | | | 25,429 | | | 33,455 | |
+Loss on extinguishment of debt | — | | | — | | | 17 | | | — | |
+Other expense (income), net | 2,888 | | | (336) | | | 2,895 | | | (674) | |
+Other items affecting comparability
+| 3,442 | | | — | | | 3,659 | | | — | |
+Adjusted EBITDA | $ | 32,920 | | | $ | 22,132 | | | $ | 63,394 | | | $ | 42,948 | |
+For the three months ended July 31, 2026, other items affecting comparability consisted of $0.7 million of legal, advisory and other professional fees and integration costs related to the AccessOne Acquisition and $2.8 million of severance, taxes and employee benefit costs associated with the restructuring plan. For the six months ended July 31, 2026, other items affecting comparability consisted of $0.9 million of legal, advisory and other professional fees and integration costs related to the AccessOne Acquisition and $2.8 million of severance, taxes and employee benefit costs associated with the restructuring plan.
+|
+
+We calculate free cash flow as net cash provided by operating activities less capitalized internal-use software development costs and purchases of property and equipment.
+Additionally, free cash flow is a supplemental measure of our liquidity that is not required by, or presented in accordance with, GAAP. We consider free cash flow to be a liquidity measure that provides useful information to management and investors about the amount of cash generated by our business that can be used for strategic opportunities, including investments, partnerships and acquisitions, and strengthening our financial position.
+The following table presents a reconciliation of free cash flow to net cash provided by operating activities, the most directly comparable GAAP financial measure, for each of the periods indicated:
+Phreesia, Inc.
+Free cash flow
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended
+July 31, | | Six months ended
+July 31, |
+(in thousands, unaudited)
+| 2026 | | 2025 | | 2026 | | 2025 |
+Net cash provided by operating activities
+| $ | 18,328 | | | $ | 14,835 | | | $ | 42,250 | | | $ | 29,685 | |
+Less: | | | | | | | |
+Capitalized internal-use software development costs | (4,012) | | | (3,435) | | | (7,252) | | | (7,323) | |
+Purchases of property and equipment | (492) | | | (1,767) | | | (4,802) | | | (5,271) | |
+Free cash flow | $ | 13,824 | | | $ | 9,633 | | | $ | 30,196 | | | $ | 17,091 | |
+
+
+
+
+
+
+
+
+
+
+
+Phreesia, Inc.
+Supplementary Information
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended
+July 31, | | Six months ended
+July 31, |
+(in thousands) | 2026 | | 2025 | | 2026 | | 2025 |
+GAAP operating expenses | | | | | | | |
+General and administrative | $ | 16,512 | | | $ | 19,042 | | | $ | 34,873 | | | $ | 35,450 | |
+Sales and marketing | 24,587 | | | 25,396 | | | 48,796 | | | 51,439 | |
+Research and development | 27,571 | | | 29,274 | | | 55,899 | | | 61,103 | |
+Cost of revenue (excluding depreciation and amortization) | 19,271 | | | 17,398 | | | 36,930 | | | 34,035 | |
+| $ | 87,941 | | | $ | 91,110 | | | $ | 176,498 | | | $ | 182,027 | |
+Stock compensation included in GAAP operating expenses | | | | | | | |
+General and administrative | $ | 5,392 | | | $ | 6,362 | | | $ | 10,881 | | | $ | 12,935 | |
+Sales and marketing | 3,792 | | | 4,745 | | | 7,694 | | | 9,919 | |
+Research and development | 2,205 | | | 4,204 | | | 5,770 | | | 8,597 | |
+Cost of revenue (excluding depreciation and amortization) | 486 | | | 919 | | | 1,084 | | | 2,004 | |
+| $ | 11,875 | | | $ | 16,230 | | | $ | 25,429 | | | $ | 33,455 | |
+Other items affecting comparability included in GAAP operating expenses | | | | | | | |
+General and administrative | $ | 848 | | | $ | — | | | $ | 1,065 | | | $ | — | |
+Sales and marketing | 300 | | | — | | | 300 | | | — | |
+Research and development | 2,022 | | | — | | | 2,022 | | | — | |
+Cost of revenue (excluding depreciation and amortization) | 272 | | | — | | | 272 | | | — | |
+
+
+Phreesia, Inc.
+Key Metrics
+(Unaudited) | | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended
+July 31, | | Six months ended
+July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Average number of healthcare services clients ("AHSCs") | 4,744 | | | 4,467 | | | 4,726 | | | 4,439 | |
+Total revenue per AHSC | $ | 27,289 | | | $ | 26,249 | | | $ | 55,098 | | | $ | 52,532 | |
+
+The definitions of our key metrics are presented below.
+•AHSCs. We define AHSCs as the average number of clients that generate subscription and related services or payment solutions revenue each month during the applicable period. In cases where we act as a subcontractor providing white-label services to our partner's clients, we treat the contractual relationship as a single healthcare services client. We believe growth in AHSCs is a key indicator of the performance of our business and depends, in part, on our ability to successfully develop and market our solutions to healthcare services organizations that are not yet clients. We believe growth in AHSCs provides useful information to investors as an important indicator of expected revenue growth. In addition, growth in AHSCs informs our management of the areas of our business that will require further investment to support expected future AHSC growth. For example, as AHSCs increase, we may need to add to our customer support team and invest to maintain effectiveness and performance of our solutions for our healthcare services clients and their patients.
+•Total revenue per AHSC. We define total revenue per AHSC as total revenue in a given period divided by the number of AHSCs during that same period. Our healthcare services clients directly generate subscription and related services and payment solutions revenue. Additionally, our relationships with healthcare services clients who subscribe to our solutions give us the opportunity to engage with life sciences companies, government entities, patient advocacy, public interest and not-for-profit and other organizations who deliver direct communication to patients through our solutions. As a result, we believe that our ability to increase total revenue per AHSC provides useful information to investors as an indicator of the long-term value of our solutions.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Phreesia, Inc.
+Additional Information
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three months ended | | Six months ended |
+| July 31, 2026 | | January 31, 2026
+| | July 31, 2026 | | January 31, 2026
+|
+Total managed payments (in billions) | $ | 1.626 | | | $ | 1.560 | | | $ | 3.412 | | | $ | 3.194 | |
+Payment solutions revenue rate | 2.4 | % | | 2.3 | % | | 2.4 | % | | 2.0 | % |
+The AccessOne Acquisition was completed on November 12, 2025. Reflects inclusion of the business operations of AccessOne from November 12, 2025 to January 31, 2026 and therefore the payment solutions revenue rate for the three and six months ended January 31, 2026 is not indicative of AccessOne’s full performance for the periods presented.
+|
+
+Total managed payments and payment solutions revenue rate were introduced in the first quarter of fiscal 2027. We believe these metrics will enable investors to better evaluate the performance of our payment solutions business following the AccessOne Acquisition during the fourth quarter of fiscal 2026, which introduced new revenue-generating activities. These metrics have replaced patient payment volume and payment facilitator volume percentage, which reflected only the legacy Phreesia payment processing business. Total managed payments reflects both the transactional activity we facilitate and the financing solutions we provide to healthcare organizations and patients. These metrics provide a clear and consistent framework for understanding how payment activity translates into revenue, enabling investors to more effectively assess the growth, performance and overall value of our payment solutions business.
+•Total managed payments. We define total managed payments as the sum of (i) our legacy patient payment volume, measured as the total dollar volume of transactions between our healthcare services clients and their patients utilizing our payment platform, including via credit and debit cards that we process as a payment facilitator, as well as cash and check payments and credit and debit transactions for which we act as a gateway to other payment processors; and (ii) the average month-end outstanding balance of our managed portfolio of cardholder receivables, calculated as the average of all month-end balances during the applicable period. We believe total managed payments are a useful indicator of the scale and health of our payments ecosystem, reflecting both the volume of transactions we facilitate and the size of the receivables portfolio we service. Total managed payments are one of the primary drivers of our total payments revenue.
+•Payment solutions revenue rate. We define our payment solutions revenue rate as total payment solutions revenue divided by total managed payments for a given period. This rate reflects the combined monetization of both our payment processing and patient financing activities into a single, unified rate. We believe this metric provides a useful lens into the efficiency and stability of our revenue model over time, enabling investors to better understand how changes in volume and portfolio size translate into revenue and to more easily evaluate the underlying performance and scalability of our payment solutions business. Because total managed payments includes both transaction volume and average receivables balances, payment solutions revenue rate should not be interpreted as a processing take rate, interest yield or margin.
+
+For periods prior to the three months ended April 30, 2026, we presented (i) patient payment volume (measured as the total dollar volume of transactions between our healthcare services clients and their patients utilizing our payment platform, including via credit and debit cards that we process as a payment facilitator as well as cash and check payments and credit and debit transactions for which we act as a gateway to other payment processors) and (ii) payment facilitator volume percentage (defined as the volume of credit and debit card patient payments that we process as a payment facilitator as a percentage of total patient payment volume).
