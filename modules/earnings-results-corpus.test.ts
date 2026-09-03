@@ -2699,6 +2699,39 @@ const filingCorpus: {
     source: "1397187/000139718726000126/lulu-20260802xex991.htm",
     ticker: "lulu",
   },
+  {
+    company: "Planet Labs PBC",
+    metrics: [
+      ["adjusted_eps", "$0.02"],
+      ["gaap_eps", "-$0.03"],
+      ["revenue", "$116.1M"],
+      ["net_income", "-$9.4M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$101M to $105M"],
+      ["FY2027 Revenue", "$430M to $441M"],
+      ["Q3 Adj EBITDA", "-$6M to -$1M"],
+      ["FY2027 Adj EBITDA", "$3M to $10M"],
+      ["Q3 Gross margin", "56% to 58%"],
+      ["FY2027 Gross margin", "55% to 57%"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1836833/000119312526381874/pl-ex99_1.htm",
+    ticker: "pl",
+  },
+  {
+    company: "Smith & Wesson Brands",
+    metrics: [
+      ["adjusted_eps", "$0.06"],
+      ["gaap_eps", "$0.06"],
+      ["revenue", "$112.6M"],
+      ["net_income", "$2.6M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q1 2027",
+    source: "1092796/000119312526381907/swbi-ex99_1.htm",
+    ticker: "swbi",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -2719,6 +2752,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(167);
+    expect(filingCorpus).toHaveLength(169);
   });
 });
