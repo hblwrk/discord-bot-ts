@@ -518,6 +518,8 @@ function joinSplitOutlookLines(lines: string[]): string[] {
 // retain both ranges instead of dropping the dense comparison-shaped row.
 function expandParallelPeriodGuidanceRows(lines: string[]): string[] {
   const headerText = lines.slice(0, 10).join(" ");
+  const hasCompactFiscalYearColumns = lines.some(line =>
+    /^\s*\|\s*Q[1-4]\s+FY20\d{2}\s+Outlook\b.*\bFY20\d{2}\s+Outlook\b/i.test(line));
   const hasSplitFiscalYearColumns = lines.some(line =>
     /^\s*\|\s*Q[1-4]\s+Fiscal\s+Year\s+20\d{2}\s*$/i.test(line)) &&
     lines.some(line => /^\s*\|\s*\|\s*Fiscal\s+Year\s+20\d{2}\s*$/i.test(line));
@@ -525,6 +527,7 @@ function expandParallelPeriodGuidanceRows(lines: string[]): string[] {
     /^\s*\(in\s+millions\)\s*\|\s*(?:first|second|third|fourth)\s+quarter\s+fiscal\s+20\d{2}\s*$/i.test(line));
   if (false === hasSplitFiscalYearColumns &&
       false === hasWrittenFiscalYearColumns &&
+      false === hasCompactFiscalYearColumns &&
       false === lines.some(line => /\bannual\s+recurring\s+revenue\b/i.test(line))) {
     return lines;
   }
@@ -559,19 +562,37 @@ function expandParallelPeriodGuidanceRows(lines: string[]): string[] {
   const fiscalYear = 2 === fullYearMatch[1].length
     ? `20${fullYearMatch[1]}`
     : fullYearMatch[1];
-  return lines.flatMap(line => {
+  const expandedLines: string[] = [];
+  for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
+    const line = lines[lineIndex] ?? "";
     const cells = line.split("|").map(cell => cell.trim());
     const caption = cells[0] ?? "";
     const valueCells = cells.slice(1).filter(cell => /\d/.test(cell));
-    if ("" === caption || 2 !== valueCells.length) {
-      return [line];
+    if ("" !== caption && 0 === valueCells.length) {
+      const nextLine = lines[lineIndex + 1] ?? "";
+      const nextValueCells = nextLine.split("|").slice(1).filter(cell => /\d/.test(cell));
+      if (2 === nextValueCells.length) {
+        expandedLines.push(
+          `Q${quarterNumber} ${caption} | ${nextValueCells[0]}`,
+          `FY${fiscalYear} ${caption} | ${nextValueCells[1]}`,
+        );
+        lineIndex += 1;
+        continue;
+      }
     }
 
-    return [
+    if ("" === caption || 2 !== valueCells.length) {
+      expandedLines.push(line);
+      continue;
+    }
+
+    expandedLines.push(
       `Q${quarterNumber} ${caption} | ${valueCells[0]}`,
       `FY${fiscalYear} ${caption} | ${valueCells[1]}`,
-    ];
-  });
+    );
+  }
+
+  return expandedLines;
 }
 
 function isEmptyOutlookSeparator(line: string): boolean {
@@ -717,7 +738,9 @@ function hasMixedOutlookPeriods(lines: string[]): boolean {
   const hasQuarter = /\b(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b/i.test(sectionText) ||
     /\bq[1-4]\b/i.test(sectionText) ||
     /\b[1-4]q(?:20)?\d{2}\b/i.test(sectionText);
+  const hasStandaloneCalendarYear = lines.some(line => /^\s*for\s+20\d{2}\b/i.test(line));
   return hasQuarter && (hasStandaloneFullYearPeriod(sectionText) ||
+    true === hasStandaloneCalendarYear ||
     /\bfiscal(?:\s+year)?\s+ending\s+[A-Z][a-z]+\s+\d{1,2},\s+20\d{2}\b/i.test(sectionText) ||
     /(?:^|\|)\s*20\d{2}\s+guidance\b/im.test(sectionText));
 }
@@ -775,7 +798,7 @@ function isOutlookSectionEnd(line: string): boolean {
   if (line.length <= 140 &&
       /^\s*(?:use\s+of\s+)?(?:non-gaap|reconciliation)\b/i.test(line) &&
       false === /\d|\|/.test(line) &&
-      false === /\b(?:eps|earnings\s+per\s+share|net\s+loss\s+per\s+share|operating\s+(?:income|loss|margins?)|loss\s+from\s+operations|gross(?:\s+profit)?\s+margins?)\b/i.test(line)) {
+      false === /\b(?:eps|earnings\s+per\s+share|net\s+(?:income|loss)\s+per\s+share|operating\s+(?:income|loss|margins?)|loss\s+from\s+operations|gross(?:\s+profit)?\s+margins?)\b/i.test(line)) {
     return true;
   }
 
@@ -1135,6 +1158,10 @@ function getLineOutlookPeriodLabel(line: string): string | undefined {
 
   const periodCandidates: {index: number; label: string;}[] = [];
   const forwardMarkerIndex = line.search(/\b(?:outlook|guidance|expects?|forecast|projected|increasing|raises?|targeting)\b/i);
+  const standaloneYearMatch = /^\s*for\s+(20\d{2})\b/i.exec(line);
+  if (undefined !== standaloneYearMatch?.[1]) {
+    return `FY${standaloneYearMatch[1]}`;
+  }
   // Beauty and retail filers commonly write fiscal quarters in the inverted compact form
   // "1Q27". Recognise it before a historical FY26 comparison later in the same sentence.
   const invertedQuarterMatch = /\b([1-4])q(?:\s*)?(?:20)?\d{2}\b/i.exec(line);

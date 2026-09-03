@@ -2,6 +2,23 @@ import {describe, expect, test} from "vitest";
 import {parseEarningsDocument} from "./earnings-results-format.ts";
 
 describe("earnings result filing regressions", () => {
+  test("keeps GAAP loss signs and ignores free-cash-flow margins as revenue", () => {
+    const document = parseEarningsDocument(`
+      <h1>Example Reports Fourth Quarter Fiscal 2026 Financial Results</h1>
+      <p>Revenue grew 25% year over year to $898.2 million.</p>
+      <p>Net income (loss): GAAP net loss was $3.4 million, compared to $17.6 million in the fourth quarter of fiscal 2025. Non-GAAP net income was $198.2 million.</p>
+      <p>Net income (loss) per share, diluted: GAAP net loss per share, diluted, was $0.02, compared to $0.11 in the fourth quarter of fiscal 2025. Non-GAAP net income per share was $1.19.</p>
+      <p>Free cash flow was $60.8 million, or 7% of revenue, compared to $171.9 million, or 24% of revenue.</p>
+    `);
+
+    expect(document.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "gaap_eps", value: "-$0.02"}),
+      expect.objectContaining({key: "revenue", value: "$898.2M"}),
+      expect.objectContaining({key: "net_income", value: "-$3.4M"}),
+    ]));
+    expect(document.metrics.map(metric => metric.value)).not.toContain("$171.9M");
+  });
+
   test("reads reported net loss before non-GAAP net income on the same line", () => {
     const document = parseEarningsDocument(`
       <h1>Example Reports Fourth Quarter and Fiscal Year 2026 Financial Results</h1>

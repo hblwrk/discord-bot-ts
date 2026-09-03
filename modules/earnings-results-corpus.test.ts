@@ -2607,6 +2607,98 @@ const filingCorpus: {
     source: "1528396/000152839626000039/gwreex991earningsrelease73.htm",
     ticker: "gwre",
   },
+  {
+    company: "Samsara",
+    metrics: [
+      ["adjusted_eps", "$0.20"],
+      ["gaap_eps", "$0.03"],
+      ["revenue", "$508.4M"],
+      ["net_income", "$16.24M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$514M to $516M"],
+      ["FY2027 Revenue", "$2.043B to $2.047B"],
+      ["Q3 Adj EPS", "$0.18 to $0.19"],
+      ["FY2027 Adj EPS", "$0.76 to $0.78"],
+      ["Q3 Operating margin", "21%"],
+      ["FY2027 Operating margin", "21%"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1642896/000162828026060438/samsaraepr-q22027.htm",
+    ticker: "iot",
+  },
+  {
+    company: "Docusign",
+    metrics: [
+      ["adjusted_eps", "$1.16"],
+      ["gaap_eps", "$0.40"],
+      ["revenue", "$875.75M"],
+      ["net_income", "$77.72M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2027",
+    source: "1261333/000126133326000088/q227ex-991er.htm",
+    ticker: "docu",
+  },
+  {
+    company: "Zscaler",
+    metrics: [
+      ["adjusted_eps", "$1.19"],
+      ["gaap_eps", "-$0.02"],
+      ["revenue", "$898.2M"],
+      ["net_income", "-$3.4M"],
+    ],
+    outlook: [
+      ["Q1 Revenue", "$935M to $939M"],
+      ["FY2027 Revenue", "$3.908B to $3.938B"],
+      ["Q1 Adj EPS", "$1.15 to $1.16"],
+      ["FY2027 Adj EPS", "$4.86 to $4.9"],
+      ["Q1 Gross margin", "80%"],
+      ["FY2027 Gross margin", "80%"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "1713683/000171368326000156/zs-07312026_991.htm",
+    ticker: "zs",
+  },
+  {
+    company: "Asana",
+    metrics: [
+      ["adjusted_eps", "$0.10"],
+      ["gaap_eps", "-$0.17"],
+      ["revenue", "$216.4M"],
+      ["net_income", "-$39.2M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$217M to $219M"],
+      ["FY2027 Revenue", "$858.5M to $863.5M"],
+      ["Q3 Adj EPS", "$0.08"],
+      ["FY2027 Adj EPS", "$0.37"],
+      ["Q3 Operating margin", "8% to 9%"],
+      ["FY2027 Operating margin", "10%"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1477720/000147772026000058/asana8-kex991q2fy27.htm",
+    ticker: "asan",
+  },
+  {
+    company: "lululemon athletica",
+    metrics: [
+      ["gaap_eps", "$2.92"],
+      ["revenue", "$2.4B"],
+      ["net_income", "$329.22M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$2.29B to $2.32B"],
+      ["FY2026 Revenue", "$10.35B to $10.5B"],
+      ["Q3 EPS", "$0.93 to $0.98"],
+      ["FY2026 EPS", "$9.48 to $9.73"],
+      ["Q3 Tax rate", "30%"],
+      ["FY2026 Tax rate", "30%"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1397187/000139718726000126/lulu-20260802xex991.htm",
+    ticker: "lulu",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -2627,6 +2719,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(162);
+    expect(filingCorpus).toHaveLength(167);
   });
 });

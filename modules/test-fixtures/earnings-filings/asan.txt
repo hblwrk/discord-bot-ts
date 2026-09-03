@@ -1,0 +1,566 @@
+EX-99.1
+2
+asana8-kex991q2fy27.htm
+EX-99.1
+
+
+
+
+Document
+Exhibit 99.1
+
+Asana Announces Second Quarter Fiscal 2027 Results
+
+
+Q2 revenue of $216.4 million, up 10% year over year, exceeded high end of guidance
+Dollar-based net retention improved in every reported cohort, with overall NRR of 97%
+Q2 GAAP operating margin improved approximately 610 bps year over year;
+non-GAAP operating margin of 10%, up approximately 300 bps
+Agentic Work Management launches in Q3,
+bringing AI Teammates, AI Studio and Asana Dash to every paid tier
+
+September 3, 2026 – San Francisco, CA – Asana, Inc. (NYSE: ASAN)(LTSE: ASAN), the operating system for human-agent teams, today reported financial results for its second quarter fiscal 2027 ended July 31, 2026.
+
+“Our core business continues to strengthen, with improving retention, accelerating growth in our upmarket motion and broad-based momentum across industries and geographies,” said Dan Rogers, Chief Executive Officer of Asana. “We’re also seeing strong momentum across our AI products, with customers who put AI Studio and AI Teammates to work across critical business workflows engaging more deeply, retaining better and expanding faster. With Agentic Work Management, we’re bringing those capabilities to every paid customer, enabling people and AI agents to work together from the same plan and shared context. Our new Agentic Applications extend that same foundation into new workflows and buying centers.”
+
+
+“Q2 revenue exceeded the high end of our guidance and grew 10% year over year, and non-GAAP operating margin expanded approximately 3 percentage points to 10%,” said Aziz Megji, Chief Financial Officer of Asana. “We are raising our full-year revenue and non-GAAP operating margin guidance. As our product strategy evolves, we see a meaningful opportunity to build consumption- and outcome-based revenue streams alongside seats, giving us multiple ways to expand with our customers and broadening our long-term growth opportunity.”
+
+
+Second Quarter Fiscal 2027 Financial Highlights
+
+
+•Revenues: Revenues were $216.4 million, an increase of 10% year over year.
+•Operating Income/Loss: GAAP operating loss was $41.2 million, or 19% of revenues, compared to GAAP operating loss of $49.5 million, or 25% of revenues, in the second quarter of fiscal 2026. Non-GAAP operating income was $21.8 million, or 10% of revenues, compared to non-GAAP operating income of $14.0 million, or 7% of revenues, in the second quarter of fiscal 2026.
+•Net Income/Loss: GAAP net loss was $39.2 million, compared to GAAP net loss of $48.4 million in the second quarter of fiscal 2026. GAAP net loss per share was $0.17, compared to GAAP net loss per share of $0.20 in the second quarter of fiscal 2026. Non-GAAP net income was $23.8 million, compared to non-GAAP net income of $15.1 million in the second quarter of fiscal 2026. Non-GAAP diluted net income per share was $0.10, compared to non-GAAP diluted net income per share of $0.06 in the second quarter of fiscal 2026.
+•Cash Flow: Cash flows from operating activities were $46.0 million, compared to $39.8 million in the second quarter of fiscal 2026. Adjusted free cash flow was $42.3 million, compared to $35.4 million in the second quarter of fiscal 2026.
+
+
+
+
+
+
+
+
+
+
+1
+
+
+Exhibit 99.1
+
+
+
+Recent Business Highlights
+
+
+•The number of Core customers, or customers spending $5,000 or more on an annualized basis, grew to 26,778, an increase of 7% year over year. Revenues from Core customers grew 11% year over year.
+•The number of customers spending $100,000 or more on an annualized basis grew to 890, an increase of 16% year over year.
+•Overall dollar-based net retention rate was 97%.
+•Dollar-based net retention rate for Core customers was 98%.
+•Dollar-based net retention rate for customers spending $100,000 or more on an annualized basis was 98%.
+•Unveiled the operating system for human-agent teams, with the introduction of Agentic Work Management, Asana Service Management, Command by Asana, and Asana Client Management.
+•Acquired StackAI, extending the Asana operating system into CRMs, ERPs, and enterprise infrastructure, enabling AI agents to execute work across any system.
+•Achieved FedRAMP® Moderate Authorization for Asana Gov, opening the platform to U.S. federal government customers and establishing Asana's credibility in the most security-demanding segment of the enterprise market.
+•Hosted the Work Innovation Summit in London, showcasing Asana's vision for the agentic enterprise to 600+ attendees through product demos, expert presentations, and actionable AI strategies.
+•Secured leading placement in the Gartner Emerging Market Quadrant for No-Code Agent Builders, validating Asana in the emerging enterprise market for no-code AI agent builders.
+•Featured in an S&P Global/451 Research report, recognizing Command by Asana as a credible strategic move into the agentic software development life cycle.
+
+
+Financial Outlook
+
+
+For the third quarter of fiscal 2027, Asana expects:
+
+
+•Revenues of $217 million to $219 million, representing year-over-year growth of 8% to 9%.
+•Non-GAAP operating income of $18 million to $19 million, with 8% to 9% operating margin.
+•Non-GAAP net income per share of $0.08, assuming diluted weighted average shares outstanding of approximately 236 million.
+
+
+For fiscal 2027, Asana expects:
+
+
+•Revenues of $858.5 million to $863.5 million, representing year-over-year growth of 9%.
+•Non-GAAP operating income of $84.5 million to $86.5 million, with approximately 10% operating margin.
+•Non-GAAP net income per share of $0.37, assuming diluted weighted average shares outstanding of approximately 239 million.
+
+
+These statements are forward-looking and actual results may materially differ. Refer to the “Forward-Looking Statements” section below for information on the factors that could cause Asana’s actual results to materially differ from these forward-looking statements.
+A reconciliation of non-GAAP outlook measures to corresponding GAAP measures is not available on a forward-looking basis without unreasonable effort due to the uncertainty regarding, and the potential variability of, many of these costs and expenses that may be
+
+
+
+
+
+
+
+
+
+
+2
+
+
+Exhibit 99.1
+
+incurred in the future. Asana has provided a reconciliation of GAAP to non-GAAP financial measures in the financial statement tables for its second quarter fiscal year 2027 non-GAAP results included in this press release.
+
+
+Earnings Conference Call Information
+
+
+Asana will hold a conference call and live webcast today to discuss these results at 1:30 p.m. Pacific Time. A live webcast and replay will be available on the Asana Investor Relations webpage at: https://investors.asana.com.
+
+
+Forward-Looking Statements
+
+
+This press release contains “forward-looking” statements within the meaning of the Private Securities Litigation Reform Act of 1995 that are based on management’s beliefs and assumptions and on information currently available to management. Forward-looking statements include, but are not limited to, statements about our financial and operational performance, including our financial discipline, expectations related to our market opportunity, the potential and impact of AI for our products, the expected benefits of AI Studio, AI Teammates, and Asana Dash, including our expectations regarding revenue to be generated by AI Studio, AI Teammates, and Asana Dash, our ability to execute on our current strategies, including our integration of StackAI and the potential benefits of its integration, our technology and brand position, expectations regarding product launches and capabilities, our growth and expansion opportunities, Asana’s outlook for the fiscal quarter ending October 31, 2026 and the full fiscal year ending January 31, 2027, Asana’s outlook for the expected benefits of our offerings, and our market position. Forward-looking statements generally relate to future events or Asana’s future financial or operating performance. Forward-looking statements include all statements that are not historical facts and in some cases can be identified by terms such as “anticipate,” “expect,” “intend,” “plan,” “believe,” “continue,” “could,” “potential,” “may,” “will,” “goal,” or similar expressions and the negatives of those terms. However, not all forward-looking statements contain these identifying words. Forward-looking statements involve known and unknown risks, uncertainties and other factors, including factors beyond Asana’s control, that may cause Asana’s actual results, performance or achievements to be materially different from any future results, performance or achievements expressed or implied by the forward-looking statements. These risks include, but are not limited to, risks and uncertainties related to: Asana’s ability to achieve future growth and sustain its growth rate, Asana’s ability to attract and retain customers and increase sales to its customers, Asana’s ability to effectively shift its pricing model to include consumption-based billing; Asana’s ability to develop and release new products and services and to scale its platform, including the successful integration of AI, Asana’s ability to increase adoption of its platform through Asana’s self-service model, Asana’s ability to maintain and grow its relationships with strategic partners, the highly competitive and rapidly evolving market in which Asana participates, Asana’s international expansion strategies, and broader macroeconomic conditions. Further information on risks that could cause actual results to differ materially from forecasted results are included in Asana’s filings with the SEC, including Asana’s Annual Report on Form 10-K for the year ended January 31, 2026 and subsequent filings with the SEC. Any forward-looking statements contained in this press release are based on assumptions that Asana believes to be reasonable as of this date. Except as required by law, Asana assumes no obligation to update these forward-looking statements, or to update the reasons if actual results differ materially from those anticipated in the forward-looking statements.
+
+
+
+
+
+
+
+
+
+
+
+
+3
+
+
+Exhibit 99.1
+
+
+
+
+
+Use of Non-GAAP Financial Measures
+
+
+To supplement Asana’s consolidated financial statements, which are prepared and presented in accordance with GAAP, Asana utilizes certain non-GAAP financial measures to assist in understanding and evaluating its core operating performance. In this release, Asana’s non-GAAP gross margin, operating income, operating income as a percentage of revenue, operating margin, net income, basic and diluted net income per share, adjusted free cash flow, and revenues adjusted for the impact of foreign currency are not presented in accordance with GAAP and are not intended to be used in lieu of GAAP presentations of results of operations. These non-GAAP financial measures, which may be different from similarly titled measures used by other companies, are presented to enhance investors’ overall understanding of Asana’s financial performance and should not be considered a substitute for, or superior to, the financial information prepared and presented in accordance with GAAP. Investors are encouraged to review the reconciliation of these non-GAAP measures to their most directly comparable GAAP financial measures which can be found in the accompanying financial statements included with this press release.
+
+
+Asana is presenting these non-GAAP financial measures because it believes that these non-GAAP financial measures provide useful information about its financial performance, enhance the overall understanding of Asana’s past performance and future prospects, facilitate period-to-period comparisons of operations against other companies in Asana’s industry, and allow for greater transparency with respect to important metrics used by Asana’s management for financial and operational decision-making.
+
+
+Asana believes the following adjustments and exclusions from its non-GAAP financial measures are useful to investors and others in assessing Asana’s operating performance due to the following factors:
+
+
+•Stock-based compensation expenses. Although stock-based compensation is an important aspect of the compensation of our employees and executives, management believes it is useful to exclude stock-based compensation expenses to better understand the long-term performance of Asana’s core business and to facilitate comparison of its results to those of peer companies.
+•Amortization of stock-based compensation capitalized in internal-use software. Consistent with our exclusion of stock-based compensation expenses, management believes it is useful to exclude the amortization of stock-based compensation capitalized in internal-use software in order to better understand the long-term performance of Asana’s core business and to facilitate comparison of its results to those of peer companies.
+•Employer payroll tax associated with RSUs. The amount of employer payroll tax-related items on employee stock transactions is dependent on Asana’s stock price and other factors that are beyond its control and that do not correlate to the operation of the business.
+•Non-cash expenses. Non-cash expenses include charges for impairment of long-lived assets. We believe the exclusion of certain non-cash items provides useful supplemental information to investors and facilitates the analysis of its operating results and comparison of operating results across reporting periods.
+•Restructuring related costs (benefits). These charges are associated with the re-alignment of our organization to meet business needs, top strategic priorities, and key growth opportunities. We believe it is useful to exclude these expenses in order to better understand the long-term performance of our core business, to facilitate comparison of our results to those of peer companies, and to facilitate comparison over multiple periods.
+
+
+
+
+
+
+
+
+
+
+4
+
+
+Exhibit 99.1
+
+•Acquisition-related costs. Acquisition-related costs include direct transaction costs, such as professional and advisory fees. We believe it is useful to exclude these costs to facilitate the comparison of our financial results to those of peer companies, and to facilitate comparison over multiple periods.
+•Amortization of intangible assets. Amortization of intangible assets is a non-cash expense that has no direct correlation to the ongoing operations of the Company’s business. Consistent with our exclusion of acquisition-related costs, management believes it is useful to exclude this expense to facilitate the comparison of our financial results to those of peer companies and to facilitate comparison over multiple periods.
+•Revenues adjusted for the impact of foreign currency. Calculated by applying the comparative prior period average exchange rates to revenue recognized on invoices billed in currencies other than United States dollars in the current period. Asana provides revenues adjusted for the impact of foreign exchange rates as a framework for assessing how our underlying business performed from period to period, excluding the effects of foreign currency fluctuations. The growth rates for revenues adjusted for the impact of foreign currency are calculated by comparing the revenues adjusted for the impact of foreign currency in the current period to the GAAP revenue from the comparable prior period.
+
+
+There are a number of limitations related to the use of non-GAAP financial measures as compared to GAAP financial measures, including that the non-GAAP financial measures exclude stock-based compensation expense, which has been, and will continue to be for the foreseeable future, a significant recurring expense in Asana’s business and an important part of its compensation strategy.
+
+
+In addition to the non-GAAP financial measures outlined above, Asana also uses the non-GAAP financial measure of adjusted free cash flow, which is defined as free cash flow plus costs paid related to restructuring. Asana believes adjusted free cash flow is an important liquidity measure of the cash that is available, after capital expenditures and operational expenses, for investment in its business and to make acquisitions. Asana believes that adjusted free cash flow is useful to investors as a liquidity measure because it measures Asana’s ability to generate or use cash. There are a number of limitations related to the use of adjusted free cash flow as compared to net cash from operating activities, including that adjusted free cash flow excludes capital expenditures, the benefits of which are realized in periods subsequent to those when expenditures are made.
+
+
+Definitions of Business Metrics
+
+
+Customers spending $5,000 or more on an annualized basis, or Core customers
+
+
+We define customers spending $5,000 or more, which we also refer to as Core customers, as those organizations on a paid subscription plan that had $5,000 or more in annualized GAAP revenues in a given quarter, inclusive of discounts.
+
+
+Customers spending $100,000 or more on an annualized basis
+
+
+We define customers spending $100,000 or more as those organizations on a paid subscription plan that had $100,000 or more in annualized GAAP revenues in a given quarter, inclusive of discounts.
+
+
+Dollar-based net retention rate
+
+
+Asana’s reported dollar-based net retention rate equals the simple arithmetic average of its quarterly dollar-based net retention rate for the four quarters ending with the most recent fiscal quarter. Asana calculates its dollar-based net retention rate by comparing its revenues
+
+
+
+
+
+
+
+
+
+
+5
+
+
+Exhibit 99.1
+
+from the same set of customers in a given quarter, relative to the comparable prior-year period. To calculate Asana’s dollar-based net retention rate for a given quarter, Asana starts with the revenues in that quarter from customers that generated revenues in the same quarter of the prior year. Asana then divides that amount by the revenues attributable to that same group of customers in the prior-year quarter. Current period revenues include any upsells and are net of contraction or attrition over the trailing 12 months, but exclude revenues from new customers in the current period. Asana expects its dollar-based net retention rate to fluctuate in future periods due to a number of factors, including the expected growth of its revenue base, the level of penetration within its customer base, its ability to retain its customers, and the macroeconomic environment.
+
+
+About Asana
+Asana is the operating system for human-agent teams. Built on 18 years of foundational architecture, the enterprise Work Graph®, multiplayer collaboration, shared memory, and governance, it is exactly what the agentic era requires: a place where humans and agents run critical workflows together, on the same plan, toward the same goals — unlocking enterprise productivity. Learn more at asana.com.
+Disclosure of Material Information
+Asana announces material information to its investors using SEC filings, press releases, public conference calls, and on its investor relations page of Asana’s website at https://investors.asana.com. Asana uses these channels, as well as social media, including its X (formerly Twitter) account (@asana), its blog (blog.asana.com), its LinkedIn page (www.linkedin.com/company/asana), its Instagram account (@asana), its Facebook page (www.facebook.com/asana/), Threads profile (@asana) and TikTok account (@asana), to communicate with investors and the public about Asana, its products and services and other matters. Therefore, Asana encourages investors, the media and others interested in Asana to review the information it makes public in these locations, as such information could be deemed to be material information.
+
+
+Eva Leung
+Asana Investor Relations
+ir@asana.com
+
+
+Frances Ward
+Asana Communications
+press@asana.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+6
+
+
+
+Exhibit 99.1
+
+ASANA, INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(in thousands, except per share data)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Revenues | $ | 216,429 | | | $ | 196,936 | | | $ | 421,524 | | | $ | 384,203 | |
+Cost of revenues
+| 30,325 | | | 20,221 | | | 55,739 | | | 39,448 | |
+Gross profit | 186,104 | | | 176,715 | | | 365,785 | | | 344,755 | |
+Operating expenses: | | | | | | | |
+Research and development
+| 81,728 | | | 79,376 | | | 147,817 | | | 154,503 | |
+Sales and marketing
+| 104,384 | | | 106,677 | | | 196,848 | | | 206,518 | |
+General and administrative
+| 41,211 | | | 40,118 | | | 77,579 | | | 77,094 | |
+Total operating expenses | 227,323 | | | 226,171 | | | 422,244 | | | 438,115 | |
+Loss from operations | (41,219) | | | (49,456) | | | (56,459) | | | (93,360) | |
+Interest income and other income (expense), net | 1,918 | | | 3,307 | | | 4,821 | | | 9,137 | |
+Interest expense | (645) | | | (797) | | | (1,294) | | | (1,588) | |
+Loss before income taxes | (39,946) | | | (46,946) | | | (52,932) | | | (85,811) | |
+(Benefit) provision for income taxes | (757) | | | 1,414 | | | 662 | | | 2,567 | |
+Net loss | $ | (39,189) | | | $ | (48,360) | | | $ | (53,594) | | | $ | (88,378) | |
+Net loss per share: | | | | | | | |
+Basic and diluted | $ | (0.17) | | | $ | (0.20) | | | $ | (0.23) | | | $ | (0.38) | |
+Weighted-average shares used in calculating net loss per share: | | | | | | | |
+Basic and diluted | 230,818 | | | 236,218 | | | 234,431 | | | 235,550 | |
+
+_______________
+(1) Amounts include stock-based compensation expense as follows:
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Cost of revenues | $ | 747 | | | $ | 497 | | | $ | 1,251 | | | $ | 841 | |
+Research and development | 30,304 | | | 30,977 | | | 48,372 | | | 55,341 | |
+Sales and marketing | 13,688 | | | 18,100 | | | 22,427 | | | 32,923 | |
+General and administrative | 11,587 | | | 12,580 | | | 20,598 | | | 21,216 | |
+Total stock-based compensation expense | $ | 56,326 | | | $ | 62,154 | | | $ | 92,648 | | | $ | 110,321 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+7
+
+
+
+
+
+
+ASANA, INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(in thousands)
+(unaudited)
+| | | | | | | | | | | |
+| July 31, 2026 | | January 31, 2026 |
+Assets | | | |
+Current assets | | | |
+Cash and cash equivalents | $ | 219,562 | | | $ | 199,835 | |
+Marketable securities | 120,289 | | | 234,210 | |
+Restricted cash | 844 | | | 418 | |
+Accounts receivable, net | 78,645 | | | 110,312 | |
+Prepaid expenses and other current assets | 52,428 | | | 48,573 | |
+Total current assets | 471,768 | | | 593,348 | |
+Property and equipment, net | 90,957 | | | 88,313 | |
+| | | |
+Operating lease right-of-use assets | 148,758 | | | 133,422 | |
+Intangible assets
+| 17,664 | | | — | |
+Goodwill
+| 56,645 | | | — | |
+| | | |
+Other assets | 30,357 | | | 29,005 | |
+Total assets | $ | 816,149 | | | $ | 844,088 | |
+Liabilities and Stockholders’ Equity | | | |
+Current liabilities | | | |
+Accounts payable | $ | 15,438 | | | $ | 18,822 | |
+Accrued expenses and other current liabilities | 119,875 | | | 123,716 | |
+Deferred revenue, current | 350,337 | | | 333,636 | |
+Operating lease liabilities, current | 27,217 | | | 24,846 | |
+Total current liabilities | 512,867 | | | 501,020 | |
+| | | |
+Deferred revenue, noncurrent | 379 | | | 220 | |
+Operating lease liabilities, noncurrent | 194,050 | | | 183,749 | |
+Other liabilities | 4,530 | | | 4,982 | |
+Total liabilities | 711,826 | | | 689,971 | |
+Stockholders' equity | | | |
+Common stock | 2 | | | 2 | |
+Additional paid-in capital | 2,403,456 | | | 2,299,616 | |
+Accumulated other comprehensive income | 691 | | | 4,205 | |
+Accumulated deficit | (2,299,826) | | | (2,149,706) | |
+Total stockholders’ equity | 104,323 | | | 154,117 | |
+Total liabilities and stockholders’ equity | $ | 816,149 | | | $ | 844,088 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+8
+
+
+
+
+
+
+ASANA, INC.
+SUMMARY OF CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(in thousands)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Cash flows from operating activities | | | | | | | |
+Net loss | $ | (39,189) | | | $ | (48,360) | | | $ | (53,594) | | | $ | (88,378) | |
+Adjustments to reconcile net loss to net cash provided by operating activities: | | | | | | | |
+Allowance for expected credit losses | 798 | | | 166 | | | 1,291 | | | 1,193 | |
+Depreciation and amortization | 6,626 | | | 5,146 | | | 12,678 | | | 10,109 | |
+Amortization of deferred contract acquisition costs | 7,075 | | | 7,078 | | | 13,911 | | | 13,769 | |
+Stock-based compensation expense | 56,326 | | | 62,154 | | | 92,648 | | | 110,321 | |
+Net accretion of discount on marketable securities | (107) | | | (542) | | | (362) | | | (1,278) | |
+Non-cash lease expense | 5,020 | | | 4,582 | | | 9,930 | | | 9,122 | |
+| | | | | | | |
+Amortization of discount on revolving credit facility and term loan issuance costs | 30 | | | 30 | | | 60 | | | 60 | |
+Changes in operating assets and liabilities, net of effects of business combinations:
+| | | | | | | |
+Accounts receivable | (5,559) | | | (971) | | | 30,903 | | | 17,767 | |
+Prepaid expenses and other current assets | (7,031) | | | (11,333) | | | (17,086) | | | (20,179) | |
+Other assets | (508) | | | 988 | | | (1,452) | | | 274 | |
+Accounts payable | (10,860) | | | 7,985 | | | (3,506) | | | 6,261 | |
+Accrued expenses and other liabilities | 13,064 | | | (4,728) | | | (2,400) | | | (12,170) | |
+Deferred revenue | 26,527 | | | 23,332 | | | 15,789 | | | 10,820 | |
+Operating lease liabilities | (6,166) | | | (5,692) | | | (12,520) | | | (11,092) | |
+Net cash provided by operating activities | 46,046 | | | 39,835 | | | 86,290 | | | 46,599 | |
+Cash flows from investing activities | | | | | | | |
+Cash paid for acquisition, net of acquired cash | (71,616) | | | — | | | (71,616) | | | — | |
+Purchases of marketable securities | (31,707) | | | (70,041) | | | (81,750) | | | (104,096) | |
+Sales of marketable securities | 133,603 | | | — | | | 133,603 | | | — | |
+Maturities of marketable securities | 8,506 | | | 55,576 | | | 61,021 | | | 96,576 | |
+Purchases of property and equipment | (1,494) | | | (1,297) | | | (4,302) | | | (1,935) | |
+Capitalized internal-use software costs | (4,540) | | | (3,156) | | | (7,626) | | | (5,287) | |
+Net cash provided by (used in) investing activities | 32,752 | | | (18,918) | | | 29,330 | | | (14,742) | |
+Cash flows from financing activities | | | | | | | |
+| | | | | | | |
+Repayment of term loan | (1,250) | | | (2,500) | | | (3,750) | | | (2,500) | |
+| | | | | | | |
+Repurchases of common stock | (51,541) | | | (28,872) | | | (96,526) | | | (43,398) | |
+Proceeds from exercise of stock options | 654 | | | 816 | | | 1,340 | | | 2,073 | |
+Proceeds from employee stock purchase plan | — | | | — | | | 4,874 | | | 7,746 | |
+| | | | | | | |
+Net cash used in financing activities | (52,137) | | | (30,556) | | | (94,062) | | | (36,079) | |
+Effect of foreign exchange rates on cash, cash equivalents, and restricted cash | (607) | | | 231 | | | (1,405) | | | 4,030 | |
+Net increase (decrease) in cash, cash equivalents, and restricted cash | 26,054 | | | (9,408) | | | 20,153 | | | (192) | |
+Cash, cash equivalents, and restricted cash | | | | | | | |
+Beginning of period | 194,352 | | | 194,080 | | | 200,253 | | | 184,864 | |
+End of period | $ | 220,406 | | | $ | 184,672 | | | $ | 220,406 | | | $ | 184,672 | |
+
+9
+
+
+
+
+
+
+ASANA, INC.
+Reconciliation of GAAP to Non-GAAP Data
+(in thousands, except percentages)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Reconciliation of gross profit and gross margin | | | | | | | |
+GAAP gross profit | $ | 186,104 | | | $ | 176,715 | | | $ | 365,785 | | | $ | 344,755 | |
+Plus: stock-based compensation related charges
+| 1,890 | | | 515 | | | 3,503 | | | 869 | |
+Plus: restructuring costs | 311 | | | — | | | 311 | | | — | |
+Plus: intangible asset amortization | 360 | | | — | | | 360 | | | |
+Non-GAAP gross profit | $ | 188,665 | | | $ | 177,230 | | | $ | 369,959 | | | $ | 345,624 | |
+GAAP gross margin | 86.0 | % | | 89.7 | % | | 86.8 | % | | 89.7 | % |
+Non-GAAP adjustments | 1.2 | % | | 0.3 | % | | 1.0 | % | | 0.3 | % |
+Non-GAAP gross margin | 87.2 | % | | 90.0 | % | | 87.8 | % | | 90.0 | % |
+Reconciliation of operating expenses | | | | | | | |
+GAAP research and development | $ | 81,728 | | | $ | 79,376 | | | $ | 147,817 | | | $ | 154,503 | |
+Less: stock-based compensation related charges
+| (30,992) | | | (31,713) | | | (49,564) | | | (57,035) | |
+Adjustment for: restructuring costs | (70) | | | — | | | (70) | | | (948) | |
+Non-GAAP research and development | $ | 50,666 | | | $ | 47,663 | | | $ | 98,183 | | | $ | 96,520 | |
+GAAP research and development as percentage of revenue | 37.8 | % | | 40.3 | % | | 35.1 | % | | 40.2 | % |
+Non-GAAP research and development as percentage of revenue | 23.4 | % | | 24.2 | % | | 23.3 | % | | 25.1 | % |
+| | | | | | | |
+GAAP sales and marketing | $ | 104,384 | | | $ | 106,677 | | | $ | 196,848 | | | $ | 206,518 | |
+Less: stock-based compensation related charges
+| (13,966) | | | (18,485) | | | (22,915) | | | (33,771) | |
+Adjustment for: restructuring costs | (1,998) | | | — | | | (1,998) | | | (831) | |
+Less: intangible asset amortization
+| (176) | | | — | | | (176) | | | — | |
+Non-GAAP sales and marketing | $ | 88,244 | | | $ | 88,192 | | | $ | 171,759 | | | $ | 171,916 | |
+GAAP sales and marketing as percentage of revenue | 48.2 | % | | 54.2 | % | | 46.7 | % | | 53.8 | % |
+Non-GAAP sales and marketing as percentage of revenue | 40.8 | % | | 44.8 | % | | 40.7 | % | | 44.7 | % |
+| | | | | | | |
+GAAP general and administrative | $ | 41,211 | | | $ | 40,118 | | | $ | 77,579 | | | $ | 77,094 | |
+Less: stock-based compensation related charges
+| (11,736) | | | (12,750) | | | (20,871) | | | (21,612) | |
+| | | | | | | |
+| | | | | | | |
+Adjustment for: restructuring costs | (126) | | | — | | | (126) | | | (438) | |
+Less: acquisition-related costs | (1,360) | | | — | | | (1,907) | | | — | |
+Non-GAAP general and administrative | $ | 27,989 | | | $ | 27,368 | | | $ | 54,675 | | | $ | 55,044 | |
+GAAP general and administrative as percentage of revenue | 19.0 | % | | 20.4 | % | | 18.4 | % | | 20.1 | % |
+Non-GAAP general and administrative as percentage of revenue | 12.9 | % | | 13.9 | % | | 13.0 | % | | 14.3 | % |
+Reconciliation of operating loss and operating margin | | | | | | | |
+GAAP loss from operations | $ | (41,219) | | | $ | (49,456) | | | $ | (56,459) | | | $ | (93,360) | |
+Plus: stock-based compensation related charges
+| 58,602 | | | 63,463 | | | 96,871 | | | 113,287 | |
+| | | | | | | |
+| | | | | | | |
+Adjustment for: restructuring costs | 2,487 | | | — | | | 2,487 | | | 2,217 | |
+Plus: acquisition-related costs | 1,360 | | | — | | | 1,907 | | | — | |
+Plus: intangible asset amortization | 536 | | | — | | | 536 | | | — | |
+Non-GAAP income from operations | $ | 21,766 | | | $ | 14,007 | | | $ | 45,342 | | | $ | 22,144 | |
+GAAP operating margin | (19.0) | % | | (25.1) | % | | (13.4) | % | | (24.3) | % |
+Non-GAAP adjustments | 29.1 | % | | 32.2 | % | | 24.2 | % | | 30.1 | % |
+Non-GAAP operating margin | 10.1 | % | | 7.1 | % | | 10.8 | % | | 5.8 | % |
+
+10
+
+
+
+
+
+ASANA, INC.
+Reconciliation of GAAP to Non-GAAP Data
+(in thousands, except percentages and per share data)
+(unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Reconciliation of net income (loss) | | | | | | | |
+GAAP net loss | $ | (39,189) | | | $ | (48,360) | | | $ | (53,594) | | | $ | (88,378) | |
+Plus: stock-based compensation related charges
+| 58,602 | | | 63,463 | | | 96,871 | | | 113,287 | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Adjustment for: restructuring costs | 2,487 | | | — | | | 2,487 | | | 2,217 | |
+Plus: Acquisition-related costs
+| 1,360 | | | — | | | 1,907 | | | — | |
+Plus: intangible asset amortization
+| 536 | | | — | | | 536 | | | — | |
+Non-GAAP net income | $ | 23,796 | | | $ | 15,103 | | | $ | 48,207 | | | $ | 27,126 | |
+Reconciliation of net income (loss) per share | | | | | | | |
+GAAP net loss per share, basic | $ | (0.17) | | | $ | (0.20) | | | $ | (0.23) | | | $ | (0.38) | |
+Non-GAAP adjustments to net loss | 0.27 | | | 0.26 | | | 0.44 | | | 0.50 | |
+Non-GAAP net income per share, basic | $ | 0.10 | | | $ | 0.06 | | | $ | 0.21 | | | $ | 0.12 | |
+Weighted-average shares used in GAAP per share calculation, basic and diluted and non-GAAP per share calculation, basic | 230,818 | | | 236,218 | | | 234,431 | | | 235,550 | |
+| | | | | | | |
+GAAP net loss per share, diluted | $ | (0.17) | | | $ | (0.20) | | | $ | (0.23) | | | $ | (0.38) | |
+Non-GAAP adjustments to net loss | 0.27 | | | 0.26 | | | 0.43 | | | 0.49 | |
+Non-GAAP net income per share, diluted | $ | 0.10 | | | $ | 0.06 | | | $ | 0.20 | | | $ | 0.11 | |
+Weighted-average shares used in non-GAAP per share calculation, diluted | 234,923 | | | 242,314 | | | 237,531 | | | 242,211 | |
+
+_______________
+(1) Stock-based compensation-related charges include related payroll tax associated with RSUs and amortization of stock-based compensation capitalized in internal-use software. We began excluding amortization of stock-based compensation capitalized in internal-use software from our non-GAAP measures starting in the quarter ended April 30, 2026 and have presented the change prospectively as prior period amounts were immaterial. The amounts of amortization of stock-based compensation capitalized in internal-use software was $1.1 million and $2.2 million for the three and six months ended July 31, 2026, respectively, and was $0.7 million and $1.3 million for the three and six months ended July 31, 2025, respectively. This change has no impact on our GAAP financial results.
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Computation of free cash flow and adjusted free cash flow | | | | | | | |
+Net cash provided by (used in) investing activities | $ | 32,752 | | | $ | (18,918) | | | $ | 29,330 | | | $ | (14,742) | |
+Net cash used in financing activities | $ | (52,137) | | | $ | (30,556) | | | $ | (94,062) | | | $ | (36,079) | |
+Net cash provided by operating activities | $ | 46,046 | | | $ | 39,835 | | | $ | 86,290 | | | $ | 46,599 | |
+Less: purchases of property and equipment | (1,494) | | | (1,297) | | | (4,302) | | | (1,935) | |
+Less: capitalized internal-use software costs | (4,540) | | | (3,156) | | | (7,626) | | | (5,287) | |
+| | | | | | | |
+| | | | | | | |
+Free cash flow | $ | 40,012 | | | $ | 35,382 | | | $ | 74,362 | | | $ | 39,377 | |
+Plus: restructuring costs paid | 2,319 | | | 57 | | | 2,319 | | | 5,944 | |
+Adjusted free cash flow | $ | 42,331 | | | $ | 35,439 | | | $ | 76,681 | | | $ | 45,321 | |
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Computation of revenue adjusted for impact of foreign currency | | | | | | | |
+GAAP revenue | $ | 216,429 | | | $ | 196,936 | | | $ | 421,524 | | | $ | 384,203 | |
+Adjustment for: impact of foreign currency | (145) | | | (888) | | | (1,540) | | | (525) | |
+Revenue adjusted for impact of foreign currency | $ | 216,284 | | | $ | 196,048 | | | $ | 419,984 | | | $ | 383,678 | |
+
+11

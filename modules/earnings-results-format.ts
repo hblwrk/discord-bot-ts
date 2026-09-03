@@ -583,7 +583,7 @@ function extractMetricValue(
   // the caption is a combined one: "(GAAP) loss / earnings per share (EPS) assuming dilution
   // was a loss per share of $0.54". Only the wording directly introducing the first value
   // counts, so a later mention of an unrelated loss does not flip the figure.
-  const isLossIntroducedValue = /\ba?\s*loss\s+(?:per\s+(?:common\s+)?share\s+)?of\s*$/i
+  const isLossIntroducedValue = /(?:\ba?\s*loss\s+(?:per\s+(?:common\s+)?share\s+)?of|\b(?:gaap\s+)?net\s+loss(?:\s+per\s+(?:common\s+)?share(?:\s*,\s*diluted)?)?\s*,?\s*(?:was|of))\s*$/i
     .test(getValueIntroText(preferredSearchText));
   const signedValue = (value: number): number =>
     (true === isLossCaption || true === isLossIntroducedValue) && value > 0 ? -value : value;
