@@ -2,6 +2,26 @@ import {describe, expect, test} from "vitest";
 import {extractOutlookMetrics} from "./earnings-results-outlook.ts";
 
 describe("extractOutlookMetrics", () => {
+  test("reads the outlook column from vertically rendered historical tables", () => {
+    expect(extractOutlookMetrics([
+      "Fiscal Year 2027 Outlook",
+      "| Fiscal 2025",
+      "| Fiscal 2026",
+      "| Fiscal 2027 Outlook",
+      "Adjusted EPS",
+      "| $3.21 |",
+      "| $3.86 |",
+      "| $4.60 - $5.05 |",
+      "Free Cash Flow",
+      "| $105 million |",
+      "| $115 million |",
+      "| approximately $205 million |",
+    ])).toEqual([
+      {key: "adjusted_eps", label: "Adj EPS", value: "$4.6 to $5.05"},
+      {key: "free_cash_flow", label: "Free cash flow", value: "$205M"},
+    ]);
+  });
+
   test("extracts mixed-period guidance from a forward-looking heading", () => {
     expect(extractOutlookMetrics([
       "Forward-Looking Guidance",

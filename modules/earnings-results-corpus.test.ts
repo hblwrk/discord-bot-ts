@@ -2459,6 +2459,154 @@ const filingCorpus: {
     source: "1002047/000100204726000003/ntap-ex99_1.htm",
     ticker: "ntap",
   },
+  {
+    company: "Argan",
+    metrics: [
+      ["gaap_eps", "$3.76"],
+      ["revenue", "$384M"],
+      ["net_income", "$53.3M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2027",
+    source: "100591/000110465926104735/agx-20260902xex99d1.htm",
+    ticker: "agx",
+  },
+  {
+    company: "Brady",
+    metrics: [
+      ["adjusted_eps", "$1.48"],
+      ["gaap_eps", "$0.96"],
+      ["revenue", "$436.9M"],
+      ["net_income", "$45.59M"],
+    ],
+    outlook: [["FY2027 Capex", "$40M"]],
+    quarterLabel: "Q4 2026",
+    source: "746598/000074659826000043/exhibit991-financialsx2026.htm",
+    ticker: "brc",
+  },
+  {
+    company: "VersaBank",
+    metrics: [
+      ["adjusted_eps", "C$0.38"],
+      ["gaap_eps", "C$0.31"],
+      ["revenue", "C$38.81M"],
+      ["net_income", "C$10.1M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q3 2026",
+    source: "1690639/000143774926029554/ex_1010554.htm",
+    ticker: "vbnk",
+  },
+  {
+    company: "Victoria's Secret & Co.",
+    metrics: [
+      ["adjusted_eps", "$0.95"],
+      ["gaap_eps", "$2.18"],
+      ["revenue", "$1.611B"],
+      ["net_income", "$183M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1856437/000185643726000019/ex991vsxyq22026earningsrel.htm",
+    ticker: "vsxy",
+  },
+  {
+    company: "Ciena",
+    metrics: [
+      ["adjusted_eps", "$2.11"],
+      ["gaap_eps", "$1.83"],
+      ["revenue", "$1.67B"],
+      ["net_income", "$266.42M"],
+    ],
+    outlook: [
+      ["Revenue", "$1.75B"],
+      ["Gross margin", "45%"],
+      ["Operating margin", "20%"],
+      ["Operating expenses", "$405M to $425M"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "936395/000162828026060245/ex9912026q3earningspressre.htm",
+    ticker: "cien",
+  },
+  {
+    company: "Genesco",
+    metrics: [
+      ["adjusted_eps", "-$0.83"],
+      ["gaap_eps", "$0.32"],
+      ["revenue", "$530M"],
+      ["net_income", "$3.48M"],
+    ],
+    outlook: [["FY2027 Tax rate", "30%"]],
+    quarterLabel: "Q2 2027",
+    source: "18498/000119312526381023/gco-ex99_1.htm",
+    ticker: "gco",
+  },
+  {
+    company: "John Wiley & Sons",
+    metrics: [
+      ["adjusted_eps", "$0.44"],
+      ["gaap_eps", "-$0.23"],
+      ["revenue", "$386.36M"],
+      ["net_income", "-$11.73M"],
+    ],
+    outlook: [
+      ["Revenue", "low-to-mid single-digit growth"],
+      ["Adj EPS", "$4.6 to $5.05"],
+      ["Capex", "$80M"],
+      ["Free cash flow", "$205M"],
+    ],
+    quarterLabel: "Q1 2027",
+    source: "107140/000162828026060252/ex991earningsrelease.htm",
+    ticker: "wly",
+  },
+  {
+    company: "Concrete Pumping Holdings",
+    metrics: [
+      ["gaap_eps", "$0.09"],
+      ["revenue", "$116.8M"],
+      ["net_income", "$4.9M"],
+    ],
+    outlook: [
+      ["FY2026 Revenue", "$425M to $435M"],
+      ["FY2026 Adj EBITDA", "$103M to $108M"],
+      ["Q4 Capex", "$17.1M"],
+      ["FY2026 Free cash flow", "$50M"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "1703956/000143774926029609/ex_981044.htm",
+    ticker: "bbcp",
+  },
+  {
+    company: "Torrid Holdings",
+    metrics: [
+      ["gaap_eps", "$0.05"],
+      ["revenue", "$231.7M"],
+      ["net_income", "$5.2M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$230M to $235M"],
+      ["FY2026 Revenue", "$940M to $960M"],
+      ["Q3 Adj EBITDA", "$15M to $20M"],
+      ["FY2026 Adj EBITDA", "$76M to $86M"],
+      ["FY2026 Capex", "$8M to $10M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1792781/000179278126000036/q22026earningsrelease.htm",
+    ticker: "curv",
+  },
+  {
+    company: "Guidewire Software",
+    metrics: [
+      ["adjusted_eps", "$0.99"],
+      ["gaap_eps", "$0.38"],
+      ["revenue", "$411.09M"],
+      ["net_income", "$31.4M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q4 2026",
+    source: "1528396/000152839626000039/gwreex991earningsrelease73.htm",
+    ticker: "gwre",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -2479,6 +2627,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(152);
+    expect(filingCorpus).toHaveLength(162);
   });
 });

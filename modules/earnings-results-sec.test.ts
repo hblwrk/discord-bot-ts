@@ -427,6 +427,51 @@ describe("SEC earnings result source", () => {
     );
   });
 
+  test("content-scores generic exhibits so the earnings release beats financial statements", async () => {
+    const filing = createFiling({
+      accessionNumber: "0001437749-26-029554",
+      cik: "0001690639",
+      form: "6-K",
+      items: [],
+    });
+    const statements = "<html><h1>Consolidated Financial Statements</h1><p>Revenue C$38.8 million</p></html>";
+    const pressRelease = [
+      "<html><h1>VersaBank Reports Third Quarter Fiscal 2026 Results</h1>",
+      "<p>Revenue C$38.8 million. Net income C$10.1 million.",
+      "Earnings per share C$0.31. Adjusted earnings per share C$0.38.</p></html>",
+    ].join("");
+    getWithRetryFn.mockImplementation(async (url: string) => {
+      if (url.endsWith("/index.json")) {
+        return {
+          data: {
+            directory: {
+              item: [
+                {name: "ex_1009993.htm", type: "text.gif"},
+                {name: "ex_1010554.htm", type: "text.gif"},
+              ],
+            },
+          },
+        };
+      }
+
+      return {data: url.endsWith("/ex_1010554.htm") ? pressRelease : statements};
+    });
+    const dependencies = {
+      getWithRetryFn,
+      logger,
+    } as Parameters<typeof loadSecFilingDetails>[1];
+
+    const details = await loadSecFilingDetails(filing, dependencies, {
+      getDocumentScore: html => (html.includes("Reports") ? 40 : 10),
+      isUsableDocument: html => html.includes("Revenue"),
+    });
+
+    expect(details).toEqual({
+      documentUrl: "https://www.sec.gov/Archives/edgar/data/1690639/000143774926029554/ex_1010554.htm",
+      html: pressRelease,
+    });
+  });
+
   test("selects a usable press release ahead of an MD&A with later-quarter guidance", async () => {
     const filing = createFiling({
       accessionNumber: "0001858985-26-000018",

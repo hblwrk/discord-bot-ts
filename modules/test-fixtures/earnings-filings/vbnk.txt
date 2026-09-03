@@ -1,0 +1,5245 @@
+EX-99.3
+4
+ex_1010554.htm
+EXHIBIT 99.3
+
+
+ex_1010554.htm
+
+
+
+
+
+
+
+Exhibit 99.3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FOR IMMEDIATE RELEASE: September 3, 2026
+
+
+
+
+
+VERSABANK REPORTS STRONG THIRD QUARTER RESULTS: ACCELERATING US SRP GROWTH DRIVES 23% YEAR-OVER-YEAR INCREASE IN REVENUE, 53% GROWTH IN NET INCOME AND 27% GROWTH IN ADJUSTED (CORE) NET INCOME AS IT CONTINUES TO BENEFIT FROM OPERATING LEVERAGE
+
+
+
+
+
+– Bank Targets Adding at Least US$3 Billion in US SRP in Fiscal 2027 and Accelerated Growth in Canada –
+
+
+
+
+
+– Bank Expects to Drive Further Efficiency Through Broader Implementation of AI –
+
+
+
+
+
+All amounts are unaudited and in Canadian dollars and are based on financial statements prepared in compliance with International Accounting Standard 34 Interim Financial Reporting, unless otherwise noted. Our third quarter 2026 ( “ Q3 2026 ” ) unaudited Interim Consolidated Financial Statements for the period ended July 31, 2026 and Management ’ s Discussion and Analysis ("MD&A"), are available online at www.versabank.com/investor-relations , SEDAR at www.sedarplus.ca and EDGAR at www.sec.gov/edgar . Supplementary Financial Information will also be available on our website at www.versabank.com/investor-relations .
+
+
+
+
+
+LONDON, ON/CNW – VersaBank (or the “Bank”) (TSX: VBNK; NASDAQ: VBNK), a North American leader in business-to-business digital banking, as well as technology solutions for cybersecurity, today reported its results for the third quarter ended July 31, 2026. All figures are in Canadian dollars unless otherwise stated.
+
+
+
+
+
+NOTE REGARDING THIRD QUARTER FISCAL 2026 FINANCIAL RESULTS
+
+
+
+
+
+VersaBank’s financial results for the third quarter of fiscal 2026 reflect non-core non-interest expenses in the amount of $3.1 million. The non-core non-interest expenses are related to $2.5 million of project costs associated with the proposed Reorganization (see Reorganization note below) and $600,000 related to write-off of capitalized software costs associated with the sale of the US branch assets and deposits on May 1, 2026.
+
+
+
+
+
+In the same quarter, the Bank publicly filed a Form S-4 registration statement (the “Registration Statement”) with the US Securities and Exchange Commission (the “SEC”) in connection with the Reorganization, which was subsequently declared effective by the SEC. Specifically, the Reorganization, among other things, will cause Versa Bancorp, a new Delaware corporation (the “Parent”) to become the holding company of VersaBank and VersaBank USA National Association. The Reorganization is intended to enhance shareholder value, mitigate risk and reduce corporate costs over the long term. The completion of the Reorganization remains subject to shareholder and regulatory approval. The Bank expects that the anticipated benefits of the Reorganization will exceed the associated investment, however, these expected benefits are subject to various assumptions and uncertainties. As of the end of the third quarter of fiscal 2026, the Bank believes it has incurred the majority of the total costs associated with the Reorganization and expects the Reorganization to be completed in fiscal 2026.
+
+
+
+
+
+
+
+
+1
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CONSOLIDATED FINANCIAL SUMMARY
+
+
+
+
+
+
+
+
+
+(unaudited)
+
+|
+|
+
+As at or for the three months ended
+
+|
+|
+|
+
+As at or for the nine months ended
+
+|
+|
+
+
+
+(thousands of Canadian dollars, except per |
+|
+
+July 31
+
+|
+|
+|
+
+April 30
+
+|
+|
+|
+|
+|
+|
+|
+
+July 31
+
+|
+|
+|
+|
+|
+|
+|
+
+July 31
+
+|
+|
+|
+
+July 31
+
+|
+|
+|
+|
+|
+|
+
+
+
+
+share amounts)
+
+|
+|
+
+2026
+
+|
+|
+|
+
+2026
+
+|
+|
+|
+
+Change
+
+|
+|
+|
+
+2025
+
+|
+|
+|
+
+Change
+
+|
+|
+|
+
+2026
+
+|
+|
+|
+
+2025
+
+|
+|
+|
+
+Change
+
+|
+|
+
+
+
+
+Financial results
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Total revenue
+
+|
+|
+$ |
+38,809 |
+|
+|
+$ |
+38,293 |
+|
+|
+|
+1 |
+% |
+|
+$ |
+31,583 |
+|
+|
+|
+23 |
+% |
+|
+$ |
+113,616 |
+|
+|
+$ |
+89,549 |
+|
+|
+|
+27 |
+% |
+
+
+
+
+Cost of funds*
+
+|
+|
+|
+3.16 |
+% |
+|
+|
+3.09 |
+% |
+|
+|
+2 |
+% |
+|
+|
+3.33 |
+% |
+|
+|
+(5 |
+%) |
+|
+|
+3.11 |
+% |
+|
+|
+3.49 |
+% |
+|
+|
+(11 |
+%) |
+
+
+
+
+Net interest margin*
+
+|
+|
+|
+2.19 |
+% |
+|
+|
+2.33 |
+% |
+|
+|
+(6 |
+%) |
+|
+|
+2.25 |
+% |
+|
+|
+(3 |
+%) |
+|
+|
+2.24 |
+% |
+|
+|
+2.17 |
+% |
+|
+|
+3 |
+% |
+
+
+
+
+Net interest margin on credit assets*
+
+|
+|
+|
+2.44 |
+% |
+|
+|
+2.71 |
+% |
+|
+|
+(10 |
+%) |
+|
+|
+2.55 |
+% |
+|
+|
+(4 |
+%) |
+|
+|
+2.53 |
+% |
+|
+|
+2.50 |
+% |
+|
+|
+1 |
+% |
+
+
+
+
+Return on average common equity*
+
+|
+|
+|
+7.14 |
+% |
+|
+|
+5.64 |
+% |
+|
+|
+27 |
+% |
+|
+|
+4.94 |
+% |
+|
+|
+45 |
+% |
+|
+|
+6.98 |
+% |
+|
+|
+6.71 |
+% |
+|
+|
+4 |
+% |
+
+
+
+
+Adjusted (Core) return on average common equity*
+
+|
+|
+|
+8.72 |
+% |
+|
+|
+9.23 |
+% |
+|
+|
+(6 |
+%) |
+|
+|
+7.24 |
+% |
+|
+|
+20 |
+% |
+|
+|
+8.90 |
+% |
+|
+|
+7.57 |
+% |
+|
+|
+18 |
+% |
+
+
+
+
+Net income
+
+|
+|
+|
+10,060 |
+|
+|
+|
+7,525 |
+|
+|
+|
+34 |
+% |
+|
+|
+6,582 |
+|
+|
+|
+53 |
+% |
+|
+|
+28,654 |
+|
+|
+|
+23,254 |
+|
+|
+|
+23 |
+% |
+
+
+
+
+Adjusted (Core) net income*
+
+|
+|
+|
+12,303 |
+|
+|
+|
+12,378 |
+|
+|
+|
+(1 |
+%) |
+|
+|
+9,670 |
+|
+|
+|
+27 |
+% |
+|
+|
+36,843 |
+|
+|
+|
+26,342 |
+|
+|
+|
+40 |
+% |
+
+
+
+
+Income per common share basic and diluted
+
+|
+|
+|
+0.31 |
+|
+|
+|
+0.23 |
+|
+|
+|
+35 |
+% |
+|
+|
+0.20 |
+|
+|
+|
+55 |
+% |
+|
+|
+0.89 |
+|
+|
+|
+0.74 |
+|
+|
+|
+20 |
+% |
+
+
+
+
+Adjusted (Core) income per common share basic and diluted*
+
+|
+|
+|
+0.38 |
+|
+|
+|
+0.39 |
+|
+|
+|
+(3 |
+%) |
+|
+|
+0.30 |
+|
+|
+|
+27 |
+% |
+|
+|
+1.15 |
+|
+|
+|
+0.84 |
+|
+|
+|
+37 |
+% |
+
+
+
+
+Balance sheet and capital ratios**
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Total assets
+
+|
+|
+$ |
+6,875,238 |
+|
+|
+$ |
+6,440,700 |
+|
+|
+|
+7 |
+% |
+|
+$ |
+5,477,489 |
+|
+|
+|
+26 |
+% |
+|
+$ |
+6,875,238 |
+|
+|
+$ |
+5,477,489 |
+|
+|
+|
+26 |
+% |
+
+
+
+
+Book value per common share*
+
+|
+|
+|
+17.45 |
+|
+|
+|
+17.15 |
+|
+|
+|
+2 |
+% |
+|
+|
+16.42 |
+|
+|
+|
+6 |
+% |
+|
+|
+17.45 |
+|
+|
+|
+16.42 |
+|
+|
+|
+6 |
+% |
+
+
+
+
+Common Equity Tier 1 (CET1) capital ratio
+
+|
+|
+|
+11.47 |
+% |
+|
+|
+12.32 |
+% |
+|
+|
+(7 |
+%) |
+|
+|
+13.56 |
+% |
+|
+|
+(15 |
+%) |
+|
+|
+11.47 |
+% |
+|
+|
+13.56 |
+% |
+|
+|
+(15 |
+%) |
+
+
+
+
+Total capital ratio
+
+|
+|
+|
+13.32 |
+% |
+|
+|
+14.74 |
+% |
+|
+|
+(10 |
+%) |
+|
+|
+16.50 |
+% |
+|
+|
+(19 |
+%) |
+|
+|
+13.32 |
+% |
+|
+|
+16.50 |
+% |
+|
+|
+(19 |
+%) |
+
+
+
+
+Leverage ratio
+
+|
+|
+|
+7.64 |
+% |
+|
+|
+7.94 |
+% |
+|
+|
+(4 |
+%) |
+|
+|
+8.90 |
+% |
+|
+|
+(14 |
+%) |
+|
+|
+7.64 |
+% |
+|
+|
+8.90 |
+% |
+|
+|
+(14 |
+%) |
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+
+
+
+
+* See definitions under ‘Non-GAAP and Other Financial Measures' in the Q3 2026 Management’s Discussion and Analysis.
+
+
+** Capital management and leverage measures are in accordance with OSFI's Capital Adequacy Requirements and Basel III Accord.
+
+
+
+
+
+
+
+
+2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+SEGMENTED FINANCIAL SUMMARY – QUARTERLY
+
+
+
+
+
+
+
+
+
+(thousands of Canadian dollars)
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+for the three months ended
+
+|
+|
+
+July 31, 2026
+
+|
+|
+
+
+
+|
+|
+
+Digital Banking
+
+|
+|
+|
+
+Digital Banking
+
+|
+|
+|
+
+Digital Meteor
+
+|
+|
+|
+
+DRTC
+
+|
+|
+|
+
+Eliminations/
+
+|
+|
+|
+
+Consolidated
+
+|
+|
+
+
+
+|
+|
+
+Canada
+
+|
+|
+|
+
+USA
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+Adjustments
+
+|
+|
+|
+|
+|
+|
+
+
+
+
+Net interest income
+
+|
+|
+$ |
+27,472 |
+|
+|
+$ |
+9,301 |
+|
+|
+$ |
+- |
+|
+|
+$ |
+- |
+|
+|
+$ |
+- |
+|
+|
+$ |
+36,773 |
+|
+
+
+
+
+Non-interest income
+
+|
+|
+|
+93 |
+|
+|
+|
+2 |
+|
+|
+|
+413 |
+|
+|
+|
+1,875 |
+|
+|
+|
+(347 |
+) |
+|
+|
+2,036 |
+|
+
+
+
+
+Total revenue
+
+|
+|
+|
+27,565 |
+|
+|
+|
+9,303 |
+|
+|
+|
+413 |
+|
+|
+|
+1,875 |
+|
+|
+|
+(347 |
+) |
+|
+|
+38,809 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Provision for (recovery of) credit losses
+
+|
+|
+|
+5 |
+|
+|
+|
+(234 |
+) |
+|
+|
+- |
+|
+|
+|
+- |
+|
+|
+|
+- |
+|
+|
+|
+(229 |
+) |
+
+
+
+|
+|
+|
+27,560 |
+|
+|
+|
+9,537 |
+|
+|
+|
+413 |
+|
+|
+|
+1,875 |
+|
+|
+|
+(347 |
+) |
+|
+|
+39,038 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Non-interest expenses:
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Salaries and benefits
+
+|
+|
+|
+8,527 |
+|
+|
+|
+1,743 |
+|
+|
+|
+192 |
+|
+|
+|
+1,626 |
+|
+|
+|
+- |
+|
+|
+|
+12,088 |
+|
+
+
+
+
+General and administrative
+
+|
+|
+|
+9,288 |
+|
+|
+|
+1,249 |
+|
+|
+|
+28 |
+|
+|
+|
+483 |
+|
+|
+|
+(347 |
+) |
+|
+|
+10,701 |
+|
+
+
+
+
+Premises and equipment
+
+|
+|
+|
+875 |
+|
+|
+|
+1,009 |
+|
+|
+|
+31 |
+|
+|
+|
+458 |
+|
+|
+|
+- |
+|
+|
+|
+2,373 |
+|
+
+
+
+|
+|
+|
+18,690 |
+|
+|
+|
+4,001 |
+|
+|
+|
+251 |
+|
+|
+|
+2,567 |
+|
+|
+|
+(347 |
+) |
+|
+|
+25,162 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Income (loss) before income taxes
+
+|
+|
+|
+8,870 |
+|
+|
+|
+5,536 |
+|
+|
+|
+162 |
+|
+|
+|
+(692 |
+) |
+|
+|
+- |
+|
+|
+|
+13,876 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Income tax provision
+
+|
+|
+|
+2,291 |
+|
+|
+|
+1,591 |
+|
+|
+|
+48 |
+|
+|
+|
+(114 |
+) |
+|
+|
+- |
+|
+|
+|
+3,816 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Net income (loss)
+
+|
+|
+$ |
+6,579 |
+|
+|
+$ |
+3,945 |
+|
+|
+$ |
+114 |
+|
+|
+$ |
+(578 |
+) |
+|
+$ |
+- |
+|
+|
+$ |
+10,060 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Total assets
+
+|
+|
+$ |
+5,513,067 |
+|
+|
+$ |
+1,355,667 |
+|
+|
+$ |
+11,095 |
+|
+|
+$ |
+15,999 |
+|
+|
+$ |
+(20,590 |
+) |
+|
+$ |
+6,875,238 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Total liabilities
+
+|
+|
+$ |
+5,223,535 |
+|
+|
+$ |
+1,084,336 |
+|
+|
+$ |
+321 |
+|
+|
+$ |
+29,407 |
+|
+|
+$ |
+(27,926 |
+) |
+|
+$ |
+6,309,673 |
+|
+
+
+
+
+
+
+
+
+
+
+
+
+for the three months ended
+
+|
+|
+
+April 30, 2026
+
+|
+|
+
+
+
+|
+|
+
+Digital Banking
+
+|
+|
+|
+
+Digital Banking
+
+|
+|
+|
+
+Digital Meteor
+
+|
+|
+|
+
+DRTC
+
+|
+|
+|
+
+Eliminations/
+
+|
+|
+|
+
+Consolidated
+
+|
+|
+
+
+
+|
+|
+
+Canada
+
+|
+|
+|
+
+USA
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+Adjustments
+
+|
+|
+|
+|
+|
+|
+
+
+
+
+Net interest income
+
+|
+|
+$ |
+27,768 |
+|
+|
+$ |
+7,911 |
+|
+|
+$ |
+- |
+|
+|
+$ |
+- |
+|
+|
+$ |
+- |
+|
+|
+$ |
+35,679 |
+|
+
+
+
+
+Non-interest income
+
+|
+|
+|
+373 |
+|
+|
+|
+(15 |
+) |
+|
+|
+749 |
+|
+|
+|
+1,850 |
+|
+|
+|
+(343 |
+) |
+|
+|
+2,614 |
+|
+
+
+
+
+Total revenue
+
+|
+|
+|
+28,141 |
+|
+|
+|
+7,896 |
+|
+|
+|
+749 |
+|
+|
+|
+1,850 |
+|
+|
+|
+(343 |
+) |
+|
+|
+38,293 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Provision for (recovery of) credit losses
+
+|
+|
+|
+495 |
+|
+|
+|
+(67 |
+) |
+|
+|
+- |
+|
+|
+|
+- |
+|
+|
+|
+- |
+|
+|
+|
+428 |
+|
+
+
+
+|
+|
+|
+27,646 |
+|
+|
+|
+7,963 |
+|
+|
+|
+749 |
+|
+|
+|
+1,850 |
+|
+|
+|
+(343 |
+) |
+|
+|
+37,865 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Non-interest expenses:
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Salaries and benefits
+
+|
+|
+|
+7,343 |
+|
+|
+|
+2,070 |
+|
+|
+|
+172 |
+|
+|
+|
+1,617 |
+|
+|
+|
+- |
+|
+|
+|
+11,202 |
+|
+
+
+
+
+General and administrative
+
+|
+|
+|
+13,824 |
+|
+|
+|
+515 |
+|
+|
+|
+42 |
+|
+|
+|
+362 |
+|
+|
+|
+(343 |
+) |
+|
+|
+14,400 |
+|
+
+
+
+
+Premises and equipment
+
+|
+|
+|
+947 |
+|
+|
+|
+353 |
+|
+|
+|
+54 |
+|
+|
+|
+530 |
+|
+|
+|
+- |
+|
+|
+|
+1,884 |
+|
+
+
+
+|
+|
+|
+22,114 |
+|
+|
+|
+2,938 |
+|
+|
+|
+268 |
+|
+|
+|
+2,509 |
+|
+|
+|
+(343 |
+) |
+|
+|
+27,486 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Income (loss) before income taxes
+
+|
+|
+|
+5,532 |
+|
+|
+|
+5,025 |
+|
+|
+|
+481 |
+|
+|
+|
+(659 |
+) |
+|
+|
+- |
+|
+|
+|
+10,379 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Income tax provision
+
+|
+|
+|
+1,438 |
+|
+|
+|
+1,437 |
+|
+|
+|
+130 |
+|
+|
+|
+(151 |
+) |
+|
+|
+- |
+|
+|
+|
+2,854 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Net income (loss)
+
+|
+|
+$ |
+4,094 |
+|
+|
+$ |
+3,588 |
+|
+|
+$ |
+351 |
+|
+|
+$ |
+(508 |
+) |
+|
+$ |
+- |
+|
+|
+$ |
+7,525 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Total assets
+
+|
+|
+$ |
+5,213,682 |
+|
+|
+$ |
+1,221,182 |
+|
+|
+$ |
+10,688 |
+|
+|
+$ |
+15,773 |
+|
+|
+$ |
+(20,625 |
+) |
+|
+$ |
+6,440,700 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Total liabilities
+
+|
+|
+$ |
+4,926,001 |
+|
+|
+$ |
+961,343 |
+|
+|
+$ |
+370 |
+|
+|
+$ |
+28,344 |
+|
+|
+$ |
+(27,596 |
+) |
+|
+$ |
+5,888,462 |
+|
+
+
+
+
+
+
+
+
+
+
+
+
+for the three months ended
+
+|
+|
+
+July 31, 2025
+
+|
+|
+
+
+
+|
+|
+
+Digital Banking
+
+|
+|
+|
+
+Digital Banking
+
+|
+|
+|
+
+Digital Meteor
+
+|
+|
+|
+
+DRTC
+
+|
+|
+|
+
+Eliminations/
+
+|
+|
+|
+
+Consolidated
+
+|
+|
+
+
+
+|
+|
+
+Canada
+
+|
+|
+|
+
+USA
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+Adjustments
+
+|
+|
+|
+|
+|
+|
+
+
+
+
+Net interest income
+
+|
+|
+$ |
+26,656 |
+|
+|
+$ |
+3,123 |
+|
+|
+$ |
+- |
+|
+|
+$ |
+- |
+|
+|
+$ |
+- |
+|
+|
+$ |
+29,779 |
+|
+
+
+
+
+Non-interest income
+
+|
+|
+|
+(37 |
+) |
+|
+|
+(7 |
+) |
+|
+|
+622 |
+|
+|
+|
+1,569 |
+|
+|
+|
+(343 |
+) |
+|
+|
+1,804 |
+|
+
+
+
+
+Total revenue
+
+|
+|
+|
+26,619 |
+|
+|
+|
+3,116 |
+|
+|
+|
+622 |
+|
+|
+|
+1,569 |
+|
+|
+|
+(343 |
+) |
+|
+|
+31,583 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Provision for (recovery of) credit losses
+
+|
+|
+|
+1,201 |
+|
+|
+|
+(20 |
+) |
+|
+|
+- |
+|
+|
+|
+- |
+|
+|
+|
+- |
+|
+|
+|
+1,181 |
+|
+
+
+
+|
+|
+|
+25,418 |
+|
+|
+|
+3,136 |
+|
+|
+|
+622 |
+|
+|
+|
+1,569 |
+|
+|
+|
+(343 |
+) |
+|
+|
+30,402 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Non-interest expenses:
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Salaries and benefits
+
+|
+|
+|
+7,214 |
+|
+|
+|
+1,174 |
+|
+|
+|
+214 |
+|
+|
+|
+1,497 |
+|
+|
+|
+- |
+|
+|
+|
+10,099 |
+|
+
+
+
+
+General and administrative
+
+|
+|
+|
+8,636 |
+|
+|
+|
+1,163 |
+|
+|
+|
+47 |
+|
+|
+|
+214 |
+|
+|
+|
+(343 |
+) |
+|
+|
+9,717 |
+|
+
+
+
+
+Premises and equipment
+
+|
+|
+|
+898 |
+|
+|
+|
+186 |
+|
+|
+|
+373 |
+|
+|
+|
+376 |
+|
+|
+|
+- |
+|
+|
+|
+1,833 |
+|
+
+
+
+|
+|
+|
+16,748 |
+|
+|
+|
+2,523 |
+|
+|
+|
+634 |
+|
+|
+|
+2,087 |
+|
+|
+|
+(343 |
+) |
+|
+|
+21,649 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Income (loss) before income taxes
+
+|
+|
+|
+8,670 |
+|
+|
+|
+613 |
+|
+|
+|
+(12 |
+) |
+|
+|
+(518 |
+) |
+|
+|
+- |
+|
+|
+|
+8,753 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Income tax provision
+
+|
+|
+|
+2,150 |
+|
+|
+|
+176 |
+|
+|
+|
+(35 |
+) |
+|
+|
+(120 |
+) |
+|
+|
+- |
+|
+|
+|
+2,171 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Net income (loss)
+
+|
+|
+$ |
+6,520 |
+|
+|
+$ |
+437 |
+|
+|
+$ |
+23 |
+|
+|
+$ |
+(398 |
+) |
+|
+$ |
+- |
+|
+|
+$ |
+6,582 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Total assets
+
+|
+|
+$ |
+5,124,771 |
+|
+|
+$ |
+348,389 |
+|
+|
+$ |
+11,543 |
+|
+|
+$ |
+25,015 |
+|
+|
+$ |
+(32,229 |
+) |
+|
+$ |
+5,477,489 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Total liabilities
+
+|
+|
+$ |
+4,790,738 |
+|
+|
+$ |
+155,228 |
+|
+|
+$ |
+9,491 |
+|
+|
+$ |
+19,410 |
+|
+|
+$ |
+(25,520 |
+) |
+|
+$ |
+4,949,347 |
+|
+
+
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+
+
+
+
+3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+NOTE REGARDING THE CHANGE IN NAME OF “ RECEIVABLE PURCHASE PROGRAM ” ( “ RPP ” ) TO “ STRUCTURED RECEIVABLE PROGRAM ” ( “ SRP ” )
+
+
+
+
+
+As part of its previously announced Reorganization (see note below), VersaBank has changed the name of its Receivable Purchase Program (“RPP”) to Structured Receivable Program (“SRP”). The underlying business model of the SRP has not changed in any way.
+
+
+
+
+
+MANAGEMENT COMMENTARY
+
+
+
+
+
+“The third quarter once again saw new records for credit assets, revenue and net interest income, with strong year-over-year growth driven by the continuing strong momentum in our Structured Receivable Program in the United States, as well as steady growth in Canada,” said David Taylor, Founder and President, VersaBank. “As expected, fiscal 2026 has been a breakout year in terms of top-line growth, which is expected to further accelerate next year based on both the continued acceleration of our SRP in the United States, as well as this year’s introduction of our revolutionary Real-Time SRP. And subsequent to quarter end, we achieved a very noteworthy milestone, surpassing $7 billion in total assets for the first time. With this growth, we are increasingly realizing the operating leverage in our cloud-based, branchless, business-to-business model, with year-over-year increases in net income and adjusted (core) net income of 53% and 27%, respectively.
+
+
+
+
+
+“Specifically in the United States, we have set a target for fiscal 2027 to grow our SRP portfolio by at least US$3 billion (more than CAD$4 billion) in new fundings on our own balance sheet, with significant additional upside potential. The recent launch of our Real-Time SRP – a breakthrough in point-of-sale industry funding – is generating considerable incremental demand from both existing and prospective new partners, including in Canada, where we believe it will generate significant incremental growth to the solid performance we are achieving this year.”
+
+
+
+
+
+“As we achieve this expected growth in credit assets and revenue in fiscal 2027, we expect to really see the benefit of the operating leverage. To even further capitalize on our operating leverage, we are undertaking numerous AI-based initiatives across the broader organization to drive even greater efficiency as we grow, while further strengthening our risk profile. As a fully digital Bank with our own proprietary banking software, we are well positioned to realize significant benefits from increased implementation of AI.”
+
+
+
+
+
+“Additionally, our opportunities in the rapidly developing digital asset industry continue to come into focus. Both stablecoins and bank-issued tokenized deposits are gaining widespread acceptance, and the ecosystem is taking shape. At this still early stage for the industry, we are being deliberately thoughtful and prudent in our approach to these opportunities with a focus on long-term value. With our unique and proprietary technology that has been consistently validated by other leaders in the industry, further strengthened by our status as a federally licensed bank in both the United States and Canada, we are very well positioned to capitalize on this revolution in banking and payments.”
+
+
+
+
+
+“Finally, in addition to the significant top-line growth and operating leverage anticipated in fiscal 2027 and beyond, we expect the realignment of our corporate structure to a standard US bank framework, targeted for completion by the end of October of this year, subject to requisite approvals, to drive meaningful additional value for our shareholders as we align our structure and financial reporting to those with which the global investment community is more familiar, potential future stock index inclusion, and improved access to capital, if needed, to further accelerate our growth, as well as significant cost savings.”
+
+
+
+
+
+NOTE RE. REORGANIZATION (PREVIOUSLY REFERRED TO AS THE PROPOSED CORPORATE REALIGNMENT)
+
+
+
+
+
+In the third quarter, the Bank publicly filed a Form S-4 registration statement (the “Registration Statement”) with the US Securities and Exchange Commission (the “SEC”) in connection with the Bank’s proposed plan to realign its corporate structure to a standard US bank framework (the “Reorganization”), which was subsequently declared effective by the SEC. Specifically, the Reorganization, among other things, will cause Versa Bancorp, a new Delaware corporation (the “Parent”) to become the holding company of VersaBank and VersaBank USA National Association. The Bank will hold a special meeting for its shareholders ("the Meeting") to consider and vote on its proposed Reorganization. The Meeting will be held in person at 1979 Otter Place, London, Ontario on September 16, 2026, at 10:30 a.m. ET. Shareholders of record of the Bank at the close of business on August 10, 2026, will be entitled to receive notice of and to vote at the Meeting. In addition to the approval of shareholders, the completion of the Reorganization remains subject to various regulatory approvals, including approval by the Minister of Finance in Canada and the Federal Reserve Board in the United States. VersaBank intends to proceed with the shareholder matters expeditiously, and in tandem with the other regulatory processes.
+
+
+
+
+
+
+
+
+4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+KEY OPERATIONAL DEVELOPMENTS
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+The Bank continued to realize rapid expansion of its credit asset portfolio in the US through the successful ramp up of its SRP. Following the achievement of its first-year target for SRP credit assets and the signing of an agreement with its largest US SRP partner to date at the end of Q4 2025, the Bank grew its total SRP assets to US$793 million at the end of the third quarter of fiscal 2026;
+
+|
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+The Bank entered into an agreement with a wholly owned subsidiary of ECN Capital (the "ECN Subsidiary"), under which the ECN Subsidiary will utilize the Bank's core Structured Receivable Program in the United States. This is the second SRP program into which ECN Capital has entered with VersaBank in the United States. The ECN Subsidiary is expected to contribute at least US$300 million in additional US SRP fundings annually. VersaBank and ECN Capital believe the program could grow well beyond US$500 million per year in funding in the future;
+
+|
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+The Bank launched its industry breakthrough Real-Time SRP, which provides the same reliable, economically attractive funding solution as the Bank's existing SRP, with the additional benefit of eliminating the need for SRP partners to warehouse multiple receivables over a period of time (typically from five to 30 or more days). This enables the Bank's SRP partners to finance individual loans within just hours, reducing the overall financing cost and the need for warehouse financing, as well as the interest rate risk associated with the warehousing period. It also further strengthens VersaBank's exceptional risk mitigation capabilities by enabling the Bank to better leverage its own, internal AI platform through evaluation of the partner loans underlying the SRP receivables on an individual basis. The Bank expects its Real-Time SRP to enable it to obtain additional financing business with existing partners, while enabling it to acquire new partners with more specialized financing needs that it was previously unable to address. It also expects its Real-Time SRP to enable it to further capture market share from securitized financing providers.
+
+|
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+The Bank added point-of-sale financing industry veteran Moe Danis, CFA, to the Bank's Structured Receivable Program team to support business development in response to increased demand following the Bank's launch of its Real-Time SRP, with a particular focus on specialized large-partner opportunities in the US market.
+
+|
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+The Bank’s sale of certain assets associated with its only physical branch, located in Holdingford, Minnesota, to Stearns Bank National Association was approved by the Office of the Comptroller of the Currency ("OCC") during the second quarter and the transaction closed on May 1, 2026.
+
+|
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+The US Federal Reserve extended the date by which the Bank is to cease or divest of certain impermissible activities, including the cybersecurity services housed within DRTC and Digital Boundary Group, required (as per the approval of its 2024 acquisition of a US bank) to August 30, 2027 from September 2026.
+
+|
+
+
+
+
+
+
+
+
+HIGHLIGHTS FOR THE THIRD QUARTER OF FISCAL 2026
+
+
+Consolidated (Canadian and US Digital Banking Operations, Digital Meteor and DRTC)
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+Total assets increased 26% year-over-year and 7% sequentially to a record $6.9 billion, with the increase driven primarily by growth of the Digital Banking operations’ credit asset portfolios, in particular, the Structured Receivable Program (“SRP”) portfolio, in both the US and Canada;
+
+|
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+Consolidated total revenue increased 23% year-over-year and increased 1% sequentially to a record $38.8 million, with the year-over-year and sequential increases primarily due to the continued growth in credit assets, which were up 29% year-over-year and 9% sequentially;
+
+|
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+Consolidated net income was $10.1 million compared with $6.6 million for the third quarter of last year and $7.5 million for the second quarter of fiscal 2026. Consolidated net income for the third quarter of fiscal 2026 reflects non-core non-interest expenses of $3.1 million, composed of project costs associated with the proposed Reorganization and write-off of capitalized software costs associated with the sale of branch assets and deposits in the quarter. Consolidated net income for the third quarter of fiscal 2026 also included $0.8 million in expenses related to share-based long-term incentive awards, driven by the Bank's strong share price performance during the quarter, as well as $1.5 million in other transitory costs that the Bank does not expect to recur. The prior year net income reflected $4.2 million related to the project costs associated with the Reorganization and sequential quarter reflected $6.7 million in non-core non-interest expenses, which included $4.5 million related to the project costs associated with the Reorganization and a $2.2 million write-down of an intangible asset related to the customer deposit base of the Bank’s sole physical branch;
+
+|
+
+
+
+
+
+
+
+
+
+
+
+5
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+Consolidated adjusted (core) net income was $12.3 million, an increase of 27% year-over-year and a decrease of 1% sequentially. The adjusted (core) net income excludes $3.1 million in non-core expense ($4.2 million a year ago and $6.7 million in the sequential quarter). Consolidated adjusted (core) net income includes $0.8 million in expenses related to share-based long-term incentive awards, driven by the Bank's strong share price performance during the quarter, as well as $1.5 million in other transitory costs that the Bank does not expect to recur;
+
+|
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+Consolidated income per common share was $0.31 compared with $0.20 for the third quarter of last year and $0.23 for the second quarter of 2026. Consolidated income per share includes $0.8 million in expenses related to share-based long-term incentive awards, driven by the Bank's strong share price performance during the quarter, as well as $1.5 million in other transitory costs that the Bank does not expect to recur; and,
+
+|
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+Consolidated adjusted (core) income per common share was $0.38 compared with $0.30 for the third quarter of 2025 and $0.39 for the second quarter of 2026. The adjusted (core) net income per common share excludes $3.1 million in non-core expense ($4.2 million a year ago and $6.7 million in the sequential quarter). Consolidated adjusted (core) income per common share includes $0.8 million in expenses related to share-based long-term incentive awards, driven by the Bank's strong share price performance during the quarter, as well as $1.5 million in other transitory costs that the Bank does not expect to recur.
+
+|
+
+
+
+
+
+
+
+
+Digital Banking (Combined Canada and US)
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+Total Digital Banking operations (combined Canada and US) credit assets increased 29% year-over-year and 9% sequentially to a record $6.16 billion, driven primarily by strong growth in each of the US and Canadian SRP portfolios, which, combined, increased 40% year-over-year and 11% sequentially;
+
+|
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+Total Digital Banking operations revenue increased 24% year-over-year and 2% sequentially to a record $36.9 million, with the year-over-year and sequential increases primarily due to the continued growth in credit assets;
+
+|
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+Total Digital Banking operations net interest margin on credit assets decreased 11 bps, or 4%, year-over-year, and decreased 27 bps sequentially, to 2.44%. The decreases in NIM reflect higher than typical GIC (term deposit) rates relative to Government of Canada bond yields, the replacement of retail deposits with brokered deposits resulting from the sale of the Bank's only physical branch in the US, as well as the Bank's decision to maintain greater liquidity amidst a challenging Canadian economy. The decrease in NIM also reflected lower credit asset yields in Canada due to the shift in credit asset mix resulting from the continued growth in the SRP portfolio, as well as growth in lower-risk, lower regulatory risk-weighted insured Multi-Family Residential Loans (“MROL”) credit assets from higher-yielding, higher regulatory risk-weighted uninsured MROL credit assets. The Bank’s NIM remains amongst the highest of the publicly traded Canadian Schedule I banks; |
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+Total Digital Banking operations overall NIM decreased 6 bps, or 3%, year-over-year and decreased 14 bps, or 6%, sequentially to 2.19%. The Bank’s net interest margin remained among the highest of the publicly traded Canadian Schedule I (federally licensed) banks;
+
+|
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+Total Digital Banking operations provision for credit losses as a percentage of average credit assets remained negligible at -0.02%, compared with a 12-quarter average of 0.03%, which remains among the lowest of the publicly traded Canadian Schedule I (federally licensed) banks;
+
+|
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+Total Digital Banking operations net income was $10.5 million compared with $7.0 million for the third quarter of last year and $7.7 million for the second quarter of 2026. Net income for the third quarter of fiscal 2026 included $3.1 million (before tax) in non-core, non-interest expenses primarily related to the Reorganization and write-off of capitalized software costs, compared to a year ago of $4.2 million related to the project costs associated with the Reorganization and sequential quarter reflecting $6.7 million in non-core non-interest expenses, which included $4.5 million related to the project costs associated with the Reorganization and a $2.2 million write-down of an intangible asset related to the customer deposit base of the Bank’s sole physical branch. The sequential quarter also included $600,000 in non-interest expenses specifically related to costs related to the commercialization of its Real Bank Tokenized Deposits™ (RBTD™s), which were not classified as non-core; and,
+
+|
+
+
+
+
+
+
+
+
+
+
+
+6
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+Total Digital Banking operations income per common share was $0.32 compared with $0.26 for the third quarter of last year and $0.23 for the second quarter of 2026.
+
+|
+
+
+
+
+
+
+
+
+Digital Banking Canada
+
+
+
+
+
+Note: The financial results for Digital Banking Canada contain certain non-interest expenses for general corporate administrative costs.
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+Canadian Digital Banking operations net income was $6.6 million compared with $6.5 million for the third quarter of last year and $4.1 million for the second quarter of 2026 and was dampened by non-core non-interest expenses of $2.5 million, composed of project costs associated with the Reorganization ($4.2 million a year ago and $6.7 million in the sequential quarter); and,
+
+|
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+Canadian Digital Banking operations net income per common share was $0.20 compared with $0.20 for the third quarter of last year and $0.13 for the second quarter of 2026.
+
+|
+
+
+
+
+
+
+
+
+Digital Banking US
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+US Digital Banking operations net income was $3.9 million compared with $437,000 for the third quarter of last year and $3.6 million for the second quarter of 2026 and was dampened by non-core non-interest expenses of $600,000 related to the write-off of capitalized software costs. The sequential increase was primarily attributable to the strong growth in the SRP portfolio. US Digital Banking operations include expenses that are being incurred ahead of asset growth and revenue generated by the ramp up of the US SRP portfolio.
+
+|
+
+
+
+
+
+
+
+
+Digital Meteor
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+Digital Meteor’s net income was $114,000 compared with net income of $23,000 for the third quarter of last year and net income of $351,000 for the second quarter of 2026. |
+
+
+
+
+
+
+
+
+DRTC ’ s Cybersecurity Services Operations
+
+
+
+
+
+
+
+
+|
+
+●
+
+|
+
+DRTC’s net loss was $578,000 compared with a net loss of $398,000 for the third quarter of last year and a net loss of $508,000 for the second quarter of 2026. The increased loss was primarily due to higher non-interest expense, offset partially by higher revenues from an increase in new cybersecurity offerings.
+
+|
+
+
+
+
+
+
+
+
+
+
+
+7
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+FINANCIAL SUMMARY
+
+
+
+
+
+
+
+
+
+
+
+
+(unaudited)
+
+|
+|
+
+for the three months ended
+
+|
+|
+|
+
+for the nine months ended
+
+|
+|
+
+
+
+|
+|
+
+July 31
+
+|
+|
+|
+
+July 31
+
+|
+|
+|
+
+July 31
+
+|
+|
+|
+
+July 31
+
+|
+|
+
+
+
+
+(thousands of Canadian dollars, except per share amounts)
+
+|
+|
+
+2026
+
+|
+|
+|
+
+2025
+
+|
+|
+|
+
+2026
+
+|
+|
+|
+
+2025
+
+|
+|
+
+
+
+
+Results of operations
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Interest income
+
+|
+|
+$ |
+89,737 |
+|
+|
+$ |
+73,987 |
+|
+|
+$ |
+254,013 |
+|
+|
+$ |
+218,209 |
+|
+
+
+
+
+Net interest income
+
+|
+|
+|
+36,773 |
+|
+|
+|
+29,779 |
+|
+|
+|
+106,333 |
+|
+|
+|
+83,535 |
+|
+
+
+
+
+Non-interest income
+
+|
+|
+|
+2,036 |
+|
+|
+|
+1,804 |
+|
+|
+|
+7,283 |
+|
+|
+|
+6,014 |
+|
+
+
+
+
+Total revenue
+
+|
+|
+|
+38,809 |
+|
+|
+|
+31,583 |
+|
+|
+|
+113,616 |
+|
+|
+|
+89,549 |
+|
+
+
+
+
+Provision for (recovery of) credit losses
+
+|
+|
+|
+(229 |
+) |
+|
+|
+1,181 |
+|
+|
+|
+899 |
+|
+|
+|
+3,094 |
+|
+
+
+
+
+Non-interest expenses
+
+|
+|
+|
+25,162 |
+|
+|
+|
+21,649 |
+|
+|
+|
+73,194 |
+|
+|
+|
+54,864 |
+|
+
+
+
+Digital Banking |
+|
+|
+22,691 |
+|
+|
+|
+19,271 |
+|
+|
+|
+65,516 |
+|
+|
+|
+46,467 |
+|
+
+
+
+DRTC |
+|
+|
+2,567 |
+|
+|
+|
+2,087 |
+|
+|
+|
+7,911 |
+|
+|
+|
+7,787 |
+|
+
+
+
+Digital Meteor |
+|
+|
+251 |
+|
+|
+|
+634 |
+|
+|
+|
+803 |
+|
+|
+|
+1,662 |
+|
+
+
+
+
+Net income
+
+|
+|
+|
+10,060 |
+|
+|
+|
+6,582 |
+|
+|
+|
+28,654 |
+|
+|
+|
+23,254 |
+|
+
+
+
+
+Adjusted (Core) net income*
+
+|
+|
+|
+12,303 |
+|
+|
+|
+9,670 |
+|
+|
+|
+36,843 |
+|
+|
+|
+26,342 |
+|
+
+
+
+
+Income per common share:
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+Basic |
+|
+$ |
+0.31 |
+|
+|
+$ |
+0.20 |
+|
+|
+$ |
+0.89 |
+|
+|
+$ |
+0.74 |
+|
+
+
+
+Diluted |
+|
+$ |
+0.31 |
+|
+|
+$ |
+0.20 |
+|
+|
+$ |
+0.89 |
+|
+|
+$ |
+0.74 |
+|
+
+
+
+
+Adjusted (Core) income per common share basic and diluted*
+
+|
+|
+$ |
+0.38 |
+|
+|
+$ |
+0.30 |
+|
+|
+$ |
+1.15 |
+|
+|
+$ |
+0.84 |
+|
+
+
+
+
+Dividends paid on common shares
+
+|
+|
+$ |
+809 |
+|
+|
+$ |
+807 |
+|
+|
+$ |
+2,410 |
+|
+|
+$ |
+2,433 |
+|
+
+
+
+
+Yield*
+
+|
+|
+|
+5.35 |
+% |
+|
+|
+5.58 |
+% |
+|
+|
+5.35 |
+% |
+|
+|
+5.66 |
+% |
+
+
+
+
+Cost of funds*
+
+|
+|
+|
+3.16 |
+% |
+|
+|
+3.33 |
+% |
+|
+|
+3.11 |
+% |
+|
+|
+3.49 |
+% |
+
+
+
+
+Net interest margin*
+
+|
+|
+|
+2.19 |
+% |
+|
+|
+2.25 |
+% |
+|
+|
+2.24 |
+% |
+|
+|
+2.17 |
+% |
+
+
+
+
+Net interest margin on credit assets*
+
+|
+|
+|
+2.44 |
+% |
+|
+|
+2.55 |
+% |
+|
+|
+2.53 |
+% |
+|
+|
+2.50 |
+% |
+
+
+
+
+Return on average common equity*
+
+|
+|
+|
+7.14 |
+% |
+|
+|
+4.94 |
+% |
+|
+|
+6.98 |
+% |
+|
+|
+6.71 |
+% |
+
+
+
+
+Adjusted (Core) return on average common equity*
+
+|
+|
+|
+8.72 |
+% |
+|
+|
+7.24 |
+% |
+|
+|
+8.90 |
+% |
+|
+|
+7.57 |
+% |
+
+
+
+
+Book value per common share*
+
+|
+|
+$ |
+17.45 |
+|
+|
+$ |
+16.42 |
+|
+|
+$ |
+17.45 |
+|
+|
+$ |
+16.42 |
+|
+
+
+
+
+Efficiency ratio*
+
+|
+|
+|
+65 |
+% |
+|
+|
+69 |
+% |
+|
+|
+64 |
+% |
+|
+|
+61 |
+% |
+
+
+
+
+Adjusted (Core) efficiency ratio*
+
+|
+|
+|
+57 |
+% |
+|
+|
+55 |
+% |
+|
+|
+54 |
+% |
+|
+|
+57 |
+% |
+
+
+
+
+Return on average total assets*
+
+|
+|
+|
+0.60 |
+% |
+|
+|
+0.50 |
+% |
+|
+|
+0.60 |
+% |
+|
+|
+0.60 |
+% |
+
+
+
+
+Provision for (recovery of) credit losses as a % of average credit assets*
+
+|
+|
+|
+(0.02 |
+%) |
+|
+|
+0.10 |
+% |
+|
+|
+0.02 |
+% |
+|
+|
+0.09 |
+% |
+
+
+
+|
+|
+
+as at
+
+|
+|
+
+
+
+
+Balance Sheet Summary
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Cash
+
+|
+|
+$ |
+490,049 |
+|
+|
+$ |
+460,312 |
+|
+|
+$ |
+490,049 |
+|
+|
+$ |
+460,312 |
+|
+
+
+
+
+Securities
+
+|
+|
+|
+134,178 |
+|
+|
+|
+160,136 |
+|
+|
+|
+134,178 |
+|
+|
+|
+160,136 |
+|
+
+
+
+
+Credit assets, net of allowance for credit losses
+
+|
+|
+|
+6,161,542 |
+|
+|
+|
+4,778,316 |
+|
+|
+|
+6,161,542 |
+|
+|
+|
+4,778,316 |
+|
+
+
+
+
+Average credit assets
+
+|
+|
+|
+5,918,711 |
+|
+|
+|
+4,651,064 |
+|
+|
+|
+5,613,960 |
+|
+|
+|
+4,507,216 |
+|
+
+
+
+
+Total assets
+
+|
+|
+|
+6,875,238 |
+|
+|
+|
+5,477,489 |
+|
+|
+|
+6,875,238 |
+|
+|
+|
+5,477,489 |
+|
+
+
+
+
+Deposits
+
+|
+|
+|
+5,909,865 |
+|
+|
+|
+4,627,410 |
+|
+|
+|
+5,909,865 |
+|
+|
+|
+4,627,410 |
+|
+
+
+
+
+Subordinated notes payable
+
+|
+|
+|
+103,793 |
+|
+|
+|
+102,148 |
+|
+|
+|
+103,793 |
+|
+|
+|
+102,148 |
+|
+
+
+
+
+Shareholders' equity
+
+|
+|
+|
+565,565 |
+|
+|
+|
+528,142 |
+|
+|
+|
+565,565 |
+|
+|
+|
+528,142 |
+|
+
+
+
+
+Capital ratios**
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+
+
+
+
+Risk-weighted assets
+
+|
+|
+$ |
+4,717,516 |
+|
+|
+$ |
+3,740,088 |
+|
+|
+$ |
+4,717,516 |
+|
+|
+$ |
+3,740,088 |
+|
+
+
+
+
+Common Equity Tier 1 capital
+
+|
+|
+|
+540,934 |
+|
+|
+|
+507,212 |
+|
+|
+|
+540,934 |
+|
+|
+|
+507,212 |
+|
+
+
+
+
+Total regulatory capital
+
+|
+|
+|
+628,283 |
+|
+|
+|
+617,079 |
+|
+|
+|
+628,283 |
+|
+|
+|
+617,079 |
+|
+
+
+
+
+Common Equity Tier 1 (CET1) ratio
+
+|
+|
+|
+11.47 |
+% |
+|
+|
+13.56 |
+% |
+|
+|
+11.47 |
+% |
+|
+|
+13.56 |
+% |
+
+
+
+
+Tier 1 capital ratio
+
+|
+|
+|
+11.47 |
+% |
+|
+|
+13.56 |
+% |
+|
+|
+11.47 |
+% |
+|
+|
+13.56 |
+% |
+
+
+
+
+Total capital ratio
+
+|
+|
+|
+13.32 |
+% |
+|
+|
+16.50 |
+% |
+|
+|
+13.32 |
+% |
+|
+|
+16.50 |
+% |
+
+
+
+
+Leverage ratio
+
+|
+|
+|
+7.64 |
+% |
+|
+|
+8.90 |
+% |
+|
+|
+7.64 |
+% |
+|
+|
+8.90 |
+% |
+
+
+
+
+
+
+
+
+* See definitions under ‘Non-GAAP and Other Financial Measures' in the Q3 2026 Management’s Discussion and Analysis.
+
+
+** Capital management and leverage measures are in accordance with OSFI's Capital Adequacy Requirements and Basel III Accord.
+
+
+
+
+
+
+8
+
+
+
+
+
+
+
+
+
+
+
+This news release is intended to be read in conjunction with the Bank’s Consolidated Financial Statements and Management’s Discussion & Analysis (MD&A) for the three and nine months ended July 31, 2026, which are available on VersaBank’s website at www.versabank.com, SEDAR+ at www.sedarplus.ca and EDGAR at www.sec.gov/edgar .
+
+
+
+
+
+Conference Call
+
+
+
+
+
+VersaBank will host a conference call and webcast today, Thursday, September 3, 2026, at 9:00 a.m. (ET) to discuss its third quarter results, featuring a presentation by David Taylor, Founder and President, and Nicolas Ospina, Global CFO, followed by a question-and-answer period. To join the conference call by telephone you may dial direct and be entered into the call with the conference ID 1372854 by an Operator at: 647-932-3411 or 800-715-9871 (toll free).
+
+
+
+
+
+For those preferring to listen to the presentation via the Internet, a live webcast will be available at https://www.gowebcasting.com/events/versabank/2026/09/03/q3-fiscal-2026-earnings-call/play and on the Bank's web site at https://www.versabank.com/investor-relations/events-presentations/ . The slide presentation management will use during the conference call/webcast will be available on the Bank's web site at: https://www.versabank.com/investor-relations/financial-results/ .
+
+
+
+
+
+The archived webcast presentation will be available for 30 days following the live event at https://www.gowebcasting.com/events/versabank/2026/09/03/q3-fiscal-2026-earnings-call/play and on the Bank’s web site https://www.versabank.com/investor-relations/events-presentations/ . Replay of the teleconference will be available until October 3, 2026 by calling 647-932-3411 or 800-770-2030 (toll free) and using the passcode 1372854#.
+
+
+
+
+
+About VersaBank
+
+
+
+
+
+VersaBank is a North American bank with a difference. Federally chartered in both Canada and the US, VersaBank has a branchless, digital, business-to-business model based on its proprietary state-of-the-art technology that enables it to profitably address underserved segments of the banking industry in a significantly risk mitigated manner. Because VersaBank obtains substantially all of its deposits and undertakes the majority of its funding activities electronically through financial intermediary partners, it benefits from significant operating leverage that drives efficiency and return on common equity. In August 2024, VersaBank launched its unique Structured Receivable Program funding solution for point-of-sale finance companies, which has been highly successful in Canada for over 15 years, to the underserved multi-trillion-dollar US market. VersaBank also owns Minnesota-based DRT Cyber Inc., a North American leader in the provision of cyber security services to address the rapidly growing volume of cyber threats challenging financial institutions, multi-national corporations and government entities. Through its wholly owned subsidiary, DBG Inc., VersaBank owns proprietary intellectual property and technology to enable the next generation of digital assets for the banking and financial community, including the Bank’s revolutionary and proprietary Real Bank Tokenized Deposits™.
+
+
+
+
+
+VersaBank’s Common Shares trade on the Toronto Stock Exchange and NASDAQ under the symbol VBNK.
+
+
+
+
+
+
+
+
+9
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Forward-Looking Statements
+
+
+
+
+
+This press release contains forward-looking information and forward-looking statements within the meaning of applicable securities laws (“forward-looking statements”) including statements regarding the ability to obtain shareholder, regulatory and other approvals of the Reorganization; the expected realization of additional shareholder value, the simplification of the regulatory structure and the reduction of costs as a result of the Reorganization; the key elements of the Reorganization; the ability to obtain inclusion on stock indices, including the Russell 2000; the ability to continue to grow the US Structured Receivable Program; the ability to expand our net interest margin; and the ability to continue to grow the CMHC residential construction loan program. Forward-looking statements of this type are included in this document and may be included in other filings with Canadian securities regulators or the US Securities and Exchange Commission, or in other communications. All such statements are made pursuant to the “safe harbor” provisions of, and are intended to be forward-looking statements under, the United States Private Securities Litigation Reform Act of 1995 and any applicable Canadian securities legislation. The statements in this press release that relate to the future are forward-looking statements. By their very nature, forward-looking statements involve inherent risks and uncertainties, both general and specific, many of which are out of VersaBank’s control. Risks exist that predictions, forecasts, projections and other forward-looking statements will not be achieved. Readers are cautioned not to place undue reliance on these forward-looking statements as a number of important factors could cause actual results to differ materially from the plans, objectives, expectations, estimates and intentions expressed in such forward-looking statements. These factors include, but are not limited to, the strength of the Canadian and US economies in general and the strength of the local economies within Canada and the US in which VersaBank conducts operations; the effects of changes in monetary and fiscal policy, including changes in interest rate policies of the Bank of Canada and the US Federal Reserve; global commodity prices; the effects of competition in the markets in which VersaBank operates; changes in trade laws and tariffs; inflation; capital market fluctuations; the timely development and introduction of new products in receptive markets; the impact of changes in the laws and regulations pertaining to financial services; changes in tax laws; technological changes; unexpected judicial or regulatory proceedings; unexpected changes in consumer spending and savings habits; the impact of wars or conflicts and the impact of both on global supply chains and markets; the impact of outbreaks of disease or illness that affect local, national or international economies; the possible effects on our business of terrorist activities; natural disasters and disruptions to public infrastructure, such as transportation, communications, power or water supply; and VersaBank’s anticipation of and success in managing the risks implicated by the foregoing.
+
+
+
+
+
+Completion of VersaBank’s plan to realign its corporate structure to a standard US bank framework is subject to numerous factors, many of which are beyond the Bank’s control, including but not limited to, the failure to obtain required shareholder, regulatory and other approvals, and other important factors disclosed previously and from time to time in the Bank’s filings with the SEC and the securities commissions or similar securities regulatory authorities in each of the provinces or territories of Canada.
+
+
+
+
+
+The foregoing list of important factors is not exhaustive. When relying on forward-looking statements to make decisions, investors and others should carefully consider the foregoing factors and other uncertainties and potential events. The forward-looking information contained in the management’s discussion and analysis is presented to assist VersaBank shareholders and others in understanding VersaBank’s financial position and may not be appropriate for any other purposes.
+
+
+
+
+
+For a detailed discussion of certain key factors that may affect VersaBank’s future results, please see VersaBank’s annual MD&A for the year ended October 31, 2025. Except as required by securities law, VersaBank does not undertake to update any forward-looking statement that is contained in this press release or made from time to time by VersaBank or on its behalf.
+
+
+
+
+
+
+
+
+
+
+
+FOR FURTHER INFORMATION, PLEASE CONTACT:
+
+
+
+
+
+Lawrence Chamberlain
+
+
+Global Senior Vice President, Investor & Stakeholder Relations
+
+
+(416) 540-7486
+
+
+lawrence@versabank.com
+
+
+
+
+
+Visit our website at: www.versabank.com
+
+
+
+
+
+Follow VersaBank on Facebook, Instagram, LinkedIn and X (formerly Twitter)
+
+
+
+
+
+
+
+
+
+
+
+10
