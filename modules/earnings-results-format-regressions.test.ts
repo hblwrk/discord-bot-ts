@@ -2,6 +2,18 @@ import {describe, expect, test} from "vitest";
 import {parseEarningsDocument} from "./earnings-results-format.ts";
 
 describe("earnings result filing regressions", () => {
+  test("prefers directly reported net sales over a later EPS mention", () => {
+    const document = parseEarningsDocument(`
+      <h1>Example Reports First Quarter Fiscal 2027 Financial Results</h1>
+      <p>Net sales were $112.6 million, an increase of $27.5 million, or 32.3%, from the comparable quarter last year.</p>
+      <p>We delivered significant year-over-year increases in all key financial metrics, including 32% growth in net sales and an increase in earnings per share to $0.06 from a loss of $0.08 last year.</p>
+    `);
+
+    expect(document.metrics).toEqual(expect.arrayContaining([
+      expect.objectContaining({key: "revenue", value: "$112.6M"}),
+    ]));
+  });
+
   test("keeps GAAP loss signs and ignores free-cash-flow margins as revenue", () => {
     const document = parseEarningsDocument(`
       <h1>Example Reports Fourth Quarter Fiscal 2026 Financial Results</h1>

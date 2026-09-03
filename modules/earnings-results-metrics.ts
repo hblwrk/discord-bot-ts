@@ -133,6 +133,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     label: "Revenue",
     patterns: [
       /\bconsolidated\s+revenues?\s+for\s+(?:the\s+)?quarter\s+ended\b.{0,100}?\b(?:was|were)\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?\d+(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\)?)/i,
+      /\bnet\s+sales\s+(?:was|were)\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?\d+(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\)?)/i,
       /\breported\s+net\s+sales\s+of\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?\d+(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\)?)\s+for\s+(?:the\s+)?(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b/i,
       /\brevenue\s+of\s+(?<metricValue>[$€£¥]\s*\d+(?:\.\d+)?\s*(?:billion|million|thousand)s?)\s*,\s*up\s+\d+(?:\.\d+)?%\s*,?\s*or\s+\d+(?:\.\d+)?%\s*\((?:cc|constant\s+currency)\)/i,
       /\bnet\s+revenues?\s+in\s+(?:the\s+)?(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b.{0,80}?\bwere\s+(?:RMB|CNY)\s*\d[\d,.]*\s*(?:billion|million|thousand)s?\s*\(\s*(?<metricValue>US\s*\$\s*\d+(?:\.\d+)?\s*(?:billion|million|thousand)s?)\s*\)/i,
