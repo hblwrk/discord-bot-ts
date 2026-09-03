@@ -1,0 +1,1487 @@
+EX-99.1
+2
+agx-20260902xex99d1.htm
+EX-99.1
+
+
+Exhibit 99.1
+
+
+
+Argan, Inc. Reports Second Quarter Fiscal 2027 Results
+Record Revenue of $384 Million; Record Net Income of $53.3 Million
+September 2, 2026 – ARLINGTON, VA – Argan, Inc. (NYSE: AGX) (“Argan” or the “Company”) today announces financial results for its second quarter of fiscal year 2027 ended July 31, 2026. The Company will host an investor conference call today, September 2, 2026, at 5:00 p.m. ET.
+Consolidated Financial Highlights
+($ in thousands, except per share data)
+
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+|
+| July 31,
+|
+|
+|
+|
+|
+For the Quarter Ended:
+|
+| 2026
+|
+| 2025
+|
+| Change
+|
+|
+Revenues
+|
+| $
+| 383,976
+|
+| $
+| 237,743
+|
+| $
+| 146,233
+|
+|
+Gross profit
+|
+|
+| 74,218
+|
+|
+| 44,267
+|
+|
+| 29,951
+|
+|
+Gross margin %
+|
+|
+| 19.3
+| %
+|
+| 18.6
+| %
+|
+| 0.7
+| %
+|
+Net income
+|
+| $
+| 53,302
+|
+| $
+| 35,275
+|
+| $
+| 18,027
+|
+|
+Diluted earnings per share
+|
+|
+| 3.76
+|
+|
+| 2.50
+|
+|
+| 1.26
+|
+|
+Adjusted EBITDA
+|
+|
+| 70,030
+|
+|
+| 38,490
+|
+|
+| 31,540
+|
+|
+Adjusted EBITDA margin
+|
+|
+| 18.2
+| %
+|
+| 16.2
+| %
+|
+| 2.0
+| %
+|
+Cash dividends per share
+|
+| $
+| 0.500
+|
+| $
+| 0.375
+|
+| $
+| 0.125
+|
+|
+
+
+
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+|
+| July 31,
+|
+|
+|
+|
+|
+For the Six Months Ended:
+|
+| 2026
+|
+| 2025
+|
+| Change
+|
+|
+Revenues
+|
+| $
+| 674,930
+|
+| $
+| 431,403
+|
+| $
+| 243,527
+|
+|
+Gross profit
+|
+|
+| 135,332
+|
+|
+| 81,130
+|
+|
+| 54,202
+|
+|
+Gross margin %
+|
+|
+| 20.1
+| %
+|
+| 18.8
+| %
+|
+| 1.3
+| %
+|
+Net income
+|
+| $
+| 99,365
+|
+| $
+| 57,825
+|
+| $
+| 41,540
+|
+|
+Diluted earnings per share
+|
+|
+| 7.01
+|
+|
+| 4.09
+|
+|
+| 2.92
+|
+|
+Adjusted EBITDA
+|
+|
+| 126,469
+|
+|
+| 69,977
+|
+|
+| 56,492
+|
+|
+Adjusted EBITDA margin
+|
+|
+| 18.7
+| %
+|
+| 16.2
+| %
+|
+| 2.5
+| %
+|
+Cash dividends per share
+|
+|
+| 1.000
+|
+|
+| 0.750
+|
+|
+| 0.250
+|
+|
+
+
+
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+|
+| July 31,
+|
+| January 31,
+|
+|
+|
+|
+As of:
+|
+| 2026
+|
+| 2026
+|
+| Change
+|
+Cash, cash equivalents and investments
+|
+| $
+| 1,028,446
+|
+| $
+| 894,981
+|
+| $
+| 133,465
+|
+Net liquidity
+|
+|
+| 440,360
+|
+|
+| 421,000
+|
+|
+| 19,360
+|
+Share repurchase treasury stock, at cost
+|
+|
+| 144,914
+|
+|
+| 114,361
+|
+|
+| 30,553
+|
+Project backlog
+|
+|
+| 2,518,000
+|
+|
+| 2,929,000
+|
+|
+| (411,000)
+|
+
+
+
+
+
+|
+
+
+|
+
+
+|
+
+|
+| Adjusted EBITDA and Adjusted EBITDA margin are non-GAAP financial measures. Please refer to “Non-GAAP Financial Measures.”
+|
+
+|
+| Net liquidity, or working capital, is defined as total current assets less total current liabilities.
+|
+
+David Watson, President and Chief Executive Officer of Argan, commented, “We delivered a strong second quarter, highlighted by record revenue of $384 million, a gross margin of 19.3%, record net income of $53 million, and record adjusted EBITDA of $70 million.
+
+
+“Our Power segment continued to execute extremely well during the second quarter, growing revenue 53% year over year to $301 million at a gross margin of 22%. Following the close of the quarter, we achieved final completion on the remaining project of our Midwest Solar and Battery Projects. In our Industrial segment, construction of our new fabrication facility continues to progress as planned, with expected completion next quarter. The plant will support heightened demand for the fabrication of vessels for data centers. In our Teledata segment, we closed the acquisition of ValCor Communications, a Connecticut-based provider of installation and repair services for information, communication, and data networks. The addition of ValCor increases our geographic presence and expands the segment’s client base to defense, aerospace, and technology clients in the region.
+“We are energized by the opportunities we are seeing across all three of our business segments and believe that our diverse capabilities, proven track record of excellent execution, and strong balance sheet position us well to benefit from the current demand environment. This is an exciting time for Argan and we remain focused on capturing the right projects with the right partners in the right geographies.”
+Second Quarter Results
+Consolidated revenues for the quarter ended July 31, 2026, were $384.0 million, an increase of $146.2 million, or 61.5%, from consolidated revenues of $237.7 million reported for the comparable prior-year quarter. The year-over-year increase reflects higher revenues across all of the Company’s business segments. In the Power segment, revenue growth was driven by the continued ramp-up of construction activities on several contracts that have not yet reached peak construction.
+For the quarter ended July 31, 2026, Argan's consolidated gross profit was $74.2 million, or 19.3% of consolidated revenues, compared to $44.3 million, or 18.6% of consolidated revenues, for the quarter ended July 31, 2025. The gross profit percentage increased between periods primarily due to the changing mix of projects and contract types and strong execution in our Power segment. The increase in gross profit percentage was partially offset by decreased performance on certain projects in our Industrial and Teledata segments.
+Selling, general and administrative expenses were $17.4 million and $14.2 million for the three months ended July 31, 2026 and 2025, respectively, and represented 4.5% and 6.0% of corresponding consolidated revenues, respectively.
+Other income, net, for the three months ended July 31, 2026 was $10.1 million, which primarily reflected investment income earned during the period.
+For the quarter ended July 31, 2026, Argan achieved net income of $53.3 million, or $3.76 per diluted share, compared to $35.3 million, or $2.50 per diluted share, for last year’s second quarter. EBITDA for the quarter ended July 31, 2026 increased to $67.6 million compared to $36.2 million for the same quarter of last year. Adjusted EBITDA for the quarter ended July 31, 2026 increased to $70.0 million compared to $38.5 million for the same quarter of last year.
+Argan continues to generate significant cash flow and increased its total balance of cash, cash equivalents and investments during the quarter. The total balances were $1.03 billion and $895.0 million as of July 31, 2026 and January 31, 2026, respectively. Net liquidity was $440.4 million at July 31, 2026 and $421.0 million at January 31, 2026; furthermore, the Company had no debt.
+
+
+First Six Months Results
+Consolidated revenues for the six months ended July 31, 2026, were $674.9 million, an increase of $243.5 million, or 56.5%, from consolidated revenues of $431.4 million reported for the comparable prior-year period. For the six months ended July 31, 2026, consolidated gross profit increased to approximately $135.3 million, or 20.1% of consolidated revenues, compared to consolidated gross profit of $81.1 million, or 18.8% of consolidated revenues, reported for the six months ended July 31, 2025.
+For the six months ended July 31, 2026, Argan achieved net income of $99.4 million, or $7.01 per diluted share, versus net income of $57.8 million, or $4.09 per diluted share, for last year’s comparable period. EBITDA for the six months ended July 31, 2026 increased to $122.0 million compared to $66.5 million in the same period of last year. Adjusted EBITDA for the six months ended July 31, 2026 increased to $126.5 million compared to $70.0 million for the same period of last year.
+As of July 31, 2026, consolidated project backlog was approximately $2.5 billion, as compared to approximately $2.9 billion at January 31, 2026.
+Conference Call and Webcast
+Argan will host a conference call and webcast for investors today, September 2, 2026, at 5:00 p.m. ET.
+Domestic stockholders and interested parties may participate in the conference call by dialing (888) 506-0062 and international participants should dial (973) 528-0011; all callers shall use access code: 327373.
+The call and the accompanying slide deck will also be webcast at:
+https://www.webcaster5.com/Webcast/Page/2961/54404
+The conference call and slide deck may also be accessed via the Investor Center section of the Company’s website at https://arganinc.com/investor-center. Please allow extra time prior to the call to visit the site.
+A replay of the teleconference will be available until September 16, 2026, and can be accessed by dialing 877-481-4010 (domestic) or 919-882-2331 (international). The replay access code is 54404. A replay of the webcast can be accessed until September 2, 2027.
+About Argan
+Argan’s primary business is providing a full range of construction and related services to the power industry. Argan’s service offerings focus on the engineering, procurement, and construction of natural gas-fired power plants and renewable energy facilities, along with related commissioning, maintenance, project development and technical consulting services, through its Gemma Power Systems and Atlantic Projects Company operations. Argan also owns The Roberts Company, which is a fully integrated industrial construction, fabrication and plant services company, and SMC Infrastructure Solutions, which provides teledata infrastructure services.
+Non-GAAP Financial Measures
+The Company prepares its financial statements in accordance with accounting principles generally accepted in the United States (“GAAP”). Within this press release, the Company makes reference to earnings before interest, taxes, depreciation and amortization (“EBITDA”), Adjusted EBITDA, and Adjusted EBITDA margin, each of which is a non-GAAP financial measure. The Company defines Adjusted EBITDA as
+
+
+EBITDA adjusted to exclude the impact of non-cash stock-based compensation expense. Adjusted EBITDA margin is calculated by dividing Adjusted EBITDA by total revenues.
+The Company believes these non-GAAP financial measures provide useful supplemental information to management and investors in evaluating the Company's operating performance because they exclude certain items that may not be indicative of the Company's core operating results or may affect comparability between periods or among companies with different capital structures, tax positions, depreciation policies, or equity compensation practices. Adjusted EBITDA and Adjusted EBITDA margin exclude stock-based compensation expense, a non-cash item that management believes impacts the comparability of operating results between reporting periods.
+These non-GAAP financial measures should be considered in conjunction with, and not as substitutes for, the GAAP financial information presented in this press release. These measures have limitations as analytical tools because they exclude certain items, including interest, income tax expense, depreciation and amortization expense, and in the case of Adjusted EBITDA and Adjusted EBITDA margin, stock-based compensation expense. The methods used by the Company to calculate these non-GAAP financial measures may differ from methods used by other companies and, as a result, may not be comparable to similarly titled measures reported by other companies. Financial tables at the end of this press release provide reconciliations of these non-GAAP financial measures to the most directly comparable GAAP measures.
+Safe Harbor Statement
+Certain matters discussed in this press release may constitute forward-looking statements within the meaning of the federal securities laws. Reference is hereby made to the cautionary statements made by the Company with respect to risk factors set forth in its most recent reports on Form 10-K, Forms 10-Q and other SEC filings. The Company’s future financial performance is subject to risks and uncertainties including, but not limited to, the successful addition of new contracts to project backlog, the receipt of corresponding notices to proceed with contract activities, and the Company’s ability to successfully complete the projects that it obtains. Actual results and the timing of certain events could differ materially from those projected in or contemplated by the forward-looking statements due to the risk factors highlighted above and described regularly in the Company’s SEC filings.
+
+
+
+
+
+
+|
+Investor Relations Contacts:
+John Nesbett/Jennifer Belodeau
+IMS Investor Relations
+203.972.9200
+|
+argan@imsinvestorrelations.com
+|
+
+
+
+
+Argan, Inc. and Subsidiaries
+Condensed Consolidated Statements of Earnings
+(In thousands, except per share data)
+(Unaudited)
+
+
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+|
+| Three Months Ended
+|
+| Six Months Ended
+|
+
+|
+| July 31,
+|
+| July 31,
+|
+
+|
+| 2026
+|
+| 2025
+|
+| 2026
+|
+| 2025
+|
+|
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+REVENUES
+|
+| $
+| 383,976
+|
+| $
+| 237,743
+|
+| $
+| 674,930
+|
+| $
+| 431,403
+|
+Cost of revenues
+|
+|
+| 309,758
+|
+|
+| 193,476
+|
+|
+| 539,598
+|
+|
+| 350,273
+|
+GROSS PROFIT
+|
+|
+| 74,218
+|
+|
+| 44,267
+|
+|
+| 135,332
+|
+|
+| 81,130
+|
+Selling, general and administrative expenses
+|
+|
+| 17,413
+|
+|
+| 14,212
+|
+|
+| 33,132
+|
+|
+| 26,733
+|
+INCOME FROM OPERATIONS
+|
+|
+| 56,805
+|
+|
+| 30,055
+|
+|
+| 102,200
+|
+|
+| 54,397
+|
+Other income, net
+|
+|
+| 10,083
+|
+|
+| 5,581
+|
+|
+| 18,457
+|
+|
+| 11,025
+|
+INCOME BEFORE INCOME TAXES
+|
+|
+| 66,888
+|
+|
+| 35,636
+|
+|
+| 120,657
+|
+|
+| 65,422
+|
+Provision for income taxes
+|
+|
+| 13,586
+|
+|
+| 361
+|
+|
+| 21,292
+|
+|
+| 7,597
+|
+NET INCOME
+|
+|
+| 53,302
+|
+|
+| 35,275
+|
+|
+| 99,365
+|
+|
+| 57,825
+|
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+OTHER COMPREHENSIVE INCOME, NET OF TAXES
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+Foreign currency translation adjustments
+|
+|
+| (267)
+|
+|
+| (251)
+|
+|
+| (808)
+|
+|
+| 3,370
+|
+Net unrealized (losses) gains on available-for-sale securities
+|
+|
+| (4,550)
+|
+|
+| (1,082)
+|
+|
+| (7,209)
+|
+|
+| 1,598
+|
+COMPREHENSIVE INCOME
+|
+| $
+| 48,485
+|
+| $
+| 33,942
+|
+| $
+| 91,348
+|
+| $
+| 62,793
+|
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+EARNINGS PER SHARE
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+Basic
+|
+| $
+| 3.80
+|
+| $
+| 2.57
+|
+| $
+| 7.10
+|
+| $
+| 4.23
+|
+Diluted
+|
+| $
+| 3.76
+|
+| $
+| 2.50
+|
+| $
+| 7.01
+|
+| $
+| 4.09
+|
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+WEIGHTED AVERAGE SHARES OUTSTANDING
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+Basic
+|
+|
+| 14,028
+|
+|
+| 13,731
+|
+|
+| 13,994
+|
+|
+| 13,680
+|
+Diluted
+|
+|
+| 14,164
+|
+|
+| 14,131
+|
+|
+| 14,181
+|
+|
+| 14,122
+|
+
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+|
+CASH DIVIDENDS PER SHARE
+|
+| $
+| 0.500
+|
+| $
+| 0.375
+|
+| $
+| 1.000
+|
+| $
+| 0.750
+|
+
+
+
+
+
+Argan, Inc. and Subsidiaries
+Condensed Consolidated Balance Sheets
+(Dollars in thousands, except per share data)
+(Unaudited)
+
+
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+|
+| July 31,
+|
+| January 31,
+|
+
+|
+| 2026
+|
+| 2026
+|
+
+|
+|
+|
+|
+|
+|
+ASSETS
+|
+|
+|
+|
+|
+|
+|
+CURRENT ASSETS
+|
+|
+|
+|
+|
+|
+|
+Cash and cash equivalents
+|
+| $
+| 364,481
+|
+| $
+| 339,481
+|
+Investments
+|
+|
+| 663,965
+|
+|
+| 555,500
+|
+Accounts receivable, net
+|
+|
+| 180,356
+|
+|
+| 133,677
+|
+Contract assets
+|
+|
+| 35,713
+|
+|
+| 43,397
+|
+Other current assets
+|
+|
+| 73,955
+|
+|
+| 60,202
+|
+TOTAL CURRENT ASSETS
+|
+|
+| 1,318,470
+|
+|
+| 1,132,257
+|
+Property, plant and equipment, net
+|
+|
+| 22,797
+|
+|
+| 16,596
+|
+Goodwill
+|
+|
+| 30,670
+|
+|
+| 28,033
+|
+Intangible assets, net
+|
+|
+| 6,030
+|
+|
+| 1,450
+|
+Right-of-use and other assets
+|
+|
+| 23,003
+|
+|
+| 8,018
+|
+TOTAL ASSETS
+|
+| $
+| 1,400,970
+|
+| $
+| 1,186,354
+|
+
+|
+|
+|
+|
+|
+|
+|
+LIABILITIES AND STOCKHOLDERS’ EQUITY
+|
+|
+|
+|
+|
+|
+|
+CURRENT LIABILITIES
+|
+|
+|
+|
+|
+|
+|
+Accounts payable
+|
+| $
+| 115,212
+|
+| $
+| 107,540
+|
+Accrued expenses
+|
+|
+| 135,878
+|
+|
+| 89,748
+|
+Contract liabilities
+|
+|
+| 627,020
+|
+|
+| 513,969
+|
+TOTAL CURRENT LIABILITIES
+|
+|
+| 878,110
+|
+|
+| 711,257
+|
+Deferred taxes, net
+|
+|
+| 3,061
+|
+|
+| 6,555
+|
+Noncurrent liabilities
+|
+|
+| 12,960
+|
+|
+| 6,280
+|
+TOTAL LIABILITIES
+|
+|
+| 894,131
+|
+|
+| 724,092
+|
+
+|
+|
+|
+|
+|
+|
+|
+STOCKHOLDERS’ EQUITY
+|
+|
+|
+|
+|
+|
+|
+Preferred stock, par value $0.10 per share – 500,000 shares authorized; no shares issued and outstanding
+|
+|
+| —
+|
+|
+| —
+|
+Common stock, par value $0.15 per share – 30,000,000 shares authorized; 15,828,289 shares issued; 14,032,792 and 13,950,712 shares outstanding at July 31, 2026 and January 31, 2026, respectively
+|
+|
+| 2,374
+|
+|
+| 2,374
+|
+Additional paid-in capital
+|
+|
+| 165,039
+|
+|
+| 167,234
+|
+Retained earnings
+|
+|
+| 491,539
+|
+|
+| 406,197
+|
+Treasury stock, at cost – 1,795,497 and 1,877,577 shares at July 31, 2026 and January 31, 2026, respectively
+|
+|
+| (144,914)
+|
+|
+| (114,361)
+|
+Accumulated other comprehensive (loss) income
+|
+|
+| (7,199)
+|
+|
+| 818
+|
+TOTAL STOCKHOLDERS’ EQUITY
+|
+|
+| 506,839
+|
+|
+| 462,262
+|
+TOTAL LIABILITIES AND STOCKHOLDERS’ EQUITY
+|
+| $
+| 1,400,970
+|
+| $
+| 1,186,354
+|
+
+
+
+
+
+
+Argan, Inc. and Subsidiaries
+Adjusted EBITDA and Adjusted EBITDA Margin Reconciliations
+(Dollars in thousands)
+(Unaudited)
+
+
+
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+|
+| Three Months Ended
+|
+|
+
+|
+| July 31,
+|
+|
+
+|
+| 2026
+|
+| 2025
+|
+|
+Revenues
+|
+| $
+| 383,976
+|
+| $
+| 237,743
+|
+|
+
+|
+|
+|
+|
+|
+|
+|
+|
+Net income, as reported
+|
+| $
+| 53,302
+|
+| $
+| 35,275
+|
+|
+Provision for income taxes
+|
+|
+| 13,586
+|
+|
+| 361
+|
+|
+Depreciation
+|
+|
+| 645
+|
+|
+| 491
+|
+|
+Amortization of intangible assets
+|
+|
+| 75
+|
+|
+| 98
+|
+|
+EBITDA
+|
+|
+| 67,608
+|
+|
+| 36,225
+|
+|
+Stock-based compensation expense
+|
+|
+| 2,422
+|
+|
+| 2,265
+|
+|
+Adjusted EBITDA
+|
+| $
+| 70,030
+|
+| $
+| 38,490
+|
+|
+Adjusted EBITDA margin
+|
+|
+| 18.2
+| %
+|
+| 16.2
+| %
+|
+
+
+
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+
+|
+
+|
+| Six Months Ended
+|
+|
+
+|
+| July 31,
+|
+|
+
+|
+| 2026
+|
+| 2025
+|
+|
+Revenues
+|
+| $
+| 674,930
+|
+| $
+| 431,403
+|
+|
+
+|
+|
+|
+|
+|
+|
+|
+|
+Net income, as reported
+|
+| $
+| 99,365
+|
+| $
+| 57,825
+|
+|
+Provision for income taxes
+|
+|
+| 21,292
+|
+|
+| 7,597
+|
+|
+Depreciation
+|
+|
+| 1,204
+|
+|
+| 906
+|
+|
+Amortization of intangible assets
+|
+|
+| 150
+|
+|
+| 196
+|
+|
+EBITDA
+|
+|
+| 122,011
+|
+|
+| 66,524
+|
+|
+Stock-based compensation expense
+|
+|
+| 4,458
+|
+|
+| 3,453
+|
+|
+Adjusted EBITDA
+|
+| $
+| 126,469
+|
+| $
+| 69,977
+|
+|
+Adjusted EBITDA margin
+|
+|
+| 18.7
+| %
+|
+| 16.2
+| %
+|

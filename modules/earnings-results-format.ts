@@ -316,11 +316,18 @@ function extractMetric(
       true === hasMetricValueBeforeAdjustment(metricLine, definition.patterns);
     const hasReportedRevenueBeforeGuidance = "revenue" === definition.key &&
       true === hasMetricValueBeforeGuidance(metricLine, definition.patterns);
+    const hasReportedClassShareEps = "gaap_eps" === definition.key &&
+      /\bearnings\s+per\s+diluted\s+(?:class\s+[A-Z]\s+)?(?:nonvoting\s+)?common\s+share\s+was\s+\(?-?[$€£¥]?\s*\d/i.test(metricLine);
+    const hasReportedAdjustedEps = "adjusted_eps" === definition.key &&
+      /\badjusted\s+net\s+(?:income|loss)\s+for\s+(?:the\s+)?(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b[^.!?]{0,180}?\bwas\b[^.!?]{0,120}?\bor\s+\(?-?[$€£¥]?\s*\d+(?:\.\d+)?\)?\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i
+        .test(metricLine);
     if (true === isSkippedMetricLine(metricLine, definition) &&
         false === hasExplicitGaapEps &&
         false === hasReportedGaapEps &&
         false === hasReportedGaapNetIncome &&
-        false === hasReportedRevenueBeforeGuidance) {
+        false === hasReportedRevenueBeforeGuidance &&
+        false === hasReportedClassShareEps &&
+        false === hasReportedAdjustedEps) {
       continue;
     }
 
@@ -422,8 +429,21 @@ function hasDifferentMoneyMetricBeforeValue(line: string, pattern: RegExp): bool
 }
 
 function isPerShareImpactOnlyLine(line: string): boolean {
+  // A release can keep several results sentences on one HTML line. An opening discussion
+  // of an adjustment's impact must not hide a later, explicitly reported adjusted EPS.
+  if (/\badjusted\s+net\s+(?:income|loss)\s+for\s+(?:the\s+)?(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b[^.!?]{0,180}?\bwas\b[^.!?]{0,120}?\bor\s+\(?-?[$€£¥]?\s*\d+(?:\.\d+)?\)?\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i
+    .test(line)) {
+    return false;
+  }
+
   const impactIndex = line.search(/\b(?:accretive|dilutive|favorable|unfavorable)?\s*impact\b/i);
   if (-1 === impactIndex) {
+    return false;
+  }
+
+  // This phrase introduces the adjusted result; it does not describe the size of a
+  // per-share adjustment later in the sentence.
+  if (/\bexcluding\s+the\s+impact\s+of\b[^.!?]{0,100}\badjusted\s+net\s+(?:income|loss)\b/i.test(line)) {
     return false;
   }
 

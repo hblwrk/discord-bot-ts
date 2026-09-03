@@ -25,6 +25,10 @@ export function htmlToText(html: string): string {
   return decodeHtmlEntities(html)
     .replace(/<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi, " ")
     .replace(/<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/gi, " ")
+    // Inline-XBRL hidden facts are machine-readable duplicates, not visible filing text.
+    // Leaving them in front of the exhibit can create a false results section before the
+    // actual press release and make a footnote amount win candidate selection.
+    .replace(/<ix:hidden\b[^>]*>[\s\S]*?<\/ix:hidden\s*>/gi, " ")
     // Numeric superscripts in SEC exhibits are footnote references. Removing only their
     // tags leaves the marker inside the adjacent value ("US$<sup>1</sup>51.1" becomes
     // "US$ 1 51.1"), where it can be selected as a one-dollar result.
@@ -32,6 +36,8 @@ export function htmlToText(html: string): string {
     // Workiva represents superscripts as raised, small font elements rather than <sup>.
     // Remove those numeric references before stripping the presentational font tags.
     .replace(/<font\b[^>]*\btop:\s*-\d+(?:\.\d+)?pt[^>]*>\s*\(?\d{1,2}\)?\s*<\/font\s*>/gi, "")
+    // Other Workiva filings use vertical-align for the same kind of footnote marker.
+    .replace(/<font\b[^>]*\bvertical-align:\s*super\b[^>]*>\s*\(?\d{1,2}\)?\s*<\/font\s*>/gi, "")
     .replace(/<br\s*\/?>/gi, "\n")
     .replace(/<\/(?:p|div|tr|h[1-6])>/gi, "\n")
     .replace(/<\/t[dh]>/gi, " | ")

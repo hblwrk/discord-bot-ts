@@ -311,13 +311,13 @@ function getOutlookSection(lines: string[]): OutlookSection {
     }
   }
 
-  const expandedSectionLines = expandParallelPeriodGuidanceRows(
+  const expandedSectionLines = joinVerticalHistoricalOutlookRows(expandParallelPeriodGuidanceRows(
     expandVerticalGaapNonGaapGuidanceRows(
       joinVerticalCurrentPreviousGuidanceRows(
         joinVerticalRevisedGuidanceRows(sectionLines),
       ),
     ),
-  );
+  ));
   return {
     guidanceFirstColumns: hasGuidanceFirstColumnHeader(expandedSectionLines),
     guidanceRangeColumns: hasGuidanceRangeColumnHeader(expandedSectionLines),
@@ -333,6 +333,46 @@ function getOutlookSection(lines: string[]): OutlookSection {
     nonGaapMeasures: hasNonGaapGuidanceBasis(expandedSectionLines),
     revisedColumns: hasRevisedColumnHeaders(expandedSectionLines),
   };
+}
+
+// A compact annual outlook table can render each historical and forecast cell on its own
+// line. Collapse those vertical cells to the last (Outlook) column so historical values do
+// not masquerade as the guidance.
+function joinVerticalHistoricalOutlookRows(lines: string[]): string[] {
+  const fiscalHeaders = lines.filter(line => /^\s*\|?\s*fiscal\s+20\d{2}(?:\s+outlook)?\s*\|?\s*$/i.test(line));
+  if (3 > fiscalHeaders.length || false === fiscalHeaders.some(line => /\boutlook\b/i.test(line))) {
+    return lines;
+  }
+
+  const joinedLines: string[] = [];
+  for (let lineIndex = 0; lineIndex < lines.length; lineIndex += 1) {
+    const line = lines[lineIndex] ?? "";
+    const isMetricCaption = /\b(?:revenues?|net\s+sales|eps|earnings\s+per\s+share|ebitda\s+margin|free\s+cash\s+flow|operating\s+(?:income|margin|expenses?)|gross(?:\s+profit)?\s+margin|tax\s+rate|capex|capital\s+expenditures?)\b/i.test(line) &&
+      false === /[$€£¥]|\d+(?:\.\d+)?\s*%/.test(line);
+    if (false === isMetricCaption) {
+      joinedLines.push(line);
+      continue;
+    }
+
+    const valueLines: string[] = [];
+    for (let valueIndex = lineIndex + 1; valueIndex < lines.length && valueIndex <= lineIndex + 3; valueIndex++) {
+      const valueLine = lines[valueIndex] ?? "";
+      if (false === /^\s*\|/.test(valueLine) || false === /\d|\b(?:low|mid|high)\b/i.test(valueLine)) {
+        break;
+      }
+      valueLines.push(valueLine);
+    }
+    const outlookValueLine = valueLines.at(-1);
+    if (undefined === outlookValueLine) {
+      joinedLines.push(line);
+      continue;
+    }
+
+    joinedLines.push(`${line} | ${outlookValueLine.replace(/^\s*(?:\|\s*)+/, "")}`);
+    lineIndex += valueLines.length;
+  }
+
+  return joinedLines;
 }
 
 // Some filing generators render a Current/Previous table as three lines per row instead
@@ -775,7 +815,10 @@ function extractOutlookMetricsForDefinition(
 ): EarningsOutlookMetric[] {
   const bestCandidateByPeriod = new Map<string, OutlookMetricCandidate>();
   for (const [lineIndex, line] of lines.entries()) {
-    if ("revenue" === definition.key && /\bannual\s+recurring\s+revenues?\b/i.test(line)) {
+    if ("revenue" === definition.key &&
+        (/\bannual\s+recurring\s+revenues?\b/i.test(line) ||
+          /\bsubscription\s+and\s+support\s+revenues?\b/i.test(line) ||
+          /\brevenue\s+from\s+the\s+\w+\s+segment\b|\bsegment\s+(?:to\s+contribute\s+)?revenues?\b/i.test(line))) {
       continue;
     }
     if ("adjusted_eps" === definition.key &&
@@ -1572,6 +1615,13 @@ function normalizeOutlookValueText(value: string): string {
 }
 
 function getGrowthOutlookValue(value: string): string | null {
+  const compoundGrowthMatch = value.match(/\b(low|mid|high)[-\s]+to[-\s]+(low|mid|high)\s+(single|double)[-\s]+digit(?:s)?(?:\s+(?:growth|increase|decline|decrease))?\b/i);
+  if (undefined !== compoundGrowthMatch?.[1] &&
+      undefined !== compoundGrowthMatch[2] &&
+      undefined !== compoundGrowthMatch[3]) {
+    return `${compoundGrowthMatch[1].toLowerCase()}-to-${compoundGrowthMatch[2].toLowerCase()} ${compoundGrowthMatch[3].toLowerCase()}-digit ${getGrowthDirection(value)}`;
+  }
+
   const growthMatch = value.match(/\b(low|mid|high)\s+(single|double)[-\s]+digit(?:s)?(?:\s+(?:growth|increase|decline|decrease))?\b/i);
   if (undefined !== growthMatch?.[1] && undefined !== growthMatch[2]) {
     return `${growthMatch[1].toLowerCase()} ${growthMatch[2].toLowerCase()}-digit ${getGrowthDirection(value)}`;
@@ -1889,6 +1939,9 @@ function parseNumber(value: unknown): number | null {
       "-$1 $2",
     )
     .replace(/^\((.*)\)$/, "-$1")
+    // Parentheses can wrap an explanatory comparison rather than one accounting value,
+    // so a token sliced from the front may have an unmatched opening parenthesis.
+    .replace(/^\((?=.*\d)(?!.*\)$)/, "")
     .replace(/US\s*\$/gi, "")
     .replace(/C\s*\$/g, "")
     .replace(/[€£¥$]/g, "")

@@ -52,6 +52,7 @@ type SecArchiveIndexResponse = {
 };
 
 type SecFilingDetailsOptions = {
+  getDocumentScore?: (html: string, documentUrl: string) => number;
   isUsableDocument?: (html: string, documentUrl: string) => boolean;
 };
 
@@ -224,6 +225,8 @@ export async function loadSecFilingDetails(
   }
 
   let fallbackDetails: {documentUrl: string; html: string;} | undefined;
+  let bestDetails: {documentUrl: string; html: string;} | undefined;
+  let bestDocumentScore = Number.NEGATIVE_INFINITY;
   for (const selectedDocument of rankedDocuments) {
     if (!selectedDocument.name) {
       continue;
@@ -231,13 +234,30 @@ export async function loadSecFilingDetails(
 
     const details = await loadSecArchiveHtmlDocument(archiveBaseUrl, selectedDocument.name, dependencies);
     fallbackDetails ??= details;
-    if (undefined === options.isUsableDocument ||
-        true === options.isUsableDocument(details.html, details.documentUrl)) {
+    if (undefined !== options.isUsableDocument &&
+        false === options.isUsableDocument(details.html, details.documentUrl)) {
+      continue;
+    }
+
+    if (undefined === options.getDocumentScore) {
       return details;
+    }
+
+    const documentScore = options.getDocumentScore(details.html, details.documentUrl);
+    if (undefined === bestDetails || documentScore > bestDocumentScore) {
+      bestDetails = details;
+      bestDocumentScore = documentScore;
+    }
+
+    // Descriptive exhibit filenames already establish document intent. Content scoring is
+    // needed for generic names such as ex_1010554.htm, where SEC metadata does not identify
+    // which exhibit is the release.
+    if (30 <= getSecArchiveDocumentScore(selectedDocument)) {
+      return bestDetails;
     }
   }
 
-  return fallbackDetails ?? {
+  return bestDetails ?? fallbackDetails ?? {
     documentUrl: filing.filingUrl,
     html: "",
   };
