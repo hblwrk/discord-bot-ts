@@ -830,6 +830,41 @@ describe("extractOutlookMetrics", () => {
     ]);
   });
 
+  test("expands compact FY columns with values below their metric captions", () => {
+    expect(extractOutlookMetrics([
+      "Financial Outlook",
+      "For the third quarter and fiscal year 2027, the company expects:",
+      "| Q3 FY2027 Outlook | | | | FY2027 Outlook |",
+      "Total revenue | $514 million - $516 million | | | | $2.043 billion - $2.047 billion |",
+      "Non-GAAP operating margin",
+      "| 21% | | | | 21% |",
+      "Non-GAAP net income per share, diluted",
+      "| $0.18 - $0.19 | | | | $0.76 - $0.78 |",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", periodLabel: "Q3", value: "$514M to $516M"},
+      {key: "revenue", label: "Revenue", periodLabel: "FY2027", value: "$2.043B to $2.047B"},
+      {key: "adjusted_eps", label: "Adj EPS", periodLabel: "Q3", value: "$0.18 to $0.19"},
+      {key: "adjusted_eps", label: "Adj EPS", periodLabel: "FY2027", value: "$0.76 to $0.78"},
+      {key: "operating_margin", label: "Operating margin", periodLabel: "Q3", value: "21%"},
+      {key: "operating_margin", label: "Operating margin", periodLabel: "FY2027", value: "21%"},
+    ]);
+  });
+
+  test("treats a bare calendar year after quarterly guidance as the full year", () => {
+    expect(extractOutlookMetrics([
+      "2026 Outlook",
+      "For the third quarter of 2026, the Company expects net revenue of $2.290 billion to $2.320 billion and diluted earnings per share of $0.93 to $0.98. This assumes a tax rate of 30%.",
+      "For 2026, the Company expects net revenue of $10.350 billion to $10.500 billion and diluted earnings per share of $9.48 to $9.73. This assumes a tax rate of 30%.",
+    ])).toEqual([
+      {key: "revenue", label: "Revenue", periodLabel: "Q3", value: "$2.29B to $2.32B"},
+      {key: "revenue", label: "Revenue", periodLabel: "FY2026", value: "$10.35B to $10.5B"},
+      {key: "eps", label: "EPS", periodLabel: "Q3", value: "$0.93 to $0.98"},
+      {key: "eps", label: "EPS", periodLabel: "FY2026", value: "$9.48 to $9.73"},
+      {key: "tax_rate", label: "Tax rate", periodLabel: "Q3", value: "30%"},
+      {key: "tax_rate", label: "Tax rate", periodLabel: "FY2026", value: "30%"},
+    ]);
+  });
+
   test("reads updated values from vertically split revised guidance tables", () => {
     expect(extractOutlookMetrics([
       "Fiscal 2026 Outlook",

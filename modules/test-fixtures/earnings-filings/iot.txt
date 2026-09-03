@@ -1,0 +1,446 @@
+EX-99.1
+2
+samsaraepr-q22027.htm
+PRESS RELEASE
+
+
+
+
+Document
+
+
+
+Exhibit 99.1
+
+
+
+Samsara Reports Second Quarter Fiscal Year 2027 Financial Results
+•Q2 revenue of $508.4 million, representing 30% year-over-year growth and 29% in constant currency
+•Q2 net new ARR of $134.1 million, representing 28% year-over-year growth in both actual and constant currency
+•Ending ARR of $2.125 billion, representing 30% year-over-year growth
+•Customers with ARR over $1,000,000 generated over $500 million of ARR, representing over 50% year-over-year growth for the third consecutive quarter
+•GAAP earnings per share of $0.03, representing the fourth consecutive quarter of GAAP profitability
+SAN FRANCISCO, September 3, 2026 — Samsara Inc. (NYSE: IOT), the pioneer of the Connected Operations® Platform, today reported financial results for the second quarter ended August 1, 2026, and released a shareholder letter accessible from the Samsara investor relations website at investors.samsara.com.
+“Samsara delivered another quarter of durable and efficient growth, crossing $2.1 billion in ARR with 30% year-over-year growth for the third consecutive quarter,” said Sanjit Biswas, CEO and co-founder of Samsara. “Our large customers continue to drive our momentum, and customer adoption of some of our latest AI features is up more than 4x in the last two months. We’re innovating at an unprecedented pace and are excited to deliver even greater impact for our customers who keep the global economy running.”
+
+Second Quarter Fiscal Year 2027 Financial Highlights
+(In millions, except percentage, percentage points, and per share data)
+| | | | | | | | | | | | | | | | | |
+| Q2 FY2027 | | Q2 FY2026 | | Y/Y Change |
+Annual Recurring Revenue (ARR) | $ | 2,124.7 | | | $ | 1,640.1 | | | 30 | % |
+ARR adjusted for constant currency
+| $ | 2,124.3 | | | $ | 1,640.1 | | | 30 | % |
+Total revenue | $ | 508.4 | | | $ | 391.5 | | | 30 | % |
+| | | | | |
+Total revenue adjusted for constant currency
+| $ | 506.1 | | | $ | 391.5 | | | 29 | % |
+GAAP gross profit | $ | 392.6 | | | $ | 301.0 | | | $ | 91.6 | |
+GAAP gross margin | 77 | % | | 77 | % | | — | pt |
+Non-GAAP gross profit | $ | 398.0 | | | $ | 305.7 | | | $ | 92.3 | |
+Non-GAAP gross margin | 78 | % | | 78 | % | | — | pt |
+GAAP income (loss) from operations | $ | 4.9 | | | $ | (26.6) | | | $ | 31.5 | |
+GAAP operating margin | 1 | % | | (7 | %) | | 8 | pts |
+Non-GAAP operating income | $ | 106.0 | | | $ | 59.7 | | | $ | 46.3 | |
+Non-GAAP operating margin | 21 | % | | 15 | % | | 6 | pts |
+| | | | | |
+GAAP net income (loss) per share, basic and diluted | $ | 0.03 | | | $ | (0.03) | | | $ | 0.06 | |
+| | | | | |
+Non-GAAP net income per share, basic and diluted | $ | 0.20 | | | $ | 0.12 | | | $ | 0.08 | |
+Net cash provided by operating activities | $ | 73.5 | | | $ | 50.2 | | | $ | 23.3 | |
+Net cash provided by operating activities margin | 14 | % | | 13 | % | | 2 | pts |
+| | | | | |
+| | | | | |
+Free cash flow | $ | 64.7 | | | $ | 44.2 | | | $ | 20.5 | |
+Free cash flow margin | 13 | % | | 11 | % | | 1 | pt |
+
+__________
+Note: Numbers are rounded for presentation purposes.
+
+ARR and revenue are adjusted for constant currency. See the section titled “Operating Metrics and Non-GAAP Financial Measures” for constant currency methodology.
+1
+
+
+
+
+
+
+We report non-GAAP financial measures in addition to, and not as a substitute for, or superior to, financial measures calculated in accordance with generally accepted accounting principles (“GAAP”). See the section titled “Use of Non-GAAP Financial Measures” for an explanation of non-GAAP financial measures and the tables in the section titled “Reconciliation Between GAAP and Non-GAAP Financial Measures” for a reconciliation of GAAP to non-GAAP financial measures.
+
+Financial Outlook
+Our guidance includes GAAP and non-GAAP financial measures. For the third quarter and fiscal year 2027, Samsara expects the following:
+| | | | | | | | | | | | | |
+| Q3 FY2027 Outlook | | | | FY2027 Outlook |
+Total revenue | $514 million – $516 million | | | | $2.043 billion – $2.047 billion |
+Year/Year revenue growth | 24% | | | | 26% |
+| | | | | |
+Year/Year revenue growth in constant currency
+| 23% – 24% | | | | 26% |
+Non-GAAP operating margin
+| 21% | | | | 21% |
+Non-GAAP net income per share, diluted
+| $0.18 – $0.19 | | | | $0.76 – $0.78 |
+GAAP net income per share, diluted | GAAP Profitable | | | | GAAP Profitable |
+
+__________
+Constant currency impact to revenue guidance is $2 million for Q3 FY2027 and $10 million for FY2027. See the section titled “Operating Metrics and Non-GAAP Financial Measures” for constant currency methodology.
+Other than with respect to revenue growth adjusted for constant currency, a reconciliation of non-GAAP guidance financial measures to corresponding GAAP guidance financial measures is not available on a forward-looking basis without unreasonable effort due to the uncertainty and potential variability of expenses, such as stock-based compensation expense-related charges, that may be incurred in the future and cannot be reasonably determined or predicted at this time. It is important to note that these factors could be material to our results of operations calculated in accordance with GAAP.
+
+About Samsara
+Samsara is the pioneer of the Connected Operations® Platform, which is an open platform that connects the people, assets, and systems of some of the world’s most complex operations, allowing them to develop actionable insights and improve their operations. With tens of thousands of customers across North America and Europe, Samsara is a proud technology partner to the people who keep our global economy running, including the world’s leading organizations across industries in construction, transportation, wholesale and retail trade, field services, logistics, manufacturing, utilities and energy, government, healthcare and education, food and beverage, and others. The company’s mission is to increase the safety, efficiency, and sustainability of the operations that power the global economy.
+
+Forward-Looking Statements
+This press release contains forward-looking statements within the meaning of Section 27A of the Securities Act of 1933 and Section 21E of the Securities Exchange Act of 1934. These statements may relate to, but are not limited to, expectations of future operating results or financial performance, the calculation of certain of our key financial and operating metrics, our market opportunity, industry developments and trends, macroeconomic conditions, customer purchasing, adoption of and expected results from our Connected Operations Platform, including cost savings and return on investment, our pace of product development, our product roadmap, and our technological capability, including AI, and our competitive position, as well as assumptions relating to the foregoing.
+2
+
+
+
+
+
+Forward-looking statements are inherently subject to risks and uncertainties, some of which cannot be predicted or quantified and could cause actual results and events to differ. In some cases, you can identify forward-looking statements by terminology such as “anticipate,” “believe,” “contemplate,” “continue,” “could,” “estimate,” “expect,” “goal,” “guidance,” “intend,” “may,” “objective,” “ongoing,” “plan,” “potential,” “predict,” “project,” “seek,” “should,” “target,” “will,” “would,” or the negative of these terms or other comparable expressions that concern our expectations, strategies, plans, or intentions. You should not put undue reliance on any forward-looking statements. Forward-looking statements should not be read as a guarantee of future performance or results and will not necessarily be accurate indications of the times at, or by, which such performance or results will be achieved, if at all. Forward-looking statements are based on information available at the time those statements are made, including information furnished to us by third parties that we have not independently verified, and/or management’s good faith beliefs and assumptions as of that time with respect to future events, and are subject to risks and uncertainties that could cause actual performance or results to differ materially from those expressed in or suggested by the forward-looking statements. In light of these risks and uncertainties, the forward-looking events and circumstances discussed in this press release may not occur and actual results could differ materially from those anticipated or implied in the forward-looking statements.
+These risks and uncertainties include our ability to retain customers and expand the use of our solution by our customers, our ability to attract new customers, our future financial performance, including trends in revenue and annual recurring revenue, net retention rate, costs of revenue, gross profit or gross margin, operating expenses, customer counts, non-GAAP financial measures (such as revenue adjusted for constant currency, year-over-year revenue growth adjusted for constant currency, non-GAAP gross margin, non-GAAP operating margin, and free cash flow and free cash flow margin, our ability to achieve or maintain profitability, the demand for our products or for solutions for connected operations in general, the impact of geopolitical tension, the emergence of public health crises, and similar macroeconomic events, including financial distress caused by bank failures, the impact of political elections in the United States and abroad, global supply chain challenges, increased costs (such as increases in the cost of memory and computing), foreign currency fluctuations, elevated inflation and interest rates, and changes to monetary, fiscal, and trade (including tariff) policies, on our and our customers’ and partners’ respective businesses, the length of our sales cycles, possible harm caused by a security breach or other incident affecting our or our customers’ assets or data, our ability to compete successfully in competitive markets, our ability to respond to rapid technological, legal, and regulatory changes, and our ability to continue to innovate and develop new Applications. The forward-looking statements contained in this press release are also subject to other risks and uncertainties, including those more fully described in our filings and reports that we may file from time to time with the Securities and Exchange Commission, including our Annual Reports on Form 10-K and Quarterly Reports on Form 10-Q.
+Except as required by law, we do not undertake any obligation to publicly update or revise any forward-looking statement, whether as a result of new information, future developments, or otherwise.
+
+Use of Non-GAAP Financial Measures
+This document includes certain non-GAAP financial measures. Reconciliations of non-GAAP financial measures to our financial results as determined in accordance with GAAP are included at the end of this press release following the accompanying financial data.
+Non-GAAP financial measures have limitations as analytical tools and should not be considered in isolation or as substitutes for financial information presented under GAAP. There are a number of limitations related to the use of non-GAAP financial measures versus comparable financial measures determined under GAAP. For example, other companies in our industry may calculate these non-GAAP financial measures differently or may use other measures to evaluate their performance. In addition, free cash flow does not reflect our future contractual commitments or the total increase or decrease of our cash balance for a given period. These and other limitations could reduce the usefulness of these non-GAAP financial measures as analytical tools. Investors are encouraged to review the related GAAP financial measures and the reconciliations of these non-GAAP financial measures to their most directly comparable GAAP financial measures and to not rely on any single financial measure to evaluate our business.
+We present these non-GAAP financial measures to assist investors in seeing Samsara’s operating results through the eyes of management and because we believe that these measures provide an additional tool for investors to evaluate our business.
+3
+
+
+
+
+
+Expenses (Income) Excluded from Non-GAAP Performance Financial Measures—Stock-based compensation expense-related charges include the amortization of deferred stock-based compensation expense for internal-use software and cloud computing arrangements and employer taxes on employee equity transactions. Stock-based compensation expense is a non-cash expense and is dependent on our stock price, which is beyond our control. Accordingly, we find it useful to exclude stock-based compensation expense in order to better understand our ongoing operational performance. Employer taxes on employee equity transactions, which are cash expenses, are excluded because such taxes are directly tied to the timing and size of employee equity transactions and the future fair market value of our common stock, which may vary from period to period independent of the operating performance of our business.
+In periods when they occur, significant lease modification, impairment, and related charges, and legal settlements and awards are excluded because management believes that such items are not reflective of our ongoing operational performance.
+Operating Metrics and Non-GAAP Financial Measures
+Annual Recurring Revenue (ARR)—We define ARR as the annualized value of subscription contracts that have commenced revenue recognition as of the measurement date.
+Net New ARR—Net new ARR is calculated as the difference between the annualized value of subscription contracts that have commenced revenue recognition as of the end of the reporting period and the annualized value of subscription contracts that have commenced revenue recognition as of the end of the prior reporting period.
+Constant Currency—Constant currency is a methodology for assessing how our underlying business performed excluding the effect of foreign currency rate fluctuations. To present this information, current period results for customer contracts denominated in currencies other than U.S. dollars are converted into U.S. dollars using the average currency exchange rates in effect during the comparative period, rather than the actual currency exchange rates in effect during the current period. For ARR and net new ARR, customer contracts denominated in currencies other than U.S. dollars are translated into U.S. dollars based on the currency exchange rate as of the day of the effective date of the contract. For guidance, currency impact on total revenue growth is derived by applying the average currency exchange rates in effect during the comparative period, rather than the currency exchange rates for the guidance period.
+Customer—We define a customer as an entity, or group of affiliated entities with a shared parent organization, that has ARR of greater than $1,000 at the end of a reporting period. Determinations regarding the relationship between customer entities are primarily based on publicly available information and information supplied to us by our customers, and we have not independently verified the legal relationship between entities in all cases. Our customer count is subject to adjustments for acquisitions, spin-offs, segmentation by geography, and other market and commercial activity.
+Non-GAAP Gross Profit and Non-GAAP Gross Margin—We define non-GAAP gross profit as gross profit excluding the effect of stock-based compensation expense-related charges included in cost of revenue. Non-GAAP gross margin is defined as non-GAAP gross profit as a percentage of total revenue. We use non-GAAP gross profit and non-GAAP gross margin in conjunction with traditional GAAP measures to evaluate our financial performance. We believe that non-GAAP gross profit and non-GAAP gross margin provide our management and investors consistency and comparability with our past financial performance and facilitate period-to-period comparisons of operations.
+Non-GAAP Operating Income and Non-GAAP Operating Margin—We define non-GAAP operating income as income (loss) from operations excluding the effect of stock-based compensation expense-related charges, lease modification, impairment, and related charges, and legal settlements and awards, in periods when they occur. Non-GAAP operating margin is defined as non-GAAP operating income as a percentage of total revenue. We use non-GAAP operating income and non-GAAP operating margin in conjunction with traditional GAAP measures to evaluate our financial performance. We believe that non-GAAP operating income and non-GAAP operating margin provide our management and investors consistency and comparability with our past financial performance and facilitate period-to-period comparisons of operations.
+Non-GAAP Net Income and Non-GAAP Net Income per Share—We define non-GAAP net income as net income (loss) excluding the effect of stock-based compensation expense-related charges, lease modification, impairment, and related charges, and legal settlements and awards, in periods when they occur. Our non-GAAP net income per share–basic is calculated by dividing non-GAAP net income by the weighted-average number of shares of common stock outstanding during the period. Our non-GAAP net income per share–diluted is calculated by giving effect to all potentially dilutive common stock equivalents (stock options, restricted stock units, and shares issued under our 2021 Employee Stock Purchase Plan) to the extent they are dilutive. Non-GAAP net loss per share–diluted is the same as non-GAAP net loss per share–basic as the inclusion of all potential dilutive common stock equivalents would be antidilutive. We use non-GAAP net income and non-GAAP net income per share in conjunction with traditional GAAP measures to evaluate our financial performance. We believe that non-GAAP net income and non-GAAP net income per share provide our management and investors consistency and comparability with our past financial performance and facilitate period-to-period comparisons of operations.
+4
+
+
+
+
+
+Free Cash Flow and Free Cash Flow Margin—We define free cash flow as net cash provided by operating activities reduced by cash used for purchases of property and equipment. Free cash flow margin is calculated as free cash flow as a percentage of total revenue. We believe that free cash flow and free cash flow margin, even if negative, are useful in evaluating liquidity and provide information to management and investors about our ability to fund future operating needs and strategic initiatives.
+
+Webcast Information and Shareholder Letter
+An investor presentation and accompanying shareholder letter are accessible from the Samsara investor relations website at https://investors.samsara.com/. Samsara will host a live webcast to discuss the results at 2:00 p.m. Pacific Time (5:00 p.m. Eastern Time) today. The live webcast may be accessed at https://investors.samsara.com/. Following the webcast, a replay will be accessible from the same website.
+Investor Contact:
+Mike Chang
+ir@samsara.com
+Media Contact:
+Stephanie Burke
+media@samsara.com
+5
+
+
+
+
+
+
+SAMSARA INC.
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(In thousands)
+(Unaudited)
+| | | | | | | | | | | |
+| As of |
+| August 1, 2026 | | January 31, 2026 |
+Assets | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 291,392 | | | $ | 318,789 | |
+| | | |
+Short-term investments | 537,536 | | | 515,003 | |
+Accounts receivable, net | 337,792 | | | 321,442 | |
+Inventories | 57,032 | | | 48,194 | |
+Connected device costs, current | 155,670 | | | 142,904 | |
+Deferred commissions, current | 95,030 | | | 85,463 | |
+Prepaid expenses and other current assets | 98,315 | | | 75,323 | |
+Total current assets | 1,572,767 | | | 1,507,118 | |
+| | | |
+Long-term investments | 496,782 | | | 403,123 | |
+Property and equipment, net | 88,030 | | | 81,607 | |
+Operating lease right-of-use assets | 58,317 | | | 60,303 | |
+Connected device costs, non-current | 333,878 | | | 297,245 | |
+Deferred commissions, non-current | 199,224 | | | 176,415 | |
+Other assets | 20,130 | | | 14,863 | |
+Total assets | $ | 2,769,128 | | | $ | 2,540,674 | |
+Liabilities and stockholders’ equity | | | |
+Current liabilities: | | | |
+Accounts payable | $ | 41,239 | | | $ | 47,680 | |
+Accrued expenses and other current liabilities | 123,171 | | | 102,073 | |
+Accrued compensation and benefits | 62,236 | | | 75,403 | |
+Deferred revenue, current | 728,904 | | | 679,316 | |
+Operating lease liabilities, current | 12,535 | | | 12,566 | |
+Total current liabilities | 968,085 | | | 917,038 | |
+Deferred revenue, non-current | 123,868 | | | 129,726 | |
+Operating lease liabilities, non-current | 56,957 | | | 60,202 | |
+Other liabilities | 18,244 | | | 13,261 | |
+Total liabilities | 1,167,154 | | | 1,120,227 | |
+| | | |
+| | | |
+Stockholders’ equity: | | | |
+Preferred stock | — | | | — | |
+Class A common stock | 13 | | | 13 | |
+Class B common stock | 23 | | | 23 | |
+Class C common stock | — | | | — | |
+Additional paid-in capital | 3,161,197 | | | 3,035,176 | |
+Accumulated other comprehensive income (loss) | (887) | | | 4,357 | |
+Accumulated deficit | (1,558,372) | | | (1,619,122) | |
+Total stockholders’ equity | 1,601,974 | | | 1,420,447 | |
+Total liabilities and stockholders’ equity | $ | 2,769,128 | | | $ | 2,540,674 | |
+
+6
+
+
+
+
+
+
+SAMSARA INC.
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS AND COMPREHENSIVE INCOME (LOSS)
+(In thousands, except share and per share data)
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| August 1, 2026 | | August 2, 2025 | | August 1, 2026 | | August 2, 2025 |
+Revenue | $ | 508,437 | | | $ | 391,480 | | | $ | 987,281 | | | $ | 758,364 | |
+Cost of revenue | 115,856 | | | 90,501 | | | 233,557 | | | 173,670 | |
+Gross profit | 392,581 | | | 300,979 | | | 753,724 | | | 584,694 | |
+Operating expenses: | | | | | | | |
+Research and development | 102,556 | | | 85,612 | | | 200,123 | | | 168,854 | |
+Sales and marketing | 217,774 | | | 174,083 | | | 421,377 | | | 339,483 | |
+General and administrative | 67,376 | | | 67,903 | | | 120,154 | | | 136,231 | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Total operating expenses | 387,706 | | | 327,598 | | | 741,654 | | | 644,568 | |
+Income (loss) from operations | 4,875 | | | (26,619) | | | 12,070 | | | (59,874) | |
+Interest income and other income, net | 12,654 | | | 11,426 | | | 54,386 | | | 24,149 | |
+Income (loss) before provision for income taxes | 17,529 | | | (15,193) | | | 66,456 | | | (35,725) | |
+Provision for income taxes | 1,287 | | | 1,607 | | | 5,706 | | | 3,196 | |
+Net income (loss) | $ | 16,242 | | | $ | (16,800) | | | $ | 60,750 | | | $ | (38,921) | |
+Other comprehensive income (loss): | | | | | | | |
+Foreign currency translation adjustments, net of tax | 284 | | | 733 | | | 353 | | | 1,693 | |
+Unrealized gains (losses) on investments, net of tax | (2,500) | | | 818 | | | (5,597) | | | 1,377 | |
+Total other comprehensive income (loss): | (2,216) | | | 1,551 | | | (5,244) | | | 3,070 | |
+Comprehensive income (loss) | $ | 14,026 | | | $ | (15,249) | | | $ | 55,506 | | | $ | (35,851) | |
+Basic and diluted net income (loss) per share: | | | | | | | |
+| | | | | | | |
+Net income (loss) per share, basic and diluted | $ | 0.03 | | | $ | (0.03) | | | $ | 0.10 | | | $ | (0.07) | |
+Weighted-average shares used in computing net income (loss) per share, basic | 584,135,703 | | | 571,738,084 | | | 582,985,810 | | | 569,739,406 | |
+Weighted-average shares used in computing net income (loss) per share, diluted | 590,464,665 | | | 571,738,084 | | | 589,069,554 | | | 569,739,406 | |
+
+7
+
+
+
+
+
+
+SAMSARA INC.
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(In thousands)
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| August 1, 2026 | | August 2, 2025 | | August 1, 2026 | | August 2, 2025 |
+Operating activities | | | | | | | |
+Net income (loss) | $ | 16,242 | | | $ | (16,800) | | | $ | 60,750 | | | $ | (38,921) | |
+Adjustments to reconcile net income (loss) to net cash provided by operating activities | | | | | | | |
+Depreciation and amortization | 8,411 | | | 5,399 | | | 16,339 | | | 10,541 | |
+Stock-based compensation expense | 96,385 | | | 81,135 | | | 173,856 | | | 158,214 | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Net accretion of discounts on investments | (2,867) | | | (2,406) | | | (5,790) | | | (4,988) | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Other | 3,284 | | | (695) | | | 3,894 | | | (1,043) | |
+Changes in operating assets and liabilities: | | | | | | | |
+Accounts receivable, net | (53,122) | | | (30,002) | | | (17,417) | | | (14,100) | |
+Inventories | (4,955) | | | (15,057) | | | (10,026) | | | (13,943) | |
+Prepaid expenses and other current assets | 1,722 | | | (6,693) | | | 936 | | | (5,653) | |
+Arbitration award receivable | — | | | — | | | (30,329) | | | — | |
+Connected device costs | (30,997) | | | (4,683) | | | (49,222) | | | (10,643) | |
+Deferred commissions | (20,748) | | | (9,820) | | | (32,305) | | | (16,255) | |
+Other assets | 4,069 | | | 194 | | | (2,954) | | | 181 | |
+Accounts payable and other liabilities | 34,274 | | | 16,004 | | | 8,852 | | | (15,232) | |
+Deferred revenue | 21,793 | | | 33,290 | | | 38,289 | | | 53,900 | |
+Operating lease liabilities | 33 | | | 295 | | | 64 | | | 715 | |
+Net cash provided by operating activities | 73,524 | | | 50,161 | | | 154,937 | | | 102,773 | |
+Investing activities | | | | | | | |
+Purchases of property and equipment | (8,783) | | | (5,969) | | | (17,019) | | | (12,889) | |
+Purchases of investments | (220,964) | | | (248,805) | | | (578,487) | | | (421,946) | |
+| | | | | | | |
+Proceeds from maturities and redemptions of investments | 249,317 | | | 186,618 | | | 465,888 | | | 348,590 | |
+Other investing activities | 100 | | | — | | | 100 | | | (200) | |
+Net cash provided by (used in) investing activities | 19,670 | | | (68,156) | | | (129,518) | | | (86,445) | |
+Financing activities | | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Proceeds from issuance of common stock from equity compensation plans | 17,117 | | | 18,715 | | | 17,128 | | | 18,737 | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Taxes paid for net share settlement of equity awards | (36,027) | | | — | | | (70,372) | | | — | |
+| | | | | | | |
+Other financing activities | (74) | | | (316) | | | (171) | | | (694) | |
+Net cash provided by (used in) financing activities | (18,984) | | | 18,399 | | | (53,415) | | | 18,043 | |
+Effect of foreign exchange rate changes on cash, cash equivalents, and restricted cash | (1,916) | | | 219 | | | (2,308) | | | 1,344 | |
+Net increase (decrease) in cash, cash equivalents, and restricted cash | 72,294 | | | 623 | | | (30,304) | | | 35,715 | |
+Cash, cash equivalents, and restricted cash, beginning of period | 222,245 | | | 280,886 | | | 324,843 | | | 245,794 | |
+Cash, cash equivalents, and restricted cash, end of period | $ | 294,539 | | | $ | 281,509 | | | $ | 294,539 | | | $ | 281,509 | |
+
+8
+
+
+
+
+
+
+SAMSARA INC.
+RECONCILIATION BETWEEN GAAP AND NON-GAAP FINANCIAL MEASURES
+(In thousands, except percentages, share and per share data)
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| August 1, 2026 | | August 2, 2025 | | August 1, 2026 | | August 2, 2025 |
+Total revenue and revenue growth reconciliation | | | | | | | |
+GAAP revenue | $ | 508,437 | | | $ | 391,480 | | | $ | 987,281 | | | $ | 758,364 | |
+| | | | | | | |
+| | | | | | | |
+Add: | | | | | | | |
+Constant currency adjustment | (2,297) | | | — | | | (7,423) | | | — | |
+Revenue adjusted for constant currency
+| $ | 506,140 | | | $ | 391,480 | | | $ | 979,858 | | | $ | 758,364 | |
+GAAP revenue growth | 30 | % | | 30 | % | | 30 | % | | 31 | % |
+Revenue growth in constant currency
+| 29 | % | | 30 | % | | 29 | % | | 31 | % |
+| | | | | | | |
+Gross profit and gross margin reconciliation | | | | | | | |
+GAAP gross profit | $ | 392,581 | | | $ | 300,979 | | | $ | 753,724 | | | $ | 584,694 | |
+Add: | | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Stock-based compensation expense-related charges
+| 5,417 | | | 4,713 | | | 10,582 | | | 9,074 | |
+Non-GAAP gross profit | $ | 397,998 | | | $ | 305,692 | | | $ | 764,306 | | | $ | 593,768 | |
+GAAP gross margin | 77 | % | | 77 | % | | 76 | % | | 77 | % |
+Non-GAAP gross margin | 78 | % | | 78 | % | | 77 | % | | 78 | % |
+| | | | | | | |
+Operating income (loss) and operating margin reconciliation | | | | | | | |
+GAAP income (loss) from operations | $ | 4,875 | | | $ | (26,619) | | | $ | 12,070 | | | $ | (59,874) | |
+Add: | | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Stock-based compensation expense-related charges
+| 101,106 | | | 86,317 | | | 184,923 | | | 170,643 | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Non-GAAP operating income | $ | 105,981 | | | $ | 59,698 | | | $ | 196,993 | | | $ | 110,769 | |
+GAAP operating margin | 1 | % | | (7 | %) | | 1 | % | | (8 | %) |
+Non-GAAP operating margin | 21 | % | | 15 | % | | 20 | % | | 15 | % |
+| | | | | | | |
+Net income (loss) reconciliation | | | | | | | |
+GAAP net income (loss) | $ | 16,242 | | | $ | (16,800) | | | $ | 60,750 | | | $ | (38,921) | |
+Add: | | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Stock-based compensation expense-related charges
+| 101,106 | | | 86,317 | | | 184,923 | | | 170,643 | |
+| | | | | | | |
+Legal gain from arbitration award
+| — | | | — | | | (30,329) | | | — | |
+| | | | | | | |
+| | | | | | | |
+Non-GAAP net income
+| $ | 117,348 | | | $ | 69,517 | | | $ | 215,344 | | | $ | 131,722 | |
+
+9
+
+
+
+
+
+SAMSARA INC.
+RECONCILIATION BETWEEN GAAP AND NON-GAAP FINANCIAL MEASURES
+(In thousands, except percentages, share and per share data)
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| August 1, 2026 | | August 2, 2025 | | August 1, 2026 | | August 2, 2025 |
+Net income (loss) per share, basic and diluted, reconciliation | | | | | | | |
+GAAP net income (loss) per share, basic | $ | 0.03 | | | $ | (0.03) | | | $ | 0.10 | | | $ | (0.07) | |
+Total impact on net income (loss) per share, basic, from non-GAAP adjustments | 0.17 | | | 0.15 | | | 0.27 | | | 0.30 | |
+Non-GAAP net income per share, basic | $ | 0.20 | | | $ | 0.12 | | | $ | 0.37 | | | $ | 0.23 | |
+| | | | | | | |
+GAAP net income (loss) per share, diluted
+| $ | 0.03 | | | $ | (0.03) | | | $ | 0.10 | | | $ | (0.07) | |
+Total impact on net income (loss) per share, diluted, from non-GAAP adjustments | 0.17 | | | 0.15 | | | 0.27 | | | 0.30 | |
+Non-GAAP net income per share, diluted
+| $ | 0.20 | | | $ | 0.12 | | | $ | 0.37 | | | $ | 0.23 | |
+| | | | | | | |
+Weighted-average shares used in computing GAAP and non-GAAP net income (loss) per share, basic | 584,135,703 | | | 571,738,084 | | | 582,985,810 | | | 569,739,406 | |
+Weighted-average shares used in computing GAAP net income (loss) per share, diluted
+| 590,464,665 | | | 571,738,084 | | | 589,069,554 | | | 569,739,406 | |
+Weighted-average shares used in computing non-GAAP net income per share, diluted
+| 590,464,665 | | | 585,391,189 | | | 589,069,554 | | | 584,098,286 | |
+
+10
+
+
+
+
+
+SAMSARA INC.
+RECONCILIATION BETWEEN GAAP AND NON-GAAP FINANCIAL MEASURES
+(In thousands, except percentages, share and per share data)
+(Unaudited)
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| August 1, 2026 | | August 2, 2025 | | August 1, 2026 | | August 2, 2025 |
+Free cash flow and free cash flow margin reconciliation | | | | | | | |
+Net cash provided by operating activities | $ | 73,524 | | | $ | 50,161 | | | $ | 154,937 | | | $ | 102,773 | |
+Purchases of property and equipment | (8,783) | | | (5,969) | | | (17,019) | | | (12,889) | |
+Free cash flow | $ | 64,741 | | | $ | 44,192 | | | $ | 137,918 | | | $ | 89,884 | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Net cash provided by operating activities margin | 14 | % | | 13 | % | | 16 | % | | 14 | % |
+Free cash flow margin
+| 13 | % | | 11 | % | | 14 | % | | 12 | % |
+| | | | | | | |
+
+__________
+To facilitate comparability across periods, revenue and revenue growth are adjusted for constant currency by excluding the effect of foreign currency rate fluctuations.
+Stock-based compensation expense-related charges were included in the following line items of our condensed consolidated statements of operations and comprehensive income (loss) as follows:
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended | | Six Months Ended |
+| August 1, 2026 | | August 2, 2025 | | August 1, 2026 | | August 2, 2025 |
+Cost of revenue | $ | 5,417 | | | $ | 4,713 | | | $ | 10,582 | | | $ | 9,074 | |
+Research and development | 37,498 | | | 31,346 | | | 69,608 | | | 60,902 | |
+Sales and marketing | 29,447 | | | 25,345 | | | 54,067 | | | 50,925 | |
+General and administrative | 28,744 | | | 24,913 | | | 50,666 | | | 49,742 | |
+Total stock-based compensation expense-related charges
+| $ | 101,106 | | | $ | 86,317 | | | $ | 184,923 | | | $ | 170,643 | |
+
+On February 3, 2026, in the breach of contract, fraud, unfair competition, and false advertising arbitration matter between Samsara Inc. and Motive Technologies, Inc., an arbitration award was rendered in favor of Samsara. As a result of the arbitration award, Samsara recognized a gain of $30.3 million during the six months ended August 1, 2026.
+There were no material income tax effects on our non-GAAP adjustments for all periods presented.
+For each period in which we had net income, diluted net income per share is calculated using weighted-average number of shares of common stock outstanding during the period, adjusted for dilutive potential shares that were assumed outstanding during the period.
+Stock-based compensation expense-related charges included amortization of capitalized stock-based compensation expense of approximately $1.5 million and $2.8 million for the three and six months ended August 1, 2026, respectively, and approximately $0.8 million and $1.6 million for the three and six months ended August 2, 2025, respectively, which was initially capitalized as internal-use software or cloud computing arrangements. Stock-based compensation expense-related charges also included approximately $3.3 million and $8.3 million of employer taxes on employee equity transactions for the three and six months ended August 1, 2026, respectively, and approximately $4.4 million and $10.9 million of employer taxes on employee equity transactions for the three and six months ended August 2, 2025, respectively.
+11

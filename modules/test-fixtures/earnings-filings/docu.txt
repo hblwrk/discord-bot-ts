@@ -1,0 +1,515 @@
+EX-99.1
+2
+q227ex-991er.htm
+EX-99.1
+
+
+
+
+Document
+
+
+DOCUSIGN, INC.
+
+Exhibit 99.1
+
+
+Docusign Announces Second Quarter Fiscal 2027 Financial Results;
+Company Increases Fiscal Year 2027 Guidance for Revenue, ARR and IAM’s Percentage of Total ARR
+
+
+San Francisco – September 3, 2026 – Docusign, Inc. (NASDAQ: DOCU) today announced results for its second fiscal quarter ended July 31, 2026. Prepared remarks and the news release with the financial results will be accessible on Docusign’s website at investor.docusign.com prior to its webcast.
+
+
+“Docusign is raising its outlook as AI accelerates momentum across the business,” said Allan Thygesen, CEO of Docusign. "We said IAM would be the agreement system of action, and this quarter we delivered. Our AI agents are now securely executing contract workflows end-to-end, and the IAM platform also ingested a record volume of agreements.”
+
+
+Second Quarter Financial Highlights
+
+
+▪Revenue was $875.7 million, a 9% year-over-year increase including a benefit of approximately 1.3% from the impact of foreign exchange rates.
+▪Intelligent Agreement Management (“IAM”) represented 15.1% of our total Annual Recurring Revenue (“ARR”) as of July 31, 2026, compared to 12.6% of our total ARR as of April 30, 2026.
+▪GAAP gross margin was 79.7% compared to 79.3% in the same period last year. Non-GAAP gross margin was 81.7% compared to 82.0% in the same period last year.
+▪GAAP net income per basic share was $0.41 on 191 million shares outstanding compared to $0.31 on 203 million shares outstanding in the same period last year.
+▪GAAP net income per diluted share was $0.40 on 193 million shares outstanding compared to $0.30 on 211 million shares outstanding in the same period last year.
+▪Non-GAAP net income per diluted share was $1.16 on 193 million shares outstanding compared to $0.92 on 211 million shares outstanding in the same period last year.
+▪Net cash provided by operating activities was $334.5 million compared to $246.1 million in the same period last year.
+▪Free cash flow was $295.8 million, or a 34% margin, compared to $217.6 million, or a 27% margin, in the same period last year.
+▪Cash, cash equivalents, and investments were $973.1 million at the end of the quarter.
+▪Repurchases of common stock were $306.5 million, compared to $201.5 million in the same period last year.
+A reconciliation of GAAP to non-GAAP financial measures has been provided in the tables included in this press release. An explanation of these measures is also included below under the heading “Non-GAAP Financial Measures and Other Key Metrics.”
+
+
+
+Key Business Highlights
+
+
+Delivered on IAM Capabilities Announced at Docusign Momentum:
+Launched new agentic tools, powered by Iris, Docusign’s contract-specific AI, to help organizations understand what’s inside agreements, automate work, and take action.
+•An AI assistant that analyzes agreement terms, reviews and redlines contracts, generates contract language, and triggers agentic workflows.
+•Pre-built agents for common use cases, including agreement intake and vendor renewal.
+•An Agent Studio where customers can build, govern, and deploy custom agents for specialized use cases like executing business playbooks, auditing compliance, and evaluating vendor pricing.
+•Ability to add agents directly into Workflow Builder to bring AI-based decisions making and routing to traditional workflows.
+Released the Docusign Model Context Protocol (MCP) server, enabling organizations to securely bring Docusign agreement intelligence and actions into the AI tools that they already use, while maintaining enterprise-grade security, permissions, and governance.
+
+
+1
+
+
+
+
+DOCUSIGN, INC.
+
+Expanded MCP server integrations with the Docusign app for the Slack Marketplace, which brings agentic contract workflows directly in Slack, as well as an integration with Perplexity to help teams automate contracting workflows and collaborate across their business partners. The Docusign connector for Gemini Enterprise is also now part of Google Cloud’s Gemini Enterprise for Legal solution. These are in addition to existing connectors with Anthropic, Gemini, OpenAI, and Microsoft’s Copilot.
+
+
+Expansion of IAM for the Enterprise:
+Integrated IAM capabilities including Agreement Manager into Docusign CLM, giving users an AI-powered repository that turns static files into searchable business insights so they can identify risks sooner and uncover cost-saving opportunities.
+
+
+
+
+
+Guidance
+
+
+The company currently expects the following guidance:
+
+
+| | | | | | | | | | | | | | | | | |
+(in millions, except percentages) | Three Months Ended October 31, 2026 | | YoY Midpoint Change |
+Revenue [1]
+| $886 | to | $890 | | 9% |
+Non-GAAP gross margin | 81.5% | to | 81.9% | | NA |
+Non-GAAP operating margin | 31.3% | to | 31.7% | | NA |
+Non-GAAP diluted weighted-average shares outstanding | 191 | to | 196 | | NA |
+
+
+
+| | | | | | | | | | | | | | | | | |
+(in millions, except percentages) | Year Ended January 31, 2027 | | YoY Midpoint Change |
+Revenue [1]
+| $3,499 | to | $3,507 | | 9% |
+Annual recurring revenue year-over-year growth rate [2]
+| 8.50% | to | 9.00% | | 8.75% |
+Non-GAAP gross margin | 81.5% | to | 82.0% | | NA |
+Non-GAAP operating margin | 31.0% | to | 31.5% | | NA |
+Non-GAAP diluted weighted-average shares outstanding | 190 | to | 195 | | NA |
+
+
+
+[1] Excluding the impact of foreign currency exchange rates on year-over-year guided revenue growth, revenue guidance range would be approximately 1.0% points lower for the quarter ending October 31, 2026 and 1.2% points lower for the fiscal year ending January 31, 2027.
+[2] We expect that IAM will represent approximately 18% to 19% of total ARR exiting Q4 of Fiscal 2027.
+
+
+
+
+A reconciliation of non-GAAP guidance measures to corresponding GAAP guidance measures is not available on a forward-looking basis without unreasonable effort due to the uncertainty regarding, and the potential variability of, expenses that may be incurred in the future. Stock-based compensation-related charges, including employer payroll tax-related items on employee stock transactions, are impacted by many factors, including the timing of employee stock transactions, the future fair market value of our common stock, and our future hiring and retention needs, all of which are difficult to predict and subject to constant change. We have provided a reconciliation of GAAP to non-GAAP financial measures in the financial statement tables for our historical non-GAAP financial results included in this release.
+
+
+2
+
+
+
+
+
+DOCUSIGN, INC.
+
+Webcast Conference Call Information
+
+
+The company will host a conference call and live webcast on September 3, 2026 at 5:00 p.m. Eastern Time (2:00 p.m. Pacific Time) to discuss its financial performance and business outlook. Prepared remarks will also be available on Docusign’s investor relations website prior to the webcast.
+
+
+Conference Call Details
+•Live webcast will be available on Docusign’s investor relations website at investor.docusign.com
+•Domestic Toll-Free Dial-In: (877) 407-0784
+•International Dial-In: (201) 689-8560
+
+
+An archived replay of the webcast will be available the following day at investor.docusign.com
+
+
+About Docusign
+
+
+Docusign brings agreements to life. Over 1.9 million customers and more than a billion people in over 180 countries use Docusign solutions to accelerate the process of doing business and simplify people's lives. With intelligent agreement management, Docusign unleashes business critical data that is trapped inside of documents. Until now, these were disconnected from business systems of record, costing businesses time, money, and opportunity. Using Docusign’s AI-native IAM platform, companies can create, commit, and manage agreements with solutions created by the #1 company in e-signature and CLM. Learn more at www.docusign.com.
+
+
+Copyright 2026. Docusign, Inc. is the owner of DOCUSIGN® and all its other marks (www.docusign.com/IP).
+
+
+Investor Relations:
+Docusign Investor Relations
+investors@docusign.com
+
+
+Media Relations:
+Docusign Corporate Communications
+media@docusign.com
+3
+
+
+
+
+DOCUSIGN, INC.
+
+Forward-Looking Statements
+
+
+This press release contains forward-looking statements within the meaning of Section 27A of the Securities Act of 1933, as amended, and Section 21E of the Securities Exchange Act of 1934, as amended, that are based on our management’s beliefs and assumptions and on information currently available to management, and which statements involve substantial risk and uncertainties. All statements contained in this press release other than statements of historical fact, including statements regarding our future operating results and financial position, our business strategy and plans, market growth and trends, our objectives for future operations, and the impact of such assumptions on our financial condition and results of operations are forward-looking statements. Forward-looking statements in this press release also include, among other things, statements under “Guidance” above and any other statements about expected financial metrics, such as revenue, annual recurring revenue, free cash flow, non-GAAP gross margin, non-GAAP operating margin, non-GAAP diluted weighted-average shares outstanding, and non-financial metrics, as well as statements related to our expectations regarding: the impact of foreign exchange rates; the timing and extent of customer renewals; the effectiveness of changes to our sales force and go-to-market strategy; the effects of seasonality; the timing and impact of our cloud migration transition; the benefits, the timing or rollout of future products and capabilities; the evolution, customer demand, and adoption of the Docusign IAM platform; and our utilization of our stock repurchase program, including the expected timing, duration, volume and nature of share repurchase under such program. Forward-looking statements generally relate to future events or our future financial or operating performance. In some cases, you can identify forward-looking statements because they contain words such as “may,” “will,” “should,” “expects,” “plans,” “anticipates,” “could,” “intends,” “target,” “projects,” “contemplates,” “believes,” “estimates,” “predicts,” “potential,” or “continue” or the negative of these words or other similar terms or expressions that concern our expectations, strategy, plans or intentions.
+
+
+Forward-looking statements contained in this press release include, but are not limited to, statements about: our expectations regarding global macro-economic conditions, including the effects of inflation, volatile interest rates or foreign exchange rates, and market volatility on the global economy; our inability to accurately estimate our market opportunity; our ability to compete effectively in an evolving and competitive market; the impact of any interruptions or delays in performance of our technical infrastructure, or data breaches, cyberattacks or other fraudulent or malicious activity attempting to exploit our technology systems, platform or brand name; our ability to effectively sustain and manage our growth and future expenses and maintain or increase profitability; our ability to attract new customers and retain and expand our existing customer base, including our ability to attract large organizations as users; our ability to scale and update our platform to respond to customers’ needs and rapid technological change, including our ability to successfully incorporate artificial intelligence into our existing and future products and to successfully deploy them; our ability to successfully develop, launch, and sell IAM solutions; our ability to expand use cases within existing customers and vertical solutions; our ability to expand our operations and increase adoption of our platform internationally; our ability to strengthen and foster our relationships with developers; our ability to retain our direct sales force, customer success team and strategic partnerships around the world; our ability to identify targets for and execute potential acquisitions and to successfully integrate and realize the anticipated benefits of such acquisitions; our ability to maintain, protect and enhance our brand; the sufficiency of our cash, cash equivalents and capital resources to satisfy our liquidity needs; limitations on us due to obligations we have under our credit facility; our ability to realize the anticipated benefits of our stock repurchase program; our failure or the failure of our software to comply with applicable industry standards, laws and regulations; our ability to maintain, protect and enhance our intellectual property; our ability to successfully defend litigation against us; our ability to maintain our corporate culture; our ability to offer high-quality customer support; our ability to hire, retain and motivate qualified personnel, including executive level management; our ability to successfully manage and integrate executive management transitions; uncertainties regarding the impact of general economic and market conditions, including as a result of geopolitical conflict or changes in trade policies and practices; and our ability to maintain proper and effective internal controls.
+
+
+Additional risks and uncertainties that could affect our financial results are included in the sections titled “Risk Factors” and “Management’s Discussion and Analysis of Financial Condition and Results of Operations” in our annual report on Form 10-K for the fiscal year ended January 31, 2026, filed on March 18, 2026, our quarterly report on Form 10-Q for the quarter ended July 31, 2026, which we expect to file on September 4, 2026 with the Securities and Exchange Commission (the “SEC”), and other filings that we make from time to time with the SEC. The forward-looking statements made in this press release relate only to events as of the date on which such statements are made. We undertake no obligation to update any forward-looking statements after the date of this press release or to conform such statements to actual results or revised expectations, except as required by law.
+
+
+4
+
+
+
+
+DOCUSIGN, INC.
+
+Non-GAAP Financial Measures and Other Key Metrics
+
+
+To supplement our consolidated financial statements, which are prepared and presented in accordance with U.S. GAAP, we use certain non-GAAP financial measures, as described below, to understand and evaluate our core operating performance. These non-GAAP financial measures, which may be different than similarly titled measures used by other companies, are presented to enhance investors’ overall understanding of our financial performance and should not be considered a substitute for, or superior to, the financial information prepared and presented in accordance with GAAP.
+
+
+We believe that these non-GAAP financial measures provide useful information about our financial performance, enhance the overall understanding of our past performance and future prospects, and allow for greater transparency with respect to important metrics used by our management for financial and operational decision-making. We present these non-GAAP measures to assist investors in seeing our financial performance using a management view, and because we believe that these measures provide an additional tool for investors to use in comparing our core financial performance over multiple periods with other companies in our industry. However, these non-GAAP measures are not intended to be considered in isolation from, a substitute for, or superior to our GAAP results.
+
+
+Non-GAAP gross profit, non-GAAP gross margin, non-GAAP operating expenses, non-GAAP income from operations, non-GAAP operating margin, non-GAAP net income and non-GAAP net income per share: We define these non-GAAP financial measures as the respective GAAP measures, excluding expenses related to stock-based compensation, employer payroll tax on employee stock transactions, amortization of acquisition-related intangibles, and, as applicable, other special items. The amount of employer payroll tax-related items on employee stock transactions is dependent on our stock price and other factors that are beyond our control and do not correlate to the operation of the business. When evaluating the performance of our business and making operating plans, we do not consider these items (for example, when considering the impact of equity award grants, we place a greater emphasis on overall stockholder dilution rather than the accounting charges associated with such grants). We believe it is useful to exclude these expenses in order to better understand the long-term performance of our core business and to facilitate comparison of our results to those of peer companies and over multiple periods. In addition to these exclusions, we subtract an assumed provision for income taxes to calculate non-GAAP net income. We utilize a fixed long-term projected tax rate in our computation of the non-GAAP income tax provision to provide better consistency across the reporting periods. For fiscal 2026 and fiscal 2027, we have determined the projected non-GAAP tax rate to be 21%.
+
+
+Free cash flow: We define free cash flow as net cash provided by operating activities less purchases of property and equipment. Free cash flow margin is calculated as free cash flow as a percentage of revenue. We believe free cash flow is an important liquidity measure of the cash that is available (if any), after purchases of property and equipment, for operational expenses, investment in our business and to make acquisitions. Free cash flow is useful to investors as a liquidity measure because it measures our ability to generate or use cash in excess of our capital investments in property and equipment, including capitalized software development costs. Once our business needs and obligations are met, cash can be used to maintain a strong balance sheet and invest in future growth.
+
+
+Annual Recurring Revenue: We calculate ARR as the annualized value of active customer contracts as of the measurement date. This calculation assumes that any contract expiring within the next 12 months renews on its existing terms, and excludes non-recurring revenue streams recognized at a point in time. When evaluating ARR on a product basis for contracts spanning multiple product lines, we allocate the support contract value to each product offering based on its proportional share of the total contract value. To annualize contracts, we divide the total committed contract value by the number of months in the subscription term and multiply by twelve. For international contracts denominated in foreign currencies, ARR is translated into U.S. dollars using a fixed exchange rate set at the beginning of each fiscal year. We adjust previously reported ARR annually to reflect these exchange rate changes for comparative purposes. We believe ARR measures our business performance and serves as a leading indicator of future revenue growth. We report total ARR annually at the end of the fiscal year. Because quarterly net new ARR represents only a fraction of our overall book of business, it is subject to timing volatility and can be highly volatile on a year-over-year basis. Because the objective of ARR is to evaluate the long-term growth of our business, these quarterly timing fluctuations can detract from the insight and usefulness of ARR. ARR is an operating metric and should be viewed independently of revenue, deferred revenue, and remaining performance obligations; it does not represent revenue under U.S. GAAP on an annual basis.
+
+
+For a reconciliation of these non-GAAP financial measures to the most directly comparable GAAP financial measure, please see “Reconciliation of GAAP to Non-GAAP Financial Measures” below.
+5
+
+
+
+
+
+DOCUSIGN, INC.
+
+CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS
+(Unaudited) | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+(in thousands, except per share data) | 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Revenue | $ | 875,746 | | | $ | 800,636 | | | $ | 1,705,981 | | | $ | 1,564,290 | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Cost of revenue | 177,872 | | | 165,463 | | | 349,142 | | | 322,732 | |
+Gross profit | 697,874 | | | 635,173 | | | 1,356,839 | | | 1,241,558 | |
+Operating expenses: | | | | | | | |
+Sales and marketing | 313,958 | | | 305,450 | | | 610,133 | | | 601,863 | |
+Research and development | 163,582 | | | 169,630 | | | 323,168 | | | 329,077 | |
+General and administrative | 102,713 | | | 94,866 | | | 194,608 | | | 185,136 | |
+| | | | | | | |
+Total operating expenses | 580,253 | | | 569,946 | | | 1,127,909 | | | 1,116,076 | |
+Income from operations | 117,621 | | | 65,227 | | | 228,930 | | | 125,482 | |
+Interest expense | (569) | | | (828) | | | (1,120) | | | (1,306) | |
+Interest income and other income, net | 7,924 | | | 12,061 | | | 14,922 | | | 26,074 | |
+Income before provision for income taxes | 124,976 | | | 76,460 | | | 242,732 | | | 150,250 | |
+Provision for income taxes | 47,261 | | | 13,490 | | | 86,820 | | | 15,193 | |
+Net income | $ | 77,715 | | | $ | 62,970 | | | $ | 155,912 | | | $ | 135,057 | |
+Net income per share attributable to common stockholders: | | | | |
+Basic | $ | 0.41 | | | $ | 0.31 | | | $ | 0.81 | | | $ | 0.67 | |
+Diluted | $ | 0.40 | | | $ | 0.30 | | | $ | 0.80 | | | $ | 0.64 | |
+Weighted-average shares used in computing net income per share: | | | | |
+Basic | 191,252 | | | 202,644 | | | 193,336 | | | 202,957 | |
+Diluted | 193,117 | | | 210,956 | | | 194,763 | | | 211,878 | |
+| | | | | | | |
+Stock-based compensation expense included in costs and expenses: | | | | |
+| | | | | | | |
+| | | | | | | |
+Cost of revenue | $ | 15,241 | | | $ | 18,592 | | | $ | 30,550 | | | $ | 35,496 | |
+Sales and marketing | 46,828 | | | 49,081 | | | 89,854 | | | 95,166 | |
+Research and development | 55,502 | | | 61,865 | | | 109,978 | | | 116,296 | |
+General and administrative | 31,033 | | | 31,000 | | | 59,599 | | | 59,176 | |
+| | | | | | | |
+
+
+
+6
+
+
+
+
+
+DOCUSIGN, INC.
+
+CONDENSED CONSOLIDATED BALANCE SHEETS
+(Unaudited) | | | | | | | | | | | |
+(in thousands) | July 31, 2026 | | January 31, 2026 |
+Assets | | | |
+Current assets | | | |
+Cash and cash equivalents | $ | 528,161 | | | $ | 602,442 | |
+Investments—current | 249,516 | | | 264,084 | |
+Accounts receivable, net | 370,531 | | | 516,429 | |
+Contract assets—current | 7,552 | | | 10,782 | |
+Prepaid expenses and other current assets | 113,132 | | | 97,101 | |
+Total current assets | 1,268,892 | | | 1,490,838 | |
+Investments—noncurrent | 195,398 | | | 208,393 | |
+Property and equipment, net | 420,032 | | | 361,808 | |
+Operating lease right-of-use assets | 155,101 | | | 165,578 | |
+Goodwill | 458,365 | | | 458,446 | |
+Intangible assets, net | 51,924 | | | 61,394 | |
+Deferred contract acquisition costs—noncurrent | 468,812 | | | 474,628 | |
+Deferred tax assets—noncurrent | 764,330 | | | 835,245 | |
+Other assets—noncurrent | 177,936 | | | 173,220 | |
+Total assets | $ | 3,960,790 | | | $ | 4,229,550 | |
+Liabilities and Equity | | | |
+Current liabilities | | | |
+Accounts payable | $ | 21,866 | | | $ | 17,419 | |
+Accrued expenses and other current liabilities | 121,046 | | | 113,358 | |
+Accrued compensation | 239,042 | | | 260,840 | |
+| | | |
+Contract liabilities—current | 1,575,565 | | | 1,631,168 | |
+Operating lease liabilities—current | 15,516 | | | 16,623 | |
+Total current liabilities | 1,973,035 | | | 2,039,408 | |
+| | | |
+Contract liabilities—noncurrent | 28,824 | | | 29,956 | |
+Operating lease liabilities—noncurrent | 167,582 | | | 168,496 | |
+Deferred tax liability—noncurrent | 20,960 | | | 21,507 | |
+Other liabilities—noncurrent | 51,869 | | | 52,363 | |
+Total liabilities | 2,242,270 | | | 2,311,730 | |
+| | | |
+Stockholders’ equity | | | |
+Common stock | 19 | | | 20 | |
+| | | |
+Additional paid-in capital | 4,052,431 | | | 3,777,995 | |
+Accumulated other comprehensive loss | (7,843) | | | (3,712) | |
+Accumulated deficit | (2,326,087) | | | (1,856,483) | |
+Total stockholders’ equity
+| 1,718,520 | | | 1,917,820 | |
+Total liabilities and equity | $ | 3,960,790 | | | $ | 4,229,550 | |
+
+
+
+7
+
+
+
+
+
+DOCUSIGN, INC.
+
+CONDENSED CONSOLIDATED STATEMENTS OF CASH FLOWS
+(Unaudited) | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+(in thousands) | 2026 | | 2025 | | 2026 | | 2025 |
+Cash flows from operating activities: | | | | | | | |
+Net income | $ | 77,715 | | | $ | 62,970 | | | $ | 155,912 | | | $ | 135,057 | |
+Adjustments to reconcile net income to net cash provided by operating activities:
+| | | | | | | |
+Depreciation and amortization | 33,786 | | | 28,880 | | | 65,994 | | | 59,249 | |
+Amortization of deferred contract acquisition and fulfillment costs | 69,680 | | | 68,654 | | | 137,038 | | | 135,136 | |
+| | | | | | | |
+Non-cash operating lease costs | 4,890 | | | 4,704 | | | 9,754 | | | 9,364 | |
+Stock-based compensation expense | 148,604 | | | 160,538 | | | 289,981 | | | 306,134 | |
+Deferred income taxes | 37,795 | | | 4,997 | | | 70,827 | | | 1,532 | |
+Other | 2,003 | | | 84 | | | 3,923 | | | 1,945 | |
+Changes in operating assets and liabilities: | | | | | | | |
+Accounts receivable | (71,693) | | | (50,674) | | | 142,755 | | | 70,329 | |
+| | | | | | | |
+Prepaid expenses and other current assets | 15,016 | | | 5,544 | | | (16,816) | | | (23,007) | |
+Deferred contract acquisition and fulfillment costs | (67,185) | | | (71,340) | | | (132,676) | | | (127,988) | |
+Other assets | 5,402 | | | (2,179) | | | 7,722 | | | (1,335) | |
+Accounts payable | (3,666) | | | (14,030) | | | (444) | | | (20,794) | |
+Accrued expenses and other liabilities | 7,390 | | | 175 | | | 1,930 | | | 4,800 | |
+Accrued compensation | 63,871 | | | 37,214 | | | (24,544) | | | (24,237) | |
+Contract liabilities | 10,421 | | | 15,966 | | | (55,132) | | | (18,274) | |
+Operating lease liabilities | 517 | | | (5,430) | | | 10 | | | (10,399) | |
+Net cash provided by operating activities | 334,546 | | | 246,073 | | | 656,234 | | | 497,512 | |
+Cash flows from investing activities: | | | | | | | |
+| | | | | | | |
+Purchases of marketable securities | (57,915) | | | (119,637) | | | (155,323) | | | (212,200) | |
+| | | | | | | |
+Maturities of marketable securities | 88,976 | | | 117,710 | | | 182,000 | | | 208,972 | |
+| | | | | | | |
+Purchases of strategic and other investments | (150) | | | (100) | | | (2,760) | | | (100) | |
+Proceeds from strategic and other investments | 1,000 | | | — | | | 1,000 | | | — | |
+Purchases of property and equipment | (38,789) | | | (28,425) | | | (71,042) | | | (52,049) | |
+Net cash used in investing activities | (6,878) | | | (30,452) | | | (46,125) | | | (55,377) | |
+Cash flows from financing activities: | | | | | | | |
+| | | | | | | |
+Payment of revolving credit facility costs | — | | | (3,133) | | | — | | | (3,133) | |
+Repurchases of common stock | (306,516) | | | (201,514) | | | (624,026) | | | (384,945) | |
+| | | | | | | |
+Payment of tax withholding obligation on net RSU settlement and ESPP purchase | (38,580) | | | (69,164) | | | (78,116) | | | (131,957) | |
+Proceeds from exercise of stock options | — | | | 471 | | | 53 | | | 1,170 | |
+Proceeds from employee stock purchase plan | — | | | — | | | 22,799 | | | 22,010 | |
+Other | — | | | — | | | (220) | | | — | |
+Net cash used in financing activities | (345,096) | | | (273,340) | | | (679,510) | | | (496,855) | |
+Effect of foreign exchange on cash, cash equivalents and restricted cash | (2,767) | | | 1,529 | | | (3,248) | | | 11,452 | |
+Net decrease in cash, cash equivalents and restricted cash | (20,195) | | | (56,190) | | | (72,649) | | | (43,268) | |
+Cash, cash equivalents and restricted cash at beginning of period
+| 565,696 | | | 672,476 | | | 618,150 | | | 659,554 | |
+Cash, cash equivalents and restricted cash at end of period
+| $ | 545,501 | | | $ | 616,286 | | | $ | 545,501 | | | $ | 616,286 | |
+
+Cash, cash equivalents and restricted cash included restricted cash of $17.3 million and $15.7 million at July 31, 2026 and January 31, 2026.
+8
+
+
+
+
+
+DOCUSIGN, INC.
+
+RECONCILIATION OF GAAP TO NON-GAAP FINANCIAL MEASURES
+(Unaudited)
+
+
+Reconciliation of gross profit and gross margin: | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+(in thousands) | 2026 | | 2025 | | 2026 | | 2025 |
+GAAP gross profit | $ | 697,874 | | $ | 635,173 | | $ | 1,356,839 | | $ | 1,241,558 |
+Add: Stock-based compensation | 15,241 | | 18,592 | | 30,550 | | 35,496 |
+Add: Employer payroll tax on employee stock transactions | 904 | | 1,575 | | 2,030 | | 3,448 |
+Add: Amortization of acquisition-related intangibles | 1,495 | | 1,562 | | 2,990 | | 5,127 |
+| | | | | | | |
+| | | | | | | |
+Non-GAAP gross profit | $ | 715,514 | | $ | 656,902 | | $ | 1,392,409 | | $ | 1,285,629 |
+GAAP gross margin | 79.7 | % | | 79.3 | % | | 79.5 | % | | 79.4 | % |
+Non-GAAP adjustments | 2.0 | % | | 2.7 | % | | 2.1 | % | | 2.8 | % |
+Non-GAAP gross margin | 81.7 | % | | 82.0 | % | | 81.6 | % | | 82.2 | % |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+
+
+
+Reconciliation of operating expenses: | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+(in thousands) | 2026 | | 2025 | | 2026 | | 2025 |
+GAAP sales and marketing | $ | 313,958 | | $ | 305,450 | | $ | 610,133 | | $ | 601,863 |
+Less: Stock-based compensation | (46,828) | | (49,081) | | (89,854) | | (95,166) |
+Less: Employer payroll tax on employee stock transactions | (2,227) | | (2,962) | | (4,697) | | (6,902) |
+Less: Amortization of acquisition-related intangibles | (3,240) | | (3,354) | | (6,480) | | (6,708) |
+| | | | | | | |
+| | | | | | | |
+Non-GAAP sales and marketing | $ | 261,663 | | $ | 250,053 | | $ | 509,102 | | $ | 493,087 |
+GAAP sales and marketing as a percentage of revenue | 35.9 | % | | 38.2 | % | | 35.7 | % | | 38.5 | % |
+Non-GAAP sales and marketing as a percentage of revenue | 29.9 | % | | 31.2 | % | | 29.8 | % | | 31.6 | % |
+| | | | | | | |
+GAAP research and development | $ | 163,582 | | $ | 169,630 | | $ | 323,168 | | $ | 329,077 |
+Less: Stock-based compensation | (55,502) | | (61,865) | | (109,978) | | (116,296) |
+| | | | | | | |
+Less: Employer payroll tax on employee stock transactions | (2,131) | | (2,600) | | (5,818) | | (7,681) |
+| | | | | | | |
+Non-GAAP research and development | $ | 105,949 | | $ | 105,165 | | $ | 207,372 | | $ | 205,100 |
+GAAP research and development as a percentage of revenue | 18.7 | % | | 21.2 | % | | 18.9 | % | | 21.1 | % |
+Non-GAAP research and development as a percentage of revenue | 12.1 | % | | 13.1 | % | | 12.2 | % | | 13.1 | % |
+| | | | | | | |
+GAAP general and administrative | $ | 102,713 | | $ | 94,866 | | $ | 194,608 | | $ | 185,136 |
+Less: Stock-based compensation | (31,033) | | (31,000) | | (59,599) | | (59,176) |
+Less: Employer payroll tax on employee stock transactions | (554) | | (911) | | (1,456) | | (2,276) |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Non-GAAP general and administrative | $ | 71,126 | | $ | 62,955 | | $ | 133,553 | | $ | 123,684 |
+GAAP general and administrative as a percentage of revenue | 11.7 | % | | 11.8 | % | | 11.5 | % | | 11.8 | % |
+Non-GAAP general and administrative as a percentage of revenue | 8.1 | % | | 7.9 | % | | 7.8 | % | | 7.9 | % |
+
+
+9
+
+
+
+
+DOCUSIGN, INC.
+
+Reconciliation of income from operations and operating margin: | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+(in thousands) | 2026 | | 2025 | | 2026 | | 2025 |
+GAAP income from operations | $ | 117,621 | | $ | 65,227 | | $ | 228,930 | | $ | 125,482 |
+Add: Stock-based compensation | 148,604 | | 160,538 | | 289,981 | | 306,134 |
+Add: Employer payroll tax on employee stock transactions | 5,816 | | 8,048 | | 14,001 | | 20,307 |
+Add: Amortization of acquisition-related intangibles | 4,735 | | 4,916 | | 9,470 | | 11,835 |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Non-GAAP income from operations | $ | 276,776 | | $ | 238,729 | | $ | 542,382 | | $ | 463,758 |
+GAAP operating margin | 13.4 | % | | 8.1 | % | | 13.4 | % | | 8.0 | % |
+Non-GAAP adjustments | 18.2 | % | | 21.7 | % | | 18.4 | % | | 21.6 | % |
+Non-GAAP operating margin | 31.6 | % | | 29.8 | % | | 31.8 | % | | 29.6 | % |
+
+
+
+Reconciliation of net income and net income per share, basic and diluted: | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+(in thousands, except per share data) | 2026 | | 2025 | | 2026 | | 2025 |
+GAAP net income | $ | 77,715 | | | $ | 62,970 | | | $ | 155,912 | | | $ | 135,057 | |
+Add: Stock-based compensation | 148,604 | | | 160,538 | | | 289,981 | | | 306,134 | |
+Add: Employer payroll tax on employee stock transactions | 5,816 | | | 8,048 | | | 14,001 | | | 20,307 | |
+Add: Amortization of acquisition-related intangibles | 4,735 | | | 4,916 | | | 9,470 | | | 11,835 | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Add: Income tax and other tax adjustments | (12,407) | | | (41,387) | | | (29,979) | | | (87,397) | |
+Non-GAAP net income attributable to common stockholders | $ | 224,463 | | | $ | 195,085 | | | $ | 439,385 | | | $ | 385,936 | |
+| | | | | | | |
+Numerator: | | | | | | | |
+Non-GAAP net income attributable to common stockholders | $ | 224,463 | | | $ | 195,085 | | | $ | 439,385 | | | $ | 385,936 | |
+| | | | | | | |
+| | | | | | | |
+| | | | | | | |
+Denominator: | | | | | | | |
+Weighted-average common shares outstanding, basic | 191,252 | | | 202,644 | | | 193,336 | | | 202,957 | |
+Effect of dilutive securities | 1,865 | | | 8,312 | | | 1,427 | | | 8,921 | |
+Non-GAAP weighted-average common shares outstanding, diluted | 193,117 | | | 210,956 | | | 194,763 | | | 211,878 | |
+| | | | | | | |
+GAAP net income per share, basic | $ | 0.41 | | | $ | 0.31 | | | $ | 0.81 | | | $ | 0.67 | |
+GAAP net income per share, diluted | $ | 0.40 | | | $ | 0.30 | | | $ | 0.80 | | | $ | 0.64 | |
+Non-GAAP net income per share, basic | $ | 1.17 | | | $ | 0.96 | | | $ | 2.27 | | | $ | 1.90 | |
+Non-GAAP net income per share, diluted | $ | 1.16 | | | $ | 0.92 | | | $ | 2.26 | | | $ | 1.82 | |
+
+
+
+Computation of free cash flow: | | | | | | | | | | | | | | | | | | | | | | | |
+| Three Months Ended July 31, | | Six Months Ended July 31, |
+(in thousands) | 2026 | | 2025 | | 2026 | | 2025 |
+Net cash provided by operating activities | $ | 334,546 | | $ | 246,073 | | $ | 656,234 | | $ | 497,512 |
+Less: Purchases of property and equipment | (38,789) | | (28,425) | | (71,042) | | (52,049) |
+Free cash flow | $ | 295,757 | | $ | 217,648 | | $ | 585,192 | | $ | 445,463 |
+Free cash flow margin | 34 | % | | 27 | % | | 34 | % | | 28 | % |
+
+
+
+10

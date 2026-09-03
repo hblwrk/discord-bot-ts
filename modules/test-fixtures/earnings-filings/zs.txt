@@ -1,0 +1,522 @@
+EX-99.1
+2
+zs-07312026_991.htm
+EX-99.1
+
+
+
+
+Document
+
+
+
+
+
+
+
+
+Exhibit 99.1
+Zscaler Announces Strong Fourth Quarter and Fiscal 2026 Financial Results
+Achieves strong Q4 and FY26 revenue growth of 25% year over year
+Generates Q4 and FY26 ARR growth of 25% year over year
+SAN JOSE, California - Sept 3, 2026 - Zscaler, Inc. (Nasdaq: ZS), the leader in cloud security, today announced financial results for its fiscal fourth quarter and fiscal year ended July 31, 2026.
+“AI represents one of the most significant opportunities in Zscaler's history. By connecting users, workloads, branches, and now agents directly to the applications they need without placing them on the network, we are uniquely equipped to help companies both combat the threats created by agentic AI and securely deploy AI agents and models,” said Jay Chaudhry, CEO, Chairman and Founder of Zscaler. “Our continued innovation across Zero Trust SASE, Agentic SecOps, Data Security, and Security for AI is driving increased platform adoption and creating new avenues for growth, as reflected in our strong Q4 results. As AI becomes foundational to how organizations operate, we are well positioned to extend our leadership as the cybersecurity platform for the AI era.”
+“We delivered a strong fourth quarter, with revenue and ARR both growing 25% year over year, net new ARR growing 24%, and non-GAAP operating margin reaching a record 24%,” said Kevin Rubin, chief financial officer of Zscaler. “Our growth engine continues to broaden beyond users, with a strong contribution from non-seat-based solutions, continued Z-Flex momentum, record large-deal activity, and improving sales productivity. I am excited about our momentum as we enter fiscal 2027.”
+
+Fourth Quarter Fiscal 2026 Results
+•Revenue: Grew 25% year over year to $898.2 million.
+•ARR: Grew 25% year over year to $3,771 million, of which $246 million was net new ARR during the fourth quarter of fiscal 2026. Excluding the acquisition of Red Canary, which contributed ARR of $141 million, ARR grew 20% to $3,630 million and net new ARR grew 17%.
+•Income (loss) from operations: GAAP loss from operations was $15.5 million, or 2% of revenue, compared to $32.2 million, or 4% of revenue, in the fourth quarter of fiscal 2025. Non-GAAP income from operations was $218.4 million, or a record 24% of revenue, compared to $158.9 million, or 22% of revenue, in the fourth quarter of fiscal 2025.
+•Net income (loss): GAAP net loss was $3.4 million, compared to $17.6 million in the fourth quarter of fiscal 2025. Non-GAAP net income was $198.2 million, compared to $146.7 million in the fourth quarter of fiscal 2025.
+•Net income (loss) per share, diluted: GAAP net loss per share, diluted, was $0.02, compared to $0.11 in the fourth quarter of fiscal 2025. Non-GAAP net income per share was $1.19, compared to $0.89 in the fourth quarter of fiscal 2025.
+•Cash flow: Cash provided by operations was $279.3 million, or 31% of revenue, compared to $250.6 million, or 35% of revenue, in the fourth quarter of fiscal 2025. Free cash flow was $60.8 million, or 7% of revenue, compared to $171.9 million, or 24% of revenue, in the fourth quarter of fiscal 2025, reflecting capex and internal use software of $218.5 million in the fourth quarter of fiscal 2026 versus $78.7 million in the fourth quarter of fiscal 2025.
+•Deferred revenue: Grew 19% year-over-year to $2,926 million as of July 31, 2026.
+Full Year Fiscal 2026 Results
+•Revenue: Grew 25% year over year to $3,353 million. Excluding the acquisition of Red Canary, Revenue grew 20% to $3,209 million.
+•Income (loss) from operations: GAAP loss from operations was $133.3 million, or 4% of revenue, compared to $128.5 million, or 5% of revenue, in fiscal 2025. Non-GAAP income from operations was $767.1 million, or 23% of revenue, compared to $580.1 million, or 22% of revenue, in fiscal 2025.
+1
+
+
+
+
+
+•Net income (loss): GAAP net loss was $63.2 million, compared to $41.5 million in fiscal 2025. Non-GAAP net income was $704.2 million, compared to $534.8 million in fiscal 2025.
+•Net income (loss) per share, diluted: GAAP net loss per share, diluted, was $0.39, compared to $0.27 in fiscal 2025. Non-GAAP net income per share was $4.21, compared to $3.28 in fiscal 2025.
+•Cash flow: Cash provided by operations was $1,130 million, or 34% of revenue, compared to $972.5 million, or 36% of revenue, in fiscal 2025. Free cash flow was $779.1 million, or 23% of revenue, compared to $726.7 million, or 27% of revenue, in fiscal 2025.
+
+
+Change in Non-GAAP Measures Presentation
+Beginning in fiscal 2026, we adopted a long-term projected non-GAAP tax rate of 21%, reduced from the previous rate of 23% which was applied to all prior periods. This adjustment aligns with the enactment of the One Big Beautiful Bill Act. The revised tax rate will apply prospectively. We will continue to assess the appropriate non-GAAP tax rate on a regular basis, which could be subject to changes for a variety of reasons, including the rapidly evolving global tax environment, significant changes in our geographic earnings mix, or other changes to our strategy or business operations.
+
+
+
+Financial Outlook
+For the first quarter of fiscal 2027, the company expects:
+•Revenue of $935 million to $939 million, approximately 19% year-over-year growth.
+•Non-GAAP gross margin of approximately 80%
+•Non-GAAP income from operations of $215 million to $217 million, approximately 25% to 26% year-over-year growth, representing a 23% operating margin.
+•Non-GAAP net income per share of approximately $1.15 to $1.16, assuming approximately 170 million fully diluted shares outstanding and a non-GAAP tax rate of 21%.
+For the full year fiscal 2027, the company expects:
+•ARR of $4.396 billion to $4.426 billion, growth of approximately 16.6% to 17.4%.
+•Revenue of approximately $3.908 billion to $3.938 billion, growth of 16.6% to 17.5%.
+•Non-GAAP gross margin of approximately 80%
+•Non-GAAP income from operations of $924 million to $932 million, growth of approximately 21%.
+•Non-GAAP net income per share of $4.86 to $4.90, assuming approximately 173 million fully diluted shares outstanding and a non-GAAP tax rate of 21%.
+•Free cash flow margin of approximately 23.0 to 23.5%.
+These statements are forward-looking and actual results may differ materially. Refer to the Forward-Looking Statements safe harbor below for information on the factors that could cause our actual results to differ materially from these forward-looking statements.
+
+
+Guidance for non-GAAP income from operations and non-GAAP net income per share exclude, as applicable, stock-based compensation expense and related employer payroll taxes, amortization expense of acquired intangible assets and amortization of debt issuance costs. We have not reconciled our expectations of non-GAAP income from operations and non-GAAP net income per share to their most directly comparable GAAP measures because certain items are out of our control or cannot be reasonably predicted. For those reasons, we are also unable to address the probable significance of the unavailable information, the variability of which may have a significant impact on future results. Accordingly, a reconciliation for the guidance for non-GAAP income from operations and non-GAAP net income per share is not available without unreasonable effort.
+
+
+For further information regarding why we believe that these non-GAAP measures provide useful information to investors, the specific manner in which management uses these measures, and some of the limitations associated with the use of these measures, please refer to the "Explanation of Non-GAAP Financial Measures" section of this press release.
+2
+
+
+
+
+
+
+Conference Call and Webcast Information
+Zscaler will host a conference call for analysts and investors to discuss its fourth quarter of fiscal 2026 and outlook for its first quarter of fiscal 2027 and full year fiscal 2027 today at 1:30 p.m. Pacific time (4:30 p.m. Eastern time).
+| | | | | |
+Date: | Thursday, September 3, 2026 |
+Time: | 1:30 p.m. PT |
+Webcast: | https://ir.zscaler.com
+|
+Dial-in: | To join by phone, register at the following link: (https://register-conf.media-server.com/register/BIe3de1626252546889d2ba4abdf070825). After registering, you will be provided with a dial-in number and a personal PIN that you will need to join the call.
+|
+
+
+
+
+Forward-Looking Statements
+This press release contains forward-looking statements that involve risks and uncertainties, including, but not limited to, statements regarding our future financial and operating performance, including our financial outlook for the first quarter of fiscal 2027 and full year fiscal 2027. There are a significant number of factors that could cause actual results to differ materially from statements made in this press release, including but not limited to: macroeconomic influences and instability, geopolitical events, operations and financial results and the economy in general; risks related to the use of AI in our platform; our ability to identify and effectively implement the necessary changes to address execution challenges; risks associated with managing our rapid growth, including fluctuations from period to period; our limited experience with new products and subscription and support introductions and the risks associated with new products and subscription and support offerings, including the discovery of software bugs; our ability to attract and retain new customers; the failure to timely develop and achieve market acceptance of new products and subscriptions as well as existing products and subscriptions and support; rapidly evolving technological developments in the market for network security products and subscription and support offerings and our ability to remain competitive; length of sales cycles; useful lives of our assets and other estimates; and general market, political, economic and business conditions.
+Additional risks and uncertainties that could affect our financial results are included under the captions “Risk Factors” and “Management’s Discussion and Analysis of Financial Condition and Results of Operations” set forth from time to time in our filings and reports with the Securities and Exchange Commission ("SEC"), including our Quarterly Report on Form 10-Q for the fiscal quarter ended April 30, 2026, filed on May 26, 2026, as well as future filings and reports by us, copies of which are available on our website at ir.zscaler.com and on the SEC’s website at www.sec.gov. You should not rely on these forward-looking statements, as actual outcomes and results may differ materially from those contemplated by these forward-looking statements as a result of such risks and uncertainties. Additional information will also be set forth in other filings that we make with the SEC from time to time. All forward-looking statements in this press release are based on information available to us as of the date hereof, and we do not assume any obligation to update the forward-looking statements provided to reflect events that occur or circumstances that exist after the date on which they were made.
+
+
+
+Use of Non-GAAP Financial Information
+We believe that the presentation of non-GAAP financial information provides important supplemental information to management and investors regarding financial and business trends relating to our financial condition and results of operations. For further information regarding why we believe that these non-GAAP measures provide useful information to investors, the specific manner in which management uses these measures, and some of the limitations associated with the use of these measures, please refer to the “Explanation of Non-GAAP Financial Measures” section of this press release.
+
+
+3
+
+
+
+
+
+
+About Zscaler
+Zscaler (NASDAQ: ZS) accelerates digital transformation so customers can be more agile, efficient, resilient, and secure. The Zscaler Zero Trust Exchange™ platform protects thousands of customers from cyberattacks and data loss by securely connecting users, devices, and applications in any location. Distributed across over 200 public data centers globally and thousands of private sites at the edge, the SASE-based Zero Trust Exchange is the world’s largest in-line cloud security platform.
+Zscaler™ and the other trademarks listed at https://www.zscaler.com/legal/trademarks are either (i) registered trademarks or service marks or (ii) trademarks or service marks of Zscaler, Inc. in the United States and/or other countries. Any other trademarks are the properties of their respective owners.
+
+
+Investor Relations Contacts
+Kim Watkins
+SVP, Investor Relations & Strategic Finance
+ir@zscaler.com
+
+
+Nick Gonzalez
+Media Relations Contact
+press@zscaler.com
+
+
+
+4
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+ZSCALER, INC. |
+Condensed Consolidated Statements of Operations |
+(in thousands, except per share amounts) |
+(unaudited) |
+| | | | | | | |
+| Three Months Ended | | Year Ended |
+| July 31, | | July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Revenue | $ | 898,185 | | | $ | 719,226 | | | $ | 3,352,523 | | | $ | 2,673,115 | |
+Cost of revenue (1) (2) (3)
+| 208,964 | | | 172,240 | | | 777,629 | | | 618,178 | |
+Gross profit | 689,221 | | | 546,986 | | | 2,574,894 | | | 2,054,937 | |
+Operating expenses: | | | | | | | |
+Sales and marketing (1) (2) (3)
+| 381,363 | | | 330,594 | | | 1,495,812 | | | 1,259,158 | |
+Research and development (1) (2) (3)
+| 241,483 | | | 177,606 | | | 903,399 | | | 672,485 | |
+General and administrative (1) (3) (4)
+| 81,867 | | | 71,028 | | | 308,950 | | | 251,754 | |
+Total operating expenses | 704,713 | | | 579,228 | | | 2,708,161 | | | 2,183,397 | |
+Loss from operations | (15,492) | | | (32,242) | | | (133,267) | | | (128,460) | |
+Interest income | 35,042 | | | 33,175 | | | 136,132 | | | 125,364 | |
+Interest expense
+| (2,746) | | | (2,074) | | | (11,794) | | | (9,522) | |
+Other expense, net | (1,900) | | | (762) | | | (8,210) | | | (5,673) | |
+Income (loss) before income taxes | 14,904 | | | (1,903) | | | (17,139) | | | (18,291) | |
+Provision for income taxes | 18,273 | | | 15,675 | | | 46,040 | | | 23,187 | |
+Net loss | $ | (3,369) | | | $ | (17,578) | | | $ | (63,179) | | | $ | (41,478) | |
+Net loss per share, basic and diluted | $ | (0.02) | | | $ | (0.11) | | | $ | (0.39) | | | $ | (0.27) | |
+Weighted-average shares used in computing net loss per share, basic and diluted | 161,872 | | | 156,496 | | | 160,219 | | | 154,404 | |
+
+Includes stock-based compensation expense and related payroll taxes: | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | |
+| | | | | | | |
+Cost of revenue | $ | 22,978 | | | $ | 19,324 | | | $ | 87,469 | | | $ | 70,998 | |
+Sales and marketing | 69,116 | | | 60,780 | | | 294,537 | | | 259,562 | |
+Research and development | 93,176 | | | 69,149 | | | 341,880 | | | 257,663 | |
+General and administrative | 29,938 | | | 31,542 | | | 117,762 | | | 97,311 | |
+Total | $ | 215,208 | | | $ | 180,795 | | | $ | 841,648 | | | $ | 685,534 | |
+
+Includes amortization expense of acquired intangible assets: | | | | | | | | | | | | | | | | | | | | | | | |
+| | | | | |
+| | | | | | | |
+Cost of revenue | $ | 8,003 | | | $ | 3,655 | | | $ | 27,855 | | | $ | 14,975 | |
+Sales and marketing | 4,277 | | | 425 | | | 15,613 | | | 1,700 | |
+Research and development | — | | | — | | | — | | | 145 | |
+Total | $ | 12,280 | | | $ | 4,080 | | | $ | 43,468 | | | $ | 16,820 | |
+
+Includes restructuring and other charges: | | | | | | | | | | | | | | | | | | | | | | | |
+Cost of revenue | $ | 583 | | | $ | 138 | | | $ | 1,333 | | | $ | 138 | |
+Sales and marketing | 3,692 | | | — | | | 6,501 | | | — | |
+Research and development | 617 | | | 4,783 | | | 1,799 | | | 4,783 | |
+General and administrative | 627 | | | — | | | 627 | | | — | |
+Total | $ | 5,519 | | | $ | 4,921 | | | $ | 10,260 | | | $ | 4,921 | |
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+Includes acquisition-related expenses:
+| $ | 923 | | | $ | 1,316 | | | $ | 5,000 | | | $ | 1,316 | |
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+Includes amortization of debt issuance costs:
+| $ | 2,045 | | | $ | 1,346 | | | $ | 8,166 | | | $ | 4,293 | |
+
+5
+
+
+
+
+
+
+| | | | | | | | | | | |
+ZSCALER, INC. |
+Condensed Consolidated Balance Sheets |
+(in thousands) |
+(unaudited) |
+| July 31, | | July 31, |
+| 2026 | | 2025 |
+Assets | | | |
+Current assets: | | | |
+Cash and cash equivalents | $ | 928,354 | | | $ | 2,389,023 | |
+Short-term investments | 2,545,797 | | | 1,183,386 | |
+Accounts receivable, net | 1,149,073 | | | 992,181 | |
+Deferred contract acquisition costs | 215,577 | | | 180,819 | |
+Prepaid expenses and other current assets | 192,432 | | | 148,881 | |
+Total current assets | 5,031,233 | | | 4,894,290 | |
+Property and equipment, net | 753,001 | | | 543,377 | |
+Operating lease right-of-use assets | 137,231 | | | 89,772 | |
+Deferred contract acquisition costs, noncurrent | 402,423 | | | 328,722 | |
+Acquired intangible assets, net | 214,355 | | | 47,323 | |
+Goodwill | 1,218,098 | | | 417,730 | |
+Other noncurrent assets | 110,373 | | | 98,674 | |
+Total assets | $ | 7,866,714 | | | $ | 6,419,888 | |
+| | | |
+Liabilities and Stockholders’ Equity | | | |
+Current liabilities: | | | |
+Accounts payable | $ | 47,972 | | | $ | 46,906 | |
+Accrued expenses and other current liabilities | 133,304 | | | 93,984 | |
+Accrued compensation | 234,640 | | | 181,807 | |
+Deferred revenue | 2,480,501 | | | 2,054,417 | |
+Operating lease liabilities | 64,894 | | | 52,497 | |
+Total current liabilities | 2,961,311 | | | 2,429,611 | |
+Convertible senior notes | 1,696,355 | | | 1,700,727 | |
+Deferred revenue, noncurrent | 445,272 | | | 413,609 | |
+Operating lease liabilities, noncurrent | 94,575 | | | 43,352 | |
+Other noncurrent liabilities | 70,940 | | | 33,316 | |
+Total liabilities | 5,268,453 | | | 4,620,615 | |
+Stockholders’ Equity | | | |
+Common stock | 163 | | | 159 | |
+Additional paid-in capital | 3,874,379 | | | 2,980,591 | |
+Accumulated other comprehensive income (loss) | (23,544) | | | 8,081 | |
+Accumulated deficit | (1,252,737) | | | (1,189,558) | |
+Total stockholders’ equity | 2,598,261 | | | 1,799,273 | |
+Total liabilities and stockholders’ equity | $ | 7,866,714 | | | $ | 6,419,888 | |
+
+
+
+6
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+ZSCALER, INC. |
+Condensed Consolidated Statements of Cash Flows |
+(in thousands) |
+(unaudited) |
+| | | | | | | |
+| Three Months Ended | | Year Ended |
+| July 31, | | July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Cash Flows from Operating Activities | | | | | | | |
+Net loss | $ | (3,369) | | | $ | (17,578) | | | $ | (63,179) | | | $ | (41,478) | |
+Adjustments to reconcile net loss to cash provided by operating activities: | | | | | | | |
+Depreciation and amortization expense | 42,933 | | | 30,260 | | | 148,544 | | | 104,361 | |
+Amortization expense of acquired intangible assets | 12,280 | | | 4,080 | | | 43,468 | | | 16,820 | |
+Amortization of deferred contract acquisition costs | 54,018 | | | 44,811 | | | 203,693 | | | 166,310 | |
+Amortization of debt issuance costs | 2,045 | | | 1,346 | | | 8,166 | | | 4,293 | |
+Operating lease costs | 22,487 | | | 15,102 | | | 82,934 | | | 62,998 | |
+Stock-based compensation expense | 211,591 | | | 172,654 | | | 821,923 | | | 661,350 | |
+Accretion of investments purchased at a discount | (87) | | | (2,061) | | | (4,655) | | | (15,923) | |
+Unrealized (gains) losses on hedging transactions, net | 264 | | | 1,231 | | | (772) | | | 369 | |
+Deferred income taxes | (20,713) | | | 3,490 | | | (20,387) | | | (14,351) | |
+Other | 627 | | | (72) | | | 7,484 | | | 987 | |
+Changes in operating assets and liabilities, net of effects of business acquisitions: | | | | | | | |
+Accounts receivable | (420,031) | | | (376,516) | | | (139,989) | | | (256,010) | |
+Deferred contract acquisition costs | (127,492) | | | (90,467) | | | (312,152) | | | (230,453) | |
+Prepaid expenses, other current and noncurrent assets | 977 | | | (29,390) | | | (28,076) | | | (41,572) | |
+Accounts payable | 9,365 | | | (11,415) | | | (10,627) | | | 17,532 | |
+Accrued expenses, other current and noncurrent liabilities | 18,243 | | | 12,213 | | | 36,417 | | | 5,180 | |
+Accrued compensation | 54,003 | | | 26,690 | | | 44,590 | | | 20,997 | |
+Deferred revenue | 445,776 | | | 483,041 | | | 379,873 | | | 573,052 | |
+Operating lease liabilities | (23,632) | | | (16,815) | | | (67,601) | | | (62,009) | |
+Net cash provided by operating activities | 279,285 | | | 250,604 | | | 1,129,654 | | | 972,453 | |
+Cash Flows from Investing Activities | | | | | | | |
+Purchases of property, equipment and other assets | (199,837) | | | (60,046) | | | (277,304) | | | (164,252) | |
+Capitalized internal-use software | (18,684) | | | (18,637) | | | (73,207) | | | (81,508) | |
+Payments for business acquisitions, net of cash acquired | (148,026) | | | — | | | (918,074) | | | (834) | |
+Purchase of strategic investments | (6,171) | | | (38) | | | (10,413) | | | (824) | |
+Purchases of short-term investments | (282,564) | | | (393,993) | | | (2,254,279) | | | (1,280,629) | |
+Proceeds from maturities of short-term investments | 171,232 | | | 225,132 | | | 589,880 | | | 1,101,025 | |
+Proceeds from sale of short-term investments | 113,097 | | | — | | | 290,665 | | | — | |
+Net cash used in investing activities | (370,953) | | | (247,582) | | | (2,652,732) | | | (427,022) | |
+Cash Flows from Financing Activities | | | | | | | |
+Proceeds from issuance of common stock upon exercise of stock options | — | | | 84 | | | 3,984 | | | 3,581 | |
+Proceeds from issuance of common stock under the employee stock purchase plan | 37,910 | | | 41,219 | | | 59,416 | | | 63,563 | |
+Payment of holdback amounts related to a business acquisition | — | | | (352) | | | (110) | | | (792) | |
+Proceeds from issuance of the 2028 convertible senior notes | — | | | 1,725,000 | | | — | | | 1,725,000 | |
+Payments for issuance costs related to the 2028 convertible senior notes | — | | | (24,150) | | | (684) | | | (24,150) | |
+Purchases of capped calls related to the 2028 convertible senior notes | — | | | (196,650) | | | (197) | | | (196,650) | |
+Payments for settlement of the 2025 convertible senior notes | — | | | (1,150,040) | | | — | | | (1,150,040) | |
+Net cash provided by financing activities | 37,910 | | | 395,111 | | | 62,409 | | | 420,512 | |
+Net increase (decrease) in cash and cash equivalents | (53,758) | | | 398,133 | | | (1,460,669) | | | 965,943 | |
+Cash and cash equivalents at beginning of period | 982,112 | | | 1,990,890 | | | 2,389,023 | | | 1,423,080 | |
+Cash and cash equivalents at end of period | $ | 928,354 | | | $ | 2,389,023 | | | $ | 928,354 | | | $ | 2,389,023 | |
+
+7
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+ZSCALER, INC. |
+Reconciliation of GAAP to Non-GAAP Financial Measures |
+(in thousands, except percentages) |
+(unaudited) |
+| | | | | | | |
+| Three Months Ended | | Year Ended |
+| July 31, | | July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+| | | | | | | |
+Revenue | $ | 898,185 | | | $ | 719,226 | | | $ | 3,352,523 | | | $ | 2,673,115 | |
+| | | | | | | |
+Non-GAAP Gross Profit and Non-GAAP Gross Margin | | | | | | | |
+GAAP gross profit | $ | 689,221 | | | $ | 546,986 | | | $ | 2,574,894 | | | $ | 2,054,937 | |
+Add: | | | | | | | |
+Stock-based compensation expense and related payroll taxes
+| 22,978 | | | 19,324 | | | 87,469 | | | 70,998 | |
+Amortization expense of acquired intangible assets | 8,003 | | | 3,655 | | | 27,855 | | | 14,975 | |
+Restructuring and other charges | 583 | | | 138 | | | 1,333 | | | 138 | |
+Non-GAAP gross profit | $ | 720,785 | | | $ | 570,103 | | | $ | 2,691,551 | | | $ | 2,141,048 | |
+GAAP gross margin | 77 | % | | 76 | % | | 77 | % | | 77 | % |
+Non-GAAP gross margin | 80 | % | | 79 | % | | 80 | % | | 80 | % |
+| | | | | | | |
+Non-GAAP Income from Operations and Non-GAAP Operating Margin | | | | | | | |
+GAAP loss from operations | $ | (15,492) | | | $ | (32,242) | | | $ | (133,267) | | | $ | (128,460) | |
+Add: | | | | | | | |
+Stock-based compensation expense and related payroll taxes
+| 215,208 | | | 180,795 | | | 841,648 | | | 685,534 | |
+Amortization expense of acquired intangible assets | 12,280 | | | 4,080 | | | 43,468 | | | 16,820 | |
+Restructuring and other charges | 5,519 | | | 4,921 | | | 10,260 | | | 4,921 | |
+Acquisition-related expenses | 923 | | | 1,316 | | | 5,000 | | | 1,316 | |
+Non-GAAP income from operations | $ | 218,438 | | | $ | 158,870 | | | $ | 767,109 | | | $ | 580,131 | |
+GAAP operating margin | (2) | % | | (4) | % | | (4) | % | | (5) | % |
+Non-GAAP operating margin | 24 | % | | 22 | % | | 23 | % | | 22 | % |
+
+
+
+Includes acquisition-related stock-based compensation expense and related payroll taxes of $0.1 million for the fourth quarter of fiscal 2025, and $0.1 million and $0.2 million for fiscal 2026 and fiscal 2025, respectively. Acquisition-related stock-based compensation includes deferred merger consideration subject to post-combination service vesting conditions, performance stock awards, and acquisition replacement awards.
+Includes acquisition-related stock-based compensation expense and related payroll taxes of $19.8 million and $8.2 million for the fourth quarter of fiscal 2026 and fiscal 2025, respectively, and $57.4 million and $33.1 million for fiscal 2026 and fiscal 2025, respectively.
+
+
+
+8
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+ZSCALER, INC. |
+Reconciliation of GAAP to Non-GAAP Financial Measures |
+(in thousands, except per share amounts) |
+(unaudited) |
+| | | | | | | |
+| Three Months Ended | | Year Ended |
+| July 31, | | July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Non-GAAP Net Income per Share, Diluted | | | | | | | |
+Net loss | $ | (3,369) | | | $ | (17,578) | | | $ | (63,179) | | | $ | (41,478) | |
+Add: GAAP provision for income taxes | 18,273 | | | 15,675 | | | 46,040 | | | 23,187 | |
+GAAP income (loss) before income taxes | 14,904 | | | (1,903) | | | (17,139) | | | (18,291) | |
+Add: | | | | | | | |
+Stock-based compensation expense and related payroll taxes
+| 215,208 | | | 180,795 | | | 841,648 | | | 685,534 | |
+Amortization expense of acquired intangible assets | 12,280 | | | 4,080 | | | 43,468 | | | 16,820 | |
+Restructuring and other charges | 5,519 | | | 4,921 | | | 10,260 | | | 4,921 | |
+Acquisition-related expenses | 923 | | | 1,316 | | | 5,000 | | | 1,316 | |
+Amortization of debt issuance costs | 2,045 | | | 1,346 | | | 8,166 | | | 4,293 | |
+Non-GAAP net income before income taxes | 250,879 | | | 190,555 | | | 891,403 | | | 694,593 | |
+Non-GAAP provision for income taxes
+| 52,684 | | | 43,830 | | | 187,193 | | | 159,757 | |
+Non-GAAP net income | $ | 198,195 | | | $ | 146,725 | | | $ | 704,210 | | | $ | 534,836 | |
+| | | | | | | |
+GAAP provision for income taxes | 18,273 | | | 15,675 | | | 46,040 | | | 23,187 | |
+Add: Income tax and other tax adjustments
+| 34,411 | | | 28,155 | | | 141,153 | | | 136,570 | |
+Non-GAAP provision for income taxes
+| $ | 52,684 | | | $ | 43,830 | | | $ | 187,193 | | | $ | 159,757 | |
+Non-GAAP effective tax rate
+| 21 | % | | 23 | % | | 21 | % | | 23 | % |
+| | | | | | | |
+Non-GAAP net income | $ | 198,195 | | | $ | 146,725 | | | $ | 704,210 | | | $ | 534,836 | |
+Add: Non-GAAP interest expense, net of tax related to the
+convertible senior notes | — | | | 183 | | | — | | | 1,011 | |
+Numerator used in computing non-GAAP net income per share, diluted | $ | 198,195 | | | $ | 146,908 | | | $ | 704,210 | | | $ | 535,847 | |
+| | | | | | | |
+GAAP net loss per share, diluted | $ | (0.02) | | | $ | (0.11) | | | $ | (0.39) | | | $ | (0.27) | |
+Stock-based compensation expense and related payroll taxes
+| 1.29 | | | 1.09 | | | 5.04 | | | 4.20 | |
+Amortization expense of acquired intangible assets | 0.07 | | | 0.02 | | | 0.26 | | | 0.10 | |
+Restructuring and other charges | 0.03 | | | 0.03 | | | 0.06 | | | 0.03 | |
+Acquisition-related expenses | 0.01 | | | 0.01 | | | 0.03 | | | 0.01 | |
+Amortization of debt issuance costs | 0.01 | | | 0.01 | | | 0.05 | | | 0.03 | |
+Income tax and other tax adjustments
+| (0.21) | | | (0.17) | | | (0.84) | | | (0.84) | |
+Non-GAAP interest expense, net of tax related to the
+convertible senior notes | — | | | — | | | — | | | 0.01 | |
+Adjustment to total fully diluted earnings per share
+| 0.01 | | | 0.01 | | | — | | | 0.01 | |
+Non-GAAP net income per share, diluted | $ | 1.19 | | | $ | 0.89 | | | $ | 4.21 | | | $ | 3.28 | |
+| | | | | | | |
+Weighted-average shares used in computing GAAP net
+loss per share, diluted | 161,872 | | | 156,496 | | | 160,219 | | | 154,404 | |
+Add: Outstanding potentially dilutive equity incentive awards | 706 | | | 4,457 | | | 2,959 | | | 3,949 | |
+Add: Convertible senior notes | 3,925 | | | 6,211 | | | 3,925 | | | 7,269 | |
+Less: Antidilutive impact of capped call transactions
+| — | | | (1,580) | | | — | | | (2,210) | |
+Weighted-average shares used in computing non-GAAP net income per share, diluted | 166,503 | | | 165,584 | | | 167,103 | | | 163,412 | |
+
+________
+
+
+9
+
+
+
+
+
+Includes acquisition-related stock-based compensation expense and related payroll taxes of $19.8 million and $8.2 million for the fourth quarter of fiscal 2026 and fiscal 2025, respectively, and $57.4 million and $33.1 million for fiscal 2026 and fiscal 2025, respectively.
+
+
+Beginning in fiscal 2026, we adopted a long-term projected non-GAAP tax rate of 21%, reduced from the previous rate of 23%, which was applied to all prior periods. This adjustment aligns with the enactment of the One Big Beautiful Bill Act. The revised tax rate will apply prospectively. We will continue to assess the appropriate non-GAAP tax rate on a regular basis, which could be subject to changes for a variety of reasons, including the rapidly evolving global tax environment, significant changes in our geographic earnings mix, or other changes to our strategy or business operations.
+
+
+The dilutive impact of acquisition-related stock-based compensation expense and related payroll taxes was $0.12 and $0.05 per share for the fourth quarter of fiscal 2026 and fiscal 2025, respectively, and $0.34 and $0.20 per share for fiscal 2026 and fiscal 2025, respectively.
+
+
+The sum of the fully diluted earnings per share impact of individual reconciling items may not total to fully diluted non-GAAP net income per share due to the weighted-average shares used in computing the GAAP net loss per share differs from the weighted-average shares used in computing the non-GAAP net income per share, and due to rounding of the individual reconciling items. The GAAP net loss per share calculation uses a lower share count as it excludes potentially dilutive shares, which are included in calculating the non-GAAP net income per share.
+
+
+We exclude the in-the-money portion of the convertible senior notes for non-GAAP weighted-average diluted shares as they are covered by our capped call transactions. Our outstanding capped call transactions are antidilutive under GAAP but are expected to mitigate the dilutive effect of the convertible senior notes, and therefore are included in the calculation of non-GAAP diluted shares outstanding. The capped calls have an antidilutive impact when the average stock price of our common stock in a given period is higher than their exercise price.
+
+
+
+
+10
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+ZSCALER, INC. |
+Reconciliation of GAAP to Non-GAAP Financial Measures |
+(in thousands, except percentages) |
+(unaudited) |
+| | | | | | | |
+| Three Months Ended | | Year Ended |
+| July 31, | | July 31, |
+| 2026 | | 2025 | | 2026 | | 2025 |
+Free Cash Flow | | | | | | | |
+Net cash provided by operating activities | $ | 279,285 | | | $ | 250,604 | | | $ | 1,129,654 | | | $ | 972,453 | |
+Less: | | | | | | | |
+Purchases of property, equipment and other assets
+| (199,837) | | | (60,046) | | | (277,304) | | | (164,252) | |
+Capitalized internal-use software
+| (18,684) | | | (18,637) | | | (73,207) | | | (81,508) | |
+Free cash flow | $ | 60,764 | | | $ | 171,921 | | | $ | 779,143 | | | $ | 726,693 | |
+| | | | | | | |
+Free Cash Flow Margin | | | | | | | |
+Net cash provided by operating activities, as a percentage of revenue | 31 | % | | 35 | % | | 34 | % | | 36 | % |
+Less: | | | | | | | |
+Purchases of property, equipment and other assets, as a percentage of revenue
+| (22) | % | | (8) | % | | (8) | % | | (6) | % |
+Capitalized internal-use software, as a percentage of revenue
+| (2) | % | | (3) | % | | (3) | % | | (3) | % |
+Free cash flow margin | 7 | % | | 24 | % | | 23 | % | | 27 | % |
+
+
+
+
+
+11
+
+
+
+
+
+
+ZSCALER, INC.
+Explanation of Non-GAAP and Other Financial Measures
+In addition to our results determined in accordance with generally accepted accounting principles in the United States of America (GAAP), we believe the following non-GAAP measures are useful in evaluating our operating performance. We use the following non-GAAP financial information to evaluate our ongoing operations and for internal planning and forecasting purposes. We believe that non-GAAP financial information, when taken collectively, may be helpful to investors because it provides consistency and comparability with past financial performance. However, non-GAAP financial information is presented for supplemental informational purposes only, as it has limitations as an analytical tool and should not be considered in isolation or as a substitute for financial information presented in accordance with GAAP. In particular, free cash flow is not a substitute for cash provided by operating activities. Additionally, the utility of free cash flow as a measure of our liquidity is further limited as it does not represent the total increase or decrease in our cash balance for a given period. In addition, other companies, including companies in our industry, may calculate similarly titled non-GAAP measures differently or may use other measures to evaluate their performance, all of which could reduce the usefulness of our non-GAAP financial measures as tools for comparison. A reconciliation of our historical non-GAAP financial measures to their most directly comparable financial measures stated in accordance with GAAP has been included in this press release. There is no GAAP measure that is comparable to ARR, so we have not reconciled the ARR data included to any GAAP measure. Investors are cautioned that there are a number of limitations associated with the use of non-GAAP financial measures and key metrics as analytical tools. Investors are encouraged to review these reconciliations, and not to rely on any single financial measure to evaluate our business.
+Expenses Excluded from Non-GAAP Measures
+Stock-based compensation expense is excluded primarily because it is a non-cash expense that management believes is not reflective of our ongoing operational performance. Employer payroll taxes related to stock-based compensation, which is a cash expense, are excluded because these are tied to the timing and size of the exercise or vesting of the underlying equity incentive awards and the price of our common stock at the time of vesting or exercise, which may vary from period to period independent of the operating performance of our business. Amortization expense of acquired intangible assets and amortization of debt issuance costs from the convertible senior notes are excluded because these are non-cash expenses and are not reflective of our ongoing operational performance. Acquisition-related expenses incurred with business acquisitions are excluded because these are not reflective of our ongoing operational performance. Restructuring and other charges includes severance and termination benefits in connection with a restructuring plan to streamline operations and to align people, roles and projects to our strategic priorities. These expenses are excluded because they fluctuate in amount and frequency and are not reflective of our core business operating performance.
+Beginning in fiscal 2026, we adopted a long-term projected non-GAAP tax rate of 21%, reduced from the previous rate of 23% which was applied to all prior periods. This adjustment aligns with the enactment of the One Big Beautiful Bill Act. The revised tax rate will apply prospectively. We will continue to assess the appropriate non-GAAP tax rate on a regular basis, which could be subject to changes for a variety of reasons, including the rapidly evolving global tax environment, significant changes in our geographic earnings mix, or other changes to our strategy or business operations.
+
+
+Non-GAAP and Other Financial Measures
+Non-GAAP Gross Profit and Non-GAAP Gross Margin. We define non-GAAP gross profit as GAAP gross profit excluding stock-based compensation expense and related employer payroll taxes, amortization expense of acquired intangible assets and restructuring and other charges. We define non-GAAP gross margin as non-GAAP gross profit as a percentage of revenue.
+Non-GAAP Income from Operations and Non-GAAP Operating Margin. We define non-GAAP income from operations as GAAP loss from operations excluding stock-based compensation expense and related employer payroll taxes, amortization expense of acquired intangible assets, restructuring and other charges and acquisition-related expenses. We define non-GAAP operating margin as non-GAAP income from operations as a percentage of revenue.
+Non-GAAP Net Income per Share, Diluted. We define non-GAAP net income as GAAP net loss excluding stock-based compensation expense and related employer payroll taxes, amortization expense of acquired intangible assets, restructuring and other charges, amortization of debt issuance costs, acquisition-related expenses and the non-GAAP provision for income taxes adjustment. We define non-GAAP net income per share, diluted, as non-GAAP net income plus the applicable non-GAAP interest expense related to the convertible senior notes divided by the weighted-average diluted shares outstanding. The weighted-average diluted shares outstanding includes the effect of potentially diluted common stock equivalents outstanding during the period and the anti-dilutive impact of the capped call transactions entered into in connection with the convertible senior notes.
+12
+
+
+
+
+
+Annual Recurring Revenue. ARR refers to the next 12 months of revenue from subscription contracts as of the measurement date. To establish ARR for a customer, we assume that any contract expiring during the next 12 months will be renewed under the existing terms.
+Bookings. We define bookings as the total customer contract value over the entire duration of each such customer contract. This includes all recurring subscription fees committed for the full term of each such customer contract.
+Free Cash Flow and Free Cash Flow Margin. We define free cash flow as net cash provided by operating activities less purchases of property, equipment and other assets and capitalized internal-use software. We define free cash flow margin as free cash flow divided by revenue. We believe that free cash flow and free cash flow margin are useful indicators of liquidity that provide information to management and investors about the amount of cash generated from our operations that, after the investments in property, equipment and other assets and capitalized internal-use software, can be used for strategic initiatives.
+13
