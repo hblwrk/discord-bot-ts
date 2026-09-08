@@ -233,6 +233,33 @@ export function getQuarterLabel(text: string): string | undefined {
     }
   }
 
+  // A combined Q4/full-year title can put the fiscal year only in its ending date:
+  // "Announces Financial Results for the Fourth Quarter and Fiscal Year Ended June 30,
+  // 2026". Preserve the named fiscal quarter instead of deriving calendar Q2 from June.
+  const combinedFiscalYearEndedMatch = leadingText.match(
+    /\b(?:reports?|announces?)\s+(?:financial\s+)?results\s+for\s+(?:the\s+)?(first|second|third|fourth)[\s–—-]+quarter\s+and\s+(?:fiscal\s+year|full[\s–—-]+year)\s+ended\s+[A-Z][a-z]+\s+\d{1,2},\s+(20\d{2})\b/i,
+  );
+  if (undefined !== combinedFiscalYearEndedMatch?.[1] && undefined !== combinedFiscalYearEndedMatch[2]) {
+    const quarter = getQuarterFromName(combinedFiscalYearEndedMatch[1]);
+    if (quarter) {
+      return `${quarter} ${combinedFiscalYearEndedMatch[2]}`;
+    }
+  }
+
+  // Some fiscal retailers title the release "Announces First Quarter Results" without a
+  // year, then name that year in a dedicated "Fiscal 2027 Outlook" heading. Those two
+  // declarations identify Q1 FY2027; the July statement date alone would imply calendar Q3.
+  const bareTitleQuarterMatch = leadingText.match(
+    /\b(?:reports?|announces?)\s+(?:financial\s+)?(first|second|third|fourth)[\s–—-]+quarter\s+(?:financial\s+)?results\b/i,
+  );
+  const fiscalOutlookYearMatch = text.match(/\bfiscal\s+(20\d{2})\s+(?:financial\s+)?outlook\b/i);
+  if (undefined !== bareTitleQuarterMatch?.[1] && undefined !== fiscalOutlookYearMatch?.[1]) {
+    const quarter = getQuarterFromName(bareTitleQuarterMatch[1]);
+    if (quarter) {
+      return `${quarter} ${fiscalOutlookYearMatch[1]}`;
+    }
+  }
+
   // A half-year release is not a quarterly result. Do not infer Q3 from the first guidance
   // sentence merely because no quarter appears in the H1 title.
   if (/\b(?:H1|first\s+half|six\s+months)\b.{0,120}\b(?:20\d{2}\s+)?(?:financial\s+)?results\b/i.test(leadingText) ||

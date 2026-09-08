@@ -288,7 +288,7 @@ function isUnderSegmentResultsHeading(lines: string[], lineIndex: number): boole
   return lines
     .slice(Math.max(0, lineIndex - 12), lineIndex)
     .some(line => line.length <= 140 &&
-      /\b(?:reporting\s+segments?|solutions\s+group)\b/i.test(line));
+      /\b(?:reporting\s+segments?|solutions\s+group|summary\s+by\s+category)\b/i.test(line));
 }
 
 export function hasStandaloneFullYearPeriod(text: string): boolean {
