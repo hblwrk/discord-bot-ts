@@ -1,16 +1,18 @@
-import {readFileSync} from "node:fs";
 import {describe, expect, test} from "vitest";
 import {parseEarningsDocument} from "./earnings-results-format.ts";
+import {
+  listEarningsFilingFixtures,
+  readEarningsFilingFixture,
+} from "./test-utils/earnings-filing-fixtures.ts";
 
-// Every entry is a real SEC earnings exhibit, stored as the text the parser sees after
-// html-to-text conversion (verified to parse identically to the original HTML). Each
-// expected figure below was checked against the source document by hand.
+// Every entry is a real SEC earnings exhibit, stored as gzip-compressed text exactly as the
+// parser sees it after html-to-text conversion (verified to parse identically to the original
+// HTML). Each expected figure below was checked against the source document by hand.
 //
-// The point of this corpus is coverage the hand-written fixtures cannot give: those are
-// simplified documents that usually offer a second candidate which happens to be right, so
-// removing a guard is masked and the suite stays green. These are whole filings with all
-// their distractors — prior-year columns, segment breakdowns, guidance ranges, footnote
-// markers — so a selection rule that regresses changes a figure here.
+// The full corpus complements focused regression fixtures with integration coverage. These
+// filings retain every distractor — prior-year columns, segment breakdowns, guidance ranges,
+// and footnote markers — so interactions among otherwise-correct selection rules remain
+// visible.
 //
 // Sources are https://www.sec.gov/Archives/edgar/data/<source>.
 const filingCorpus: {
@@ -2885,7 +2887,7 @@ describe("earnings result filing corpus", () => {
   for (const filing of filingCorpus) {
     test(`${filing.ticker.toUpperCase()} (${filing.company}) parses to its verified figures`, () => {
       const document = parseEarningsDocument(
-        readFileSync(`modules/test-fixtures/earnings-filings/${filing.ticker}.txt`, "utf8"),
+        readEarningsFilingFixture(filing.ticker),
       );
 
       expect(document.quarterLabel).toBe(filing.quarterLabel);
@@ -2899,6 +2901,7 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(177);
+    expect(filingCorpus.map(filing => filing.ticker).sort())
+      .toEqual(listEarningsFilingFixtures());
   });
 });
