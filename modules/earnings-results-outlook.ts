@@ -1242,6 +1242,11 @@ function getLineOutlookPeriodLabel(line: string): string | undefined {
     if (undefined === writtenQuarterMatch[1]) {
       continue;
     }
+    const periodEndIndex = (writtenQuarterMatch.index ?? 0) + writtenQuarterMatch[0].length;
+    if (/\bbased\s+on\s*$/i.test(line.slice(0, writtenQuarterMatch.index)) &&
+        /^\s+results\b/i.test(line.slice(periodEndIndex))) {
+      continue;
+    }
     const quarterByName = new Map([
       ["first", "Q1"],
       ["second", "Q2"],
@@ -1650,14 +1655,16 @@ function getOutlookValueSegments(
     line.slice(0, patternMatch.index),
   );
   const forwardLookingRepeatedCaptionSegments = followingMetricMatches
-    .filter(candidateMatch =>
-      true === currentCaptionPattern.test(candidateMatch[0]) &&
-      /\b20\d{2}\b.{0,80}\b(?:was|were|totaled|amounted)\b/i.test(
-        rawValueText.slice(0, candidateMatch.index),
-      ) &&
-      currentCaptionQualifier === getOutlookCaptionQualifier(
-        rawValueText.slice(0, candidateMatch.index),
-      ))
+    .filter(candidateMatch => {
+      const precedingText = rawValueText.slice(0, candidateMatch.index);
+      const followsHistoricalValue =
+        /\b20\d{2}\b.{0,80}\b(?:was|were|totaled|amounted)\b/i.test(precedingText) &&
+        currentCaptionQualifier === getOutlookCaptionQualifier(precedingText);
+      const followsExplicitQuarterForecast =
+        /\bexpects?\s+(?:the\s+)?(?:first|second|third|fourth)[\s–—-]+quarter\s*$/i.test(precedingText);
+      return true === currentCaptionPattern.test(candidateMatch[0]) &&
+        (true === followsHistoricalValue || true === followsExplicitQuarterForecast);
+    })
     .map(candidateMatch => {
       const candidateStart = (candidateMatch.index ?? 0) + candidateMatch[0].length;
       const nextCaption = followingMetricMatches.find(followingMatch =>
@@ -1665,7 +1672,8 @@ function getOutlookValueSegments(
       return rawValueText.slice(candidateStart, nextCaption?.index ?? rawValueText.length);
     })
     .filter(candidateText =>
-      /\b(?:expects?|expected|forecast|projected|guidance|outlook)\b/i.test(candidateText));
+      /\b(?:expects?|expected|forecast|projected|guidance|outlook)\b/i.test(candidateText) ||
+      /[$€£¥]\s*\d|\d+(?:\.\d+)?\s*%/.test(candidateText));
   const nextMetricMatch = followingMetricMatches
     .find(candidateMatch => {
       const precedingText = rawValueText.slice(0, candidateMatch.index);
