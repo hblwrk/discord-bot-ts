@@ -2830,6 +2830,24 @@ const filingCorpus: {
     source: "1676238/000167623826000039/a20260731-brazeincxq227ear.htm",
     ticker: "brze",
   },
+  {
+    // Segment sales prose contains smaller current-quarter values than the consolidated
+    // headline. The outlook also contrasts second-half guidance with an explicit Q4 range.
+    company: "Mission Produce",
+    metrics: [
+      ["adjusted_eps", "$0.18"],
+      ["gaap_eps", "-$0.08"],
+      ["revenue", "$450M"],
+      ["net_income", "-$6.5M"],
+    ],
+    outlook: [
+      ["Q4 Adj EBITDA", "$52M to $55M"],
+      ["FY2026 Capex", "$45M"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "1802974/000180297426000042/exh991avoq32026earningsrel.htm",
+    ticker: "avo",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -2850,6 +2868,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(174);
+    expect(filingCorpus).toHaveLength(175);
   });
 });
