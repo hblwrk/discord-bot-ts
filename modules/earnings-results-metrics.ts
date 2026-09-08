@@ -107,6 +107,8 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /\bearnings\s+per\s+diluted\s+(?:class\s+[A-Z]\s+)?(?:nonvoting\s+)?common\s+share\s+was\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?\d+(?:\.\d+)?\)?)/i,
       /\bbasic\s+net\s+income\s+per\s+share\s+was\s+US\s*\$\s*\d+(?:\.\d+)?\s*\(\s*(?<metricValue>US\s*\$\s*\d+(?:\.\d+)?)(?:\s+per\s+ADS\s*\))?/i,
       /\bbasic\s+and\s+diluted\s+earnings\s+per\s+ADS\b.{0,100}?\(\s*(?<metricValue>US\s*\$\s*\d+(?:\.\d+)?)\s*\)/i,
+      /\bbasic\s+and\s+diluted\s+net\s+loss\s+per\s+(?:American\s+depositary\s+share(?:\s*\(\s*["“”']?ADS["“”']?\s*\))?|ADS)(?=\s|$)[^.!?]{0,160}?\bwas\s+(?<metricValue>US\s*\$\s*\d+(?:\.\d+)?)/i,
+      /\bbasic\s+and\s+diluted\s+net\s+loss\s+per\s+American\s+depositary\b/i,
       /\b(?:gaap\s+)?net\s+loss\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?)\s+per\s+(?:fully\s+)?(?:common\s+)?diluted\s+share\b/i,
       /\bnet\s+(?:income|earnings)\s+attributable\s+to\s+(?:common\s+)?(?:stockholders|shareholders)\s+per\s+share\s*[–—-]\s*diluted\b/i,
       // This plain GAAP loss caption can share a sentence with non-GAAP earnings. Keep it
@@ -151,7 +153,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /\brevenues?\b/i,
       /\bsales\b/i,
     ],
-    skipPattern: new RegExp(String.raw`\bcosts?\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bforecast(?:s|ed|ing)?\b|\bsystemwide\s+sales\b|\bannual\s+recurring\s+revenues?\b|\bsales\s+and\s+marketing\b|\b(?:as\s+a\s+)?percentage\s+of\s+(?:net\s+)?sales\b|(?:%|\bpercent)\s+of\s+revenues?\b|\brevenue\s+from\s+material\s+rights\b|\bnet\s+revenues?\s+from\b|\bsubscription\s+and\s+services?\s+revenues?\b|\b(?:value[-\s]*added\s+services?|VAS)\s+revenues?\b|\badvertising\s+and\s+marketing\s+revenues?\b|\blicensing\s+and\s+related\s+revenues?\b|\broyalty\s+revenues?\b|\bsales\s+of\s+equipment\b|\b(?:${unitedStatesSource}|U\.K\.|US|international|domestic|non-US|segment)\s+(?:commercial\s+|government\s+)?revenues?\b|\b(?:${unitedStatesSource}|US|international|worldwide|non-US)\s+(?:[A-Z][A-Za-z]+\s+){1,2}revenues?\b|\brevenues?\s+(?:in|outside)\s+the\s+${unitedStatesSource}|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b`, "i"),
+    skipPattern: new RegExp(String.raw`\bcosts?\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bforecast(?:s|ed|ing)?\b|\bsystemwide\s+sales\b|\bannual\s+recurring\s+revenues?\b|\bsales\s+and\s+marketing\b|\b(?:as\s+a\s+)?percentage\s+of\s+(?:net\s+)?sales\b|(?:%|\bpercent(?:age)?)\s+of\s+(?:net\s+)?(?:sales|revenues?)\b|\brevenue\s+from\s+material\s+rights\b|\bnet\s+revenues?\s+from\b|\bsubscription\s+and\s+services?\s+revenues?\b|\b(?:value[-\s]*added\s+services?|VAS)\s+revenues?\b|\badvertising\s+and\s+marketing\s+revenues?\b|\blicensing\s+and\s+related\s+revenues?\b|\broyalty\s+revenues?\b|\bsales\s+of\s+equipment\b|\b(?:${unitedStatesSource}|U\.K\.|US|international|domestic|non-US|segment)\s+(?:commercial\s+|government\s+)?revenues?\b|\b(?:${unitedStatesSource}|US|international|worldwide|non-US)\s+(?:[A-Z][A-Za-z]+\s+){1,2}revenues?\b|\brevenues?\s+(?:in|outside)\s+the\s+${unitedStatesSource}|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b`, "i"),
     valueType: "money",
   },
   {
@@ -159,6 +161,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     label: "Net income",
     patterns: [
       /\bconsolidated\s+net\s+income\s+was\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?\d+(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\)?)/i,
+      /\bnet\s+loss\s+in\s+(?:the\s+)?(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b[^.!?]{0,80}?\bwas\s+(?<metricValue>\(?-?(?:(?:US|C)\s*)?[$€£¥]?\s*\d+(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\)?)/i,
       /\bgaap\s+net\s+loss\b[^.!?]{0,160}?\b(?:was|of)\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?)(?=.{0,160}?\bcompared\s+with\s+gaap\s+net\s+income\b)/i,
       /\bnet\s+(?:income|profit)\s+attributable\s+to\b.{0,80}?\bwas\s+(?:RMB|CNY)\s*\d[\d,.]*\s*(?:billion|million|thousand)s?\s*\(\s*(?<metricValue>US\s*\$\s*\d+(?:\.\d+)?\s*(?:billion|million|thousand)s?)\s*\)/i,
       /\bnet\s+income(?!\s+per\s+(?:common\s+)?share)\b/i,
@@ -285,13 +288,13 @@ export function isPerShareOnlyNetIncomeLine(line: string): boolean {
   // A headline can mention scaled revenue and then say "GAAP net income of
   // $1.19 per diluted share". The unrelated revenue scale must not make that
   // per-share statement look like an aggregate net-income figure.
-  const hasPerShareNetIncome = /\bnet\s+(?:income|earnings)\b[^.!?]{0,80}\b(?:of\s+)?\(?-?[$€£¥]?\s*\d+(?:\.\d+)?\)?\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i.test(line);
-  const hasAggregateNetIncome = /\bnet\s+(?:income|earnings)\b[^.!?]{0,80}\(?-?[$€£¥]?\s*\d+(?:\.\d+)?\)?\s+(?:trillion|billion|million|thousand)s?\b/i.test(line);
+  const hasPerShareNetIncome = /\bnet\s+(?:income|earnings|loss)\b[^.!?]{0,80}\b(?:of\s+)?\(?-?[$€£¥]?\s*\d+(?:\.\d+)?\)?\s+per\s+(?:(?:common|ordinary|diluted)\s+)?(?:share|ADS)\b/i.test(line);
+  const hasAggregateNetIncome = /\bnet\s+(?:income|earnings|loss)\b[^.!?]{0,80}\(?-?[$€£¥]?\s*\d+(?:\.\d+)?\)?\s+(?:trillion|billion|million|thousand)s?\b/i.test(line);
   if (true === hasPerShareNetIncome && false === hasAggregateNetIncome) {
     return true;
   }
 
-  return /\bper\s+(?:common\s+|diluted\s+)?share\b/i.test(line) &&
+  return /\bper\s+(?:(?:common|ordinary|diluted)\s+)?(?:share|ADS)\b/i.test(line) &&
     false === /\b(?:trillion|billion|million|thousand)s?\b/i.test(line);
 }
 
@@ -351,6 +354,23 @@ export function getMetricLineWithContinuation(
 
     if ("money" === definition.valueType &&
         true === isNarrativeMoneyScaleContinuationLine(metricLines.at(-1) ?? "", nextLine)) {
+      metricLines.push(nextLine);
+      continue;
+    }
+
+    // Filing prose can wrap between a quarter name and its year/value: "Net loss in the
+    // second quarter" / "of 2026 was US$97.6 million". Keep the sentence intact so the
+    // explicitly current-quarter amount outranks a multi-period statement row below it.
+    if ("money" === definition.valueType &&
+        /\b(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter(?:\s+of\s+20\d{2})?\s*$/i.test(metricLines.at(-1) ?? "") &&
+        /^\s*(?:of\s+20\d{2}\s+)?(?:was|were)\s+(?:(?:US|C)\s*)?[$€£¥]?\s*\d/i.test(nextLine)) {
+      metricLines.push(nextLine);
+      break;
+    }
+
+    if ("eps" === definition.valueType &&
+        /\bper\s+American\s+depositary\s*$/i.test(metricLines.at(-1) ?? "") &&
+        /^\s*share\b[^.!?]{0,160}?\bwas\s+(?:(?:US|C)\s*)?[$€£¥]?\s*\d/i.test(nextLine)) {
       metricLines.push(nextLine);
       continue;
     }

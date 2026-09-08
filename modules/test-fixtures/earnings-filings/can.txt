@@ -1,0 +1,1450 @@
+EX-99.1
+2
+tm2624951d1_ex99-1.htm
+EXHIBIT 99.1
+
+
+
+
+
+
+
+
+
+
+Exhibit 99.1
+
+
+
+
+
+Canaan Inc. Reports Unaudited Second Quarter
+2026 Financial Results
+
+
+
+
+
+Reached a record 1,915 BTC and 3,952 ETH cryptocurrency
+treasury
+
+
+Mined 243 bitcoins in the Second Quarter 2026
+
+
+Repurchased approximately 16.4 million ADSs
+for an Aggregate of US$7.4 million as of September 8, 2026
+
+
+
+
+
+Singapore, September 8, 2026 /PRNewswire/
+-- Canaan Inc. (NASDAQ: CAN) ("Canaan" or the "Company"), an innovator in compute and energy infrastructure, today
+announced its unaudited financial results for the three months ended June 30, 2026.
+
+
+
+
+
+Second Quarter 2026 Operating and Financial
+Highlights
+
+
+
+
+
+
+
+Metrics |
+Second Quarter 2026 |
+Key takeaways |
+
+
+BTC produced |
+243 BTC |
+Continued mining output |
+
+
+Crypto treasury |
+1,915.50 BTC / 3,951.70 ETH |
+Record-high treasury |
+
+
+Installed mining computing power (Non-JV) |
+10.05 EH/s |
+Up 23.3% YoY |
+
+
+All-in power cost |
+~US$0.043 /kWh |
+Competitive mining cost base |
+
+
+ABC Projects |
+49% interest / 4.85 EH/s
+
+installed hashrate by the end of July 2026 |
+Steady fleet upgrade |
+
+
+Share repurchased under current share repurchase program |
+
+16.4 million ADSs /
+
+US$7.4 million
+|
+Disciplined capital allocation |
+
+
+
+
+
+Nangeng Zhang, chairman, and chief executive officer
+of Canaan, commented, "Q2 2026 presented a difficult period for bitcoin mining, as renewed bitcoin price pressure, weaker mining
+economics, and seasonal power constraints weighed on equipment demand and profitability. Our team responded by staying close to customers,
+matching production to demand, and protecting liquidity. We generated US$31.9 million in total revenue with 2.5 EH/s of computing power
+sold during the second quarter. Our mining operations produced 243 bitcoins and continued to generate positive cash contribution before
+depreciation, supported by competitive power economics, while our digital asset treasury reached a record 1,915 BTC and 3,952 ETH at quarter-end.
+Beyond revenue generation, we kept our inventory lean, tightened spending and cash-flow management, and further streamlined our organization.
+
+
+
+
+
+"Despite the quarter's market headwinds,
+we focused on building the capabilities that we believe are necessary for Canaan's next phase. Together with our partner, we advanced
+the fleet upgrade at Project ABC, where installed hashrate reached 4.85 EH/s by the end of July. We will continue to explore cost-advantaged
+sites that can support efficient deployment and cash generation, while advancing collaboration around compute-to-heat reuse applications.
+On the product side, we kept optimizing the A16 series, focusing on cost-effective air-cooled models and high-temperature water-cooled
+models, and developed new Avalon Home products for household heating applications, with mass-production preparations underway for the
+winter heating season. In parallel, we continued advancing our efforts on long-term power resources in North America with further progress.
+We will provide updates when we reach an appropriate stage for disclosure. As we expand beyond mining equipment and operations into compute-plus-energy
+infrastructure, these initiatives are designed to improve fleet efficiency, broaden our operating flexibility, and strengthen our foundation
+for long-term value creation as the industry evolves."
+
+
+
+
+
+Note 1: Defined as the total number of bitcoins and other cryptocurrencies
+owned by the Company on its Balance Sheet, including any bitcoins receivable, excluding bitcoins that the Company has received as customer
+deposits.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Jin "James" Cheng, chief financial
+officer of Canaan, stated, "We navigated a demanding Q2 market and generated US$31.9 million in total revenue. Product revenue was
+US$13.6 million, reflecting softer demand for mining rigs and a lower average selling price for computing power, while mining revenue
+recorded US$17.7 million amidst bitcoin price pressure and seasonal curtailments. We kept mining-machine production costs relatively stable
+and held our all-in power cost at a competitive level of around US$0.04/kWh across our mining operations. Nevertheless, our reported results
+were also affected by several non-cash items, including a US$25.3 million inventory write-down, prepayment write-down, and provision for
+reserve for inventory purchase commitments, a US$9.2 million impairment of property and equipment, and a US$18.2 million loss of fair
+value change in cryptocurrency, all of which resulted from a decrease in cryptocurrency prices during the second quarter. These accounting
+charges weighed on our bottom line but did not alter our focus on cost control, liquidity, and operational efficiency.
+
+
+
+
+
+"As we enter the second half of 2026, we
+intend to maintain disciplined inventory levels, preserve financial flexibility, and direct resources toward securing power capacity for
+our compute-energy infrastructure strategy. We are also applying a more active capital-allocation framework to monetize a portion of our
+digital asset treasury to fund stock repurchases under the existing program. The Company has deployed an aggregate US$7.4 million to repurchase
+16.4 million ADSs under the current share repurchase plan as of today, alongside management's continued share purchases using their
+personal funds. We believe the Company's current equity valuation understates the combination of our digital asset treasury, cash
+liquidity, and our mining operations, which continue to generate bitcoin rewards. Repurchasing shares represents an attractive use of
+capital alongside the exploration of lower-cost power and infrastructure. We will continue balancing near-term resilience with opportunities
+that can strengthen per-share value and support Canaan's long-term development."
+
+
+
+
+
+Second Quarter 2026 Financial Results
+
+
+
+
+
+Total revenues in the second quarter of
+2026 were US$31.9 million, compared to US$62.7 million in the first quarter of 2026 and US$100.2 million in the same period of 2025. Total
+revenues consisted of US$13.6 million in products revenue, US$17.7 million in mining revenue, and US$0.6 million in other revenues.
+
+
+
+
+
+Products revenue in the second quarter
+of 2026 was US$13.6 million, compared to US$42.9 million in the first quarter of 2026 and US$71.9 million in the same period of 2025.
+The sequential and year-over-year decreases were mainly due to the decreased computing power sold and average selling price, resulting
+from a tightening of overall market demand led by the decline in the bitcoin price.
+
+
+
+
+
+Mining revenue in the second quarter of
+2026 was US$17.7 million, compared to US$19.1 million in the first quarter of 2026 and US$28.1 million in the same period of 2025. The
+sequential and year-over-year decreases were mainly due to the decrease in the average bitcoin price.
+
+
+
+
+
+Cost of revenues in the second quarter
+of 2026 was US$61.2 million, compared to US$85.6 million in the first quarter of 2026 and US$90.9 million in the same period of 2025.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Products costs in the second quarter of
+2026 were US$40.3 million, compared to US$62.4 million in the first quarter of 2026 and US$58.8 million in the same period of 2025. The
+sequential and year-over-year decreases were consistent with the decrease in computing power sold. The inventory write-down, prepayment
+write-down, and provision for reserve for inventory purchase commitments accrued for this quarter were US$25.3 million, compared to the
+inventory write-down, prepayment write-down, and provision for reserve for inventory purchase commitments amounting to US$24.5 million
+for the first quarter of 2026 and the inventory write-down of US$1.0 million for the same period of 2025. Products costs consist of direct
+production costs of mining machines, and indirect costs related to production, as well as inventory write-down, prepayment write-down,
+and provision for reserve for inventory purchase commitments.
+
+
+
+
+
+Mining costs in the second quarter of 2026
+were US$20.4 million, compared to US$22.7 million in the first quarter of 2026 and US$32.0 million in the same period of 2025. Mining
+costs herein consist of direct production costs of mining operations, including electricity and hosting, as well as depreciation of deployed
+mining machines. The sequential and year-over-year decreases were mainly due to the decreased energized computing power. The depreciation
+in this quarter for deployed mining machines was US$6.3 million, compared to US$5.8 million in the first quarter of 2026 and US$10.5 million
+in the same period of 2025.
+
+
+
+
+
+Gross loss in the second quarter of 2026
+was US$29.3 million, compared to a gross loss of US$22.9 million in the first quarter of 2026 and a gross profit of US$9.3 thousand in
+the same period of 2025.
+
+
+
+
+
+Total operating expenses in the second
+quarter of 2026 were US$40.1 million, compared to US$31.4 million in the first quarter of 2026 and US$36.4 million in the same period
+of 2025.
+
+
+
+
+
+Research and development expenses in the second
+quarter of 2026 were US$14.9 million, compared to US$15.4 million in the first quarter of 2026 and US$16.4 million in the same period
+of 2025. The sequential decrease was mainly due to a decrease of US$0.3 million in staff costs. The year-over-year decrease was mainly
+due to a decrease of US$4.1 million in staff costs, a decrease of US$0.7 million in share-based compensation expenses, partially
+offset by an increase of US$3.7 million in research and development expenditure. Research and development expenses in the second quarter
+of 2026 also included share-based compensation expenses of US$0.6 million.
+
+
+
+
+
+Sales and marketing expenses in the second quarter
+of 2026 were US$1.9 million, compared to US$1.2 million in the first quarter of 2026 and US$4.5 million in the same period of 2025. The
+sequential increase was mainly due to an increase of US$0.6 million in staff costs. The year-over-year decrease was mainly attributable
+to a decrease of US$2.3 million in staff costs. Sales and marketing expenses in the second quarter of 2026 also included share-based compensation
+expenses of US$29 thousand.
+
+
+
+
+
+General and administrative expenses in the second
+quarter of 2026 were US$15.1 million, compared to US$15.0 million in the first quarter of 2026 and US$16.4 million in the same period
+of 2025. General and administrative expenses remained stable sequentially. The year-over-year decrease was mainly due to a decrease of
+US$1.8 million in professional service fees, a decrease of US$0.9 million in share-based compensation expenses, and a decrease of US$0.6
+million in staff costs, partially offset by an increase of US$2.6 million in credit loss expense. General and administrative expenses
+in the second quarter of 2026 also included share-based compensation expenses of US$3.8 million.
+
+
+
+
+
+Impairment on property, equipment and software
+in the second quarter of 2026 was US$9.2 million, compared to nil in the first quarter of 2026 and nil in the same period of 2025.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Loss from operations in the second quarter
+of 2026 was US$69.5 million, compared to US$54.3 million in the first quarter of 2026 and US$27.1 million in the same period of 2025.
+
+
+
+
+
+Change in fair value of cryptocurrency and
+Change in fair value of financial derivatives in the second quarter of 2026 were a loss of US$9.3 million and a loss of US$8.9
+million, respectively, compared to a loss of US$24.9 million and a loss of US$16.0 million in the first quarter of 2026, and a gain of
+US$10.6 million and a gain of US$23.4 million in the second quarter of 2025, respectively. The losses were mainly due to the decreased
+bitcoin price on June 30, 2026, compared to the bitcoin price on March 31, 2026.
+
+
+
+
+
+Foreign exchange gains (losses), net in
+the second quarter of 2026 were a loss of US$3.0 million, compared to a loss of US$4.0 million in the first quarter of 2026 and a gain
+of US$0.3 million in the same period of 2025, respectively.
+
+
+
+
+
+Loss before income tax expense in the
+second quarter of 2026 was US$92.2 million, compared to US$88.8 million in the first quarter of 2026 and US$10.3 million in
+the same period of 2025.
+
+
+
+
+
+Equity in gains (losses) of equity investees
+in the second quarter of 2026 was a loss of US$4.1 million, compared to a gain of US$0.2 million in the first quarter of 2026 and
+nil in the same period of 2025.
+
+
+
+
+
+Net loss in the second quarter of 2026
+was US$97.6 million, compared to US$88.7 million in the first quarter of 2026 and US$11.1 million in the same period of 2025.
+
+
+
+
+
+Non-GAAP adjusted EBITDA in the second
+quarter of 2026 was a loss of US$74.9 million, as compared to a loss of US$76.3 million in the first quarter of 2026 and a gain of US$25.3
+million in the same period of 2025. For further information, please refer to "Use of Non-GAAP Financial Measures" in this press
+release.
+
+
+
+
+
+Foreign currency translation adjustment, net
+of nil tax , in the second quarter of 2026 was a gain of US$3.8 million, compared to a gain of US$5.2 million in the first quarter
+of 2026 and a gain of US$1.4 million in the same period of 2025, respectively.
+
+
+
+
+
+Basic and diluted net loss per American depositary
+share ("ADS") in the second quarter of 2026 was US$0.13. In comparison, basic and diluted net loss per ADS in the first
+quarter of 2026 was US$0.13, while basic and diluted net loss per ADS in the same period of 2025 were US$0.03. Each ADS represents 15
+of the Company's Class A ordinary shares.
+
+
+
+
+
+As of June 30, 2026, the Company held Cryptocurrency
+assets with a fair value of US$47.0 million and Cryptocurrency receivable with an aggregate fair value
+of US$70.9 million, respectively. Cryptocurrency assets primarily consist of 698.5 bitcoins owned by the Company. Cryptocurrency receivable
+consists of 1,117.0 bitcoins pledged for secured term loans and 100.0 bitcoins transferred to a fixed-term product. The classification
+of cryptocurrency receivable as current assets is consistent with the corresponding secured term loans. As of June 30,
+2026, the Company held a total of 1,915.5 bitcoins.
+
+
+
+
+
+As of June 30, 2026, the Company had cash
+of US$66.0 million, compared to US$80.8 million as of December 31, 2025.
+
+
+
+
+
+Accounts receivable, net as of June 30,
+2026, were US$1.7 million, compared to US$19.3 million as of December 31, 2025. Accounts receivable were mainly due to an installment
+policy implemented for some major customers who meet certain conditions.
+
+
+
+
+
+Investment in equity investees as of June 30,
+2026, was US$11.8 million.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ADSs Outstanding
+
+
+
+
+
+As of June 30, 2026, the Company had a total
+of 690,594,191 ADSs outstanding, each representing 15 of the Company's Class A ordinary shares.
+
+
+
+
+
+Recent Developments
+
+
+
+
+
+Share Repurchase Program Using Portion of
+Digital Asset Treasury
+
+
+
+
+
+On December 17, 2025, the Company announced
+that its board of directors had renewed a share repurchase program authorizing the repurchase of up to US$30 million of its outstanding
+ADSs or Class A ordinary shares over a 12-month period beginning December 12, 2025 (the "Share Repurchase Program").
+Repurchases may be made through open-market transactions, privately negotiated transactions, block trades, or a combination thereof, subject
+to market conditions and regulatory requirements.
+
+
+
+
+
+On August 4, 2026, the Company announced
+that it had been authorized to monetize a portion of its digital asset treasury to fund repurchases under the Share Repurchase Program,
+reflecting a disciplined capital allocation approach that balances active treasury management with the Company's long-term commitment
+to maintaining a strategic digital asset treasury.
+
+
+
+
+
+In late August, the Company sold 3,952 ETH and
+54 Bitcoins, generating approximately US$13.9 million in cash, a portion of which was used for share repurchases. The Company repurchased
+approximately 2.8 million ADSs for about US$2.0 million in the first half of 2026 and an additional 13.6 million ADSs for approximately
+US$5.4 million in late August.
+
+
+
+
+
+As of September 8, 2026, the Company had
+repurchased approximately 16.4 million ADSs for a total consideration of US$7.4 million under the Share Repurchase Program.
+
+
+
+
+
+The sale of a portion of the Company's digital
+assets does not represent a change in its long-term digital asset strategy.
+
+
+
+
+
+At-the-Market Offering ("ATM")
+Program
+
+
+
+
+
+On October 24, 2025, the Company established
+a new ATM equity offering program to replace the prior program, which had expired. The renewal was intended to broaden banking relationships
+and enhance financial flexibility for future growth initiatives.
+
+
+
+
+
+The Company has not made any sales under the ATM
+Program since the beginning of the second quarter of 2026 to date.
+
+
+
+
+
+Business Outlook
+
+
+
+
+
+For the third quarter of 2026, the Company expects
+total revenues to be in the range of US$11 million to US$15 million, reflecting the near-term market conditions and evolving customer
+dynamics, which are subject to change.
+
+
+
+
+
+The Company will continue to closely monitor the
+global policy environment and market developments, and may revise or update its outlook as appropriate, based on future clarity and business
+visibility.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Conference Call Information
+
+
+
+
+
+The Company's management team will hold
+a conference call at 8:00 A.M. U.S. Eastern Time on September 8, 2026 (or 8:00 P.M. Singapore Time on the same day) to
+discuss the financial results. Details for the conference call are as follows:
+
+
+
+
+
+
+
+Event
+Title: |
+Canaan
+Inc. Second Quarter 2026 Earnings Conference Call |
+
+
+Registration
+Link: |
+https://register-conf.media-server.com/register/BI95b35b81eafb40488eff6d3e49635cc0 |
+
+
+
+
+
+All participants must use the link provided above
+to complete the online registration process in advance of the conference call. Upon registering, each participant will receive a set
+of participant dial-in numbers and a unique access PIN, which can be used to join the conference call.
+
+
+
+
+
+A live and archived webcast of the conference
+call will be available at the Company's investor relations website at investor.canaan-creative.com .
+
+
+
+
+
+About Canaan Inc.
+
+
+
+
+
+Established in 2013, Canaan Inc. (NASDAQ:
+CAN), is a technology company focusing on ASIC high-performance computing chip design, chip research and development, computing
+equipment production, and software services. Canaan has extensive experience in chip design and streamlined production in the ASIC field.
+In 2013, Canaan's founding team shipped to its customers the world's first batch of mining machines incorporating ASIC technology under the
+brand name Avalon. In 2019, Canaan completed its initial public offering on the Nasdaq Global Market. To learn more about Canaan, please
+visit https://www.canaan.io/ .
+
+
+
+
+
+Safe Harbor Statement
+
+
+
+
+
+This press release contains forward-looking statements.
+These statements are made under the "safe harbor" provisions of the U.S. Private Securities Litigation Reform Act
+of 1995. These forward-looking statements can be identified by terminology such as "will," "expects," "anticipates,"
+"future," "intends," "plans," "believes," "estimates" and similar statements. Among
+other things, the business outlook and quotations from management in this announcement, as well as Canaan Inc.'s strategic
+and operational plans, contain forward-looking statements. Canaan Inc. may also make written or oral forward-looking statements
+in its periodic reports to the U.S. Securities and Exchange Commission ("SEC") on Forms 20-F and 6-K, in its annual
+report to shareholders, in press releases and other written materials and in oral statements made by its officers, directors or employees
+to third parties. Statements that are not historical facts, including statements about Canaan Inc.'s beliefs and expectations,
+such as expectations with regard to revenue or mining hash rate deployment, are forward-looking statements. Forward-looking statements
+involve inherent risks and uncertainties. A number of factors could cause actual results to differ materially from those contained in
+any forward-looking statement, including but not limited to the following: the Company's goals and strategies; the Company's future business
+development, the ability of the Company to execute against its goals, financial condition and results of operations; the expected growth
+of the bitcoin industry and the price of bitcoin; the Company's expectations regarding demand for and market acceptance
+of its products, especially its bitcoin mining machines; the Company's expectations regarding maintaining and strengthening
+its relationships with production partners and customers; the Company's investment plans and strategies, fluctuations in the Company's
+quarterly operating results; competition in its industry; changing macroeconomic and geopolitical conditions, including evolving international
+trade policies and the implementation of increased tariffs, import restrictions, and retaliatory trade actions; and relevant government
+policies and regulations relating to the Company and cryptocurrency. Further information regarding these and other risks is included
+in the Company's filings with the SEC. All information provided in this press release and in the attachments is as of the date of
+this press release, and Canaan Inc. does not undertake any obligation to update any forward-looking statement, except as required
+under applicable law.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Use of Non-GAAP Financial Measures
+
+
+
+
+
+In evaluating Canaan's business, the Company uses
+non-GAAP measures, such as adjusted EBITDA, as supplemental measures to review and assess its operating performance. The Company defines
+adjusted EBITDA as net loss excluding income tax (benefit) expenses, interest income, interest expense, depreciation and amortization
+expenses, share-based compensation expenses, impairment on property, equipment and software, change in fair value of financial instruments
+other than derivatives and excess of fair value of convertible preferred shares. The Company believes that the non-GAAP financial measures
+provide useful information about the Company's results of operations, enhance the overall understanding of the Company's past performance
+and future prospects and allow for greater visibility with respect to key metrics used by the Company's management in its financial and
+operational decision-making.
+
+
+
+
+
+The non-GAAP financial measures are not defined
+under U.S. GAAP and are not presented in accordance with U.S. GAAP. The non-GAAP financial measures have limitations as analytical tools
+and investors should not consider them in isolation, or as a substitute for net loss, cash flows provided by operating activities or other
+consolidated statements of operations and cash flows data prepared in accordance with U.S. GAAP. One of the key limitations of using adjusted
+EBITDA is that it does not reflect all of the items of income and expense that affect the Company's operations. Further, the non-GAAP
+financial measures may differ from the non-GAAP information used by other companies, including peer companies, and therefore their comparability
+may be limited. The Company mitigates these limitations by reconciling the non-GAAP financial measures to the most comparable U.S. GAAP
+performance measures, all of which should be considered when evaluating the Company's performance.
+
+
+
+
+
+Investor Relations Contact
+
+
+
+
+
+Canaan Inc.
+
+Xi Zhang
+
+Email: IR@canaan-creative.com
+
+
+
+
+
+Christensen Advisory
+
+
+Christian Arnell
+
+
+Email: canaan@christensencomms.com
+
+
+
+
+
+Media Contact
+
+
+
+
+
+BlocksBridge Consulting
+
+Jesse Colzani
+
+Email: canaan@blocksbridge.com
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CANAAN INC.
+
+
+UNAUDITED CONDENSED CONSOLIDATED BALANCE SHEETS
+
+
+(all amounts in thousands, except share and
+per share data, or as otherwise noted)
+
+
+
+
+
+
+
+| |
+As of December 31, | | |
+As of June 30, | |
+
+
+| |
+2025 | | |
+2026 | |
+
+
+| |
+USD | | |
+USD | |
+
+
+ASSETS | |
+| | | |
+| | |
+
+
+Current assets: | |
+| | | |
+| | |
+
+
+Cash | |
+| 80,778 | | |
+| 66,006 | |
+
+
+Accounts receivable, net | |
+| 19,290 | | |
+| 1,725 | |
+
+
+Inventories | |
+| 180,816 | | |
+| 128,835 | |
+
+
+Prepayments and other current assets | |
+| 99,243 | | |
+| 83,134 | |
+
+
+Cryptocurrency receivable, current | |
+| 52,699 | | |
+| 29,139 | |
+
+
+Held-for-sale assets, current | |
+| 464 | | |
+| 1,713 | |
+
+
+Total current assets | |
+| 433,290 | | |
+| 310,552 | |
+
+
+Non-current assets: | |
+| | | |
+| | |
+
+
+Cryptocurrency | |
+| 83,339 | | |
+| 47,019 | |
+
+
+Cryptocurrency receivable, non-current | |
+| 35,133 | | |
+| 41,786 | |
+
+
+Investment in equity investees | |
+| - | | |
+| 11,790 | |
+
+
+Property, equipment and software, net | |
+| 44,028 | | |
+| 27,388 | |
+
+
+Intangible asset | |
+| 689 | | |
+| 583 | |
+
+
+Operating lease right-of-use assets | |
+| 2,880 | | |
+| 2,090 | |
+
+
+Deferred tax assets | |
+| 191 | | |
+| 197 | |
+
+
+Other non-current assets | |
+| 489 | | |
+| 3,835 | |
+
+
+Non-current financial investment | |
+| 2,845 | | |
+| 1,000 | |
+
+
+Total non-current assets | |
+| 169,594 | | |
+| 135,688 | |
+
+
+Total assets | |
+| 602,884 | | |
+| 446,240 | |
+
+
+LIABILITIES, AND SHAREHOLDERS' EQUITY | |
+| | | |
+| | |
+
+
+Current liabilities | |
+| | | |
+| | |
+
+
+Current portion of long-term loans | |
+| 28,515 | | |
+| 23,888 | |
+
+
+Accounts payable | |
+| 25,600 | | |
+| 15,455 | |
+
+
+Contract liabilities | |
+| 9,317 | | |
+| 4,107 | |
+
+
+Income tax payable | |
+| 11,403 | | |
+| 11,832 | |
+
+
+Accrued liabilities and other current liabilities | |
+| 54,548 | | |
+| 51,986 | |
+
+
+Operating lease liabilities, current | |
+| 1,706 | | |
+| 1,228 | |
+
+
+Total current liabilities | |
+| 131,089 | | |
+| 108,496 | |
+
+
+Non-current liabilities: | |
+| | | |
+| | |
+
+
+Long-term loans | |
+| 23,731 | | |
+| 34,901 | |
+
+
+Operating lease liabilities, non-current | |
+| 948 | | |
+| 481 | |
+
+
+Deferred tax liability | |
+| 117 | | |
+| 99 | |
+
+
+Other non-current liabilities | |
+| 9,631 | | |
+| 9,557 | |
+
+
+Total liabilities | |
+| 165,516 | | |
+| 153,534 | |
+
+
+Shareholders' equity: | |
+| | | |
+| | |
+
+
+Class A Ordinary shares (US$0.00000005 par value; 999,643,050,556 authorized, 10,431,482,973 and 11,237,922,873 shares issued, 9,703,445,043 and 10,557,490,218 shares outstanding as of December 31, 2025 and June 30, 2026, respectively) | |
+| 1 | | |
+| 1 | |
+
+
+Class B Ordinary shares (US$0.00000005 par value; 356,624,444 shares authorized, 311,624,444 shares issued and outstanding as of December 31, 2025 and June 30, 2026) | |
+| - | | |
+| - | |
+
+
+Treasury stocks (US$0.00000005 par value; 366,981,615 and 342,319,770 shares as of December 31, 2025 and June 30, 2026, respectively) | |
+| (37,172 | ) | |
+| (20,255 | ) |
+
+
+Additional paid-in capital | |
+| 1,177,057 | | |
+| 1,192,812 | |
+
+
+Statutory reserves | |
+| 14,892 | | |
+| 14,892 | |
+
+
+Accumulated other comprehensive loss | |
+| (56,653 | ) | |
+| (47,632 | ) |
+
+
+Accumulated deficit | |
+| (660,757 | ) | |
+| (847,112 | ) |
+
+
+Total shareholders' equity | |
+| 437,368 | | |
+| 292,706 | |
+
+
+Total liabilities and shareholders' equity | |
+| 602,884 | | |
+| 446,240 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+CANAAN INC.
+
+
+UNAUDITED CONDENSED CONSOLIDATED STATEMENTS
+OF COMPREHENSIVE LOSS
+
+
+(all amounts in thousands of USD, except share
+and per share data, or as otherwise noted)
+
+
+
+
+
+
+
+| |
+For the Three Months Ended | |
+
+
+| |
+June 30,
+2025 | | |
+March 31,
+2026 | | |
+June 30,
+2026 | |
+
+
+| |
+USD | | |
+USD | | |
+USD | |
+
+
+Revenues | |
+| | |
+| | |
+| |
+
+
+Products revenue | |
+| 71,923 | | |
+| 42,863 | | |
+| 13,630 | |
+
+
+Mining revenue | |
+| 28,072 | | |
+| 19,124 | | |
+| 17,657 | |
+
+
+Other revenues | |
+| 214 | | |
+| 706 | | |
+| 575 | |
+
+
+Total revenues | |
+| 100,209 | | |
+| 62,693 | | |
+| 31,862 | |
+
+
+Cost of revenues | |
+| | | |
+| | | |
+| | |
+
+
+Product cost | |
+| (58,759 | ) | |
+| (62,365 | ) | |
+| (40,277 | ) |
+
+
+Mining cost | |
+| (31,995 | ) | |
+| (22,677 | ) | |
+| (20,388 | ) |
+
+
+Other cost | |
+| (149 | ) | |
+| (557 | ) | |
+| (530 | ) |
+
+
+Total cost of revenues | |
+| (90,903 | ) | |
+| (85,599 | ) | |
+| (61,195 | ) |
+
+
+Gross profit (loss) | |
+| 9,306 | | |
+| (22,906 | ) | |
+| (29,333 | ) |
+
+
+Operating expenses: | |
+| | | |
+| | | |
+| | |
+
+
+Research and development expenses | |
+| (16,406 | ) | |
+| (15,390 | ) | |
+| (14,865 | ) |
+
+
+Sales and marketing expenses | |
+| (4,472 | ) | |
+| (1,195 | ) | |
+| (1,909 | ) |
+
+
+General and administrative expenses | |
+| (16,361 | ) | |
+| (15,020 | ) | |
+| (15,080 | ) |
+
+
+Impairment on property and equipment | |
+| - | | |
+| - | | |
+| (9,220 | ) |
+
+
+Gain on disposal of property, equipment and software | |
+| 863 | | |
+| 197 | | |
+| 950 | |
+
+
+Total operating expenses | |
+| (36,376 | ) | |
+| (31,408 | ) | |
+| (40,124 | ) |
+
+
+Loss from operations | |
+| (27,070 | ) | |
+| (54,314 | ) | |
+| (69,457 | ) |
+
+
+Interest expense, net | |
+| (309 | ) | |
+| (779 | ) | |
+| (492 | ) |
+
+
+Change in fair value of cryptocurrency | |
+| 10,576 | | |
+| (24,913 | ) | |
+| (9,298 | ) |
+
+
+Change in fair value of financial instruments other than derivatives | |
+| (17,485 | ) | |
+| - | | |
+| - | |
+
+
+Change in fair value of financial derivatives | |
+| 23,440 | | |
+| (15,974 | ) | |
+| (8,908 | ) |
+
+
+Foreign exchange gains (losses), net | |
+| 338 | | |
+| (3,997 | ) | |
+| (3,040 | ) |
+
+
+Other income (loss), net | |
+| 225 | | |
+| 11,198 | | |
+| (1,002 | ) |
+
+
+Loss before income tax expenses | |
+| (10,285 | ) | |
+| (88,779 | ) | |
+| (92,197 | ) |
+
+
+Income tax expense | |
+| (773 | ) | |
+| (190 | ) | |
+| (1,263 | ) |
+
+
+Equity in gains (losses) of equity investees | |
+| - | | |
+| 221 | | |
+| (4,147 | ) |
+
+
+Net loss | |
+| (11,058 | ) | |
+| (88,748 | ) | |
+| (97,607 | ) |
+
+
+Foreign currency translation adjustment, net of nil tax | |
+| 1,376 | | |
+| 5,182 | | |
+| 3,839 | |
+
+
+Total comprehensive loss | |
+| (9,682 | ) | |
+| (83,566 | ) | |
+| (93,768 | ) |
+
+
+Weighted average number of shares used in per share calculation: | |
+| | | |
+| | | |
+| | |
+
+
+— Basic | |
+| 5,994,860,758 | | |
+| 10,371,318,890 | | |
+| 10,847,269,108 | |
+
+
+— Diluted | |
+| 5,994,860,758 | | |
+| 10,371,318,890 | | |
+| 10,847,269,108 | |
+
+
+Net loss per share (cent per share) | |
+| | | |
+| | | |
+| | |
+
+
+— Basic | |
+| (0.18 | ) | |
+| (0.86 | ) | |
+| (0.90 | ) |
+
+
+— Diluted | |
+| (0.18 | ) | |
+| (0.86 | ) | |
+| (0.90 | ) |
+
+
+Share-based
+compensation expenses were included in:
+| |
+| | | |
+| | | |
+| | |
+
+
+Cost of revenues | |
+| 80 | | |
+| 89 | | |
+| 86 | |
+
+
+Research and development expenses | |
+| 1,363 | | |
+| 668 | | |
+| 620 | |
+
+
+Sales and marketing expenses | |
+| 59 | | |
+| 43 | | |
+| 29 | |
+
+
+General and administrative expenses | |
+| 4,670 | | |
+| 3,815 | | |
+| 3,808 | |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+The table below sets forth a reconciliation of
+net loss to non-GAAP adjusted EBITDA for the period indicated:
+
+
+
+
+
+
+
+| |
+For the Three Months Ended | |
+
+
+| |
+June 30,
+2025 | | |
+March 31,
+2026 | | |
+June 30,
+2026 | |
+
+
+| |
+USD | | |
+USD | | |
+USD | |
+
+
+Net loss | |
+| (11,058 | ) | |
+| (88,748 | ) | |
+| (97,607 | ) |
+
+
+Income tax expense | |
+| 773 | | |
+| 190 | | |
+| 1,263 | |
+
+
+Interest expense, net | |
+| 309 | | |
+| 779 | | |
+| 492 | |
+
+
+EBIT | |
+| (9,976 | ) | |
+| (87,779 | ) | |
+| (95,852 | ) |
+
+
+Depreciation and amortization expenses | |
+| 11,657 | | |
+| 6,816 | | |
+| 7,193 | |
+
+
+EBITDA | |
+| 1,681 | | |
+| (80,963 | ) | |
+| (88,659 | ) |
+
+
+Share-based compensation expenses | |
+| 6,172 | | |
+| 4,615 | | |
+| 4,543 | |
+
+
+Impairment on property, equipment and software | |
+| - | | |
+| - | | |
+| 9,220 | |
+
+
+Change in fair value of financial instruments other than derivatives | |
+| 17,485 | | |
+| - | | |
+| - | |
+
+
+Non-GAAP adjusted EBITDA | |
+| 25,338 | | |
+| (76,348 | ) | |
+| (74,896 | ) |

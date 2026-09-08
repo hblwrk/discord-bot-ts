@@ -72,7 +72,7 @@ export function parseEarningsDocument(html: string): ParsedEarningsDocument {
     dilutedShareMantissa: getDilutedShareMantissa(lines),
     headline: getDocumentHeadline(lines),
     metrics: dropOrdinaryShareEpsForAdsIssuer(metrics, lines),
-    outlook: extractOutlookMetrics(lines, documentCurrencyCode),
+    outlook: extractOutlookMetrics(lines, documentCurrencyCode, quarterLabel),
     quarterLabel,
   };
 }
@@ -87,14 +87,15 @@ function dropOrdinaryShareEpsForAdsIssuer(
 ): EarningsResultMetric[] {
   const hasAdsEquivalence = lines.some(line =>
     /\bequivalent\s+to\s+(?:about\s+)?[\d,]+\s+ADSs?\b/i.test(line) ||
-    /\bone\s+ADS\s+(?:is\s+equivalent\s+to|represents)\s+[\d,]+\s+ordinary\s+shares?\b/i.test(line) ||
+    /\b(?:one|each)\s+ADS\s+(?:is\s+equivalent\s+to|represents)\s+[\d,]+(?:\s+of\s+the\s+company's)?\s+(?:class\s+[A-Z]\s+)?ordinary\s+shares?\b/i.test(line) ||
     /\b(?:listing\s+of\s+(?:its\s+)?|listed\s+or\s+traded\s+)(?:the\s+)?ADSs?\s+(?:on|in)\s+(?:the\s+)?Nasdaq\b/i.test(line));
   if (false === hasAdsEquivalence) {
     return metrics;
   }
 
   return metrics.filter(metric =>
-    false === isEpsMetricKey(metric.key) || /\bper\s+ADS\b/i.test(metric.sourceSnippet ?? ""));
+    false === isEpsMetricKey(metric.key) ||
+      /\bper\s+(?:ADS|American\s+depositary\s+share)\b/i.test(metric.sourceSnippet ?? ""));
 }
 
 export function getMessageMetrics(

@@ -1,0 +1,579 @@
+EX-99.1
+2
+f26q4earningsrelease.htm
+EX-99.1
+
+
+
+
+Document
+Exhibit 99.1
+
+UNITED NATURAL FOODS, INC. REPORTS FOURTH QUARTER AND FULL YEAR FISCAL 2026 RESULTS
+
+Providence, RI - September 8, 2026 -- United Natural Foods, Inc. (NYSE: UNFI) (the “Company” or “UNFI”) today reported financial results for the fourth quarter (13 weeks) and fiscal year (52 weeks) ended August 1, 2026.
+| | | | | | | | |
+Fourth Quarter Fiscal 2026
+| | Full Year Fiscal 2026
+|
+•Net sales decreased 0.7% to $7.6 billion
+| | •Net sales decreased 2.0% to $31.2 billion
+|
+•Net income of $35 million; Net income per diluted share (EPS) of $0.57
+| | •Net income of $84 million; Net income per diluted share (EPS) of $1.34
+|
+•Adjusted EBITDA increased 48.3% to $172 million
+| | •Adjusted EBITDA increased 27.0% to $701 million
+|
+•Adjusted EPS increased to $0.69
+| | •Adjusted EPS increased to $2.65
+|
+•Net cash provided by operating activities of $197 million; Free cash flow of $80 million
+| | •Net cash provided by operating activities of $540 million; Free cash flow of $323 million
+|
+
+Recent Financial and Operational Summary
+•Net sales in the quarter included about a 500 basis point adverse impact from planned optimization actions and 150 basis point impact of short-term project work, which were partially offset by lapping last year’s cybersecurity event
+•Delivered on updated fiscal 2026 outlook, with full year Net income increasing to $84 million, Adjusted EBITDA growth of 27%, Free cash flow growth of $84 million, and year end Net leverage ratio of 2.2x
+•Completed initial deployment phase of Lean daily management to 44 distribution centers, supporting fourth consecutive quarter of year-over-year improvement in fill rates, on-time deliveries, and throughput
+•Began onboarding additional business from new and existing customers expected to produce revenue growth in fiscal 2027 after cycling larger optimization actions
+•Fiscal 2027 guidance reflects high single digit growth for Adjusted EBITDA; midpoint $25 million higher than guidance provided at December 2025 Investor Day
+
+“UNFI delivered a strong fiscal year through disciplined execution of our strategy to add value for customers and suppliers while becoming a more effective and efficient company. We continued strengthening commercial and supply chain capabilities to better serve our partners, while generating solid growth in Adjusted EBITDA and Free cash flow, enabling us to further reduce net debt,” said Sandy Douglas, UNFI’s Chief Executive Officer.
+“Our progress demonstrates the strength of our customer base and our commitment to creating long-term, shared value for all stakeholders. In fiscal 2027, we remain focused on helping our partners execute their growth strategies, accelerating our operating momentum, and returning to revenue growth.”
+Fourth Quarter Fiscal 2026 Summary
+| | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | | |
+| Fourth Quarter Ended | | Fiscal Year Ended |
+($ in millions, except for per share data) | August 1,
+2026
+(13 weeks)
+| | August 2,
+2025
+(13 weeks)
+| | Percent Change | | August 1,
+2026
+(52 weeks)
+| | August 2,
+2025
+(52 weeks)
+| | Percent Change | | |
+Net sales | $ | 7,642 | | | $ | 7,696 | | | (0.7) | % | | $ | 31,152 | | | $ | 31,784 | | | (2.0) | % | | |
+Natural | $ | 4,260 | | | $ | 3,998 | | | 6.6 | % | | $ | 17,132 | | | $ | 16,017 | | | 7.0 | % | | |
+Conventional | $ | 3,121 | | | $ | 3,414 | | | (8.6) | % | | $ | 12,974 | | | $ | 14,667 | | | (11.5) | % | | |
+Retail | $ | 528 | | | $ | 573 | | | (7.9) | % | | $ | 2,157 | | | $ | 2,342 | | | (7.9) | % | | |
+Eliminations | $ | (267) | | | $ | (289) | | | 7.6 | % | | $ | (1,111) | | | $ | (1,242) | | | 10.5 | % | | |
+Net income (loss) | $ | 35 | | | $ | (87) | | | N/M | | $ | 84 | | | $ | (118) | | | N/M | | |
+Adjusted EBITDA
+| $ | 172 | | | $ | 116 | | | 48.3 | % | | $ | 701 | | | $ | 552 | | | 27.0 | % | | |
+Earnings (loss) per diluted share (EPS) | $ | 0.57 | | | $ | (1.43) | | | N/M | | $ | 1.34 | | | $ | (1.95) | | | N/M | | |
+Adjusted earnings (loss) per diluted share (Adjusted EPS)
+| $ | 0.69 | | | $ | (0.11) | | | N/M | | $ | 2.65 | | | $ | 0.71 | | | 273.2 | % | | |
+Net cash provided by operating activities | $ | 197 | | | $ | 160 | | | 23.1 | % | | $ | 540 | | | $ | 470 | | | 14.9 | % | | |
+Payments for capital expenditures | $ | (117) | | | $ | (74) | | | 58.1 | % | | $ | (217) | | | $ | (231) | | | (6.1) | % | | |
+Free cash flow
+| $ | 80 | | | $ | 86 | | | (7.0) | % | | $ | 323 | | | $ | 239 | | | 35.1 | % | | |
+
+N/M - not meaningful
+(1)Please refer to the tables in this press release for a reconciliation of these non-GAAP financial measures to the most directly comparable financial measure calculated in accordance with GAAP.
+
+
+
+
+
+
+
+Net sales decreased 0.7% in the fourth quarter of fiscal 2026 compared to the fourth quarter of fiscal 2025. Sales in the fourth quarter of fiscal 2026 included an approximately 500 basis point impact from planned accretive optimization actions and a 150 basis point headwind from the completed unwind of short-term project work. Sales in the fourth quarter of fiscal 2025 were impacted by the previously disclosed cybersecurity incident experienced in the fourth quarter of fiscal 2025.
+
+
+Gross profit in the fourth quarter of fiscal 2026 was $1,050 million, an increase of $20 million, or 1.9%, compared to the fourth quarter of fiscal 2025. The gross profit rate in the fourth quarter of fiscal 2026 was 13.7% of net sales compared to 13.4% of net sales in the fourth quarter of fiscal 2025. The gross profit rate benefitted from network optimization actions and customer mix, partially offset by a lower gross margin rate in the Retail segment.
+
+
+Operating expenses in the fourth quarter of fiscal 2026 were $984 million, or 12.9% of net sales, compared to $1,046 million, or 13.6% of net sales, in the fourth quarter of fiscal 2025. The decrease in operating expenses as a percent of net sales was primarily driven by the benefits of cost saving initiatives, including network optimization actions and higher levels of distribution center productivity. Operating expenses in the fourth quarter of fiscal 2025 included an investment in servicing customers during the cybersecurity incident.
+
+
+Interest expense, net for the fourth quarter of fiscal 2026 was $29 million, compared to $36 million for the fourth quarter of fiscal 2025. The decrease in interest expense was primarily driven by lower average outstanding debt balances.
+
+
+Effective tax rate for the fourth quarter of fiscal 2026 was an expense rate of 23.9% on a pre-tax income compared to a benefit rate of 21.1% on a pre-tax loss for the fourth quarter of fiscal 2025. The change from the fourth quarter of fiscal 2025 was primarily driven by the increase in pre-tax income and discrete tax benefits from employee stock award vestings during the fourth quarter of fiscal 2026.
+
+
+Net income for the fourth quarter of fiscal 2026 was $35 million. Net loss for the fourth quarter of fiscal 2025 was $87 million.
+
+
+Adjusted EBITDA for the fourth quarter of fiscal 2026 increased 48.3% to $172 million from $116 million for the fourth quarter of fiscal 2025.
+
+
+Net income per diluted share was $0.57 for the fourth quarter of fiscal 2026 compared to net loss per diluted share of $1.43 for the fourth quarter of fiscal 2025.
+
+
+Adjusted earnings per share were $0.69 for the fourth quarter of fiscal 2026, compared to adjusted loss per share of $0.11 in the fourth quarter of fiscal 2025.
+
+
+Capital Structure and Financing Overview
+•Free Cash Flow – Net cash provided by operating activities was $197 million in the fourth quarter of fiscal 2026 compared to $160 million in the fourth quarter of fiscal 2025, reflecting higher levels of profitability. The Company made payments of $117 million for capital expenditures in the fourth quarter of fiscal 2026 compared to $74 million in the fourth quarter of fiscal 2025, with the higher spending driven primarily by investments in supply chain and technology. Free cash flow was $80 million in the fourth quarter of 2026, compared to free cash flow of $86 million in the fourth quarter of fiscal 2025.
+•Net Leverage – Total outstanding debt, net of cash, was $1.54 billion at the end of the fourth quarter of 2026, reflecting a decrease of $93 million compared to the end of the third quarter of fiscal 2026 and a decrease of $295 million during fiscal 2026. The Net leverage ratio was 2.2x as of August 1, 2026.
+•Liquidity – As of August 1, 2026, total liquidity was approximately $1.27 billion, consisting of $37 million in cash, plus the unused capacity of approximately $1.23 billion under the Company’s asset-based lending facility.
+•Repurchase Program – During the fourth quarter of 2026, the Company repurchased 420,502 shares at an average price of $49.94 for an aggregate cost of approximately $21 million. On September 3, 2026, the Company’s Board of Directors approved a new stock repurchase program that authorizes the Company to repurchase up to $200 million of its shares. This program replaces the Company’s previous repurchase program announced in September 2022.
+
+
+
+
+
+
+
+Fiscal 2027 Outlook
+
+
+The Company is providing the following outlook for fiscal 2027, a 52-week year.
+| | | | | | | | | | | |
+Fiscal Year Ending July 31, 2027 (52 weeks)
+| | | |
+Net sales ($ in billions)
+| | $31.2 - $31.8 | |
+Net income ($ in millions)
+| | $105 - $145 | |
+EPS
+| | $1.70 - $2.30 | |
+Adjusted EPS (2)(3)(4)
+| | $3.00 - $3.50 | |
+Adjusted EBITDA ($ in millions)
+| | $730 - $780 | |
+Capital and cloud implementation expenditures (4)(5)($ in millions)
+| | ~ $300 | |
+Free cash flow (4)(5) ($ in millions)
+| | $275-$325 | |
+
+(1)The outlook provided above is for fiscal 2027 only. This outlook is forward-looking, is based on management’s current estimates and expectations and is subject to a number of risks, including many that are outside of management’s control. See cautionary Safe Harbor Statement below.
+(2)Earnings per share amounts as presented include rounding.
+(3)The Company uses an adjusted effective tax rate in calculating Adjusted EPS. The outlook for Adjusted EPS reflects a tax rate of 27%. See additional information at the end of this release regarding the non-GAAP financial measure adjusted effective tax rate.
+(4)See additional information at the end of this release regarding non-GAAP financial measures. The Company is unable to provide a full reconciliation for outlook to the most comparable GAAP measure without unreasonable effort due to the difficulty in predicting the amounts for certain adjustment items.
+(5)The components of capital and cloud implementation expenditures for fiscal 2027 will be primarily dependent on the nature of certain contracts to be executed. As such, the Company is unable to reconcile the outlook for free cash flow as well as Capital and cloud implementation expenditures in fiscal 2027 to the most directly comparable financial measures calculated in accordance with GAAP.
+
+
+Conference Call and Webcast
+
+
+The Company’s fourth quarter and full year fiscal 2026 conference call and audio webcast will be held today, Tuesday, September 8, 2026 at 8:30 a.m. ET. A webcast of the conference call (and supplemental materials) will be available to the public, on a listen only basis, via the internet at the Investors section of the Company’s website www.unfi.com. The call can also be accessed at (800) 715 - 9871 (conference ID 5462932). An online archive of the webcast (and supplemental materials) will be available for 120 days.
+
+
+About United Natural Foods
+
+
+United Natural Foods, Inc. (UNFI) is a leading North American grocery wholesaler, providing a broad assortment of natural, organic, specialty, fresh, conventional, and private label products to over 30,000 retail locations. The Company supports independent, regional, and national grocers with access to a wide assortment of products from thousands of established and emerging suppliers, delivered through a scaled, technology-enabled distribution network. UNFI provides a broad range of value-added data, insights, programs, and services to help retailers differentiate their stores and grow profitably, while connecting suppliers to a diverse and dynamic retail ecosystem. With a strategic focus on adding value and improving effectiveness and efficiency, UNFI is committed to creating long-term, shared value for all its stakeholders. To learn more, visit www.unfi.com.
+| | | | | | | | | | | |
+| INVESTOR CONTACTS: | | |
+| Steve Bloomquist | | |
+| Vice President, Investor Relations | | |
+| 952-828-4144 sbloomquist@unfi.com | | |
+| | | |
+| Jeremy Perron | | |
+| SVP, Investor Relations and Corporate Development | | |
+| 781-733-6890 jeremy.perron@unfi.com | | |
+
+
+
+
+
+
+
+
+Safe Harbor Statement under the Private Securities Litigation Reform Act of 1995: Statements in this press release regarding the Company’s business that are not historical facts are “forward-looking statements” that involve risks and uncertainties and are based on current expectations and management estimates; actual results may differ materially. The risks and uncertainties which could impact these statements are described in the Company’s filings under the Securities Exchange Act of 1934, as amended, including under the section entitled “Risk Factors” in the Company’s annual report on Form 10-K for the year ended August 2, 2025 filed with the Securities and Exchange Commission (the “SEC”) on October 1, 2025 and other filings the Company makes with the SEC, and include, but are not limited to, our dependence on principal customers; our relatively low margins, which are sensitive to inflationary and deflationary pressures and intense competition, including as a result of the continuing retailer consolidation and the growth of consumer choices for grocery and consumable purchases; our ability to realize the anticipated benefits of our strategic initiatives; changes in relationships with our suppliers; our ability to develop, implement, operate and maintain, and rely on third parties to operate and maintain, reliable and secure technology systems; the effectiveness of our business continuity plans in response to incidents impacting our operating network or technology systems; our sensitivity to general economic conditions including inflation, tariff policy and changes in disposable income levels and consumer purchasing habits; labor and other workforce shortages and challenges; the addition or loss of significant customers or material changes to our relationships with these customers; our ability to continue to grow sales, including of our higher margin natural and organic foods and non-food products; our ability to maintain sufficient volume in our Natural and Conventional businesses to support our operating infrastructure; increases in healthcare, pension and other costs under our single employer benefit plan and multiemployer benefit plans; the potential for our insurance and self-insurance programs not to be adequate to cover our claims; the potential for disruptions in our supply chain or our distribution capabilities from circumstances beyond our control, including due to lack of long-term contracts, severe weather, labor shortages or work stoppages or otherwise; the effect of adverse decisions in, or settlement of, litigation or other proceedings to which we are subject; volatility in fuel costs; our ability to access additional capital; our ability to realize anticipated benefits of strategic transactions; the potential for additional asset impairment charges; our ability to maintain food quality and safety; moderated supplier promotional activity, including decreased forward buying opportunities; union-organizing activities that could cause labor relations difficulties and increased costs; and changes in tax laws and regulations, and actions by federal, state and local taxing authorities related to the interpretation and application of such tax laws and regulations. Any forward-looking statements are made pursuant to the Private Securities Litigation Reform Act of 1995 and, as such, speak only as of the date made. The Company is not undertaking to update any information in the foregoing reports until the effective date of its future reports required by applicable laws. Any estimates of future results of operations are based on a number of assumptions, many of which are outside the Company’s control and should not be construed in any manner as a guarantee that such results will in fact occur. These estimates are subject to change and could differ materially from final reported results. The Company may from time to time update these publicly announced estimates, but it is not obligated to do so.
+
+
+Non-GAAP Financial Measures: To supplement the financial information presented on a U.S. generally accepted accounting principles (“GAAP”) basis, the Company has included in this press release the non-GAAP financial measures Adjusted EBITDA, Adjusted EPS, adjusted effective tax rate, Free cash flow, Net leverage ratio and Capital and cloud implementation expenditures. Adjusted EBITDA is a consolidated measure which the Company reconciles by adding Net income (loss) including noncontrolling interests, less Net income attributable to noncontrolling interests, plus Non-operating income and expenses, including Net periodic benefit income, excluding service cost, Interest expense, net and Other (income) expense, net, plus (Benefit) provision for income taxes and Depreciation and amortization all calculated in accordance with GAAP, plus adjustments for Share-based compensation, non-cash LIFO charge or benefit, Restructuring, acquisition and integration related expenses, Goodwill impairment charges, Loss (gain) on sale of assets and other asset charges, certain legal charges and gains, and certain other non-cash charges or other items, as determined by management. Adjusted EPS is a consolidated measure, which the Company reconciles by adding Net income (loss) attributable to UNFI plus the LIFO charge or benefit, Goodwill impairment benefits and charges, Restructuring, acquisition, and integration related expenses, gains and losses on sales of assets, certain legal charges and gains, surplus property depreciation and interest expense, losses on debt extinguishment, the impact of diluted shares when GAAP earnings is presented as a loss and non-GAAP earnings represent income, and the tax impact of adjustments and the adjusted effective tax rate, which tax impact is calculated using the adjusted effective tax rate, and certain other non-cash charges or items, as determined by management. The adjusted effective tax rate is calculated based on adjusted net income before tax and excludes the potential impact of changes to uncertain tax positions, valuation allowances, tax impacts related to the vesting of share-based compensation awards and discrete GAAP tax items which could impact the comparability of the operational effective tax rate. Free cash flow is defined as net cash provided by operating activities less payments for capital expenditures. Net leverage ratio (previously referred to as Net Debt to Adjusted EBITDA leverage ratio) is defined as the total carrying value of the Company’s outstanding short- and long-term debt and finance lease liabilities less net cash and cash equivalents, the sum of which is divided by the trailing four quarters Adjusted EBITDA. Capital and cloud implementation expenditures is defined as the sum of payments for capital expenditures and cloud technology implementation expenditures.
+
+
+
+
+
+
+
+
+
+The reconciliation of these non-GAAP financial measures to their comparable GAAP financial measures and the calculation of Net leverage ratio are presented in the tables appearing below, where practicable. The presentation of non-GAAP financial measures is not intended to be considered in isolation or as a substitute for any measure prepared in accordance with GAAP. The Company believes that presenting Adjusted EBITDA and Adjusted EPS aids in making period-to-period comparisons, assessing the performance of the Company’s business and understanding the underlying operating performance and core business trends by excluding certain adjustments not expected to recur in the normal course of business or that are not meaningful indicators of actual and estimated operating performance. The Company believes that providing the adjusted effective tax rate gives investors a meaningful, consistent comparison of the Company’s effective tax rate on ongoing operations. The inclusion of Free cash flow assists investors in understanding the cash generating ability of the Company separate from cash generated by the sale of assets. Net leverage ratio is a commonly used metric that assists investors in understanding and evaluating the Company’s capital structure and changes to its capital structure over time. The Company believes that providing Capital and cloud implementation expenditures provides investors with better visibility into the Company's total investment expenditures. The components of Capital and cloud implementation expenditures for fiscal 2027 will be primarily dependent on the nature of certain contracts to be executed. Management utilizes and plans to utilize these non-GAAP financial measures to compare the Company’s operating performance during fiscal 2027 to the comparable periods in fiscal 2026 and to internally prepared projections. These non-GAAP financial measures may differ from similarly titled measures of other companies.
+
+
+
+
+
+
+
+
+
+
+UNITED NATURAL FOODS, INC.
+CONSOLIDATED STATEMENTS OF OPERATIONS (unaudited)
+(in millions, except for per share data)
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+| Fourth Quarter Ended | | Fiscal Year Ended |
+| August 1, 2026
+(13 weeks)
+| | August 2, 2025
+(13 weeks)
+| | August 1, 2026
+(52 weeks)
+| | August 2, 2025
+(52 weeks)
+|
+Net sales | $ | 7,642 | | | $ | 7,696 | | | $ | 31,152 | | | $ | 31,784 | |
+Cost of sales | 6,592 | | | 6,666 | | | 26,956 | | | 27,562 | |
+Gross profit | 1,050 | | | 1,030 | | | 4,196 | | | 4,222 | |
+Operating expenses | 984 | | | 1,046 | | | 3,906 | | | 4,117 | |
+Restructuring, acquisition and integration related expenses | 12 | | | 59 | | | 52 | | | 94 | |
+(Gain) loss on sale of assets and other asset charges | (15) | | | 3 | | | 27 | | | 42 | |
+Operating income (loss) | 69 | | | (78) | | | 211 | | | (31) | |
+Net periodic benefit income, excluding service cost | (5) | | | (5) | | | (23) | | | (20) | |
+Interest expense, net | 29 | | | 36 | | | 126 | | | 146 | |
+Other (income) expense, net | (1) | | | — | | | 6 | | | (3) | |
+Income (loss) before income taxes | 46 | | | (109) | | | 102 | | | (154) | |
+Provision (benefit) for income taxes | 11 | | | (23) | | | 18 | | | (39) | |
+Net income (loss) including noncontrolling interests | 35 | | | (86) | | | 84 | | | (115) | |
+Less net income attributable to noncontrolling interests | — | | | (1) | | | — | | | (3) | |
+Net income (loss) attributable to United Natural Foods, Inc. | $ | 35 | | | $ | (87) | | | $ | 84 | | | $ | (118) | |
+| | | | | | | |
+Basic income (loss) per share | $ | 0.59 | | | $ | (1.43) | | | $ | 1.39 | | | $ | (1.95) | |
+Diluted income (loss) per share | $ | 0.57 | | | $ | (1.43) | | | $ | 1.34 | | | $ | (1.95) | |
+| | | | | | | |
+Weighted average shares outstanding: | | | | | | | |
+Basic | 60.5 | | | 60.6 | | | 60.7 | | | 60.2 | |
+Diluted | 62.9 | | | 60.6 | | | 62.8 | | | 60.2 | |
+
+
+
+
+
+
+
+
+
+
+
+UNITED NATURAL FOODS, INC.
+CONSOLIDATED BALANCE SHEETS (unaudited)
+(in millions, except for par values)
+
+
+| | | | | | | | | | | |
+| August 1,
+2026 | | August 2,
+2025 |
+ASSETS | | | |
+Cash and cash equivalents | $ | 37 | | | $ | 44 | |
+Accounts receivable, net | 921 | | | 1,093 | |
+Inventories, net | 1,946 | | | 2,095 | |
+Prepaid expenses and other current assets | 234 | | | 191 | |
+Total current assets | 3,138 | | | 3,423 | |
+Property and equipment, net | 1,716 | | | 1,749 | |
+Operating lease assets | 1,334 | | | 1,474 | |
+Goodwill | 19 | | | 19 | |
+Intangible assets, net | 509 | | | 576 | |
+Deferred income taxes | 158 | | | 162 | |
+Other long-term assets | 235 | | | 192 | |
+Total assets | $ | 7,109 | | | $ | 7,595 | |
+LIABILITIES AND STOCKHOLDERS’ EQUITY | | | |
+Accounts payable | $ | 1,771 | | | $ | 1,875 | |
+Accrued expenses and other current liabilities | 305 | | | 319 | |
+Accrued compensation and benefits | 214 | | | 227 | |
+Current portion of operating lease liabilities | 143 | | | 173 | |
+Current portion of long-term debt and finance lease liabilities | 5 | | | 8 | |
+Total current liabilities | 2,438 | | | 2,602 | |
+Long-term debt | 1,561 | | | 1,859 | |
+Long-term operating lease liabilities | 1,316 | | | 1,400 | |
+Long-term finance lease liabilities | 10 | | | 11 | |
+Pension and other postretirement benefit obligations | 13 | | | 14 | |
+| | | |
+Other long-term liabilities | 149 | | | 155 | |
+Total liabilities | 5,487 | | | 6,041 | |
+| | | |
+Stockholders’ equity: | | | |
+Preferred stock, $0.01 par value, authorized 5.0 shares; none issued or outstanding
+| — | | | — | |
+Common stock, $0.01 par value, authorized 100.0 shares; 64.0 shares issued and 60.3 shares outstanding at August 1, 2026; 63.1 shares issued and 60.6 shares outstanding at August 2, 2025
+| 1 | | | 1 | |
+Additional paid-in capital | 690 | | | 658 | |
+Treasury stock at cost | (136) | | | (86) | |
+Accumulated other comprehensive loss | (38) | | | (42) | |
+Retained earnings | 1,104 | | | 1,020 | |
+Total United Natural Foods, Inc. stockholders’ equity | 1,621 | | | 1,551 | |
+Noncontrolling interests | 1 | | | 3 | |
+Total stockholders’ equity | 1,622 | | | 1,554 | |
+Total liabilities and stockholders’ equity
+| $ | 7,109 | | | $ | 7,595 | |
+
+
+
+
+
+
+
+
+
+UNITED NATURAL FOODS, INC.
+CONSOLIDATED STATEMENTS OF CASH FLOWS (unaudited)
+| | | | | | | | | | | |
+| Fiscal Year Ended |
+(in millions) | August 1, 2026
+(52 weeks)
+| | August 2, 2025
+(52 weeks)
+|
+CASH FLOWS FROM OPERATING ACTIVITIES: | | | |
+Net income (loss) including noncontrolling interests | $ | 84 | | | $ | (115) | |
+Adjustments to reconcile net income (loss) to net cash provided by operating activities:
+| | | |
+Depreciation and amortization | 303 | | | 321 | |
+Share-based compensation | 61 | | | 43 | |
+Loss (gain) on sale of assets | (12) | | | (4) | |
+Long-lived asset impairment charges | 30 | | | 25 | |
+Net pension and other postretirement benefit income | (23) | | | (20) | |
+Deferred income tax expense (benefit) | 27 | | | (56) | |
+LIFO charge (benefit) | 19 | | | (2) | |
+Provision for losses on receivables | 34 | | | 3 | |
+Loss on debt extinguishment | 2 | | | 4 | |
+Non-cash interest expense and other adjustments | 5 | | | 5 | |
+Changes in operating assets and liabilities:
+| | | |
+Accounts and notes receivable | 131 | | | (142) | |
+Inventories | 130 | | | 87 | |
+Prepaid expenses and other assets | 115 | | | 276 | |
+Accounts payable | (119) | | | 200 | |
+Accrued expenses and other liabilities | (247) | | | (155) | |
+Net cash provided by operating activities | 540 | | | 470 | |
+CASH FLOWS FROM INVESTING ACTIVITIES: | | | |
+Payments for capital expenditures | (217) | | | (231) | |
+Proceeds from dispositions of assets | 56 | | | 30 | |
+Payments for investments | (14) | | | (18) | |
+Other investing | 6 | | | 1 | |
+Net cash used in investing activities | (169) | | | (218) | |
+CASH FLOWS FROM FINANCING ACTIVITIES: | | | |
+Proceeds from borrowings under revolving credit line | 3,524 | | | 3,528 | |
+Proceeds from issuance of other loans | 3 | | | 13 | |
+Repayments of borrowings under revolving credit line | (3,660) | | | (3,642) | |
+Repayments of long-term debt and finance leases | (167) | | | (124) | |
+Repurchases of common stock | (50) | | | — | |
+Payments of employee restricted stock tax withholdings | (15) | | | (10) | |
+Payments for debt issuance costs | (8) | | | (1) | |
+Distributions to noncontrolling interests | (2) | | | (4) | |
+Repayments of other loans | (2) | | | (8) | |
+Other financing | — | | | — | |
+Net cash used in financing activities | (377) | | | (248) | |
+EFFECT OF EXCHANGE RATE ON CASH | (1) | | | — | |
+NET (DECREASE) INCREASE IN CASH AND CASH EQUIVALENTS | (7) | | | 4 | |
+Cash and cash equivalents, at beginning of period | 44 | | | 40 | |
+Cash and cash equivalents, at end of period | $ | 37 | | | $ | 44 | |
+Supplemental disclosures of cash flow information: | | | |
+Cash paid for interest | $ | 127 | | | $ | 147 | |
+Cash payments for federal, state and foreign income taxes, net | $ | 7 | | | $ | 4 | |
+Leased assets obtained in exchange for new operating lease liabilities | $ | 60 | | | $ | 321 | |
+Leased assets obtained in exchange for new finance lease liabilities | $ | 2 | | | $ | 5 | |
+Additions of property and equipment included in Accounts payable | $ | 24 | | | $ | 7 | |
+
+
+
+
+
+
+
+
+
+SUPPLEMENTAL NON-GAAP FINANCIAL INFORMATION
+UNITED NATURAL FOODS, INC.
+| | | | | | | | | | | | | | | | | | | | | | | |
+Reconciliation of Net income (loss) including noncontrolling interests to Adjusted EBITDA (unaudited) |
+| | | |
+| Fourth Quarter Ended | | Fiscal Year Ended |
+(in millions) | August 1, 2026
+(13 weeks)
+| | August 2, 2025
+(13 weeks)
+| | August 1, 2026
+(52 weeks)
+| | August 2, 2025
+(52 weeks)
+|
+Net income (loss) including noncontrolling interests | $ | 35 | | | $ | (86) | | | $ | 84 | | | $ | (115) | |
+Adjustments to net income (loss) including noncontrolling interests: | | | | | | | |
+Less net income attributable to noncontrolling interests | — | | | (1) | | | — | | | (3) | |
+Net periodic benefit income, excluding service cost
+| (5) | | | (5) | | | (23) | | | (20) | |
+Interest expense, net
+| 29 | | | 36 | | | 126 | | | 146 | |
+Other (income) expense, net | (1) | | | — | | | 6 | | | (3) | |
+Provision (benefit) for income taxes | 11 | | | (23) | | | 18 | | | (39) | |
+Depreciation and amortization | 78 | | | 79 | | | 303 | | | 321 | |
+Share-based compensation | 16 | | | 15 | | | 61 | | | 43 | |
+LIFO charge (benefit) | 1 | | | (7) | | | 19 | | | (2) | |
+Restructuring, acquisition and integration related expenses
+| 12 | | | 59 | | | 52 | | | 94 | |
+(Gain) loss on sale of assets and other asset charges
+| (15) | | | 3 | | | 27 | | | 42 | |
+Multiemployer pension plan withdrawal charges
+| 3 | | | — | | | 3 | | | — | |
+Other retail expense
+| 1 | | | — | | | 1 | | | — | |
+Business transformation costs
+| 10 | | | 7 | | | 34 | | | 47 | |
+Cybersecurity incident
+| (3) | | | 26 | | | (21) | | | 26 | |
+Other adjustments
+| — | | | 13 | | | 11 | | | 15 | |
+Adjusted EBITDA | $ | 172 | | | $ | 116 | | | $ | 701 | | | $ | 552 | |
+
+
+
+(1)Fiscal 2026 primarily reflects distribution center and store closure charges, costs associated with certain employee severance and other employee separation costs and adjustments to previously recorded multiemployer pension plan withdrawal liabilities. Fiscal 2025 primarily reflects the $53 million charge related to the Company’s termination of its supply agreement with a customer in the East region and costs associated with certain employee severance and other employee separation costs and outsourcing certain corporate functions under restructuring initiatives.
+(2)Fiscal 2026 primarily includes $30 million in non-cash asset impairment charges related to decisions to close certain retail store locations and discontinue operations at certain distribution centers, warehouses or offsite storage facilities, an $18 million gain on the sale of a surplus distribution center and $17 million in losses on the sales of receivables under the accounts receivable monetization program. Fiscal 2025 primarily includes a $24 million non-cash asset impairment charge related to a distribution center in our East region and $19 million in losses on the sales of receivables under the accounts receivable monetization program.
+(3)Fiscal 2026 reflects store closure inventory charges, which are included within Cost of sales in the Consolidated Statements of Operations.
+(4)Reflects costs associated with business transformation initiatives, primarily including third-party consulting costs and licensing costs, which are included within Operating expenses in the Consolidated Statements of Operations.
+(5)Fiscal 2026 includes $45 million of insurance recoveries, which are included within Operating expenses in the Consolidated Statements of Operations, partially offset by $24 million of costs and charges related to the June 2025 cybersecurity incident, of which $20 million is included within Gross profit and $4 million is included within Operating expenses in the Consolidated Statements of Operations. Fiscal 2025 includes costs and charges related to the cybersecurity incident, of which $15 million is included within Gross profit and $11 million is included within Operating expenses in the Consolidated Statements of Operations.
+(6)Primarily reflects accrued costs related to an agreement to settle certain legal proceedings, which are included within Operating expenses in the Consolidated Statements of Operations.
+
+
+
+
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+Reconciliation of Net income (loss) attributable to United Natural Foods, Inc. to Adjusted net income (loss) and Adjusted EPS (unaudited) |
+|
+| Fourth Quarter Ended | | Fiscal Year Ended |
+(in millions, except per share amounts) | August 1, 2026
+(13 weeks)
+| | August 2, 2025
+(13 weeks)
+| | August 1, 2026
+(52 weeks)
+| | August 2, 2025
+(52 weeks)
+|
+Net income (loss) attributable to United Natural Foods, Inc. | $ | 35 | | | $ | (87) | | | $ | 84 | | | $ | (118) | |
+Restructuring, acquisition, and integration related expenses
+| 12 | | | 59 | | | 52 | | | 94 | |
+(Gain) loss on sale of assets and other asset charges other than losses on sales of receivables
+| (19) | | | (2) | | | 10 | | | 23 | |
+LIFO charge (benefit) | 1 | | | (7) | | | 19 | | | (2) | |
+Surplus property depreciation and interest expense
+| 3 | | | 1 | | | 5 | | | 2 | |
+Multiemployer pension plan withdrawal charges
+| 3 | | | — | | | 3 | | | — | |
+Loss on debt extinguishment | 1 | | | 4 | | | 2 | | | 4 | |
+Other retail expense
+| 1 | | | — | | | 1 | | | — | |
+Business transformation costs
+| 10 | | | 7 | | | 34 | | | 47 | |
+Cybersecurity incident
+| (3) | | | 26 | | | (21) | | | 26 | |
+Other adjustments
+| — | | | 13 | | | 11 | | | 15 | |
+Tax impact of adjustments and adjusted effective tax rate
+| — | | | (20) | | | (34) | | | (47) | |
+Adjusted net income (loss) | $ | 44 | | | $ | (6) | | | $ | 166 | | | $ | 44 | |
+| | | | | | | |
+Diluted weighted average shares outstanding | 62.9 | | | 60.6 | | | 62.8 | | | 61.8 | |
+Adjusted EPS
+| $ | 0.69 | | | $ | (0.11) | | | $ | 2.65 | | | $ | 0.71 | |
+
+(1)Fiscal 2026 primarily reflects distribution center and store closure charges, costs associated with certain employee severance and other employee separation costs and adjustments to previously recorded multiemployer pension plan withdrawal liabilities. Fiscal 2025 primarily reflects the $53 million charge related to the Company’s termination of its supply agreement with a customer in the East region and costs associated with certain employee severance and other employee separation costs and outsourcing certain corporate functions under restructuring initiatives.
+(2)(Gain) loss on sale of assets and other asset charges, as reflected here, does not include losses on sales of receivables under the accounts receivable monetization program, which are included in Loss (gain) on sale of assets and other asset charges on the Consolidated Statements of Operations and are not adjusted in the calculation of Adjusted EPS. Fiscal 2026 primarily includes $30 million in non-cash asset impairment charges related to decisions to close certain retail store locations and discontinue operations at certain distribution centers, warehouses or offsite storage facilities and an $18 million gain on the sale of a surplus distribution center. Fiscal 2025 primarily includes a $24 million non-cash asset impairment charge related to a distribution center in our East region.
+(3)Reflects surplus, non-operating property depreciation and interest expense.
+(4)Fiscal 2026 reflects store closure inventory charges, which are included within Cost of sales in the Consolidated Statements of Operations.
+(5)Reflects costs associated with business transformation initiatives, primarily including third-party consulting costs and licensing costs, which are included within Operating expenses in the Consolidated Statements of Operations.
+(6)Fiscal 2026 includes $45 million of insurance recoveries, which are included within Operating expenses in the Consolidated Statements of Operations, partially offset by $24 million of costs and charges related to the June 2025 cybersecurity incident, of which $20 million is included within Gross profit and $4 million is included within Operating expenses in the Consolidated Statements of Operations. Fiscal 2025 includes costs and charges related to the cybersecurity incident, of which $15 million is included within Gross profit and $11 million is included within Operating expenses in the Consolidated Statements of Operations.
+(7)Primarily reflects accrued costs related to an agreement to settle certain legal proceedings, which are included within Operating expenses in the Consolidated Statements of Operations.
+(8)Represents the tax effect of the pre-tax adjustments using an adjusted effective tax rate. The adjusted effective tax rate is calculated based on adjusted net income before tax, and its impact reflects the exclusion of changes to uncertain tax positions, valuation allowances, tax impacts related to the vesting of share-based compensation awards and discrete GAAP tax items which could impact the comparability of the operational effective tax rate. The Company believes using this adjusted effective tax rate will provide better consistency across the interim reporting periods since each of these discrete items can cause volatility in the GAAP tax rate that is not indicative of the underlying ongoing operations of the Company. By providing this non-GAAP measure, management intends to provide investors with a meaningful, consistent comparison of the Company’s effective tax rate on ongoing operations.
+(9)Adjusted earnings (loss) per share amounts are calculated using actual unrounded figures.
+
+
+
+
+
+
+
+
+| | | | | | | | | |
+Calculation of Net leverage ratio (unaudited) | | |
+| | | | | |
+(in millions, except ratios) | Fiscal Year Ended
+August 1, 2026
+| | | | |
+Current portion of long-term debt and finance lease liabilities | $ | 5 | | | | | |
+Long-term debt | 1,561 | | | | | |
+Long-term finance lease liabilities | 10 | | | | | |
+Less: Cash and cash equivalents | (37) | | | | | |
+Net carrying value of debt and finance lease liabilities | 1,539 | | | | | |
+Adjusted EBITDA | $ | 701 | | | | | |
+Net leverage ratio | 2.2x | | | | |
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+Reconciliation of Net cash provided by operating activities to Free cash flow (unaudited)
+|
+| | | | | | | |
+| Fourth Quarter Ended | | Fiscal Year Ended |
+(in millions) | August 1, 2026
+(13 weeks)
+| | August 2, 2025
+(13 weeks)
+| | August 1, 2026
+(52 weeks)
+| | August 2, 2025
+(52 weeks)
+|
+Net cash provided by operating activities | $ | 197 | | | $ | 160 | | | $ | 540 | | | $ | 470 | |
+Payments for capital expenditures | (117) | | | (74) | | | (217) | | | (231) | |
+Free cash flow | $ | 80 | | | $ | 86 | | | $ | 323 | | | $ | 239 | |
+
+
+
+
+| | | | | | | | | | | | | | | | | | | | | | | |
+Reconciliation of Payments for capital expenditures to Capital and cloud implementation expenditures (unaudited)
+|
+| | | | | | | |
+| Fourth Quarter Ended | | Fiscal Year Ended |
+(in millions) | August 1, 2026
+(13 weeks)
+| | August 2, 2025
+(13 weeks)
+| | August 1, 2026
+(52 weeks)
+| | August 2, 2025
+(52 weeks)
+|
+Payments for capital expenditures | $ | 117 | | | $ | 74 | | | $ | 217 | | | $ | 231 | |
+Cloud technology implementation expenditures
+| 17 | | | 1 | | | 35 | | | 7 | |
+Capital and cloud implementation expenditures | $ | 134 | | | $ | 75 | | | $ | 252 | | | $ | 238 | |
+
+(1)Cloud technology implementation expenditures are included in operating activities in the Consolidated Statements of Cash Flows.
+
+
+
+Reconciliation of actual 2026 and 2025 U.S. GAAP effective tax rate to adjusted effective tax rate (unaudited)
+| | | | | | | | | | | |
+| Actual Fiscal 2026
+| | Actual Fiscal 2025
+|
+U.S. GAAP Effective Tax Rate | 18 | % | | 25 | % |
+Discrete quarterly recognition of GAAP items
+| 4 | % | | (1) | % |
+Tax impact of other charges and adjustments
+| 5 | % | | (13) | % |
+Changes in valuation allowances
+| (3) | % | | 5 | % |
+Other
+| — | % | | — | % |
+Adjusted Effective Tax Rate
+| 24 | % | | 16 | % |
+
+Note: As part of the year-end reconciliation, we have updated the reconciliation of the fiscal 2026 GAAP effective tax rate for actual results.
+(1)Reflects changes in tax laws, uncertain tax positions, the tax impacts related to the exercise of share-based compensation awards and any prior-year deferred tax or payable adjustments. This includes prior-year Internal Revenue Service or other tax jurisdiction audit adjustments.
+(2)Reflects the tax impact of pre-tax adjustments that are excluded from pre-tax income when calculating Adjusted EPS.
+(3)Reflects changes in valuation allowances related to changes in judgment regarding the realizability of deferred tax assets or current year operations.
+(4)The Company establishes an estimated adjusted effective tax rate at the beginning of the fiscal year based on the best available information. The Company re-evaluates its estimated adjusted effective tax rate as appropriate throughout the year and adjusts for any material changes. The actual adjusted effective tax rate at the end of the fiscal year is based on actual results and accordingly may differ from the estimated adjusted effective tax rate used during the year.
