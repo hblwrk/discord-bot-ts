@@ -2848,6 +2848,37 @@ const filingCorpus: {
     source: "1802974/000180297426000042/exh991avoq32026earningsrel.htm",
     ticker: "avo",
   },
+  {
+    // The fiscal quarter is named in the title without a year, while a category table
+    // contains several component revenue columns before its consolidated total.
+    company: "Casey's General Stores",
+    metrics: [
+      ["gaap_eps", "$7.37"],
+      ["revenue", "$5.68B"],
+      ["net_income", "$273.72M"],
+    ],
+    outlook: [
+      ["Tax rate", "24% to 26%"],
+    ],
+    quarterLabel: "Q1 2027",
+    source: "726958/000072695826000084/q1fy2027earningspressrelea.htm",
+    ticker: "casy",
+  },
+  {
+    // The Q4/full-year title puts the fiscal year in a period-ending date. A later detailed
+    // statement mislabels its positive current-period EPS row as loss, while the summary
+    // table uses the sign-neutral Net Income (Loss) caption.
+    company: "InnovAge Holding",
+    metrics: [
+      ["gaap_eps", "$0.06"],
+      ["revenue", "$261.95M"],
+      ["net_income", "$8.29M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q4 2026",
+    source: "1834376/000183437626000047/innv-20260908xexx991.htm",
+    ticker: "innv",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -2868,6 +2899,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(175);
+    expect(filingCorpus).toHaveLength(177);
   });
 });
