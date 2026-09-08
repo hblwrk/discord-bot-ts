@@ -2732,6 +2732,104 @@ const filingCorpus: {
     source: "1092796/000119312526381907/swbi-ex99_1.htm",
     ticker: "swbi",
   },
+  {
+    company: "UiPath",
+    metrics: [
+      ["adjusted_eps", "$0.15"],
+      ["gaap_eps", "$0.07"],
+      ["revenue", "$410M"],
+      ["net_income", "$36.09M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$440M to $445M"],
+      ["FY2027 Revenue", "$1.789B to $1.794B"],
+      ["Q3 Operating income", "$100M"],
+      ["FY2027 Operating income", "$445M"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1734722/000173472226000047/path-2026731xex991.htm",
+    ticker: "path",
+  },
+  {
+    // The release's alternating Q4/full-year summary lines leave empty table cells on the
+    // annual lines. Gross profit is also stated as a percentage of net sales in results prose.
+    company: "United Natural Foods",
+    metrics: [
+      ["adjusted_eps", "$0.69"],
+      ["gaap_eps", "$0.57"],
+      ["revenue", "$7.6B"],
+      ["net_income", "$35M"],
+    ],
+    outlook: [
+      ["Revenue", "$31.2B to $31.8B"],
+      ["Adj EPS", "$3 to $3.5"],
+      ["EPS", "$1.7 to $2.3"],
+      ["Adj EBITDA", "$730M to $780M"],
+      ["Free cash flow", "$275M to $325M"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "1020859/000102085926000022/f26q4earningsrelease.htm",
+    ticker: "unfi",
+  },
+  {
+    // Full-year guidance and several values share one prose line. The operating-margin
+    // definition names revenue before the margin range, and the cash-flow values map by
+    // their "respectively" order.
+    company: "ABM Industries",
+    metrics: [
+      ["adjusted_eps", "$1.04"],
+      ["gaap_eps", "$0.84"],
+      ["revenue", "$2.3B"],
+      ["net_income", "$49.7M"],
+    ],
+    outlook: [
+      ["FY2026 Adj EPS", "$3.95 to $4.1"],
+      ["FY2026 Operating margin", "7.7% to 7.8%"],
+      ["FY2026 Tax rate", "29% to 30%"],
+      ["FY2026 Free cash flow", "$210M"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "771497/000119312526384364/abm-ex99_1.htm",
+    ticker: "abm",
+  },
+  {
+    // Narrative result sentences wrap immediately before their values. The ADS loss is a
+    // per-share result, while the separate $97.6 million figure is aggregate net loss.
+    company: "Canaan",
+    metrics: [
+      ["gaap_eps", "-$0.13"],
+      ["revenue", "$31.9M"],
+      ["net_income", "-$97.6M"],
+    ],
+    outlook: [
+      ["Revenue", "$11M to $15M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1780652/000110465926105660/tm2624951d1_ex99-1.htm",
+    ticker: "can",
+  },
+  {
+    // Q3 and FY2027 guidance values occupy parallel columns, with most captions and each
+    // value rendered on separate lines. The table-wide money scale does not apply to EPS.
+    company: "Braze",
+    metrics: [
+      ["adjusted_eps", "$0.19"],
+      ["gaap_eps", "-$0.17"],
+      ["revenue", "$227.23M"],
+      ["net_income", "-$18.85M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$229M to $230M"],
+      ["FY2027 Revenue", "$910M to $913M"],
+      ["Q3 Adj EPS", "$0.13 to $0.14"],
+      ["FY2027 Adj EPS", "$0.64 to $0.65"],
+      ["Q3 Operating income", "$16M to $17M"],
+      ["FY2027 Operating income", "$75.5M to $76.5M"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1676238/000167623826000039/a20260731-brazeincxq227ear.htm",
+    ticker: "brze",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
@@ -2752,6 +2850,6 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(169);
+    expect(filingCorpus).toHaveLength(174);
   });
 });

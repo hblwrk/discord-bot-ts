@@ -109,6 +109,20 @@ export function getMetricCandidateScore({
     score -= 80;
   }
 
+  // Some summary tables render the quarter and full-year columns as alternating bullet
+  // lines. The second column keeps leading empty table cells, while the quarter column does
+  // not. Prefer the first column instead of publishing an annual EPS as the Q4 result.
+  const isSecondaryParallelSummaryBullet = /^\s*(?:\|\s*)+•/.test(metricLine) &&
+    lines
+      .slice(Math.max(0, lineIndex - 10), lineIndex)
+      .some(line => /\bfourth\s+quarter\b.*\bfiscal\s+20\d{2}\b/i.test(line)) &&
+    lines
+      .slice(Math.max(0, lineIndex - 10), lineIndex)
+      .some(line => /\bfull\s+year\b.*\bfiscal\s+20\d{2}\b/i.test(line));
+  if (true === isSecondaryParallelSummaryBullet) {
+    score -= 160;
+  }
+
   // A row under a guidance heading states guidance even where its caption does not say so,
   // so a table of forward ranges is not read as the reported quarter.
   if (true === isUnderGuidanceHeading(lines, lineIndex)) {
