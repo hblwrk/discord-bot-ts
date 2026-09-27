@@ -109,6 +109,20 @@ export function getMetricCandidateScore({
     score -= 80;
   }
 
+  // Some summary tables render the quarter and full-year columns as alternating bullet
+  // lines. The second column keeps leading empty table cells, while the quarter column does
+  // not. Prefer the first column instead of publishing an annual EPS as the Q4 result.
+  const isSecondaryParallelSummaryBullet = /^\s*(?:\|\s*)+•/.test(metricLine) &&
+    lines
+      .slice(Math.max(0, lineIndex - 10), lineIndex)
+      .some(line => /\bfourth\s+quarter\b.*\bfiscal\s+20\d{2}\b/i.test(line)) &&
+    lines
+      .slice(Math.max(0, lineIndex - 10), lineIndex)
+      .some(line => /\bfull\s+year\b.*\bfiscal\s+20\d{2}\b/i.test(line));
+  if (true === isSecondaryParallelSummaryBullet) {
+    score -= 160;
+  }
+
   // A row under a guidance heading states guidance even where its caption does not say so,
   // so a table of forward ranges is not read as the reported quarter.
   if (true === isUnderGuidanceHeading(lines, lineIndex)) {
@@ -153,8 +167,22 @@ export function getMetricCandidateScore({
       /\bsubscription\s+(?:and\s+transaction\s+fees|fees)\b/i,
       /\b(?:transaction\s+fees|interest\s+on\s+funds\s+held\s+for\s+customers)\b/i,
     ].filter(componentPattern => componentPattern.test(precedingRevenueRows)).length;
+    // A consolidated statement row is authoritative even when a nearby brand-results
+    // bullet spells out its quarter and captures a rounded value. The generic table bonus
+    // alone is not enough to beat that segment prose, so retain the statement heading as a
+    // separate signal and keep the preference limited to an actual table row.
+    if (2 <= (metricLine.match(/\|/g)?.length ?? 0) &&
+        true === isUnderIncomeStatementHeading(lines, lineIndex) &&
+        true === hasBrandResultsSection(lines)) {
+      score += 60;
+    }
+
     if (true === isUnderSegmentResultsHeading(lines, lineIndex)) {
       score -= 120;
+    }
+
+    if (/\brecord\s+quarterly\s+net\s+revenues?\s+of\b/i.test(metricLine)) {
+      score += 250;
     }
 
     if (/\btotal\s+net\s+revenues?\b/i.test(metricLine) &&
@@ -175,7 +203,8 @@ export function getMetricCandidateScore({
       // individual products in the same release can each carry an equally specific quarter
       // label and otherwise tie it on score merely because they appear first.
       score += 40;
-    } else if (/\b(?:net\s+)?product\s+sales\b|\bservice\s+revenues?\b/i.test(metricCaptionText)) {
+    } else if (/\b(?:net\s+)?product\s+(?:sales|revenues?)\b|\bservice\s+revenues?\b/i.test(metricCaptionText) &&
+        lines.some(candidateLine => /\btotal\s+revenues?\b|^\s*revenues?\s*\|/i.test(candidateLine))) {
       score -= 80;
     }
 
@@ -240,6 +269,10 @@ export function getMetricCandidateScore({
   return score;
 }
 
+function hasBrandResultsSection(lines: string[]): boolean {
+  return lines.some(line => line.length <= 140 && /\b(?:global\s+)?brand\s+results?\b/i.test(line));
+}
+
 function isUnderIncomeStatementHeading(lines: string[], lineIndex: number): boolean {
   for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 120; index--, examined++) {
     const heading = (lines[index] ?? "").replace(/[\s|:]+$/, "").trim();
@@ -255,7 +288,7 @@ function isUnderSegmentResultsHeading(lines: string[], lineIndex: number): boole
   return lines
     .slice(Math.max(0, lineIndex - 12), lineIndex)
     .some(line => line.length <= 140 &&
-      /\b(?:reporting\s+segments?|solutions\s+group)\b/i.test(line));
+      /\b(?:reporting\s+segments?|solutions\s+group|summary\s+by\s+category)\b/i.test(line));
 }
 
 export function hasStandaloneFullYearPeriod(text: string): boolean {
@@ -405,11 +438,16 @@ export function getCurrentPeriodColumnIndex(
     return currencyColumnIndex;
   }
 
-  // An income statement puts twenty or more rows between its year header and the per-share
-  // rows at the bottom, so a short lookback misses the header entirely and the row is read
-  // as though the reported period came first. The nearest header still wins, which keeps a
-  // row below one table from picking up the header of another.
-  for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 40; index--, examined++) {
+  // Most tables keep their header close to the row. A vertically rendered foreign-issuer
+  // quarter/YTD statement can be much taller; the ADS disclosure distinguishes that shape
+  // from domestic tables where an extended search can cross into another statement.
+  const hasLongAdsStatement = lines.some(line => /\blisting of its ADSs on Nasdaq\b/i.test(line)) &&
+    lines.some(line => /\bthree\s+months\s+ended\b/i.test(line)) &&
+    lines.some(line => /\bsix\s+months\s+ended\b/i.test(line));
+  const lookbackLimit = true === hasLongAdsStatement
+    ? 140
+    : 40;
+  for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < lookbackLimit; index--, examined++) {
     const line = lines[index];
     if (undefined === line) {
       continue;
@@ -682,11 +720,14 @@ function getPeriodEndedScope(line: string): PeriodScope {
     return "annual";
   }
 
-  if (/\b(?:three|3)\s+months?\s+ended\b/i.test(line) || /\bquarters?\s+ended\b/i.test(line)) {
+  if (/\b(?:three|3)\s+months?\s+ended\b/i.test(line) ||
+      /\b(?:thirteen|13)\s+weeks?\s+ended\b/i.test(line) ||
+      /\bquarters?\s+ended\b/i.test(line)) {
     return "quarter";
   }
 
   if (/\b(?:twelve|12|six|6|nine|9)\s+months?\s+ended\b/i.test(line) ||
+      /\b(?:twenty[-\s]+six|26|thirty[-\s]+nine|39|fifty[-\s]+two|52)\s+weeks?\s+ended\b/i.test(line) ||
       /\byear\s+ended\b/i.test(line)) {
     return "annual";
   }
