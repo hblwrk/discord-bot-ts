@@ -80,10 +80,18 @@ describe("getFixedTwitterLinks", () => {
 
   test("trims common trailing punctuation around links", () => {
     expect(getFixedTwitterLinks(
-      "tweet (https://x.com/example/status/123), and <https://twitter.com/example/status/456>!",
+      "tweet (https://x.com/example/status/123), and https://twitter.com/example/status/456!",
     )).toEqual([
       "https://fxtwitter.com/example/status/123",
       "https://fxtwitter.com/example/status/456",
+    ]);
+  });
+
+  test("ignores links enclosed in Discord embed suppression brackets", () => {
+    expect(getFixedTwitterLinks(
+      "<https://x.com/example/status/123>! <https://twitter.com/example/status/456?s=20> https://x.com/example/status/789",
+    )).toEqual([
+      "https://fxtwitter.com/example/status/789",
     ]);
   });
 });
@@ -304,7 +312,7 @@ describe("addTwitterLinkRewrites", () => {
     });
   });
 
-  test("treats a link wrapped in brackets and punctuation as link-only", async () => {
+  test("ignores a link enclosed in Discord embed suppression brackets", async () => {
     const {client, getHandler} = createEventClient();
     addTwitterLinkRewrites(client);
 
@@ -314,9 +322,27 @@ describe("addTwitterLinkRewrites", () => {
 
     await handler(message);
 
-    expect(message.delete).toHaveBeenCalledTimes(1);
-    expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({
-      content: "From <@111222333>: https://fxtwitter.com/example/status/123",
+    expect(message.delete).not.toHaveBeenCalled();
+    expect(message.channel.send).not.toHaveBeenCalled();
+    expect(message.reply).not.toHaveBeenCalled();
+    expect(message.suppressEmbeds).not.toHaveBeenCalled();
+  });
+
+  test("keeps a suppressed link when rewriting another link in the same message", async () => {
+    const {client, getHandler} = createEventClient();
+    addTwitterLinkRewrites(client);
+
+    const handler = getHandler("messageCreate");
+    const message = createTwitterMessage(
+      "<https://x.com/example/status/123> https://x.com/example/status/456",
+    );
+
+    await handler(message);
+
+    expect(message.delete).not.toHaveBeenCalled();
+    expect(message.channel.send).not.toHaveBeenCalled();
+    expect(message.reply).toHaveBeenCalledWith(expect.objectContaining({
+      content: "https://fxtwitter.com/example/status/456",
     }));
   });
 
