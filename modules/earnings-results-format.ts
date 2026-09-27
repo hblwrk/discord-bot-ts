@@ -72,7 +72,7 @@ export function parseEarningsDocument(html: string): ParsedEarningsDocument {
     dilutedShareMantissa: getDilutedShareMantissa(lines),
     headline: getDocumentHeadline(lines),
     metrics: dropOrdinaryShareEpsForAdsIssuer(metrics, lines),
-    outlook: extractOutlookMetrics(lines, documentCurrencyCode),
+    outlook: extractOutlookMetrics(lines, documentCurrencyCode, quarterLabel),
     quarterLabel,
   };
 }
@@ -87,13 +87,15 @@ function dropOrdinaryShareEpsForAdsIssuer(
 ): EarningsResultMetric[] {
   const hasAdsEquivalence = lines.some(line =>
     /\bequivalent\s+to\s+(?:about\s+)?[\d,]+\s+ADSs?\b/i.test(line) ||
-    /\bone\s+ADS\s+(?:is\s+equivalent\s+to|represents)\s+[\d,]+\s+ordinary\s+shares?\b/i.test(line));
+    /\b(?:one|each)\s+ADS\s+(?:is\s+equivalent\s+to|represents)\s+[\d,]+(?:\s+of\s+the\s+company's)?\s+(?:class\s+[A-Z]\s+)?ordinary\s+shares?\b/i.test(line) ||
+    /\b(?:listing\s+of\s+(?:its\s+)?|listed\s+or\s+traded\s+)(?:the\s+)?ADSs?\s+(?:on|in)\s+(?:the\s+)?Nasdaq\b/i.test(line));
   if (false === hasAdsEquivalence) {
     return metrics;
   }
 
   return metrics.filter(metric =>
-    false === isEpsMetricKey(metric.key) || /\bper\s+ADS\b/i.test(metric.sourceSnippet ?? ""));
+    false === isEpsMetricKey(metric.key) ||
+      /\bper\s+(?:ADS|American\s+depositary\s+share)\b/i.test(metric.sourceSnippet ?? ""));
 }
 
 export function getMessageMetrics(
@@ -259,9 +261,14 @@ function extractEarningsMetrics(
       quarterLabel,
       documentCurrencyCode,
     );
-    const metric = preferredMetric ?? (true === preferredSelection.exclusive
+    const fullDocumentMetric = true === preferredSelection.exclusive
       ? null
-      : extractMetric(lines, definition, quarterLabel, documentCurrencyCode));
+      : extractMetric(lines, definition, quarterLabel, documentCurrencyCode);
+    const hasAuthoritativeRoundedRevenueHeadline = "revenue" === definition.key &&
+      /\brecord\s+quarterly\s+net\s+revenues?\s+of\b/i.test(fullDocumentMetric?.sourceSnippet ?? "");
+    const metric = true === hasAuthoritativeRoundedRevenueHeadline
+      ? fullDocumentMetric
+      : preferredMetric ?? fullDocumentMetric;
     if (null === metric) {
       continue;
     }
@@ -310,15 +317,27 @@ function extractMetric(
       true === hasMetricValueBeforeAdjustment(metricLine, definition.patterns);
     const hasReportedRevenueBeforeGuidance = "revenue" === definition.key &&
       true === hasMetricValueBeforeGuidance(metricLine, definition.patterns);
+    const hasReportedClassShareEps = "gaap_eps" === definition.key &&
+      /\bearnings\s+per\s+diluted\s+(?:class\s+[A-Z]\s+)?(?:nonvoting\s+)?common\s+share\s+was\s+\(?-?[$€£¥]?\s*\d/i.test(metricLine);
+    const hasReportedAdjustedEps = "adjusted_eps" === definition.key &&
+      /\badjusted\s+net\s+(?:income|loss)\s+for\s+(?:the\s+)?(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b[^.!?]{0,180}?\bwas\b[^.!?]{0,120}?\bor\s+\(?-?[$€£¥]?\s*\d+(?:\.\d+)?\)?\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i
+        .test(metricLine);
     if (true === isSkippedMetricLine(metricLine, definition) &&
         false === hasExplicitGaapEps &&
         false === hasReportedGaapEps &&
         false === hasReportedGaapNetIncome &&
-        false === hasReportedRevenueBeforeGuidance) {
+        false === hasReportedRevenueBeforeGuidance &&
+        false === hasReportedClassShareEps &&
+        false === hasReportedAdjustedEps) {
       continue;
     }
 
     if ("net_income" === definition.key && true === isPerShareOnlyNetIncomeLine(metricLine)) {
+      continue;
+    }
+    if ("net_income" === definition.key &&
+        /\bnet\s+income(?:\s+\(loss\))?(?:\s+attributable\s+to\s+the\s+company)?\s*\|\s*\$\s*\|\s*—\s*\|/i
+          .test(metricLine)) {
       continue;
     }
 
@@ -332,11 +351,16 @@ function extractMetric(
     // A sentence can state the GAAP loss and then its non-GAAP counterpart. Once the
     // leading reported value has made the line eligible, read only that leading clause;
     // otherwise an earlier pattern in the definition can match the later non-GAAP income.
-    const valueMetricLine = true === hasReportedGaapNetIncome
+    const valueMetricLine = true === hasReportedGaapNetIncome ||
+        true === hasReportedGaapEps
       ? metricLine.slice(0, metricLine.search(/\badjusted\b|\bnon-gaap\b/i))
       : metricLine;
     const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(valueMetricLine));
     if (!pattern) {
+      continue;
+    }
+    if ("net_income" === definition.key &&
+        true === hasDifferentMoneyMetricBeforeValue(valueMetricLine, pattern)) {
       continue;
     }
 
@@ -383,9 +407,44 @@ function extractMetric(
   return bestCandidate?.metric ?? null;
 }
 
+// A narrative can mention that net income helped a different measure and state only that
+// second measure's amount ("an increase in net income ... free cash flow increased $32M").
+// The first currency token after the net-income words does not belong to net income there.
+function hasDifferentMoneyMetricBeforeValue(line: string, pattern: RegExp): boolean {
+  pattern.lastIndex = 0;
+  const patternMatch = pattern.exec(line);
+  if (null === patternMatch || undefined !== patternMatch.groups?.["metricValue"]) {
+    return false;
+  }
+
+  const valueText = line.slice(patternMatch.index + patternMatch[0].length);
+  const firstMoneyValueIndex = valueText.search(
+    /[$€£¥]\s*\(?-?\d|\b\(?-?\d[\d,]*(?:\.\d+)?\)?\s+(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])\b/i,
+  );
+  if (-1 === firstMoneyValueIndex) {
+    return false;
+  }
+
+  return /\b(?:free\s+cash\s+flow|cash\s+flow\s+from\s+operations|capital\s+expenditures?|revenues?|net\s+sales|operating\s+income)\b/i
+    .test(valueText.slice(0, firstMoneyValueIndex));
+}
+
 function isPerShareImpactOnlyLine(line: string): boolean {
+  // A release can keep several results sentences on one HTML line. An opening discussion
+  // of an adjustment's impact must not hide a later, explicitly reported adjusted EPS.
+  if (/\badjusted\s+net\s+(?:income|loss)\s+for\s+(?:the\s+)?(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b[^.!?]{0,180}?\bwas\b[^.!?]{0,120}?\bor\s+\(?-?[$€£¥]?\s*\d+(?:\.\d+)?\)?\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i
+    .test(line)) {
+    return false;
+  }
+
   const impactIndex = line.search(/\b(?:accretive|dilutive|favorable|unfavorable)?\s*impact\b/i);
   if (-1 === impactIndex) {
+    return false;
+  }
+
+  // This phrase introduces the adjusted result; it does not describe the size of a
+  // per-share adjustment later in the sentence.
+  if (/\bexcluding\s+the\s+impact\s+of\b[^.!?]{0,100}\badjusted\s+net\s+(?:income|loss)\b/i.test(line)) {
     return false;
   }
 
@@ -525,7 +584,7 @@ function extractMetricValue(
   // the caption is a combined one: "(GAAP) loss / earnings per share (EPS) assuming dilution
   // was a loss per share of $0.54". Only the wording directly introducing the first value
   // counts, so a later mention of an unrelated loss does not flip the figure.
-  const isLossIntroducedValue = /\ba?\s*loss\s+(?:per\s+(?:common\s+)?share\s+)?of\s*$/i
+  const isLossIntroducedValue = /(?:\ba?\s*loss\s+(?:per\s+(?:common\s+)?share\s+)?of|\b(?:gaap\s+)?net\s+loss(?:\s+per\s+(?:common\s+)?share(?:\s*,\s*diluted)?)?\s*,?\s*(?:was|of))\s*$/i
     .test(getValueIntroText(preferredSearchText));
   const signedValue = (value: number): number =>
     (true === isLossCaption || true === isLossIntroducedValue) && value > 0 ? -value : value;

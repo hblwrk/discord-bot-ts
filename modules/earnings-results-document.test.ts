@@ -66,6 +66,14 @@ describe("earnings result document text", () => {
     ].join(""))).toBe("Adjusted EPS was $0.39 and GAAP EPS was (0.32).");
   });
 
+  test("removes inline-XBRL hidden facts and vertical-align footnote references", () => {
+    expect(htmlToText([
+      "<ix:hidden><ix:nonNumeric>Prior-year revenue was $44.3 million.</ix:nonNumeric></ix:hidden>",
+      "<p>Adjusted EPS guidance is $2.40",
+      "<font style=\"font-size:6pt;vertical-align:super\">3</font>.</p>",
+    ].join(""))).toBe("Adjusted EPS guidance is $2.40.");
+  });
+
   test("uses a three-month period end before a later-quarter outlook", () => {
     expect(getQuarterLabel([
       "Results for the three-month period ended June 30, 2026.",
