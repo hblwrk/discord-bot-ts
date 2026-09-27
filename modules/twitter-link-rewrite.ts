@@ -101,6 +101,10 @@ function getFixedTwitterUrl(value: string): string | undefined {
   return `https://fxtwitter.com${parsedUrl.pathname}`;
 }
 
+function isEmbedSuppressedLink(content: string, start: number, length: number): boolean {
+  return "<" === content[start - 1] && ">" === content[start + length];
+}
+
 function getMessageContentWithinDiscordLimit(links: string[], maxLength: number = discordMaxMessageLength): string {
   const acceptedLinks: string[] = [];
   let messageLength = 0;
@@ -124,8 +128,9 @@ function getMessageContentWithinDiscordLimit(links: string[], maxLength: number 
 // replied to, so the channel shows a single clean fxtwitter card.
 function messageIsOnlyFixableLinks(content: string): boolean {
   let foundFixableLink = false;
-  const remainder = content.replace(twitterUrlRegex, match => {
-    if (undefined === getFixedTwitterUrl(trimTrailingUrlPunctuation(match))) {
+  const remainder = content.replace(twitterUrlRegex, (match, offset: number) => {
+    if (isEmbedSuppressedLink(content, offset, match.length)
+      || undefined === getFixedTwitterUrl(trimTrailingUrlPunctuation(match))) {
       return match;
     }
 
@@ -247,6 +252,10 @@ export function getFixedTwitterLinks(content: string): string[] {
 
   for (const match of matches) {
     const rawUrl = match[0];
+    if (isEmbedSuppressedLink(content, match.index, rawUrl.length)) {
+      continue;
+    }
+
     const fixedUrl = getFixedTwitterUrl(trimTrailingUrlPunctuation(rawUrl));
     if (fixedUrl) {
       fixedLinks.add(fixedUrl);
