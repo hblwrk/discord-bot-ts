@@ -25,6 +25,10 @@ export function htmlToText(html: string): string {
   return decodeHtmlEntities(html)
     .replace(/<script\b[^>]*>[\s\S]*?<\/script\b[^>]*>/gi, " ")
     .replace(/<style\b[^>]*>[\s\S]*?<\/style\b[^>]*>/gi, " ")
+    // Inline-XBRL hidden facts are machine-readable duplicates, not visible filing text.
+    // Leaving them in front of the exhibit can create a false results section before the
+    // actual press release and make a footnote amount win candidate selection.
+    .replace(/<ix:hidden\b[^>]*>[\s\S]*?<\/ix:hidden\s*>/gi, " ")
     // Numeric superscripts in SEC exhibits are footnote references. Removing only their
     // tags leaves the marker inside the adjacent value ("US$<sup>1</sup>51.1" becomes
     // "US$ 1 51.1"), where it can be selected as a one-dollar result.
@@ -32,6 +36,8 @@ export function htmlToText(html: string): string {
     // Workiva represents superscripts as raised, small font elements rather than <sup>.
     // Remove those numeric references before stripping the presentational font tags.
     .replace(/<font\b[^>]*\btop:\s*-\d+(?:\.\d+)?pt[^>]*>\s*\(?\d{1,2}\)?\s*<\/font\s*>/gi, "")
+    // Other Workiva filings use vertical-align for the same kind of footnote marker.
+    .replace(/<font\b[^>]*\bvertical-align:\s*super\b[^>]*>\s*\(?\d{1,2}\)?\s*<\/font\s*>/gi, "")
     .replace(/<br\s*\/?>/gi, "\n")
     .replace(/<\/(?:p|div|tr|h[1-6])>/gi, "\n")
     .replace(/<\/t[dh]>/gi, " | ")
@@ -209,6 +215,8 @@ export function getQuarterLabel(text: string): string | undefined {
   ) ?? leadingText.match(
     /\breports?\s+(?:strong\s+)?(first|second|third|fourth)[\s–—-]+quarter\b.{0,80}\bresults\b[\s\S]{0,800}?\b\1[\s–—-]+quarter\s+of\s+fiscal\s+(20\d{2}|\d{2})\b/i,
   ) ?? leadingText.match(
+    /\breports?\s+(?:fiscal(?:\s+year)?\s+)?(20\d{2}|\d{2})\s+(first|second|third|fourth)[\s–—-]+quarter\s+results\b/i,
+  ) ?? leadingText.match(
     /\bfiscal(?:\s+year)?\s+(20\d{2}|\d{2})\s+(first|second|third|fourth)[\s–—-]+quarter\s+results\b/i,
   );
   if (undefined !== leadingWrittenQuarterMatch?.[1] && undefined !== leadingWrittenQuarterMatch[2]) {
@@ -222,6 +230,33 @@ export function getQuarterLabel(text: string): string | undefined {
     const quarter = getQuarterFromName(quarterName);
     if (quarter) {
       return `${quarter} ${normalizeFiscalYear(fiscalYear)}`;
+    }
+  }
+
+  // A combined Q4/full-year title can put the fiscal year only in its ending date:
+  // "Announces Financial Results for the Fourth Quarter and Fiscal Year Ended June 30,
+  // 2026". Preserve the named fiscal quarter instead of deriving calendar Q2 from June.
+  const combinedFiscalYearEndedMatch = leadingText.match(
+    /\b(?:reports?|announces?)\s+(?:financial\s+)?results\s+for\s+(?:the\s+)?(first|second|third|fourth)[\s–—-]+quarter\s+and\s+(?:fiscal\s+year|full[\s–—-]+year)\s+ended\s+[A-Z][a-z]+\s+\d{1,2},\s+(20\d{2})\b/i,
+  );
+  if (undefined !== combinedFiscalYearEndedMatch?.[1] && undefined !== combinedFiscalYearEndedMatch[2]) {
+    const quarter = getQuarterFromName(combinedFiscalYearEndedMatch[1]);
+    if (quarter) {
+      return `${quarter} ${combinedFiscalYearEndedMatch[2]}`;
+    }
+  }
+
+  // Some fiscal retailers title the release "Announces First Quarter Results" without a
+  // year, then name that year in a dedicated "Fiscal 2027 Outlook" heading. Those two
+  // declarations identify Q1 FY2027; the July statement date alone would imply calendar Q3.
+  const bareTitleQuarterMatch = leadingText.match(
+    /\b(?:reports?|announces?)\s+(?:financial\s+)?(first|second|third|fourth)[\s–—-]+quarter\s+(?:financial\s+)?results\b/i,
+  );
+  const fiscalOutlookYearMatch = text.match(/\bfiscal\s+(20\d{2})\s+(?:financial\s+)?outlook\b/i);
+  if (undefined !== bareTitleQuarterMatch?.[1] && undefined !== fiscalOutlookYearMatch?.[1]) {
+    const quarter = getQuarterFromName(bareTitleQuarterMatch[1]);
+    if (quarter) {
+      return `${quarter} ${fiscalOutlookYearMatch[1]}`;
     }
   }
 
@@ -434,6 +469,24 @@ export function getDilutedShareMantissa(lines: string[]): number | undefined {
         .exec(captionSentence);
     if (undefined !== scaledCountMatch?.[1]) {
       return Number.parseFloat(scaledCountMatch[1].replaceAll(",", ""));
+    }
+
+    // A narrative can mention why the weighted-average share count changed without
+    // stating the count. Do not walk from that prose into the next financial figure.
+    // Real row captions begin the line (or retain table separators after extraction).
+    if (40 < captionMatch.index) {
+      continue;
+    }
+
+    // A table whose scale is declared in its heading can legitimately print a sub-100
+    // mantissa, such as 48.5 million shares. The row separators make that value
+    // unambiguous even though the generic forward reader rejects small bare numbers.
+    if (/\|/.test(captionLineSuffix)) {
+      const rowCounts = findNumericValues(captionLineSuffix, {minUncuedAbsValue: 1})
+        .filter(count => 0 < count);
+      if (0 < rowCounts.length) {
+        return rowCounts[0];
+      }
     }
 
     const counts = findNumericValues(countText, {minUncuedAbsValue: 10})
