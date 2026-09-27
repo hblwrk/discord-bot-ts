@@ -657,6 +657,7 @@ async function buildEarningsResultAnnouncement(
 ): Promise<EarningsResultAnnouncement | null> {
   const [filingDetails, xbrlCandidates] = await Promise.all([
     loadSecFilingDetails(filing, dependencies, {
+      getDocumentScore: html => getParsedEarningsDocumentScore(parseEarningsDocument(html)),
       isUsableDocument: html => hasParsedEarningsDocumentContent(parseEarningsDocument(html)),
     }).catch(error => {
       dependencies.logger.log(
@@ -779,6 +780,14 @@ async function buildEarningsResultAnnouncement(
 function hasParsedEarningsDocumentContent(parsedDocument: ParsedEarningsDocument): boolean {
   return undefined !== parsedDocument.quarterLabel &&
     (0 < parsedDocument.metrics.length || 0 < parsedDocument.outlook.length);
+}
+
+function getParsedEarningsDocumentScore(parsedDocument: ParsedEarningsDocument): number {
+  const headlineScore = /\b(?:announces?|reports?)\b.*\b(?:earnings|results?)\b/i
+    .test(parsedDocument.headline ?? "")
+    ? 30
+    : 0;
+  return headlineScore + parsedDocument.metrics.length * 10 + parsedDocument.outlook.length * 2;
 }
 
 function updateQualityGateSkipState(

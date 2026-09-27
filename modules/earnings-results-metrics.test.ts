@@ -596,6 +596,30 @@ describe("earnings result metric selection", () => {
     ]);
   });
 
+  test("prefers consolidated net sales over a rounded brand-results value", () => {
+    const parsedDocument = parseEarningsDocument(`
+      <h1>Example reports second quarter fiscal 2026 results</h1>
+      <h2>Second Quarter Fiscal 2026 - Financial Results</h2>
+      <p>Net sales of $3.7 billion were down 2% compared to last year.</p>
+      <h2>Second Quarter Fiscal 2026 - Global Brand Results</h2>
+      <p>Old Navy:</p>
+      <p>Second quarter net sales of $2.1 billion were down 4% compared to last year.</p>
+      <h2>CONDENSED CONSOLIDATED STATEMENTS OF OPERATIONS</h2>
+      <p>($ and shares in millions except per share amounts)</p>
+      <p>| 13 Weeks Ended | 26 Weeks Ended |</p>
+      <p>| August 1, 2026 | August 2, 2025 | August 1, 2026 | August 2, 2025 |</p>
+      <p>Net sales | $ | 3,651 | $ | 3,725 | $ | 7,148 | $ | 7,188 |</p>
+    `);
+
+    expect(parsedDocument.metrics).toEqual([
+      expect.objectContaining({
+        key: "revenue",
+        numericValue: 3_651_000_000,
+        value: "$3.65B",
+      }),
+    ]);
+  });
+
   test("reads an aggregate net loss placed before its caption", () => {
     const parsedDocument = parseEarningsDocument(`
       <h1>Example reports second quarter 2026 results</h1>
