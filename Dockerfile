@@ -21,7 +21,7 @@ FROM debian:13-slim AS openssl-patch
 WORKDIR /tmp
 
 RUN apt-get update \
-    && apt-get install --download-only --no-install-recommends -y "libssl3t64=3.5.7-1~deb13u2" \
+    && apt-get install --download-only --reinstall --no-install-recommends -y "libssl3t64=3.5.7-1~deb13u2" \
     && mkdir -p /patch/var/lib/dpkg/status.d /tmp/libssl-control \
     && dpkg-deb --extract /var/cache/apt/archives/libssl3t64_3.5.7-1~deb13u2_amd64.deb /patch \
     && dpkg-deb --field /var/cache/apt/archives/libssl3t64_3.5.7-1~deb13u2_amd64.deb > /patch/var/lib/dpkg/status.d/libssl3t64 \
