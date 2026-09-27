@@ -29,10 +29,14 @@ Coding guidance for this repo. Extracts the rules a contributor (human or agent)
 
 ## Real-document fixtures
 
-`modules/test-fixtures/earnings-filings/` holds audited SEC earnings exhibits, asserted by `earnings-results-corpus.test.ts`. They exist because the earnings parser selects between competing candidates in one document — a prior-year column, a segment breakdown, a guidance range — and only a whole filing exercises that choice.
+Earnings parser tests use two fixture tiers:
 
-- Treat the corpus as append-only. Don't delete a fixture, trim it down, or reduce it to the lines that currently matter: the distractors are the test. A minimised fixture stops catching the case it was added for.
-- Fix a mis-parse against a real filing, then add that filing. Fetch with `curl -A "hblwrk discord-bot-ts admin@hblwrk.de"` — sec.gov answers 403 to a default or absent User-Agent, so it needs the declaring one from `earnings-results-sec.ts`. Store the `htmlToText` output rather than the HTML, and confirm the stored text parses identically to the original before relying on it.
+- `modules/test-fixtures/earnings-regressions/` holds small, readable adversarial documents. Each fixture isolates one selection rule and includes the competing value that used to win.
+- `modules/test-fixtures/earnings-filings/` holds audited SEC earnings exhibits as `.txt.gz` files, asserted by `earnings-results-corpus.test.ts`. The compressed whole-document corpus catches interactions among prior-year columns, segment breakdowns, guidance ranges, footnote markers, and other realistic distractors without adding hundreds of thousands of generated text lines to reviews.
+
+- Fix a mis-parse against a real filing, then add both tiers. The focused fixture pins the rule and must fail when that rule is neutralised. The whole filing protects against interactions and must parse identically to the source HTML before compression.
+- Fetch with `curl -A "hblwrk discord-bot-ts admin@hblwrk.de"` — sec.gov answers 403 to a default or absent User-Agent, so it needs the declaring one from `earnings-results-sec.ts`. Store `gzip -n` output of the `htmlToText` text; `-n` keeps the fixture byte-for-byte reproducible by omitting timestamps and original filenames.
+- Treat the whole-document corpus as append-only. Don't trim a filing to the lines that matter: its distractors are the integration test. Put reduced examples in `earnings-regressions/` instead.
 - Verify each expected figure against the source document by hand, and keep them in the test's table where a reviewer can read them. Never update an expectation to match new output without checking the filing again — that converts a regression into a recorded fact.
 
 ## Configuration & secrets

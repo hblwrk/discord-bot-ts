@@ -1,10 +1,11 @@
-import {readFileSync, readdirSync} from "node:fs";
 import {describe, expect, test} from "vitest";
 import {getInconsistentPerShareReasons} from "./earnings-results-ai.ts";
 import {parseEarningsDocument} from "./earnings-results-format.ts";
 import {type EarningsResultMetric} from "./earnings-results-metrics.ts";
-
-const fixtureDirectory = "modules/test-fixtures/earnings-filings";
+import {
+  listEarningsFilingFixtures,
+  readEarningsFilingFixture,
+} from "./test-utils/earnings-filing-fixtures.ts";
 
 const asMetrics = (netIncome: number, eps: number): EarningsResultMetric[] => [
   {key: "net_income", label: "Net income", numericValue: netIncome, value: "x"},
@@ -16,11 +17,11 @@ describe("per-share consistency gate", () => {
   // property that matters most.
   test("stays silent on every audited filing", () => {
     const flagged: string[] = [];
-    for (const fixture of readdirSync(fixtureDirectory).filter(name => name.endsWith(".txt"))) {
-      const document = parseEarningsDocument(readFileSync(`${fixtureDirectory}/${fixture}`, "utf8"));
+    for (const fixture of listEarningsFilingFixtures()) {
+      const document = parseEarningsDocument(readEarningsFilingFixture(fixture));
       const reasons = getInconsistentPerShareReasons(document.metrics, document.dilutedShareMantissa);
       if (0 < reasons.length) {
-        flagged.push(fixture.replace(".txt", ""));
+        flagged.push(fixture);
       }
     }
 

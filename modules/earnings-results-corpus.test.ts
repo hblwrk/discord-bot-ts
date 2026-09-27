@@ -1,16 +1,18 @@
-import {readFileSync} from "node:fs";
 import {describe, expect, test} from "vitest";
 import {parseEarningsDocument} from "./earnings-results-format.ts";
+import {
+  listEarningsFilingFixtures,
+  readEarningsFilingFixture,
+} from "./test-utils/earnings-filing-fixtures.ts";
 
-// Every entry is a real SEC earnings exhibit, stored as the text the parser sees after
-// html-to-text conversion (verified to parse identically to the original HTML). Each
-// expected figure below was checked against the source document by hand.
+// Every entry is a real SEC earnings exhibit, stored as gzip-compressed text exactly as the
+// parser sees it after html-to-text conversion (verified to parse identically to the original
+// HTML). Each expected figure below was checked against the source document by hand.
 //
-// The point of this corpus is coverage the hand-written fixtures cannot give: those are
-// simplified documents that usually offer a second candidate which happens to be right, so
-// removing a guard is masked and the suite stays green. These are whole filings with all
-// their distractors — prior-year columns, segment breakdowns, guidance ranges, footnote
-// markers — so a selection rule that regresses changes a figure here.
+// The full corpus complements focused regression fixtures with integration coverage. These
+// filings retain every distractor — prior-year columns, segment breakdowns, guidance ranges,
+// and footnote markers — so interactions among otherwise-correct selection rules remain
+// visible.
 //
 // Sources are https://www.sec.gov/Archives/edgar/data/<source>.
 const filingCorpus: {
@@ -2045,13 +2047,847 @@ const filingCorpus: {
     source: "39911/000162828026059262/q22026eprexhibit991.htm",
     ticker: "gap",
   },
+  {
+    // The headline puts GAAP loss per share before non-GAAP income per share in the same
+    // sentence, and the $14.2 million material-rights figure is not quarterly revenue.
+    company: "Rubrik",
+    metrics: [
+      ["adjusted_eps", "$0.20"],
+      ["gaap_eps", "-$0.30"],
+      ["revenue", "$427.26M"],
+      ["net_income", "-$61.78M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$429M to $431M"],
+      ["FY2027 Revenue", "$1.685B to $1.693B"],
+      ["Q3 Adj EPS", "$0.07 to $0.09"],
+      ["FY2027 Adj EPS", "$0.47 to $0.53"],
+      ["FY2027 Free cash flow", "$323M to $333M"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1943896/000194389626000055/rubrikinc-991pressrelease7.htm",
+    ticker: "rbrk",
+  },
+  {
+    company: "Science Applications International Corporation",
+    metrics: [
+      ["adjusted_eps", "$3.01"],
+      ["gaap_eps", "$2.38"],
+      ["revenue", "$1.88B"],
+      ["net_income", "$102M"],
+    ],
+    outlook: [["Revenue", "$7.2B to $7.3B"]],
+    quarterLabel: "Q2 2027",
+    source: "1571123/000157112326000131/saic08312026ex991earningsr.htm",
+    ticker: "saic",
+  },
+  {
+    // The release presents the prior-year loss first in prose and more than forty lines
+    // separate the statement header from its current-period column. Its zero EPS is stated
+    // only per ordinary share, not per the Nasdaq-listed ADS.
+    company: "BioLineRx",
+    metrics: [
+      ["revenue", "$300K"],
+      ["net_income", "-$4.34M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1498403/000117891326004331/exhibit_1.htm",
+    ticker: "blrx",
+  },
+  {
+    company: "Cango",
+    metrics: [
+      ["revenue", "$50.8M"],
+      ["net_income", "-$81.6M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1725123/000149315226040816/ex99-1.htm",
+    ticker: "cang",
+  },
+  {
+    company: "Medtronic",
+    metrics: [
+      ["adjusted_eps", "$1.45"],
+      ["gaap_eps", "$1.14"],
+      ["revenue", "$9.8B"],
+      ["net_income", "$1.47B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q1 2027",
+    source: "1613103/000162828026059697/exhibit991-fy27q1earningsr.htm",
+    ticker: "mdt",
+  },
+  {
+    // The current statement column contains a decimal zero for EPS and an em dash for net
+    // income; the $0.08 loss and $16 million loss are prior-year comparatives.
+    company: "MiniMed Group",
+    metrics: [
+      ["gaap_eps", "$0.00"],
+      ["revenue", "$843M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q1 2027",
+    source: "2062583/000162828026059699/exhibit991-fy27q1earningsr.htm",
+    ticker: "mmed",
+  },
+  {
+    // Guidance states the RMB range first and wraps its explicit US-dollar translations
+    // onto the next line. The translations are the figures relevant to the US-listed ADS.
+    company: "NIO",
+    metrics: [
+      ["gaap_eps", "-$0.04"],
+      ["revenue", "$4.74B"],
+      ["net_income", "-$77.82M"],
+    ],
+    outlook: [["Revenue", "$4.906B to $5.019B"]],
+    quarterLabel: "Q2 2026",
+    source: "1736541/000110465926104110/tm2624535d3_ex99-1.htm",
+    ticker: "nio",
+  },
+  {
+    company: "Yext",
+    metrics: [
+      ["adjusted_eps", "$0.21"],
+      ["gaap_eps", "$0.13"],
+      ["revenue", "$111.1M"],
+      ["net_income", "$13.15M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2027",
+    source: "1614178/000162828026059706/ex991q2fy27earningsrelease.htm",
+    ticker: "yext",
+  },
+  {
+    company: "Credo Technology Group Holding",
+    metrics: [
+      ["adjusted_eps", "$1.20"],
+      ["gaap_eps", "$0.67"],
+      ["revenue", "$479M"],
+      ["net_income", "$129.43M"],
+    ],
+    outlook: [
+      ["Revenue", "$525M to $535M"],
+      ["Gross margin", "62.9% to 64.9%"],
+      ["Operating expenses", "$199M to $204M"],
+    ],
+    quarterLabel: "Q1 2027",
+    source: "1807794/000162828026059795/credoq12027ex-991.htm",
+    ticker: "crdo",
+  },
+  {
+    company: "MongoDB",
+    metrics: [
+      ["adjusted_eps", "$1.90"],
+      ["gaap_eps", "$0.50"],
+      ["revenue", "$771.8M"],
+      ["net_income", "$40.9M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2027",
+    source: "1441816/000162828026059794/mdb-073126xex991xrelease.htm",
+    ticker: "mdb",
+  },
+  {
+    company: "Dell Technologies",
+    metrics: [
+      ["adjusted_eps", "$7.04"],
+      ["gaap_eps", "$6.34"],
+      ["revenue", "$47B"],
+      ["net_income", "$4.13B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2027",
+    source: "1571996/000157199626000039/exhibit991earnings8kq2fy27.htm",
+    ticker: "dell",
+  },
+  {
+    // The first table is a thirteen-week quarter and the second is a twenty-six-week YTD
+    // period. A management quote's 10% inventory reduction is not gross-margin guidance.
+    company: "Sportsman's Warehouse Holdings",
+    metrics: [
+      ["adjusted_eps", "-$0.08"],
+      ["gaap_eps", "-$0.11"],
+      ["revenue", "$295.58M"],
+      ["net_income", "-$4.43M"],
+    ],
+    outlook: [
+      ["FY2026 Adj EBITDA", "$30M to $36M"],
+      ["FY2026 Capex", "$20M to $25M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1132105/000119312526378410/spwh-ex99_pr120722.htm",
+    ticker: "spwh",
+  },
+  {
+    company: "GitLab",
+    metrics: [
+      ["adjusted_eps", "$0.24"],
+      ["gaap_eps", "-$0.22"],
+      ["revenue", "$286.3M"],
+      ["net_income", "-$36.8M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2027",
+    source: "1653482/000162828026059820/gitlab-ex99120260731fy27.htm",
+    ticker: "gtlb",
+  },
+  {
+    company: "Palo Alto Networks",
+    metrics: [
+      ["adjusted_eps", "$1.02"],
+      ["gaap_eps", "-$0.35"],
+      ["revenue", "$3.41B"],
+      ["net_income", "-$282M"],
+    ],
+    outlook: [
+      ["Q1 Revenue", "$3.3B to $3.31B"],
+      ["FY2027 Revenue", "$14.1B to $14.2B"],
+      ["Q1 Adj EPS", "$0.96 to $0.98"],
+      ["FY2027 Adj EPS", "$4.16 to $4.19"],
+      ["FY2027 Operating margin", "29.5%"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "1327567/000132756726000019/ex991q426earningsrelease.htm",
+    ticker: "panw",
+  },
+  {
+    company: "Ollie's Bargain Outlet Holdings",
+    metrics: [
+      ["adjusted_eps", "$1.42"],
+      ["gaap_eps", "$1.42"],
+      ["revenue", "$741.3M"],
+      ["net_income", "$85.45M"],
+    ],
+    outlook: [
+      ["Revenue", "$2.928B to $2.941B"],
+      ["Adj EPS", "$4.57 to $4.65"],
+      ["Gross margin", "41.3%"],
+      ["Operating income", "$345M to $350M"],
+      ["Tax rate", "25%"],
+      ["Capex", "$103M to $113M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1639300/000114036126035406/ef20081496_ex99-1.htm",
+    ticker: "olli",
+  },
+  {
+    company: "Brown-Forman",
+    metrics: [
+      ["gaap_eps", "$0.38"],
+      ["revenue", "$911M"],
+      ["net_income", "$176M"],
+    ],
+    outlook: [
+      ["Tax rate", "20% to 22%"],
+      ["Capex", "$60M to $70M"],
+    ],
+    quarterLabel: "Q1 2027",
+    source: "14693/000001469326000048/fy27_q1xerevergreen.htm",
+    ticker: "bf-b",
+  },
+  {
+    company: "FuelCell Energy",
+    metrics: [
+      ["adjusted_eps", "-$0.64"],
+      ["gaap_eps", "-$0.64"],
+      ["revenue", "$33M"],
+      ["net_income", "-$45.3M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q3 2026",
+    source: "886128/000110465926104498/fcel-20260902xex99d1.htm",
+    ticker: "fcel",
+  },
+  {
+    company: "Snowflake",
+    metrics: [
+      ["adjusted_eps", "$0.62"],
+      ["gaap_eps", "-$0.55"],
+      ["revenue", "$1.55B"],
+      ["net_income", "-$191.72M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$1.588B to $1.593B"],
+      ["FY2027 Revenue", "$6.07B"],
+      ["FY2027 Gross margin", "74.0%"],
+      ["Q3 Operating margin", "15.5%"],
+      ["FY2027 Operating margin", "14.5%"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1640147/000164014726000033/fy2027q2earnings.htm",
+    ticker: "snow",
+  },
+  {
+    company: "Broadcom",
+    metrics: [
+      ["adjusted_eps", "$3.32"],
+      ["gaap_eps", "$2.68"],
+      ["revenue", "$29.6B"],
+      ["net_income", "$13.09B"],
+    ],
+    outlook: [
+      ["Revenue", "$34.8B"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "1730168/000173016826000076/avgo-08022026x8kxex99.htm",
+    ticker: "avgo",
+  },
+  {
+    company: "PVH",
+    metrics: [
+      ["adjusted_eps", "$3.70"],
+      ["gaap_eps", "-$2.23"],
+      ["revenue", "$2.1B"],
+      ["net_income", "-$102.9M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "low single-digit decline"],
+      ["FY2026 Adj EPS", "$11.8 to $12.1"],
+      ["Q3 Adj EPS", "$2.5 to $2.65"],
+      ["FY2026 Operating margin", "8.8%"],
+      ["Q3 Operating margin", "7.5%"],
+      ["Q3 Tax rate", "22.0%"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "78239/000007823926000055/ex99120262q8k.htm",
+    ticker: "pvh",
+  },
+  {
+    company: "Five Below",
+    metrics: [
+      ["adjusted_eps", "$1.68"],
+      ["gaap_eps", "$3.99"],
+      ["revenue", "$1.26B"],
+      ["net_income", "$221.4M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$1.21B to $1.23B"],
+      ["FY2026 Revenue", "$5.63B to $5.71B"],
+      ["FY2026 Adj EPS", "$9.83 to $10.31"],
+      ["Q3 EPS", "$1.01 to $1.13"],
+      ["FY2026 EPS", "$12.1 to $12.58"],
+      ["FY2026 Capex", "$250M to $260M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1177609/000117760926000023/q22026fivebelowexhibit991.htm",
+    ticker: "five",
+  },
+  {
+    company: "C3.ai",
+    metrics: [
+      ["adjusted_eps", "-$0.20"],
+      ["gaap_eps", "-$0.60"],
+      ["revenue", "$52.4M"],
+      ["net_income", "-$92.81M"],
+    ],
+    outlook: [
+      ["Q2 Revenue", "$51M to $55M"],
+      ["FY2027 Revenue", "$210M to $240M"],
+      ["Q2 Adj operating income", "-$34.5M to -$42.5M"],
+      ["FY2027 Adj operating income", "-$123M to -$155M"],
+    ],
+    quarterLabel: "Q1 2027",
+    source: "1577526/000157752626000119/ex991-fy27xq1earnings.htm",
+    ticker: "ai",
+  },
+  {
+    company: "ChargePoint Holdings",
+    metrics: [
+      ["gaap_eps", "-$1.35"],
+      ["revenue", "$116M"],
+      ["net_income", "-$35.62M"],
+    ],
+    outlook: [
+      ["Revenue", "$105M to $115M"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1777393/000177739326000061/chpt8-kerfy2027q2exx991.htm",
+    ticker: "chpt",
+  },
+  {
+    company: "Hewlett Packard Enterprise",
+    metrics: [
+      ["adjusted_eps", "$1.11"],
+      ["gaap_eps", "$1.06"],
+      ["revenue", "$12.2B"],
+      ["net_income", "$1.51B"],
+    ],
+    outlook: [
+      ["Q4 Revenue", "$13.9B to $14.8B"],
+      ["Q4 Adj EPS", "$1.2 to $1.3"],
+      ["FY2026 Adj EPS", "$3.75 to $3.85"],
+      ["Q4 EPS", "$1.12 to $1.22"],
+      ["FY2026 EPS", "$2.93 to $3.03"],
+      ["FY2027 Adj EPS", "16% to 20% growth"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "1645590/000164559026000078/ex-991x922026x8k.htm",
+    ticker: "hpe",
+  },
+  {
+    company: "Phreesia",
+    metrics: [
+      ["gaap_eps", "$0.03"],
+      ["revenue", "$129.5M"],
+      ["net_income", "$1.92M"],
+    ],
+    outlook: [
+      ["Revenue", "$510M to $520M"],
+      ["Adj EBITDA", "$125M to $135M"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1412408/000141240826000213/phr-ex991q2fy27.htm",
+    ticker: "phr",
+  },
+  {
+    company: "NetApp",
+    metrics: [
+      ["adjusted_eps", "$2.58"],
+      ["gaap_eps", "$1.88"],
+      ["revenue", "$2.03B"],
+      ["net_income", "$375M"],
+    ],
+    outlook: [
+      ["Q2 Revenue", "$2.025B to $2.175B"],
+      ["FY2027 Revenue", "$7.975B to $8.225B"],
+      ["Q2 Adj EPS", "$2.54 to $2.64"],
+      ["FY2027 Adj EPS", "$9.73 to $10.03"],
+      ["Q2 EPS", "$1.97 to $2.07"],
+      ["FY2027 EPS", "$7.35 to $7.65"],
+    ],
+    quarterLabel: "Q1 2027",
+    source: "1002047/000100204726000003/ntap-ex99_1.htm",
+    ticker: "ntap",
+  },
+  {
+    company: "Argan",
+    metrics: [
+      ["gaap_eps", "$3.76"],
+      ["revenue", "$384M"],
+      ["net_income", "$53.3M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2027",
+    source: "100591/000110465926104735/agx-20260902xex99d1.htm",
+    ticker: "agx",
+  },
+  {
+    company: "Brady",
+    metrics: [
+      ["adjusted_eps", "$1.48"],
+      ["gaap_eps", "$0.96"],
+      ["revenue", "$436.9M"],
+      ["net_income", "$45.59M"],
+    ],
+    outlook: [["FY2027 Capex", "$40M"]],
+    quarterLabel: "Q4 2026",
+    source: "746598/000074659826000043/exhibit991-financialsx2026.htm",
+    ticker: "brc",
+  },
+  {
+    company: "VersaBank",
+    metrics: [
+      ["adjusted_eps", "C$0.38"],
+      ["gaap_eps", "C$0.31"],
+      ["revenue", "C$38.81M"],
+      ["net_income", "C$10.1M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q3 2026",
+    source: "1690639/000143774926029554/ex_1010554.htm",
+    ticker: "vbnk",
+  },
+  {
+    company: "Victoria's Secret & Co.",
+    metrics: [
+      ["adjusted_eps", "$0.95"],
+      ["gaap_eps", "$2.18"],
+      ["revenue", "$1.611B"],
+      ["net_income", "$183M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2026",
+    source: "1856437/000185643726000019/ex991vsxyq22026earningsrel.htm",
+    ticker: "vsxy",
+  },
+  {
+    company: "Ciena",
+    metrics: [
+      ["adjusted_eps", "$2.11"],
+      ["gaap_eps", "$1.83"],
+      ["revenue", "$1.67B"],
+      ["net_income", "$266.42M"],
+    ],
+    outlook: [
+      ["Revenue", "$1.75B"],
+      ["Gross margin", "45%"],
+      ["Operating margin", "20%"],
+      ["Operating expenses", "$405M to $425M"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "936395/000162828026060245/ex9912026q3earningspressre.htm",
+    ticker: "cien",
+  },
+  {
+    company: "Genesco",
+    metrics: [
+      ["adjusted_eps", "-$0.83"],
+      ["gaap_eps", "$0.32"],
+      ["revenue", "$530M"],
+      ["net_income", "$3.48M"],
+    ],
+    outlook: [["FY2027 Tax rate", "30%"]],
+    quarterLabel: "Q2 2027",
+    source: "18498/000119312526381023/gco-ex99_1.htm",
+    ticker: "gco",
+  },
+  {
+    company: "John Wiley & Sons",
+    metrics: [
+      ["adjusted_eps", "$0.44"],
+      ["gaap_eps", "-$0.23"],
+      ["revenue", "$386.36M"],
+      ["net_income", "-$11.73M"],
+    ],
+    outlook: [
+      ["Revenue", "low-to-mid single-digit growth"],
+      ["Adj EPS", "$4.6 to $5.05"],
+      ["Capex", "$80M"],
+      ["Free cash flow", "$205M"],
+    ],
+    quarterLabel: "Q1 2027",
+    source: "107140/000162828026060252/ex991earningsrelease.htm",
+    ticker: "wly",
+  },
+  {
+    company: "Concrete Pumping Holdings",
+    metrics: [
+      ["gaap_eps", "$0.09"],
+      ["revenue", "$116.8M"],
+      ["net_income", "$4.9M"],
+    ],
+    outlook: [
+      ["FY2026 Revenue", "$425M to $435M"],
+      ["FY2026 Adj EBITDA", "$103M to $108M"],
+      ["Q4 Capex", "$17.1M"],
+      ["FY2026 Free cash flow", "$50M"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "1703956/000143774926029609/ex_981044.htm",
+    ticker: "bbcp",
+  },
+  {
+    company: "Torrid Holdings",
+    metrics: [
+      ["gaap_eps", "$0.05"],
+      ["revenue", "$231.7M"],
+      ["net_income", "$5.2M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$230M to $235M"],
+      ["FY2026 Revenue", "$940M to $960M"],
+      ["Q3 Adj EBITDA", "$15M to $20M"],
+      ["FY2026 Adj EBITDA", "$76M to $86M"],
+      ["FY2026 Capex", "$8M to $10M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1792781/000179278126000036/q22026earningsrelease.htm",
+    ticker: "curv",
+  },
+  {
+    company: "Guidewire Software",
+    metrics: [
+      ["adjusted_eps", "$0.99"],
+      ["gaap_eps", "$0.38"],
+      ["revenue", "$411.09M"],
+      ["net_income", "$31.4M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q4 2026",
+    source: "1528396/000152839626000039/gwreex991earningsrelease73.htm",
+    ticker: "gwre",
+  },
+  {
+    company: "Samsara",
+    metrics: [
+      ["adjusted_eps", "$0.20"],
+      ["gaap_eps", "$0.03"],
+      ["revenue", "$508.4M"],
+      ["net_income", "$16.24M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$514M to $516M"],
+      ["FY2027 Revenue", "$2.043B to $2.047B"],
+      ["Q3 Adj EPS", "$0.18 to $0.19"],
+      ["FY2027 Adj EPS", "$0.76 to $0.78"],
+      ["Q3 Operating margin", "21%"],
+      ["FY2027 Operating margin", "21%"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1642896/000162828026060438/samsaraepr-q22027.htm",
+    ticker: "iot",
+  },
+  {
+    company: "Docusign",
+    metrics: [
+      ["adjusted_eps", "$1.16"],
+      ["gaap_eps", "$0.40"],
+      ["revenue", "$875.75M"],
+      ["net_income", "$77.72M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q2 2027",
+    source: "1261333/000126133326000088/q227ex-991er.htm",
+    ticker: "docu",
+  },
+  {
+    company: "Zscaler",
+    metrics: [
+      ["adjusted_eps", "$1.19"],
+      ["gaap_eps", "-$0.02"],
+      ["revenue", "$898.2M"],
+      ["net_income", "-$3.4M"],
+    ],
+    outlook: [
+      ["Q1 Revenue", "$935M to $939M"],
+      ["FY2027 Revenue", "$3.908B to $3.938B"],
+      ["Q1 Adj EPS", "$1.15 to $1.16"],
+      ["FY2027 Adj EPS", "$4.86 to $4.9"],
+      ["Q1 Gross margin", "80%"],
+      ["FY2027 Gross margin", "80%"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "1713683/000171368326000156/zs-07312026_991.htm",
+    ticker: "zs",
+  },
+  {
+    company: "Asana",
+    metrics: [
+      ["adjusted_eps", "$0.10"],
+      ["gaap_eps", "-$0.17"],
+      ["revenue", "$216.4M"],
+      ["net_income", "-$39.2M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$217M to $219M"],
+      ["FY2027 Revenue", "$858.5M to $863.5M"],
+      ["Q3 Adj EPS", "$0.08"],
+      ["FY2027 Adj EPS", "$0.37"],
+      ["Q3 Operating margin", "8% to 9%"],
+      ["FY2027 Operating margin", "10%"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1477720/000147772026000058/asana8-kex991q2fy27.htm",
+    ticker: "asan",
+  },
+  {
+    company: "lululemon athletica",
+    metrics: [
+      ["gaap_eps", "$2.92"],
+      ["revenue", "$2.4B"],
+      ["net_income", "$329.22M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$2.29B to $2.32B"],
+      ["FY2026 Revenue", "$10.35B to $10.5B"],
+      ["Q3 EPS", "$0.93 to $0.98"],
+      ["FY2026 EPS", "$9.48 to $9.73"],
+      ["Q3 Tax rate", "30%"],
+      ["FY2026 Tax rate", "30%"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1397187/000139718726000126/lulu-20260802xex991.htm",
+    ticker: "lulu",
+  },
+  {
+    company: "Planet Labs PBC",
+    metrics: [
+      ["adjusted_eps", "$0.02"],
+      ["gaap_eps", "-$0.03"],
+      ["revenue", "$116.1M"],
+      ["net_income", "-$9.4M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$101M to $105M"],
+      ["FY2027 Revenue", "$430M to $441M"],
+      ["Q3 Adj EBITDA", "-$6M to -$1M"],
+      ["FY2027 Adj EBITDA", "$3M to $10M"],
+      ["Q3 Gross margin", "56% to 58%"],
+      ["FY2027 Gross margin", "55% to 57%"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1836833/000119312526381874/pl-ex99_1.htm",
+    ticker: "pl",
+  },
+  {
+    company: "Smith & Wesson Brands",
+    metrics: [
+      ["adjusted_eps", "$0.06"],
+      ["gaap_eps", "$0.06"],
+      ["revenue", "$112.6M"],
+      ["net_income", "$2.6M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q1 2027",
+    source: "1092796/000119312526381907/swbi-ex99_1.htm",
+    ticker: "swbi",
+  },
+  {
+    company: "UiPath",
+    metrics: [
+      ["adjusted_eps", "$0.15"],
+      ["gaap_eps", "$0.07"],
+      ["revenue", "$410M"],
+      ["net_income", "$36.09M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$440M to $445M"],
+      ["FY2027 Revenue", "$1.789B to $1.794B"],
+      ["Q3 Operating income", "$100M"],
+      ["FY2027 Operating income", "$445M"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1734722/000173472226000047/path-2026731xex991.htm",
+    ticker: "path",
+  },
+  {
+    // The release's alternating Q4/full-year summary lines leave empty table cells on the
+    // annual lines. Gross profit is also stated as a percentage of net sales in results prose.
+    company: "United Natural Foods",
+    metrics: [
+      ["adjusted_eps", "$0.69"],
+      ["gaap_eps", "$0.57"],
+      ["revenue", "$7.6B"],
+      ["net_income", "$35M"],
+    ],
+    outlook: [
+      ["Revenue", "$31.2B to $31.8B"],
+      ["Adj EPS", "$3 to $3.5"],
+      ["EPS", "$1.7 to $2.3"],
+      ["Adj EBITDA", "$730M to $780M"],
+      ["Free cash flow", "$275M to $325M"],
+    ],
+    quarterLabel: "Q4 2026",
+    source: "1020859/000102085926000022/f26q4earningsrelease.htm",
+    ticker: "unfi",
+  },
+  {
+    // Full-year guidance and several values share one prose line. The operating-margin
+    // definition names revenue before the margin range, and the cash-flow values map by
+    // their "respectively" order.
+    company: "ABM Industries",
+    metrics: [
+      ["adjusted_eps", "$1.04"],
+      ["gaap_eps", "$0.84"],
+      ["revenue", "$2.3B"],
+      ["net_income", "$49.7M"],
+    ],
+    outlook: [
+      ["FY2026 Adj EPS", "$3.95 to $4.1"],
+      ["FY2026 Operating margin", "7.7% to 7.8%"],
+      ["FY2026 Tax rate", "29% to 30%"],
+      ["FY2026 Free cash flow", "$210M"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "771497/000119312526384364/abm-ex99_1.htm",
+    ticker: "abm",
+  },
+  {
+    // Narrative result sentences wrap immediately before their values. The ADS loss is a
+    // per-share result, while the separate $97.6 million figure is aggregate net loss.
+    company: "Canaan",
+    metrics: [
+      ["gaap_eps", "-$0.13"],
+      ["revenue", "$31.9M"],
+      ["net_income", "-$97.6M"],
+    ],
+    outlook: [
+      ["Revenue", "$11M to $15M"],
+    ],
+    quarterLabel: "Q2 2026",
+    source: "1780652/000110465926105660/tm2624951d1_ex99-1.htm",
+    ticker: "can",
+  },
+  {
+    // Q3 and FY2027 guidance values occupy parallel columns, with most captions and each
+    // value rendered on separate lines. The table-wide money scale does not apply to EPS.
+    company: "Braze",
+    metrics: [
+      ["adjusted_eps", "$0.19"],
+      ["gaap_eps", "-$0.17"],
+      ["revenue", "$227.23M"],
+      ["net_income", "-$18.85M"],
+    ],
+    outlook: [
+      ["Q3 Revenue", "$229M to $230M"],
+      ["FY2027 Revenue", "$910M to $913M"],
+      ["Q3 Adj EPS", "$0.13 to $0.14"],
+      ["FY2027 Adj EPS", "$0.64 to $0.65"],
+      ["Q3 Operating income", "$16M to $17M"],
+      ["FY2027 Operating income", "$75.5M to $76.5M"],
+    ],
+    quarterLabel: "Q2 2027",
+    source: "1676238/000167623826000039/a20260731-brazeincxq227ear.htm",
+    ticker: "brze",
+  },
+  {
+    // Segment sales prose contains smaller current-quarter values than the consolidated
+    // headline. The outlook also contrasts second-half guidance with an explicit Q4 range.
+    company: "Mission Produce",
+    metrics: [
+      ["adjusted_eps", "$0.18"],
+      ["gaap_eps", "-$0.08"],
+      ["revenue", "$450M"],
+      ["net_income", "-$6.5M"],
+    ],
+    outlook: [
+      ["Q4 Adj EBITDA", "$52M to $55M"],
+      ["FY2026 Capex", "$45M"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "1802974/000180297426000042/exh991avoq32026earningsrel.htm",
+    ticker: "avo",
+  },
+  {
+    // The fiscal quarter is named in the title without a year, while a category table
+    // contains several component revenue columns before its consolidated total.
+    company: "Casey's General Stores",
+    metrics: [
+      ["gaap_eps", "$7.37"],
+      ["revenue", "$5.68B"],
+      ["net_income", "$273.72M"],
+    ],
+    outlook: [
+      ["Tax rate", "24% to 26%"],
+    ],
+    quarterLabel: "Q1 2027",
+    source: "726958/000072695826000084/q1fy2027earningspressrelea.htm",
+    ticker: "casy",
+  },
+  {
+    // The Q4/full-year title puts the fiscal year in a period-ending date. A later detailed
+    // statement mislabels its positive current-period EPS row as loss, while the summary
+    // table uses the sign-neutral Net Income (Loss) caption.
+    company: "InnovAge Holding",
+    metrics: [
+      ["gaap_eps", "$0.06"],
+      ["revenue", "$261.95M"],
+      ["net_income", "$8.29M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q4 2026",
+    source: "1834376/000183437626000047/innv-20260908xexx991.htm",
+    ticker: "innv",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
   for (const filing of filingCorpus) {
     test(`${filing.ticker.toUpperCase()} (${filing.company}) parses to its verified figures`, () => {
       const document = parseEarningsDocument(
-        readFileSync(`modules/test-fixtures/earnings-filings/${filing.ticker}.txt`, "utf8"),
+        readEarningsFilingFixture(filing.ticker),
       );
 
       expect(document.quarterLabel).toBe(filing.quarterLabel);
@@ -2065,6 +2901,7 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus).toHaveLength(126);
+    expect(filingCorpus.map(filing => filing.ticker).sort())
+      .toEqual(listEarningsFilingFixtures());
   });
 });
