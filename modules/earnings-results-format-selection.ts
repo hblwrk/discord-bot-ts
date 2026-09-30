@@ -66,6 +66,28 @@ export function getMetricCandidateScore({
       "quarter" !== getPeriodEndedScope(metricLine)) {
     score -= 60;
   }
+  if (/\bfor\s+fiscal\s+20\d{2},?\s+.{0,100}\breported\s+consolidated\s+net\s+sales\b/i.test(metricLine) &&
+      false === /\b(?:first|second|third|fourth|q[1-4])[\s–—-]+quarter\b/i.test(metricLine)) {
+    score -= 100;
+  }
+  if ("revenue" === metricKey &&
+      true === quarterLabel?.startsWith("Q4") &&
+      /^\s*for\s+fiscal\s+20\d{2},/i.test(metricLine)) {
+    score -= 500;
+  }
+  if ("gaap_eps" === metricKey &&
+      /^\s*diluted\s+earnings\s*\/\s*\(loss\)\s+per\s+share\b/i.test(metricLine)) {
+    score += 60;
+  }
+  if (("revenue" === metricKey || "net_income" === metricKey) &&
+      /\breports?\s+fiscal\s+year\s+20\d{2}\b/i.test(metricLine)) {
+    score -= 130;
+  }
+  if ("net_income" === metricKey &&
+      /\bfor\s+fiscal\s+20\d{2}\b/i.test(metricLine) &&
+      false === /\b(?:first|second|third|fourth|q[1-4])[\s–—-]+quarter\b/i.test(metricLine)) {
+    score -= 100;
+  }
 
   const changeMatch =
     /\b(?:increase|decrease|improve|improvement|decline|worsen|change)(?:d)?\s+(?:by|of)\b/i.exec(metricLine) ??
@@ -88,6 +110,10 @@ export function getMetricCandidateScore({
   if (null !== changeMatch &&
       false === hasCapturedValueBeforeChange &&
       false === hasCapturedResultLevelAfterChange) {
+    score -= 140;
+  }
+  if ("revenue" === metricKey &&
+      /^\s*[•▪◦]?\s*net\s+sales\s+increased\s+\$[\d.]+\s+(?:million|billion),\s+or\s+[\d.]+%/i.test(metricLine)) {
     score -= 140;
   }
 
@@ -145,6 +171,15 @@ export function getMetricCandidateScore({
   }
 
   if ("revenue" === metricKey) {
+    // Auction businesses combine service fees and vehicle sales in a single consolidated
+    // line. The service-fee component appears first, but is not total revenue.
+    if (/\btotal\s+service\s+revenues?\s+and\s+vehicle\s+sales\b/i.test(metricLine)) {
+      score += 100;
+    }
+    if (/\btotal\s+net\s+revenue\b/i.test(metricLine) &&
+        /\bresort\s+net\s+revenue\b/i.test(lines.slice(Math.max(0, lineIndex - 12), lineIndex).join(" "))) {
+      score += 100;
+    }
     // Biotech statements often list product and service revenue components above an explicit
     // total. Prefer that total only when the nearby rows establish this component layout:
     // a generic "Total revenues" can itself be a segment subtotal and must not outrank the
@@ -216,6 +251,15 @@ export function getMetricCandidateScore({
     } else if (/\bcore\s+(?:total\s+)?revenues?\b/i.test(metricCaptionText)) {
       score -= 100;
     }
+  }
+
+  if ("gaap_eps" === metricKey &&
+      /^\s*diluted\s+net\s+income\s*\(loss\)\s+per\s+share\b/i.test(metricLine)) {
+    score += 35;
+  }
+  if ("net_income" === metricKey &&
+      /\bnet\s+loss\s+improved\s+by\s+\d+(?:\.\d+)?%\s+to\s+\$\d/i.test(metricLine)) {
+    score += 80;
   }
 
   // A company may publish its standard adjusted EPS and then an additional figure that

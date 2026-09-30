@@ -15,17 +15,17 @@ COPY --chown=node:node . .
 # Distroless can lag a Debian security update between image rebuilds. Build a complete,
 # version-pinned package overlay so the runtime receives both the patched libraries and the
 # package metadata Trivy uses to verify them. Remove this stage once the distroless base ships
-# libssl3t64 3.5.7-1~deb13u2 or newer.
+# libssl3t64 3.5.7-1~deb13u3 or newer.
 FROM debian:13-slim AS openssl-patch
 
 WORKDIR /tmp
 
 RUN apt-get update \
-    && apt-get install --download-only --reinstall --no-install-recommends -y "libssl3t64=3.5.7-1~deb13u2" \
+    && apt-get install --download-only --reinstall --no-install-recommends -y "libssl3t64=3.5.7-1~deb13u3" \
     && mkdir -p /patch/var/lib/dpkg/status.d /tmp/libssl-control \
-    && dpkg-deb --extract /var/cache/apt/archives/libssl3t64_3.5.7-1~deb13u2_amd64.deb /patch \
-    && dpkg-deb --field /var/cache/apt/archives/libssl3t64_3.5.7-1~deb13u2_amd64.deb > /patch/var/lib/dpkg/status.d/libssl3t64 \
-    && dpkg-deb --control /var/cache/apt/archives/libssl3t64_3.5.7-1~deb13u2_amd64.deb /tmp/libssl-control \
+    && dpkg-deb --extract /var/cache/apt/archives/libssl3t64_3.5.7-1~deb13u3_amd64.deb /patch \
+    && dpkg-deb --field /var/cache/apt/archives/libssl3t64_3.5.7-1~deb13u3_amd64.deb > /patch/var/lib/dpkg/status.d/libssl3t64 \
+    && dpkg-deb --control /var/cache/apt/archives/libssl3t64_3.5.7-1~deb13u3_amd64.deb /tmp/libssl-control \
     && cp /tmp/libssl-control/md5sums /patch/var/lib/dpkg/status.d/libssl3t64.md5sums \
     && rm -rf /var/lib/apt/lists/* /var/cache/apt/archives/*.deb /tmp/libssl-control
 
