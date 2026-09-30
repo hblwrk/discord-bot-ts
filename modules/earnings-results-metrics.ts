@@ -47,6 +47,9 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     key: "adjusted_eps",
     label: "Adj EPS",
     patterns: [
+      /\badjusted\s+eps\s*\([a-z]\)/i,
+      /\badjusted\s+net\s+loss\s+was\s+\$\s*\([^)]+\)\s+million,\s+or\s+(?<metricValue>\$\s*\(\d+\.\d{2}\))\s+per\s+diluted\s+share\b/i,
+      /\badjusted\s+diluted\s+earnings\s+per\s+share\*?\s+of\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?\d+(?:\.\d+)?\)?)/i,
       /\bconsolidated\s+adjusted\s+\(core\)\s+income\s+per\s+(?:common\s+)?share\s+was\s+(?<metricValue>\(?-?(?:C\s*\$|[$€£¥])?\s*\d+(?:\.\d+)?\)?)/i,
       /\bwhile\s+non-gaap\s+(?:fully\s+)?(?:diluted\s+)?(?:net\s+)?(?:earnings|income|loss)\s+per\s+(?:common\s+)?(?:diluted\s+)?share\s+was\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?)/i,
       /\b(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\s+non-gaap\s+(?:fully\s+)?(?:diluted\s+)?net\s+eps\s+(?:was|of)\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?)/i,
@@ -103,6 +106,8 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     key: "gaap_eps",
     label: "EPS",
     patterns: [
+      /\bnet\s+loss\s+for\s+the\s+quarter\b[^.!?]{0,120}?\bor\s+(?<metricValue>\$\s*\(\d+\.\d{2}\))\s+per\s+diluted\s+share\b/i,
+      /(?<metricValue>\(?-?(?:[$€£¥]\s*)?\d+\.\d{2}\)?)\s+net\s+loss\s+per\s+(?:common\s+)?share\b/i,
       /\bconsolidated\s+income\s+per\s+(?:common\s+)?share\s+was\s+(?<metricValue>\(?-?(?:C\s*\$|[$€£¥])?\s*\d+(?:\.\d+)?\)?)/i,
       /\bearnings\s+per\s+diluted\s+(?:class\s+[A-Z]\s+)?(?:nonvoting\s+)?common\s+share\s+was\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?\d+(?:\.\d+)?\)?)/i,
       /\bbasic\s+net\s+income\s+per\s+share\s+was\s+US\s*\$\s*\d+(?:\.\d+)?\s*\(\s*(?<metricValue>US\s*\$\s*\d+(?:\.\d+)?)(?:\s+per\s+ADS\s*\))?/i,
@@ -115,6 +120,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       // This plain GAAP loss caption can share a sentence with non-GAAP earnings. Keep it
       // ahead of the generic earnings pattern so the later adjusted figure cannot win.
       /\bdiluted\s+loss\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,
+      /\bdiluted\s+earnings\s*\/\s*\(loss\)\s+per\s+share\b/i,
       /\b(?:diluted\s+)?(?:earnings|net\s+income)\s+per\s+(?:common\s+)?share\b/i,
       /\bnet\s+\(loss(?:es)?\)\s+income\s+per\s+(?:common\s+)?share\b/i,
       /\b(?:earnings|profit|net\s+income)(?:\s*\/)?\s*\(loss(?:es)?\)\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,
@@ -135,6 +141,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     key: "revenue",
     label: "Revenue",
     patterns: [
+      /\bfor\s+the\s+(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\s+of\s+fiscal\s+20\d{2},?\s+.{0,100}?\breported\s+consolidated\s+net\s+sales\s+of\s+(?<metricValue>[$€£¥]\s*\d+(?:\.\d+)?\s*(?:million|billion))\b/i,
       /\bconsolidated\s+revenues?\s+for\s+(?:the\s+)?quarter\s+ended\b.{0,100}?\b(?:was|were)\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?\d+(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\)?)/i,
       /\bnet\s+sales\s+(?:was|were)\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?\d+(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\)?)/i,
       /\breported\s+net\s+sales\s+of\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?\d+(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\)?)\s+for\s+(?:the\s+)?(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b/i,
@@ -154,13 +161,15 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /\brevenues?\b/i,
       /\bsales\b/i,
     ],
-    skipPattern: new RegExp(String.raw`\bcosts?\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bforecast(?:s|ed|ing)?\b|\bsystemwide\s+sales\b|\bannual\s+recurring\s+revenues?\b|\bsales\s+and\s+marketing\b|\binside\s+sales\b|\b(?:total\s+)?segment\s+sales\b|\b(?:as\s+a\s+)?percentage\s+of\s+(?:net\s+)?sales\b|(?:%|\bpercent(?:age)?)\s+of\s+(?:net\s+)?(?:sales|revenues?)\b|\brevenue\s+from\s+material\s+rights\b|\bnet\s+revenues?\s+from\b|\bsubscription\s+and\s+services?\s+revenues?\b|\b(?:value[-\s]*added\s+services?|VAS)\s+revenues?\b|\badvertising\s+and\s+marketing\s+revenues?\b|\blicensing\s+and\s+related\s+revenues?\b|\broyalty\s+revenues?\b|\bsales\s+of\s+equipment\b|\b(?:${unitedStatesSource}|U\.K\.|US|international|domestic|non-US|segment)\s+(?:commercial\s+|government\s+)?revenues?\b|\b(?:${unitedStatesSource}|US|international|worldwide|non-US)\s+(?:[A-Z][A-Za-z]+\s+){1,2}revenues?\b|\brevenues?\s+(?:in|outside)\s+the\s+${unitedStatesSource}|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b`, "i"),
+    skipPattern: new RegExp(String.raw`\bcosts?\s+of\b|\bdeferred\b|\bunearned\b|\bguidance\b|\boutlook\b|\bforecast(?:s|ed|ing)?\b|\bsystemwide\s+sales\b|\bannual\s+recurring\s+revenues?\b|\bdays\s+sales\s+outstanding\b|\bsales\s+performance\b|\binventory\s+step-up\s+charge\b|\bsales\s+and\s+marketing\b|\binside\s+sales\b|\b(?:total\s+)?segment\s+sales\b|\b(?:as\s+a\s+)?percentage\s+of\s+(?:net\s+)?sales\b|(?:%|\bpercent(?:age)?)\s+of\s+(?:net\s+)?(?:sales|revenues?)\b|\brevenue\s+from\s+material\s+rights\b|\bnet\s+revenues?\s+from\b|\bsubscription\s+and\s+services?\s+revenues?\b|\b(?:value[-\s]*added\s+services?|VAS)\s+revenues?\b|\badvertising\s+and\s+marketing\s+revenues?\b|\blicensing\s+and\s+related\s+revenues?\b|\broyalty\s+revenues?\b|\bsales\s+of\s+equipment\b|\b(?:${unitedStatesSource}|U\.K\.|US|international|domestic|non-US|segment)\s+(?:commercial\s+|government\s+)?revenues?\b|\b(?:${unitedStatesSource}|US|international|worldwide|non-US)\s+(?:[A-Z][A-Za-z]+\s+){1,2}revenues?\b|\brevenues?\s+(?:in|outside)\s+the\s+${unitedStatesSource}|\bsince\s+(?:launch|inception)\b|\blife-to-date\b|\bcumulative\b|\bannuali[sz]ed\s+(?:revenue\s+)?run[-\s]*rate\b|\brevenue\s+run[-\s]*rate\b|\brevenue\s+\(expense\)|\bnon[-\s]insurance\s+warranty\s+revenue\b|\bnot\s+recognized\s+in\s+revenue\b|\bnon-cash\s+revenues?\b|\bsales\s+volumes?\b|\b(?:external\s+power|pipeline\s+gas|hydrocarbon|asset)\s+sales\b|\bproceeds\s+from\b|\bsales\s+of\s+pipeline\s+gas\b|\b(?:kbd|koebd|boepd|bpd|mboed|mmboe|bcfe|mmcf|mw|gw|kt)\b`, "i"),
     valueType: "money",
   },
   {
     key: "net_income",
     label: "Net income",
     patterns: [
+      /\breport\s+(?<metricValue>[$€£¥]\s*\d+(?:\.\d+)?\s*(?:million|billion))\s+in\s+consolidated\s+net\s+income\s+for\s+the\s+quarter\b/i,
+      /\bnet\s+loss\s+improved\s+by\s+\d+(?:\.\d+)?%\s+to\s+(?<metricValue>\$\s*\d+(?:\.\d+)?\s*(?:million|billion))\b/i,
       /\bconsolidated\s+net\s+income\s+was\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?\d+(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\)?)/i,
       /\bnet\s+loss\s+in\s+(?:the\s+)?(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\b[^.!?]{0,80}?\bwas\s+(?<metricValue>\(?-?(?:(?:US|C)\s*)?[$€£¥]?\s*\d+(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\)?)/i,
       /\bgaap\s+net\s+loss\b[^.!?]{0,160}?\b(?:was|of)\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?)(?=.{0,160}?\bcompared\s+with\s+gaap\s+net\s+income\b)/i,
@@ -178,7 +187,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     // reconciliation adjustment rows so the headline "net income/earnings attributable
     // to <company>" row wins rather than "net earnings before income tax", "net
     // earnings including NCI" or "increase to net loss / decrease to net income".
-    skipPattern: /\badjusted\b|\bnon-gaap\b|\beps\b|\bbefore\s+(?:income\s+)?tax(?:es)?\b|\b(?:including|attributable\s+to)\s+noncontrolling\b|\b(?:increase|decrease)\s+to\s+net\b/i,
+    skipPattern: /\badjusted\b|\bnon-gaap\b|\beps\b|\bbefore\s+(?:income\s+)?tax(?:es)?\b|\b(?:before\s+)?equity\s+in\s+net\s+income\s+of\s+equity\s+method\s+investment\b|\b(?:including|attributable\s+to)\s+noncontrolling\b|\b(?:increase|decrease)\s+to\s+net\b/i,
     valueType: "money",
   },
   {
@@ -340,6 +349,19 @@ export function getMetricLineWithContinuation(
       break;
     }
 
+    if ("eps" === definition.valueType &&
+        /^\s*(?:basic\s+and\s+diluted\s+)?weighted[-\s]+average\s+shares\b/i.test(nextLine) &&
+        /\bper\s+(?:common\s+)?share\b/i.test(baseLine)) {
+      break;
+    }
+
+    if ("adjusted_eps" === definition.key &&
+        /^\s*Adjusted EPS \([a-z]\)\s*$/i.test(baseLine) &&
+        /^\s*\|\s*\$?\d+(?:\.\d+)?\s*\|/i.test(nextLine)) {
+      metricLines.push(nextLine);
+      break;
+    }
+
     // A footnote below the row explains it rather than continuing it, and it often restates
     // the measure with a different figure ("(1) non-GAAP EPS included $3.03 of charges").
     // Joined to the row, that figure becomes the only currency-cued value in it.
@@ -493,7 +515,10 @@ function getCurrentQuarterNarrativeSegments(
     "i",
   );
   const explicitPeriodPattern = /\b(?:q[1-4]|(?:first|second|third|fourth)[\s–—-]+quarter)\b[^.!?]{0,40}\b20\d{2}\b/i;
-  const segments = line.split(/(?<=[.!?])\s+/);
+  // A legal suffix inside the company name is not a sentence boundary. Splitting at
+  // "Inc." would discard the reported value when the next sentence names a prior year.
+  const segments = line.replace(/\bInc\./gi, "Inc§").split(/(?<=[.!?])\s+/)
+    .map(segment => segment.replace(/\bInc§/gi, "Inc."));
   const hasForeignPeriodSegment = segments.some(segment =>
     explicitPeriodPattern.test(segment) && false === currentPeriodPattern.test(segment));
   if (false === hasForeignPeriodSegment) {
