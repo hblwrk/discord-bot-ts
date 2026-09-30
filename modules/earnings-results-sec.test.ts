@@ -573,6 +573,36 @@ describe("SEC earnings result source", () => {
     });
   });
 
+  test("selects an exx99x1 release before a credit agreement exhibit", async () => {
+    const filing = createFiling({
+      accessionNumber: "0001084869-26-000024",
+      cik: "0001084869",
+    });
+    getWithRetryFn.mockImplementation(async (url: string) => {
+      if (url.endsWith("/index.json")) {
+        return {
+          data: {
+            directory: {
+              item: [
+                {name: "exhibit101toflws8k09102026.htm", type: "text.gif"},
+                {name: "flws-fiscal2026xexx99x1xfi.htm", type: "text.gif"},
+              ],
+            },
+          },
+        };
+      }
+
+      return {data: "<html>fiscal fourth-quarter earnings release</html>"};
+    });
+    const dependencies = {getWithRetryFn, logger} as Parameters<typeof loadSecFilingDetails>[1];
+
+    const details = await loadSecFilingDetails(filing, dependencies);
+
+    expect(details.documentUrl).toBe(
+      "https://www.sec.gov/Archives/edgar/data/1084869/000108486926000024/flws-fiscal2026xexx99x1xfi.htm",
+    );
+  });
+
   test("falls back to filing URL when archive index has no content document", async () => {
     const filing = createFiling();
     getWithRetryFn.mockResolvedValue({

@@ -300,6 +300,18 @@ function extractMetric(
     }
 
     const metricLine = getMetricLineWithContinuation(lines, lineIndex, definition, quarterLabel);
+    if ("adjusted_eps" === definition.key &&
+        /^\s*adjusted\s+diluted\s+earnings\s+per\s+share:\s*(?:\|\s*)*GAAP\b/i.test(metricLine)) {
+      continue;
+    }
+    const epsRangeIndex = "eps" === definition.valueType
+      ? metricLine.search(/\b\d+(?:\.\d{1,2})\s*(?:to|[-–])\s*\$?\d+(?:\.\d{1,2})\b/i)
+      : -1;
+    if (-1 !== epsRangeIndex &&
+        false === /\b(?:was|were|of)\b[^.!?]{0,180}\$\s*\d+(?:\.\d+)?\s+per\s+(?:common\s+)?(?:diluted\s+)?share\b/i
+          .test(metricLine.slice(0, epsRangeIndex))) {
+      continue;
+    }
 
     // An explicitly GAAP-labelled line overrides the "adjusted" skip, but must never
     // override a forward-looking one: "Increasing full year GAAP EPS guidance to a range
@@ -351,10 +363,20 @@ function extractMetric(
     // A sentence can state the GAAP loss and then its non-GAAP counterpart. Once the
     // leading reported value has made the line eligible, read only that leading clause;
     // otherwise an earlier pattern in the definition can match the later non-GAAP income.
-    const valueMetricLine = true === hasReportedGaapNetIncome ||
+    const unqualifiedMetricLine = true === hasReportedGaapNetIncome ||
         true === hasReportedGaapEps
       ? metricLine.slice(0, metricLine.search(/\badjusted\b|\bnon-gaap\b/i))
       : metricLine;
+    const weightedSharesIndex = "eps" === definition.valueType &&
+        2 <= (unqualifiedMetricLine.match(/\|/g)?.length ?? 0)
+      ? unqualifiedMetricLine.search(/\b(?:weighted[-\s]+average\s+shares|shares\s+used\s+in\s+the\s+calculation)\b/i)
+      : -1;
+    const hasCaptionBeforeWeightedShares = -1 !== weightedSharesIndex &&
+      definition.patterns.some(candidatePattern =>
+        candidatePattern.test(unqualifiedMetricLine.slice(0, weightedSharesIndex)));
+    const valueMetricLine = false === hasCaptionBeforeWeightedShares
+      ? unqualifiedMetricLine
+      : unqualifiedMetricLine.slice(0, weightedSharesIndex);
     const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(valueMetricLine));
     if (!pattern) {
       continue;
@@ -780,7 +802,12 @@ function getContextMoney(
       continue;
     }
 
-    const scale = getMoneyScaleFromContextText(line);
+    const precedingLine = lines[index - 1] ?? "";
+    const scaleContext = /^\s*\(?in\s*$/i.test(precedingLine) &&
+        /^\s*(?:millions?|billions?|thousands?)\b/i.test(line)
+      ? `${precedingLine} ${line}`
+      : line;
+    const scale = getMoneyScaleFromContextText(scaleContext);
     if (null !== scale) {
       // Take the currency from the unit declaration that governs this table ("$ million",
       // "in € millions"). Reading it from any line scanned on the way up lets an incidental

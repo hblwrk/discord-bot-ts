@@ -157,10 +157,17 @@ export function getDocumentCurrencyCode(lines: string[]): string | undefined {
     return getCurrencyCodeFromText(reportingCurrencyDeclaration);
   }
 
+  const statementCurrencyDeclaration = lines.slice(0, 250).find(line =>
+    /\bexpressed\s+in\s+(?:thousands?|millions?)\s+of\s+Canadian\s+dollars?\b/i.test(line));
+  if (undefined !== statementCurrencyDeclaration) {
+    return "CAD";
+  }
+
   const currencyDeclaration = headerLines
-    .find(line => /\b(?:Canadian|New Taiwan|U\.S\.)\s+dollars?\b/i.test(line) ||
+    .find(line => false === /\bexchange\s+rate\b|\bC\s*\$\s*\d+(?:\.\d+)?\s+per\s+U\.S\.\s+dollar\b/i.test(line) && (
+      /\b(?:Canadian|New Taiwan|U\.S\.)\s+dollars?\b/i.test(line) ||
       hasDeclaredIsoCode(line, ["CAD", "TWD", "NTD", "USD", "EUR", "GBP", "JPY", "CHF"]) ||
-      hasNewTaiwanDollarSymbol(line));
+      hasNewTaiwanDollarSymbol(line)));
   if (undefined !== currencyDeclaration) {
     return getDominantCurrencyCode(currencyDeclaration) ??
       getCurrencyCodeFromText(currencyDeclaration);
@@ -207,6 +214,27 @@ function getDominantCurrencyCode(text: string): string | undefined {
 export function getQuarterLabel(text: string): string | undefined {
   const leadingText = text.slice(0, 2_000);
 
+  // The fiscal year can precede the written quarter in a release title. A title such as
+  // "Fiscal 2026 Fourth Quarter" describes Q4 even when June is the calendar Q2.
+  const leadingYearFirstQuarterMatch = leadingText.match(
+    /\bfiscal(?:\s+year)?\s+(20\d{2}|\d{2})\s+(first|second|third|fourth)[\s–—-]+quarter\b/i,
+  );
+  if (undefined !== leadingYearFirstQuarterMatch?.[1] &&
+      undefined !== leadingYearFirstQuarterMatch[2]) {
+    const quarter = getQuarterFromName(leadingYearFirstQuarterMatch[2]);
+    if (quarter) {
+      return `${quarter} ${normalizeFiscalYear(leadingYearFirstQuarterMatch[1])}`;
+    }
+  }
+
+  const numericQuarterEndedMatch = leadingText.match(
+    /\b([1-4])(?:st|nd|rd|th)\s+quarter\b[\s\S]{0,500}?\bquarter\s+\([^)]*\)\s+ended\s+[A-Z][a-z]+\s+\d{1,2},\s+(20\d{2})\b/i,
+  );
+  if (undefined !== numericQuarterEndedMatch?.[1] &&
+      undefined !== numericQuarterEndedMatch[2]) {
+    return `Q${numericQuarterEndedMatch[1]} ${numericQuarterEndedMatch[2]}`;
+  }
+
   // Retail and technology filers often title a release "Reports Second Quarter 2026"
   // or "Second Quarter Fiscal 2027". Resolve that title before the calendar period-end
   // fallback or a later third-quarter outlook can relabel the actual results.
@@ -237,7 +265,7 @@ export function getQuarterLabel(text: string): string | undefined {
   // "Announces Financial Results for the Fourth Quarter and Fiscal Year Ended June 30,
   // 2026". Preserve the named fiscal quarter instead of deriving calendar Q2 from June.
   const combinedFiscalYearEndedMatch = leadingText.match(
-    /\b(?:reports?|announces?)\s+(?:financial\s+)?results\s+for\s+(?:the\s+)?(first|second|third|fourth)[\s–—-]+quarter\s+and\s+(?:fiscal\s+year|full[\s–—-]+year)\s+ended\s+[A-Z][a-z]+\s+\d{1,2},\s+(20\d{2})\b/i,
+    /\b(?:reports?|reported|announces?)\s+(?:financial\s+)?results\s+for\s+(?:the\s+)?(first|second|third|fourth)[\s–—-]+quarter\s+and\s+(?:fiscal\s+year|full[\s–—-]+year)\s+ended\s+[A-Z][a-z]+\s+\d{1,2},\s+(20\d{2})\b/i,
   );
   if (undefined !== combinedFiscalYearEndedMatch?.[1] && undefined !== combinedFiscalYearEndedMatch[2]) {
     const quarter = getQuarterFromName(combinedFiscalYearEndedMatch[1]);
