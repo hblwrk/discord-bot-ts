@@ -55,7 +55,7 @@ describe("Twitter web cross-check", () => {
   test("logs only a static message when the provider fails", async () => {
     const logger = {log: vi.fn()};
     expect(await crossCheckTwitterPost(post, {logger}, vi.fn().mockRejectedValue(new Error("secret payload")))).toBeUndefined();
-    expect(logger.log).toHaveBeenCalledExactlyOnceWith("warn", "Twitter/X web cross-check unavailable; retaining the heuristic assessment.");
+    expect(logger.log).toHaveBeenCalledExactlyOnceWith("debug", "Twitter/X web cross-check skipped; keeping the link preview.");
   });
 
   test.each([

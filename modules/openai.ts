@@ -75,6 +75,11 @@ export function clearOpenAiState() {
   openAiCooldownUntilMs = 0;
 }
 
+export function isOpenAiAvailable(dependencies: OpenAiDependencies): boolean {
+  const config = getOpenAiConfig(dependencies);
+  return null !== config && reserveOpenAiCall(config, dependencies, "optional review", false);
+}
+
 export async function callOpenAiJson(
   prompt: string,
   responseJsonSchema: Record<string, unknown>,
@@ -226,10 +231,12 @@ function reserveOpenAiCall(
   config: OpenAiConfig,
   dependencies: OpenAiDependencies,
   task: string,
+  reserve = true,
 ): boolean {
+  const logger = reserve ? dependencies.logger : {log: () => {}};
   const nowMs = dependencies.nowMs?.() ?? Date.now();
   if (nowMs < openAiCooldownUntilMs) {
-    dependencies.logger.log(
+    logger.log(
       "warn",
       `Skipping OpenAI ${task}: API rate-limit cooldown is active for ${Math.ceil((openAiCooldownUntilMs - nowMs) / 1000)}s.`,
     );
@@ -247,7 +254,7 @@ function reserveOpenAiCall(
   }
 
   if (openAiCallTimestampsMs.length >= config.callsPerMinute) {
-    dependencies.logger.log(
+    logger.log(
       "warn",
       `Skipping OpenAI ${task}: local ${config.callsPerMinute}/minute rate limit is exhausted.`,
     );
@@ -255,15 +262,17 @@ function reserveOpenAiCall(
   }
 
   if (openAiDailyCallTimestampsMs.length >= config.callsPerDay) {
-    dependencies.logger.log(
+    logger.log(
       "warn",
       `Skipping OpenAI ${task}: local ${config.callsPerDay}/day rate limit is exhausted.`,
     );
     return false;
   }
 
-  openAiCallTimestampsMs.push(nowMs);
-  openAiDailyCallTimestampsMs.push(nowMs);
+  if (reserve) {
+    openAiCallTimestampsMs.push(nowMs);
+    openAiDailyCallTimestampsMs.push(nowMs);
+  }
   return true;
 }
 

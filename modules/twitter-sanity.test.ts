@@ -8,13 +8,55 @@ function payload(text = "A cat enjoys a sunny afternoon.", id = "123") {
 function dependencies(data: unknown = payload()) {
   return {
     logger: {log: vi.fn()},
+    aiAvailableFn: vi.fn(() => true),
     getWithRetryFn: vi.fn().mockResolvedValue({data}),
-    crossCheckFn: vi.fn().mockResolvedValue(undefined),
+    crossCheckFn: vi.fn().mockResolvedValue({verdict: "supported", sentence: "Reporting supports this specific claim.", sources: ["https://reuters.com/world/report"]}),
     nowMs: () => Date.parse("2026-10-07T12:00:00Z"),
   };
 }
 
 describe("Twitter metadata and badge service", () => {
+  test("skips all badges and metadata when AI review is unavailable", async () => {
+    const deps = dependencies();
+    deps.aiAvailableFn.mockReturnValue(false);
+    expect(await createTwitterIntrospector(deps)("https://fixvx.com/a/status/123")).toBeUndefined();
+    expect(deps.getWithRetryFn).not.toHaveBeenCalled();
+    expect(deps.crossCheckFn).not.toHaveBeenCalled();
+    expect(deps.logger.log).not.toHaveBeenCalled();
+  });
+
+  test("checks availability before returning a previously successful cached badge", async () => {
+    const deps = dependencies();
+    const inspect = createTwitterIntrospector(deps);
+    expect(await inspect("https://fixvx.com/a/status/123")).toBeDefined();
+    deps.aiAvailableFn.mockReturnValue(false);
+    expect(await inspect("https://fixvx.com/a/status/123")).toBeUndefined();
+    deps.aiAvailableFn.mockReturnValue(true);
+    expect(await inspect("https://fixvx.com/a/status/123")).toBeDefined();
+    expect(deps.getWithRetryFn).toHaveBeenCalledTimes(1);
+  });
+
+  test.each(["unavailable", "error"])("omits AI-dependent badges on %s review and retries the next paste", async mode => {
+    const deps = dependencies(payload("They are hiding this from you"));
+    if (mode === "error") deps.crossCheckFn.mockRejectedValueOnce(new Error("sensitive provider payload"));
+    else deps.crossCheckFn.mockResolvedValueOnce(undefined);
+    const inspect = createTwitterIntrospector(deps);
+    expect(await inspect("https://fixvx.com/a/status/123")).toBeUndefined();
+    expect(await inspect("https://fixvx.com/a/status/123")).toMatchObject({description: "Reporting supports this specific claim."});
+    expect(deps.getWithRetryFn).toHaveBeenCalledTimes(2);
+    expect(deps.crossCheckFn).toHaveBeenCalledTimes(2);
+    expect(deps.logger.log.mock.calls.every(([level]) => level === "debug")).toBe(true);
+  });
+
+  test("retries failed metadata on the next paste", async () => {
+    const deps = dependencies();
+    deps.getWithRetryFn.mockRejectedValueOnce(new Error("temporary failure"));
+    const inspect = createTwitterIntrospector(deps);
+    expect(await inspect("https://fixvx.com/a/status/123")).toBeUndefined();
+    expect(await inspect("https://fixvx.com/a/status/123")).toBeDefined();
+    expect(deps.getWithRetryFn).toHaveBeenCalledTimes(2);
+  });
+
   test.each(["fixupx.com", "xfixup.com", "twittpr.com", "vxtwitter.com", "fixvx.com", "c.vxtwitter.com"])("assesses %s through the fixed FxTwitter metadata endpoint", async host => {
     const deps = dependencies();
     expect(await createTwitterIntrospector(deps)(`https://${host}/example/status/123`))
@@ -113,7 +155,7 @@ describe("Twitter metadata and badge service", () => {
     deps.getWithRetryFn.mockImplementation(() => new Promise(resolve => { resolvers.push(resolve); }));
     const inspect = createTwitterIntrospector(deps);
     const pending = [100, 101, 102, 103].map(id => inspect(`https://fxtwitter.com/a/status/${id}`));
-    expect(await inspect("https://fxtwitter.com/a/status/104")).toMatchObject({title: "⚪ Sanity Rating unavailable"});
+    expect(await inspect("https://fxtwitter.com/a/status/104")).toBeUndefined();
     expect(deps.getWithRetryFn).toHaveBeenCalledTimes(4);
     resolvers.forEach(resolve => { resolve({data: payload()}); });
     await Promise.all(pending);
@@ -134,12 +176,12 @@ describe("Twitter metadata and badge service", () => {
       .toMatchObject({title: "🔴 95% Spiciness — High sensationalism", color: 0xe74c3c});
   });
 
-  test("falls back to a grey unrated badge without leaking remote errors", async () => {
+  test("silently omits failed metadata without leaking remote errors", async () => {
     const deps = dependencies();
     deps.getWithRetryFn.mockRejectedValue(new Error("sensitive response body"));
     expect(await createTwitterIntrospector(deps)("https://fxtwitter.com/a/status/123"))
-      .toMatchObject({title: "⚪ Sanity Rating unavailable"});
-    expect(deps.logger.log).toHaveBeenCalledExactlyOnceWith("warn", "Twitter/X introspection unavailable; keeping the link preview.");
+      .toBeUndefined();
+    expect(deps.logger.log).toHaveBeenCalledExactlyOnceWith("debug", "Twitter/X introspection skipped; keeping the link preview.");
   });
 
   test.each(["A calm factual claim.", "They are hiding this from you"])(
@@ -174,7 +216,7 @@ describe("Twitter metadata and badge service", () => {
     "does not score an unavailable or mismatched post %#", async data => {
       const deps = dependencies(data);
       expect(await createTwitterIntrospector(deps)("https://fxtwitter.com/a/status/123"))
-        .toMatchObject({title: "⚪ Sanity Rating unavailable"});
+        .toBeUndefined();
       expect(deps.crossCheckFn).not.toHaveBeenCalled();
     },
   );

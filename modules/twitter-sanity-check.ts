@@ -96,7 +96,7 @@ export async function crossCheckTwitterPost(
       sources,
     };
   } catch {
-    dependencies.logger.log("warn", "Twitter/X web cross-check unavailable; retaining the heuristic assessment.");
+    dependencies.logger.log("debug", "Twitter/X web cross-check skipped; keeping the link preview.");
     return undefined;
   }
 }
