@@ -65,21 +65,24 @@ export function isPrivateIp(ip: string): boolean {
   return true;
 }
 
-const safeLookup: net.LookupFunction = (hostname, options, callback) => {
+export const safeLookup: net.LookupFunction = (hostname, options, callback) => {
   dns.lookup(hostname, options, (err, address, family) => {
     if (null !== err) {
       callback(err, address, family);
       return;
     }
 
-    const resolved = address as string;
-    if (true === isPrivateIp(resolved)) {
-      const blockError = new Error(`Refused to connect to private address ${resolved} for ${hostname}`);
+    // Node's automatic family selection requests all addresses. Validate every
+    // candidate before returning the original DNS result to the connection.
+    const addresses = Array.isArray(address) ? address.map(entry => entry.address) : [address];
+    const blocked = addresses.find(isPrivateIp);
+    if (undefined !== blocked) {
+      const blockError = new Error(`Refused to connect to private address ${blocked} for ${hostname}`);
       callback(blockError, "", 0);
       return;
     }
 
-    callback(null, resolved, family);
+    callback(null, address, family);
   });
 };
 
