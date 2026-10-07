@@ -2,11 +2,9 @@ import type {APIEmbed} from "discord.js";
 
 export type TwitterBadge = {linkNumber: number; embed: APIEmbed};
 const messageLimit = 2_000;
-const legend = "-# Wording score ≠ truth · Media/bots unverified.";
 
 export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], multipleLinks: boolean): string {
   const blocks: string[] = [];
-  let needsLegend = false;
   for (const {linkNumber, embed} of badges) {
     if (!embed.title) {
       continue;
@@ -32,17 +30,15 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
       `**${field.name}**\n${suppressCitationPreviews(field.value)}`)]
       .filter(line => undefined !== line && "" !== line).join("\n")
       .split("\n").map(line => `-# ${line}`).join("\n");
-    const nextNeedsLegend: boolean = needsLegend || null !== score;
     const nextBlocks = [...blocks, block];
-    const candidate = [content, ...nextBlocks, ...(nextNeedsLegend ? [legend] : [])].filter(Boolean).join("\n");
+    const candidate = [content, ...nextBlocks].filter(Boolean).join("\n");
     if (candidate.length <= messageLimit) {
       blocks.push(block);
-      needsLegend = nextNeedsLegend;
     }
   }
   // Link conversion has priority when the message has no room for a complete
   // assessment. Omit the edit rather than removing links or cited evidence.
-  return blocks.length ? [content, ...blocks, ...(needsLegend ? [legend] : [])].filter(Boolean).join("\n") : content;
+  return blocks.length ? [content, ...blocks].filter(Boolean).join("\n") : content;
 }
 
 function suppressCitationPreviews(value: string): string {
