@@ -219,6 +219,7 @@ function getMncSummaryPrompt(): string {
     "- If the PDF does not explicitly provide a ticker, start with the company name without inventing a ticker.",
     "- Do not infer or invent tickers, prices, percentages, or attributions.",
     "- Keep each figure and forecast attached to the company, period and currency that the PDF attributes it to; never transfer a neighboring company's capex or guidance.",
+    "- Keep separately reported quarterly and annual impacts separate. Do not describe one as included in the other unless the PDF explicitly establishes that relationship; preserve an unspecified quarter year rather than assigning it to the annual forecast.",
     "- Put an event in today's watchlist only when the PDF explicitly dates it today; an undated earnings preview does not establish today's reporting schedule.",
     "- Preserve qualifiers such as proposed, estimated, pending or excluding tariff impact; do not convert an impact on guidance into a new guidance range.",
     "- Do not use code blocks, tables, links, emojis, or disclaimers.",

@@ -7,6 +7,7 @@ import {
   type NasdaqSurprise,
 } from "./earnings-results-format.ts";
 import {getRelevantEarningsFilingText} from "./earnings-results-ai-text.ts";
+import {hasExactFilingSnippet, isMetricSupportedByFilingSnippet} from "./earnings-results-evidence.ts";
 import {callAiProviderJson, clearAiProviderState, type AiProviderDependencies} from "./ai-provider.ts";
 
 type EarningsAiDependencies = AiProviderDependencies;
@@ -138,10 +139,16 @@ export async function checkEarningsQualityWithAi(
     return null;
   }
 
-  const qualityGate = parseQualityGate(parsedJson, htmlToText(input.html));
-  if (null !== qualityGate && "allow" === qualityGate.decision && input.reasons.some(reason =>
-    undefined !== reason.metricKey && false === qualityGate.issues.some(issue => issue.metricKey === reason.metricKey)
-  )) {
+  const filingText = htmlToText(input.html);
+  const qualityGate = parseQualityGate(parsedJson, filingText);
+  if (null !== qualityGate && "allow" === qualityGate.decision && input.reasons.some(reason => {
+    if (undefined === reason.metricKey) {
+      return false;
+    }
+    const metric = input.metrics.find(candidate => candidate.key === reason.metricKey);
+    return undefined === metric || false === qualityGate.issues.some(issue =>
+      issue.metricKey === reason.metricKey && isMetricSupportedByFilingSnippet(metric, issue.sourceSnippet, filingText));
+  })) {
     return null;
   }
   return null !== qualityGate && 0 < qualityGate.issues.length
@@ -317,6 +324,7 @@ function getQualityGatePrompt(input: EarningsAiQualityGateInput, sourceText: str
     "Allow only when the filing supports every flagged metric as displayed. If the evidence is insufficient, suppress rather than guess.",
     "An allow decision must contain only low-severity verification notes. A medium- or high-severity unresolved issue requires suppress, even at high confidence.",
     "For allow, include a separate low-severity issue with its metricKey and exact supporting sourceSnippet for every flagged metric; unrelated verified metrics do not resolve another metric's suspicion.",
+    "For allow, return verification notes only for the flagged metrics. Quote the metric caption and actual signed value, not a title or an unrelated number. The numeric sign in Pending metrics must match loss or profit; never reinterpret a positive EPS as a loss or a negative EPS as profit.",
     "Return at least one issue explaining the decision. Every issue must include a short exact sourceSnippet from the filing text.",
     "Copy each sourceSnippet as one contiguous substring with the original words and table separators; do not stitch a header to a row, add ellipses, quote wrappers or literal backslash escapes. Include the relevant metric's value and loss/profit context in the excerpt.",
     `Company: ${input.companyName}`,
@@ -396,7 +404,7 @@ function parseQualityIssue(value: unknown, sourceText: string): EarningsAiQualit
       "string" !== typeof message ||
       "" === message.trim() ||
       "string" !== typeof sourceSnippet ||
-      false === hasSourceSnippet(sourceText, sourceSnippet)) {
+      false === hasExactFilingSnippet(sourceText, sourceSnippet)) {
     return null;
   }
 
@@ -410,23 +418,6 @@ function parseQualityIssue(value: unknown, sourceText: string): EarningsAiQualit
   }
 
   return issue;
-}
-
-function hasSourceSnippet(sourceText: string, sourceSnippet: string): boolean {
-  const normalizedSnippet = normalizeEvidenceText(sourceSnippet);
-  if (normalizedSnippet.length < 12) {
-    return false;
-  }
-
-  return normalizeEvidenceText(sourceText).includes(normalizedSnippet);
-}
-
-function normalizeEvidenceText(value: string): string {
-  return value
-    .replace(/\s*\|\s*/g, " | ")
-    .replace(/\s+/g, " ")
-    .trim()
-    .toLowerCase();
 }
 
 function getNumericEventEpsConsensus(event: EarningsEvent): number | undefined {

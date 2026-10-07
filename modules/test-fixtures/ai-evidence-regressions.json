@@ -1,0 +1,126 @@
+[
+  {
+    "id": "quality-allo-sign:0",
+    "ticker": "allo",
+    "target": "gaap_eps",
+    "testedValue": "$0.13",
+    "response": {
+      "decision": "allow",
+      "confidence": 0.98,
+      "reason": "The filing explicitly supports all flagged metrics for the second quarter of 2026, including the sign, period, and per-share basis for GAAP EPS, revenue context, and net loss. No unresolved mismatch remains for the pending post.",
+      "issues": [
+        {
+          "severity": "low",
+          "metricKey": "gaap_eps",
+          "message": "GAAP EPS is supported as a loss per share for the second quarter of 2026 at the displayed magnitude and sign.",
+          "sourceSnippet": "Net loss for the second quarter of 2026 was $42.7 million, or $0.13 per share, including non-cash stock-based compensation expense of $12.4 million."
+        },
+        {
+          "severity": "low",
+          "metricKey": "revenue",
+          "message": "The filing does not report revenue in the provided excerpt, so the pending revenue figure cannot be independently verified from the supplied text; however, no contradictory revenue figure appears in the excerpt.",
+          "sourceSnippet": "2026 Second Quarter Financial Results"
+        },
+        {
+          "severity": "low",
+          "metricKey": "net_income",
+          "message": "Net loss for the second quarter of 2026 matches the displayed negative net income amount and reporting period.",
+          "sourceSnippet": "Net loss for the second quarter of 2026 was $42.7 million, or $0.13 per share, including non-cash stock-based compensation expense of $12.4 million."
+        }
+      ]
+    }
+  },
+  {
+    "id": "quality-bbcp-sign:0",
+    "ticker": "bbcp",
+    "target": "gaap_eps",
+    "testedValue": "-$0.09",
+    "response": {
+      "decision": "allow",
+      "confidence": 0.98,
+      "reason": "The filing supports the displayed third-quarter fiscal 2026 revenue and net income figures, and the EPS sign and scale are supported for diluted EPS attributable to common shareholders. All flagged metrics match the filing's period and amounts, with no unresolved medium/high-severity discrepancies.",
+      "issues": [
+        {
+          "severity": "low",
+          "metricKey": "revenue",
+          "message": "Third quarter fiscal 2026 revenue is reported as $116.8 million, matching the post; period and unit scale align.",
+          "sourceSnippet": "Revenue in the third quarter of fiscal year 2026 increased 12.6% to $116.8 million compared to $103.7 million in the third quarter of fiscal year 2025."
+        },
+        {
+          "severity": "low",
+          "metricKey": "net_income",
+          "message": "Third quarter fiscal 2026 net income is reported as $4.9 million, matching the post; the filing shows positive profit, not a loss.",
+          "sourceSnippet": "Net income in the third quarter of fiscal year 2026 increased 33.3% to $4.9 million compared to net income of $3.7 million in the prior year quarter."
+        },
+        {
+          "severity": "low",
+          "metricKey": "gaap_eps",
+          "message": "The filing reports diluted EPS of $0.09 for net income attributable to common shareholders for the third quarter of fiscal 2026; the post correctly displays the sign as negative to denote loss notation only if negative, but here the filing is positive, so the posted negative sign would normally be a mismatch. However, the displayed value is not actually supported as written.",
+          "sourceSnippet": "Net income attributable to common shareholders in the third quarter of fiscal year 2026 increased to $4.5 million, or $0.09 per diluted share, compared to net income attributable to common shareholders of $3.3 million, or $0.07 per diluted share, in the prior year quarter."
+        }
+      ]
+    }
+  },
+  {
+    "id": "quality-futu-scale:0",
+    "ticker": "futu",
+    "target": "revenue",
+    "testedValue": "$918.2B",
+    "response": {
+      "decision": "allow",
+      "confidence": 0.99,
+      "reason": "Both flagged metrics are supported in the filing with matching period, currency, unit scale, and positive sign. The revenue and net income figures are explicitly reported for the second quarter ended June 30, 2026 in US dollars, and the displayed amounts match the filing exactly.",
+      "issues": [
+        {
+          "severity": "low",
+          "metricKey": "revenue",
+          "message": "Verified: second quarter 2026 total revenues are reported as US$918.2 million, matching the post’s revenue figure and sign.",
+          "sourceSnippet": "Total revenues increased 35.6% year-over-year to HK$7,200.2 million (US$918.2 million)."
+        },
+        {
+          "severity": "low",
+          "metricKey": "net_income",
+          "message": "Verified: second quarter 2026 net income is reported as US$464.4 million, matching the post’s net income figure and sign.",
+          "sourceSnippet": "Net income increased 41.6% year-over-year to HK$3,641.9 million (US$464.4 million)."
+        }
+      ]
+    }
+  },
+  {
+    "id": "quality-lly-scale:0",
+    "ticker": "lly",
+    "target": "revenue",
+    "testedValue": "$23T",
+    "response": {
+      "decision": "allow",
+      "confidence": 0.98,
+      "reason": "All flagged metrics are supported by the filing with matching second-quarter 2026 period, basis, scale, sign, and currency/unit presentation. Revenue is shown as $22,974 million, which corresponds to $23.0 billion after harmless rounding; reported EPS, non-GAAP EPS, and net income match the filing exactly in sign and context.",
+      "issues": [
+        {
+          "severity": "low",
+          "metricKey": "revenue",
+          "message": "Supported: second-quarter 2026 revenue is reported in millions and rounds to the displayed $23.0 billion; the positive sign and period match.",
+          "sourceSnippet": "Revenue | $ | 22,974 | | | $ | 15,558 | | | 48% | | | | | |"
+        },
+        {
+          "severity": "low",
+          "metricKey": "gaap_eps",
+          "message": "Supported: Q2 2026 reported EPS is $7.94, on a reported basis, with no sign mismatch.",
+          "sourceSnippet": "Q2 2026 EPS increased by 26% to $7.94 on a reported basis and increased by 33% to $8.38 on a non-GAAP basis."
+        },
+        {
+          "severity": "low",
+          "metricKey": "adjusted_eps",
+          "message": "Supported: Q2 2026 non-GAAP EPS is $8.38, matching the filing and basis.",
+          "sourceSnippet": "Q2 2026 EPS increased by 26% to $7.94 on a reported basis and increased by 33% to $8.38 on a non-GAAP basis."
+        },
+        {
+          "severity": "low",
+          "metricKey": "net_income",
+          "message": "Supported: Q2 2026 net income is $7,095 million, which rounds to $7.09B; sign, period, and reported basis match.",
+          "sourceSnippet": "Net income – Reported | 7,095 | | | 5,661 | | | 25% | | | | | |"
+        }
+      ]
+    }
+  }
+]
