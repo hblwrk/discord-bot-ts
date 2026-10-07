@@ -20,6 +20,7 @@ export type OpenAiInlineData = {
 
 export type OpenAiCallOptions = {
   onWebSources?: ((urls: string[]) => void) | undefined;
+  profile?: "routine" | undefined;
   timeoutMs?: number | undefined;
   useWebSearch?: boolean | undefined;
 };
@@ -29,6 +30,7 @@ type OpenAiConfig = {
   callsPerDay: number;
   callsPerMinute: number;
   model: string;
+  routineModel: string;
 };
 
 type OpenAiInputPart = {
@@ -60,9 +62,11 @@ type OpenAiResponse = {
 const openAiResponsesEndpoint = "https://api.openai.com/v1/responses";
 const openAiApiKeySecret = "openai_api_key";
 const openAiModelSecret = "openai_model";
+const openAiRoutineModelSecret = "openai_routine_model";
 const openAiCallsPerMinuteSecret = "openai_calls_per_minute";
 const openAiCallsPerDaySecret = "openai_calls_per_day";
 const defaultOpenAiModel = "gpt-5.4-mini";
+const defaultOpenAiRoutineModel = "gpt-6-luna";
 const defaultOpenAiCallsPerMinute = 20;
 const defaultOpenAiCallsPerDay = 200;
 const maxOpenAiCallsPerMinute = 1_000;
@@ -104,12 +108,16 @@ export async function callOpenAiJson(
   }
 
   const postWithRetryFn = dependencies.postWithRetryFn ?? postWithRetry;
+  // Routine routing applies to short text generation. Research and attached
+  // documents retain the factual model even if a caller supplies this profile.
+  const useRoutineModel = "routine" === options.profile && true !== options.useWebSearch && undefined === inlineData;
   const requestBody = {
     input: [{
       content: getOpenAiInputParts(prompt, inlineData),
       role: "user",
     }],
-    model: config.model,
+    model: useRoutineModel ? config.routineModel : config.model,
+    ...(useRoutineModel ? {reasoning: {effort: "none"}} : {}),
     text: {
       format: {
         name: "bot_response",
@@ -196,6 +204,7 @@ function getOpenAiConfig(dependencies: OpenAiDependencies): OpenAiConfig | null 
   }
 
   const model = readOptionalSecret(readSecretFn, openAiModelSecret) ?? defaultOpenAiModel;
+  const routineModel = readOptionalSecret(readSecretFn, openAiRoutineModelSecret) ?? defaultOpenAiRoutineModel;
   const callsPerMinute = getOpenAiCallsPerMinute(readOptionalSecret(readSecretFn, openAiCallsPerMinuteSecret));
   const callsPerDay = getOpenAiCallsPerDay(readOptionalSecret(readSecretFn, openAiCallsPerDaySecret));
   return {
@@ -203,6 +212,7 @@ function getOpenAiConfig(dependencies: OpenAiDependencies): OpenAiConfig | null 
     callsPerDay,
     callsPerMinute,
     model,
+    routineModel,
   };
 }
 

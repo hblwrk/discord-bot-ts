@@ -79,6 +79,7 @@ export async function getPremarketWarmupMessage(
       undefined,
       {
         timeoutMs: 30_000,
+        profile: "routine",
       },
     ).catch(error => {
       dependencies.logger.log(

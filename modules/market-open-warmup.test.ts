@@ -73,6 +73,7 @@ describe("market open warmup", () => {
       undefined,
       {
         timeoutMs: 30_000,
+        profile: "routine",
       },
     );
     const prompt = callAiProviderJsonFn.mock.calls[0]?.[0] ?? "";
