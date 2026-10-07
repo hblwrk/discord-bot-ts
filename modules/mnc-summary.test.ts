@@ -117,6 +117,21 @@ describe("MNC AI summary", () => {
     );
   });
 
+  test("routes native PDF summaries to Luna medium with the PDF deadline", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({data: {
+      status: "completed",
+      output: [{type: "reasoning", content: []}, {type: "message", content: [{type: "output_text", text: JSON.stringify(validFields)}]}],
+    }});
+    expect(await getMncSummary(Buffer.from("pdf-bytes"), {
+      logger, postWithRetryFn,
+      readSecretFn: name => ({ai_provider: "openai", openai_api_key: "test-key"})[name] ?? "",
+    })).toBe(validSummaryExpected);
+    const request = postWithRetryFn.mock.calls[0];
+    expect(request?.[1]).toMatchObject({model: "gpt-6-luna", reasoning: {effort: "medium"}});
+    expect(request?.[1].input[0].content[0]).toMatchObject({type: "input_file", filename: "morning-news-call.pdf"});
+    expect(request?.[3]).toMatchObject({timeoutMs: 60_000, maxAttempts: 1});
+  });
+
   test("strips stray bullet markers and collapses multi-line entries, dropping non-strings", async () => {
     const postWithRetryFn = vi.fn().mockResolvedValue(geminiResponse({
       marketSetup: ["- Futures firm ahead of payrolls.", "* Yields ease\nas risk appetite improves."],

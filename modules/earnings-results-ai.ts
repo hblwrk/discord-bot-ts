@@ -139,6 +139,11 @@ export async function checkEarningsQualityWithAi(
   }
 
   const qualityGate = parseQualityGate(parsedJson, htmlToText(input.html));
+  if (null !== qualityGate && "allow" === qualityGate.decision && input.reasons.some(reason =>
+    undefined !== reason.metricKey && false === qualityGate.issues.some(issue => issue.metricKey === reason.metricKey)
+  )) {
+    return null;
+  }
   return null !== qualityGate && 0 < qualityGate.issues.length
     ? qualityGate
     : null;
@@ -299,13 +304,21 @@ function getQualityGatePrompt(input: EarningsAiQualityGateInput, sourceText: str
   const metricLines = input.metrics.map(metric =>
     `${metric.key}: ${metric.value}${metric.estimate ? ` vs estimate ${metric.estimate}` : ""}`,
   );
-  const reasonLines = input.reasons.map(reason => `${reason.severity}: ${reason.message}`);
+  const reasonLines = input.reasons.map(reason =>
+    `${reason.severity}${undefined === reason.metricKey ? "" : ` ${reason.metricKey}`}: ${reason.message}`,
+  );
   return [
     "Review this pending Discord earnings post against the SEC filing text.",
     "Return only JSON matching the schema. Do not include markdown.",
-    "Suppress only when a main metric is likely a parsing bug, such as a footnote/date fragment, a cents value treated as dollars, a table scale mistake, or a value copied from the wrong period.",
-    "Allow when the post is plausible or the filing text supports the values.",
+    "Verify each flagged metric's reporting period, basis, currency, unit scale and sign against exact filing evidence. Plausibility or the same absolute digits is not verification.",
+    "A negative net_income or net income amount denotes net loss, and negative EPS denotes loss per share; these labels are valid when the sign matches the filing.",
+    "Allow documented currency conversions and harmless rounding to the displayed precision; rounding does not excuse a reversed sign or a thousand-fold unit change.",
+    "Suppress when a metric is unsupported or has a sign, loss/profit, scale, cents/dollars, period or basis mismatch; a formatting or labeling mistake that changes its meaning still requires suppression.",
+    "Allow only when the filing supports every flagged metric as displayed. If the evidence is insufficient, suppress rather than guess.",
+    "An allow decision must contain only low-severity verification notes. A medium- or high-severity unresolved issue requires suppress, even at high confidence.",
+    "For allow, include a separate low-severity issue with its metricKey and exact supporting sourceSnippet for every flagged metric; unrelated verified metrics do not resolve another metric's suspicion.",
     "Return at least one issue explaining the decision. Every issue must include a short exact sourceSnippet from the filing text.",
+    "Copy each sourceSnippet as one contiguous substring with the original words and table separators; do not stitch a header to a row, add ellipses, quote wrappers or literal backslash escapes. Include the relevant metric's value and loss/profit context in the excerpt.",
     `Company: ${input.companyName}`,
     `Ticker: ${input.ticker}`,
     `Filing: ${input.filingForm} ${input.filingUrl}`,
@@ -346,11 +359,19 @@ function parseQualityGate(value: unknown, sourceText: string): EarningsAiQuality
     return null;
   }
 
-  const issues = getArray(value["issues"]).flatMap(issueValue => {
+  const rawIssues = getArray(value["issues"]);
+  const issues = rawIssues.flatMap(issueValue => {
     const issue = parseQualityIssue(issueValue, sourceText);
     return null === issue ? [] : [issue];
   });
   if ("suppress" === decision && 0 === issues.length) {
+    return null;
+  }
+
+  if ("allow" === decision && (
+    rawIssues.length !== issues.length ||
+    issues.some(issue => "low" !== issue.severity)
+  )) {
     return null;
   }
 

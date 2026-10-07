@@ -78,6 +78,7 @@ export async function summarizeEarningsWithAi(
     `earnings summary for ${input.ticker}`,
     undefined,
     {
+      profile: "document",
       timeoutMs: 30_000,
     },
   )
@@ -129,12 +130,15 @@ function getSummaryPrompt(input: EarningsAiSummaryInput, filingText: string): st
     "Return only JSON matching the schema. Do not include markdown.",
     "Rules:",
     "- Return exactly three sentence objects in order, each with concise plain-text text and one sourceSnippet copied exactly from the provided filing text.",
+    "- Each sourceSnippet is one contiguous excerpt of at most 300 characters; never stitch separate passages together or add ellipses.",
     "- Every number in a sentence's text must also appear in that sentence's sourceSnippet.",
+    "- If a date or figure is outside the chosen snippet, omit it or select another snippet; prefer a supported qualitative sentence over adding unsupported numbers.",
     "- Sentence 1 covers the reported period and headline performance.",
     "- Sentence 2 covers the most important business drivers, segment notes, or margin/profit details.",
     "- Sentence 3 covers outlook, guidance, or management expectations when present; otherwise cover another material filing-supported business detail.",
     "- Never claim that guidance or outlook is absent; an omission cannot be supported by a source snippet.",
     "- Return plain text only; do not include markdown, backticks, bullets, headings, or labels.",
+    "- Return complete sentences, not release titles, list fragments or an unfinished guidance lead-in ending with a colon.",
     "- Do not return raw table rows or pipe-delimited cell text; express supported facts as prose.",
     "- The Discord bot formats ticker symbols and concrete metrics after validation.",
     "- Do not mention the company name in the summary; the Discord alert title already identifies the company.",
@@ -339,6 +343,7 @@ function getValidatedSummarySentence(
   if ("" === normalizedSentence ||
       normalizedSentence.length > maxSummarySentenceLength ||
       true === hasRawTableFragment(normalizedSentence) ||
+      true === hasSummaryFragment(normalizedSentence) ||
       true === hasUnexpectedMarkdown(normalizedSentence) ||
       true === hasCorrectionArtifact(normalizedSentence) ||
       true === hasUnexpectedCjkCharacters(normalizedSentence) ||
@@ -403,6 +408,7 @@ function getValidatedSourceSnippet(
   if (normalizedSnippet.length < 3 ||
       normalizedSnippet.length > maxSummarySourceSnippetLength ||
       true === hasRawTableFragment(normalizedSnippet) ||
+      true === hasSummaryFragment(normalizedSnippet) ||
       false === summaryMaterialEvidencePattern.test(normalizedSnippet) ||
       false === normalizeEvidenceText(filingText).includes(normalizeEvidenceText(normalizedSnippet)) ||
       true === hasUnexpectedMarkdown(normalizedSnippet) ||
@@ -565,7 +571,12 @@ function hasUnexpectedCjkCharacters(value: string): boolean {
 }
 
 function hasUnexpectedMarkdown(value: string): boolean {
-  return /[`*_#]|\n\s*[-*]\s+/.test(value);
+  return /[`*_#•●▪]|\n\s*[-*]\s+/.test(value);
+}
+
+function hasSummaryFragment(value: string): boolean {
+  return /:\s*[.!?]*$/.test(value) ||
+    /\breports?\s+(?:(?:first|second|third|fourth)\s+quarter|(?:full|fiscal)\s+year)\b[^.!?]{0,80}\b(?:financial\s+)?results\b/i.test(value);
 }
 
 function hasCorrectionArtifact(value: string): boolean {

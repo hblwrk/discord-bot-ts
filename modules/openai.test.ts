@@ -109,6 +109,26 @@ describe("OpenAI client", () => {
     );
   });
 
+  test.each(["incomplete", "failed", "in_progress", "queued"])("discards %s responses even when they contain complete JSON", async status => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({data: {status, output_text: "{\"summary\":\"unsafe partial\"}"}});
+    expect(await callOpenAiJson("prompt", responseJsonSchema, {
+      logger, postWithRetryFn, readSecretFn,
+    }, "test")).toBeNull();
+  });
+
+  test("reads completed message JSON without including reasoning output", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({data: {
+      status: "completed",
+      output: [
+        {type: "reasoning", content: [{type: "output_text", text: "Internal context"}]},
+        {type: "message", content: [{type: "output_text", text: "{\"summary\":\"ok\"}"}]},
+      ],
+    }});
+    expect(await callOpenAiJson("prompt", responseJsonSchema, {
+      logger, postWithRetryFn, readSecretFn,
+    }, "test")).toBe("{\"summary\":\"ok\"}");
+  });
+
   test("uses default model when optional OpenAI secrets are missing", async () => {
     const postWithRetryFn = vi.fn().mockResolvedValue({
       data: {

@@ -18,7 +18,7 @@ export type AiProviderInlineData = {
 
 export type AiProviderCallOptions = {
   onWebSources?: ((urls: string[]) => void) | undefined;
-  profile?: "routine" | undefined;
+  profile?: "routine" | "document" | undefined;
   timeoutMs?: number | undefined;
   useWebSearch?: boolean | undefined;
 };
