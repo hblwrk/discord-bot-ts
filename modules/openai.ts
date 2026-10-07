@@ -42,11 +42,17 @@ type OpenAiInputPart = {
 
 type OpenAiResponse = {
   output?: {
+    action?: {
+      sources?: {type?: string; url?: string}[];
+      type?: string;
+    };
     content?: {
       annotations?: {type?: string; url?: string}[];
       text?: string;
       type?: string;
     }[];
+    status?: string;
+    type?: string;
   }[];
   output_text?: string;
 };
@@ -113,6 +119,7 @@ export async function callOpenAiJson(
       },
     },
     ...(true === options.useWebSearch ? {
+      include: ["web_search_call.action.sources"],
       tool_choice: "required",
       tools: [{
         search_context_size: "low",
@@ -140,11 +147,18 @@ export async function callOpenAiJson(
   });
 
   if (true === options.useWebSearch) {
-    options.onWebSources?.(response.data.output
+    const citedUrls = response.data.output
       ?.flatMap(item => item.content ?? [])
       .flatMap(part => part.annotations ?? [])
       .flatMap(annotation => "url_citation" === annotation.type && "string" === typeof annotation.url
-        ? [annotation.url] : []) ?? []);
+        ? [annotation.url] : []) ?? [];
+    // Structured JSON can lack inline citation annotations. Request and read
+    // the provider's actual search sources; never infer them from model text.
+    const searchedUrls = response.data.output?.flatMap(item =>
+      item.type === "web_search_call" && item.status === "completed" && item.action?.type === "search"
+        ? (item.action.sources ?? []).flatMap(source => source.type === "url" && "string" === typeof source.url ? [source.url] : [])
+        : []) ?? [];
+    options.onWebSources?.([...new Set([...citedUrls, ...searchedUrls])]);
   }
 
   return getOpenAiOutputText(response.data);

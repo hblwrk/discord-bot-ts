@@ -81,6 +81,7 @@ describe("OpenAI client", () => {
           role: "user",
         }],
         model: "gpt-5.4-mini",
+        include: ["web_search_call.action.sources"],
         text: {
           format: {
             name: "bot_response",
