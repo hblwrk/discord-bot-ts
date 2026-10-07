@@ -75,7 +75,7 @@ describe("Twitter review with OpenAI search sources", () => {
       reply: vi.fn().mockResolvedValue(response), delete: vi.fn().mockResolvedValue(undefined), suppressEmbeds: vi.fn().mockResolvedValue(undefined),
     };
     await getHandler("messageCreate")(message);
-    const delivered = host === "x.com" ? response.edit : message.reply;
+    const delivered = response.edit;
     await vi.waitFor(() => { expect(delivered).toHaveBeenCalledTimes(1); });
     const options = delivered.mock.calls[0]?.[0];
     expect(options.content).toContain(sentence);
@@ -83,6 +83,8 @@ describe("Twitter review with OpenAI search sources", () => {
     expect(options.content).toContain(`[source](<${sources[0]}>)`);
     expect(options).not.toHaveProperty("embeds");
     expect(options).not.toHaveProperty("flags");
-    expect(message.suppressEmbeds).toHaveBeenCalledTimes(host === "x.com" ? 1 : 0);
+    expect(message.suppressEmbeds).not.toHaveBeenCalled();
+    expect(message.channel.send).toHaveBeenCalledTimes(1);
+    expect(message.reply).not.toHaveBeenCalled();
   });
 });

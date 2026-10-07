@@ -35,11 +35,10 @@ describe("silent Twitter review delivery", () => {
       await new Promise(resolve => setTimeout(resolve, 0));
       expect(getWithRetryFn).not.toHaveBeenCalled();
       expect(post.response.edit).not.toHaveBeenCalled();
-      expect(post.channel.send.mock.calls).toEqual(host === "x.com"
-        ? [[{content: "From <@123>: https://fxtwitter.com/a/status/123", allowedMentions: {parse: []}}]] : []);
+      expect(post.channel.send.mock.calls).toEqual([[{content: `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123`, allowedMentions: {parse: []}}]]);
       expect(post.reply).not.toHaveBeenCalled();
-      expect(post.delete).toHaveBeenCalledTimes(host === "x.com" ? 1 : 0);
-      expect(post.suppressEmbeds).toHaveBeenCalledTimes(host === "x.com" ? 1 : 0);
+      expect(post.delete).toHaveBeenCalledTimes(1);
+      expect(post.suppressEmbeds).not.toHaveBeenCalled();
       expect(post.content).toBe(`https://${host}/a/status/123`);
     }
   });
@@ -61,7 +60,7 @@ describe("silent Twitter review delivery", () => {
         expect(aiCall).toHaveBeenCalledTimes(1);
         expect(post.response.edit).not.toHaveBeenCalled();
         expect(post.reply).not.toHaveBeenCalled();
-        expect(post.channel.send).toHaveBeenCalledTimes(host === "x.com" ? 1 : 0);
+        expect(post.channel.send).toHaveBeenCalledTimes(1);
       }
     },
   );
@@ -80,10 +79,10 @@ describe("silent Twitter review delivery", () => {
     await vi.waitFor(() => { expect(crossCheckFn).toHaveBeenCalledTimes(1); });
     expect(post.response.edit).not.toHaveBeenCalled();
     expect(post.reply).not.toHaveBeenCalled();
-    expect(post.channel.send).toHaveBeenCalledTimes(host === "x.com" ? 1 : 0);
+    expect(post.channel.send).toHaveBeenCalledTimes(1);
     expect(post.embeds).toEqual([{type: "video"}]);
     finish({verdict: "contradicted", sentence: "Reporting contradicts the council approval claim.", sources: ["https://reuters.com/world/report"]});
-    const delivered = host === "x.com" ? post.response.edit : post.reply;
+    const delivered = post.response.edit;
     await vi.waitFor(() => { expect(delivered).toHaveBeenCalledTimes(1); });
     const options = delivered.mock.calls[0]?.[0];
     expect(options.content).toContain("-# 🟢 10% wording spice");
@@ -92,6 +91,6 @@ describe("silent Twitter review delivery", () => {
     expect(options.content).not.toContain("skipped");
     expect(options).not.toHaveProperty("embeds");
     expect(options).not.toHaveProperty("flags");
-    expect(post.suppressEmbeds).toHaveBeenCalledTimes(host === "x.com" ? 1 : 0);
+    expect(post.suppressEmbeds).not.toHaveBeenCalled();
   });
 });

@@ -116,6 +116,26 @@ function getFixedTwitterUrl(value: string): string | undefined {
   return `https://fxtwitter.com${parsedUrl.pathname}`;
 }
 
+// Keep proxy modifiers and queries; raw X/Twitter links use FxTwitter.
+function getRepostedTwitterUrl(value: string): string | undefined {
+  return getFixedTwitterUrl(value) ?? (undefined !== getTwitterStatusId(value) ? value : undefined);
+}
+
+function getRepostedTwitterLinks(content: string): string[] {
+  const links = new Map<string, string>();
+  for (const match of content.matchAll(twitterUrlRegex)) {
+    if (isEmbedSuppressedLink(content, match.index, match[0].length)) {
+      continue;
+    }
+    const link = getRepostedTwitterUrl(trimTrailingUrlPunctuation(match[0]));
+    if (undefined !== link) {
+      const key = getTwitterStatusId(link) ?? link;
+      if (!links.has(key)) links.set(key, link);
+    }
+  }
+  return [...links.values()];
+}
+
 function isEmbedSuppressedLink(content: string, start: number, length: number): boolean {
   return "<" === content[start - 1] && ">" === content[start + length];
 }
@@ -137,23 +157,23 @@ function getMessageContentWithinDiscordLimit(links: string[], maxLength: number 
   return acceptedLinks.join("\n");
 }
 
-// A message "only contains the link" when removing every fixable Twitter/X URL
-// leaves nothing but whitespace and the brackets/punctuation that commonly wrap
-// a pasted URL. Those messages are deleted and reposted by the bot rather than
-// replied to, so the channel shows a single clean fxtwitter card.
-function messageIsOnlyFixableLinks(content: string): boolean {
-  let foundFixableLink = false;
+// A message "only contains the link" when removing every supported Twitter/X
+// or proxy URL leaves only whitespace and common link-wrapper punctuation.
+// Those messages are deleted and reposted by the bot rather than
+// replied to, so the channel shows a single link response with native previews.
+function messageIsOnlyRepostableLinks(content: string): boolean {
+  let foundRepostableLink = false;
   const remainder = content.replace(twitterUrlRegex, (match, offset: number) => {
     if (isEmbedSuppressedLink(content, offset, match.length)
-      || undefined === getFixedTwitterUrl(trimTrailingUrlPunctuation(match))) {
+      || undefined === getRepostedTwitterUrl(trimTrailingUrlPunctuation(match))) {
       return match;
     }
 
-    foundFixableLink = true;
+    foundRepostableLink = true;
     return "";
   });
 
-  if (false === foundFixableLink) {
+  if (false === foundRepostableLink) {
     return false;
   }
 
@@ -213,7 +233,7 @@ async function replyWithFixedLinks(message: TwitterLinkRewriteMessage, content: 
   }
 }
 
-// Delete a link-only message and repost the fixed link in the bot's name,
+// Delete a link-only message and repost its links in the bot's name,
 // crediting the original poster by mention ("From <@id>: <link>"). When the
 // deleted message was a reply, the replacement replies to the same message.
 // Reports whether the original was removed so the caller skips the reply path,
@@ -386,6 +406,16 @@ export function addTwitterLinkRewrites(
 
     const fixedLinks = getFixedTwitterLinks(message.content);
     const proxyLinks = getTwitterProxyLinks(message.content);
+    if (messageIsOnlyRepostableLinks(message.content)) {
+      const replacement = await replaceLinkOnlyMessage(message, getRepostedTwitterLinks(message.content));
+      if (replacement.removed) {
+        if (undefined !== replacement.delivery) {
+          void updateSanityBadges(replacement.delivery, introspect);
+        }
+        return;
+      }
+    }
+
     const convertedLinks = getMessageContentWithinDiscordLimit(fixedLinks).split("\n").filter(Boolean).slice(0, 4);
     const convertedIds = new Set(convertedLinks
       .map(getTwitterStatusId).filter(id => undefined !== id));
@@ -399,7 +429,6 @@ export function addTwitterLinkRewrites(
       return;
     }
 
-    const linkOnly = messageIsOnlyFixableLinks(message.content);
     // Suppression runs independently of sending the converted link.
     // Suppression affects every embed on a message. Preserve existing proxy
     // previews when raw Twitter/X links are pasted alongside them.
@@ -408,16 +437,6 @@ export function addTwitterLinkRewrites(
         void suppressOriginalEmbeds(message);
       } else {
         trackMessageForEmbedSuppression(message.id);
-      }
-    }
-    if (linkOnly) {
-      const replacement = await replaceLinkOnlyMessage(message, fixedLinks);
-      if (replacement.removed) {
-        stopTrackingMessage(message.id);
-        if (undefined !== replacement.delivery) {
-          void updateSanityBadges(replacement.delivery, introspect);
-        }
-        return;
       }
     }
 
