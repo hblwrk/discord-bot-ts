@@ -19,6 +19,7 @@ export type OpenAiInlineData = {
 };
 
 export type OpenAiCallOptions = {
+  onWebSources?: ((urls: string[]) => void) | undefined;
   timeoutMs?: number | undefined;
   useWebSearch?: boolean | undefined;
 };
@@ -42,6 +43,7 @@ type OpenAiInputPart = {
 type OpenAiResponse = {
   output?: {
     content?: {
+      annotations?: {type?: string; url?: string}[];
       text?: string;
       type?: string;
     }[];
@@ -131,6 +133,14 @@ export async function callOpenAiJson(
     activateOpenAiCooldownOnRateLimit(error, dependencies);
     throw error;
   });
+
+  if (true === options.useWebSearch) {
+    options.onWebSources?.(response.data.output
+      ?.flatMap(item => item.content ?? [])
+      .flatMap(part => part.annotations ?? [])
+      .flatMap(annotation => "url_citation" === annotation.type && "string" === typeof annotation.url
+        ? [annotation.url] : []) ?? []);
+  }
 
   return getOpenAiOutputText(response.data);
 }

@@ -18,6 +18,7 @@ export type GeminiInlineData = {
 };
 
 export type GeminiCallOptions = {
+  onWebSources?: ((urls: string[]) => void) | undefined;
   timeoutMs?: number | undefined;
   useGoogleSearch?: boolean | undefined;
 };
@@ -40,6 +41,9 @@ type GeminiContentPart = {
 
 type GeminiGenerateContentResponse = {
   candidates?: {
+    groundingMetadata?: {
+      groundingChunks?: {web?: {uri?: string}}[];
+    };
     content?: {
       parts?: {
         text?: string;
@@ -125,6 +129,10 @@ export async function callGeminiJson(
   });
 
   const firstCandidate = response.data.candidates?.[0];
+  if (true === options.useGoogleSearch) {
+    options.onWebSources?.(firstCandidate?.groundingMetadata?.groundingChunks
+      ?.flatMap(chunk => "string" === typeof chunk.web?.uri ? [chunk.web.uri] : []) ?? []);
+  }
   const textPart = firstCandidate?.content?.parts?.find(part => "string" === typeof part.text);
   return textPart?.text ?? null;
 }

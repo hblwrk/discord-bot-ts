@@ -201,6 +201,16 @@ The health-check server port can be overridden via the `HEALTHCHECK_PORT` enviro
 }
 ```
 
+## Twitter/X sanity badges
+
+Human-authored Twitter/X status links receive a compact sanity embed alongside the bot's FxTwitter link response. Link-only messages are reposted with poster credit and reply context; messages with surrounding text receive a reply. Bot messages, webhooks, links wrapped in Discord's `<...>` embed-suppression brackets, and existing FxTwitter links are ignored. Profile and other non-status links retain link rewriting without an assessment.
+
+The `Spiciness` percentage is a heuristic index from 10 to 95, with green below 30, yellow from 30, and red from 70. English wording rules cover concealment claims, speculation hooks, pressure to re-share, us-versus-them language, repeated punctuation, and substantial ALL-CAPS prose. Thread emojis add weight only alongside sensational wording. Exclusively social citations and the combination of an account aged at most 30 days with a default avatar add small caution signals. These signals do not establish propaganda intent, bot-farm activity, or falsehood. Quoted-post text is retained as context and excluded from wording scoring. Profile links to recognised news/fact-check domains are context, not identity verification or an author reputation verdict.
+
+Posts scoring at least 30 receive an optional semantic web cross-check through the configured AI provider and its shared call limits. A one-sentence AI reality check is accepted only with an HTTPS article URL from the explicit news/fact-check domain policy in `modules/twitter-sanity-check.ts` that also appears in the provider's search citation metadata. The embed labels the assessment as an AI web cross-check and links the cited source. Missing credentials, exhausted quotas, unsupported search responses, invalid output, absent citations, and search failures retain a deterministic reminder to verify the original evidence. Gemini citations available only as opaque search redirect URLs fail the article-domain gate. Media metadata describes the presence of photos/videos; their contents and authenticity are unverified. Engagement totals do not establish botnet patterns.
+
+Metadata comes from FxTwitter's [status API](https://github.com/FxEmbed/FxEmbed/blob/main/docs/specs/fxtwitter-openapi.json). Requests use a five-second timeout, a 512 KB response limit, and no redirects; embedded external links are extracted without fetching them. Web cross-check requests use an eight-second timeout. The service assesses at most four links per message, permits four concurrent assessments, coalesces repeated post IDs, and caches up to 100 results for ten minutes in memory. Failed metadata extraction displays `Sanity Rating unavailable` without a numeric rating. The feature needs no additional secret or runtime filesystem writes.
+
 ## Assets
 
 Larger files, for example images, are stored at an external cloud service, Dracoon. They are requested by the bot and uploaded as attachment to Discord. This avoids high bandwidth cost for us as well as messing up our repository with binary files. Access to such assets requires to know the asset ID and a password. A reference and metadata for each asset is stored at `assets/`. Discord limits uploads to 8MB.
