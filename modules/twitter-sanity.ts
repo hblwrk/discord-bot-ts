@@ -4,6 +4,7 @@ import {safeHttpsAgent} from "./safe-http.ts";
 import {crossCheckTwitterPost, recognisedSourceUrl} from "./twitter-sanity-check.ts";
 import {scoreTwitterPost, type TwitterPostContext} from "./twitter-sanity-score.ts";
 import {communityNoteField, parseTwitterCommunityNote} from "./twitter-community-note.ts";
+import {getTwitterStatusId} from "./twitter-status-url.ts";
 
 type TwitterSanityDependencies = {
   logger: {log: (level: string, message: unknown) => void};
@@ -48,18 +49,6 @@ export function createTwitterIntrospector(dependencies: TwitterSanityDependencie
     cache.set(id, {expiresAt: nowMs + 10 * 60_000, result});
     return result;
   };
-}
-
-function getTwitterStatusId(value: string): string | undefined {
-  try {
-    const url = new URL(value);
-    if (url.origin !== "https://fxtwitter.com" || url.username || url.password) {
-      return undefined;
-    }
-    return /^\/(?:[a-z0-9_]{1,15}|i\/web)\/status\/(\d{2,20})(?:\/(?:photo|video)\/[1-4])?\/?$/iu.exec(url.pathname)?.[1];
-  } catch {
-    return undefined;
-  }
 }
 
 async function assessTwitterPost(id: string, url: string, dependencies: TwitterSanityDependencies): Promise<APIEmbed> {

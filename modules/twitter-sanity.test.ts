@@ -15,6 +15,13 @@ function dependencies(data: unknown = payload()) {
 }
 
 describe("Twitter metadata and badge service", () => {
+  test.each(["fixupx.com", "xfixup.com", "twittpr.com", "vxtwitter.com", "fixvx.com", "c.vxtwitter.com"])("assesses %s through the fixed FxTwitter metadata endpoint", async host => {
+    const deps = dependencies();
+    expect(await createTwitterIntrospector(deps)(`https://${host}/example/status/123`))
+      .toMatchObject({title: "🟢 10% Spiciness — Low sensationalism"});
+    expect(deps.getWithRetryFn).toHaveBeenCalledExactlyOnceWith("https://api.fxtwitter.com/2/status/123", expect.anything(), expect.anything());
+  });
+
   test("fetches only the fixed provider endpoint with bounded, non-redirecting requests", async () => {
     const deps = dependencies();
     const result = await createTwitterIntrospector(deps)("https://fxtwitter.com/example/status/123?ref=ignored");
@@ -68,10 +75,14 @@ describe("Twitter metadata and badge service", () => {
       inspect("https://fxtwitter.com/example/status/123/photo/1"),
       inspect("https://fxtwitter.com/i/web/status/123"),
       inspect("https://fxtwitter.com/other/status/123/"),
+      inspect("https://fixupx.com/other/status/123"),
+      inspect("https://fixvx.com/other/status/123"),
     ]);
     expect(deps.getWithRetryFn).toHaveBeenCalledTimes(1);
     expect(results[0]).toEqual(results[1]);
     expect(results[1]).toEqual(results[2]);
+    expect(results[2]).toEqual(results[3]);
+    expect(results[3]).toEqual(results[4]);
   });
 
   test("expires cached assessments after ten minutes", async () => {
