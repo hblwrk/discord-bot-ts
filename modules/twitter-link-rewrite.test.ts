@@ -33,6 +33,7 @@ type TwitterTestMessage = {
     messageId?: string;
   } | null;
   reply: ReturnType<typeof vi.fn>;
+  response: {edit: ReturnType<typeof vi.fn>};
   suppressEmbeds: ReturnType<typeof vi.fn>;
   webhookId?: string | null;
 };
@@ -41,16 +42,18 @@ let nextMessageId = 0;
 
 function createTwitterMessage(content: string): TwitterTestMessage {
   nextMessageId += 1;
+  const response = {edit: vi.fn().mockResolvedValue(undefined)};
   return {
     author: {id: `author-${nextMessageId}`},
     channel: {
-      send: vi.fn().mockResolvedValue(undefined),
+      send: vi.fn().mockResolvedValue(response),
     },
     content,
     delete: vi.fn().mockResolvedValue(undefined),
     embeds: [],
     id: `message-${nextMessageId}`,
-    reply: vi.fn().mockResolvedValue(undefined),
+    reply: vi.fn().mockResolvedValue(response),
+    response,
     suppressEmbeds: vi.fn().mockResolvedValue(undefined),
   };
 }
@@ -105,7 +108,7 @@ describe("addTwitterLinkRewrites", () => {
     vi.clearAllMocks();
   });
 
-  test("attaches ordered badges to the replacement and preserves credit/reply context", async () => {
+  test("edits ordered badges into the replacement and preserves credit/reply context", async () => {
     const {client, getHandler} = createEventClient();
     const inspect = vi.fn((link: string) => Promise.resolve({title: link.endsWith("123") ? "First badge" : "Second badge"}));
     addTwitterLinkRewrites(client, inspect);
@@ -113,11 +116,16 @@ describe("addTwitterLinkRewrites", () => {
     message.reference = {messageId: "parent"};
     await getHandler("messageCreate")(message);
     expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({
-      embeds: [{title: "First badge"}, {title: "Second badge"}],
       content: `From <@${message.author?.id}>: https://fxtwitter.com/a/status/123\nhttps://fxtwitter.com/b/status/456`,
       reply: {messageReference: "parent", failIfNotExists: false},
       allowedMentions: {parse: [], repliedUser: false},
     }));
+    await vi.waitFor(() => {
+      expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({
+        embeds: [{title: "First badge"}, {title: "Second badge"}],
+        allowedMentions: {parse: [], repliedUser: false},
+      });
+    });
   });
 
   test("attaches a badge to mixed-content replies and deletion fallbacks", async () => {
@@ -129,9 +137,10 @@ describe("addTwitterLinkRewrites", () => {
     only.delete.mockRejectedValue(new Error("permission"));
     await getHandler("messageCreate")(only);
     for (const message of [mixed, only]) {
-      expect(message.reply).toHaveBeenCalledWith(expect.objectContaining({
-        embeds: [{title: "Caution"}], allowedMentions: {parse: [], repliedUser: false},
-      }));
+      expect(message.reply).toHaveBeenCalledWith({content: "https://fxtwitter.com/a/status/123", allowedMentions: {parse: [], repliedUser: false}});
+      await vi.waitFor(() => {
+        expect(message.response.edit).toHaveBeenCalledWith({embeds: [{title: "Caution"}], allowedMentions: {parse: [], repliedUser: false}});
+      });
     }
   });
 
@@ -145,22 +154,90 @@ describe("addTwitterLinkRewrites", () => {
     await Promise.resolve();
     finishFirst({title: "First"});
     await pending;
-    expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({embeds: [{title: "First"}, {title: "Second"}]}));
+    await vi.waitFor(() => {
+      expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({embeds: [{title: "First"}, {title: "Second"}], allowedMentions: {parse: [], repliedUser: false}});
+    });
   });
 
-  test.each(["look ", ""])("tracks original embeds while assessment is pending for prefix '%s'", async prefix => {
+  test("tracks original mixed-content embeds while the badge is pending", async () => {
     const {client, getHandler} = createEventClient();
     let finish: (value: undefined) => void = () => {};
     const inspection = new Promise<undefined>(resolve => { finish = resolve; });
     addTwitterLinkRewrites(client, () => inspection);
-    const message = createTwitterMessage(`${prefix}https://x.com/a/status/123`);
+    const message = createTwitterMessage("look https://x.com/a/status/123");
     const pending = getHandler("messageCreate")(message);
+    await pending;
     message.embeds = [{}];
     await getHandler("messageUpdate")(undefined, message);
     expect(message.suppressEmbeds).toHaveBeenCalledWith(true);
     finish(undefined);
-    await pending;
     expect(message.reply.mock.calls.length + message.channel.send.mock.calls.length).toBe(1);
+  });
+
+  test.each([
+    {name: "repost", prefix: "", deleteFails: false, replies: 0},
+    {name: "mixed-content reply", prefix: "look ", deleteFails: false, replies: 1},
+    {name: "deletion fallback", prefix: "", deleteFails: true, replies: 1},
+  ])("delivers $name and finishes handling before slow assessment resolves", async ({prefix, deleteFails, replies}) => {
+    const {client, getHandler} = createEventClient();
+    let finish: (value: {title: string}) => void = () => {};
+    const inspection = new Promise<{title: string}>(resolve => { finish = resolve; });
+    const inspect = vi.fn(() => inspection);
+    addTwitterLinkRewrites(client, inspect);
+    const message = createTwitterMessage(`${prefix}https://x.com/a/status/123`);
+    message.reference = {messageId: "parent"};
+    if (deleteFails) {
+      message.delete.mockRejectedValue(new Error("permission"));
+    }
+    const completed = vi.fn();
+    const pending = Promise.resolve(getHandler("messageCreate")(message)).then(completed);
+    try {
+      await vi.waitFor(() => { expect(completed).toHaveBeenCalledTimes(1); });
+      expect(message.reply).toHaveBeenCalledTimes(replies);
+      expect(message.channel.send).toHaveBeenCalledTimes(1 - replies);
+      expect(message.response.edit).not.toHaveBeenCalled();
+      expect(inspect).toHaveBeenCalledExactlyOnceWith("https://fxtwitter.com/a/status/123");
+      expect(inspect.mock.invocationCallOrder[0]).toBeGreaterThan(
+        (replies ? message.reply : message.channel.send).mock.invocationCallOrder[0]!,
+      );
+    } finally {
+      finish({title: "Late badge"});
+      await pending;
+    }
+    await vi.waitFor(() => {
+      expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({embeds: [{title: "Late badge"}], allowedMentions: {parse: [], repliedUser: false}});
+    });
+  });
+
+  test("does not wait for original-preview suppression to send a converted link", async () => {
+    const {client, getHandler} = createEventClient();
+    addTwitterLinkRewrites(client);
+    const message = createTwitterMessage("look https://x.com/a/status/123");
+    message.embeds = [{}];
+    let finish: (value: undefined) => void = () => {};
+    message.suppressEmbeds.mockImplementation(() => new Promise(resolve => { finish = resolve; }));
+    const completed = vi.fn();
+    const pending = Promise.resolve(getHandler("messageCreate")(message)).then(completed);
+    try {
+      await vi.waitFor(() => { expect(completed).toHaveBeenCalledTimes(1); });
+      expect(message.reply).toHaveBeenCalledTimes(1);
+    } finally {
+      finish(undefined);
+      await pending;
+    }
+  });
+
+  test("ignores updates on the removed original while its replacement badge is pending", async () => {
+    const {client, getHandler} = createEventClient();
+    let finish: (value: undefined) => void = () => {};
+    const inspection = new Promise<undefined>(resolve => { finish = resolve; });
+    addTwitterLinkRewrites(client, () => inspection);
+    const message = createTwitterMessage("https://x.com/a/status/123");
+    await getHandler("messageCreate")(message);
+    message.embeds = [{}];
+    await getHandler("messageUpdate")(undefined, message);
+    expect(message.suppressEmbeds).not.toHaveBeenCalled();
+    finish(undefined);
   });
 
   test("limits assessments to four and survives assessment failure", async () => {
@@ -169,8 +246,9 @@ describe("addTwitterLinkRewrites", () => {
     addTwitterLinkRewrites(client, inspect);
     const message = createTwitterMessage(`look ${[100, 101, 102, 103, 104].map(id => `https://x.com/a/status/${id}`).join(" ")}`);
     await getHandler("messageCreate")(message);
-    expect(inspect).toHaveBeenCalledTimes(4);
+    await vi.waitFor(() => { expect(inspect).toHaveBeenCalledTimes(4); });
     expect(message.reply).toHaveBeenCalledTimes(1);
+    expect(message.response.edit).not.toHaveBeenCalled();
   });
 
   test("does not attach badges for links omitted by the Discord content budget", async () => {
@@ -180,7 +258,45 @@ describe("addTwitterLinkRewrites", () => {
     const message = createTwitterMessage("https://x.com/a/status/123 https://x.com/b/status/456");
     message.author = {id: "1".repeat(1_935)};
     await getHandler("messageCreate")(message);
-    expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({embeds: [{title: "Badge"}]}));
+    await vi.waitFor(() => {
+      expect(message.response.edit).toHaveBeenCalledWith({embeds: [{title: "Badge"}], allowedMentions: {parse: [], repliedUser: false}});
+    });
+    expect(inspect).toHaveBeenCalledTimes(1);
+  });
+
+  test("keeps successful badges when another assessment rejects", async () => {
+    const {client, getHandler} = createEventClient();
+    addTwitterLinkRewrites(client, vi.fn().mockRejectedValueOnce(new Error("failure")).mockResolvedValue({title: "Second"}));
+    const message = createTwitterMessage("https://x.com/a/status/123 https://x.com/b/status/456");
+    await getHandler("messageCreate")(message);
+    await vi.waitFor(() => {
+      expect(message.response.edit).toHaveBeenCalledWith({embeds: [{title: "Second"}], allowedMentions: {parse: [], repliedUser: false}});
+    });
+  });
+
+  test("retains the converted message and handles a rejected badge edit", async () => {
+    const {client, getHandler} = createEventClient();
+    addTwitterLinkRewrites(client, vi.fn().mockResolvedValue({title: "Badge"}));
+    const message = createTwitterMessage("look https://x.com/a/status/123");
+    message.response.edit.mockRejectedValue(new Error("deleted or permission denied"));
+    await getHandler("messageCreate")(message);
+    await vi.waitFor(() => {
+      expect(loggerMock.log).toHaveBeenCalledWith("warn", "Twitter/X badge update failed; keeping the converted link.");
+    });
+    expect(message.reply).toHaveBeenCalledTimes(1);
+    expect(message.delete).not.toHaveBeenCalled();
+  });
+
+  test.each(["look ", ""])("does not assess when sending the converted message fails for '%s'", async prefix => {
+    const {client, getHandler} = createEventClient();
+    const inspect = vi.fn().mockResolvedValue({title: "Badge"});
+    addTwitterLinkRewrites(client, inspect);
+    const message = createTwitterMessage(`${prefix}https://x.com/a/status/123`);
+    message.channel.send.mockRejectedValue(new Error("send failed"));
+    message.reply.mockRejectedValue(new Error("reply failed"));
+    await getHandler("messageCreate")(message);
+    expect(inspect).not.toHaveBeenCalled();
+    expect(message.response.edit).not.toHaveBeenCalled();
   });
 
   test("replies immediately but defers suppression until the X card appears", async () => {
