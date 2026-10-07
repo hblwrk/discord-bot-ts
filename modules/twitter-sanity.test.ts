@@ -37,7 +37,7 @@ describe("Twitter metadata and badge service", () => {
   });
 
   test.each(["unavailable", "error"])("omits AI-dependent badges on %s review and retries the next paste", async mode => {
-    const deps = dependencies(payload("They are hiding this from you"));
+    const deps = dependencies(payload("The council approved the plan yesterday."));
     if (mode === "error") deps.crossCheckFn.mockRejectedValueOnce(new Error("sensitive provider payload"));
     else deps.crossCheckFn.mockResolvedValueOnce(undefined);
     const inspect = createTwitterIntrospector(deps);
@@ -73,7 +73,7 @@ describe("Twitter metadata and badge service", () => {
       {maxAttempts: 1, timeoutMs: 5_000},
     );
     expect(result).toMatchObject({title: "🟢 10% Spiciness — Low sensationalism", color: 0x2ecc71});
-    expect(deps.crossCheckFn).not.toHaveBeenCalled();
+    expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
   });
 
   test("accepts the live v2 envelope without the legacy code field", async () => {
@@ -87,7 +87,26 @@ describe("Twitter metadata and badge service", () => {
     const deps = dependencies(data);
     expect(await createTwitterIntrospector(deps)(`https://fxtwitter.com/RadioGenoa/status/${data.status.id}`))
       .toMatchObject({title: "🟢 10% Spiciness — Low sensationalism"});
-    expect(deps.crossCheckFn).not.toHaveBeenCalled();
+    expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
+  });
+
+  test.each(["supported", "contradicted"])("checks a calm claim and keeps its %s verdict separate from the wording score", async verdict => {
+    const data = payload("The council approved the plan yesterday.");
+    const deps = dependencies(data);
+    deps.crossCheckFn.mockResolvedValue({verdict, sentence: "Reporting establishes the council's decision.", sources: ["https://reuters.com/world/report"]});
+    const result = await createTwitterIntrospector(deps)("https://fixvx.com/a/status/123");
+    expect(deps.crossCheckFn).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({text: data.status.text}), expect.anything());
+    expect(result).toMatchObject({title: "🟢 10% Spiciness — Low sensationalism", description: "Reporting establishes the council's decision."});
+    expect(result?.fields).toContainEqual({name: `AI web cross-check: ${verdict} (review sources)`, value: "[Source 1](https://reuters.com/world/report)"});
+  });
+
+  test("passes quoted claims to the check even when the author's wording is calm", async () => {
+    const data = {status: {id: "123", text: "An interesting announcement.", quote: {text: "The council approved the plan yesterday."}}};
+    const deps = dependencies(data);
+    await createTwitterIntrospector(deps)("https://fixvx.com/a/status/123");
+    expect(deps.crossCheckFn).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({
+      text: data.status.text, quotedText: data.status.quote.text,
+    }), expect.anything());
   });
 
   test.each([
@@ -121,6 +140,7 @@ describe("Twitter metadata and badge service", () => {
       inspect("https://fixvx.com/other/status/123"),
     ]);
     expect(deps.getWithRetryFn).toHaveBeenCalledTimes(1);
+    expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
     expect(results[0]).toEqual(results[1]);
     expect(results[1]).toEqual(results[2]);
     expect(results[2]).toEqual(results[3]);
@@ -185,21 +205,30 @@ describe("Twitter metadata and badge service", () => {
   });
 
   test.each(["A calm factual claim.", "They are hiding this from you"])(
-    "prioritises a supplied Community Note independently of wording: %s", async text => {
+    "checks posts with a Community Note independently of wording: %s", async text => {
       const data = {code: 200, status: {id: "123", text, community_note: {
         text: "The photograph was taken before this event. https://example.org/archive", facets: [],
       }}};
       const deps = dependencies(data);
       const result = await createTwitterIntrospector(deps)("https://fxtwitter.com/a/status/123");
-      expect(result?.description).toBe("A Community Note adds context to this post; read the note and its cited evidence before sharing.");
-      expect(result?.fields?.[0]).toMatchObject({name: "Community Note via FxTwitter (excerpt)", value: expect.stringContaining("photograph")});
-      expect(result?.fields?.[0]?.value).toContain("[Note source](https://example.org/archive)");
-      expect(deps.crossCheckFn).not.toHaveBeenCalled();
+      expect(result?.description).toBe("Reporting supports this specific claim.");
+      const note = result?.fields?.find(field => field.name.startsWith("Community Note"));
+      expect(note).toMatchObject({name: "Community Note via FxTwitter (excerpt)", value: expect.stringContaining("photograph")});
+      expect(note?.value).toContain("[Note source](https://example.org/archive)");
+      expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
+      expect(deps.crossCheckFn.mock.calls[0]?.[0].communityNote).toMatchObject({text: expect.stringContaining("photograph")});
       expect(deps.getWithRetryFn).toHaveBeenCalledTimes(1);
       const withoutNote = await createTwitterIntrospector(dependencies(payload(text)))("https://fxtwitter.com/a/status/123");
       expect(result?.title).toBe(withoutNote?.title);
     },
   );
+
+  test("silently omits a Community Note badge when its AI check is unusable", async () => {
+    const deps = dependencies({status: {id: "123", text: "A calm factual claim.", community_note: {text: "A supplied note."}}});
+    deps.crossCheckFn.mockResolvedValue(undefined);
+    expect(await createTwitterIntrospector(deps)("https://fixvx.com/a/status/123")).toBeUndefined();
+    expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
+  });
 
   test.each([undefined, null, {text: " "}, {text: 7}, {text: "a".repeat(8_001)}])(
     "retains the web-check fallback for absent/invalid root notes %#", async community_note => {
@@ -263,7 +292,7 @@ describe("Twitter metadata and badge service", () => {
       .toMatchObject({title: "🟢 20% Spiciness — Low sensationalism"});
   });
 
-  test.each([false, true])("keeps four badges within Discord's text budget, with note: %s", async withNote => {
+  test.each([false, true])("bounds badges and reserves the AI citation before optional context, with note: %s", async withNote => {
     const data = {code: 200, status: {
       id: "123", text: "THEY ARE HIDING THIS FROM YOU! BIG IF TRUE! WAKE UP SHEEPLE!!! 🧵👇",
       author: {joined: "2026-10-01", avatar_url: "https://abs.twimg.com/default_profile_images/a.png", website: {url: "https://reuters.com"}},
@@ -280,7 +309,10 @@ describe("Twitter metadata and badge service", () => {
       + (badge?.fields ?? []).reduce((sum, field) => sum + field.name.length + field.value.length, 0);
     expect(length * 4).toBeLessThanOrEqual(6_000);
     expect(badge?.fields?.every(field => field.value.length <= 1_024)).toBe(true);
-    expect(badge?.fields?.some(field => field.name.includes("Community Note"))).toBe(withNote);
+    expect(badge?.fields?.[0]).toEqual({name: "AI web cross-check: contradicted (review sources)", value: `[Source 1](https://reuters.com/${"a".repeat(320)})`});
+    // The longest note field cannot fit beside this maximum-sized AI claim;
+    // omit that whole field, preserving the required AI citation.
+    expect(badge?.fields?.some(field => field.name.includes("Community Note"))).toBe(false);
   });
 
   test.each([null, [], {code: 200, status: []}, payload(" "), payload("a".repeat(8_001)), {code: 200, status: {id: "123", text: 7}}])(

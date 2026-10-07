@@ -3,7 +3,6 @@ import type {APIEmbed} from "discord.js";
 export type TwitterBadge = {linkNumber: number; embed: APIEmbed};
 const messageLimit = 2_000;
 const legend = "-# Wording score ≠ truth probability · Media/bots unverified.";
-const wordingOnlyStatus = "-# Wording only · Fact-check skipped · Media/bots unverified.";
 
 export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], multipleLinks: boolean): string {
   const blocks: string[] = [];
@@ -19,19 +18,16 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
     const evidence = (embed.fields ?? []).filter(field =>
       field.name.startsWith("AI web cross-check:") || field.name.startsWith("Community Note via FxTwitter"));
     const score = /(?:^|\s)(\d+)% Spiciness/u.exec(embed.title);
-    const wordingOnly = null !== score && Number(score[1]) < 30 && evidence.length === 0;
-    // Low wording scores skip the AI check, rather than waiting for a verdict.
-    // Keep proxy post references even when the generic explanation is omitted.
-    const omitGenericDescription = wordingOnly || evidence.some(field => field.name.startsWith("Community Note via FxTwitter"));
-    const description = omitGenericDescription
-      ? embed.description?.split("\n").filter(line => line.startsWith("Post: <https://")).join("\n")
-      : embed.description;
-    const block = [title, description, ...evidence.map(field => {
+    // Scored badges require a completed, source-linked AI check at every score.
+    if (null !== score && !evidence.some(field => field.name.startsWith("AI web cross-check:"))) {
+      continue;
+    }
+    const block = [title, embed.description, ...evidence.map(field => {
       const name = field.name.replace("AI web cross-check:", "AI web check:");
       return `**${name}**\n${suppressCitationPreviews(field.value)}`;
-    }), ...(wordingOnly ? [wordingOnlyStatus] : [])]
+    })]
       .filter(line => undefined !== line && "" !== line).join("\n");
-    const nextNeedsLegend: boolean = needsLegend || (null !== score && !wordingOnly);
+    const nextNeedsLegend: boolean = needsLegend || null !== score;
     const nextBlocks = [...blocks, block];
     const candidate = [content, ...nextBlocks, ...(nextNeedsLegend ? [legend] : [])].filter(Boolean).join("\n");
     if (candidate.length <= messageLimit) {
