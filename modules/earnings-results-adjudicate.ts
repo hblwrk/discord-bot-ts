@@ -1,5 +1,7 @@
 import {callAiProviderJson, type AiProviderDependencies} from "./ai-provider.ts";
 import {getRelevantEarningsFilingText} from "./earnings-results-ai-text.ts";
+import {htmlToText} from "./earnings-results-format.ts";
+import {isMetricSupportedByFilingSnippet} from "./earnings-results-evidence.ts";
 import {
   type EarningsMetricCandidate,
   type EarningsMetricConflict,
@@ -56,6 +58,7 @@ export async function adjudicateEarningsCandidatesWithAi(
     parseJson(jsonText),
     input.conflicts,
     eligibleCandidates,
+    htmlToText(input.html),
   );
 }
 
@@ -74,12 +77,16 @@ function getCandidateAdjudicationSchema(candidateIds: string[]): Record<string, 
             key: {
               type: "string",
             },
+            sourceSnippet: {
+              type: "string",
+              description: "Exact contiguous filing passage containing this metric caption and its signed value for the reported quarter.",
+            },
             candidateId: {
               type: "string",
               enum: candidateIds,
             },
           },
-          required: ["key", "candidateId"],
+          required: ["key", "candidateId", "sourceSnippet"],
         },
       },
     },
@@ -106,7 +113,9 @@ function getCandidateAdjudicationPrompt(
     "Resolve conflicting earnings metric candidates against the supplied SEC filing.",
     "Return only JSON matching the schema.",
     "Select only an existing candidateId. Never calculate, invent, or modify a value.",
-    "Select a candidate only when its metric basis, reporting period, scale, and evidence match the reported quarter.",
+    "Select a candidate only when its metric basis, reporting period, currency, scale, sign and evidence match the reported quarter.",
+    "Negative values denote loss; parentheses and loss captions establish a negative sign even when the printed amount has no minus. Never choose the opposite sign based on the same absolute digits.",
+    "For every selection, copy a contiguous sourceSnippet containing the metric caption and actual value. Preserve table separators; do not stitch passages or cite a heading without a value. Omit the selection when you cannot provide that evidence.",
     "Prefer a consolidated quarterly value over year-to-date, annual, prior-period, segment, run-rate, or guidance values.",
     "Omit a key from selections when the conflict cannot be resolved confidently.",
     `Company: ${input.companyName}`,
@@ -138,6 +147,7 @@ function parseCandidateAdjudication(
   value: unknown,
   conflicts: EarningsMetricConflict[],
   candidates: EarningsMetricCandidate[],
+  sourceText: string,
 ): Map<string, string> {
   const selections = new Map<string, string>();
   if (false === isRecord(value) || false === Array.isArray(value["selections"])) {
@@ -153,6 +163,7 @@ function parseCandidateAdjudication(
 
     const key = selection["key"];
     const candidateId = selection["candidateId"];
+    const sourceSnippet = selection["sourceSnippet"];
     if ("string" !== typeof key || "string" !== typeof candidateId) {
       continue;
     }
@@ -163,7 +174,9 @@ function parseCandidateAdjudication(
         undefined === conflict ||
         candidate.metric.key !== key ||
         false === conflict.candidateIds.includes(candidateId) ||
-        true === selections.has(key)) {
+        true === selections.has(key) ||
+        "string" !== typeof sourceSnippet ||
+        false === isMetricSupportedByFilingSnippet(candidate.metric, sourceSnippet, sourceText)) {
       continue;
     }
 

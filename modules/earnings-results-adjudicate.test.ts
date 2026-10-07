@@ -42,6 +42,7 @@ describe("earnings candidate adjudication", () => {
                 selections: [{
                   candidateId: "html:revenue:0",
                   key: "revenue",
+                  sourceSnippet: "Revenue was $40 million.",
                 }],
               }),
             }],
