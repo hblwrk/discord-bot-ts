@@ -20,7 +20,7 @@ export type OpenAiInlineData = {
 
 export type OpenAiCallOptions = {
   onWebSources?: ((urls: string[]) => void) | undefined;
-  profile?: "routine" | undefined;
+  profile?: "routine" | "document" | undefined;
   timeoutMs?: number | undefined;
   useWebSearch?: boolean | undefined;
 };
@@ -29,6 +29,7 @@ type OpenAiConfig = {
   apiKey: string;
   callsPerDay: number;
   callsPerMinute: number;
+  documentModel: string;
   model: string;
   routineModel: string;
 };
@@ -43,6 +44,7 @@ type OpenAiInputPart = {
 };
 
 type OpenAiResponse = {
+  status?: string;
   output?: {
     action?: {
       sources?: {type?: string; url?: string}[];
@@ -63,10 +65,12 @@ const openAiResponsesEndpoint = "https://api.openai.com/v1/responses";
 const openAiApiKeySecret = "openai_api_key";
 const openAiModelSecret = "openai_model";
 const openAiRoutineModelSecret = "openai_routine_model";
+const openAiDocumentModelSecret = "openai_document_model";
 const openAiCallsPerMinuteSecret = "openai_calls_per_minute";
 const openAiCallsPerDaySecret = "openai_calls_per_day";
 const defaultOpenAiModel = "gpt-5.4-mini";
 const defaultOpenAiRoutineModel = "gpt-6-luna";
+const defaultOpenAiDocumentModel = "gpt-6-luna";
 const defaultOpenAiCallsPerMinute = 20;
 const defaultOpenAiCallsPerDay = 200;
 const maxOpenAiCallsPerMinute = 1_000;
@@ -108,16 +112,17 @@ export async function callOpenAiJson(
   }
 
   const postWithRetryFn = dependencies.postWithRetryFn ?? postWithRetry;
-  // Routine routing applies to short text generation. Research and attached
-  // documents retain the factual model even if a caller supplies this profile.
+  // Document summaries opt into medium reasoning. Routine routing applies to
+  // short text only; web research always retains the factual model.
   const useRoutineModel = "routine" === options.profile && true !== options.useWebSearch && undefined === inlineData;
+  const useDocumentModel = "document" === options.profile && true !== options.useWebSearch;
   const requestBody = {
     input: [{
       content: getOpenAiInputParts(prompt, inlineData),
       role: "user",
     }],
-    model: useRoutineModel ? config.routineModel : config.model,
-    ...(useRoutineModel ? {reasoning: {effort: "none"}} : {}),
+    model: useDocumentModel ? config.documentModel : useRoutineModel ? config.routineModel : config.model,
+    ...(useDocumentModel ? {reasoning: {effort: "medium"}} : useRoutineModel ? {reasoning: {effort: "none"}} : {}),
     text: {
       format: {
         name: "bot_response",
@@ -205,12 +210,14 @@ function getOpenAiConfig(dependencies: OpenAiDependencies): OpenAiConfig | null 
 
   const model = readOptionalSecret(readSecretFn, openAiModelSecret) ?? defaultOpenAiModel;
   const routineModel = readOptionalSecret(readSecretFn, openAiRoutineModelSecret) ?? defaultOpenAiRoutineModel;
+  const documentModel = readOptionalSecret(readSecretFn, openAiDocumentModelSecret) ?? defaultOpenAiDocumentModel;
   const callsPerMinute = getOpenAiCallsPerMinute(readOptionalSecret(readSecretFn, openAiCallsPerMinuteSecret));
   const callsPerDay = getOpenAiCallsPerDay(readOptionalSecret(readSecretFn, openAiCallsPerDaySecret));
   return {
     apiKey,
     callsPerDay,
     callsPerMinute,
+    documentModel,
     model,
     routineModel,
   };
@@ -315,11 +322,16 @@ function activateOpenAiCooldownOnRateLimit(error: unknown, dependencies: OpenAiD
 }
 
 function getOpenAiOutputText(response: OpenAiResponse): string | null {
+  if (undefined !== response.status && "completed" !== response.status) {
+    return null;
+  }
+
   if ("string" === typeof response.output_text) {
     return response.output_text;
   }
 
   const outputTexts = response.output
+    ?.filter(outputItem => "reasoning" !== outputItem.type)
     ?.flatMap(outputItem => outputItem.content ?? [])
     .flatMap(contentPart => "output_text" === contentPart.type && "string" === typeof contentPart.text ? [contentPart.text] : []) ?? [];
   return 0 === outputTexts.length ? null : outputTexts.join("\n");

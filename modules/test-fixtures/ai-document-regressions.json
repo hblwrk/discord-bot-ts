@@ -1,0 +1,108 @@
+[
+  {
+    "id": "summary-nio:mini-none:0",
+    "ticker": "nio",
+    "model": "gpt-5.4-mini",
+    "effort": "none",
+    "response": {
+      "sentences": [
+        {
+          "text": "For Q2 2026, total revenues were US$4,736.4 million and vehicle deliveries were 107,658 units.",
+          "sourceSnippet": "Total revenues were RMB32,136.9 million (US$4,736.4 million) in the second quarter of 2026, representing an increase of 69.1% from the second quarter of 2025 and an increase of 25.9% from the first quarter of 2026."
+        },
+        {
+          "text": "Gross profit was RMB5,906.5 million, gross margin was 18.4%, and net loss was RMB528.0 million.",
+          "sourceSnippet": "Gross profit was RMB5,906.5 million (US$870.5 million) in the second quarter of 2026, representing an increase of 211.3% from the second quarter of 2025 and an increase of 21.6% from the first quarter of 2026."
+        },
+        {
+          "text": "For Q3 2026, the company expects deliveries of 108,000 to 111,000 vehicles and total revenues of RMB33,285 million to RMB34,051 million.",
+          "sourceSnippet": "For the third quarter of 2026, the Company expects:"
+        }
+      ]
+    }
+  },
+  {
+    "id": "summary-chpt:luna-medium:0",
+    "ticker": "chpt",
+    "model": "gpt-6-luna",
+    "effort": "medium",
+    "response": {
+      "sentences": [
+        {
+          "text": "In the second quarter of fiscal year 2027, revenue grew 18% to $116 million, above the guidance range.",
+          "sourceSnippet": "•Revenue grew 18% year-over-year to $116 million, above the guidance range"
+        },
+        {
+          "text": "Subscription revenue grew 10% year-over-year to $44 million, while GAAP gross margin was 36% and non-GAAP gross margin was 38%.",
+          "sourceSnippet": "•Subscription revenue grew 10% year-over-year to $44 million\n•GAAP gross margin was 36% and non-GAAP gross margin was 38%"
+        },
+        {
+          "text": "For the third fiscal quarter ending October 31, 2026, revenue is expected to be $105 million to $115 million.",
+          "sourceSnippet": "For the third fiscal quarter ending October 31, 2026, ChargePoint expects revenue of $105 million to $115 million."
+        }
+      ]
+    }
+  },
+  {
+    "id": "quality-csco-scale:mini-none:0",
+    "ticker": "csco",
+    "model": "gpt-5.4-mini",
+    "effort": "none",
+    "response": {
+      "decision": "allow",
+      "confidence": 0.99,
+      "reason": "The post matches the filing text for Q4 FY 2026 revenue, GAAP EPS, non-GAAP EPS, and net income. The only suspicious item is revenue written as $17.3T, but the filing clearly states $17.3 billion, so this is likely a formatting/scale typo in the post rather than a filing mismatch worth suppressing.",
+      "issues": [
+        {
+          "severity": "high",
+          "metricKey": "revenue",
+          "message": "Revenue appears to have a table scale/formatting error in the pending post: it says $17.3T, but the filing reports $17.3 billion. The rest of the metrics align, so the post is still plausible overall.",
+          "sourceSnippet": "Revenue: $17.3 billion"
+        },
+        {
+          "severity": "low",
+          "metricKey": "adjusted_eps",
+          "message": "Non-GAAP EPS matches the filing, supporting the post.",
+          "sourceSnippet": "EPS was $1.22"
+        },
+        {
+          "severity": "low",
+          "metricKey": "gaap_eps",
+          "message": "GAAP EPS matches the filing, supporting the post.",
+          "sourceSnippet": "EPS was $0.97"
+        },
+        {
+          "severity": "low",
+          "metricKey": "net_income",
+          "message": "Net income matches the filing, supporting the post.",
+          "sourceSnippet": "net income was $3.9 billion"
+        }
+      ]
+    }
+  },
+  {
+    "id": "quality-kc-sign:mini-none:0",
+    "ticker": "kc",
+    "model": "gpt-5.4-mini",
+    "effort": "none",
+    "response": {
+      "decision": "allow",
+      "confidence": 0.98,
+      "reason": "The pending revenue matches the filing’s US dollar conversion for total revenues, and the net income figure appears to be a sign/metric-label mismatch: the filing reports a net loss of US$13.7 million, not net income. This looks plausible as a parsing/labeling issue rather than a period or scale bug, so the post should not be suppressed.",
+      "issues": [
+        {
+          "severity": "high",
+          "metricKey": "revenue",
+          "message": "Revenue is correctly supported by the filing and matches the reported US dollar amount for total revenues.",
+          "sourceSnippet": "Total Revenues reached RMB3,072.0 million (US$452.8 million)"
+        },
+        {
+          "severity": "high",
+          "metricKey": "net_income",
+          "message": "The filing reports a net loss of US$13.7 million, so the pending 'net income' label appears to invert the sign/category rather than reflect a true positive net income figure.",
+          "sourceSnippet": "Net loss was RMB93.0 million (US$13.7 million),"
+        }
+      ]
+    }
+  }
+]
