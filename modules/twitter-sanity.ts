@@ -3,6 +3,7 @@ import {getWithRetry} from "./http-retry.ts";
 import {safeHttpsAgent} from "./safe-http.ts";
 import {crossCheckTwitterPost, recognisedSourceUrl} from "./twitter-sanity-check.ts";
 import {scoreTwitterPost, type TwitterPostContext} from "./twitter-sanity-score.ts";
+import {communityNoteField, parseTwitterCommunityNote} from "./twitter-community-note.ts";
 
 type TwitterSanityDependencies = {
   logger: {log: (level: string, message: unknown) => void};
@@ -77,7 +78,7 @@ async function assessTwitterPost(id: string, url: string, dependencies: TwitterS
       return unavailableEmbed(url);
     }
     const assessment = scoreTwitterPost(post, dependencies.nowMs?.() ?? Date.now());
-    const check = assessment.score >= 30
+    const check = undefined === post.communityNote && assessment.score >= 30
       ? await (dependencies.crossCheckFn ?? crossCheckTwitterPost)(post, {logger: dependencies.logger})
       : undefined;
     const tier = assessment.score >= 70
@@ -86,6 +87,9 @@ async function assessTwitterPost(id: string, url: string, dependencies: TwitterS
         ? {icon: "🟡", label: "Caution", color: 0xf1c40f}
         : {icon: "🟢", label: "Low sensationalism", color: 0x2ecc71};
     const fields: NonNullable<APIEmbed["fields"]> = [];
+    if (undefined !== post.communityNote) {
+      fields.push(communityNoteField(post.communityNote, id));
+    }
     if (assessment.signals.length > 0) {
       fields.push({name: "Signals", value: assessment.signals.join(" · ")});
     }
@@ -104,13 +108,29 @@ async function assessTwitterPost(id: string, url: string, dependencies: TwitterS
         value: check.sources.map((source, index) => `[Source ${index + 1}](${source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`).join(" · "),
       });
     }
+    const description = undefined !== post.communityNote
+      ? "A Community Note adds context to this post; read the note and its cited evidence before sharing."
+      : check?.sentence ?? assessment.realityCheck;
+    const title = `${tier.icon} ${assessment.score}% Spiciness — ${tier.label}`;
+    const footer = {text: "Heuristic index, not a truth probability · Media authenticity and bot activity unverified"};
+    // Up to four badges share Discord's 6,000-character text budget. Prioritise
+    // the note over optional context when a long citation consumes the budget.
+    let remaining = 1_500 - title.length - description.length - footer.text.length;
+    const boundedFields = fields.filter(field => {
+      const length = field.name.length + field.value.length;
+      if (length > remaining) {
+        return false;
+      }
+      remaining -= length;
+      return true;
+    });
     return {
       url,
-      title: `${tier.icon} ${assessment.score}% Spiciness — ${tier.label}`,
+      title,
       color: tier.color,
-      description: check?.sentence ?? assessment.realityCheck,
-      fields,
-      footer: {text: "Heuristic index, not a truth probability · Media authenticity and bot activity unverified"},
+      description,
+      fields: boundedFields,
+      footer,
     };
   } catch {
     // Never log provider bodies, tweet text or URLs from remote errors.
@@ -165,6 +185,7 @@ export function parseTwitterPost(value: unknown, expectedId: string): TwitterPos
     mediaContext.push("External media; content not inspected");
   }
   const quote = recordOrEmpty(post["quote"]);
+  const communityNote = parseTwitterCommunityNote(post["community_note"]);
   return {
     text: post["text"],
     quotedText: stringOrEmpty(quote["text"]).slice(0, 2_000),
@@ -173,6 +194,7 @@ export function parseTwitterPost(value: unknown, expectedId: string): TwitterPos
     authorJoined: stringOrEmpty(author["joined"]),
     defaultAvatar: /\/default_profile_images\//u.test(stringOrEmpty(author["avatar_url"])),
     authorWebsite: stringOrEmpty(recordOrEmpty(author["website"])["url"]).slice(0, 350),
+    ...(undefined !== communityNote ? {communityNote} : {}),
   };
 }
 

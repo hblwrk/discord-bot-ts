@@ -1,3 +1,5 @@
+import type {TwitterCommunityNote} from "./twitter-community-note.ts";
+
 export type TwitterPostContext = {
   text: string;
   quotedText: string;
@@ -6,6 +8,7 @@ export type TwitterPostContext = {
   authorJoined: string;
   defaultAvatar: boolean;
   authorWebsite: string;
+  communityNote?: TwitterCommunityNote;
 };
 
 export type TwitterSanityScore = {
