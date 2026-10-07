@@ -60,7 +60,7 @@ export async function crossCheckTwitterPost(
       "Return JSON only; no Markdown, mentions, links inside the sentence, or invented sources.",
       JSON.stringify(post),
     ].join("\n"), checkSchema, dependencies, "Twitter/X reality check", undefined, {
-      timeoutMs: 8_000,
+      timeoutMs: 60_000,
       useWebSearch: true,
       onWebSources: urls => { groundedUrls = urls; },
     });
