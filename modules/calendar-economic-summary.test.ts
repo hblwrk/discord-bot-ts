@@ -40,6 +40,7 @@ describe("calendar-economic-summary", () => {
       }),
     );
     expect(callAiProviderJsonFn.mock.calls[0]?.[0]).toContain("Inflation remains elevated");
+    expect(callAiProviderJsonFn.mock.calls[0]?.[5]).toEqual({timeoutMs: 30_000, profile: "routine"});
     expect(summary).toEqual({
       name: "Federal Reserve",
       summaryMarkdown: "The Fed emphasized elevated inflation and labor-market risks. Policy remains data dependent.",

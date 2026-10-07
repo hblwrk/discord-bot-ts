@@ -15,6 +15,57 @@ describe("AI provider facade", () => {
     clearAiProviderState();
   });
 
+  test.each([
+    {profile: "routine" as const, useWebSearch: false, file: undefined, expectedModel: "gpt-6-luna", routine: true},
+    {profile: undefined, useWebSearch: false, file: undefined, expectedModel: "gpt-5.4-mini", routine: false},
+    {profile: "routine" as const, useWebSearch: true, file: undefined, expectedModel: "gpt-5.4-mini", routine: false},
+    {profile: "routine" as const, useWebSearch: false, file: {data: "cGRm", mimeType: "application/pdf"}, expectedModel: "gpt-5.4-mini", routine: false},
+  ])("routes $expectedModel with routine=$routine and search=$useWebSearch", async ({profile, useWebSearch, file, expectedModel, routine}) => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({data: {output_text: "{}"}});
+    await callAiProviderJson("prompt", responseJsonSchema, {
+      logger, postWithRetryFn,
+      readSecretFn: secret => secret === "ai_provider" ? "openai" : secret === "openai_api_key" ? "test-key" : "",
+    }, "test", file, {profile, useWebSearch, timeoutMs: 30_000});
+    expect(postWithRetryFn.mock.calls[0]?.[1].model).toBe(expectedModel);
+    expect(postWithRetryFn.mock.calls[0]?.[1].reasoning).toEqual(routine ? {effort: "none"} : undefined);
+    expect(postWithRetryFn.mock.calls[0]?.[3].timeoutMs).toBe(30_000);
+  });
+
+  test("honours separate model overrides while sharing the OpenAI call cap", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({data: {output_text: "{}"}});
+    const dependencies = {
+      logger, postWithRetryFn, nowMs: () => 1_000,
+      readSecretFn: (secret: string) => ({
+        ai_provider: "openai", openai_api_key: "test-key", openai_model: "factual-override",
+        openai_routine_model: "routine-override", openai_calls_per_minute: "2",
+      })[secret] ?? "",
+    };
+    await callAiProviderJson("prompt", responseJsonSchema, dependencies, "factual");
+    await callAiProviderJson("prompt", responseJsonSchema, dependencies, "routine", undefined, {profile: "routine"});
+    expect(await callAiProviderJson("prompt", responseJsonSchema, dependencies, "factual")).toBeNull();
+    expect(postWithRetryFn.mock.calls.map(call => call[1].model)).toEqual(["factual-override", "routine-override"]);
+  });
+
+  test("routine routing preserves Gemini", async () => {
+    const postWithRetryFn = vi.fn().mockResolvedValue({data: {candidates: [{content: {parts: [{text: "{}"}]}}]}});
+    const result = await callAiProviderJson("prompt", responseJsonSchema, {
+      logger, postWithRetryFn,
+      readSecretFn: secret => secret === "ai_provider" ? "gemini" : secret.endsWith("api_key") ? "test-key" : "",
+    }, "routine", undefined, {profile: "routine"});
+    expect(result).toBe("{}");
+    expect(postWithRetryFn.mock.calls[0]?.[0]).toContain("gemini-2.5-flash-lite");
+    expect(postWithRetryFn.mock.calls[0]?.[1]).not.toHaveProperty("reasoning");
+  });
+
+  test("routine routing respects disabled AI", async () => {
+    const postWithRetryFn = vi.fn();
+    expect(await callAiProviderJson("prompt", responseJsonSchema, {
+      logger, postWithRetryFn,
+      readSecretFn: secret => secret === "ai_provider" ? "none" : "test-key",
+    }, "routine", undefined, {profile: "routine"})).toBeNull();
+    expect(postWithRetryFn).not.toHaveBeenCalled();
+  });
+
   test.each(["gemini", "openai"])("forwards search citation metadata from %s", async provider => {
     const source = "https://reuters.com/world/report";
     const onWebSources = vi.fn();

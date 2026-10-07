@@ -18,6 +18,7 @@ export type AiProviderInlineData = {
 
 export type AiProviderCallOptions = {
   onWebSources?: ((urls: string[]) => void) | undefined;
+  profile?: "routine" | undefined;
   timeoutMs?: number | undefined;
   useWebSearch?: boolean | undefined;
 };
@@ -53,6 +54,9 @@ export async function callAiProviderJson(
   }
   if ("openai" === provider) {
     const openAiOptions: OpenAiCallOptions = {};
+    if (undefined !== options.profile) {
+      openAiOptions.profile = options.profile;
+    }
     if (undefined !== options.timeoutMs) {
       openAiOptions.timeoutMs = options.timeoutMs;
     }
