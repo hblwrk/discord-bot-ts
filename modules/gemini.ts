@@ -94,14 +94,22 @@ export async function callGeminiJson(
   }
 
   const postWithRetryFn = dependencies.postWithRetryFn ?? postWithRetry;
-  const parts = getGeminiContentParts(prompt, inlineData);
+  const useGoogleSearch = true === options.useGoogleSearch;
+  // Gemini 2.5 supports search and structured output separately. Ask for JSON
+  // in the prompt during search so the configured default model can ground a
+  // response; consumers still validate its JSON and provider citation metadata.
+  const parts = getGeminiContentParts(useGoogleSearch
+    ? `${prompt}\nReturn only JSON matching this schema, without code fences:\n${JSON.stringify(responseJsonSchema)}`
+    : prompt, inlineData);
   const requestBody = {
     contents: [{
       parts,
     }],
     generationConfig: {
-      responseMimeType: "application/json",
-      responseJsonSchema,
+      ...(useGoogleSearch ? {} : {
+        responseMimeType: "application/json",
+        responseJsonSchema,
+      }),
       temperature: 0,
     },
     ...(true === options.useGoogleSearch ? {

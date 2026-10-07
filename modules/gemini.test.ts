@@ -33,6 +33,27 @@ describe("Gemini client", () => {
     clearGeminiState();
   });
 
+  test.each([
+    {
+      useGoogleSearch: false,
+      generationConfig: {responseMimeType: "application/json", responseJsonSchema, temperature: 0},
+      promptText: "prompt", tools: undefined,
+    },
+    {
+      useGoogleSearch: true,
+      generationConfig: {temperature: 0},
+      promptText: `prompt\nReturn only JSON matching this schema, without code fences:\n${JSON.stringify(responseJsonSchema)}`,
+      tools: [{google_search: {}}],
+    },
+  ])("uses compatible JSON requests with search=$useGoogleSearch", async ({useGoogleSearch, generationConfig, promptText, tools}) => {
+    const postWithRetryFn = vi.fn().mockResolvedValue(successfulGeminiResponse);
+    expect(await callGeminiJson("prompt", responseJsonSchema, {logger, postWithRetryFn, readSecretFn}, "test", undefined, {useGoogleSearch})).toBe("{}");
+    const body = postWithRetryFn.mock.calls[0]?.[1];
+    expect(body.generationConfig).toEqual(generationConfig);
+    expect(body.contents[0].parts[0].text).toBe(promptText);
+    expect(body.tools).toEqual(tools);
+  });
+
   test("activates a shared cooldown after API rate limiting", async () => {
     const rateLimitError = {
       response: {
