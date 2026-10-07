@@ -74,12 +74,10 @@ async function assessTwitterPost(id: string, url: string, dependencies: TwitterS
       return undefined;
     }
     const assessment = scoreTwitterPost(post, dependencies.nowMs?.() ?? Date.now());
-    const check = undefined === post.communityNote && assessment.score >= 30
-      ? await (dependencies.crossCheckFn ?? crossCheckTwitterPost)(post, {
-        ...dependencies, logger: {log: (_level, message) => { dependencies.logger.log("debug", message); }},
-      })
-      : undefined;
-    if (undefined === post.communityNote && assessment.score >= 30 && undefined === check) {
+    const check = await (dependencies.crossCheckFn ?? crossCheckTwitterPost)(post, {
+      ...dependencies, logger: {log: (_level, message) => { dependencies.logger.log("debug", message); }},
+    });
+    if (undefined === check) {
       return undefined;
     }
     const tier = assessment.score >= 70
@@ -87,7 +85,12 @@ async function assessTwitterPost(id: string, url: string, dependencies: TwitterS
       : assessment.score >= 30
         ? {icon: "🟡", label: "Caution", color: 0xf1c40f}
         : {icon: "🟢", label: "Low sensationalism", color: 0x2ecc71};
-    const fields: NonNullable<APIEmbed["fields"]> = [];
+    // Reserve the factual verdict's citation before optional note/context
+    // fields so a long note cannot leave an uncited AI claim in the badge.
+    const fields: NonNullable<APIEmbed["fields"]> = [{
+      name: `AI web cross-check: ${check.verdict} (review sources)`,
+      value: check.sources.map((source, index) => `[Source ${index + 1}](${source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`).join(" · "),
+    }];
     if (undefined !== post.communityNote) {
       fields.push(communityNoteField(post.communityNote, id));
     }
@@ -103,15 +106,7 @@ async function assessTwitterPost(id: string, url: string, dependencies: TwitterS
     if (context.length > 0) {
       fields.push({name: "Context", value: context.join(" · ")});
     }
-    if (undefined !== check) {
-      fields.push({
-        name: `AI web cross-check: ${check.verdict} (review sources)`,
-        value: check.sources.map((source, index) => `[Source ${index + 1}](${source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`).join(" · "),
-      });
-    }
-    const description = undefined !== post.communityNote
-      ? "A Community Note adds context to this post; read the note and its cited evidence before sharing."
-      : check?.sentence ?? assessment.realityCheck;
+    const description = check.sentence;
     const title = `${tier.icon} ${assessment.score}% Spiciness — ${tier.label}`;
     const footer = {text: "Heuristic index, not a truth probability · Media authenticity and bot activity unverified"};
     // Bound each assessment before delivery. The text formatter applies the
