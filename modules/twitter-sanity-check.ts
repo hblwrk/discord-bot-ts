@@ -65,11 +65,11 @@ export async function crossCheckTwitterPost(
       onWebSources: urls => { groundedUrls = urls; },
     });
     if (null === result) {
-      return undefined;
+      return skipReview(dependencies, "provider returned no result");
     }
     const parsed: unknown = JSON.parse(result);
     if (!isRecord(parsed) || !["supported", "contradicted"].includes(String(parsed["verdict"]))) {
-      return undefined;
+      return skipReview(dependencies, "invalid or unverified verdict");
     }
     const sentence = parsed["realityCheck"];
     const sourceUrls = parsed["sourceUrls"];
@@ -77,7 +77,7 @@ export async function crossCheckTwitterPost(
       || /https?:|[@<>\n\r`*_~|\\]/u.test(sentence)
       || [...new Intl.Segmenter("en", {granularity: "sentence"}).segment(sentence.trim())].length !== 1
       || !Array.isArray(sourceUrls)) {
-      return undefined;
+      return skipReview(dependencies, "invalid reality-check sentence or sources");
     }
 
     // Model-written URLs alone are insufficient: require a citation from the
@@ -88,7 +88,7 @@ export async function crossCheckTwitterPost(
       return undefined !== accepted && grounded.has(accepted) ? [accepted] : [];
     }))].slice(0, 1);
     if (0 === sources.length) {
-      return undefined;
+      return skipReview(dependencies, "no accepted source in provider search metadata");
     }
     return {
       verdict: parsed["verdict"] as TwitterRealityCheck["verdict"],
@@ -99,6 +99,11 @@ export async function crossCheckTwitterPost(
     dependencies.logger.log("debug", "Twitter/X web cross-check skipped; keeping the link preview.");
     return undefined;
   }
+}
+
+function skipReview(dependencies: AiProviderDependencies, reason: string): undefined {
+  dependencies.logger.log("debug", `Twitter/X web cross-check skipped: ${reason}.`);
+  return undefined;
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {

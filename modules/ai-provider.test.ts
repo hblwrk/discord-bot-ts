@@ -43,6 +43,24 @@ describe("AI provider facade", () => {
     expect(onWebSources).toHaveBeenCalledExactlyOnceWith([]);
   });
 
+  test.each([false, true])("combines and deduplicates OpenAI annotations and search sources only for web requests: %s", async useWebSearch => {
+    const source = "https://reuters.com/world/report";
+    const other = "https://apnews.com/article/report";
+    const onWebSources = vi.fn();
+    const postWithRetryFn = vi.fn().mockResolvedValue({data: {output: [
+      {type: "web_search_call", status: "completed", action: {type: "search", sources: [
+        {type: "url", url: source}, {type: "url", url: other}, {type: "url", url: other},
+      ]}},
+      {content: [{type: "output_text", text: "{}", annotations: [{type: "url_citation", url: source}]}]},
+    ]}});
+    await callAiProviderJson("prompt", responseJsonSchema, {
+      logger, postWithRetryFn,
+      readSecretFn: secret => secret === "ai_provider" ? "openai" : secret === "openai_api_key" ? "test-key" : "",
+    }, "test", undefined, {useWebSearch, onWebSources});
+    expect(onWebSources.mock.calls).toEqual(useWebSearch ? [[[source, other]]] : []);
+    expect(postWithRetryFn.mock.calls[0]?.[1].include).toEqual(useWebSearch ? ["web_search_call.action.sources"] : undefined);
+  });
+
   test("uses Gemini when no provider is configured", async () => {
     const postWithRetryFn = vi.fn().mockResolvedValue({
       data: {
