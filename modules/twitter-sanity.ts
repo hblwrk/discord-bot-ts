@@ -4,23 +4,26 @@ import {safeHttpsAgent} from "./safe-http.ts";
 import {crossCheckTwitterPost, recognisedSourceUrl} from "./twitter-sanity-check.ts";
 import {scoreTwitterPost, type TwitterPostContext} from "./twitter-sanity-score.ts";
 import {communityNoteField, parseTwitterCommunityNote} from "./twitter-community-note.ts";
+import {getTwitterStatusId} from "./twitter-status-url.ts";
+import {isAiProviderAvailable, type AiProviderDependencies} from "./ai-provider.ts";
 
-type TwitterSanityDependencies = {
-  logger: {log: (level: string, message: unknown) => void};
+type TwitterSanityDependencies = AiProviderDependencies & {
   getWithRetryFn?: typeof getWithRetry;
   crossCheckFn?: typeof crossCheckTwitterPost;
-  nowMs?: () => number;
+  aiAvailableFn?: () => boolean;
 };
 
 export type TwitterIntrospector = (url: string) => Promise<APIEmbed | undefined>;
-const unavailableDescription = "The post text is unavailable, so its claims, media context and bot activity remain unverified.";
 
 export function createTwitterIntrospector(dependencies: TwitterSanityDependencies): TwitterIntrospector {
-  const cache = new Map<string, {expiresAt: number; result: Promise<APIEmbed>}>();
+  const cache = new Map<string, {expiresAt: number; result: Promise<APIEmbed | undefined>}>();
   let inFlight = 0;
   return async link => {
     const id = getTwitterStatusId(link);
     if (undefined === id) {
+      return undefined;
+    }
+    if (!(dependencies.aiAvailableFn?.() ?? isAiProviderAvailable(dependencies))) {
       return undefined;
     }
     const url = `https://fxtwitter.com/i/status/${id}`;
@@ -35,7 +38,7 @@ export function createTwitterIntrospector(dependencies: TwitterSanityDependencie
       return cached.result;
     }
     if (inFlight >= 4) {
-      return unavailableEmbed(url);
+      return undefined;
     }
     if (cache.size >= 100) {
       const oldest = cache.keys().next().value;
@@ -44,25 +47,18 @@ export function createTwitterIntrospector(dependencies: TwitterSanityDependencie
       }
     }
     inFlight++;
-    const result = assessTwitterPost(id, url, dependencies).finally(() => { inFlight--; });
+    const result: Promise<APIEmbed | undefined> = assessTwitterPost(id, url, dependencies).then(badge => {
+      // Failed optional reviews can recover on the next paste; retain only
+      // successful assessments and coalesce the requests already in flight.
+      if (undefined === badge && cache.get(id)?.result === result) cache.delete(id);
+      return badge;
+    }).finally(() => { inFlight--; });
     cache.set(id, {expiresAt: nowMs + 10 * 60_000, result});
     return result;
   };
 }
 
-function getTwitterStatusId(value: string): string | undefined {
-  try {
-    const url = new URL(value);
-    if (url.origin !== "https://fxtwitter.com" || url.username || url.password) {
-      return undefined;
-    }
-    return /^\/(?:[a-z0-9_]{1,15}|i\/web)\/status\/(\d{2,20})(?:\/(?:photo|video)\/[1-4])?\/?$/iu.exec(url.pathname)?.[1];
-  } catch {
-    return undefined;
-  }
-}
-
-async function assessTwitterPost(id: string, url: string, dependencies: TwitterSanityDependencies): Promise<APIEmbed> {
+async function assessTwitterPost(id: string, url: string, dependencies: TwitterSanityDependencies): Promise<APIEmbed | undefined> {
   try {
     const response = await (dependencies.getWithRetryFn ?? getWithRetry)(
       `https://api.fxtwitter.com/2/status/${id}`,
@@ -75,12 +71,17 @@ async function assessTwitterPost(id: string, url: string, dependencies: TwitterS
     );
     const post = parseTwitterPost(response.data, id);
     if (undefined === post) {
-      return unavailableEmbed(url);
+      return undefined;
     }
     const assessment = scoreTwitterPost(post, dependencies.nowMs?.() ?? Date.now());
     const check = undefined === post.communityNote && assessment.score >= 30
-      ? await (dependencies.crossCheckFn ?? crossCheckTwitterPost)(post, {logger: dependencies.logger})
+      ? await (dependencies.crossCheckFn ?? crossCheckTwitterPost)(post, {
+        ...dependencies, logger: {log: (_level, message) => { dependencies.logger.log("debug", message); }},
+      })
       : undefined;
+    if (undefined === post.communityNote && assessment.score >= 30 && undefined === check) {
+      return undefined;
+    }
     const tier = assessment.score >= 70
       ? {icon: "🔴", label: "High sensationalism", color: 0xe74c3c}
       : assessment.score >= 30
@@ -113,8 +114,8 @@ async function assessTwitterPost(id: string, url: string, dependencies: TwitterS
       : check?.sentence ?? assessment.realityCheck;
     const title = `${tier.icon} ${assessment.score}% Spiciness — ${tier.label}`;
     const footer = {text: "Heuristic index, not a truth probability · Media authenticity and bot activity unverified"};
-    // Up to four badges share Discord's 6,000-character text budget. Prioritise
-    // the note over optional context when a long citation consumes the budget.
+    // Bound each assessment before delivery. The text formatter applies the
+    // shared message budget and omits assessments that cannot fit completely.
     let remaining = 1_500 - title.length - description.length - footer.text.length;
     const boundedFields = fields.filter(field => {
       const length = field.name.length + field.value.length;
@@ -134,21 +135,19 @@ async function assessTwitterPost(id: string, url: string, dependencies: TwitterS
     };
   } catch {
     // Never log provider bodies, tweet text or URLs from remote errors.
-    dependencies.logger.log("warn", "Twitter/X introspection unavailable; keeping the link preview.");
-    return unavailableEmbed(url);
+    dependencies.logger.log("debug", "Twitter/X introspection skipped; keeping the link preview.");
+    return undefined;
   }
-}
-
-function unavailableEmbed(url: string): APIEmbed {
-  return {url, title: "⚪ Sanity Rating unavailable", color: 0x95a5a6, description: unavailableDescription};
 }
 
 export function parseTwitterPost(value: unknown, expectedId: string): TwitterPostContext | undefined {
-  if (!isRecord(value) || value["code"] !== 200) {
+  // API v2 uses HTTP status and a status envelope without the legacy code field.
+  if (!isRecord(value) || (undefined !== value["code"] && value["code"] !== 200)) {
     return undefined;
   }
   const post = value["status"];
-  if (!isRecord(post) || post["id"] !== expectedId || "string" !== typeof post["text"]
+  if (!isRecord(post) || (undefined !== post["type"] && post["type"] !== "status")
+    || post["id"] !== expectedId || "string" !== typeof post["text"]
     || !post["text"].trim() || post["text"].length > 8_000) {
     return undefined;
   }

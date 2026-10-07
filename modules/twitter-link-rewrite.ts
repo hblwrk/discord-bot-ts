@@ -1,6 +1,8 @@
 import {getLogger} from "./logging.ts";
 import type {APIEmbed} from "discord.js";
 import {createTwitterIntrospector, type TwitterIntrospector} from "./twitter-sanity.ts";
+import {appendTwitterBadgeText, type TwitterBadge} from "./twitter-badge-text.ts";
+import {getTwitterStatusId} from "./twitter-status-url.ts";
 
 const logger = getLogger();
 const discordMaxMessageLength = 2_000;
@@ -18,12 +20,12 @@ const twitterHosts = new Set([
 
 type TwitterLinkResponse = {
   edit: (payload: {
-    embeds: APIEmbed[];
+    content: string;
     allowedMentions: {parse: string[]; repliedUser: boolean};
   }) => Promise<unknown>;
 };
 
-type LinkDelivery = {response: TwitterLinkResponse; content: string};
+type LinkDelivery = {response: TwitterLinkResponse; content: string; messageContent: string};
 
 type TwitterLinkRewriteMessage = {
   author?: {
@@ -201,7 +203,7 @@ async function replyWithFixedLinks(message: TwitterLinkRewriteMessage, content: 
       },
       content,
     });
-    return {response, content};
+    return {response, content, messageContent: content};
   } catch (error: unknown) {
     logger.log(
       "error",
@@ -253,7 +255,7 @@ async function replaceLinkOnlyMessage(
             },
           }),
     });
-    return {removed: true, delivery: {response, content}};
+    return {removed: true, delivery: {response, content, messageContent: `${prefix}${content}`}};
   } catch (error: unknown) {
     logger.log(
       "error",
@@ -267,24 +269,65 @@ async function replaceLinkOnlyMessage(
 async function updateSanityBadges(delivery: LinkDelivery, introspect: TwitterIntrospector): Promise<void> {
   // Assess only delivered links. Promise.all preserves paste order even when
   // providers finish out of order, and no inspection delays the initial send.
-  const results = await Promise.all(delivery.content.split("\n").slice(0, 4).map(async link => {
+  const links = delivery.content.split("\n");
+  const badges = await assessLinks(links, introspect);
+  const content = appendTwitterBadgeText(delivery.messageContent, badges, links.length > 1);
+  if (content === delivery.messageContent) {
+    return;
+  }
+  try {
+    // Explicit embeds replace Discord's automatic image/video preview. Edit
+    // only content so the native unfurl remains under the converted link.
+    await delivery.response.edit({content, allowedMentions: {parse: [], repliedUser: false}});
+  } catch {
+    // Deleted responses and missing edit permissions must not undo conversion.
+    logger.log("warn", "Twitter/X badge update failed; keeping the converted link.");
+  }
+}
+
+async function assessLinks(links: string[], introspect: TwitterIntrospector): Promise<TwitterBadge[]> {
+  const results = await Promise.all(links.slice(0, 4).map(async (link, index) => {
     try {
-      return await introspect(link);
+      const embed = await introspect(link);
+      return undefined !== embed ? {linkNumber: index + 1, embed} : undefined;
     } catch {
       logger.log("warn", "Twitter/X assessment failed; keeping the link preview.");
       return undefined;
     }
   }));
-  const embeds = results.filter(embed => undefined !== embed);
-  if (0 === embeds.length) {
+  return results.filter(badge => undefined !== badge);
+}
+
+async function replyWithProxyBadges(message: TwitterLinkRewriteMessage, links: string[], introspect: TwitterIntrospector): Promise<void> {
+  const badges = await assessLinks(links, introspect);
+  // Source references identify each proxy post without creating another unfurl.
+  const identified = badges.map(badge => ({...badge, embed: {
+    ...badge.embed, description: [badge.embed.description, `Post: <${links[badge.linkNumber - 1]}>`].filter(Boolean).join("\n"),
+  }}));
+  const content = appendTwitterBadgeText("", identified, links.length > 1).trimStart();
+  if (!content) {
     return;
   }
   try {
-    await delivery.response.edit({embeds, allowedMentions: {parse: [], repliedUser: false}});
+    await message.reply({content, allowedMentions: {parse: [], repliedUser: false}});
   } catch {
-    // Deleted responses and missing edit permissions must not undo conversion.
-    logger.log("warn", "Twitter/X badge update failed; keeping the converted link.");
+    logger.log("warn", "Twitter/X proxy badge reply failed; keeping the original link preview.");
   }
+}
+
+export function getTwitterProxyLinks(content: string): string[] {
+  const posts = new Map<string, string>();
+  for (const match of content.matchAll(twitterUrlRegex)) {
+    if (isEmbedSuppressedLink(content, match.index, match[0].length)) {
+      continue;
+    }
+    const link = trimTrailingUrlPunctuation(match[0]);
+    const id = getTwitterStatusId(link);
+    if (undefined !== id && !posts.has(id)) {
+      posts.set(id, link);
+    }
+  }
+  return [...posts.values()];
 }
 
 export function getFixedTwitterLinks(content: string): string[] {
@@ -342,16 +385,30 @@ export function addTwitterLinkRewrites(
     }
 
     const fixedLinks = getFixedTwitterLinks(message.content);
+    const proxyLinks = getTwitterProxyLinks(message.content);
+    const convertedLinks = getMessageContentWithinDiscordLimit(fixedLinks).split("\n").filter(Boolean).slice(0, 4);
+    const convertedIds = new Set(convertedLinks
+      .map(getTwitterStatusId).filter(id => undefined !== id));
+    const extraLinks = proxyLinks.filter(link => !convertedIds.has(getTwitterStatusId(link) ?? "")).slice(0, 4 - convertedLinks.length);
+    if (extraLinks.length) {
+      // Original proxy links are already delivered; assessment never changes
+      // their content or embeds and does not block conversion of raw X links.
+      void replyWithProxyBadges(message, extraLinks, introspect);
+    }
     if (0 === fixedLinks.length) {
       return;
     }
 
     const linkOnly = messageIsOnlyFixableLinks(message.content);
     // Suppression runs independently of sending the converted link.
-    if (messageHasEmbeds(message)) {
-      void suppressOriginalEmbeds(message);
-    } else {
-      trackMessageForEmbedSuppression(message.id);
+    // Suppression affects every embed on a message. Preserve existing proxy
+    // previews when raw Twitter/X links are pasted alongside them.
+    if (!proxyLinks.length) {
+      if (messageHasEmbeds(message)) {
+        void suppressOriginalEmbeds(message);
+      } else {
+        trackMessageForEmbedSuppression(message.id);
+      }
     }
     if (linkOnly) {
       const replacement = await replaceLinkOnlyMessage(message, fixedLinks);

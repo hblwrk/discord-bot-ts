@@ -1,5 +1,52 @@
-import {assertSafeRequestUrl, isPrivateIp, UnsafeUrlError} from "./safe-http.ts";
-import {describe, expect, test} from "vitest";
+import type net from "node:net";
+import {assertSafeRequestUrl, isPrivateIp, safeLookup, UnsafeUrlError} from "./safe-http.ts";
+import {describe, expect, test, vi} from "vitest";
+
+const dnsMock = vi.hoisted(() => ({lookup: vi.fn<net.LookupFunction>()}));
+vi.mock("node:dns", () => ({default: dnsMock}));
+
+describe("safeLookup", () => {
+  test("preserves all public IPv4 and IPv6 results for Node automatic family selection", () => {
+    const addresses = [{address: "1.1.1.1", family: 4}, {address: "2606:4700:4700::1111", family: 6}];
+    dnsMock.lookup.mockImplementation((_hostname, _options, callback) => { callback(null, addresses); });
+    const callback = vi.fn();
+    const options = {all: true};
+    safeLookup("example.com", options, callback);
+    expect(dnsMock.lookup).toHaveBeenCalledWith("example.com", options, expect.any(Function));
+    expect(callback).toHaveBeenCalledExactlyOnceWith(null, addresses, undefined);
+  });
+
+  test.each(["127.0.0.1", "169.254.169.254", "::1", "::ffff:10.0.0.1"])("rejects every candidate when a later DNS answer is private: %s", address => {
+    dnsMock.lookup.mockImplementation((_hostname, _options, callback) => {
+      callback(null, [{address: "1.1.1.1", family: 4}, {address, family: address.includes(":") ? 6 : 4}]);
+    });
+    const callback = vi.fn();
+    safeLookup("example.com", {all: true}, callback);
+    expect(callback).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({message: `Refused to connect to private address ${address} for example.com`}), "", 0);
+  });
+
+  test("accepts a single public DNS answer and preserves its family", () => {
+    dnsMock.lookup.mockImplementation((_hostname, _options, callback) => { callback(null, "8.8.8.8", 4); });
+    const callback = vi.fn();
+    safeLookup("example.com", {all: false}, callback);
+    expect(callback).toHaveBeenCalledExactlyOnceWith(null, "8.8.8.8", 4);
+  });
+
+  test("rejects a single private DNS answer", () => {
+    dnsMock.lookup.mockImplementation((_hostname, _options, callback) => { callback(null, "10.0.0.1", 4); });
+    const callback = vi.fn();
+    safeLookup("example.com", {all: false}, callback);
+    expect(callback).toHaveBeenCalledExactlyOnceWith(expect.any(Error), "", 0);
+  });
+
+  test("propagates DNS errors", () => {
+    const error = Object.assign(new Error("DNS unavailable"), {code: "ENOTFOUND"});
+    dnsMock.lookup.mockImplementation((_hostname, _options, callback) => { callback(error, "", 0); });
+    const callback = vi.fn();
+    safeLookup("example.com", {all: true}, callback);
+    expect(callback).toHaveBeenCalledExactlyOnceWith(error, "", 0);
+  });
+});
 
 describe("isPrivateIp", () => {
   test.each([

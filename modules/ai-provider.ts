@@ -1,10 +1,11 @@
 import {
   callGeminiJson,
   clearGeminiState,
+  isGeminiAvailable,
   type GeminiCallOptions,
   type GeminiDependencies,
 } from "./gemini.ts";
-import {callOpenAiJson, clearOpenAiState, type OpenAiCallOptions, type OpenAiDependencies} from "./openai.ts";
+import {callOpenAiJson, clearOpenAiState, isOpenAiAvailable, type OpenAiCallOptions, type OpenAiDependencies} from "./openai.ts";
 import {readSecret} from "./secrets.ts";
 
 export type AiProviderDependencies = GeminiDependencies & OpenAiDependencies;
@@ -21,13 +22,21 @@ export type AiProviderCallOptions = {
   useWebSearch?: boolean | undefined;
 };
 
-type AiProviderName = "gemini" | "openai";
+type AiProviderName = "gemini" | "openai" | "none";
 
 const aiProviderSecret = "ai_provider";
 
 export function clearAiProviderState() {
   clearGeminiState();
   clearOpenAiState();
+}
+
+export function isAiProviderAvailable(dependencies: AiProviderDependencies): boolean {
+  const provider = getAiProviderName({...dependencies, logger: {log: () => {}}});
+  if ("none" === provider) {
+    return false;
+  }
+  return "openai" === provider ? isOpenAiAvailable(dependencies) : isGeminiAvailable(dependencies);
 }
 
 export async function callAiProviderJson(
@@ -38,7 +47,11 @@ export async function callAiProviderJson(
   inlineData?: AiProviderInlineData,
   options: AiProviderCallOptions = {},
 ): Promise<string | null> {
-  if ("openai" === getAiProviderName(dependencies)) {
+  const provider = getAiProviderName(dependencies);
+  if ("none" === provider) {
+    return null;
+  }
+  if ("openai" === provider) {
     const openAiOptions: OpenAiCallOptions = {};
     if (undefined !== options.timeoutMs) {
       openAiOptions.timeoutMs = options.timeoutMs;
@@ -95,6 +108,10 @@ function getAiProviderName(dependencies: AiProviderDependencies): AiProviderName
 
   if ("openai" === configuredProvider) {
     return "openai";
+  }
+
+  if (["none", "off", "disabled"].includes(configuredProvider)) {
+    return "none";
   }
 
   dependencies.logger.log(

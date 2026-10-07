@@ -76,6 +76,11 @@ export function clearGeminiState() {
   geminiCooldownUntilMs = 0;
 }
 
+export function isGeminiAvailable(dependencies: GeminiDependencies): boolean {
+  const config = getGeminiConfig(dependencies);
+  return null !== config && reserveGeminiCall(config, dependencies, "optional review", false);
+}
+
 export async function callGeminiJson(
   prompt: string,
   responseJsonSchema: Record<string, unknown>,
@@ -222,10 +227,12 @@ function reserveGeminiCall(
   config: GeminiConfig,
   dependencies: GeminiDependencies,
   task: string,
+  reserve = true,
 ): boolean {
+  const logger = reserve ? dependencies.logger : {log: () => {}};
   const nowMs = dependencies.nowMs?.() ?? Date.now();
   if (nowMs < geminiCooldownUntilMs) {
-    dependencies.logger.log(
+    logger.log(
       "warn",
       `Skipping Gemini ${task}: API rate-limit cooldown is active for ${Math.ceil((geminiCooldownUntilMs - nowMs) / 1000)}s.`,
     );
@@ -243,7 +250,7 @@ function reserveGeminiCall(
   }
 
   if (geminiCallTimestampsMs.length >= config.callsPerMinute) {
-    dependencies.logger.log(
+    logger.log(
       "warn",
       `Skipping Gemini ${task}: local ${config.callsPerMinute}/minute rate limit is exhausted.`,
     );
@@ -251,15 +258,17 @@ function reserveGeminiCall(
   }
 
   if (geminiDailyCallTimestampsMs.length >= config.callsPerDay) {
-    dependencies.logger.log(
+    logger.log(
       "warn",
       `Skipping Gemini ${task}: local ${config.callsPerDay}/day rate limit is exhausted.`,
     );
     return false;
   }
 
-  geminiCallTimestampsMs.push(nowMs);
-  geminiDailyCallTimestampsMs.push(nowMs);
+  if (reserve) {
+    geminiCallTimestampsMs.push(nowMs);
+    geminiDailyCallTimestampsMs.push(nowMs);
+  }
   return true;
 }
 
