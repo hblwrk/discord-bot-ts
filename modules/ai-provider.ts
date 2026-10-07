@@ -16,6 +16,7 @@ export type AiProviderInlineData = {
 };
 
 export type AiProviderCallOptions = {
+  onWebSources?: ((urls: string[]) => void) | undefined;
   timeoutMs?: number | undefined;
   useWebSearch?: boolean | undefined;
 };
@@ -46,6 +47,9 @@ export async function callAiProviderJson(
     if (true === options.useWebSearch) {
       openAiOptions.useWebSearch = true;
     }
+    if (undefined !== options.onWebSources) {
+      openAiOptions.onWebSources = options.onWebSources;
+    }
 
     return callOpenAiJson(
       prompt,
@@ -64,6 +68,9 @@ export async function callAiProviderJson(
 
   if (true === options.useWebSearch) {
     geminiOptions.useGoogleSearch = true;
+  }
+  if (undefined !== options.onWebSources) {
+    geminiOptions.onWebSources = options.onWebSources;
   }
 
   return callGeminiJson(

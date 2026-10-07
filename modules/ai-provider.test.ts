@@ -15,6 +15,34 @@ describe("AI provider facade", () => {
     clearAiProviderState();
   });
 
+  test.each(["gemini", "openai"])("forwards search citation metadata from %s", async provider => {
+    const source = "https://reuters.com/world/report";
+    const onWebSources = vi.fn();
+    const postWithRetryFn = vi.fn().mockResolvedValue({data: provider === "gemini" ? {
+      candidates: [{content: {parts: [{text: "{}"}]}, groundingMetadata: {groundingChunks: [
+        {web: {uri: source}}, {}, {web: {}},
+      ]}}],
+    } : {
+      output: [{content: [{type: "output_text", text: "{}", annotations: [
+        {type: "url_citation", url: source}, {type: "other", url: "ignored"}, {type: "url_citation"},
+      ]}, {}]}, {}],
+    }});
+    await callAiProviderJson("prompt", responseJsonSchema, {
+      logger, postWithRetryFn,
+      readSecretFn: secret => secret === "ai_provider" ? provider : secret.endsWith("api_key") ? "test-key" : "",
+    }, "test", undefined, {useWebSearch: true, onWebSources});
+    expect(onWebSources).toHaveBeenCalledExactlyOnceWith([source]);
+  });
+
+  test.each(["gemini", "openai"])("reports empty search provenance when %s omits metadata", async provider => {
+    const onWebSources = vi.fn();
+    await callAiProviderJson("prompt", responseJsonSchema, {
+      logger, postWithRetryFn: vi.fn().mockResolvedValue({data: {}}),
+      readSecretFn: secret => secret === "ai_provider" ? provider : secret.endsWith("api_key") ? "test-key" : "",
+    }, "test", undefined, {useWebSearch: true, onWebSources});
+    expect(onWebSources).toHaveBeenCalledExactlyOnceWith([]);
+  });
+
   test("uses Gemini when no provider is configured", async () => {
     const postWithRetryFn = vi.fn().mockResolvedValue({
       data: {

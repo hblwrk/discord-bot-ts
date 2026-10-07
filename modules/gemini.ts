@@ -18,6 +18,7 @@ export type GeminiInlineData = {
 };
 
 export type GeminiCallOptions = {
+  onWebSources?: ((urls: string[]) => void) | undefined;
   timeoutMs?: number | undefined;
   useGoogleSearch?: boolean | undefined;
 };
@@ -40,6 +41,9 @@ type GeminiContentPart = {
 
 type GeminiGenerateContentResponse = {
   candidates?: {
+    groundingMetadata?: {
+      groundingChunks?: {web?: {uri?: string}}[];
+    };
     content?: {
       parts?: {
         text?: string;
@@ -90,14 +94,22 @@ export async function callGeminiJson(
   }
 
   const postWithRetryFn = dependencies.postWithRetryFn ?? postWithRetry;
-  const parts = getGeminiContentParts(prompt, inlineData);
+  const useGoogleSearch = true === options.useGoogleSearch;
+  // Gemini 2.5 supports search and structured output separately. Ask for JSON
+  // in the prompt during search so the configured default model can ground a
+  // response; consumers still validate its JSON and provider citation metadata.
+  const parts = getGeminiContentParts(useGoogleSearch
+    ? `${prompt}\nReturn only JSON matching this schema, without code fences:\n${JSON.stringify(responseJsonSchema)}`
+    : prompt, inlineData);
   const requestBody = {
     contents: [{
       parts,
     }],
     generationConfig: {
-      responseMimeType: "application/json",
-      responseJsonSchema,
+      ...(useGoogleSearch ? {} : {
+        responseMimeType: "application/json",
+        responseJsonSchema,
+      }),
       temperature: 0,
     },
     ...(true === options.useGoogleSearch ? {
@@ -125,6 +137,10 @@ export async function callGeminiJson(
   });
 
   const firstCandidate = response.data.candidates?.[0];
+  if (true === options.useGoogleSearch) {
+    options.onWebSources?.(firstCandidate?.groundingMetadata?.groundingChunks
+      ?.flatMap(chunk => "string" === typeof chunk.web?.uri ? [chunk.web.uri] : []) ?? []);
+  }
   const textPart = firstCandidate?.content?.parts?.find(part => "string" === typeof part.text);
   return textPart?.text ?? null;
 }

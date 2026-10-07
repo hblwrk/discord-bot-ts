@@ -1,4 +1,6 @@
 import {getLogger} from "./logging.ts";
+import type {APIEmbed} from "discord.js";
+import {createTwitterIntrospector, type TwitterIntrospector} from "./twitter-sanity.ts";
 
 const logger = getLogger();
 const discordMaxMessageLength = 2_000;
@@ -14,6 +16,15 @@ const twitterHosts = new Set([
   "x.com",
 ]);
 
+type TwitterLinkResponse = {
+  edit: (payload: {
+    embeds: APIEmbed[];
+    allowedMentions: {parse: string[]; repliedUser: boolean};
+  }) => Promise<unknown>;
+};
+
+type LinkDelivery = {response: TwitterLinkResponse; content: string};
+
 type TwitterLinkRewriteMessage = {
   author?: {
     bot?: boolean;
@@ -26,11 +37,12 @@ type TwitterLinkRewriteMessage = {
         repliedUser?: boolean;
       };
       content: string;
+      embeds?: APIEmbed[];
       reply?: {
         failIfNotExists: boolean;
         messageReference: string;
       };
-    }) => Promise<unknown> | unknown;
+    }) => Promise<TwitterLinkResponse> | TwitterLinkResponse;
   };
   content: string;
   delete: () => Promise<unknown>;
@@ -45,7 +57,8 @@ type TwitterLinkRewriteMessage = {
       repliedUser: boolean;
     };
     content: string;
-  }) => Promise<unknown> | unknown;
+    embeds?: APIEmbed[];
+  }) => Promise<TwitterLinkResponse> | TwitterLinkResponse;
   suppressEmbeds: (suppress?: boolean) => Promise<unknown>;
   webhookId?: string | null;
 };
@@ -179,35 +192,39 @@ async function suppressOriginalEmbeds(message: TwitterLinkSuppressibleMessage) {
   }
 }
 
-async function replyWithFixedLinks(message: TwitterLinkRewriteMessage, content: string) {
+async function replyWithFixedLinks(message: TwitterLinkRewriteMessage, content: string): Promise<LinkDelivery | undefined> {
   try {
-    await message.reply({
+    const response = await message.reply({
       allowedMentions: {
         parse: [],
         repliedUser: false,
       },
       content,
     });
+    return {response, content};
   } catch (error: unknown) {
     logger.log(
       "error",
       `Error sending fixed Twitter/X link: ${error}`,
     );
+    return undefined;
   }
 }
 
 // Delete a link-only message and repost the fixed link in the bot's name,
 // crediting the original poster by mention ("From <@id>: <link>"). When the
 // deleted message was a reply, the replacement replies to the same message.
-// Returns true when the original was removed so the caller skips the
-// reply-and-suppress path; returns false (e.g. the bot lacks delete permission)
-// to fall back to that path.
-async function replaceLinkOnlyMessage(message: TwitterLinkRewriteMessage, fixedLinks: string[]): Promise<boolean> {
+// Reports whether the original was removed so the caller skips the reply path,
+// including when sending fails; a failed deletion falls back to replying.
+async function replaceLinkOnlyMessage(
+  message: TwitterLinkRewriteMessage,
+  fixedLinks: string[],
+): Promise<{removed: boolean; delivery?: LinkDelivery}> {
   const prefix = `From ${resolvePosterCredit(message)}: `;
   const content = getMessageContentWithinDiscordLimit(fixedLinks, discordMaxMessageLength - prefix.length);
   const referencedMessageId = message.reference?.messageId;
   if ("" === content) {
-    return false;
+    return {removed: false};
   }
 
   try {
@@ -217,11 +234,11 @@ async function replaceLinkOnlyMessage(message: TwitterLinkRewriteMessage, fixedL
       "error",
       `Error deleting original Twitter/X message: ${error}`,
     );
-    return false;
+    return {removed: false};
   }
 
   try {
-    await message.channel.send({
+    const response = await message.channel.send({
       allowedMentions: {
         parse: [],
         ...(undefined === referencedMessageId ? {} : {repliedUser: false}),
@@ -236,6 +253,7 @@ async function replaceLinkOnlyMessage(message: TwitterLinkRewriteMessage, fixedL
             },
           }),
     });
+    return {removed: true, delivery: {response, content}};
   } catch (error: unknown) {
     logger.log(
       "error",
@@ -243,7 +261,30 @@ async function replaceLinkOnlyMessage(message: TwitterLinkRewriteMessage, fixedL
     );
   }
 
-  return true;
+  return {removed: true};
+}
+
+async function updateSanityBadges(delivery: LinkDelivery, introspect: TwitterIntrospector): Promise<void> {
+  // Assess only delivered links. Promise.all preserves paste order even when
+  // providers finish out of order, and no inspection delays the initial send.
+  const results = await Promise.all(delivery.content.split("\n").slice(0, 4).map(async link => {
+    try {
+      return await introspect(link);
+    } catch {
+      logger.log("warn", "Twitter/X assessment failed; keeping the link preview.");
+      return undefined;
+    }
+  }));
+  const embeds = results.filter(embed => undefined !== embed);
+  if (0 === embeds.length) {
+    return;
+  }
+  try {
+    await delivery.response.edit({embeds, allowedMentions: {parse: [], repliedUser: false}});
+  } catch {
+    // Deleted responses and missing edit permissions must not undo conversion.
+    logger.log("warn", "Twitter/X badge update failed; keeping the converted link.");
+  }
 }
 
 export function getFixedTwitterLinks(content: string): string[] {
@@ -265,7 +306,10 @@ export function getFixedTwitterLinks(content: string): string[] {
   return [...fixedLinks];
 }
 
-export function addTwitterLinkRewrites(client: TwitterLinkRewriteClient) {
+export function addTwitterLinkRewrites(
+  client: TwitterLinkRewriteClient,
+  introspect: TwitterIntrospector = createTwitterIntrospector({logger}),
+) {
   // Discord attaches the X/Twitter card after the message is created, arriving
   // as a separate messageUpdate. Suppressing at messageCreate races that update
   // and the card slips through, so we wait for the embed to appear before
@@ -302,9 +346,20 @@ export function addTwitterLinkRewrites(client: TwitterLinkRewriteClient) {
       return;
     }
 
-    if (messageIsOnlyFixableLinks(message.content)) {
-      const replaced = await replaceLinkOnlyMessage(message, fixedLinks);
-      if (replaced) {
+    const linkOnly = messageIsOnlyFixableLinks(message.content);
+    // Suppression runs independently of sending the converted link.
+    if (messageHasEmbeds(message)) {
+      void suppressOriginalEmbeds(message);
+    } else {
+      trackMessageForEmbedSuppression(message.id);
+    }
+    if (linkOnly) {
+      const replacement = await replaceLinkOnlyMessage(message, fixedLinks);
+      if (replacement.removed) {
+        stopTrackingMessage(message.id);
+        if (undefined !== replacement.delivery) {
+          void updateSanityBadges(replacement.delivery, introspect);
+        }
         return;
       }
     }
@@ -314,13 +369,10 @@ export function addTwitterLinkRewrites(client: TwitterLinkRewriteClient) {
       return;
     }
 
-    if (messageHasEmbeds(message)) {
-      await suppressOriginalEmbeds(message);
-    } else {
-      trackMessageForEmbedSuppression(message.id);
+    const delivery = await replyWithFixedLinks(message, content);
+    if (undefined !== delivery) {
+      void updateSanityBadges(delivery, introspect);
     }
-
-    await replyWithFixedLinks(message, content);
   });
 
   client.on("messageUpdate", async (_oldMessage, newMessage) => {
