@@ -57,6 +57,7 @@ export async function crossCheckTwitterPost(
       "Never infer botnets, propaganda intent or media authenticity from wording, account age or engagement counts.",
       "Return unverified for missing evidence, opinion, partial matches or inaccessible media needed to establish the claim.",
       "For supported/contradicted, cite the exact searched article URLs and explain the evidence in one English sentence of at most 280 characters.",
+      "Aim for at most 160 characters: state the key evidence directly, without repeating the verdict or adding introductory phrasing; retain qualifications essential to the claim.",
       "Return JSON only; no Markdown, mentions, links inside the sentence, or invented sources.",
       JSON.stringify(post),
     ].join("\n"), checkSchema, dependencies, "Twitter/X reality check", undefined, {

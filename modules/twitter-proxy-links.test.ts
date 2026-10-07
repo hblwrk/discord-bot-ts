@@ -30,7 +30,7 @@ describe("proxy post assessments", () => {
     const message = proxyMessage(url);
     await getHandler("messageCreate")(message);
     await vi.waitFor(() => {
-      expect(message.reply).toHaveBeenCalledExactlyOnceWith({content: `Badge\nReality check.\nPost: <${url}>`, allowedMentions: {parse: [], repliedUser: false}});
+      expect(message.reply).toHaveBeenCalledExactlyOnceWith({content: `-# Badge\n-# Reality check.\n-# Post: <${url}>`, allowedMentions: {parse: [], repliedUser: false}});
     });
     await getHandler("messageUpdate")(undefined, message);
     expect(inspect).toHaveBeenCalledExactlyOnceWith(url);
@@ -110,7 +110,7 @@ describe("proxy post assessments", () => {
     const message = proxyMessage("https://fixvx.com/a/status/123 https://fixupx.com/b/status/456");
     await getHandler("messageCreate")(message);
     await vi.waitFor(() => {
-      expect(message.reply).toHaveBeenCalledExactlyOnceWith({content: "Link 2: Second\nPost: <https://fixupx.com/b/status/456>", allowedMentions: {parse: [], repliedUser: false}});
+      expect(message.reply).toHaveBeenCalledExactlyOnceWith({content: "-# Link 2: Second\n-# Post: <https://fixupx.com/b/status/456>", allowedMentions: {parse: [], repliedUser: false}});
     });
   });
 
