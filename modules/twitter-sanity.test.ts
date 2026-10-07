@@ -27,6 +27,30 @@ describe("Twitter metadata and badge service", () => {
     expect(deps.crossCheckFn).not.toHaveBeenCalled();
   });
 
+  test("accepts the live v2 envelope without the legacy code field", async () => {
+    // Shape observed on the reported RadioGenoa post; no legacy body code exists.
+    const data = {status: {
+      type: "status", id: "2106661915741114638",
+      text: "A major cleanup is underway in Ceuta. It was about time. Send them all back.",
+      media: {videos: [{type: "video"}]}, community_note: null,
+    }};
+    expect(parseTwitterPost(data, data.status.id)).toMatchObject({text: data.status.text, media: ["1 Video(s); content not inspected"]});
+    const deps = dependencies(data);
+    expect(await createTwitterIntrospector(deps)(`https://fxtwitter.com/RadioGenoa/status/${data.status.id}`))
+      .toMatchObject({title: "🟢 10% Spiciness — Low sensationalism"});
+    expect(deps.crossCheckFn).not.toHaveBeenCalled();
+  });
+
+  test.each([
+    {code: 404, status: {id: "123", text: "Not a successful response"}},
+    {code: null, status: {id: "123", text: "Invalid code"}},
+    {status: {type: "tombstone", id: "123", text: "This post is unavailable"}},
+    {status: {type: "profile", id: "123", text: "Not a post"}},
+    {status: {type: "status", id: "456", text: "A different post"}},
+  ])("rejects error envelopes, tombstones and mismatched IDs without legacy code %#", data => {
+    expect(parseTwitterPost(data, "123")).toBeUndefined();
+  });
+
   test.each([
     "https://fxtwitter.com/example", "https://x.com/example/status/123", "https://fxtwitter.com.evil.test/a/status/123",
     "http://fxtwitter.com/example/status/123", "https://user:pass@fxtwitter.com/example/status/123",

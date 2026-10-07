@@ -1,6 +1,7 @@
 import {getLogger} from "./logging.ts";
 import type {APIEmbed} from "discord.js";
 import {createTwitterIntrospector, type TwitterIntrospector} from "./twitter-sanity.ts";
+import {appendTwitterBadgeText} from "./twitter-badge-text.ts";
 
 const logger = getLogger();
 const discordMaxMessageLength = 2_000;
@@ -18,12 +19,12 @@ const twitterHosts = new Set([
 
 type TwitterLinkResponse = {
   edit: (payload: {
-    embeds: APIEmbed[];
+    content: string;
     allowedMentions: {parse: string[]; repliedUser: boolean};
   }) => Promise<unknown>;
 };
 
-type LinkDelivery = {response: TwitterLinkResponse; content: string};
+type LinkDelivery = {response: TwitterLinkResponse; content: string; messageContent: string};
 
 type TwitterLinkRewriteMessage = {
   author?: {
@@ -201,7 +202,7 @@ async function replyWithFixedLinks(message: TwitterLinkRewriteMessage, content: 
       },
       content,
     });
-    return {response, content};
+    return {response, content, messageContent: content};
   } catch (error: unknown) {
     logger.log(
       "error",
@@ -253,7 +254,7 @@ async function replaceLinkOnlyMessage(
             },
           }),
     });
-    return {removed: true, delivery: {response, content}};
+    return {removed: true, delivery: {response, content, messageContent: `${prefix}${content}`}};
   } catch (error: unknown) {
     logger.log(
       "error",
@@ -267,20 +268,25 @@ async function replaceLinkOnlyMessage(
 async function updateSanityBadges(delivery: LinkDelivery, introspect: TwitterIntrospector): Promise<void> {
   // Assess only delivered links. Promise.all preserves paste order even when
   // providers finish out of order, and no inspection delays the initial send.
-  const results = await Promise.all(delivery.content.split("\n").slice(0, 4).map(async link => {
+  const links = delivery.content.split("\n");
+  const results = await Promise.all(links.slice(0, 4).map(async (link, index) => {
     try {
-      return await introspect(link);
+      const embed = await introspect(link);
+      return undefined !== embed ? {linkNumber: index + 1, embed} : undefined;
     } catch {
       logger.log("warn", "Twitter/X assessment failed; keeping the link preview.");
       return undefined;
     }
   }));
-  const embeds = results.filter(embed => undefined !== embed);
-  if (0 === embeds.length) {
+  const badges = results.filter(badge => undefined !== badge);
+  const content = appendTwitterBadgeText(delivery.messageContent, badges, links.length > 1);
+  if (content === delivery.messageContent) {
     return;
   }
   try {
-    await delivery.response.edit({embeds, allowedMentions: {parse: [], repliedUser: false}});
+    // Explicit embeds replace Discord's automatic image/video preview. Edit
+    // only content so the native unfurl remains under the converted link.
+    await delivery.response.edit({content, allowedMentions: {parse: [], repliedUser: false}});
   } catch {
     // Deleted responses and missing edit permissions must not undo conversion.
     logger.log("warn", "Twitter/X badge update failed; keeping the converted link.");

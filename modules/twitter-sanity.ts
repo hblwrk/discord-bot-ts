@@ -113,8 +113,8 @@ async function assessTwitterPost(id: string, url: string, dependencies: TwitterS
       : check?.sentence ?? assessment.realityCheck;
     const title = `${tier.icon} ${assessment.score}% Spiciness — ${tier.label}`;
     const footer = {text: "Heuristic index, not a truth probability · Media authenticity and bot activity unverified"};
-    // Up to four badges share Discord's 6,000-character text budget. Prioritise
-    // the note over optional context when a long citation consumes the budget.
+    // Bound each assessment before delivery. The text formatter applies the
+    // shared message budget and omits assessments that cannot fit completely.
     let remaining = 1_500 - title.length - description.length - footer.text.length;
     const boundedFields = fields.filter(field => {
       const length = field.name.length + field.value.length;
@@ -144,11 +144,13 @@ function unavailableEmbed(url: string): APIEmbed {
 }
 
 export function parseTwitterPost(value: unknown, expectedId: string): TwitterPostContext | undefined {
-  if (!isRecord(value) || value["code"] !== 200) {
+  // API v2 uses HTTP status and a status envelope without the legacy code field.
+  if (!isRecord(value) || (undefined !== value["code"] && value["code"] !== 200)) {
     return undefined;
   }
   const post = value["status"];
-  if (!isRecord(post) || post["id"] !== expectedId || "string" !== typeof post["text"]
+  if (!isRecord(post) || (undefined !== post["type"] && post["type"] !== "status")
+    || post["id"] !== expectedId || "string" !== typeof post["text"]
     || !post["text"].trim() || post["text"].length > 8_000) {
     return undefined;
   }
