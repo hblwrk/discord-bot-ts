@@ -73,7 +73,7 @@ describe("proxy post assessments", () => {
     const {client, getHandler} = createEventClient();
     let finish: (value: {title: string}) => void = () => {};
     const pending = new Promise<{title: string}>(resolve => { finish = resolve; });
-    addTwitterLinkRewrites(client, link => link.includes("fixvx.com") ? pending : Promise.resolve(undefined));
+    addTwitterLinkRewrites(client, link => new URL(link).hostname === "fixvx.com" ? pending : Promise.resolve(undefined));
     const message = proxyMessage("https://x.com/a/status/123 https://fixvx.com/b/status/456");
     await getHandler("messageCreate")(message);
     expect(message.reply).toHaveBeenCalledExactlyOnceWith({content: "https://fxtwitter.com/a/status/123", allowedMentions: {parse: [], repliedUser: false}});
