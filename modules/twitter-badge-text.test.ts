@@ -2,9 +2,9 @@ import {describe, expect, test} from "vitest";
 import {appendTwitterBadgeText, type TwitterBadge} from "./twitter-badge-text.ts";
 
 const link = "From <@123>: https://fxtwitter.com/example/status/123";
-const legend = "-# Wording score ≠ truth probability · Media/bots unverified.";
+const legend = "-# Wording score ≠ truth · Media/bots unverified.";
 const checkField = {name: "AI web cross-check: contradicted", value: "[Source](https://www.reuters.com/world/article)"};
-const checkText = "**AI web check: contradicted**\nSource: <https://www.reuters.com/world/article>";
+const checkText = "**AI: contradicted** · [source](<https://www.reuters.com/world/article>)";
 
 describe("appendTwitterBadgeText", () => {
   test("adds a compact score and reality check while preserving credit and links", () => {
@@ -12,14 +12,14 @@ describe("appendTwitterBadgeText", () => {
       title: "🟡 50% Spiciness (Caution)",
       description: "Verify the original evidence before sharing.",
       fields: [checkField, {name: "Signals", value: "caps"}, {name: "Context", value: "1 video"}],
-    }}], false)).toBe(`${link}\n🟡 **50% wording spice** (Caution)\nVerify the original evidence before sharing.\n${checkText}\n${legend}`);
+    }}], false)).toBe(`${link}\n-# 🟡 50% wording spice · ${checkText}\n-# Verify the original evidence before sharing.\n${legend}`);
   });
 
   test("retains AI attribution and full citation without adding source previews", () => {
     expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
       title: "🟡 50% Spiciness (Caution)", description: "An attributed reality check.",
       fields: [{name: "AI web cross-check: disputed", value: "[Source](https://www.reuters.com/world/article)"}],
-    }}], false)).toBe(`${link}\n🟡 **50% wording spice** (Caution)\nAn attributed reality check.\n**AI web check: disputed**\nSource: <https://www.reuters.com/world/article>\n${legend}`);
+    }}], false)).toBe(`${link}\n-# 🟡 50% wording spice · **AI: disputed** · [source](<https://www.reuters.com/world/article>)\n-# An attributed reality check.\n${legend}`);
   });
 
   test("retains the note excerpt, attribution, evidence links and rating disclaimer", () => {
@@ -28,12 +28,12 @@ describe("appendTwitterBadgeText", () => {
       title: "🟢 10% Spiciness — Low sensationalism", description: "Reporting contradicts this claim.",
       fields: [checkField, {name: "Community Note via FxTwitter (excerpt)", value}],
     }}], false);
-    expect(text).toBe(`${link}\n🟢 **10% wording spice** · Low sensationalism\nReporting contradicts this claim.\n${checkText}\n**Community Note via FxTwitter (excerpt)**\nA note excerpt.\nPost: <https://x.com/example/status/123> · Source: <https://example.org/article>\nRating status and cited evidence are unverified.\n${legend}`);
+    expect(text).toBe(`${link}\n-# 🟢 10% wording spice · ${checkText}\n-# Reporting contradicts this claim.\n-# **Community Note via FxTwitter (excerpt)**\n-# A note excerpt.\n-# [Post](<https://x.com/example/status/123>) · [Source](<https://example.org/article>)\n-# Rating status and cited evidence are unverified.\n${legend}`);
   });
 
   test("uses original link positions and shares one wording legend", () => {
     const badges: TwitterBadge[] = [1, 3].map(linkNumber => ({linkNumber, embed: {title: "🟡 50% Spiciness — Caution", fields: [checkField]}}));
-    expect(appendTwitterBadgeText(link, badges, true)).toBe(`${link}\nLink 1: 🟡 **50% wording spice** · Caution\n${checkText}\nLink 3: 🟡 **50% wording spice** · Caution\n${checkText}\n${legend}`);
+    expect(appendTwitterBadgeText(link, badges, true)).toBe(`${link}\n-# Link 1: 🟡 50% wording spice · ${checkText}\n-# Link 3: 🟡 50% wording spice · ${checkText}\n${legend}`);
   });
 
   test("displays a contradicted verdict independently of a low wording score", () => {
@@ -41,7 +41,7 @@ describe("appendTwitterBadgeText", () => {
       title: "🟢 10% Spiciness — Low sensationalism",
       description: "Reporting contradicts this claim.", fields: [checkField],
     }}], false);
-    expect(text).toBe(`${link}\n🟢 **10% wording spice** · Low sensationalism\nReporting contradicts this claim.\n${checkText}\n${legend}`);
+    expect(text).toBe(`${link}\n-# 🟢 10% wording spice · ${checkText}\n-# Reporting contradicts this claim.\n${legend}`);
     expect(text).not.toContain("skipped");
   });
 
@@ -50,7 +50,7 @@ describe("appendTwitterBadgeText", () => {
       title: "🟢 20% Spiciness — Low sensationalism",
       description: "Reporting contradicts this claim.\nPost: <https://fixvx.com/a/status/123>", fields: [checkField],
     }}], false);
-    expect(text).toBe(`🟢 **20% wording spice** · Low sensationalism\nReporting contradicts this claim.\nPost: <https://fixvx.com/a/status/123>\n${checkText}\n${legend}`);
+    expect(text).toBe(`-# 🟢 20% wording spice · ${checkText}\n-# Reporting contradicts this claim.\n-# Post: <https://fixvx.com/a/status/123>\n${legend}`);
   });
 
   test.each([10, 50, 95])("omits scored badges without a completed AI check at %s%%, including notes alone", score => {
@@ -64,7 +64,7 @@ describe("appendTwitterBadgeText", () => {
   test("omits untitled and empty assessments", () => {
     expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {description: "orphaned text"}}], false)).toBe(link);
     expect(appendTwitterBadgeText(link, [], false)).toBe(link);
-    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {title: "Unavailable", description: ""}}], false)).toBe(`${link}\nUnavailable`);
+    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {title: "Unavailable", description: ""}}], false)).toBe(`${link}\n-# Unavailable`);
   });
 
   test("fits the exact message limit and omits an assessment one character over it", () => {
@@ -89,6 +89,6 @@ describe("appendTwitterBadgeText", () => {
       {linkNumber: 2, embed: {title: "Second", fields: [{name: "Community Note via FxTwitter", value: "x".repeat(2_000)}]}},
       {linkNumber: 3, embed: {title: "Third"}},
     ];
-    expect(appendTwitterBadgeText(link, badges, true)).toBe(`${link}\nLink 1: First\nLink 3: Third`);
+    expect(appendTwitterBadgeText(link, badges, true)).toBe(`${link}\n-# Link 1: First\n-# Link 3: Third`);
   });
 });

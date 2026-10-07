@@ -79,8 +79,8 @@ describe("Twitter review with OpenAI search sources", () => {
     await vi.waitFor(() => { expect(delivered).toHaveBeenCalledTimes(1); });
     const options = delivered.mock.calls[0]?.[0];
     expect(options.content).toContain(sentence);
-    expect(options.content).toContain("**AI web check: supported (review sources)**");
-    expect(options.content).toContain(`Source 1: <${sources[0]}>`);
+    expect(options.content).toContain("**AI: supported**");
+    expect(options.content).toContain(`[source](<${sources[0]}>)`);
     expect(options).not.toHaveProperty("embeds");
     expect(options).not.toHaveProperty("flags");
     expect(message.suppressEmbeds).toHaveBeenCalledTimes(host === "x.com" ? 1 : 0);

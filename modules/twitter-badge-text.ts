@@ -2,7 +2,7 @@ import type {APIEmbed} from "discord.js";
 
 export type TwitterBadge = {linkNumber: number; embed: APIEmbed};
 const messageLimit = 2_000;
-const legend = "-# Wording score ≠ truth probability · Media/bots unverified.";
+const legend = "-# Wording score ≠ truth · Media/bots unverified.";
 
 export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], multipleLinks: boolean): string {
   const blocks: string[] = [];
@@ -11,7 +11,7 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
     if (!embed.title) {
       continue;
     }
-    const compactTitle = embed.title.replace(/(\d+%) Spiciness/u, "**$1 wording spice**").replace(" — ", " · ");
+    const compactTitle = embed.title.replace(/(\d+%) Spiciness(?: — [^\n]+| \([^\n]+\))?/u, "$1 wording spice");
     const title = multipleLinks ? `Link ${linkNumber}: ${compactTitle}` : compactTitle;
     // AI factual claims retain their citation, and note excerpts retain their
     // attribution/status disclaimer. Never truncate either into a bare claim.
@@ -22,11 +22,16 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
     if (null !== score && !evidence.some(field => field.name.startsWith("AI web cross-check:"))) {
       continue;
     }
-    const block = [title, embed.description, ...evidence.map(field => {
-      const name = field.name.replace("AI web cross-check:", "AI web check:");
-      return `**${name}**\n${suppressCitationPreviews(field.value)}`;
-    })]
-      .filter(line => undefined !== line && "" !== line).join("\n");
+    const check = evidence.find(field => field.name.startsWith("AI web cross-check:"));
+    const header = undefined === check ? title : [
+      title,
+      `**${check.name.replace("AI web cross-check:", "AI:").replace(" (review sources)", "")}**`,
+      suppressCitationPreviews(check.value).replace(/\[Source(?: \d+)?\]\(</gu, "[source](<"),
+    ].join(" · ");
+    const block = [header, embed.description, ...evidence.filter(field => field !== check).map(field =>
+      `**${field.name}**\n${suppressCitationPreviews(field.value)}`)]
+      .filter(line => undefined !== line && "" !== line).join("\n")
+      .split("\n").map(line => `-# ${line}`).join("\n");
     const nextNeedsLegend: boolean = needsLegend || null !== score;
     const nextBlocks = [...blocks, block];
     const candidate = [content, ...nextBlocks, ...(nextNeedsLegend ? [legend] : [])].filter(Boolean).join("\n");
@@ -41,5 +46,5 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
 }
 
 function suppressCitationPreviews(value: string): string {
-  return value.replace(/\[([^\]\n]+)\]\((https:\/\/[^)\s]+)\)/gu, "$1: <$2>");
+  return value.replace(/\[([^\]\n]+)\]\((https:\/\/[^)\s]+)\)/gu, "[$1](<$2>)");
 }
