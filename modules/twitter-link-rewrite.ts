@@ -322,12 +322,10 @@ export function addTwitterLinkRewrites(
 
     const linkOnly = messageIsOnlyFixableLinks(message.content);
     // Track asynchronous original embeds before waiting on remote assessment.
-    if (!linkOnly) {
-      if (messageHasEmbeds(message)) {
-        await suppressOriginalEmbeds(message);
-      } else {
-        trackMessageForEmbedSuppression(message.id);
-      }
+    if (messageHasEmbeds(message)) {
+      await suppressOriginalEmbeds(message);
+    } else {
+      trackMessageForEmbedSuppression(message.id);
     }
     const visibleContent = getMessageContentWithinDiscordLimit(fixedLinks);
     const assessments: LinkAssessment[] = [];
@@ -347,6 +345,7 @@ export function addTwitterLinkRewrites(
     if (linkOnly) {
       const replaced = await replaceLinkOnlyMessage(message, fixedLinks, assessments);
       if (replaced) {
+        stopTrackingMessage(message.id);
         return;
       }
     }
@@ -354,14 +353,6 @@ export function addTwitterLinkRewrites(
     const content = getMessageContentWithinDiscordLimit(fixedLinks);
     if ("" === content) {
       return;
-    }
-
-    if (linkOnly) {
-      if (messageHasEmbeds(message)) {
-        await suppressOriginalEmbeds(message);
-      } else {
-        trackMessageForEmbedSuppression(message.id);
-      }
     }
 
     await replyWithFixedLinks(message, content, assessments);

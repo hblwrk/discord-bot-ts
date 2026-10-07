@@ -148,19 +148,19 @@ describe("addTwitterLinkRewrites", () => {
     expect(message.channel.send).toHaveBeenCalledWith(expect.objectContaining({embeds: [{title: "First"}, {title: "Second"}]}));
   });
 
-  test("tracks original embeds while assessment is pending", async () => {
+  test.each(["look ", ""])("tracks original embeds while assessment is pending for prefix '%s'", async prefix => {
     const {client, getHandler} = createEventClient();
     let finish: (value: undefined) => void = () => {};
     const inspection = new Promise<undefined>(resolve => { finish = resolve; });
     addTwitterLinkRewrites(client, () => inspection);
-    const message = createTwitterMessage("look https://x.com/a/status/123");
+    const message = createTwitterMessage(`${prefix}https://x.com/a/status/123`);
     const pending = getHandler("messageCreate")(message);
     message.embeds = [{}];
     await getHandler("messageUpdate")(undefined, message);
     expect(message.suppressEmbeds).toHaveBeenCalledWith(true);
     finish(undefined);
     await pending;
-    expect(message.reply).toHaveBeenCalledTimes(1);
+    expect(message.reply.mock.calls.length + message.channel.send.mock.calls.length).toBe(1);
   });
 
   test("limits assessments to four and survives assessment failure", async () => {
