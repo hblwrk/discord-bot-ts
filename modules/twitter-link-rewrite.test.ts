@@ -437,12 +437,12 @@ describe("addTwitterLinkRewrites", () => {
     expect(webhookMessage.reply).not.toHaveBeenCalled();
   });
 
-  test("does nothing when there are no fixable Twitter or X links", async () => {
+  test("does nothing when there are no supported Twitter or X links", async () => {
     const {client, getHandler} = createEventClient();
     addTwitterLinkRewrites(client);
 
     const handler = getHandler("messageCreate");
-    const message = createTwitterMessage("https://fxtwitter.com/example/status/123");
+    const message = createTwitterMessage("https://example.com/example/status/123");
 
     await handler(message);
 
