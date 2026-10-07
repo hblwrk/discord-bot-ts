@@ -1,7 +1,4 @@
 ---
-- name: flash
-  trigger: ["flash"]
-  response: ["custom:flash"]
 - name: workhorse
   trigger: ["wkhs"]
   response: ["🐴"]
