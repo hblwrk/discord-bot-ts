@@ -239,6 +239,8 @@ function getMarketCloseRecapPrompt(date: Date, tickerFacts: MarketCloseTickerFac
     tickerFactsPrompt,
     "Bewerte den Handelstag fuer die konfigurierten Market-Data-Bot-Instrumente; bei Bot-Snapshots ist die Bot-Veraenderung massgeblich.",
     "Die Veraenderung aus den Ticker-Fakten ist maßgeblich für die genannte Tagesveränderung; Close-to-close oder Bot-Veraenderung darf als Tagesveränderung genannt werden.",
+    "Leite auch den Einstieg und jedes Richtungswort aus diesen Fakten ab: positive Bot-/Tagesveraenderung ist ein Plus, kein Fallen oder schwaecherer Schluss. Vergleiche die Rangfolge anhand derselben Veraenderungen; vermische keine News-Richtung oder andere Referenzbasis mit den Bot-Werten.",
+    "Benenne eine abweichende Referenzbasis wie Open oder Intraday-Hoch ausdruecklich. High/Low belegen eine Spanne, aber keinen zeitlichen Verlauf: Behaupte daraus keine fruehe Staerke, spaete Schwaeche oder Reversal-Abfolge.",
     "Die Sentiment-Auswahl folgt nicht allein der Netto-Veränderung: Beziehe Intraday-Spanne (`Intraday-Hoch`/`Intraday-Tief` bzw. `High`/`Low`), Reversals und die Streuung zwischen `ES`, `NQ` und `RTY` mit ein.",
     "Berücksichtige ausschließlich `ES`, `NQ`, `RTY` sowie zwingend den `VIX`.",
     "Erwähne nicht die Cash-/ETF-Pendants `SPX`, `SPY`, `NDX`, `RUT`, `QQQ` oder `IWM`.",
