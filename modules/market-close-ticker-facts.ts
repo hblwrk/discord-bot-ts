@@ -9,6 +9,7 @@ import {
   type MarketDataSnapshot,
 } from "./market-data-snapshots.ts";
 import {type MarketDataSource} from "./market-data-types.ts";
+import {getMarketCloseDirectionValidationIssue} from "./market-close-direction.ts";
 
 export type MarketCloseTickerSymbol = MarketDataBotSymbol;
 export type MarketCloseTickerFactSource = "investing-daily-bar" | "market-data-bot" | "yahoo-daily-bar";
@@ -161,9 +162,9 @@ export function getTickerFactValidationIssue(
     return "output claimed closing highs not supported by ticker facts";
   }
 
-  const contradictedSymbol = facts.find(fact => hasSymbolDirectionContradiction(combinedText, fact))?.symbol;
-  if (undefined !== contradictedSymbol) {
-    return `output direction contradicted ticker facts for ${contradictedSymbol}`;
+  const directionIssue = getMarketCloseDirectionValidationIssue(combinedText, facts);
+  if (undefined !== directionIssue) {
+    return directionIssue;
   }
 
   if (true === hasUnsupportedSentimentAnswer(winningPollAnswer, facts)) {
@@ -491,17 +492,6 @@ function hasUnsupportedClosingHighClaim(value: string, facts: MarketCloseTickerF
 
   const relevantFacts = getReferencedEquityFacts(value, facts);
   return relevantFacts.some(fact => "market-data-bot" === fact.dataSource || false === isCloseNearDailyHigh(fact) || fact.closeChange < 0);
-}
-
-function hasSymbolDirectionContradiction(value: string, fact: MarketCloseTickerFact): boolean {
-  if (getPrimaryChangePercent(fact) > -0.1) {
-    return false;
-  }
-
-  const symbolPattern = `\\b${fact.symbol}\\b`;
-  const bullishAfterSymbol = new RegExp(`${symbolPattern}[^\\n.?!;:]{0,100}\\b(?:stieg|zogen|zog|legte(?:n)? zu|gewann(?:en)?|schloss(?:en)? (?:hoeher|höher|fester|im plus)|neue?n? hochs?|record high|new highs?|higher|up)\\b`, "iu");
-  const bullishBeforeSymbol = new RegExp(`\\b(?:stieg|zogen|zog|legte(?:n)? zu|gewann(?:en)?|schloss(?:en)? (?:hoeher|höher|fester|im plus)|higher|up)\\b[^\\n.?!;:]{0,100}${symbolPattern}`, "iu");
-  return bullishAfterSymbol.test(value) || bullishBeforeSymbol.test(value);
 }
 
 function hasUnsupportedSentimentAnswer(winningPollAnswer: string, facts: MarketCloseTickerFact[]): boolean {
