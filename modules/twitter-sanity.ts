@@ -2,7 +2,7 @@ import type {APIEmbed} from "discord.js";
 import {getWithRetry} from "./http-retry.ts";
 import {safeHttpsAgent} from "./safe-http.ts";
 import {crossCheckTwitterPost, recognisedSourceUrl, type TwitterRealityCheck} from "./twitter-sanity-check.ts";
-import {researchTwitterSource, type TwitterSourceCredibility} from "./twitter-source-credibility.ts";
+import {researchTwitterSource, unresearchedTwitterSource, type TwitterSourceCredibility} from "./twitter-source-credibility.ts";
 import {scoreTwitterPost, type TwitterPostContext, type TwitterSanityScore} from "./twitter-sanity-score.ts";
 import {communityNoteField, parseTwitterCommunityNote} from "./twitter-community-note.ts";
 import {getTwitterStatusId} from "./twitter-status-url.ts";
@@ -35,9 +35,6 @@ export function createTwitterIntrospector(dependencies: TwitterSanityDependencie
   const start = (link: string, onBadge?: (badge: APIEmbed) => void): Promise<APIEmbed | undefined> => {
     const id = getTwitterStatusId(link);
     if (undefined === id) {
-      return Promise.resolve(undefined);
-    }
-    if (!(dependencies.aiAvailableFn?.() ?? isAiProviderAvailable(dependencies))) {
       return Promise.resolve(undefined);
     }
     const url = `https://fxtwitter.com/i/status/${id}`;
@@ -111,23 +108,27 @@ async function assessTwitterPost(
     if (undefined === post) {
       return {badge: undefined, retryable: true};
     }
+    const aiAvailable = dependencies.aiAvailableFn?.() ?? isAiProviderAvailable(dependencies);
     const reviewDependencies = {
       ...dependencies, logger: {log: (_level, message) => { dependencies.logger.log("debug", message); }},
     } satisfies AiProviderDependencies;
     // Start all three evaluations together. Wording is local; the two web
     // requests can finish in either order without holding up one another.
     const wordingPromise = Promise.resolve().then(() => scoreTwitterPost(post));
-    const checkPromise = Promise.resolve().then(() => (dependencies.crossCheckFn ?? crossCheckTwitterPost)(post, reviewDependencies))
+    const checkPromise = Promise.resolve().then(() => aiAvailable
+      ? (dependencies.crossCheckFn ?? crossCheckTwitterPost)(post, reviewDependencies) : undefined)
       .catch(() => {
         dependencies.logger.log("debug", "Twitter/X web cross-check skipped; keeping the link preview.");
         return undefined;
       });
     let sourceSettled = false;
-    const credibilityPromise = Promise.resolve().then(() => (dependencies.credibilityFn ?? researchTwitterSource)(post, reviewDependencies))
+    const credibilityPromise = Promise.resolve().then(() => aiAvailable
+      ? (dependencies.credibilityFn ?? researchTwitterSource)(post, reviewDependencies)
+      : unresearchedTwitterSource(post, dependencies.nowMs?.() ?? Date.now()))
       .catch((): TwitterSourceCredibility => ({target: "unidentified", label: "source not identified", verdict: "unverified"}))
       .then(value => { sourceSettled = true; return value; });
     const assessment = await wordingPromise;
-    const pending = buildTwitterBadge(url, id, post, assessment, undefined, undefined, true);
+    const pending = buildTwitterBadge(url, id, post, assessment, undefined, undefined, aiAvailable);
     if (undefined !== pending) publish(pending);
     const check = await checkPromise;
     if (!sourceSettled) {

@@ -43,6 +43,19 @@ export function selectCredibilityTarget(post: TwitterPostContext): CredibilityTa
   return undefined;
 }
 
+// Preserve only metadata-backed account cautions when web research cannot run.
+export function unresearchedTwitterSource(post: TwitterPostContext, nowMs: number): TwitterSourceCredibility {
+  const target = selectCredibilityTarget(post);
+  const cautions = accountCautions(post, nowMs);
+  if (undefined === target) {
+    return cautions.length === 0 ? unverified() : {
+      target: "posting account", label: "account identity unavailable", verdict: "unverified", cautions,
+    };
+  }
+  if (target.kind === "link" || cautions.length === 0) return unverified(target);
+  return {...unverified(target), cautions};
+}
+
 export async function researchTwitterSource(
   post: TwitterPostContext,
   dependencies: AiProviderDependencies,
