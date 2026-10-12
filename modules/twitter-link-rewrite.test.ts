@@ -130,14 +130,14 @@ describe("addTwitterLinkRewrites", () => {
       {name: "Source credibility: credible (@example)", value: "[Evidence](https://example.org/about)"}]};
     publish(pending);
     await vi.waitFor(() => { expect(message.response.edit).toHaveBeenCalledTimes(1); });
-    expect(message.response.edit.mock.calls[0]?.[0].content).toContain("-# 🟡 [source]");
-    publish({title: "🟡 10% Spiciness — Source credibility unverified", fields: [citation,
+    expect(message.response.edit.mock.calls[0]?.[0].content).toContain("-# 🟡 Checking source credibility [source]");
+    publish({title: "🟡 10% Spiciness — Source check pending", fields: [citation,
       {name: "Source credibility: unverified (@example)", value: "Under 100 followers"}]});
     await new Promise(resolve => setTimeout(resolve, 0));
     expect(message.response.edit).toHaveBeenCalledTimes(1);
     publish(trusted);
     await vi.waitFor(() => { expect(message.response.edit).toHaveBeenCalledTimes(2); });
-    expect(message.response.edit.mock.calls[1]?.[0].content).toContain("-# 🟢 [source]");
+    expect(message.response.edit.mock.calls[1]?.[0].content).toContain("-# 🟢 Supported claim [source]");
     publish(trusted);
     await new Promise(resolve => setTimeout(resolve, 0));
     expect(message.response.edit).toHaveBeenCalledTimes(2);

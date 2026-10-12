@@ -80,11 +80,11 @@ describe("Twitter review with OpenAI search sources", () => {
     await getHandler("messageCreate")(message);
     const delivered = response.edit;
     await vi.waitFor(() => {
-      expect(delivered.mock.lastCall?.[0]?.content).toBe(`From <@123>: ${deliveredUrl}\n-# 🟢 [source](<${sources[0]}>)`);
+      expect(delivered.mock.lastCall?.[0]?.content).toBe(`From <@123>: ${deliveredUrl}\n-# 🟢 Supported claim [source](<${sources[0]}>)`);
     });
-    expect(delivered.mock.calls[0]?.[0]?.content).toBe(`From <@123>: ${deliveredUrl}\n-# 🟡`);
+    expect(delivered.mock.calls[0]?.[0]?.content).toBe(`From <@123>: ${deliveredUrl}\n-# 🟡 Checking claim`);
     const options = delivered.mock.lastCall?.[0];
-    expect(options.content).toBe(`From <@123>: ${deliveredUrl}\n-# 🟢 [source](<${sources[0]}>)`);
+    expect(options.content).toBe(`From <@123>: ${deliveredUrl}\n-# 🟢 Supported claim [source](<${sources[0]}>)`);
     expect(options).not.toHaveProperty("embeds");
     expect(options).not.toHaveProperty("flags");
     expect(getWithRetryFn).toHaveBeenCalledExactlyOnceWith("https://api.fxtwitter.com/2/status/2106661915741114638",

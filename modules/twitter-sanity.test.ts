@@ -75,9 +75,10 @@ describe("Twitter metadata and badge service", () => {
     const result = inspect.observe!("https://fixvx.com/a/status/123", updates);
     await vi.waitFor(() => { expect(updates).toHaveBeenCalledTimes(2); });
     expect(updates.mock.calls[0]?.[0].title).toContain("Wording caution");
-    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: updates.mock.calls[0]?.[0]}], false)).toBe("-# 🟡");
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: updates.mock.calls[0]?.[0]}], false))
+      .toBe("-# 🟡 Wording caution");
     expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: updates.mock.calls[1]?.[0]}], false))
-      .toBe("-# 🟡 [source](<https://reuters.com/world/report>)");
+      .toBe("-# 🟡 Wording caution [source](<https://reuters.com/world/report>)");
     source.resolve({target: "posting account", label: "@example", verdict: "credible", source: "https://example.org/about"});
     expect((await result)?.title).toContain("Wording caution");
     expect(updates).toHaveBeenCalledTimes(2);
@@ -105,13 +106,13 @@ describe("Twitter metadata and badge service", () => {
     expect(updates).toHaveBeenCalledTimes(1);
     expect(updates.mock.calls[0]?.[0]).toMatchObject({title: "🟡 10% Spiciness — Fact check pending"});
     fact.resolve(undefined);
-    await vi.waitFor(() => { expect(updates).toHaveBeenCalledTimes(1); });
+    await vi.waitFor(() => { expect(updates).toHaveBeenCalledTimes(2); });
     source.resolve({target: "posting account", label: "@example", verdict: "credible", source: "https://example.org/about"});
     const badge = await result;
     expect(badge).toMatchObject({title: "🟡 10% Spiciness — Fact check unverified"});
-    expect(updates).toHaveBeenCalledTimes(1);
+    expect(updates).toHaveBeenCalledTimes(2);
     if (undefined === badge) throw new Error("Expected an unverified badge");
-    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false)).toBe("-# 🟡");
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false)).toBe("-# 🟡 Claim unverified");
   });
 
   test("publishes a conservative badge without spending AI calls when the provider is unavailable", async () => {
@@ -130,7 +131,7 @@ describe("Twitter metadata and badge service", () => {
       value: "Under 100 followers · Account under 30 days old · Independent evidence unavailable",
     });
     if (undefined === badge) throw new Error("Expected an unverified badge");
-    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false)).toBe("-# 🟡");
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false)).toBe("-# 🟡 Claim unverified");
   });
 
   test("retries after provider availability returns, while retaining a previously grounded cached badge", async () => {
@@ -247,7 +248,7 @@ describe("Twitter metadata and badge service", () => {
     });
     if (undefined === badge) throw new Error("Expected a badge for the supported claim");
     expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false))
-      .toBe("-# 🟡 [source](<https://reuters.com/world/report>)");
+      .toBe("-# 🟡 Account caution [source](<https://reuters.com/world/report>)");
   });
 
   test.each([
@@ -460,13 +461,13 @@ describe("Twitter metadata and badge service", () => {
     },
   );
 
-  test("shows only the unverified indicator when a Community Note cannot establish the claim", async () => {
+  test("shows a brief unverified status when a Community Note cannot establish the claim", async () => {
     const deps = dependencies({status: {id: "123", text: "A calm factual claim.", community_note: {text: "A supplied note."}}});
     deps.crossCheckFn.mockResolvedValue(undefined);
     const badge = await createTwitterIntrospector(deps)("https://fixvx.com/a/status/123");
     expect(badge).toMatchObject({title: "🟡 10% Spiciness — Fact check unverified"});
     if (undefined === badge) throw new Error("Expected an unverified badge");
-    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false)).toBe("-# 🟡");
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false)).toBe("-# 🟡 Claim unverified");
     expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
   });
 

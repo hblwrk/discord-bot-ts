@@ -37,7 +37,7 @@ describe("silent Twitter review delivery", () => {
       await vi.waitFor(() => { expect(post.response.edit).toHaveBeenCalledTimes(1); });
       expect(getWithRetryFn).toHaveBeenCalledTimes(1);
       expect(post.response.edit).toHaveBeenCalledExactlyOnceWith({
-        content: `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123\n-# 🟡`,
+        content: `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123\n-# 🟡 Claim unverified`,
         allowedMentions: {parse: [], repliedUser: false},
       });
       expect(post.channel.send.mock.calls).toEqual([[{content: `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123`, allowedMentions: {parse: []}}]]);
@@ -61,12 +61,14 @@ describe("silent Twitter review delivery", () => {
         addTwitterLinkRewrites(client, introspect);
         const post = message(`https://${host}/a/status/123`);
         await getHandler("messageCreate")(post);
-        await vi.waitFor(() => { expect(post.response.edit).toHaveBeenCalledTimes(1); });
-        expect(aiCall).toHaveBeenCalledTimes(1);
-        expect(post.response.edit).toHaveBeenCalledExactlyOnceWith({
-          content: `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123\n-# 🟡`,
-          allowedMentions: {parse: [], repliedUser: false},
+        const status = text === "They are hiding this from you" ? "Wording caution" : "Claim unverified";
+        await vi.waitFor(() => {
+          expect(post.response.edit.mock.lastCall?.[0]?.content).toBe(
+            `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123\n-# 🟡 ${status}`,
+          );
         });
+        expect(aiCall).toHaveBeenCalledTimes(1);
+        expect(post.response.edit).toHaveBeenCalledTimes(status === "Wording caution" ? 1 : 2);
         expect(post.reply).not.toHaveBeenCalled();
         expect(post.channel.send).toHaveBeenCalledTimes(1);
       }
@@ -87,7 +89,7 @@ describe("silent Twitter review delivery", () => {
     await vi.waitFor(() => { expect(crossCheckFn).toHaveBeenCalledTimes(1); });
     await vi.waitFor(() => {
       expect(post.response.edit).toHaveBeenCalledExactlyOnceWith({
-        content: `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123\n-# 🟡`,
+        content: `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123\n-# 🟡 Checking claim`,
         allowedMentions: {parse: [], repliedUser: false},
       });
     });
@@ -98,7 +100,7 @@ describe("silent Twitter review delivery", () => {
     const delivered = post.response.edit;
     await vi.waitFor(() => { expect(delivered).toHaveBeenCalledTimes(2); });
     const options = delivered.mock.calls[1]?.[0];
-    expect(options.content).toContain("-# 🟡 [source]");
+    expect(options.content).toContain("-# 🟡 Claim contradicted [source]");
     expect(options.content).not.toContain("Reporting contradicts the council approval claim.");
     expect(options.content).toContain("[source](<https://reuters.com/world/report>)");
     expect(options.content).not.toContain("skipped");
@@ -120,11 +122,11 @@ describe("silent Twitter review delivery", () => {
     const post = message(url);
     await getHandler("messageCreate")(post);
     await vi.waitFor(() => {
-      expect(post.response.edit.mock.lastCall?.[0]?.content).toBe(`From <@123>: ${url}\n-# 🟡`);
+      expect(post.response.edit.mock.lastCall?.[0]?.content).toBe(`From <@123>: ${url}\n-# 🟡 Claim unverified`);
     });
     expect(getWithRetryFn).toHaveBeenCalledExactlyOnceWith(`https://api.fxtwitter.com/2/status/${id}`,
       expect.anything(), expect.anything());
     expect(crossCheckFn).toHaveBeenCalledTimes(1);
-    expect(post.response.edit).toHaveBeenCalledTimes(1);
+    expect(post.response.edit).toHaveBeenCalledTimes(2);
   });
 });

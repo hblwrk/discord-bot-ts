@@ -41,10 +41,10 @@ describe("proxy post assessments", () => {
       const credible: APIEmbed = {title: "🟢 10% Spiciness — Supported claim, low spice, credible source", fields: [citation]};
       publish(pending);
       await vi.waitFor(() => { expect(post.reply).toHaveBeenCalledTimes(1); });
-      expect(post.reply.mock.calls[0]?.[0].content).toContain("-# 🟡 [source]");
+      expect(post.reply.mock.calls[0]?.[0].content).toContain("-# 🟡 Checking source credibility [source]");
       publish(credible);
       await vi.waitFor(() => { expect(post.response.edit).toHaveBeenCalledTimes(1); });
-      expect(post.response.edit.mock.calls[0]?.[0].content).toContain("-# 🟢 [source]");
+      expect(post.response.edit.mock.calls[0]?.[0].content).toContain("-# 🟢 Supported claim [source]");
       expect(post.reply).toHaveBeenCalledTimes(1);
       publish({...credible, description: "Further supporting context"});
       finish(credible);
@@ -167,7 +167,7 @@ describe("proxy post assessments", () => {
     expect(message.content).toBe("look https://fixupx.com/a/status/123");
   });
 
-  test.each(twitterProxyHosts)("keeps a %s preview and replies with only the indicator and source", async host => {
+  test.each(twitterProxyHosts)("keeps a %s preview and replies with a short status and source", async host => {
     const {client, getHandler} = createEventClient();
     const badge: APIEmbed = {title: "🟡 10% Spiciness — Claim contradicted", fields: [{
       name: "AI web cross-check: contradicted (review sources)", value: "[Source 1](https://example.org/report)",
@@ -179,7 +179,7 @@ describe("proxy post assessments", () => {
     await getHandler("messageCreate")(message);
     await vi.waitFor(() => {
       expect(message.reply).toHaveBeenCalledExactlyOnceWith({
-        content: "-# 🟡 [source](<https://example.org/report>)", allowedMentions: {parse: [], repliedUser: false},
+        content: "-# 🟡 Claim contradicted [source](<https://example.org/report>)", allowedMentions: {parse: [], repliedUser: false},
       });
     });
     expect(inspect).toHaveBeenCalledExactlyOnceWith(url);

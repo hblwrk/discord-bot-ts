@@ -5,7 +5,7 @@ const link = "From <@123>: https://fxtwitter.com/example/status/123";
 const checkField = {name: "AI web cross-check: contradicted", value: "[Source](https://example.org/report)"};
 
 describe("appendTwitterBadgeText", () => {
-  test("shows only the combined indicator and one source", () => {
+  test("shows a short combined status and one source", () => {
     const text = appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
       title: "🟢 10% Spiciness — Supported claim, low spice, credible source",
       description: "The council approved the plan.",
@@ -15,27 +15,41 @@ describe("appendTwitterBadgeText", () => {
         {name: "Community Note via FxTwitter", value: "A note excerpt."},
       ],
     }}], false);
-    expect(text).toBe(`${link}\n-# 🟢 [source](<https://example.org/report>)`);
+    expect(text).toBe(`${link}\n-# 🟢 Supported claim [source](<https://example.org/report>)`);
   });
 
-  test("omits wording score, AI verdict and explanation for a caution", () => {
+  test("omits wording score and long explanation for a caution", () => {
     const text = appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
       title: "🟡 50% Spiciness (Caution)",
       description: "Verify the original evidence before sharing.",
       fields: [checkField],
     }}], false);
-    expect(text).toBe(`${link}\n-# 🟡 [source](<https://example.org/report>)`);
+    expect(text).toBe(`${link}\n-# 🟡 Caution [source](<https://example.org/report>)`);
   });
 
-  test("shows the indicator alone when a completed check has no usable source link", () => {
+  test("shows a useful label when a check has no usable source link", () => {
     expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
       title: "🟡 50% Spiciness (Caution)", fields: [{name: "AI web cross-check: disputed", value: "Source unavailable"}],
-    }}], false)).toBe(`${link}\n-# 🟡`);
+    }}], false)).toBe(`${link}\n-# 🟡 Caution`);
+  });
+
+  test.each([
+    ["Claim contradicted", "Claim contradicted"],
+    ["Source credibility concerns", "Source credibility concerns"],
+    ["Wording caution", "Wording caution"],
+    ["Fact check pending", "Checking claim"],
+    ["Fact check unverified", "Claim unverified"],
+    ["Source check pending", "Checking source credibility"],
+    ["Account caution", "Account caution"],
+  ])("explains a yellow %s assessment briefly", (reason, expected) => {
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: {
+      title: `🟡 10% Spiciness — ${reason}`, fields: [{name: "AI web cross-check: unverified", value: "No source"}],
+    }}], false)).toBe(`-# 🟡 ${expected}`);
   });
 
   test("uses original link positions for multiple badges", () => {
     const badges: TwitterBadge[] = [1, 3].map(linkNumber => ({linkNumber, embed: {title: "🟡 50% Spiciness — Caution", fields: [checkField]}}));
-    expect(appendTwitterBadgeText(link, badges, true)).toBe(`${link}\n-# Link 1: 🟡 [source](<https://example.org/report>)\n-# Link 3: 🟡 [source](<https://example.org/report>)`);
+    expect(appendTwitterBadgeText(link, badges, true)).toBe(`${link}\n-# Link 1: 🟡 Caution [source](<https://example.org/report>)\n-# Link 3: 🟡 Caution [source](<https://example.org/report>)`);
   });
 
   test("omits scored badges without a completed AI check", () => {
