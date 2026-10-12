@@ -164,9 +164,9 @@ function buildTwitterBadge(
   }];
   if (undefined !== credibility) fields.push({
     name: `Source credibility: ${credibility.verdict} (${credibility.target === "linked source" ? "linked site" : credibility.label})`,
-    value: undefined === credibility.source
+    value: [...(credibility.cautions ?? []), undefined === credibility.source
       ? "Independent evidence unavailable"
-      : `[Evidence](${credibility.source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`,
+      : `[Evidence](${credibility.source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`].join(" · "),
   });
   if (undefined !== post.communityNote) {
     fields.push(communityNoteField(post.communityNote, id));
@@ -228,6 +228,9 @@ export function parseTwitterPost(value: unknown, expectedId: string): TwitterPos
   const quotedLinks = extractPostLinks(quote);
   const handle = stringOrEmpty(author["screen_name"]);
   const authorHandle = /^[A-Za-z0-9_]{1,15}$/u.test(handle) ? handle : undefined;
+  const followers = author["followers"];
+  const authorFollowers = typeof followers === "number" && Number.isSafeInteger(followers) && followers >= 0
+    ? followers : undefined;
   const mediaContext: string[] = [];
   for (const [key, label] of [["photos", "Photo(s)"], ["videos", "Video(s)"]] as const) {
     const items = media[key];
@@ -247,6 +250,7 @@ export function parseTwitterPost(value: unknown, expectedId: string): TwitterPos
     ...(quotedLinks.length > 0 ? {quotedExternalLinks: quotedLinks.slice(0, 5)} : {}),
     ...(undefined !== authorHandle ? {authorHandle} : {}),
     authorJoined: stringOrEmpty(author["joined"]),
+    ...(undefined !== authorFollowers ? {authorFollowers} : {}),
     defaultAvatar: /\/default_profile_images\//u.test(stringOrEmpty(author["avatar_url"])),
     authorWebsite: stringOrEmpty(recordOrEmpty(author["website"])["url"]).slice(0, 350),
     ...(undefined !== communityNote ? {communityNote} : {}),

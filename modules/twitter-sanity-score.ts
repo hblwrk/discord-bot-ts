@@ -8,6 +8,7 @@ export type TwitterPostContext = {
   quotedExternalLinks?: string[];
   authorHandle?: string;
   authorJoined: string;
+  authorFollowers?: number;
   defaultAvatar: boolean;
   authorWebsite: string;
   communityNote?: TwitterCommunityNote;
