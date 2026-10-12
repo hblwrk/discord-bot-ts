@@ -60,7 +60,7 @@ describe("Twitter metadata and badge service", () => {
   test.each(["fixupx.com", "xfixup.com", "twittpr.com", "vxtwitter.com", "fixvx.com", "c.vxtwitter.com"])("assesses %s through the fixed FxTwitter metadata endpoint", async host => {
     const deps = dependencies();
     expect(await createTwitterIntrospector(deps)(`https://${host}/example/status/123`))
-      .toMatchObject({title: "🟢 10% Spiciness — Low sensationalism"});
+      .toMatchObject({title: "🟢 10% Spiciness — Supported claim, low wording spice"});
     expect(deps.getWithRetryFn).toHaveBeenCalledExactlyOnceWith("https://api.fxtwitter.com/2/status/123", expect.anything(), expect.anything());
   });
 
@@ -72,7 +72,7 @@ describe("Twitter metadata and badge service", () => {
       expect.objectContaining({maxContentLength: 512_000, maxRedirects: 0, httpsAgent: expect.anything()}),
       {maxAttempts: 1, timeoutMs: 5_000},
     );
-    expect(result).toMatchObject({title: "🟢 10% Spiciness — Low sensationalism", color: 0x2ecc71});
+    expect(result).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low wording spice", color: 0x2ecc71});
     expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
   });
 
@@ -86,17 +86,21 @@ describe("Twitter metadata and badge service", () => {
     expect(parseTwitterPost(data, data.status.id)).toMatchObject({text: data.status.text, media: ["1 Video(s); content not inspected"]});
     const deps = dependencies(data);
     expect(await createTwitterIntrospector(deps)(`https://fxtwitter.com/RadioGenoa/status/${data.status.id}`))
-      .toMatchObject({title: "🟢 10% Spiciness — Low sensationalism"});
+      .toMatchObject({title: "🟢 10% Spiciness — Supported claim, low wording spice"});
     expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
   });
 
-  test.each(["supported", "contradicted"])("checks a calm claim and keeps its %s verdict separate from the wording score", async verdict => {
+  test.each([
+    {verdict: "supported", icon: "🟢", label: "Supported claim, low wording spice", color: 0x2ecc71},
+    {verdict: "contradicted", icon: "🟡", label: "Claim contradicted", color: 0xf1c40f},
+  ] as const)("combines a calm post's wording score with a $verdict fact check", async ({verdict, icon, label, color}) => {
     const data = payload("The council approved the plan yesterday.");
     const deps = dependencies(data);
     deps.crossCheckFn.mockResolvedValue({verdict, sentence: "Reporting establishes the council's decision.", sources: ["https://reuters.com/world/report"]});
     const result = await createTwitterIntrospector(deps)("https://fixvx.com/a/status/123");
     expect(deps.crossCheckFn).toHaveBeenCalledExactlyOnceWith(expect.objectContaining({text: data.status.text}), expect.anything());
-    expect(result).toMatchObject({title: "🟢 10% Spiciness — Low sensationalism", description: "Reporting establishes the council's decision."});
+    expect(result).toMatchObject({title: `${icon} 10% Spiciness — ${label}`, color,
+      description: "Reporting establishes the council's decision."});
     expect(result?.fields).toContainEqual({name: `AI web cross-check: ${verdict} (review sources)`, value: "[Source 1](https://reuters.com/world/report)"});
   });
 
@@ -183,17 +187,17 @@ describe("Twitter metadata and badge service", () => {
     expect(await inspect("https://fxtwitter.com/a/status/104")).toMatchObject({title: expect.stringContaining("🟢")});
   });
 
-  test("renders yellow/red wording independently of a source-linked AI verdict", async () => {
+  test("shows yellow for supported claims with elevated wording spice", async () => {
     const deps = dependencies(payload("They are hiding this from you"));
     deps.crossCheckFn.mockResolvedValue({
       verdict: "supported", sentence: "Reporting supports this specific claim.", sources: ["https://reuters.com/a(b)"],
     });
     const yellow = await createTwitterIntrospector(deps)("https://fxtwitter.com/a/status/123");
-    expect(yellow).toMatchObject({title: "🟡 40% Spiciness — Caution", description: "Reporting supports this specific claim."});
+    expect(yellow).toMatchObject({title: "🟡 40% Spiciness — Wording caution", description: "Reporting supports this specific claim."});
     expect(yellow?.fields).toContainEqual({name: "AI web cross-check: supported (review sources)", value: "[Source 1](https://reuters.com/a%28b%29)"});
     deps.getWithRetryFn.mockResolvedValue({data: payload("THEY ARE HIDING THIS FROM YOU! BIG IF TRUE! WAKE UP SHEEPLE!!! 🧵👇")});
     expect(await createTwitterIntrospector(deps)("https://fxtwitter.com/a/status/123"))
-      .toMatchObject({title: "🔴 95% Spiciness — High sensationalism", color: 0xe74c3c});
+      .toMatchObject({title: "🟡 95% Spiciness — Wording caution", color: 0xf1c40f});
   });
 
   test("silently omits failed metadata without leaking remote errors", async () => {
@@ -289,7 +293,7 @@ describe("Twitter metadata and badge service", () => {
     }};
     expect(parseTwitterPost(data, "123")?.externalLinks).toEqual(["https://x.com/other/status/456"]);
     expect(await createTwitterIntrospector(dependencies(data))("https://fxtwitter.com/a/status/123"))
-      .toMatchObject({title: "🟢 20% Spiciness — Low sensationalism"});
+      .toMatchObject({title: "🟢 20% Spiciness — Supported claim, low wording spice"});
   });
 
   test.each([false, true])("bounds badges and reserves the AI citation before optional context, with note: %s", async withNote => {
