@@ -1,9 +1,9 @@
 import type {APIEmbed} from "discord.js";
 import {getWithRetry} from "./http-retry.ts";
 import {safeHttpsAgent} from "./safe-http.ts";
-import {crossCheckTwitterPost, recognisedSourceUrl} from "./twitter-sanity-check.ts";
-import {researchTwitterSource} from "./twitter-source-credibility.ts";
-import {scoreTwitterPost, type TwitterPostContext} from "./twitter-sanity-score.ts";
+import {crossCheckTwitterPost, recognisedSourceUrl, type TwitterRealityCheck} from "./twitter-sanity-check.ts";
+import {researchTwitterSource, type TwitterSourceCredibility} from "./twitter-source-credibility.ts";
+import {scoreTwitterPost, type TwitterPostContext, type TwitterSanityScore} from "./twitter-sanity-score.ts";
 import {communityNoteField, parseTwitterCommunityNote} from "./twitter-community-note.ts";
 import {getTwitterStatusId} from "./twitter-status-url.ts";
 import {isAiProviderAvailable, type AiProviderDependencies} from "./ai-provider.ts";
@@ -15,18 +15,27 @@ type TwitterSanityDependencies = AiProviderDependencies & {
   aiAvailableFn?: () => boolean;
 };
 
-export type TwitterIntrospector = (url: string) => Promise<APIEmbed | undefined>;
+export type TwitterIntrospector = ((url: string) => Promise<APIEmbed | undefined>) & {
+  observe?: (url: string, onBadge: (badge: APIEmbed) => void) => Promise<APIEmbed | undefined>;
+};
+
+type CacheEntry = {
+  expiresAt: number;
+  result: Promise<APIEmbed | undefined>;
+  latest: APIEmbed | undefined;
+  listeners: Set<(badge: APIEmbed) => void>;
+};
 
 export function createTwitterIntrospector(dependencies: TwitterSanityDependencies): TwitterIntrospector {
-  const cache = new Map<string, {expiresAt: number; result: Promise<APIEmbed | undefined>}>();
+  const cache = new Map<string, CacheEntry>();
   let inFlight = 0;
-  return async link => {
+  const start = (link: string, onBadge?: (badge: APIEmbed) => void): Promise<APIEmbed | undefined> => {
     const id = getTwitterStatusId(link);
     if (undefined === id) {
-      return undefined;
+      return Promise.resolve(undefined);
     }
     if (!(dependencies.aiAvailableFn?.() ?? isAiProviderAvailable(dependencies))) {
-      return undefined;
+      return Promise.resolve(undefined);
     }
     const url = `https://fxtwitter.com/i/status/${id}`;
     const nowMs = dependencies.nowMs?.() ?? Date.now();
@@ -37,10 +46,15 @@ export function createTwitterIntrospector(dependencies: TwitterSanityDependencie
     }
     const cached = cache.get(id);
     if (undefined !== cached) {
+      if (undefined !== onBadge) {
+        cached.listeners.add(onBadge);
+        if (undefined !== cached.latest) onBadge(cached.latest);
+        void cached.result.then(() => { cached.listeners.delete(onBadge); }, () => { cached.listeners.delete(onBadge); });
+      }
       return cached.result;
     }
     if (inFlight >= 4) {
-      return undefined;
+      return Promise.resolve(undefined);
     }
     if (cache.size >= 100) {
       const oldest = cache.keys().next().value;
@@ -49,18 +63,33 @@ export function createTwitterIntrospector(dependencies: TwitterSanityDependencie
       }
     }
     inFlight++;
-    const result: Promise<APIEmbed | undefined> = assessTwitterPost(id, url, dependencies).then(badge => {
+    const entry: CacheEntry = {expiresAt: nowMs + 10 * 60_000, result: Promise.resolve(undefined), latest: undefined, listeners: new Set()};
+    if (undefined !== onBadge) entry.listeners.add(onBadge);
+    const publish = (badge: APIEmbed) => {
+      entry.latest = badge;
+      for (const listener of entry.listeners) {
+        try { listener(badge); } catch { /* A delivery failure cannot stop the assessment. */ }
+      }
+    };
+    const result: Promise<APIEmbed | undefined> = assessTwitterPost(id, url, dependencies, publish).then(badge => {
       // Failed optional reviews can recover on the next paste; retain only
       // successful assessments and coalesce the requests already in flight.
       if (undefined === badge && cache.get(id)?.result === result) cache.delete(id);
+      entry.latest = badge;
       return badge;
-    }).finally(() => { inFlight--; });
-    cache.set(id, {expiresAt: nowMs + 10 * 60_000, result});
+    }).finally(() => { inFlight--; entry.listeners.clear(); });
+    entry.result = result;
+    cache.set(id, entry);
     return result;
   };
+  const introspect: TwitterIntrospector = link => start(link);
+  introspect.observe = (link, onBadge) => start(link, onBadge);
+  return introspect;
 }
 
-async function assessTwitterPost(id: string, url: string, dependencies: TwitterSanityDependencies): Promise<APIEmbed | undefined> {
+async function assessTwitterPost(
+  id: string, url: string, dependencies: TwitterSanityDependencies, publish: (badge: APIEmbed) => void,
+): Promise<APIEmbed | undefined> {
   try {
     const response = await (dependencies.getWithRetryFn ?? getWithRetry)(
       `https://api.fxtwitter.com/2/status/${id}`,
@@ -75,78 +104,110 @@ async function assessTwitterPost(id: string, url: string, dependencies: TwitterS
     if (undefined === post) {
       return undefined;
     }
-    const assessment = scoreTwitterPost(post, dependencies.nowMs?.() ?? Date.now());
-    const check = await (dependencies.crossCheckFn ?? crossCheckTwitterPost)(post, {
+    const reviewDependencies = {
       ...dependencies, logger: {log: (_level, message) => { dependencies.logger.log("debug", message); }},
-    });
+    } satisfies AiProviderDependencies;
+    // Start all three evaluations together. Wording is local; the two web
+    // requests can finish in either order without holding up one another.
+    const wordingPromise = Promise.resolve().then(() => scoreTwitterPost(post, dependencies.nowMs?.() ?? Date.now()));
+    const checkPromise = Promise.resolve().then(() => (dependencies.crossCheckFn ?? crossCheckTwitterPost)(post, reviewDependencies))
+      .catch(() => {
+        dependencies.logger.log("debug", "Twitter/X web cross-check skipped; keeping the link preview.");
+        return undefined;
+      });
+    let sourceSettled = false;
+    const credibilityPromise = Promise.resolve().then(() => (dependencies.credibilityFn ?? researchTwitterSource)(post, reviewDependencies))
+      .catch((): TwitterSourceCredibility => ({target: "unidentified", label: "source not identified", verdict: "unverified"}))
+      .then(value => { sourceSettled = true; return value; });
+    const [assessment, check] = await Promise.all([wordingPromise, checkPromise]);
     if (undefined === check) {
+      await credibilityPromise;
       return undefined;
     }
-    const credibility = await (dependencies.credibilityFn ?? researchTwitterSource)(post, {
-      ...dependencies, logger: {log: (_level, message) => { dependencies.logger.log("debug", message); }},
-    });
-    const greenStatus = assessment.score < 30 && check.verdict === "supported" && credibility.verdict === "credible";
-    const tier = greenStatus
-      ? {icon: "🟢", label: "Supported claim, low spice, credible source", color: 0x2ecc71}
-      : {icon: "🟡", label: check.verdict === "contradicted" ? "Claim contradicted"
-        : assessment.score >= 30 ? "Wording caution"
-          : credibility.verdict === "concerns" ? "Source credibility concerns" : "Source credibility unverified", color: 0xf1c40f};
-    // Reserve both required assessments before optional note/context fields
-    // so a long note cannot remove their evidence from the badge.
-    const fields: NonNullable<APIEmbed["fields"]> = [{
-      name: `AI web cross-check: ${check.verdict} (review sources)`,
-      value: check.sources.map((source, index) => `[Source ${index + 1}](${source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`).join(" · "),
-    }, {
-      name: `Source credibility: ${credibility.verdict} (${credibility.target === "linked source" ? "linked site" : credibility.label})`,
-      value: undefined === credibility.source
-        ? "Independent evidence unavailable"
-        : `[Evidence](${credibility.source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`,
-    }];
-    if (undefined !== post.communityNote) {
-      fields.push(communityNoteField(post.communityNote, id));
-    }
-    if (assessment.signals.length > 0) {
-      fields.push({name: "Signals", value: assessment.signals.join(" · ")});
-    }
-    const context = [
-      ...post.media,
-      ...(post.quotedText ? ["Quoted post present"] : []),
-      ...(post.externalLinks.length ? [`${post.externalLinks.length} embedded link(s)`] : []),
-      ...(recognisedSourceUrl(post.authorWebsite, true) ? ["Profile links to a recognised news/fact-check domain (identity unverified)"] : []),
-    ];
-    if (context.length > 0) {
-      fields.push({name: "Context", value: context.join(" · ")});
-    }
-    const description = check.sentence;
-    const title = `${tier.icon} ${assessment.score}% Spiciness — ${tier.label}`;
-    const footer = {text: "Heuristic index, not a truth probability · Media authenticity and bot activity unverified"};
-    // Bound each assessment before delivery. The text formatter applies the
-    // shared message budget and omits assessments that cannot fit completely.
-    let remaining = 1_500 - title.length - description.length - footer.text.length;
-    const boundedFields = fields.filter(field => {
-      const length = field.name.length + field.value.length;
-      if (length > remaining) {
-        return false;
+    let publishedTitle: string | undefined;
+    if (!sourceSettled) {
+      const interim = buildTwitterBadge(url, id, post, assessment, check);
+      if (undefined !== interim) {
+        publishedTitle = interim.title;
+        publish(interim);
       }
-      remaining -= length;
-      return true;
-    });
-    if (boundedFields[0] !== fields[0] || boundedFields[1] !== fields[1]) {
-      return undefined;
     }
-    return {
-      url,
-      title,
-      color: tier.color,
-      description,
-      fields: boundedFields,
-      footer,
-    };
+    const credibility = await credibilityPromise;
+    const final = buildTwitterBadge(url, id, post, assessment, check, credibility);
+    if (undefined !== final && final.title !== publishedTitle) {
+      publish(final);
+    }
+    return final;
   } catch {
     // Never log provider bodies, tweet text or URLs from remote errors.
     dependencies.logger.log("debug", "Twitter/X introspection skipped; keeping the link preview.");
     return undefined;
   }
+}
+
+function buildTwitterBadge(
+  url: string, id: string, post: TwitterPostContext, assessment: TwitterSanityScore,
+  check: TwitterRealityCheck, credibility?: TwitterSourceCredibility,
+): APIEmbed | undefined {
+  const greenStatus = assessment.score < 30 && check.verdict === "supported" && credibility?.verdict === "credible";
+  const tier = greenStatus
+    ? {icon: "🟢", label: "Supported claim, low spice, credible source", color: 0x2ecc71}
+    : {icon: "🟡", label: check.verdict === "contradicted" ? "Claim contradicted"
+      : credibility?.verdict === "concerns" ? "Source credibility concerns"
+        : assessment.score >= 30 ? "Wording caution"
+          : undefined === credibility ? "Source check pending" : "Source credibility unverified", color: 0xf1c40f};
+  // Reserve the available required assessments before optional note/context
+  // fields so a long note cannot remove their evidence from the badge.
+  const fields: NonNullable<APIEmbed["fields"]> = [{
+    name: `AI web cross-check: ${check.verdict} (review sources)`,
+    value: check.sources.map((source, index) => `[Source ${index + 1}](${source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`).join(" · "),
+  }];
+  if (undefined !== credibility) fields.push({
+    name: `Source credibility: ${credibility.verdict} (${credibility.target === "linked source" ? "linked site" : credibility.label})`,
+    value: undefined === credibility.source
+      ? "Independent evidence unavailable"
+      : `[Evidence](${credibility.source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`,
+  });
+  if (undefined !== post.communityNote) {
+    fields.push(communityNoteField(post.communityNote, id));
+  }
+  if (assessment.signals.length > 0) {
+    fields.push({name: "Signals", value: assessment.signals.join(" · ")});
+  }
+  const context = [
+    ...post.media,
+    ...(post.quotedText ? ["Quoted post present"] : []),
+    ...(post.externalLinks.length ? [`${post.externalLinks.length} embedded link(s)`] : []),
+    ...(recognisedSourceUrl(post.authorWebsite, true) ? ["Profile links to a recognised news/fact-check domain (identity unverified)"] : []),
+  ];
+  if (context.length > 0) {
+    fields.push({name: "Context", value: context.join(" · ")});
+  }
+  const description = check.sentence;
+  const title = `${tier.icon} ${assessment.score}% Spiciness — ${tier.label}`;
+  const footer = {text: "Heuristic index, not a truth probability · Media authenticity and bot activity unverified"};
+  // Bound each assessment before delivery. The text formatter applies the
+  // shared message budget and omits assessments that cannot fit completely.
+  let remaining = 1_500 - title.length - description.length - footer.text.length;
+  const boundedFields = fields.filter(field => {
+    const length = field.name.length + field.value.length;
+    if (length > remaining) {
+      return false;
+    }
+    remaining -= length;
+    return true;
+  });
+  if (boundedFields[0] !== fields[0] || (undefined !== credibility && boundedFields[1] !== fields[1])) {
+    return undefined;
+  }
+  return {
+    url,
+    title,
+    color: tier.color,
+    description,
+    fields: boundedFields,
+    footer,
+  };
 }
 
 export function parseTwitterPost(value: unknown, expectedId: string): TwitterPostContext | undefined {

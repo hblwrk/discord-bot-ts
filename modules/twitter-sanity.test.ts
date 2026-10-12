@@ -19,7 +19,71 @@ function dependencies(data: unknown = payload()) {
   };
 }
 
+function deferred<T>() {
+  let resolve!: (value: T) => void;
+  const promise = new Promise<T>(finish => { resolve = finish; });
+  return {promise, resolve};
+}
+
 describe("Twitter metadata and badge service", () => {
+  test("starts fact and source checks together, then publishes only changed trust verdicts", async () => {
+    const deps = dependencies(payload("The council approved the plan yesterday."));
+    const fact = deferred<Awaited<ReturnType<typeof deps.crossCheckFn>>>();
+    const source = deferred<Awaited<ReturnType<typeof deps.credibilityFn>>>();
+    deps.crossCheckFn.mockReturnValue(fact.promise);
+    deps.credibilityFn.mockReturnValue(source.promise);
+    const inspect = createTwitterIntrospector(deps);
+    const updates = vi.fn();
+    const result = inspect.observe!("https://fixvx.com/a/status/123", updates);
+    await vi.waitFor(() => {
+      expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
+      expect(deps.credibilityFn).toHaveBeenCalledTimes(1);
+    });
+    expect(updates).not.toHaveBeenCalled();
+    fact.resolve({verdict: "supported", sentence: "Reporting supports this specific claim.", sources: ["https://reuters.com/world/report"]});
+    await vi.waitFor(() => { expect(updates).toHaveBeenCalledTimes(1); });
+    expect(updates.mock.calls[0]?.[0]).toMatchObject({title: "🟡 10% Spiciness — Source check pending"});
+    source.resolve({target: "posting account", label: "@example", verdict: "credible", source: "https://example.org/about"});
+    expect(await result).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice, credible source"});
+    expect(updates).toHaveBeenCalledTimes(2);
+    expect(updates.mock.calls[1]?.[0]).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice, credible source"});
+  });
+
+  test("publishes one verdict when source research finishes before the fact check", async () => {
+    const deps = dependencies();
+    const fact = deferred<Awaited<ReturnType<typeof deps.crossCheckFn>>>();
+    deps.crossCheckFn.mockReturnValue(fact.promise);
+    const inspect = createTwitterIntrospector(deps);
+    const updates = vi.fn();
+    const result = inspect.observe!("https://fixvx.com/a/status/123", updates);
+    await vi.waitFor(() => { expect(deps.credibilityFn).toHaveBeenCalledTimes(1); });
+    expect(updates).not.toHaveBeenCalled();
+    fact.resolve({verdict: "supported", sentence: "Reporting supports this specific claim.", sources: ["https://reuters.com/world/report"]});
+    expect(await result).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice, credible source"});
+    expect(updates).toHaveBeenCalledTimes(1);
+  });
+
+  test("does not publish again when source research supports an existing wording caution", async () => {
+    const deps = dependencies(payload("Share this before they hide it!"));
+    const source = deferred<Awaited<ReturnType<typeof deps.credibilityFn>>>();
+    deps.credibilityFn.mockReturnValue(source.promise);
+    const updates = vi.fn();
+    const inspect = createTwitterIntrospector(deps);
+    const result = inspect.observe!("https://fixvx.com/a/status/123", updates);
+    await vi.waitFor(() => { expect(updates).toHaveBeenCalledTimes(1); });
+    expect(updates.mock.calls[0]?.[0].title).toContain("Wording caution");
+    source.resolve({target: "posting account", label: "@example", verdict: "credible", source: "https://example.org/about"});
+    expect((await result)?.title).toContain("Wording caution");
+    expect(updates).toHaveBeenCalledTimes(1);
+    const cachedUpdate = vi.fn();
+    await inspect.observe!("https://fixvx.com/a/status/123", cachedUpdate);
+    expect(cachedUpdate).toHaveBeenCalledTimes(1);
+    expect(cachedUpdate.mock.calls[0]?.[0].fields).toContainEqual({
+      name: "Source credibility: credible (@example)", value: "[Evidence](https://example.org/about)",
+    });
+    expect(deps.credibilityFn).toHaveBeenCalledTimes(1);
+  });
+
   test("skips all badges and metadata when AI review is unavailable", async () => {
     const deps = dependencies();
     deps.aiAvailableFn.mockReturnValue(false);
