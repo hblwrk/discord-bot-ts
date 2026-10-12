@@ -5,6 +5,8 @@ export type TwitterPostContext = {
   quotedText: string;
   media: string[];
   externalLinks: string[];
+  quotedExternalLinks?: string[];
+  authorHandle?: string;
   authorJoined: string;
   defaultAvatar: boolean;
   authorWebsite: string;

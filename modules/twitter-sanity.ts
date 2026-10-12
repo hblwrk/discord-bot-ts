@@ -2,6 +2,7 @@ import type {APIEmbed} from "discord.js";
 import {getWithRetry} from "./http-retry.ts";
 import {safeHttpsAgent} from "./safe-http.ts";
 import {crossCheckTwitterPost, recognisedSourceUrl} from "./twitter-sanity-check.ts";
+import {researchTwitterSource} from "./twitter-source-credibility.ts";
 import {scoreTwitterPost, type TwitterPostContext} from "./twitter-sanity-score.ts";
 import {communityNoteField, parseTwitterCommunityNote} from "./twitter-community-note.ts";
 import {getTwitterStatusId} from "./twitter-status-url.ts";
@@ -10,6 +11,7 @@ import {isAiProviderAvailable, type AiProviderDependencies} from "./ai-provider.
 type TwitterSanityDependencies = AiProviderDependencies & {
   getWithRetryFn?: typeof getWithRetry;
   crossCheckFn?: typeof crossCheckTwitterPost;
+  credibilityFn?: typeof researchTwitterSource;
   aiAvailableFn?: () => boolean;
 };
 
@@ -80,15 +82,25 @@ async function assessTwitterPost(id: string, url: string, dependencies: TwitterS
     if (undefined === check) {
       return undefined;
     }
-    const greenStatus = assessment.score < 30 && check.verdict === "supported";
+    const credibility = await (dependencies.credibilityFn ?? researchTwitterSource)(post, {
+      ...dependencies, logger: {log: (_level, message) => { dependencies.logger.log("debug", message); }},
+    });
+    const greenStatus = assessment.score < 30 && check.verdict === "supported" && credibility.verdict === "credible";
     const tier = greenStatus
-      ? {icon: "🟢", label: "Supported claim, low wording spice", color: 0x2ecc71}
-      : {icon: "🟡", label: check.verdict === "contradicted" ? "Claim contradicted" : "Wording caution", color: 0xf1c40f};
-    // Reserve the factual verdict's citation before optional note/context
-    // fields so a long note cannot leave an uncited AI claim in the badge.
+      ? {icon: "🟢", label: "Supported claim, low spice, credible source", color: 0x2ecc71}
+      : {icon: "🟡", label: check.verdict === "contradicted" ? "Claim contradicted"
+        : assessment.score >= 30 ? "Wording caution"
+          : credibility.verdict === "concerns" ? "Source credibility concerns" : "Source credibility unverified", color: 0xf1c40f};
+    // Reserve both required assessments before optional note/context fields
+    // so a long note cannot remove their evidence from the badge.
     const fields: NonNullable<APIEmbed["fields"]> = [{
       name: `AI web cross-check: ${check.verdict} (review sources)`,
       value: check.sources.map((source, index) => `[Source ${index + 1}](${source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`).join(" · "),
+    }, {
+      name: `Source credibility: ${credibility.verdict} (${credibility.target === "linked source" ? "linked site" : credibility.label})`,
+      value: undefined === credibility.source
+        ? "Independent evidence unavailable"
+        : `[Evidence](${credibility.source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`,
     }];
     if (undefined !== post.communityNote) {
       fields.push(communityNoteField(post.communityNote, id));
@@ -119,6 +131,9 @@ async function assessTwitterPost(id: string, url: string, dependencies: TwitterS
       remaining -= length;
       return true;
     });
+    if (boundedFields[0] !== fields[0] || boundedFields[1] !== fields[1]) {
+      return undefined;
+    }
     return {
       url,
       title,
@@ -147,6 +162,37 @@ export function parseTwitterPost(value: unknown, expectedId: string): TwitterPos
   }
   const author = recordOrEmpty(post["author"]);
   const media = recordOrEmpty(post["media"]);
+  const links = extractPostLinks(post);
+  const quote = recordOrEmpty(post["quote"]);
+  const quotedLinks = extractPostLinks(quote);
+  const handle = stringOrEmpty(author["screen_name"]);
+  const authorHandle = /^[A-Za-z0-9_]{1,15}$/u.test(handle) ? handle : undefined;
+  const mediaContext: string[] = [];
+  for (const [key, label] of [["photos", "Photo(s)"], ["videos", "Video(s)"]] as const) {
+    const items = media[key];
+    if (Array.isArray(items) && items.length > 0) {
+      mediaContext.push(`${items.length} ${label}; content not inspected`);
+    }
+  }
+  if (isRecord(media["external"])) {
+    mediaContext.push("External media; content not inspected");
+  }
+  const communityNote = parseTwitterCommunityNote(post["community_note"]);
+  return {
+    text: post["text"],
+    quotedText: stringOrEmpty(quote["text"]).slice(0, 2_000),
+    media: mediaContext,
+    externalLinks: links.slice(0, 10),
+    ...(quotedLinks.length > 0 ? {quotedExternalLinks: quotedLinks.slice(0, 5)} : {}),
+    ...(undefined !== authorHandle ? {authorHandle} : {}),
+    authorJoined: stringOrEmpty(author["joined"]),
+    defaultAvatar: /\/default_profile_images\//u.test(stringOrEmpty(author["avatar_url"])),
+    authorWebsite: stringOrEmpty(recordOrEmpty(author["website"])["url"]).slice(0, 350),
+    ...(undefined !== communityNote ? {communityNote} : {}),
+  };
+}
+
+function extractPostLinks(post: Record<string, unknown>): string[] {
   const rawText = recordOrEmpty(post["raw_text"]);
   const facets = Array.isArray(rawText["facets"]) ? rawText["facets"] : [];
   const links = new Set<string>();
@@ -159,7 +205,7 @@ export function parseTwitterPost(value: unknown, expectedId: string): TwitterPos
     }
   }
   const textLinks = new Set<string>();
-  for (const match of post["text"].matchAll(/https?:\/\/[^\s<>"']+/giu)) {
+  for (const match of stringOrEmpty(post["text"]).matchAll(/https?:\/\/[^\s<>"']+/giu)) {
     addExternalLink(textLinks, match[0].replace(/[.,!?;:)\]}]+$/u, ""));
   }
   for (const link of textLinks) {
@@ -167,28 +213,7 @@ export function parseTwitterPost(value: unknown, expectedId: string): TwitterPos
       links.add(link);
     }
   }
-  const mediaContext: string[] = [];
-  for (const [key, label] of [["photos", "Photo(s)"], ["videos", "Video(s)"]] as const) {
-    const items = media[key];
-    if (Array.isArray(items) && items.length > 0) {
-      mediaContext.push(`${items.length} ${label}; content not inspected`);
-    }
-  }
-  if (isRecord(media["external"])) {
-    mediaContext.push("External media; content not inspected");
-  }
-  const quote = recordOrEmpty(post["quote"]);
-  const communityNote = parseTwitterCommunityNote(post["community_note"]);
-  return {
-    text: post["text"],
-    quotedText: stringOrEmpty(quote["text"]).slice(0, 2_000),
-    media: mediaContext,
-    externalLinks: [...links].slice(0, 10),
-    authorJoined: stringOrEmpty(author["joined"]),
-    defaultAvatar: /\/default_profile_images\//u.test(stringOrEmpty(author["avatar_url"])),
-    authorWebsite: stringOrEmpty(recordOrEmpty(author["website"])["url"]).slice(0, 350),
-    ...(undefined !== communityNote ? {communityNote} : {}),
-  };
+  return [...links];
 }
 
 function addExternalLink(links: Set<string>, value: unknown): boolean {

@@ -1,5 +1,7 @@
 import {describe, expect, test, vi} from "vitest";
+import type {callAiProviderJson} from "./ai-provider.ts";
 import {createTwitterIntrospector, parseTwitterPost} from "./twitter-sanity.ts";
+import {researchTwitterSource} from "./twitter-source-credibility.ts";
 
 function payload(text = "A cat enjoys a sunny afternoon.", id = "123") {
   return {code: 200, status: {id, text}};
@@ -11,6 +13,8 @@ function dependencies(data: unknown = payload()) {
     aiAvailableFn: vi.fn(() => true),
     getWithRetryFn: vi.fn().mockResolvedValue({data}),
     crossCheckFn: vi.fn().mockResolvedValue({verdict: "supported", sentence: "Reporting supports this specific claim.", sources: ["https://reuters.com/world/report"]}),
+    credibilityFn: vi.fn().mockResolvedValue({target: "posting account", label: "@example", verdict: "credible",
+      source: "https://example.org/about"}),
     nowMs: () => Date.parse("2026-10-07T12:00:00Z"),
   };
 }
@@ -60,7 +64,7 @@ describe("Twitter metadata and badge service", () => {
   test.each(["fixupx.com", "xfixup.com", "twittpr.com", "vxtwitter.com", "fixvx.com", "c.vxtwitter.com"])("assesses %s through the fixed FxTwitter metadata endpoint", async host => {
     const deps = dependencies();
     expect(await createTwitterIntrospector(deps)(`https://${host}/example/status/123`))
-      .toMatchObject({title: "🟢 10% Spiciness — Supported claim, low wording spice"});
+      .toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice, credible source"});
     expect(deps.getWithRetryFn).toHaveBeenCalledExactlyOnceWith("https://api.fxtwitter.com/2/status/123", expect.anything(), expect.anything());
   });
 
@@ -72,7 +76,7 @@ describe("Twitter metadata and badge service", () => {
       expect.objectContaining({maxContentLength: 512_000, maxRedirects: 0, httpsAgent: expect.anything()}),
       {maxAttempts: 1, timeoutMs: 5_000},
     );
-    expect(result).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low wording spice", color: 0x2ecc71});
+    expect(result).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice, credible source", color: 0x2ecc71});
     expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
   });
 
@@ -86,12 +90,12 @@ describe("Twitter metadata and badge service", () => {
     expect(parseTwitterPost(data, data.status.id)).toMatchObject({text: data.status.text, media: ["1 Video(s); content not inspected"]});
     const deps = dependencies(data);
     expect(await createTwitterIntrospector(deps)(`https://fxtwitter.com/RadioGenoa/status/${data.status.id}`))
-      .toMatchObject({title: "🟢 10% Spiciness — Supported claim, low wording spice"});
+      .toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice, credible source"});
     expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
   });
 
   test.each([
-    {verdict: "supported", icon: "🟢", label: "Supported claim, low wording spice", color: 0x2ecc71},
+    {verdict: "supported", icon: "🟢", label: "Supported claim, low spice, credible source", color: 0x2ecc71},
     {verdict: "contradicted", icon: "🟡", label: "Claim contradicted", color: 0xf1c40f},
   ] as const)("combines a calm post's wording score with a $verdict fact check", async ({verdict, icon, label, color}) => {
     const data = payload("The council approved the plan yesterday.");
@@ -102,6 +106,28 @@ describe("Twitter metadata and badge service", () => {
     expect(result).toMatchObject({title: `${icon} 10% Spiciness — ${label}`, color,
       description: "Reporting establishes the council's decision."});
     expect(result?.fields).toContainEqual({name: `AI web cross-check: ${verdict} (review sources)`, value: "[Source 1](https://reuters.com/world/report)"});
+    expect(result?.fields).toContainEqual({name: "Source credibility: credible (@example)", value: "[Evidence](https://example.org/about)"});
+  });
+
+  test.each([
+    {verdict: "concerns", label: "Source credibility concerns", source: "https://example.org/concerns"},
+    {verdict: "unverified", label: "Source credibility unverified", source: undefined},
+  ])("keeps a supported calm post yellow when source credibility is $verdict", async ({verdict, label, source}) => {
+    const deps = dependencies(payload("The council approved the plan yesterday."));
+    deps.credibilityFn.mockResolvedValue({target: "posting account", label: "@example", verdict, source});
+    const badge = await createTwitterIntrospector(deps)("https://fixvx.com/a/status/123");
+    expect(badge).toMatchObject({title: `🟡 10% Spiciness — ${label}`, color: 0xf1c40f});
+    expect(badge?.fields).toContainEqual({name: `Source credibility: ${verdict} (@example)`,
+      value: undefined === source ? "Independent evidence unavailable" : `[Evidence](${source})`});
+    expect(deps.credibilityFn).toHaveBeenCalledTimes(1);
+  });
+
+  test("shows unverified source credibility when metadata identifies no account or linked source", async () => {
+    const deps = dependencies(payload("The council approved the plan yesterday."));
+    const badge = await createTwitterIntrospector({...deps, credibilityFn: researchTwitterSource})("https://fixvx.com/a/status/123");
+    expect(badge).toMatchObject({title: "🟡 10% Spiciness — Source credibility unverified"});
+    expect(badge?.fields).toContainEqual({name: "Source credibility: unverified (source not identified)",
+      value: "Independent evidence unavailable"});
   });
 
   test("passes quoted claims to the check even when the author's wording is calm", async () => {
@@ -293,7 +319,43 @@ describe("Twitter metadata and badge service", () => {
     }};
     expect(parseTwitterPost(data, "123")?.externalLinks).toEqual(["https://x.com/other/status/456"]);
     expect(await createTwitterIntrospector(dependencies(data))("https://fxtwitter.com/a/status/123"))
-      .toMatchObject({title: "🟢 20% Spiciness — Supported claim, low wording spice"});
+      .toMatchObject({title: "🟢 20% Spiciness — Supported claim, low spice, credible source"});
+  });
+
+  test("extracts the posting handle and quoted article link for credibility research", () => {
+    const data = {status: {id: "123", text: "Read the quoted report.", author: {screen_name: "Reporter_1"},
+      quote: {text: "The report https://t.co/abc", raw_text: {facets: [
+        {type: "url", original: "https://t.co/abc", replacement: "https://reports.example.org/story"},
+      ]}},
+    }};
+    expect(parseTwitterPost(data, "123")).toMatchObject({
+      authorHandle: "Reporter_1", quotedExternalLinks: ["https://reports.example.org/story"], externalLinks: [],
+    });
+    expect(parseTwitterPost({status: {...data.status, author: {screen_name: "bad handle"}}}, "123"))
+      .not.toHaveProperty("authorHandle");
+  });
+
+  test("researches a quoted article and includes its grounded credibility result in the badge", async () => {
+    const article = "https://reports.example.org/story";
+    const evidence = "https://independent.org/about-reports";
+    const data = {status: {id: "123", text: "See the quoted article.", author: {screen_name: "poster"},
+      quote: {text: "Source https://t.co/abc", raw_text: {facets: [
+        {type: "url", original: "https://t.co/abc", replacement: article},
+      ]}},
+    }};
+    const callFn = vi.fn<typeof callAiProviderJson>((prompt, _schema, _deps, _task, _inline, options = {}) => {
+      expect(prompt).toContain(article);
+      options.onWebSources?.([evidence]);
+      return Promise.resolve(JSON.stringify({verdict: "credible", sourceUrls: [evidence]}));
+    });
+    const deps = dependencies(data);
+    const badge = await createTwitterIntrospector({...deps,
+      credibilityFn: (post, aiDeps) => researchTwitterSource(post, aiDeps, callFn),
+    })("https://fixvx.com/poster/status/123");
+    expect(callFn).toHaveBeenCalledTimes(1);
+    expect(badge).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice, credible source"});
+    expect(badge?.fields).toContainEqual({name: "Source credibility: credible (linked site)",
+      value: `[Evidence](${evidence})`});
   });
 
   test.each([false, true])("bounds badges and reserves the AI citation before optional context, with note: %s", async withNote => {

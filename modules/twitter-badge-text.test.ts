@@ -6,6 +6,19 @@ const checkField = {name: "AI web cross-check: contradicted", value: "[Source](h
 const checkText = "**AI: contradicted** · [source](<https://www.reuters.com/world/article>)";
 
 describe("appendTwitterBadgeText", () => {
+  test("shows researched credibility with a preview-suppressed evidence link", () => {
+    const text = appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
+      title: "🟢 10% Spiciness — Supported claim, low spice, credible source",
+      description: "The council approved the plan.",
+      fields: [
+        {name: "AI web cross-check: supported (review sources)", value: "[Source 1](https://reuters.com/report)"},
+        {name: "Source credibility: credible (@example)", value: "[Evidence](https://example.org/about)"},
+      ],
+    }}], false);
+    expect(text).toBe(`${link}\n-# 🟢 10% wording spice · **AI: supported** · [source](<https://reuters.com/report>)`
+      + "\n-# The council approved the plan.\n-# **Source: credible (@example)** · [evidence](<https://example.org/about>)");
+  });
+
   test("adds a compact score and reality check while preserving credit and links", () => {
     expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
       title: "🟡 50% Spiciness (Caution)",
