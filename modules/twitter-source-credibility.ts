@@ -49,7 +49,10 @@ export async function researchTwitterSource(
 ): Promise<TwitterSourceCredibility> {
   const target = selectCredibilityTarget(post);
   if (undefined === target) {
-    return unverified();
+    const cautions = accountCautions(post, dependencies.nowMs?.() ?? Date.now());
+    return cautions.length === 0 ? unverified() : {
+      target: "posting account", label: "account identity unavailable", verdict: "unverified", cautions,
+    };
   }
   const cautions = target.kind === "account" ? accountCautions(post, dependencies.nowMs?.() ?? Date.now()) : [];
   const finish = (assessment: TwitterSourceCredibility): TwitterSourceCredibility => cautions.length === 0

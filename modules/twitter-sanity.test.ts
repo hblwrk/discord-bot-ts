@@ -45,9 +45,9 @@ describe("Twitter metadata and badge service", () => {
     await vi.waitFor(() => { expect(updates).toHaveBeenCalledTimes(1); });
     expect(updates.mock.calls[0]?.[0]).toMatchObject({title: "🟡 10% Spiciness — Source check pending"});
     source.resolve({target: "posting account", label: "@example", verdict: "credible", source: "https://example.org/about"});
-    expect(await result).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice, credible source"});
+    expect(await result).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
     expect(updates).toHaveBeenCalledTimes(2);
-    expect(updates.mock.calls[1]?.[0]).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice, credible source"});
+    expect(updates.mock.calls[1]?.[0]).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
   });
 
   test("publishes one verdict when source research finishes before the fact check", async () => {
@@ -60,7 +60,7 @@ describe("Twitter metadata and badge service", () => {
     await vi.waitFor(() => { expect(deps.credibilityFn).toHaveBeenCalledTimes(1); });
     expect(updates).not.toHaveBeenCalled();
     fact.resolve({verdict: "supported", sentence: "Reporting supports this specific claim.", sources: ["https://reuters.com/world/report"]});
-    expect(await result).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice, credible source"});
+    expect(await result).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
     expect(updates).toHaveBeenCalledTimes(1);
   });
 
@@ -129,7 +129,7 @@ describe("Twitter metadata and badge service", () => {
   test.each(["fixupx.com", "xfixup.com", "twittpr.com", "vxtwitter.com", "fixvx.com", "c.vxtwitter.com"])("assesses %s through the fixed FxTwitter metadata endpoint", async host => {
     const deps = dependencies();
     expect(await createTwitterIntrospector(deps)(`https://${host}/example/status/123`))
-      .toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice, credible source"});
+      .toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
     expect(deps.getWithRetryFn).toHaveBeenCalledExactlyOnceWith("https://api.fxtwitter.com/2/status/123", expect.anything(), expect.anything());
   });
 
@@ -141,7 +141,7 @@ describe("Twitter metadata and badge service", () => {
       expect.objectContaining({maxContentLength: 512_000, maxRedirects: 0, httpsAgent: expect.anything()}),
       {maxAttempts: 1, timeoutMs: 5_000},
     );
-    expect(result).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice, credible source", color: 0x2ecc71});
+    expect(result).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice", color: 0x2ecc71});
     expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
   });
 
@@ -155,7 +155,7 @@ describe("Twitter metadata and badge service", () => {
     expect(parseTwitterPost(data, data.status.id)).toMatchObject({text: data.status.text, media: ["1 Video(s); content not inspected"]});
     const deps = dependencies(data);
     expect(await createTwitterIntrospector(deps)(`https://fxtwitter.com/RadioGenoa/status/${data.status.id}`))
-      .toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice, credible source"});
+      .toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
     expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
   });
 
@@ -182,7 +182,7 @@ describe("Twitter metadata and badge service", () => {
     const badge = await createTwitterIntrospector({...deps,
       credibilityFn: (post, reviewDeps) => researchTwitterSource(post, reviewDeps, callFn),
     })("https://fixvx.com/a/status/123");
-    expect(badge).toMatchObject({title: "🟡 10% Spiciness — Source credibility unverified"});
+    expect(badge).toMatchObject({title: "🟡 10% Spiciness — Account caution"});
     expect(badge?.fields).toContainEqual({
       name: "Source credibility: unverified (@small_account)",
       value: `Under 100 followers · Account under 30 days old · [Evidence](${evidence})`,
@@ -193,7 +193,7 @@ describe("Twitter metadata and badge service", () => {
   });
 
   test.each([
-    {verdict: "supported", icon: "🟢", label: "Supported claim, low spice, credible source", color: 0x2ecc71},
+    {verdict: "supported", icon: "🟢", label: "Supported claim, low spice", color: 0x2ecc71},
     {verdict: "contradicted", icon: "🟡", label: "Claim contradicted", color: 0xf1c40f},
   ] as const)("combines a calm post's wording score with a $verdict fact check", async ({verdict, icon, label, color}) => {
     const data = payload("The council approved the plan yesterday.");
@@ -208,24 +208,75 @@ describe("Twitter metadata and badge service", () => {
   });
 
   test.each([
-    {verdict: "concerns", label: "Source credibility concerns", source: "https://example.org/concerns"},
-    {verdict: "unverified", label: "Source credibility unverified", source: undefined},
-  ])("keeps a supported calm post yellow when source credibility is $verdict", async ({verdict, label, source}) => {
+    {verdict: "concerns", icon: "🟡", label: "Source credibility concerns", color: 0xf1c40f, source: "https://example.org/concerns"},
+    {verdict: "unverified", icon: "🟢", label: "Supported claim, low spice", color: 0x2ecc71, source: undefined},
+  ])("uses documented account concerns but keeps missing reputation evidence neutral: $verdict", async ({verdict, icon, label, color, source}) => {
     const deps = dependencies(payload("The council approved the plan yesterday."));
     deps.credibilityFn.mockResolvedValue({target: "posting account", label: "@example", verdict, source});
     const badge = await createTwitterIntrospector(deps)("https://fixvx.com/a/status/123");
-    expect(badge).toMatchObject({title: `🟡 10% Spiciness — ${label}`, color: 0xf1c40f});
+    expect(badge).toMatchObject({title: `${icon} 10% Spiciness — ${label}`, color});
     expect(badge?.fields).toContainEqual({name: `Source credibility: ${verdict} (@example)`,
       value: undefined === source ? "Independent evidence unavailable" : `[Evidence](${source})`});
     expect(deps.credibilityFn).toHaveBeenCalledTimes(1);
   });
 
-  test("shows unverified source credibility when metadata identifies no account or linked source", async () => {
+  test("keeps a supported claim green when metadata identifies no account or linked source", async () => {
     const deps = dependencies(payload("The council approved the plan yesterday."));
     const badge = await createTwitterIntrospector({...deps, credibilityFn: researchTwitterSource})("https://fixvx.com/a/status/123");
-    expect(badge).toMatchObject({title: "🟡 10% Spiciness — Source credibility unverified"});
+    expect(badge).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
     expect(badge?.fields).toContainEqual({name: "Source credibility: unverified (source not identified)",
       value: "Independent evidence unavailable"});
+  });
+
+  test("lets documented linked-source concerns block green regardless of poster reputation", async () => {
+    const linked = "https://reports.example.net/story";
+    const evidence = "https://independent.org/source-review";
+    const data = {status: {id: "123", text: "The council approved the plan yesterday.",
+      author: {screen_name: "established_poster", followers: 50_000, joined: "2020-01-01"},
+      raw_text: {facets: [{type: "url", replacement: linked}]}}};
+    const callFn = vi.fn<typeof callAiProviderJson>((prompt, _schema, _deps, _task, _data, options = {}) => {
+      expect(prompt).toContain(linked);
+      options.onWebSources?.([evidence]);
+      return Promise.resolve(JSON.stringify({verdict: "concerns", sourceUrls: [evidence]}));
+    });
+    const deps = dependencies(data);
+    const badge = await createTwitterIntrospector({...deps,
+      credibilityFn: (post, reviewDeps) => researchTwitterSource(post, reviewDeps, callFn),
+    })("https://fixvx.com/a/status/123");
+    expect(badge).toMatchObject({title: "🟡 10% Spiciness — Source credibility concerns"});
+    expect(badge?.fields).toContainEqual({name: "Source credibility: concerns (linked site)", value: `[Evidence](${evidence})`});
+    expect(callFn).toHaveBeenCalledTimes(1);
+  });
+
+  test("treats missing linked-source reputation evidence as neutral even for a new poster", async () => {
+    const data = {status: {id: "123", text: "The council approved the plan yesterday.",
+      author: {screen_name: "new_poster", followers: 3, joined: "2026-10-01",
+        avatar_url: "https://abs.twimg.com/default_profile_images/avatar.png"},
+      raw_text: {facets: [{type: "url", replacement: "https://reports.example.net/story"}]}}};
+    const deps = dependencies(data);
+    const badge = await createTwitterIntrospector({...deps,
+      credibilityFn: (post, reviewDeps) => researchTwitterSource(post, reviewDeps,
+        vi.fn<typeof callAiProviderJson>().mockResolvedValue(JSON.stringify({verdict: "unverified", sourceUrls: []}))),
+    })("https://fixvx.com/a/status/123");
+    expect(badge).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
+    expect(badge?.fields).toContainEqual({name: "Source credibility: unverified (linked site)",
+      value: "Independent evidence unavailable"});
+  });
+
+  test("uses one account caution only alongside mild wording concern", async () => {
+    const deps = dependencies(payload("The council approved the plan yesterday!!!"));
+    deps.credibilityFn.mockResolvedValue({target: "posting account", label: "@small", verdict: "unverified",
+      cautions: ["Under 100 followers"]});
+    const badge = await createTwitterIntrospector(deps)("https://fixvx.com/a/status/123");
+    expect(badge).toMatchObject({title: "🟡 20% Spiciness — Account caution"});
+  });
+
+  test("keeps one account caution secondary to a supported calm claim", async () => {
+    const deps = dependencies(payload("The council approved the plan yesterday."));
+    deps.credibilityFn.mockResolvedValue({target: "posting account", label: "@small", verdict: "unverified",
+      cautions: ["Under 100 followers"]});
+    const badge = await createTwitterIntrospector(deps)("https://fixvx.com/a/status/123");
+    expect(badge).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
   });
 
   test("passes quoted claims to the check even when the author's wording is calm", async () => {
@@ -417,7 +468,7 @@ describe("Twitter metadata and badge service", () => {
     }};
     expect(parseTwitterPost(data, "123")?.externalLinks).toEqual(["https://x.com/other/status/456"]);
     expect(await createTwitterIntrospector(dependencies(data))("https://fxtwitter.com/a/status/123"))
-      .toMatchObject({title: "🟢 20% Spiciness — Supported claim, low spice, credible source"});
+      .toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
   });
 
   test("extracts the posting handle and quoted article link for credibility research", () => {
