@@ -100,8 +100,7 @@ describe("silent Twitter review delivery", () => {
     const delivered = post.response.edit;
     await vi.waitFor(() => { expect(delivered).toHaveBeenCalledTimes(2); });
     const options = delivered.mock.calls[1]?.[0];
-    expect(options.content).toContain("  🟡 Claim contradicted [source]");
-    expect(options.content).not.toContain("Reporting contradicts the council approval claim.");
+    expect(options.content).toContain("  🟡 Claim contradicted — Reporting contradicts the council approval claim. [source]");
     expect(options.content).toContain("[source](<https://reuters.com/world/report>)");
     expect(options.content).not.toContain("skipped");
     expect(options).not.toHaveProperty("embeds");

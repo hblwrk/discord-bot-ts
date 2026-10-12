@@ -191,7 +191,7 @@ describe("proxy post assessments", () => {
 
   test.each(twitterProxyHosts)("shows a red contradiction on %s with one visible source", async host => {
     const {client, getHandler} = createEventClient();
-    const badge: APIEmbed = {title: "🔴 10% Spiciness — Claim contradicted", fields: [{
+    const badge: APIEmbed = {title: "🔴 10% Spiciness — Claim contradicted", description: "The chart covers a different date.", fields: [{
       name: "AI web cross-check: contradicted (review sources)",
       value: "[Source 1](https://reuters.com/world/report) · [Source 2](https://apnews.com/article/report)",
     }]};
@@ -200,7 +200,7 @@ describe("proxy post assessments", () => {
     await getHandler("messageCreate")(message);
     await vi.waitFor(() => {
       expect(message.reply).toHaveBeenCalledExactlyOnceWith({
-        content: "-# 🔴 Claim contradicted [source](<https://reuters.com/world/report>)",
+        content: "-# 🔴 Claim contradicted — The chart covers a different date. [source](<https://reuters.com/world/report>)",
         allowedMentions: {parse: [], repliedUser: false},
       });
     });

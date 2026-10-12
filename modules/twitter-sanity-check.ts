@@ -70,7 +70,7 @@ export async function crossCheckTwitterPost(
       "Match the exact claim, date, place and subject; distinguish satire, opinion, quotations and rebuttals.",
       "Never infer botnets, propaganda intent or media authenticity from wording, account age or engagement counts.",
       "Return unverified for missing evidence, opinion, partial matches or inaccessible media needed to establish the claim.",
-      "For supported/contradicted, cite the exact searched article URLs and explain the key evidence in one English sentence of at most 160 characters.",
+      "For supported/contradicted, cite the exact searched article URLs and explain the key evidence in one English sentence of at most 80 characters.",
       "Cite only articles that support the verdict; include two independent publishers when both directly address the exact claim.",
       "Be direct and retain essential qualifications. Do not name news outlets or fact-check publishers (such as AP or Reuters), repeat the verdict, or add introductory phrasing.",
       "Return JSON only; no Markdown, mentions, links inside the sentence, or invented sources.",
@@ -89,7 +89,7 @@ export async function crossCheckTwitterPost(
     }
     const sentence = parsed["realityCheck"];
     const sourceUrls = parsed["sourceUrls"];
-    if ("string" !== typeof sentence || sentence.length > 160 || sentence.trim().length < 15
+    if ("string" !== typeof sentence || sentence.length > 80 || sentence.trim().length < 15
       || /https?:|[@<>\n\r`*_~|\\]/u.test(sentence)
       || outletName.test(sentence)
       || [...new Intl.Segmenter("en", {granularity: "sentence"}).segment(sentence.trim())].length !== 1

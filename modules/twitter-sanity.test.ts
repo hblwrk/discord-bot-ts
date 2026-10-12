@@ -89,7 +89,7 @@ describe("Twitter metadata and badge service", () => {
     expect(updates).toHaveBeenCalledTimes(2);
     if (undefined === badge) throw new Error("Expected a contradiction badge");
     expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false))
-      .toBe("-# 🔴 Claim contradicted [source](<https://reuters.com/world/report>)");
+      .toBe("-# 🔴 Claim contradicted — The records directly refute the claim. [source](<https://reuters.com/world/report>)");
   });
 
   test("publishes red after source research finishes first", async () => {

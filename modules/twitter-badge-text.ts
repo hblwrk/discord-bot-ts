@@ -25,23 +25,41 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
     const source = undefined === check ? undefined
       : /\[Source(?: \d+)?\]\((https:\/\/[^)\s]+)\)/u.exec(check.value)?.[1];
     const label = multipleLinks && !content ? `Link ${linkNumber}: ${indicator}${status}` : `${indicator}${status}`;
-    const badgeText = `${label}${undefined === source ? "" : ` [source](<${source}>)`}`;
+    const citation = undefined === source ? "" : ` [source](<${source}>)`;
+    const explanation = status === " Claim contradicted" && check?.name.startsWith("AI web cross-check: contradicted")
+      && undefined !== source ? shortEvidenceReason(embed.description) : undefined;
+    const badgeTexts = undefined === explanation
+      ? [`${label}${citation}`] : [`${label} — ${explanation}${citation}`, `${label}${citation}`];
     if (content) {
       const lineIndex = linkNumber - 1;
       if (lineIndex < 0 || lineIndex >= linkLines.length) continue;
-      const candidateLines = [...linkLines];
-      candidateLines[lineIndex] += `  ${badgeText}`;
-      if (candidateLines.join("\n").length <= messageLimit) linkLines[lineIndex] = candidateLines[lineIndex]!;
+      for (const badgeText of badgeTexts) {
+        const candidateLines = [...linkLines];
+        candidateLines[lineIndex] += `  ${badgeText}`;
+        if (candidateLines.join("\n").length <= messageLimit) {
+          linkLines[lineIndex] = candidateLines[lineIndex]!;
+          break;
+        }
+      }
       continue;
     }
-    const block = `-# ${badgeText}`;
-    const nextBlocks = [...blocks, block];
-    const candidate = [content, ...nextBlocks].filter(Boolean).join("\n");
-    if (candidate.length <= messageLimit) {
-      blocks.push(block);
+    for (const badgeText of badgeTexts) {
+      const block = `-# ${badgeText}`;
+      if ([...blocks, block].join("\n").length <= messageLimit) {
+        blocks.push(block);
+        break;
+      }
     }
   }
   return content ? linkLines.join("\n") : blocks.join("\n");
+}
+
+function shortEvidenceReason(description?: string): string | undefined {
+  const reason = description?.trim();
+  if (undefined === reason || reason.length < 15 || reason.length > 80 || /[@<>\n\r`*_~|\\]/u.test(reason)) {
+    return undefined;
+  }
+  return reason;
 }
 
 function shortTrustStatus(title: string, indicator: string): string {

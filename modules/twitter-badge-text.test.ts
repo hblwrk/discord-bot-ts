@@ -30,10 +30,33 @@ describe("appendTwitterBadgeText", () => {
   test("shows a red contradiction with just one factual source link", () => {
     const text = appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
       title: "🔴 10% Spiciness — Claim contradicted",
+      description: "The chart covers a different date.",
       fields: [{name: "AI web cross-check: contradicted (review sources)",
         value: "[Source 1](https://reuters.com/world/report) · [Source 2](https://apnews.com/article/report)"}],
     }}], false);
-    expect(text).toBe(`${link}  🔴 Claim contradicted [source](<https://reuters.com/world/report>)`);
+    expect(text).toBe(`${link}  🔴 Claim contradicted — The chart covers a different date. [source](<https://reuters.com/world/report>)`);
+  });
+
+  test("briefly explains a cited yellow contradiction", () => {
+    const text = appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
+      title: "🟡 10% Spiciness — Claim contradicted",
+      description: "The report shows correlation, not causation.",
+      fields: [{name: "AI web cross-check: contradicted (review sources)",
+        value: "[Source 1](https://reuters.com/world/report)"}],
+    }}], false);
+    expect(text).toBe(`${link}  🟡 Claim contradicted — The report shows correlation, not causation. [source](<https://reuters.com/world/report>)`);
+  });
+
+  test("keeps the rating and source when a brief reason does not fit", () => {
+    const compact = "🔴 Claim contradicted [source](<https://reuters.com/world/report>)";
+    const base = "x".repeat(2_000 - compact.length - 2);
+    const badge: TwitterBadge = {linkNumber: 1, embed: {
+      title: "🔴 10% Spiciness — Claim contradicted",
+      description: "The chart covers a different date.",
+      fields: [{name: "AI web cross-check: contradicted (review sources)",
+        value: "[Source 1](https://reuters.com/world/report)"}],
+    }};
+    expect(appendTwitterBadgeText(base, [badge], false)).toBe(`${base}  ${compact}`);
   });
 
   test("shows a useful label when a check has no usable source link", () => {
