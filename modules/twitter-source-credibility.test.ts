@@ -2,6 +2,7 @@ import {describe, expect, test, vi} from "vitest";
 import type {callAiProviderJson} from "./ai-provider.ts";
 import type {TwitterPostContext} from "./twitter-sanity-score.ts";
 import {researchTwitterSource, selectCredibilityTarget} from "./twitter-source-credibility.ts";
+import {twitterProxyHosts} from "./test-utils/twitter-proxy-hosts.ts";
 
 const post: TwitterPostContext = {
   text: "An announcement.", quotedText: "", media: [], externalLinks: [],
@@ -33,6 +34,22 @@ describe("Twitter source credibility", () => {
         .toEqual({kind: "account", value: "example_org", label: "@example_org"});
     },
   );
+
+  test.each(twitterProxyHosts)("treats %s links as Twitter posts rather than independent sources", host => {
+    const proxy = `https://${host}/reporter/status/123`;
+    expect(selectCredibilityTarget({...post, externalLinks: [proxy]}))
+      .toEqual({kind: "account", value: "example_org", label: "@example_org"});
+    expect(selectCredibilityTarget({...post, quotedExternalLinks: [proxy]}))
+      .toEqual({kind: "account", value: "example_org", label: "@example_org"});
+  });
+
+  test.each(["twittpr.com", "xfixup.com", "c.fixvx.com"])("rejects %s as independent account evidence", async host => {
+    const proxyEvidence = `https://${host}/reporter/status/123`;
+    expect(await researchTwitterSource(post, {logger: {log: vi.fn()}},
+      mockCall({verdict: "credible", sourceUrls: [proxyEvidence]}, [proxyEvidence]))).toEqual({
+      target: "posting account", label: "@example_org", verdict: "unverified",
+    });
+  });
 
   test("accepts linked-source credibility only with independent searched evidence", async () => {
     const target = {...post, externalLinks: ["https://reports.example.net/article"]};

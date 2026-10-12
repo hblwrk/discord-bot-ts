@@ -1,6 +1,7 @@
 import {isIP} from "node:net";
 import {callAiProviderJson, type AiProviderDependencies} from "./ai-provider.ts";
 import type {TwitterPostContext} from "./twitter-sanity-score.ts";
+import {isTwitterProxyDomain} from "./twitter-status-url.ts";
 
 type CredibilityTarget = {kind: "link" | "account"; value: string; label: string};
 
@@ -130,7 +131,7 @@ function isIndependent(value: string, target: CredibilityTarget): boolean {
 }
 
 function isSocialHost(host: string): boolean {
-  return ["x.com", "twitter.com", "fxtwitter.com", "fixvx.com", "fixupx.com", "vxtwitter.com", "t.co"]
+  return isTwitterProxyDomain(host) || ["x.com", "twitter.com", "t.co"]
     .some(domain => host === domain || host.endsWith(`.${domain}`));
 }
 

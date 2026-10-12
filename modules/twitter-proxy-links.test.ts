@@ -1,6 +1,7 @@
 import {describe, expect, test, vi} from "vitest";
 import type {APIEmbed} from "discord.js";
 import {createEventClient} from "./test-utils/discord-mocks.ts";
+import {twitterProxyHosts} from "./test-utils/twitter-proxy-hosts.ts";
 import {addTwitterLinkRewrites, getTwitterProxyLinks} from "./twitter-link-rewrite.ts";
 
 const logger = vi.hoisted(() => ({log: vi.fn()}));
@@ -20,32 +21,36 @@ function proxyMessage(content: string) {
 }
 
 describe("proxy post assessments", () => {
-  test("updates an assessment reply when a later source result changes the verdict", async () => {
-    const {client, getHandler} = createEventClient();
-    let publish: (badge: APIEmbed) => void = () => {};
-    let finish!: (badge: APIEmbed) => void;
-    const completed = new Promise<APIEmbed>(resolve => { finish = resolve; });
-    const inspect = Object.assign(vi.fn().mockResolvedValue(undefined), {
-      observe: vi.fn((_link: string, onBadge: (badge: APIEmbed) => void) => {
-        publish = onBadge;
-        return completed;
-      }),
-    });
-    addTwitterLinkRewrites(client, inspect);
-    const post = proxyMessage("look https://fixvx.com/a/status/123");
-    await getHandler("messageCreate")(post);
-    const citation = {name: "AI web cross-check: supported (review sources)", value: "[Source 1](https://example.org/report)"};
-    const pending: APIEmbed = {title: "🟡 10% Spiciness — Source check pending", fields: [citation]};
-    const credible: APIEmbed = {title: "🟢 10% Spiciness — Supported claim, low spice, credible source", fields: [citation]};
-    publish(pending);
-    await vi.waitFor(() => { expect(post.reply).toHaveBeenCalledTimes(1); });
-    expect(post.reply.mock.calls[0]?.[0].content).toContain("-# 🟡 [source]");
-    publish(credible);
-    await vi.waitFor(() => { expect(post.response.edit).toHaveBeenCalledTimes(1); });
-    expect(post.response.edit.mock.calls[0]?.[0].content).toContain("-# 🟢 [source]");
-    expect(post.reply).toHaveBeenCalledTimes(1);
-    finish(credible);
-  });
+  test.each(["fxtwitter.com", "fixupx.com", "twittpr.com", "xfixup.com", "vxtwitter.com", "fixvx.com"])(
+    "updates a %s assessment reply when a later source result changes the verdict", async host => {
+      const {client, getHandler} = createEventClient();
+      let publish: (badge: APIEmbed) => void = () => {};
+      let finish!: (badge: APIEmbed) => void;
+      const completed = new Promise<APIEmbed>(resolve => { finish = resolve; });
+      const inspect = Object.assign(vi.fn().mockResolvedValue(undefined), {
+        observe: vi.fn((_link: string, onBadge: (badge: APIEmbed) => void) => {
+          publish = onBadge;
+          return completed;
+        }),
+      });
+      addTwitterLinkRewrites(client, inspect);
+      const post = proxyMessage(`look https://${host}/a/status/123`);
+      await getHandler("messageCreate")(post);
+      const citation = {name: "AI web cross-check: supported (review sources)", value: "[Source 1](https://example.org/report)"};
+      const pending: APIEmbed = {title: "🟡 10% Spiciness — Source check pending", fields: [citation]};
+      const credible: APIEmbed = {title: "🟢 10% Spiciness — Supported claim, low spice, credible source", fields: [citation]};
+      publish(pending);
+      await vi.waitFor(() => { expect(post.reply).toHaveBeenCalledTimes(1); });
+      expect(post.reply.mock.calls[0]?.[0].content).toContain("-# 🟡 [source]");
+      publish(credible);
+      await vi.waitFor(() => { expect(post.response.edit).toHaveBeenCalledTimes(1); });
+      expect(post.response.edit.mock.calls[0]?.[0].content).toContain("-# 🟢 [source]");
+      expect(post.reply).toHaveBeenCalledTimes(1);
+      publish({...credible, description: "Further supporting context"});
+      finish(credible);
+      expect(post.response.edit).toHaveBeenCalledTimes(1);
+    },
+  );
   test("extracts known proxy statuses, keeps modifiers and queries, and deduplicates by post ID", () => {
     expect(getTwitterProxyLinks("https://fixupx.com/a/status/123?s=20 https://vxtwitter.com/b/status/123/video/1 https://c.vxtwitter.com/a/status/456, <https://fxtwitter.com/a/status/789> https://fixvx.com/profile https://fixvx.com.evil.test/a/status/111 https://x.com/a/status/222"))
       .toEqual(["https://fixupx.com/a/status/123?s=20", "https://c.vxtwitter.com/a/status/456"]);
@@ -53,9 +58,7 @@ describe("proxy post assessments", () => {
 
   test.each([
     "x.com", "twitter.com", "mobile.x.com", "mobile.twitter.com", "m.twitter.com", "www.x.com",
-    "fxtwitter.com", "fixupx.com", "twittpr.com", "xfixup.com", "vxtwitter.com", "fixvx.com", "www.fixupx.com",
-    "d.fxtwitter.com", "dl.fxtwitter.com", "t.fxtwitter.com", "i.fxtwitter.com", "g.fixupx.com", "m.fxtwitter.com", "o.fxtwitter.com",
-    "c.vxtwitter.com", "c.fixvx.com",
+    ...twitterProxyHosts,
   ])("reposts a link-only %s paste and edits its badge into that same message", async host => {
     const {client, getHandler} = createEventClient();
     const inspect = vi.fn().mockResolvedValue({title: "Badge", description: "Reality check."});
@@ -162,6 +165,28 @@ describe("proxy post assessments", () => {
     expect(message.channel.send).not.toHaveBeenCalled();
     expect(message.suppressEmbeds).not.toHaveBeenCalled();
     expect(message.content).toBe("look https://fixupx.com/a/status/123");
+  });
+
+  test.each(twitterProxyHosts)("keeps a %s preview and replies with only the indicator and source", async host => {
+    const {client, getHandler} = createEventClient();
+    const badge: APIEmbed = {title: "🟡 10% Spiciness — Claim contradicted", fields: [{
+      name: "AI web cross-check: contradicted (review sources)", value: "[Source 1](https://example.org/report)",
+    }]};
+    const inspect = vi.fn().mockResolvedValue(badge);
+    addTwitterLinkRewrites(client, inspect);
+    const url = `https://${host}/a/status/123?s=20`;
+    const message = proxyMessage(`look ${url}`);
+    await getHandler("messageCreate")(message);
+    await vi.waitFor(() => {
+      expect(message.reply).toHaveBeenCalledExactlyOnceWith({
+        content: "-# 🟡 [source](<https://example.org/report>)", allowedMentions: {parse: [], repliedUser: false},
+      });
+    });
+    expect(inspect).toHaveBeenCalledExactlyOnceWith(url);
+    expect(message.delete).not.toHaveBeenCalled();
+    expect(message.channel.send).not.toHaveBeenCalled();
+    expect(message.suppressEmbeds).not.toHaveBeenCalled();
+    expect(message.content).toBe(`look ${url}`);
   });
 
   test("keeps mixed messages with surrounding text and their previews", async () => {
