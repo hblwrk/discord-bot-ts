@@ -65,7 +65,7 @@ describe("Twitter metadata and badge service", () => {
       expect(deps.credibilityFn).toHaveBeenCalledTimes(1);
     });
     expect(updates).toHaveBeenCalledTimes(1);
-    expect(updates.mock.calls[0]?.[0]).toMatchObject({title: "🟡 10% Spiciness — Fact check pending"});
+    expect(updates.mock.calls[0]?.[0]).toMatchObject({title: "🔎 Checking"});
     fact.resolve({verdict: "supported", sentence: "Reporting supports this specific claim.", sources: ["https://reuters.com/world/report"]});
     await vi.waitFor(() => { expect(updates).toHaveBeenCalledTimes(2); });
     expect(updates.mock.calls[1]?.[0]).toMatchObject({title: "🟡 10% Spiciness — Source check pending"});
@@ -84,7 +84,7 @@ describe("Twitter metadata and badge service", () => {
     const result = inspect.observe!("https://fixvx.com/a/status/123", updates);
     await vi.waitFor(() => { expect(deps.credibilityFn).toHaveBeenCalledTimes(1); });
     expect(updates).toHaveBeenCalledTimes(1);
-    expect(updates.mock.calls[0]?.[0]).toMatchObject({title: "🟡 10% Spiciness — Fact check pending"});
+    expect(updates.mock.calls[0]?.[0]).toMatchObject({title: "🔎 Checking"});
     fact.resolve({verdict: "supported", sentence: "Reporting supports this specific claim.", sources: ["https://reuters.com/world/report"]});
     expect(await result).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
     expect(updates).toHaveBeenCalledTimes(2);
@@ -116,6 +116,18 @@ describe("Twitter metadata and badge service", () => {
       .toBe("-# 🔴 Claim contradicted — The records directly refute the claim. [source](<https://reuters.com/world/report>)");
   });
 
+  test("a documented contradiction overrides a matching company source", async () => {
+    const deps = dependencies({status: {id: "123", text: "Airtable announced layoffs and shipped 30 improvements.",
+      author: {screen_name: "Airtable"}}});
+    const primaryStatementFn = vi.fn().mockResolvedValue({organization: "Airtable",
+      source: "https://www.airtable.com/newsroom/back-to-bases"});
+    deps.crossCheckFn.mockResolvedValue({verdict: "contradicted", sentence: "The records refute the claim.",
+      sources: ["https://reuters.com/world/report", "https://apnews.com/article/report"]});
+    const badge = await createTwitterIntrospector({...deps, primaryStatementFn})("https://fixvx.com/Airtable/status/123");
+    expect(primaryStatementFn).toHaveBeenCalledTimes(1);
+    expect(badge?.title).toBe("🔴 10% Spiciness — Claim contradicted");
+  });
+
   test("publishes red after source research finishes first", async () => {
     const deps = dependencies();
     const fact = deferred<Awaited<ReturnType<typeof deps.crossCheckFn>>>();
@@ -138,9 +150,9 @@ describe("Twitter metadata and badge service", () => {
     const inspect = createTwitterIntrospector(deps);
     const result = inspect.observe!("https://fixvx.com/a/status/123", updates);
     await vi.waitFor(() => { expect(updates).toHaveBeenCalledTimes(2); });
-    expect(updates.mock.calls[0]?.[0].title).toContain("Wording caution");
+    expect(updates.mock.calls[0]?.[0].title).toBe("🔎 Checking");
     expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: updates.mock.calls[0]?.[0]}], false))
-      .toBe("-# 🟡 Wording caution");
+      .toBe("-# 🔎 Checking");
     expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: updates.mock.calls[1]?.[0]}], false))
       .toBe("-# 🟡 Wording caution [source](<https://reuters.com/world/report>)");
     source.resolve({target: "posting account", label: "@example", verdict: "credible", source: "https://example.org/about"});
@@ -168,7 +180,7 @@ describe("Twitter metadata and badge service", () => {
       expect(deps.credibilityFn).toHaveBeenCalledTimes(1);
     });
     expect(updates).toHaveBeenCalledTimes(1);
-    expect(updates.mock.calls[0]?.[0]).toMatchObject({title: "🟡 10% Spiciness — Fact check pending"});
+    expect(updates.mock.calls[0]?.[0]).toMatchObject({title: "🔎 Checking"});
     fact.resolve(undefined);
     await vi.waitFor(() => { expect(updates).toHaveBeenCalledTimes(2); });
     source.resolve({target: "posting account", label: "@example", verdict: "credible", source: "https://example.org/about"});

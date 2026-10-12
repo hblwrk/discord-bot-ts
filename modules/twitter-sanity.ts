@@ -9,11 +9,13 @@ import {getTwitterStatusId} from "./twitter-status-url.ts";
 import {isAiProviderAvailable, type AiProviderDependencies} from "./ai-provider.ts";
 import {appendTwitterBadgeText} from "./twitter-badge-text.ts";
 import {isClearlyNonFactualTeaser} from "./twitter-post-eligibility.ts";
+import {isPotentialPrimaryStatement, researchTwitterPrimaryStatement, type TwitterPrimaryStatement} from "./twitter-primary-statement.ts";
 
 type TwitterSanityDependencies = AiProviderDependencies & {
   getWithRetryFn?: typeof getWithRetry;
   crossCheckFn?: typeof crossCheckTwitterPost;
   credibilityFn?: typeof researchTwitterSource;
+  primaryStatementFn?: typeof researchTwitterPrimaryStatement;
   aiAvailableFn?: () => boolean;
 };
 
@@ -116,8 +118,8 @@ async function assessTwitterPost(
     const reviewDependencies = {
       ...dependencies, logger: {log: (_level, message) => { dependencies.logger.log("debug", message); }},
     } satisfies AiProviderDependencies;
-    // Start all three evaluations together. Wording is local; the two web
-    // requests can finish in either order without holding up one another.
+    // Wording, independent factual research, source reputation and eligible
+    // first-party attribution start without waiting on one another.
     const wordingPromise = Promise.resolve().then(() => scoreTwitterPost(post));
     const checkPromise = Promise.resolve().then(() => aiAvailable
       ? (dependencies.crossCheckFn ?? crossCheckTwitterPost)(post, reviewDependencies) : undefined)
@@ -125,29 +127,58 @@ async function assessTwitterPost(
         dependencies.logger.log("debug", "Twitter/X web cross-check skipped; keeping the link preview.");
         return undefined;
       });
-    let sourceSettled = false;
+    let credibilityReady = false;
+    let settledCredibility: TwitterSourceCredibility | undefined;
     const credibilityPromise = Promise.resolve().then(() => aiAvailable
       ? (dependencies.credibilityFn ?? researchTwitterSource)(post, reviewDependencies)
       : unresearchedTwitterSource(post, dependencies.nowMs?.() ?? Date.now()))
       .catch((): TwitterSourceCredibility => ({target: "unidentified", label: "source not identified", verdict: "unverified"}))
-      .then(value => { sourceSettled = true; return value; });
+      .then(value => { credibilityReady = true; settledCredibility = value; return value; });
+    const primaryCandidate = aiAvailable && isPotentialPrimaryStatement(post);
+    const primaryPromise = Promise.resolve().then(() => primaryCandidate
+      ? (dependencies.primaryStatementFn ?? researchTwitterPrimaryStatement)(post, reviewDependencies) : undefined)
+      .catch(() => {
+        dependencies.logger.log("debug", "Twitter/X primary statement check skipped.");
+        return undefined;
+      });
     const assessment = await wordingPromise;
-    const pending = buildTwitterBadge(url, id, post, assessment, undefined, undefined, aiAvailable);
-    if (undefined !== pending) publish(pending);
+    if (aiAvailable) publish({url, title: "🔎 Checking", description: "Review in progress."});
     const check = await checkPromise;
-    if (!sourceSettled) {
-      const interim = buildTwitterBadge(url, id, post, assessment, check);
-      if (undefined !== interim) publish(interim);
+    if (check?.verdict === "contradicted") {
+      const contradiction = buildTwitterBadge(url, id, post, assessment, check);
+      if (undefined !== contradiction) publish(contradiction);
+    } else if (!primaryCandidate && aiAvailable) {
+      const provisional = buildTwitterBadge(url, id, post, assessment, check,
+        credibilityReady ? settledCredibility : undefined);
+      if (undefined !== provisional) publish(provisional);
     }
-    const credibility = await credibilityPromise;
-    const final = buildTwitterBadge(url, id, post, assessment, check, credibility);
+    const [credibility, primary] = await Promise.all([credibilityPromise, primaryPromise]);
+    const final = buildFinalTwitterBadge(url, id, post, assessment, check, credibility, primary);
     if (undefined !== final) publish(final);
-    return {badge: final, retryable: undefined === check};
+    return {badge: final, retryable: undefined === check && undefined === primary};
   } catch {
     // Never log provider bodies, tweet text or URLs from remote errors.
     dependencies.logger.log("debug", "Twitter/X introspection skipped; keeping the link preview.");
     return {badge: undefined, retryable: true};
   }
+}
+
+function buildFinalTwitterBadge(
+  url: string, id: string, post: TwitterPostContext, assessment: TwitterSanityScore,
+  check: TwitterRealityCheck | undefined, credibility: TwitterSourceCredibility,
+  primary: TwitterPrimaryStatement | undefined,
+): APIEmbed | undefined {
+  if (undefined !== primary && assessment.score < 30 && check?.verdict !== "contradicted"
+    && !(credibility.target === "linked source" && credibility.verdict === "concerns")) {
+    return {
+      url,
+      title: "ℹ️ Company statement",
+      description: "The organization published these claims; this is source attribution, not independent verification.",
+      fields: [{name: `Primary source: ${primary.organization}`,
+        value: `[Source](${primary.source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`}],
+    };
+  }
+  return buildTwitterBadge(url, id, post, assessment, check, credibility);
 }
 
 function buildTwitterBadge(

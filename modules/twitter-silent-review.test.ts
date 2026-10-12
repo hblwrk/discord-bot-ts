@@ -44,6 +44,37 @@ describe("silent Twitter review delivery", () => {
     expect(credibilityFn).not.toHaveBeenCalled();
   });
 
+  test.each(["x.com", ...twitterProxyHosts])("%s replaces checking with a sourced company statement", async host => {
+    const {client, getHandler} = createEventClient();
+    let finish!: (value: {organization: string; source: string}) => void;
+    const primaryResult = new Promise<{organization: string; source: string}>(resolve => { finish = resolve; });
+    const primaryStatementFn = vi.fn(() => primaryResult);
+    const source = "https://www.airtable.com/newsroom/back-to-bases";
+    const introspect = createTwitterIntrospector({logger, aiAvailableFn: () => true,
+      getWithRetryFn: vi.fn().mockResolvedValue({data: {status: {
+        id: "123", text: "Airtable announced layoffs and shipped 30 improvements.",
+        author: {screen_name: "Airtable"},
+      }}}),
+      crossCheckFn: vi.fn().mockResolvedValue({verdict: "supported", sentence: "The statement matches the source.",
+        sources: ["https://reuters.com/world/report"]}),
+      credibilityFn: vi.fn().mockResolvedValue({target: "posting account", label: "@Airtable", verdict: "credible"}),
+      primaryStatementFn,
+    });
+    addTwitterLinkRewrites(client, introspect);
+    const post = message(`https://${host}/Airtable/status/123`);
+    await getHandler("messageCreate")(post);
+    await vi.waitFor(() => { expect(primaryStatementFn).toHaveBeenCalledTimes(1); });
+    const delivered = post.response.edit;
+    await vi.waitFor(() => { expect(delivered.mock.lastCall?.[0]?.content).toContain("🔎 Checking"); });
+    finish({organization: "Airtable", source});
+    await vi.waitFor(() => {
+      expect(delivered.mock.lastCall?.[0]?.content).toContain("ℹ️ Airtable statement [source](<" + source + ">)");
+    });
+    expect(delivered).toHaveBeenCalledTimes(2);
+    expect(delivered.mock.lastCall?.[0]).not.toHaveProperty("embeds");
+    expect(post.embeds).toEqual([{type: "video"}]);
+  });
+
   test("leaves a proxy teaser with surrounding text untouched", async () => {
     const {client, getHandler} = createEventClient();
     const getWithRetryFn = vi.fn().mockResolvedValue({data: {status: {
@@ -105,7 +136,7 @@ describe("silent Twitter review delivery", () => {
           );
         });
         expect(aiCall).toHaveBeenCalledTimes(1);
-        expect(post.response.edit).toHaveBeenCalledTimes(status === "Wording caution" ? 1 : 2);
+        expect(post.response.edit).toHaveBeenCalledTimes(2);
         expect(post.reply).not.toHaveBeenCalled();
         expect(post.channel.send).toHaveBeenCalledTimes(1);
       }
@@ -126,7 +157,7 @@ describe("silent Twitter review delivery", () => {
     await vi.waitFor(() => { expect(crossCheckFn).toHaveBeenCalledTimes(1); });
     await vi.waitFor(() => {
       expect(post.response.edit).toHaveBeenCalledExactlyOnceWith({
-        content: `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123  🟡 Checking claim`,
+        content: `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123  🔎 Checking`,
         allowedMentions: {parse: [], repliedUser: false},
       });
     });
