@@ -130,10 +130,14 @@ describe("addTwitterLinkRewrites", () => {
       {name: "Source credibility: credible (@example)", value: "[Evidence](https://example.org/about)"}]};
     publish(pending);
     await vi.waitFor(() => { expect(message.response.edit).toHaveBeenCalledTimes(1); });
-    expect(message.response.edit.mock.calls[0]?.[0].content).toContain("🟡 10% wording spice");
+    expect(message.response.edit.mock.calls[0]?.[0].content).toContain("-# 🟡 [source]");
+    publish({title: "🟡 10% Spiciness — Source credibility unverified", fields: [citation,
+      {name: "Source credibility: unverified (@example)", value: "Under 100 followers"}]});
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(message.response.edit).toHaveBeenCalledTimes(1);
     publish(trusted);
     await vi.waitFor(() => { expect(message.response.edit).toHaveBeenCalledTimes(2); });
-    expect(message.response.edit.mock.calls[1]?.[0].content).toContain("🟢 10% wording spice");
+    expect(message.response.edit.mock.calls[1]?.[0].content).toContain("-# 🟢 [source]");
     publish(trusted);
     await new Promise(resolve => setTimeout(resolve, 0));
     expect(message.response.edit).toHaveBeenCalledTimes(2);
@@ -206,7 +210,7 @@ describe("addTwitterLinkRewrites", () => {
     await getHandler("messageCreate")(message);
     await vi.waitFor(() => {
       expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({
-        content: `From <@${message.author?.id}>: https://fxtwitter.com/RadioGenoa/status/2106661915741114638\n-# ⚪ Sanity Rating unavailable\n-# The post text is unavailable, so its claims, media context and bot activity remain unverified.`,
+        content: `From <@${message.author?.id}>: https://fxtwitter.com/RadioGenoa/status/2106661915741114638\n-# ⚪ Sanity Rating unavailable`,
         allowedMentions: {parse: [], repliedUser: false},
       });
     });
