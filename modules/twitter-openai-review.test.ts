@@ -4,6 +4,7 @@ import {crossCheckTwitterPost} from "./twitter-sanity-check.ts";
 import {createTwitterIntrospector} from "./twitter-sanity.ts";
 import {addTwitterLinkRewrites} from "./twitter-link-rewrite.ts";
 import {createEventClient} from "./test-utils/discord-mocks.ts";
+import {twitterProxyHosts} from "./test-utils/twitter-proxy-hosts.ts";
 
 const logger = vi.hoisted(() => ({log: vi.fn()}));
 vi.mock("./logging.ts", () => ({getLogger: () => logger}));
@@ -59,17 +60,20 @@ describe("Twitter review with OpenAI search sources", () => {
     expect(logger.log).toHaveBeenCalledExactlyOnceWith("debug", "Twitter/X web cross-check skipped: no accepted source in provider search metadata.");
   });
 
-  test.each(["x.com", "fxtwitter.com"])("delivers the completed review for %s without replacing native embeds", async host => {
+  test.each(["x.com", ...twitterProxyHosts])("delivers the completed review for %s without replacing native embeds", async host => {
     const deps = dependencies();
+    const getWithRetryFn = vi.fn().mockResolvedValue({data: {status: {id: "2106661915741114638", text: post.text,
+      quote: {text: post.quotedText}, media: {videos: [{}]},
+    }}});
     const introspect = createTwitterIntrospector({...deps,
-      getWithRetryFn: vi.fn().mockResolvedValue({data: {status: {id: "2106661915741114638", text: post.text,
-        quote: {text: post.quotedText}, media: {videos: [{}]},
-      }}}),
+      getWithRetryFn,
     });
     const {client, getHandler} = createEventClient();
     addTwitterLinkRewrites(client, introspect);
     const response = {edit: vi.fn().mockResolvedValue(undefined)};
-    const message = {id: "reported-review", author: {id: "123"}, content: `https://${host}/RadioGenoa/status/2106661915741114638`,
+    const url = `https://${host}/RadioGenoa/status/2106661915741114638?s=20`;
+    const deliveredUrl = host === "x.com" ? "https://fxtwitter.com/RadioGenoa/status/2106661915741114638" : url;
+    const message = {id: "reported-review", author: {id: "123"}, content: url,
       embeds: [{type: "video"}], channel: {send: vi.fn().mockResolvedValue(response)},
       reply: vi.fn().mockResolvedValue(response), delete: vi.fn().mockResolvedValue(undefined), suppressEmbeds: vi.fn().mockResolvedValue(undefined),
     };
@@ -77,11 +81,12 @@ describe("Twitter review with OpenAI search sources", () => {
     const delivered = response.edit;
     await vi.waitFor(() => { expect(delivered).toHaveBeenCalledTimes(1); });
     const options = delivered.mock.calls[0]?.[0];
-    expect(options.content).not.toContain(sentence);
-    expect(options.content).toContain("-# 🟢 [source]");
-    expect(options.content).toContain(`[source](<${sources[0]}>)`);
+    expect(options.content).toBe(`From <@123>: ${deliveredUrl}\n-# 🟢 [source](<${sources[0]}>)`);
     expect(options).not.toHaveProperty("embeds");
     expect(options).not.toHaveProperty("flags");
+    expect(getWithRetryFn).toHaveBeenCalledExactlyOnceWith("https://api.fxtwitter.com/2/status/2106661915741114638",
+      expect.anything(), expect.anything());
+    expect(deps.postWithRetryFn).toHaveBeenCalledTimes(1);
     expect(message.suppressEmbeds).not.toHaveBeenCalled();
     expect(message.channel.send).toHaveBeenCalledTimes(1);
     expect(message.reply).not.toHaveBeenCalled();
