@@ -30,6 +30,8 @@ describe("Twitter web cross-check", () => {
     );
     expect(callFn.mock.calls[0]?.[0]).toContain("at most 80 characters");
     expect(callFn.mock.calls[0]?.[0]).toContain("Do not name news outlets");
+    expect(callFn.mock.calls[0]?.[0]).toContain("bloomberg.com");
+    expect(callFn.mock.calls[0]?.[0]).toContain("handelsblatt.com");
   });
 
   test("accepts supported evidence and deduplicates source URLs", async () => {
@@ -61,6 +63,7 @@ describe("Twitter web cross-check", () => {
     {...result, realityCheck: "X".repeat(81)}, {...result, realityCheck: "First sentence. Second sentence."},
     {...result, realityCheck: "AP reported that the council approved the plan."},
     {...result, realityCheck: "Reuters found that the council approved the plan."},
+    {...result, realityCheck: "Bloomberg found that the council approved the plan."},
     {...result, realityCheck: "The Associated Press confirmed the council's decision."},
     {...result, realityCheck: "Follow https://example.com to find the answer."},
     {...result, realityCheck: "Everyone @everyone should act immediately."},
@@ -93,4 +96,14 @@ describe("Twitter web cross-check", () => {
     expect(recognisedSourceUrl("https://reuters.com", true)).toBe("https://reuters.com/");
     expect(recognisedSourceUrl("https://reuters.com")).toBeUndefined();
   });
+
+  test.each(["bloomberg.com", "ft.com", "wsj.com", "cnbc.com", "handelsblatt.com"])(
+    "accepts a searched public financial report from %s", async domain => {
+      const article = `https://www.${domain}/markets/company-report`;
+      const review = await crossCheckTwitterPost(post, {logger: {log: vi.fn()}},
+        mockCall({...result, verdict: "supported", sourceUrls: [article]}, [article]));
+      expect(review?.sources).toEqual([article]);
+      expect(recognisedSourceUrl(`https://${domain}.evil.test/markets/company-report`)).toBeUndefined();
+    },
+  );
 });

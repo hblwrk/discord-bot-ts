@@ -65,14 +65,43 @@ describe("silent Twitter review delivery", () => {
     await getHandler("messageCreate")(post);
     await vi.waitFor(() => { expect(primaryStatementFn).toHaveBeenCalledTimes(1); });
     const delivered = post.response.edit;
-    await vi.waitFor(() => { expect(delivered.mock.lastCall?.[0]?.content).toContain("🔎 Checking"); });
+    await vi.waitFor(() => {
+      expect(delivered.mock.calls.some(([options]) => options.content.includes("🔎 Checking"))).toBe(true);
+    });
     finish({organization: "Airtable", source});
     await vi.waitFor(() => {
       expect(delivered.mock.lastCall?.[0]?.content).toContain("ℹ️ Airtable statement [source](<" + source + ">)");
     });
-    expect(delivered).toHaveBeenCalledTimes(2);
+    expect(delivered).toHaveBeenCalledTimes(4);
     expect(delivered.mock.lastCall?.[0]).not.toHaveProperty("embeds");
     expect(post.embeds).toEqual([{type: "video"}]);
+  });
+
+  test.each(["x.com", "fixvx.com"])("%s edits the existing finance verdict after a short disclosure retry", async host => {
+    const {client, getHandler} = createEventClient();
+    const issuer = {organization: "Airtable", source: "https://www.airtable.com/newsroom/back-to-bases"};
+    const primaryStatementFn = vi.fn().mockResolvedValueOnce(undefined).mockResolvedValueOnce(issuer);
+    const introspect = createTwitterIntrospector({logger, aiAvailableFn: () => true, primaryRetryDelayMs: 10,
+      getWithRetryFn: vi.fn().mockResolvedValue({data: {status: {
+        id: "123", text: "Airtable layoffs affect a large part of its team.", author: {screen_name: "trader"},
+      }}}),
+      crossCheckFn: vi.fn().mockResolvedValue({verdict: "supported", sentence: "A report describes the same layoffs.",
+        sources: ["https://bloomberg.com/news/articles/airtable-layoffs"]}),
+      credibilityFn: vi.fn().mockResolvedValue({target: "posting account", label: "@trader", verdict: "unverified"}),
+      primaryStatementFn,
+    });
+    addTwitterLinkRewrites(client, introspect);
+    const post = message(`https://${host}/trader/status/123`);
+    await getHandler("messageCreate")(post);
+    await vi.waitFor(() => {
+      expect(post.response.edit.mock.calls.some(([options]) => options.content.includes("ℹ️ Reported [source]"))).toBe(true);
+    });
+    await vi.waitFor(() => {
+      expect(post.response.edit.mock.lastCall?.[0]?.content).toContain(`ℹ️ Airtable statement [source](<${issuer.source}>)`);
+    });
+    expect(primaryStatementFn).toHaveBeenCalledTimes(2);
+    expect(post.channel.send).toHaveBeenCalledTimes(1);
+    expect(post.reply).not.toHaveBeenCalled();
   });
 
   test("leaves a proxy teaser with surrounding text untouched", async () => {

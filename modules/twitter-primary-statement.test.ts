@@ -30,6 +30,8 @@ describe("Twitter first-party statement attribution", () => {
   test("checks plausible company and company-connected announcements", () => {
     expect(isPotentialPrimaryStatement(post())).toBe(true);
     expect(isPotentialPrimaryStatement(post({text: "Airtable is laying off staff."}))).toBe(false);
+    expect(isPotentialPrimaryStatement(post({text: "Airtable layoffs were reported today.", authorHandle: "trader"}))).toBe(true);
+    expect(isPotentialPrimaryStatement(post({text: "Airtable revenue fell 20%.", authorHandle: "trader"}))).toBe(true);
     expect(isPotentialPrimaryStatement(post({text: "Airtable is laying off staff.", authorHandle: "Airtable"}))).toBe(true);
     expect(isPotentialPrimaryStatement(post({text: "Introducing Omni, shipping 30 improvements.", authorHandle: "Airtable"}))).toBe(true);
     expect(isPotentialPrimaryStatement(post({text: "We're excited about the future."}))).toBe(false);
@@ -40,7 +42,8 @@ describe("Twitter first-party statement attribution", () => {
   test("attributes a post to a fetched, search-grounded company newsroom page", async () => {
     const {result, callFn, getWithRetryFn} = research();
     expect(await result).toEqual({organization: "Airtable", source});
-    expect(callFn.mock.calls[0]?.[0]).toContain("investor-relations releases, and SEC EDGAR filing exhibits");
+    expect(callFn.mock.calls[0]?.[0]).toContain("SEC EDGAR exhibits");
+    expect(callFn.mock.calls[0]?.[0]).toContain("EQS ad-hoc or Euronext company announcements");
     expect(callFn.mock.calls[0]?.[0]).toContain("every material factual assertion");
     expect(getWithRetryFn).toHaveBeenCalledExactlyOnceWith(source, expect.objectContaining({
       maxRedirects: 0, maxContentLength: 1_000_000, responseType: "text",
@@ -56,6 +59,20 @@ describe("Twitter first-party statement attribution", () => {
     const companyPost = post({authorHandle: "Airtable",
       text: "Airtable is laying off a large part of its team and shipped 30 improvements in 3 weeks."});
     expect(await research({post: companyPost}).result).toEqual({organization: "Airtable", source});
+  });
+
+  test("attributes a third-party finance report to the issuer without endorsing the poster", async () => {
+    const thirdParty = post({authorHandle: "trader", text: "Airtable layoffs affect a large part of the team; 30 improvements shipped in 3 weeks."});
+    expect(await research({post: thirdParty}).result).toEqual({organization: "Airtable", source});
+  });
+
+  test("requires an explicit issuer-symbol pairing for a ticker-only report", async () => {
+    const tickerPost = post({authorHandle: "trader", text: "$ATBL layoffs affect a large part of the team; 30 improvements shipped in 3 weeks."});
+    expect(await research({post: tickerPost, html: `${page}<p>Ticker: ATBL</p>`}).result)
+      .toEqual({organization: "Airtable", source});
+    expect(await research({post: {...tickerPost, text: tickerPost.text.replace("$ATBL", "$atbl")},
+      html: `${page}<p>Ticker: ATBL</p>`}).result).toEqual({organization: "Airtable", source});
+    expect(await research({post: tickerPost}).result).toBeUndefined();
   });
 
   test("attributes a company-account launch without repeating its name only when the source matches", async () => {
@@ -80,12 +97,28 @@ describe("Twitter first-party statement attribution", () => {
       .toEqual({organization: "Airtable", source});
   });
 
+  test("accepts a linked recognised report while still requiring issuer evidence", async () => {
+    expect(await research({post: post({externalLinks: ["https://www.bloomberg.com/news/articles/airtable-report"]})}).result)
+      .toEqual({organization: "Airtable", source});
+  });
+
   test("accepts a matching investor-relations release or SEC filing exhibit", async () => {
     const investorSource = "https://investors.bendingspoons.com/newsroom/airtable-back-to-bases";
     const filingSource = "https://www.sec.gov/Archives/edgar/data/320193/000032019326000005/a8-kex991.htm";
     expect(primarySourceUrl(investorSource, "Bending Spoons")).toBe(investorSource);
     expect(primarySourceUrl(filingSource, "Airtable")).toBe(filingSource);
     expect(primarySourceUrl(source, "Airtable")).toBe(source);
+    expect(primarySourceUrl("https://www.eqs-news.com/news/ad-hoc/airtable-announces-restructuring/a4bad0de-1e35-4699-ae43-7ff8fb1f53e9", "Airtable"))
+      .toBe("https://www.eqs-news.com/news/ad-hoc/airtable-announces-restructuring/a4bad0de-1e35-4699-ae43-7ff8fb1f53e9");
+    expect(primarySourceUrl("https://live.euronext.com/en/products/equities/company-news/2026-10-13-airtable-announces-results", "Airtable"))
+      .toBe("https://live.euronext.com/en/products/equities/company-news/2026-10-13-airtable-announces-results");
+  });
+
+  test("requires fetched issuer text even for a searched distribution notice", async () => {
+    const disclosure = "https://www.eqs-news.com/news/ad-hoc/airtable-announces-restructuring/a4bad0de-1e35-4699-ae43-7ff8fb1f53e9";
+    const answer = {matched: true, organization: "Airtable", sourceUrl: disclosure, evidenceQuote: quote};
+    expect(await research({answer, searched: [disclosure]}).result).toEqual({organization: "Airtable", source: disclosure});
+    expect(await research({answer, searched: [disclosure], html: "Airtable announced a different event."}).result).toBeUndefined();
   });
 
   test.each([
@@ -97,6 +130,8 @@ describe("Twitter first-party statement attribution", () => {
     ["https://www.airtable.com:8443/newsroom/back-to-bases", "Airtable"],
     ["https://www.sec.gov/Archives/edgar/data/320193/000032019326000005/index.htm", "Airtable"],
     ["https://evil.example/Archives/edgar/data/320193/000032019326000005/a8-kex991.htm", "Airtable"],
+    ["https://www.eqs-news.com/news/ad-hoc/fake-headline", "Airtable"],
+    ["https://live.euronext.com/en/products/equities/company-news/airtable-announces-results", "Airtable"],
     [source, "Bending Spoons"],
   ])("rejects non-primary URL %s", (url, organization) => {
     expect(primarySourceUrl(url, organization)).toBeUndefined();

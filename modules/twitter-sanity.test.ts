@@ -128,6 +128,64 @@ describe("Twitter metadata and badge service", () => {
     expect(badge?.title).toBe("🔴 10% Spiciness — Claim contradicted");
   });
 
+  test("publishes an issuer statement before a slow fact check, then honors a contradiction", async () => {
+    const deps = dependencies(payload("Airtable layoffs affect a large part of its team."));
+    const fact = deferred<Awaited<ReturnType<typeof deps.crossCheckFn>>>();
+    deps.crossCheckFn.mockReturnValue(fact.promise);
+    const primaryStatementFn = vi.fn().mockResolvedValue({organization: "Airtable",
+      source: "https://www.airtable.com/newsroom/back-to-bases"});
+    const updates = vi.fn();
+    const result = createTwitterIntrospector({...deps, primaryStatementFn}).observe!("https://fixvx.com/trader/status/123", updates);
+    await vi.waitFor(() => { expect(updates.mock.lastCall?.[0]?.title).toBe("ℹ️ Company statement"); });
+    fact.resolve({verdict: "contradicted", sentence: "The filing lists no layoffs.",
+      sources: ["https://reuters.com/world/report", "https://apnews.com/article/report"]});
+    expect((await result)?.title).toBe("🔴 10% Spiciness — Claim contradicted");
+    expect(updates.mock.lastCall?.[0]?.title).toBe("🔴 10% Spiciness — Claim contradicted");
+  });
+
+  test("shows one public finance report as attributed rather than verified", async () => {
+    const deps = dependencies(payload("Airtable layoffs affect a large part of its team."));
+    const primaryStatementFn = vi.fn().mockResolvedValue(undefined);
+    const source = "https://bloomberg.com/news/articles/airtable-layoffs";
+    deps.crossCheckFn.mockResolvedValue({verdict: "supported", sentence: "A report describes the same layoffs.", sources: [source]});
+    const badge = await createTwitterIntrospector({...deps, primaryStatementFn, primaryRetryDelayMs: 60_000})("https://fixvx.com/trader/status/123");
+    expect(primaryStatementFn).toHaveBeenCalledTimes(1);
+    expect(badge?.title).toBe("ℹ️ Reported claim");
+    if (undefined === badge) throw new Error("Expected a reported-claim badge");
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false))
+      .toBe(`-# ℹ️ Reported [source](<${source}>)`);
+  });
+
+  test("short retry upgrades a single report to issuer attribution once", async () => {
+    const deps = dependencies(payload("Airtable layoffs affect a large part of its team."));
+    const issuer = {organization: "Airtable", source: "https://www.airtable.com/newsroom/back-to-bases"};
+    const primaryStatementFn = vi.fn().mockResolvedValueOnce(undefined).mockResolvedValueOnce(issuer);
+    deps.crossCheckFn.mockResolvedValue({verdict: "supported", sentence: "A report describes the same layoffs.",
+      sources: ["https://bloomberg.com/news/articles/airtable-layoffs"]});
+    const updates = vi.fn();
+    const inspect = createTwitterIntrospector({...deps, primaryStatementFn, primaryRetryDelayMs: 10});
+    expect((await inspect.observe!("https://fixvx.com/trader/status/123", updates))?.title).toBe("ℹ️ Reported claim");
+    await vi.waitFor(() => { expect(updates.mock.lastCall?.[0]?.title).toBe("ℹ️ Company statement"); });
+    expect((await inspect("https://fixvx.com/trader/status/123"))?.title).toBe("ℹ️ Company statement");
+    expect(primaryStatementFn).toHaveBeenCalledTimes(2);
+    expect(deps.getWithRetryFn).toHaveBeenCalledTimes(1);
+    expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
+  });
+
+  test("short retry leaves an unsupported claim untouched and ends the review", async () => {
+    const deps = dependencies(payload("Airtable layoffs affect a large part of its team."));
+    const primaryStatementFn = vi.fn().mockResolvedValue(undefined);
+    deps.crossCheckFn.mockResolvedValue(undefined);
+    const updates = vi.fn();
+    const inspect = createTwitterIntrospector({...deps, primaryStatementFn, primaryRetryDelayMs: 10});
+    expect((await inspect.observe!("https://fixvx.com/trader/status/123", updates))?.title)
+      .toBe("🟡 10% Spiciness — Fact check unverified");
+    await vi.waitFor(() => { expect(primaryStatementFn).toHaveBeenCalledTimes(2); });
+    expect(updates.mock.lastCall?.[0]?.title).toBe("🟡 10% Spiciness — Fact check unverified");
+    expect(updates).toHaveBeenCalledTimes(2);
+    expect(primaryStatementFn).toHaveBeenCalledTimes(2);
+  });
+
   test("publishes red after source research finishes first", async () => {
     const deps = dependencies();
     const fact = deferred<Awaited<ReturnType<typeof deps.crossCheckFn>>>();
