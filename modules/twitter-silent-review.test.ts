@@ -4,6 +4,7 @@ import {addTwitterLinkRewrites} from "./twitter-link-rewrite.ts";
 import {createTwitterIntrospector} from "./twitter-sanity.ts";
 import {clearAiProviderState} from "./ai-provider.ts";
 import {crossCheckTwitterPost, type TwitterRealityCheck} from "./twitter-sanity-check.ts";
+import {twitterProxyHosts} from "./test-utils/twitter-proxy-hosts.ts";
 
 const logger = vi.hoisted(() => ({log: vi.fn()}));
 vi.mock("./logging.ts", () => ({getLogger: () => logger}));
@@ -21,6 +22,42 @@ function message(content: string) {
 
 describe("silent Twitter review delivery", () => {
   beforeEach(() => { clearAiProviderState(); });
+
+  test.each(["x.com", ...twitterProxyHosts])("%s keeps a clear teaser preview without a rating", async host => {
+    const {client, getHandler} = createEventClient();
+    const getWithRetryFn = vi.fn().mockResolvedValue({data: {status: {
+      id: "123", text: "The turn of a key.\n\nMission S world premiere. 15 October at 10:30 PM CEST.",
+      media: {photos: [{}]},
+    }}});
+    const crossCheckFn = vi.fn();
+    const credibilityFn = vi.fn();
+    addTwitterLinkRewrites(client, createTwitterIntrospector({logger, aiAvailableFn: () => true,
+      getWithRetryFn, crossCheckFn, credibilityFn}));
+    const post = message(`https://${host}/PorscheNewsroom/status/123`);
+    await getHandler("messageCreate")(post);
+    await vi.waitFor(() => { expect(getWithRetryFn).toHaveBeenCalledTimes(1); });
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(post.response.edit).not.toHaveBeenCalled();
+    expect(post.reply).not.toHaveBeenCalled();
+    expect(post.channel.send).toHaveBeenCalledTimes(1);
+    expect(crossCheckFn).not.toHaveBeenCalled();
+    expect(credibilityFn).not.toHaveBeenCalled();
+  });
+
+  test("leaves a proxy teaser with surrounding text untouched", async () => {
+    const {client, getHandler} = createEventClient();
+    const getWithRetryFn = vi.fn().mockResolvedValue({data: {status: {
+      id: "123", text: "Mission S world premiere. 15 October at 10:30 PM CEST.",
+    }}});
+    addTwitterLinkRewrites(client, createTwitterIntrospector({logger, aiAvailableFn: () => true, getWithRetryFn}));
+    const post = message("look https://fixvx.com/PorscheNewsroom/status/123");
+    await getHandler("messageCreate")(post);
+    await vi.waitFor(() => { expect(getWithRetryFn).toHaveBeenCalledTimes(1); });
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(post.reply).not.toHaveBeenCalled();
+    expect(post.response.edit).not.toHaveBeenCalled();
+    expect(post.channel.send).not.toHaveBeenCalled();
+  });
 
   test.each(["x.com", "fixvx.com"])("%s adds a yellow badge when the review is disabled or missing credentials", async host => {
     for (const configured of ["none", "gemini", "openai"]) {

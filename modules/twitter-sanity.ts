@@ -8,6 +8,7 @@ import {communityNoteField, parseTwitterCommunityNote} from "./twitter-community
 import {getTwitterStatusId} from "./twitter-status-url.ts";
 import {isAiProviderAvailable, type AiProviderDependencies} from "./ai-provider.ts";
 import {appendTwitterBadgeText} from "./twitter-badge-text.ts";
+import {isClearlyNonFactualTeaser} from "./twitter-post-eligibility.ts";
 
 type TwitterSanityDependencies = AiProviderDependencies & {
   getWithRetryFn?: typeof getWithRetry;
@@ -76,9 +77,9 @@ export function createTwitterIntrospector(dependencies: TwitterSanityDependencie
       }
     };
     const result: Promise<APIEmbed | undefined> = assessTwitterPost(id, url, dependencies, publish).then(({badge, retryable}) => {
-      // Failed optional reviews can recover on the next paste; retain only
-      // successful assessments and coalesce the requests already in flight.
-      if ((retryable || undefined === badge) && cache.get(id)?.result === result) cache.delete(id);
+      // Retry failed optional reviews on the next paste; cache conclusive
+      // assessments, including posts that need no badge.
+      if (retryable && cache.get(id)?.result === result) cache.delete(id);
       entry.latest = badge;
       return badge;
     }).finally(() => { inFlight--; entry.listeners.clear(); });
@@ -107,6 +108,9 @@ async function assessTwitterPost(
     const post = parseTwitterPost(response.data, id);
     if (undefined === post) {
       return {badge: undefined, retryable: true};
+    }
+    if (isClearlyNonFactualTeaser(post)) {
+      return {badge: undefined, retryable: false};
     }
     const aiAvailable = dependencies.aiAvailableFn?.() ?? isAiProviderAvailable(dependencies);
     const reviewDependencies = {

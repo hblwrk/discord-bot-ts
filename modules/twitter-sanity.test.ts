@@ -27,6 +27,30 @@ function deferred<T>() {
 }
 
 describe("Twitter metadata and badge service", () => {
+  test("publishes no badge or AI requests for the Porsche premiere teaser", async () => {
+    const teaser = "The turn of a key.\n\nMission S world premiere. 15 October at 10:30 PM CEST.";
+    const deps = dependencies({status: {id: "123", text: teaser, author: {screen_name: "PorscheNewsroom"},
+      media: {photos: [{}]}}});
+    const updates = vi.fn();
+    const inspect = createTwitterIntrospector(deps);
+    const badge = await inspect.observe!("https://fixupx.com/PorscheNewsroom/status/123", updates);
+    expect(badge).toBeUndefined();
+    expect(await inspect("https://x.com/PorscheNewsroom/status/123")).toBeUndefined();
+    expect(deps.getWithRetryFn).toHaveBeenCalledTimes(1);
+    expect(updates).not.toHaveBeenCalled();
+    expect(deps.aiAvailableFn).not.toHaveBeenCalled();
+    expect(deps.crossCheckFn).not.toHaveBeenCalled();
+    expect(deps.credibilityFn).not.toHaveBeenCalled();
+  });
+
+  test("keeps a measurable claim in an announcement eligible for all checks", async () => {
+    const deps = dependencies(payload("Mission S has 500 hp. World premiere 15 October."));
+    const badge = await createTwitterIntrospector(deps)("https://fixupx.com/PorscheNewsroom/status/123");
+    expect(badge).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
+    expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
+    expect(deps.credibilityFn).toHaveBeenCalledTimes(1);
+  });
+
   test("starts fact and source checks together, then publishes only changed trust verdicts", async () => {
     const deps = dependencies(payload("The council approved the plan yesterday."));
     const fact = deferred<Awaited<ReturnType<typeof deps.crossCheckFn>>>();
