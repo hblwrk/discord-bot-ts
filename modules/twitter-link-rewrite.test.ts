@@ -130,14 +130,14 @@ describe("addTwitterLinkRewrites", () => {
       {name: "Source credibility: credible (@example)", value: "[Evidence](https://example.org/about)"}]};
     publish(pending);
     await vi.waitFor(() => { expect(message.response.edit).toHaveBeenCalledTimes(1); });
-    expect(message.response.edit.mock.calls[0]?.[0].content).toContain("-# 🟡 Checking source credibility [source]");
+    expect(message.response.edit.mock.calls[0]?.[0].content).toContain("  🟡 Checking source credibility [source]");
     publish({title: "🟡 10% Spiciness — Source check pending", fields: [citation,
       {name: "Source credibility: unverified (@example)", value: "Under 100 followers"}]});
     await new Promise(resolve => setTimeout(resolve, 0));
     expect(message.response.edit).toHaveBeenCalledTimes(1);
     publish(trusted);
     await vi.waitFor(() => { expect(message.response.edit).toHaveBeenCalledTimes(2); });
-    expect(message.response.edit.mock.calls[1]?.[0].content).toContain("-# 🟢 Supported claim [source]");
+    expect(message.response.edit.mock.calls[1]?.[0].content).toContain("  🟢 Supported claim [source]");
     publish(trusted);
     await new Promise(resolve => setTimeout(resolve, 0));
     expect(message.response.edit).toHaveBeenCalledTimes(2);
@@ -158,7 +158,7 @@ describe("addTwitterLinkRewrites", () => {
     }));
     await vi.waitFor(() => {
       expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({
-        content: `From <@${message.author?.id}>: https://fxtwitter.com/a/status/123\nhttps://fxtwitter.com/b/status/456\n-# Link 1: First badge\n-# Link 2: Second badge`,
+        content: `From <@${message.author?.id}>: https://fxtwitter.com/a/status/123  First badge\nhttps://fxtwitter.com/b/status/456  Second badge`,
         allowedMentions: {parse: [], repliedUser: false},
       });
     });
@@ -175,7 +175,7 @@ describe("addTwitterLinkRewrites", () => {
     for (const message of [mixed, only]) {
       expect(message.reply).toHaveBeenCalledWith({content: "https://fxtwitter.com/a/status/123", allowedMentions: {parse: [], repliedUser: false}});
       await vi.waitFor(() => {
-        expect(message.response.edit).toHaveBeenCalledWith({content: "https://fxtwitter.com/a/status/123\n-# Caution", allowedMentions: {parse: [], repliedUser: false}});
+        expect(message.response.edit).toHaveBeenCalledWith({content: "https://fxtwitter.com/a/status/123  Caution", allowedMentions: {parse: [], repliedUser: false}});
       });
     }
   });
@@ -191,7 +191,7 @@ describe("addTwitterLinkRewrites", () => {
     finishFirst({title: "First"});
     await pending;
     await vi.waitFor(() => {
-      expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({content: `From <@${message.author?.id}>: https://fxtwitter.com/a/status/123\nhttps://fxtwitter.com/b/status/456\n-# Link 1: First\n-# Link 2: Second`, allowedMentions: {parse: [], repliedUser: false}});
+      expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({content: `From <@${message.author?.id}>: https://fxtwitter.com/a/status/123  First\nhttps://fxtwitter.com/b/status/456  Second`, allowedMentions: {parse: [], repliedUser: false}});
     });
   });
 
@@ -210,7 +210,7 @@ describe("addTwitterLinkRewrites", () => {
     await getHandler("messageCreate")(message);
     await vi.waitFor(() => {
       expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({
-        content: `From <@${message.author?.id}>: https://fxtwitter.com/RadioGenoa/status/2106661915741114638\n-# ⚪ Sanity Rating unavailable`,
+        content: `From <@${message.author?.id}>: https://fxtwitter.com/RadioGenoa/status/2106661915741114638  ⚪ Sanity Rating unavailable`,
         allowedMentions: {parse: [], repliedUser: false},
       });
     });
@@ -263,7 +263,7 @@ describe("addTwitterLinkRewrites", () => {
       await pending;
     }
     await vi.waitFor(() => {
-      expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({content: `${replies ? "" : `From <@${message.author?.id}>: `}https://fxtwitter.com/a/status/123\n-# Late badge`, allowedMentions: {parse: [], repliedUser: false}});
+      expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({content: `${replies ? "" : `From <@${message.author?.id}>: `}https://fxtwitter.com/a/status/123  Late badge`, allowedMentions: {parse: [], repliedUser: false}});
     });
   });
 
@@ -317,7 +317,7 @@ describe("addTwitterLinkRewrites", () => {
     message.author = {id: "1".repeat(1_935)};
     await getHandler("messageCreate")(message);
     await vi.waitFor(() => {
-      expect(message.response.edit).toHaveBeenCalledWith({content: `From <@${message.author?.id}>: https://fxtwitter.com/a/status/123\n-# Badge`, allowedMentions: {parse: [], repliedUser: false}});
+      expect(message.response.edit).toHaveBeenCalledWith({content: `From <@${message.author?.id}>: https://fxtwitter.com/a/status/123  Badge`, allowedMentions: {parse: [], repliedUser: false}});
     });
     expect(inspect).toHaveBeenCalledTimes(1);
   });
@@ -328,7 +328,7 @@ describe("addTwitterLinkRewrites", () => {
     const message = createTwitterMessage("https://x.com/a/status/123 https://x.com/b/status/456");
     await getHandler("messageCreate")(message);
     await vi.waitFor(() => {
-      expect(message.response.edit).toHaveBeenCalledWith({content: `From <@${message.author?.id}>: https://fxtwitter.com/a/status/123\nhttps://fxtwitter.com/b/status/456\n-# Link 2: Second`, allowedMentions: {parse: [], repliedUser: false}});
+      expect(message.response.edit).toHaveBeenCalledWith({content: `From <@${message.author?.id}>: https://fxtwitter.com/a/status/123\nhttps://fxtwitter.com/b/status/456  Second`, allowedMentions: {parse: [], repliedUser: false}});
     });
   });
 

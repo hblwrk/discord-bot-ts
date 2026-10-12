@@ -76,7 +76,7 @@ describe("proxy post assessments", () => {
     });
     await vi.waitFor(() => {
       expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({
-        content: `From <@123>: ${delivered}\n-# Badge`, allowedMentions: {parse: [], repliedUser: false},
+        content: `From <@123>: ${delivered}  Badge`, allowedMentions: {parse: [], repliedUser: false},
       });
     });
     expect(inspect).toHaveBeenCalledExactlyOnceWith(delivered);
@@ -112,7 +112,7 @@ describe("proxy post assessments", () => {
     expect(message.channel.send).toHaveBeenCalledExactlyOnceWith({content: `From <@123>: ${links}`, allowedMentions: {parse: []}});
     await vi.waitFor(() => {
       expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({
-        content: `From <@123>: ${links}\n-# Link 1: Badge\n-# Link 2: Badge`, allowedMentions: {parse: [], repliedUser: false},
+        content: "From <@123>: https://fixvx.com/b/status/456  Badge\nhttps://fxtwitter.com/a/status/123  Badge", allowedMentions: {parse: [], repliedUser: false},
       });
     });
     expect(inspect.mock.calls.map(call => call[0])).toEqual(links.split("\n"));
@@ -148,7 +148,7 @@ describe("proxy post assessments", () => {
     const message = proxyMessage(links);
     await getHandler("messageCreate")(message);
     await vi.waitFor(() => {
-      expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({content: `From <@123>: ${links}\n-# Link 2: Second`, allowedMentions: {parse: [], repliedUser: false}});
+      expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({content: "From <@123>: https://fixvx.com/a/status/123\nhttps://fixupx.com/b/status/456  Second", allowedMentions: {parse: [], repliedUser: false}});
     });
   });
 
@@ -187,6 +187,23 @@ describe("proxy post assessments", () => {
     expect(message.channel.send).not.toHaveBeenCalled();
     expect(message.suppressEmbeds).not.toHaveBeenCalled();
     expect(message.content).toBe(`look ${url}`);
+  });
+
+  test.each(twitterProxyHosts)("shows a red contradiction on %s with one visible source", async host => {
+    const {client, getHandler} = createEventClient();
+    const badge: APIEmbed = {title: "🔴 10% Spiciness — Claim contradicted", description: "The chart covers a different date.", fields: [{
+      name: "AI web cross-check: contradicted (review sources)",
+      value: "[Source 1](https://reuters.com/world/report) · [Source 2](https://apnews.com/article/report)",
+    }]};
+    addTwitterLinkRewrites(client, vi.fn().mockResolvedValue(badge));
+    const message = proxyMessage(`look https://${host}/a/status/123`);
+    await getHandler("messageCreate")(message);
+    await vi.waitFor(() => {
+      expect(message.reply).toHaveBeenCalledExactlyOnceWith({
+        content: "-# 🔴 Claim contradicted — The chart covers a different date. [source](<https://reuters.com/world/report>)",
+        allowedMentions: {parse: [], repliedUser: false},
+      });
+    });
   });
 
   test("keeps mixed messages with surrounding text and their previews", async () => {

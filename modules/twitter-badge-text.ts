@@ -5,6 +5,7 @@ const messageLimit = 2_000;
 
 export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], multipleLinks: boolean): string {
   const blocks: string[] = [];
+  const linkLines = content ? content.split("\n") : [];
   for (const {linkNumber, embed} of badges) {
     if (!embed.title) {
       continue;
@@ -16,22 +17,49 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
     if (scored && undefined === check) {
       continue;
     }
-    const indicator = scored ? /^(🟢|🟡)/u.exec(embed.title)?.[1] : embed.title;
+    const indicator = scored ? /^(🟢|🟡|🔴)/u.exec(embed.title)?.[1] : embed.title;
     if (undefined === indicator) {
       continue;
     }
     const status = scored ? ` ${shortTrustStatus(embed.title, indicator)}` : "";
     const source = undefined === check ? undefined
       : /\[Source(?: \d+)?\]\((https:\/\/[^)\s]+)\)/u.exec(check.value)?.[1];
-    const label = multipleLinks ? `Link ${linkNumber}: ${indicator}${status}` : `${indicator}${status}`;
-    const block = `-# ${label}${undefined === source ? "" : ` [source](<${source}>)`}`;
-    const nextBlocks = [...blocks, block];
-    const candidate = [content, ...nextBlocks].filter(Boolean).join("\n");
-    if (candidate.length <= messageLimit) {
-      blocks.push(block);
+    const label = multipleLinks && !content ? `Link ${linkNumber}: ${indicator}${status}` : `${indicator}${status}`;
+    const citation = undefined === source ? "" : ` [source](<${source}>)`;
+    const explanation = status === " Claim contradicted" && check?.name.startsWith("AI web cross-check: contradicted")
+      && undefined !== source ? shortEvidenceReason(embed.description) : undefined;
+    const badgeTexts = undefined === explanation
+      ? [`${label}${citation}`] : [`${label} — ${explanation}${citation}`, `${label}${citation}`];
+    if (content) {
+      const lineIndex = linkNumber - 1;
+      if (lineIndex < 0 || lineIndex >= linkLines.length) continue;
+      for (const badgeText of badgeTexts) {
+        const candidateLines = [...linkLines];
+        candidateLines[lineIndex] += `  ${badgeText}`;
+        if (candidateLines.join("\n").length <= messageLimit) {
+          linkLines[lineIndex] = candidateLines[lineIndex]!;
+          break;
+        }
+      }
+      continue;
+    }
+    for (const badgeText of badgeTexts) {
+      const block = `-# ${badgeText}`;
+      if ([...blocks, block].join("\n").length <= messageLimit) {
+        blocks.push(block);
+        break;
+      }
     }
   }
-  return blocks.length ? [content, ...blocks].filter(Boolean).join("\n") : content;
+  return content ? linkLines.join("\n") : blocks.join("\n");
+}
+
+function shortEvidenceReason(description?: string): string | undefined {
+  const reason = description?.trim();
+  if (undefined === reason || reason.length < 15 || reason.length > 80 || /[@<>\n\r`*_~|\\]/u.test(reason)) {
+    return undefined;
+  }
+  return reason;
 }
 
 function shortTrustStatus(title: string, indicator: string): string {

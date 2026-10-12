@@ -66,6 +66,46 @@ describe("Twitter metadata and badge service", () => {
     expect(updates).toHaveBeenCalledTimes(2);
   });
 
+  test("publishes red when independent contradiction evidence arrives and ignores later credibility support", async () => {
+    const deps = dependencies();
+    const fact = deferred<Awaited<ReturnType<typeof deps.crossCheckFn>>>();
+    const source = deferred<Awaited<ReturnType<typeof deps.credibilityFn>>>();
+    deps.crossCheckFn.mockReturnValue(fact.promise);
+    deps.credibilityFn.mockReturnValue(source.promise);
+    const updates = vi.fn();
+    const result = createTwitterIntrospector(deps).observe!("https://fixvx.com/a/status/123", updates);
+    await vi.waitFor(() => {
+      expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
+      expect(deps.credibilityFn).toHaveBeenCalledTimes(1);
+    });
+    expect(updates).toHaveBeenCalledTimes(1);
+    fact.resolve({verdict: "contradicted", sentence: "The records directly refute the claim.",
+      sources: ["https://reuters.com/world/report", "https://apnews.com/article/report"]});
+    await vi.waitFor(() => { expect(updates).toHaveBeenCalledTimes(2); });
+    expect(updates.mock.calls[1]?.[0]).toMatchObject({title: "🔴 10% Spiciness — Claim contradicted", color: 0xe74c3c});
+    source.resolve({target: "linked source", label: "example.org", verdict: "credible", source: "https://example.org/about"});
+    const badge = await result;
+    expect(badge?.title).toBe("🔴 10% Spiciness — Claim contradicted");
+    expect(updates).toHaveBeenCalledTimes(2);
+    if (undefined === badge) throw new Error("Expected a contradiction badge");
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false))
+      .toBe("-# 🔴 Claim contradicted — The records directly refute the claim. [source](<https://reuters.com/world/report>)");
+  });
+
+  test("publishes red after source research finishes first", async () => {
+    const deps = dependencies();
+    const fact = deferred<Awaited<ReturnType<typeof deps.crossCheckFn>>>();
+    deps.crossCheckFn.mockReturnValue(fact.promise);
+    const updates = vi.fn();
+    const result = createTwitterIntrospector(deps).observe!("https://fixvx.com/a/status/123", updates);
+    await vi.waitFor(() => { expect(deps.credibilityFn).toHaveBeenCalledTimes(1); });
+    expect(updates).toHaveBeenCalledTimes(1);
+    fact.resolve({verdict: "contradicted", sentence: "The records directly refute the claim.",
+      sources: ["https://reuters.com/world/report", "https://apnews.com/article/report"]});
+    expect(await result).toMatchObject({title: "🔴 10% Spiciness — Claim contradicted"});
+    expect(updates).toHaveBeenCalledTimes(2);
+  });
+
   test("does not publish again when source research supports an existing wording caution", async () => {
     const deps = dependencies(payload("Share this before they hide it!"));
     const source = deferred<Awaited<ReturnType<typeof deps.credibilityFn>>>();
