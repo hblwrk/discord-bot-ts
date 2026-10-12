@@ -1,4 +1,5 @@
 import {beforeEach, describe, expect, test, vi} from "vitest";
+import type {APIEmbed} from "discord.js";
 import {createEventClient} from "./test-utils/discord-mocks.ts";
 import {
   addTwitterLinkRewrites,
@@ -106,6 +107,37 @@ describe("getFixedTwitterLinks", () => {
 describe("addTwitterLinkRewrites", () => {
   beforeEach(() => {
     vi.clearAllMocks();
+  });
+
+  test("edits a progressive trust badge when the combined verdict changes", async () => {
+    const {client, getHandler} = createEventClient();
+    let publish: (badge: APIEmbed) => void = () => {};
+    let finish!: (badge: APIEmbed) => void;
+    const completed = new Promise<APIEmbed>(resolve => { finish = resolve; });
+    const inspect = Object.assign(vi.fn().mockResolvedValue(undefined), {
+      observe: vi.fn((_link: string, onBadge: (badge: APIEmbed) => void) => {
+        publish = onBadge;
+        return completed;
+      }),
+    });
+    addTwitterLinkRewrites(client, inspect);
+    const message = createTwitterMessage("https://x.com/a/status/123");
+    await getHandler("messageCreate")(message);
+    expect(message.response.edit).not.toHaveBeenCalled();
+    const citation = {name: "AI web cross-check: supported (review sources)", value: "[Source 1](https://example.org/report)"};
+    const pending: APIEmbed = {title: "🟡 10% Spiciness — Source check pending", fields: [citation]};
+    const trusted: APIEmbed = {title: "🟢 10% Spiciness — Supported claim, low spice, credible source", fields: [citation,
+      {name: "Source credibility: credible (@example)", value: "[Evidence](https://example.org/about)"}]};
+    publish(pending);
+    await vi.waitFor(() => { expect(message.response.edit).toHaveBeenCalledTimes(1); });
+    expect(message.response.edit.mock.calls[0]?.[0].content).toContain("🟡 10% wording spice");
+    publish(trusted);
+    await vi.waitFor(() => { expect(message.response.edit).toHaveBeenCalledTimes(2); });
+    expect(message.response.edit.mock.calls[1]?.[0].content).toContain("🟢 10% wording spice");
+    publish(trusted);
+    await new Promise(resolve => setTimeout(resolve, 0));
+    expect(message.response.edit).toHaveBeenCalledTimes(2);
+    finish(trusted);
   });
 
   test("edits ordered badges into the replacement and preserves credit/reply context", async () => {

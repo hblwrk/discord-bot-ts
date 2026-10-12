@@ -287,9 +287,35 @@ async function replaceLinkOnlyMessage(
 }
 
 async function updateSanityBadges(delivery: LinkDelivery, introspect: TwitterIntrospector): Promise<void> {
-  // Assess only delivered links. Promise.all preserves paste order even when
-  // providers finish out of order, and no inspection delays the initial send.
+  // Assess only delivered links. No inspection delays the initial send.
   const links = delivery.content.split("\n");
+  if (undefined !== introspect.observe) {
+    let latest: TwitterBadge[] = [];
+    let displayed = delivery.messageContent;
+    let editing = false;
+    let failed = false;
+    const flush = async () => {
+      if (editing || failed) return;
+      editing = true;
+      try {
+        while (!failed) {
+          const content = appendTwitterBadgeText(delivery.messageContent, latest, links.length > 1);
+          if (content === displayed) break;
+          try {
+            await delivery.response.edit({content, allowedMentions: {parse: [], repliedUser: false}});
+            displayed = content;
+          } catch {
+            failed = true;
+            logger.log("warn", "Twitter/X badge update failed; keeping the converted link.");
+          }
+        }
+      } finally {
+        editing = false;
+      }
+    };
+    await observeLinks(links, introspect.observe, badges => { latest = badges; void flush(); });
+    return;
+  }
   const badges = await assessLinks(links, introspect);
   const content = appendTwitterBadgeText(delivery.messageContent, badges, links.length > 1);
   if (content === delivery.messageContent) {
@@ -303,6 +329,23 @@ async function updateSanityBadges(delivery: LinkDelivery, introspect: TwitterInt
     // Deleted responses and missing edit permissions must not undo conversion.
     logger.log("warn", "Twitter/X badge update failed; keeping the converted link.");
   }
+}
+
+async function observeLinks(
+  links: string[], observe: NonNullable<TwitterIntrospector["observe"]>, onChange: (badges: TwitterBadge[]) => void,
+): Promise<void> {
+  const badges = new Map<number, APIEmbed>();
+  await Promise.all(links.slice(0, 4).map(async (link, index) => {
+    try {
+      await observe(link, embed => {
+        badges.set(index + 1, embed);
+        onChange([...badges].sort(([left], [right]) => left - right)
+          .map(([linkNumber, badge]) => ({linkNumber, embed: badge})));
+      });
+    } catch {
+      logger.log("warn", "Twitter/X assessment failed; keeping the link preview.");
+    }
+  }));
 }
 
 async function assessLinks(links: string[], introspect: TwitterIntrospector): Promise<TwitterBadge[]> {
@@ -319,20 +362,54 @@ async function assessLinks(links: string[], introspect: TwitterIntrospector): Pr
 }
 
 async function replyWithProxyBadges(message: TwitterLinkRewriteMessage, links: string[], introspect: TwitterIntrospector): Promise<void> {
-  const badges = await assessLinks(links, introspect);
-  // Source references identify each proxy post without creating another unfurl.
-  const identified = badges.map(badge => ({...badge, embed: {
-    ...badge.embed, description: [badge.embed.description, `Post: <${links[badge.linkNumber - 1]}>`].filter(Boolean).join("\n"),
-  }}));
-  const content = appendTwitterBadgeText("", identified, links.length > 1).trimStart();
-  if (!content) {
+  if (undefined !== introspect.observe) {
+    let latest: TwitterBadge[] = [];
+    let response: TwitterLinkResponse | undefined;
+    let displayed = "";
+    let editing = false;
+    let failed = false;
+    const flush = async () => {
+      if (editing || failed) return;
+      editing = true;
+      try {
+        while (!failed) {
+          const content = proxyBadgeContent(latest, links);
+          if (!content || content === displayed) break;
+          try {
+            if (undefined === response) {
+              response = await message.reply({content, allowedMentions: {parse: [], repliedUser: false}});
+            } else {
+              await response.edit({content, allowedMentions: {parse: [], repliedUser: false}});
+            }
+            displayed = content;
+          } catch {
+            failed = true;
+            logger.log("warn", "Twitter/X proxy badge reply failed; keeping the original link preview.");
+          }
+        }
+      } finally {
+        editing = false;
+      }
+    };
+    await observeLinks(links, introspect.observe, badges => { latest = badges; void flush(); });
     return;
   }
+  const badges = await assessLinks(links, introspect);
+  const content = proxyBadgeContent(badges, links);
+  if (!content) return;
   try {
     await message.reply({content, allowedMentions: {parse: [], repliedUser: false}});
   } catch {
     logger.log("warn", "Twitter/X proxy badge reply failed; keeping the original link preview.");
   }
+}
+
+function proxyBadgeContent(badges: TwitterBadge[], links: string[]): string {
+  // Source references identify each proxy post without creating another unfurl.
+  const identified = badges.map(badge => ({...badge, embed: {
+    ...badge.embed, description: [badge.embed.description, `Post: <${links[badge.linkNumber - 1]}>`].filter(Boolean).join("\n"),
+  }}));
+  return appendTwitterBadgeText("", identified, links.length > 1).trimStart();
 }
 
 export function getTwitterProxyLinks(content: string): string[] {

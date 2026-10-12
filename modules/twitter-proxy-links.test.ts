@@ -1,4 +1,5 @@
 import {describe, expect, test, vi} from "vitest";
+import type {APIEmbed} from "discord.js";
 import {createEventClient} from "./test-utils/discord-mocks.ts";
 import {addTwitterLinkRewrites, getTwitterProxyLinks} from "./twitter-link-rewrite.ts";
 
@@ -19,6 +20,32 @@ function proxyMessage(content: string) {
 }
 
 describe("proxy post assessments", () => {
+  test("updates an assessment reply when a later source result changes the verdict", async () => {
+    const {client, getHandler} = createEventClient();
+    let publish: (badge: APIEmbed) => void = () => {};
+    let finish!: (badge: APIEmbed) => void;
+    const completed = new Promise<APIEmbed>(resolve => { finish = resolve; });
+    const inspect = Object.assign(vi.fn().mockResolvedValue(undefined), {
+      observe: vi.fn((_link: string, onBadge: (badge: APIEmbed) => void) => {
+        publish = onBadge;
+        return completed;
+      }),
+    });
+    addTwitterLinkRewrites(client, inspect);
+    const post = proxyMessage("look https://fixvx.com/a/status/123");
+    await getHandler("messageCreate")(post);
+    const citation = {name: "AI web cross-check: supported (review sources)", value: "[Source 1](https://example.org/report)"};
+    const pending: APIEmbed = {title: "🟡 10% Spiciness — Source check pending", fields: [citation]};
+    const credible: APIEmbed = {title: "🟢 10% Spiciness — Supported claim, low spice, credible source", fields: [citation]};
+    publish(pending);
+    await vi.waitFor(() => { expect(post.reply).toHaveBeenCalledTimes(1); });
+    expect(post.reply.mock.calls[0]?.[0].content).toContain("🟡 10% wording spice");
+    publish(credible);
+    await vi.waitFor(() => { expect(post.response.edit).toHaveBeenCalledTimes(1); });
+    expect(post.response.edit.mock.calls[0]?.[0].content).toContain("🟢 10% wording spice");
+    expect(post.reply).toHaveBeenCalledTimes(1);
+    finish(credible);
+  });
   test("extracts known proxy statuses, keeps modifiers and queries, and deduplicates by post ID", () => {
     expect(getTwitterProxyLinks("https://fixupx.com/a/status/123?s=20 https://vxtwitter.com/b/status/123/video/1 https://c.vxtwitter.com/a/status/456, <https://fxtwitter.com/a/status/789> https://fixvx.com/profile https://fixvx.com.evil.test/a/status/111 https://x.com/a/status/222"))
       .toEqual(["https://fixupx.com/a/status/123?s=20", "https://c.vxtwitter.com/a/status/456"]);
