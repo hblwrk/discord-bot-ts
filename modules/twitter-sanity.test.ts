@@ -114,24 +114,49 @@ describe("Twitter metadata and badge service", () => {
     expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false)).toBe("-# 🟡");
   });
 
-  test("skips all badges and metadata when AI review is unavailable", async () => {
-    const deps = dependencies();
+  test("publishes a conservative badge without spending AI calls when the provider is unavailable", async () => {
+    const deps = dependencies({status: {id: "123", text: "The council approved the plan yesterday.",
+      author: {screen_name: "new_poster", followers: 42, joined: "2026-10-01"}}});
     deps.aiAvailableFn.mockReturnValue(false);
-    expect(await createTwitterIntrospector(deps)("https://fixvx.com/a/status/123")).toBeUndefined();
-    expect(deps.getWithRetryFn).not.toHaveBeenCalled();
+    const updates = vi.fn();
+    const badge = await createTwitterIntrospector(deps).observe!("https://fixvx.com/a/status/123", updates);
+    expect(badge).toMatchObject({title: "🟡 10% Spiciness — Fact check unverified"});
+    expect(updates).toHaveBeenCalledTimes(1);
+    expect(deps.getWithRetryFn).toHaveBeenCalledTimes(1);
     expect(deps.crossCheckFn).not.toHaveBeenCalled();
-    expect(deps.logger.log).not.toHaveBeenCalled();
+    expect(deps.credibilityFn).not.toHaveBeenCalled();
+    expect(badge?.fields).toContainEqual({
+      name: "Source credibility: unverified (@new_poster)",
+      value: "Under 100 followers · Account under 30 days old · Independent evidence unavailable",
+    });
+    if (undefined === badge) throw new Error("Expected an unverified badge");
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false)).toBe("-# 🟡");
   });
 
-  test("checks availability before returning a previously successful cached badge", async () => {
+  test("retries after provider availability returns, while retaining a previously grounded cached badge", async () => {
     const deps = dependencies();
     const inspect = createTwitterIntrospector(deps);
-    expect(await inspect("https://fixvx.com/a/status/123")).toBeDefined();
     deps.aiAvailableFn.mockReturnValue(false);
-    expect(await inspect("https://fixvx.com/a/status/123")).toBeUndefined();
+    expect(await inspect("https://fixvx.com/a/status/123")).toMatchObject({title: "🟡 10% Spiciness — Fact check unverified"});
     deps.aiAvailableFn.mockReturnValue(true);
-    expect(await inspect("https://fixvx.com/a/status/123")).toBeDefined();
-    expect(deps.getWithRetryFn).toHaveBeenCalledTimes(1);
+    expect(await inspect("https://fixvx.com/a/status/123")).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
+    deps.aiAvailableFn.mockReturnValue(false);
+    expect(await inspect("https://fixvx.com/a/status/123")).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
+    expect(deps.getWithRetryFn).toHaveBeenCalledTimes(2);
+    expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
+  });
+
+  test("rates the reported chart post URL with a yellow fallback when AI is unavailable", async () => {
+    const id = "2109614293801201700";
+    const deps = dependencies({status: {type: "status", id,
+      text: "Dane z naszego nasluchu siatki kont nie potwierdzaja spadku aktywnosci.",
+      media: {photos: [{type: "photo"}]}, author: {screen_name: "Polityka_wSieci"}}});
+    deps.aiAvailableFn.mockReturnValue(false);
+    const badge = await createTwitterIntrospector(deps)(`https://fxtwitter.com/Polityka_wSieci/status/${id}`);
+    expect(badge?.title).toMatch(/^🟡/u);
+    expect(deps.getWithRetryFn).toHaveBeenCalledExactlyOnceWith(
+      `https://api.fxtwitter.com/2/status/${id}`, expect.anything(), expect.anything());
+    expect(deps.crossCheckFn).not.toHaveBeenCalled();
   });
 
   test.each(["unavailable", "error"])("shows an unverified indicator on %s review and retries the next paste", async mode => {

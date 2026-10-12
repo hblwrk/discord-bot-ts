@@ -22,19 +22,24 @@ function message(content: string) {
 describe("silent Twitter review delivery", () => {
   beforeEach(() => { clearAiProviderState(); });
 
-  test.each(["x.com", "fixvx.com"])("%s retains normal link delivery when the review is disabled or missing credentials", async host => {
+  test.each(["x.com", "fixvx.com"])("%s adds a yellow badge when the review is disabled or missing credentials", async host => {
     for (const configured of ["none", "gemini", "openai"]) {
       const {client, getHandler} = createEventClient();
-      const getWithRetryFn = vi.fn();
+      const getWithRetryFn = vi.fn().mockResolvedValue({data: {status: {
+        id: "123", text: "The council approved the plan yesterday.",
+      }}});
       const introspect = createTwitterIntrospector({logger, getWithRetryFn,
         readSecretFn: name => name === "ai_provider" ? configured : "",
       });
       addTwitterLinkRewrites(client, introspect);
       const post = message(`https://${host}/a/status/123`);
       await getHandler("messageCreate")(post);
-      await new Promise(resolve => setTimeout(resolve, 0));
-      expect(getWithRetryFn).not.toHaveBeenCalled();
-      expect(post.response.edit).not.toHaveBeenCalled();
+      await vi.waitFor(() => { expect(post.response.edit).toHaveBeenCalledTimes(1); });
+      expect(getWithRetryFn).toHaveBeenCalledTimes(1);
+      expect(post.response.edit).toHaveBeenCalledExactlyOnceWith({
+        content: `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123\n-# 🟡`,
+        allowedMentions: {parse: [], repliedUser: false},
+      });
       expect(post.channel.send.mock.calls).toEqual([[{content: `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123`, allowedMentions: {parse: []}}]]);
       expect(post.reply).not.toHaveBeenCalled();
       expect(post.delete).toHaveBeenCalledTimes(1);
