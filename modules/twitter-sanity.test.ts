@@ -170,7 +170,7 @@ describe("Twitter metadata and badge service", () => {
     expect(parsed?.authorFollowers).toBe(expected);
   });
 
-  test("shows account age and follower cautions in the combined trust badge", async () => {
+  test("applies account age and follower cautions without expanding the visible badge", async () => {
     const evidence = "https://example.org/account-review";
     const callFn = vi.fn<typeof callAiProviderJson>((_prompt, _schema, _deps, _task, _data, options = {}) => {
       options.onWebSources?.([evidence]);
@@ -189,7 +189,7 @@ describe("Twitter metadata and badge service", () => {
     });
     if (undefined === badge) throw new Error("Expected a badge for the supported claim");
     expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false))
-      .toContain("**Source: unverified (@small_account)** · Under 100 followers · Account under 30 days old");
+      .toBe("-# 🟡 [source](<https://reuters.com/world/report>)");
   });
 
   test.each([

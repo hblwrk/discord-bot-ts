@@ -405,11 +405,7 @@ async function replyWithProxyBadges(message: TwitterLinkRewriteMessage, links: s
 }
 
 function proxyBadgeContent(badges: TwitterBadge[], links: string[]): string {
-  // Source references identify each proxy post without creating another unfurl.
-  const identified = badges.map(badge => ({...badge, embed: {
-    ...badge.embed, description: [badge.embed.description, `Post: <${links[badge.linkNumber - 1]}>`].filter(Boolean).join("\n"),
-  }}));
-  return appendTwitterBadgeText("", identified, links.length > 1).trimStart();
+  return appendTwitterBadgeText("", badges, links.length > 1).trimStart();
 }
 
 export function getTwitterProxyLinks(content: string): string[] {

@@ -39,10 +39,10 @@ describe("proxy post assessments", () => {
     const credible: APIEmbed = {title: "🟢 10% Spiciness — Supported claim, low spice, credible source", fields: [citation]};
     publish(pending);
     await vi.waitFor(() => { expect(post.reply).toHaveBeenCalledTimes(1); });
-    expect(post.reply.mock.calls[0]?.[0].content).toContain("🟡 10% wording spice");
+    expect(post.reply.mock.calls[0]?.[0].content).toContain("-# 🟡 [source]");
     publish(credible);
     await vi.waitFor(() => { expect(post.response.edit).toHaveBeenCalledTimes(1); });
-    expect(post.response.edit.mock.calls[0]?.[0].content).toContain("🟢 10% wording spice");
+    expect(post.response.edit.mock.calls[0]?.[0].content).toContain("-# 🟢 [source]");
     expect(post.reply).toHaveBeenCalledTimes(1);
     finish(credible);
   });
@@ -73,7 +73,7 @@ describe("proxy post assessments", () => {
     });
     await vi.waitFor(() => {
       expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({
-        content: `From <@123>: ${delivered}\n-# Badge\n-# Reality check.`, allowedMentions: {parse: [], repliedUser: false},
+        content: `From <@123>: ${delivered}\n-# Badge`, allowedMentions: {parse: [], repliedUser: false},
       });
     });
     expect(inspect).toHaveBeenCalledExactlyOnceWith(delivered);
@@ -156,7 +156,7 @@ describe("proxy post assessments", () => {
     const message = proxyMessage("look https://fixupx.com/a/status/123");
     await getHandler("messageCreate")(message);
     await vi.waitFor(() => {
-      expect(message.reply).toHaveBeenCalledExactlyOnceWith({content: "-# Badge\n-# Post: <https://fixupx.com/a/status/123>", allowedMentions: {parse: [], repliedUser: false}});
+      expect(message.reply).toHaveBeenCalledExactlyOnceWith({content: "-# Badge", allowedMentions: {parse: [], repliedUser: false}});
     });
     expect(message.delete).not.toHaveBeenCalled();
     expect(message.channel.send).not.toHaveBeenCalled();
@@ -248,7 +248,7 @@ describe("proxy post assessments", () => {
   });
 
   test("keeps the replacement when assessments are unavailable or cannot fit", async () => {
-    for (const result of [undefined, {title: "Badge", description: "x".repeat(2_000)}]) {
+    for (const result of [undefined, {title: "x".repeat(2_000)}]) {
       const {client, getHandler} = createEventClient();
       const inspect = vi.fn().mockResolvedValue(result);
       addTwitterLinkRewrites(client, inspect);

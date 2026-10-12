@@ -9,44 +9,25 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
     if (!embed.title) {
       continue;
     }
-    const compactTitle = embed.title.replace(/(\d+%) Spiciness(?: — [^\n]+| \([^\n]+\))?/u, "$1 wording spice");
-    const title = multipleLinks ? `Link ${linkNumber}: ${compactTitle}` : compactTitle;
-    // AI factual claims retain their citation, and note excerpts retain their
-    // attribution/status disclaimer. Never truncate either into a bare claim.
-    const evidence = (embed.fields ?? []).filter(field =>
-      field.name.startsWith("AI web cross-check:") || field.name.startsWith("Source credibility:")
-        || field.name.startsWith("Community Note via FxTwitter"));
-    const score = /(?:^|\s)(\d+)% Spiciness/u.exec(embed.title);
-    // Scored badges require a completed, source-linked AI check at every score.
-    if (null !== score && !evidence.some(field => field.name.startsWith("AI web cross-check:"))) {
+    const scored = /(?:^|\s)\d+% Spiciness/u.test(embed.title);
+    const check = embed.fields?.find(field => field.name.startsWith("AI web cross-check:"));
+    // A scored status is displayed only after the factual check finishes.
+    if (scored && undefined === check) {
       continue;
     }
-    const check = evidence.find(field => field.name.startsWith("AI web cross-check:"));
-    const credibility = evidence.find(field => field.name.startsWith("Source credibility:"));
-    const header = undefined === check ? title : [
-      title,
-      `**${check.name.replace("AI web cross-check:", "AI:").replace(" (review sources)", "")}**`,
-      suppressCitationPreviews(check.value).replace(/\[Source(?: \d+)?\]\(</gu, "[source](<"),
-    ].join(" · ");
-    const credibilityLine = undefined === credibility ? undefined : [
-      `**${credibility.name.replace("Source credibility:", "Source:")}**`,
-      suppressCitationPreviews(credibility.value).replace("[Evidence](<", "[evidence](<"),
-    ].join(" · ");
-    const block = [header, embed.description, credibilityLine, ...evidence.filter(field => field !== check && field !== credibility).map(field =>
-      `**${field.name}**\n${suppressCitationPreviews(field.value)}`)]
-      .filter(line => undefined !== line && "" !== line).join("\n")
-      .split("\n").map(line => `-# ${line}`).join("\n");
+    const indicator = scored ? /^(🟢|🟡)/u.exec(embed.title)?.[1] : embed.title;
+    if (undefined === indicator) {
+      continue;
+    }
+    const source = undefined === check ? undefined
+      : /\[Source(?: \d+)?\]\((https:\/\/[^)\s]+)\)/u.exec(check.value)?.[1];
+    const label = multipleLinks ? `Link ${linkNumber}: ${indicator}` : indicator;
+    const block = `-# ${label}${undefined === source ? "" : ` [source](<${source}>)`}`;
     const nextBlocks = [...blocks, block];
     const candidate = [content, ...nextBlocks].filter(Boolean).join("\n");
     if (candidate.length <= messageLimit) {
       blocks.push(block);
     }
   }
-  // Link conversion has priority when the message has no room for a complete
-  // assessment. Omit the edit rather than removing links or cited evidence.
   return blocks.length ? [content, ...blocks].filter(Boolean).join("\n") : content;
-}
-
-function suppressCitationPreviews(value: string): string {
-  return value.replace(/\[([^\]\n]+)\]\((https:\/\/[^)\s]+)\)/gu, "[$1](<$2>)");
 }
