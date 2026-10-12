@@ -15,7 +15,7 @@ describe("appendTwitterBadgeText", () => {
         {name: "Community Note via FxTwitter", value: "A note excerpt."},
       ],
     }}], false);
-    expect(text).toBe(`${link}\n-# 🟢 Supported claim [source](<https://example.org/report>)`);
+    expect(text).toBe(`${link}  🟢 Supported claim [source](<https://example.org/report>)`);
   });
 
   test("omits wording score and long explanation for a caution", () => {
@@ -24,7 +24,7 @@ describe("appendTwitterBadgeText", () => {
       description: "Verify the original evidence before sharing.",
       fields: [checkField],
     }}], false);
-    expect(text).toBe(`${link}\n-# 🟡 Caution [source](<https://example.org/report>)`);
+    expect(text).toBe(`${link}  🟡 Caution [source](<https://example.org/report>)`);
   });
 
   test("shows a red contradiction with just one factual source link", () => {
@@ -33,13 +33,13 @@ describe("appendTwitterBadgeText", () => {
       fields: [{name: "AI web cross-check: contradicted (review sources)",
         value: "[Source 1](https://reuters.com/world/report) · [Source 2](https://apnews.com/article/report)"}],
     }}], false);
-    expect(text).toBe(`${link}\n-# 🔴 Claim contradicted [source](<https://reuters.com/world/report>)`);
+    expect(text).toBe(`${link}  🔴 Claim contradicted [source](<https://reuters.com/world/report>)`);
   });
 
   test("shows a useful label when a check has no usable source link", () => {
     expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
       title: "🟡 50% Spiciness (Caution)", fields: [{name: "AI web cross-check: disputed", value: "Source unavailable"}],
-    }}], false)).toBe(`${link}\n-# 🟡 Caution`);
+    }}], false)).toBe(`${link}  🟡 Caution`);
   });
 
   test.each([
@@ -58,7 +58,11 @@ describe("appendTwitterBadgeText", () => {
 
   test("uses original link positions for multiple badges", () => {
     const badges: TwitterBadge[] = [1, 3].map(linkNumber => ({linkNumber, embed: {title: "🟡 50% Spiciness — Caution", fields: [checkField]}}));
-    expect(appendTwitterBadgeText(link, badges, true)).toBe(`${link}\n-# Link 1: 🟡 Caution [source](<https://example.org/report>)\n-# Link 3: 🟡 Caution [source](<https://example.org/report>)`);
+    const links = `${link}\nhttps://fxtwitter.com/example/status/456\nhttps://fxtwitter.com/example/status/789`;
+    expect(appendTwitterBadgeText(links, badges, true)).toBe(
+      `${link}  🟡 Caution [source](<https://example.org/report>)\nhttps://fxtwitter.com/example/status/456\n`
+      + "https://fxtwitter.com/example/status/789  🟡 Caution [source](<https://example.org/report>)",
+    );
   });
 
   test("omits scored badges without a completed AI check", () => {
@@ -70,13 +74,13 @@ describe("appendTwitterBadgeText", () => {
   test("omits untitled and empty assessments", () => {
     expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {description: "orphaned text"}}], false)).toBe(link);
     expect(appendTwitterBadgeText(link, [], false)).toBe(link);
-    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {title: "Unavailable", description: ""}}], false)).toBe(`${link}\n-# Unavailable`);
+    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {title: "Unavailable", description: ""}}], false)).toBe(`${link}  Unavailable`);
   });
 
   test("fits the exact message limit and omits a badge one character over it", () => {
     const badge = {linkNumber: 1, embed: {title: "🟢 10% Spiciness — Low sensationalism", fields: [checkField]}};
-    const suffix = appendTwitterBadgeText("", [badge], false);
-    const base = "x".repeat(2_000 - suffix.length - 1);
+    const badgeText = appendTwitterBadgeText("", [badge], false).slice(3);
+    const base = "x".repeat(2_000 - badgeText.length - 2);
     expect(appendTwitterBadgeText(base, [badge], false).length).toBe(2_000);
     expect(appendTwitterBadgeText(`${base}x`, [badge], false)).toBe(`${base}x`);
   });
@@ -90,6 +94,7 @@ describe("appendTwitterBadgeText", () => {
   });
 
   test("keeps earlier badges when a later badge overflows", () => {
+    const links = `${link}\nhttps://fxtwitter.com/example/status/456\nhttps://fxtwitter.com/example/status/789`;
     const badges = [
       {linkNumber: 1, embed: {title: "First"}},
       {linkNumber: 2, embed: {title: "🟡 50% Spiciness — Caution", fields: [
@@ -97,6 +102,7 @@ describe("appendTwitterBadgeText", () => {
       ]}},
       {linkNumber: 3, embed: {title: "Third"}},
     ];
-    expect(appendTwitterBadgeText(link, badges, true)).toBe(`${link}\n-# Link 1: First\n-# Link 3: Third`);
+    expect(appendTwitterBadgeText(links, badges, true))
+      .toBe(`${link}  First\nhttps://fxtwitter.com/example/status/456\nhttps://fxtwitter.com/example/status/789  Third`);
   });
 });

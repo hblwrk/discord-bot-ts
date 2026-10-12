@@ -5,6 +5,7 @@ const messageLimit = 2_000;
 
 export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], multipleLinks: boolean): string {
   const blocks: string[] = [];
+  const linkLines = content ? content.split("\n") : [];
   for (const {linkNumber, embed} of badges) {
     if (!embed.title) {
       continue;
@@ -23,15 +24,24 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
     const status = scored ? ` ${shortTrustStatus(embed.title, indicator)}` : "";
     const source = undefined === check ? undefined
       : /\[Source(?: \d+)?\]\((https:\/\/[^)\s]+)\)/u.exec(check.value)?.[1];
-    const label = multipleLinks ? `Link ${linkNumber}: ${indicator}${status}` : `${indicator}${status}`;
-    const block = `-# ${label}${undefined === source ? "" : ` [source](<${source}>)`}`;
+    const label = multipleLinks && !content ? `Link ${linkNumber}: ${indicator}${status}` : `${indicator}${status}`;
+    const badgeText = `${label}${undefined === source ? "" : ` [source](<${source}>)`}`;
+    if (content) {
+      const lineIndex = linkNumber - 1;
+      if (lineIndex < 0 || lineIndex >= linkLines.length) continue;
+      const candidateLines = [...linkLines];
+      candidateLines[lineIndex] += `  ${badgeText}`;
+      if (candidateLines.join("\n").length <= messageLimit) linkLines[lineIndex] = candidateLines[lineIndex]!;
+      continue;
+    }
+    const block = `-# ${badgeText}`;
     const nextBlocks = [...blocks, block];
     const candidate = [content, ...nextBlocks].filter(Boolean).join("\n");
     if (candidate.length <= messageLimit) {
       blocks.push(block);
     }
   }
-  return blocks.length ? [content, ...blocks].filter(Boolean).join("\n") : content;
+  return content ? linkLines.join("\n") : blocks.join("\n");
 }
 
 function shortTrustStatus(title: string, indicator: string): string {

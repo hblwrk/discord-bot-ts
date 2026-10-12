@@ -76,7 +76,7 @@ describe("proxy post assessments", () => {
     });
     await vi.waitFor(() => {
       expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({
-        content: `From <@123>: ${delivered}\n-# Badge`, allowedMentions: {parse: [], repliedUser: false},
+        content: `From <@123>: ${delivered}  Badge`, allowedMentions: {parse: [], repliedUser: false},
       });
     });
     expect(inspect).toHaveBeenCalledExactlyOnceWith(delivered);
@@ -112,7 +112,7 @@ describe("proxy post assessments", () => {
     expect(message.channel.send).toHaveBeenCalledExactlyOnceWith({content: `From <@123>: ${links}`, allowedMentions: {parse: []}});
     await vi.waitFor(() => {
       expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({
-        content: `From <@123>: ${links}\n-# Link 1: Badge\n-# Link 2: Badge`, allowedMentions: {parse: [], repliedUser: false},
+        content: "From <@123>: https://fixvx.com/b/status/456  Badge\nhttps://fxtwitter.com/a/status/123  Badge", allowedMentions: {parse: [], repliedUser: false},
       });
     });
     expect(inspect.mock.calls.map(call => call[0])).toEqual(links.split("\n"));
@@ -148,7 +148,7 @@ describe("proxy post assessments", () => {
     const message = proxyMessage(links);
     await getHandler("messageCreate")(message);
     await vi.waitFor(() => {
-      expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({content: `From <@123>: ${links}\n-# Link 2: Second`, allowedMentions: {parse: [], repliedUser: false}});
+      expect(message.response.edit).toHaveBeenCalledExactlyOnceWith({content: "From <@123>: https://fixvx.com/a/status/123\nhttps://fixupx.com/b/status/456  Second", allowedMentions: {parse: [], repliedUser: false}});
     });
   });
 
