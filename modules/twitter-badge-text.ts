@@ -20,9 +20,10 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
     if (undefined === indicator) {
       continue;
     }
+    const status = scored ? ` ${shortTrustStatus(embed.title, indicator)}` : "";
     const source = undefined === check ? undefined
       : /\[Source(?: \d+)?\]\((https:\/\/[^)\s]+)\)/u.exec(check.value)?.[1];
-    const label = multipleLinks ? `Link ${linkNumber}: ${indicator}` : indicator;
+    const label = multipleLinks ? `Link ${linkNumber}: ${indicator}${status}` : `${indicator}${status}`;
     const block = `-# ${label}${undefined === source ? "" : ` [source](<${source}>)`}`;
     const nextBlocks = [...blocks, block];
     const candidate = [content, ...nextBlocks].filter(Boolean).join("\n");
@@ -31,4 +32,19 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
     }
   }
   return blocks.length ? [content, ...blocks].filter(Boolean).join("\n") : content;
+}
+
+function shortTrustStatus(title: string, indicator: string): string {
+  if (indicator === "🟢") return "Supported claim";
+  const reason = /Spiciness — ([^\n]+)/u.exec(title)?.[1];
+  switch (reason) {
+  case "Claim contradicted": return "Claim contradicted";
+  case "Source credibility concerns": return "Source credibility concerns";
+  case "Wording caution": return "Wording caution";
+  case "Fact check pending": return "Checking claim";
+  case "Fact check unverified": return "Claim unverified";
+  case "Source check pending": return "Checking source credibility";
+  case "Account caution": return "Account caution";
+  default: return "Caution";
+  }
 }
