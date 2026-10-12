@@ -7,6 +7,7 @@ import {scoreTwitterPost, type TwitterPostContext, type TwitterSanityScore} from
 import {communityNoteField, parseTwitterCommunityNote} from "./twitter-community-note.ts";
 import {getTwitterStatusId} from "./twitter-status-url.ts";
 import {isAiProviderAvailable, type AiProviderDependencies} from "./ai-provider.ts";
+import {appendTwitterBadgeText} from "./twitter-badge-text.ts";
 
 type TwitterSanityDependencies = AiProviderDependencies & {
   getWithRetryFn?: typeof getWithRetry;
@@ -25,6 +26,8 @@ type CacheEntry = {
   latest: APIEmbed | undefined;
   listeners: Set<(badge: APIEmbed) => void>;
 };
+
+type AssessmentResult = {badge: APIEmbed | undefined; retryable: boolean};
 
 export function createTwitterIntrospector(dependencies: TwitterSanityDependencies): TwitterIntrospector {
   const cache = new Map<string, CacheEntry>();
@@ -65,16 +68,20 @@ export function createTwitterIntrospector(dependencies: TwitterSanityDependencie
     inFlight++;
     const entry: CacheEntry = {expiresAt: nowMs + 10 * 60_000, result: Promise.resolve(undefined), latest: undefined, listeners: new Set()};
     if (undefined !== onBadge) entry.listeners.add(onBadge);
+    let visibleBadge = "";
     const publish = (badge: APIEmbed) => {
       entry.latest = badge;
+      const nextVisibleBadge = appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false);
+      if (nextVisibleBadge === visibleBadge) return;
+      visibleBadge = nextVisibleBadge;
       for (const listener of entry.listeners) {
         try { listener(badge); } catch { /* A delivery failure cannot stop the assessment. */ }
       }
     };
-    const result: Promise<APIEmbed | undefined> = assessTwitterPost(id, url, dependencies, publish).then(badge => {
+    const result: Promise<APIEmbed | undefined> = assessTwitterPost(id, url, dependencies, publish).then(({badge, retryable}) => {
       // Failed optional reviews can recover on the next paste; retain only
       // successful assessments and coalesce the requests already in flight.
-      if (undefined === badge && cache.get(id)?.result === result) cache.delete(id);
+      if ((retryable || undefined === badge) && cache.get(id)?.result === result) cache.delete(id);
       entry.latest = badge;
       return badge;
     }).finally(() => { inFlight--; entry.listeners.clear(); });
@@ -89,7 +96,7 @@ export function createTwitterIntrospector(dependencies: TwitterSanityDependencie
 
 async function assessTwitterPost(
   id: string, url: string, dependencies: TwitterSanityDependencies, publish: (badge: APIEmbed) => void,
-): Promise<APIEmbed | undefined> {
+): Promise<AssessmentResult> {
   try {
     const response = await (dependencies.getWithRetryFn ?? getWithRetry)(
       `https://api.fxtwitter.com/2/status/${id}`,
@@ -102,7 +109,7 @@ async function assessTwitterPost(
     );
     const post = parseTwitterPost(response.data, id);
     if (undefined === post) {
-      return undefined;
+      return {badge: undefined, retryable: true};
     }
     const reviewDependencies = {
       ...dependencies, logger: {log: (_level, message) => { dependencies.logger.log("debug", message); }},
@@ -119,35 +126,28 @@ async function assessTwitterPost(
     const credibilityPromise = Promise.resolve().then(() => (dependencies.credibilityFn ?? researchTwitterSource)(post, reviewDependencies))
       .catch((): TwitterSourceCredibility => ({target: "unidentified", label: "source not identified", verdict: "unverified"}))
       .then(value => { sourceSettled = true; return value; });
-    const [assessment, check] = await Promise.all([wordingPromise, checkPromise]);
-    if (undefined === check) {
-      await credibilityPromise;
-      return undefined;
-    }
-    let publishedTitle: string | undefined;
+    const assessment = await wordingPromise;
+    const pending = buildTwitterBadge(url, id, post, assessment, undefined, undefined, true);
+    if (undefined !== pending) publish(pending);
+    const check = await checkPromise;
     if (!sourceSettled) {
       const interim = buildTwitterBadge(url, id, post, assessment, check);
-      if (undefined !== interim) {
-        publishedTitle = interim.title;
-        publish(interim);
-      }
+      if (undefined !== interim) publish(interim);
     }
     const credibility = await credibilityPromise;
     const final = buildTwitterBadge(url, id, post, assessment, check, credibility);
-    if (undefined !== final && final.title !== publishedTitle) {
-      publish(final);
-    }
-    return final;
+    if (undefined !== final) publish(final);
+    return {badge: final, retryable: undefined === check};
   } catch {
     // Never log provider bodies, tweet text or URLs from remote errors.
     dependencies.logger.log("debug", "Twitter/X introspection skipped; keeping the link preview.");
-    return undefined;
+    return {badge: undefined, retryable: true};
   }
 }
 
 function buildTwitterBadge(
   url: string, id: string, post: TwitterPostContext, assessment: TwitterSanityScore,
-  check: TwitterRealityCheck, credibility?: TwitterSourceCredibility,
+  check: TwitterRealityCheck | undefined, credibility?: TwitterSourceCredibility, factPending = false,
 ): APIEmbed | undefined {
   // Missing reputation evidence is neutral. A documented concern can block
   // green, while account-only cautions need corroboration from each other or
@@ -155,20 +155,23 @@ function buildTwitterBadge(
   // source: source research chooses the link before the account.
   const accountCautions = credibility?.target === "posting account" ? credibility.cautions?.length ?? 0 : 0;
   const posterCaution = accountCautions >= 2 || (accountCautions >= 1 && assessment.score >= 20);
-  const greenStatus = undefined !== credibility && assessment.score < 30 && check.verdict === "supported"
+  const greenStatus = undefined !== credibility && assessment.score < 30 && check?.verdict === "supported"
     && credibility.verdict !== "concerns" && !posterCaution;
   const tier = greenStatus
     ? {icon: "🟢", label: credibility?.target === "linked source" && credibility.verdict === "credible"
       ? "Supported claim, low spice, credible source" : "Supported claim, low spice", color: 0x2ecc71}
-    : {icon: "🟡", label: check.verdict === "contradicted" ? "Claim contradicted"
+    : {icon: "🟡", label: check?.verdict === "contradicted" ? "Claim contradicted"
       : credibility?.verdict === "concerns" ? "Source credibility concerns"
         : assessment.score >= 30 ? "Wording caution"
-          : undefined === credibility ? "Source check pending" : "Account caution", color: 0xf1c40f};
+          : factPending ? "Fact check pending"
+            : undefined === check ? "Fact check unverified"
+            : undefined === credibility ? "Source check pending" : "Account caution", color: 0xf1c40f};
   // Reserve the available required assessments before optional note/context
   // fields so a long note cannot remove their evidence from the badge.
   const fields: NonNullable<APIEmbed["fields"]> = [{
-    name: `AI web cross-check: ${check.verdict} (review sources)`,
-    value: check.sources.map((source, index) => `[Source ${index + 1}](${source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`).join(" · "),
+    name: `AI web cross-check: ${check?.verdict ?? (factPending ? "pending" : "unverified")} (review sources)`,
+    value: check?.sources.map((source, index) => `[Source ${index + 1}](${source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`).join(" · ")
+      ?? (factPending ? "Review pending" : "Independent evidence unavailable"),
   }];
   if (undefined !== credibility) fields.push({
     name: `Source credibility: ${credibility.verdict} (${credibility.target === "linked source" ? "linked site" : credibility.label})`,
@@ -191,7 +194,7 @@ function buildTwitterBadge(
   if (context.length > 0) {
     fields.push({name: "Context", value: context.join(" · ")});
   }
-  const description = check.sentence;
+  const description = check?.sentence ?? (factPending ? "Factual check pending." : "Factual check inconclusive or unavailable.");
   const title = `${tier.icon} ${assessment.score}% Spiciness — ${tier.label}`;
   const footer = {text: "Heuristic index, not a truth probability · Media authenticity and bot activity unverified"};
   // Bound each assessment before delivery. The text formatter applies the

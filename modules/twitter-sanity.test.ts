@@ -40,17 +40,18 @@ describe("Twitter metadata and badge service", () => {
       expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
       expect(deps.credibilityFn).toHaveBeenCalledTimes(1);
     });
-    expect(updates).not.toHaveBeenCalled();
+    expect(updates).toHaveBeenCalledTimes(1);
+    expect(updates.mock.calls[0]?.[0]).toMatchObject({title: "🟡 10% Spiciness — Fact check pending"});
     fact.resolve({verdict: "supported", sentence: "Reporting supports this specific claim.", sources: ["https://reuters.com/world/report"]});
-    await vi.waitFor(() => { expect(updates).toHaveBeenCalledTimes(1); });
-    expect(updates.mock.calls[0]?.[0]).toMatchObject({title: "🟡 10% Spiciness — Source check pending"});
+    await vi.waitFor(() => { expect(updates).toHaveBeenCalledTimes(2); });
+    expect(updates.mock.calls[1]?.[0]).toMatchObject({title: "🟡 10% Spiciness — Source check pending"});
     source.resolve({target: "posting account", label: "@example", verdict: "credible", source: "https://example.org/about"});
     expect(await result).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
-    expect(updates).toHaveBeenCalledTimes(2);
-    expect(updates.mock.calls[1]?.[0]).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
+    expect(updates).toHaveBeenCalledTimes(3);
+    expect(updates.mock.calls[2]?.[0]).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
   });
 
-  test("publishes one verdict when source research finishes before the fact check", async () => {
+  test("publishes one final verdict when source research finishes before the fact check", async () => {
     const deps = dependencies();
     const fact = deferred<Awaited<ReturnType<typeof deps.crossCheckFn>>>();
     deps.crossCheckFn.mockReturnValue(fact.promise);
@@ -58,10 +59,11 @@ describe("Twitter metadata and badge service", () => {
     const updates = vi.fn();
     const result = inspect.observe!("https://fixvx.com/a/status/123", updates);
     await vi.waitFor(() => { expect(deps.credibilityFn).toHaveBeenCalledTimes(1); });
-    expect(updates).not.toHaveBeenCalled();
+    expect(updates).toHaveBeenCalledTimes(1);
+    expect(updates.mock.calls[0]?.[0]).toMatchObject({title: "🟡 10% Spiciness — Fact check pending"});
     fact.resolve({verdict: "supported", sentence: "Reporting supports this specific claim.", sources: ["https://reuters.com/world/report"]});
     expect(await result).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
-    expect(updates).toHaveBeenCalledTimes(1);
+    expect(updates).toHaveBeenCalledTimes(2);
   });
 
   test("does not publish again when source research supports an existing wording caution", async () => {
@@ -71,11 +73,14 @@ describe("Twitter metadata and badge service", () => {
     const updates = vi.fn();
     const inspect = createTwitterIntrospector(deps);
     const result = inspect.observe!("https://fixvx.com/a/status/123", updates);
-    await vi.waitFor(() => { expect(updates).toHaveBeenCalledTimes(1); });
+    await vi.waitFor(() => { expect(updates).toHaveBeenCalledTimes(2); });
     expect(updates.mock.calls[0]?.[0].title).toContain("Wording caution");
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: updates.mock.calls[0]?.[0]}], false)).toBe("-# 🟡");
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: updates.mock.calls[1]?.[0]}], false))
+      .toBe("-# 🟡 [source](<https://reuters.com/world/report>)");
     source.resolve({target: "posting account", label: "@example", verdict: "credible", source: "https://example.org/about"});
     expect((await result)?.title).toContain("Wording caution");
-    expect(updates).toHaveBeenCalledTimes(1);
+    expect(updates).toHaveBeenCalledTimes(2);
     const cachedUpdate = vi.fn();
     await inspect.observe!("https://fixvx.com/a/status/123", cachedUpdate);
     expect(cachedUpdate).toHaveBeenCalledTimes(1);
@@ -83,6 +88,30 @@ describe("Twitter metadata and badge service", () => {
       name: "Source credibility: credible (@example)", value: "[Evidence](https://example.org/about)",
     });
     expect(deps.credibilityFn).toHaveBeenCalledTimes(1);
+  });
+
+  test("keeps an unverified factual check yellow while source research finishes", async () => {
+    const deps = dependencies(payload("The council approved the plan yesterday."));
+    const fact = deferred<Awaited<ReturnType<typeof deps.crossCheckFn>>>();
+    const source = deferred<Awaited<ReturnType<typeof deps.credibilityFn>>>();
+    deps.crossCheckFn.mockReturnValue(fact.promise);
+    deps.credibilityFn.mockReturnValue(source.promise);
+    const updates = vi.fn();
+    const result = createTwitterIntrospector(deps).observe!("https://fxtwitter.com/a/status/123", updates);
+    await vi.waitFor(() => {
+      expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
+      expect(deps.credibilityFn).toHaveBeenCalledTimes(1);
+    });
+    expect(updates).toHaveBeenCalledTimes(1);
+    expect(updates.mock.calls[0]?.[0]).toMatchObject({title: "🟡 10% Spiciness — Fact check pending"});
+    fact.resolve(undefined);
+    await vi.waitFor(() => { expect(updates).toHaveBeenCalledTimes(1); });
+    source.resolve({target: "posting account", label: "@example", verdict: "credible", source: "https://example.org/about"});
+    const badge = await result;
+    expect(badge).toMatchObject({title: "🟡 10% Spiciness — Fact check unverified"});
+    expect(updates).toHaveBeenCalledTimes(1);
+    if (undefined === badge) throw new Error("Expected an unverified badge");
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false)).toBe("-# 🟡");
   });
 
   test("skips all badges and metadata when AI review is unavailable", async () => {
@@ -105,12 +134,16 @@ describe("Twitter metadata and badge service", () => {
     expect(deps.getWithRetryFn).toHaveBeenCalledTimes(1);
   });
 
-  test.each(["unavailable", "error"])("omits AI-dependent badges on %s review and retries the next paste", async mode => {
+  test.each(["unavailable", "error"])("shows an unverified indicator on %s review and retries the next paste", async mode => {
     const deps = dependencies(payload("The council approved the plan yesterday."));
     if (mode === "error") deps.crossCheckFn.mockRejectedValueOnce(new Error("sensitive provider payload"));
     else deps.crossCheckFn.mockResolvedValueOnce(undefined);
     const inspect = createTwitterIntrospector(deps);
-    expect(await inspect("https://fixvx.com/a/status/123")).toBeUndefined();
+    const unverified = await inspect("https://fixvx.com/a/status/123");
+    expect(unverified).toMatchObject({title: "🟡 10% Spiciness — Fact check unverified"});
+    expect(unverified?.fields).toContainEqual({
+      name: "AI web cross-check: unverified (review sources)", value: "Independent evidence unavailable",
+    });
     expect(await inspect("https://fixvx.com/a/status/123")).toMatchObject({description: "Reporting supports this specific claim."});
     expect(deps.getWithRetryFn).toHaveBeenCalledTimes(2);
     expect(deps.crossCheckFn).toHaveBeenCalledTimes(2);
@@ -402,10 +435,13 @@ describe("Twitter metadata and badge service", () => {
     },
   );
 
-  test("silently omits a Community Note badge when its AI check is unusable", async () => {
+  test("shows only the unverified indicator when a Community Note cannot establish the claim", async () => {
     const deps = dependencies({status: {id: "123", text: "A calm factual claim.", community_note: {text: "A supplied note."}}});
     deps.crossCheckFn.mockResolvedValue(undefined);
-    expect(await createTwitterIntrospector(deps)("https://fixvx.com/a/status/123")).toBeUndefined();
+    const badge = await createTwitterIntrospector(deps)("https://fixvx.com/a/status/123");
+    expect(badge).toMatchObject({title: "🟡 10% Spiciness — Fact check unverified"});
+    if (undefined === badge) throw new Error("Expected an unverified badge");
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false)).toBe("-# 🟡");
     expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
   });
 

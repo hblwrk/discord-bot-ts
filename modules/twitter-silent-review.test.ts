@@ -44,7 +44,7 @@ describe("silent Twitter review delivery", () => {
   });
 
   test.each(["x.com", "fixvx.com"].flatMap(host => ["The council approved the plan yesterday.", "They are hiding this from you"].map(text => [host, text] as const)))(
-    "%s posts no badge or error when AI cannot review: %s", async (host, text) => {
+    "%s posts an unverified indicator without a source when AI cannot review: %s", async (host, text) => {
       for (const outcome of ["throw", "timeout", "null", "unverified"]) {
         const {client, getHandler} = createEventClient();
         const aiCall = vi.fn().mockResolvedValue(outcome === "unverified" ? JSON.stringify({verdict: "unverified"}) : null);
@@ -56,9 +56,12 @@ describe("silent Twitter review delivery", () => {
         addTwitterLinkRewrites(client, introspect);
         const post = message(`https://${host}/a/status/123`);
         await getHandler("messageCreate")(post);
-        await new Promise(resolve => setTimeout(resolve, 0));
+        await vi.waitFor(() => { expect(post.response.edit).toHaveBeenCalledTimes(1); });
         expect(aiCall).toHaveBeenCalledTimes(1);
-        expect(post.response.edit).not.toHaveBeenCalled();
+        expect(post.response.edit).toHaveBeenCalledExactlyOnceWith({
+          content: `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123\n-# 🟡`,
+          allowedMentions: {parse: [], repliedUser: false},
+        });
         expect(post.reply).not.toHaveBeenCalled();
         expect(post.channel.send).toHaveBeenCalledTimes(1);
       }
@@ -77,14 +80,19 @@ describe("silent Twitter review delivery", () => {
     const post = message(`https://${host}/a/status/123`);
     await getHandler("messageCreate")(post);
     await vi.waitFor(() => { expect(crossCheckFn).toHaveBeenCalledTimes(1); });
-    expect(post.response.edit).not.toHaveBeenCalled();
+    await vi.waitFor(() => {
+      expect(post.response.edit).toHaveBeenCalledExactlyOnceWith({
+        content: `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123\n-# 🟡`,
+        allowedMentions: {parse: [], repliedUser: false},
+      });
+    });
     expect(post.reply).not.toHaveBeenCalled();
     expect(post.channel.send).toHaveBeenCalledTimes(1);
     expect(post.embeds).toEqual([{type: "video"}]);
     finish({verdict: "contradicted", sentence: "Reporting contradicts the council approval claim.", sources: ["https://reuters.com/world/report"]});
     const delivered = post.response.edit;
-    await vi.waitFor(() => { expect(delivered).toHaveBeenCalledTimes(1); });
-    const options = delivered.mock.calls[0]?.[0];
+    await vi.waitFor(() => { expect(delivered).toHaveBeenCalledTimes(2); });
+    const options = delivered.mock.calls[1]?.[0];
     expect(options.content).toContain("-# 🟡 [source]");
     expect(options.content).not.toContain("Reporting contradicts the council approval claim.");
     expect(options.content).toContain("[source](<https://reuters.com/world/report>)");
@@ -92,5 +100,26 @@ describe("silent Twitter review delivery", () => {
     expect(options).not.toHaveProperty("embeds");
     expect(options).not.toHaveProperty("flags");
     expect(post.suppressEmbeds).not.toHaveBeenCalled();
+  });
+
+  test("shows a yellow indicator for a chart-led proxy post without a verifiable fact source", async () => {
+    const id = "2109614293801201700";
+    const url = `https://fxtwitter.com/Polityka_wSieci/status/${id}`;
+    const {client, getHandler} = createEventClient();
+    const getWithRetryFn = vi.fn().mockResolvedValue({data: {status: {
+      id, text: "Our monitoring shows no drop in the network's activity after infrastructure damage.",
+      media: {photos: [{}]}, quote: {text: "The network remained active."},
+    }}});
+    const crossCheckFn = vi.fn().mockResolvedValue(undefined);
+    addTwitterLinkRewrites(client, createTwitterIntrospector({logger, aiAvailableFn: () => true, getWithRetryFn, crossCheckFn}));
+    const post = message(url);
+    await getHandler("messageCreate")(post);
+    await vi.waitFor(() => {
+      expect(post.response.edit.mock.lastCall?.[0]?.content).toBe(`From <@123>: ${url}\n-# 🟡`);
+    });
+    expect(getWithRetryFn).toHaveBeenCalledExactlyOnceWith(`https://api.fxtwitter.com/2/status/${id}`,
+      expect.anything(), expect.anything());
+    expect(crossCheckFn).toHaveBeenCalledTimes(1);
+    expect(post.response.edit).toHaveBeenCalledTimes(1);
   });
 });
