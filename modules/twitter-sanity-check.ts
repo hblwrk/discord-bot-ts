@@ -6,9 +6,10 @@ import type {TwitterPostContext} from "./twitter-sanity-score.ts";
 const sourceDomains = [
   "reuters.com", "apnews.com", "bbc.com", "bbc.co.uk", "dw.com",
   "tagesschau.de", "dpa.com", "factcheck.org", "fullfact.org", "correctiv.org",
-  "politifact.com", "snopes.com",
+  "politifact.com", "snopes.com", "bloomberg.com", "ft.com", "wsj.com",
+  "cnbc.com", "handelsblatt.com",
 ];
-const outletName = /\b(?:AP|Associated Press|Reuters|BBC|Deutsche Welle|DW|Tagesschau|DPA|FactCheck\.org|Full Fact|Correctiv|PolitiFact|Snopes)\b/iu;
+const outletName = /\b(?:AP|Associated Press|Reuters|BBC|Deutsche Welle|DW|Tagesschau|DPA|FactCheck\.org|Full Fact|Correctiv|PolitiFact|Snopes|Bloomberg|Financial Times|Wall Street Journal|CNBC|Handelsblatt)\b/iu;
 
 const checkSchema = {
   type: "object",

@@ -17,6 +17,7 @@ type TwitterSanityDependencies = AiProviderDependencies & {
   credibilityFn?: typeof researchTwitterSource;
   primaryStatementFn?: typeof researchTwitterPrimaryStatement;
   aiAvailableFn?: () => boolean;
+  primaryRetryDelayMs?: number;
 };
 
 export type TwitterIntrospector = ((url: string) => Promise<APIEmbed | undefined>) & {
@@ -28,13 +29,22 @@ type CacheEntry = {
   result: Promise<APIEmbed | undefined>;
   latest: APIEmbed | undefined;
   listeners: Set<(badge: APIEmbed) => void>;
+  retryPending: boolean;
+  retryTimer?: ReturnType<typeof setTimeout>;
 };
 
-type AssessmentResult = {badge: APIEmbed | undefined; retryable: boolean};
+type AssessmentResult = {badge: APIEmbed | undefined; retryable: boolean;
+  retry?: () => Promise<APIEmbed | undefined>};
 
 export function createTwitterIntrospector(dependencies: TwitterSanityDependencies): TwitterIntrospector {
   const cache = new Map<string, CacheEntry>();
   let inFlight = 0;
+  const discard = (id: string, entry: CacheEntry) => {
+    if (undefined !== entry.retryTimer) clearTimeout(entry.retryTimer);
+    entry.retryPending = false;
+    entry.listeners.clear();
+    cache.delete(id);
+  };
   const start = (link: string, onBadge?: (badge: APIEmbed) => void): Promise<APIEmbed | undefined> => {
     const id = getTwitterStatusId(link);
     if (undefined === id) {
@@ -44,7 +54,7 @@ export function createTwitterIntrospector(dependencies: TwitterSanityDependencie
     const nowMs = dependencies.nowMs?.() ?? Date.now();
     for (const [key, entry] of cache) {
       if (entry.expiresAt <= nowMs) {
-        cache.delete(key);
+        discard(key, entry);
       }
     }
     const cached = cache.get(id);
@@ -52,7 +62,9 @@ export function createTwitterIntrospector(dependencies: TwitterSanityDependencie
       if (undefined !== onBadge) {
         cached.listeners.add(onBadge);
         if (undefined !== cached.latest) onBadge(cached.latest);
-        void cached.result.then(() => { cached.listeners.delete(onBadge); }, () => { cached.listeners.delete(onBadge); });
+        void cached.result.then(() => {
+          if (!cached.retryPending) cached.listeners.delete(onBadge);
+        }, () => { cached.listeners.delete(onBadge); });
       }
       return cached.result;
     }
@@ -62,11 +74,13 @@ export function createTwitterIntrospector(dependencies: TwitterSanityDependencie
     if (cache.size >= 100) {
       const oldest = cache.keys().next().value;
       if (undefined !== oldest) {
-        cache.delete(oldest);
+        const oldestEntry = cache.get(oldest);
+        if (undefined !== oldestEntry) discard(oldest, oldestEntry);
       }
     }
     inFlight++;
-    const entry: CacheEntry = {expiresAt: nowMs + 10 * 60_000, result: Promise.resolve(undefined), latest: undefined, listeners: new Set()};
+    const entry: CacheEntry = {expiresAt: nowMs + 10 * 60_000, result: Promise.resolve(undefined),
+      latest: undefined, listeners: new Set(), retryPending: false};
     if (undefined !== onBadge) entry.listeners.add(onBadge);
     let visibleBadge = "";
     const publish = (badge: APIEmbed) => {
@@ -78,13 +92,45 @@ export function createTwitterIntrospector(dependencies: TwitterSanityDependencie
         try { listener(badge); } catch { /* A delivery failure cannot stop the assessment. */ }
       }
     };
-    const result: Promise<APIEmbed | undefined> = assessTwitterPost(id, url, dependencies, publish).then(({badge, retryable}) => {
+    const startedAt = Date.now();
+    const result: Promise<APIEmbed | undefined> = assessTwitterPost(id, url, dependencies, publish).then(({badge, retryable, retry}) => {
       // Retry failed optional reviews on the next paste; cache conclusive
       // assessments, including posts that need no badge.
-      if (retryable && cache.get(id)?.result === result) cache.delete(id);
+      if (retryable && cache.get(id) === entry) discard(id, entry);
       entry.latest = badge;
+      if (undefined !== retry && cache.get(id) === entry) {
+        entry.retryPending = true;
+        entry.retryTimer = setTimeout(() => {
+          delete entry.retryTimer;
+          if (cache.get(id) !== entry || Date.now() - startedAt > 3 * 60_000 || inFlight >= 4) {
+            if (cache.get(id) === entry) discard(id, entry);
+            return;
+          }
+          inFlight++;
+          void retry().then(updated => {
+            if (cache.get(id) !== entry) return;
+            if (undefined === updated) {
+              discard(id, entry);
+              return;
+            }
+            publish(updated);
+            entry.result = Promise.resolve(updated);
+          }).catch(() => {
+            dependencies.logger.log("debug", "Twitter/X short disclosure retry skipped.");
+            if (cache.get(id) === entry) discard(id, entry);
+          }).finally(() => {
+            inFlight--;
+            entry.retryPending = false;
+            entry.listeners.clear();
+          });
+        }, Math.max(0, (dependencies.primaryRetryDelayMs ?? 45_000) - (Date.now() - startedAt)));
+        entry.retryTimer.unref();
+      }
       return badge;
-    }).finally(() => { inFlight--; entry.listeners.clear(); });
+    }).finally(() => {
+      inFlight--;
+      if (!entry.retryPending) entry.listeners.clear();
+    });
     entry.result = result;
     cache.set(id, entry);
     return result;
@@ -120,42 +166,58 @@ async function assessTwitterPost(
     } satisfies AiProviderDependencies;
     // Wording, independent factual research, source reputation and eligible
     // first-party attribution start without waiting on one another.
-    const wordingPromise = Promise.resolve().then(() => scoreTwitterPost(post));
+    const assessment = scoreTwitterPost(post);
+    if (aiAvailable) publish({url, title: "🔎 Checking", description: "Review in progress."});
+    let checkReady = false;
+    let settledCheck: TwitterRealityCheck | undefined;
+    let credibilityReady = false;
+    let settledCredibility: TwitterSourceCredibility | undefined;
+    let primaryReady = false;
+    let settledPrimary: TwitterPrimaryStatement | undefined;
+    const primaryCandidate = aiAvailable && isPotentialPrimaryStatement(post);
+    const publishSettled = () => {
+      let badge: APIEmbed | undefined;
+      if (checkReady) {
+        badge = credibilityReady && undefined !== settledCredibility
+          ? buildFinalTwitterBadge(url, id, post, assessment, settledCheck, settledCredibility,
+            primaryReady ? settledPrimary : undefined, primaryCandidate)
+          : buildTwitterBadge(url, id, post, assessment, settledCheck);
+      } else if (credibilityReady && undefined !== settledCredibility && primaryReady && undefined !== settledPrimary) {
+        badge = buildFinalTwitterBadge(url, id, post, assessment, undefined, settledCredibility,
+          settledPrimary, primaryCandidate);
+      }
+      if (undefined !== badge) publish(badge);
+    };
     const checkPromise = Promise.resolve().then(() => aiAvailable
       ? (dependencies.crossCheckFn ?? crossCheckTwitterPost)(post, reviewDependencies) : undefined)
       .catch(() => {
         dependencies.logger.log("debug", "Twitter/X web cross-check skipped; keeping the link preview.");
         return undefined;
-      });
-    let credibilityReady = false;
-    let settledCredibility: TwitterSourceCredibility | undefined;
+      }).then(value => { checkReady = true; settledCheck = value; publishSettled(); return value; });
     const credibilityPromise = Promise.resolve().then(() => aiAvailable
       ? (dependencies.credibilityFn ?? researchTwitterSource)(post, reviewDependencies)
       : unresearchedTwitterSource(post, dependencies.nowMs?.() ?? Date.now()))
       .catch((): TwitterSourceCredibility => ({target: "unidentified", label: "source not identified", verdict: "unverified"}))
-      .then(value => { credibilityReady = true; settledCredibility = value; return value; });
-    const primaryCandidate = aiAvailable && isPotentialPrimaryStatement(post);
+      .then(value => { credibilityReady = true; settledCredibility = value; publishSettled(); return value; });
     const primaryPromise = Promise.resolve().then(() => primaryCandidate
       ? (dependencies.primaryStatementFn ?? researchTwitterPrimaryStatement)(post, reviewDependencies) : undefined)
       .catch(() => {
         dependencies.logger.log("debug", "Twitter/X primary statement check skipped.");
         return undefined;
-      });
-    const assessment = await wordingPromise;
-    if (aiAvailable) publish({url, title: "🔎 Checking", description: "Review in progress."});
-    const check = await checkPromise;
-    if (check?.verdict === "contradicted") {
-      const contradiction = buildTwitterBadge(url, id, post, assessment, check);
-      if (undefined !== contradiction) publish(contradiction);
-    } else if (!primaryCandidate && aiAvailable) {
-      const provisional = buildTwitterBadge(url, id, post, assessment, check,
-        credibilityReady ? settledCredibility : undefined);
-      if (undefined !== provisional) publish(provisional);
-    }
-    const [credibility, primary] = await Promise.all([credibilityPromise, primaryPromise]);
-    const final = buildFinalTwitterBadge(url, id, post, assessment, check, credibility, primary);
+      }).then(value => { primaryReady = true; settledPrimary = value; publishSettled(); return value; });
+    const [check, credibility, primary] = await Promise.all([checkPromise, credibilityPromise, primaryPromise]);
+    const final = buildFinalTwitterBadge(url, id, post, assessment, check, credibility, primary, primaryCandidate);
     if (undefined !== final) publish(final);
-    return {badge: final, retryable: undefined === check && undefined === primary};
+    const retry = aiAvailable && primaryCandidate && undefined === primary
+      && (undefined === check || (check.verdict === "supported" && check.sources.length === 1))
+      && assessment.score < 30 && credibility.verdict !== "concerns"
+      ? async () => {
+        const later = await (dependencies.primaryStatementFn ?? researchTwitterPrimaryStatement)(post, reviewDependencies);
+        return undefined === later ? undefined
+          : buildFinalTwitterBadge(url, id, post, assessment, check, credibility, later, primaryCandidate);
+      } : undefined;
+    return {badge: final, retryable: undefined === check && undefined === primary && undefined === retry,
+      ...(undefined === retry ? {} : {retry})};
   } catch {
     // Never log provider bodies, tweet text or URLs from remote errors.
     dependencies.logger.log("debug", "Twitter/X introspection skipped; keeping the link preview.");
@@ -166,7 +228,7 @@ async function assessTwitterPost(
 function buildFinalTwitterBadge(
   url: string, id: string, post: TwitterPostContext, assessment: TwitterSanityScore,
   check: TwitterRealityCheck | undefined, credibility: TwitterSourceCredibility,
-  primary: TwitterPrimaryStatement | undefined,
+  primary: TwitterPrimaryStatement | undefined, primaryCandidate: boolean,
 ): APIEmbed | undefined {
   if (undefined !== primary && assessment.score < 30 && check?.verdict !== "contradicted"
     && !(credibility.target === "linked source" && credibility.verdict === "concerns")) {
@@ -177,6 +239,11 @@ function buildFinalTwitterBadge(
       fields: [{name: `Primary source: ${primary.organization}`,
         value: `[Source](${primary.source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`}],
     };
+  }
+  if (primaryCandidate && assessment.score < 30 && check?.verdict === "supported"
+    && check.sources.length === 1 && credibility.verdict !== "concerns") {
+    return {url, title: "ℹ️ Reported claim", description: "An accepted source reports this claim; issuer confirmation is not established.",
+      fields: [{name: "Report source", value: `[Source](${check.sources[0]!.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`}]};
   }
   return buildTwitterBadge(url, id, post, assessment, check, credibility);
 }

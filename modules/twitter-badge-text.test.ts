@@ -5,6 +5,12 @@ const link = "From <@123>: https://fxtwitter.com/example/status/123";
 const checkField = {name: "AI web cross-check: contradicted", value: "[Source](https://example.org/report)"};
 
 describe("appendTwitterBadgeText", () => {
+  test("shows a single public report as neutral attribution on the link line", () => {
+    const badge = {title: "ℹ️ Reported claim", fields: [{name: "Report source", value: "[Source](https://bloomberg.com/news/articles/report)"}]};
+    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: badge}], false))
+      .toBe(`${link}  ℹ️ Reported [source](<https://bloomberg.com/news/articles/report>)`);
+    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {title: "ℹ️ Reported claim"}}], false)).toBe(link);
+  });
   test("shows a short combined status and one source", () => {
     const text = appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
       title: "🟢 10% Spiciness — Supported claim, low spice, credible source",
