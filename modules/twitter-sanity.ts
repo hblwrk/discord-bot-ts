@@ -80,11 +80,10 @@ async function assessTwitterPost(id: string, url: string, dependencies: TwitterS
     if (undefined === check) {
       return undefined;
     }
-    const tier = assessment.score >= 70
-      ? {icon: "🔴", label: "High sensationalism", color: 0xe74c3c}
-      : assessment.score >= 30
-        ? {icon: "🟡", label: "Caution", color: 0xf1c40f}
-        : {icon: "🟢", label: "Low sensationalism", color: 0x2ecc71};
+    const greenStatus = assessment.score < 30 && check.verdict === "supported";
+    const tier = greenStatus
+      ? {icon: "🟢", label: "Supported claim, low wording spice", color: 0x2ecc71}
+      : {icon: "🟡", label: check.verdict === "contradicted" ? "Claim contradicted" : "Wording caution", color: 0xf1c40f};
     // Reserve the factual verdict's citation before optional note/context
     // fields so a long note cannot leave an uncited AI claim in the badge.
     const fields: NonNullable<APIEmbed["fields"]> = [{

@@ -28,6 +28,8 @@ describe("Twitter web cross-check", () => {
       "Twitter/X reality check", undefined,
       expect.objectContaining({useWebSearch: true, timeoutMs: 60_000, onWebSources: expect.any(Function)}),
     );
+    expect(callFn.mock.calls[0]?.[0]).toContain("at most 160 characters");
+    expect(callFn.mock.calls[0]?.[0]).toContain("Do not name news outlets");
   });
 
   test("accepts supported evidence and deduplicates source URLs", async () => {
@@ -38,7 +40,10 @@ describe("Twitter web cross-check", () => {
   test.each([
     null, "invalid json", [], {}, {verdict: "unverified"}, {verdict: "true"},
     {...result, realityCheck: 7}, {...result, realityCheck: "short"},
-    {...result, realityCheck: "X".repeat(281)}, {...result, realityCheck: "First sentence. Second sentence."},
+    {...result, realityCheck: "X".repeat(161)}, {...result, realityCheck: "First sentence. Second sentence."},
+    {...result, realityCheck: "AP reported that the council approved the plan."},
+    {...result, realityCheck: "Reuters found that the council approved the plan."},
+    {...result, realityCheck: "The Associated Press confirmed the council's decision."},
     {...result, realityCheck: "Follow https://example.com to find the answer."},
     {...result, realityCheck: "Everyone @everyone should act immediately."},
     {...result, realityCheck: "A claim\nwith another line."}, {...result, sourceUrls: "wrong"},

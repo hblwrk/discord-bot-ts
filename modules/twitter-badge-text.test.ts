@@ -24,10 +24,10 @@ describe("appendTwitterBadgeText", () => {
   test("retains the note excerpt, attribution, evidence links and rating disclaimer", () => {
     const value = "A note excerpt.\n[Post](https://x.com/example/status/123) · [Source](https://example.org/article)\nRating status and cited evidence are unverified.";
     const text = appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
-      title: "🟢 10% Spiciness — Low sensationalism", description: "Reporting contradicts this claim.",
+      title: "🟡 10% Spiciness — Claim contradicted", description: "Reporting contradicts this claim.",
       fields: [checkField, {name: "Community Note via FxTwitter (excerpt)", value}],
     }}], false);
-    expect(text).toBe(`${link}\n-# 🟢 10% wording spice · ${checkText}\n-# Reporting contradicts this claim.\n-# **Community Note via FxTwitter (excerpt)**\n-# A note excerpt.\n-# [Post](<https://x.com/example/status/123>) · [Source](<https://example.org/article>)\n-# Rating status and cited evidence are unverified.`);
+    expect(text).toBe(`${link}\n-# 🟡 10% wording spice · ${checkText}\n-# Reporting contradicts this claim.\n-# **Community Note via FxTwitter (excerpt)**\n-# A note excerpt.\n-# [Post](<https://x.com/example/status/123>) · [Source](<https://example.org/article>)\n-# Rating status and cited evidence are unverified.`);
   });
 
   test("uses original link positions without an extra caveat line", () => {
@@ -35,21 +35,21 @@ describe("appendTwitterBadgeText", () => {
     expect(appendTwitterBadgeText(link, badges, true)).toBe(`${link}\n-# Link 1: 🟡 50% wording spice · ${checkText}\n-# Link 3: 🟡 50% wording spice · ${checkText}`);
   });
 
-  test("displays a contradicted verdict independently of a low wording score", () => {
+  test("displays the combined yellow status for a contradicted low-spice claim", () => {
     const text = appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
-      title: "🟢 10% Spiciness — Low sensationalism",
+      title: "🟡 10% Spiciness — Claim contradicted",
       description: "Reporting contradicts this claim.", fields: [checkField],
     }}], false);
-    expect(text).toBe(`${link}\n-# 🟢 10% wording spice · ${checkText}\n-# Reporting contradicts this claim.`);
+    expect(text).toBe(`${link}\n-# 🟡 10% wording spice · ${checkText}\n-# Reporting contradicts this claim.`);
     expect(text).not.toContain("skipped");
   });
 
   test("keeps the proxy post reference alongside the completed low-score AI check", () => {
     const text = appendTwitterBadgeText("", [{linkNumber: 1, embed: {
-      title: "🟢 20% Spiciness — Low sensationalism",
+      title: "🟡 20% Spiciness — Claim contradicted",
       description: "Reporting contradicts this claim.\nPost: <https://fixvx.com/a/status/123>", fields: [checkField],
     }}], false);
-    expect(text).toBe(`-# 🟢 20% wording spice · ${checkText}\n-# Reporting contradicts this claim.\n-# Post: <https://fixvx.com/a/status/123>`);
+    expect(text).toBe(`-# 🟡 20% wording spice · ${checkText}\n-# Reporting contradicts this claim.\n-# Post: <https://fixvx.com/a/status/123>`);
   });
 
   test.each([10, 50, 95])("omits scored badges without a completed AI check at %s%%, including notes alone", score => {

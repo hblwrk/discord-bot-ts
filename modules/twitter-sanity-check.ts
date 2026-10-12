@@ -8,6 +8,7 @@ const sourceDomains = [
   "tagesschau.de", "dpa.com", "factcheck.org", "fullfact.org", "correctiv.org",
   "politifact.com", "snopes.com",
 ];
+const outletName = /\b(?:AP|Associated Press|Reuters|BBC|Deutsche Welle|DW|Tagesschau|DPA|FactCheck\.org|Full Fact|Correctiv|PolitiFact|Snopes)\b/iu;
 
 const checkSchema = {
   type: "object",
@@ -56,8 +57,8 @@ export async function crossCheckTwitterPost(
       "Match the exact claim, date, place and subject; distinguish satire, opinion, quotations and rebuttals.",
       "Never infer botnets, propaganda intent or media authenticity from wording, account age or engagement counts.",
       "Return unverified for missing evidence, opinion, partial matches or inaccessible media needed to establish the claim.",
-      "For supported/contradicted, cite the exact searched article URLs and explain the evidence in one English sentence of at most 280 characters.",
-      "Aim for at most 160 characters: state the key evidence directly, without repeating the verdict or adding introductory phrasing; retain qualifications essential to the claim.",
+      "For supported/contradicted, cite the exact searched article URLs and explain the key evidence in one English sentence of at most 160 characters.",
+      "Be direct and retain essential qualifications. Do not name news outlets or fact-check publishers (such as AP or Reuters), repeat the verdict, or add introductory phrasing.",
       "Return JSON only; no Markdown, mentions, links inside the sentence, or invented sources.",
       JSON.stringify(post),
     ].join("\n"), checkSchema, dependencies, "Twitter/X reality check", undefined, {
@@ -74,8 +75,9 @@ export async function crossCheckTwitterPost(
     }
     const sentence = parsed["realityCheck"];
     const sourceUrls = parsed["sourceUrls"];
-    if ("string" !== typeof sentence || sentence.length > 280 || sentence.trim().length < 15
+    if ("string" !== typeof sentence || sentence.length > 160 || sentence.trim().length < 15
       || /https?:|[@<>\n\r`*_~|\\]/u.test(sentence)
+      || outletName.test(sentence)
       || [...new Intl.Segmenter("en", {granularity: "sentence"}).segment(sentence.trim())].length !== 1
       || !Array.isArray(sourceUrls)) {
       return skipReview(dependencies, "invalid reality-check sentence or sources");

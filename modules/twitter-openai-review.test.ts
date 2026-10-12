@@ -8,9 +8,8 @@ import {createEventClient} from "./test-utils/discord-mocks.ts";
 const logger = vi.hoisted(() => ({log: vi.fn()}));
 vi.mock("./logging.ts", () => ({getLogger: () => logger}));
 
-// Transcribed provider output from the reported failure. This fixture tests
-// response transport/validation, not the accuracy of the provider's claim.
-const sentence = "AP reported that Spanish police escorted migrants away from Ceuta and that local authorities described the operation as cleaning up the city after the surge; the post’s exact wording is opinionated, but the underlying cleanup claim matches.";
+// This fixture tests response transport/validation, not the accuracy of the provider's claim.
+const sentence = "Spanish police escorted migrants away from Ceuta during a cleanup operation.";
 const sources = [
   "https://apnews.com/article/fe8e003171d5ce019d978ed9eaea49ed",
   "https://apnews.com/article/9960b15a7cf31a0592b09ac47a8eac3f",
