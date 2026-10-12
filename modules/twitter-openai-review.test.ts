@@ -82,7 +82,7 @@ describe("Twitter review with OpenAI search sources", () => {
     await vi.waitFor(() => {
       expect(delivered.mock.lastCall?.[0]?.content).toBe(`From <@123>: ${deliveredUrl}  🟢 Supported claim [source](<${sources[0]}>)`);
     });
-    expect(delivered.mock.calls[0]?.[0]?.content).toBe(`From <@123>: ${deliveredUrl}  🟡 Checking claim`);
+    expect(delivered.mock.calls[0]?.[0]?.content).toBe(`From <@123>: ${deliveredUrl}  🔎 Checking`);
     const options = delivered.mock.lastCall?.[0];
     expect(options.content).toBe(`From <@123>: ${deliveredUrl}  🟢 Supported claim [source](<${sources[0]}>)`);
     expect(options).not.toHaveProperty("embeds");

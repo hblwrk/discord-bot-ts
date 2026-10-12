@@ -12,17 +12,22 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
     }
     const scored = /(?:^|\s)\d+% Spiciness/u.test(embed.title);
     const check = embed.fields?.find(field => field.name.startsWith("AI web cross-check:"));
+    const primary = embed.title === "ℹ️ Company statement"
+      ? embed.fields?.find(field => field.name.startsWith("Primary source: ")) : undefined;
     // A scored status needs an explicit factual-review state, including pending
     // and unverified results, so the indicator never implies a checked claim.
     if (scored && undefined === check) {
       continue;
     }
-    const indicator = scored ? /^(🟢|🟡|🔴)/u.exec(embed.title)?.[1] : embed.title;
+    const primaryUrl = /\[Source\]\((https:\/\/[^)\s]+)\)/u.exec(primary?.value ?? "")?.[1];
+    if (embed.title === "ℹ️ Company statement" && (undefined === primary || undefined === primaryUrl)) continue;
+    const indicator = scored ? /^(🟢|🟡|🔴)/u.exec(embed.title)?.[1]
+      : undefined === primary ? embed.title : `ℹ️ ${primary.name.slice("Primary source: ".length)} statement`;
     if (undefined === indicator) {
       continue;
     }
     const status = scored ? ` ${shortTrustStatus(embed.title, indicator)}` : "";
-    const source = undefined === check ? undefined
+    const source = undefined === check ? primaryUrl
       : /\[Source(?: \d+)?\]\((https:\/\/[^)\s]+)\)/u.exec(check.value)?.[1];
     const label = multipleLinks && !content ? `Link ${linkNumber}: ${indicator}${status}` : `${indicator}${status}`;
     const citation = undefined === source ? "" : ` [source](<${source}>)`;
