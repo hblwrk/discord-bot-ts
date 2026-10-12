@@ -50,7 +50,44 @@ describe("Twitter source credibility", () => {
     expect(await researchTwitterSource(post, {logger: {log: vi.fn()}}, callFn)).toEqual({
       target: "posting account", label: "@example_org", verdict: "concerns", source: evidence,
     });
-    expect(callFn.mock.calls[0]?.[0]).toContain("checkmark, follower count and age are not proof");
+    expect(callFn.mock.calls[0]?.[0]).toContain("a small audience or recent creation alone is not a documented credibility problem");
+  });
+
+  test.each([
+    {followers: 99, joined: "2025-01-01", cautions: ["Under 100 followers"]},
+    {followers: 100, joined: "2026-10-01", cautions: ["Account under 30 days old"]},
+    {followers: 0, joined: "2026-10-01", cautions: ["Under 100 followers", "Account under 30 days old"]},
+  ])("reduces independently corroborated account credibility for $followers followers and $joined join date", async ({followers, joined, cautions}) => {
+    const callFn = mockCall({verdict: "credible", sourceUrls: [evidence]});
+    expect(await researchTwitterSource({...post, ...(undefined === followers ? {} : {authorFollowers: followers}), authorJoined: joined},
+      {logger: {log: vi.fn()}, nowMs: () => Date.parse("2026-10-12T12:00:00Z")}, callFn)).toEqual({
+      target: "posting account", label: "@example_org", verdict: "unverified", source: evidence, cautions,
+    });
+  });
+
+  test.each([
+    {followers: 100, joined: "2025-01-01"},
+    {followers: 500, joined: "2026-09-12T12:00:00Z"},
+    {followers: undefined, joined: "invalid"},
+  ])("keeps a corroborated account credible outside the caution thresholds %#", async ({followers, joined}) => {
+    expect(await researchTwitterSource({...post, ...(undefined === followers ? {} : {authorFollowers: followers}), authorJoined: joined},
+      {logger: {log: vi.fn()}, nowMs: () => Date.parse("2026-10-12T12:00:00Z")},
+      mockCall({verdict: "credible", sourceUrls: [evidence]}))).toEqual({
+      target: "posting account", label: "@example_org", verdict: "credible", source: evidence,
+    });
+  });
+
+  test("keeps documented concerns and leaves linked-source research independent of the posting account", async () => {
+    const cautious = {...post, authorFollowers: 8, authorJoined: "2026-10-10"};
+    const deps = {logger: {log: vi.fn()}, nowMs: () => Date.parse("2026-10-12T12:00:00Z")};
+    expect(await researchTwitterSource(cautious, deps,
+      mockCall({verdict: "concerns", sourceUrls: [evidence]}))).toMatchObject({
+      verdict: "concerns", cautions: ["Under 100 followers", "Account under 30 days old"],
+    });
+    expect(await researchTwitterSource({...cautious, externalLinks: ["https://reports.example.net/article"]}, deps,
+      mockCall({verdict: "credible", sourceUrls: [evidence]}))).toEqual({
+      target: "linked source", label: "reports.example.net", verdict: "credible", source: evidence,
+    });
   });
 
   test.each([

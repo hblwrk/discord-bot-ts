@@ -2,6 +2,7 @@ import {describe, expect, test, vi} from "vitest";
 import type {callAiProviderJson} from "./ai-provider.ts";
 import {createTwitterIntrospector, parseTwitterPost} from "./twitter-sanity.ts";
 import {researchTwitterSource} from "./twitter-source-credibility.ts";
+import {appendTwitterBadgeText} from "./twitter-badge-text.ts";
 
 function payload(text = "A cat enjoys a sunny afternoon.", id = "123") {
   return {code: 200, status: {id, text}};
@@ -156,6 +157,39 @@ describe("Twitter metadata and badge service", () => {
     expect(await createTwitterIntrospector(deps)(`https://fxtwitter.com/RadioGenoa/status/${data.status.id}`))
       .toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice, credible source"});
     expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
+  });
+
+  test.each([
+    {followers: 42, expected: 42},
+    {followers: 0, expected: 0},
+    {followers: -1, expected: undefined},
+    {followers: 1.5, expected: undefined},
+    {followers: "42", expected: undefined},
+  ])("reads only a nonnegative integer follower count from FxTwitter metadata: $followers", ({followers, expected}) => {
+    const parsed = parseTwitterPost({status: {id: "123", text: "A claim.", author: {followers}}}, "123");
+    expect(parsed?.authorFollowers).toBe(expected);
+  });
+
+  test("shows account age and follower cautions in the combined trust badge", async () => {
+    const evidence = "https://example.org/account-review";
+    const callFn = vi.fn<typeof callAiProviderJson>((_prompt, _schema, _deps, _task, _data, options = {}) => {
+      options.onWebSources?.([evidence]);
+      return Promise.resolve(JSON.stringify({verdict: "credible", sourceUrls: [evidence]}));
+    });
+    const data = {status: {id: "123", text: "The council approved the plan yesterday.",
+      author: {screen_name: "small_account", followers: 42, joined: "2026-10-01"}}};
+    const deps = dependencies(data);
+    const badge = await createTwitterIntrospector({...deps,
+      credibilityFn: (post, reviewDeps) => researchTwitterSource(post, reviewDeps, callFn),
+    })("https://fixvx.com/a/status/123");
+    expect(badge).toMatchObject({title: "🟡 10% Spiciness — Source credibility unverified"});
+    expect(badge?.fields).toContainEqual({
+      name: "Source credibility: unverified (@small_account)",
+      value: `Under 100 followers · Account under 30 days old · [Evidence](${evidence})`,
+    });
+    if (undefined === badge) throw new Error("Expected a badge for the supported claim");
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false))
+      .toContain("**Source: unverified (@small_account)** · Under 100 followers · Account under 30 days old");
   });
 
   test.each([
