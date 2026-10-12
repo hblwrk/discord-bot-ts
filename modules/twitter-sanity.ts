@@ -1,7 +1,7 @@
 import type {APIEmbed} from "discord.js";
 import {getWithRetry} from "./http-retry.ts";
 import {safeHttpsAgent} from "./safe-http.ts";
-import {crossCheckTwitterPost, recognisedSourceUrl, type TwitterRealityCheck} from "./twitter-sanity-check.ts";
+import {crossCheckTwitterPost, hasIndependentContradictionSources, recognisedSourceUrl, type TwitterRealityCheck} from "./twitter-sanity-check.ts";
 import {researchTwitterSource, unresearchedTwitterSource, type TwitterSourceCredibility} from "./twitter-source-credibility.ts";
 import {scoreTwitterPost, type TwitterPostContext, type TwitterSanityScore} from "./twitter-sanity-score.ts";
 import {communityNoteField, parseTwitterCommunityNote} from "./twitter-community-note.ts";
@@ -158,7 +158,10 @@ function buildTwitterBadge(
   const posterCaution = accountCautions >= 2 || (accountCautions >= 1 && assessment.score >= 20);
   const greenStatus = undefined !== credibility && assessment.score < 30 && check?.verdict === "supported"
     && credibility.verdict !== "concerns" && !posterCaution;
-  const tier = greenStatus
+  const redStatus = check?.verdict === "contradicted" && hasIndependentContradictionSources(check.sources);
+  const tier = redStatus
+    ? {icon: "🔴", label: "Claim contradicted", color: 0xe74c3c}
+    : greenStatus
     ? {icon: "🟢", label: credibility?.target === "linked source" && credibility.verdict === "credible"
       ? "Supported claim, low spice, credible source" : "Supported claim, low spice", color: 0x2ecc71}
     : {icon: "🟡", label: check?.verdict === "contradicted" ? "Claim contradicted"

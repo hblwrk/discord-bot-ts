@@ -27,6 +27,15 @@ describe("appendTwitterBadgeText", () => {
     expect(text).toBe(`${link}\n-# 🟡 Caution [source](<https://example.org/report>)`);
   });
 
+  test("shows a red contradiction with just one factual source link", () => {
+    const text = appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
+      title: "🔴 10% Spiciness — Claim contradicted",
+      fields: [{name: "AI web cross-check: contradicted (review sources)",
+        value: "[Source 1](https://reuters.com/world/report) · [Source 2](https://apnews.com/article/report)"}],
+    }}], false);
+    expect(text).toBe(`${link}\n-# 🔴 Claim contradicted [source](<https://reuters.com/world/report>)`);
+  });
+
   test("shows a useful label when a check has no usable source link", () => {
     expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
       title: "🟡 50% Spiciness (Caution)", fields: [{name: "AI web cross-check: disputed", value: "Source unavailable"}],

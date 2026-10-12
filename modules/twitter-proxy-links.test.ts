@@ -189,6 +189,23 @@ describe("proxy post assessments", () => {
     expect(message.content).toBe(`look ${url}`);
   });
 
+  test.each(twitterProxyHosts)("shows a red contradiction on %s with one visible source", async host => {
+    const {client, getHandler} = createEventClient();
+    const badge: APIEmbed = {title: "🔴 10% Spiciness — Claim contradicted", fields: [{
+      name: "AI web cross-check: contradicted (review sources)",
+      value: "[Source 1](https://reuters.com/world/report) · [Source 2](https://apnews.com/article/report)",
+    }]};
+    addTwitterLinkRewrites(client, vi.fn().mockResolvedValue(badge));
+    const message = proxyMessage(`look https://${host}/a/status/123`);
+    await getHandler("messageCreate")(message);
+    await vi.waitFor(() => {
+      expect(message.reply).toHaveBeenCalledExactlyOnceWith({
+        content: "-# 🔴 Claim contradicted [source](<https://reuters.com/world/report>)",
+        allowedMentions: {parse: [], repliedUser: false},
+      });
+    });
+  });
+
   test("keeps mixed messages with surrounding text and their previews", async () => {
     const {client, getHandler} = createEventClient();
     const inspect = vi.fn().mockResolvedValue({title: "Badge"});

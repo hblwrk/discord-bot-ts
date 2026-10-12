@@ -16,7 +16,7 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
     if (scored && undefined === check) {
       continue;
     }
-    const indicator = scored ? /^(🟢|🟡)/u.exec(embed.title)?.[1] : embed.title;
+    const indicator = scored ? /^(🟢|🟡|🔴)/u.exec(embed.title)?.[1] : embed.title;
     if (undefined === indicator) {
       continue;
     }
