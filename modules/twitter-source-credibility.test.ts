@@ -118,6 +118,17 @@ describe("Twitter source credibility", () => {
     expect(callFn).not.toHaveBeenCalled();
   });
 
+  test("retains account cautions when the handle is unavailable", async () => {
+    const callFn = mockCall({verdict: "credible", sourceUrls: [evidence]});
+    const noHandle = {...post};
+    delete noHandle.authorHandle;
+    expect(await researchTwitterSource({...noHandle, authorFollowers: 7,
+      authorJoined: "2026-10-01"}, {logger: {log: vi.fn()}, nowMs: () => Date.parse("2026-10-12T12:00:00Z")},
+    callFn)).toEqual({target: "posting account", label: "account identity unavailable", verdict: "unverified",
+      cautions: ["Under 100 followers", "Account under 30 days old"]});
+    expect(callFn).not.toHaveBeenCalled();
+  });
+
   test("handles provider failures without exposing response details", async () => {
     const logger = {log: vi.fn()};
     const callFn = vi.fn<typeof callAiProviderJson>().mockRejectedValue(new Error("private provider response"));

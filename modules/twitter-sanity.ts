@@ -109,7 +109,7 @@ async function assessTwitterPost(
     } satisfies AiProviderDependencies;
     // Start all three evaluations together. Wording is local; the two web
     // requests can finish in either order without holding up one another.
-    const wordingPromise = Promise.resolve().then(() => scoreTwitterPost(post, dependencies.nowMs?.() ?? Date.now()));
+    const wordingPromise = Promise.resolve().then(() => scoreTwitterPost(post));
     const checkPromise = Promise.resolve().then(() => (dependencies.crossCheckFn ?? crossCheckTwitterPost)(post, reviewDependencies))
       .catch(() => {
         dependencies.logger.log("debug", "Twitter/X web cross-check skipped; keeping the link preview.");
@@ -149,13 +149,21 @@ function buildTwitterBadge(
   url: string, id: string, post: TwitterPostContext, assessment: TwitterSanityScore,
   check: TwitterRealityCheck, credibility?: TwitterSourceCredibility,
 ): APIEmbed | undefined {
-  const greenStatus = assessment.score < 30 && check.verdict === "supported" && credibility?.verdict === "credible";
+  // Missing reputation evidence is neutral. A documented concern can block
+  // green, while account-only cautions need corroboration from each other or
+  // mildly concerning wording. The posting account cannot rescue a linked
+  // source: source research chooses the link before the account.
+  const accountCautions = credibility?.target === "posting account" ? credibility.cautions?.length ?? 0 : 0;
+  const posterCaution = accountCautions >= 2 || (accountCautions >= 1 && assessment.score >= 20);
+  const greenStatus = undefined !== credibility && assessment.score < 30 && check.verdict === "supported"
+    && credibility.verdict !== "concerns" && !posterCaution;
   const tier = greenStatus
-    ? {icon: "🟢", label: "Supported claim, low spice, credible source", color: 0x2ecc71}
+    ? {icon: "🟢", label: credibility?.target === "linked source" && credibility.verdict === "credible"
+      ? "Supported claim, low spice, credible source" : "Supported claim, low spice", color: 0x2ecc71}
     : {icon: "🟡", label: check.verdict === "contradicted" ? "Claim contradicted"
       : credibility?.verdict === "concerns" ? "Source credibility concerns"
         : assessment.score >= 30 ? "Wording caution"
-          : undefined === credibility ? "Source check pending" : "Source credibility unverified", color: 0xf1c40f};
+          : undefined === credibility ? "Source check pending" : "Account caution", color: 0xf1c40f};
   // Reserve the available required assessments before optional note/context
   // fields so a long note cannot remove their evidence from the badge.
   const fields: NonNullable<APIEmbed["fields"]> = [{
