@@ -11,7 +11,8 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
     }
     const scored = /(?:^|\s)\d+% Spiciness/u.test(embed.title);
     const check = embed.fields?.find(field => field.name.startsWith("AI web cross-check:"));
-    // A scored status is displayed only after the factual check finishes.
+    // A scored status needs an explicit factual-review state, including pending
+    // and unverified results, so the indicator never implies a checked claim.
     if (scored && undefined === check) {
       continue;
     }
