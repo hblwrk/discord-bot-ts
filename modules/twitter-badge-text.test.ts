@@ -5,6 +5,22 @@ const link = "From <@123>: https://fxtwitter.com/example/status/123";
 const checkField = {name: "AI web cross-check: contradicted", value: "[Source](https://example.org/report)"};
 
 describe("appendTwitterBadgeText", () => {
+  test("links a checked price move beside the Twitter URL", () => {
+    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
+      title: "🟡 10% Spiciness — Price move checked",
+      fields: [{name: "AI web cross-check: unverified", value: "Independent evidence unavailable"},
+        {name: "Stock quote: supported", value: "[Source](https://finance.yahoo.com/quote/CBRS/history/)"}],
+    }}], false)).toBe(`${link}  🟡 Price move checked [source](<https://finance.yahoo.com/quote/CBRS/history/>)`);
+  });
+
+  test("briefly explains a price discrepancy with its quote source", () => {
+    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
+      title: "🟡 10% Spiciness — Price figure differs",
+      description: "The quote shows a 40% fall from the debut open.",
+      fields: [{name: "AI web cross-check: supported", value: "[Source](https://reuters.com/world/report)"},
+        {name: "Stock quote: contradicted", value: "[Source](https://finance.yahoo.com/quote/CBRS/history/)"}],
+    }}], false)).toBe(`${link}  🟡 Price figure differs — The quote shows a 40% fall from the debut open. [source](<https://finance.yahoo.com/quote/CBRS/history/>)`);
+  });
   test("shows a single public report as neutral attribution on the link line", () => {
     const badge = {title: "ℹ️ Reported claim", fields: [{name: "Report source", value: "[Source](https://bloomberg.com/news/articles/report)"}]};
     expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: badge}], false))

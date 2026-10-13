@@ -10,12 +10,14 @@ import {isAiProviderAvailable, type AiProviderDependencies} from "./ai-provider.
 import {appendTwitterBadgeText} from "./twitter-badge-text.ts";
 import {isClearlyNonFactualTeaser} from "./twitter-post-eligibility.ts";
 import {isPotentialPrimaryStatement, researchTwitterPrimaryStatement, type TwitterPrimaryStatement} from "./twitter-primary-statement.ts";
+import {checkTwitterPriceClaims, priceClaimInPost, type TwitterPriceCheck} from "./twitter-price-check.ts";
 
 type TwitterSanityDependencies = AiProviderDependencies & {
   getWithRetryFn?: typeof getWithRetry;
   crossCheckFn?: typeof crossCheckTwitterPost;
   credibilityFn?: typeof researchTwitterSource;
   primaryStatementFn?: typeof researchTwitterPrimaryStatement;
+  priceCheckFn?: typeof checkTwitterPriceClaims;
   aiAvailableFn?: () => boolean;
   primaryRetryDelayMs?: number;
 };
@@ -164,8 +166,8 @@ async function assessTwitterPost(
     const reviewDependencies = {
       ...dependencies, logger: {log: (_level, message) => { dependencies.logger.log("debug", message); }},
     } satisfies AiProviderDependencies;
-    // Wording, independent factual research, source reputation and eligible
-    // first-party attribution start without waiting on one another.
+    // Wording, factual research, source reputation, issuer attribution and
+    // deterministic stock prices run without waiting on one another.
     const assessment = scoreTwitterPost(post);
     if (aiAvailable) publish({url, title: "🔎 Checking", description: "Review in progress."});
     let checkReady = false;
@@ -174,17 +176,24 @@ async function assessTwitterPost(
     let settledCredibility: TwitterSourceCredibility | undefined;
     let primaryReady = false;
     let settledPrimary: TwitterPrimaryStatement | undefined;
+    let priceReady = false;
+    let settledPrice: TwitterPriceCheck | undefined;
     const primaryCandidate = aiAvailable && isPotentialPrimaryStatement(post);
+    const priceCandidate = undefined !== priceClaimInPost(post);
     const publishSettled = () => {
       let badge: APIEmbed | undefined;
       if (checkReady) {
         badge = credibilityReady && undefined !== settledCredibility
           ? buildFinalTwitterBadge(url, id, post, assessment, settledCheck, settledCredibility,
-            primaryReady ? settledPrimary : undefined, primaryCandidate)
-          : buildTwitterBadge(url, id, post, assessment, settledCheck);
+            primaryReady ? settledPrimary : undefined, primaryCandidate, settledPrice, priceCandidate && !priceReady)
+          : buildTwitterBadge(url, id, post, assessment, settledCheck, undefined, false, settledPrice,
+            priceCandidate && !priceReady);
       } else if (credibilityReady && undefined !== settledCredibility && primaryReady && undefined !== settledPrimary) {
         badge = buildFinalTwitterBadge(url, id, post, assessment, undefined, settledCredibility,
-          settledPrimary, primaryCandidate);
+          settledPrimary, primaryCandidate, settledPrice, priceCandidate && !priceReady);
+      } else if (priceReady && undefined !== settledPrice) {
+        badge = buildTwitterBadge(url, id, post, assessment, undefined,
+          credibilityReady ? settledCredibility : undefined, false, settledPrice);
       }
       if (undefined !== badge) publish(badge);
     };
@@ -205,16 +214,22 @@ async function assessTwitterPost(
         dependencies.logger.log("debug", "Twitter/X primary statement check skipped.");
         return undefined;
       }).then(value => { primaryReady = true; settledPrimary = value; publishSettled(); return value; });
-    const [check, credibility, primary] = await Promise.all([checkPromise, credibilityPromise, primaryPromise]);
-    const final = buildFinalTwitterBadge(url, id, post, assessment, check, credibility, primary, primaryCandidate);
+    const pricePromise = Promise.resolve().then(() => priceCandidate
+      ? (dependencies.priceCheckFn ?? checkTwitterPriceClaims)(post, id, dependencies) : undefined)
+      .catch(() => {
+        dependencies.logger.log("debug", "Twitter/X stock quote check skipped.");
+        return undefined;
+      }).then(value => { priceReady = true; settledPrice = value; publishSettled(); return value; });
+    const [check, credibility, primary, price] = await Promise.all([checkPromise, credibilityPromise, primaryPromise, pricePromise]);
+    const final = buildFinalTwitterBadge(url, id, post, assessment, check, credibility, primary, primaryCandidate, price);
     if (undefined !== final) publish(final);
     const retry = aiAvailable && primaryCandidate && undefined === primary
       && (undefined === check || (check.verdict === "supported" && check.sources.length === 1))
-      && assessment.score < 30 && credibility.verdict !== "concerns"
+      && assessment.score < 30 && credibility.verdict !== "concerns" && price?.verdict !== "contradicted"
       ? async () => {
         const later = await (dependencies.primaryStatementFn ?? researchTwitterPrimaryStatement)(post, reviewDependencies);
         return undefined === later ? undefined
-          : buildFinalTwitterBadge(url, id, post, assessment, check, credibility, later, primaryCandidate);
+          : buildFinalTwitterBadge(url, id, post, assessment, check, credibility, later, primaryCandidate, price);
       } : undefined;
     return {badge: final, retryable: undefined === check && undefined === primary && undefined === retry,
       ...(undefined === retry ? {} : {retry})};
@@ -229,8 +244,10 @@ function buildFinalTwitterBadge(
   url: string, id: string, post: TwitterPostContext, assessment: TwitterSanityScore,
   check: TwitterRealityCheck | undefined, credibility: TwitterSourceCredibility,
   primary: TwitterPrimaryStatement | undefined, primaryCandidate: boolean,
+  price?: TwitterPriceCheck, pricePending = false,
 ): APIEmbed | undefined {
-  if (undefined !== primary && assessment.score < 30 && check?.verdict !== "contradicted"
+  if (undefined !== primary && !pricePending && assessment.score < 30 && check?.verdict !== "contradicted"
+    && price?.verdict !== "contradicted"
     && !(credibility.target === "linked source" && credibility.verdict === "concerns")) {
     return {
       url,
@@ -240,17 +257,18 @@ function buildFinalTwitterBadge(
         value: `[Source](${primary.source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`}],
     };
   }
-  if (primaryCandidate && assessment.score < 30 && check?.verdict === "supported"
-    && check.sources.length === 1 && credibility.verdict !== "concerns") {
+  if (primaryCandidate && !pricePending && assessment.score < 30 && check?.verdict === "supported"
+    && check.sources.length === 1 && credibility.verdict !== "concerns" && price?.verdict !== "contradicted") {
     return {url, title: "ℹ️ Reported claim", description: "An accepted source reports this claim; issuer confirmation is not established.",
       fields: [{name: "Report source", value: `[Source](${check.sources[0]!.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`}]};
   }
-  return buildTwitterBadge(url, id, post, assessment, check, credibility);
+  return buildTwitterBadge(url, id, post, assessment, check, credibility, false, price, pricePending);
 }
 
 function buildTwitterBadge(
   url: string, id: string, post: TwitterPostContext, assessment: TwitterSanityScore,
   check: TwitterRealityCheck | undefined, credibility?: TwitterSourceCredibility, factPending = false,
+  price?: TwitterPriceCheck, pricePending = false,
 ): APIEmbed | undefined {
   // Missing reputation evidence is neutral. A documented concern can block
   // green, while account-only cautions need corroboration from each other or
@@ -259,17 +277,21 @@ function buildTwitterBadge(
   const accountCautions = credibility?.target === "posting account" ? credibility.cautions?.length ?? 0 : 0;
   const posterCaution = accountCautions >= 2 || (accountCautions >= 1 && assessment.score >= 20);
   const greenStatus = undefined !== credibility && assessment.score < 30 && check?.verdict === "supported"
-    && credibility.verdict !== "concerns" && !posterCaution;
+    && credibility.verdict !== "concerns" && !posterCaution && price?.verdict !== "contradicted" && !pricePending;
   const redStatus = check?.verdict === "contradicted" && hasIndependentContradictionSources(check.sources);
   const tier = redStatus
     ? {icon: "🔴", label: "Claim contradicted", color: 0xe74c3c}
+    : price?.verdict === "contradicted"
+    ? {icon: "🟡", label: "Price figure differs", color: 0xf1c40f}
     : greenStatus
     ? {icon: "🟢", label: credibility?.target === "linked source" && credibility.verdict === "credible"
       ? "Supported claim, low spice, credible source" : "Supported claim, low spice", color: 0x2ecc71}
     : {icon: "🟡", label: check?.verdict === "contradicted" ? "Claim contradicted"
       : credibility?.verdict === "concerns" ? "Source credibility concerns"
         : assessment.score >= 30 ? "Wording caution"
-          : factPending ? "Fact check pending"
+          : price?.verdict === "supported" && undefined === check ? "Price move checked"
+          : pricePending && check?.verdict === "supported" ? "Price check pending"
+            : factPending ? "Fact check pending"
             : undefined === check ? "Fact check unverified"
             : undefined === credibility ? "Source check pending" : "Account caution", color: 0xf1c40f};
   // Reserve the available required assessments before optional note/context
@@ -285,6 +307,11 @@ function buildTwitterBadge(
       ? "Independent evidence unavailable"
       : `[Evidence](${credibility.source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`].join(" · "),
   });
+  const priceField = undefined === price ? undefined : {
+    name: `Stock quote: ${price.verdict}`,
+    value: `[Source](${price.source.replace(/\(/gu, "%28").replace(/\)/gu, "%29")})`,
+  };
+  if (undefined !== priceField) fields.push(priceField);
   if (undefined !== post.communityNote) {
     fields.push(communityNoteField(post.communityNote, id));
   }
@@ -300,7 +327,8 @@ function buildTwitterBadge(
   if (context.length > 0) {
     fields.push({name: "Context", value: context.join(" · ")});
   }
-  const description = check?.sentence ?? (factPending ? "Factual check pending." : "Factual check inconclusive or unavailable.");
+  const description = price?.verdict === "contradicted" ? price.sentence
+    : check?.sentence ?? price?.sentence ?? (factPending ? "Factual check pending." : "Factual check inconclusive or unavailable.");
   const title = `${tier.icon} ${assessment.score}% Spiciness — ${tier.label}`;
   const footer = {text: "Heuristic index, not a truth probability · Media authenticity and bot activity unverified"};
   // Bound each assessment before delivery. The text formatter applies the
@@ -314,7 +342,8 @@ function buildTwitterBadge(
     remaining -= length;
     return true;
   });
-  if (boundedFields[0] !== fields[0] || (undefined !== credibility && boundedFields[1] !== fields[1])) {
+  if (boundedFields[0] !== fields[0] || (undefined !== credibility && boundedFields[1] !== fields[1])
+    || (undefined !== priceField && !boundedFields.includes(priceField))) {
     return undefined;
   }
   return {
@@ -370,6 +399,7 @@ export function parseTwitterPost(value: unknown, expectedId: string): TwitterPos
     ...(undefined !== authorFollowers ? {authorFollowers} : {}),
     defaultAvatar: /\/default_profile_images\//u.test(stringOrEmpty(author["avatar_url"])),
     authorWebsite: stringOrEmpty(recordOrEmpty(author["website"])["url"]).slice(0, 350),
+    ...(typeof post["created_at"] === "string" ? {createdAt: post["created_at"].slice(0, 80)} : {}),
     ...(undefined !== communityNote ? {communityNote} : {}),
   };
 }

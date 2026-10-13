@@ -11,6 +11,7 @@ export type TwitterPostContext = {
   authorFollowers?: number;
   defaultAvatar: boolean;
   authorWebsite: string;
+  createdAt?: string;
   communityNote?: TwitterCommunityNote;
 };
 
