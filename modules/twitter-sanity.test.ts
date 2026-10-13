@@ -222,7 +222,7 @@ describe("Twitter metadata and badge service", () => {
       quote: {text: "It opened at $350 on day one."}}};
     const deps = dependencies(tweetData);
     const chartData = JSON.parse(readFileSync(new URL("./test-fixtures/twitter-cbrs-chart-2026-10-12.json", import.meta.url), "utf8"));
-    deps.getWithRetryFn.mockImplementation(url => Promise.resolve({data: String(url).includes("api.fxtwitter.com")
+    deps.getWithRetryFn.mockImplementation(url => Promise.resolve({data: new URL(String(url)).hostname === "api.fxtwitter.com"
       ? tweetData : chartData}));
     deps.aiAvailableFn.mockReturnValue(false);
     deps.nowMs = () => Date.parse("2026-10-13T08:00:00Z");
