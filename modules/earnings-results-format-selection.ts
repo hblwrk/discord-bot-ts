@@ -211,6 +211,11 @@ export function getMetricCandidateScore({
         true === hasBrandResultsSection(lines)) {
       score += 60;
     }
+    if (2 <= (metricLine.match(/\|/g)?.length ?? 0) &&
+        true === isUnderIncomeStatementHeading(lines, lineIndex) &&
+        lines.some(line => /^\s*segment\s+performance\s*$/i.test(line))) {
+      score += 120;
+    }
 
     if (true === isUnderSegmentResultsHeading(lines, lineIndex)) {
       score -= 120;
@@ -320,7 +325,7 @@ function hasBrandResultsSection(lines: string[]): boolean {
 function isUnderIncomeStatementHeading(lines: string[], lineIndex: number): boolean {
   for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 120; index--, examined++) {
     const heading = (lines[index] ?? "").replace(/[\s|:]+$/, "").trim();
-    if (/^(?:income\s+statement|(?:condensed\s+)?consolidated\s+statements?\s+of\s+(?:income|operations))$/i.test(heading)) {
+    if (/^(?:income\s+statement|(?:condensed\s+)?(?:consolidated\s+)?statements?\s+of\s+(?:income|operations))$/i.test(heading)) {
       return true;
     }
   }

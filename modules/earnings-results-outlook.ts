@@ -963,6 +963,11 @@ function extractOutlookMetricsForDefinition(
           /\bexcludes?\s+the\s+impact\b/i.test(line))) {
       continue;
     }
+    if ("adjusted_eps" === definition.key &&
+        /\b(?:increase|growth)\s+over\s+adjusted\s+eps\b/i.test(line) &&
+        /\bGAAP\s+diluted\s+EPS\b/i.test(line)) {
+      continue;
+    }
 
     if (false === revisedColumns &&
         false === guidanceFirstColumns &&
@@ -1100,7 +1105,8 @@ function getOutlookMetricValueLine(
     /\b(?:revenues?|net\s+sales|eps|earnings\s+per\s+share|adjusted\s+ebitda|operating\s+(?:income|margin|expenses?)|gross(?:\s+profit)?\s+margin|tax\s+rate|capex|capital\s+expenditures?|free\s+cash\s+flow)\b/i.test(line) &&
     false === /[$€£¥]\s*\d|\d+(?:\.\d+)?\s*%/.test(line) &&
     /^\s*\|/.test(nextLine) &&
-    1 === nextLine.split("|").filter(cell => /\d/.test(cell)).length &&
+    (1 === nextLine.split("|").filter(cell => /\d/.test(cell)).length ||
+      /^\s*\|\s*(?:[$€£¥]\s*)?\d[\d,.]*\s*(?:million|billion)?\s*(?:to|[-–—])\s*(?:[$€£¥]\s*)?\d/i.test(nextLine)) &&
     /[$€£¥]\s*\d|\d+(?:\.\d+)?\s*%/.test(nextLine);
   return true === needsTableValueContinuation ||
       true === needsWrappedRangeContinuation ||
@@ -1140,10 +1146,13 @@ function getOutlookPeriodLabel(
   const fiscalYear = /\bQ[1-4]\s+(20\d{2})\b/.exec(quarterLabel ?? "")?.[1];
   const fullYearIndex = line.search(/\bfull[\s–—-]+year\b/i);
   const firstValueIndex = line.search(/[$€£¥]\s*\d|\d+(?:\.\d+)?\s*%/);
+  const sectionPeriodLabel = getLineOutlookPeriodLabel(sectionHeading ?? "");
   if (undefined !== fiscalYear &&
       -1 !== fullYearIndex &&
       (-1 === firstValueIndex || fullYearIndex < firstValueIndex)) {
-    return `FY${fiscalYear}`;
+    return sectionPeriodLabel?.startsWith("FY") === true
+      ? sectionPeriodLabel
+      : `FY${fiscalYear}`;
   }
   const directPeriodLabel = getLineOutlookPeriodLabel(line);
   const historicalComparisonIndex = line.search(

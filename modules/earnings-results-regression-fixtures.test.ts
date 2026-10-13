@@ -1,11 +1,50 @@
 import {readFileSync} from "node:fs";
 import {describe, expect, test} from "vitest";
-import {parseEarningsDocument} from "./earnings-results-format.ts";
+import {getMessageMetrics, parseEarningsDocument} from "./earnings-results-format.ts";
 
 const fixtureDirectory = "modules/test-fixtures/earnings-regressions";
 const readFixture = (name: string): string => readFileSync(`${fixtureDirectory}/${name}.txt`, "utf8");
 
 describe("focused earnings regression fixtures", () => {
+  test("does not give a YTD revenue sentence the preceding quarter's period", () => {
+    const document = parseEarningsDocument(readFixture("quarter-revenue-vs-next-sentence-ytd"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$18.68B");
+  });
+
+  test("reads a decorated narrative bullet before its prior-year comparison", () => {
+    const document = parseEarningsDocument(readFixture("decorative-bullet-vs-prior-year-revenue"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$13.5K");
+    expect(getMessageMetrics(document.metrics, null, {} as never)
+      .find(metric => metric.key === "revenue")?.value).toBe("$13.5K");
+  });
+
+  test("uses consolidated sales and the stated adjusted EPS over a segment and page number", () => {
+    const document = parseEarningsDocument(readFixture("consolidated-sales-vs-segment-quarter"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$1.24B");
+    expect(document.metrics.find(metric => metric.key === "adjusted_eps")?.value).toBe("$5.77");
+  });
+
+  test("excludes historical adjusted EPS from reported results and FY2027 GAAP outlook", () => {
+    const document = parseEarningsDocument(readFixture("historical-adjusted-eps-vs-gaap-outlook"));
+    expect(document.metrics.map(metric => [metric.key, metric.value])).toEqual([
+      ["gaap_eps", "$3.29"],
+    ]);
+    expect(document.outlook.map(metric => [metric.periodLabel, metric.key, metric.value])).toEqual([
+      ["FY2027", "eps", "$14.39 to $14.81"],
+    ]);
+  });
+
+  test("joins split guidance rows with a separate year-over-year column", () => {
+    const document = parseEarningsDocument(readFixture("split-guidance-row-with-yoy-column"));
+    expect(document.outlook.map(metric => [metric.periodLabel, metric.key, metric.value])).toEqual([
+      ["Q1", "revenue", "$323M to $328M"],
+      ["FY2027", "revenue", "$1.31B to $1.36B"],
+      ["Q1", "adjusted_ebitda", "$3M to $6M"],
+      ["FY2027", "adjusted_ebitda", "$27M to $42M"],
+      ["FY2027", "gross_margin", "43% to 44%"],
+    ]);
+  });
+
   test("gets a fiscal period from a bare quarter title and annual outlook", () => {
     const document = parseEarningsDocument(readFixture("bare-quarter-title-with-fiscal-outlook"));
 
