@@ -104,6 +104,33 @@ describe("silent Twitter review delivery", () => {
     expect(post.reply).not.toHaveBeenCalled();
   });
 
+  test.each(["x.com", "fixvx.com"])("%s adds a quote-backed price caution to the existing link", async host => {
+    const {client, getHandler} = createEventClient();
+    const id = "2109904488639398014";
+    const source = "https://finance.yahoo.com/quote/CBRS/history/";
+    const priceCheckFn = vi.fn().mockResolvedValue({verdict: "supported",
+      sentence: "The quote shows a 58% fall from the debut open.", source});
+    addTwitterLinkRewrites(client, createTwitterIntrospector({logger, aiAvailableFn: () => true,
+      getWithRetryFn: vi.fn().mockResolvedValue({data: {status: {id,
+        created_at: "Tue Oct 13 07:10:04 +0000 2026",
+        text: "Cerebras $CBRS is down ~58% since its stock market debut, hitting a new 52-week low.",
+        quote: {text: "It opened at $350 on day one."},
+      }}}),
+      crossCheckFn: vi.fn().mockResolvedValue(undefined),
+      credibilityFn: vi.fn().mockResolvedValue({target: "posting account", label: "@wallstengine", verdict: "unverified"}),
+      priceCheckFn,
+    }));
+    const post = message(`https://${host}/wallstengine/status/${id}`);
+    await getHandler("messageCreate")(post);
+    await vi.waitFor(() => {
+      expect(post.response.edit.mock.lastCall?.[0]?.content)
+        .toContain(`🟡 Price move checked [source](<${source}>)`);
+    });
+    expect(priceCheckFn).toHaveBeenCalledTimes(1);
+    expect(post.channel.send).toHaveBeenCalledTimes(1);
+    expect(post.reply).not.toHaveBeenCalled();
+  });
+
   test("leaves a proxy teaser with surrounding text untouched", async () => {
     const {client, getHandler} = createEventClient();
     const getWithRetryFn = vi.fn().mockResolvedValue({data: {status: {

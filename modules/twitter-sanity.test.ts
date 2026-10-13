@@ -1,3 +1,4 @@
+import {readFileSync} from "node:fs";
 import {describe, expect, test, vi} from "vitest";
 import type {callAiProviderJson} from "./ai-provider.ts";
 import {createTwitterIntrospector, parseTwitterPost} from "./twitter-sanity.ts";
@@ -154,6 +155,81 @@ describe("Twitter metadata and badge service", () => {
     if (undefined === badge) throw new Error("Expected a reported-claim badge");
     expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false))
       .toBe(`-# ℹ️ Reported [source](<${source}>)`);
+  });
+
+  test("adds a timestamped quote check for the CBRS price claim without clearing its other claims", async () => {
+    const id = "2109904488639398014";
+    const source = "https://finance.yahoo.com/quote/CBRS/history/";
+    const deps = dependencies({status: {id, created_at: "Tue Oct 13 07:10:04 +0000 2026",
+      text: "Cerebras $CBRS is now down ~58% since its stock market debut, hitting a new 52-week low amid OpenAI and lockup concerns.",
+      author: {screen_name: "wallstengine"}}});
+    deps.nowMs = () => Date.parse("2026-10-13T08:00:00Z");
+    deps.crossCheckFn.mockResolvedValue(undefined);
+    const price = deferred<{verdict: "supported"; sentence: string; source: string}>();
+    const priceCheckFn = vi.fn().mockReturnValue(price.promise);
+    const updates = vi.fn();
+    const result = createTwitterIntrospector({...deps, priceCheckFn, primaryStatementFn: vi.fn().mockResolvedValue(undefined),
+      primaryRetryDelayMs: 60_000}).observe!(`https://fixvx.com/wallstengine/status/${id}`, updates);
+    await vi.waitFor(() => { expect(priceCheckFn).toHaveBeenCalledTimes(1); });
+    expect(priceCheckFn).toHaveBeenCalledWith(expect.objectContaining({createdAt: "Tue Oct 13 07:10:04 +0000 2026"}),
+      id, expect.anything());
+    price.resolve({verdict: "supported", sentence: "The quote shows a 58% fall from the debut open.", source});
+    const badge = await result;
+    expect(badge?.title).toBe("🟡 10% Spiciness — Price move checked");
+    expect(updates.mock.lastCall?.[0]?.title).toBe(badge?.title);
+    if (undefined === badge) throw new Error("Expected a quote-backed caution badge");
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false))
+      .toBe(`-# 🟡 Price move checked [source](<${source}>)`);
+  });
+
+  test("a mismatched quote blocks green and points to the price source", async () => {
+    const id = "2109904488639398014";
+    const deps = dependencies({status: {id, created_at: "Tue Oct 13 07:10:04 +0000 2026",
+      text: "Cerebras $CBRS is down ~58% since its stock market debut."}});
+    deps.nowMs = () => Date.parse("2026-10-13T08:00:00Z");
+    const source = "https://finance.yahoo.com/quote/CBRS/history/";
+    const priceCheckFn = vi.fn().mockResolvedValue({verdict: "contradicted",
+      sentence: "The quote shows a 40% fall from the debut open.", source});
+    const badge = await createTwitterIntrospector({...deps, priceCheckFn,
+      primaryStatementFn: vi.fn().mockResolvedValue(undefined)})(`https://fixvx.com/a/status/${id}`);
+    expect(badge?.title).toBe("🟡 10% Spiciness — Price figure differs");
+    if (undefined === badge) throw new Error("Expected a price discrepancy badge");
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false))
+      .toBe(`-# 🟡 Price figure differs — The quote shows a 40% fall from the debut open. [source](<${source}>)`);
+  });
+
+  test("publishes the quote result while the AI review is still pending", async () => {
+    const id = "2109904488639398014";
+    const deps = dependencies({status: {id, created_at: "Tue Oct 13 07:10:04 +0000 2026",
+      text: "Cerebras $CBRS is down ~58% since its stock market debut.", quote: {text: "First day of trading."}}});
+    deps.nowMs = () => Date.parse("2026-10-13T08:00:00Z");
+    const fact = deferred<Awaited<ReturnType<typeof deps.crossCheckFn>>>();
+    deps.crossCheckFn.mockReturnValue(fact.promise);
+    const priceCheckFn = vi.fn().mockResolvedValue({verdict: "supported",
+      sentence: "The quote shows a 58% fall from the debut open.", source: "https://finance.yahoo.com/quote/CBRS/history/"});
+    const updates = vi.fn();
+    const result = createTwitterIntrospector({...deps, priceCheckFn}).observe!(`https://fixvx.com/a/status/${id}`, updates);
+    await vi.waitFor(() => { expect(updates.mock.lastCall?.[0]?.title).toBe("🟡 10% Spiciness — Price move checked"); });
+    fact.resolve({verdict: "supported", sentence: "The market report supports the claim.",
+      sources: ["https://reuters.com/world/report"]});
+    expect((await result)?.title).toBe("🟢 10% Spiciness — Supported claim, low spice");
+  });
+
+  test("uses daily quote bars for the cited CBRS post even when AI review is unavailable", async () => {
+    const id = "2109904488639398014";
+    const tweetData = {status: {id, created_at: "Tue Oct 13 07:10:04 +0000 2026",
+      text: "Cerebras $CBRS is now down ~58% since its stock market debut, hitting a new 52-week low.",
+      quote: {text: "It opened at $350 on day one."}}};
+    const deps = dependencies(tweetData);
+    const chartData = JSON.parse(readFileSync(new URL("./test-fixtures/twitter-cbrs-chart-2026-10-12.json", import.meta.url), "utf8"));
+    deps.getWithRetryFn.mockImplementation(url => Promise.resolve({data: new URL(String(url)).hostname === "api.fxtwitter.com"
+      ? tweetData : chartData}));
+    deps.aiAvailableFn.mockReturnValue(false);
+    deps.nowMs = () => Date.parse("2026-10-13T08:00:00Z");
+    const badge = await createTwitterIntrospector(deps)(`https://fixvx.com/wallstengine/status/${id}`);
+    expect(badge?.title).toBe("🟡 10% Spiciness — Price move checked");
+    expect(deps.getWithRetryFn).toHaveBeenCalledTimes(2);
+    expect(deps.crossCheckFn).not.toHaveBeenCalled();
   });
 
   test("short retry upgrades a single report to issuer attribution once", async () => {

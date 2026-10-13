@@ -12,6 +12,8 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
     }
     const scored = /(?:^|\s)\d+% Spiciness/u.test(embed.title);
     const check = embed.fields?.find(field => field.name.startsWith("AI web cross-check:"));
+    const priceCheck = embed.fields?.find(field => field.name.startsWith("Stock quote:"));
+    const credibility = embed.fields?.find(field => field.name.startsWith("Source credibility:"));
     const primary = embed.title === "ℹ️ Company statement"
       ? embed.fields?.find(field => field.name.startsWith("Primary source: ")) : undefined;
     const report = embed.title === "ℹ️ Reported claim"
@@ -23,6 +25,8 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
     }
     const primaryUrl = /\[Source\]\((https:\/\/[^)\s]+)\)/u.exec(primary?.value ?? "")?.[1];
     const reportUrl = /\[Source\]\((https:\/\/[^)\s]+)\)/u.exec(report?.value ?? "")?.[1];
+    const priceUrl = /\[Source\]\((https:\/\/[^)\s]+)\)/u.exec(priceCheck?.value ?? "")?.[1];
+    const credibilityUrl = /\[Evidence\]\((https:\/\/[^)\s]+)\)/u.exec(credibility?.value ?? "")?.[1];
     if (embed.title === "ℹ️ Company statement" && (undefined === primary || undefined === primaryUrl)) continue;
     if (embed.title === "ℹ️ Reported claim" && undefined === reportUrl) continue;
     const indicator = scored ? /^(🟢|🟡|🔴)/u.exec(embed.title)?.[1]
@@ -32,11 +36,14 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
       continue;
     }
     const status = scored ? ` ${shortTrustStatus(embed.title, indicator)}` : "";
-    const source = undefined === check ? primaryUrl ?? reportUrl
-      : /\[Source(?: \d+)?\]\((https:\/\/[^)\s]+)\)/u.exec(check.value)?.[1];
+    const factUrl = /\[Source(?: \d+)?\]\((https:\/\/[^)\s]+)\)/u.exec(check?.value ?? "")?.[1];
+    const source = status === " Price figure differs" ? priceUrl
+      : status === " Source credibility concerns" ? credibilityUrl ?? factUrl
+        : primaryUrl ?? reportUrl ?? factUrl ?? (status === " Price move checked" ? priceUrl : undefined);
     const label = multipleLinks && !content ? `Link ${linkNumber}: ${indicator}${status}` : `${indicator}${status}`;
     const citation = undefined === source ? "" : ` [source](<${source}>)`;
-    const explanation = status === " Claim contradicted" && check?.name.startsWith("AI web cross-check: contradicted")
+    const explanation = ((status === " Claim contradicted" && check?.name.startsWith("AI web cross-check: contradicted"))
+      || (status === " Price figure differs" && priceCheck?.name === "Stock quote: contradicted"))
       && undefined !== source ? shortEvidenceReason(embed.description) : undefined;
     const badgeTexts = undefined === explanation
       ? [`${label}${citation}`] : [`${label} — ${explanation}${citation}`, `${label}${citation}`];
@@ -83,6 +90,9 @@ function shortTrustStatus(title: string, indicator: string): string {
   case "Fact check unverified": return "Claim unverified";
   case "Source check pending": return "Checking source credibility";
   case "Account caution": return "Account caution";
+  case "Price move checked": return "Price move checked";
+  case "Price figure differs": return "Price figure differs";
+  case "Price check pending": return "Checking price";
   default: return "Caution";
   }
 }
