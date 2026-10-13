@@ -21,6 +21,15 @@ describe("appendTwitterBadgeText", () => {
         {name: "Stock quote: contradicted", value: "[Source](https://finance.yahoo.com/quote/CBRS/history/)"}],
     }}], false)).toBe(`${link}  🟡 Price figure differs — The quote shows a 40% fall from the debut open. [source](<https://finance.yahoo.com/quote/CBRS/history/>)`);
   });
+
+  test("links credibility evidence for a source concern, not an unrelated price chart", () => {
+    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
+      title: "🟡 10% Spiciness — Source credibility concerns",
+      fields: [{name: "AI web cross-check: unverified", value: "Independent evidence unavailable"},
+        {name: "Source credibility: concerns (linked site)", value: "[Evidence](https://example.org/source-review)"},
+        {name: "Stock quote: supported", value: "[Source](https://finance.yahoo.com/quote/CBRS/history/)"}],
+    }}], false)).toBe(`${link}  🟡 Source credibility concerns [source](<https://example.org/source-review>)`);
+  });
   test("shows a single public report as neutral attribution on the link line", () => {
     const badge = {title: "ℹ️ Reported claim", fields: [{name: "Report source", value: "[Source](https://bloomberg.com/news/articles/report)"}]};
     expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: badge}], false))
