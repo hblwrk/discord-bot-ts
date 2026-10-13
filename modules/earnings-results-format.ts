@@ -151,6 +151,12 @@ function dropImplausibleMoneyMetrics(
       return true;
     }
 
+    // An explicitly scaled revenue amount can genuinely be below $1 million.
+    if ("revenue" === metric.key &&
+        /\brevenues?\b.{0,100}\$\s*[\d,.]+\s+thousands?\b/i.test(metric.sourceSnippet ?? "")) {
+      return true;
+    }
+
     return false === ("number" === typeof metric.numericValue &&
       Number.isFinite(metric.numericValue) &&
       Math.abs(metric.numericValue) < 1_000_000);
@@ -300,6 +306,37 @@ function extractMetric(
     }
 
     const metricLine = getMetricLineWithContinuation(lines, lineIndex, definition, quarterLabel);
+    if ("gaap_eps" === definition.key &&
+        /\bGAAP\s+(?:diluted\s+)?EPS\b.{0,80}\bover\s+adjusted\s+EPS\s+of\s*[$€£¥]\s*\d/i.test(metricLine) &&
+        false === /\bGAAP\s+(?:diluted\s+)?EPS\s+(?:was|were|of)\s*[$€£¥]\s*\d/i.test(metricLine)) {
+      continue;
+    }
+    if ("revenue" === definition.key &&
+        /\b(?:first|second|third|fourth)\s+quarter\b[^.]*\.\s*net\s+revenues?\s+were\b/i.test(metricLine) &&
+        /\b(?:six|nine)\s+months\b/i.test(lines[lineIndex + 1] ?? "")) {
+      continue;
+    }
+    if ("adjusted_eps" === definition.key && undefined !== quarterLabel) {
+      const reportedYear = /\bQ[1-4]\s+(20\d{2})\b/.exec(quarterLabel)?.[1];
+      const captionYear = /\b(?:first|second|third|fourth)\s+quarter\s+(?:of\s+)?fiscal\s+(20\d{2})\b/i
+        .exec(metricLine)?.[1];
+      if (undefined !== captionYear && captionYear !== reportedYear &&
+          /^\s*(?:first|second|third|fourth)\s+quarter\b/i.test(metricLine)) {
+        continue;
+      }
+      if (/^\s*fiscal\s+20\d{2}\s+adjusted\s+EPS\b/i.test(metricLine)) {
+        continue;
+      }
+      if (/\b(?:full[\s-]+year|adjusted\s+EPS\s+for\s+fiscal\s+20\d{2})\b/i.test(metricLine) &&
+          false === /\b(?:first|second|third|fourth)\s+quarter\b/i.test(metricLine)) {
+        continue;
+      }
+    }
+    if ("adjusted_eps" === definition.key &&
+        /\b(?:over|compared\s+(?:to|with))\s+adjusted\s+EPS\s+of\b/i.test(metricLine) &&
+        /\b(?:prior\s+year|fiscal\s+20\d{2})\b/i.test(metricLine)) {
+      continue;
+    }
     if ("adjusted_eps" === definition.key &&
         /^\s*adjusted\s+diluted\s+earnings\s+per\s+share:\s*(?:\|\s*)*GAAP\b/i.test(metricLine)) {
       continue;
@@ -585,7 +622,11 @@ function extractMetricValue(
   // layout is, so only rows with explicit value cells are read by column. A basic or
   // diluted per-share segment is a column run by construction and is always read by
   // column, which is what makes prior-year-first statements resolve correctly.
-  const columnIndex = 2 <= (line.match(/\|/g)?.length ?? 0) ? currentPeriodColumnIndex : 0;
+  const hasDecorativeBulletPrefix = /^\s*\|\s*[•▪◦\uFFFD]\s*\|/.test(line);
+  const columnIndex = false === hasDecorativeBulletPrefix &&
+    2 <= (line.match(/\|/g)?.length ?? 0)
+    ? currentPeriodColumnIndex
+    : 0;
   pattern.lastIndex = 0;
   const patternMatch = pattern.exec(line);
   const capturedMetricValue = patternMatch?.groups?.["metricValue"];

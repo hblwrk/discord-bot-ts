@@ -210,8 +210,11 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
 ];
 
 export function getQuarterSpecificMetricLines(lines: string[]): MetricLineSelection {
-  const startIndex = lines.findIndex(line =>
-    isQuarterSpecificSectionLine(line) || isMixedMonthQuarterResultsLine(line));
+  const startIndex = lines.findIndex((line, index) =>
+    (isQuarterSpecificSectionLine(line) &&
+      false === lines.slice(0, index).some(previous =>
+        /^\s*segment\s+performance\s*$/i.test(previous))) ||
+    isMixedMonthQuarterResultsLine(line));
   if (-1 === startIndex) {
     return {
       exclusive: false,
@@ -366,6 +369,11 @@ export function getMetricLineWithContinuation(
     // the measure with a different figure ("(1) non-GAAP EPS included $3.03 of charges").
     // Joined to the row, that figure becomes the only currency-cued value in it.
     if (true === isDefinitionalLine(nextLine)) {
+      break;
+    }
+
+    if ("eps" === definition.valueType && /^\s*\d{1,3}\s*$/.test(nextLine) &&
+        /^\s*(?:\|\s*){3,}$/.test(lines[index + 1] ?? "")) {
       break;
     }
 
@@ -569,6 +577,10 @@ function isNarrativePerShareDetailLine(line: string): boolean {
 // Summary tables mark not-meaningful comparisons with "*", "--" or a bare "%", so those
 // cells must not end the run of value cells belonging to the label above.
 function isValueOnlyLine(line: string): boolean {
+  // A page number followed by empty layout cells is not an EPS value.
+  if (/^\s*\d{1,3}(?:\s*\|\s*){3,}$/.test(line)) {
+    return false;
+  }
   return /^[\s|$€£¥(),.\-*\d%—–]+$/.test(line);
 }
 
