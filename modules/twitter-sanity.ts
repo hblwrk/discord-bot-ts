@@ -275,7 +275,10 @@ function buildTwitterBadge(
   // mildly concerning wording. The posting account cannot rescue a linked
   // source: source research chooses the link before the account.
   const accountCautions = credibility?.target === "posting account" ? credibility.cautions?.length ?? 0 : 0;
-  const posterCaution = accountCautions >= 2 || (accountCautions >= 1 && assessment.score >= 20);
+  // Finance headlines often use ALL CAPS; that style alone does not amplify
+  // a single posting-account caution.
+  const posterCaution = accountCautions >= 2 || (accountCautions >= 1 && assessment.score >= 20
+    && assessment.signals.some(signal => signal !== "Heavy ALL-CAPS wording"));
   const greenStatus = undefined !== credibility && assessment.score < 30 && check?.verdict === "supported"
     && credibility.verdict !== "concerns" && !posterCaution && price?.verdict !== "contradicted" && !pricePending;
   const redStatus = check?.verdict === "contradicted" && hasIndependentContradictionSources(check.sources);

@@ -548,6 +548,18 @@ describe("Twitter metadata and badge service", () => {
     expect(badge).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
   });
 
+  test("keeps a supported all-caps finance headline green with one account caution", async () => {
+    const text = "*EU COMMISSION WARNS OF VERY DIFFICULT WINTER AMID HIGH ENERGY PRICES\n\n*EU COMMISSION SEES AFFORDABILITY CRISIS, VOLATILE OUTLOOK";
+    const deps = dependencies(payload(text));
+    deps.credibilityFn.mockResolvedValue({target: "posting account", label: "@small", verdict: "unverified",
+      cautions: ["Under 100 followers"]});
+    const badge = await createTwitterIntrospector(deps)("https://fixvx.com/a/status/123");
+    expect(badge).toMatchObject({title: "🟢 20% Spiciness — Supported claim, low spice"});
+    if (undefined === badge) throw new Error("Expected a supported headline badge");
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false))
+      .toBe("-# 🟢 Supported claim [source](<https://reuters.com/world/report>)");
+  });
+
   test("passes quoted claims to the check even when the author's wording is calm", async () => {
     const data = {status: {id: "123", text: "An interesting announcement.", quote: {text: "The council approved the plan yesterday."}}};
     const deps = dependencies(data);
