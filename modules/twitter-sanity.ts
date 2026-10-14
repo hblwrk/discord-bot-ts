@@ -8,7 +8,7 @@ import {communityNoteField, parseTwitterCommunityNote} from "./twitter-community
 import {getTwitterStatusId} from "./twitter-status-url.ts";
 import {isAiProviderAvailable, type AiProviderDependencies} from "./ai-provider.ts";
 import {appendTwitterBadgeText} from "./twitter-badge-text.ts";
-import {isClearlyNonFactualTeaser} from "./twitter-post-eligibility.ts";
+import {classifyTwitterPostForReview, isClearlyNonFactualTeaser} from "./twitter-post-eligibility.ts";
 import {isPotentialPrimaryStatement, researchTwitterPrimaryStatement, type TwitterPrimaryStatement} from "./twitter-primary-statement.ts";
 import {checkTwitterPriceClaims, priceClaimInPost, type TwitterPriceCheck} from "./twitter-price-check.ts";
 
@@ -18,6 +18,7 @@ type TwitterSanityDependencies = AiProviderDependencies & {
   credibilityFn?: typeof researchTwitterSource;
   primaryStatementFn?: typeof researchTwitterPrimaryStatement;
   priceCheckFn?: typeof checkTwitterPriceClaims;
+  classifyForReviewFn?: typeof classifyTwitterPostForReview;
   aiAvailableFn?: () => boolean;
   primaryRetryDelayMs?: number;
 };
@@ -166,6 +167,13 @@ async function assessTwitterPost(
     const reviewDependencies = {
       ...dependencies, logger: {log: (_level, message) => { dependencies.logger.log("debug", message); }},
     } satisfies AiProviderDependencies;
+    const priceCandidate = undefined !== priceClaimInPost(post);
+    if (!priceCandidate) {
+      if (!aiAvailable) return {badge: undefined, retryable: true};
+      const category = await (dependencies.classifyForReviewFn ?? classifyTwitterPostForReview)(post, reviewDependencies);
+      if ("none" === category) return {badge: undefined, retryable: false};
+      if (undefined === category) return {badge: undefined, retryable: true};
+    }
     // Wording, factual research, source reputation, issuer attribution and
     // deterministic stock prices run without waiting on one another.
     const assessment = scoreTwitterPost(post);
@@ -179,7 +187,6 @@ async function assessTwitterPost(
     let priceReady = false;
     let settledPrice: TwitterPriceCheck | undefined;
     const primaryCandidate = aiAvailable && isPotentialPrimaryStatement(post);
-    const priceCandidate = undefined !== priceClaimInPost(post);
     const publishSettled = () => {
       let badge: APIEmbed | undefined;
       if (checkReady) {

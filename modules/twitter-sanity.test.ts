@@ -13,6 +13,7 @@ function dependencies(data: unknown = payload()) {
   return {
     logger: {log: vi.fn()},
     aiAvailableFn: vi.fn(() => true),
+    classifyForReviewFn: vi.fn().mockResolvedValue("news"),
     getWithRetryFn: vi.fn().mockResolvedValue({data}),
     crossCheckFn: vi.fn().mockResolvedValue({verdict: "supported", sentence: "Reporting supports this specific claim.", sources: ["https://reuters.com/world/report"]}),
     credibilityFn: vi.fn().mockResolvedValue({target: "posting account", label: "@example", verdict: "credible",
@@ -28,6 +29,48 @@ function deferred<T>() {
 }
 
 describe("Twitter metadata and badge service", () => {
+  test("leaves a cooking pun unrated and caches the ineligible result", async () => {
+    const deps = dependencies(payload("Can't wait to select \"No tip\" for my wife's cooking."));
+    deps.classifyForReviewFn.mockResolvedValue("none");
+    const updates = vi.fn();
+    const inspect = createTwitterIntrospector(deps);
+    expect(await inspect.observe!("https://fxtwitter.com/a/status/123", updates)).toBeUndefined();
+    expect(await inspect("https://fxtwitter.com/a/status/123")).toBeUndefined();
+    expect(deps.getWithRetryFn).toHaveBeenCalledTimes(1);
+    expect(deps.classifyForReviewFn).toHaveBeenCalledTimes(1);
+    expect(deps.crossCheckFn).not.toHaveBeenCalled();
+    expect(deps.credibilityFn).not.toHaveBeenCalled();
+    expect(updates).not.toHaveBeenCalled();
+  });
+
+  test("reviews a specific study result and marks missing evidence unverified", async () => {
+    const deps = dependencies(payload("A new study reports a 40% reduction in symptoms."));
+    deps.classifyForReviewFn.mockResolvedValue("research_statistic");
+    deps.crossCheckFn.mockResolvedValue(undefined);
+    const badge = await createTwitterIntrospector(deps)("https://fxtwitter.com/a/status/123");
+    expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
+    expect(badge?.title).toContain("Fact check unverified");
+  });
+
+  test("marks a study claim contradicted only with independent cited evidence", async () => {
+    const deps = dependencies(payload("A new study reports a 40% reduction in symptoms."));
+    deps.classifyForReviewFn.mockResolvedValue("research_statistic");
+    deps.crossCheckFn.mockResolvedValue({verdict: "contradicted", sentence: "The reported study found no reduction.",
+      sources: ["https://reuters.com/world/report", "https://apnews.com/article/report"]});
+    const badge = await createTwitterIntrospector(deps)("https://fxtwitter.com/a/status/123");
+    expect(badge?.title).toContain("Claim contradicted");
+  });
+
+  test("omits a status when the eligibility decision is unavailable and retries on a later paste", async () => {
+    const deps = dependencies(payload("The council approved the plan yesterday."));
+    deps.classifyForReviewFn.mockResolvedValueOnce(undefined).mockResolvedValueOnce("news");
+    const inspect = createTwitterIntrospector(deps);
+    expect(await inspect("https://fxtwitter.com/a/status/123")).toBeUndefined();
+    expect(deps.crossCheckFn).not.toHaveBeenCalled();
+    expect(await inspect("https://fxtwitter.com/a/status/123")).toBeDefined();
+    expect(deps.classifyForReviewFn).toHaveBeenCalledTimes(2);
+  });
+
   test("publishes no badge or AI requests for the Porsche premiere teaser", async () => {
     const teaser = "The turn of a key.\n\nMission S world premiere. 15 October at 10:30 PM CEST.";
     const deps = dependencies({status: {id: "123", text: teaser, author: {screen_name: "PorscheNewsroom"},
@@ -40,6 +83,7 @@ describe("Twitter metadata and badge service", () => {
     expect(deps.getWithRetryFn).toHaveBeenCalledTimes(1);
     expect(updates).not.toHaveBeenCalled();
     expect(deps.aiAvailableFn).not.toHaveBeenCalled();
+    expect(deps.classifyForReviewFn).not.toHaveBeenCalled();
     expect(deps.crossCheckFn).not.toHaveBeenCalled();
     expect(deps.credibilityFn).not.toHaveBeenCalled();
   });
@@ -325,30 +369,25 @@ describe("Twitter metadata and badge service", () => {
     expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false)).toBe("-# 🟡 Claim unverified");
   });
 
-  test("publishes a conservative badge without spending AI calls when the provider is unavailable", async () => {
+  test("leaves a non-price claim unrated without an AI provider", async () => {
     const deps = dependencies({status: {id: "123", text: "The council approved the plan yesterday.",
       author: {screen_name: "new_poster", followers: 42, joined: "2026-10-01"}}});
     deps.aiAvailableFn.mockReturnValue(false);
     const updates = vi.fn();
     const badge = await createTwitterIntrospector(deps).observe!("https://fixvx.com/a/status/123", updates);
-    expect(badge).toMatchObject({title: "🟡 10% Spiciness — Fact check unverified"});
-    expect(updates).toHaveBeenCalledTimes(1);
+    expect(badge).toBeUndefined();
+    expect(updates).not.toHaveBeenCalled();
     expect(deps.getWithRetryFn).toHaveBeenCalledTimes(1);
     expect(deps.crossCheckFn).not.toHaveBeenCalled();
     expect(deps.credibilityFn).not.toHaveBeenCalled();
-    expect(badge?.fields).toContainEqual({
-      name: "Source credibility: unverified (@new_poster)",
-      value: "Under 100 followers · Account under 30 days old · Independent evidence unavailable",
-    });
-    if (undefined === badge) throw new Error("Expected an unverified badge");
-    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: badge}], false)).toBe("-# 🟡 Claim unverified");
+    expect(deps.classifyForReviewFn).not.toHaveBeenCalled();
   });
 
   test("retries after provider availability returns, while retaining a previously grounded cached badge", async () => {
     const deps = dependencies();
     const inspect = createTwitterIntrospector(deps);
     deps.aiAvailableFn.mockReturnValue(false);
-    expect(await inspect("https://fixvx.com/a/status/123")).toMatchObject({title: "🟡 10% Spiciness — Fact check unverified"});
+    expect(await inspect("https://fixvx.com/a/status/123")).toBeUndefined();
     deps.aiAvailableFn.mockReturnValue(true);
     expect(await inspect("https://fixvx.com/a/status/123")).toMatchObject({title: "🟢 10% Spiciness — Supported claim, low spice"});
     deps.aiAvailableFn.mockReturnValue(false);
@@ -357,14 +396,14 @@ describe("Twitter metadata and badge service", () => {
     expect(deps.crossCheckFn).toHaveBeenCalledTimes(1);
   });
 
-  test("rates the reported chart post URL with a yellow fallback when AI is unavailable", async () => {
+  test("leaves an unclassified chart post unrated when AI is unavailable", async () => {
     const id = "2109614293801201700";
     const deps = dependencies({status: {type: "status", id,
       text: "Dane z naszego nasluchu siatki kont nie potwierdzaja spadku aktywnosci.",
       media: {photos: [{type: "photo"}]}, author: {screen_name: "Polityka_wSieci"}}});
     deps.aiAvailableFn.mockReturnValue(false);
     const badge = await createTwitterIntrospector(deps)(`https://fxtwitter.com/Polityka_wSieci/status/${id}`);
-    expect(badge?.title).toMatch(/^🟡/u);
+    expect(badge).toBeUndefined();
     expect(deps.getWithRetryFn).toHaveBeenCalledExactlyOnceWith(
       `https://api.fxtwitter.com/2/status/${id}`, expect.anything(), expect.anything());
     expect(deps.crossCheckFn).not.toHaveBeenCalled();
