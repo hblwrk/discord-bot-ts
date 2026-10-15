@@ -6,6 +6,32 @@ const fixtureDirectory = "modules/test-fixtures/earnings-regressions";
 const readFixture = (name: string): string => readFileSync(`${fixtureDirectory}/${name}.txt`, "utf8");
 
 describe("focused earnings regression fixtures", () => {
+  test("removes combined Workiva footnotes before reading adjusted EPS", () => {
+    const document = parseEarningsDocument(readFixture("multiple-workiva-eps-footnotes"));
+    expect(document.metrics.find(metric => metric.key === "adjusted_eps")?.value).toBe("$2.59");
+  });
+
+  test("uses the reported euro quarter and its second table column before Q4 sales guidance", () => {
+    const document = parseEarningsDocument(readFixture("current-quarter-vs-next-quarter-sales-outlook"));
+    expect(document.quarterLabel).toBe("Q3 2026");
+    expect(document.metrics.map(metric => [metric.key, metric.value])).toEqual([
+      ["gaap_eps", "€12.95"],
+      ["revenue", "€11.66B"],
+      ["net_income", "€4.96B"],
+    ]);
+  });
+
+  test("does not replace firm revenue with a quarter section devoted to one segment", () => {
+    const document = parseEarningsDocument(readFixture("segment-quarter-section-vs-firm-summary"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$20.3B");
+  });
+
+  test("reads quarter EPS from a combined month and quarter per-share row", () => {
+    const document = parseEarningsDocument(readFixture("month-and-quarter-common-share-earnings"));
+    expect(document.metrics.find(metric => metric.key === "gaap_eps")?.value).toBe("$4.37");
+    expect(document.metrics.find(metric => metric.key === "net_income")?.value).toBe("$2.54B");
+  });
+
   test("does not give a YTD revenue sentence the preceding quarter's period", () => {
     const document = parseEarningsDocument(readFixture("quarter-revenue-vs-next-sentence-ytd"));
     expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$18.68B");

@@ -3276,6 +3276,54 @@ const filingCorpus: {
     source: "940944/000094094426000032/exhibit991-q1fy27.htm",
     ticker: "dri",
   },
+  {
+    company: "Johnson & Johnson",
+    metrics: [
+      ["adjusted_eps", "$2.59"],
+      ["gaap_eps", "$0.09"],
+      ["revenue", "$25.4B"],
+      ["net_income", "$210M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q3 2026",
+    source: "200406/000020040626000189/a2026q3exhibit991.htm",
+    ticker: "jnj",
+  },
+  {
+    company: "ASML Holding",
+    metrics: [
+      ["gaap_eps", "€12.95"],
+      ["revenue", "€11.7B"],
+      ["net_income", "€5B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q3 2026",
+    source: "937966/000162828026065813/pressreleasefinancialresul.htm",
+    ticker: "asml",
+  },
+  {
+    company: "Morgan Stanley",
+    metrics: [
+      ["gaap_eps", "$3.03"],
+      ["revenue", "$20.3B"],
+      ["net_income", "$4.9B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q3 2026",
+    source: "895421/000089542126000288/a3q26msearningsrelease.htm",
+    ticker: "ms",
+  },
+  {
+    company: "Progressive",
+    metrics: [
+      ["gaap_eps", "$4.37"],
+      ["net_income", "$2.54B"],
+    ],
+    outlook: [],
+    quarterLabel: "Q3 2026",
+    source: "80661/000008066126000367/pgr202609ex99earningsrelea.htm",
+    ticker: "pgr",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
