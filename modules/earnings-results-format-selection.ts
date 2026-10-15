@@ -473,7 +473,7 @@ export function getCurrentPeriodColumnIndex(
 
       const quarterColumns = [...headerLine.matchAll(/\bQ([1-4])\b/gi)]
         .map(quarterMatch => `Q${quarterMatch[1]}`);
-      if (4 <= quarterColumns.length) {
+      if (2 <= quarterColumns.length) {
         const quarterColumnIndex = quarterColumns.indexOf(reportedQuarter);
         if (-1 !== quarterColumnIndex) {
           return quarterColumnIndex;
