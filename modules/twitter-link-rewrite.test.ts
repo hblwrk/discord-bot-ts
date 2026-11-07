@@ -102,6 +102,72 @@ describe("getFixedTwitterLinks", () => {
       "https://fxtwitter.com/example/status/789",
     ]);
   });
+
+  test("rewrites links wrapped in spoiler tags to fxtwitter URLs wrapped in spoiler tags", () => {
+    expect(getFixedTwitterLinks(
+      "||https://x.com/stolypinpiotr/status/2119146971747262841||",
+    )).toEqual([
+      "||https://fxtwitter.com/stolypinpiotr/status/2119146971747262841||",
+    ]);
+  });
+
+  test("handles mixed spoiler and non-spoiler links", () => {
+    expect(getFixedTwitterLinks(
+      "||https://x.com/example/status/123|| https://twitter.com/example/status/456",
+    )).toEqual([
+      "||https://fxtwitter.com/example/status/123||",
+      "https://fxtwitter.com/example/status/456",
+    ]);
+  });
+
+  test("handles multiple links inside a single spoiler tag", () => {
+    expect(getFixedTwitterLinks(
+      "||https://x.com/example/status/123 https://twitter.com/example/status/456||",
+    )).toEqual([
+      "||https://fxtwitter.com/example/status/123||",
+      "||https://fxtwitter.com/example/status/456||",
+    ]);
+  });
+
+  test("handles whitespace inside spoiler tags", () => {
+    expect(getFixedTwitterLinks(
+      "|| https://x.com/example/status/123 ||",
+    )).toEqual([
+      "||https://fxtwitter.com/example/status/123||",
+    ]);
+  });
+
+  test("ignores unclosed spoiler tags", () => {
+    expect(getFixedTwitterLinks(
+      "||https://x.com/example/status/123",
+    )).toEqual([
+      "https://fxtwitter.com/example/status/123",
+    ]);
+  });
+
+  test("ignores escaped spoiler tags", () => {
+    expect(getFixedTwitterLinks(
+      "\\||https://x.com/example/status/123||",
+    )).toEqual([
+      "https://fxtwitter.com/example/status/123",
+    ]);
+  });
+
+  test("ignores spoiler delimiters inside code spans", () => {
+    expect(getFixedTwitterLinks(
+      "`||` and ||https://x.com/example/status/123||",
+    )).toEqual([
+      "||https://fxtwitter.com/example/status/123||",
+    ]);
+  });
+
+  test("prefers spoiler tag when duplicate links have mixed spoiler status", () => {
+    expect(getFixedTwitterLinks(
+      "https://x.com/example/status/123 ||https://x.com/example/status/123||",
+    )).toEqual([
+      "||https://fxtwitter.com/example/status/123||",
+    ]);
+  });
 });
 
 describe("addTwitterLinkRewrites", () => {
@@ -710,5 +776,85 @@ describe("addTwitterLinkRewrites", () => {
     expect(message.reply).toHaveBeenCalledWith(expect.objectContaining({
       content: "https://fxtwitter.com/example/status/123",
     }));
+  });
+
+  test("reposts a link-only message in spoiler tags when posted with spoiler tags", async () => {
+    const {client, getHandler} = createEventClient();
+    const inspect = vi.fn().mockResolvedValue({title: "Sanity Badge"});
+    addTwitterLinkRewrites(client, inspect);
+
+    const handler = getHandler("messageCreate");
+    const message = createTwitterMessage("||https://x.com/stolypinpiotr/status/2119146971747262841||");
+    message.author = {id: "111222333"};
+
+    await handler(message);
+
+    expect(message.delete).toHaveBeenCalledTimes(1);
+    expect(message.channel.send).toHaveBeenCalledWith({
+      allowedMentions: {parse: []},
+      content: "From <@111222333>: ||https://fxtwitter.com/stolypinpiotr/status/2119146971747262841||",
+    });
+    expect(inspect).toHaveBeenCalledWith("https://fxtwitter.com/stolypinpiotr/status/2119146971747262841");
+    await vi.waitFor(() => {
+      expect(message.response.edit).toHaveBeenCalledWith({
+        allowedMentions: {parse: [], repliedUser: false},
+        content: "From <@111222333>: ||https://fxtwitter.com/stolypinpiotr/status/2119146971747262841  Sanity Badge||",
+      });
+    });
+  });
+
+  test("keeps progressive badges inside spoiler tags", async () => {
+    const {client, getHandler} = createEventClient();
+    const inspect = Object.assign(vi.fn().mockResolvedValue(undefined), {
+      observe: vi.fn((_link: string, onBadge: (badge: APIEmbed) => void) => {
+        onBadge({title: "Sanity Badge"});
+        return Promise.resolve();
+      }),
+    });
+    addTwitterLinkRewrites(client, inspect);
+    const message = createTwitterMessage("||https://x.com/example/status/123||");
+
+    await getHandler("messageCreate")(message);
+
+    expect(inspect.observe).toHaveBeenCalledWith("https://fxtwitter.com/example/status/123", expect.any(Function));
+    await vi.waitFor(() => {
+      expect(message.response.edit).toHaveBeenCalledWith({
+        allowedMentions: {parse: [], repliedUser: false},
+        content: `From <@${message.author?.id}>: ||https://fxtwitter.com/example/status/123  Sanity Badge||`,
+      });
+    });
+  });
+
+  test("replies with spoiler tags when a spoilered link has surrounding text", async () => {
+    const {client, getHandler} = createEventClient();
+    addTwitterLinkRewrites(client);
+
+    const handler = getHandler("messageCreate");
+    const message = createTwitterMessage("look at this: ||https://x.com/stolypinpiotr/status/2119146971747262841||");
+
+    await handler(message);
+
+    expect(message.delete).not.toHaveBeenCalled();
+    expect(message.channel.send).not.toHaveBeenCalled();
+    expect(message.reply).toHaveBeenCalledWith(expect.objectContaining({
+      content: "||https://fxtwitter.com/stolypinpiotr/status/2119146971747262841||",
+    }));
+  });
+
+  test("reposts a spoilered proxy link wrapped in spoiler tags", async () => {
+    const {client, getHandler} = createEventClient();
+    addTwitterLinkRewrites(client);
+
+    const handler = getHandler("messageCreate");
+    const message = createTwitterMessage("||https://fixupx.com/stolypinpiotr/status/2119146971747262841||");
+    message.author = {id: "111222333"};
+
+    await handler(message);
+
+    expect(message.delete).toHaveBeenCalledTimes(1);
+    expect(message.channel.send).toHaveBeenCalledWith({
+      allowedMentions: {parse: []},
+      content: "From <@111222333>: ||https://fixupx.com/stolypinpiotr/status/2119146971747262841||",
+    });
   });
 });
