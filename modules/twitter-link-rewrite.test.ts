@@ -808,7 +808,7 @@ describe("addTwitterLinkRewrites", () => {
     const inspect = Object.assign(vi.fn().mockResolvedValue(undefined), {
       observe: vi.fn((_link: string, onBadge: (badge: APIEmbed) => void) => {
         onBadge({title: "Sanity Badge"});
-        return Promise.resolve();
+        return Promise.resolve(undefined);
       }),
     });
     addTwitterLinkRewrites(client, inspect);
