@@ -2437,8 +2437,8 @@ const filingCorpus: {
       ["net_income", "$1.92M"],
     ],
     outlook: [
-      ["Revenue", "$510M to $520M"],
-      ["Adj EBITDA", "$125M to $135M"],
+      ["FY2027 Revenue", "$510M to $520M"],
+      ["FY2027 Adj EBITDA", "$125M to $135M"],
     ],
     quarterLabel: "Q2 2027",
     source: "1412408/000141240826000213/phr-ex991q2fy27.htm",
@@ -3077,7 +3077,7 @@ const filingCorpus: {
       ["net_income", "-$52.3M"],
     ],
     outlook: [
-      ["Adj EBITDA", "$10M to $15M"],
+      ["FY2027 Adj EBITDA", "$10M to $15M"],
     ],
     quarterLabel: "Q4 2026",
     source: "1084869/000108486926000024/flws-fiscal2026xexx99x1xfi.htm",
@@ -3271,7 +3271,7 @@ const filingCorpus: {
       ["revenue", "$3.2B"],
       ["net_income", "$233.4M"],
     ],
-    outlook: [["EPS", "$11.1 to $11.35"]],
+    outlook: [["FY2027 EPS", "$11.1 to $11.35"]],
     quarterLabel: "Q1 2027",
     source: "940944/000094094426000032/exhibit991-q1fy27.htm",
     ticker: "dri",
@@ -3323,6 +3323,35 @@ const filingCorpus: {
     quarterLabel: "Q3 2026",
     source: "80661/000008066126000367/pgr202609ex99earningsrelea.htm",
     ticker: "pgr",
+  },
+  {
+    company: "Concentrix",
+    metrics: [
+      ["adjusted_eps", "$2.92"],
+      ["gaap_eps", "-$16.24"],
+      ["revenue", "$2.45B"],
+      ["net_income", "-$988.11M"],
+    ],
+    outlook: [
+      ["Q4 Revenue", "$2.41B to $2.46B"],
+      ["FY2026 Revenue", "$9.827B to $9.877B"],
+      ["FY2026 Free cash flow", "$630M to $650M"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "1803599/000180359926000147/exhibit991q32026.htm",
+    ticker: "cnxc",
+  },
+  {
+    company: "NIKE",
+    metrics: [
+      ["gaap_eps", "$0.48"],
+      ["revenue", "$11.2B"],
+      ["net_income", "$712M"],
+    ],
+    outlook: [["FY2027 Adj EPS", "$1.15 to $1.35"]],
+    quarterLabel: "Q1 2027",
+    source: "320187/000032018726000184/q1fy27exhibit991er.htm",
+    ticker: "nke",
   },
 ];
 

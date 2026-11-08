@@ -52,7 +52,10 @@ export function appendTwitterBadgeText(content: string, badges: TwitterBadge[], 
       if (lineIndex < 0 || lineIndex >= linkLines.length) continue;
       for (const badgeText of badgeTexts) {
         const candidateLines = [...linkLines];
-        candidateLines[lineIndex] += `  ${badgeText}`;
+        const line = candidateLines[lineIndex]!;
+        candidateLines[lineIndex] = line.endsWith("||")
+          ? `${line.slice(0, -2)}  ${badgeText}||`
+          : `${line}  ${badgeText}`;
         if (candidateLines.join("\n").length <= messageLimit) {
           linkLines[lineIndex] = candidateLines[lineIndex]!;
           break;
