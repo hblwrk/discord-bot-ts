@@ -8,8 +8,8 @@ const logger = getLogger();
 const discordMaxMessageLength = 2_000;
 const embedSuppressionWaitMs = 15_000;
 const trailingUrlPunctuation = ".,!?;:)]}";
-const linkWrapperPunctuation = "<>\"'.,!?;:()[]{}";
-const twitterUrlRegex = /https?:\/\/[^\s<>"']+/giu;
+const linkWrapperPunctuation = "<>\"'.,!?;:()[]{}|";
+const twitterUrlRegex = /https?:\/\/[^\s<>"'|]+/giu;
 const twitterHosts = new Set([
   "mobile.twitter.com",
   "mobile.x.com",
@@ -116,21 +116,86 @@ function getFixedTwitterUrl(value: string): string | undefined {
   return `https://fxtwitter.com${parsedUrl.pathname}`;
 }
 
+function isEscaped(content: string, index: number): boolean {
+  let backslashCount = 0;
+  let i = index - 1;
+  while (0 <= i && "\\" === content[i]) {
+    backslashCount++;
+    i--;
+  }
+
+  return 0 !== backslashCount % 2;
+}
+
+function getSpoilerSpans(content: string): Array<{start: number; end: number}> {
+  const spans: Array<{start: number; end: number}> = [];
+  let openIndex: number | undefined = undefined;
+  let i = 0;
+
+  while (i < content.length - 1) {
+    if ("`" === content[i] && false === isEscaped(content, i)) {
+      if (content.startsWith("```", i)) {
+        const closeIndex = content.indexOf("```", i + 3);
+        i = -1 === closeIndex ? content.length : closeIndex + 3;
+        continue;
+      }
+      const closeIndex = content.indexOf("`", i + 1);
+      i = -1 === closeIndex ? content.length : closeIndex + 1;
+      continue;
+    }
+    if ("|" === content[i] && "|" === content[i + 1]) {
+      if (false === isEscaped(content, i)) {
+        if (undefined === openIndex) {
+          openIndex = i;
+        } else {
+          spans.push({start: openIndex, end: i + 2});
+          openIndex = undefined;
+        }
+        i += 2;
+        continue;
+      }
+    }
+    i++;
+  }
+
+  return spans;
+}
+
+function isInsideSpoiler(spans: readonly {start: number; end: number}[], start: number, end: number): boolean {
+  return spans.some(span => span.start <= start && end <= span.end);
+}
+
+function wrapSpoiler(url: string): string {
+  return `||${url}||`;
+}
+
+function unwrapSpoiler(url: string): string {
+  return url.startsWith("||") && url.endsWith("||") && 4 <= url.length
+    ? url.slice(2, -2)
+    : url;
+}
+
 // Keep proxy modifiers and queries; raw X/Twitter links use FxTwitter.
 function getRepostedTwitterUrl(value: string): string | undefined {
   return getFixedTwitterUrl(value) ?? (undefined !== getTwitterStatusId(value) ? value : undefined);
 }
 
 function getRepostedTwitterLinks(content: string): string[] {
+  const spans = getSpoilerSpans(content);
   const links = new Map<string, string>();
   for (const match of content.matchAll(twitterUrlRegex)) {
     if (isEmbedSuppressedLink(content, match.index, match[0].length)) {
       continue;
     }
-    const link = getRepostedTwitterUrl(trimTrailingUrlPunctuation(match[0]));
-    if (undefined !== link) {
-      const key = getTwitterStatusId(link) ?? link;
-      if (!links.has(key)) links.set(key, link);
+    const cleanUrl = trimTrailingUrlPunctuation(match[0]);
+    const repostedUrl = getRepostedTwitterUrl(cleanUrl);
+    if (undefined !== repostedUrl) {
+      const isSpoilered = isInsideSpoiler(spans, match.index, match.index + match[0].length);
+      const link = isSpoilered ? wrapSpoiler(repostedUrl) : repostedUrl;
+      const key = getTwitterStatusId(repostedUrl) ?? repostedUrl;
+      if (!links.has(key) || isSpoilered) {
+        links.set(key, link);
+      }
     }
   }
   return [...links.values()];
@@ -287,9 +352,35 @@ async function replaceLinkOnlyMessage(
 }
 
 async function updateSanityBadges(delivery: LinkDelivery, introspect: TwitterIntrospector): Promise<void> {
-  // Assess only delivered links. Promise.all preserves paste order even when
-  // providers finish out of order, and no inspection delays the initial send.
-  const links = delivery.content.split("\n");
+  // Assess only delivered links. No inspection delays the initial send.
+  const links = delivery.content.split("\n").map(unwrapSpoiler);
+  if (undefined !== introspect.observe) {
+    let latest: TwitterBadge[] = [];
+    let displayed = delivery.messageContent;
+    let editing = false;
+    let failed = false;
+    const flush = async () => {
+      if (editing || failed) return;
+      editing = true;
+      try {
+        while (!failed) {
+          const content = appendTwitterBadgeText(delivery.messageContent, latest, links.length > 1);
+          if (content === displayed) break;
+          try {
+            await delivery.response.edit({content, allowedMentions: {parse: [], repliedUser: false}});
+            displayed = content;
+          } catch {
+            failed = true;
+            logger.log("warn", "Twitter/X badge update failed; keeping the converted link.");
+          }
+        }
+      } finally {
+        editing = false;
+      }
+    };
+    await observeLinks(links, introspect.observe, badges => { latest = badges; void flush(); });
+    return;
+  }
   const badges = await assessLinks(links, introspect);
   const content = appendTwitterBadgeText(delivery.messageContent, badges, links.length > 1);
   if (content === delivery.messageContent) {
@@ -303,6 +394,23 @@ async function updateSanityBadges(delivery: LinkDelivery, introspect: TwitterInt
     // Deleted responses and missing edit permissions must not undo conversion.
     logger.log("warn", "Twitter/X badge update failed; keeping the converted link.");
   }
+}
+
+async function observeLinks(
+  links: string[], observe: NonNullable<TwitterIntrospector["observe"]>, onChange: (badges: TwitterBadge[]) => void,
+): Promise<void> {
+  const badges = new Map<number, APIEmbed>();
+  await Promise.all(links.slice(0, 4).map(async (link, index) => {
+    try {
+      await observe(link, embed => {
+        badges.set(index + 1, embed);
+        onChange([...badges].sort(([left], [right]) => left - right)
+          .map(([linkNumber, badge]) => ({linkNumber, embed: badge})));
+      });
+    } catch {
+      logger.log("warn", "Twitter/X assessment failed; keeping the link preview.");
+    }
+  }));
 }
 
 async function assessLinks(links: string[], introspect: TwitterIntrospector): Promise<TwitterBadge[]> {
@@ -319,20 +427,51 @@ async function assessLinks(links: string[], introspect: TwitterIntrospector): Pr
 }
 
 async function replyWithProxyBadges(message: TwitterLinkRewriteMessage, links: string[], introspect: TwitterIntrospector): Promise<void> {
-  const badges = await assessLinks(links, introspect);
-  // Source references identify each proxy post without creating another unfurl.
-  const identified = badges.map(badge => ({...badge, embed: {
-    ...badge.embed, description: [badge.embed.description, `Post: <${links[badge.linkNumber - 1]}>`].filter(Boolean).join("\n"),
-  }}));
-  const content = appendTwitterBadgeText("", identified, links.length > 1).trimStart();
-  if (!content) {
+  const unwrappedLinks = links.map(unwrapSpoiler);
+  if (undefined !== introspect.observe) {
+    let latest: TwitterBadge[] = [];
+    let response: TwitterLinkResponse | undefined;
+    let displayed = "";
+    let editing = false;
+    let failed = false;
+    const flush = async () => {
+      if (editing || failed) return;
+      editing = true;
+      try {
+        while (!failed) {
+          const content = proxyBadgeContent(latest, unwrappedLinks);
+          if (!content || content === displayed) break;
+          try {
+            if (undefined === response) {
+              response = await message.reply({content, allowedMentions: {parse: [], repliedUser: false}});
+            } else {
+              await response.edit({content, allowedMentions: {parse: [], repliedUser: false}});
+            }
+            displayed = content;
+          } catch {
+            failed = true;
+            logger.log("warn", "Twitter/X proxy badge reply failed; keeping the original link preview.");
+          }
+        }
+      } finally {
+        editing = false;
+      }
+    };
+    await observeLinks(unwrappedLinks, introspect.observe, badges => { latest = badges; void flush(); });
     return;
   }
+  const badges = await assessLinks(unwrappedLinks, introspect);
+  const content = proxyBadgeContent(badges, unwrappedLinks);
+  if (!content) return;
   try {
     await message.reply({content, allowedMentions: {parse: [], repliedUser: false}});
   } catch {
     logger.log("warn", "Twitter/X proxy badge reply failed; keeping the original link preview.");
   }
+}
+
+function proxyBadgeContent(badges: TwitterBadge[], links: string[]): string {
+  return appendTwitterBadgeText("", badges, links.length > 1).trimStart();
 }
 
 export function getTwitterProxyLinks(content: string): string[] {
@@ -351,7 +490,8 @@ export function getTwitterProxyLinks(content: string): string[] {
 }
 
 export function getFixedTwitterLinks(content: string): string[] {
-  const fixedLinks = new Set<string>();
+  const spans = getSpoilerSpans(content);
+  const fixedLinks = new Map<string, string>();
   const matches = content.matchAll(twitterUrlRegex);
 
   for (const match of matches) {
@@ -362,11 +502,15 @@ export function getFixedTwitterLinks(content: string): string[] {
 
     const fixedUrl = getFixedTwitterUrl(trimTrailingUrlPunctuation(rawUrl));
     if (fixedUrl) {
-      fixedLinks.add(fixedUrl);
+      const isSpoilered = isInsideSpoiler(spans, match.index, match.index + rawUrl.length);
+      const link = isSpoilered ? wrapSpoiler(fixedUrl) : fixedUrl;
+      if (!fixedLinks.has(fixedUrl) || isSpoilered) {
+        fixedLinks.set(fixedUrl, link);
+      }
     }
   }
 
-  return [...fixedLinks];
+  return [...fixedLinks.values()];
 }
 
 export function addTwitterLinkRewrites(
@@ -418,7 +562,7 @@ export function addTwitterLinkRewrites(
 
     const convertedLinks = getMessageContentWithinDiscordLimit(fixedLinks).split("\n").filter(Boolean).slice(0, 4);
     const convertedIds = new Set(convertedLinks
-      .map(getTwitterStatusId).filter(id => undefined !== id));
+      .map(unwrapSpoiler).map(getTwitterStatusId).filter(id => undefined !== id));
     const extraLinks = proxyLinks.filter(link => !convertedIds.has(getTwitterStatusId(link) ?? "")).slice(0, 4 - convertedLinks.length);
     if (extraLinks.length) {
       // Original proxy links are already delivered; assessment never changes

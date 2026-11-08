@@ -1,5 +1,5 @@
 import {describe, expect, test, vi} from "vitest";
-import {crossCheckTwitterPost, recognisedSourceUrl} from "./twitter-sanity-check.ts";
+import {crossCheckTwitterPost, hasIndependentContradictionSources, recognisedSourceUrl} from "./twitter-sanity-check.ts";
 import type {TwitterPostContext} from "./twitter-sanity-score.ts";
 import type {callAiProviderJson} from "./ai-provider.ts";
 
@@ -28,6 +28,10 @@ describe("Twitter web cross-check", () => {
       "Twitter/X reality check", undefined,
       expect.objectContaining({useWebSearch: true, timeoutMs: 60_000, onWebSources: expect.any(Function)}),
     );
+    expect(callFn.mock.calls[0]?.[0]).toContain("at most 80 characters");
+    expect(callFn.mock.calls[0]?.[0]).toContain("Do not name news outlets");
+    expect(callFn.mock.calls[0]?.[0]).toContain("bloomberg.com");
+    expect(callFn.mock.calls[0]?.[0]).toContain("handelsblatt.com");
   });
 
   test("accepts supported evidence and deduplicates source URLs", async () => {
@@ -35,10 +39,32 @@ describe("Twitter web cross-check", () => {
       .toMatchObject({verdict: "supported", sources: [source]});
   });
 
+  test("retains one grounded article per independent publisher for corroborated contradictions", async () => {
+    const samePublisher = "https://www.reuters.com/world/second-report";
+    const independent = "https://apnews.com/article/independent-report";
+    const urls = [source, samePublisher, independent];
+    const check = await crossCheckTwitterPost(post, {logger: {log: vi.fn()}},
+      mockCall({...result, sourceUrls: urls}, urls));
+    expect(check?.sources).toEqual([source, independent]);
+    expect(hasIndependentContradictionSources(check?.sources ?? [])).toBe(true);
+  });
+
+  test("does not treat two BBC domains or unrecognised sources as independent evidence", () => {
+    expect(hasIndependentContradictionSources([
+      "https://bbc.com/news/first", "https://bbc.co.uk/news/second",
+    ])).toBe(false);
+    expect(hasIndependentContradictionSources([source, "https://example.org/report"])).toBe(false);
+    expect(hasIndependentContradictionSources([source, "https://apnews.com/article/report"])).toBe(true);
+  });
+
   test.each([
     null, "invalid json", [], {}, {verdict: "unverified"}, {verdict: "true"},
     {...result, realityCheck: 7}, {...result, realityCheck: "short"},
-    {...result, realityCheck: "X".repeat(281)}, {...result, realityCheck: "First sentence. Second sentence."},
+    {...result, realityCheck: "X".repeat(81)}, {...result, realityCheck: "First sentence. Second sentence."},
+    {...result, realityCheck: "AP reported that the council approved the plan."},
+    {...result, realityCheck: "Reuters found that the council approved the plan."},
+    {...result, realityCheck: "Bloomberg found that the council approved the plan."},
+    {...result, realityCheck: "The Associated Press confirmed the council's decision."},
     {...result, realityCheck: "Follow https://example.com to find the answer."},
     {...result, realityCheck: "Everyone @everyone should act immediately."},
     {...result, realityCheck: "A claim\nwith another line."}, {...result, sourceUrls: "wrong"},
@@ -70,4 +96,14 @@ describe("Twitter web cross-check", () => {
     expect(recognisedSourceUrl("https://reuters.com", true)).toBe("https://reuters.com/");
     expect(recognisedSourceUrl("https://reuters.com")).toBeUndefined();
   });
+
+  test.each(["bloomberg.com", "ft.com", "wsj.com", "cnbc.com", "handelsblatt.com"])(
+    "accepts a searched public financial report from %s", async domain => {
+      const article = `https://www.${domain}/markets/company-report`;
+      const review = await crossCheckTwitterPost(post, {logger: {log: vi.fn()}},
+        mockCall({...result, verdict: "supported", sourceUrls: [article]}, [article]));
+      expect(review?.sources).toEqual([article]);
+      expect(recognisedSourceUrl(`https://${domain}.evil.test/markets/company-report`)).toBeUndefined();
+    },
+  );
 });

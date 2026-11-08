@@ -5,9 +5,13 @@ export type TwitterPostContext = {
   quotedText: string;
   media: string[];
   externalLinks: string[];
+  quotedExternalLinks?: string[];
+  authorHandle?: string;
   authorJoined: string;
+  authorFollowers?: number;
   defaultAvatar: boolean;
   authorWebsite: string;
+  createdAt?: string;
   communityNote?: TwitterCommunityNote;
 };
 
@@ -17,10 +21,9 @@ export type TwitterSanityScore = {
   realityCheck: string;
 };
 
-// A small editorial index, not a calibrated probability of falsehood.
-// Score only the poster's own text; quoting inflammatory words does not mean
-// endorsing them, and engagement totals cannot establish coordinated bots.
-export function scoreTwitterPost(post: TwitterPostContext, nowMs: number): TwitterSanityScore {
+// A wording index, not a calibrated probability of falsehood. Account and
+// source properties belong to the separate credibility check.
+export function scoreTwitterPost(post: TwitterPostContext): TwitterSanityScore {
   const text = post.text.replace(/https?:\/\/\S+/giu, "");
   const signals: string[] = [];
   let score = 10;
@@ -38,28 +41,18 @@ export function scoreTwitterPost(post: TwitterPostContext, nowMs: number): Twitt
     }
   }
 
-  // Ignore short acronyms/tickers and require enough prose to measure shouting.
+  // Ignore short acronyms/tickers. ALL-CAPS headlines are common in finance,
+  // so capitalization alone should not reach the caution threshold.
   const words = text.match(/\p{L}{4,}/gu) ?? [];
   const caps = words.filter(word => word === word.toLocaleUpperCase() && word !== word.toLocaleLowerCase());
   if (words.length >= 5 && caps.length / words.length >= 0.6) {
-    score += 20;
+    score += 10;
     signals.push("Heavy ALL-CAPS wording");
   }
-  if (signals.length > 0 && /[🧵👇]/u.test(text)) {
+  if (signals.some(signal => signal !== "Heavy ALL-CAPS wording") && /[🧵👇]/u.test(text)) {
     score += 5;
     signals.push("Thread/click hook alongside sensational wording");
   }
-  if (post.externalLinks.length > 0 && post.externalLinks.every(link => isSocialCitation(link))) {
-    score += 10;
-    signals.push("Links only to social posts; original evidence is unclear");
-  }
-
-  const ageMs = nowMs - Date.parse(post.authorJoined);
-  if (post.defaultAvatar && ageMs >= 0 && ageMs <= 30 * 24 * 60 * 60_000) {
-    score += 10;
-    signals.push("Recent account with a default avatar; identity is unestablished");
-  }
-
   return {
     score: Math.min(95, score),
     signals,
@@ -67,13 +60,4 @@ export function scoreTwitterPost(post: TwitterPostContext, nowMs: number): Twitt
       ? "These are caution signals, so check the original evidence before sharing; the claim and bot activity remain unverified."
       : "Few sensational wording signals appear, but calm wording does not verify the claim or the media context.",
   };
-}
-
-function isSocialCitation(value: string): boolean {
-  try {
-    const host = new URL(value).hostname.replace(/^www\./u, "");
-    return ["x.com", "twitter.com", "fxtwitter.com", "mobile.twitter.com", "mobile.x.com", "m.twitter.com"].includes(host);
-  } catch {
-    return false;
-  }
 }
