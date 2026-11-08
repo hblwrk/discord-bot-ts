@@ -366,6 +366,8 @@ function extractMetric(
       true === hasMetricValueBeforeAdjustment(metricLine, definition.patterns);
     const hasReportedRevenueBeforeGuidance = "revenue" === definition.key &&
       true === hasMetricValueBeforeGuidance(metricLine, definition.patterns);
+    const hasExplicitQuarterlyRevenue = "revenue" === definition.key &&
+      /\btotal\s+quarterly\s+revenue\b[^.!?]{0,100}?\bto\s+[$€£¥]\s*\d/i.test(metricLine);
     const hasReportedClassShareEps = "gaap_eps" === definition.key &&
       /\bearnings\s+per\s+diluted\s+(?:class\s+[A-Z]\s+)?(?:nonvoting\s+)?common\s+share\s+was\s+\(?-?[$€£¥]?\s*\d/i.test(metricLine);
     const hasReportedAdjustedEps = "adjusted_eps" === definition.key &&
@@ -376,6 +378,7 @@ function extractMetric(
         false === hasReportedGaapEps &&
         false === hasReportedGaapNetIncome &&
         false === hasReportedRevenueBeforeGuidance &&
+        false === hasExplicitQuarterlyRevenue &&
         false === hasReportedClassShareEps &&
         false === hasReportedAdjustedEps) {
       continue;
@@ -414,7 +417,16 @@ function extractMetric(
     const valueMetricLine = false === hasCaptionBeforeWeightedShares
       ? unqualifiedMetricLine
       : unqualifiedMetricLine.slice(0, weightedSharesIndex);
-    const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(valueMetricLine));
+    // When a narrative gives basic and diluted EPS in one sentence, the first
+    // per-share amount belongs to basic shares. Read the diluted clause alone.
+    const dilutedClauseIndex = "gaap_eps" === definition.key
+      ? valueMetricLine.search(/\b(?:gaap\s+)?diluted\s+(?:net\s+income|earnings|loss)\s+per\s+share\b/i)
+      : -1;
+    const reportedValueLine = -1 !== dilutedClauseIndex &&
+        /\bbasic\s+(?:net\s+income|earnings|loss)\s+per\s+share\b/i.test(valueMetricLine.slice(0, dilutedClauseIndex))
+      ? valueMetricLine.slice(dilutedClauseIndex)
+      : valueMetricLine;
+    const pattern = definition.patterns.find(candidatePattern => candidatePattern.test(reportedValueLine));
     if (!pattern) {
       continue;
     }
@@ -423,16 +435,27 @@ function extractMetric(
       continue;
     }
 
+    const contextMoney = getContextMoney(lines, lineIndex, documentCurrencyCode);
     const metricValue = extractMetricValue(
-      valueMetricLine,
+      reportedValueLine,
       pattern,
       definition.valueType,
-      getContextMoney(lines, lineIndex, documentCurrencyCode),
+      contextMoney,
       isNearTableNoteColumn(lines, lineIndex),
       undefined !== quarterLabel && hasMixedMonthQuarterColumns(lines, lineIndex),
       getCurrentPeriodColumnIndex(lines, lineIndex, quarterLabel, documentCurrencyCode),
     );
     if (null === metricValue) {
+      continue;
+    }
+    // A non-GAAP reconciliation may omit the unit declaration carried by the
+    // financial statements. A bare four-digit table cell could mean dollars or
+    // thousands of dollars; publishing either scale would assert an unknown fact.
+    if ("net_income" === definition.key && 1 === contextMoney.scale &&
+        1_000 <= Math.abs(metricValue.numericValue) &&
+        /\bnet\s+income\s*\(loss\)\s*\|/i.test(metricLine) &&
+        lines.slice(Math.max(0, lineIndex - 100), lineIndex)
+          .some(previous => /\breconciles?\s+adjusted\s+ebitda\s+to\s+net\s+income\b/i.test(previous))) {
       continue;
     }
 

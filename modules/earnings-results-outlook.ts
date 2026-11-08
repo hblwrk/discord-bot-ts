@@ -926,6 +926,17 @@ function extractOutlookMetricsForDefinition(
 ): EarningsOutlookMetric[] {
   const bestCandidateByPeriod = new Map<string, OutlookMetricCandidate>();
   for (const [lineIndex, line] of lines.entries()) {
+    // A first $3B revenue quarter is a quarterly milestone, even when the
+    // deadline names a fiscal year. It is not full-year revenue guidance.
+    if ("revenue" === definition.key &&
+        /\bfirst\s+[$€£¥]\s*\d+(?:\.\d+)?\s+billion\s+revenue\s+quarter\b/i.test(line)) {
+      continue;
+    }
+    if ("eps" === definition.key &&
+        /\bmedium[-\s]+term\s+outlook\b/i.test(line) &&
+        /\bcompound\s+annual\s+growth\s+rate\b/i.test(line)) {
+      continue;
+    }
     // Guidance sections also contain historical results and explanatory impacts.
     if (/\brevenue\s+capacity\b|\bfor\s+the\s+fiscal\s+(?:fourth|third|second|first)\s+quarter\s+was\b|\bcapital\s+expenditures\s+in\s+the\s+quarter\s+were\b/i.test(line) ||
         /\bcompared\s+to\s+20\d{2}\s+exchange\s+rates\s+is\s+approximately\b|\breflects?\s+the\s+impact\s+of\s+fiscal\s+20\d{2}\s+store\s+closures\b|\bper\s+share\s+flowing\s+through\b/i.test(line)) {
@@ -1054,7 +1065,10 @@ function extractOutlookMetricsForDefinition(
       if (undefined !== periodLabel) {
         metric.periodLabel = periodLabel;
       }
-      const candidateScore = getOutlookMetricCandidateScore(valueLine);
+      // When the release states both an EPS dollar range and its implied growth,
+      // the per-share range is the actionable guidance value.
+      const candidateScore = getOutlookMetricCandidateScore(valueLine) +
+        ("adjusted_eps" === definition.key && /^[$€£¥]/.test(value) ? 50 : 0);
       // Once a mixed-period section can retain one candidate per period, an actual result
       // from one period can no longer hide behind stronger guidance for another. Require
       // each retained period to be forward-looking on its own.
@@ -1229,6 +1243,7 @@ function getOutlookPeriodLabel(
       (/^\s*fy\s*\d{2}\b.*\b(?:outlook|guidance)\b/i.test(sectionHeading ?? "") ||
         /^\s*(?:fiscal\s+year\s+)?20\d{2}\s+(?:business\s+)?(?:outlook|guidance)\s*$/i.test(sectionHeading ?? "") ||
         /^\s*fiscal(?:\s+year)?\s+20\d{2}\s+guidance\s*\|?\s*$/i.test(sectionHeading ?? "") ||
+        /^\s*fiscal(?:\s+year)?\s+20\d{2}\s+full[\s–—-]+year\s+outlook\b/i.test(sectionHeading ?? "") ||
         (true === hasSplitCurrentOutlookHeader &&
           /^\s*fiscal\s+20\d{2}\b.*\b(?:outlook|guidance)\b/i.test(sectionHeading ?? "")) ||
         /^\s*fiscal(?:\s+year)?\s+20\d{2}\b.*\bending\b.*\boutlook\b/i

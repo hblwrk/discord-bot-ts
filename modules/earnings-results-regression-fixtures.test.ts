@@ -6,6 +6,44 @@ const fixtureDirectory = "modules/test-fixtures/earnings-regressions";
 const readFixture = (name: string): string => readFileSync(`${fixtureDirectory}/${name}.txt`, "utf8");
 
 describe("focused earnings regression fixtures", () => {
+  test("takes diluted rather than basic EPS from a shared results bullet", () => {
+    const document = parseEarningsDocument(readFixture("basic-and-diluted-eps-in-one-bullet"));
+    expect(document.metrics.find(metric => metric.key === "gaap_eps")?.value).toBe("$0.25");
+  });
+
+  test("reads explicit total quarterly revenue before a customer count in flattened slides", () => {
+    const document = parseEarningsDocument(readFixture("quarter-revenue-vs-customer-count"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$228M");
+  });
+
+  test("keeps expected next-quarter revenue out of reported results", () => {
+    const document = parseEarningsDocument(readFixture("expected-revenue-vs-reported-quarter"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$1.77B");
+  });
+
+  test("omits a utility rate requirement and an unlabelled medium-term EPS growth target", () => {
+    const document = parseEarningsDocument(readFixture("revenue-requirement-vs-company-revenue"));
+    expect(document.metrics.find(metric => metric.key === "revenue")).toBeUndefined();
+    expect(document.outlook.find(metric => metric.key === "eps")).toBeUndefined();
+  });
+
+  test("omits net income from a reconciliation with no amount unit", () => {
+    const document = parseEarningsDocument(readFixture("unscaled-net-income-reconciliation"));
+    expect(document.metrics.find(metric => metric.key === "net_income")).toBeUndefined();
+  });
+
+  test("does not report a quarterly revenue milestone as full-year guidance", () => {
+    const document = parseEarningsDocument(readFixture("revenue-quarter-milestone-vs-annual-guidance"));
+    expect(document.outlook.filter(metric => metric.key === "revenue")
+      .map(metric => [metric.periodLabel, metric.value])).toEqual([["Q2", "$2.55B to $2.75B"]]);
+  });
+
+  test("uses the absolute EPS guidance over the growth rate and previous range", () => {
+    const document = parseEarningsDocument(readFixture("absolute-eps-guidance-vs-growth"));
+    expect(document.outlook.find(metric => metric.key === "adjusted_eps")?.value)
+      .toBe("$45.6 to $46.4");
+  });
+
   test("removes combined Workiva footnotes before reading adjusted EPS", () => {
     const document = parseEarningsDocument(readFixture("multiple-workiva-eps-footnotes"));
     expect(document.metrics.find(metric => metric.key === "adjusted_eps")?.value).toBe("$2.59");

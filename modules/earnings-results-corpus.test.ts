@@ -17,6 +17,7 @@ import {
 // Sources are https://www.sec.gov/Archives/edgar/data/<source>.
 const filingCorpus: {
   company: string;
+  fixture?: string;
   metrics: [string, string][];
   outlook: [string, string][];
   quarterLabel: string | undefined;
@@ -3353,13 +3354,108 @@ const filingCorpus: {
     source: "320187/000032018726000184/q1fy27exhibit991er.htm",
     ticker: "nke",
   },
+  {
+    company: "Unity Software",
+    metrics: [
+      ["adjusted_eps", "$0.44"],
+      ["gaap_eps", "$0.25"],
+      ["revenue", "$622M"],
+      ["net_income", "$122M"],
+    ],
+    outlook: [
+      ["Revenue", "$683M to $691M"],
+      ["Adj EBITDA", "$290M to $295M"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "1810806/000181080626000053/a2026q3ex-991.htm",
+    ticker: "u",
+  },
+  {
+    company: "IREN",
+    metrics: [
+      ["revenue", "$228M"],
+      ["net_income", "-$263M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q1 2027",
+    source: "1878848/000187884826000065/irenreportsq1-fy27result.htm",
+    ticker: "iren",
+  },
+  {
+    company: "Atlassian",
+    metrics: [
+      ["adjusted_eps", "$1.65"],
+      ["gaap_eps", "$0.35"],
+      ["revenue", "$1.77B"],
+      ["net_income", "$91M"],
+    ],
+    outlook: [],
+    quarterLabel: "Q1 2027",
+    source: "1650372/000165037226000049/ex991q1fy27.htm",
+    ticker: "team",
+  },
+  {
+    company: "Enbridge",
+    metrics: [
+      ["adjusted_eps", "C$0.49"],
+      ["gaap_eps", "C$0.59"],
+    ],
+    outlook: [
+      ["Adj EBITDA", "C$20.2B to C$20.8B"],
+      ["DCF/share", "C$5.7 to C$6.1"],
+    ],
+    quarterLabel: "Q3 2026",
+    source: "895728/000119312526450711/enb-ex99_1.htm",
+    ticker: "enb",
+  },
+  {
+    company: "Riot Platforms",
+    metrics: [["revenue", "$181.4M"]],
+    outlook: [],
+    quarterLabel: "Q3 2026",
+    source: "1167419/000110465926122368/riot-ex99d1.htm",
+    ticker: "riot",
+  },
+  {
+    company: "Coherent",
+    fixture: "cohr-q1-2027",
+    metrics: [
+      ["adjusted_eps", "$2.09"],
+      ["gaap_eps", "$1.90"],
+      ["revenue", "$2.37B"],
+      ["net_income", "$384.7M"],
+    ],
+    outlook: [
+      ["Q2 Revenue", "$2.55B to $2.75B"],
+      ["Q2 Adj EPS", "$2.28 to $2.48"],
+      ["Q2 Gross margin", "40% to 42%"],
+      ["Q2 Operating expenses", "$430M to $450M"],
+      ["Q2 Tax rate", "18% to 20%"],
+    ],
+    quarterLabel: "Q1 2027",
+    source: "820318/000119312526447200/d176836dex991.htm",
+    ticker: "cohr",
+  },
+  {
+    company: "McKesson",
+    metrics: [
+      ["adjusted_eps", "$11.68"],
+      ["gaap_eps", "$10.44"],
+      ["revenue", "$110.96B"],
+      ["net_income", "$1.22B"],
+    ],
+    outlook: [["FY2027 Adj EPS", "$45.6 to $46.4"]],
+    quarterLabel: "Q2 2027",
+    source: "927653/000092765326000279/mck_exhibit991x9302026.htm",
+    ticker: "mck",
+  },
 ];
 
 describe("earnings result filing corpus", () => {
   for (const filing of filingCorpus) {
     test(`${filing.ticker.toUpperCase()} (${filing.company}) parses to its verified figures`, () => {
       const document = parseEarningsDocument(
-        readEarningsFilingFixture(filing.ticker),
+        readEarningsFilingFixture(filing.fixture ?? filing.ticker),
       );
 
       expect(document.quarterLabel).toBe(filing.quarterLabel);
@@ -3373,7 +3469,7 @@ describe("earnings result filing corpus", () => {
   }
 
   test("covers every stored fixture", () => {
-    expect(filingCorpus.map(filing => filing.ticker).sort())
+    expect(filingCorpus.map(filing => filing.fixture ?? filing.ticker).sort())
       .toEqual(listEarningsFilingFixtures());
   });
 });
