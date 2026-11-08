@@ -1,0 +1,5 @@
+Johnson & Johnson reports Q3 2026 results
+<table>
+<tr><td>Q3</td><td>2026</td><td>2025</td></tr>
+<tr><td>Adjusted EPS (diluted)<font style="top:-3.48pt;vertical-align:baseline">1,4</font></td><td></td><td>$2.59</td><td>$2.80</td></tr>
+</table>

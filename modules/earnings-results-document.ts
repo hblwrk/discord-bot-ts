@@ -35,7 +35,7 @@ export function htmlToText(html: string): string {
     .replace(/<sup\b[^>]*>\s*\(?\d{1,2}\)?\s*<\/sup\s*>/gi, "")
     // Workiva represents superscripts as raised, small font elements rather than <sup>.
     // Remove those numeric references before stripping the presentational font tags.
-    .replace(/<font\b[^>]*\btop:\s*-\d+(?:\.\d+)?pt[^>]*>\s*\(?\d{1,2}\)?\s*<\/font\s*>/gi, "")
+    .replace(/<font\b[^>]*\btop:\s*-\d+(?:\.\d+)?pt[^>]*>\s*\(?\d{1,2}(?:,\s*\d{1,2})*\)?\s*<\/font\s*>/gi, "")
     // Other Workiva filings use vertical-align for the same kind of footnote marker.
     .replace(/<font\b[^>]*\bvertical-align:\s*super\b[^>]*>\s*\(?\d{1,2}\)?\s*<\/font\s*>/gi, "")
     .replace(/<br\s*\/?>/gi, "\n")
@@ -161,6 +161,12 @@ export function getDocumentCurrencyCode(lines: string[]): string | undefined {
     /\bexpressed\s+in\s+(?:thousands?|millions?)\s+of\s+Canadian\s+dollars?\b/i.test(line));
   if (undefined !== statementCurrencyDeclaration) {
     return "CAD";
+  }
+
+  // A euro-denominated statement can spell out its unit instead of printing a symbol
+  // in each value cell ("Figures in millions of euros").
+  if (headerLines.some(line => /\bfigures\s+in\s+(?:millions?|billions?)\s+of\s+euros?\b/i.test(line))) {
+    return "EUR";
   }
 
   const currencyDeclaration = headerLines
@@ -329,6 +335,16 @@ export function getQuarterLabel(text: string): string | undefined {
   );
   if (undefined !== fiscalYearResultsMatch?.[1]) {
     return `Q4 ${normalizeFiscalYear(fiscalYearResultsMatch[1])}`;
+  }
+
+  // A reported-quarter headline can place its Q label after the result figures, while
+  // the next line introduces a different quarter's sales guidance. Fiscal title rules
+  // above still take precedence when the fiscal and calendar quarters differ.
+  const reportedQuarterHeadline = leadingText.match(
+    /\breports?\b[^\n]{0,180}\b(Q[1-4])\s+(20\d{2})\b/i,
+  );
+  if (undefined !== reportedQuarterHeadline?.[1] && undefined !== reportedQuarterHeadline[2]) {
+    return `${reportedQuarterHeadline[1].toUpperCase()} ${reportedQuarterHeadline[2]}`;
   }
 
   const fiscalQuarterMatch = text.match(/\b(Q[1-4])\s+(?:fiscal\s+year|FY|FYE)\s*(20\d{2}|\d{2})\b/i);

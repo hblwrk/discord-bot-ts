@@ -129,6 +129,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?)\s+loss\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,
       /\b(?:basic\s+and\s+diluted\s+)?loss\s+per\s+(?:common\s+|ordinary\s+)?share\b/i,
       /\bdiluted\s+eps\b/i,
+      /\bper\s+share\s+available\s+to\s+common\s+shareholders\b/i,
       new RegExp(String.raw`${gaapTermSource}\s+(?:diluted\s+)?eps\b`, "i"),
       /\b(?:reported\s+)?(?:net\s+)?earnings?\b(?:(?![.!?]\s)[^!?\n]){0,180}?(?<metricValue>-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?)\s+per\s+(?:common\s+)?(?:diluted\s+)?share(?:\s*[-–—]\s*diluted)?\b/i,
       /(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?(?:\s*(?:cents?|¢))?)\s+per\s+(?:fully\s+)?(?:common\s+)?diluted\s+share\b/i,
@@ -210,8 +211,12 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
 ];
 
 export function getQuarterSpecificMetricLines(lines: string[]): MetricLineSelection {
-  const startIndex = lines.findIndex(line =>
-    isQuarterSpecificSectionLine(line) || isMixedMonthQuarterResultsLine(line));
+  const startIndex = lines.findIndex((line, index) =>
+    (isQuarterSpecificSectionLine(line) &&
+      false === isSegmentOnlyQuarterSection(lines, index) &&
+      false === lines.slice(0, index).some(previous =>
+        /^\s*segment\s+performance\s*$/i.test(previous))) ||
+    isMixedMonthQuarterResultsLine(line));
   if (-1 === startIndex) {
     return {
       exclusive: false,
@@ -243,6 +248,16 @@ export function getQuarterSpecificMetricLines(lines: string[]): MetricLineSelect
     exclusive,
     lines: [...getGoverningScaleDeclarations(lines, startIndex), ...selectedLines],
   };
+}
+
+function isSegmentOnlyQuarterSection(lines: string[], sectionIndex: number): boolean {
+  const heading = lines.slice(sectionIndex + 1, sectionIndex + 2).join("");
+  const detail = lines.slice(sectionIndex + 2, sectionIndex + 3).join("");
+  // A generic "Third Quarter Results" title can introduce a single business segment.
+  // Its first short subheading is repeated at the start of the segment's result prose.
+  // Treating that window as the company-wide quarter hides the consolidated summary.
+  return /^[A-Za-z][A-Za-z &-]{4,60}$/.test(heading) &&
+    detail.toLowerCase().startsWith(`${heading.toLowerCase()} `);
 }
 
 // The unit declaration governing a section's figures ("$ in millions") usually sits above
@@ -366,6 +381,11 @@ export function getMetricLineWithContinuation(
     // the measure with a different figure ("(1) non-GAAP EPS included $3.03 of charges").
     // Joined to the row, that figure becomes the only currency-cued value in it.
     if (true === isDefinitionalLine(nextLine)) {
+      break;
+    }
+
+    if ("eps" === definition.valueType && /^\s*\d{1,3}\s*$/.test(nextLine) &&
+        /^\s*(?:\|\s*){3,}$/.test(lines[index + 1] ?? "")) {
       break;
     }
 
@@ -569,6 +589,10 @@ function isNarrativePerShareDetailLine(line: string): boolean {
 // Summary tables mark not-meaningful comparisons with "*", "--" or a bare "%", so those
 // cells must not end the run of value cells belonging to the label above.
 function isValueOnlyLine(line: string): boolean {
+  // A page number followed by empty layout cells is not an EPS value.
+  if (/^\s*\d{1,3}(?:\s*\|\s*){3,}$/.test(line)) {
+    return false;
+  }
   return /^[\s|$€£¥(),.\-*\d%—–]+$/.test(line);
 }
 

@@ -2,92 +2,177 @@ import {describe, expect, test} from "vitest";
 import {appendTwitterBadgeText, type TwitterBadge} from "./twitter-badge-text.ts";
 
 const link = "From <@123>: https://fxtwitter.com/example/status/123";
-const checkField = {name: "AI web cross-check: contradicted", value: "[Source](https://www.reuters.com/world/article)"};
-const checkText = "**AI: contradicted** · [source](<https://www.reuters.com/world/article>)";
+const checkField = {name: "AI web cross-check: contradicted", value: "[Source](https://example.org/report)"};
 
 describe("appendTwitterBadgeText", () => {
-  test("adds a compact score and reality check while preserving credit and links", () => {
+  test("keeps a badge and its source inside a spoilered link", () => {
+    const spoilered = "From <@123>: ||https://fxtwitter.com/example/status/123||";
+    expect(appendTwitterBadgeText(spoilered, [{linkNumber: 1, embed: {
+      title: "🟡 50% Spiciness — Caution",
+      fields: [checkField],
+    }}], false)).toBe("From <@123>: ||https://fxtwitter.com/example/status/123  🟡 Caution [source](<https://example.org/report>)||");
+  });
+
+  test("keeps each badge with its link when spoilered and open links are mixed", () => {
+    const links = "||https://fxtwitter.com/example/status/123||\nhttps://fxtwitter.com/example/status/456";
+    const badges = [1, 2].map(linkNumber => ({linkNumber, embed: {title: "Caution"}}));
+    expect(appendTwitterBadgeText(links, badges, true)).toBe(
+      "||https://fxtwitter.com/example/status/123  Caution||\nhttps://fxtwitter.com/example/status/456  Caution",
+    );
+  });
+
+  test("links a checked price move beside the Twitter URL", () => {
     expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
+      title: "🟡 10% Spiciness — Price move checked",
+      fields: [{name: "AI web cross-check: unverified", value: "Independent evidence unavailable"},
+        {name: "Stock quote: supported", value: "[Source](https://finance.yahoo.com/quote/CBRS/history/)"}],
+    }}], false)).toBe(`${link}  🟡 Price move checked [source](<https://finance.yahoo.com/quote/CBRS/history/>)`);
+  });
+
+  test("briefly explains a price discrepancy with its quote source", () => {
+    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
+      title: "🟡 10% Spiciness — Price figure differs",
+      description: "The quote shows a 40% fall from the debut open.",
+      fields: [{name: "AI web cross-check: supported", value: "[Source](https://reuters.com/world/report)"},
+        {name: "Stock quote: contradicted", value: "[Source](https://finance.yahoo.com/quote/CBRS/history/)"}],
+    }}], false)).toBe(`${link}  🟡 Price figure differs — The quote shows a 40% fall from the debut open. [source](<https://finance.yahoo.com/quote/CBRS/history/>)`);
+  });
+
+  test("links credibility evidence for a source concern, not an unrelated price chart", () => {
+    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
+      title: "🟡 10% Spiciness — Source credibility concerns",
+      fields: [{name: "AI web cross-check: unverified", value: "Independent evidence unavailable"},
+        {name: "Source credibility: concerns (linked site)", value: "[Evidence](https://example.org/source-review)"},
+        {name: "Stock quote: supported", value: "[Source](https://finance.yahoo.com/quote/CBRS/history/)"}],
+    }}], false)).toBe(`${link}  🟡 Source credibility concerns [source](<https://example.org/source-review>)`);
+  });
+  test("shows a single public report as neutral attribution on the link line", () => {
+    const badge = {title: "ℹ️ Reported claim", fields: [{name: "Report source", value: "[Source](https://bloomberg.com/news/articles/report)"}]};
+    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: badge}], false))
+      .toBe(`${link}  ℹ️ Reported [source](<https://bloomberg.com/news/articles/report>)`);
+    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {title: "ℹ️ Reported claim"}}], false)).toBe(link);
+  });
+  test("shows a short combined status and one source", () => {
+    const text = appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
+      title: "🟢 10% Spiciness — Supported claim, low spice, credible source",
+      description: "The council approved the plan.",
+      fields: [
+        {name: "AI web cross-check: supported (review sources)", value: "[Source 1](https://example.org/report) · [Source 2](https://example.com/other)"},
+        {name: "Source credibility: credible (@example)", value: "[Evidence](https://example.org/about)"},
+        {name: "Community Note via FxTwitter", value: "A note excerpt."},
+      ],
+    }}], false);
+    expect(text).toBe(`${link}  🟢 Supported claim [source](<https://example.org/report>)`);
+  });
+
+  test("omits wording score and long explanation for a caution", () => {
+    const text = appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
       title: "🟡 50% Spiciness (Caution)",
       description: "Verify the original evidence before sharing.",
-      fields: [checkField, {name: "Signals", value: "caps"}, {name: "Context", value: "1 video"}],
-    }}], false)).toBe(`${link}\n-# 🟡 50% wording spice · ${checkText}\n-# Verify the original evidence before sharing.`);
+      fields: [checkField],
+    }}], false);
+    expect(text).toBe(`${link}  🟡 Caution [source](<https://example.org/report>)`);
   });
 
-  test("retains AI attribution and full citation without adding source previews", () => {
+  test("shows a red contradiction with just one factual source link", () => {
+    const text = appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
+      title: "🔴 10% Spiciness — Claim contradicted",
+      description: "The chart covers a different date.",
+      fields: [{name: "AI web cross-check: contradicted (review sources)",
+        value: "[Source 1](https://reuters.com/world/report) · [Source 2](https://apnews.com/article/report)"}],
+    }}], false);
+    expect(text).toBe(`${link}  🔴 Claim contradicted — The chart covers a different date. [source](<https://reuters.com/world/report>)`);
+  });
+
+  test("briefly explains a cited yellow contradiction", () => {
+    const text = appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
+      title: "🟡 10% Spiciness — Claim contradicted",
+      description: "The report shows correlation, not causation.",
+      fields: [{name: "AI web cross-check: contradicted (review sources)",
+        value: "[Source 1](https://reuters.com/world/report)"}],
+    }}], false);
+    expect(text).toBe(`${link}  🟡 Claim contradicted — The report shows correlation, not causation. [source](<https://reuters.com/world/report>)`);
+  });
+
+  test("keeps the rating and source when a brief reason does not fit", () => {
+    const compact = "🔴 Claim contradicted [source](<https://reuters.com/world/report>)";
+    const base = "x".repeat(2_000 - compact.length - 2);
+    const badge: TwitterBadge = {linkNumber: 1, embed: {
+      title: "🔴 10% Spiciness — Claim contradicted",
+      description: "The chart covers a different date.",
+      fields: [{name: "AI web cross-check: contradicted (review sources)",
+        value: "[Source 1](https://reuters.com/world/report)"}],
+    }};
+    expect(appendTwitterBadgeText(base, [badge], false)).toBe(`${base}  ${compact}`);
+  });
+
+  test("shows a useful label when a check has no usable source link", () => {
     expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
-      title: "🟡 50% Spiciness (Caution)", description: "An attributed reality check.",
-      fields: [{name: "AI web cross-check: disputed", value: "[Source](https://www.reuters.com/world/article)"}],
-    }}], false)).toBe(`${link}\n-# 🟡 50% wording spice · **AI: disputed** · [source](<https://www.reuters.com/world/article>)\n-# An attributed reality check.`);
+      title: "🟡 50% Spiciness (Caution)", fields: [{name: "AI web cross-check: disputed", value: "Source unavailable"}],
+    }}], false)).toBe(`${link}  🟡 Caution`);
   });
 
-  test("retains the note excerpt, attribution, evidence links and rating disclaimer", () => {
-    const value = "A note excerpt.\n[Post](https://x.com/example/status/123) · [Source](https://example.org/article)\nRating status and cited evidence are unverified.";
-    const text = appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
-      title: "🟢 10% Spiciness — Low sensationalism", description: "Reporting contradicts this claim.",
-      fields: [checkField, {name: "Community Note via FxTwitter (excerpt)", value}],
-    }}], false);
-    expect(text).toBe(`${link}\n-# 🟢 10% wording spice · ${checkText}\n-# Reporting contradicts this claim.\n-# **Community Note via FxTwitter (excerpt)**\n-# A note excerpt.\n-# [Post](<https://x.com/example/status/123>) · [Source](<https://example.org/article>)\n-# Rating status and cited evidence are unverified.`);
+  test.each([
+    ["Claim contradicted", "Claim contradicted"],
+    ["Source credibility concerns", "Source credibility concerns"],
+    ["Wording caution", "Wording caution"],
+    ["Fact check pending", "Checking claim"],
+    ["Fact check unverified", "Claim unverified"],
+    ["Source check pending", "Checking source credibility"],
+    ["Account caution", "Account caution"],
+  ])("explains a yellow %s assessment briefly", (reason, expected) => {
+    expect(appendTwitterBadgeText("", [{linkNumber: 1, embed: {
+      title: `🟡 10% Spiciness — ${reason}`, fields: [{name: "AI web cross-check: unverified", value: "No source"}],
+    }}], false)).toBe(`-# 🟡 ${expected}`);
   });
 
-  test("uses original link positions without an extra caveat line", () => {
+  test("uses original link positions for multiple badges", () => {
     const badges: TwitterBadge[] = [1, 3].map(linkNumber => ({linkNumber, embed: {title: "🟡 50% Spiciness — Caution", fields: [checkField]}}));
-    expect(appendTwitterBadgeText(link, badges, true)).toBe(`${link}\n-# Link 1: 🟡 50% wording spice · ${checkText}\n-# Link 3: 🟡 50% wording spice · ${checkText}`);
+    const links = `${link}\nhttps://fxtwitter.com/example/status/456\nhttps://fxtwitter.com/example/status/789`;
+    expect(appendTwitterBadgeText(links, badges, true)).toBe(
+      `${link}  🟡 Caution [source](<https://example.org/report>)\nhttps://fxtwitter.com/example/status/456\n`
+      + "https://fxtwitter.com/example/status/789  🟡 Caution [source](<https://example.org/report>)",
+    );
   });
 
-  test("displays a contradicted verdict independently of a low wording score", () => {
-    const text = appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
-      title: "🟢 10% Spiciness — Low sensationalism",
-      description: "Reporting contradicts this claim.", fields: [checkField],
-    }}], false);
-    expect(text).toBe(`${link}\n-# 🟢 10% wording spice · ${checkText}\n-# Reporting contradicts this claim.`);
-    expect(text).not.toContain("skipped");
-  });
-
-  test("keeps the proxy post reference alongside the completed low-score AI check", () => {
-    const text = appendTwitterBadgeText("", [{linkNumber: 1, embed: {
-      title: "🟢 20% Spiciness — Low sensationalism",
-      description: "Reporting contradicts this claim.\nPost: <https://fixvx.com/a/status/123>", fields: [checkField],
-    }}], false);
-    expect(text).toBe(`-# 🟢 20% wording spice · ${checkText}\n-# Reporting contradicts this claim.\n-# Post: <https://fixvx.com/a/status/123>`);
-  });
-
-  test.each([10, 50, 95])("omits scored badges without a completed AI check at %s%%, including notes alone", score => {
-    for (const fields of [[], [{name: "Community Note via FxTwitter", value: "A note excerpt."}]]) {
-      expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
-        title: `🟢 ${score}% Spiciness — Low sensationalism`, description: "A claim without an AI verdict.", fields,
-      }}], false)).toBe(link);
-    }
+  test("omits scored badges without a completed AI check", () => {
+    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
+      title: "🟢 10% Spiciness — Low sensationalism", fields: [{name: "Community Note via FxTwitter", value: "A note excerpt."}],
+    }}], false)).toBe(link);
   });
 
   test("omits untitled and empty assessments", () => {
     expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {description: "orphaned text"}}], false)).toBe(link);
     expect(appendTwitterBadgeText(link, [], false)).toBe(link);
-    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {title: "Unavailable", description: ""}}], false)).toBe(`${link}\n-# Unavailable`);
+    expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {title: "Unavailable", description: ""}}], false)).toBe(`${link}  Unavailable`);
   });
 
-  test("fits the exact message limit and omits an assessment one character over it", () => {
+  test("fits the exact message limit and omits a badge one character over it", () => {
     const badge = {linkNumber: 1, embed: {title: "🟢 10% Spiciness — Low sensationalism", fields: [checkField]}};
-    const suffix = appendTwitterBadgeText("", [badge], false);
-    const base = "x".repeat(2_000 - suffix.length - 1);
+    const badgeText = appendTwitterBadgeText("", [badge], false).slice(3);
+    const base = "x".repeat(2_000 - badgeText.length - 2);
     expect(appendTwitterBadgeText(base, [badge], false).length).toBe(2_000);
     expect(appendTwitterBadgeText(`${base}x`, [badge], false)).toBe(`${base}x`);
   });
 
-  test("omits the whole AI claim if its complete citation cannot fit", () => {
+  test("omits an indicator when its source link does not fit", () => {
     const base = "x".repeat(1_850);
     expect(appendTwitterBadgeText(base, [{linkNumber: 1, embed: {
-      title: "🟡 50% Spiciness (Caution)", description: "A factual claim.",
-      fields: [{name: "AI web cross-check: disputed", value: `[Source](https://www.reuters.com/${"a".repeat(150)})`}],
+      title: "🟡 50% Spiciness (Caution)",
+      fields: [{name: "AI web cross-check: disputed", value: `[Source](https://example.org/${"a".repeat(150)})`}],
     }}], false)).toBe(base);
   });
 
-  test("keeps earlier badges when later evidence overflows and allows subsequent small badges", () => {
+  test("keeps earlier badges when a later badge overflows", () => {
+    const links = `${link}\nhttps://fxtwitter.com/example/status/456\nhttps://fxtwitter.com/example/status/789`;
     const badges = [
       {linkNumber: 1, embed: {title: "First"}},
-      {linkNumber: 2, embed: {title: "Second", fields: [{name: "Community Note via FxTwitter", value: "x".repeat(2_000)}]}},
+      {linkNumber: 2, embed: {title: "🟡 50% Spiciness — Caution", fields: [
+        {name: "AI web cross-check: supported", value: `[Source](https://example.org/${"a".repeat(2_000)})`},
+      ]}},
       {linkNumber: 3, embed: {title: "Third"}},
     ];
-    expect(appendTwitterBadgeText(link, badges, true)).toBe(`${link}\n-# Link 1: First\n-# Link 3: Third`);
+    expect(appendTwitterBadgeText(links, badges, true))
+      .toBe(`${link}  First\nhttps://fxtwitter.com/example/status/456\nhttps://fxtwitter.com/example/status/789  Third`);
   });
 });

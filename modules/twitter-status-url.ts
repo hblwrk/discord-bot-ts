@@ -2,6 +2,11 @@ const fxHosts = new Set(["fxtwitter.com", "fixupx.com", "twittpr.com", "xfixup.c
 const vxHosts = new Set(["vxtwitter.com", "fixvx.com"]);
 const fxModifiers = new Set(["d", "dl", "t", "i", "g", "m", "o"]);
 
+export function isTwitterProxyDomain(hostname: string): boolean {
+  const host = hostname.toLowerCase();
+  return [...fxHosts, ...vxHosts].some(domain => host === domain || host.endsWith(`.${domain}`));
+}
+
 // Resolve only known proxy post URLs. Metadata always uses the fixed FxTwitter
 // API endpoint, never the supplied host, query parameters or redirect target.
 export function getTwitterStatusId(value: string): string | undefined {

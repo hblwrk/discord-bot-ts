@@ -4,13 +4,13 @@ import {crossCheckTwitterPost} from "./twitter-sanity-check.ts";
 import {createTwitterIntrospector} from "./twitter-sanity.ts";
 import {addTwitterLinkRewrites} from "./twitter-link-rewrite.ts";
 import {createEventClient} from "./test-utils/discord-mocks.ts";
+import {twitterProxyHosts} from "./test-utils/twitter-proxy-hosts.ts";
 
 const logger = vi.hoisted(() => ({log: vi.fn()}));
 vi.mock("./logging.ts", () => ({getLogger: () => logger}));
 
-// Transcribed provider output from the reported failure. This fixture tests
-// response transport/validation, not the accuracy of the provider's claim.
-const sentence = "AP reported that Spanish police escorted migrants away from Ceuta and that local authorities described the operation as cleaning up the city after the surge; the post’s exact wording is opinionated, but the underlying cleanup claim matches.";
+// This fixture tests response transport/validation, not the accuracy of the provider's claim.
+const sentence = "Spanish police escorted migrants away from Ceuta during a cleanup operation.";
 const sources = [
   "https://apnews.com/article/fe8e003171d5ce019d978ed9eaea49ed",
   "https://apnews.com/article/9960b15a7cf31a0592b09ac47a8eac3f",
@@ -60,29 +60,37 @@ describe("Twitter review with OpenAI search sources", () => {
     expect(logger.log).toHaveBeenCalledExactlyOnceWith("debug", "Twitter/X web cross-check skipped: no accepted source in provider search metadata.");
   });
 
-  test.each(["x.com", "fxtwitter.com"])("delivers the completed review for %s without replacing native embeds", async host => {
+  test.each(["x.com", ...twitterProxyHosts])("delivers the completed review for %s without replacing native embeds", async host => {
     const deps = dependencies();
+    const getWithRetryFn = vi.fn().mockResolvedValue({data: {status: {id: "2106661915741114638", text: post.text,
+      quote: {text: post.quotedText}, media: {videos: [{}]},
+    }}});
     const introspect = createTwitterIntrospector({...deps,
-      getWithRetryFn: vi.fn().mockResolvedValue({data: {status: {id: "2106661915741114638", text: post.text,
-        quote: {text: post.quotedText}, media: {videos: [{}]},
-      }}}),
+      classifyForReviewFn: vi.fn().mockResolvedValue("news"),
+      getWithRetryFn,
     });
     const {client, getHandler} = createEventClient();
     addTwitterLinkRewrites(client, introspect);
     const response = {edit: vi.fn().mockResolvedValue(undefined)};
-    const message = {id: "reported-review", author: {id: "123"}, content: `https://${host}/RadioGenoa/status/2106661915741114638`,
+    const url = `https://${host}/RadioGenoa/status/2106661915741114638?s=20`;
+    const deliveredUrl = host === "x.com" ? "https://fxtwitter.com/RadioGenoa/status/2106661915741114638" : url;
+    const message = {id: "reported-review", author: {id: "123"}, content: url,
       embeds: [{type: "video"}], channel: {send: vi.fn().mockResolvedValue(response)},
       reply: vi.fn().mockResolvedValue(response), delete: vi.fn().mockResolvedValue(undefined), suppressEmbeds: vi.fn().mockResolvedValue(undefined),
     };
     await getHandler("messageCreate")(message);
     const delivered = response.edit;
-    await vi.waitFor(() => { expect(delivered).toHaveBeenCalledTimes(1); });
-    const options = delivered.mock.calls[0]?.[0];
-    expect(options.content).toContain(sentence);
-    expect(options.content).toContain("**AI: supported**");
-    expect(options.content).toContain(`[source](<${sources[0]}>)`);
+    await vi.waitFor(() => {
+      expect(delivered.mock.lastCall?.[0]?.content).toBe(`From <@123>: ${deliveredUrl}  🟢 Supported claim [source](<${sources[0]}>)`);
+    });
+    expect(delivered.mock.calls[0]?.[0]?.content).toBe(`From <@123>: ${deliveredUrl}  🔎 Checking`);
+    const options = delivered.mock.lastCall?.[0];
+    expect(options.content).toBe(`From <@123>: ${deliveredUrl}  🟢 Supported claim [source](<${sources[0]}>)`);
     expect(options).not.toHaveProperty("embeds");
     expect(options).not.toHaveProperty("flags");
+    expect(getWithRetryFn).toHaveBeenCalledExactlyOnceWith("https://api.fxtwitter.com/2/status/2106661915741114638",
+      expect.anything(), expect.anything());
+    expect(deps.postWithRetryFn).toHaveBeenCalledTimes(1);
     expect(message.suppressEmbeds).not.toHaveBeenCalled();
     expect(message.channel.send).toHaveBeenCalledTimes(1);
     expect(message.reply).not.toHaveBeenCalled();

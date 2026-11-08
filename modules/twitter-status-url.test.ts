@@ -1,12 +1,9 @@
 import {describe, expect, test} from "vitest";
 import {getTwitterStatusId} from "./twitter-status-url.ts";
+import {twitterProxyHosts} from "./test-utils/twitter-proxy-hosts.ts";
 
 describe("getTwitterStatusId", () => {
-  test.each([
-    "fxtwitter.com", "fixupx.com", "twittpr.com", "xfixup.com", "vxtwitter.com", "fixvx.com",
-    "www.fxtwitter.com", "www.fixvx.com", "d.fxtwitter.com", "dl.fxtwitter.com", "g.fixupx.com",
-    "m.fxtwitter.com", "t.fxtwitter.com", "i.fxtwitter.com", "o.fxtwitter.com", "c.vxtwitter.com", "c.fixvx.com",
-  ])("recognises proxy %s without depending on its server", host => {
+  test.each(twitterProxyHosts)("recognises proxy %s without depending on its server", host => {
     expect(getTwitterStatusId(`https://${host}/Example/status/2106661915741114638?s=20#video`)).toBe("2106661915741114638");
   });
 
