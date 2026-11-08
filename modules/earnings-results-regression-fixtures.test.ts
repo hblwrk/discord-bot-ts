@@ -26,6 +26,18 @@ describe("focused earnings regression fixtures", () => {
     expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$20.3B");
   });
 
+  test("uses reported net loss instead of the goodwill impairment in a loss footnote", () => {
+    const document = parseEarningsDocument(readFixture("net-loss-vs-impairment-charge"));
+    expect(document.metrics.find(metric => metric.key === "net_income")?.value).toBe("-$988.11M");
+  });
+
+  test("labels a single-period EPS outlook when its fiscal year follows the range", () => {
+    const document = parseEarningsDocument(readFixture("trailing-fiscal-year-outlook"));
+    expect(document.outlook.map(metric => [metric.periodLabel, metric.key, metric.value])).toEqual([
+      ["FY2027", "adjusted_eps", "$1.15 to $1.35"],
+    ]);
+  });
+
   test("reads quarter EPS from a combined month and quarter per-share row", () => {
     const document = parseEarningsDocument(readFixture("month-and-quarter-common-share-earnings"));
     expect(document.metrics.find(metric => metric.key === "gaap_eps")?.value).toBe("$4.37");

@@ -468,6 +468,7 @@ function extractMetric(
 
 // A narrative can mention that net income helped a different measure and state only that
 // second measure's amount ("an increase in net income ... free cash flow increased $32M").
+// A loss footnote can likewise name net loss before giving only the goodwill charge.
 // The first currency token after the net-income words does not belong to net income there.
 function hasDifferentMoneyMetricBeforeValue(line: string, pattern: RegExp): boolean {
   pattern.lastIndex = 0;
@@ -484,7 +485,7 @@ function hasDifferentMoneyMetricBeforeValue(line: string, pattern: RegExp): bool
     return false;
   }
 
-  return /\b(?:free\s+cash\s+flow|cash\s+flow\s+from\s+operations|capital\s+expenditures?|revenues?|net\s+sales|operating\s+income)\b/i
+  return /\b(?:free\s+cash\s+flow|cash\s+flow\s+from\s+operations|capital\s+expenditures?|revenues?|net\s+sales|operating\s+income|(?:goodwill\s+)?impairment\s+charge)\b/i
     .test(valueText.slice(0, firstMoneyValueIndex));
 }
 
