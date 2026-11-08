@@ -1011,7 +1011,10 @@ function extractOutlookMetricsForDefinition(
         continue;
       }
 
-      const periodLabel = true === includePeriodLabel
+      // A single-period outlook still needs a label when the metric sentence names its
+      // fiscal year after the value, as in NIKE's adjusted EPS range for fiscal 2027.
+      const periodLabel = true === includePeriodLabel ||
+          /\bfor\s+fiscal\s+20\d{2}\b/i.test(line)
         ? getOutlookPeriodLabel(lines, lineIndex, sectionHeading, quarterLabel)
         : undefined;
       if (true === includePeriodLabel && undefined === periodLabel) {
