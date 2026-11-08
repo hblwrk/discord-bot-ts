@@ -66,6 +66,7 @@ describe("Twitter review with OpenAI search sources", () => {
       quote: {text: post.quotedText}, media: {videos: [{}]},
     }}});
     const introspect = createTwitterIntrospector({...deps,
+      classifyForReviewFn: vi.fn().mockResolvedValue("news"),
       getWithRetryFn,
     });
     const {client, getHandler} = createEventClient();

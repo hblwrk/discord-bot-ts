@@ -22,9 +22,22 @@ describe("Twitter sensationalism index", () => {
     ["Share this before they delete it", 30, "Pressure to react or re-share"],
     ["You are being lied to", 30, "Us-versus-them framing"],
     ["A new report!!!", 20, "Repeated alarm punctuation"],
-    ["THIS REPORT CONTAINS FIVE LARGE WORDS", 30, "Heavy ALL-CAPS wording"],
+    ["THIS REPORT CONTAINS FIVE LARGE WORDS", 20, "Heavy ALL-CAPS wording"],
   ])("pins the weight for %s", (text, score, signal) => {
     expect(scoreTwitterPost({...post, text})).toMatchObject({score, signals: [signal]});
+  });
+
+  test("keeps an all-caps finance headline below caution unless another wording signal appears", () => {
+    const headline = "*EU COMMISSION WARNS OF VERY DIFFICULT WINTER AMID HIGH ENERGY PRICES\n\n*EU COMMISSION SEES AFFORDABILITY CRISIS, VOLATILE OUTLOOK";
+    expect(scoreTwitterPost({...post, text: headline})).toMatchObject({
+      score: 20, signals: ["Heavy ALL-CAPS wording"],
+    });
+    expect(scoreTwitterPost({...post, text: `${headline} 🧵👇`})).toMatchObject({
+      score: 20, signals: ["Heavy ALL-CAPS wording"],
+    });
+    expect(scoreTwitterPost({...post, text: `${headline}!!!`})).toMatchObject({
+      score: 30, signals: ["Repeated alarm punctuation", "Heavy ALL-CAPS wording"],
+    });
   });
 
   test("adds a thread hook only with other sensational wording", () => {

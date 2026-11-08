@@ -32,6 +32,7 @@ describe("silent Twitter review delivery", () => {
     const crossCheckFn = vi.fn();
     const credibilityFn = vi.fn();
     addTwitterLinkRewrites(client, createTwitterIntrospector({logger, aiAvailableFn: () => true,
+      classifyForReviewFn: vi.fn().mockResolvedValue("news"),
       getWithRetryFn, crossCheckFn, credibilityFn}));
     const post = message(`https://${host}/PorscheNewsroom/status/123`);
     await getHandler("messageCreate")(post);
@@ -51,6 +52,7 @@ describe("silent Twitter review delivery", () => {
     const primaryStatementFn = vi.fn(() => primaryResult);
     const source = "https://www.airtable.com/newsroom/back-to-bases";
     const introspect = createTwitterIntrospector({logger, aiAvailableFn: () => true,
+      classifyForReviewFn: vi.fn().mockResolvedValue("news"),
       getWithRetryFn: vi.fn().mockResolvedValue({data: {status: {
         id: "123", text: "Airtable announced layoffs and shipped 30 improvements.",
         author: {screen_name: "Airtable"},
@@ -82,6 +84,7 @@ describe("silent Twitter review delivery", () => {
     const issuer = {organization: "Airtable", source: "https://www.airtable.com/newsroom/back-to-bases"};
     const primaryStatementFn = vi.fn().mockResolvedValueOnce(undefined).mockResolvedValueOnce(issuer);
     const introspect = createTwitterIntrospector({logger, aiAvailableFn: () => true, primaryRetryDelayMs: 10,
+      classifyForReviewFn: vi.fn().mockResolvedValue("news"),
       getWithRetryFn: vi.fn().mockResolvedValue({data: {status: {
         id: "123", text: "Airtable layoffs affect a large part of its team.", author: {screen_name: "trader"},
       }}}),
@@ -111,6 +114,7 @@ describe("silent Twitter review delivery", () => {
     const priceCheckFn = vi.fn().mockResolvedValue({verdict: "supported",
       sentence: "The quote shows a 58% fall from the debut open.", source});
     addTwitterLinkRewrites(client, createTwitterIntrospector({logger, aiAvailableFn: () => true,
+      classifyForReviewFn: vi.fn().mockResolvedValue("news"),
       getWithRetryFn: vi.fn().mockResolvedValue({data: {status: {id,
         created_at: "Tue Oct 13 07:10:04 +0000 2026",
         text: "Cerebras $CBRS is down ~58% since its stock market debut, hitting a new 52-week low.",
@@ -146,7 +150,7 @@ describe("silent Twitter review delivery", () => {
     expect(post.channel.send).not.toHaveBeenCalled();
   });
 
-  test.each(["x.com", "fixvx.com"])("%s adds a yellow badge when the review is disabled or missing credentials", async host => {
+  test.each(["x.com", "fixvx.com"])("%s keeps the link unrated when the review is disabled or missing credentials", async host => {
     for (const configured of ["none", "gemini", "openai"]) {
       const {client, getHandler} = createEventClient();
       const getWithRetryFn = vi.fn().mockResolvedValue({data: {status: {
@@ -158,12 +162,9 @@ describe("silent Twitter review delivery", () => {
       addTwitterLinkRewrites(client, introspect);
       const post = message(`https://${host}/a/status/123`);
       await getHandler("messageCreate")(post);
-      await vi.waitFor(() => { expect(post.response.edit).toHaveBeenCalledTimes(1); });
+      await vi.waitFor(() => { expect(getWithRetryFn).toHaveBeenCalledTimes(1); });
       expect(getWithRetryFn).toHaveBeenCalledTimes(1);
-      expect(post.response.edit).toHaveBeenCalledExactlyOnceWith({
-        content: `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123  🟡 Claim unverified`,
-        allowedMentions: {parse: [], repliedUser: false},
-      });
+      expect(post.response.edit).not.toHaveBeenCalled();
       expect(post.channel.send.mock.calls).toEqual([[{content: `From <@123>: https://${host === "x.com" ? "fxtwitter.com" : host}/a/status/123`, allowedMentions: {parse: []}}]]);
       expect(post.reply).not.toHaveBeenCalled();
       expect(post.delete).toHaveBeenCalledTimes(1);
@@ -179,6 +180,7 @@ describe("silent Twitter review delivery", () => {
         const aiCall = vi.fn().mockResolvedValue(outcome === "unverified" ? JSON.stringify({verdict: "unverified"}) : null);
         if (outcome === "throw" || outcome === "timeout") aiCall.mockRejectedValueOnce(new Error(outcome));
         const introspect = createTwitterIntrospector({logger, aiAvailableFn: () => true,
+          classifyForReviewFn: vi.fn().mockResolvedValue("news"),
           getWithRetryFn: vi.fn().mockResolvedValue({data: {status: {id: "123", text}}}),
           crossCheckFn: (post, deps) => crossCheckTwitterPost(post, deps, aiCall),
         });
@@ -205,6 +207,7 @@ describe("silent Twitter review delivery", () => {
     const review = new Promise<TwitterRealityCheck>(resolve => { finish = resolve; });
     const crossCheckFn = vi.fn(() => review);
     const introspect = createTwitterIntrospector({logger, aiAvailableFn: () => true, crossCheckFn,
+      classifyForReviewFn: vi.fn().mockResolvedValue("news"),
       getWithRetryFn: vi.fn().mockResolvedValue({data: {status: {id: "123", text: "The council approved the plan yesterday."}}}),
     });
     addTwitterLinkRewrites(client, introspect);
@@ -241,7 +244,8 @@ describe("silent Twitter review delivery", () => {
       media: {photos: [{}]}, quote: {text: "The network remained active."},
     }}});
     const crossCheckFn = vi.fn().mockResolvedValue(undefined);
-    addTwitterLinkRewrites(client, createTwitterIntrospector({logger, aiAvailableFn: () => true, getWithRetryFn, crossCheckFn}));
+    addTwitterLinkRewrites(client, createTwitterIntrospector({logger, aiAvailableFn: () => true, getWithRetryFn, crossCheckFn,
+      classifyForReviewFn: vi.fn().mockResolvedValue("research_statistic")}));
     const post = message(url);
     await getHandler("messageCreate")(post);
     await vi.waitFor(() => {

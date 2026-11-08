@@ -41,14 +41,15 @@ export function scoreTwitterPost(post: TwitterPostContext): TwitterSanityScore {
     }
   }
 
-  // Ignore short acronyms/tickers and require enough prose to measure shouting.
+  // Ignore short acronyms/tickers. ALL-CAPS headlines are common in finance,
+  // so capitalization alone should not reach the caution threshold.
   const words = text.match(/\p{L}{4,}/gu) ?? [];
   const caps = words.filter(word => word === word.toLocaleUpperCase() && word !== word.toLocaleLowerCase());
   if (words.length >= 5 && caps.length / words.length >= 0.6) {
-    score += 20;
+    score += 10;
     signals.push("Heavy ALL-CAPS wording");
   }
-  if (signals.length > 0 && /[🧵👇]/u.test(text)) {
+  if (signals.some(signal => signal !== "Heavy ALL-CAPS wording") && /[🧵👇]/u.test(text)) {
     score += 5;
     signals.push("Thread/click hook alongside sensational wording");
   }
