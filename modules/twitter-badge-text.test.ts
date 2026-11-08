@@ -5,6 +5,22 @@ const link = "From <@123>: https://fxtwitter.com/example/status/123";
 const checkField = {name: "AI web cross-check: contradicted", value: "[Source](https://example.org/report)"};
 
 describe("appendTwitterBadgeText", () => {
+  test("keeps a badge and its source inside a spoilered link", () => {
+    const spoilered = "From <@123>: ||https://fxtwitter.com/example/status/123||";
+    expect(appendTwitterBadgeText(spoilered, [{linkNumber: 1, embed: {
+      title: "🟡 50% Spiciness — Caution",
+      fields: [checkField],
+    }}], false)).toBe("From <@123>: ||https://fxtwitter.com/example/status/123  🟡 Caution [source](<https://example.org/report>)||");
+  });
+
+  test("keeps each badge with its link when spoilered and open links are mixed", () => {
+    const links = "||https://fxtwitter.com/example/status/123||\nhttps://fxtwitter.com/example/status/456";
+    const badges = [1, 2].map(linkNumber => ({linkNumber, embed: {title: "Caution"}}));
+    expect(appendTwitterBadgeText(links, badges, true)).toBe(
+      "||https://fxtwitter.com/example/status/123  Caution||\nhttps://fxtwitter.com/example/status/456  Caution",
+    );
+  });
+
   test("links a checked price move beside the Twitter URL", () => {
     expect(appendTwitterBadgeText(link, [{linkNumber: 1, embed: {
       title: "🟡 10% Spiciness — Price move checked",

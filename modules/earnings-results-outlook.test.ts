@@ -263,6 +263,7 @@ describe("extractOutlookMetrics", () => {
       {
         key: "gross_margin",
         label: "Gross margin",
+        periodLabel: "FY2026",
         value: "52%",
       },
     ]);
