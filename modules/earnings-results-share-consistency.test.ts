@@ -48,6 +48,10 @@ describe("per-share consistency gate", () => {
     }
   });
 
+  test("accepts a diluted share count stated in billions", () => {
+    expect(getInconsistentPerShareReasons(asMetrics(6_002_000_000, 3.19), 1.88)).toEqual([]);
+  });
+
   test("reads a sub-100 share mantissa with an explicit scale", () => {
     const document = parseEarningsDocument(`
       <html>

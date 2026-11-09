@@ -6,6 +6,111 @@ const fixtureDirectory = "modules/test-fixtures/earnings-regressions";
 const readFixture = (name: string): string => readFileSync(`${fixtureDirectory}/${name}.txt`, "utf8");
 
 describe("focused earnings regression fixtures", () => {
+  test("reads space-grouped USD revenue before marketplace GMV", () => {
+    const document = parseEarningsDocument(readFixture("spaced-usd-revenue-vs-marketplace-gmv"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$16.51B");
+  });
+
+  test("takes reported quarterly sales over the sales increase amount", () => {
+    const document = parseEarningsDocument(readFixture("reported-quarter-sales-vs-change-amount"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$20.7B");
+  });
+
+  test("reads the quarter's revenue level after a bn increase", () => {
+    const document = parseEarningsDocument(readFixture("quarter-revenue-after-bn-increase"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$18.6B");
+  });
+
+  test("prefers group operating sales to a trading volume", () => {
+    const document = parseEarningsDocument(readFixture("group-income-sales-vs-volume"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$68.4B");
+  });
+
+  test("uses the consolidated last column in a segment bridge", () => {
+    const document = parseEarningsDocument(readFixture("segment-bridge-consolidated-last"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$8.09B");
+    expect(document.metrics.find(metric => metric.key === "adjusted_eps")?.value).toBe("$1.24");
+    expect(document.metrics.find(metric => metric.key === "net_income")?.value).toBe("$4.775B");
+  });
+
+  test("takes quarterly values from a vertical quarter and nine-month statement", () => {
+    const document = parseEarningsDocument(readFixture("vertical-quarter-vs-nine-month-statement"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$66.82B");
+    expect(document.metrics.find(metric => metric.key === "gaap_eps")?.value).toBe("$3.66");
+  });
+
+  test("reads adjusted EPS before the excluded per-share charge", () => {
+    const document = parseEarningsDocument(readFixture("adjusted-eps-before-excluded-charge"));
+    expect(document.metrics.find(metric => metric.key === "adjusted_eps")?.value).toBe("$3.68");
+  });
+
+  test("keeps USD results when a yen amount describes a pack price", () => {
+    const document = parseEarningsDocument(readFixture("jpy-pack-price-vs-usd-results"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$11.4B");
+    expect(document.metrics.find(metric => metric.key === "gaap_eps")?.value).toBe("$2.12");
+  });
+
+  test("uses core EPS guidance and omits cost and dividend amounts", () => {
+    const document = parseEarningsDocument(readFixture("core-eps-range-vs-fx-headwind"));
+    expect(document.outlook.map(metric => [metric.key, metric.value])).toEqual([
+      ["adjusted_eps", "$6.89 to $7.11"],
+    ]);
+  });
+
+  test("prefers consolidated net sales over a product component", () => {
+    const document = parseEarningsDocument(readFixture("total-net-sales-vs-product-sales"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$201.94B");
+  });
+
+  test("prefers an income-statement revenue total over a brand and product", () => {
+    const document = parseEarningsDocument(readFixture("total-revenue-vs-brand-product-sales"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$8.3B");
+  });
+
+  test("uses consolidated operating revenue and omits a past amount beside a growth forecast", () => {
+    const document = parseEarningsDocument(readFixture("consolidated-operating-revenue-vs-service-component"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$34.31B");
+    expect(document.outlook.find(metric => metric.key === "revenue")).toBeUndefined();
+  });
+
+  test("uses an opening reported quarter before a later old period-end note", () => {
+    const document = parseEarningsDocument(readFixture("opening-result-vs-old-period-ended"));
+    expect(document.quarterLabel).toBe("Q3 2026");
+  });
+
+  test("reads the fiscal quarter from a combined quarter and full-year title", () => {
+    const document = parseEarningsDocument(readFixture("fiscal-quarter-and-full-year-title"));
+    expect(document.quarterLabel).toBe("Q4 2026");
+  });
+
+  test("joins a dated release with its named earnings quarter", () => {
+    const document = parseEarningsDocument(readFixture("dated-third-quarter-earnings"));
+    expect(document.quarterLabel).toBe("Q3 2026");
+  });
+
+  test("reads a compact quarter in a results title", () => {
+    const document = parseEarningsDocument(readFixture("compact-quarter-result-title"));
+    expect(document.quarterLabel).toBe("Q3 2026");
+  });
+
+  test("selects the current year when a rolling table repeats the same quarter", () => {
+    const document = parseEarningsDocument(readFixture("rolling-quarter-table-prior-year-first"));
+    expect(document.quarterLabel).toBe("Q3 2026");
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$12.87B");
+    expect(document.metrics.find(metric => metric.key === "net_income")?.value).toBe("$3.66B");
+  });
+
+  test("scales compact billion row captions in results and guidance", () => {
+    const document = parseEarningsDocument(readFixture("compact-row-money-units"));
+    expect(document.metrics.find(metric => metric.key === "net_income")?.value).toBe("$3.3B");
+    expect(document.outlook.find(metric => metric.key === "revenue")?.value).toBe("$15B to $16B");
+  });
+
+  test("scales a million-denominated net income row with separate currency cells", () => {
+    const document = parseEarningsDocument(readFixture("million-row-unit-vs-unscaled-amount"));
+    expect(document.metrics.find(metric => metric.key === "net_income")?.value).toBe("$1.76B");
+  });
+
   test("takes diluted rather than basic EPS from a shared results bullet", () => {
     const document = parseEarningsDocument(readFixture("basic-and-diluted-eps-in-one-bullet"));
     expect(document.metrics.find(metric => metric.key === "gaap_eps")?.value).toBe("$0.25");

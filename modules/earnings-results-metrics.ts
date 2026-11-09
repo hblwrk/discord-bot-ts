@@ -47,6 +47,9 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     key: "adjusted_eps",
     label: "Adj EPS",
     patterns: [
+      /\bon\s+an\s+adjusted\s+basis,?\s+.{0,100}?\b20\d{2}\s+(?:first|second|third|fourth)[\s–—-]+quarter\s+earnings\s+were\s+\$\s*\d+(?:\.\d+)?\s+billion,?\s+or\s+(?<metricValue>\$\s*\d+(?:\.\d+)?)\s+per\s+share\b/i,
+      /\badjusted\s+earnings\s+per\s+share\s+were\s+a\s+record\s+of\s+(?<metricValue>\$\s*\d+(?:\.\d+)?)/i,
+      /\bunderlying\s+eps\b/i,
       /\badjusted\s+eps\s*\([a-z]\)/i,
       /\badjusted\s+net\s+loss\s+was\s+\$\s*\([^)]+\)\s+million,\s+or\s+(?<metricValue>\$\s*\(\d+\.\d{2}\))\s+per\s+diluted\s+share\b/i,
       /\badjusted\s+diluted\s+earnings\s+per\s+share\*?\s+of\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?\d+(?:\.\d+)?\)?)/i,
@@ -135,13 +138,16 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
       /(?<metricValue>\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?(?:\s*(?:cents?|¢))?)\s+per\s+(?:fully\s+)?(?:common\s+)?diluted\s+share\b/i,
       /\beps\b/i,
     ],
-    skipPattern: /\badjusted\b|\bnon-gaap\b|\bexcluding\s+certain\s+items\b|\bguidance\b|\boutlook\b|\bforecast(?:s|ed|ing)?\b|\bexcept\s+(?:eps|per\s+share(?:\s+amounts?)?)\b/i,
+    skipPattern: /\badjusted\b|\bnon-gaap\b|\bunderlying\s+eps\b|\bEPS\s+is\s+based\s+upon\s+a\s+weighted\s+average\b|\bexcluding\s+certain\s+items\b|\bguidance\b|\boutlook\b|\bforecast(?:s|ed|ing)?\b|\bexcept\s+(?:eps|per\s+share(?:\s+amounts?)?)\b/i,
     valueType: "eps",
   },
   {
     key: "revenue",
     label: "Revenue",
     patterns: [
+      /\brevenue\s+increased\s+by\s+\$\s*\d+(?:\.\d+)?\s*bn\s+to\s+(?<metricValue>\$\s*\d+(?:\.\d+)?\s*bn)\s+compared\s+with\s+3Q\d{2}\b/i,
+      /\breported\s+(?:first|second|third|fourth)[\s–—-]+quarter\s+20\d{2}\s+sales\s+of\s+(?<metricValue>\$\s*\d+(?:\.\d+)?\s+(?:million|billion))\b/i,
+      /\breported\s+revenue\s+increased\b.{0,100}?\bin\s+3Q\d{2}\s+to\s+(?<metricValue>\d{1,3}(?: \d{3})+\s+million\s+USD)\b/i,
       /\btotal\s+quarterly\s+revenue\b[^.!?]{0,100}?\bto\s+(?<metricValue>[$€£¥]\s*\d+(?:\.\d+)?\s*(?:billion|million|thousand)s?)\b/i,
       /\bfor\s+the\s+(?:q[1-4]|first|second|third|fourth)[\s–—-]+quarter\s+of\s+fiscal\s+20\d{2},?\s+.{0,100}?\breported\s+consolidated\s+net\s+sales\s+of\s+(?<metricValue>[$€£¥]\s*\d+(?:\.\d+)?\s*(?:million|billion))\b/i,
       /\bconsolidated\s+revenues?\s+for\s+(?:the\s+)?quarter\s+ended\b.{0,100}?\b(?:was|were)\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?\d+(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\)?)/i,
@@ -170,6 +176,7 @@ export const earningsMetricDefinitions: MetricDefinition[] = [
     key: "net_income",
     label: "Net income",
     patterns: [
+      /\bnet\s+income\s+attributable\s+to\b.{0,120}?\bon\s+a\s+GAAP\s+basis\s+of\s+(?<metricValue>\$\s*\d+(?:\.\d+)?\s+billion)\b/i,
       /\breport\s+(?<metricValue>[$€£¥]\s*\d+(?:\.\d+)?\s*(?:million|billion))\s+in\s+consolidated\s+net\s+income\s+for\s+the\s+quarter\b/i,
       /\bnet\s+loss\s+improved\s+by\s+\d+(?:\.\d+)?%\s+to\s+(?<metricValue>\$\s*\d+(?:\.\d+)?\s*(?:million|billion))\b/i,
       /\bconsolidated\s+net\s+income\s+was\s+(?<metricValue>\(?-?(?:[$€£¥]\s*)?\d+(?:\.\d+)?\s*(?:trillions?|billions?|millions?|thousands?|tn|bn|mm|[tbmk])?\)?)/i,

@@ -74,6 +74,7 @@ const adjustedEpsDefinition: OutlookMetricDefinition = {
   key: "adjusted_eps",
   label: "Adj EPS",
   patterns: [
+    /\bcore\s+earnings\s+per\s+share\b.{0,260}?\bthis\s+outlook\s+equates\s+to\s+a\s+range\s+of\b/i,
     /\badjusted\s+(?:diluted\s+)?eps\d+(?:,\d+)*\b/i,
     /\badj\.?\s+(?:diluted\s+)?eps\b/i,
     /\badjusted\s+continuing(?:\s+operations?)?\s+(?:diluted\s+)?eps\b/i,
@@ -926,6 +927,18 @@ function extractOutlookMetricsForDefinition(
 ): EarningsOutlookMetric[] {
   const bestCandidateByPeriod = new Map<string, OutlookMetricCandidate>();
   for (const [lineIndex, line] of lines.entries()) {
+    if ("eps" === definition.key &&
+        /\bearnings\s+per\s+share\s+growth\b.{0,130}?\bversus\s+fiscal\s+20\d{2}\s+(?:diluted\s+net\s+)?EPS\b/i.test(line)) {
+      continue;
+    }
+    if (("eps" === definition.key || "operating_income" === definition.key) &&
+        /\bcommodity\s+cost\s+headwind\b.*\bforeign\s+exchange\s+rates\b/i.test(line)) {
+      continue;
+    }
+    if ("free_cash_flow" === definition.key &&
+        /\bfree\s+cash\s+flow\s+productivity\b.*\bdividends\b/i.test(line)) {
+      continue;
+    }
     // A first $3B revenue quarter is a quarterly milestone, even when the
     // deadline names a fiscal year. It is not full-year revenue guidance.
     if ("revenue" === definition.key &&
@@ -959,6 +972,13 @@ function extractOutlookMetricsForDefinition(
         (/\bannual\s+recurring\s+revenues?\b/i.test(line) ||
           /\bsubscription\s+and\s+support\s+revenues?\b/i.test(line) ||
           /\brevenue\s+from\s+the\s+\w+\s+segment\b|\bsegment\s+(?:to\s+contribute\s+)?revenues?\b/i.test(line))) {
+      continue;
+    }
+    // The dollar amount in "revenue of $23.5B grew ... and is forecast to grow
+    // 4%" is the reported quarter's result. The forecast supplies only a rate.
+    if ("revenue" === definition.key &&
+        /\brevenues?\s+of\s+[$€£¥]\s*\d+(?:\.\d+)?\s+(?:million|billion)\s+grew\b/i.test(line) &&
+        /\bforecast\s+to\s+grow\b/i.test(line)) {
       continue;
     }
     if ("adjusted_eps" === definition.key &&

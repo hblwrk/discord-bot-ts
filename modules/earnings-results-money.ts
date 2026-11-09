@@ -59,7 +59,13 @@ function findNumericValueMatches(
   options: NumericValueOptions = {},
 ): NumericValueMatch[] {
   const values: NumericValueMatch[] = [];
-  const numberMatches = text.matchAll(/\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?/g);
+  // Space-grouped thousands occur in explicit foreign-issuer money prose such as
+  // "16 512 million USD". Do not apply that grouping to bare table cells: adjacent
+  // cells can also be separated only by spaces after SEC text conversion.
+  const spacedMoneyAmount = /\b\d{1,3}(?: \d{3})+\s+(?:million|billion)\s+(?:USD|EUR|GBP)\b/i.test(text);
+  const numberMatches = text.matchAll(spacedMoneyAmount
+    ? /\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:[ ,]\d{3})+|\d+)(?:\.\d+)?\)?/g
+    : /\(?-?(?:[$€£¥]\s*)?(?:\d{1,3}(?:,\d{3})+|\d+)(?:\.\d+)?\)?/g);
   for (const numberMatch of numberMatches) {
     const token = numberMatch[0];
     const endIndex = numberMatch.index + token.length;
@@ -75,7 +81,7 @@ function findNumericValueMatches(
       continue;
     }
 
-    const parsedNumber = parseNumber(token);
+    const parsedNumber = parseNumber(true === spacedMoneyAmount ? token.replaceAll(" ", "") : token);
     const value = true === options.parseCents && null !== parsedNumber
       ? normalizeCentsValue(text, endIndex, token, parsedNumber)
       : parsedNumber;
@@ -294,6 +300,19 @@ export function isMetricLabelSuffixTableNote(text: string): boolean {
 }
 
 export function getMoneyScaleFromContextText(text: string): number | null {
+  // Compact row captions use "($B)" and "($M)" in place of a table-wide
+  // "in billions/millions" header. The unit still governs the row value.
+  const compactUnit = (/(?:\(\s*[$€£¥]\s*([BMK])\s*\)|\(\s*([BMK])\s*[$€£¥]\s*\))/i.exec(text)?.slice(1)
+    .find((unit): unit is string => undefined !== unit))?.toUpperCase();
+  if ("B" === compactUnit) {
+    return 1_000_000_000;
+  }
+  if ("M" === compactUnit) {
+    return 1_000_000;
+  }
+  if ("K" === compactUnit) {
+    return 1_000;
+  }
   // Match a column/table-scale declaration ("(in millions)", "$ in thousands",
   // "($ millions)", "millions of dollars") but NOT an inline prose magnitude such
   // as "Operating Profit of $1,407 million" — there a digit immediately precedes
