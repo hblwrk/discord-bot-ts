@@ -134,6 +134,15 @@ export function getMetricCandidateScore({
   } else if ("annual" === periodScope) {
     score -= 80;
   }
+  if (("revenue" === metricKey && /^\s*sales\s*\|/i.test(metricLine)) ||
+      ("gaap_eps" === metricKey && /^\s*diluted\s+earnings\s+per\s+share\b/i.test(metricLine))) {
+    const verticalPeriod = getVerticalStatementPeriod(lines, lineIndex);
+    if ("quarter" === verticalPeriod) {
+      score += 140;
+    } else if ("annual" === verticalPeriod) {
+      score -= 140;
+    }
+  }
 
   // Some summary tables render the quarter and full-year columns as alternating bullet
   // lines. The second column keeps leading empty table cells, while the quarter column does
@@ -171,6 +180,20 @@ export function getMetricCandidateScore({
   }
 
   if ("revenue" === metricKey) {
+    const reportedQuarterParts = /^Q([1-4])\s+(20\d{2})$/.exec(quarterLabel ?? "");
+    const reportedQuarterName = ["first", "second", "third", "fourth"][Number(reportedQuarterParts?.[1] ?? 0) - 1];
+    if (undefined !== patternMatch?.groups?.["metricValue"] &&
+        undefined !== reportedQuarterName &&
+        undefined !== reportedQuarterParts?.[2] &&
+        new RegExp(String.raw`\breported\s+${reportedQuarterName}[\s–—-]+quarter\s+${reportedQuarterParts[2]}\s+sales\s+of\b`, "i")
+          .test(metricLine)) {
+      score += 220;
+    }
+    if (/\bsales\s+and\s+other\s+operating\s+revenues\b/i.test(metricLine) &&
+        2 <= (metricLine.match(/\|/g)?.length ?? 0) &&
+        true === isUnderIncomeStatementHeading(lines, lineIndex)) {
+      score += 130;
+    }
     // Auction businesses combine service fees and vehicle sales in a single consolidated
     // line. The service-fee component appears first, but is not total revenue.
     if (/\btotal\s+service\s+revenues?\s+and\s+vehicle\s+sales\b/i.test(metricLine)) {
@@ -221,6 +244,16 @@ export function getMetricCandidateScore({
       score -= 120;
     }
 
+    // In consolidated statements, a total follows product/service or other
+    // component rows. A component can carry the first currency symbol in the
+    // table, but it is not the company's reported revenue.
+    if (2 <= (metricLine.match(/\|/g)?.length ?? 0) &&
+        /\btotal\s+(?:(?:net|operating)\s+)?(?:sales|revenues?)\b/i.test(metricCaptionText) &&
+        true === isUnderIncomeStatementHeading(lines, lineIndex) &&
+        /\b(?:product|service|equipment|royalty)\s+(?:sales|revenues?)\b/i.test(precedingRevenueRows)) {
+      score += 160;
+    }
+
     if (/\brecord\s+quarterly\s+net\s+revenues?\s+of\b/i.test(metricLine)) {
       score += 250;
     }
@@ -265,6 +298,17 @@ export function getMetricCandidateScore({
   if ("net_income" === metricKey &&
       /\bnet\s+loss\s+improved\s+by\s+\d+(?:\.\d+)?%\s+to\s+\$\d/i.test(metricLine)) {
     score += 80;
+  }
+  // The opening consolidated results sentence states both reported net income
+  // and its adjusted per-share equivalent before the release turns to segments.
+  // Its captured values are tied to the reported quarter, even if the sentence
+  // later includes a prior-year comparison.
+  if (lineIndex < 60 &&
+      undefined !== patternMatch?.groups?.["metricValue"] &&
+      /\breported\s+20\d{2}\s+(?:first|second|third|fourth)[\s–—-]+quarter\s+net\s+income\s+attributable\b/i.test(metricLine) &&
+      ("net_income" === metricKey ||
+        ("adjusted_eps" === metricKey && /\bon\s+an\s+adjusted\s+basis\b/i.test(metricLine)))) {
+    score += 220;
   }
 
   // A company may publish its standard adjusted EPS and then an additional figure that
@@ -322,10 +366,23 @@ function hasBrandResultsSection(lines: string[]): boolean {
   return lines.some(line => line.length <= 140 && /\b(?:global\s+)?brand\s+results?\b/i.test(line));
 }
 
+function getVerticalStatementPeriod(lines: string[], lineIndex: number): "quarter" | "annual" | null {
+  for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 140; index--, examined++) {
+    const line = lines[index] ?? "";
+    if (/^\s*[1-4](?:st|nd|rd|th)\s+quarter\s*\|/i.test(line)) {
+      return "quarter";
+    }
+    if (/^\s*(?:nine|9)\s+months\s+20\d{2}\s*\|/i.test(line)) {
+      return "annual";
+    }
+  }
+  return null;
+}
+
 function isUnderIncomeStatementHeading(lines: string[], lineIndex: number): boolean {
   for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 120; index--, examined++) {
     const heading = (lines[index] ?? "").replace(/[\s|:]+$/, "").trim();
-    if (/^(?:income\s+statement|(?:condensed\s+)?(?:consolidated\s+)?statements?\s+of\s+(?:income|operations))$/i.test(heading)) {
+    if (/^(?:(?:group\s+)?income\s+statement|(?:condensed\s+)?(?:consolidated\s+)?statements?\s+of\s+(?:income|operations))$/i.test(heading)) {
       return true;
     }
   }
@@ -463,12 +520,59 @@ export function getCurrentPeriodColumnIndex(
     return 0;
   }
 
+  // A segment bridge can put the consolidated company in its last column,
+  // rather than putting current and prior years across columns. The period
+  // heading above the bridge identifies which quarterly table is current.
+  for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 90; index--, examined++) {
+    const header = lines[index] ?? "";
+    if (/\b(?:Three|Nine)\s+Months\s+Ended\b/i.test(header)) {
+      const segmentColumns = lines.slice(index, index + 4).join(" ");
+      if (/\bThree\s+Months\s+Ended\b/i.test(header) &&
+          header.includes(reportedYear) &&
+          /\bFPL\b.*\bNEER\b.*\bNextEra Energy\b/i.test(segmentColumns)) {
+        return 3;
+      }
+      break;
+    }
+  }
+
   const reportedQuarter = /\b(Q[1-4])\b/.exec(quarterLabel ?? "")?.[1];
   if (undefined !== reportedQuarter) {
+    // Some PDF-derived tables put each compact period heading on its own line:
+    // "3Q25 |" then "3Q26 |". Reconstruct those adjacent headings so a
+    // current-year result in the second value cell does not read as last year.
+    for (let index = lineIndex - 1, examined = 0; index > 0 && examined < 80; index--, examined++) {
+      const heading = /^\s*([1-4])Q(\d{2})\s*\|\s*$/i.exec(lines[index] ?? "");
+      if (null === heading) {
+        continue;
+      }
+      const previousHeading = /^\s*([1-4])Q(\d{2})\s*\|\s*$/i.exec(lines[index - 1] ?? "");
+      if (null === previousHeading) {
+        continue;
+      }
+      const headings = [previousHeading, heading];
+      const currentIndex = headings.findIndex(match =>
+        `Q${match[1]}` === reportedQuarter && `20${match[2]}` === reportedYear);
+      if (-1 !== currentIndex) {
+        return currentIndex;
+      }
+      break;
+    }
     for (let index = lineIndex - 1, examined = 0; index >= 0 && examined < 60; index--, examined++) {
       const headerLine = lines[index] ?? "";
       if (true === isPeriodHeaderLine(headerLine)) {
         break;
+      }
+
+      // A rolling-quarter table can repeat Q3 across years (Q3'25 ... Q3'26).
+      // Match both the quarter and year before falling back to the quarter alone.
+      const datedQuarterColumns = [...headerLine.matchAll(/\bQ([1-4])\s*['’]?\s*(?:20)?(\d{2})\b/gi)];
+      if (2 <= datedQuarterColumns.length) {
+        const exactIndex = datedQuarterColumns.findIndex(match =>
+          `Q${match[1]}` === reportedQuarter && `20${match[2]}` === reportedYear);
+        if (-1 !== exactIndex) {
+          return exactIndex;
+        }
       }
 
       const quarterColumns = [...headerLine.matchAll(/\bQ([1-4])\b/gi)]

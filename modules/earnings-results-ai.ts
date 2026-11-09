@@ -453,7 +453,7 @@ function getArray(value: unknown): unknown[] {
 // The count is compared by magnitude rather than by unit, because a filing scales shares
 // independently of money in the same table ("in millions, except share amounts which are
 // reflected in thousands").
-const shareCountScales = [1, 1_000, 1_000_000];
+const shareCountScales = [1, 1_000, 1_000_000, 1_000_000_000];
 const ordinarySharesPerAdsRatios = [2, 4, 5, 8, 10];
 
 // Below these magnitudes the published figures are rounded so coarsely that the implied count

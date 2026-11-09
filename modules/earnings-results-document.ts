@@ -170,7 +170,7 @@ export function getDocumentCurrencyCode(lines: string[]): string | undefined {
   }
 
   const currencyDeclaration = headerLines
-    .find(line => false === /\bexchange\s+rate\b|\bC\s*\$\s*\d+(?:\.\d+)?\s+per\s+U\.S\.\s+dollar\b/i.test(line) && (
+    .find(line => false === /\bexchange\s+rate\b|\bC\s*\$\s*\d+(?:\.\d+)?\s+per\s+U\.S\.\s+dollar\b|\bJPY\s*\d+(?:\.\d+)?\s+per\s+pack\b/i.test(line) && (
       /\b(?:Canadian|New Taiwan|U\.S\.)\s+dollars?\b/i.test(line) ||
       hasDeclaredIsoCode(line, ["CAD", "TWD", "NTD", "USD", "EUR", "GBP", "JPY", "CHF"]) ||
       hasNewTaiwanDollarSymbol(line)));
@@ -377,6 +377,44 @@ export function getQuarterLabel(text: string): string | undefined {
   const quarterAndFullYearHighlightsLabel = getQuarterAndFullYearHighlightsLabel(text);
   if (undefined !== quarterAndFullYearHighlightsLabel) {
     return quarterAndFullYearHighlightsLabel;
+  }
+
+  // Some releases put the reported quarter in their headline or opening results
+  // sentence, while the first "three months ended" phrase appears much later in a
+  // prior-period reconciliation. Use only an opening result declaration here.
+  const openingText = text.slice(0, 4_000);
+  const openingWrittenResult = openingText.match(
+    /\b(?:reports?|reported|announced)\s+(?:fiscal\s+)?(first|second|third|fourth)[\s–—-]+quarter\s+(20\d{2})\s+results\b/i,
+  ) ?? openingText.match(
+    /\b(?:reports?|reported|announced)\s+fiscal\s+(first|second|third|fourth)[\s–—-]+quarter\s+and\s+full[\s–—-]+year\s+(20\d{2})\s+results\b/i,
+  );
+  if (undefined !== openingWrittenResult?.[1] && undefined !== openingWrittenResult[2]) {
+    const quarter = getQuarterFromName(openingWrittenResult[1]);
+    if (quarter) {
+      return `${quarter} ${openingWrittenResult[2]}`;
+    }
+  }
+
+  const openingCompactResult = openingText.match(/\b([1-4])Q\s+(20\d{2})\s+results\b/i);
+  if (undefined !== openingCompactResult?.[1] && undefined !== openingCompactResult[2]) {
+    return `Q${openingCompactResult[1]} ${openingCompactResult[2]}`;
+  }
+
+  const openingDatedEarnings = openingText.match(
+    /\b([A-Z][a-z]+\s+\d{1,2},\s+20\d{2})\b[\s\S]{0,250}?\b(?:reported|announced)\s+(first|second|third|fourth)[\s–—-]+quarter\s+earnings\b/i,
+  );
+  if (undefined !== openingDatedEarnings?.[1] && undefined !== openingDatedEarnings[2]) {
+    const quarter = getQuarterFromName(openingDatedEarnings[2]);
+    const year = /20\d{2}/.exec(openingDatedEarnings[1])?.[0];
+    if (quarter && year) {
+      return `${quarter} ${year}`;
+    }
+  }
+
+  const openingQuarterRevenue = openingText.match(/\bQ([1-4])\s+revenue\s+(?:grew|rose|increased|was)\b/i);
+  const openingReleaseDate = openingText.match(/\b[A-Z][a-z]+\s+\d{1,2},\s+(20\d{2})\b/);
+  if (undefined !== openingQuarterRevenue?.[1] && undefined !== openingReleaseDate?.[1]) {
+    return `Q${openingQuarterRevenue[1]} ${openingReleaseDate[1]}`;
   }
 
   // The period the statements cover is stated as the period they ended, and it outranks a

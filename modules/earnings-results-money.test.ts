@@ -23,6 +23,15 @@ describe("earnings result money parsing", () => {
       .toBe(1_000_000);
   });
 
+  test("reads compact currency units in result and outlook row captions", () => {
+    expect(getMoneyScaleFromContextText("Net income attributable to Intel ($B) | $3.3 | $4.1"))
+      .toBe(1_000_000_000);
+    expect(getMoneyScaleFromContextText("Net Income ($M) | $ | 1,761 | $ | 549"))
+      .toBe(1_000_000);
+    expect(getMoneyScaleFromContextText("Revenue ($B) | $15.0 - $16.0"))
+      .toBe(1_000_000_000);
+  });
+
   test("ignores an EPS footnote marker and prefers the reported currency value", () => {
     const parsedDocument = parseEarningsDocument(`
       <html>
