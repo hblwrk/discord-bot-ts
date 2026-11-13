@@ -119,9 +119,10 @@ function isUsCashMarketOpen(referenceTime: number): boolean {
     return false;
   }
 
-  const [closeHour, closeMinute] = closeTimeET.split(":").map(Number);
+  // closeTimeET is "HH:MM".
+  const closeMinuteOfDay = (Number(closeTimeET.slice(0, 2)) * 60) + Number(closeTimeET.slice(3, 5));
   const minuteOfDay = easternTime.hour() * 60 + easternTime.minute();
-  return minuteOfDay >= ((9 * 60) + 30) && minuteOfDay < ((closeHour * 60) + closeMinute + usCashCloseGraceMinutes);
+  return minuteOfDay >= ((9 * 60) + 30) && minuteOfDay < (closeMinuteOfDay + usCashCloseGraceMinutes);
 }
 
 function isUsFuturesMarketOpen(referenceTime: number): boolean {
