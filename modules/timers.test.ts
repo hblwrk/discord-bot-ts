@@ -123,6 +123,9 @@ describe("timers: NYSE and MNC", () => {
     const {client, send} = createClientWithChannel();
     const endPoll = vi.fn().mockResolvedValue(undefined);
     vi.setSystemTime(new Date("2025-11-28T09:30:00-05:00"));
+    isEarlyCloseMock.mockImplementation(date => "2025-11-28" === date
+      ? {date, name: "Day after Thanksgiving", closeTimeET: "13:00"}
+      : null);
     send.mockResolvedValueOnce({
       poll: {
         end: endPoll,
