@@ -46,6 +46,9 @@ describe("market-data-hours", () => {
     ["after cash close", "2026-05-01T16:15:00", false],
     ["weekend", "2026-05-02T10:00:00", false],
     ["NYSE holiday", "2026-01-01T10:00:00", false],
+    ["unscheduled closure (day of mourning)", "2025-01-09T10:00:00", false],
+    ["early-close day grace window", "2026-12-24T13:14:00", true],
+    ["after early close", "2026-12-24T13:15:00", false],
   ])("maps US cash hours: %s", (_label, localTime, expectedOpen) => {
     expect(isMarketOpen(marketAsset("us_cash"), timestamp(localTime, "US/Eastern"))).toBe(expectedOpen);
   });
