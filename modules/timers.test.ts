@@ -4,12 +4,12 @@ import {
   createClientWithChannel,
   createClientWithoutChannel,
   findMarketOpenSentimentPollMessageMock,
-  getHolidaysMock,
   getMarketCloseRecapMock,
   getMncMock,
   getMncSummaryMock,
   getPremarketWarmupMessageMock,
   getScheduledJobByTime,
+  isEarlyCloseMock,
   isHolidayMock,
   loggerMock,
   resetTimerMocks,
@@ -161,6 +161,9 @@ describe("timers: NYSE and MNC", () => {
   test("startNyseTimers sends Thanksgiving early-close reminder on the day after Thanksgiving", () => {
     const {client, send} = createClientWithChannel();
     vi.setSystemTime(new Date("2025-11-28T10:00:00-05:00"));
+    isEarlyCloseMock.mockImplementation(date => "2025-11-28" === date
+      ? {date, name: "Day after Thanksgiving", closeTimeET: "13:00"}
+      : null);
 
     startNyseTimers(client, "channel-id");
     const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
@@ -170,52 +173,40 @@ describe("timers: NYSE and MNC", () => {
     expect(send).toHaveBeenCalledWith(expect.stringContaining("19:00"));
   });
 
-  test("startNyseTimers resolves Thanksgiving date based on the current US/Eastern year", () => {
+  test("startNyseTimers handles Christmas Eve as an early-close day", () => {
     const {client, send} = createClientWithChannel();
-    vi.setSystemTime(new Date("2025-12-30T10:00:00-05:00"));
-    getHolidaysMock.mockImplementation(year => {
-      if (2025 === year) {
-        return [
-          {
-            date: new Date("2025-11-27T12:00:00-05:00"),
-            name: "Thanksgiving Day",
-          },
-        ];
-      }
-
-      if (2026 === year) {
-        return [
-          {
-            date: new Date("2026-11-26T12:00:00-05:00"),
-            name: "Thanksgiving Day",
-          },
-        ];
-      }
-
-      return [];
-    });
+    vi.setSystemTime(new Date("2026-12-24T10:00:00-05:00"));
+    isEarlyCloseMock.mockImplementation(date => "2026-12-24" === date
+      ? {date, name: "Christmas Eve (early close)", closeTimeET: "13:00"}
+      : null);
 
     startNyseTimers(client, "channel-id");
-    vi.setSystemTime(new Date("2026-11-27T10:00:00-05:00"));
-    const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
-    premarketJob.callback();
+    getScheduledJobByTime(4, 0, "US/Eastern").callback();
 
-    expect(send).toHaveBeenCalledWith(expect.stringContaining("Tag nach dem Truthahn-Tag"));
-    expect(getHolidaysMock).toHaveBeenLastCalledWith(2026);
+    expect(send).toHaveBeenCalledWith(expect.stringContaining("verkürzter Handelstag"));
+    expect(send).toHaveBeenCalledWith(expect.stringContaining("19:00"));
+    expect(send).not.toHaveBeenCalledWith(expect.stringContaining("Truthahn"));
+
+    send.mockClear();
+    getScheduledJobByTime(16, 0, "US/Eastern").callback();
+    expect(send).not.toHaveBeenCalled();
+
+    getScheduledJobByTime(13, 0, "US/Eastern").callback();
+    expect(send).toHaveBeenCalledWith(expect.stringContaining("die Börsen sind zu"));
   });
 
   test("startNyseTimers treats holiday check by US/Eastern date for aftermarket close", () => {
     const {client, send} = createClientWithChannel();
     // 20:00 US/Eastern on 2025-12-25 equals 2025-12-26T01:00:00Z.
     vi.setSystemTime(new Date("2025-12-26T01:00:00Z"));
-    isHolidayMock.mockImplementation(date => date.toDateString() === "Thu Dec 25 2025");
+    isHolidayMock.mockImplementation(date => "2025-12-25" === date);
 
     startNyseTimers(client, "channel-id");
     const aftermarketJob = getScheduledJobByTime(20, 0, "US/Eastern");
     aftermarketJob.callback();
 
     expect(send).not.toHaveBeenCalled();
-    expect(isHolidayMock).toHaveBeenCalledWith(expect.any(Date));
+    expect(isHolidayMock).toHaveBeenCalledWith("2025-12-25");
   });
 
   test("startNyseTimers points close announcement to Heutige Gains&Losses thread", () => {

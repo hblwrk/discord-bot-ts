@@ -27,7 +27,7 @@ const attachmentBuilderMock = vi.fn().mockImplementation(function mockAttachment
   return {file, ...options};
 });
 
-const getHolidaysMock = vi.fn();
+const isEarlyCloseMock = vi.fn();
 const isHolidayMock = vi.fn();
 const getAssetByNameMock = vi.fn();
 const getCalendarEventsMock = vi.fn();
@@ -90,8 +90,8 @@ vi.mock("node-schedule", () => ({
   },
 }));
 
-vi.mock("nyse-holidays", () => ({
-  getHolidays: (...args: unknown[]) => getHolidaysMock(...args),
+vi.mock("us-equity-market-calendar", () => ({
+  isEarlyClose: (...args: unknown[]) => isEarlyCloseMock(...args),
   isHoliday: (...args: unknown[]) => isHolidayMock(...args),
 }));
 
@@ -257,13 +257,7 @@ export function resetTimerMocks() {
     return scheduledJob;
   });
 
-  getHolidaysMock.mockReturnValue([
-    {
-      date: new Date("2025-11-27T12:00:00-05:00"),
-      dateString: "2025-11-27",
-      name: "Thanksgiving Day",
-    },
-  ]);
+  isEarlyCloseMock.mockReturnValue(null);
 
   isHolidayMock.mockReturnValue(false);
   getMncMock.mockResolvedValue(Buffer.from("mnc-pdf"));
@@ -323,7 +317,7 @@ export {
   getEarningsMessagesMock,
   getEarningsReminderJob,
   getEarningsResultMock,
-  getHolidaysMock,
+  isEarlyCloseMock,
   getMncMock,
   getMarketCloseRecapMock,
   getMncSummaryMock,
