@@ -927,6 +927,38 @@ function extractOutlookMetricsForDefinition(
 ): EarningsOutlookMetric[] {
   const bestCandidateByPeriod = new Map<string, OutlookMetricCandidate>();
   for (const [lineIndex, line] of lines.entries()) {
+    if (undefined !== sectionHeading && /\bguidance[,”"]{0,3}\s+said\b/i.test(sectionHeading)) {
+      continue;
+    }
+    if (/\bguidance[,”"]{0,3}\s+said\b/i.test(line)) {
+      continue;
+    }
+    if (("revenue" === definition.key &&
+          /\brevenues?\s+of\s+[$€£¥]\s*\d+(?:\.\d+)?\s+billion\s+increased\b/i.test(line)) ||
+        ("free_cash_flow" === definition.key &&
+          /\bfree\s+cash\s+flow\*?\s+of\s+[$€£¥]\s*\d+(?:\.\d+)?\s+billion\s+increased\b/i.test(line))) {
+      continue;
+    }
+    if ("adjusted_eps" === definition.key &&
+        /\bbusiness\b.{0,120}\bgenerate\s+full[-\s]+year\s+sales\b.{0,120}\baccretive\b/i.test(line)) {
+      continue;
+    }
+    if ("revenue" === definition.key &&
+        /\brevenues?\s+to\s+(?:decline|increase|grow)\b.{0,160}\bincluding\b.{0,80}\b53rd\s+week\b/i.test(line)) {
+      continue;
+    }
+    if ("free_cash_flow" === definition.key &&
+        /\breturn\s+[$€£¥]\s*\d+(?:\.\d+)?\s+billion\+?\s+to\s+shareholders\b/i.test(line)) {
+      continue;
+    }
+    if ("adjusted_ebitda" === definition.key &&
+        /\bwithin\s+the\b.{0,100}\bsegment\s+adjusted\s+EBITDA\b.{0,200}\bunfavorable\s+impacts?\b/i.test(line)) {
+      continue;
+    }
+    if ("eps" === definition.key &&
+        /\bearnings\s+per\s+share\s+growth\s+of\s+high[-\s]+single\s+digit\b.{0,120}\b3[-\s]+year\s+CAGR\b/i.test(line)) {
+      continue;
+    }
     if ("eps" === definition.key &&
         /\bearnings\s+per\s+share\s+growth\b.{0,130}?\bversus\s+fiscal\s+20\d{2}\s+(?:diluted\s+net\s+)?EPS\b/i.test(line)) {
       continue;
@@ -1562,6 +1594,9 @@ function extractOutlookValue(
       : null) ??
       getRespectivelyOutlookValue(valueText, metricKey, valueType, documentCurrencyCode, moneyUnit) ??
       getPlusMinusOutlookValue(valueText, valueType, documentCurrencyCode, moneyUnit) ??
+      ("eps" === valueType && /\bin\s+the\s+[$€£¥]\s*\d+(?:\.\d+)?\s+range\b/i.test(valueText)
+        ? getSingleOutlookValue(valueText, valueType, documentCurrencyCode, moneyUnit)
+        : null) ??
       ("eps" === valueType
         ? getOutlookRangeValue(valueText, valueType, documentCurrencyCode, moneyUnit)
         : null) ??

@@ -6,6 +6,72 @@ const fixtureDirectory = "modules/test-fixtures/earnings-regressions";
 const readFixture = (name: string): string => readFileSync(`${fixtureDirectory}/${name}.txt`, "utf8");
 
 describe("focused earnings regression fixtures", () => {
+  test("takes the quarter revenue from split cells over its sequential increase", () => {
+    const document = parseEarningsDocument(readFixture("sequential-revenue-increase-vs-vertical-table"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$3.66B");
+  });
+
+  test("takes a split statement net loss over a following per-share amount", () => {
+    const document = parseEarningsDocument(readFixture("split-net-loss-vs-per-share-amount"));
+    expect(document.metrics.find(metric => metric.key === "net_income")?.value).toBe("-$141.6M");
+  });
+
+  test("uses the stated fiscal year with an otherwise undated quarter title", () => {
+    const document = parseEarningsDocument(readFixture("bare-quarter-title-with-fiscal-year-in-results"));
+    expect(document.quarterLabel).toBe("Q1 2027");
+  });
+
+  test("does not post litigation and tax adjustment amounts as reported earnings", () => {
+    const document = parseEarningsDocument(readFixture("litigation-charge-vs-reported-earnings"));
+    expect(document.metrics.find(metric => metric.key === "gaap_eps")?.value).toBe("$1.49");
+    expect(document.metrics.find(metric => metric.key === "net_income")?.value).toBe("$523M");
+  });
+
+  test("uses the USD consolidated statement despite a Canadian note issuance", () => {
+    const document = parseEarningsDocument(readFixture("canadian-notes-vs-dollar-results"));
+    expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$3.72B");
+  });
+
+  test("separates reported EPS from core EPS", () => {
+    const document = parseEarningsDocument(readFixture("core-eps-vs-reported-eps"));
+    expect(document.metrics.find(metric => metric.key === "gaap_eps")?.value).toBe("$0.63");
+    expect(document.metrics.find(metric => metric.key === "adjusted_eps")?.value).toBe("$2.46");
+  });
+
+  test("omits a business's accretion from company EPS outlook", () => {
+    const document = parseEarningsDocument(readFixture("business-accretion-vs-eps-outlook"));
+    expect(document.outlook.filter(metric => metric.key === "adjusted_eps")
+      .map(metric => [metric.periodLabel, metric.value])).toEqual([["Q4", "$0.81 to $0.83"]]);
+  });
+
+  test("omits the 53rd week contribution from annual revenue outlook", () => {
+    const document = parseEarningsDocument(readFixture("fifty-third-week-vs-revenue-outlook"));
+    expect(document.outlook.find(metric => metric.key === "revenue")).toBeUndefined();
+  });
+
+  test("does not treat segment results below a management quote as guidance", () => {
+    const document = parseEarningsDocument(readFixture("quoted-guidance-vs-segment-results"));
+    expect(document.outlook).toEqual([]);
+  });
+
+  test("reads EPS and free cash flow targets instead of capital returns", () => {
+    const document = parseEarningsDocument(readFixture("shareholder-returns-vs-fcf-outlook"));
+    expect(document.outlook.map(metric => [metric.key, metric.value])).toEqual([
+      ["adjusted_eps", "$2.4"],
+      ["free_cash_flow", "$18B"],
+    ]);
+  });
+
+  test("omits a segment cost impact from adjusted EBITDA outlook", () => {
+    const document = parseEarningsDocument(readFixture("segment-cost-impact-vs-ebitda-outlook"));
+    expect(document.outlook.find(metric => metric.key === "adjusted_ebitda")).toBeUndefined();
+  });
+
+  test("omits a multi-year CAGR from annual EPS guidance", () => {
+    const document = parseEarningsDocument(readFixture("annual-growth-vs-three-year-cagr"));
+    expect(document.outlook.find(metric => metric.key === "eps")).toBeUndefined();
+  });
+
   test("reads space-grouped USD revenue before marketplace GMV", () => {
     const document = parseEarningsDocument(readFixture("spaced-usd-revenue-vs-marketplace-gmv"));
     expect(document.metrics.find(metric => metric.key === "revenue")?.value).toBe("$16.51B");

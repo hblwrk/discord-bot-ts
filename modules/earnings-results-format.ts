@@ -298,6 +298,22 @@ function extractMetric(
       continue;
     }
 
+    // A charge included in GAAP earnings is an adjustment amount, not the reported
+    // net income or per-share result. The filing states the actual figures separately.
+    if (("net_income" === definition.key || "gaap_eps" === definition.key) &&
+        /\b(?:net\s+income|earnings)\b.{0,160}\bincluded\s+a\s+(?:pre-tax\s+)?charge\b/i.test(line)) {
+      continue;
+    }
+    if ("gaap_eps" === definition.key &&
+        /\bexpense\s+was\b.{0,100}\bor\s+[$€£¥]\s*\d+(?:\.\d+)?\s+per\s+diluted\s+share\b/i.test(line)) {
+      continue;
+    }
+    if ("gaap_eps" === definition.key &&
+        /\btax\s+adjustments?\s+included\b/i.test(line) &&
+        false === /\bGAAP\s+(?:diluted\s+)?EPS\b/i.test(line)) {
+      continue;
+    }
+
     const hasMetricLabel = definition.patterns.some(pattern => pattern.test(line)) ||
       ("adjusted_eps" === definition.key &&
         true === isAdjustedEpsReconciliationRow(lines, lineIndex));
@@ -306,6 +322,18 @@ function extractMetric(
     }
 
     const metricLine = getMetricLineWithContinuation(lines, lineIndex, definition, quarterLabel);
+    if ("revenue" === definition.key &&
+        /\brevenue\s+increasing\s+by\s+more\s+than\s+[$€£¥]\s*\d+(?:\.\d+)?\s+billion\s+sequentially\b/i.test(metricLine)) {
+      continue;
+    }
+    if ("net_income" === definition.key &&
+        /^\s*(?:million|billion)\s+net\s+(?:income|loss),?\s+or\s+[$€£¥]\s*\d+(?:\.\d+)?\s+per\s+(?:basic\s+and\s+)?diluted\s+share\b/i.test(metricLine)) {
+      continue;
+    }
+    if ("gaap_eps" === definition.key && /\bcore\s+EPS\b/i.test(metricLine) &&
+        false === /\b(?:GAAP|reported)\s+(?:diluted\s+)?EPS\b/i.test(metricLine)) {
+      continue;
+    }
     if ("gaap_eps" === definition.key &&
         /\bGAAP\s+(?:diluted\s+)?EPS\b.{0,80}\bover\s+adjusted\s+EPS\s+of\s*[$€£¥]\s*\d/i.test(metricLine) &&
         false === /\bGAAP\s+(?:diluted\s+)?EPS\s+(?:was|were|of)\s*[$€£¥]\s*\d/i.test(metricLine)) {

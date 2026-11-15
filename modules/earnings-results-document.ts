@@ -170,7 +170,7 @@ export function getDocumentCurrencyCode(lines: string[]): string | undefined {
   }
 
   const currencyDeclaration = headerLines
-    .find(line => false === /\bexchange\s+rate\b|\bC\s*\$\s*\d+(?:\.\d+)?\s+per\s+U\.S\.\s+dollar\b|\bJPY\s*\d+(?:\.\d+)?\s+per\s+pack\b/i.test(line) && (
+    .find(line => false === /\bexchange\s+rate\b|\bC\s*\$\s*\d+(?:\.\d+)?\s+per\s+U\.S\.\s+dollar\b|\bJPY\s*\d+(?:\.\d+)?\s+per\s+pack\b|\bCanadian\s+dollar-denominated\s+(?:senior\s+)?(?:unsecured\s+)?notes\b/i.test(line) && (
       /\b(?:Canadian|New Taiwan|U\.S\.)\s+dollars?\b/i.test(line) ||
       hasDeclaredIsoCode(line, ["CAD", "TWD", "NTD", "USD", "EUR", "GBP", "JPY", "CHF"]) ||
       hasNewTaiwanDollarSymbol(line)));
@@ -286,6 +286,14 @@ export function getQuarterLabel(text: string): string | undefined {
   const bareTitleQuarterMatch = leadingText.match(
     /\b(?:reports?|announces?)\s+(?:financial\s+)?(first|second|third|fourth)[\s–—-]+quarter\s+(?:financial\s+)?results\b/i,
   );
+  const matchingFiscalQuarterYear = undefined === bareTitleQuarterMatch?.[1]
+    ? undefined
+    : new RegExp(String.raw`\b${bareTitleQuarterMatch[1]}[\s–—-]+quarter\s+of\s+fiscal\s+year\s+(20\d{2})\b`, "i")
+      .exec(text.slice(0, 5_000))?.[1];
+  if (undefined !== bareTitleQuarterMatch?.[1] && undefined !== matchingFiscalQuarterYear) {
+    // The title pattern admits only the four named quarters.
+    return `${getQuarterFromName(bareTitleQuarterMatch[1])!} ${matchingFiscalQuarterYear}`;
+  }
   const fiscalOutlookYearMatch = text.match(/\bfiscal\s+(20\d{2})\s+(?:financial\s+)?outlook\b/i);
   if (undefined !== bareTitleQuarterMatch?.[1] && undefined !== fiscalOutlookYearMatch?.[1]) {
     const quarter = getQuarterFromName(bareTitleQuarterMatch[1]);
