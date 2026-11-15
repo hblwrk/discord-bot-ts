@@ -320,6 +320,7 @@ export function getMoneyScaleFromContextText(text: string): number | null {
   // inline magnitudes as a table scale mis-scales unrelated rows.
   const declarationMatch =
     /(?:\bin\s+|[$€£¥]\s*,?\s*|\b(?:USD|CAD|TWD|NTD|EUR|GBP|JPY|CHF)\s*,?\s*)(thousand|million|billion)s?\b/i.exec(text) ??
+    /\bdollars?\s+in\s+(thousand|million|billion)s?\b/i.exec(text) ??
     /\b(thousand|million|billion)s?\s+of\s+dollars\b/i.exec(text) ??
     /\(\s*(thousand|million|billion)s?\b/i.exec(text);
   if (/\(\s*[$€£¥]?\s*0{3}s?\b/i.test(text)) {

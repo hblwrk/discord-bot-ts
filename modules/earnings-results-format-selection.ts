@@ -234,6 +234,12 @@ export function getMetricCandidateScore({
         true === hasBrandResultsSection(lines)) {
       score += 60;
     }
+    if (/^\s*\|?\s*total\s+revenues?\s*\|/i.test(metricLine) &&
+        lines.some(candidateLine => /\bconsolidated\s+SHO\s+revenues\b/i.test(candidateLine)) &&
+        lines.slice(Math.max(0, lineIndex - 20), lineIndex)
+          .some(candidateLine => /\bdollars\s+in\s+thousands,?\s+except\s+per\s+share\b/i.test(candidateLine))) {
+      score += 180;
+    }
     if (2 <= (metricLine.match(/\|/g)?.length ?? 0) &&
         true === isUnderIncomeStatementHeading(lines, lineIndex) &&
         lines.some(line => /^\s*segment\s+performance\s*$/i.test(line))) {
