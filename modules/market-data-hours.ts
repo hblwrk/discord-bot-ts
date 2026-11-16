@@ -1,5 +1,5 @@
 import moment from "moment-timezone";
-import {isHoliday} from "nyse-holidays";
+import {sessionClose} from "us-equity-market-calendar";
 import {
   type MarketDataAsset,
   type MarketHoursProfile,
@@ -10,6 +10,8 @@ export const marketClosedPresence = "Market closed.";
 const marketClosedTrend = "⬛";
 const usEasternTimezone = "US/Eastern";
 const europeBerlinTimezone = "Europe/Berlin";
+// Minutes the us_cash profile stays "open" after the closing bell.
+const usCashCloseGraceMinutes = 15;
 
 export function buildClosedMarketPresenceData(): Omit<MarketPresenceData, "nickname"> {
   return {
@@ -111,12 +113,16 @@ function isUsCashMarketOpen(referenceTime: number): boolean {
     return false;
   }
 
-  if (true === isHoliday(easternTime.clone().startOf("day").toDate())) {
+  // null on full closures (holidays, days of mourning); "13:00" on early-close days.
+  const closeTimeET = sessionClose(easternTime.format("YYYY-MM-DD"));
+  if (null === closeTimeET) {
     return false;
   }
 
+  // closeTimeET is "HH:MM".
+  const closeMinuteOfDay = (Number(closeTimeET.slice(0, 2)) * 60) + Number(closeTimeET.slice(3, 5));
   const minuteOfDay = easternTime.hour() * 60 + easternTime.minute();
-  return minuteOfDay >= ((9 * 60) + 30) && minuteOfDay < ((16 * 60) + 15);
+  return minuteOfDay >= ((9 * 60) + 30) && minuteOfDay < (closeMinuteOfDay + usCashCloseGraceMinutes);
 }
 
 function isUsFuturesMarketOpen(referenceTime: number): boolean {

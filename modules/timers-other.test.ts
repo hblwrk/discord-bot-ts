@@ -653,13 +653,13 @@ describe("timers: other announcements", () => {
   test("startOtherTimers skips earnings timer when next US/Eastern day is a holiday", async () => {
     const {client, send} = createClientWithChannel();
     vi.setSystemTime(new Date("2025-07-03T19:30:00+02:00"));
-    isHolidayMock.mockImplementation(date => date.toDateString() === "Fri Jul 04 2025");
+    isHolidayMock.mockImplementation(date => "2025-07-04" === date);
 
     startOtherTimers(client, "channel-id", [], []);
     const dailyEarningsJob = getScheduledJobByTime(19, 30, "Europe/Berlin");
     await dailyEarningsJob.callback();
 
-    expect(isHolidayMock).toHaveBeenCalledWith(expect.any(Date));
+    expect(isHolidayMock).toHaveBeenCalledWith("2025-07-04");
     expect(getEarningsResultMock).not.toHaveBeenCalled();
     expect(getEarningsMessagesMock).not.toHaveBeenCalled();
     expect(send).not.toHaveBeenCalled();

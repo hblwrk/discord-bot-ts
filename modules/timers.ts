@@ -1,7 +1,7 @@
 import {AttachmentBuilder} from "discord.js";
 import moment from "moment-timezone";
 import Schedule from "node-schedule";
-import {getHolidays, isHoliday} from "nyse-holidays";
+import {isEarlyClose, isHoliday} from "us-equity-market-calendar";
 import {
   getAssetByName,
   type CalendarReminderAsset,
@@ -201,26 +201,29 @@ function isNyseTradingDay(date: moment.Moment): boolean {
     return false;
   }
 
-  return false === isHoliday(date.toDate());
+  return !isHoliday(date.clone().tz(usEasternTimezone).format("YYYY-MM-DD"));
+}
+
+function getUsEasternToday(): string {
+  return moment.tz(usEasternTimezone).format("YYYY-MM-DD");
 }
 
 function isNyseHolidayToday(): boolean {
-  return isHoliday(getCurrentNyseDate());
+  return Boolean(isHoliday(getUsEasternToday()));
+}
+
+// Every NYSE early-close day (day after Thanksgiving, Christmas Eve, the day
+// before Independence Day), not only the one after Thanksgiving.
+function isNyseEarlyCloseToday(): boolean {
+  return Boolean(isEarlyClose(getUsEasternToday()));
 }
 
 function isDayAfterThanksgiving(): boolean {
-  const nowUsEastern = moment.tz(usEasternTimezone);
-  const thanksgiving = getHolidays(nowUsEastern.year()).find(holiday => holiday.name === "Thanksgiving Day");
-  if (!thanksgiving) {
-    return false;
-  }
-
-  const dayAfterThanksgiving = moment(thanksgiving.date).tz(usEasternTimezone).add(1, "day").format("YYYY-MM-DD");
-  return nowUsEastern.format("YYYY-MM-DD") === dayAfterThanksgiving;
+  return "Day after Thanksgiving" === isEarlyClose(getUsEasternToday())?.name;
 }
 
 function getNyseSentimentPollDurationHours(): number {
-  if (true === isDayAfterThanksgiving()) {
+  if (true === isNyseEarlyCloseToday()) {
     return nyseEarlyCloseSentimentPollFallbackHours;
   }
 
@@ -690,19 +693,21 @@ export function startNyseTimers(client: TimerClient, channelID: string, gainsLos
   });
 
   Schedule.scheduleJob(ruleNysePremarketOpen, () => {
-    const thanksgivingEarlyClose = isDayAfterThanksgiving();
-    if (true === thanksgivingEarlyClose) {
-      // At the day after Thanksgiving the market closes at 13:00 local time.
+    if (true === isNyseEarlyCloseToday()) {
+      // On early-close days the market closes at 13:00 US/Eastern.
       const usEasternDate = moment.tz(usEasternTimezone).set({
         hour: 13,
         minute: 0,
         second: 0,
       });
       const deDate = usEasternDate.clone().tz(europeBerlinTimezone);
+      const closeTime = `${deDate.format("HH")}:${deDate.format("mm")}`;
       void sendAnnouncement(
         client,
         channelID,
-        `🦃🍗🎉 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet und heute ist der Tag nach dem Truthahn-Tag, also beeilt euch - die Börse macht schon um ${deDate.format("HH")}:${deDate.format("mm")} zu! 🎉🍗🦃`,
+        true === isDayAfterThanksgiving()
+          ? `🦃🍗🎉 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet und heute ist der Tag nach dem Truthahn-Tag, also beeilt euch - die Börse macht schon um ${closeTime} zu! 🎉🍗🦃`
+          : `⏰🔔 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet, aber heute ist ein verkürzter Handelstag - die Börse macht schon um ${closeTime} zu! 🔔⏰`,
         "NYSE",
       );
     } else if (true === isNyseHolidayToday()) {
@@ -739,23 +744,23 @@ export function startNyseTimers(client: TimerClient, channelID: string, gainsLos
   });
 
   Schedule.scheduleJob(ruleNyseSentimentPollClose, () => {
-    const thanksgivingEarlyClose = isDayAfterThanksgiving();
+    const earlyClose = isNyseEarlyCloseToday();
     if (false === isNyseHolidayToday() &&
-        false === thanksgivingEarlyClose) {
+        false === earlyClose) {
       void endNyseSentimentPoll(sentimentPollState, "NYSE sentiment");
     }
   });
 
   Schedule.scheduleJob(ruleNyseSentimentPollCloseEarly, () => {
-    if (true === isDayAfterThanksgiving()) {
+    if (true === isNyseEarlyCloseToday()) {
       void endNyseSentimentPoll(sentimentPollState, "NYSE sentiment");
     }
   });
 
   Schedule.scheduleJob(ruleNyseClose, () => {
-    const thanksgivingEarlyClose = isDayAfterThanksgiving();
+    const earlyClose = isNyseEarlyCloseToday();
     if (false === isNyseHolidayToday() &&
-        false === thanksgivingEarlyClose) {
+        false === earlyClose) {
       void sendAnnouncement(
         client,
         channelID,
@@ -766,8 +771,8 @@ export function startNyseTimers(client: TimerClient, channelID: string, gainsLos
   });
 
   Schedule.scheduleJob(ruleNyseCloseEarly, () => {
-    if (true === isDayAfterThanksgiving()) {
-      // At the day after Thanksgiving the market closes at 13:00 local time.
+    if (true === isNyseEarlyCloseToday()) {
+      // On early-close days the market closes at 13:00 US/Eastern.
       void sendAnnouncement(
         client,
         channelID,
@@ -778,23 +783,23 @@ export function startNyseTimers(client: TimerClient, channelID: string, gainsLos
   });
 
   Schedule.scheduleJob(ruleNyseCloseRecap, () => {
-    const thanksgivingEarlyClose = isDayAfterThanksgiving();
+    const earlyClose = isNyseEarlyCloseToday();
     if (false === isNyseHolidayToday() &&
-        false === thanksgivingEarlyClose) {
+        false === earlyClose) {
       void runNyseMarketCloseRecap(client, channelID, sentimentPollState);
     }
   });
 
   Schedule.scheduleJob(ruleNyseCloseRecapEarly, () => {
-    if (true === isDayAfterThanksgiving()) {
+    if (true === isNyseEarlyCloseToday()) {
       void runNyseMarketCloseRecap(client, channelID, sentimentPollState);
     }
   });
 
   Schedule.scheduleJob(ruleNyseAftermarketClose, () => {
-    const thanksgivingEarlyClose = isDayAfterThanksgiving();
+    const earlyClose = isNyseEarlyCloseToday();
     if (false === isNyseHolidayToday() &&
-        false === thanksgivingEarlyClose) {
+        false === earlyClose) {
       void sendAnnouncement(
         client,
         channelID,
@@ -805,8 +810,8 @@ export function startNyseTimers(client: TimerClient, channelID: string, gainsLos
   });
 
   Schedule.scheduleJob(ruleNyseAftermarketCloseEarly, () => {
-    if (true === isDayAfterThanksgiving()) {
-      // At the day after Thanksgiving the aftermarket closes at 17:00 local time.
+    if (true === isNyseEarlyCloseToday()) {
+      // On early-close days the aftermarket closes at 17:00 US/Eastern.
       void sendAnnouncement(
         client,
         channelID,
