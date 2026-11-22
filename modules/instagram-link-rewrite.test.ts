@@ -57,8 +57,12 @@ function setupHandlers() {
   };
 }
 
+function instagramLinks(content: string) {
+  return getInstagramLinks(content).links;
+}
+
 function cleanLinks(content: string): string[] {
-  return getInstagramLinks(content).map(link => link.link);
+  return instagramLinks(content).map(link => link.link);
 }
 
 const noPing = {parse: [], repliedUser: false};
@@ -80,7 +84,7 @@ describe("getInstagramLinks", () => {
     ["https://www.instagram.com/some.user_1/reel/C0xFHGOrBN7/", "https://kirkstagram.com/reel/C0xFHGOrBN7/"],
     ["https://WWW.INSTAGRAM.COM/p/Ab-_9xYzQ/", "https://kirkstagram.com/p/Ab-_9xYzQ/"],
   ])("rewrites %s to Kirkstagram", (pasted, expected) => {
-    expect(getInstagramLinks(pasted)).toEqual([{link: expected, source: "instagram", changed: true}]);
+    expect(instagramLinks(pasted)).toEqual([{link: expected, source: "original", changed: true}]);
   });
 
   test.each([
@@ -119,11 +123,11 @@ describe("getInstagramLinks", () => {
     "https://ddinstagram.com/p/C0xFHGOrBN7/",
     "https://[invalid/p/C0xFHGOrBN7/",
   ])("ignores unsupported or unsafe URL %s", value => {
-    expect(getInstagramLinks(`look ${value}`)).toEqual([]);
+    expect(instagramLinks(`look ${value}`)).toEqual([]);
   });
 
   test("keeps proxy hosts and paths while removing tracking parameters", () => {
-    expect(getInstagramLinks(
+    expect(instagramLinks(
       "https://kkinstagram.com/reel/C0xFHGOrBN7/?igsh=MWFhYnB3eGZ0ZmRxbQ== https://www.kirkstagram.com/someone/p/D1yGIHPsCO8/?img_index=4&utm_source=x",
     )).toEqual([
       {link: "https://kkinstagram.com/reel/C0xFHGOrBN7/", source: "proxy", changed: true},
@@ -132,13 +136,13 @@ describe("getInstagramLinks", () => {
   });
 
   test("keeps a proxy carousel path segment instead of a query position", () => {
-    expect(getInstagramLinks("https://kirkstagram.com/p/C0xFHGOrBN7/2/?img_index=5")).toEqual([
+    expect(instagramLinks("https://kirkstagram.com/p/C0xFHGOrBN7/2/?img_index=5")).toEqual([
       {link: "https://kirkstagram.com/p/C0xFHGOrBN7/2/", source: "proxy", changed: true},
     ]);
   });
 
   test("marks clean proxy links as unchanged", () => {
-    expect(getInstagramLinks("https://kkinstagram.com/p/C0xFHGOrBN7/")).toEqual([
+    expect(instagramLinks("https://kkinstagram.com/p/C0xFHGOrBN7/")).toEqual([
       {link: "https://kkinstagram.com/p/C0xFHGOrBN7/", source: "proxy", changed: false},
     ]);
   });

@@ -24,6 +24,7 @@ import {type startMncTimers, type startNyseTimers, type startOtherTimers} from "
 import {type addTriggerResponses} from "./trigger-response.ts";
 import {type addTwitterLinkRewrites} from "./twitter-link-rewrite.ts";
 import {type addInstagramLinkRewrites} from "./instagram-link-rewrite.ts";
+import {type addRedditLinkRewrites} from "./reddit-link-rewrite.ts";
 
 export type Logger = {
   level?: string;
@@ -46,6 +47,7 @@ export type StartupDependencies = {
   addTriggerResponses: typeof addTriggerResponses;
   addTwitterLinkRewrites: typeof addTwitterLinkRewrites;
   addInstagramLinkRewrites: typeof addInstagramLinkRewrites;
+  addRedditLinkRewrites: typeof addRedditLinkRewrites;
   getGenericAssets: typeof getGenericAssets;
   getAssets: typeof getAssets;
   getTickers: typeof getTickers;
