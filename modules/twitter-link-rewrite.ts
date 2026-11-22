@@ -1,15 +1,25 @@
 import {getLogger} from "./logging.ts";
 import type {APIEmbed} from "discord.js";
+import {
+  createEmbedSuppressionTracker,
+  discordMaxMessageLength,
+  getMessageContentWithinDiscordLimit,
+  getSpoilerSpans,
+  isEmbedSuppressedLink,
+  isInsideSpoiler,
+  linkCandidateRegex as twitterUrlRegex,
+  messageHasEmbeds,
+  messageIsOnlyLinks,
+  resolvePosterCredit,
+  trimTrailingUrlPunctuation,
+  unwrapSpoiler,
+  wrapSpoiler,
+} from "./discord-link-utils.ts";
 import {createTwitterIntrospector, type TwitterIntrospector} from "./twitter-sanity.ts";
 import {appendTwitterBadgeText, type TwitterBadge} from "./twitter-badge-text.ts";
 import {getTwitterStatusId} from "./twitter-status-url.ts";
 
 const logger = getLogger();
-const discordMaxMessageLength = 2_000;
-const embedSuppressionWaitMs = 15_000;
-const trailingUrlPunctuation = ".,!?;:)]}";
-const linkWrapperPunctuation = "<>\"'.,!?;:()[]{}|";
-const twitterUrlRegex = /https?:\/\/[^\s<>"'|]+/giu;
 const twitterHosts = new Set([
   "mobile.twitter.com",
   "mobile.x.com",
@@ -81,15 +91,6 @@ type TwitterLinkRewriteClient = {
   };
 };
 
-function trimTrailingUrlPunctuation(value: string): string {
-  let trimmed = value;
-  while ("" !== trimmed && trailingUrlPunctuation.includes(trimmed.at(-1) ?? "")) {
-    trimmed = trimmed.slice(0, -1);
-  }
-
-  return trimmed;
-}
-
 function normalizeTwitterHostname(hostname: string): string {
   const normalizedHostname = hostname.toLowerCase();
   return normalizedHostname.startsWith("www.")
@@ -114,65 +115,6 @@ function getFixedTwitterUrl(value: string): string | undefined {
   }
 
   return `https://fxtwitter.com${parsedUrl.pathname}`;
-}
-
-function isEscaped(content: string, index: number): boolean {
-  let backslashCount = 0;
-  let i = index - 1;
-  while (0 <= i && "\\" === content[i]) {
-    backslashCount++;
-    i--;
-  }
-
-  return 0 !== backslashCount % 2;
-}
-
-function getSpoilerSpans(content: string): Array<{start: number; end: number}> {
-  const spans: Array<{start: number; end: number}> = [];
-  let openIndex: number | undefined = undefined;
-  let i = 0;
-
-  while (i < content.length - 1) {
-    if ("`" === content[i] && false === isEscaped(content, i)) {
-      if (content.startsWith("```", i)) {
-        const closeIndex = content.indexOf("```", i + 3);
-        i = -1 === closeIndex ? content.length : closeIndex + 3;
-        continue;
-      }
-      const closeIndex = content.indexOf("`", i + 1);
-      i = -1 === closeIndex ? content.length : closeIndex + 1;
-      continue;
-    }
-    if ("|" === content[i] && "|" === content[i + 1]) {
-      if (false === isEscaped(content, i)) {
-        if (undefined === openIndex) {
-          openIndex = i;
-        } else {
-          spans.push({start: openIndex, end: i + 2});
-          openIndex = undefined;
-        }
-        i += 2;
-        continue;
-      }
-    }
-    i++;
-  }
-
-  return spans;
-}
-
-function isInsideSpoiler(spans: readonly {start: number; end: number}[], start: number, end: number): boolean {
-  return spans.some(span => span.start <= start && end <= span.end);
-}
-
-function wrapSpoiler(url: string): string {
-  return `||${url}||`;
-}
-
-function unwrapSpoiler(url: string): string {
-  return url.startsWith("||") && url.endsWith("||") && 4 <= url.length
-    ? url.slice(2, -2)
-    : url;
 }
 
 // Keep proxy modifiers and queries; raw X/Twitter links use FxTwitter.
@@ -201,71 +143,11 @@ function getRepostedTwitterLinks(content: string): string[] {
   return [...links.values()];
 }
 
-function isEmbedSuppressedLink(content: string, start: number, length: number): boolean {
-  return "<" === content[start - 1] && ">" === content[start + length];
-}
-
-function getMessageContentWithinDiscordLimit(links: string[], maxLength: number = discordMaxMessageLength): string {
-  const acceptedLinks: string[] = [];
-  let messageLength = 0;
-
-  for (const link of links) {
-    const nextLength = messageLength + (0 === acceptedLinks.length ? 0 : 1) + link.length;
-    if (nextLength > maxLength) {
-      break;
-    }
-
-    acceptedLinks.push(link);
-    messageLength = nextLength;
-  }
-
-  return acceptedLinks.join("\n");
-}
-
-// A message "only contains the link" when removing every supported Twitter/X
-// or proxy URL leaves only whitespace and common link-wrapper punctuation.
-// Those messages are deleted and reposted by the bot rather than
+// Link-only messages (supported Twitter/X or proxy URLs plus whitespace and
+// wrapper punctuation) are deleted and reposted by the bot rather than
 // replied to, so the channel shows a single link response with native previews.
 function messageIsOnlyRepostableLinks(content: string): boolean {
-  let foundRepostableLink = false;
-  const remainder = content.replace(twitterUrlRegex, (match, offset: number) => {
-    if (isEmbedSuppressedLink(content, offset, match.length)
-      || undefined === getRepostedTwitterUrl(trimTrailingUrlPunctuation(match))) {
-      return match;
-    }
-
-    foundRepostableLink = true;
-    return "";
-  });
-
-  if (false === foundRepostableLink) {
-    return false;
-  }
-
-  for (const character of remainder) {
-    if (false === /\s/u.test(character) && false === linkWrapperPunctuation.includes(character)) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-// Credit the poster with a Discord mention (<@id>) rather than their plaintext
-// name. The replacement is posted in the bot's name, so a user-controlled name
-// string could be used to impersonate someone else ("From <victim>: <link>").
-// A mention is resolved by Discord to the real account captured at post time —
-// it cannot be spoofed and stays clickable. With allowedMentions.parse empty it
-// renders without pinging. Fall back to a neutral label if no author id exists.
-function resolvePosterCredit(message: TwitterLinkRewriteMessage): string {
-  const authorId = message.author?.id;
-  return undefined === authorId || "" === authorId
-    ? "someone"
-    : `<@${authorId}>`;
-}
-
-function messageHasEmbeds(message: {embeds?: readonly unknown[] | null}): boolean {
-  return Array.isArray(message.embeds) && 0 < message.embeds.length;
+  return messageIsOnlyLinks(content, url => undefined !== getRepostedTwitterUrl(url));
 }
 
 async function suppressOriginalEmbeds(message: TwitterLinkSuppressibleMessage) {
@@ -307,7 +189,7 @@ async function replaceLinkOnlyMessage(
   message: TwitterLinkRewriteMessage,
   fixedLinks: string[],
 ): Promise<{removed: boolean; delivery?: LinkDelivery}> {
-  const prefix = `From ${resolvePosterCredit(message)}: `;
+  const prefix = `From ${resolvePosterCredit(message.author)}: `;
   const content = getMessageContentWithinDiscordLimit(fixedLinks, discordMaxMessageLength - prefix.length);
   const referencedMessageId = message.reference?.messageId;
   if ("" === content) {
@@ -517,31 +399,9 @@ export function addTwitterLinkRewrites(
   client: TwitterLinkRewriteClient,
   introspect: TwitterIntrospector = createTwitterIntrospector({logger}),
 ) {
-  // Discord attaches the X/Twitter card after the message is created, arriving
-  // as a separate messageUpdate. Suppressing at messageCreate races that update
-  // and the card slips through, so we wait for the embed to appear before
-  // suppressing. Track the message ids whose embeds are still pending, with a
-  // timeout that drops ids whose card never materialises.
-  const pendingEmbedSuppressions = new Map<string, ReturnType<typeof setTimeout>>();
-
-  function stopTrackingMessage(messageId: string): void {
-    const pendingTimeout = pendingEmbedSuppressions.get(messageId);
-    if (undefined === pendingTimeout) {
-      return;
-    }
-
-    clearTimeout(pendingTimeout);
-    pendingEmbedSuppressions.delete(messageId);
-  }
-
-  function trackMessageForEmbedSuppression(messageId: string): void {
-    stopTrackingMessage(messageId);
-    const pendingTimeout = setTimeout(() => {
-      pendingEmbedSuppressions.delete(messageId);
-    }, embedSuppressionWaitMs);
-    pendingTimeout.unref();
-    pendingEmbedSuppressions.set(messageId, pendingTimeout);
-  }
+  // The X/Twitter card arrives as a separate messageUpdate; suppression waits
+  // for it (see createEmbedSuppressionTracker).
+  const pendingEmbedSuppressions = createEmbedSuppressionTracker();
 
   client.on("messageCreate", async message => {
     if (true === message.author?.bot || Boolean(message.webhookId)) {
@@ -580,7 +440,7 @@ export function addTwitterLinkRewrites(
       if (messageHasEmbeds(message)) {
         void suppressOriginalEmbeds(message);
       } else {
-        trackMessageForEmbedSuppression(message.id);
+        pendingEmbedSuppressions.track(message.id);
       }
     }
 
@@ -604,7 +464,7 @@ export function addTwitterLinkRewrites(
       return;
     }
 
-    stopTrackingMessage(newMessage.id);
+    pendingEmbedSuppressions.stop(newMessage.id);
     await suppressOriginalEmbeds(newMessage);
   });
 }

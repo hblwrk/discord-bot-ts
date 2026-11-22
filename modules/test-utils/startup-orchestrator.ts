@@ -244,6 +244,9 @@ export function createDependencies(overrides = {}) {
   const addTwitterLinkRewrites = vi.fn(() => {
     events.push("twitter-link-rewrite");
   });
+  const addInstagramLinkRewrites = vi.fn(() => {
+    events.push("instagram-link-rewrite");
+  });
   const interactSlashCommands = vi.fn(() => {
     events.push("slash-interact");
   });
@@ -297,6 +300,7 @@ export function createDependencies(overrides = {}) {
       addInlineResponses,
       addTriggerResponses,
       addTwitterLinkRewrites,
+      addInstagramLinkRewrites,
       interactSlashCommands,
       clownboard,
       startNyseTimers,
@@ -325,6 +329,7 @@ export function createDependencies(overrides = {}) {
       addInlineResponses,
       addTriggerResponses,
       addTwitterLinkRewrites,
+      addInstagramLinkRewrites,
       interactSlashCommands,
       clownboard,
       startNyseTimers,
