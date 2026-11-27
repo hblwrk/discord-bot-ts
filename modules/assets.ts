@@ -13,6 +13,7 @@ const supportedMarketHoursProfiles = new Set<string>([
   "crypto",
   "eu_cash",
   "forex",
+  "us_23x5",
   "us_cash",
   "us_futures",
 ]);

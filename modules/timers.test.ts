@@ -29,31 +29,78 @@ describe("timers: NYSE and MNC", () => {
   beforeEach(resetTimerMocks);
   afterEach(restoreTimerMocks);
 
-  test("startNyseTimers registers NYSE jobs and sends regular pre-market announcement", () => {
+  test("startNyseTimers registers NYSE jobs and stays silent on a regular trading morning", () => {
     const {client, send} = createClientWithChannel();
 
     startNyseTimers(client, "channel-id");
-    const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
+    const morningNoticeJob = getScheduledJobByTime(4, 0, "US/Eastern");
 
     expect(scheduleJobMock).toHaveBeenCalledTimes(11);
-    expect(premarketJob.rule).toEqual(expect.objectContaining({
+    expect(morningNoticeJob.rule).toEqual(expect.objectContaining({
       hour: 4,
       minute: 0,
       tz: "US/Eastern",
     }));
-    expect(premarketJob.rule.dayOfWeek).toEqual([expect.objectContaining({start: 1, end: 5})]);
+    expect(morningNoticeJob.rule.dayOfWeek).toEqual([expect.objectContaining({start: 1, end: 5})]);
+    expect(getScheduledJobByTime(20, 0, "US/Eastern").rule.dayOfWeek).toEqual([expect.objectContaining({start: 1, end: 5})]);
+    expect(getScheduledJobByTime(21, 0, "US/Eastern").rule.dayOfWeek).toEqual([expect.objectContaining({start: 0, end: 4})]);
 
-    premarketJob.callback();
+    morningNoticeJob.callback();
 
-    expect(send).toHaveBeenCalledWith(expect.stringContaining("Der Pre-market hat geöffnet"));
-    expect(isHolidayMock).toHaveBeenCalledTimes(1);
+    expect(send).not.toHaveBeenCalled();
+    expect(isHolidayMock).toHaveBeenCalledWith("2025-02-18");
   });
 
-  test("startNyseTimers sends separate AI pre-market warmup after pre-market open", async () => {
+  test("startNyseTimers announces the daily pause at 20:00 US/Eastern", () => {
+    const {client, send} = createClientWithChannel();
+    vi.setSystemTime(new Date("2025-02-18T20:00:00-05:00"));
+
+    startNyseTimers(client, "channel-id");
+    getScheduledJobByTime(20, 0, "US/Eastern").callback();
+
+    expect(send).toHaveBeenCalledWith(expect.stringContaining("Verschnaufpause"));
+    expect(send).toHaveBeenCalledWith(expect.stringContaining("21:00 US/Eastern / 03:00 Europe/Berlin"));
+  });
+
+  test("startNyseTimers announces the weekend close on Friday at 20:00 US/Eastern", () => {
+    const {client, send} = createClientWithChannel();
+    vi.setSystemTime(new Date("2025-02-21T20:00:00-05:00"));
+
+    startNyseTimers(client, "channel-id");
+    getScheduledJobByTime(20, 0, "US/Eastern").callback();
+
+    expect(send).toHaveBeenCalledWith(expect.stringContaining("schönes Wochenende"));
+    expect(send).toHaveBeenCalledWith(expect.stringContaining("Sonntag um 21:00 US/Eastern"));
+  });
+
+  test("startNyseTimers announces the resume at 21:00 US/Eastern", () => {
+    const {client, send} = createClientWithChannel();
+    vi.setSystemTime(new Date("2025-02-18T21:00:00-05:00"));
+
+    startNyseTimers(client, "channel-id");
+    getScheduledJobByTime(21, 0, "US/Eastern").callback();
+
+    expect(send).toHaveBeenCalledWith(expect.stringContaining("Pause vorbei"));
+    expect(send).toHaveBeenCalledWith(expect.stringContaining("Handelstag Mittwoch, 19. Februar"));
+  });
+
+  test("startNyseTimers stays silent at 21:00 US/Eastern before a market holiday", () => {
+    const {client, send} = createClientWithChannel();
+    // 21:00 US/Eastern on 2025-12-24 precedes the Christmas holiday.
+    vi.setSystemTime(new Date("2025-12-24T21:00:00-05:00"));
+    isHolidayMock.mockImplementation(date => "2025-12-25" === date);
+
+    startNyseTimers(client, "channel-id");
+    getScheduledJobByTime(21, 0, "US/Eastern").callback();
+
+    expect(send).not.toHaveBeenCalled();
+  });
+
+  test("startNyseTimers sends separate AI pre-market warmup before the regular open", async () => {
     const {client, send} = createClientWithChannel();
 
     startNyseTimers(client, "channel-id");
-    const warmupJob = getScheduledJobByTime(4, 5, "US/Eastern");
+    const warmupJob = getScheduledJobByTime(9, 15, "US/Eastern");
     await warmupJob.callback();
     await flushAsyncJobs();
 
@@ -73,7 +120,7 @@ describe("timers: NYSE and MNC", () => {
     isHolidayMock.mockReturnValue(true);
 
     startNyseTimers(client, "channel-id");
-    const warmupJob = getScheduledJobByTime(4, 5, "US/Eastern");
+    const warmupJob = getScheduledJobByTime(9, 15, "US/Eastern");
     await warmupJob.callback();
     await flushAsyncJobs();
 
@@ -198,15 +245,15 @@ describe("timers: NYSE and MNC", () => {
     expect(send).toHaveBeenCalledWith(expect.stringContaining("die Börsen sind zu"));
   });
 
-  test("startNyseTimers treats holiday check by US/Eastern date for aftermarket close", () => {
+  test("startNyseTimers treats holiday check by US/Eastern date for the evening close", () => {
     const {client, send} = createClientWithChannel();
     // 20:00 US/Eastern on 2025-12-25 equals 2025-12-26T01:00:00Z.
     vi.setSystemTime(new Date("2025-12-26T01:00:00Z"));
     isHolidayMock.mockImplementation(date => "2025-12-25" === date);
 
     startNyseTimers(client, "channel-id");
-    const aftermarketJob = getScheduledJobByTime(20, 0, "US/Eastern");
-    aftermarketJob.callback();
+    const eveningCloseJob = getScheduledJobByTime(20, 0, "US/Eastern");
+    eveningCloseJob.callback();
 
     expect(send).not.toHaveBeenCalled();
     expect(isHolidayMock).toHaveBeenCalledWith("2025-12-25");
@@ -347,9 +394,9 @@ describe("timers: NYSE and MNC", () => {
     const {client} = createClientWithoutChannel();
 
     startNyseTimers(client, "channel-id");
-    const premarketJob = getScheduledJobByTime(4, 0, "US/Eastern");
+    const closeJob = getScheduledJobByTime(16, 0, "US/Eastern");
 
-    premarketJob.callback();
+    closeJob.callback();
 
     expect(loggerMock.log).toHaveBeenCalledWith("error", expect.stringContaining("Skipping NYSE announcement"));
   });

@@ -1,4 +1,4 @@
-export type MarketHoursProfile = "crypto" | "eu_cash" | "forex" | "us_cash" | "us_futures";
+export type MarketHoursProfile = "crypto" | "eu_cash" | "forex" | "us_23x5" | "us_cash" | "us_futures";
 export type MarketDataSource = "investing" | "tastytrade";
 export type DiscordPresenceStatus = "dnd" | "idle" | "invisible" | "online";
 

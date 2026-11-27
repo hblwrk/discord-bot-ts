@@ -54,6 +54,22 @@ describe("market-data-hours", () => {
   });
 
   test.each([
+    ["Saturday closed", "2026-12-12T12:00:00", false],
+    ["Sunday before weekly open", "2026-12-06T20:59:00", false],
+    ["Sunday weekly open", "2026-12-06T21:00:00", true],
+    ["Monday overnight session", "2026-12-07T03:00:00", true],
+    ["weekday before daily pause", "2026-12-07T19:59:00", true],
+    ["weekday daily pause start", "2026-12-07T20:00:00", false],
+    ["weekday late in daily pause", "2026-12-07T20:59:00", false],
+    ["weekday resume after pause", "2026-12-07T21:00:00", true],
+    ["Friday before weekly close", "2026-12-11T19:59:00", true],
+    ["Friday weekly close", "2026-12-11T20:00:00", false],
+    ["Friday evening stays closed", "2026-12-11T21:00:00", false],
+  ])("maps US 23x5 hours: %s", (_label, localTime, expectedOpen) => {
+    expect(isMarketOpen(marketAsset("us_23x5"), timestamp(localTime, "US/Eastern"))).toBe(expectedOpen);
+  });
+
+  test.each([
     ["regular session before daily break", "2026-05-01T16:59:00", true],
     ["Friday maintenance break", "2026-05-01T17:00:00", false],
     ["Saturday closed", "2026-05-02T12:00:00", false],
