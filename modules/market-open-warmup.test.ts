@@ -24,7 +24,7 @@ describe("market open warmup", () => {
       order: 0,
       suffix: "",
       unit: "PCT",
-    }, 5225, 25, 0.48, "investing", new Date("2026-05-07T08:04:00Z"));
+    }, 5225, 25, 0.48, "investing", new Date("2026-05-07T13:14:00Z"));
     const callAiProviderJsonFn = vi.fn().mockResolvedValue(JSON.stringify({
       content: "**Pre-Market Warmup**\n`ES +0,48%` ist wach. Euer Ego darf gern noch im Risikomanagement-Praktikum bleiben.",
     }));
@@ -57,7 +57,7 @@ describe("market open warmup", () => {
         triggers: ["margin"],
         type: "text",
       }],
-      referenceTime: new Date("2026-05-07T08:05:00Z"),
+      referenceTime: new Date("2026-05-07T13:15:00Z"),
     });
 
     expect(message).toBe("**Pre-Market Warmup**\n`ES +0,48%` ist wach. Euer Ego darf gern noch im Risikomanagement-Praktikum bleiben.");
@@ -78,6 +78,7 @@ describe("market open warmup", () => {
     );
     const prompt = callAiProviderJsonFn.mock.calls[0]?.[0] ?? "";
     expect(prompt).toContain("`ES`: `+0,48%` bei `5.225,00`");
+    expect(prompt).toContain("- Session: Die reguläre US-Aktien-Session (RTH) öffnet um `09:30 US/Eastern` / `15:30 Europe/Berlin`; Handelstag `2026-05-07`.");
     expect(prompt).toContain("Marktampel: `Gelb`");
     expect(prompt).toContain("Community-Tropen aus vorhandenen Bot-Texten und Meme-Assets");
     expect(prompt).toContain("image-Asset stoploss - Stop loss...");
@@ -96,14 +97,14 @@ describe("market open warmup", () => {
 
   test("loads image and text asset style references by default", async () => {
     const callAiProviderJsonFn = vi.fn().mockResolvedValue(JSON.stringify({
-      content: "`04:00 US/Eastern` ist offen. Marktampel `Gelb`, Casino offen, bitte erst denken und dann klicken.",
+      content: "`09:30 US/Eastern` ist offen. Marktampel `Gelb`, Casino offen, bitte erst denken und dann klicken.",
     }));
 
     await getPremarketWarmupMessage({
       callAiProviderJsonFn,
       logger,
     }, {
-      referenceTime: new Date("2026-05-07T08:05:00Z"),
+      referenceTime: new Date("2026-05-07T13:15:00Z"),
     });
 
     const prompt = callAiProviderJsonFn.mock.calls[0]?.[0] ?? "";
@@ -120,10 +121,10 @@ describe("market open warmup", () => {
       logger,
     }, {
       assetPromptReferences: [],
-      referenceTime: new Date("2026-05-07T08:05:00Z"),
+      referenceTime: new Date("2026-05-07T13:15:00Z"),
     });
 
-    expect(message).toBe("**Pre-Market Warmup**\nDer US-Aktien-Premarket ist seit `04:00 US/Eastern` offen. Die Marktampel steht auf `Gelb`. Casino ist offen, Spreads sind wach, das Ego hoffentlich noch im Bett. Erst Plan, dann klicken.");
+    expect(message).toBe("**Pre-Market Warmup**\nDie reguläre US-Aktien-Session öffnet um `09:30 US/Eastern`. Die Marktampel steht auf `Gelb`. Casino ist offen, Spreads sind wach, das Ego hoffentlich noch angeleint. Erst Plan, dann klicken.");
   });
 
   test("falls back with the fact-derived Marktampel", async () => {
@@ -138,7 +139,7 @@ describe("market open warmup", () => {
       order: 0,
       suffix: "",
       unit: "PCT",
-    }, 5225, 25, 0.48, "investing", new Date("2026-05-07T08:04:00Z"));
+    }, 5225, 25, 0.48, "investing", new Date("2026-05-07T13:14:00Z"));
     recordMarketDataSnapshot({
       botClientId: "client-nq",
       botName: "Nasdaq",
@@ -150,7 +151,7 @@ describe("market open warmup", () => {
       order: 1,
       suffix: "",
       unit: "PCT",
-    }, 18750, 90, 0.48, "investing", new Date("2026-05-07T08:04:00Z"));
+    }, 18750, 90, 0.48, "investing", new Date("2026-05-07T13:14:00Z"));
     const callAiProviderJsonFn = vi.fn().mockResolvedValue(null);
 
     const message = await getPremarketWarmupMessage({
@@ -158,7 +159,7 @@ describe("market open warmup", () => {
       logger,
     }, {
       assetPromptReferences: [],
-      referenceTime: new Date("2026-05-07T08:05:00Z"),
+      referenceTime: new Date("2026-05-07T13:15:00Z"),
     });
 
     expect(message).toContain("Die Marktampel steht auf `Gruen`.");
@@ -177,7 +178,7 @@ describe("market open warmup", () => {
       order: 0,
       suffix: "",
       unit: "PCT",
-    }, 5225, -28, -0.54, "investing", new Date("2026-05-07T08:04:00Z"));
+    }, 5225, -28, -0.54, "investing", new Date("2026-05-07T13:14:00Z"));
     recordMarketDataSnapshot({
       botClientId: "client-nq",
       botName: "Nasdaq",
@@ -189,7 +190,7 @@ describe("market open warmup", () => {
       order: 1,
       suffix: "",
       unit: "PCT",
-    }, 18750, -120, -0.64, "investing", new Date("2026-05-07T08:04:00Z"));
+    }, 18750, -120, -0.64, "investing", new Date("2026-05-07T13:14:00Z"));
     recordMarketDataSnapshot({
       botClientId: "client-vix",
       botName: "VIX",
@@ -201,7 +202,7 @@ describe("market open warmup", () => {
       order: 3,
       suffix: "",
       unit: "POINTS",
-    }, 18.4, 0.5, 2.79, "investing", new Date("2026-05-07T08:04:00Z"));
+    }, 18.4, 0.5, 2.79, "investing", new Date("2026-05-07T13:14:00Z"));
     const callAiProviderJsonFn = vi.fn().mockResolvedValue(null);
 
     const message = await getPremarketWarmupMessage({
@@ -209,7 +210,7 @@ describe("market open warmup", () => {
       logger,
     }, {
       assetPromptReferences: [],
-      referenceTime: new Date("2026-05-07T08:05:00Z"),
+      referenceTime: new Date("2026-05-07T13:15:00Z"),
     });
 
     expect(message).toContain("`ES -0,54%`");
@@ -228,7 +229,7 @@ describe("market open warmup", () => {
       order: 3,
       suffix: "",
       unit: "POINTS",
-    }, 16.2, -0.5, -2.99, "investing", new Date("2026-05-07T08:04:00Z"));
+    }, 16.2, -0.5, -2.99, "investing", new Date("2026-05-07T13:14:00Z"));
     const callAiProviderJsonFn = vi.fn().mockResolvedValue(null);
 
     const message = await getPremarketWarmupMessage({
@@ -236,7 +237,7 @@ describe("market open warmup", () => {
       logger,
     }, {
       assetPromptReferences: [],
-      referenceTime: new Date("2026-05-07T08:05:00Z"),
+      referenceTime: new Date("2026-05-07T13:15:00Z"),
     });
 
     expect(message).toContain("`VIX -0,50 Punkte` steht bei `16,20`.");
@@ -253,10 +254,10 @@ describe("market open warmup", () => {
       logger,
     }, {
       assetPromptReferences: [],
-      referenceTime: new Date("2026-05-07T08:05:00Z"),
+      referenceTime: new Date("2026-05-07T13:15:00Z"),
     });
 
-    expect(message).toContain("`04:00 US/Eastern`");
+    expect(message).toContain("`09:30 US/Eastern`");
     expect(logger.log).toHaveBeenCalledWith(
       "warn",
       "AI premarket warmup rejected: content did not reference a supplied fact.",
@@ -269,7 +270,7 @@ describe("market open warmup", () => {
         content: "Guten Morgen, der Markt macht heute bestimmt irgendwas. Bitte alle maximal dramatisch bleiben.",
       }))
       .mockResolvedValueOnce(JSON.stringify({
-        content: "`04:00 US/Eastern` ist offen. Marktampel `Gelb`; erst Plan, dann Klickfinger.",
+        content: "`09:30 US/Eastern` ist offen. Marktampel `Gelb`; erst Plan, dann Klickfinger.",
       }));
 
     const message = await getPremarketWarmupMessage({
@@ -277,10 +278,10 @@ describe("market open warmup", () => {
       logger,
     }, {
       assetPromptReferences: [],
-      referenceTime: new Date("2026-05-07T08:05:00Z"),
+      referenceTime: new Date("2026-05-07T13:15:00Z"),
     });
 
-    expect(message).toBe("`04:00 US/Eastern` ist offen. Marktampel `Gelb`; erst Plan, dann Klickfinger.");
+    expect(message).toBe("`09:30 US/Eastern` ist offen. Marktampel `Gelb`; erst Plan, dann Klickfinger.");
     expect(callAiProviderJsonFn).toHaveBeenCalledTimes(2);
     const retryPrompt = callAiProviderJsonFn.mock.calls[1]?.[0] ?? "";
     expect(retryPrompt).toContain("Previous response failed local validation.");
@@ -293,7 +294,7 @@ describe("market open warmup", () => {
 
   test("rejects AI output that looks like trading advice", async () => {
     const callAiProviderJsonFn = vi.fn().mockResolvedValue(JSON.stringify({
-      content: "`04:00 US/Eastern` ist offen, also geht long und betet.",
+      content: "`09:30 US/Eastern` ist offen, also geht long und betet.",
     }));
 
     const message = await getPremarketWarmupMessage({
@@ -301,7 +302,7 @@ describe("market open warmup", () => {
       logger,
     }, {
       assetPromptReferences: [],
-      referenceTime: new Date("2026-05-07T08:05:00Z"),
+      referenceTime: new Date("2026-05-07T13:15:00Z"),
     });
 
     expect(message).not.toContain("geht long");
@@ -313,7 +314,7 @@ describe("market open warmup", () => {
 
   test("rejects AI output that leaks asset implementation details", async () => {
     const callAiProviderJsonFn = vi.fn().mockResolvedValue(JSON.stringify({
-      content: "`04:00 US/Eastern` und die Asset-Liste sagt Casino.",
+      content: "`09:30 US/Eastern` und die Asset-Liste sagt Casino.",
     }));
 
     const message = await getPremarketWarmupMessage({
@@ -321,7 +322,7 @@ describe("market open warmup", () => {
       logger,
     }, {
       assetPromptReferences: [],
-      referenceTime: new Date("2026-05-07T08:05:00Z"),
+      referenceTime: new Date("2026-05-07T13:15:00Z"),
     });
 
     expect(message).not.toContain("Asset-Liste");
@@ -333,7 +334,7 @@ describe("market open warmup", () => {
 
   test("rejects AI output that stacks meme keywords mechanically", async () => {
     const callAiProviderJsonFn = vi.fn().mockResolvedValue(JSON.stringify({
-      content: "`04:00 US/Eastern` ist offen. FOMO + 0DTE klingt wieder nach Risikomanagement.",
+      content: "`09:30 US/Eastern` ist offen. FOMO + 0DTE klingt wieder nach Risikomanagement.",
     }));
 
     const message = await getPremarketWarmupMessage({
@@ -341,7 +342,7 @@ describe("market open warmup", () => {
       logger,
     }, {
       assetPromptReferences: [],
-      referenceTime: new Date("2026-05-07T08:05:00Z"),
+      referenceTime: new Date("2026-05-07T13:15:00Z"),
     });
 
     expect(message).not.toContain("FOMO + 0DTE");

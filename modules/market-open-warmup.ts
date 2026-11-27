@@ -37,6 +37,9 @@ type PremarketWarmupParseResult = {
 
 const usEasternTimezone = "US/Eastern";
 const europeBerlinTimezone = "Europe/Berlin";
+// The warmup runs shortly before the regular session (RTH) opens on trading days.
+const regularSessionOpenHourET = 9;
+const regularSessionOpenMinuteET = 30;
 const defaultMaxContentLength = 700;
 const defaultMaxSnapshotAgeMs = 45 * 60_000;
 const defaultMaxStyleTropes = 10;
@@ -118,27 +121,27 @@ export async function getPremarketWarmupMessage(
 
 function getPremarketWarmupFacts(referenceTime: Date, maxSnapshotAgeMs: number): PremarketWarmupFact[] {
   const usEasternNow = moment(referenceTime).tz(usEasternTimezone);
-  const premarketOpenUsEastern = usEasternNow.clone().set({
-    hour: 4,
+  const regularOpenUsEastern = usEasternNow.clone().set({
+    hour: regularSessionOpenHourET,
     millisecond: 0,
-    minute: 0,
+    minute: regularSessionOpenMinuteET,
     second: 0,
   });
-  const premarketOpenBerlin = premarketOpenUsEastern.clone().tz(europeBerlinTimezone);
+  const regularOpenBerlin = regularOpenUsEastern.clone().tz(europeBerlinTimezone);
   const snapshots = getMarketDataSnapshots({
     maxAgeMs: maxSnapshotAgeMs,
     referenceTime,
   });
   const facts: PremarketWarmupFact[] = [{
-    fallbackText: `Der US-Aktien-Premarket ist seit \`${premarketOpenUsEastern.format("HH:mm")} US/Eastern\` offen.`,
+    fallbackText: getRegularSessionOpenText(regularOpenUsEastern),
     fragments: [
-      premarketOpenUsEastern.format("HH:mm"),
+      regularOpenUsEastern.format("HH:mm"),
       "US/Eastern",
-      premarketOpenBerlin.format("HH:mm"),
+      regularOpenBerlin.format("HH:mm"),
       "Europe/Berlin",
       usEasternNow.format("YYYY-MM-DD"),
     ],
-    line: `- Session: US-Aktien-Premarket ist seit \`${premarketOpenUsEastern.format("HH:mm")} US/Eastern\` / \`${premarketOpenBerlin.format("HH:mm")} Europe/Berlin\` offen; Handelstag \`${usEasternNow.format("YYYY-MM-DD")}\`.`,
+    line: `- Session: Die reguläre US-Aktien-Session (RTH) öffnet um \`${regularOpenUsEastern.format("HH:mm")} US/Eastern\` / \`${regularOpenBerlin.format("HH:mm")} Europe/Berlin\`; Handelstag \`${usEasternNow.format("YYYY-MM-DD")}\`.`,
     type: "session",
   }];
 
@@ -148,6 +151,10 @@ function getPremarketWarmupFacts(referenceTime: Date, maxSnapshotAgeMs: number):
   facts.push(getMarketAmpelFact(snapshots));
 
   return facts;
+}
+
+function getRegularSessionOpenText(regularOpenUsEastern: moment.Moment): string {
+  return `Die reguläre US-Aktien-Session öffnet um \`${regularOpenUsEastern.format("HH:mm")} US/Eastern\`.`;
 }
 
 function getSnapshotFact(snapshot: MarketDataSnapshot): PremarketWarmupFact {
@@ -498,11 +505,11 @@ function referencesAnyFact(content: string, facts: PremarketWarmupFact[]): boole
 function getFallbackWarmupMessage(facts: PremarketWarmupFact[]): string {
   const primaryFact = facts.find(fact => "snapshot" === fact.type) ?? facts[0];
   const marketAmpelFact = facts.find(fact => "market-ampel" === fact.type);
-  const factText = primaryFact?.fallbackText ?? "Der US-Aktien-Premarket ist seit `04:00 US/Eastern` offen.";
+  const factText = primaryFact?.fallbackText ?? "Die reguläre US-Aktien-Session öffnet um `09:30 US/Eastern`.";
   const marketAmpelText = marketAmpelFact?.fallbackText ?? "Die Marktampel steht auf `Gelb`.";
   return [
     "**Pre-Market Warmup**",
-    `${factText} ${marketAmpelText} Casino ist offen, Spreads sind wach, das Ego hoffentlich noch im Bett. Erst Plan, dann klicken.`,
+    `${factText} ${marketAmpelText} Casino ist offen, Spreads sind wach, das Ego hoffentlich noch angeleint. Erst Plan, dann klicken.`,
   ].join("\n");
 }
 

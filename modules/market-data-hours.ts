@@ -12,6 +12,11 @@ const usEasternTimezone = "US/Eastern";
 const europeBerlinTimezone = "Europe/Berlin";
 // Minutes the us_cash profile stays "open" after the closing bell.
 const usCashCloseGraceMinutes = 15;
+// The 23x5 US equity session (Nasdaq, NYSE Arca) runs from Sunday 21:00 to
+// Friday 20:00 US/Eastern and pauses from 20:00 to 21:00 on weekdays. Trades
+// after the pause starts count toward the next trade date.
+export const us23x5PauseStartHourET = 20;
+export const us23x5ResumeHourET = 21;
 
 export function buildClosedMarketPresenceData(): Omit<MarketPresenceData, "nickname"> {
   return {
@@ -75,6 +80,10 @@ export function isMarketHoursOpen(marketHours: MarketHoursProfile, referenceTime
       return isForexMarketOpen(referenceTime);
     }
 
+    case "us_23x5": {
+      return isUs23x5MarketOpen(referenceTime);
+    }
+
     case "us_cash": {
       return isUsCashMarketOpen(referenceTime);
     }
@@ -123,6 +132,30 @@ function isUsCashMarketOpen(referenceTime: number): boolean {
   const closeMinuteOfDay = (Number(closeTimeET.slice(0, 2)) * 60) + Number(closeTimeET.slice(3, 5));
   const minuteOfDay = easternTime.hour() * 60 + easternTime.minute();
   return minuteOfDay >= ((9 * 60) + 30) && minuteOfDay < (closeMinuteOfDay + usCashCloseGraceMinutes);
+}
+
+// Exchange view of the 23x5 session: the ATS-only EARLY hour during the pause
+// is not counted, and holidays are not modelled (same as us_futures).
+function isUs23x5MarketOpen(referenceTime: number): boolean {
+  const easternTime = moment.tz(referenceTime, usEasternTimezone);
+  const day = easternTime.day();
+  const minuteOfDay = easternTime.hour() * 60 + easternTime.minute();
+  const pauseStartMinute = us23x5PauseStartHourET * 60;
+  const resumeMinute = us23x5ResumeHourET * 60;
+
+  if (6 === day) {
+    return false;
+  }
+
+  if (0 === day) {
+    return minuteOfDay >= resumeMinute;
+  }
+
+  if (5 === day) {
+    return minuteOfDay < pauseStartMinute;
+  }
+
+  return minuteOfDay < pauseStartMinute || minuteOfDay >= resumeMinute;
 }
 
 function isUsFuturesMarketOpen(referenceTime: number): boolean {

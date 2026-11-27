@@ -454,6 +454,10 @@ describe("getAssets", () => {
     expect(marketDataAsset.marketHours).toBe("crypto");
     expect(marketDataAsset.tastytradeStreamerSymbol).toBe("BTC/USD");
 
+    marketDataAsset.marketHours = " us_23x5 ";
+
+    expect(marketDataAsset.marketHours).toBe("us_23x5");
+
     marketDataAsset.marketHours = "unsupported";
 
     expect(marketDataAsset.marketHours).toBeUndefined();

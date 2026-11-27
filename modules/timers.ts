@@ -30,9 +30,16 @@ import {loadEarningsWhispersWeeklyTickers} from "./earnings-whispers.ts";
 import {getWithRetry} from "./http-retry.ts";
 import {getLogger} from "./logging.ts";
 import {findMarketOpenSentimentPollMessage, getMarketCloseRecap} from "./market-close-recap.ts";
+import {us23x5PauseStartHourET, us23x5ResumeHourET} from "./market-data-hours.ts";
 import {getPremarketWarmupMessage} from "./market-open-warmup.ts";
 import {getMnc} from "./mnc-downloader.ts";
 import {getMncSummary} from "./mnc-summary.ts";
+import {
+  getNyseEveningCloseAnnouncement,
+  getNyseEveningOpenAnnouncement,
+  getNyseMorningNotice,
+  isNyseTradingDay,
+} from "./nyse-sessions.ts";
 import {type Ticker} from "./tickers.ts";
 import {
   buildCalendarReminderEmbed,
@@ -62,6 +69,8 @@ const weeklyEarningsHeadline = "💸 **Earnings der nächsten Handelswoche**";
 const weeklyCalendarHeadline = "📅 **Wichtige Termine der nächsten Handelswoche**";
 const europeBerlinTimezone = "Europe/Berlin";
 const usEasternWeekdays = [new Schedule.Range(1, 5)];
+// Evenings that can precede a trading day, when the next 23x5 session opens.
+const usEasternSundayToThursday = [new Schedule.Range(0, 4)];
 const gainsAndLossesThreadName = "Heutige Gains&Losses";
 const berlinWeekdays = [new Schedule.Range(1, 5)];
 const nyseOpenAnnouncement = "🔔🔔🔔 Ich bin ready. Ihr seid ready?! Na dann loooos! Huuuiiii! 🚀 Der Börsenritt beginnt, meine Freunde. Seid dabei, ihr dürft nichts verpassen! 🥳 🎠 🔔🔔🔔";
@@ -191,19 +200,6 @@ function getNextUsEasternDate(): moment.Moment {
   return moment.tz(usEasternTimezone).add(1, "day").startOf("day");
 }
 
-function isUsEasternWeekend(date: moment.Moment): boolean {
-  const day = date.day();
-  return 0 === day || 6 === day;
-}
-
-function isNyseTradingDay(date: moment.Moment): boolean {
-  if (true === isUsEasternWeekend(date)) {
-    return false;
-  }
-
-  return !isHoliday(date.clone().tz(usEasternTimezone).format("YYYY-MM-DD"));
-}
-
 function getUsEasternToday(): string {
   return moment.tz(usEasternTimezone).format("YYYY-MM-DD");
 }
@@ -216,10 +212,6 @@ function isNyseHolidayToday(): boolean {
 // before Independence Day), not only the one after Thanksgiving.
 function isNyseEarlyCloseToday(): boolean {
   return Boolean(isEarlyClose(getUsEasternToday()));
-}
-
-function isDayAfterThanksgiving(): boolean {
-  return "Day after Thanksgiving" === isEarlyClose(getUsEasternToday())?.name;
 }
 
 function getNyseSentimentPollDurationHours(): number {
@@ -380,6 +372,14 @@ async function getOptionalThreadTargetChannel(
 async function sendAnnouncement(client: TimerClient, channelID: string, payload: unknown, source: string) {
   const channel = getSendableChannel(client, channelID, source);
   return sendToChannel(channel, payload, source);
+}
+
+function sendOptionalAnnouncement(client: TimerClient, channelID: string, content: string | undefined) {
+  if (undefined === content) {
+    return;
+  }
+
+  void sendAnnouncement(client, channelID, content, "NYSE");
 }
 
 async function sendToChannel(channel: SendableChannel | null, payload: unknown, source: string) {
@@ -615,7 +615,8 @@ export function startNyseTimers(client: TimerClient, channelID: string, gainsLos
     ended: true,
   };
 
-  const ruleNysePremarketOpen = createRecurrenceRule({
+  // 04:00 US/Eastern is the German morning; the notice only speaks on holidays and early-close days.
+  const ruleNyseMorningNotice = createRecurrenceRule({
     hour: 4,
     minute: 0,
     dayOfWeek: usEasternWeekdays,
@@ -623,8 +624,8 @@ export function startNyseTimers(client: TimerClient, channelID: string, gainsLos
   });
 
   const ruleNysePremarketWarmup = createRecurrenceRule({
-    hour: 4,
-    minute: 5,
+    hour: 9,
+    minute: 15,
     dayOfWeek: usEasternWeekdays,
     tz: usEasternTimezone,
   });
@@ -678,53 +679,22 @@ export function startNyseTimers(client: TimerClient, channelID: string, gainsLos
     tz: usEasternTimezone,
   });
 
-  const ruleNyseAftermarketClose = createRecurrenceRule({
-    hour: 20,
+  const ruleNyseEveningClose = createRecurrenceRule({
+    hour: us23x5PauseStartHourET,
     minute: 0,
     dayOfWeek: usEasternWeekdays,
     tz: usEasternTimezone,
   });
 
-  const ruleNyseAftermarketCloseEarly = createRecurrenceRule({
-    hour: 17,
+  const ruleNyseEveningOpen = createRecurrenceRule({
+    hour: us23x5ResumeHourET,
     minute: 0,
-    dayOfWeek: usEasternWeekdays,
+    dayOfWeek: usEasternSundayToThursday,
     tz: usEasternTimezone,
   });
 
-  Schedule.scheduleJob(ruleNysePremarketOpen, () => {
-    if (true === isNyseEarlyCloseToday()) {
-      // On early-close days the market closes at 13:00 US/Eastern.
-      const usEasternDate = moment.tz(usEasternTimezone).set({
-        hour: 13,
-        minute: 0,
-        second: 0,
-      });
-      const deDate = usEasternDate.clone().tz(europeBerlinTimezone);
-      const closeTime = `${deDate.format("HH")}:${deDate.format("mm")}`;
-      void sendAnnouncement(
-        client,
-        channelID,
-        true === isDayAfterThanksgiving()
-          ? `🦃🍗🎉 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet und heute ist der Tag nach dem Truthahn-Tag, also beeilt euch - die Börse macht schon um ${closeTime} zu! 🎉🍗🦃`
-          : `⏰🔔 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet, aber heute ist ein verkürzter Handelstag - die Börse macht schon um ${closeTime} zu! 🔔⏰`,
-        "NYSE",
-      );
-    } else if (true === isNyseHolidayToday()) {
-      void sendAnnouncement(
-        client,
-        channelID,
-        "🛍️🏝️🛥️ Guten Morgen liebe Hebelhelden! Heute bleibt die Börse geschlossen. Genießt den Tag und gebt eure Gewinne für tolle Sachen aus! 🛥️🏝️🛍️",
-        "NYSE",
-      );
-    } else {
-      void sendAnnouncement(
-        client,
-        channelID,
-        "😴🏦💰 Guten Morgen liebe Hebelhelden! Der Pre-market hat geöffnet, das Spiel beginnt! 💰🏦😴",
-        "NYSE",
-      );
-    }
+  Schedule.scheduleJob(ruleNyseMorningNotice, () => {
+    sendOptionalAnnouncement(client, channelID, getNyseMorningNotice());
   });
 
   Schedule.scheduleJob(ruleNysePremarketWarmup, () => {
@@ -796,29 +766,12 @@ export function startNyseTimers(client: TimerClient, channelID: string, gainsLos
     }
   });
 
-  Schedule.scheduleJob(ruleNyseAftermarketClose, () => {
-    const earlyClose = isNyseEarlyCloseToday();
-    if (false === isNyseHolidayToday() &&
-        false === earlyClose) {
-      void sendAnnouncement(
-        client,
-        channelID,
-        "🛏️🔔🔔 Und jetzt ist auch der aftermarket für euch Nachteulen geschlossen, Zeit fürs Bettchen! 🔔🔔🛏️",
-        "NYSE",
-      );
-    }
+  Schedule.scheduleJob(ruleNyseEveningClose, () => {
+    sendOptionalAnnouncement(client, channelID, getNyseEveningCloseAnnouncement());
   });
 
-  Schedule.scheduleJob(ruleNyseAftermarketCloseEarly, () => {
-    if (true === isNyseEarlyCloseToday()) {
-      // On early-close days the aftermarket closes at 17:00 US/Eastern.
-      void sendAnnouncement(
-        client,
-        channelID,
-        "🍻🔔🔔 Und jetzt ist auch der aftermarket geschlossen, schönen Feierabend zusammen! 🔔🔔🍻",
-        "NYSE",
-      );
-    }
+  Schedule.scheduleJob(ruleNyseEveningOpen, () => {
+    sendOptionalAnnouncement(client, channelID, getNyseEveningOpenAnnouncement());
   });
 }
 
